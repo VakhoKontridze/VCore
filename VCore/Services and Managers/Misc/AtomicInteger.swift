@@ -9,6 +9,8 @@ import Foundation
 
 // MARK:- Atomic Integer
 /// Thread-safe, automatically incremented `Int`
+///
+/// Object contains `shared` instance, but can also be initialized for separate incrementation
 public final class AtomicInteger {
     // MARK: Properties
     private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
