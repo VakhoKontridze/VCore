@@ -59,8 +59,14 @@ public final class NetworkService {
     /// Network service that performs POST network data tasks
     public let POST: NetworkPOSTService = .init()
     
-    /// Queue on which completion is returned
+    /// Queue on which completion is returned. Defaults to `main`.
     public var queue: DispatchQueue = .main
+    
+    /// Timeout inteval for request. Has a default value from `URLSessionConfiguration.default`, and defaults to `60`.
+    public var timeoutIntervalForRequest: TimeInterval = URLSessionConfiguration.default.timeoutIntervalForRequest
+    
+    /// Timeout inteval for request. Has a default value resource `URLSessionConfiguration.default`, and defaults to `604800`.
+    public var timeoutIntervalForResource: TimeInterval = URLSessionConfiguration.default.timeoutIntervalForResource
     
     /// Shared instance of `NetworkService`
     public static let shared: NetworkService = .init()

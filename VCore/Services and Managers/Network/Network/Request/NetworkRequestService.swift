@@ -10,6 +10,15 @@ import Foundation
 // MARK:- Network Request Service
 struct NetworkRequestService {
     // MARK: Properties
+    private var urlSessionConfiguration: URLSessionConfiguration = {
+        let configuration: URLSessionConfiguration = .default
+        configuration.timeoutIntervalForRequest = NetworkService.shared.timeoutIntervalForRequest
+        configuration.timeoutIntervalForResource = NetworkService.shared.timeoutIntervalForResource
+        return configuration
+    }()
+    
+    private var urlSession: URLSession { .init(configuration: urlSessionConfiguration) }
+    
     private var queue: DispatchQueue { NetworkService.shared.queue }
 }
 
@@ -38,7 +47,7 @@ extension NetworkRequestService {
             
             switch requestResult {
             case .success(let request):
-                let task: URLSessionDataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+                let task: URLSessionDataTask = urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
                     process(
                         data: data,
                         response: response,
@@ -91,7 +100,7 @@ extension NetworkRequestService {
                 body: encodedParameters
             )
             
-            let task: URLSessionDataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            let task: URLSessionDataTask = urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
                 process(
                     data: data,
                     response: response,
@@ -188,4 +197,3 @@ extension URLResponse {
         (self as? HTTPURLResponse)?.statusCode
     }
 }
-
