@@ -12,6 +12,17 @@
 		7A0F751926D5016400020996 /* VCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0F750B26D5016300020996 /* VCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759726D5146C00020996 /* AtomicInteger.swift */; };
 		7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759C26D5150800020996 /* NetworkConnectionService.swift */; };
+		7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BB26D516DA00020996 /* NetworkService.swift */; };
+		7A0F75BE26D516F200020996 /* NetworkService.GET.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BD26D516F200020996 /* NetworkService.GET.swift */; };
+		7A0F75C026D516F900020996 /* NetworkService.POST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BF26D516F900020996 /* NetworkService.POST.swift */; };
+		7A0F75C226D5172000020996 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C126D5172000020996 /* NetworkError.swift */; };
+		7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C326D5173100020996 /* NetworkResults.swift */; };
+		7A0F75C626D5174500020996 /* NetworkTypeCasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C526D5174500020996 /* NetworkTypeCasts.swift */; };
+		7A0F75C826D5175600020996 /* NetworkEncoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C726D5175600020996 /* NetworkEncoderService.swift */; };
+		7A0F75CA26D5176800020996 /* NetworkDecoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C926D5176800020996 /* NetworkDecoderService.swift */; };
+		7A0F75CC26D5177C00020996 /* NetworkRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75CB26D5177C00020996 /* NetworkRequestType.swift */; };
+		7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75CD26D5179200020996 /* NetworkRequestFactory.swift */; };
+		7A0F75D026D517A300020996 /* NetworkRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75CF26D517A300020996 /* NetworkRequestService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,6 +44,17 @@
 		7A0F751826D5016400020996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A0F759726D5146C00020996 /* AtomicInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicInteger.swift; sourceTree = "<group>"; };
 		7A0F759C26D5150800020996 /* NetworkConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionService.swift; sourceTree = "<group>"; };
+		7A0F75BB26D516DA00020996 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
+		7A0F75BD26D516F200020996 /* NetworkService.GET.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.GET.swift; sourceTree = "<group>"; };
+		7A0F75BF26D516F900020996 /* NetworkService.POST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.POST.swift; sourceTree = "<group>"; };
+		7A0F75C126D5172000020996 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		7A0F75C326D5173100020996 /* NetworkResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResults.swift; sourceTree = "<group>"; };
+		7A0F75C526D5174500020996 /* NetworkTypeCasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTypeCasts.swift; sourceTree = "<group>"; };
+		7A0F75C726D5175600020996 /* NetworkEncoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEncoderService.swift; sourceTree = "<group>"; };
+		7A0F75C926D5176800020996 /* NetworkDecoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDecoderService.swift; sourceTree = "<group>"; };
+		7A0F75CB26D5177C00020996 /* NetworkRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestType.swift; sourceTree = "<group>"; };
+		7A0F75CD26D5179200020996 /* NetworkRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.swift; sourceTree = "<group>"; };
+		7A0F75CF26D517A300020996 /* NetworkRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +134,7 @@
 			isa = PBXGroup;
 			children = (
 				7A0F759B26D514EC00020996 /* Connection */,
+				7A0F75B526D5169B00020996 /* Network */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -130,6 +153,64 @@
 				7A0F759C26D5150800020996 /* NetworkConnectionService.swift */,
 			);
 			path = Connection;
+			sourceTree = "<group>";
+		};
+		7A0F75B526D5169B00020996 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7A0F75B626D516B000020996 /* Interface */,
+				7A0F75B826D516BD00020996 /* Result */,
+				7A0F75B926D516C300020996 /* CODEC */,
+				7A0F75B726D516B600020996 /* Request */,
+				7A0F75BA26D516C900020996 /* Helpers */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		7A0F75B626D516B000020996 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				7A0F75BB26D516DA00020996 /* NetworkService.swift */,
+				7A0F75BD26D516F200020996 /* NetworkService.GET.swift */,
+				7A0F75BF26D516F900020996 /* NetworkService.POST.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
+		7A0F75B726D516B600020996 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				7A0F75CB26D5177C00020996 /* NetworkRequestType.swift */,
+				7A0F75CD26D5179200020996 /* NetworkRequestFactory.swift */,
+				7A0F75CF26D517A300020996 /* NetworkRequestService.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		7A0F75B826D516BD00020996 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				7A0F75C126D5172000020996 /* NetworkError.swift */,
+				7A0F75C326D5173100020996 /* NetworkResults.swift */,
+				7A0F75C526D5174500020996 /* NetworkTypeCasts.swift */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
+		7A0F75B926D516C300020996 /* CODEC */ = {
+			isa = PBXGroup;
+			children = (
+				7A0F75C726D5175600020996 /* NetworkEncoderService.swift */,
+				7A0F75C926D5176800020996 /* NetworkDecoderService.swift */,
+			);
+			path = CODEC;
+			sourceTree = "<group>";
+		};
+		7A0F75BA26D516C900020996 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -240,8 +321,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A0F75BE26D516F200020996 /* NetworkService.GET.swift in Sources */,
 				7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */,
+				7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */,
+				7A0F75C826D5175600020996 /* NetworkEncoderService.swift in Sources */,
+				7A0F75C626D5174500020996 /* NetworkTypeCasts.swift in Sources */,
+				7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */,
+				7A0F75C226D5172000020996 /* NetworkError.swift in Sources */,
 				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,
+				7A0F75CC26D5177C00020996 /* NetworkRequestType.swift in Sources */,
+				7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */,
+				7A0F75C026D516F900020996 /* NetworkService.POST.swift in Sources */,
+				7A0F75CA26D5176800020996 /* NetworkDecoderService.swift in Sources */,
+				7A0F75D026D517A300020996 /* NetworkRequestService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
