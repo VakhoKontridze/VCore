@@ -17,7 +17,7 @@
 		7A0F75C026D516F900020996 /* NetworkService.POST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BF26D516F900020996 /* NetworkService.POST.swift */; };
 		7A0F75C226D5172000020996 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C126D5172000020996 /* NetworkError.swift */; };
 		7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C326D5173100020996 /* NetworkResults.swift */; };
-		7A0F75C626D5174500020996 /* NetworkTypeCasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C526D5174500020996 /* NetworkTypeCasts.swift */; };
+		7A0F75C626D5174500020996 /* NetworkTypeCaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C526D5174500020996 /* NetworkTypeCaster.swift */; };
 		7A0F75C826D5175600020996 /* NetworkEncoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C726D5175600020996 /* NetworkEncoderService.swift */; };
 		7A0F75CA26D5176800020996 /* NetworkDecoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C926D5176800020996 /* NetworkDecoderService.swift */; };
 		7A0F75CC26D5177C00020996 /* NetworkRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75CB26D5177C00020996 /* NetworkRequestType.swift */; };
@@ -50,7 +50,7 @@
 		7A0F75BF26D516F900020996 /* NetworkService.POST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.POST.swift; sourceTree = "<group>"; };
 		7A0F75C126D5172000020996 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		7A0F75C326D5173100020996 /* NetworkResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResults.swift; sourceTree = "<group>"; };
-		7A0F75C526D5174500020996 /* NetworkTypeCasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTypeCasts.swift; sourceTree = "<group>"; };
+		7A0F75C526D5174500020996 /* NetworkTypeCaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTypeCaster.swift; sourceTree = "<group>"; };
 		7A0F75C726D5175600020996 /* NetworkEncoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkEncoderService.swift; sourceTree = "<group>"; };
 		7A0F75C926D5176800020996 /* NetworkDecoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkDecoderService.swift; sourceTree = "<group>"; };
 		7A0F75CB26D5177C00020996 /* NetworkRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestType.swift; sourceTree = "<group>"; };
@@ -194,7 +194,7 @@
 			children = (
 				7A0F75C126D5172000020996 /* NetworkError.swift */,
 				7A0F75C326D5173100020996 /* NetworkResults.swift */,
-				7A0F75C526D5174500020996 /* NetworkTypeCasts.swift */,
+				7A0F75C526D5174500020996 /* NetworkTypeCaster.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -328,7 +328,7 @@
 				7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */,
 				7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */,
 				7A0F75C826D5175600020996 /* NetworkEncoderService.swift in Sources */,
-				7A0F75C626D5174500020996 /* NetworkTypeCasts.swift in Sources */,
+				7A0F75C626D5174500020996 /* NetworkTypeCaster.swift in Sources */,
 				7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */,
 				7A0F75C226D5172000020996 /* NetworkError.swift in Sources */,
 				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,
