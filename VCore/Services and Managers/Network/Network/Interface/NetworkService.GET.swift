@@ -18,6 +18,7 @@ extension NetworkService {
 
 // MARK:- Data
 extension NetworkService.GET {
+    /// Makes `GET` network request with `JSON` parameters and returns `Data` or `NetworkError`
     public static func data(
         endpoint: String,
         headers: [String: Any],
@@ -37,6 +38,7 @@ extension NetworkService.GET {
 
 // MARK:- JSON
 extension NetworkService.GET {
+    /// Makes `GET` network request with `JSON` parameters and returns `JSON` or `NetworkError`
     public static func json(
         endpoint: String,
         headers: [String: Any],
@@ -53,6 +55,7 @@ extension NetworkService.GET {
         )
     }
     
+    /// Makes `GET` network request with `Encodable` parameters and returns `JSON` or `NetworkError`
     public static func json<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
@@ -72,6 +75,7 @@ extension NetworkService.GET {
 
 // MARK:- Entity
 extension NetworkService.GET {
+    /// Makes `GET` network request with `JSON` parameters and returns `Decodable` or `NetworkError`
     public static func entity<Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
@@ -89,6 +93,7 @@ extension NetworkService.GET {
         )
     }
     
+    /// Makes `GET` network request with `Encodable` parameters and returns `Decodable` or `NetworkError`
     public static func entity<Parameters: Encodable, Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
@@ -109,6 +114,7 @@ extension NetworkService.GET {
 
 // MARK:- UIImage
 extension NetworkService.GET {
+    /// Makes `GET` network request and returns `Data` or `NetworkError`
     public static func image(
         endpoint: String,
         completion: @escaping (Result<UIImage, NetworkError>) -> Void

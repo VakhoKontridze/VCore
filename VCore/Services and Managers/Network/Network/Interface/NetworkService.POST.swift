@@ -18,6 +18,7 @@ extension NetworkService {
 
 // MARK:- Data
 extension NetworkService.POST {
+    /// Makes `POST` network request with `JSON` parameters and returns `Data` or `NetworkError`
     public static func json(
         endpoint: String,
         headers: [String: Any],
@@ -37,6 +38,7 @@ extension NetworkService.POST {
 
 // MARK:- JSON
 extension NetworkService.POST {
+    /// Makes `POST` network request with `JSON` parameters and returns `JSON` or `NetworkError`
     public static func json(
         endpoint: String,
         headers: [String: Any],
@@ -53,6 +55,7 @@ extension NetworkService.POST {
         )
     }
 
+    /// Makes `POST` network request with `Encodable` parameters and returns `Data` or `NetworkError`
     public static func json<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
@@ -72,6 +75,7 @@ extension NetworkService.POST {
 
 // MARK:- Entity
 extension NetworkService.POST {
+    /// Makes `POST` network request with `JSON` parameters and returns `Decodable` or `NetworkError`
     public static func entity<Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
@@ -89,6 +93,7 @@ extension NetworkService.POST {
         )
     }
 
+    /// Makes `POST` network request with `Encodable` parameters and returns `Decodable` or `NetworkError`
     public static func entity<Parameters: Encodable, Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],

@@ -7,10 +7,6 @@
 
 import Foundation
 
-// EncodingError from JSONEncoder
-// DecodingError from JSONDecoder
-// NSError from JSONSerialization
-
 // MARK:- Network Error
 /// An error that occurs during the network requests made by `NetworkService`
 public enum NetworkError: Error, LocalizedError {
@@ -45,7 +41,12 @@ public enum NetworkError: Error, LocalizedError {
     
     /// An indication that other error has occured
     ///
-    /// As associated values, this case contains the code and description of error, as well as raw unprocessed error
+    /// As associated values, this case contains the code and description of error, as well as raw unprocessed error.
+    ///
+    /// `rawError` may include:
+    /// - `NSError` from `JSONSerialization`
+    /// - `EncodingError` from `JSONEncoder`
+    /// - `DecodingError` from `JSONDecoder`
     case other(code: Int?, description: String?, rawError: Error?)
     
     // MARK: Code
