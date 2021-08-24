@@ -10,6 +10,7 @@
 		7A0F751226D5016400020996 /* VCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; };
 		7A0F751726D5016400020996 /* VCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F751626D5016400020996 /* VCoreTests.swift */; };
 		7A0F751926D5016400020996 /* VCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0F750B26D5016300020996 /* VCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759726D5146C00020996 /* AtomicInteger.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +30,7 @@
 		7A0F751126D5016400020996 /* VCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A0F751626D5016400020996 /* VCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreTests.swift; sourceTree = "<group>"; };
 		7A0F751826D5016400020996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7A0F759726D5146C00020996 /* AtomicInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicInteger.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			isa = PBXGroup;
 			children = (
 				7A0F752226D5018200020996 /* Framework Info */,
+				7A0F759626D5146000020996 /* Services and Managers */,
 			);
 			path = VCore;
 			sourceTree = "<group>";
@@ -92,6 +95,14 @@
 				7A0F750B26D5016300020996 /* VCore.h */,
 			);
 			name = "Framework Info";
+			sourceTree = "<group>";
+		};
+		7A0F759626D5146000020996 /* Services and Managers */ = {
+			isa = PBXGroup;
+			children = (
+				7A0F759726D5146C00020996 /* AtomicInteger.swift */,
+			);
+			path = "Services and Managers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +213,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +409,7 @@
 		7A0F752026D5016400020996 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XRWP42VX24;
 				INFOPLIST_FILE = VCoreTests/Info.plist;
@@ -415,6 +428,7 @@
 		7A0F752126D5016400020996 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XRWP42VX24;
 				INFOPLIST_FILE = VCoreTests/Info.plist;
