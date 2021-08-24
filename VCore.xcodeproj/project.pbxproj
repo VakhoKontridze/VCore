@@ -11,6 +11,7 @@
 		7A0F751726D5016400020996 /* VCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F751626D5016400020996 /* VCoreTests.swift */; };
 		7A0F751926D5016400020996 /* VCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0F750B26D5016300020996 /* VCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759726D5146C00020996 /* AtomicInteger.swift */; };
+		7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759C26D5150800020996 /* NetworkConnectionService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,6 +32,7 @@
 		7A0F751626D5016400020996 /* VCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreTests.swift; sourceTree = "<group>"; };
 		7A0F751826D5016400020996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A0F759726D5146C00020996 /* AtomicInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicInteger.swift; sourceTree = "<group>"; };
+		7A0F759C26D5150800020996 /* NetworkConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,9 +102,34 @@
 		7A0F759626D5146000020996 /* Services and Managers */ = {
 			isa = PBXGroup;
 			children = (
-				7A0F759726D5146C00020996 /* AtomicInteger.swift */,
+				7A0F759926D514DF00020996 /* Network */,
+				7A0F759A26D514E400020996 /* Misc */,
 			);
 			path = "Services and Managers";
+			sourceTree = "<group>";
+		};
+		7A0F759926D514DF00020996 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				7A0F759B26D514EC00020996 /* Connection */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		7A0F759A26D514E400020996 /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				7A0F759726D5146C00020996 /* AtomicInteger.swift */,
+			);
+			path = Misc;
+			sourceTree = "<group>";
+		};
+		7A0F759B26D514EC00020996 /* Connection */ = {
+			isa = PBXGroup;
+			children = (
+				7A0F759C26D5150800020996 /* NetworkConnectionService.swift */,
+			);
+			path = Connection;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +240,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */,
 				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
