@@ -27,12 +27,12 @@ public enum NetworkError: Error, LocalizedError {
     /// An indication that network ruquest returned an error
     ///
     /// As associated values, this case contains the code and description of error
-    case returnedWithError(code: Int?, description: String)
+    case returnedWithError(code: Int?, description: String?)
     
     /// An indication that netowrk ruquest returned an invalid response
     ///
     /// As associated values, this case contains the code and description of error
-    case invalidResponse(code: Int?, description: String)
+    case invalidResponse(code: Int?, description: String?)
     
     /// An indication that result cannot be decoded
     ///

@@ -165,7 +165,6 @@
 				7A0F75B826D516BD00020996 /* Result */,
 				7A0F75B926D516C300020996 /* CODEC */,
 				7A0F75B726D516B600020996 /* Request */,
-				7A0F75BA26D516C900020996 /* Helpers */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -207,13 +206,6 @@
 				7A0F75C926D5176800020996 /* NetworkDecoderService.swift */,
 			);
 			path = CODEC;
-			sourceTree = "<group>";
-		};
-		7A0F75BA26D516C900020996 /* Helpers */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Helpers;
 			sourceTree = "<group>";
 		};
 		7A9A6AA426D5218E00C19A07 /* Session */ = {
