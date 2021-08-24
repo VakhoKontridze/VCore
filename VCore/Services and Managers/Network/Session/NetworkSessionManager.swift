@@ -14,20 +14,12 @@ import Foundation
 public final class NetworkSessionManager {
     // MARK: Properties
     private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
+    
     private let atomicInteger: AtomicInteger = .init(initialValue: 0)
     
     /// Current session ID. Default to `-1` without any prior incrementation.
     private(set) public var currentSessionID: Int = -1
     
-    /// Shared instance of `NetworkSessionManager`
-    public static let shared: AtomicInteger = .init()
-    
-    // MARK: Initializers
-    public init() {}
-}
-
-// MARK:- Session
-extension NetworkSessionManager {
     /// Generates thread-safe, auto-incremented session identifier from `AtomicInteger`
     public var newSessionID: Int {
         dispatchSemaphore.wait()
@@ -37,6 +29,15 @@ extension NetworkSessionManager {
         return currentSessionID
     }
     
+    /// Shared instance of `NetworkSessionManager`
+    public static let shared: AtomicInteger = .init()
+    
+    // MARK: Initializers
+    public init() {}
+}
+
+// MARK:- Validation
+extension NetworkSessionManager {
     /// Validates session identifier against latest generated identifier
     public func sessionIsValid(id sessionID: Int) -> Bool {
         sessionID == currentSessionID
