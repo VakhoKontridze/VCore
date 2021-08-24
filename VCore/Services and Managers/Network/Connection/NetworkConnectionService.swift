@@ -9,7 +9,7 @@ import Foundation
 import SystemConfiguration
 
 // MARK:- Network Connetion Service
-/// Network object that manages connection
+/// Network connection service that manages connection
 public struct NetworkConnectionService {
     // MARK: Initializers
     private init() {}

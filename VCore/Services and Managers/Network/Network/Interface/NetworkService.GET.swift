@@ -9,7 +9,7 @@ import UIKit
 
 // MARK:- GET
 extension NetworkService {
-    /// Network object that performs GET network data tasks
+    /// Network service that performs GET network data tasks
     public struct GET {
         // MARK: Initializers
         private init() {}

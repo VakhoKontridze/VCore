@@ -23,6 +23,7 @@
 		7A0F75CC26D5177C00020996 /* NetworkRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75CB26D5177C00020996 /* NetworkRequestType.swift */; };
 		7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75CD26D5179200020996 /* NetworkRequestFactory.swift */; };
 		7A0F75D026D517A300020996 /* NetworkRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75CF26D517A300020996 /* NetworkRequestService.swift */; };
+		7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		7A0F75CB26D5177C00020996 /* NetworkRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestType.swift; sourceTree = "<group>"; };
 		7A0F75CD26D5179200020996 /* NetworkRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.swift; sourceTree = "<group>"; };
 		7A0F75CF26D517A300020996 /* NetworkRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestService.swift; sourceTree = "<group>"; };
+		7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +137,7 @@
 			children = (
 				7A0F759B26D514EC00020996 /* Connection */,
 				7A0F75B526D5169B00020996 /* Network */,
+				7A9A6AA426D5218E00C19A07 /* Session */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -211,6 +214,14 @@
 			children = (
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		7A9A6AA426D5218E00C19A07 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */,
+			);
+			path = Session;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +343,7 @@
 				7A0F75CC26D5177C00020996 /* NetworkRequestType.swift in Sources */,
 				7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */,
 				7A0F75C026D516F900020996 /* NetworkService.POST.swift in Sources */,
+				7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */,
 				7A0F75CA26D5176800020996 /* NetworkDecoderService.swift in Sources */,
 				7A0F75D026D517A300020996 /* NetworkRequestService.swift in Sources */,
 			);

@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK:- Network Service
-/// Network object that performs network data tasks
+/// Network service that performs network data tasks
 public struct NetworkService {
     // MARK: Initializers
     private init() {}

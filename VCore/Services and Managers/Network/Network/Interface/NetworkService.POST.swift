@@ -9,7 +9,7 @@ import Foundation
 
 // MARK:- POST
 extension NetworkService {
-    /// Network object that performs POST network data tasks
+    /// Network service that performs POST network data tasks
     public struct POST {
         // MARK: Initializers
         private init() {}
