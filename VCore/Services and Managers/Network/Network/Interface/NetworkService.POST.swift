@@ -19,7 +19,7 @@ extension NetworkService {
 // MARK:- Data
 extension NetworkService.POST {
     /// Makes `POST` network request with `JSON` parameters and returns `Data` or `NetworkError`
-    public static func json(
+    public static func data(
         endpoint: String,
         headers: [String: Any],
         parameters: [String: Any],
