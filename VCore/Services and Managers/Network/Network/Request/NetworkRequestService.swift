@@ -10,15 +10,12 @@ import Foundation
 // MARK:- Network Request Service
 struct NetworkRequestService {
     // MARK: Properties
-    private static let queue: DispatchQueue = .main
-    
-    // MARK: Initializers
-    private init() {}
+    private var queue: DispatchQueue { NetworkService.shared.queue }
 }
 
 // MARK:- GET
 extension NetworkRequestService {
-    static func get<Parameters, Entity>(
+    func get<Parameters, Entity>(
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
@@ -68,7 +65,7 @@ extension NetworkRequestService {
 
 // MARK:- POST
 extension NetworkRequestService {
-    static func post<Parameters, Entity>(
+    func post<Parameters, Entity>(
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
@@ -95,7 +92,7 @@ extension NetworkRequestService {
             )
             
             let task: URLSessionDataTask = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-                NetworkRequestService.process(
+                process(
                     data: data,
                     response: response,
                     error: error,
@@ -118,7 +115,7 @@ extension NetworkRequestService {
 
 // MARK:- Process
 extension NetworkRequestService {
-    private static func process<Entity>(
+    func process<Entity>(
         data: Data?,
         response: URLResponse?,
         error: Error?,

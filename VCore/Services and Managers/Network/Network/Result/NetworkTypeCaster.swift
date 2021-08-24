@@ -9,7 +9,7 @@ import Foundation
 
 // MARK:- Network Type Caster
 /// Casts `Any` to subsequent types
-struct NetworkTypeCaster {
+public struct NetworkTypeCaster {
     // MARK: Initializers
     private init() {}
 }

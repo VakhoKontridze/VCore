@@ -13,8 +13,8 @@
 		7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759726D5146C00020996 /* AtomicInteger.swift */; };
 		7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759C26D5150800020996 /* NetworkConnectionService.swift */; };
 		7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BB26D516DA00020996 /* NetworkService.swift */; };
-		7A0F75BE26D516F200020996 /* NetworkService.GET.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BD26D516F200020996 /* NetworkService.GET.swift */; };
-		7A0F75C026D516F900020996 /* NetworkService.POST.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BF26D516F900020996 /* NetworkService.POST.swift */; };
+		7A0F75BE26D516F200020996 /* NetworkGETService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BD26D516F200020996 /* NetworkGETService.swift */; };
+		7A0F75C026D516F900020996 /* NetworkPOSTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BF26D516F900020996 /* NetworkPOSTService.swift */; };
 		7A0F75C226D5172000020996 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C126D5172000020996 /* NetworkError.swift */; };
 		7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C326D5173100020996 /* NetworkResults.swift */; };
 		7A0F75C626D5174500020996 /* NetworkTypeCaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C526D5174500020996 /* NetworkTypeCaster.swift */; };
@@ -46,8 +46,8 @@
 		7A0F759726D5146C00020996 /* AtomicInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicInteger.swift; sourceTree = "<group>"; };
 		7A0F759C26D5150800020996 /* NetworkConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionService.swift; sourceTree = "<group>"; };
 		7A0F75BB26D516DA00020996 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
-		7A0F75BD26D516F200020996 /* NetworkService.GET.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.GET.swift; sourceTree = "<group>"; };
-		7A0F75BF26D516F900020996 /* NetworkService.POST.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.POST.swift; sourceTree = "<group>"; };
+		7A0F75BD26D516F200020996 /* NetworkGETService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGETService.swift; sourceTree = "<group>"; };
+		7A0F75BF26D516F900020996 /* NetworkPOSTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPOSTService.swift; sourceTree = "<group>"; };
 		7A0F75C126D5172000020996 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		7A0F75C326D5173100020996 /* NetworkResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResults.swift; sourceTree = "<group>"; };
 		7A0F75C526D5174500020996 /* NetworkTypeCaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTypeCaster.swift; sourceTree = "<group>"; };
@@ -173,8 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				7A0F75BB26D516DA00020996 /* NetworkService.swift */,
-				7A0F75BD26D516F200020996 /* NetworkService.GET.swift */,
-				7A0F75BF26D516F900020996 /* NetworkService.POST.swift */,
+				7A0F75BD26D516F200020996 /* NetworkGETService.swift */,
+				7A0F75BF26D516F900020996 /* NetworkPOSTService.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -324,7 +324,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A0F75BE26D516F200020996 /* NetworkService.GET.swift in Sources */,
+				7A0F75BE26D516F200020996 /* NetworkGETService.swift in Sources */,
 				7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */,
 				7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */,
 				7A0F75C826D5175600020996 /* NetworkEncoderService.swift in Sources */,
@@ -334,7 +334,7 @@
 				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,
 				7A0F75CC26D5177C00020996 /* NetworkRequestType.swift in Sources */,
 				7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */,
-				7A0F75C026D516F900020996 /* NetworkService.POST.swift in Sources */,
+				7A0F75C026D516F900020996 /* NetworkPOSTService.swift in Sources */,
 				7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */,
 				7A0F75CA26D5176800020996 /* NetworkDecoderService.swift in Sources */,
 				7A0F75D026D517A300020996 /* NetworkRequestService.swift in Sources */,

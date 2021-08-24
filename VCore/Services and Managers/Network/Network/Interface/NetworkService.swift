@@ -20,7 +20,7 @@ import Foundation
 ///         parameters: [String: Any],
 ///         completion: @escaping (Result<[String: Any], NetworkError>) -> Void
 ///     ) {
-///         NetworkService.GET.json(
+///         NetworkService.shared.GET.json(
 ///             endpoint: endpoint,
 ///             headers: headers,
 ///             parameters: parameters,
@@ -51,7 +51,20 @@ import Foundation
 /// }
 /// ```
 ///
-public struct NetworkService {
+public final class NetworkService {
+    // MARK: Properties
+    /// Network service that performs GET network data tasks
+    public let GET: NetworkGETService = .init()
+    
+    /// Network service that performs POST network data tasks
+    public let POST: NetworkPOSTService = .init()
+    
+    /// Queue on which completion is returned
+    public var queue: DispatchQueue = .main
+    
+    /// Shared instance of `NetworkService`
+    public static let shared: NetworkService = .init()
+    
     // MARK: Initializers
     private init() {}
 }
