@@ -23,7 +23,7 @@ extension NetworkGETService {
         parameters: [String: Any],
         completion: @escaping (Result<Data, NetworkError>) -> Void
     ) {
-        NetworkRequestService().get(
+        NetworkRequestService().GET(
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
@@ -43,7 +43,7 @@ extension NetworkGETService {
         parameters: [String: Any],
         completion: @escaping (Result<[String: Any], NetworkError>) -> Void
     ) {
-        NetworkRequestService().get(
+        NetworkRequestService().GET(
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
@@ -60,7 +60,7 @@ extension NetworkGETService {
         parameters: Parameters,
         completion: @escaping (Result<[String: Any], NetworkError>) -> Void
     ) {
-        NetworkRequestService().get(
+        NetworkRequestService().GET(
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
@@ -81,7 +81,7 @@ extension NetworkGETService {
         entityType: Entity.Type,
         completion: @escaping (Result<Entity, NetworkError>) -> Void
     ) {
-        NetworkRequestService().get(
+        NetworkRequestService().GET(
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
@@ -99,7 +99,7 @@ extension NetworkGETService {
         entityType: Entity.Type,
         completion: @escaping (Result<Entity, NetworkError>) -> Void
     ) {
-        NetworkRequestService().get(
+        NetworkRequestService().GET(
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
@@ -117,7 +117,7 @@ extension NetworkGETService {
         endpoint: String,
         completion: @escaping (Result<UIImage, NetworkError>) -> Void
     ) {
-        NetworkRequestService().get(
+        NetworkRequestService().GET(
             endpoint: endpoint,
             headers: [:],
             parameters: [:],

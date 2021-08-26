@@ -23,7 +23,7 @@ extension NetworkPOSTService {
         parameters: [String: Any],
         completion: @escaping (Result<Data, NetworkError>) -> Void)
     {
-        NetworkRequestService().post(
+        NetworkRequestService().POST(
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
@@ -43,7 +43,7 @@ extension NetworkPOSTService {
         parameters: [String: Any],
         completion: @escaping (Result<[String: Any], NetworkError>) -> Void)
     {
-        NetworkRequestService().post(
+        NetworkRequestService().POST(
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
@@ -60,7 +60,7 @@ extension NetworkPOSTService {
         parameters: Parameters,
         completion: @escaping (Result<[String: Any], NetworkError>) -> Void
     ) {
-        NetworkRequestService().post(
+        NetworkRequestService().POST(
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
@@ -81,7 +81,7 @@ extension NetworkPOSTService {
         entityType: Entity.Type,
         completion: @escaping (Result<Entity, NetworkError>) -> Void
     ) {
-        NetworkRequestService().post(
+        NetworkRequestService().POST(
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
@@ -99,7 +99,7 @@ extension NetworkPOSTService {
         entityType: Entity.Type,
         completion: @escaping (Result<Entity, NetworkError>) -> Void
     ) {
-        NetworkRequestService().post(
+        NetworkRequestService().POST(
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,

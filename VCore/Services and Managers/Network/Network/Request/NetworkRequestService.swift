@@ -24,7 +24,7 @@ struct NetworkRequestService {
 
 // MARK:- GET
 extension NetworkRequestService {
-    func get<Parameters, Entity>(
+    func GET<Parameters, Entity>(
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
@@ -39,7 +39,7 @@ extension NetworkRequestService {
 
         switch encode(parameters) {
         case .success(let encodedParameters):
-            let requestResult: Result<URLRequest, NetworkError> = NetworkRequestFactory.get(
+            let requestResult: Result<URLRequest, NetworkError> = NetworkRequestFactory.GET(
                 endpoint: endpoint,
                 headers: headers,
                 parameters: encodedParameters
@@ -74,7 +74,7 @@ extension NetworkRequestService {
 
 // MARK:- POST
 extension NetworkRequestService {
-    func post<Parameters, Entity>(
+    func POST<Parameters, Entity>(
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
@@ -94,7 +94,7 @@ extension NetworkRequestService {
         
         switch encode(parameters) {
         case .success(let encodedParameters):
-            let request: URLRequest = NetworkRequestFactory.post(
+            let request: URLRequest = NetworkRequestFactory.POST(
                 url: url,
                 headers: headers,
                 body: encodedParameters

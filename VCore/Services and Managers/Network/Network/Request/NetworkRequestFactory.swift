@@ -15,7 +15,7 @@ struct NetworkRequestFactory {
 
 // MARK:- Factory
 extension NetworkRequestFactory {
-    static func get(
+    static func GET(
         endpoint: String,
         headers: [String: Any],
         parameters: [String: Any]
@@ -36,7 +36,7 @@ extension NetworkRequestFactory {
         return .success(request)
     }
     
-    static func post(
+    static func POST(
         url: URL,
         headers: [String: Any],
         body: Data?
