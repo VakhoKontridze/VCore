@@ -17,7 +17,7 @@ public final class AtomicInteger {
     
     private var _value: Int
     
-    /// Generates thread-safe, auto-incremented value of `AtomicInteger`
+    /// Generates thread-safe, auto-incremented integer
     public var value: Int {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
