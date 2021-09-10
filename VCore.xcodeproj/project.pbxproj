@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		7A00266C26EB70370056DBC5 /* JSONEncodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266B26EB70370056DBC5 /* JSONEncodingError.swift */; };
 		7A00266F26EB70790056DBC5 /* JSONDecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266E26EB70790056DBC5 /* JSONDecodingError.swift */; };
+		7A0026E226EB766E0056DBC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0026E126EB766E0056DBC5 /* AppDelegate.swift */; };
+		7A0026E426EB766E0056DBC5 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0026E326EB766E0056DBC5 /* SceneDelegate.swift */; };
+		7A0026E626EB766E0056DBC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0026E526EB766E0056DBC5 /* ViewController.swift */; };
+		7A0026EB26EB76710056DBC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A0026EA26EB76710056DBC5 /* Assets.xcassets */; };
+		7A0026EE26EB76710056DBC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A0026EC26EB76710056DBC5 /* LaunchScreen.storyboard */; };
 		7A0F751226D5016400020996 /* VCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; };
 		7A0F751726D5016400020996 /* VCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F751626D5016400020996 /* VCoreTests.swift */; };
 		7A0F751926D5016400020996 /* VCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0F750B26D5016300020996 /* VCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -41,6 +46,13 @@
 /* Begin PBXFileReference section */
 		7A00266B26EB70370056DBC5 /* JSONEncodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncodingError.swift; sourceTree = "<group>"; };
 		7A00266E26EB70790056DBC5 /* JSONDecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingError.swift; sourceTree = "<group>"; };
+		7A0026DF26EB766E0056DBC5 /* VCoreDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCoreDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7A0026E126EB766E0056DBC5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7A0026E326EB766E0056DBC5 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		7A0026E526EB766E0056DBC5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		7A0026EA26EB76710056DBC5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7A0026ED26EB76710056DBC5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7A0026EF26EB76710056DBC5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A0F750826D5016300020996 /* VCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A0F750B26D5016300020996 /* VCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCore.h; sourceTree = "<group>"; };
 		7A0F750C26D5016300020996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -64,6 +76,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7A0026DC26EB766E0056DBC5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A0F750526D5016300020996 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -100,10 +119,56 @@
 			path = Decoder;
 			sourceTree = "<group>";
 		};
+		7A0026E026EB766E0056DBC5 /* VCoreDemo */ = {
+			isa = PBXGroup;
+			children = (
+				7A0026F626EB76CE0056DBC5 /* App Info */,
+				7A0026F326EB767E0056DBC5 /* App Control */,
+				7A0026F426EB76890056DBC5 /* Scenes */,
+				7A0026F526EB768E0056DBC5 /* Resources */,
+			);
+			path = VCoreDemo;
+			sourceTree = "<group>";
+		};
+		7A0026F326EB767E0056DBC5 /* App Control */ = {
+			isa = PBXGroup;
+			children = (
+				7A0026E126EB766E0056DBC5 /* AppDelegate.swift */,
+				7A0026E326EB766E0056DBC5 /* SceneDelegate.swift */,
+			);
+			path = "App Control";
+			sourceTree = "<group>";
+		};
+		7A0026F426EB76890056DBC5 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				7A0026EC26EB76710056DBC5 /* LaunchScreen.storyboard */,
+				7A0026E526EB766E0056DBC5 /* ViewController.swift */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		7A0026F526EB768E0056DBC5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				7A0026EA26EB76710056DBC5 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		7A0026F626EB76CE0056DBC5 /* App Info */ = {
+			isa = PBXGroup;
+			children = (
+				7A0026EF26EB76710056DBC5 /* Info.plist */,
+			);
+			name = "App Info";
+			sourceTree = "<group>";
+		};
 		7A0F74FE26D5016300020996 = {
 			isa = PBXGroup;
 			children = (
 				7A0F750A26D5016300020996 /* VCore */,
+				7A0026E026EB766E0056DBC5 /* VCoreDemo */,
 				7A0F751526D5016400020996 /* VCoreTests */,
 				7A0F750926D5016300020996 /* Products */,
 			);
@@ -114,6 +179,7 @@
 			children = (
 				7A0F750826D5016300020996 /* VCore.framework */,
 				7A0F751126D5016400020996 /* VCoreTests.xctest */,
+				7A0026DF26EB766E0056DBC5 /* VCoreDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -252,6 +318,23 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		7A0026DE26EB766E0056DBC5 /* VCoreDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7A0026F026EB76710056DBC5 /* Build configuration list for PBXNativeTarget "VCoreDemo" */;
+			buildPhases = (
+				7A0026DB26EB766E0056DBC5 /* Sources */,
+				7A0026DC26EB766E0056DBC5 /* Frameworks */,
+				7A0026DD26EB766E0056DBC5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = VCoreDemo;
+			productName = VCoreDemo;
+			productReference = 7A0026DF26EB766E0056DBC5 /* VCoreDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		7A0F750726D5016300020996 /* VCore */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7A0F751C26D5016400020996 /* Build configuration list for PBXNativeTarget "VCore" */;
@@ -297,6 +380,9 @@
 				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
+					7A0026DE26EB766E0056DBC5 = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
 					7A0F750726D5016300020996 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
@@ -320,11 +406,21 @@
 			targets = (
 				7A0F750726D5016300020996 /* VCore */,
 				7A0F751026D5016400020996 /* VCoreTests */,
+				7A0026DE26EB766E0056DBC5 /* VCoreDemo */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7A0026DD26EB766E0056DBC5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A0026EE26EB76710056DBC5 /* LaunchScreen.storyboard in Resources */,
+				7A0026EB26EB76710056DBC5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A0F750626D5016300020996 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -342,6 +438,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7A0026DB26EB766E0056DBC5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7A0026E626EB766E0056DBC5 /* ViewController.swift in Sources */,
+				7A0026E226EB766E0056DBC5 /* AppDelegate.swift in Sources */,
+				7A0026E426EB766E0056DBC5 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7A0F750426D5016300020996 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -383,7 +489,56 @@
 		};
 /* End PBXTargetDependency section */
 
+/* Begin PBXVariantGroup section */
+		7A0026EC26EB76710056DBC5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7A0026ED26EB76710056DBC5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
 /* Begin XCBuildConfiguration section */
+		7A0026F126EB76710056DBC5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XRWP42VX24;
+				INFOPLIST_FILE = VCoreDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vakhtang-kontridze.VCoreDemo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7A0026F226EB76710056DBC5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XRWP42VX24;
+				INFOPLIST_FILE = VCoreDemo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vakhtang-kontridze.VCoreDemo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		7A0F751A26D5016400020996 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -603,6 +758,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7A0026F026EB76710056DBC5 /* Build configuration list for PBXNativeTarget "VCoreDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7A0026F126EB76710056DBC5 /* Debug */,
+				7A0026F226EB76710056DBC5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7A0F750226D5016300020996 /* Build configuration list for PBXProject "VCore" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
