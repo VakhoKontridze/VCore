@@ -18,7 +18,7 @@ import Foundation
 ///         endpoint: String,
 ///         headers: [String :Any],
 ///         parameters: [String: Any],
-///         completion: @escaping (Result<[String: Any], NetworkError>) -> Void
+///         completion: @escaping (Result<[String: Any], Error>) -> Void
 ///     ) {
 ///         NetworkService.shared.GET.json(
 ///             endpoint: endpoint,

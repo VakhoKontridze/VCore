@@ -49,7 +49,7 @@ extension NetworkGETService {
             parameters: parameters,
             completion: completion,
             encode: { .success($0) },
-            decode: { JSONDecoderService.json(from: $0) }
+            decode: { JSONDecoderService.json(from: $0).asResultWithNetworkError }
         )
     }
     
@@ -65,8 +65,8 @@ extension NetworkGETService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.json(from: $0) },
-            decode: { JSONDecoderService.json(from: $0) }
+            encode: { JSONEncoderService.json(from: $0).asResultWithNetworkError },
+            decode: { JSONDecoderService.json(from: $0).asResultWithNetworkError }
         )
     }
 }
@@ -87,7 +87,7 @@ extension NetworkGETService {
             parameters: parameters,
             completion: completion,
             encode: { .success($0) },
-            decode: { JSONDecoderService.entity(from: $0) }
+            decode: { JSONDecoderService.entity(from: $0).asResultWithNetworkError }
         )
     }
     
@@ -104,8 +104,8 @@ extension NetworkGETService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.json(from: $0) },
-            decode: { JSONDecoderService.entity(from: $0) }
+            encode: { JSONEncoderService.json(from: $0).asResultWithNetworkError },
+            decode: { JSONDecoderService.entity(from: $0).asResultWithNetworkError }
         )
     }
 }
@@ -123,7 +123,7 @@ extension NetworkGETService {
             parameters: [:],
             completion: completion,
             encode: { .success($0) },
-            decode: { JSONDecoderService.image(from: $0) }
+            decode: { JSONDecoderService.image(from: $0).asResultWithNetworkError }
         )
     }
 }

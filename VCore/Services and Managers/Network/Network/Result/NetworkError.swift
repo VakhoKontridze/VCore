@@ -21,34 +21,24 @@ public enum NetworkError: Error, LocalizedError {
     
     /// An indication that parameters cannot be encoded
     ///
-    /// As associated values, this case contains the code and description of error
+    /// Associated values contain code and description of error
     case incompleteParameters(code: Int?, description: String?)
     
     /// An indication that network ruquest returned an error
     ///
-    /// As associated values, this case contains the code and description of error
+    /// Associated values contain code and description of error
     case returnedWithError(code: Int?, description: String?)
     
     /// An indication that netowrk ruquest returned an invalid response
     ///
-    /// As associated values, this case contains the code and description of error
+    /// Associated values contain code and description of error
     case invalidResponse(code: Int?, description: String?)
     
     /// An indication that result cannot be decoded
     ///
-    /// As associated values, this case contains the code and description of error
+    /// Associated values contain code and description of error
     case incompleteEntity(code: Int?, description: String?)
-    
-    /// An indication that other error has occured
-    ///
-    /// As associated values, this case contains the code and description of error, as well as raw unprocessed error.
-    ///
-    /// `rawError` may include:
-    /// - `NSError` from `JSONSerialization`
-    /// - `EncodingError` from `JSONEncoder`
-    /// - `DecodingError` from `JSONDecoder`
-    case other(code: Int?, description: String?, rawError: Error?)
-    
+
     // MARK: Code
     /// Error code
     public var code: Int? {
@@ -59,7 +49,6 @@ public enum NetworkError: Error, LocalizedError {
         case .returnedWithError(let code, _): return code
         case .invalidResponse(let code, _): return code
         case .incompleteEntity(let code, _): return code
-        case .other(let code, _, _): return code
         }
     }
     
@@ -88,7 +77,6 @@ public enum NetworkError: Error, LocalizedError {
         case .returnedWithError: return "Server has encountered an error"
         case .invalidResponse: return "Server has returned an invalid response"
         case .incompleteEntity: return "Server has returned an incomplete data"
-        case .other: return nil
         }
     }
     
@@ -103,26 +91,37 @@ public enum NetworkError: Error, LocalizedError {
         case .returnedWithError(_, let description): return description
         case .invalidResponse(_, let description): return description
         case .incompleteEntity(_, let description): return description
-        case .other(_, let description, _): return description
         }
     }
-    
-    // MARK: Initializers
-    /// Casts error to `NetworkError.other`
-    public static func other(from error: Error) -> Self {
-        .other(
-            code: (error as NSError).code,
-            description: error.localizedDescription,
-            rawError: error
-        )
+}
+
+// MARK:- JSON Coder Bridge
+extension Result where Failure == JSONEncodingError {
+    var asResultWithNetworkError: Result<Success, NetworkError> {
+        switch self {
+        case .success(let data):
+            return .success(data)
+        
+        case .failure(let error):
+            return .failure(.incompleteParameters(
+                code: error.code,
+                description: error.localizedDescription
+            ))
+        }
     }
-    
-    /// Convenience initializer for `NetworkError.other` without any associate types
-    public static func other() -> Self {
-        .other(
-            code: nil,
-            description: nil,
-            rawError: nil
-        )
+}
+
+extension Result where Failure == JSONDecodingError {
+    var asResultWithNetworkError: Result<Success, NetworkError> {
+        switch self {
+        case .success(let data):
+            return .success(data)
+        
+        case .failure(let error):
+            return .failure(.incompleteEntity(
+                code: error.code,
+                description: error.localizedDescription
+            ))
+        }
     }
 }

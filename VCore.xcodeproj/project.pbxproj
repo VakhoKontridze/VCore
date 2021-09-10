@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7A00266C26EB70370056DBC5 /* JSONEncodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266B26EB70370056DBC5 /* JSONEncodingError.swift */; };
+		7A00266F26EB70790056DBC5 /* JSONDecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266E26EB70790056DBC5 /* JSONDecodingError.swift */; };
 		7A0F751226D5016400020996 /* VCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; };
 		7A0F751726D5016400020996 /* VCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F751626D5016400020996 /* VCoreTests.swift */; };
 		7A0F751926D5016400020996 /* VCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0F750B26D5016300020996 /* VCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -37,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7A00266B26EB70370056DBC5 /* JSONEncodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncodingError.swift; sourceTree = "<group>"; };
+		7A00266E26EB70790056DBC5 /* JSONDecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingError.swift; sourceTree = "<group>"; };
 		7A0F750826D5016300020996 /* VCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A0F750B26D5016300020996 /* VCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCore.h; sourceTree = "<group>"; };
 		7A0F750C26D5016300020996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -78,6 +82,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A00266D26EB70440056DBC5 /* Encoder */ = {
+			isa = PBXGroup;
+			children = (
+				7A00266B26EB70370056DBC5 /* JSONEncodingError.swift */,
+				7A0F75C726D5175600020996 /* JSONEncoderService.swift */,
+			);
+			path = Encoder;
+			sourceTree = "<group>";
+		};
+		7A00267026EB70820056DBC5 /* Decoder */ = {
+			isa = PBXGroup;
+			children = (
+				7A00266E26EB70790056DBC5 /* JSONDecodingError.swift */,
+				7A0F75C926D5176800020996 /* JSONDecoderService.swift */,
+			);
+			path = Decoder;
+			sourceTree = "<group>";
+		};
 		7A0F74FE26D5016300020996 = {
 			isa = PBXGroup;
 			children = (
@@ -127,7 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				7A0F759926D514DF00020996 /* Network */,
-				7A27C14726EB637F005765CB /* JSON */,
+				7A27C14726EB637F005765CB /* Coder */,
 				7A0F759A26D514E400020996 /* Misc */,
 			);
 			path = "Services and Managers";
@@ -199,13 +221,13 @@
 			path = Result;
 			sourceTree = "<group>";
 		};
-		7A27C14726EB637F005765CB /* JSON */ = {
+		7A27C14726EB637F005765CB /* Coder */ = {
 			isa = PBXGroup;
 			children = (
-				7A0F75C726D5175600020996 /* JSONEncoderService.swift */,
-				7A0F75C926D5176800020996 /* JSONDecoderService.swift */,
+				7A00266D26EB70440056DBC5 /* Encoder */,
+				7A00267026EB70820056DBC5 /* Decoder */,
 			);
-			path = JSON;
+			path = Coder;
 			sourceTree = "<group>";
 		};
 		7A9A6AA426D5218E00C19A07 /* Session */ = {
@@ -324,6 +346,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A00266F26EB70790056DBC5 /* JSONDecodingError.swift in Sources */,
 				7A0F75BE26D516F200020996 /* NetworkGETService.swift in Sources */,
 				7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */,
 				7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */,
@@ -337,6 +360,7 @@
 				7A0F75C026D516F900020996 /* NetworkPOSTService.swift in Sources */,
 				7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */,
 				7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */,
+				7A00266C26EB70370056DBC5 /* JSONEncodingError.swift in Sources */,
 				7A0F75D026D517A300020996 /* NetworkRequestService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
