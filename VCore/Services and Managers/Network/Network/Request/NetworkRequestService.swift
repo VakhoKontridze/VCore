@@ -64,10 +64,11 @@ extension NetworkRequestService {
             }
             
         case .failure(let encodingError):
-            queue.async(completion(.failure(.incompleteParameters(
-                code: encodingError.nsErrorCode,
-                description: encodingError.localizedDescription
-            ))))
+            queue.async(completion(.failure(.incompleteParameters(.init(
+                domain: encodingError.domain,
+                code: encodingError.code,
+                description: encodingError.secondaryDescription
+            )))))
         }
     }
 }
@@ -113,11 +114,11 @@ extension NetworkRequestService {
             task.resume()
             
         case .failure(let encodingError):
-            queue.async(completion(.failure(.incompleteParameters(
-                code: encodingError.nsErrorCode,
-                description: encodingError.localizedDescription
-            ))))
-            return
+            queue.async(completion(.failure(.incompleteParameters(.init(
+                domain: encodingError.domain,
+                code: encodingError.code,
+                description: encodingError.secondaryDescription
+            )))))
         }
     }
 }
@@ -132,16 +133,18 @@ extension NetworkRequestService {
         decode: @escaping (Data) -> Result<Entity, NetworkError>
     ) {
         if let error = error {
-            queue.async(completion(.failure(.returnedWithError(
-                code: error.nsErrorCode,
+            queue.async(completion(.failure(.returnedWithError(.init(
+                domain: (error as NSError).domain,
+                code: (error as NSError).code,
                 description: error.localizedDescription
-            ))))
+            )))))
         
         } else if let response = response, !response.isValid {
-            queue.async(completion(.failure(.invalidResponse(
-                code: response.httpURLCode,
+            queue.async(completion(.failure(.invalidResponse(.init(
+                domain: nil,
+                code: (response as? HTTPURLResponse)?.statusCode,
                 description: response.description
-            ))))
+            )))))
         
         } else if let data = data {
             switch decode(data) {
@@ -149,17 +152,19 @@ extension NetworkRequestService {
                 queue.async(completion(.success(decodedData)))
             
             case .failure(let decodingError):
-                queue.async(completion(.failure(.incompleteEntity(
-                    code: error?.nsErrorCode,
-                    description: decodingError.localizedDescription
-                ))))
+                queue.async(completion(.failure(.incompleteEntity(.init(
+                    domain: decodingError.domain,
+                    code: decodingError.code,
+                    description: decodingError.secondaryDescription
+                )))))
             }
         
         } else {
-            queue.async(completion(.failure(.incompleteEntity(
+            queue.async(completion(.failure(.incompleteEntity(.init(
+                domain: nil,
                 code: nil,
                 description: nil
-            ))))
+            )))))
         }
     }
 }
@@ -182,18 +187,5 @@ extension URLResponse {
         }
 
         return true
-    }
-}
-
-// MARK:- Error Code
-extension Error {
-    fileprivate var nsErrorCode: Int? {
-        (self as NSError).code
-    }
-}
-
-extension URLResponse {
-    fileprivate var httpURLCode: Int? {
-        (self as? HTTPURLResponse)?.statusCode
     }
 }

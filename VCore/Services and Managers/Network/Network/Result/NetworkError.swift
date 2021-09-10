@@ -9,7 +9,7 @@ import Foundation
 
 // MARK:- Network Error
 /// An error that occurs during the network requests made by `NetworkService`
-public enum NetworkError: Error, LocalizedError {
+public enum NetworkError: VCoreError {
     // MARK: Cases
     /// An indication that device is not connected to network.
     ///
@@ -21,23 +21,36 @@ public enum NetworkError: Error, LocalizedError {
     
     /// An indication that parameters cannot be encoded
     ///
-    /// Associated values contain code and description of error
-    case incompleteParameters(code: Int?, description: String?)
+    /// Associated value contains info of `VCoreErrorInfo` type
+    case incompleteParameters(_ info: VCoreErrorInfo)
     
     /// An indication that network ruquest returned an error
     ///
-    /// Associated values contain code and description of error
-    case returnedWithError(code: Int?, description: String?)
+    /// Associated value contains info of `VCoreErrorInfo` type
+    case returnedWithError(_ info: VCoreErrorInfo)
     
     /// An indication that netowrk ruquest returned an invalid response
     ///
-    /// Associated values contain code and description of error
-    case invalidResponse(code: Int?, description: String?)
+    /// Associated value contains info of `VCoreErrorInfo` type
+    case invalidResponse(_ info: VCoreErrorInfo)
     
     /// An indication that result cannot be decoded
     ///
-    /// Associated values contain code and description of error
-    case incompleteEntity(code: Int?, description: String?)
+    /// Associated value contains info of `VCoreErrorInfo` type
+    case incompleteEntity(_ info: VCoreErrorInfo)
+    
+    // MARK: Domain
+    /// Error domain
+    public var domain: String? {
+        switch self {
+        case .notConnectedToNetwork: return nil
+        case .invalidEndpoint: return nil
+        case .incompleteParameters(let info): return info.domain
+        case .returnedWithError(let info): return info.domain
+        case .invalidResponse(let info): return info.domain
+        case .incompleteEntity(let info): return info.domain
+        }
+    }
 
     // MARK: Code
     /// Error code
@@ -45,16 +58,16 @@ public enum NetworkError: Error, LocalizedError {
         switch self {
         case .notConnectedToNetwork: return nil
         case .invalidEndpoint: return nil
-        case .incompleteParameters(let code, _): return code
-        case .returnedWithError(let code, _): return code
-        case .invalidResponse(let code, _): return code
-        case .incompleteEntity(let code, _): return code
+        case .incompleteParameters(let info): return info.code
+        case .returnedWithError(let info): return info.code
+        case .invalidResponse(let info): return info.code
+        case .incompleteEntity(let info): return info.code
         }
     }
     
     // MARK: Description
-    /// Error description
-    public var errorDescription: String? {
+    /// Full error description
+    public var fullDescription: String? {
         switch (primaryDescription, secondaryDescription) {
         case (nil, _):
             return nil
@@ -62,8 +75,10 @@ public enum NetworkError: Error, LocalizedError {
         case (let primaryDescription?, nil):
             return primaryDescription
             
-        case (var primaryDescription?, let secondaryDescription?):
+        case (var primaryDescription?, var secondaryDescription?):
             if primaryDescription.last == "." { _ = primaryDescription.removeLast() }
+            if secondaryDescription.last == "." { _ = secondaryDescription.removeLast() }
+            
             return "\(primaryDescription). \(secondaryDescription)."
         }
     }
@@ -73,10 +88,10 @@ public enum NetworkError: Error, LocalizedError {
         switch self {
         case .notConnectedToNetwork: return "Not connected to the network"
         case .invalidEndpoint: return "Cannot connect to the server. An incorrect handler is being used."
-        case .incompleteParameters: return "Incomplete data is being sent to the server"
+        case .incompleteParameters: return "Data cannot be encoded or is incomplete"
         case .returnedWithError: return "Server has encountered an error"
         case .invalidResponse: return "Server has returned an invalid response"
-        case .incompleteEntity: return "Server has returned an incomplete data"
+        case .incompleteEntity: return "Data cannot be decoded or is incomplete"
         }
     }
     
@@ -87,10 +102,10 @@ public enum NetworkError: Error, LocalizedError {
         switch self {
         case .notConnectedToNetwork: return nil
         case .invalidEndpoint: return nil
-        case .incompleteParameters(_, let description): return description
-        case .returnedWithError(_, let description): return description
-        case .invalidResponse(_, let description): return description
-        case .incompleteEntity(_, let description): return description
+        case .incompleteParameters(let info): return info.description
+        case .returnedWithError(let info): return info.description
+        case .invalidResponse(let info): return info.description
+        case .incompleteEntity(let info): return info.description
         }
     }
 }
@@ -103,10 +118,11 @@ extension Result where Failure == JSONEncodingError {
             return .success(data)
         
         case .failure(let error):
-            return .failure(.incompleteParameters(
+            return .failure(.incompleteParameters(.init(
+                domain: error.domain,
                 code: error.code,
-                description: error.localizedDescription
-            ))
+                description: error.secondaryDescription
+            )))
         }
     }
 }
@@ -118,10 +134,11 @@ extension Result where Failure == JSONDecodingError {
             return .success(data)
         
         case .failure(let error):
-            return .failure(.incompleteEntity(
+            return .failure(.incompleteEntity(.init(
+                domain: error.domain,
                 code: error.code,
-                description: error.localizedDescription
-            ))
+                description: error.secondaryDescription
+            )))
         }
     }
 }

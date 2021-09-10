@@ -18,7 +18,7 @@ import Foundation
 ///         endpoint: String,
 ///         headers: [String :Any],
 ///         parameters: [String: Any],
-///         completion: @escaping (Result<[String: Any], Error>) -> Void
+///         completion: @escaping (Result<[String: Any], NetworkError>) -> Void
 ///     ) {
 ///         NetworkService.shared.GET.json(
 ///             endpoint: endpoint,
@@ -28,15 +28,20 @@ import Foundation
 ///                 switch result {
 ///                 case .success(let json):
 ///                     guard NetworkTypeCaster.toBool(json["success"]) == true else {
-///                         let code: Int? = NetworkTypeCaster.toInt(json["code"])
-///                         let description: String? = NetworkTypeCaster.toString(json["message"])
-///
-///                         completion(.failure(.returnedWithError(code: code, description: description)))
+///                         completion(.failure(.returnedWithError(.init(
+///                             domain: "SomeApp.SomeNetworkService",
+///                             code: NetworkTypeCaster.toInt(json["code"]) ?? 1,
+///                             description: NetworkTypeCaster.toString(json["message"]) ?? "Returned with error"
+///                         ))))
 ///                         return
 ///                     }
 ///
 ///                     guard let data = NetworkTypeCaster.toJSON(json["data"]) else {
-///                         completion(.failure(.incompleteEntity(code: nil, description: nil)))
+///                         completion(.failure(.incompleteEntity(.init(
+///                             domain: "SomeApp.SomeNetworkService",
+///                             code: 2,
+///                             description: "Cannot retrieve data"
+///                         ))))
 ///                         return
 ///                     }
 ///

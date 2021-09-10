@@ -25,7 +25,11 @@ extension JSONEncoderService {
             return .success(data)
             
         } catch let error {
-            return .failure(.failedToEncode(from: error))
+            return .failure(.failedToEncode(.init(
+                domain: (error as NSError).domain,
+                code: (error as NSError).code,
+                description: error.localizedDescription
+            )))
         }
     }
     
@@ -36,12 +40,23 @@ extension JSONEncoderService {
             let jsonData: Data = try JSONEncoder().encode(data)
             
             switch JSONDecoderService.json(from: jsonData) {
-            case .success(let data): return .success(data)
-            case .failure(let error): return .failure(.failedToEncode(from: error))
+            case .success(let data):
+                return .success(data)
+            
+            case .failure(let error):
+                return .failure(.failedToEncode(.init(
+                    domain: error.domain,
+                    code: error.code,
+                    description: error.secondaryDescription
+                )))
             }
             
         } catch let error {
-            return .failure(.failedToEncode(from: error))
+            return .failure(.failedToEncode(.init(
+                domain: (error as NSError).domain,
+                code: (error as NSError).code,
+                description: error.localizedDescription
+            )))
         }
     }
     
@@ -53,7 +68,11 @@ extension JSONEncoderService {
             return .success(data)
             
         } catch let error {
-            return .failure(.failedToEncode(from: error))
+            return .failure(.failedToEncode(.init(
+                domain: (error as NSError).domain,
+                code: (error as NSError).code,
+                description: error.localizedDescription
+            )))
         }
     }
 }

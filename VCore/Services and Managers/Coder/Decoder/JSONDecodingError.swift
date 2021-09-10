@@ -9,23 +9,31 @@ import Foundation
 
 // MARK:- JSON Decoding Error
 /// An error that occurs during the processes made by `JSONEncoderService`
-public enum JSONDecodingError: Error, LocalizedError {
+public enum JSONDecodingError: VCoreError {
     // MARK: Cases
     /// An indication that data cannot be decoded
     ///
-    /// Associated values contain code and description of error
-    case failedToDecode(code: Int?, description: String?)
+    /// Associated value contains info of `VCoreErrorInfo` type
+    case failedToDecode(_ info: VCoreErrorInfo)
+    
+    // MARK: Domain
+    /// Error domain
+    public var domain: String? {
+        switch self {
+        case .failedToDecode(let info): return info.domain
+        }
+    }
     
     // MARK: Code
     public var code: Int? {
         switch self {
-        case .failedToDecode(let code, _): return code
+        case .failedToDecode(let info): return info.code
         }
     }
     
     // MARK: Description
-    /// Error description
-    public var errorDescription: String? {
+    /// Full error description
+    public var fullDescription: String? {
         switch (primaryDescription, secondaryDescription) {
         case (nil, _):
             return nil
@@ -51,15 +59,7 @@ public enum JSONDecodingError: Error, LocalizedError {
     /// Returned from associated error description
     public var secondaryDescription: String? {
         switch self {
-        case .failedToDecode(_, let description): return description
+        case .failedToDecode(let info): return info.description
         }
-    }
-    
-    // MARK: Initializers
-    static func failedToDecode(from error: Error) -> Self {
-        .failedToDecode(
-            code: (error as NSError).code,
-            description: error.localizedDescription
-        )
     }
 }

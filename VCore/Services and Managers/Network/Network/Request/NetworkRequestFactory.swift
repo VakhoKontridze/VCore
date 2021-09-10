@@ -24,7 +24,13 @@ extension NetworkRequestFactory {
         
         guard var urlComponents = URLComponents(string: endpoint) else { return .failure(.invalidEndpoint) }
         urlComponents.addItems(parameters)
-        guard let url = urlComponents.url else { return .failure(.incompleteParameters(code: nil, description: nil)) }
+        guard let url = urlComponents.url else {
+            return .failure(.incompleteParameters(.init(
+                domain: nil,
+                code: nil,
+                description: nil
+            )))
+        }
         
         var request: URLRequest = .init(url: url)
 

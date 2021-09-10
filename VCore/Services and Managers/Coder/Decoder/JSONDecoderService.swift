@@ -23,12 +23,23 @@ extension JSONDecoderService {
             let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
             
             switch jsonObject as? [String: Any] {
-            case let dictionary?: return .success(dictionary)
-            case nil: return .failure(.failedToDecode(code: nil, description: nil))
+            case let dictionary?:
+                return .success(dictionary)
+            
+            case nil:
+                return .failure(.failedToDecode(.init(
+                    domain: nil,
+                    code: nil,
+                    description: nil
+                )))
             }
             
         } catch let error {
-            return .failure(.failedToDecode(from: error))
+            return .failure(.failedToDecode(.init(
+                domain: (error as NSError).domain,
+                code: (error as NSError).code,
+                description: error.localizedDescription
+            )))
         }
     }
     
@@ -40,7 +51,11 @@ extension JSONDecoderService {
             return .success(data)
             
         } catch let error {
-            return .failure(.failedToDecode(from: error))
+            return .failure(.failedToDecode(.init(
+                domain: (error as NSError).domain,
+                code: (error as NSError).code,
+                description: error.localizedDescription
+            )))
         }
     }
     
@@ -48,8 +63,15 @@ extension JSONDecoderService {
         from data: Data
     )  -> Result<UIImage, JSONDecodingError> {
         switch UIImage(data: data) {
-        case let image?: return .success(image)
-        case nil: return .failure(.failedToDecode(code: nil, description: nil))
+        case let image?:
+            return .success(image)
+        
+        case nil:
+            return .failure(.failedToDecode(.init(
+                domain: nil,
+                code: nil,
+                description: nil
+            )))
         }
     }
 }
