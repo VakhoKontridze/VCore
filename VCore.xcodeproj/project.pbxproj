@@ -32,6 +32,11 @@
 		7AA52F9E26EB785B008A54EA /* VCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; };
 		7AA52F9F26EB785B008A54EA /* VCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7AB22AE626EB8DFF0037355D /* VCoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AE526EB8DFF0037355D /* VCoreError.swift */; };
+		7AB22AE926EB94110037355D /* InfiniteScrollingTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AE826EB94110037355D /* InfiniteScrollingTableView.swift */; };
+		7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AEB26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift */; };
+		7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AED26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift */; };
+		7AB22AF026EB96550037355D /* InfiniteScrollingTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AEF26EB96550037355D /* InfiniteScrollingTableViewDelegate.swift */; };
+		7AB22AF426EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AF326EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +91,11 @@
 		7A0F75CF26D517A300020996 /* NetworkRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestService.swift; sourceTree = "<group>"; };
 		7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
 		7AB22AE526EB8DFF0037355D /* VCoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreError.swift; sourceTree = "<group>"; };
+		7AB22AE826EB94110037355D /* InfiniteScrollingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableView.swift; sourceTree = "<group>"; };
+		7AB22AEB26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewActivityIndicator.swift; sourceTree = "<group>"; };
+		7AB22AED26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewActivityIndicatorModel.swift; sourceTree = "<group>"; };
+		7AB22AEF26EB96550037355D /* InfiniteScrollingTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewDelegate.swift; sourceTree = "<group>"; };
+		7AB22AF326EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewPaginationState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -192,6 +202,7 @@
 			isa = PBXGroup;
 			children = (
 				7A0F752226D5018200020996 /* Framework Info */,
+				7AB22AE726EB93FE0037355D /* Views */,
 				7A0F759626D5146000020996 /* Services and Managers */,
 			);
 			path = VCore;
@@ -298,6 +309,26 @@
 				7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */,
 			);
 			path = Session;
+			sourceTree = "<group>";
+		};
+		7AB22AE726EB93FE0037355D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7AB22AEA26EB94150037355D /* Infinite Scrolling Table View */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7AB22AEA26EB94150037355D /* Infinite Scrolling Table View */ = {
+			isa = PBXGroup;
+			children = (
+				7AB22AE826EB94110037355D /* InfiniteScrollingTableView.swift */,
+				7AB22AEF26EB96550037355D /* InfiniteScrollingTableViewDelegate.swift */,
+				7AB22AF326EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift */,
+				7AB22AEB26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift */,
+				7AB22AED26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift */,
+			);
+			path = "Infinite Scrolling Table View";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,9 +454,12 @@
 			files = (
 				7A00266F26EB70790056DBC5 /* JSONDecodingError.swift in Sources */,
 				7A0F75BE26D516F200020996 /* NetworkGETService.swift in Sources */,
+				7AB22AE926EB94110037355D /* InfiniteScrollingTableView.swift in Sources */,
 				7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */,
 				7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */,
 				7A0F75C826D5175600020996 /* JSONEncoderService.swift in Sources */,
+				7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */,
+				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
 				7A0F75C626D5174500020996 /* NetworkTypeCaster.swift in Sources */,
 				7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */,
 				7A0F75C226D5172000020996 /* NetworkError.swift in Sources */,
@@ -433,9 +467,11 @@
 				7A0F75CC26D5177C00020996 /* NetworkRequestType.swift in Sources */,
 				7AB22AE626EB8DFF0037355D /* VCoreError.swift in Sources */,
 				7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */,
+				7AB22AF026EB96550037355D /* InfiniteScrollingTableViewDelegate.swift in Sources */,
 				7A0F75C026D516F900020996 /* NetworkPOSTService.swift in Sources */,
 				7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */,
 				7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */,
+				7AB22AF426EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift in Sources */,
 				7A00266C26EB70370056DBC5 /* JSONEncodingError.swift in Sources */,
 				7A0F75D026D517A300020996 /* NetworkRequestService.swift in Sources */,
 			);

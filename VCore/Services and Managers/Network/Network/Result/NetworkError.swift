@@ -92,7 +92,7 @@ public enum NetworkError: VCoreError {
     
     /// Secondary error description
     ///
-    /// Returned from associated error description
+    /// Composed from associated error description
     public var secondaryDescription: String? {
         switch self {
         case .notConnectedToNetwork: return nil

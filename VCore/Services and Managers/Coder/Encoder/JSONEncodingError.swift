@@ -57,7 +57,7 @@ public enum JSONEncodingError: VCoreError {
     
     /// Secondary error description
     ///
-    /// Returned from associated error description
+    /// Composed from associated error description
     public var secondaryDescription: String? {
         switch self {
         case .failedToEncode(let info): return info.description

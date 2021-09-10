@@ -27,7 +27,7 @@ public protocol VCoreError: LocalizedError {
     
     /// Secondary error description
     ///
-    /// Returned from associated error description
+    /// Composed from associated error description
     var secondaryDescription: String? { get }
     
     /// Localized description of error
