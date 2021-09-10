@@ -1,5 +1,5 @@
 //
-//  NetworkDecoderService.swift
+//  JSONDecoderService.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 8/24/21.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-// MARK:- Network Decoder Service
-struct NetworkDecoderService {
+// MARK:- JSON Decoder Service
+struct JSONDecoderService {
     // MARK: Initializers
     private init() {}
 }
 
 // MARK:- Decoding
-extension NetworkDecoderService {
+extension JSONDecoderService {
     static func json(
         from data: Data
     ) -> Result<[String: Any], NetworkError> {

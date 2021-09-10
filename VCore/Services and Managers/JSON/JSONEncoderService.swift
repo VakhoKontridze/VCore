@@ -1,5 +1,5 @@
 //
-//  NetworkEncoderService.swift
+//  JSONEncoderService.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 8/24/21.
@@ -7,14 +7,14 @@
 
 import Foundation
 
-// MARK:- Network Encoder Service
-struct NetworkEncoderService {
+// MARK:- JSON Encoder Service
+struct JSONEncoderService {
     // MARK: Initializers
     private init() {}
 }
 
 // MARK:- Encoding
-extension NetworkEncoderService {
+extension JSONEncoderService {
     static func json<EncodingData>(
         from data: EncodingData
     ) -> Result<Data, NetworkError> {
@@ -32,7 +32,7 @@ extension NetworkEncoderService {
     ) -> Result<[String: Any], NetworkError> {
         do {
             let jsonData: Data = try JSONEncoder().encode(data)
-            return NetworkDecoderService.json(from: jsonData)
+            return JSONDecoderService.json(from: jsonData)
             
         } catch let error {
             return .failure(.other(from: error))

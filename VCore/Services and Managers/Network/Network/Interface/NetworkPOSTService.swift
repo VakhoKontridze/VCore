@@ -28,7 +28,7 @@ extension NetworkPOSTService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { NetworkEncoderService.json(from: $0) },
+            encode: { JSONEncoderService.json(from: $0) },
             decode: { .success($0) }
         )
     }
@@ -48,8 +48,8 @@ extension NetworkPOSTService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { NetworkEncoderService.json(from: $0) },
-            decode: { NetworkDecoderService.json(from: $0) }
+            encode: { JSONEncoderService.json(from: $0) },
+            decode: { JSONDecoderService.json(from: $0) }
         )
     }
 
@@ -65,8 +65,8 @@ extension NetworkPOSTService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { NetworkEncoderService.entity(from: $0) },
-            decode: { NetworkDecoderService.json(from: $0) }
+            encode: { JSONEncoderService.entity(from: $0) },
+            decode: { JSONDecoderService.json(from: $0) }
         )
     }
 }
@@ -86,8 +86,8 @@ extension NetworkPOSTService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { NetworkEncoderService.json(from: $0) },
-            decode: { NetworkDecoderService.entity(from: $0) }
+            encode: { JSONEncoderService.json(from: $0) },
+            decode: { JSONDecoderService.entity(from: $0) }
         )
     }
 
@@ -104,8 +104,8 @@ extension NetworkPOSTService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { NetworkEncoderService.entity(from: $0) },
-            decode: { NetworkDecoderService.entity(from: $0) }
+            encode: { JSONEncoderService.entity(from: $0) },
+            decode: { JSONDecoderService.entity(from: $0) }
         )
     }
 }
