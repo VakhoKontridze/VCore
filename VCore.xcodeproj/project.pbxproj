@@ -14,8 +14,6 @@
 		7A0026E626EB766E0056DBC5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0026E526EB766E0056DBC5 /* ViewController.swift */; };
 		7A0026EB26EB76710056DBC5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A0026EA26EB76710056DBC5 /* Assets.xcassets */; };
 		7A0026EE26EB76710056DBC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A0026EC26EB76710056DBC5 /* LaunchScreen.storyboard */; };
-		7A0F751226D5016400020996 /* VCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; };
-		7A0F751726D5016400020996 /* VCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F751626D5016400020996 /* VCoreTests.swift */; };
 		7A0F751926D5016400020996 /* VCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0F750B26D5016300020996 /* VCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759726D5146C00020996 /* AtomicInteger.swift */; };
 		7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759C26D5150800020996 /* NetworkConnectionService.swift */; };
@@ -33,16 +31,6 @@
 		7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		7A0F751326D5016400020996 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7A0F74FF26D5016300020996 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7A0F750726D5016300020996;
-			remoteInfo = VCore;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
 		7A00266B26EB70370056DBC5 /* JSONEncodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncodingError.swift; sourceTree = "<group>"; };
 		7A00266E26EB70790056DBC5 /* JSONDecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingError.swift; sourceTree = "<group>"; };
@@ -56,9 +44,6 @@
 		7A0F750826D5016300020996 /* VCore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = VCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A0F750B26D5016300020996 /* VCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCore.h; sourceTree = "<group>"; };
 		7A0F750C26D5016300020996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7A0F751126D5016400020996 /* VCoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VCoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		7A0F751626D5016400020996 /* VCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreTests.swift; sourceTree = "<group>"; };
-		7A0F751826D5016400020996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A0F759726D5146C00020996 /* AtomicInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicInteger.swift; sourceTree = "<group>"; };
 		7A0F759C26D5150800020996 /* NetworkConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionService.swift; sourceTree = "<group>"; };
 		7A0F75BB26D516DA00020996 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
@@ -87,14 +72,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7A0F750E26D5016400020996 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7A0F751226D5016400020996 /* VCore.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,7 +146,6 @@
 			children = (
 				7A0F750A26D5016300020996 /* VCore */,
 				7A0026E026EB766E0056DBC5 /* VCoreDemo */,
-				7A0F751526D5016400020996 /* VCoreTests */,
 				7A0F750926D5016300020996 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -178,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				7A0F750826D5016300020996 /* VCore.framework */,
-				7A0F751126D5016400020996 /* VCoreTests.xctest */,
 				7A0026DF26EB766E0056DBC5 /* VCoreDemo.app */,
 			);
 			name = Products;
@@ -191,15 +166,6 @@
 				7A0F759626D5146000020996 /* Services and Managers */,
 			);
 			path = VCore;
-			sourceTree = "<group>";
-		};
-		7A0F751526D5016400020996 /* VCoreTests */ = {
-			isa = PBXGroup;
-			children = (
-				7A0F751826D5016400020996 /* Info.plist */,
-				7A0F751626D5016400020996 /* VCoreTests.swift */,
-			);
-			path = VCoreTests;
 			sourceTree = "<group>";
 		};
 		7A0F752226D5018200020996 /* Framework Info */ = {
@@ -353,24 +319,6 @@
 			productReference = 7A0F750826D5016300020996 /* VCore.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		7A0F751026D5016400020996 /* VCoreTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 7A0F751F26D5016400020996 /* Build configuration list for PBXNativeTarget "VCoreTests" */;
-			buildPhases = (
-				7A0F750D26D5016400020996 /* Sources */,
-				7A0F750E26D5016400020996 /* Frameworks */,
-				7A0F750F26D5016400020996 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				7A0F751426D5016400020996 /* PBXTargetDependency */,
-			);
-			name = VCoreTests;
-			productName = VCoreTests;
-			productReference = 7A0F751126D5016400020996 /* VCoreTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -384,9 +332,6 @@
 						CreatedOnToolsVersion = 12.5.1;
 					};
 					7A0F750726D5016300020996 = {
-						CreatedOnToolsVersion = 12.5.1;
-					};
-					7A0F751026D5016400020996 = {
 						CreatedOnToolsVersion = 12.5.1;
 					};
 				};
@@ -405,7 +350,6 @@
 			projectRoot = "";
 			targets = (
 				7A0F750726D5016300020996 /* VCore */,
-				7A0F751026D5016400020996 /* VCoreTests */,
 				7A0026DE26EB766E0056DBC5 /* VCoreDemo */,
 			);
 		};
@@ -422,13 +366,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		7A0F750626D5016300020996 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		7A0F750F26D5016400020996 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -471,23 +408,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7A0F750D26D5016400020996 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7A0F751726D5016400020996 /* VCoreTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		7A0F751426D5016400020996 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7A0F750726D5016300020996 /* VCore */;
-			targetProxy = 7A0F751326D5016400020996 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		7A0026EC26EB76710056DBC5 /* LaunchScreen.storyboard */ = {
@@ -717,44 +638,6 @@
 			};
 			name = Release;
 		};
-		7A0F752026D5016400020996 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XRWP42VX24;
-				INFOPLIST_FILE = VCoreTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vakhtang-kontridze.VCoreTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		7A0F752126D5016400020996 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XRWP42VX24;
-				INFOPLIST_FILE = VCoreTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@loader_path/Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vakhtang-kontridze.VCoreTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -781,15 +664,6 @@
 			buildConfigurations = (
 				7A0F751D26D5016400020996 /* Debug */,
 				7A0F751E26D5016400020996 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		7A0F751F26D5016400020996 /* Build configuration list for PBXNativeTarget "VCoreTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				7A0F752026D5016400020996 /* Debug */,
-				7A0F752126D5016400020996 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
