@@ -39,33 +39,28 @@ public enum NetworkError: VCoreError {
     /// Associated value contains info of `VCoreErrorInfo` type
     case incompleteEntity(_ info: VCoreErrorInfo)
     
-    // MARK: Domain
-    /// Error domain
-    public var domain: String? {
+    // MARK: Properties
+    public var info: VCoreErrorInfo? {
         switch self {
         case .notConnectedToNetwork: return nil
         case .invalidEndpoint: return nil
-        case .incompleteParameters(let info): return info.domain
-        case .returnedWithError(let info): return info.domain
-        case .invalidResponse(let info): return info.domain
-        case .incompleteEntity(let info): return info.domain
-        }
-    }
-
-    // MARK: Code
-    /// Error code
-    public var code: Int? {
-        switch self {
-        case .notConnectedToNetwork: return nil
-        case .invalidEndpoint: return nil
-        case .incompleteParameters(let info): return info.code
-        case .returnedWithError(let info): return info.code
-        case .invalidResponse(let info): return info.code
-        case .incompleteEntity(let info): return info.code
+        case .incompleteParameters(let info): return info
+        case .returnedWithError(let info): return info
+        case .invalidResponse(let info): return info
+        case .incompleteEntity(let info): return info
         }
     }
     
-    // MARK: Description
+    /// Error domain
+    public var domain: String? {
+        info?.domain
+    }
+
+    /// Error code
+    public var code: Int? {
+        info?.code
+    }
+    
     /// Full error description
     public var fullDescription: String? {
         switch (primaryDescription, secondaryDescription) {

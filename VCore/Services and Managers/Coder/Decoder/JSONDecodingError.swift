@@ -16,22 +16,23 @@ public enum JSONDecodingError: VCoreError {
     /// Associated value contains info of `VCoreErrorInfo` type
     case failedToDecode(_ info: VCoreErrorInfo)
     
-    // MARK: Domain
+    // MARK: Properties
+    /// Error info
+    public var info: VCoreErrorInfo? {
+        switch self {
+        case .failedToDecode(let info): return info
+        }
+    }
+    
     /// Error domain
     public var domain: String? {
-        switch self {
-        case .failedToDecode(let info): return info.domain
-        }
+        info?.domain
     }
     
-    // MARK: Code
     public var code: Int? {
-        switch self {
-        case .failedToDecode(let info): return info.code
-        }
+        info?.code
     }
     
-    // MARK: Description
     /// Full error description
     public var fullDescription: String? {
         switch (primaryDescription, secondaryDescription) {

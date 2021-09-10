@@ -10,6 +10,9 @@ import Foundation
 // MARK:- V Core Error
 /// An error that occurs in `VCore`
 public protocol VCoreError: LocalizedError {
+    /// Error info
+    var info: VCoreErrorInfo? { get }
+    
     /// Error domain
     var domain: String? { get }
     
