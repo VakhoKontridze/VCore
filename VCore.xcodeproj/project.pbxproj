@@ -46,6 +46,7 @@
 		7AB22B3926EE84EF0037355D /* NSObjectName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3826EE84EF0037355D /* NSObjectName.swift */; };
 		7AB22B3B26EE85EF0037355D /* OptionalLetBlockTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3A26EE85EF0037355D /* OptionalLetBlockTransformation.swift */; };
 		7AB22B3D26EE86E10037355D /* DismissKeyboardOnOutsideTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3C26EE86E10037355D /* DismissKeyboardOnOutsideTap.swift */; };
+		7AF68A6926EE878300D4B5BE /* DateComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A6826EE878300D4B5BE /* DateComponents.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -114,6 +115,7 @@
 		7AB22B3826EE84EF0037355D /* NSObjectName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObjectName.swift; sourceTree = "<group>"; };
 		7AB22B3A26EE85EF0037355D /* OptionalLetBlockTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionalLetBlockTransformation.swift; sourceTree = "<group>"; };
 		7AB22B3C26EE86E10037355D /* DismissKeyboardOnOutsideTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissKeyboardOnOutsideTap.swift; sourceTree = "<group>"; };
+		7AF68A6826EE878300D4B5BE /* DateComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponents.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -375,6 +377,7 @@
 				7AB22B3A26EE85EF0037355D /* OptionalLetBlockTransformation.swift */,
 				7AB22B2C26EE7A6F0037355D /* StringProtocolSubscripts.swift */,
 				7AB22B3626EE84690037355D /* SafeArraySubscript.swift */,
+				7AF68A6826EE878300D4B5BE /* DateComponents.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -530,6 +533,7 @@
 				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,
 				7A0F75CC26D5177C00020996 /* NetworkRequestType.swift in Sources */,
 				7AB22B3726EE84690037355D /* SafeArraySubscript.swift in Sources */,
+				7AF68A6926EE878300D4B5BE /* DateComponents.swift in Sources */,
 				7AB22B3526EE834E0037355D /* NavigationBarHeight.swift in Sources */,
 				7AB22B3926EE84EF0037355D /* NSObjectName.swift in Sources */,
 				7AB22AE626EB8DFF0037355D /* VCoreError.swift in Sources */,

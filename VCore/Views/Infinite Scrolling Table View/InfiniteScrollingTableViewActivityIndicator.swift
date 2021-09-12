@@ -40,18 +40,18 @@ final class InfiniteScrollingTableViewActivityIndicatorView: UIView {
 }
 
 // MARK:- Setup
-private extension InfiniteScrollingTableViewActivityIndicatorView {
-    func setUp() {
+extension InfiniteScrollingTableViewActivityIndicatorView {
+    private func setUp() {
         addSubviews()
         setUpLayout()
         activityIndicator.startAnimating()
     }
     
-    func addSubviews() {
+    private func addSubviews() {
         addSubview(activityIndicator)
     }
     
-    func setUpLayout() {
+    private func setUpLayout() {
         activityIndicator.center = center
     }
 }
