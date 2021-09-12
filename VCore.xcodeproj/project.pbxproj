@@ -50,6 +50,7 @@
 		7AF68A6B26EE891A00D4B5BE /* RunBlockNTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A6A26EE891A00D4B5BE /* RunBlockNTimes.swift */; };
 		7AF68A6D26EE899700D4B5BE /* IsUserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A6C26EE899700D4B5BE /* IsUserDefaultsKey.swift */; };
 		7AF68A6F26EE8ABC00D4B5BE /* CompactMapNonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A6E26EE8ABC00D4B5BE /* CompactMapNonEmpty.swift */; };
+		7AF68A7126EE8D4A00D4B5BE /* RemoveExtraSeparators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A7026EE8D4A00D4B5BE /* RemoveExtraSeparators.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -122,6 +123,7 @@
 		7AF68A6A26EE891A00D4B5BE /* RunBlockNTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunBlockNTimes.swift; sourceTree = "<group>"; };
 		7AF68A6C26EE899700D4B5BE /* IsUserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsUserDefaultsKey.swift; sourceTree = "<group>"; };
 		7AF68A6E26EE8ABC00D4B5BE /* CompactMapNonEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactMapNonEmpty.swift; sourceTree = "<group>"; };
+		7AF68A7026EE8D4A00D4B5BE /* RemoveExtraSeparators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveExtraSeparators.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -398,6 +400,7 @@
 				7AB22B3026EE7C880037355D /* ScreenSafeAreaInsets.swift */,
 				7AB22B3426EE834E0037355D /* NavigationBarHeight.swift */,
 				7AB22B3C26EE86E10037355D /* DismissKeyboardOnOutsideTap.swift */,
+				7AF68A7026EE8D4A00D4B5BE /* RemoveExtraSeparators.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -534,6 +537,7 @@
 				7A0F75C826D5175600020996 /* JSONEncoderService.swift in Sources */,
 				7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */,
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
+				7AF68A7126EE8D4A00D4B5BE /* RemoveExtraSeparators.swift in Sources */,
 				7A0F75C626D5174500020996 /* NetworkTypeCaster.swift in Sources */,
 				7AB22B2D26EE7A6F0037355D /* StringProtocolSubscripts.swift in Sources */,
 				7AB22B3D26EE86E10037355D /* DismissKeyboardOnOutsideTap.swift in Sources */,
