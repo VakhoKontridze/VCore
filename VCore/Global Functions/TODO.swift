@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Throws `fatalError` that feature is not implemented
+/// Calls `fatalError` because feature is not implemented
 public func TODO(_ message: String? = nil) -> Never {
-    fatalError(message ?? "TODO: Not implemented")
+    fatalError(message ?? "TODO: Feature not implemented")
 }

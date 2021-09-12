@@ -38,6 +38,7 @@
 		7AB22AF026EB96550037355D /* InfiniteScrollingTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AEF26EB96550037355D /* InfiniteScrollingTableViewDelegate.swift */; };
 		7AB22AF426EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AF326EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift */; };
 		7AB22AF726EB9FAB0037355D /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AF626EB9FAB0037355D /* TODO.swift */; };
+		7AB22B2D26EE7A6F0037355D /* StringProtocolSubscripts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B2C26EE7A6F0037355D /* StringProtocolSubscripts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		7AB22AEF26EB96550037355D /* InfiniteScrollingTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewDelegate.swift; sourceTree = "<group>"; };
 		7AB22AF326EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewPaginationState.swift; sourceTree = "<group>"; };
 		7AB22AF626EB9FAB0037355D /* TODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
+		7AB22B2C26EE7A6F0037355D /* StringProtocolSubscripts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocolSubscripts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -338,6 +340,7 @@
 		7AB22AF526EB9F9A0037355D /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7AB22B2E26EE7A720037355D /* Foundation */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -348,6 +351,14 @@
 				7AB22AF626EB9FAB0037355D /* TODO.swift */,
 			);
 			path = "Global Functions";
+			sourceTree = "<group>";
+		};
+		7AB22B2E26EE7A720037355D /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				7AB22B2C26EE7A6F0037355D /* StringProtocolSubscripts.swift */,
+			);
+			path = Foundation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,6 +492,7 @@
 				7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */,
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
 				7A0F75C626D5174500020996 /* NetworkTypeCaster.swift in Sources */,
+				7AB22B2D26EE7A6F0037355D /* StringProtocolSubscripts.swift in Sources */,
 				7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */,
 				7A0F75C226D5172000020996 /* NetworkError.swift in Sources */,
 				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,
