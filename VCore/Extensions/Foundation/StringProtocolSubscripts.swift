@@ -9,7 +9,7 @@ import Foundation
 
 // MARK:- Get
 extension StringProtocol {
-    /// Returns an element of `StringProtocol` at index
+    /// Accesses the element at the specified position
     public subscript(_ i: Int) -> Element {
         assert(i >= 0 && i < count, "Index Out of Range")
         return self[index(startIndex, offsetBy: i)]

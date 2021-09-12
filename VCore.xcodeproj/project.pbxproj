@@ -42,6 +42,7 @@
 		7AB22B3126EE7C880037355D /* ScreenSafeAreaInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3026EE7C880037355D /* ScreenSafeAreaInsets.swift */; };
 		7AB22B3326EE82AB0037355D /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3226EE82AB0037355D /* RootView.swift */; };
 		7AB22B3526EE834E0037355D /* NavigationBarHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3426EE834E0037355D /* NavigationBarHeight.swift */; };
+		7AB22B3726EE84690037355D /* SafeArraySubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3626EE84690037355D /* SafeArraySubscript.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		7AB22B3026EE7C880037355D /* ScreenSafeAreaInsets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenSafeAreaInsets.swift; sourceTree = "<group>"; };
 		7AB22B3226EE82AB0037355D /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		7AB22B3426EE834E0037355D /* NavigationBarHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarHeight.swift; sourceTree = "<group>"; };
+		7AB22B3626EE84690037355D /* SafeArraySubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SafeArraySubscript.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -364,6 +366,7 @@
 			isa = PBXGroup;
 			children = (
 				7AB22B2C26EE7A6F0037355D /* StringProtocolSubscripts.swift */,
+				7AB22B3626EE84690037355D /* SafeArraySubscript.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				7AB22B3126EE7C880037355D /* ScreenSafeAreaInsets.swift in Sources */,
 				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,
 				7A0F75CC26D5177C00020996 /* NetworkRequestType.swift in Sources */,
+				7AB22B3726EE84690037355D /* SafeArraySubscript.swift in Sources */,
 				7AB22B3526EE834E0037355D /* NavigationBarHeight.swift in Sources */,
 				7AB22AE626EB8DFF0037355D /* VCoreError.swift in Sources */,
 				7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */,
