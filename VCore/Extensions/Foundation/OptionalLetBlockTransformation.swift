@@ -8,8 +8,8 @@
 import Foundation
 
 // MARK:- Optional Let Block Transformation
-extension Optional where Wrapped: Any {
-    /// Transforms wrapped value of optional, or returns `nil`
+extension Optional {
+    /// Transforms wrapped value, or returns `nil`
     public func `let`<T>(_ transform: (Wrapped) throws -> T?) rethrows -> T? {
         guard
             let self = self,
