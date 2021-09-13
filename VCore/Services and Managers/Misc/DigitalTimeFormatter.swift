@@ -36,7 +36,7 @@ public struct DigitalTimeFormatter {
 
 // MARK:- Formatting
 extension DigitalTimeFormatter {
-    public func format(_ seconds: Double) -> String? {
+    public func string(from seconds: Double) -> String? {
         guard seconds >= 0 else { return nil }
 
         let (d, h, m, s) = extractTimeComponents(from: seconds)
