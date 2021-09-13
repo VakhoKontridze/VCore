@@ -29,6 +29,7 @@
 		7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75CD26D5179200020996 /* NetworkRequestFactory.swift */; };
 		7A0F75D026D517A300020996 /* NetworkRequestService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75CF26D517A300020996 /* NetworkRequestService.swift */; };
 		7A86F87F26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A86F87E26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift */; };
+		7A86F88126EFAC0800EC32EA /* LabelNaturalHeightConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A86F88026EFAC0800EC32EA /* LabelNaturalHeightConstraint.swift */; };
 		7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6EF26EF59F900B0B096 /* LogicalExclusiveOr.swift */; };
 		7A91D6F426EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F326EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift */; };
 		7A91D6F626EFA5B200B0B096 /* NSLayoutConstraintStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F526EFA5B200B0B096 /* NSLayoutConstraintStoring.swift */; };
@@ -110,6 +111,7 @@
 		7A0F75CD26D5179200020996 /* NetworkRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.swift; sourceTree = "<group>"; };
 		7A0F75CF26D517A300020996 /* NetworkRequestService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestService.swift; sourceTree = "<group>"; };
 		7A86F87E26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyFractionsNumberFormatter.swift; sourceTree = "<group>"; };
+		7A86F88026EFAC0800EC32EA /* LabelNaturalHeightConstraint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelNaturalHeightConstraint.swift; sourceTree = "<group>"; };
 		7A91D6EF26EF59F900B0B096 /* LogicalExclusiveOr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalExclusiveOr.swift; sourceTree = "<group>"; };
 		7A91D6F326EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintPriorities.swift; sourceTree = "<group>"; };
 		7A91D6F526EFA5B200B0B096 /* NSLayoutConstraintStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintStoring.swift; sourceTree = "<group>"; };
@@ -418,6 +420,7 @@
 				7AF68A7026EE8D4A00D4B5BE /* RemoveExtraSeparators.swift */,
 				7A91D6F326EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift */,
 				7A91D6F526EFA5B200B0B096 /* NSLayoutConstraintStoring.swift */,
+				7A86F88026EFAC0800EC32EA /* LabelNaturalHeightConstraint.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -580,6 +583,7 @@
 				7AB22B3726EE84690037355D /* SafeArraySubscript.swift in Sources */,
 				7AF68A6926EE878300D4B5BE /* DateComponents.swift in Sources */,
 				7AB22B3526EE834E0037355D /* NavigationBarHeight.swift in Sources */,
+				7A86F88126EFAC0800EC32EA /* LabelNaturalHeightConstraint.swift in Sources */,
 				7AB22B3926EE84EF0037355D /* NSObjectName.swift in Sources */,
 				7AB22AE626EB8DFF0037355D /* VCoreError.swift in Sources */,
 				7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */,
