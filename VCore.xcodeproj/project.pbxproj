@@ -31,6 +31,7 @@
 		7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6EF26EF59F900B0B096 /* LogicalExclusiveOr.swift */; };
 		7A91D6F426EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F326EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift */; };
 		7A91D6F626EFA5B200B0B096 /* NSLayoutConstraintStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F526EFA5B200B0B096 /* NSLayoutConstraintStoring.swift */; };
+		7A91D6F826EFA68500B0B096 /* RoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F726EFA68500B0B096 /* RoundCorners.swift */; };
 		7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */; };
 		7AA52F9E26EB785B008A54EA /* VCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; };
 		7AA52F9F26EB785B008A54EA /* VCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -110,6 +111,7 @@
 		7A91D6EF26EF59F900B0B096 /* LogicalExclusiveOr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalExclusiveOr.swift; sourceTree = "<group>"; };
 		7A91D6F326EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintPriorities.swift; sourceTree = "<group>"; };
 		7A91D6F526EFA5B200B0B096 /* NSLayoutConstraintStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintStoring.swift; sourceTree = "<group>"; };
+		7A91D6F726EFA68500B0B096 /* RoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCorners.swift; sourceTree = "<group>"; };
 		7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
 		7AB22AE526EB8DFF0037355D /* VCoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreError.swift; sourceTree = "<group>"; };
 		7AB22AE826EB94110037355D /* InfiniteScrollingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableView.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				7AB22B3226EE82AB0037355D /* RootView.swift */,
+				7A91D6F726EFA68500B0B096 /* RoundCorners.swift */,
 				7AB22B3026EE7C880037355D /* ScreenSafeAreaInsets.swift */,
 				7AB22B3426EE834E0037355D /* NavigationBarHeight.swift */,
 				7AB22B3C26EE86E10037355D /* DismissKeyboardOnOutsideTap.swift */,
@@ -578,6 +581,7 @@
 				7AB22AE626EB8DFF0037355D /* VCoreError.swift in Sources */,
 				7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */,
 				7AB22AF026EB96550037355D /* InfiniteScrollingTableViewDelegate.swift in Sources */,
+				7A91D6F826EFA68500B0B096 /* RoundCorners.swift in Sources */,
 				7A0F75C026D516F900020996 /* NetworkPOSTService.swift in Sources */,
 				7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */,
 				7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */,
