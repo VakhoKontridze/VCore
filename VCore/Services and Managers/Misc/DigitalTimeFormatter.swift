@@ -36,6 +36,7 @@ public struct DigitalTimeFormatter {
 
 // MARK:- Formatting
 extension DigitalTimeFormatter {
+    /// Returns string from seconds with specified format
     public func string(from seconds: Double) -> String? {
         guard seconds >= 0 else { return nil }
 
