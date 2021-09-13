@@ -51,6 +51,7 @@
 		7AF68A6D26EE899700D4B5BE /* IsUserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A6C26EE899700D4B5BE /* IsUserDefaultsKey.swift */; };
 		7AF68A6F26EE8ABC00D4B5BE /* CompactMapNonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A6E26EE8ABC00D4B5BE /* CompactMapNonEmpty.swift */; };
 		7AF68A7126EE8D4A00D4B5BE /* RemoveExtraSeparators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A7026EE8D4A00D4B5BE /* RemoveExtraSeparators.swift */; };
+		7AF68A7426EE907900D4B5BE /* DigitalTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A7326EE907900D4B5BE /* DigitalTimeFormatter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +125,7 @@
 		7AF68A6C26EE899700D4B5BE /* IsUserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IsUserDefaultsKey.swift; sourceTree = "<group>"; };
 		7AF68A6E26EE8ABC00D4B5BE /* CompactMapNonEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactMapNonEmpty.swift; sourceTree = "<group>"; };
 		7AF68A7026EE8D4A00D4B5BE /* RemoveExtraSeparators.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoveExtraSeparators.swift; sourceTree = "<group>"; };
+		7AF68A7326EE907900D4B5BE /* DigitalTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalTimeFormatter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -253,6 +255,7 @@
 			children = (
 				7A0F759926D514DF00020996 /* Network */,
 				7A27C14726EB637F005765CB /* Coder */,
+				7AF68A7226EE906D00D4B5BE /* Misc */,
 			);
 			path = "Services and Managers";
 			sourceTree = "<group>";
@@ -403,6 +406,14 @@
 				7AF68A7026EE8D4A00D4B5BE /* RemoveExtraSeparators.swift */,
 			);
 			path = UIKit;
+			sourceTree = "<group>";
+		};
+		7AF68A7226EE906D00D4B5BE /* Misc */ = {
+			isa = PBXGroup;
+			children = (
+				7AF68A7326EE907900D4B5BE /* DigitalTimeFormatter.swift */,
+			);
+			path = Misc;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -558,6 +569,7 @@
 				7A0F75C026D516F900020996 /* NetworkPOSTService.swift in Sources */,
 				7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */,
 				7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */,
+				7AF68A7426EE907900D4B5BE /* DigitalTimeFormatter.swift in Sources */,
 				7AB22B3326EE82AB0037355D /* RootView.swift in Sources */,
 				7AB22AF426EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift in Sources */,
 				7A00266C26EB70370056DBC5 /* JSONEncodingError.swift in Sources */,
