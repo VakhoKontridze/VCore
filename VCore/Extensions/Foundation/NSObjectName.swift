@@ -9,7 +9,7 @@ import Foundation
 
 // MARK:- NS Object Name
 extension NSObject {
-    /// `NSObject` class name full
+    /// `NSObject` class full name
     public static var nsObjectClassNameFull: String {
         NSStringFromClass(self)
     }
