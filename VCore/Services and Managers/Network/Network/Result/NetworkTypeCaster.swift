@@ -30,10 +30,10 @@ extension NetworkTypeCaster {
     public static func toInt(_ data: Any?) -> Int? {
         switch data {
         case let int as Int: return int
-        case let float as Float: return Int(float)
-        case let double as Double: return Int(double)
+        case let float as Float: return .init(float)
+        case let double as Double: return .init(double)
         case let bool as Bool: return bool ? 1 : 0
-        case let string as String: return Int(string)
+        case let string as String: return .init(string)
         default: return nil
         }
     }
@@ -41,11 +41,11 @@ extension NetworkTypeCaster {
     /// Casts `Any` to `Float`
     public static func toFloat(_ data: Any?) -> Float? {
         switch data {
-        case let int as Int: return Float(int)
+        case let int as Int: return .init(int)
         case let float as Float: return float
-        case let double as Double: return Float(double)
+        case let double as Double: return .init(double)
         case let bool as Bool: return bool ? 1 : 0
-        case let string as String: return Float(string)
+        case let string as String: return .init(string)
         default: return nil
         }
     }
@@ -53,10 +53,10 @@ extension NetworkTypeCaster {
     /// Casts `Any` to `Double`
     public static func toDouble(_ data: Any?) -> Double? {
         switch data {
-        case let int as Int: return Double(int)
+        case let int as Int: return .init(int)
         case let double as Double: return double
         case let bool as Bool: return bool ? 1 : 0
-        case let string as String: return Double(string)
+        case let string as String: return .init(string)
         default: return nil
         }
     }
@@ -76,10 +76,10 @@ extension NetworkTypeCaster {
     /// Casts `Any` to `String`
     public static func toString(_ data: Any?) -> String? {
         switch data {
-        case let int as Int: return String(int)
-        case let float as Float: return String(float)
-        case let double as Double: return String(double)
-        case let bool as Bool: return String(bool)
+        case let int as Int: return .init(int)
+        case let float as Float: return .init(float)
+        case let double as Double: return .init(double)
+        case let bool as Bool: return .init(bool)
         case let string as String: return string
         default: return nil
         }
