@@ -28,7 +28,7 @@ extension NetworkPOSTService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.json(from: $0).asResultWithNetworkError },
+            encode: { JSONEncoderService.data(from: $0).asResultWithNetworkError },
             decode: { .success($0) }
         )
     }
@@ -48,7 +48,7 @@ extension NetworkPOSTService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.json(from: $0).asResultWithNetworkError },
+            encode: { JSONEncoderService.data(from: $0).asResultWithNetworkError },
             decode: { JSONDecoderService.json(from: $0).asResultWithNetworkError }
         )
     }
@@ -65,7 +65,7 @@ extension NetworkPOSTService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.entity(from: $0).asResultWithNetworkError },
+            encode: { JSONEncoderService.data(from: $0).asResultWithNetworkError },
             decode: { JSONDecoderService.json(from: $0).asResultWithNetworkError }
         )
     }
@@ -86,7 +86,7 @@ extension NetworkPOSTService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.json(from: $0).asResultWithNetworkError },
+            encode: { JSONEncoderService.data(from: $0).asResultWithNetworkError },
             decode: { JSONDecoderService.entity(from: $0).asResultWithNetworkError }
         )
     }
@@ -104,7 +104,7 @@ extension NetworkPOSTService {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.entity(from: $0).asResultWithNetworkError },
+            encode: { JSONEncoderService.data(from: $0).asResultWithNetworkError },
             decode: { JSONDecoderService.entity(from: $0).asResultWithNetworkError }
         )
     }

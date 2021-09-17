@@ -123,7 +123,7 @@ extension NetworkGETService {
             parameters: [:],
             completion: completion,
             encode: { .success($0) },
-            decode: { JSONDecoderService.image(from: $0).asResultWithNetworkError }
+            decode: { JSONDecoderService.uiImage(from: $0).asResultWithNetworkError }
         )
     }
 }

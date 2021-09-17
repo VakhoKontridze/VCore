@@ -16,6 +16,7 @@ public struct JSONDecoderService {
 
 // MARK:- Decoding
 extension JSONDecoderService {
+    /// Decodes `JSON` from `Data`
     public static func json(
         from data: Data
     ) -> Result<[String: Any], JSONDecodingError> {
@@ -43,6 +44,7 @@ extension JSONDecoderService {
         }
     }
     
+    /// Decodes `Decodable` from `Data`
     public static func entity<DecodedData: Decodable>(
         from data: Data
     ) -> Result<DecodedData, JSONDecodingError> {
@@ -59,7 +61,8 @@ extension JSONDecoderService {
         }
     }
     
-    public static func image(
+    /// Decodes `UIImage` from `Data`
+    public static func uiImage(
         from data: Data
     )  -> Result<UIImage, JSONDecodingError> {
         switch UIImage(data: data) {
