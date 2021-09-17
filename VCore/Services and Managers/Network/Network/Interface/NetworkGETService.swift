@@ -112,17 +112,36 @@ extension NetworkGETService {
 
 // MARK:- UIImage
 extension NetworkGETService {
-    /// Makes `GET` network request and returns `Data` or `NetworkError`
-    public func image(
+    /// Makes `GET` network request with `JSON` parameters and returns `Data` or `NetworkError`
+    public func uiImage(
         endpoint: String,
+        headers: [String: Any],
+        parameters: [String: Any],
         completion: @escaping (Result<UIImage, NetworkError>) -> Void
     ) {
         NetworkRequestService().GET(
             endpoint: endpoint,
-            headers: [:],
-            parameters: [:],
+            headers: headers,
+            parameters: parameters,
             completion: completion,
             encode: { .success($0) },
+            decode: { JSONDecoderService.uiImage(from: $0).asResultWithNetworkError }
+        )
+    }
+    
+    /// Makes `GET` network request with `Encodable` and returns `Data` or `NetworkError`
+    public func uiImage<Parameters: Encodable>(
+        endpoint: String,
+        headers: [String: Any],
+        parameters: Parameters,
+        completion: @escaping (Result<UIImage, NetworkError>) -> Void
+    ) {
+        NetworkRequestService().GET(
+            endpoint: endpoint,
+            headers: headers,
+            parameters: parameters,
+            completion: completion,
+            encode: { JSONEncoderService.json(from: $0).asResultWithNetworkError },
             decode: { JSONDecoderService.uiImage(from: $0).asResultWithNetworkError }
         )
     }
