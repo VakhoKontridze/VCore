@@ -250,9 +250,9 @@
 				7A0F752226D5018200020996 /* Framework Info */,
 				7AB22AE726EB93FE0037355D /* Views */,
 				7A0F759626D5146000020996 /* Services and Managers */,
-				7A0F759A26D514E400020996 /* Misc */,
 				7AB22AF826EBA0620037355D /* Global Functions */,
 				7AB22AF526EB9F9A0037355D /* Extensions */,
+				7A0F759A26D514E400020996 /* Misc */,
 			);
 			path = VCore;
 			sourceTree = "<group>";
@@ -352,6 +352,13 @@
 			path = Coder;
 			sourceTree = "<group>";
 		};
+		7A86F88626EFB74100EC32EA /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = SwiftUI;
+			sourceTree = "<group>";
+		};
 		7A9A6AA426D5218E00C19A07 /* Session */ = {
 			isa = PBXGroup;
 			children = (
@@ -385,6 +392,7 @@
 			children = (
 				7AB22B2E26EE7A720037355D /* Foundation */,
 				7AB22B2F26EE7C7F0037355D /* UIKit */,
+				7A86F88626EFB74100EC32EA /* SwiftUI */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
