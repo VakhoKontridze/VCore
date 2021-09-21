@@ -37,6 +37,10 @@
 		7A91D6F626EFA5B200B0B096 /* NSLayoutConstraintStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F526EFA5B200B0B096 /* NSLayoutConstraintStoring.swift */; };
 		7A91D6F826EFA68500B0B096 /* RoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F726EFA68500B0B096 /* RoundCorners.swift */; };
 		7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */; };
+		7AA4071A26F9BA5900B60742 /* SwiftUIAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071926F9BA5900B60742 /* SwiftUIAlertViewModel.swift */; };
+		7AA4071C26F9BB6700B60742 /* SwiftUIProgressViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071B26F9BB6700B60742 /* SwiftUIProgressViewViewModel.swift */; };
+		7AA4071E26F9BE2700B60742 /* StandardNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071D26F9BE2700B60742 /* StandardNavigationTitle.swift */; };
+		7AA4072026F9BED200B60742 /* SceneRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071F26F9BED200B60742 /* SceneRouting.swift */; };
 		7AA52F9E26EB785B008A54EA /* VCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; };
 		7AA52F9F26EB785B008A54EA /* VCore.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7AB22AE626EB8DFF0037355D /* VCoreError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AE526EB8DFF0037355D /* VCoreError.swift */; };
@@ -121,6 +125,10 @@
 		7A91D6F526EFA5B200B0B096 /* NSLayoutConstraintStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintStoring.swift; sourceTree = "<group>"; };
 		7A91D6F726EFA68500B0B096 /* RoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCorners.swift; sourceTree = "<group>"; };
 		7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
+		7AA4071926F9BA5900B60742 /* SwiftUIAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAlertViewModel.swift; sourceTree = "<group>"; };
+		7AA4071B26F9BB6700B60742 /* SwiftUIProgressViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIProgressViewViewModel.swift; sourceTree = "<group>"; };
+		7AA4071D26F9BE2700B60742 /* StandardNavigationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNavigationTitle.swift; sourceTree = "<group>"; };
+		7AA4071F26F9BED200B60742 /* SceneRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRouting.swift; sourceTree = "<group>"; };
 		7AB22AE526EB8DFF0037355D /* VCoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreError.swift; sourceTree = "<group>"; };
 		7AB22AE826EB94110037355D /* InfiniteScrollingTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableView.swift; sourceTree = "<group>"; };
 		7AB22AEB26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewActivityIndicator.swift; sourceTree = "<group>"; };
@@ -271,6 +279,7 @@
 			children = (
 				7A0F759926D514DF00020996 /* Network */,
 				7A27C14726EB637F005765CB /* Coder */,
+				7AA4071726F9BA3100B60742 /* VIPER Helpers */,
 				7AF68A7226EE906D00D4B5BE /* Misc */,
 			);
 			path = "Services and Managers";
@@ -355,6 +364,7 @@
 		7A86F88626EFB74100EC32EA /* SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				7AA4071D26F9BE2700B60742 /* StandardNavigationTitle.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -365,6 +375,24 @@
 				7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */,
 			);
 			path = Session;
+			sourceTree = "<group>";
+		};
+		7AA4071726F9BA3100B60742 /* VIPER Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4071826F9BA4D00B60742 /* SwiftUI */,
+			);
+			path = "VIPER Helpers";
+			sourceTree = "<group>";
+		};
+		7AA4071826F9BA4D00B60742 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				7AA4071F26F9BED200B60742 /* SceneRouting.swift */,
+				7AA4071926F9BA5900B60742 /* SwiftUIAlertViewModel.swift */,
+				7AA4071B26F9BB6700B60742 /* SwiftUIProgressViewViewModel.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		7AB22AE726EB93FE0037355D /* Views */ = {
@@ -391,8 +419,8 @@
 			isa = PBXGroup;
 			children = (
 				7AB22B2E26EE7A720037355D /* Foundation */,
-				7AB22B2F26EE7C7F0037355D /* UIKit */,
 				7A86F88626EFB74100EC32EA /* SwiftUI */,
+				7AB22B2F26EE7C7F0037355D /* UIKit */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -577,8 +605,10 @@
 				7AB22AF726EB9FAB0037355D /* TODO.swift in Sources */,
 				7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */,
 				7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */,
+				7AA4071C26F9BB6700B60742 /* SwiftUIProgressViewViewModel.swift in Sources */,
 				7A0F75C826D5175600020996 /* JSONEncoderService.swift in Sources */,
 				7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */,
+				7AA4071E26F9BE2700B60742 /* StandardNavigationTitle.swift in Sources */,
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
 				7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */,
 				7AF68A7126EE8D4A00D4B5BE /* RemoveExtraSeparators.swift in Sources */,
@@ -603,10 +633,12 @@
 				7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */,
 				7AB22AF026EB96550037355D /* InfiniteScrollingTableViewDelegate.swift in Sources */,
 				7A91D6F826EFA68500B0B096 /* RoundCorners.swift in Sources */,
+				7AA4071A26F9BA5900B60742 /* SwiftUIAlertViewModel.swift in Sources */,
 				7A0F75C026D516F900020996 /* NetworkPOSTService.swift in Sources */,
 				7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */,
 				7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */,
 				7A86F88526EFB65E00EC32EA /* KeyPathSort.swift in Sources */,
+				7AA4072026F9BED200B60742 /* SceneRouting.swift in Sources */,
 				7AF68A7426EE907900D4B5BE /* DigitalTimeFormatter.swift in Sources */,
 				7AB22B3326EE82AB0037355D /* RootView.swift in Sources */,
 				7A86F88326EFB16200EC32EA /* LabelConfiguration.swift in Sources */,
@@ -647,7 +679,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XRWP42VX24;
 				INFOPLIST_FILE = VCoreDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -667,7 +699,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XRWP42VX24;
 				INFOPLIST_FILE = VCoreDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
