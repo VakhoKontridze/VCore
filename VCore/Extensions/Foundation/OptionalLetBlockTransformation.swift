@@ -13,7 +13,7 @@ extension Optional {
     public func `let`<T>(_ transform: (Wrapped) throws -> T?) rethrows -> T? {
         guard
             let self = self,
-            let result = try transform(self)
+            let result: T = try transform(self)
         else {
             return nil
         }

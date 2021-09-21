@@ -21,7 +21,13 @@ extension UILabel {
             let label: UILabel = .init()
             
             label.text = {
-                guard let text = text, !text.isEmpty else { return "ABC" }
+                guard
+                    let text: String = text,
+                    !text.isEmpty
+                else {
+                    return "ABC"
+                }
+                
                 return text
             }()
             

@@ -22,9 +22,9 @@ extension NetworkRequestFactory {
     ) -> Result<URLRequest, NetworkError> {
         let requestType: NetworkRequestType = NetworkGETRequest()
         
-        guard var urlComponents = URLComponents(string: endpoint) else { return .failure(.invalidEndpoint) }
+        guard var urlComponents: URLComponents = .init(string: endpoint) else { return .failure(.invalidEndpoint) }
         urlComponents.addItems(parameters)
-        guard let url = urlComponents.url else {
+        guard let url: URL = urlComponents.url else {
             return .failure(.incompleteParameters(.init(
                 domain: nil,
                 code: nil,

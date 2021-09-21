@@ -14,13 +14,13 @@ extension UIScreen {
     /// - Root View Controller must be loaded on screen for this property to return a non-`nil` value
     public static var rootView: UIView? {
         guard
-            let window = UIApplication.shared.windows.first(where: { $0.isKeyWindow }),
-            let view = window.rootViewController
+            let window: UIWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }),
+            let viewController: UIViewController = window.rootViewController
         else {
             return nil
         }
         
-        switch view {
+        switch viewController {
         case let tabBarController as UITabBarController: return tabBarController.view
         case let navigationController as UINavigationController: return navigationController.view
         case let viewController: return viewController.view

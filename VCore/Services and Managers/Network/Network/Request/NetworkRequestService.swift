@@ -88,7 +88,7 @@ extension NetworkRequestService {
             return
         }
         
-        guard let url = URL(string: endpoint) else {
+        guard let url: URL = .init(string: endpoint) else {
             queue.async(completion(.failure(.invalidEndpoint)))
             return
         }
@@ -180,7 +180,7 @@ extension DispatchQueue {
 extension URLResponse {
     fileprivate var isValid: Bool {
         guard
-            let httpResponse = self as? HTTPURLResponse,
+            let httpResponse: HTTPURLResponse = self as? HTTPURLResponse,
             (200...299).contains(httpResponse.statusCode)
         else {
             return false

@@ -15,7 +15,7 @@ extension Array where Element == Optional<String> {
             guard
                 let element = element,
                 !element.isEmpty,
-                let transformedElement = try transform(element)
+                let transformedElement: String = try transform(element)
             else {
                 return nil
             }
