@@ -18,7 +18,7 @@ final class InfiniteScrollingTableViewActivityIndicatorView: UIView {
     }()
     
     // MARK: Properties
-    private typealias Model = InfiniteScrollingTableViewActivityIndicatorModel
+    private let model: InfiniteScrollingTableViewActivityIndicatorModel = .init()
     
     // MARK: Initializers
     init(in tableView: UITableView) {
@@ -27,7 +27,7 @@ final class InfiniteScrollingTableViewActivityIndicatorView: UIView {
                 origin: .zero,
                 size: .init(
                     width: tableView.frame.size.width,
-                    height: Model.Layout.height
+                    height: model.layout.height
             )
         ))
         setUp()
