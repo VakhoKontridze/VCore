@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK:- Label Natural Height Constant
+// MARK: - Label Natural Height Constant
 extension UILabel {
     /// Calculates and returns natural height constant
     ///

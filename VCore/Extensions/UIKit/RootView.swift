@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK:- App Root View
+// MARK: - App Root View
 extension UIScreen {
     /// Root view of the app
     ///

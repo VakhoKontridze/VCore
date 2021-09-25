@@ -7,14 +7,14 @@
 
 import Foundation
 
-// MARK:- JSON Encoder Service
+// MARK: - JSON Encoder Service
 /// Object that encodes instances of data type as JSON objects
 public struct JSONEncoderService {
     // MARK: Initializers
     private init() {}
 }
 
-// MARK:- Encoding
+// MARK: - Encoding
 extension JSONEncoderService {
     /// Encodes `Any` to `Data`
     public static func data(

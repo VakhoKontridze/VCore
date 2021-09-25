@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Network Session Manager
+// MARK: - Network Session Manager
 /// Network session manager that works with `AtomicInteger` to manage sessions with unique identifiers
 ///
 /// Object contains `shared` instance, but can also be initialized for separate incrementation
@@ -36,7 +36,7 @@ public final class NetworkSessionManager {
     public init() {}
 }
 
-// MARK:- Validation
+// MARK: - Validation
 extension NetworkSessionManager {
     /// Validates session identifier against latest generated identifier
     public func sessionIsValid(id sessionID: Int) -> Bool {

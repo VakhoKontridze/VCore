@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Network Request Service
+// MARK: - Network Request Service
 struct NetworkRequestService {
     // MARK: Properties
     private var urlSessionConfiguration: URLSessionConfiguration = {
@@ -22,7 +22,7 @@ struct NetworkRequestService {
     private var queue: DispatchQueue { NetworkService.shared.queue }
 }
 
-// MARK:- GET
+// MARK: - GET
 extension NetworkRequestService {
     func GET<Parameters, Entity>(
         endpoint: String,
@@ -73,7 +73,7 @@ extension NetworkRequestService {
     }
 }
 
-// MARK:- POST
+// MARK: - POST
 extension NetworkRequestService {
     func POST<Parameters, Entity>(
         endpoint: String,
@@ -123,7 +123,7 @@ extension NetworkRequestService {
     }
 }
 
-// MARK:- Process
+// MARK: - Process
 extension NetworkRequestService {
     func process<Entity>(
         data: Data?,
@@ -169,14 +169,14 @@ extension NetworkRequestService {
     }
 }
 
-// MARK:- Async
+// MARK: - Async
 extension DispatchQueue {
     fileprivate func async(_ block: @autoclosure @escaping () -> Void) {
         async(execute: block)
     }
 }
 
-// MARK:- Validation
+// MARK: - Validation
 extension URLResponse {
     fileprivate var isValid: Bool {
         guard

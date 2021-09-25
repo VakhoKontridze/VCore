@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK:- Routing
+// MARK: - Routing
 extension View {
     /// Alows SwiftUI `View` to route based on a current value of enumeration
     ///

@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- JSON Encoding Error
+// MARK: - JSON Encoding Error
 /// An error that occurs during the processes made by `JSONEncoderService`
 public enum JSONEncodingError: VCoreError {
     // MARK: Cases

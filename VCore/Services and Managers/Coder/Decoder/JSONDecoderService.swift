@@ -7,14 +7,14 @@
 
 import UIKit
 
-// MARK:- JSON Decoder Service
+// MARK: - JSON Decoder Service
 /// Object that decodes instances of data type from JSON objects
 public struct JSONDecoderService {
     // MARK: Initializers
     private init() {}
 }
 
-// MARK:- Decoding
+// MARK: - Decoding
 extension JSONDecoderService {
     /// Decodes `JSON` from `Data`
     public static func json(

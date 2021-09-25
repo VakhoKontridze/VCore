@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Infinite Scrolling Table View Delegate
+// MARK: - Infinite Scrolling Table View Delegate
 /// Allows the adopting delegate to respond to messages from `InfiniteScrollingTableView`
 public protocol InfiniteScrollingTableViewDelegate: AnyObject {
     func tableViewDidScrollToBottom(sender infiniteScrollingTableView: InfiniteScrollingTableView)

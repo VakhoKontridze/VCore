@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Get
+// MARK: - Get
 extension StringProtocol {
     /// Accesses the element at the specified position
     public subscript(_ i: Int) -> Element {
@@ -16,7 +16,7 @@ extension StringProtocol {
     }
 }
 
-// MARK:- Set
+// MARK: - Set
 extension StringProtocol {
     /// Returns string with an element replaced at index
     public func replaced(at i: Int, with element: Element) -> Self {

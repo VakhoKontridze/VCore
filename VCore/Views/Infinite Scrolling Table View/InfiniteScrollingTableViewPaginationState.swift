@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Pagination State
+// MARK: - Pagination State
 extension InfiniteScrollingTableView {
     /// Enum that describes state, such as `isLoading`, `canPaginate`, or `shouldNotPaginate`
     public enum PaginationState {

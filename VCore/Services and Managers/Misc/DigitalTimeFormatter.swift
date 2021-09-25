@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Digital Time Foramtter
+// MARK: - Digital Time Foramtter
 /// Digital Time formatter
 public struct DigitalTimeFormatter {
     // MARK: Properties
@@ -34,7 +34,7 @@ public struct DigitalTimeFormatter {
     public init() {}
 }
 
-// MARK:- Formatting
+// MARK: - Formatting
 extension DigitalTimeFormatter {
     /// Returns string from seconds with specified format
     public func string(from seconds: Double) -> String? {
@@ -80,7 +80,7 @@ extension DigitalTimeFormatter {
     }
 }
 
-// MARK:- Time Components
+// MARK: - Time Components
 extension DigitalTimeFormatter {
     private func extractTimeComponents(from seconds: Double) -> (d: Int, h: Int, m: Int, s: Int) {
         var d: Int = {
@@ -149,7 +149,7 @@ extension DigitalTimeFormatter {
     }
 }
 
-// MARK:- Helprs
+// MARK: - Helprs
 extension Int {
     fileprivate var padded: String {
         let str: String = .init(self)

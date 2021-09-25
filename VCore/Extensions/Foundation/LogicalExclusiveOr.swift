@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Logical Exlusive Or
+// MARK: - Logical Exlusive Or
 /// Exlsuive or logical operator
 infix operator ^^
 

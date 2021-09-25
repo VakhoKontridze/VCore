@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK:- Navigation Bar Height
+// MARK: - Navigation Bar Height
 extension UINavigationBar {
     /// Navigation bar height
     public static var height: CGFloat {

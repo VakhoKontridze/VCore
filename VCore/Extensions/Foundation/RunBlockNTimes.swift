@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Run Block n Times
+// MARK: - Run Block n Times
 extension Int {
     /// Runs block by specified times
     public func times(_ block: () -> Void) {

@@ -7,14 +7,14 @@
 
 import UIKit
 
-// MARK:- Network GET Service
+// MARK: - Network GET Service
 /// Network service that performs GET network data tasks
 public struct NetworkGETService {
     // MARK: Initializers
     init() {}
 }
 
-// MARK:- Data
+// MARK: - Data
 extension NetworkGETService {
     /// Makes `GET` network request with `JSON` parameters and returns `Data` or `NetworkError`
     public func data(
@@ -34,7 +34,7 @@ extension NetworkGETService {
     }
 }
 
-// MARK:- JSON
+// MARK: - JSON
 extension NetworkGETService {
     /// Makes `GET` network request with `JSON` parameters and returns `JSON` or `NetworkError`
     public func json(
@@ -71,7 +71,7 @@ extension NetworkGETService {
     }
 }
 
-// MARK:- Entity
+// MARK: - Entity
 extension NetworkGETService {
     /// Makes `GET` network request with `JSON` parameters and returns `Decodable` or `NetworkError`
     public func entity<Entity: Decodable>(
@@ -110,7 +110,7 @@ extension NetworkGETService {
     }
 }
 
-// MARK:- UIImage
+// MARK: - UIImage
 extension NetworkGETService {
     /// Makes `GET` network request with `JSON` parameters and returns `Data` or `NetworkError`
     public func uiImage(

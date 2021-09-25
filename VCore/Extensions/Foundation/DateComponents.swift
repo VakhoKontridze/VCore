@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Date Components
+// MARK: - Date Components
 extension Date {
     /// Returns the value for one component, using the calendar time zone
     public func component(_ component: Calendar.Component) -> Int {

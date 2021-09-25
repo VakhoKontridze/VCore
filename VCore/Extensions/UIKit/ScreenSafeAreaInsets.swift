@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK:- Safe Area Heights
+// MARK: - Safe Area Heights
 extension UIScreen {
     /// Object containing information about screen's safe area edge insets
     ///

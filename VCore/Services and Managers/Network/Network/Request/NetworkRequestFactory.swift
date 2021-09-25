@@ -7,13 +7,13 @@
 
 import Foundation
 
-// MARK:- Network Request Factory
+// MARK: - Network Request Factory
 struct NetworkRequestFactory {
     // MARK: Initializers
     private init() {}
 }
 
-// MARK:- Factory
+// MARK: - Factory
 extension NetworkRequestFactory {
     static func GET(
         endpoint: String,
@@ -62,7 +62,7 @@ extension NetworkRequestFactory {
     }
 }
 
-// MARK:- Headers
+// MARK: - Headers
 extension URLRequest {
     fileprivate mutating func addHTTPHeaders(_ items: [String: Any]) {
         guard !items.isEmpty else { return }
@@ -71,7 +71,7 @@ extension URLRequest {
     }
 }
 
-// MARK:- GET Parameters
+// MARK: - GET Parameters
 extension URLComponents {
     fileprivate mutating func addItems(_ items: [String: Any]) {
         guard !items.isEmpty else { return }

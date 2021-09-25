@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK:- SwiftUI Alert ViewModel
+// MARK: - SwiftUI Alert ViewModel
 /// SwiftUI Alert ViewModel
 ///
 /// Viewmodel for presenting an `Alert`.
@@ -21,7 +21,7 @@ public enum SwiftUIAlertViewModel {
     case twoButtons(viewModel: TwoButtonsViewModel)
 }
 
-// MARK:- Button
+// MARK: - Button
 extension SwiftUIAlertViewModel {
     /// Alert Button ViewModel
     public struct AlertButtonViewModel {
@@ -42,7 +42,7 @@ extension SwiftUIAlertViewModel {
     }
 }
 
-// MARK:- One Button ViewModel
+// MARK: - One Button ViewModel
 extension SwiftUIAlertViewModel {
     /// One Button ViewModel
     public struct OneButtonViewModel {
@@ -68,7 +68,7 @@ extension SwiftUIAlertViewModel {
     }
 }
 
-// MARK:- Two Buttons ViewModel
+// MARK: - Two Buttons ViewModel
 extension SwiftUIAlertViewModel {
     /// Two Buttons ViewModel
     public struct TwoButtonsViewModel {
@@ -99,7 +99,7 @@ extension SwiftUIAlertViewModel {
     }
 }
 
-// MARK:- Factory
+// MARK: - Factory
 extension View {
     /// Presents `Alert` when `viewModel` parameter is non-nil
     @ViewBuilder public func alert(

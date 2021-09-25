@@ -8,14 +8,14 @@
 import Foundation
 import SystemConfiguration
 
-// MARK:- Network Connetion Service
+// MARK: - Network Connetion Service
 /// Network connection service that manages connection
 public struct NetworkConnectionService {
     // MARK: Initializers
     private init() {}
 }
 
-// MARK:- Reachability
+// MARK: - Reachability
 extension NetworkConnectionService {
     /// Indicates if device is connected to a network
     public static var isConnectedToNetwork: Bool {

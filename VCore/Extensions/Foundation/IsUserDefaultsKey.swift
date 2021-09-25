@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Is User Defaults Key
+// MARK: - Is User Defaults Key
 extension String {
     /// Checks if value of this key is stored in `UserDefaults`
     public func isUserDefaultsKey(in defaults: UserDefaults = .standard) -> Bool {

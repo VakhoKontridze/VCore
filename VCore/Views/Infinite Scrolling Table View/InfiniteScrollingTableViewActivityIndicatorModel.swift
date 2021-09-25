@@ -7,13 +7,13 @@
 
 import UIKit
 
-// MARK:- Infinite Scrolling Table View Activity Indicator Model
+// MARK: - Infinite Scrolling Table View Activity Indicator Model
 struct InfiniteScrollingTableViewActivityIndicatorModel {
     // MARK: Properties
     let layout: Layout = .init()
 }
 
-// MARK:- Layout
+// MARK: - Layout
 extension InfiniteScrollingTableViewActivityIndicatorModel {
     struct Layout {
         // MARK: Properties

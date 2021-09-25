@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: Infinite Scrolling Table View
+// MARK: - Infinite Scrolling Table View
 /// Subclass of `UITableView` that handles infinite scrolling
 ///
 /// Contains property `paginationState`, controls pagination state.
@@ -48,7 +48,7 @@ public final class InfiniteScrollingTableView: UITableView {
     }
 }
 
-// MARK:- Detection
+// MARK: - Detection
 extension InfiniteScrollingTableView {
     /// Detects pagination on scroll
     public func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -81,7 +81,7 @@ extension UIScrollView {
     }
 }
 
-// MARK:- Pagination
+// MARK: - Pagination
 extension InfiniteScrollingTableView {
     private func paginate() {
         guard paginationState == .canPaginate else { return }
@@ -91,7 +91,7 @@ extension InfiniteScrollingTableView {
     }
 }
 
-// MARK:- Activity Indicator
+// MARK: - Activity Indicator
 extension InfiniteScrollingTableView {
     func setActivityIndicatorState() {
         switch paginationState {

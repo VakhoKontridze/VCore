@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK:- Remove Extra Separators
+// MARK: - Remove Extra Separators
 extension UITableView {
     /// Removes extra separators by inserting a `tableFooterView` of height `0`
     public func removeExtraSeparators() {

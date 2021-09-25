@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK:- Dismiss Keyboard On Outside Tap
+// MARK: - Dismiss Keyboard On Outside Tap
 extension UIViewController {
     /// Dismisses keyboard on outside tap, by resigning first responder of the view
     public func dismissKeyboardOnOutisdeTap() {

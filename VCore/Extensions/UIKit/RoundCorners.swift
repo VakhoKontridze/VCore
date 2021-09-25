@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK:- Round Corners
+// MARK: - Round Corners
 extension UIView {
     /// Rounds corners
     ///
@@ -19,7 +19,7 @@ extension UIView {
     }
 }
 
-// MARK:- CA Corner Mask Option Set
+// MARK: - CA Corner Mask Option Set
 extension CACornerMask {
     /// Top corners
     ///

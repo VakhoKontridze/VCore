@@ -7,14 +7,14 @@
 
 import Foundation
 
-// MARK:- Network POST Service
+// MARK: - Network POST Service
 /// Network service that performs POST network data tasks
 public struct NetworkPOSTService {
     // MARK: Initializers
     init() {}
 }
 
-// MARK:- Data
+// MARK: - Data
 extension NetworkPOSTService {
     /// Makes `POST` network request with `JSON` parameters and returns `Data` or `NetworkError`
     public func data(
@@ -34,7 +34,7 @@ extension NetworkPOSTService {
     }
 }
 
-// MARK:- JSON
+// MARK: - JSON
 extension NetworkPOSTService {
     /// Makes `POST` network request with `JSON` parameters and returns `JSON` or `NetworkError`
     public func json(
@@ -71,7 +71,7 @@ extension NetworkPOSTService {
     }
 }
 
-// MARK:- Entity
+// MARK: - Entity
 extension NetworkPOSTService {
     /// Makes `POST` network request with `JSON` parameters and returns `Decodable` or `NetworkError`
     public func entity<Entity: Decodable>(

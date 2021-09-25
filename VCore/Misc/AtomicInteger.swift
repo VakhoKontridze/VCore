@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Atomic Integer
+// MARK: - Atomic Integer
 /// Thread-safe, automatically incremented `Int`
 ///
 /// Object contains `shared` instance, but can also be initialized for separate incrementation

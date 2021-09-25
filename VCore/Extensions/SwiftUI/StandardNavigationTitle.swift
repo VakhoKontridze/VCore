@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK:- Extension
+// MARK: - Extension
 extension View {
     /// Configures the view’s title for purposes of navigation, using a string in a inline display mode
     @available(iOS 14, *)
@@ -29,7 +29,7 @@ fileprivate struct StandardNavigationTitle: ViewModifier {
     }
 }
 
-// MARK:- Body
+// MARK: - Body
 @available(iOS 14, *)
 extension StandardNavigationTitle {
     fileprivate func body(content: Content) -> some View {

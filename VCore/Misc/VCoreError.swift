@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- V Core Error
+// MARK: - V Core Error
 /// An error that occurs in `VCore`
 public protocol VCoreError: LocalizedError {
     /// Error info
@@ -63,7 +63,7 @@ extension VCoreError {
     public var helpAnchor: String? { nil }
 }
 
-// MARK:- V Core Error Info
+// MARK: - V Core Error Info
 /// Object containing info about errors occured in `VCore`
 public struct VCoreErrorInfo {
     /// Error domain

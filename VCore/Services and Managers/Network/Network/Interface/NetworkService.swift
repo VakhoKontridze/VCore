@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Network Service
+// MARK: - Network Service
 /// Network service that performs network data tasks
 ///
 /// Object is not inheritable, but can be extended the following way:

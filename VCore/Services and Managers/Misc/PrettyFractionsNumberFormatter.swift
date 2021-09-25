@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Extension
+// MARK: - Extension
 extension Double {
     /// Returns string from number with specified min and max fractions
     public func rounded(
@@ -19,7 +19,7 @@ extension Double {
     }
 }
 
-// MARK:- Auto Precision Number Formatter
+// MARK: - Auto Precision Number Formatter
 /// Auto Precision Number Formatter
 ///
 /// Rounds number to fractions specified by `min` and `max`.
@@ -43,7 +43,7 @@ public struct AutoPrecisionNumberFormatter {
     }
 }
 
-// MARK:- Formatting
+// MARK: - Formatting
 extension AutoPrecisionNumberFormatter {
     /// Returns string from number with specified format
     public func string(from number: Double) -> String? {

@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK:- Label Configuration
+// MARK: - Label Configuration
 extension UILabel {
     /// Configures `UILabel` with font, color, alignment, number of lines, and line break mode
     public func configure(

@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Safe Array Subscript
+// MARK: - Safe Array Subscript
 extension Array {
     /// Accesses the element at the specified position, but returns nil if out of bounds
     public subscript(safe index: Int) -> Element? {

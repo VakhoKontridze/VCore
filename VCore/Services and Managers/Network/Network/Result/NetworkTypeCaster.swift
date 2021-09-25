@@ -7,14 +7,14 @@
 
 import Foundation
 
-// MARK:- Network Type Caster
+// MARK: - Network Type Caster
 /// Casts `Any` to subsequent types
 public struct NetworkTypeCaster {
     // MARK: Initializers
     private init() {}
 }
 
-// MARK:- Type Casts
+// MARK: - Type Casts
 extension NetworkTypeCaster {
     /// Casts `Any` to `JSON`
     public static func toJSON(_ data: Any?) -> [String: Any]? {
@@ -86,7 +86,7 @@ extension NetworkTypeCaster {
     }
 }
 
-// MARK:- Wrapped Type Casts
+// MARK: - Wrapped Type Casts
 extension NetworkTypeCaster {
     /// Casts `Any` to wrapped`JSON`
     public static func toWrappedJSON(_ data: Any?) -> [String: Any] {

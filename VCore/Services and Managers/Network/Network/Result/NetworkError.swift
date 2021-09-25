@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK:- Network Error
+// MARK: - Network Error
 /// An error that occurs during the network requests made by `NetworkService`
 public enum NetworkError: VCoreError {
     // MARK: Cases
@@ -105,7 +105,7 @@ public enum NetworkError: VCoreError {
     }
 }
 
-// MARK:- JSON Coder Bridge
+// MARK: - JSON Coder Bridge
 extension Result where Failure == JSONEncodingError {
     var asResultWithNetworkError: Result<Success, NetworkError> {
         switch self {

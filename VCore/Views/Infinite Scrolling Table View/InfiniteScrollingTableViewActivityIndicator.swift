@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK:- Infinite Scrolling Table View Activity Indicator
+// MARK: - Infinite Scrolling Table View Activity Indicator
 final class InfiniteScrollingTableViewActivityIndicatorView: UIView {
     // MARK: Subviews
     private let activityIndicator: UIActivityIndicatorView = {
@@ -39,7 +39,7 @@ final class InfiniteScrollingTableViewActivityIndicatorView: UIView {
     }
 }
 
-// MARK:- Setup
+// MARK: - Setup
 extension InfiniteScrollingTableViewActivityIndicatorView {
     private func setUp() {
         addSubviews()

@@ -7,13 +7,13 @@
 
 import Foundation
 
-// MARK:- Network Request Type
+// MARK: - Network Request Type
 protocol NetworkRequestType {
     var httpMethod: String { get }
     var httpHeaders: [String: Any] { get }
 }
 
-// MARK:- Network GET Request Type
+// MARK: - Network GET Request Type
 struct NetworkGETRequest: NetworkRequestType {
     let httpMethod: String = "GET"
     
@@ -23,7 +23,7 @@ struct NetworkGETRequest: NetworkRequestType {
     ]
 }
 
-// MARK:- Network POST Request Type
+// MARK: - Network POST Request Type
 struct NetworkPOSTRequest: NetworkRequestType {
     let httpMethod: String = "POST"
     
