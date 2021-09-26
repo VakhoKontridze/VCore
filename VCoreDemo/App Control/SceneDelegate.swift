@@ -8,13 +8,11 @@
 import UIKit
 
 // MARK: - Scene Delegate
-final class SceneDelegate: UIResponder {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: Propeties
     var window: UIWindow?
-}
 
-// MARK: - Delegate
-extension SceneDelegate: UIWindowSceneDelegate {
+    // MARK: Window Scene Delegate
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowScene: UIWindowScene = scene as? UIWindowScene else { return }
         

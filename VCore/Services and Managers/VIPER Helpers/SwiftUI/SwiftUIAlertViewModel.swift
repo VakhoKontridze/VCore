@@ -14,15 +14,14 @@ import SwiftUI
 ///
 /// In `VIP` and `VIPER` arhcitecutes, viewmodel is stored in`Presenter`.
 public enum SwiftUIAlertViewModel {
+    // MARK: Cases
     /// One button
     case oneButton(viewModel: OneButtonViewModel)
     
     /// Two button
     case twoButtons(viewModel: TwoButtonsViewModel)
-}
 
-// MARK: - Button
-extension SwiftUIAlertViewModel {
+    // MARK: Button ViewModel
     /// Alert Button ViewModel
     public struct AlertButtonViewModel {
         /// Button title
@@ -40,10 +39,8 @@ extension SwiftUIAlertViewModel {
             self.action = action
         }
     }
-}
 
-// MARK: - One Button ViewModel
-extension SwiftUIAlertViewModel {
+    // MARK: One Button ViewModel
     /// One Button ViewModel
     public struct OneButtonViewModel {
         /// Alert title
@@ -66,10 +63,8 @@ extension SwiftUIAlertViewModel {
             self.dismissButton = dismissButton
         }
     }
-}
 
-// MARK: - Two Buttons ViewModel
-extension SwiftUIAlertViewModel {
+    // MARK: Two Buttons ViewModel
     /// Two Buttons ViewModel
     public struct TwoButtonsViewModel {
         /// Alert title

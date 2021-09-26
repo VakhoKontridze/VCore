@@ -20,10 +20,8 @@ struct NetworkRequestService {
     private var urlSession: URLSession { .init(configuration: urlSessionConfiguration) }
     
     private var queue: DispatchQueue { NetworkService.shared.queue }
-}
 
-// MARK: - GET
-extension NetworkRequestService {
+    // MARK: GET
     func GET<Parameters, Entity>(
         endpoint: String,
         headers: [String: Any],
@@ -71,10 +69,8 @@ extension NetworkRequestService {
             )))))
         }
     }
-}
 
-// MARK: - POST
-extension NetworkRequestService {
+    // MARK: POST
     func POST<Parameters, Entity>(
         endpoint: String,
         headers: [String: Any],
@@ -121,10 +117,8 @@ extension NetworkRequestService {
             )))))
         }
     }
-}
 
-// MARK: - Process
-extension NetworkRequestService {
+    // MARK: Process
     func process<Entity>(
         data: Data?,
         response: URLResponse?,

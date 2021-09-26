@@ -12,10 +12,8 @@ import Foundation
 public struct JSONEncoderService {
     // MARK: Initializers
     private init() {}
-}
 
-// MARK: - Encoding
-extension JSONEncoderService {
+    // MARK: Encoding
     /// Encodes `Any` to `Data`
     public static func data(
         from data: Any

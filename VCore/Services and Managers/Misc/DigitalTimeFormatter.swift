@@ -32,10 +32,8 @@ public struct DigitalTimeFormatter {
     // MARK: Initializers
     /// Initialzies `DigitalTimeFormatter`
     public init() {}
-}
 
-// MARK: - Formatting
-extension DigitalTimeFormatter {
+    // MARK: Formatting
     /// Returns string from seconds with specified format
     public func string(from seconds: Double) -> String? {
         guard seconds >= 0 else { return nil }
@@ -78,10 +76,8 @@ extension DigitalTimeFormatter {
         
         return formattedTime
     }
-}
 
-// MARK: - Time Components
-extension DigitalTimeFormatter {
+    // MARK: Time Components
     private func extractTimeComponents(from seconds: Double) -> (d: Int, h: Int, m: Int, s: Int) {
         var d: Int = {
             let remainder: Double = seconds
@@ -149,7 +145,7 @@ extension DigitalTimeFormatter {
     }
 }
 
-// MARK: - Helprs
+// MARK: - Helpers
 extension Int {
     fileprivate var padded: String {
         let str: String = .init(self)

@@ -41,10 +41,8 @@ public struct AutoPrecisionNumberFormatter {
         self.minFractions = minFractions
         self.maxFractions = maxFractions
     }
-}
 
-// MARK: - Formatting
-extension AutoPrecisionNumberFormatter {
+    // MARK: Formatting
     /// Returns string from number with specified format
     public func string(from number: Double) -> String? {
         guard

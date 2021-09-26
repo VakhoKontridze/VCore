@@ -55,7 +55,6 @@ extension View {
     }
 }
 
-// MARK: - Factory
 extension View {
     @available(iOS 14, *)
     @ViewBuilder fileprivate func progressViewStyle(viewModel: SwiftUIProgressViewViewModel) -> some View {

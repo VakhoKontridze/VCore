@@ -12,10 +12,8 @@ import UIKit
 public struct NetworkGETService {
     // MARK: Initializers
     init() {}
-}
 
-// MARK: - Data
-extension NetworkGETService {
+    // MARK: Data
     /// Makes `GET` network request with `JSON` parameters and returns `Data` or `NetworkError`
     public func data(
         endpoint: String,
@@ -32,10 +30,8 @@ extension NetworkGETService {
             decode: { .success($0) }
         )
     }
-}
 
-// MARK: - JSON
-extension NetworkGETService {
+    // MARK: JSON
     /// Makes `GET` network request with `JSON` parameters and returns `JSON` or `NetworkError`
     public func json(
         endpoint: String,
@@ -69,10 +65,8 @@ extension NetworkGETService {
             decode: { JSONDecoderService.json(from: $0).asResultWithNetworkError }
         )
     }
-}
 
-// MARK: - Entity
-extension NetworkGETService {
+    // MARK: Entity
     /// Makes `GET` network request with `JSON` parameters and returns `Decodable` or `NetworkError`
     public func entity<Entity: Decodable>(
         endpoint: String,
@@ -108,10 +102,8 @@ extension NetworkGETService {
             decode: { JSONDecoderService.entity(from: $0).asResultWithNetworkError }
         )
     }
-}
 
-// MARK: - UIImage
-extension NetworkGETService {
+    // MARK: UIImage
     /// Makes `GET` network request with `JSON` parameters and returns `Data` or `NetworkError`
     public func uiImage(
         endpoint: String,

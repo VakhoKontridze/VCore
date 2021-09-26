@@ -12,10 +12,8 @@ import Foundation
 public struct NetworkTypeCaster {
     // MARK: Initializers
     private init() {}
-}
 
-// MARK: - Type Casts
-extension NetworkTypeCaster {
+    // MARK: Type Casts
     /// Casts `Any` to `JSON`
     public static func toJSON(_ data: Any?) -> [String: Any]? {
         data as? [String: Any]
@@ -84,10 +82,8 @@ extension NetworkTypeCaster {
         default: return nil
         }
     }
-}
 
-// MARK: - Wrapped Type Casts
-extension NetworkTypeCaster {
+    // MARK: Wrapped Type Casts
     /// Casts `Any` to wrapped`JSON`
     public static func toWrappedJSON(_ data: Any?) -> [String: Any] {
         toJSON(data) ?? [:]

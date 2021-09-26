@@ -12,10 +12,8 @@ import Foundation
 public struct NetworkPOSTService {
     // MARK: Initializers
     init() {}
-}
 
-// MARK: - Data
-extension NetworkPOSTService {
+    // MARK: Data
     /// Makes `POST` network request with `JSON` parameters and returns `Data` or `NetworkError`
     public func data(
         endpoint: String,
@@ -32,10 +30,8 @@ extension NetworkPOSTService {
             decode: { .success($0) }
         )
     }
-}
 
-// MARK: - JSON
-extension NetworkPOSTService {
+    // MARK: JSON
     /// Makes `POST` network request with `JSON` parameters and returns `JSON` or `NetworkError`
     public func json(
         endpoint: String,
@@ -69,10 +65,8 @@ extension NetworkPOSTService {
             decode: { JSONDecoderService.json(from: $0).asResultWithNetworkError }
         )
     }
-}
 
-// MARK: - Entity
-extension NetworkPOSTService {
+    // MARK: Entity
     /// Makes `POST` network request with `JSON` parameters and returns `Decodable` or `NetworkError`
     public func entity<Entity: Decodable>(
         endpoint: String,

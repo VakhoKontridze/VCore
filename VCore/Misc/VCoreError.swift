@@ -46,6 +46,7 @@ public protocol VCoreError: LocalizedError {
     var helpAnchor: String? { get }
 }
 
+// MARK: - Default Values
 extension VCoreError {
     /// Localized description of error
     public var localizedDescription: String { fullDescription ?? "" }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - NS Layout Constraint Priorities
+// MARK: - Layout Constraint Priorities
 extension NSLayoutConstraint {
     /// Modifies and returns constraint with a given priority
     public func withPriority(_ priority: UILayoutPriority) -> NSLayoutConstraint {

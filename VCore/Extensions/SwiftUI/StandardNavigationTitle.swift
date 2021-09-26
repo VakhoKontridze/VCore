@@ -17,7 +17,7 @@ extension View {
     }
 }
 
-// MARK: Standard Navigation Title View Modifier
+// MARK: - Standard Navigation Title View Modifier
 @available(iOS 14, *)
 fileprivate struct StandardNavigationTitle: ViewModifier {
     // MARK: Properties

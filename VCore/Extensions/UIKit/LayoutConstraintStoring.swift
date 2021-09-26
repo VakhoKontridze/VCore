@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - Storing NS Layout Constraint
+// MARK: - Storing Layout Constraint
 extension NSLayoutConstraint {
     /// Allows for the storing of a layout constraint, while using it in `NSLayoutConstraint.activate(:_)`
     ///

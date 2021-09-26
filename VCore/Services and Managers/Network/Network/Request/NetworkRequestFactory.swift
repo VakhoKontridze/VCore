@@ -11,10 +11,8 @@ import Foundation
 struct NetworkRequestFactory {
     // MARK: Initializers
     private init() {}
-}
 
-// MARK: - Factory
-extension NetworkRequestFactory {
+    // MARK: Factory
     static func GET(
         endpoint: String,
         headers: [String: Any],

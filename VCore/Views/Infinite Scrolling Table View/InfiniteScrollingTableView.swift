@@ -46,10 +46,8 @@ public final class InfiniteScrollingTableView: UITableView {
     public required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
-}
 
-// MARK: - Detection
-extension InfiniteScrollingTableView {
+    // MARK: Detection
     /// Detects pagination on scroll
     public func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView.didScrollToBottom(offset: paginationOffset) else { return }
@@ -63,36 +61,16 @@ extension InfiniteScrollingTableView {
         
         paginate()
     }
-}
 
-extension UIScrollView {
-    fileprivate func didScrollToBottom(offset: CGFloat) -> Bool {
-        guard contentOffset.y > 0 else { return false }
-        
-        let didScrollToBottom: Bool =
-            contentOffset.y + frame.size.height >=
-            contentSize.height - offset
-        
-        return didScrollToBottom
-    }
-    
-    fileprivate var contentHeightExceedsTableViewHeight: Bool {
-        contentSize.height > frame.size.height
-    }
-}
-
-// MARK: - Pagination
-extension InfiniteScrollingTableView {
+    // MARK: Pagination
     private func paginate() {
         guard paginationState == .canPaginate else { return }
         
         paginationState = .isLoading
         infiniteScrollingDelegate?.tableViewDidScrollToBottom(sender: self)
     }
-}
 
-// MARK: - Activity Indicator
-extension InfiniteScrollingTableView {
+    // MARK: Activity Indicator
     func setActivityIndicatorState() {
         switch paginationState {
         case .isLoading:
@@ -122,5 +100,22 @@ extension InfiniteScrollingTableView {
                 self.setActivityIndicatorState()
             }
         )
+    }
+}
+
+// MARK: - Detection
+extension UIScrollView {
+    fileprivate func didScrollToBottom(offset: CGFloat) -> Bool {
+        guard contentOffset.y > 0 else { return false }
+        
+        let didScrollToBottom: Bool =
+            contentOffset.y + frame.size.height >=
+            contentSize.height - offset
+        
+        return didScrollToBottom
+    }
+    
+    fileprivate var contentHeightExceedsTableViewHeight: Bool {
+        contentSize.height > frame.size.height
     }
 }

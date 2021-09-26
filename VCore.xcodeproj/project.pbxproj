@@ -33,8 +33,8 @@
 		7A86F88326EFB16200EC32EA /* LabelConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A86F88226EFB16200EC32EA /* LabelConfiguration.swift */; };
 		7A86F88526EFB65E00EC32EA /* KeyPathSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A86F88426EFB65E00EC32EA /* KeyPathSort.swift */; };
 		7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6EF26EF59F900B0B096 /* LogicalExclusiveOr.swift */; };
-		7A91D6F426EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F326EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift */; };
-		7A91D6F626EFA5B200B0B096 /* NSLayoutConstraintStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F526EFA5B200B0B096 /* NSLayoutConstraintStoring.swift */; };
+		7A91D6F426EFA4E200B0B096 /* LayoutConstraintPriorities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F326EFA4E200B0B096 /* LayoutConstraintPriorities.swift */; };
+		7A91D6F626EFA5B200B0B096 /* LayoutConstraintStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F526EFA5B200B0B096 /* LayoutConstraintStoring.swift */; };
 		7A91D6F826EFA68500B0B096 /* RoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F726EFA68500B0B096 /* RoundCorners.swift */; };
 		7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */; };
 		7AA4071A26F9BA5900B60742 /* SwiftUIAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071926F9BA5900B60742 /* SwiftUIAlertViewModel.swift */; };
@@ -121,8 +121,8 @@
 		7A86F88226EFB16200EC32EA /* LabelConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LabelConfiguration.swift; sourceTree = "<group>"; };
 		7A86F88426EFB65E00EC32EA /* KeyPathSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyPathSort.swift; sourceTree = "<group>"; };
 		7A91D6EF26EF59F900B0B096 /* LogicalExclusiveOr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalExclusiveOr.swift; sourceTree = "<group>"; };
-		7A91D6F326EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintPriorities.swift; sourceTree = "<group>"; };
-		7A91D6F526EFA5B200B0B096 /* NSLayoutConstraintStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintStoring.swift; sourceTree = "<group>"; };
+		7A91D6F326EFA4E200B0B096 /* LayoutConstraintPriorities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraintPriorities.swift; sourceTree = "<group>"; };
+		7A91D6F526EFA5B200B0B096 /* LayoutConstraintStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraintStoring.swift; sourceTree = "<group>"; };
 		7A91D6F726EFA68500B0B096 /* RoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCorners.swift; sourceTree = "<group>"; };
 		7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
 		7AA4071926F9BA5900B60742 /* SwiftUIAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAlertViewModel.swift; sourceTree = "<group>"; };
@@ -457,8 +457,8 @@
 				7A86F88226EFB16200EC32EA /* LabelConfiguration.swift */,
 				7A86F88026EFAC0800EC32EA /* LabelNaturalHeightConstraint.swift */,
 				7AB22B3426EE834E0037355D /* NavigationBarHeight.swift */,
-				7A91D6F326EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift */,
-				7A91D6F526EFA5B200B0B096 /* NSLayoutConstraintStoring.swift */,
+				7A91D6F326EFA4E200B0B096 /* LayoutConstraintPriorities.swift */,
+				7A91D6F526EFA5B200B0B096 /* LayoutConstraintStoring.swift */,
 				7AF68A7026EE8D4A00D4B5BE /* RemoveExtraSeparators.swift */,
 				7AB22B3226EE82AB0037355D /* RootView.swift */,
 				7A91D6F726EFA68500B0B096 /* RoundCorners.swift */,
@@ -616,10 +616,10 @@
 				7AB22B2D26EE7A6F0037355D /* StringProtocolSubscripts.swift in Sources */,
 				7AB22B3D26EE86E10037355D /* DismissKeyboardOnOutsideTap.swift in Sources */,
 				7AB22B3B26EE85EF0037355D /* OptionalLetBlockTransformation.swift in Sources */,
-				7A91D6F426EFA4E200B0B096 /* NSLayoutConstraintPriorities.swift in Sources */,
+				7A91D6F426EFA4E200B0B096 /* LayoutConstraintPriorities.swift in Sources */,
 				7AF68A6F26EE8ABC00D4B5BE /* CompactMapNonEmpty.swift in Sources */,
 				7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */,
-				7A91D6F626EFA5B200B0B096 /* NSLayoutConstraintStoring.swift in Sources */,
+				7A91D6F626EFA5B200B0B096 /* LayoutConstraintStoring.swift in Sources */,
 				7A0F75C226D5172000020996 /* NetworkError.swift in Sources */,
 				7AB22B3126EE7C880037355D /* ScreenSafeAreaInsets.swift in Sources */,
 				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,

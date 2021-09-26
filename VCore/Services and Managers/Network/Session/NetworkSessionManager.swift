@@ -34,10 +34,8 @@ public final class NetworkSessionManager {
     
     // MARK: Initializers
     public init() {}
-}
 
-// MARK: - Validation
-extension NetworkSessionManager {
+    // MARK: Validation
     /// Validates session identifier against latest generated identifier
     public func sessionIsValid(id sessionID: Int) -> Bool {
         sessionID == currentSessionID

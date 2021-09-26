@@ -13,10 +13,8 @@ import SystemConfiguration
 public struct NetworkConnectionService {
     // MARK: Initializers
     private init() {}
-}
 
-// MARK: - Reachability
-extension NetworkConnectionService {
+    // MARK: Reachability
     /// Indicates if device is connected to a network
     public static var isConnectedToNetwork: Bool {
         var zeroAddress: sockaddr_in = {

@@ -11,10 +11,8 @@ import UIKit
 struct InfiniteScrollingTableViewActivityIndicatorModel {
     // MARK: Properties
     let layout: Layout = .init()
-}
 
-// MARK: - Layout
-extension InfiniteScrollingTableViewActivityIndicatorModel {
+    // MARK: Layout
     struct Layout {
         // MARK: Properties
         let height: CGFloat = 100

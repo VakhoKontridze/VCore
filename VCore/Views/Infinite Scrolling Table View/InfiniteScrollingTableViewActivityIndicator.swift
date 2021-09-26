@@ -37,10 +37,8 @@ final class InfiniteScrollingTableViewActivityIndicatorView: UIView {
         super.init(coder: coder)
         setUp()
     }
-}
 
-// MARK: - Setup
-extension InfiniteScrollingTableViewActivityIndicatorView {
+    // MARK: Setup
     private func setUp() {
         addSubviews()
         setUpLayout()
