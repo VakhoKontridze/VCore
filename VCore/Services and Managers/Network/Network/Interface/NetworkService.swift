@@ -27,16 +27,16 @@ import Foundation
 ///             completion: { result in
 ///                 switch result {
 ///                 case .success(let json):
-///                     guard NetworkTypeCaster.toBool(json["success"]) == true else {
+///                     guard json["success"].toBool == true else {
 ///                         completion(.failure(.returnedWithError(.init(
 ///                             domain: "SomeApp.SomeNetworkService",
-///                             code: NetworkTypeCaster.toInt(json["code"]) ?? 1,
-///                             description: NetworkTypeCaster.toString(json["message"]) ?? "Returned with error"
+///                             code: json["code"].toInt ?? 1,
+///                             description: json["message"].toString ?? "Returned with error"
 ///                         ))))
 ///                         return
 ///                     }
 ///
-///                     guard let data = NetworkTypeCaster.toJSON(json["data"]) else {
+///                     guard let data = json["data"].toJSON else {
 ///                         completion(.failure(.incompleteEntity(.init(
 ///                             domain: "SomeApp.SomeNetworkService",
 ///                             code: 2,

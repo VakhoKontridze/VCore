@@ -1,5 +1,5 @@
 //
-//  NetworkTypeCaster.swift
+//  NetworkTypeCasts.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 8/24/21.
@@ -7,26 +7,21 @@
 
 import Foundation
 
-// MARK: - Network Type Caster
-/// Casts `Any` to subsequent types.
-public struct NetworkTypeCaster {
-    // MARK: Initializers
-    private init() {}
-
-    // MARK: Type Casts
-    /// Casts `Any` to `JSON`.
-    public static func toJSON(_ data: Any?) -> [String: Any]? {
-        data as? [String: Any]
+// MARK: Type Casts
+extension Optional where Wrapped == Any {
+    /// Casts `Optional` `Any` to `JSON`.
+    public var toJSON: [String: Any]? {
+        self as? [String: Any]
     }
 
-    /// Casts `Any` to `JSON` `Array`.
-    public static func toJSONArray(_ data: Any?) -> [[String: Any]]? {
-        data as? [[String: Any]]
+    /// Casts `Optional` `Any` to `JSON` `Array`.
+    public var toJSONArray: [[String: Any]]? {
+        self as? [[String: Any]]
     }
 
-    /// Casts `Any` to `Int`.
-    public static func toInt(_ data: Any?) -> Int? {
-        switch data {
+    /// Casts `Optional` `Any` to `Int`.
+    public var toInt: Int? {
+        switch self {
         case let int as Int: return int
         case let float as Float: return .init(float)
         case let double as Double: return .init(double)
@@ -35,10 +30,10 @@ public struct NetworkTypeCaster {
         default: return nil
         }
     }
-    
-    /// Casts `Any` to `Float`.
-    public static func toFloat(_ data: Any?) -> Float? {
-        switch data {
+
+    /// Casts `Optional` `Any` to `Float`.
+    public var toFloat: Float? {
+        switch self {
         case let int as Int: return .init(int)
         case let float as Float: return float
         case let double as Double: return .init(double)
@@ -48,9 +43,9 @@ public struct NetworkTypeCaster {
         }
     }
 
-    /// Casts `Any` to `Double`.
-    public static func toDouble(_ data: Any?) -> Double? {
-        switch data {
+    /// Casts `Optional` `Any` to `Double`.
+    public var toDouble: Double? {
+        switch self {
         case let int as Int: return .init(int)
         case let double as Double: return double
         case let bool as Bool: return bool ? 1 : 0
@@ -59,9 +54,9 @@ public struct NetworkTypeCaster {
         }
     }
 
-    /// Casts `Any` to `Bool`.
-    public static func toBool(_ data: Any?) -> Bool? {
-        switch data {
+    /// Casts `Optional` `Any` to `Bool`.
+    public var toBool: Bool? {
+        switch self {
         case let int as Int: return int != 0
         case let float as Float: return float != 0
         case let double as Double: return double != 0
@@ -71,9 +66,9 @@ public struct NetworkTypeCaster {
         }
     }
 
-    /// Casts `Any` to `String`.
-    public static func toString(_ data: Any?) -> String? {
-        switch data {
+    /// Casts `Optional` `Any` to `String`.
+    public var toString: String? {
+        switch self {
         case let int as Int: return .init(int)
         case let float as Float: return .init(float)
         case let double as Double: return .init(double)
@@ -82,15 +77,17 @@ public struct NetworkTypeCaster {
         default: return nil
         }
     }
+}
 
-    // MARK: Wrapped Type Casts
-    /// Casts `Any` to wrapped`JSON`.
-    public static func toWrappedJSON(_ data: Any?) -> [String: Any] {
-        toJSON(data) ?? [:]
+// MARK: Wrapped Type Casts
+extension Optional where Wrapped == Any {
+    /// Casts `Optional` `Any` to wrapped`JSON`.
+    public var toWrappedJSON: [String: Any] {
+        toJSON ?? [:]
     }
-    
-    /// Casts `Any` to wrapped `JSON` `Array`.
-    public static func toWrappedJSONArray(_ data: Any?) -> [[String: Any]] {
-        toJSONArray(data) ?? []
+
+    /// Casts `Optional` `Any` to wrapped `JSON` `Array`.
+    public var toWrappedJSONArray: [[String: Any]] {
+        toJSONArray ?? []
     }
 }

@@ -22,7 +22,7 @@
 		7A0F75C026D516F900020996 /* NetworkPOSTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BF26D516F900020996 /* NetworkPOSTService.swift */; };
 		7A0F75C226D5172000020996 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C126D5172000020996 /* NetworkError.swift */; };
 		7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C326D5173100020996 /* NetworkResults.swift */; };
-		7A0F75C626D5174500020996 /* NetworkTypeCaster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C526D5174500020996 /* NetworkTypeCaster.swift */; };
+		7A0F75C626D5174500020996 /* NetworkTypeCasts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C526D5174500020996 /* NetworkTypeCasts.swift */; };
 		7A0F75C826D5175600020996 /* JSONEncoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C726D5175600020996 /* JSONEncoderService.swift */; };
 		7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C926D5176800020996 /* JSONDecoderService.swift */; };
 		7A0F75CC26D5177C00020996 /* NetworkRequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75CB26D5177C00020996 /* NetworkRequestType.swift */; };
@@ -110,7 +110,7 @@
 		7A0F75BF26D516F900020996 /* NetworkPOSTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPOSTService.swift; sourceTree = "<group>"; };
 		7A0F75C126D5172000020996 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
 		7A0F75C326D5173100020996 /* NetworkResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResults.swift; sourceTree = "<group>"; };
-		7A0F75C526D5174500020996 /* NetworkTypeCaster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTypeCaster.swift; sourceTree = "<group>"; };
+		7A0F75C526D5174500020996 /* NetworkTypeCasts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTypeCasts.swift; sourceTree = "<group>"; };
 		7A0F75C726D5175600020996 /* JSONEncoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderService.swift; sourceTree = "<group>"; };
 		7A0F75C926D5176800020996 /* JSONDecoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderService.swift; sourceTree = "<group>"; };
 		7A0F75CB26D5177C00020996 /* NetworkRequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestType.swift; sourceTree = "<group>"; };
@@ -347,7 +347,7 @@
 			children = (
 				7A0F75C126D5172000020996 /* NetworkError.swift */,
 				7A0F75C326D5173100020996 /* NetworkResults.swift */,
-				7A0F75C526D5174500020996 /* NetworkTypeCaster.swift */,
+				7A0F75C526D5174500020996 /* NetworkTypeCasts.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -612,7 +612,7 @@
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
 				7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */,
 				7AF68A7126EE8D4A00D4B5BE /* RemoveExtraSeparators.swift in Sources */,
-				7A0F75C626D5174500020996 /* NetworkTypeCaster.swift in Sources */,
+				7A0F75C626D5174500020996 /* NetworkTypeCasts.swift in Sources */,
 				7AB22B2D26EE7A6F0037355D /* StringProtocolSubscripts.swift in Sources */,
 				7AB22B3D26EE86E10037355D /* DismissKeyboardOnOutsideTap.swift in Sources */,
 				7AB22B3B26EE85EF0037355D /* OptionalLetBlockTransformation.swift in Sources */,
