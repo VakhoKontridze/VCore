@@ -14,10 +14,14 @@ extension View {
     /// Used in `VIPER` architecture. `Presenter` should contain a variable that represents all possible routes.
     /// Then, `View` should contain one modiifer for each case, representing a navigation.
     ///
-    /// # Usage Example #
-    /// ```
-    /// .route($presenter.route, route: .something, destination: presenter.router.somethingSceneBody)
-    /// ```
+    /// Usage Example:
+    ///
+    ///     .route(
+    ///         $presenter.route,
+    ///         route: .something,
+    ///         destination: presenter.router.somethingSceneBody
+    ///     )
+    ///
     @ViewBuilder public func route<SceneEnumeration, Destination>(
         _ enumeration: Binding<SceneEnumeration?>,
         route: SceneEnumeration,

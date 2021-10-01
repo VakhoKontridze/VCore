@@ -12,49 +12,47 @@ import Foundation
 ///
 /// Object is not inheritable, but can be extended the following way:
 ///
-/// ```
-/// struct SomeNetworkService {
-///     func getJSON(
-///         endpoint: String,
-///         headers: [String :Any],
-///         parameters: [String: Any],
-///         completion: @escaping (Result<[String: Any], NetworkError>) -> Void
-///     ) {
-///         NetworkService.shared.GET.json(
-///             endpoint: endpoint,
-///             headers: headers,
-///             parameters: parameters,
-///             completion: { result in
-///                 switch result {
-///                 case .success(let json):
-///                     guard json["success"].toBool == true else {
-///                         completion(.failure(.returnedWithError(.init(
-///                             domain: "SomeApp.SomeNetworkService",
-///                             code: json["code"].toInt ?? 1,
-///                             description: json["message"].toString ?? "Returned with error"
-///                         ))))
-///                         return
+///     struct SomeNetworkService {
+///         func getJSON(
+///             endpoint: String,
+///             headers: [String :Any],
+///             parameters: [String: Any],
+///             completion: @escaping (Result<[String: Any], NetworkError>) -> Void
+///         ) {
+///             NetworkService.shared.GET.json(
+///                 endpoint: endpoint,
+///                 headers: headers,
+///                 parameters: parameters,
+///                 completion: { result in
+///                     switch result {
+///                     case .success(let json):
+///                         guard json["success"].toBool == true else {
+///                             completion(.failure(.returnedWithError(.init(
+///                                 domain: "SomeApp.SomeNetworkService",
+///                                 code: json["code"].toInt ?? 1,
+///                                 description: json["message"].toString ?? "Returned with error"
+///                             ))))
+///                             return
+///                         }
+///
+///                         guard let data = json["data"].toJSON else {
+///                             completion(.failure(.incompleteEntity(.init(
+///                                 domain: "SomeApp.SomeNetworkService",
+///                                 code: 2,
+///                                 description: "Cannot retrieve data"
+///                             ))))
+///                             return
+///                         }
+///
+///                         completion(.success(data))
+///
+///                     case .failure(let error):
+///                         completion(.failure(error))
 ///                     }
-///
-///                     guard let data = json["data"].toJSON else {
-///                         completion(.failure(.incompleteEntity(.init(
-///                             domain: "SomeApp.SomeNetworkService",
-///                             code: 2,
-///                             description: "Cannot retrieve data"
-///                         ))))
-///                         return
-///                     }
-///
-///                     completion(.success(data))
-///
-///                 case .failure(let error):
-///                     completion(.failure(error))
 ///                 }
-///             }
-///         )
+///             )
+///         }
 ///     }
-/// }
-/// ```
 ///
 public final class NetworkService {
     // MARK: Properties
