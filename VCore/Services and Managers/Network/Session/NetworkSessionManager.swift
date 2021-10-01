@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Network Session Manager
 /// Network session manager that works with `AtomicInteger` to manage sessions with unique identifiers
 ///
-/// Object contains `shared` instance, but can also be initialized for separate incrementation
+/// Object contains `shared` instance, but can also be initialized for separate incrementation.
 public final class NetworkSessionManager {
     // MARK: Properties
     private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)

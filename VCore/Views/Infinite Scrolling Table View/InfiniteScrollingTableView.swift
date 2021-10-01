@@ -34,7 +34,7 @@ public final class InfiniteScrollingTableView: UITableView {
     public var paginationOffset: CGFloat = 20
     
     // If paginationState is set to `isLoading` before UITableView's constraint are set,
-    // InfiniteScrollingTableViewActivityIndicatorView won't layout properly
+    // InfiniteScrollingTableViewActivityIndicatorView won't layout properly.
     private var boundsObserver: NSKeyValueObservation?
     
     // MARK: Initializers
@@ -48,14 +48,14 @@ public final class InfiniteScrollingTableView: UITableView {
     }
 
     // MARK: Detection
-    /// Detects pagination on scroll
+    /// Detects pagination on scroll.
     public func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView.didScrollToBottom(offset: paginationOffset) else { return }
 
         paginate()
     }
     
-    /// Detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called
+    /// Detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called.
     public func detectPaginationFromTableViewCellForRow() {
         guard !contentHeightExceedsTableViewHeight else { return }
         

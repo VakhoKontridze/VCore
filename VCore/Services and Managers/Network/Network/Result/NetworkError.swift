@@ -11,7 +11,7 @@ import Foundation
 /// An error that occurs during the network requests made by `NetworkService`
 public enum NetworkError: VCoreError {
     // MARK: Cases
-    /// An indication that device is not connected to network.
+    /// An indication that device is not connected to network
     ///
     /// A check against `NetworkConnectionService` is made
     case notConnectedToNetwork
