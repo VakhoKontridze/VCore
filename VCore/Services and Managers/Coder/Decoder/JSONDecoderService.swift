@@ -8,13 +8,13 @@
 import UIKit
 
 // MARK: - JSON Decoder Service
-/// Object that decodes instances of data type from JSON objects
+/// Object that decodes instances of data type from JSON objects.
 public struct JSONDecoderService {
     // MARK: Initializers
     private init() {}
 
     // MARK: Decoding
-    /// Decodes `JSON` from `Data`
+    /// Decodes `JSON` from `Data`.
     public static func json(
         from data: Data
     ) -> Result<[String: Any], JSONDecodingError> {
@@ -42,7 +42,7 @@ public struct JSONDecoderService {
         }
     }
     
-    /// Decodes `Decodable` from `Data`
+    /// Decodes `Decodable` from `Data`.
     public static func entity<DecodedData: Decodable>(
         from data: Data
     ) -> Result<DecodedData, JSONDecodingError> {
@@ -59,7 +59,7 @@ public struct JSONDecoderService {
         }
     }
     
-    /// Decodes `UIImage` from `Data`
+    /// Decodes `UIImage` from `Data`.
     public static func uiImage(
         from data: Data
     )  -> Result<UIImage, JSONDecodingError> {

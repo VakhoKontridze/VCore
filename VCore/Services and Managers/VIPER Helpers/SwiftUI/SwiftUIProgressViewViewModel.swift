@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - SwiftUI Progress View ViewModel
-/// SwiftUI Progress View ViewModel
+/// SwiftUI Progress View ViewModel.
 ///
 /// Viewmodel for presenting an `ProgressView`.
 ///
@@ -34,7 +34,7 @@ public struct SwiftUIProgressViewViewModel {
 
 // MARK: - Factory
 extension View {
-    /// Presents `ProgressView` when `viewModel` parameter is non-nil
+    /// Presents `ProgressView` when `viewModel` parameter is non-nil.
     @available(iOS 14, *)
     @ViewBuilder public func progressView(
         viewModel: SwiftUIProgressViewViewModel?

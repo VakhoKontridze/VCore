@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Label Configuration
 extension UILabel {
-    /// Configures `UILabel` with font, color, alignment, number of lines, and line break mode
+    /// Configures `UILabel` with font, color, alignment, number of lines, and line break mode.
     public func configure(
         font: UIFont?,
         color: UIColor?,
@@ -24,7 +24,7 @@ extension UILabel {
         self.lineBreakMode = lineBreakMode
     }
     
-    /// Initializes `UILabel` with font, color, alignment, number of lines, and line break mode
+    /// Initializes `UILabel` with font, color, alignment, number of lines, and line break mode.
     public convenience init(
         font: UIFont?,
         color: UIColor?,

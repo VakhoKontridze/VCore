@@ -9,9 +9,9 @@ import UIKit
 
 // MARK: - App Root View
 extension UIScreen {
-    /// Root view of the app
+    /// Root view of the app.
     ///
-    /// - Root View Controller must be loaded on screen for this property to return a non-`nil` value
+    /// - Root View Controller must be loaded on screen for this property to return a non-`nil` value.
     public static var rootView: UIView? {
         guard
             let window: UIWindow = UIApplication.shared.windows.first(where: { $0.isKeyWindow }),

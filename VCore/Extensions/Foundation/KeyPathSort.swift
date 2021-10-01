@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - KeyPath Sort
 extension Sequence {
-    /// Sorts sequence by a key path
+    /// Sorts sequence by a key path.
     public func sorted<T: Comparable>(
         by keypath: KeyPath<Element, T>
     ) -> [Element] {

@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Navigation Bar Height
 extension UINavigationBar {
-    /// Navigation bar height
+    /// Navigation bar height.
     public static var height: CGFloat {
         UINavigationController(rootViewController: .init(nibName: nil, bundle: nil))
             .navigationBar

@@ -9,12 +9,12 @@ import Foundation
 
 // MARK: - NS Object Name
 extension NSObject {
-    /// `NSObject` class full name
+    /// `NSObject` class full name.
     public static var nsObjectClassNameFull: String {
         NSStringFromClass(self)
     }
     
-    /// `NSObject` class name
+    /// `NSObject` class name.
     public static var nsObjectClassName: String? {
         nsObjectClassNameFull.components(separatedBy: ".").last
     }

@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - Infinite Scrolling Table View
-/// Subclass of `UITableView` that handles infinite scrolling
+/// Subclass of `UITableView` that handles infinite scrolling.
 ///
 /// Contains property `paginationState`, controls pagination state.
 /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `.isLoading` and delegate method is called.
@@ -16,15 +16,15 @@ import UIKit
 /// Once finished, property must be set to either `canPaginate`, or `shouldNotPaginate`, depending on the existence of further data.
 ///
 /// Two methods must be called from `UIView` or `UIViewController to ensure proper functionality:
-/// - `detectPaginationFromScrollViewDidScroll(:_)`, whitch detects pagination on scroll
-/// - `detectPaginationFromTableViewCellForRow(:_)`, which detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called
+/// - `detectPaginationFromScrollViewDidScroll(:_)`, whitch detects pagination on scroll.
+/// - `detectPaginationFromTableViewCellForRow(:_)`, which detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called.
 ///
 public final class InfiniteScrollingTableView: UITableView {
     // MARK: Properties
-    /// Delegate
+    /// Delegate.
     public weak var infiniteScrollingDelegate: (InfiniteScrollingTableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?
     
-    /// Controls pagination state
+    /// Controls pagination state.
     /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `.isLoading` and delegate method is called.
     /// Network call or persistent storage fetch reqiest can be made.
     /// Once finished, property must be set to either `canPaginate`, or `shouldNotPaginate`, depending on the existence of further data.

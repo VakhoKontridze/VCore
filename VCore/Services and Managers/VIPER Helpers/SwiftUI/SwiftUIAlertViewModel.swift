@@ -8,29 +8,29 @@
 import SwiftUI
 
 // MARK: - SwiftUI Alert ViewModel
-/// SwiftUI Alert ViewModel
+/// SwiftUI Alert ViewModel.
 ///
 /// Viewmodel for presenting an `Alert`.
 ///
 /// In `VIP` and `VIPER` arhcitecutes, viewmodel is stored in`Presenter`.
 public enum SwiftUIAlertViewModel {
     // MARK: Cases
-    /// One button
+    /// One button.
     case oneButton(viewModel: OneButtonViewModel)
     
-    /// Two button
+    /// Two button.
     case twoButtons(viewModel: TwoButtonsViewModel)
 
     // MARK: Button ViewModel
-    /// Alert Button ViewModel
+    /// Alert Button ViewModel.
     public struct AlertButtonViewModel {
-        /// Button title
+        /// Button title.
         public let title: String
         
-        /// Button action
+        /// Button action.
         public let action: (() -> Void)?
         
-        /// Initializes viewmodel
+        /// Initializes viewmodel.
         public init(
             title: String,
             action: (() -> Void)?
@@ -41,18 +41,18 @@ public enum SwiftUIAlertViewModel {
     }
 
     // MARK: One Button ViewModel
-    /// One Button ViewModel
+    /// One Button ViewModel.
     public struct OneButtonViewModel {
-        /// Alert title
+        /// Alert title.
         public let title: String
         
-        /// Alert message
+        /// Alert message.
         public let message: String?
         
-        /// Alert dismiss button
+        /// Alert dismiss button.
         public let dismissButton: AlertButtonViewModel
         
-        /// Initializes viewmodel
+        /// Initializes viewmodel.
         public init(
             title: String,
             message: String?,
@@ -65,21 +65,21 @@ public enum SwiftUIAlertViewModel {
     }
 
     // MARK: Two Buttons ViewModel
-    /// Two Buttons ViewModel
+    /// Two Buttons ViewModel.
     public struct TwoButtonsViewModel {
-        /// Alert title
+        /// Alert title.
         public let title: String
         
-        /// Alert message
+        /// Alert message.
         public let message: String?
         
-        /// Alert primary button
+        /// Alert primary button.
         public let primaryButton: AlertButtonViewModel
         
-        /// Alert secondary button
+        /// Alert secondary button.
         public let secondaryButton: AlertButtonViewModel
         
-        /// Initializes viewmodel
+        /// Initializes viewmodel.
         public init(
             title: String,
             message: String?,
@@ -96,7 +96,7 @@ public enum SwiftUIAlertViewModel {
 
 // MARK: - Factory
 extension View {
-    /// Presents `Alert` when `viewModel` parameter is non-nil
+    /// Presents `Alert` when `viewModel` parameter is non-nil.
     @ViewBuilder public func alert(
         viewModel: Binding<SwiftUIAlertViewModel?>
     ) -> some View {

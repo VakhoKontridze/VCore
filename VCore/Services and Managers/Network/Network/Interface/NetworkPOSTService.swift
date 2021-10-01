@@ -8,13 +8,13 @@
 import Foundation
 
 // MARK: - Network POST Service
-/// Network service that performs POST network data tasks
+/// Network service that performs POST network data tasks.
 public struct NetworkPOSTService {
     // MARK: Initializers
     init() {}
 
     // MARK: Data
-    /// Makes `POST` network request with `JSON` parameters and returns `Data` or `NetworkError`
+    /// Makes `POST` network request with `JSON` parameters and returns `Data` or `NetworkError`.
     public func data(
         endpoint: String,
         headers: [String: Any],
@@ -32,7 +32,7 @@ public struct NetworkPOSTService {
     }
 
     // MARK: JSON
-    /// Makes `POST` network request with `JSON` parameters and returns `JSON` or `NetworkError`
+    /// Makes `POST` network request with `JSON` parameters and returns `JSON` or `NetworkError`.
     public func json(
         endpoint: String,
         headers: [String: Any],
@@ -49,7 +49,7 @@ public struct NetworkPOSTService {
         )
     }
 
-    /// Makes `POST` network request with `Encodable` parameters and returns `Data` or `NetworkError`
+    /// Makes `POST` network request with `Encodable` parameters and returns `Data` or `NetworkError`.
     public func json<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
@@ -67,7 +67,7 @@ public struct NetworkPOSTService {
     }
 
     // MARK: Entity
-    /// Makes `POST` network request with `JSON` parameters and returns `Decodable` or `NetworkError`
+    /// Makes `POST` network request with `JSON` parameters and returns `Decodable` or `NetworkError`.
     public func entity<Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
@@ -85,7 +85,7 @@ public struct NetworkPOSTService {
         )
     }
 
-    /// Makes `POST` network request with `Encodable` parameters and returns `Decodable` or `NetworkError`
+    /// Makes `POST` network request with `Encodable` parameters and returns `Decodable` or `NetworkError`.
     public func entity<Parameters: Encodable, Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],

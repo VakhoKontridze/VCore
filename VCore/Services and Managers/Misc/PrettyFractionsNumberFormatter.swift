@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Extension
 extension Double {
-    /// Returns string from number with specified min and max fractions
+    /// Returns string from number with specified min and max fractions.
     public func rounded(
         min: Int = 0,
         max: Int
@@ -20,7 +20,7 @@ extension Double {
 }
 
 // MARK: - Auto Precision Number Formatter
-/// Auto Precision Number Formatter
+/// Auto Precision Number Formatter.
 ///
 /// Rounds number to fractions specified by `min` and `max`.
 /// If number ends with zeroes, they will be removed until `min` fraction requirement is met.
@@ -29,11 +29,11 @@ public struct AutoPrecisionNumberFormatter {
     /// Minimum number of fractions. Defaults to `0`.
     public var minFractions: Int
     
-    /// Maximum number of fractions
+    /// Maximum number of fractions.
     public var maxFractions: Int
     
     // MARK: Initializers
-    /// Initializes `AutoPrecisionNumberFormatter`
+    /// Initializes `AutoPrecisionNumberFormatter`.
     public init(
         minFractions: Int = 0,
         maxFractions: Int
@@ -43,7 +43,7 @@ public struct AutoPrecisionNumberFormatter {
     }
 
     // MARK: Formatting
-    /// Returns string from number with specified format
+    /// Returns string from number with specified format.
     public func string(from number: Double) -> String? {
         guard
             minFractions >= 0,

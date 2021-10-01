@@ -8,13 +8,13 @@
 import UIKit
 
 // MARK: - Network GET Service
-/// Network service that performs GET network data tasks
+/// Network service that performs GET network data tasks.
 public struct NetworkGETService {
     // MARK: Initializers
     init() {}
 
     // MARK: Data
-    /// Makes `GET` network request with `JSON` parameters and returns `Data` or `NetworkError`
+    /// Makes `GET` network request with `JSON` parameters and returns `Data` or `NetworkError`.
     public func data(
         endpoint: String,
         headers: [String: Any],
@@ -32,7 +32,7 @@ public struct NetworkGETService {
     }
 
     // MARK: JSON
-    /// Makes `GET` network request with `JSON` parameters and returns `JSON` or `NetworkError`
+    /// Makes `GET` network request with `JSON` parameters and returns `JSON` or `NetworkError`.
     public func json(
         endpoint: String,
         headers: [String: Any],
@@ -49,7 +49,7 @@ public struct NetworkGETService {
         )
     }
     
-    /// Makes `GET` network request with `Encodable` parameters and returns `JSON` or `NetworkError`
+    /// Makes `GET` network request with `Encodable` parameters and returns `JSON` or `NetworkError`.
     public func json<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
@@ -67,7 +67,7 @@ public struct NetworkGETService {
     }
 
     // MARK: Entity
-    /// Makes `GET` network request with `JSON` parameters and returns `Decodable` or `NetworkError`
+    /// Makes `GET` network request with `JSON` parameters and returns `Decodable` or `NetworkError`.
     public func entity<Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
@@ -85,7 +85,7 @@ public struct NetworkGETService {
         )
     }
     
-    /// Makes `GET` network request with `Encodable` parameters and returns `Decodable` or `NetworkError`
+    /// Makes `GET` network request with `Encodable` parameters and returns `Decodable` or `NetworkError`.
     public func entity<Parameters: Encodable, Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
@@ -104,7 +104,7 @@ public struct NetworkGETService {
     }
 
     // MARK: UIImage
-    /// Makes `GET` network request with `JSON` parameters and returns `Data` or `NetworkError`
+    /// Makes `GET` network request with `JSON` parameters and returns `Data` or `NetworkError`.
     public func uiImage(
         endpoint: String,
         headers: [String: Any],
@@ -121,7 +121,7 @@ public struct NetworkGETService {
         )
     }
     
-    /// Makes `GET` network request with `Encodable` and returns `Data` or `NetworkError`
+    /// Makes `GET` network request with `Encodable` and returns `Data` or `NetworkError`.
     public func uiImage<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],

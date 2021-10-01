@@ -9,9 +9,9 @@ import UIKit
 
 // MARK: - Safe Area Heights
 extension UIScreen {
-    /// Object containing information about screen's safe area edge insets
+    /// Object containing information about screen's safe area edge insets.
     ///
-    /// - Root View Controller must be loaded on screen for this property to return a non-`nil` value
+    /// - Root View Controller must be loaded on screen for this property to return a non-`nil` value.
     public static var safeAreaInsets: UIEdgeInsets? {
         rootView?.safeAreaInsets
     }

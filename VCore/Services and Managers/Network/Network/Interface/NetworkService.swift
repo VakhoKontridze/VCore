@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Network Service
-/// Network service that performs network data tasks
+/// Network service that performs network data tasks.
 ///
 /// Object is not inheritable, but can be extended the following way:
 ///
@@ -58,10 +58,10 @@ import Foundation
 ///
 public final class NetworkService {
     // MARK: Properties
-    /// Network service that performs GET network data tasks
+    /// Network service that performs GET network data tasks.
     public let GET: NetworkGETService = .init()
     
-    /// Network service that performs POST network data tasks
+    /// Network service that performs POST network data tasks.
     public let POST: NetworkPOSTService = .init()
     
     /// Queue on which completion is returned. Defaults to `main`.
@@ -73,7 +73,7 @@ public final class NetworkService {
     /// Timeout inteval for request. Has a default value resource `URLSessionConfiguration.default`, and defaults to `604800`.
     public var timeoutIntervalForResource: TimeInterval = URLSessionConfiguration.default.timeoutIntervalForResource
     
-    /// Shared instance of `NetworkService`
+    /// Shared instance of `NetworkService`.
     public static let shared: NetworkService = .init()
     
     // MARK: Initializers

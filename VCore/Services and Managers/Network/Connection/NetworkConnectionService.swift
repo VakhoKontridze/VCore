@@ -9,13 +9,13 @@ import Foundation
 import SystemConfiguration
 
 // MARK: - Network Connetion Service
-/// Network connection service that manages connection
+/// Network connection service that manages connection.
 public struct NetworkConnectionService {
     // MARK: Initializers
     private init() {}
 
     // MARK: Reachability
-    /// Indicates if device is connected to a network
+    /// Indicates if device is connected to a network.
     public static var isConnectedToNetwork: Bool {
         var zeroAddress: sockaddr_in = {
             var zeroAddress: sockaddr_in = .init()

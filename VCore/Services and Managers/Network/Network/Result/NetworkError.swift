@@ -8,35 +8,35 @@
 import Foundation
 
 // MARK: - Network Error
-/// An error that occurs during the network requests made by `NetworkService`
+/// An error that occurs during the network requests made by `NetworkService`.
 public enum NetworkError: VCoreError {
     // MARK: Cases
-    /// An indication that device is not connected to network
+    /// An indication that device is not connected to network.
     ///
-    /// A check against `NetworkConnectionService` is made
+    /// A check against `NetworkConnectionService` is made.
     case notConnectedToNetwork
     
-    /// An indication that endpoint url is invalid
+    /// An indication that endpoint url is invalid.
     case invalidEndpoint
     
-    /// An indication that parameters cannot be encoded
+    /// An indication that parameters cannot be encoded.
     ///
-    /// Associated value contains info of `VCoreErrorInfo` type
+    /// Associated value contains info of `VCoreErrorInfo` type.
     case incompleteParameters(_ info: VCoreErrorInfo)
     
-    /// An indication that network ruquest returned an error
+    /// An indication that network ruquest returned an error.
     ///
-    /// Associated value contains info of `VCoreErrorInfo` type
+    /// Associated value contains info of `VCoreErrorInfo` type.
     case returnedWithError(_ info: VCoreErrorInfo)
     
-    /// An indication that netowrk ruquest returned an invalid response
+    /// An indication that netowrk ruquest returned an invalid response.
     ///
-    /// Associated value contains info of `VCoreErrorInfo` type
+    /// Associated value contains info of `VCoreErrorInfo` type.
     case invalidResponse(_ info: VCoreErrorInfo)
     
-    /// An indication that result cannot be decoded
+    /// An indication that result cannot be decoded.
     ///
-    /// Associated value contains info of `VCoreErrorInfo` type
+    /// Associated value contains info of `VCoreErrorInfo` type.
     case incompleteEntity(_ info: VCoreErrorInfo)
     
     // MARK: Properties
@@ -51,17 +51,17 @@ public enum NetworkError: VCoreError {
         }
     }
     
-    /// Error domain
+    /// Error domain.
     public var domain: String? {
         info?.domain
     }
 
-    /// Error code
+    /// Error code.
     public var code: Int? {
         info?.code
     }
     
-    /// Full error description
+    /// Full error description.
     public var fullDescription: String? {
         switch (primaryDescription, secondaryDescription) {
         case (nil, _):
@@ -78,7 +78,7 @@ public enum NetworkError: VCoreError {
         }
     }
     
-    /// Primary error description
+    /// Primary error description.
     public var primaryDescription: String? {
         switch self {
         case .notConnectedToNetwork: return "Not connected to the network"
@@ -90,9 +90,9 @@ public enum NetworkError: VCoreError {
         }
     }
     
-    /// Secondary error description
+    /// Secondary error description.
     ///
-    /// Composed from associated error description
+    /// Composed from associated error description.
     public var secondaryDescription: String? {
         switch self {
         case .notConnectedToNetwork: return nil

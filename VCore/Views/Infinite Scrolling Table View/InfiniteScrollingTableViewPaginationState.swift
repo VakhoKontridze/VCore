@@ -9,15 +9,15 @@ import Foundation
 
 // MARK: - Pagination State
 extension InfiniteScrollingTableView {
-    /// Enum that describes state, such as `isLoading`, `canPaginate`, or `shouldNotPaginate`
+    /// Enum that describes state, such as `isLoading`, `canPaginate`, or `shouldNotPaginate`.
     public enum PaginationState {
-        /// Indicates that `UIActivityIndicator` is visible and additional pagination cannot occur
+        /// Indicates that `UIActivityIndicator` is visible and additional pagination cannot occur.
         case isLoading
         
-        /// Indicates that pagination can occur
+        /// Indicates that pagination can occur.
         case canPaginate
         
-        /// Indicates that pagination shouldn't occur
+        /// Indicates that pagination shouldn't occur.
         case shouldNotPaginate
     }
 }

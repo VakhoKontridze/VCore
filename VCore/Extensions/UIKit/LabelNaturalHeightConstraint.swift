@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Label Natural Height Constant
 extension UILabel {
-    /// Calculates and returns natural height constant
+    /// Calculates and returns natural height constant.
     ///
     /// Used for ensuring that view doesn't flicker when new text is added to empty `UILabel`.
     ///

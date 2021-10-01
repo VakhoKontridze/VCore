@@ -8,13 +8,13 @@
 import Foundation
 
 // MARK: - JSON Encoder Service
-/// Object that encodes instances of data type as JSON objects
+/// Object that encodes instances of data type as JSON objects.
 public struct JSONEncoderService {
     // MARK: Initializers
     private init() {}
 
     // MARK: Encoding
-    /// Encodes `Any` to `Data`
+    /// Encodes `Any` to `Data`.
     public static func data(
         from data: Any
     ) -> Result<Data, JSONEncodingError> {
@@ -31,7 +31,7 @@ public struct JSONEncoderService {
         }
     }
     
-    /// Encodes `Encodable` to `Data`
+    /// Encodes `Encodable` to `Data`.
     public static func data<EncodingData: Encodable>(
         from data: EncodingData
     ) -> Result<Data, JSONEncodingError> {
@@ -48,7 +48,7 @@ public struct JSONEncoderService {
         }
     }
     
-    /// Encodes `Encodable` to `JSON`
+    /// Encodes `Encodable` to `JSON`.
     public static func json<EncodingData: Encodable>(
         from data: EncodingData
     ) -> Result<[String: Any], JSONEncodingError> {

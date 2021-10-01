@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Routing
 extension View {
-    /// Alows SwiftUI `View` to route based on a current value of enumeration
+    /// Alows SwiftUI `View` to route based on a current value of enumeration.
     ///
     /// Used in `VIPER` architecture. `Presenter` should contain a variable that represents all possible routes.
     /// Then, `View` should contain one modiifer for each case, representing a navigation.

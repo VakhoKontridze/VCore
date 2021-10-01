@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Network Session Manager
-/// Network session manager that works with `AtomicInteger` to manage sessions with unique identifiers
+/// Network session manager that works with `AtomicInteger` to manage sessions with unique identifiers.
 ///
 /// Object contains `shared` instance, but can also be initialized for separate incrementation.
 public final class NetworkSessionManager {
@@ -20,7 +20,7 @@ public final class NetworkSessionManager {
     /// Current session ID. Default to `-1` without any prior incrementation.
     private(set) public var currentSessionID: Int = -1
     
-    /// Generates thread-safe, auto-incremented session identifier from `AtomicInteger`
+    /// Generates thread-safe, auto-incremented session identifier from `AtomicInteger`.
     public var newSessionID: Int {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
@@ -29,14 +29,14 @@ public final class NetworkSessionManager {
         return currentSessionID
     }
     
-    /// Shared instance of `NetworkSessionManager`
+    /// Shared instance of `NetworkSessionManager`.
     public static let shared: AtomicInteger = .init()
     
     // MARK: Initializers
     public init() {}
 
     // MARK: Validation
-    /// Validates session identifier against latest generated identifier
+    /// Validates session identifier against latest generated identifier.
     public func sessionIsValid(id sessionID: Int) -> Bool {
         sessionID == currentSessionID
     }

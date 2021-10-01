@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Digital Time Foramtter
-/// Digital Time formatter
+/// Digital Time formatter.
 public struct DigitalTimeFormatter {
     // MARK: Properties
     /// Indicates if empty components still show up as zeroes in format. Defaults to `false`.
@@ -30,11 +30,11 @@ public struct DigitalTimeFormatter {
     public var delimiter: String = ":"
     
     // MARK: Initializers
-    /// Initialzies `DigitalTimeFormatter`
+    /// Initialzies `DigitalTimeFormatter`.
     public init() {}
 
     // MARK: Formatting
-    /// Returns string from seconds with specified format
+    /// Returns string from seconds with specified format.
     public func string(from seconds: Double) -> String? {
         guard seconds >= 0 else { return nil }
 

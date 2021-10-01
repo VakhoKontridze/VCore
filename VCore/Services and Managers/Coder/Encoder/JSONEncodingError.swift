@@ -8,23 +8,23 @@
 import Foundation
 
 // MARK: - JSON Encoding Error
-/// An error that occurs during the processes made by `JSONEncoderService`
+/// An error that occurs during the processes made by `JSONEncoderService`.
 public enum JSONEncodingError: VCoreError {
     // MARK: Cases
-    /// An indication that data cannot be encoded
+    /// An indication that data cannot be encoded.
     ///
-    /// Associated value contains info of `VCoreErrorInfo` type
+    /// Associated value contains info of `VCoreErrorInfo` type.
     case failedToEncode(_ info: VCoreErrorInfo)
     
     // MARK: Properties
-    /// Error info
+    /// Error info.
     public var info: VCoreErrorInfo? {
         switch self {
         case .failedToEncode(let info): return info
         }
     }
     
-    /// Error domain
+    /// Error domain.
     public var domain: String? {
         info?.domain
     }
@@ -33,7 +33,7 @@ public enum JSONEncodingError: VCoreError {
         info?.code
     }
     
-    /// Full error description
+    /// Full error description.
     public var fullDescription: String? {
         switch (primaryDescription, secondaryDescription) {
         case (nil, _):
@@ -48,16 +48,16 @@ public enum JSONEncodingError: VCoreError {
         }
     }
     
-    /// Primary error description
+    /// Primary error description.
     public var primaryDescription: String? {
         switch self {
         case .failedToEncode: return "Cannot encode data"
         }
     }
     
-    /// Secondary error description
+    /// Secondary error description.
     ///
-    /// Composed from associated error description
+    /// Composed from associated error description.
     public var secondaryDescription: String? {
         switch self {
         case .failedToEncode(let info): return info.description

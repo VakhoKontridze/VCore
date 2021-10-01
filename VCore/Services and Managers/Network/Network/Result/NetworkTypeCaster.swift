@@ -8,23 +8,23 @@
 import Foundation
 
 // MARK: - Network Type Caster
-/// Casts `Any` to subsequent types
+/// Casts `Any` to subsequent types.
 public struct NetworkTypeCaster {
     // MARK: Initializers
     private init() {}
 
     // MARK: Type Casts
-    /// Casts `Any` to `JSON`
+    /// Casts `Any` to `JSON`.
     public static func toJSON(_ data: Any?) -> [String: Any]? {
         data as? [String: Any]
     }
 
-    /// Casts `Any` to `JSON` `Array`
+    /// Casts `Any` to `JSON` `Array`.
     public static func toJSONArray(_ data: Any?) -> [[String: Any]]? {
         data as? [[String: Any]]
     }
 
-    /// Casts `Any` to `Int`
+    /// Casts `Any` to `Int`.
     public static func toInt(_ data: Any?) -> Int? {
         switch data {
         case let int as Int: return int
@@ -36,7 +36,7 @@ public struct NetworkTypeCaster {
         }
     }
     
-    /// Casts `Any` to `Float`
+    /// Casts `Any` to `Float`.
     public static func toFloat(_ data: Any?) -> Float? {
         switch data {
         case let int as Int: return .init(int)
@@ -48,7 +48,7 @@ public struct NetworkTypeCaster {
         }
     }
 
-    /// Casts `Any` to `Double`
+    /// Casts `Any` to `Double`.
     public static func toDouble(_ data: Any?) -> Double? {
         switch data {
         case let int as Int: return .init(int)
@@ -59,7 +59,7 @@ public struct NetworkTypeCaster {
         }
     }
 
-    /// Casts `Any` to `Bool`
+    /// Casts `Any` to `Bool`.
     public static func toBool(_ data: Any?) -> Bool? {
         switch data {
         case let int as Int: return int != 0
@@ -71,7 +71,7 @@ public struct NetworkTypeCaster {
         }
     }
 
-    /// Casts `Any` to `String`
+    /// Casts `Any` to `String`.
     public static func toString(_ data: Any?) -> String? {
         switch data {
         case let int as Int: return .init(int)
@@ -84,12 +84,12 @@ public struct NetworkTypeCaster {
     }
 
     // MARK: Wrapped Type Casts
-    /// Casts `Any` to wrapped`JSON`
+    /// Casts `Any` to wrapped`JSON`.
     public static func toWrappedJSON(_ data: Any?) -> [String: Any] {
         toJSON(data) ?? [:]
     }
     
-    /// Casts `Any` to wrapped `JSON` `Array`
+    /// Casts `Any` to wrapped `JSON` `Array`.
     public static func toWrappedJSONArray(_ data: Any?) -> [[String: Any]] {
         toJSONArray(data) ?? []
     }
