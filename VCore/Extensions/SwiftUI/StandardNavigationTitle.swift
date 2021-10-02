@@ -8,9 +8,9 @@
 import SwiftUI
 
 // MARK: - Extension
+@available(iOS 14, *)
 extension View {
-    /// Configures the view’s title for purposes of navigation, using a string in a inline display mode.
-    @available(iOS 14, *)
+    /// Configures the view’s title for purposes of navigation, using a string in a inline display mode
     public func standardNavigationTitle(_ title: String) -> some View {
         self
             .modifier(StandardNavigationTitle(title))

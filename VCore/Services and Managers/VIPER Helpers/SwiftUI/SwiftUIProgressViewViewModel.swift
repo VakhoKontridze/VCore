@@ -33,9 +33,9 @@ public struct SwiftUIProgressViewViewModel {
 }
 
 // MARK: - Factory
+@available(iOS 14, *)
 extension View {
-    /// Presents `ProgressView` when `viewModel` parameter is non-nil.
-    @available(iOS 14, *)
+    /// Presents `ProgressView` when `viewModel` parameter is non-nil
     @ViewBuilder public func progressView(
         viewModel: SwiftUIProgressViewViewModel?
     ) -> some View {
@@ -55,8 +55,8 @@ extension View {
     }
 }
 
+@available(iOS 14, *)
 extension View {
-    @available(iOS 14, *)
     @ViewBuilder fileprivate func progressViewStyle(viewModel: SwiftUIProgressViewViewModel) -> some View {
         switch viewModel.color {
         case nil: self.progressViewStyle(CircularProgressViewStyle())
@@ -64,7 +64,6 @@ extension View {
         }
     }
     
-    @available(iOS 14, *)
     @ViewBuilder fileprivate func scaleEffect(viewModel: SwiftUIProgressViewViewModel) -> some View {
         switch viewModel.scalingFactor {
         case nil: self
