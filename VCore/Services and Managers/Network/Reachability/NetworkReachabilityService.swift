@@ -1,5 +1,5 @@
 //
-//  NetworkConnectionService.swift
+//  NetworkReachabilityService.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 8/24/21.
@@ -8,9 +8,9 @@
 import Foundation
 import SystemConfiguration
 
-// MARK: - Network Connetion Service
-/// Network connection service that manages connection.
-public struct NetworkConnectionService {
+// MARK: - Network Reachability Service
+/// Network connection service that manages reachability.
+public struct NetworkReachabilityService {
     // MARK: Initializers
     private init() {}
 

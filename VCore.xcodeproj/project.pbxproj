@@ -21,7 +21,7 @@
 		7A0026EE26EB76710056DBC5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7A0026EC26EB76710056DBC5 /* LaunchScreen.storyboard */; };
 		7A0F751926D5016400020996 /* VCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0F750B26D5016300020996 /* VCore.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759726D5146C00020996 /* AtomicInteger.swift */; };
-		7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759C26D5150800020996 /* NetworkConnectionService.swift */; };
+		7A0F759D26D5150800020996 /* NetworkReachabilityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F759C26D5150800020996 /* NetworkReachabilityService.swift */; };
 		7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BB26D516DA00020996 /* NetworkService.swift */; };
 		7A0F75BE26D516F200020996 /* NetworkGETService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BD26D516F200020996 /* NetworkGETService.swift */; };
 		7A0F75C026D516F900020996 /* NetworkPOSTService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75BF26D516F900020996 /* NetworkPOSTService.swift */; };
@@ -114,7 +114,7 @@
 		7A0F750B26D5016300020996 /* VCore.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VCore.h; sourceTree = "<group>"; };
 		7A0F750C26D5016300020996 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7A0F759726D5146C00020996 /* AtomicInteger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicInteger.swift; sourceTree = "<group>"; };
-		7A0F759C26D5150800020996 /* NetworkConnectionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConnectionService.swift; sourceTree = "<group>"; };
+		7A0F759C26D5150800020996 /* NetworkReachabilityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkReachabilityService.swift; sourceTree = "<group>"; };
 		7A0F75BB26D516DA00020996 /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		7A0F75BD26D516F200020996 /* NetworkGETService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkGETService.swift; sourceTree = "<group>"; };
 		7A0F75BF26D516F900020996 /* NetworkPOSTService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkPOSTService.swift; sourceTree = "<group>"; };
@@ -310,7 +310,7 @@
 		7A0F759926D514DF00020996 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				7A0F759B26D514EC00020996 /* Connection */,
+				7A0F759B26D514EC00020996 /* Reachability */,
 				7A0F75B526D5169B00020996 /* Network */,
 				7A9A6AA426D5218E00C19A07 /* Session */,
 			);
@@ -326,12 +326,12 @@
 			path = Misc;
 			sourceTree = "<group>";
 		};
-		7A0F759B26D514EC00020996 /* Connection */ = {
+		7A0F759B26D514EC00020996 /* Reachability */ = {
 			isa = PBXGroup;
 			children = (
-				7A0F759C26D5150800020996 /* NetworkConnectionService.swift */,
+				7A0F759C26D5150800020996 /* NetworkReachabilityService.swift */,
 			);
-			path = Connection;
+			path = Reachability;
 			sourceTree = "<group>";
 		};
 		7A0F75B526D5169B00020996 /* Network */ = {
@@ -627,7 +627,7 @@
 				7AB22AE926EB94110037355D /* InfiniteScrollingTableView.swift in Sources */,
 				7AB22AF726EB9FAB0037355D /* TODO.swift in Sources */,
 				17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */,
-				7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */,
+				7A0F759D26D5150800020996 /* NetworkReachabilityService.swift in Sources */,
 				7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */,
 				7AA4071C26F9BB6700B60742 /* ProgressViewViewModel.swift in Sources */,
 				7A0F75C826D5175600020996 /* JSONEncoderService.swift in Sources */,

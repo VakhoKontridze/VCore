@@ -30,7 +30,7 @@ struct NetworkRequestService {
         encode: @escaping (Parameters) -> Result<[String: Any], NetworkError>,
         decode: @escaping (Data) -> Result<Entity, NetworkError>
     ) {
-        guard NetworkConnectionService.isConnectedToNetwork else {
+        guard NetworkReachabilityService.isConnectedToNetwork else {
             queue.async(completion(.failure(.notConnectedToNetwork)))
             return
         }
@@ -79,7 +79,7 @@ struct NetworkRequestService {
         encode: @escaping (Parameters) -> Result<Data, NetworkError>,
         decode: @escaping (Data) -> Result<Entity, NetworkError>
     ) {
-        guard NetworkConnectionService.isConnectedToNetwork else {
+        guard NetworkReachabilityService.isConnectedToNetwork else {
             queue.async(completion(.failure(.notConnectedToNetwork)))
             return
         }
