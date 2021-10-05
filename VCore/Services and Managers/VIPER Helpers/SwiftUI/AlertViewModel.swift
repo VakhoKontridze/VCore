@@ -1,5 +1,5 @@
 //
-//  SwiftUIAlertViewModel.swift
+//  AlertViewModel.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/21/21.
@@ -7,13 +7,13 @@
 
 import SwiftUI
 
-// MARK: - SwiftUI Alert ViewModel
-/// SwiftUI Alert ViewModel.
+// MARK: - Alert ViewModel
+/// Alert ViewModel.
 ///
 /// Viewmodel for presenting an `Alert`.
 ///
 /// In `VIP` and `VIPER` arhcitecutes, viewmodel is stored in`Presenter`.
-public enum SwiftUIAlertViewModel {
+public enum AlertViewModel {
     // MARK: Cases
     /// One button.
     case oneButton(viewModel: OneButtonViewModel)
@@ -22,8 +22,8 @@ public enum SwiftUIAlertViewModel {
     case twoButtons(viewModel: TwoButtonsViewModel)
 
     // MARK: Button ViewModel
-    /// Alert Button ViewModel.
-    public struct AlertButtonViewModel {
+    /// Button ViewModel.
+    public struct ButtonViewModel {
         /// Button title.
         public let title: String
         
@@ -50,13 +50,13 @@ public enum SwiftUIAlertViewModel {
         public let message: String?
         
         /// Alert dismiss button.
-        public let dismissButton: AlertButtonViewModel
+        public let dismissButton: ButtonViewModel
         
         /// Initializes viewmodel.
         public init(
             title: String,
             message: String?,
-            dismissButton: AlertButtonViewModel
+            dismissButton: ButtonViewModel
         ) {
             self.title = title
             self.message = message
@@ -74,17 +74,17 @@ public enum SwiftUIAlertViewModel {
         public let message: String?
         
         /// Alert primary button.
-        public let primaryButton: AlertButtonViewModel
+        public let primaryButton: ButtonViewModel
         
         /// Alert secondary button.
-        public let secondaryButton: AlertButtonViewModel
+        public let secondaryButton: ButtonViewModel
         
         /// Initializes viewmodel.
         public init(
             title: String,
             message: String?,
-            primaryButton: AlertButtonViewModel,
-            secondaryButton: AlertButtonViewModel
+            primaryButton: ButtonViewModel,
+            secondaryButton: ButtonViewModel
         ) {
             self.title = title
             self.message = message
@@ -98,7 +98,7 @@ public enum SwiftUIAlertViewModel {
 extension View {
     /// Presents `Alert` when `viewModel` parameter is non-nil.
     @ViewBuilder public func alert(
-        viewModel: Binding<SwiftUIAlertViewModel?>
+        viewModel: Binding<AlertViewModel?>
     ) -> some View {
         let nulingAction: () -> Void = { viewModel.wrappedValue = nil }
         
@@ -130,7 +130,7 @@ extension View {
 
 extension Alert.Button {
     fileprivate static func build(
-        viewModel: SwiftUIAlertViewModel.AlertButtonViewModel,
+        viewModel: AlertViewModel.ButtonViewModel,
         completion: @escaping () -> Void
     ) -> Alert.Button {
         .default(.init(viewModel.title), action: {

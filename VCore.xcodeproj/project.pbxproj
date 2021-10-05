@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */; };
+		17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */; };
+		17B103DC270AFE3900B9E296 /* StandardNavigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */; };
+		17B1041B270B07E900B9E296 /* UIAlertViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B1041A270B07E900B9E296 /* UIAlertViewable.swift */; };
+		17B1041D270B080100B9E296 /* UIActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B1041C270B080100B9E296 /* UIActivityIndicatorViewable.swift */; };
 		7A00266C26EB70370056DBC5 /* JSONEncodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266B26EB70370056DBC5 /* JSONEncodingError.swift */; };
 		7A00266F26EB70790056DBC5 /* JSONDecodingError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266E26EB70790056DBC5 /* JSONDecodingError.swift */; };
 		7A0026E226EB766E0056DBC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0026E126EB766E0056DBC5 /* AppDelegate.swift */; };
@@ -37,8 +42,8 @@
 		7A91D6F626EFA5B200B0B096 /* LayoutConstraintStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F526EFA5B200B0B096 /* LayoutConstraintStoring.swift */; };
 		7A91D6F826EFA68500B0B096 /* RoundCorners.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6F726EFA68500B0B096 /* RoundCorners.swift */; };
 		7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */; };
-		7AA4071A26F9BA5900B60742 /* SwiftUIAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071926F9BA5900B60742 /* SwiftUIAlertViewModel.swift */; };
-		7AA4071C26F9BB6700B60742 /* SwiftUIProgressViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071B26F9BB6700B60742 /* SwiftUIProgressViewViewModel.swift */; };
+		7AA4071A26F9BA5900B60742 /* AlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071926F9BA5900B60742 /* AlertViewModel.swift */; };
+		7AA4071C26F9BB6700B60742 /* ProgressViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071B26F9BB6700B60742 /* ProgressViewViewModel.swift */; };
 		7AA4071E26F9BE2700B60742 /* StandardNavigationTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071D26F9BE2700B60742 /* StandardNavigationTitle.swift */; };
 		7AA4072026F9BED200B60742 /* SceneRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AA4071F26F9BED200B60742 /* SceneRouting.swift */; };
 		7AA52F9E26EB785B008A54EA /* VCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F750826D5016300020996 /* VCore.framework */; };
@@ -91,6 +96,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewProtocols.swift; sourceTree = "<group>"; };
+		17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewProtocols.swift; sourceTree = "<group>"; };
+		17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigatable.swift; sourceTree = "<group>"; };
+		17B1041A270B07E900B9E296 /* UIAlertViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertViewable.swift; sourceTree = "<group>"; };
+		17B1041C270B080100B9E296 /* UIActivityIndicatorViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewable.swift; sourceTree = "<group>"; };
 		7A00266B26EB70370056DBC5 /* JSONEncodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncodingError.swift; sourceTree = "<group>"; };
 		7A00266E26EB70790056DBC5 /* JSONDecodingError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecodingError.swift; sourceTree = "<group>"; };
 		7A0026DF26EB766E0056DBC5 /* VCoreDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCoreDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -125,8 +135,8 @@
 		7A91D6F526EFA5B200B0B096 /* LayoutConstraintStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutConstraintStoring.swift; sourceTree = "<group>"; };
 		7A91D6F726EFA68500B0B096 /* RoundCorners.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundCorners.swift; sourceTree = "<group>"; };
 		7A9A6AA526D521A000C19A07 /* NetworkSessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkSessionManager.swift; sourceTree = "<group>"; };
-		7AA4071926F9BA5900B60742 /* SwiftUIAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIAlertViewModel.swift; sourceTree = "<group>"; };
-		7AA4071B26F9BB6700B60742 /* SwiftUIProgressViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIProgressViewViewModel.swift; sourceTree = "<group>"; };
+		7AA4071926F9BA5900B60742 /* AlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewModel.swift; sourceTree = "<group>"; };
+		7AA4071B26F9BB6700B60742 /* ProgressViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressViewViewModel.swift; sourceTree = "<group>"; };
 		7AA4071D26F9BE2700B60742 /* StandardNavigationTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNavigationTitle.swift; sourceTree = "<group>"; };
 		7AA4071F26F9BED200B60742 /* SceneRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneRouting.swift; sourceTree = "<group>"; };
 		7AB22AE526EB8DFF0037355D /* VCoreError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreError.swift; sourceTree = "<group>"; };
@@ -171,6 +181,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17B103D4270AFE2300B9E296 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */,
+				17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */,
+				17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */,
+				17B1041A270B07E900B9E296 /* UIAlertViewable.swift */,
+				17B1041C270B080100B9E296 /* UIActivityIndicatorViewable.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		7A00266D26EB70440056DBC5 /* Encoder */ = {
 			isa = PBXGroup;
 			children = (
@@ -380,6 +402,7 @@
 		7AA4071726F9BA3100B60742 /* VIPER Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				17B103D4270AFE2300B9E296 /* UIKit */,
 				7AA4071826F9BA4D00B60742 /* SwiftUI */,
 			);
 			path = "VIPER Helpers";
@@ -389,8 +412,8 @@
 			isa = PBXGroup;
 			children = (
 				7AA4071F26F9BED200B60742 /* SceneRouting.swift */,
-				7AA4071926F9BA5900B60742 /* SwiftUIAlertViewModel.swift */,
-				7AA4071B26F9BB6700B60742 /* SwiftUIProgressViewViewModel.swift */,
+				7AA4071926F9BA5900B60742 /* AlertViewModel.swift */,
+				7AA4071B26F9BB6700B60742 /* ProgressViewViewModel.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -603,9 +626,10 @@
 				7AF68A6D26EE899700D4B5BE /* IsUserDefaultsKey.swift in Sources */,
 				7AB22AE926EB94110037355D /* InfiniteScrollingTableView.swift in Sources */,
 				7AB22AF726EB9FAB0037355D /* TODO.swift in Sources */,
+				17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */,
 				7A0F759D26D5150800020996 /* NetworkConnectionService.swift in Sources */,
 				7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */,
-				7AA4071C26F9BB6700B60742 /* SwiftUIProgressViewViewModel.swift in Sources */,
+				7AA4071C26F9BB6700B60742 /* ProgressViewViewModel.swift in Sources */,
 				7A0F75C826D5175600020996 /* JSONEncoderService.swift in Sources */,
 				7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */,
 				7AA4071E26F9BE2700B60742 /* StandardNavigationTitle.swift in Sources */,
@@ -619,6 +643,7 @@
 				7A91D6F426EFA4E200B0B096 /* LayoutConstraintPriorities.swift in Sources */,
 				7AF68A6F26EE8ABC00D4B5BE /* CompactMapNonEmpty.swift in Sources */,
 				7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */,
+				17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */,
 				7A91D6F626EFA5B200B0B096 /* LayoutConstraintStoring.swift in Sources */,
 				7A0F75C226D5172000020996 /* NetworkError.swift in Sources */,
 				7AB22B3126EE7C880037355D /* ScreenSafeAreaInsets.swift in Sources */,
@@ -633,19 +658,22 @@
 				7A0F75CE26D5179200020996 /* NetworkRequestFactory.swift in Sources */,
 				7AB22AF026EB96550037355D /* InfiniteScrollingTableViewDelegate.swift in Sources */,
 				7A91D6F826EFA68500B0B096 /* RoundCorners.swift in Sources */,
-				7AA4071A26F9BA5900B60742 /* SwiftUIAlertViewModel.swift in Sources */,
+				7AA4071A26F9BA5900B60742 /* AlertViewModel.swift in Sources */,
 				7A0F75C026D516F900020996 /* NetworkPOSTService.swift in Sources */,
 				7A9A6AA626D521A000C19A07 /* NetworkSessionManager.swift in Sources */,
 				7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */,
 				7A86F88526EFB65E00EC32EA /* KeyPathSort.swift in Sources */,
 				7AA4072026F9BED200B60742 /* SceneRouting.swift in Sources */,
 				7AF68A7426EE907900D4B5BE /* DigitalTimeFormatter.swift in Sources */,
+				17B1041D270B080100B9E296 /* UIActivityIndicatorViewable.swift in Sources */,
 				7AB22B3326EE82AB0037355D /* RootView.swift in Sources */,
 				7A86F88326EFB16200EC32EA /* LabelConfiguration.swift in Sources */,
+				17B1041B270B07E900B9E296 /* UIAlertViewable.swift in Sources */,
 				7AB22AF426EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift in Sources */,
 				7A00266C26EB70370056DBC5 /* JSONEncodingError.swift in Sources */,
 				7A0F75D026D517A300020996 /* NetworkRequestService.swift in Sources */,
 				7A86F87F26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift in Sources */,
+				17B103DC270AFE3900B9E296 /* StandardNavigatable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

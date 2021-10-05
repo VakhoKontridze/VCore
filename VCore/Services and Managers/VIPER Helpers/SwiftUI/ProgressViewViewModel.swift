@@ -1,5 +1,5 @@
 //
-//  SwiftUIProgressViewViewModel.swift
+//  ProgressViewViewModel.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/21/21.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-// MARK: - SwiftUI Progress View ViewModel
-/// SwiftUI Progress View ViewModel.
+// MARK: - Progress View ViewModel
+/// Progress View ViewModel.
 ///
 /// Viewmodel for presenting an `ProgressView`.
 ///
 /// In `VIP` and `VIPER` arhcitecutes, viewmodel is stored in `Presenter`.
 @available(iOS 14, *)
-public struct SwiftUIProgressViewViewModel {
+public struct ProgressViewViewModel {
     // MARK: Properties
     public let isInteractionDisabled: Bool
     public let scalingFactor: CGFloat?
@@ -37,7 +37,7 @@ public struct SwiftUIProgressViewViewModel {
 extension View {
     /// Presents `ProgressView` when `viewModel` parameter is non-nil
     @ViewBuilder public func progressView(
-        viewModel: SwiftUIProgressViewViewModel?
+        viewModel: ProgressViewViewModel?
     ) -> some View {
         switch viewModel {
         case nil:
@@ -57,14 +57,14 @@ extension View {
 
 @available(iOS 14, *)
 extension View {
-    @ViewBuilder fileprivate func progressViewStyle(viewModel: SwiftUIProgressViewViewModel) -> some View {
+    @ViewBuilder fileprivate func progressViewStyle(viewModel: ProgressViewViewModel) -> some View {
         switch viewModel.color {
         case nil: self.progressViewStyle(CircularProgressViewStyle())
         case let color?: self.progressViewStyle(CircularProgressViewStyle(tint: color))
         }
     }
     
-    @ViewBuilder fileprivate func scaleEffect(viewModel: SwiftUIProgressViewViewModel) -> some View {
+    @ViewBuilder fileprivate func scaleEffect(viewModel: ProgressViewViewModel) -> some View {
         switch viewModel.scalingFactor {
         case nil: self
         case let scalingFactor?: self.scaleEffect(x: scalingFactor, y: scalingFactor, anchor: .center)
