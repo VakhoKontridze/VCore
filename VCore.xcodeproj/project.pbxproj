@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		173C2C93270DDCD6006BEAF3 /* ConditionalViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2C92270DDCD6006BEAF3 /* ConditionalViewModifiers.swift */; };
+		173C2C95270DDE16006BEAF3 /* CustomViewFrames.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2C94270DDE16006BEAF3 /* CustomViewFrames.swift */; };
 		17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */; };
 		17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */; };
 		17B103DC270AFE3900B9E296 /* StandardNavigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */; };
@@ -98,6 +99,7 @@
 
 /* Begin PBXFileReference section */
 		173C2C92270DDCD6006BEAF3 /* ConditionalViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConditionalViewModifiers.swift; sourceTree = "<group>"; };
+		173C2C94270DDE16006BEAF3 /* CustomViewFrames.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewFrames.swift; sourceTree = "<group>"; };
 		17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigatable.swift; sourceTree = "<group>"; };
@@ -390,6 +392,7 @@
 			children = (
 				7AA4071D26F9BE2700B60742 /* StandardNavigationTitle.swift */,
 				173C2C92270DDCD6006BEAF3 /* ConditionalViewModifiers.swift */,
+				173C2C94270DDE16006BEAF3 /* CustomViewFrames.swift */,
 			);
 			path = SwiftUI;
 			sourceTree = "<group>";
@@ -644,6 +647,7 @@
 				7AB22B3D26EE86E10037355D /* DismissKeyboardOnOutsideTap.swift in Sources */,
 				7AB22B3B26EE85EF0037355D /* OptionalLetBlockTransformation.swift in Sources */,
 				7A91D6F426EFA4E200B0B096 /* LayoutConstraintPriorities.swift in Sources */,
+				173C2C95270DDE16006BEAF3 /* CustomViewFrames.swift in Sources */,
 				7AF68A6F26EE8ABC00D4B5BE /* CompactMapNonEmpty.swift in Sources */,
 				7A0F75C426D5173100020996 /* NetworkResults.swift in Sources */,
 				17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */,
