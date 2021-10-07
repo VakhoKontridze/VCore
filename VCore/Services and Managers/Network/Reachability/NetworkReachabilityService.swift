@@ -6,13 +6,56 @@
 //
 
 import Foundation
+import Network
 import SystemConfiguration
 
 // MARK: - Network Reachability Service
 /// Network connection service that manages reachability.
 public struct NetworkReachabilityService {
+    // MARK: Properties
+    /// Name of notification that will be posted when reachability status changes.
+    public static var connectedNotificationName: NSNotification.Name { .init("NetworkReachabilityConnected") }
+    public static var disconnectedNotificationName: NSNotification.Name { .init("NetworkReachabilityDisconnected") }
+    
+    private lazy var statusMonitor: NWPathMonitor = {
+        let monitor: NWPathMonitor = .init()
+        monitor.pathUpdateHandler = statusChanged
+        return monitor
+    }()
+    
+    private let statusQueue: DispatchQueue = .init(label: "NetworkReachabilityStatusQueue")
+    
+    /// Shared instance of `NetworkReachabilityService`.
+    public static let shared: Self = .init()
+    
     // MARK: Initializers
-    private init() {}
+    private init() {
+        statusMonitor.start(queue: statusQueue)
+    }
+    
+    // MARK: Configuration
+    /// Configures `NetworkReachabilityService`.
+    public static func configure() {
+        _ = Self.shared
+    }
+    
+    // MARK: Status
+    private func statusChanged(_ path: NWPath) {
+        switch path.status {
+        case .satisfied: postNotification(name: Self.connectedNotificationName)
+        case .unsatisfied: postNotification(name: Self.disconnectedNotificationName)
+        case .requiresConnection: postNotification(name: Self.disconnectedNotificationName)
+        @unknown default: postNotification(name: Self.disconnectedNotificationName)
+        }
+    }
+    
+    private func postNotification(name: NSNotification.Name) {
+        NotificationCenter.default.post(
+            name: name,
+            object: self,
+            userInfo: nil
+        )
+    }
 
     // MARK: Reachability
     /// Indicates if device is connected to a network.
