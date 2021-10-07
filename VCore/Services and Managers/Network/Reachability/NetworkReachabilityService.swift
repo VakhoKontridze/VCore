@@ -57,7 +57,7 @@ public struct NetworkReachabilityService {
         )
     }
 
-    // MARK: Reachability
+    // MARK: Connection
     /// Indicates if device is connected to a network.
     public static var isConnectedToNetwork: Bool {
         var zeroAddress: sockaddr_in = {

@@ -19,16 +19,8 @@ public protocol VCoreError: LocalizedError {
     /// Error code.
     var code: Int? { get }
     
-    /// Full error description.
-    var fullDescription: String? { get }
-    
-    /// Primary error description.
-    var primaryDescription: String? { get }
-    
-    /// Secondary error description.
-    ///
-    /// Composed from associated error description.
-    var secondaryDescription: String? { get }
+    /// Error description.
+    var description: String? { get }
     
     /// Localized description of error.
     var localizedDescription: String { get }
@@ -46,21 +38,21 @@ public protocol VCoreError: LocalizedError {
     var helpAnchor: String? { get }
 }
 
-// MARK: - Default Values
 extension VCoreError {
-    /// Localized description of error.
-    public var localizedDescription: String { fullDescription ?? "" }
+    public var domain: String? { info?.domain }
     
-    /// Localized message describing what error occurred.
-    public var errorDescription: String? { fullDescription }
+    public var code: Int? { info?.code }
+    
+    public var description: String? { info?.description }
+    
+    public var localizedDescription: String? { description }
+    
+    public var errorDescription: String? { description }
 
-    /// Localized message describing the reason for the failure.
-    public var failureReason: String? { fullDescription }
+    public var failureReason: String? { description }
     
-    /// Localized message describing how one might recover from the failure.
     public var recoverySuggestion: String? { nil }
     
-    /// Localized message providing "help" text if the user requests help.
     public var helpAnchor: String? { nil }
 }
 

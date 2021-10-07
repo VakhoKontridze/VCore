@@ -65,7 +65,7 @@ struct NetworkRequestService {
             queue.async(completion(.failure(.incompleteParameters(.init(
                 domain: encodingError.domain,
                 code: encodingError.code,
-                description: encodingError.secondaryDescription
+                description: encodingError.localizedDescription
             )))))
         }
     }
@@ -113,7 +113,7 @@ struct NetworkRequestService {
             queue.async(completion(.failure(.incompleteParameters(.init(
                 domain: encodingError.domain,
                 code: encodingError.code,
-                description: encodingError.secondaryDescription
+                description: encodingError.localizedDescription
             )))))
         }
     }
@@ -149,7 +149,7 @@ struct NetworkRequestService {
                 queue.async(completion(.failure(.incompleteEntity(.init(
                     domain: decodingError.domain,
                     code: decodingError.code,
-                    description: decodingError.secondaryDescription
+                    description: decodingError.localizedDescription
                 )))))
             }
         

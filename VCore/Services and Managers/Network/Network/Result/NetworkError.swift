@@ -50,63 +50,20 @@ public enum NetworkError: VCoreError {
         case .incompleteEntity(let info): return info
         }
     }
-    
-    /// Error domain.
-    public var domain: String? {
-        info?.domain
-    }
 
-    /// Error code.
-    public var code: Int? {
-        info?.code
-    }
-    
-    /// Full error description.
-    public var fullDescription: String? {
-        switch (primaryDescription, secondaryDescription) {
-        case (nil, _):
-            return nil
-            
-        case (let primaryDescription?, nil):
-            return primaryDescription
-            
-        case (var primaryDescription?, var secondaryDescription?):
-            if primaryDescription.last == "." { _ = primaryDescription.removeLast() }
-            if secondaryDescription.last == "." { _ = secondaryDescription.removeLast() }
-            
-            return "\(primaryDescription). \(secondaryDescription)."
-        }
-    }
-    
+    // Overriden
     /// Primary error description.
-    public var primaryDescription: String? {
+    public var localizedDescription: String? {
         switch self {
         case .notConnectedToNetwork: return "Not connected to the network"
         case .invalidEndpoint: return "Cannot connect to the server. An incorrect handler is being used."
-        case .incompleteParameters: return "Data cannot be encoded or is incomplete"
-        case .returnedWithError: return "Server has encountered an error"
-        case .invalidResponse: return "Server has returned an invalid response"
-        case .incompleteEntity: return "Data cannot be decoded or is incomplete"
-        }
-    }
-    
-    /// Secondary error description.
-    ///
-    /// Composed from associated error description.
-    public var secondaryDescription: String? {
-        switch self {
-        case .notConnectedToNetwork: return nil
-        case .invalidEndpoint: return nil
-        case .incompleteParameters(let info): return info.description
-        case .returnedWithError(let info): return info.description
-        case .invalidResponse(let info): return info.description
-        case .incompleteEntity(let info): return info.description
+        default: return info?.description
         }
     }
 }
 
 // MARK: - JSON Coder Bridge
-extension Result where Failure == JSONEncodingError {
+extension Result where Failure == JSONEncoderError {
     var asResultWithNetworkError: Result<Success, NetworkError> {
         switch self {
         case .success(let data):
@@ -116,13 +73,13 @@ extension Result where Failure == JSONEncodingError {
             return .failure(.incompleteParameters(.init(
                 domain: error.domain,
                 code: error.code,
-                description: error.secondaryDescription
+                description: error.localizedDescription
             )))
         }
     }
 }
 
-extension Result where Failure == JSONDecodingError {
+extension Result where Failure == JSONDecoderError {
     var asResultWithNetworkError: Result<Success, NetworkError> {
         switch self {
         case .success(let data):
@@ -132,7 +89,7 @@ extension Result where Failure == JSONDecodingError {
             return .failure(.incompleteEntity(.init(
                 domain: error.domain,
                 code: error.code,
-                description: error.secondaryDescription
+                description: error.localizedDescription
             )))
         }
     }

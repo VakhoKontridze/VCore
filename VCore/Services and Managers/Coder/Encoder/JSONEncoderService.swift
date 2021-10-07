@@ -17,7 +17,7 @@ public struct JSONEncoderService {
     /// Encodes `Any` to `Data`.
     public static func data(
         from data: Any
-    ) -> Result<Data, JSONEncodingError> {
+    ) -> Result<Data, JSONEncoderError> {
         do {
             let data = try JSONSerialization.data(withJSONObject: data)
             return .success(data)
@@ -34,7 +34,7 @@ public struct JSONEncoderService {
     /// Encodes `Encodable` to `Data`.
     public static func data<EncodingData: Encodable>(
         from data: EncodingData
-    ) -> Result<Data, JSONEncodingError> {
+    ) -> Result<Data, JSONEncoderError> {
         do {
             let data = try JSONEncoder().encode(data)
             return .success(data)
@@ -51,7 +51,7 @@ public struct JSONEncoderService {
     /// Encodes `Encodable` to `JSON`.
     public static func json<EncodingData: Encodable>(
         from data: EncodingData
-    ) -> Result<[String: Any], JSONEncodingError> {
+    ) -> Result<[String: Any], JSONEncoderError> {
         do {
             let jsonData: Data = try JSONEncoder().encode(data)
             
@@ -63,7 +63,7 @@ public struct JSONEncoderService {
                 return .failure(.failedToEncode(.init(
                     domain: error.domain,
                     code: error.code,
-                    description: error.secondaryDescription
+                    description: error.localizedDescription
                 )))
             }
             

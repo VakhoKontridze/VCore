@@ -17,7 +17,7 @@ public struct JSONDecoderService {
     /// Decodes `JSON` from `Data`.
     public static func json(
         from data: Data
-    ) -> Result<[String: Any], JSONDecodingError> {
+    ) -> Result<[String: Any], JSONDecoderError> {
         do {
             let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
             
@@ -45,7 +45,7 @@ public struct JSONDecoderService {
     /// Decodes `Decodable` from `Data`.
     public static func entity<DecodedData: Decodable>(
         from data: Data
-    ) -> Result<DecodedData, JSONDecodingError> {
+    ) -> Result<DecodedData, JSONDecoderError> {
         do {
             let data = try JSONDecoder().decode(DecodedData.self, from: data)
             return .success(data)
@@ -62,7 +62,7 @@ public struct JSONDecoderService {
     /// Decodes `UIImage` from `Data`.
     public static func uiImage(
         from data: Data
-    )  -> Result<UIImage, JSONDecodingError> {
+    )  -> Result<UIImage, JSONDecoderError> {
         switch UIImage(data: data) {
         case let image?:
             return .success(image)
