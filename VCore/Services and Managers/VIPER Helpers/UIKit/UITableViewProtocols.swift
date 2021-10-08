@@ -23,7 +23,7 @@ import UIKit
 ///             dataSource.count
 ///         }
 ///
-///         func tableViewNumberOfRows(in section: Int) -> Int {
+///         func tableViewNumberOfRows(section: Int) -> Int {
 ///             dataSource[section].count
 ///         }
 ///
@@ -72,7 +72,7 @@ public protocol UITableViewDataSourceable {
     var tableViewNumberOfSections: Int { get }
     
     /// Number of rows in a given sections in `UITableView`
-    func tableViewNumberOfRows(in section: Int) -> Int
+    func tableViewNumberOfRows(section: Int) -> Int
     
     /// Dequeue ID for `UITableViewCell`
     func tableViewCellDequeueID(section: Int, row: Int) -> String

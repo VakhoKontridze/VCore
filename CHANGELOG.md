@@ -1,5 +1,9 @@
 ## Change Log
 
+###
+
+- `UICollectionViewDataSourceable` and `UITableViewDataSourceable` API has been updated
+
 #### [1.0.1(2)](https://github.com/VakhoKontridze//releases/download/1.0.1/.xcframework.zip) — *2021 10 07*
 
 - Result enums are now marked as `@frozen`

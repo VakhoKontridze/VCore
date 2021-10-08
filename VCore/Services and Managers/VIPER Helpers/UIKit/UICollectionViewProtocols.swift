@@ -23,7 +23,7 @@ import UIKit
 ///             dataSource.count
 ///         }
 ///
-///         func collectionViewNumberOfItems(in section: Int) -> Int {
+///         func collectionViewNumberOfItems(section: Int) -> Int {
 ///             dataSource[section].count
 ///         }
 ///
@@ -72,7 +72,7 @@ public protocol UICollectionViewDataSourceable {
     var collectionViewNumberOfSections: Int { get }
     
     /// Number of items in a given sections in `UICollectionView`
-    func collectionViewNumberOfItems(in section: Int) -> Int
+    func collectionViewNumberOfItems(section: Int) -> Int
     
     /// Dequeue ID for `UICollectionViewCell`
     func collectionViewCellDequeueID(section: Int, row: Int) -> String
