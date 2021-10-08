@@ -1,6 +1,6 @@
 ## Change Log
 
-###
+#### [1.0.2(3)](https://github.com/VakhoKontridze//releases/download/1.0.2/.xcframework.zip) — *2021 10 08*
 
 - `UICollectionViewDataSourceable` and `UITableViewDataSourceable` API has been updated
 
