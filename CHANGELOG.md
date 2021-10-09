@@ -2,7 +2,9 @@
 
 #### [???](???) — *???*
 
+- `NetworkService` now supports initialization and post-processing delegation
 - `NetworkSessionManager` has been renamed to `SessionManager`
+- `NetworkService.shared` has been deprecated
 
 #### [1.0.2(3)](https://github.com/VakhoKontridze//releases/download/1.0.2/.xcframework.zip) — *2021 10 08*
 

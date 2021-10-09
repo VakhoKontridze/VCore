@@ -12,56 +12,111 @@ import Foundation
 ///
 /// Object is not inheritable, but can be extended the following way:
 ///
-///     struct SomeNetworkService {
-///         func getJSON(
-///             endpoint: String,
-///             headers: [String :Any],
-///             parameters: [String: Any],
-///             completion: @escaping (Result<[String: Any], NetworkError>) -> Void
-///         ) {
-///             NetworkService.shared.GET.json(
-///                 endpoint: endpoint,
-///                 headers: headers,
-///                 parameters: parameters,
-///                 completion: { result in
-///                     switch result {
-///                     case .success(let json):
-///                         guard json["success"].toBool == true else {
-///                             completion(.failure(.returnedWithError(.init(
-///                                 domain: "SomeApp.SomeNetworkService",
-///                                 code: json["code"].toInt ?? 1,
-///                                 description: json["message"].toString ?? "Returned with error"
-///                             ))))
-///                             return
-///                         }
+///     extension NetworkService {
+///         static let someApp: NetworkService = .init(
+///             postProcessor: SomeAppNetworkServicePostProcessor()
+///         )
+///     }
 ///
-///                         guard let data = json["data"].toJSON else {
-///                             completion(.failure(.incompleteEntity(.init(
-///                                 domain: "SomeApp.SomeNetworkService",
-///                                 code: 2,
-///                                 description: "Cannot retrieve data"
-///                             ))))
-///                             return
-///                         }
-///
-///                         completion(.success(data))
-///
-///                     case .failure(let error):
-///                         completion(.failure(error))
-///                     }
+///     struct SomeAppNetworkServicePostProcessor: NetworkServicePostProcessor {
+///         func postProcess(
+///             _ data: Data
+///         ) -> Result<Data, NetworkError> {
+///             switch JSONDecoderService.json(from: data) {
+///             case .success(let json):
+///                 guard json["success"].toBool == true else {
+///                     return .failure(.returnedWithError(.init(
+///                         domain: "com.SomeApp",
+///                         code: json["code"].toInt ?? 1,
+///                         description: json["message"].toString ?? "Returned with error"
+///                     )))
 ///                 }
-///             )
+///
+///                 guard let dataJSON: [String: Any] = json["data"].toJSON else {
+///                     return .failure(.incompleteEntity(.init(
+///                         domain: "com.SomeApp",
+///                         code: 2,
+///                         description: "Cannot retrieve data"
+///                     )))
+///                 }
+///
+///                 switch JSONEncoderService.data(from: dataJSON) {
+///                 case .success(let dataData):
+///                     return .success(dataData)
+///
+///                 case .failure(let error):
+///                     return .failure(.incompleteEntity(.init(
+///                         domain: (error as NSError).domain,
+///                         code: (error as NSError).code,
+///                         description: "Cannot decode data"
+///                     )))
+///                 }
+///
+///             case .failure(let error):
+///                 return .failure(.incompleteEntity(.init(
+///                     domain: (error as NSError).domain,
+///                     code: (error as NSError).code,
+///                     description: error.localizedDescription
+///                 )))
+///             }
 ///         }
 ///     }
 ///
+/// Usage example:
+///
+///     NetworkService.someApp.POST.json(
+///         endpoint: "https://httpbin.org/post",
+///         headers: [
+///             "Accept": "application/json",
+///             "Content-Type": "application/json"
+///         ],
+///         parameters: [
+///             "someKey": "someValue"
+///         ],
+///         completion: { result in
+///             guard case .success(let json) = result else { return }
+///             print(json["json"].toJSON?["someKey"].toString ?? "-")
+///         }
+///     )
+///
 public final class NetworkService {
-    // MARK: Properties
-    /// Network service that performs GET network data tasks.
-    public let GET: NetworkGETService = .init()
+    // MARK: Properties - Objects
+    /// Default instance of `NetworkService`.
+    public static let `default`: NetworkService = .init(
+        postProcessor: DefaultNetworkServicePostProcessor()
+    )
     
-    /// Network service that performs POST network data tasks.
-    public let POST: NetworkPOSTService = .init()
+    private let postProcessor: NetworkServicePostProcessor
+    private lazy var networkRequestService: NetworkRequestService = .init(
+        networkService: self,
+        postProcessor: postProcessor
+    )
     
+    // MARK: Properties - Methods
+    /// Network service that performs `GET` network data tasks.
+    private(set) public lazy var GET: NetworkGETRequestMethodService = .init(networkRequestService)
+    
+    /// Network service that performs` POST` network data tasks.
+    private(set) public lazy var POST: NetworkPOSTRequestMethodService = .init(networkRequestService)
+    
+    /// Network service that performs` PUT` network data tasks.
+    private(set) public lazy var PUT: NetworkPUTRequestMethodService = .init(networkRequestService)
+    
+    /// Network service that performs` PATCH` network data tasks.
+    private(set) public lazy var PATCH: NetworkPATCHRequestMethodService = .init(networkRequestService)
+    
+    /// Network service that performs` DELETE` network data tasks.
+    private(set) public lazy var DELETE: NetworkDELETERequestMethodService = .init(networkRequestService)
+    
+    // HEAD
+    
+    // CONNECT
+    
+    // OPTIONS
+    
+    // TRACE
+    
+    // MARK: Properties - Misc
     /// Queue on which completion is returned. Defaults to `main`.
     public var queue: DispatchQueue = .main
     
@@ -71,9 +126,9 @@ public final class NetworkService {
     /// Timeout inteval for request. Has a default value resource `URLSessionConfiguration.default`, and defaults to `604800`.
     public var timeoutIntervalForResource: TimeInterval = URLSessionConfiguration.default.timeoutIntervalForResource
     
-    /// Shared instance of `NetworkService`.
-    public static let shared: NetworkService = .init()
-    
     // MARK: Initializers
-    private init() {}
+    /// Initializes `NetworkService`.
+    public init(postProcessor: NetworkServicePostProcessor) {
+        self.postProcessor = postProcessor
+    }
 }

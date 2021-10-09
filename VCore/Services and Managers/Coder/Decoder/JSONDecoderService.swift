@@ -22,8 +22,36 @@ public struct JSONDecoderService {
             let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
             
             switch jsonObject as? [String: Any] {
-            case let dictionary?:
-                return .success(dictionary)
+            case let json?:
+                return .success(json)
+            
+            case nil:
+                return .failure(.failedToDecode(.init(
+                    domain: nil,
+                    code: nil,
+                    description: nil
+                )))
+            }
+            
+        } catch let error {
+            return .failure(.failedToDecode(.init(
+                domain: (error as NSError).domain,
+                code: (error as NSError).code,
+                description: error.localizedDescription
+            )))
+        }
+    }
+    
+    /// Decodes `JSON` `Array` from `Data`.
+    public static func jsonArray(
+        from data: Data
+    ) -> Result<[[String: Any]], JSONDecoderError> {
+        do {
+            let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            
+            switch jsonObject as? [[String: Any]] {
+            case let jsonArray?:
+                return .success(jsonArray)
             
             case nil:
                 return .failure(.failedToDecode(.init(
@@ -47,7 +75,7 @@ public struct JSONDecoderService {
         from data: Data
     ) -> Result<DecodedData, JSONDecoderError> {
         do {
-            let data = try JSONDecoder().decode(DecodedData.self, from: data)
+            let data: DecodedData = try JSONDecoder().decode(DecodedData.self, from: data)
             return .success(data)
             
         } catch let error {
@@ -55,23 +83,6 @@ public struct JSONDecoderService {
                 domain: (error as NSError).domain,
                 code: (error as NSError).code,
                 description: error.localizedDescription
-            )))
-        }
-    }
-    
-    /// Decodes `UIImage` from `Data`.
-    public static func uiImage(
-        from data: Data
-    )  -> Result<UIImage, JSONDecoderError> {
-        switch UIImage(data: data) {
-        case let image?:
-            return .success(image)
-        
-        case nil:
-            return .failure(.failedToDecode(.init(
-                domain: nil,
-                code: nil,
-                description: nil
             )))
         }
     }

@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Session Manager
-/// Network session manager that works with `AtomicInteger` to manage sessions with unique identifiers.
+/// Session manager that works with `AtomicInteger` to manage sessions with unique identifiers.
 ///
 /// Object contains `shared` instance, but can also be initialized for separate incrementation.
 public final class SessionManager {

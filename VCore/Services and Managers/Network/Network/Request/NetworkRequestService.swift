@@ -8,21 +8,32 @@
 import Foundation
 
 // MARK: - Network Request Service
-struct NetworkRequestService {
+final class NetworkRequestService {
     // MARK: Properties
-    private var urlSessionConfiguration: URLSessionConfiguration = {
-        let configuration: URLSessionConfiguration = .default
-        configuration.timeoutIntervalForRequest = NetworkService.shared.timeoutIntervalForRequest
-        configuration.timeoutIntervalForResource = NetworkService.shared.timeoutIntervalForResource
-        return configuration
-    }()
+    private unowned let networkService: NetworkService
+    private let postProcessor: NetworkServicePostProcessor
     
-    private var urlSession: URLSession { .init(configuration: urlSessionConfiguration) }
+    private var urlSession: URLSession {
+        .init(configuration: {
+            let configuration: URLSessionConfiguration = .default
+            configuration.timeoutIntervalForRequest = networkService.timeoutIntervalForRequest
+            configuration.timeoutIntervalForResource = networkService.timeoutIntervalForResource
+            return configuration
+        }())
+    }
     
-    private var queue: DispatchQueue { NetworkService.shared.queue }
+    // MARK: Initializers
+    init(
+        networkService: NetworkService,
+        postProcessor: NetworkServicePostProcessor
+    ) {
+        self.networkService = networkService
+        self.postProcessor = postProcessor
+    }
 
-    // MARK: GET
-    func GET<Parameters, Entity>(
+    // MARK: Requests
+    func requestURLParameterMethodTask<Parameters, Entity>(
+        httpMethod: String,
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
@@ -30,48 +41,42 @@ struct NetworkRequestService {
         encode: @escaping (Parameters) -> Result<[String: Any], NetworkError>,
         decode: @escaping (Data) -> Result<Entity, NetworkError>
     ) {
-        guard NetworkReachabilityService.isConnectedToNetwork else {
-            queue.async(completion(.failure(.notConnectedToNetwork)))
-            return
-        }
-
-        switch encode(parameters) {
-        case .success(let encodedParameters):
-            let requestResult: Result<URLRequest, NetworkError> = NetworkRequestFactory.GET(
-                endpoint: endpoint,
-                headers: headers,
-                parameters: encodedParameters
-            )
-            
-            switch requestResult {
-            case .success(let request):
-                let task: URLSessionDataTask = urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
-                    process(
-                        data: data,
-                        response: response,
-                        error: error,
-                        completion: completion,
-                        decode: decode
-                    )
-                })
+        requestTask(
+            httpMethod: httpMethod,
+            headers: headers,
+            parameters: parameters,
+            completion: completion,
+            encode: encode,
+            decode: decode,
+            createRequest: { encodedParameters in
+                guard var urlComponents: URLComponents = .init(string: endpoint) else {
+                    return .failure(.invalidEndpoint)
+                }
                 
-                task.resume()
+                urlComponents.addItems(encodedParameters)
                 
-            case .failure(let error):
-                completion(.failure(error))
+                guard let url: URL = urlComponents.url else {
+                    return .failure(.incompleteParameters(.init(
+                        domain: nil,
+                        code: nil,
+                        description: nil
+                    )))
+                }
+                
+                let request: URLRequest = .init(
+                    httpMethod: httpMethod,
+                    url: url,
+                    headers: headers,
+                    body: nil
+                )
+                
+                return .success(request)
             }
-            
-        case .failure(let encodingError):
-            queue.async(completion(.failure(.incompleteParameters(.init(
-                domain: encodingError.domain,
-                code: encodingError.code,
-                description: encodingError.localizedDescription
-            )))))
-        }
+        )
     }
 
-    // MARK: POST
-    func POST<Parameters, Entity>(
+    func requestBodyParameterMethodTask<Parameters, Entity>(
+        httpMethod: String,
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
@@ -79,47 +84,77 @@ struct NetworkRequestService {
         encode: @escaping (Parameters) -> Result<Data, NetworkError>,
         decode: @escaping (Data) -> Result<Entity, NetworkError>
     ) {
+        requestTask(
+            httpMethod: httpMethod,
+            headers: headers,
+            parameters: parameters,
+            completion: completion,
+            encode: encode,
+            decode: decode,
+            createRequest: { encodedParameters in
+                guard let url: URL = .init(string: endpoint) else {
+                    return .failure(.invalidEndpoint)
+                }
+                
+                let request: URLRequest = .init(
+                    httpMethod: httpMethod,
+                    url: url,
+                    headers: headers,
+                    body: encodedParameters
+                )
+                
+                return .success(request)
+            }
+        )
+    }
+    
+    private func requestTask<Parameters, EncodedParameters, Entity>(
+        httpMethod: String,
+        headers: [String: Any],
+        parameters: Parameters,
+        completion: @escaping (Result<Entity, NetworkError>) -> Void,
+        encode: @escaping (Parameters) -> Result<EncodedParameters, NetworkError>,
+        decode: @escaping (Data) -> Result<Entity, NetworkError>,
+        createRequest: (EncodedParameters) -> Result<URLRequest, NetworkError>
+    ) {
         guard NetworkReachabilityService.isConnectedToNetwork else {
-            queue.async(completion(.failure(.notConnectedToNetwork)))
+            networkService.queue.async(completion(.failure(.notConnectedToNetwork)))
             return
         }
-        
-        guard let url: URL = .init(string: endpoint) else {
-            queue.async(completion(.failure(.invalidEndpoint)))
-            return
-        }
-        
+
         switch encode(parameters) {
         case .success(let encodedParameters):
-            let request: URLRequest = NetworkRequestFactory.POST(
-                url: url,
-                headers: headers,
-                body: encodedParameters
-            )
-            
-            let task: URLSessionDataTask = urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
-                process(
-                    data: data,
-                    response: response,
-                    error: error,
-                    completion: completion,
-                    decode: decode
+            switch createRequest(encodedParameters) {
+            case .success(let request):
+                let task: URLSessionDataTask = urlSession.dataTask(
+                    with: request,
+                    completionHandler: { [weak self] (data, response, error) in
+                        self?.process(
+                            data: data,
+                            response: response,
+                            error: error,
+                            completion: completion,
+                            decode: decode
+                        )
+                    }
                 )
-            })
-            
-            task.resume()
+                
+                task.resume()
+                
+            case .failure(let error):
+                networkService.queue.async(completion(.failure(error)))
+            }
             
         case .failure(let encodingError):
-            queue.async(completion(.failure(.incompleteParameters(.init(
+            networkService.queue.async(completion(.failure(.incompleteParameters(.init(
                 domain: encodingError.domain,
                 code: encodingError.code,
                 description: encodingError.localizedDescription
             )))))
         }
     }
-
-    // MARK: Process
-    func process<Entity>(
+    
+    private func process<Entity>(
         data: Data?,
         response: URLResponse?,
         error: Error?,
@@ -127,34 +162,40 @@ struct NetworkRequestService {
         decode: @escaping (Data) -> Result<Entity, NetworkError>
     ) {
         if let error = error {
-            queue.async(completion(.failure(.returnedWithError(.init(
+            networkService.queue.async(completion(.failure(.returnedWithError(.init(
                 domain: (error as NSError).domain,
                 code: (error as NSError).code,
                 description: error.localizedDescription
             )))))
         
         } else if let response = response, !response.isValid {
-            queue.async(completion(.failure(.invalidResponse(.init(
+            networkService.queue.async(completion(.failure(.invalidResponse(.init(
                 domain: nil,
                 code: (response as? HTTPURLResponse)?.statusCode,
                 description: response.description
             )))))
         
         } else if let data = data {
-            switch decode(data) {
-            case .success(let decodedData):
-                queue.async(completion(.success(decodedData)))
-            
-            case .failure(let decodingError):
-                queue.async(completion(.failure(.incompleteEntity(.init(
-                    domain: decodingError.domain,
-                    code: decodingError.code,
-                    description: decodingError.localizedDescription
-                )))))
+            switch postProcessor.postProcess(data) {
+            case .success(let postProcessedData):
+                switch decode(postProcessedData) {
+                case .success(let decodedData):
+                    networkService.queue.async(completion(.success(decodedData)))
+
+                case .failure(let decodingError):
+                    networkService.queue.async(completion(.failure(.incompleteEntity(.init(
+                        domain: decodingError.domain,
+                        code: decodingError.code,
+                        description: decodingError.localizedDescription
+                    )))))
+                }
+
+            case .failure(let error):
+                networkService.queue.async(completion(.failure(error)))
             }
         
         } else {
-            queue.async(completion(.failure(.incompleteEntity(.init(
+            networkService.queue.async(completion(.failure(.incompleteEntity(.init(
                 domain: nil,
                 code: nil,
                 description: nil
@@ -163,14 +204,7 @@ struct NetworkRequestService {
     }
 }
 
-// MARK: - Async
-extension DispatchQueue {
-    fileprivate func async(_ block: @autoclosure @escaping () -> Void) {
-        async(execute: block)
-    }
-}
-
-// MARK: - Validation
+// MARK: - Helpers - Response
 extension URLResponse {
     fileprivate var isValid: Bool {
         guard
@@ -181,5 +215,53 @@ extension URLResponse {
         }
 
         return true
+    }
+}
+
+// MARK: - Helpers - Query Parameters
+extension URLComponents {
+    fileprivate mutating func addItems(_ items: [String: Any]) {
+        guard !items.isEmpty else { return }
+        
+        switch queryItems {
+        case nil: queryItems = items.map { .init($0) }
+        case _?: items.forEach { queryItems?.append(.init($0)) }
+        }
+    }
+}
+
+extension URLQueryItem {
+    fileprivate init(_ item: Dictionary<String, Any>.Element) {
+        self.init(name: item.key, value: .init(describing: item.value))
+    }
+}
+
+// MARK: - Helpers - URL Request
+extension URLRequest {
+    fileprivate init(
+        httpMethod: String,
+        url: URL,
+        headers: [String: Any],
+        body: Data?
+    ) {
+        self.init(url: url)
+        self.httpMethod = httpMethod
+        self.addHTTPHeaders(headers)
+        self.httpBody = body
+    }
+    
+    private mutating func addHTTPHeaders(_ items: [String: Any]) {
+        guard !items.isEmpty else { return }
+        
+        items.forEach { (key, value) in
+            addValue(.init(describing: value), forHTTPHeaderField: key)
+        }
+    }
+}
+
+// MARK: - Helpers - Async
+extension DispatchQueue {
+    fileprivate func async(_ block: @autoclosure @escaping () -> Void) {
+        async(execute: block)
     }
 }

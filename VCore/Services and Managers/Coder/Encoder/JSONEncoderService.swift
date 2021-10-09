@@ -19,7 +19,7 @@ public struct JSONEncoderService {
         from data: Any
     ) -> Result<Data, JSONEncoderError> {
         do {
-            let data = try JSONSerialization.data(withJSONObject: data)
+            let data: Data = try JSONSerialization.data(withJSONObject: data)
             return .success(data)
             
         } catch let error {
@@ -36,7 +36,7 @@ public struct JSONEncoderService {
         from data: EncodingData
     ) -> Result<Data, JSONEncoderError> {
         do {
-            let data = try JSONEncoder().encode(data)
+            let data: Data = try JSONEncoder().encode(data)
             return .success(data)
             
         } catch let error {
