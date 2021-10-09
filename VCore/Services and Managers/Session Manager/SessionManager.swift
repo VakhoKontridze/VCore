@@ -1,5 +1,5 @@
 //
-//  NetworkSessionManager.swift
+//  SessionManager.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 8/24/21.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-// MARK: - Network Session Manager
+// MARK: - Session Manager
 /// Network session manager that works with `AtomicInteger` to manage sessions with unique identifiers.
 ///
 /// Object contains `shared` instance, but can also be initialized for separate incrementation.
-public final class NetworkSessionManager {
+public final class SessionManager {
     // MARK: Properties
     private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
     
