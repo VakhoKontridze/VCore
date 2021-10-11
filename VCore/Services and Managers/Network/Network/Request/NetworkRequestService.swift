@@ -176,7 +176,7 @@ final class NetworkRequestService {
             )))))
         
         } else if let data = data {
-            switch postProcessor.postProcess(data) {
+            switch postProcessor.postProcess(response: response, data: data) {
             case .success(let postProcessedData):
                 switch decode(postProcessedData) {
                 case .success(let decodedData):

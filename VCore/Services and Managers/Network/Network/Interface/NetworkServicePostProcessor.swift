@@ -15,14 +15,16 @@ import Foundation
 public protocol NetworkServicePostProcessor {
     /// Perofrms additional processing of `Data` before `JSON` or `Entity` gets decoded.
     func postProcess(
-        _ data: Data
+        response: URLResponse?,
+        data: Data
     ) -> Result<Data, NetworkError>
 }
 
 // MARK: - Default Network Service Post Processor
 struct DefaultNetworkServicePostProcessor: NetworkServicePostProcessor {
     func postProcess(
-        _ data: Data
+        response: URLResponse?,
+        data: Data
     ) -> Result<Data, NetworkError> {
         .success(data)
     }

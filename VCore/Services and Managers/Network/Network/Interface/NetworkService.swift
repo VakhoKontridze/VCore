@@ -20,7 +20,8 @@ import Foundation
 ///
 ///     struct SomeAppNetworkServicePostProcessor: NetworkServicePostProcessor {
 ///         func postProcess(
-///             _ data: Data
+///             response: response: URLResponse?,
+///             data: Data
 ///         ) -> Result<Data, NetworkError> {
 ///             switch JSONDecoderService.json(from: data) {
 ///             case .success(let json):
