@@ -64,7 +64,7 @@ public enum NetworkError: VCoreError {
 
 // MARK: - JSON Coder Bridge
 extension Result where Failure == JSONEncoderError {
-    var asResultWithNetworkError: Result<Success, NetworkError> {
+    var toResultWithNetworkError: Result<Success, NetworkError> {
         switch self {
         case .success(let data):
             return .success(data)
@@ -80,7 +80,7 @@ extension Result where Failure == JSONEncoderError {
 }
 
 extension Result where Failure == JSONDecoderError {
-    var asResultWithNetworkError: Result<Success, NetworkError> {
+    var toResultWithNetworkError: Result<Success, NetworkError> {
         switch self {
         case .success(let data):
             return .success(data)

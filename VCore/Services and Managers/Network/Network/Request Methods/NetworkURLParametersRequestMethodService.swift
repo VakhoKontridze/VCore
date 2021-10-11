@@ -57,7 +57,7 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.json(from: $0).asResultWithNetworkError },
+            encode: { JSONEncoderService.json(from: $0).toResultWithNetworkError },
             decode: { .success($0) }
         )
     }
@@ -77,7 +77,7 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
             parameters: parameters,
             completion: completion,
             encode: { .success($0) },
-            decode: { JSONDecoderService.json(from: $0).asResultWithNetworkError }
+            decode: { JSONDecoderService.json(from: $0).toResultWithNetworkError }
         )
     }
     
@@ -94,8 +94,8 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.json(from: $0).asResultWithNetworkError },
-            decode: { JSONDecoderService.json(from: $0).asResultWithNetworkError }
+            encode: { JSONEncoderService.json(from: $0).toResultWithNetworkError },
+            decode: { JSONDecoderService.json(from: $0).toResultWithNetworkError }
         )
     }
     
@@ -114,7 +114,7 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
             parameters: parameters,
             completion: completion,
             encode: { .success($0) },
-            decode: { JSONDecoderService.jsonArray(from: $0).asResultWithNetworkError }
+            decode: { JSONDecoderService.jsonArray(from: $0).toResultWithNetworkError }
         )
     }
     
@@ -131,8 +131,8 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.json(from: $0).asResultWithNetworkError },
-            decode: { JSONDecoderService.jsonArray(from: $0).asResultWithNetworkError }
+            encode: { JSONEncoderService.json(from: $0).toResultWithNetworkError },
+            decode: { JSONDecoderService.jsonArray(from: $0).toResultWithNetworkError }
         )
     }
 
@@ -152,7 +152,7 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
             parameters: parameters,
             completion: completion,
             encode: { .success($0) },
-            decode: { JSONDecoderService.entity(from: $0).asResultWithNetworkError }
+            decode: { JSONDecoderService.entity(from: $0).toResultWithNetworkError }
         )
     }
     
@@ -170,8 +170,8 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.json(from: $0).asResultWithNetworkError },
-            decode: { JSONDecoderService.entity(from: $0).asResultWithNetworkError }
+            encode: { JSONEncoderService.json(from: $0).toResultWithNetworkError },
+            decode: { JSONDecoderService.entity(from: $0).toResultWithNetworkError }
         )
     }
 }
