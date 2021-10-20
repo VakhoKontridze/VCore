@@ -14,8 +14,8 @@ import SystemConfiguration
 public struct NetworkReachabilityService {
     // MARK: Properties
     /// Name of notification that will be posted when reachability status changes.
-    public static var connectedNotificationName: NSNotification.Name { .init("NetworkReachabilityConnected") }
-    public static var disconnectedNotificationName: NSNotification.Name { .init("NetworkReachabilityDisconnected") }
+    public static var connectedNotificationName: NSNotification.Name { .init("NetworkReachabilityService.Connected") }
+    public static var disconnectedNotificationName: NSNotification.Name { .init("NetworkReachabilityService.Disconnected") }
     
     private lazy var statusMonitor: NWPathMonitor = {
         let monitor: NWPathMonitor = .init()
@@ -23,7 +23,7 @@ public struct NetworkReachabilityService {
         return monitor
     }()
     
-    private let statusQueue: DispatchQueue = .init(label: "NetworkReachabilityStatusQueue")
+    private let statusQueue: DispatchQueue = .init(label: "NetworkReachabilityService.StatusQueue")
     
     /// Shared instance of `NetworkReachabilityService`.
     public static let shared: Self = .init()
