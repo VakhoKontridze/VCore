@@ -26,12 +26,12 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
     }
     
     // MARK: Data
-    /// Makes network request with `Data` parameters and returns `Data` or `NetworkError`.
+    /// Makes network request with `Data` parameters and returns `Data` or `Error`.
     public func data(
         endpoint: String,
         headers: [String: Any],
         parameters: Data,
-        completion: @escaping (Result<Data, NetworkError>) -> Void)
+        completion: @escaping (Result<Data, Error>) -> Void)
     {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -44,12 +44,12 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
         )
     }
     
-    /// Makes network request with `JSON` parameters and returns `Data` or `NetworkError`.
+    /// Makes network request with `JSON` parameters and returns `Data` or `Error`.
     public func data(
         endpoint: String,
         headers: [String: Any],
         parameters: [String: Any],
-        completion: @escaping (Result<Data, NetworkError>) -> Void)
+        completion: @escaping (Result<Data, Error>) -> Void)
     {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -57,17 +57,17 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.data(from: $0).toResultWithNetworkError },
+            encode: { JSONEncoderService.data(from: $0) },
             decode: { .success($0) }
         )
     }
     
-    /// Makes network request with `Encodable` parameters and returns `Data` or `NetworkError`.
+    /// Makes network request with `Encodable` parameters and returns `Data` or `Error`.
     public func data<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
-        completion: @escaping (Result<Data, NetworkError>) -> Void
+        completion: @escaping (Result<Data, Error>) -> Void
     )  {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -75,18 +75,18 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.data(from: $0).toResultWithNetworkError },
+            encode: { JSONEncoderService.data(from: $0) },
             decode: { .success($0) }
         )
     }
 
     // MARK: JSON
-    /// Makes network request with `Data` parameters and returns `JSON` or `NetworkError`.
+    /// Makes network request with `Data` parameters and returns `JSON` or `Error`.
     public func json(
         endpoint: String,
         headers: [String: Any],
         parameters: Data,
-        completion: @escaping (Result<[String: Any], NetworkError>) -> Void)
+        completion: @escaping (Result<[String: Any], Error>) -> Void)
     {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -95,16 +95,16 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             parameters: parameters,
             completion: completion,
             encode: { .success($0) },
-            decode: { JSONDecoderService.json(from: $0).toResultWithNetworkError }
+            decode: { JSONDecoderService.json(from: $0) }
         )
     }
     
-    /// Makes network request with `JSON` parameters and returns `JSON` or `NetworkError`.
+    /// Makes network request with `JSON` parameters and returns `JSON` or `Error`.
     public func json(
         endpoint: String,
         headers: [String: Any],
         parameters: [String: Any],
-        completion: @escaping (Result<[String: Any], NetworkError>) -> Void)
+        completion: @escaping (Result<[String: Any], Error>) -> Void)
     {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -112,17 +112,17 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.data(from: $0).toResultWithNetworkError },
-            decode: { JSONDecoderService.json(from: $0).toResultWithNetworkError }
+            encode: { JSONEncoderService.data(from: $0) },
+            decode: { JSONDecoderService.json(from: $0) }
         )
     }
 
-    /// Makes network request with `Encodable` parameters and returns `Data` or `NetworkError`.
+    /// Makes network request with `Encodable` parameters and returns `Data` or `Error`.
     public func json<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
-        completion: @escaping (Result<[String: Any], NetworkError>) -> Void
+        completion: @escaping (Result<[String: Any], Error>) -> Void
     ) {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -130,18 +130,18 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.data(from: $0).toResultWithNetworkError },
-            decode: { JSONDecoderService.json(from: $0).toResultWithNetworkError }
+            encode: { JSONEncoderService.data(from: $0) },
+            decode: { JSONDecoderService.json(from: $0) }
         )
     }
     
     // MARK: JSON Array
-    /// Makes network request with `Data` parameters and returns `JSON` or `NetworkError`.
+    /// Makes network request with `Data` parameters and returns `JSON` or `Error`.
     public func jsonArray(
         endpoint: String,
         headers: [String: Any],
         parameters: Data,
-        completion: @escaping (Result<[[String: Any]], NetworkError>) -> Void)
+        completion: @escaping (Result<[[String: Any]], Error>) -> Void)
     {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -150,16 +150,16 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             parameters: parameters,
             completion: completion,
             encode: { .success($0) },
-            decode: { JSONDecoderService.jsonArray(from: $0).toResultWithNetworkError }
+            decode: { JSONDecoderService.jsonArray(from: $0) }
         )
     }
     
-    /// Makes network request with `JSON` parameters and returns `JSON` or `NetworkError`.
+    /// Makes network request with `JSON` parameters and returns `JSON` or `Error`.
     public func jsonArray(
         endpoint: String,
         headers: [String: Any],
         parameters: [String: Any],
-        completion: @escaping (Result<[[String: Any]], NetworkError>) -> Void)
+        completion: @escaping (Result<[[String: Any]], Error>) -> Void)
     {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -167,17 +167,17 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.data(from: $0).toResultWithNetworkError },
-            decode: { JSONDecoderService.jsonArray(from: $0).toResultWithNetworkError }
+            encode: { JSONEncoderService.data(from: $0) },
+            decode: { JSONDecoderService.jsonArray(from: $0) }
         )
     }
 
-    /// Makes network request with `Encodable` parameters and returns `Data` or `NetworkError`.
+    /// Makes network request with `Encodable` parameters and returns `Data` or `Error`.
     public func jsonArray<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
-        completion: @escaping (Result<[[String: Any]], NetworkError>) -> Void
+        completion: @escaping (Result<[[String: Any]], Error>) -> Void
     ) {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -185,19 +185,19 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.data(from: $0).toResultWithNetworkError },
-            decode: { JSONDecoderService.jsonArray(from: $0).toResultWithNetworkError }
+            encode: { JSONEncoderService.data(from: $0) },
+            decode: { JSONDecoderService.jsonArray(from: $0) }
         )
     }
 
     // MARK: Entity
-    /// Makes network request with `Data` parameters and returns `Decodable` or `NetworkError`.
+    /// Makes network request with `Data` parameters and returns `Decodable` or `Error`.
     public func entity<Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
         parameters: Data,
         entityType: Entity.Type,
-        completion: @escaping (Result<Entity, NetworkError>) -> Void
+        completion: @escaping (Result<Entity, Error>) -> Void
     ) {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -206,17 +206,17 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             parameters: parameters,
             completion: completion,
             encode: { .success($0) },
-            decode: { JSONDecoderService.entity(from: $0).toResultWithNetworkError }
+            decode: { JSONDecoderService.entity(from: $0) }
         )
     }
     
-    /// Makes network request with `JSON` parameters and returns `Decodable` or `NetworkError`.
+    /// Makes network request with `JSON` parameters and returns `Decodable` or `Error`.
     public func entity<Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
         parameters: [String: Any],
         entityType: Entity.Type,
-        completion: @escaping (Result<Entity, NetworkError>) -> Void
+        completion: @escaping (Result<Entity, Error>) -> Void
     ) {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -224,18 +224,18 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.data(from: $0).toResultWithNetworkError },
-            decode: { JSONDecoderService.entity(from: $0).toResultWithNetworkError }
+            encode: { JSONEncoderService.data(from: $0) },
+            decode: { JSONDecoderService.entity(from: $0) }
         )
     }
 
-    /// Makes network request with `Encodable` parameters and returns `Decodable` or `NetworkError`.
+    /// Makes network request with `Encodable` parameters and returns `Decodable` or `Error`.
     public func entity<Parameters: Encodable, Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
         entityType: Entity.Type,
-        completion: @escaping (Result<Entity, NetworkError>) -> Void
+        completion: @escaping (Result<Entity, Error>) -> Void
     ) {
         networkRequestService.requestBodyParameterMethodTask(
             httpMethod: httpMethod,
@@ -243,8 +243,8 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
             headers: headers,
             parameters: parameters,
             completion: completion,
-            encode: { JSONEncoderService.data(from: $0).toResultWithNetworkError },
-            decode: { JSONDecoderService.entity(from: $0).toResultWithNetworkError }
+            encode: { JSONEncoderService.data(from: $0) },
+            decode: { JSONDecoderService.entity(from: $0) }
         )
     }
 }

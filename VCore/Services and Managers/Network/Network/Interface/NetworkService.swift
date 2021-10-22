@@ -22,11 +22,11 @@ import Foundation
 ///         func postProcess(
 ///             response: response: URLResponse?,
 ///             data: Data
-///         ) -> Result<Data, NetworkError> {
+///         ) -> Result<Data, Error> {
 ///             switch JSONDecoderService.json(from: data) {
 ///             case .success(let json):
 ///                 guard json["success"].toBool == true else {
-///                     return .failure(.returnedWithError(.init(
+///                     return .failure(NetworkError.returnedWithError(.init(
 ///                         domain: "com.SomeApp",
 ///                         code: json["code"].toInt ?? 1,
 ///                         description: json["message"].toString ?? "Returned with error"
@@ -34,7 +34,7 @@ import Foundation
 ///                 }
 ///
 ///                 guard let dataJSON: [String: Any] = json["data"].toJSON else {
-///                     return .failure(.incompleteEntity(.init(
+///                     return .failure(NetworkError.incompleteEntity(.init(
 ///                         domain: "com.SomeApp",
 ///                         code: 2,
 ///                         description: "Cannot retrieve data"
@@ -46,7 +46,7 @@ import Foundation
 ///                     return .success(dataData)
 ///
 ///                 case .failure(let error):
-///                     return .failure(.incompleteEntity(.init(
+///                     return .failure(NetworkError.incompleteEntity(.init(
 ///                         domain: (error as NSError).domain,
 ///                         code: (error as NSError).code,
 ///                         description: "Cannot decode data"
@@ -54,11 +54,7 @@ import Foundation
 ///                 }
 ///
 ///             case .failure(let error):
-///                 return .failure(.incompleteEntity(.init(
-///                     domain: (error as NSError).domain,
-///                     code: (error as NSError).code,
-///                     description: error.localizedDescription
-///                 )))
+///                 return .failure(NetworkError.incompleteEntity(.init(nsError: error as NSError)))
 ///             }
 ///         }
 ///     }

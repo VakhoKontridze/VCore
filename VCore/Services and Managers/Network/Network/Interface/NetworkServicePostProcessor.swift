@@ -17,7 +17,7 @@ public protocol NetworkServicePostProcessor {
     func postProcess(
         response: URLResponse?,
         data: Data
-    ) -> Result<Data, NetworkError>
+    ) -> Result<Data, Error>
 }
 
 // MARK: - Default Network Service Post Processor
@@ -25,7 +25,7 @@ struct DefaultNetworkServicePostProcessor: NetworkServicePostProcessor {
     func postProcess(
         response: URLResponse?,
         data: Data
-    ) -> Result<Data, NetworkError> {
+    ) -> Result<Data, Error> {
         .success(data)
     }
 }

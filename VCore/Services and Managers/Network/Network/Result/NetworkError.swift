@@ -61,36 +61,3 @@ public enum NetworkError: VCoreError {
         }
     }
 }
-
-// MARK: - JSON Coder Bridge
-extension Result where Failure == JSONEncoderError {
-    var toResultWithNetworkError: Result<Success, NetworkError> {
-        switch self {
-        case .success(let data):
-            return .success(data)
-        
-        case .failure(let error):
-            return .failure(.incompleteParameters(.init(
-                domain: error.domain,
-                code: error.code,
-                description: error.localizedDescription
-            )))
-        }
-    }
-}
-
-extension Result where Failure == JSONDecoderError {
-    var toResultWithNetworkError: Result<Success, NetworkError> {
-        switch self {
-        case .success(let data):
-            return .success(data)
-        
-        case .failure(let error):
-            return .failure(.incompleteEntity(.init(
-                domain: error.domain,
-                code: error.code,
-                description: error.localizedDescription
-            )))
-        }
-    }
-}

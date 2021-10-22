@@ -17,7 +17,7 @@ public struct JSONDecoderService {
     /// Decodes `JSON` from `Data`.
     public static func json(
         from data: Data
-    ) -> Result<[String: Any], JSONDecoderError> {
+    ) -> Result<[String: Any], Error> {
         do {
             let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
             
@@ -26,18 +26,12 @@ public struct JSONDecoderService {
                 return .success(json)
             
             case nil:
-                return .failure(.failedToDecode(.init(
-                    domain: nil,
-                    code: nil,
-                    description: nil
-                )))
+                return .failure(JSONDecoderError.failedToDecode(.init()))
             }
             
-        } catch let error {
-            return .failure(.failedToDecode(.init(
-                domain: (error as NSError).domain,
-                code: (error as NSError).code,
-                description: error.localizedDescription
+        } catch let error as NSError {
+            return .failure(JSONDecoderError.failedToDecode(.init(
+                nsError: error
             )))
         }
     }
@@ -45,7 +39,7 @@ public struct JSONDecoderService {
     /// Decodes `JSON` `Array` from `Data`.
     public static func jsonArray(
         from data: Data
-    ) -> Result<[[String: Any]], JSONDecoderError> {
+    ) -> Result<[[String: Any]], Error> {
         do {
             let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
             
@@ -54,18 +48,12 @@ public struct JSONDecoderService {
                 return .success(jsonArray)
             
             case nil:
-                return .failure(.failedToDecode(.init(
-                    domain: nil,
-                    code: nil,
-                    description: nil
-                )))
+                return .failure(JSONDecoderError.failedToDecode(.init()))
             }
             
-        } catch let error {
-            return .failure(.failedToDecode(.init(
-                domain: (error as NSError).domain,
-                code: (error as NSError).code,
-                description: error.localizedDescription
+        } catch let error as NSError {
+            return .failure(JSONDecoderError.failedToDecode(.init(
+                nsError: error
             )))
         }
     }
@@ -73,16 +61,14 @@ public struct JSONDecoderService {
     /// Decodes `Decodable` from `Data`.
     public static func entity<DecodedData: Decodable>(
         from data: Data
-    ) -> Result<DecodedData, JSONDecoderError> {
+    ) -> Result<DecodedData, Error> {
         do {
             let data: DecodedData = try JSONDecoder().decode(DecodedData.self, from: data)
             return .success(data)
             
-        } catch let error {
-            return .failure(.failedToDecode(.init(
-                domain: (error as NSError).domain,
-                code: (error as NSError).code,
-                description: error.localizedDescription
+        } catch let error as NSError {
+            return .failure(JSONDecoderError.failedToDecode(.init(
+                nsError: error
             )))
         }
     }

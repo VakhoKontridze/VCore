@@ -17,16 +17,14 @@ public struct JSONEncoderService {
     /// Encodes `Any` to `Data`.
     public static func data(
         from data: Any
-    ) -> Result<Data, JSONEncoderError> {
+    ) -> Result<Data, Error> {
         do {
             let data: Data = try JSONSerialization.data(withJSONObject: data)
             return .success(data)
             
-        } catch let error {
-            return .failure(.failedToEncode(.init(
-                domain: (error as NSError).domain,
-                code: (error as NSError).code,
-                description: error.localizedDescription
+        } catch let error as NSError {
+            return .failure(JSONEncoderError.failedToEncode(.init(
+                nsError: error
             )))
         }
     }
@@ -34,16 +32,14 @@ public struct JSONEncoderService {
     /// Encodes `Encodable` to `Data`.
     public static func data<EncodingData: Encodable>(
         from data: EncodingData
-    ) -> Result<Data, JSONEncoderError> {
+    ) -> Result<Data, Error> {
         do {
             let data: Data = try JSONEncoder().encode(data)
             return .success(data)
             
-        } catch let error {
-            return .failure(.failedToEncode(.init(
-                domain: (error as NSError).domain,
-                code: (error as NSError).code,
-                description: error.localizedDescription
+        } catch let error as NSError {
+            return .failure(JSONEncoderError.failedToEncode(.init(
+                nsError: error
             )))
         }
     }
@@ -51,7 +47,7 @@ public struct JSONEncoderService {
     /// Encodes `Encodable` to `JSON`.
     public static func json<EncodingData: Encodable>(
         from data: EncodingData
-    ) -> Result<[String: Any], JSONEncoderError> {
+    ) -> Result<[String: Any], Error> {
         do {
             let jsonData: Data = try JSONEncoder().encode(data)
             
@@ -60,18 +56,14 @@ public struct JSONEncoderService {
                 return .success(data)
             
             case .failure(let error):
-                return .failure(.failedToEncode(.init(
-                    domain: error.domain,
-                    code: error.code,
-                    description: error.localizedDescription
+                return .failure(JSONEncoderError.failedToEncode(.init(
+                    jsonDecoderError: error as? JSONDecoderError
                 )))
             }
             
-        } catch let error {
-            return .failure(.failedToEncode(.init(
-                domain: (error as NSError).domain,
-                code: (error as NSError).code,
-                description: error.localizedDescription
+        } catch let error as NSError {
+            return .failure(JSONEncoderError.failedToEncode(.init(
+                nsError: error
             )))
         }
     }

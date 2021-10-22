@@ -37,9 +37,9 @@ final class NetworkRequestService {
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
-        completion: @escaping (Result<Entity, NetworkError>) -> Void,
-        encode: @escaping (Parameters) -> Result<[String: Any], NetworkError>,
-        decode: @escaping (Data) -> Result<Entity, NetworkError>
+        completion: @escaping (Result<Entity, Error>) -> Void,
+        encode: @escaping (Parameters) -> Result<[String: Any], Error>,
+        decode: @escaping (Data) -> Result<Entity, Error>
     ) {
         requestTask(
             httpMethod: httpMethod,
@@ -50,17 +50,13 @@ final class NetworkRequestService {
             decode: decode,
             createRequest: { encodedParameters in
                 guard var urlComponents: URLComponents = .init(string: endpoint) else {
-                    return .failure(.invalidEndpoint)
+                    return .failure(NetworkError.invalidEndpoint)
                 }
                 
                 urlComponents.addItems(encodedParameters)
                 
                 guard let url: URL = urlComponents.url else {
-                    return .failure(.incompleteParameters(.init(
-                        domain: nil,
-                        code: nil,
-                        description: nil
-                    )))
+                    return .failure(NetworkError.incompleteParameters(.init()))
                 }
                 
                 let request: URLRequest = .init(
@@ -80,9 +76,9 @@ final class NetworkRequestService {
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
-        completion: @escaping (Result<Entity, NetworkError>) -> Void,
-        encode: @escaping (Parameters) -> Result<Data, NetworkError>,
-        decode: @escaping (Data) -> Result<Entity, NetworkError>
+        completion: @escaping (Result<Entity, Error>) -> Void,
+        encode: @escaping (Parameters) -> Result<Data, Error>,
+        decode: @escaping (Data) -> Result<Entity, Error>
     ) {
         requestTask(
             httpMethod: httpMethod,
@@ -93,7 +89,7 @@ final class NetworkRequestService {
             decode: decode,
             createRequest: { encodedParameters in
                 guard let url: URL = .init(string: endpoint) else {
-                    return .failure(.invalidEndpoint)
+                    return .failure(NetworkError.invalidEndpoint)
                 }
                 
                 let request: URLRequest = .init(
@@ -112,13 +108,13 @@ final class NetworkRequestService {
         httpMethod: String,
         headers: [String: Any],
         parameters: Parameters,
-        completion: @escaping (Result<Entity, NetworkError>) -> Void,
-        encode: @escaping (Parameters) -> Result<EncodedParameters, NetworkError>,
-        decode: @escaping (Data) -> Result<Entity, NetworkError>,
-        createRequest: (EncodedParameters) -> Result<URLRequest, NetworkError>
+        completion: @escaping (Result<Entity, Error>) -> Void,
+        encode: @escaping (Parameters) -> Result<EncodedParameters, Error>,
+        decode: @escaping (Data) -> Result<Entity, Error>,
+        createRequest: (EncodedParameters) -> Result<URLRequest, Error>
     ) {
         guard NetworkReachabilityService.isConnectedToNetwork else {
-            networkService.queue.async(completion(.failure(.notConnectedToNetwork)))
+            networkService.queue.async(completion(.failure(NetworkError.notConnectedToNetwork)))
             return
         }
 
@@ -146,10 +142,8 @@ final class NetworkRequestService {
             }
             
         case .failure(let encodingError):
-            networkService.queue.async(completion(.failure(.incompleteParameters(.init(
-                domain: encodingError.domain,
-                code: encodingError.code,
-                description: encodingError.localizedDescription
+            networkService.queue.async(completion(.failure(NetworkError.incompleteParameters(.init(
+                jsonEncoderError: encodingError as? JSONEncoderError
             )))))
         }
     }
@@ -158,24 +152,22 @@ final class NetworkRequestService {
         data: Data?,
         response: URLResponse?,
         error: Error?,
-        completion: @escaping (Result<Entity, NetworkError>) -> Void,
-        decode: @escaping (Data) -> Result<Entity, NetworkError>
+        completion: @escaping (Result<Entity, Error>) -> Void,
+        decode: @escaping (Data) -> Result<Entity, Error>
     ) {
-        if let error = error {
-            networkService.queue.async(completion(.failure(.returnedWithError(.init(
-                domain: (error as NSError).domain,
-                code: (error as NSError).code,
-                description: error.localizedDescription
+        if let error: NSError = error as NSError? {
+            networkService.queue.async(completion(.failure(NetworkError.returnedWithError(.init(
+                nsError: error
             )))))
         
-        } else if let response = response, !response.isValid {
-            networkService.queue.async(completion(.failure(.invalidResponse(.init(
+        } else if let response: URLResponse = response, !response.isValid {
+            networkService.queue.async(completion(.failure(NetworkError.invalidResponse(.init(
                 domain: nil,
                 code: (response as? HTTPURLResponse)?.statusCode,
                 description: response.description
             )))))
         
-        } else if let data = data {
+        } else if let data: Data = data {
             switch postProcessor.postProcess(response: response, data: data) {
             case .success(let postProcessedData):
                 switch decode(postProcessedData) {
@@ -183,10 +175,8 @@ final class NetworkRequestService {
                     networkService.queue.async(completion(.success(decodedData)))
 
                 case .failure(let decodingError):
-                    networkService.queue.async(completion(.failure(.incompleteEntity(.init(
-                        domain: decodingError.domain,
-                        code: decodingError.code,
-                        description: decodingError.localizedDescription
+                    networkService.queue.async(completion(.failure(NetworkError.incompleteEntity(.init(
+                        jsonDecoderError: decodingError as? JSONDecoderError
                     )))))
                 }
 
@@ -195,11 +185,7 @@ final class NetworkRequestService {
             }
         
         } else {
-            networkService.queue.async(completion(.failure(.incompleteEntity(.init(
-                domain: nil,
-                code: nil,
-                description: nil
-            )))))
+            networkService.queue.async(completion(.failure(NetworkError.incompleteEntity(.init()))))
         }
     }
 }
