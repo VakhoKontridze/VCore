@@ -29,9 +29,9 @@ public struct JSONDecoderService {
                 return .failure(JSONDecoderError.failedToDecode(.init()))
             }
             
-        } catch let error as NSError {
+        } catch let error {
             return .failure(JSONDecoderError.failedToDecode(.init(
-                nsError: error
+                nsError: error as NSError
             )))
         }
     }
@@ -51,9 +51,9 @@ public struct JSONDecoderService {
                 return .failure(JSONDecoderError.failedToDecode(.init()))
             }
             
-        } catch let error as NSError {
+        } catch let error {
             return .failure(JSONDecoderError.failedToDecode(.init(
-                nsError: error
+                nsError: error as NSError
             )))
         }
     }
@@ -66,9 +66,9 @@ public struct JSONDecoderService {
             let data: DecodedData = try JSONDecoder().decode(DecodedData.self, from: data)
             return .success(data)
             
-        } catch let error as NSError {
+        } catch let error {
             return .failure(JSONDecoderError.failedToDecode(.init(
-                nsError: error
+                nsError: error as NSError
             )))
         }
     }

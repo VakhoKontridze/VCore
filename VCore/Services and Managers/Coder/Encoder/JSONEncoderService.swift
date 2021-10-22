@@ -22,9 +22,9 @@ public struct JSONEncoderService {
             let data: Data = try JSONSerialization.data(withJSONObject: data)
             return .success(data)
             
-        } catch let error as NSError {
+        } catch let error {
             return .failure(JSONEncoderError.failedToEncode(.init(
-                nsError: error
+                nsError: error as NSError
             )))
         }
     }
@@ -37,9 +37,9 @@ public struct JSONEncoderService {
             let data: Data = try JSONEncoder().encode(data)
             return .success(data)
             
-        } catch let error as NSError {
+        } catch let error {
             return .failure(JSONEncoderError.failedToEncode(.init(
-                nsError: error
+                nsError: error as NSError
             )))
         }
     }
@@ -61,9 +61,9 @@ public struct JSONEncoderService {
                 )))
             }
             
-        } catch let error as NSError {
+        } catch let error {
             return .failure(JSONEncoderError.failedToEncode(.init(
-                nsError: error
+                nsError: error as NSError
             )))
         }
     }
