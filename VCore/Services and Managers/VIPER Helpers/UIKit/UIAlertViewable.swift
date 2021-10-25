@@ -111,7 +111,8 @@ public enum UIAlertViewModel {
     }
     
     // MARK: Factory
-    fileprivate var uiAlertController: UIAlertController {
+    /// Creates `UIAlertController` from viewmodel
+    public var uiAlertController: UIAlertController {
         switch self {
         case .oneButton(let viewModel):
             let alert: UIAlertController = .init(
