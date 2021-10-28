@@ -16,8 +16,14 @@ import UIKit
 /// Methods have default implementations for `UIViewControllers`, except for `setRoot(to:)` method.
 /// To implement this method, use the following snippet somewhere in the project:
 ///
-///     extension StandardNavigatable where Self: UIViewController {
+///     extension StandardNavigatable where Self: ViewController {
 ///         func setRoot(to viewController: UIViewController) {
+///             SceneDelegate.setRoot(to: viewController)
+///         }
+///     }
+///
+///     extension SceneDelegate {
+///         static func setRoot(to viewController: UIViewController) {
 ///             guard
 ///                 let windowScene: UIWindowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
 ///                 let sceneDelegate: SceneDelegate = windowScene.delegate as? SceneDelegate
