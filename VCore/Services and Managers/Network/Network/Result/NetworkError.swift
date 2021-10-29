@@ -20,47 +20,43 @@ public enum NetworkError: VCoreError {
     case invalidEndpoint
     
     /// An indication that parameters cannot be encoded.
-    ///
-    /// Associated value contains info of `VCoreErrorInfo` type.
-    case incompleteParameters(_ info: VCoreErrorInfo)
+    case incompleteParameters
     
     /// An indication that network ruquest returned an error.
-    ///
-    /// Associated value contains info of `VCoreErrorInfo` type.
-    case returnedWithError(_ info: VCoreErrorInfo)
+    case returnedWithError
     
     /// An indication that netowrk ruquest returned an invalid response.
-    ///
-    /// Associated value contains info of `VCoreErrorInfo` type.
-    case invalidResponse(_ info: VCoreErrorInfo)
+    case invalidResponse
     
     /// An indication that result cannot be decoded.
-    ///
-    /// Associated value contains info of `VCoreErrorInfo` type.
-    case incompleteEntity(_ info: VCoreErrorInfo)
+    case incompleteEntity
     
     // MARK: Properties
-    public var info: VCoreErrorInfo? {
-        switch self {
-        case .notConnectedToNetwork: return nil
-        case .invalidEndpoint: return nil
-        case .incompleteParameters(let info): return info
-        case .returnedWithError(let info): return info
-        case .invalidResponse(let info): return info
-        case .incompleteEntity(let info): return info
-        }
-    }
-
     // Overriden
-    /// Primary error description.
-    public var localizedDescription: String? {
+    public static var errorDomain: String { "com.vcore.networkservice" }
+    
+    // MARK: VCore Error
+    public var domain: String { Self.errorDomain }
+    
+    public var code: Int {
         switch self {
-        case .notConnectedToNetwork: return "Not connected to the network"
-        case .invalidEndpoint: return "Cannot connect to the server. An incorrect handler is being used."
-        default: return info?.description
+        case .notConnectedToNetwork: return 1
+        case .invalidEndpoint: return 2
+        case .incompleteParameters: return 3
+        case .returnedWithError: return 4
+        case .invalidResponse: return 5
+        case .incompleteEntity: return 6
         }
     }
     
-    // Overriden
-    public static var errorDomain: String { "com.vcore.networkservice" }
+    public var description: String {
+        switch self {
+        case .notConnectedToNetwork: return "Not connected to network"
+        case .invalidEndpoint: return "Cannot connect to the server. An incorrect handler is being used."
+        case .incompleteParameters: return "Data cannot be encoded or is incomplete"
+        case .returnedWithError: return "Server has encountered an error"
+        case .invalidResponse: return "Server has returned an invalid response"
+        case .incompleteEntity: return "Data cannot be decoded or is incomplete"
+        }
+    }
 }

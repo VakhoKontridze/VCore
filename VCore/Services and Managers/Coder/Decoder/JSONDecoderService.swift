@@ -26,13 +26,11 @@ public struct JSONDecoderService {
                 return .success(json)
             
             case nil:
-                return .failure(JSONDecoderError.failedToDecode(.init()))
+                return .failure(JSONDecoderError.failedToDecode)
             }
             
-        } catch let error {
-            return .failure(JSONDecoderError.failedToDecode(.init(
-                nsError: error as NSError
-            )))
+        } catch {
+            return .failure(JSONDecoderError.failedToDecode)
         }
     }
     
@@ -48,13 +46,11 @@ public struct JSONDecoderService {
                 return .success(jsonArray)
             
             case nil:
-                return .failure(JSONDecoderError.failedToDecode(.init()))
+                return .failure(JSONDecoderError.failedToDecode)
             }
             
-        } catch let error {
-            return .failure(JSONDecoderError.failedToDecode(.init(
-                nsError: error as NSError
-            )))
+        } catch {
+            return .failure(JSONDecoderError.failedToDecode)
         }
     }
     
@@ -66,10 +62,8 @@ public struct JSONDecoderService {
             let data: DecodedData = try JSONDecoder().decode(DecodedData.self, from: data)
             return .success(data)
             
-        } catch let error {
-            return .failure(JSONDecoderError.failedToDecode(.init(
-                nsError: error as NSError
-            )))
+        } catch {
+            return .failure(JSONDecoderError.failedToDecode)
         }
     }
 }
