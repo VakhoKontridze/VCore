@@ -60,4 +60,7 @@ public enum NetworkError: VCoreError {
         default: return info?.description
         }
     }
+    
+    // Overriden
+    public static var errorDomain: String { "com.vcore.networkservice" }
 }

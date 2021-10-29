@@ -24,16 +24,19 @@ public protocol VCoreError: LocalizedError, CustomNSError {
 }
 
 extension VCoreError {
+    // VCoreError
     public var domain: String? { info?.domain }
     public var code: Int? { info?.code }
     public var description: String? { info?.description }
     
+    // Error (Localized)
     public var errorDescription: String? { description }
     public var failureReason: String? { description }
     public var recoverySuggestion: String? { nil }
     public var helpAnchor: String? { nil }
     public var localizedDescription: String { description ?? "Error Occured" }
     
+    // NS Error
     public static var errorDomain: String { "com.vcore" }
     public var errorCode: Int { code ?? -1 }
 }
@@ -52,13 +55,7 @@ public struct VCoreErrorInfo {
     public var description: String?
     
     // MARK: Initializers
-    init() {
-        self.domain = nil
-        self.code = nil
-        self.description = nil
-    }
-    
-    /// Initializes object.
+    /// Initializes VCoreErrorInfo.
     public init(
         domain: String? = nil,
         code: Int? = nil,
@@ -69,7 +66,7 @@ public struct VCoreErrorInfo {
         self.description = description
     }
     
-    /// Initializes object.
+    /// Initializes VCoreErrorInfo.
     public init(
         nsError: NSError
     ) {
