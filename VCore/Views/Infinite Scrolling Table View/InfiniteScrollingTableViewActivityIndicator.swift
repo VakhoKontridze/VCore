@@ -10,12 +10,7 @@ import UIKit
 // MARK: - Infinite Scrolling Table View Activity Indicator
 final class InfiniteScrollingTableViewActivityIndicatorView: UIView {
     // MARK: Subviews
-    private let activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator: UIActivityIndicatorView = .init()
-        activityIndicator.style = .medium
-        activityIndicator.hidesWhenStopped = true
-        return activityIndicator
-    }()
+    private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
     
     // MARK: Properties
     private let model: InfiniteScrollingTableViewActivityIndicatorModel = .init()

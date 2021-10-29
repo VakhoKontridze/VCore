@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - Custom View Frames
+@available(iOS 13, *)
 extension View {
     /// Positions this view within an invisible frame with the specified dimension.
     public func frame(

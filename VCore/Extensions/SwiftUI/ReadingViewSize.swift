@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - Reading Size
+@available(iOS 13, *)
 extension View {
     /// Reads `View` size and calls an on-change block.
     public func readSize(
@@ -24,6 +25,7 @@ extension View {
 }
 
 // MARK: - Size Preference Key
+@available(iOS 13, *)
 private struct SizePreferenceKey: PreferenceKey {
     static var defaultValue: CGSize = .zero
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {}

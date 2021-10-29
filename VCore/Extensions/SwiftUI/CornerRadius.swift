@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - CornerRadius
+@available(iOS 13, *)
 extension View {
     /// Clips this view to its bounding frame, with the specified corners and corner radius.
     public func cornerRadius(radius: CGFloat, corners: UIRectCorner) -> some View {
@@ -16,6 +17,7 @@ extension View {
 }
 
 // MARK: - Corner Radius Style
+@available(iOS 13, *)
 private struct CornerRadiusStyle: ViewModifier {
     // MARK: Properties
     private let radius: CGFloat
@@ -35,6 +37,7 @@ private struct CornerRadiusStyle: ViewModifier {
 }
 
 // MARK: - Corner Radius Shape
+@available(iOS 13, *)
 private struct CornerRadiusShape: Shape {
     // MARK: Properties
     private let radius: CGFloat
