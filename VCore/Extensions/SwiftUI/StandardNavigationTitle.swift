@@ -27,11 +27,8 @@ fileprivate struct StandardNavigationTitle: ViewModifier {
     fileprivate init(_ title: String) {
         self.title = title
     }
-}
-
-// MARK: - Body
-@available(iOS 14, *)
-extension StandardNavigationTitle {
+    
+    // MARK: Body
     fileprivate func body(content: Content) -> some View {
         content
             .navigationTitle(title)
