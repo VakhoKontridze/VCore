@@ -1,5 +1,5 @@
 //
-//  NetworkResults.swift
+//  CustomResults.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 8/24/21.
