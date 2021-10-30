@@ -1,6 +1,12 @@
 ## Change Log
 
-#### [1.1.0(5)]
+#### [1.2.0(6)]
+
+- Project now contains additional files under `Extra`
+- `LocalizationService` has been added to `Extra`
+- XCode Templates have been added to `Extra`
+
+#### [1.1.0(5)](https://github.com/VakhoKontridze//releases/download/1.1.0/.xcframework.zip) — *2021 10 30*
 
 - `NetworkService` now supports initialization and post-processing delegation
 - `NetworkSessionManager` has been renamed to `SessionManager`
