@@ -25,22 +25,46 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
         self.httpMethod = httpMethod
     }
     
+    // MARK: Request
+    private func request<Parameters, Entity>(
+        httpMethod: String,
+        endpoint: String,
+        headers: [String: Any],
+        parameters: Parameters,
+        encode: @escaping (Parameters) throws -> [String: Any],
+        decode: @escaping (Data) throws -> Entity
+    ) async throws -> Entity {
+        try await networkRequestService.request(
+            httpMethod: httpMethod,
+            headers: headers,
+            parameters: parameters,
+            encode: encode,
+            decode: decode,
+            request: { encodedParameters in
+                .init(
+                    httpMethod: httpMethod,
+                    url: try .init(endpoint: endpoint, encodedParameters: encodedParameters),
+                    headers: headers,
+                    body: nil
+                )
+            }
+        )
+    }
+    
     // MARK: Data
     /// Makes `network request with `JSON` parameters and returns `Data` or `Error`.
     public func data(
         endpoint: String,
         headers: [String: Any],
-        parameters: [String: Any],
-        completion: @escaping (Result<Data, Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
+        parameters: [String: Any]
+    ) async throws -> Data {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { .success($0) }
+            encode: { $0 },
+            decode: { $0 }
         )
     }
     
@@ -48,17 +72,15 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     public func data<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
-        parameters: Parameters,
-        completion: @escaping (Result<Data, Error>) -> Void
-    )  {
-        networkRequestService.requestURLParameterMethodTask(
+        parameters: Parameters
+    ) async throws -> Data {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { JSONEncoderService.json(from: $0) },
-            decode: { .success($0) }
+            encode: { try JSONEncoderService.json(from: $0) },
+            decode: { $0 }
         )
     }
 
@@ -67,17 +89,15 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     public func json(
         endpoint: String,
         headers: [String: Any],
-        parameters: [String: Any],
-        completion: @escaping (Result<[String: Any], Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
+        parameters: [String: Any]
+    ) async throws -> [String: Any] {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { JSONDecoderService.json(from: $0) }
+            encode: { $0 },
+            decode: { try JSONDecoderService.json(from: $0) }
         )
     }
     
@@ -85,17 +105,15 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     public func jsonArray<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
-        parameters: Parameters,
-        completion: @escaping (Result<[String: Any], Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
+        parameters: Parameters
+    ) async throws -> [String: Any] {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { JSONEncoderService.json(from: $0) },
-            decode: { JSONDecoderService.json(from: $0) }
+            encode: { try JSONEncoderService.json(from: $0) },
+            decode: { try JSONDecoderService.json(from: $0) }
         )
     }
     
@@ -104,17 +122,15 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     public func jsonArray(
         endpoint: String,
         headers: [String: Any],
-        parameters: [String: Any],
-        completion: @escaping (Result<[[String: Any]], Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
+        parameters: [String: Any]
+    ) async throws -> [[String: Any]] {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { JSONDecoderService.jsonArray(from: $0) }
+            encode: { $0 },
+            decode: { try JSONDecoderService.jsonArray(from: $0) }
         )
     }
     
@@ -122,17 +138,15 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     public func json<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
-        parameters: Parameters,
-        completion: @escaping (Result<[[String: Any]], Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
+        parameters: Parameters
+    ) async throws -> [[String: Any]] {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { JSONEncoderService.json(from: $0) },
-            decode: { JSONDecoderService.jsonArray(from: $0) }
+            encode: { try JSONEncoderService.json(from: $0) },
+            decode: { try JSONDecoderService.jsonArray(from: $0) }
         )
     }
 
@@ -141,18 +155,15 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     public func entity<Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
-        parameters: [String: Any],
-        entityType: Entity.Type,
-        completion: @escaping (Result<Entity, Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
+        parameters: [String: Any]
+    ) async throws -> Entity {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { JSONDecoderService.entity(from: $0) }
+            encode: { $0 },
+            decode: { try JSONDecoderService.entity(from: $0) }
         )
     }
     
@@ -160,18 +171,15 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     public func entity<Parameters: Encodable, Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
-        parameters: Parameters,
-        entityType: Entity.Type,
-        completion: @escaping (Result<Entity, Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
+        parameters: Parameters
+    ) async throws -> Entity {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { JSONEncoderService.json(from: $0) },
-            decode: { JSONDecoderService.entity(from: $0) }
+            encode: { try JSONEncoderService.json(from: $0) },
+            decode: { try JSONDecoderService.entity(from: $0) }
         )
     }
 }

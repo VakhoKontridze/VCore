@@ -1,6 +1,12 @@
 ## Change Log
 
-#### [1.2.0(6)]
+#### [2.0.0(7)]
+
+- `VCoreErrorInfo` has been removed
+- `NetworkService` now supports async/await
+- `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor
+
+#### [1.1.0(6)]
 
 - Project now contains additional files under `Extra`
 - `LocalizationService` has been added to `Extra`

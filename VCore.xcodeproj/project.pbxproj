@@ -16,7 +16,7 @@
 		173C2E5127118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5027118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift */; };
 		173C2E5327118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5227118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift */; };
 		173C2E5627118B0B006BEAF3 /* NetworkRequestMethodServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5527118B0B006BEAF3 /* NetworkRequestMethodServices.swift */; };
-		173C2E5C2711A947006BEAF3 /* NetworkServicePostProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5B2711A947006BEAF3 /* NetworkServicePostProcessor.swift */; };
+		173C2E5C2711A947006BEAF3 /* NetworkServiceProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5B2711A947006BEAF3 /* NetworkServiceProcessor.swift */; };
 		17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */; };
 		17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */; };
 		17B103DC270AFE3900B9E296 /* StandardNavigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */; };
@@ -108,7 +108,7 @@
 		173C2E5027118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkURLParametersRequestMethodService.swift; sourceTree = "<group>"; };
 		173C2E5227118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkBodyParametersRequestMethodService.swift; sourceTree = "<group>"; };
 		173C2E5527118B0B006BEAF3 /* NetworkRequestMethodServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestMethodServices.swift; sourceTree = "<group>"; };
-		173C2E5B2711A947006BEAF3 /* NetworkServicePostProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServicePostProcessor.swift; sourceTree = "<group>"; };
+		173C2E5B2711A947006BEAF3 /* NetworkServiceProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProcessor.swift; sourceTree = "<group>"; };
 		17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigatable.swift; sourceTree = "<group>"; };
@@ -200,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				7A0F75CF26D517A300020996 /* NetworkRequestService.swift */,
+				173C2E5027118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift */,
+				173C2E5227118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -208,8 +210,6 @@
 			isa = PBXGroup;
 			children = (
 				173C2E4B271169E8006BEAF3 /* NetworkRequestMethod.swift */,
-				173C2E5027118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift */,
-				173C2E5227118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift */,
 				173C2E5527118B0B006BEAF3 /* NetworkRequestMethodServices.swift */,
 			);
 			path = "Request Methods";
@@ -365,7 +365,7 @@
 			isa = PBXGroup;
 			children = (
 				7A0F75BB26D516DA00020996 /* NetworkService.swift */,
-				173C2E5B2711A947006BEAF3 /* NetworkServicePostProcessor.swift */,
+				173C2E5B2711A947006BEAF3 /* NetworkServiceProcessor.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -636,7 +636,7 @@
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
 				7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */,
 				7AF68A7126EE8D4A00D4B5BE /* RemoveExtraSeparators.swift in Sources */,
-				173C2E5C2711A947006BEAF3 /* NetworkServicePostProcessor.swift in Sources */,
+				173C2E5C2711A947006BEAF3 /* NetworkServiceProcessor.swift in Sources */,
 				7A0F75C626D5174500020996 /* NetworkTypeCasts.swift in Sources */,
 				7AB22B2D26EE7A6F0037355D /* StringProtocolSubscripts.swift in Sources */,
 				7AB22B3D26EE86E10037355D /* DismissKeyboardOnOutsideTap.swift in Sources */,
@@ -712,7 +712,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XRWP42VX24;
 				INFOPLIST_FILE = VCoreDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -732,7 +732,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XRWP42VX24;
 				INFOPLIST_FILE = VCoreDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -879,7 +879,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = VCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -909,7 +909,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = VCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
