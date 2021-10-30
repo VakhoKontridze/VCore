@@ -2,8 +2,9 @@
 
 #### [2.0.0(7)]
 
-- `VCoreErrorInfo` has been removed
+- Project now supports `iOS 12`
 - `NetworkService` now supports async/await
+- `VCoreErrorInfo` has been removed
 - `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor
 
 #### [1.1.0(6)]
