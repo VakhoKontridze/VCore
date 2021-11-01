@@ -2,7 +2,7 @@
 
 #### [2.0.0(7)]
 
-- Framework is no longer compatible with version `1.1.x`
+- Framework is no longer compatible with version `1.2.0`
 - Framework now supports `iOS 12`
 - `NetworkService` now supports async/await
 - `VCoreErrorInfo` has been removed
