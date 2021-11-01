@@ -36,9 +36,4 @@ public struct EdgeInsets_HV: Equatable {
     public static var zero: Self {
         .init()
     }
-    
-    // MARK: Equatable
-    public static func ==(lhs: EdgeInsets_HV, rhs: EdgeInsets_HV) -> Bool {
-        (lhs.horizontal, lhs.vertical) == (rhs.horizontal, rhs.vertical)
-    }
 }
