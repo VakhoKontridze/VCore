@@ -2,14 +2,15 @@
 
 #### [2.0.0(7)]
 
-- Project now supports `iOS 12`
+- Framework is no longer compatible with version `1.1.x`
+- Framework now supports `iOS 12`
 - `NetworkService` now supports async/await
 - `VCoreErrorInfo` has been removed
-- `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor
+- `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`
 
 #### [1.1.0(6)]
 
-- Project now contains additional files under `Extra`
+- Framework now contains additional files under `Extra`
 - `LocalizationService` has been added to `Extra`
 - XCode Templates have been added to `Extra`
 
