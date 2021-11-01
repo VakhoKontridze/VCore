@@ -120,7 +120,7 @@ public final class NetworkService {
     /// Timeout inteval for request. Has a default value from `URLSessionConfiguration.default`, and defaults to `60`.
     public var timeoutIntervalForRequest: TimeInterval = URLSessionConfiguration.default.timeoutIntervalForRequest
     
-    /// Timeout inteval for request. Has a default value resource `URLSessionConfiguration.default`, and defaults to `604800`.
+    /// Timeout inteval for request. Has a default value from `URLSessionConfiguration.default`, and defaults to `604800`.
     public var timeoutIntervalForResource: TimeInterval = URLSessionConfiguration.default.timeoutIntervalForResource
     
     // MARK: Initializers
