@@ -1,5 +1,5 @@
 //
-//  NSLayoutConstraintStoring.swift
+//  NSLayoutConstraint.Storing.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/13/21.

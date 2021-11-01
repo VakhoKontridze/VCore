@@ -1,5 +1,5 @@
 //
-//  ReadingViewSize.swift
+//  View.ReadSize.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10/6/21.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Reading Size
+// MARK: - Read View Size
 extension View {
     /// Reads `View` size and calls an on-change block.
     public func readSize(

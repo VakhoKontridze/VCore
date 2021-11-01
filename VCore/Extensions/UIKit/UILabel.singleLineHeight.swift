@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - Label Natural Height Constant
+// MARK: - Label Single Line Height
 extension UILabel {
     /// Calculates and returns natural height constant.
     ///
@@ -15,21 +15,24 @@ extension UILabel {
     ///
     /// All properties from `self` are considered when calculating value.
     ///
-    /// During calculation of height, text value is passed from `self`. If `nil`, default value of "ABC" will be written.
-    public var singleLineNaturalHeightConstant: CGFloat {
+    /// During calculation of height, text value is passed from `self`. If `nil`, default value of "A" will be used.
+    public var singleLineHeight: CGFloat {
+        singleLineHeight(text: {
+            guard let text = text, !text.isEmpty else { return "A" }
+            return text
+        }())
+    }
+    
+    /// Calculates and returns natural height constant.
+    ///
+    /// Used for ensuring that view doesn't flicker when new text is added to empty `UILabel`.
+    ///
+    /// All properties from `self` are considered when calculating value.
+    public func singleLineHeight(text: String) -> CGFloat {
         let label: UILabel = {
             let label: UILabel = .init()
             
-            label.text = {
-                guard
-                    let text: String = text,
-                    !text.isEmpty
-                else {
-                    return "ABC"
-                }
-                
-                return text
-            }()
+            label.text = text
             
             label.font = font
             label.textAlignment = textAlignment

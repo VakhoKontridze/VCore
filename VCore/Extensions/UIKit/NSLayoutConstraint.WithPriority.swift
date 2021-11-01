@@ -1,5 +1,5 @@
 //
-//  NSLayoutConstraintPriorities.swift
+//  NSLayoutConstraint.WithPriority.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/13/21.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - Layout Constraint Priorities
+// MARK: - Layout Constraint with Priority
 extension NSLayoutConstraint {
     /// Modifies and returns constraint with a given priority.
     public func withPriority(_ priority: UILayoutPriority) -> NSLayoutConstraint {

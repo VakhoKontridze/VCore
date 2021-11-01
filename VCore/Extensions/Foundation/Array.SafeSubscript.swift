@@ -1,5 +1,5 @@
 //
-//  SafeArraySubscript.swift
+//  Array.SafeSubscript.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/12/21.
