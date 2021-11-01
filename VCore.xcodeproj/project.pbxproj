@@ -21,6 +21,8 @@
 		17871824273068CE00C2B74C /* EdgeInsets_LT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871823273068CE00C2B74C /* EdgeInsets_LT.swift */; };
 		17871826273069A700C2B74C /* EdgeInsets_LB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871825273069A700C2B74C /* EdgeInsets_LB.swift */; };
 		17871828273069DE00C2B74C /* EdgeInsets_HV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871827273069DE00C2B74C /* EdgeInsets_HV.swift */; };
+		1787182C27306E3E00C2B74C /* GenericStateModel_EPD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1787182B27306E3E00C2B74C /* GenericStateModel_EPD.swift */; };
+		1787182E27306F9B00C2B74C /* GenericStateModel_ED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */; };
 		17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */; };
 		17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */; };
 		17B103DC270AFE3900B9E296 /* StandardNavigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */; };
@@ -114,6 +116,8 @@
 		17871823273068CE00C2B74C /* EdgeInsets_LT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LT.swift; sourceTree = "<group>"; };
 		17871825273069A700C2B74C /* EdgeInsets_LB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LB.swift; sourceTree = "<group>"; };
 		17871827273069DE00C2B74C /* EdgeInsets_HV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_HV.swift; sourceTree = "<group>"; };
+		1787182B27306E3E00C2B74C /* GenericStateModel_EPD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_EPD.swift; sourceTree = "<group>"; };
+		1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_ED.swift; sourceTree = "<group>"; };
 		17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigatable.swift; sourceTree = "<group>"; };
@@ -192,6 +196,7 @@
 		173C2E4727116805006BEAF3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1787182A27306E2500C2B74C /* Generic State Models */,
 				1787180F273063AC00C2B74C /* Edge Insets */,
 				173C2E482711680D006BEAF3 /* Deprecations.swift */,
 				7A0F75C326D5173100020996 /* CustomResults.swift */,
@@ -227,6 +232,15 @@
 				17871825273069A700C2B74C /* EdgeInsets_LB.swift */,
 			);
 			path = "Edge Insets";
+			sourceTree = "<group>";
+		};
+		1787182A27306E2500C2B74C /* Generic State Models */ = {
+			isa = PBXGroup;
+			children = (
+				1787182B27306E3E00C2B74C /* GenericStateModel_EPD.swift */,
+				1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */,
+			);
+			path = "Generic State Models";
 			sourceTree = "<group>";
 		};
 		7A00266D26EB70440056DBC5 /* Encoder */ = {
@@ -669,9 +683,11 @@
 				7A86F88126EFAC0800EC32EA /* UILabel.singleLineHeight.swift in Sources */,
 				7AB22B3926EE84EF0037355D /* NSObject.NSObjectName.swift in Sources */,
 				173C2E4C271169E8006BEAF3 /* NetworkRequestMethod.swift in Sources */,
+				1787182E27306F9B00C2B74C /* GenericStateModel_ED.swift in Sources */,
 				17871824273068CE00C2B74C /* EdgeInsets_LT.swift in Sources */,
 				7AB22AE626EB8DFF0037355D /* VCoreError.swift in Sources */,
 				173C2E5127118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift in Sources */,
+				1787182C27306E3E00C2B74C /* GenericStateModel_EPD.swift in Sources */,
 				7AB22AF026EB96550037355D /* InfiniteScrollingTableViewDelegate.swift in Sources */,
 				7A91D6F826EFA68500B0B096 /* UIView.RoundCorners.swift in Sources */,
 				7A9A6AA626D521A000C19A07 /* SessionManager.swift in Sources */,

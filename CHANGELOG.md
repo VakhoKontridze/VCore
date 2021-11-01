@@ -6,6 +6,7 @@
 - `LocalizationService` has been added to `Extra`
 - XCode Templates have been added to `Extra`
 - Custom `EdgeInset` objects have been added
+- Generic `GenericStateModel` objects have been added
 - `UILabel`'s `singleLineNaturalHeightConstant` has been renamed to `singleLineHeight`
 - `UITableView`'s `removeExtraSeparators` and `removeExtraAndLastSeparators` have been deprecated, as they have no effect
 - `UIScreen.rootView` has been deprecated in favor of `UIApplication.AppRootWindow` file under `Extra`
