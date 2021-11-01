@@ -13,7 +13,6 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
     // MARK: Properties
     private let networkRequestService: NetworkRequestService
     
-    /// HTTP request method.
     public let httpMethod: String
     
     // MARK: Initializers
