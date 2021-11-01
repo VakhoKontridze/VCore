@@ -458,8 +458,8 @@
 			isa = PBXGroup;
 			children = (
 				7AB22B2E26EE7A720037355D /* Foundation */,
-				7A86F88626EFB74100EC32EA /* SwiftUI */,
 				7AB22B2F26EE7C7F0037355D /* UIKit */,
+				7A86F88626EFB74100EC32EA /* SwiftUI */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
