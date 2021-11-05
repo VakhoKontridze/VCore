@@ -354,8 +354,8 @@
 			children = (
 				7A0F759B26D514EC00020996 /* Network Reachability */,
 				7A27C14726EB637F005765CB /* Coder */,
-				7A9A6AA426D5218E00C19A07 /* Session Manager */,
 				7A0F75B526D5169B00020996 /* Network */,
+				7A9A6AA426D5218E00C19A07 /* Session Manager */,
 				7AA4071726F9BA3100B60742 /* VIPER Helpers */,
 				7AF68A7226EE906D00D4B5BE /* Misc */,
 			);
@@ -387,8 +387,7 @@
 				173C2E5427118993006BEAF3 /* Request */,
 				7A0F75B826D516BD00020996 /* Result */,
 			);
-			name = Network;
-			path = Network/Network;
+			path = Network;
 			sourceTree = "<group>";
 		};
 		7A0F75B626D516B000020996 /* Interface */ = {
