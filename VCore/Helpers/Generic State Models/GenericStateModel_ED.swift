@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Generic State Model (Enabled, Disabled)
-/// Property group containing generic `enabled` `disabled` values.
+/// Value group containing generic `enabled` `disabled` values.
 ///
 /// Group can be used to map model to viewmodel using a state represented by an enum.
 ///
@@ -26,7 +26,7 @@ import Foundation
 ///     }
 ///
 ///     extension StateColors {
-///         func `for`(_ state: SomeState) -> Property {
+///         func `for`(_ state: SomeState) -> Value {
 ///             switch state {
 ///             case .enabled: return enabled
 ///             case .disabled: return disabled
@@ -34,19 +34,19 @@ import Foundation
 ///         }
 ///     }
 ///
-public struct GenericStateModel_ED<Property> {
+public struct GenericStateModel_ED<Value> {
     // MARK: Properties
     /// Enabled value.
-    public var enabled: Property
+    public var enabled: Value
     
     /// Disabled value.
-    public var disabled: Property
+    public var disabled: Value
     
     // MARK: Initializers
     /// Iniitalzies group with valus.
     public init(
-        enabled: Property,
-        disabled: Property
+        enabled: Value,
+        disabled: Value
     ) {
         self.enabled = enabled
         self.disabled = disabled
@@ -54,9 +54,9 @@ public struct GenericStateModel_ED<Property> {
     
     /// Iniitalzies group with value.
     public init(
-        _ property: Property
+        _ value: Value
     ) {
-        self.enabled = property
-        self.disabled = property
+        self.enabled = value
+        self.disabled = value
     }
 }

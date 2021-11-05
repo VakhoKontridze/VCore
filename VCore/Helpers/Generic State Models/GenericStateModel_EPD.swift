@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Generic State Model (Enabled, Pressed, Disabled)
-/// Property group containing generic `enabled`, `pressed`, and `disabled` values.
+/// Value group containing generic `enabled`, `pressed`, and `disabled` values.
 ///
 /// Group can be used to map model to viewmodel using a state represented by an enum.
 ///
@@ -27,7 +27,7 @@ import Foundation
 ///     }
 ///
 ///     extension StateColors {
-///         func `for`(_ state: SomeState) -> Property {
+///         func `for`(_ state: SomeState) -> Value {
 ///             switch state {
 ///             case .enabled: return enabled
 ///             case .pressed: return pressed
@@ -36,23 +36,23 @@ import Foundation
 ///         }
 ///     }
 ///
-public struct GenericStateModel_EPD<Property> {
+public struct GenericStateModel_EPD<Value> {
     // MARK: Properties
     /// Enabled value.
-    public var enabled: Property
+    public var enabled: Value
     
     /// Pressed value.
-    public var pressed: Property
+    public var pressed: Value
     
     /// Disabled value.
-    public var disabled: Property
+    public var disabled: Value
     
     // MARK: Initializers
     /// Iniitalzies group with valus.
     public init(
-        enabled: Property,
-        pressed: Property,
-        disabled: Property
+        enabled: Value,
+        pressed: Value,
+        disabled: Value
     ) {
         self.enabled = enabled
         self.pressed = pressed
@@ -61,10 +61,10 @@ public struct GenericStateModel_EPD<Property> {
     
     /// Iniitalzies group with value.
     public init(
-        _ property: Property
+        _ value: Value
     ) {
-        self.enabled = property
-        self.pressed = property
-        self.disabled = property
+        self.enabled = value
+        self.pressed = value
+        self.disabled = value
     }
 }
