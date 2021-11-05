@@ -29,6 +29,7 @@
 		17B1041B270B07E900B9E296 /* UIAlertViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B1041A270B07E900B9E296 /* UIAlertViewable.swift */; };
 		17B1041D270B080100B9E296 /* UIActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B1041C270B080100B9E296 /* UIActivityIndicatorViewable.swift */; };
 		17B23E72273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E71273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift */; };
+		17B23E762735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E752735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift */; };
 		7A00266C26EB70370056DBC5 /* JSONEncoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */; };
 		7A00266F26EB70790056DBC5 /* JSONDecoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266E26EB70790056DBC5 /* JSONDecoderError.swift */; };
 		7A0026E226EB766E0056DBC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0026E126EB766E0056DBC5 /* AppDelegate.swift */; };
@@ -125,6 +126,7 @@
 		17B1041A270B07E900B9E296 /* UIAlertViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertViewable.swift; sourceTree = "<group>"; };
 		17B1041C270B080100B9E296 /* UIActivityIndicatorViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewable.swift; sourceTree = "<group>"; };
 		17B23E71273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraint.WithMultiplier.swift; sourceTree = "<group>"; };
+		17B23E752735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.NumberOfDaysInMonth.swift; sourceTree = "<group>"; };
 		7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderError.swift; sourceTree = "<group>"; };
 		7A00266E26EB70790056DBC5 /* JSONDecoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderError.swift; sourceTree = "<group>"; };
 		7A0026DF26EB766E0056DBC5 /* VCoreDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCoreDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -500,6 +502,7 @@
 				7A86F88426EFB65E00EC32EA /* Sequence.KeyPathSort.swift */,
 				7AB22B3A26EE85EF0037355D /* Optional.LetBlockTransformation.swift */,
 				7AB22B3826EE84EF0037355D /* NSObject.NSObjectName.swift */,
+				17B23E752735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift */,
 			);
 			path = Foundation;
 			sourceTree = "<group>";
@@ -696,6 +699,7 @@
 				7A9A6AA626D521A000C19A07 /* SessionManager.swift in Sources */,
 				7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */,
 				7A86F88526EFB65E00EC32EA /* Sequence.KeyPathSort.swift in Sources */,
+				17B23E762735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift in Sources */,
 				173C2E5327118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift in Sources */,
 				7AF68A7426EE907900D4B5BE /* DigitalTimeFormatter.swift in Sources */,
 				17871828273069DE00C2B74C /* EdgeInsets_HV.swift in Sources */,
