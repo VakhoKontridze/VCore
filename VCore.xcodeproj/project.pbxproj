@@ -32,6 +32,7 @@
 		17B23E762735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E752735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift */; };
 		17B23E7827354AEB00914FEB /* UIStackView.ArrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */; };
 		17B23E7A27354B7900914FEB /* UIStackView.Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */; };
+		17B23E7C27354D3A00914FEB /* UIFont.Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */; };
 		7A00266C26EB70370056DBC5 /* JSONEncoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */; };
 		7A00266F26EB70790056DBC5 /* JSONDecoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266E26EB70790056DBC5 /* JSONDecoderError.swift */; };
 		7A0026E226EB766E0056DBC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0026E126EB766E0056DBC5 /* AppDelegate.swift */; };
@@ -131,6 +132,7 @@
 		17B23E752735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendar.NumberOfDaysInMonth.swift; sourceTree = "<group>"; };
 		17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.ArrangedSubviews.swift; sourceTree = "<group>"; };
 		17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.Configuration.swift; sourceTree = "<group>"; };
+		17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.Styling.swift; sourceTree = "<group>"; };
 		7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderError.swift; sourceTree = "<group>"; };
 		7A00266E26EB70790056DBC5 /* JSONDecoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderError.swift; sourceTree = "<group>"; };
 		7A0026DF26EB766E0056DBC5 /* VCoreDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCoreDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -521,6 +523,7 @@
 				7AB22B3426EE834E0037355D /* UINavigationBar.Height.swift */,
 				17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */,
 				17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */,
+				17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */,
 				7A91D6F326EFA4E200B0B096 /* NSLayoutConstraint.WithPriority.swift */,
 				17B23E71273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift */,
 				7A91D6F526EFA5B200B0B096 /* NSLayoutConstraint.Storing.swift */,
@@ -669,6 +672,7 @@
 				7A0F759D26D5150800020996 /* NetworkReachabilityService.swift in Sources */,
 				7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */,
 				7A0F75C826D5175600020996 /* JSONEncoderService.swift in Sources */,
+				17B23E7C27354D3A00914FEB /* UIFont.Styling.swift in Sources */,
 				7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */,
 				7AA4071E26F9BE2700B60742 /* View.StandardNavigationTitle.swift in Sources */,
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
