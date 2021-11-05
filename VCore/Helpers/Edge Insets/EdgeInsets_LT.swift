@@ -26,14 +26,10 @@ public struct EdgeInsets_LT: Equatable {
     
     /// Initializes insets with zero values.
     public init() {
-        self.init(
-            leading: 0,
-            trailing: 0
-        )
+        self.leading = 0
+        self.trailing = 0
     }
     
     /// Initializes insets with zero values.
-    public static var zero: Self {
-        .init()
-    }
+    public static var zero: Self { .init() }
 }

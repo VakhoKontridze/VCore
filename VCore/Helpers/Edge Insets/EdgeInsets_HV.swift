@@ -19,21 +19,20 @@ public struct EdgeInsets_HV: Equatable {
     
     // MARK: Initializers
     /// Initializes insets with values.
-    public init(horizontal: CGFloat, vertical: CGFloat) {
+    public init(
+        horizontal: CGFloat,
+        vertical: CGFloat
+    ) {
         self.horizontal = horizontal
         self.vertical = vertical
     }
     
     /// Initializes insets with zero values.
     public init() {
-        self.init(
-            horizontal: 0,
-            vertical: 0
-        )
+        self.horizontal = 0
+        self.vertical = 0
     }
     
     /// Initializes insets with zero values.
-    public static var zero: Self {
-        .init()
-    }
+    public static var zero: Self { .init() }
 }
