@@ -11,6 +11,7 @@
 - `UITableView`'s `removeExtraSeparators` and `removeExtraAndLastSeparators` have been deprecated, as they have no effect
 - `UIScreen.rootView` has been deprecated in favor of `UIApplication.AppRootWindow` file under `Extra`
 - `UIScreen.safeAreaInsets` has been deprecated
+- `StandardNavigatable` has been renamed to `StandardNavigable`
 - Various extensions have been added
 
 #### [1.1.0(5)](https://github.com/VakhoKontridze/VCore/releases/download/1.1.0/VCore.xcframework.zip) — *2021 10 30*

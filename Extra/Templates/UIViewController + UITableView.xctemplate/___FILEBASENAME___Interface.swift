@@ -8,8 +8,8 @@ protocol ___VARIABLE_productName___Viewable: AnyObject, UIAlertViewable, UIActiv
     
 }
 
-// MARK: - ___VARIABLE_productName___ Navigatable
-protocol ___VARIABLE_productName___Navigatable: AnyObject, StandardNavigatable {
+// MARK: - ___VARIABLE_productName___ Navigable
+protocol ___VARIABLE_productName___Navigable: AnyObject, StandardNavigable {
     
 }
 

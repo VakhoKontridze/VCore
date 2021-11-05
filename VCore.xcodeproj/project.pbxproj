@@ -25,7 +25,7 @@
 		1787182E27306F9B00C2B74C /* GenericStateModel_ED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */; };
 		17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */; };
 		17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */; };
-		17B103DC270AFE3900B9E296 /* StandardNavigatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */; };
+		17B103DC270AFE3900B9E296 /* StandardNavigable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D8270AFE3900B9E296 /* StandardNavigable.swift */; };
 		17B1041B270B07E900B9E296 /* UIAlertViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B1041A270B07E900B9E296 /* UIAlertViewable.swift */; };
 		17B1041D270B080100B9E296 /* UIActivityIndicatorViewable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B1041C270B080100B9E296 /* UIActivityIndicatorViewable.swift */; };
 		17B23E72273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E71273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift */; };
@@ -121,7 +121,7 @@
 		1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_ED.swift; sourceTree = "<group>"; };
 		17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewProtocols.swift; sourceTree = "<group>"; };
-		17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigatable.swift; sourceTree = "<group>"; };
+		17B103D8270AFE3900B9E296 /* StandardNavigable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigable.swift; sourceTree = "<group>"; };
 		17B1041A270B07E900B9E296 /* UIAlertViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIAlertViewable.swift; sourceTree = "<group>"; };
 		17B1041C270B080100B9E296 /* UIActivityIndicatorViewable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIActivityIndicatorViewable.swift; sourceTree = "<group>"; };
 		17B23E71273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraint.WithMultiplier.swift; sourceTree = "<group>"; };
@@ -440,7 +440,7 @@
 		7AA4071726F9BA3100B60742 /* VIPER Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				17B103D8270AFE3900B9E296 /* StandardNavigatable.swift */,
+				17B103D8270AFE3900B9E296 /* StandardNavigable.swift */,
 				17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */,
 				17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */,
 				17B1041A270B07E900B9E296 /* UIAlertViewable.swift */,
@@ -709,7 +709,7 @@
 				173C2C93270DDCD6006BEAF3 /* View.ConditionalModifiers.swift in Sources */,
 				173C2E5627118B0B006BEAF3 /* NetworkRequestMethodServices.swift in Sources */,
 				7A86F87F26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift in Sources */,
-				17B103DC270AFE3900B9E296 /* StandardNavigatable.swift in Sources */,
+				17B103DC270AFE3900B9E296 /* StandardNavigable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

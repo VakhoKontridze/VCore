@@ -17,6 +17,10 @@ extension NetworkService {
     public static var shared: NetworkService { .default }
 }
 
+// MARK: - VIPER Helpers
+@available(*, deprecated, renamed: "StandardNavigable")
+public typealias StandardNavigatable = StandardNavigable
+
 // MARK: - Extensions
 extension UILabel {
     @available(*, deprecated, renamed: "singleLineHeight")

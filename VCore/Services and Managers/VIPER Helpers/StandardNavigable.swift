@@ -1,5 +1,5 @@
 //
-//  StandardNavigatable.swift
+//  StandardNavigable.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 4/10/21.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-// MARK: - Standard Navigatable
-/// Standard Navigatable that allows for navigation via `UINavigationController`.
+// MARK: - Standard Navigable
+/// Standard Navigable that allows for navigation via `UINavigationController`.
 ///
 /// In `VIPER` arhcitecute, this protocol is conformed by `UIViewController`,
 /// or a protocol, which in turn `UIViewController` coforms to.
@@ -16,7 +16,7 @@ import UIKit
 /// Methods have default implementations for `UIViewControllers`, except for `setRoot(to:)` method.
 /// To implement this method, use the following snippet somewhere in the project:
 ///
-///     extension StandardNavigatable where Self: ViewController {
+///     extension StandardNavigable where Self: ViewController {
 ///         func setRoot(to viewController: UIViewController) {
 ///             SceneDelegate.setRoot(to: viewController)
 ///         }
@@ -35,7 +35,7 @@ import UIKit
 ///         }
 ///     }
 ///
-public protocol StandardNavigatable {
+public protocol StandardNavigable {
     /// Pushes a view controller onto the receiver’s stack and updates the display.
     func push(_ viewController: UIViewController)
     
@@ -55,7 +55,7 @@ public protocol StandardNavigatable {
     func setRoot(to viewController: UIViewController)
 }
 
-extension StandardNavigatable where Self: UIViewController {
+extension StandardNavigable where Self: UIViewController {
     public func push(_ viewController: UIViewController) {
         navigationController?.pushViewController(viewController, animated: true)
     }
