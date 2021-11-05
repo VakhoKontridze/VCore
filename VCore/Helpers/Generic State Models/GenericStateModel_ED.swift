@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/1/21.
 //
 
-import UIKit
+import Foundation
 
 // MARK: - Generic State Model (Enabled, Disabled)
 /// Property group containing generic `enabled` `disabled` values.
@@ -56,9 +56,7 @@ public struct GenericStateModel_ED<Property> {
     public init(
         _ property: Property
     ) {
-        self.init(
-            enabled: property,
-            disabled: property
-        )
+        self.enabled = property
+        self.disabled = property
     }
 }

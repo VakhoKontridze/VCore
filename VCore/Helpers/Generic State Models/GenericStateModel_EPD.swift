@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/1/21.
 //
 
-import UIKit
+import Foundation
 
 // MARK: - Generic State Model (Enabled, Pressed, Disabled)
 /// Property group containing generic `enabled`, `pressed`, and `disabled` values.
@@ -63,10 +63,8 @@ public struct GenericStateModel_EPD<Property> {
     public init(
         _ property: Property
     ) {
-        self.init(
-            enabled: property,
-            pressed: property,
-            disabled: property
-        )
+        self.enabled = property
+        self.pressed = property
+        self.disabled = property
     }
 }
