@@ -3,7 +3,7 @@
 #### [2.0.0(7)]
 
 - Framework is no longer compatible with version `1.2.0`
-- Framework now supports `iOS 12`
+- Framework now supports `iOS 13`
 - `NetworkService` now supports async/await
 - `VCoreErrorInfo` has been removed
 - `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`
