@@ -8,11 +8,19 @@
 - `VCoreErrorInfo` has been removed
 - `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`
 
-#### [1.1.0(6)]
+#### [1.2.0(6)]
 
 - Framework now contains additional files under `Extra`
 - `LocalizationService` has been added to `Extra`
 - XCode Templates have been added to `Extra`
+- Custom `EdgeInset` objects have been added
+- Generic `GenericStateModel` objects have been added
+- `UILabel`'s `singleLineNaturalHeightConstant` has been renamed to `singleLineHeight`
+- `UITableView`'s `removeExtraSeparators` and `removeExtraAndLastSeparators` have been deprecated, as they have no effect
+- `UIScreen.rootView` has been deprecated in favor of `UIApplication.AppRootWindow` file under `Extra`
+- `UIScreen.safeAreaInsets` has been deprecated
+- `StandardNavigatable` has been renamed to `StandardNavigable`
+- Various extensions have been added
 
 #### [1.1.0(5)](https://github.com/VakhoKontridze/VCore/releases/download/1.1.0/VCore.xcframework.zip) — *2021 10 30*
 
