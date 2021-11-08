@@ -60,14 +60,33 @@ extension UIViewController {
         scalingFactor: CGFloat? = nil,
         color: UIColor? = nil
     ) -> UIActivityIndicatorView {
+        view.initActivityIndicator(scalingFactor: scalingFactor, color: color)
+    }
+}
+
+extension UIView {
+    func initActivityIndicator(
+        scalingFactor: CGFloat? = nil,
+        color: UIColor? = nil
+    ) -> UIActivityIndicatorView {
         let activityIndicator: UIActivityIndicatorView = .init()
         
-        activityIndicator.style = .medium
         activityIndicator.hidesWhenStopped = true
-        activityIndicator.center = view.center
+        activityIndicator.style = .mediumStyle()
+        activityIndicator.center = center
         if let scalingFactor = scalingFactor { activityIndicator.transform = .init(scaleX: scalingFactor, y: scalingFactor) }
         if let color = color { activityIndicator.color = color }
         
         return activityIndicator
+    }
+}
+
+extension UIActivityIndicatorView.Style {
+    fileprivate static func mediumStyle() -> Self {
+        if #available(iOS 13, *) {
+            return .medium
+        } else {
+            return .white
+        }
     }
 }

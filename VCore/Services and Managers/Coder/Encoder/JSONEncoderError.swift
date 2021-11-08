@@ -14,19 +14,22 @@ public enum JSONEncoderError: VCoreError {
     /// An indication that data cannot be encoded.
     ///
     /// Associated value contains info of `VCoreErrorInfo` type.
-    case failedToEncode(_ info: VCoreErrorInfo)
+    case failedToEncode
     
     // MARK: Properties
-    /// Error info.
-    public var info: VCoreErrorInfo? {
+    // Overriden
+    public static var errorDomain: String { "com.vcore.jsonencoderservice" }
+    
+    // MARK: VCore Error
+    public var domain: String { Self.errorDomain }
+    
+    public var code: Int {
         switch self {
-        case .failedToEncode(let info): return info
+        case .failedToEncode: return 1
         }
     }
     
-    // Overriden
-    /// Primary error description.
-    public var localizedDescription: String? {
+    public var description: String {
         switch self {
         case .failedToEncode: return "Cannot encode data"
         }

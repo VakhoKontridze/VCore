@@ -13,7 +13,6 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
     // MARK: Properties
     private let networkRequestService: NetworkRequestService
     
-    /// HTTP request method.
     public let httpMethod: String
     
     // MARK: Initializers
@@ -25,77 +24,81 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
         self.httpMethod = httpMethod
     }
     
-    // MARK: Data
-    /// Makes network request with `Data` parameters and returns `Data` or `Error`.
-    public func data(
-        endpoint: String,
-        headers: [String: Any],
-        parameters: Data,
-        completion: @escaping (Result<Data, Error>) -> Void)
-    {
-        networkRequestService.requestBodyParameterMethodTask(
-            httpMethod: httpMethod,
-            endpoint: endpoint,
-            headers: headers,
-            parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { .success($0) }
-        )
-    }
-    
-    /// Makes network request with `JSON` parameters and returns `Data` or `Error`.
-    public func data(
-        endpoint: String,
-        headers: [String: Any],
-        parameters: [String: Any],
-        completion: @escaping (Result<Data, Error>) -> Void)
-    {
-        networkRequestService.requestBodyParameterMethodTask(
-            httpMethod: httpMethod,
-            endpoint: endpoint,
-            headers: headers,
-            parameters: parameters,
-            completion: completion,
-            encode: { JSONEncoderService.data(from: $0) },
-            decode: { .success($0) }
-        )
-    }
-    
-    /// Makes network request with `Encodable` parameters and returns `Data` or `Error`.
-    public func data<Parameters: Encodable>(
+    // MARK: Request
+    private func request<Parameters, Entity>(
+        httpMethod: String,
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
-        completion: @escaping (Result<Data, Error>) -> Void
-    )  {
-        networkRequestService.requestBodyParameterMethodTask(
+        encode: @escaping (Parameters) throws -> Data,
+        decode: @escaping (Data) throws -> Entity
+    ) async throws -> Entity {
+        try await networkRequestService.request(
+            httpMethod: httpMethod,
+            headers: headers,
+            parameters: parameters,
+            encode: encode,
+            decode: decode,
+            request: { encodedParameters in
+                guard let url: URL = .init(string: endpoint) else { throw NetworkError.invalidEndpoint }
+
+                return .init(
+                    httpMethod: httpMethod,
+                    url: url,
+                    headers: headers,
+                    body: encodedParameters
+                )
+            }
+        )
+    }
+    
+    // MARK: Data
+    /// Makes network request with `Data` parameters and returns `Data`.
+    public func data(
+        endpoint: String,
+        headers: [String: Any],
+        parameters: Data
+    ) async throws -> Data {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { JSONEncoderService.data(from: $0) },
-            decode: { .success($0) }
+            encode: { $0 },
+            decode: { $0 }
+        )
+    }
+    
+    /// Makes network request with `Encodable` parameters and returns `Data`.
+    public func data<Parameters: Encodable>(
+        endpoint: String,
+        headers: [String: Any],
+        parameters: Parameters
+    ) async throws -> Data {
+        try await request(
+            httpMethod: httpMethod,
+            endpoint: endpoint,
+            headers: headers,
+            parameters: parameters,
+            encode: { try JSONEncoderService.data(from: $0) },
+            decode: { $0 }
         )
     }
 
     // MARK: JSON
-    /// Makes network request with `Data` parameters and returns `JSON` or `Error`.
+    /// Makes network request with `Data` parameters and returns `JSON`.
     public func json(
         endpoint: String,
         headers: [String: Any],
-        parameters: Data,
-        completion: @escaping (Result<[String: Any], Error>) -> Void)
-    {
-        networkRequestService.requestBodyParameterMethodTask(
+        parameters: Data
+    ) async throws -> [String: Any] {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { JSONDecoderService.json(from: $0) }
+            encode: { $0 },
+            decode: { try JSONDecoderService.json(from: $0) }
         )
     }
     
@@ -117,40 +120,36 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
         )
     }
 
-    /// Makes network request with `Encodable` parameters and returns `Data` or `Error`.
+    /// Makes network request with `Encodable` parameters and returns `Data`.
     public func json<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
-        parameters: Parameters,
-        completion: @escaping (Result<[String: Any], Error>) -> Void
-    ) {
-        networkRequestService.requestBodyParameterMethodTask(
+        parameters: Parameters
+    ) async throws -> [String: Any] {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { JSONEncoderService.data(from: $0) },
-            decode: { JSONDecoderService.json(from: $0) }
+            encode: { try JSONEncoderService.data(from: $0) },
+            decode: { try JSONDecoderService.json(from: $0) }
         )
     }
     
     // MARK: JSON Array
-    /// Makes network request with `Data` parameters and returns `JSON Array` or `Error`.
+    /// Makes network request with `Data` parameters and returns `JSON`.
     public func jsonArray(
         endpoint: String,
         headers: [String: Any],
-        parameters: Data,
-        completion: @escaping (Result<[[String: Any]], Error>) -> Void)
-    {
-        networkRequestService.requestBodyParameterMethodTask(
+        parameters: Data
+    ) async throws -> [[String: Any]] {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { JSONDecoderService.jsonArray(from: $0) }
+            encode: { $0 },
+            decode: { try JSONDecoderService.jsonArray(from: $0) }
         )
     }
     
@@ -172,41 +171,36 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
         )
     }
 
-    /// Makes network request with `Encodable` parameters and returns `JSON Array` or `Error`.
+    /// Makes network request with `Encodable` parameters and returns `Data`.
     public func jsonArray<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
-        parameters: Parameters,
-        completion: @escaping (Result<[[String: Any]], Error>) -> Void
-    ) {
-        networkRequestService.requestBodyParameterMethodTask(
+        parameters: Parameters
+    ) async throws -> [[String: Any]] {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { JSONEncoderService.data(from: $0) },
-            decode: { JSONDecoderService.jsonArray(from: $0) }
+            encode: { try JSONEncoderService.data(from: $0) },
+            decode: { try JSONDecoderService.jsonArray(from: $0) }
         )
     }
 
     // MARK: Entity
-    /// Makes network request with `Data` parameters and returns `Decodable` or `Error`.
+    /// Makes network request with `Data` parameters and returns `Decodable`.
     public func entity<Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
-        parameters: Data,
-        entityType: Entity.Type,
-        completion: @escaping (Result<Entity, Error>) -> Void
-    ) {
-        networkRequestService.requestBodyParameterMethodTask(
+        parameters: Data
+    ) async throws -> Entity {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { JSONDecoderService.entity(from: $0) }
+            encode: { $0 },
+            decode: { try JSONDecoderService.entity(from: $0) }
         )
     }
     
@@ -229,22 +223,19 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
         )
     }
 
-    /// Makes network request with `Encodable` parameters and returns `Decodable` or `Error`.
+    /// Makes network request with `Encodable` parameters and returns `Decodable`.
     public func entity<Parameters: Encodable, Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
-        parameters: Parameters,
-        entityType: Entity.Type,
-        completion: @escaping (Result<Entity, Error>) -> Void
-    ) {
-        networkRequestService.requestBodyParameterMethodTask(
+        parameters: Parameters
+    ) async throws -> Entity {
+        try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
             headers: headers,
             parameters: parameters,
-            completion: completion,
-            encode: { JSONEncoderService.data(from: $0) },
-            decode: { JSONDecoderService.entity(from: $0) }
+            encode: { try JSONEncoderService.data(from: $0) },
+            decode: { try JSONDecoderService.entity(from: $0) }
         )
     }
 }

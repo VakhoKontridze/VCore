@@ -1,5 +1,13 @@
 ## Change Log
 
+#### [2.0.0(7)]
+
+- Framework is no longer compatible with version `1.2.0`
+- Framework now supports `iOS 13`
+- `NetworkService` now supports async/await
+- `VCoreErrorInfo` has been removed
+- `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`
+
 #### [1.2.0(6)](https://github.com/VakhoKontridze/VCore/releases/download/1.2.0/VCore.xcframework.zip) — *2021 11 08*
 
 - Framework now contains additional files under `Extra`

@@ -16,7 +16,7 @@
 		173C2E5127118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5027118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift */; };
 		173C2E5327118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5227118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift */; };
 		173C2E5627118B0B006BEAF3 /* NetworkRequestMethodServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5527118B0B006BEAF3 /* NetworkRequestMethodServices.swift */; };
-		173C2E5C2711A947006BEAF3 /* NetworkServicePostProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5B2711A947006BEAF3 /* NetworkServicePostProcessor.swift */; };
+		173C2E5C2711A947006BEAF3 /* NetworkServiceProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5B2711A947006BEAF3 /* NetworkServiceProcessor.swift */; };
 		178718112730640000C2B74C /* EdgeInsets_LTTB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178718102730640000C2B74C /* EdgeInsets_LTTB.swift */; };
 		17871824273068CE00C2B74C /* EdgeInsets_LT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871823273068CE00C2B74C /* EdgeInsets_LT.swift */; };
 		17871826273069A700C2B74C /* EdgeInsets_LB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871825273069A700C2B74C /* EdgeInsets_LB.swift */; };
@@ -123,7 +123,7 @@
 		173C2E5027118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkURLParametersRequestMethodService.swift; sourceTree = "<group>"; };
 		173C2E5227118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkBodyParametersRequestMethodService.swift; sourceTree = "<group>"; };
 		173C2E5527118B0B006BEAF3 /* NetworkRequestMethodServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestMethodServices.swift; sourceTree = "<group>"; };
-		173C2E5B2711A947006BEAF3 /* NetworkServicePostProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServicePostProcessor.swift; sourceTree = "<group>"; };
+		173C2E5B2711A947006BEAF3 /* NetworkServiceProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProcessor.swift; sourceTree = "<group>"; };
 		178718102730640000C2B74C /* EdgeInsets_LTTB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LTTB.swift; sourceTree = "<group>"; };
 		17871823273068CE00C2B74C /* EdgeInsets_LT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LT.swift; sourceTree = "<group>"; };
 		17871825273069A700C2B74C /* EdgeInsets_LB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LB.swift; sourceTree = "<group>"; };
@@ -416,7 +416,7 @@
 			isa = PBXGroup;
 			children = (
 				7A0F75BB26D516DA00020996 /* NetworkService.swift */,
-				173C2E5B2711A947006BEAF3 /* NetworkServicePostProcessor.swift */,
+				173C2E5B2711A947006BEAF3 /* NetworkServiceProcessor.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -698,8 +698,8 @@
 				7AA4071E26F9BE2700B60742 /* View.StandardNavigationTitle.swift in Sources */,
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
 				7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */,
+				173C2E5C2711A947006BEAF3 /* NetworkServiceProcessor.swift in Sources */,
 				17FDE990273902EC0085DE40 /* UIColor.RGBAComponents.swift in Sources */,
-				173C2E5C2711A947006BEAF3 /* NetworkServicePostProcessor.swift in Sources */,
 				7A0F75C626D5174500020996 /* NetworkTypeCasts.swift in Sources */,
 				17FDE98C2738FE080085DE40 /* UIImage.Scaled.swift in Sources */,
 				7AB22B2D26EE7A6F0037355D /* StringProtocol.Subscript.swift in Sources */,

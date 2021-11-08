@@ -18,7 +18,7 @@ import Foundation
 ///         )
 ///     }
 ///
-///     struct SomeAppNetworkServicePostProcessor: NetworkServicePostProcessor {
+///     struct SomeAppNetworkServicePostProcessor: NetworkServiceProcessor {
 ///         func postProcess(
 ///             response: response: URLResponse?,
 ///             data: Data
@@ -80,13 +80,13 @@ public final class NetworkService {
     // MARK: Properties - Objects
     /// Default instance of `NetworkService`.
     public static let `default`: NetworkService = .init(
-        postProcessor: DefaultNetworkServicePostProcessor()
+        processor: DefaultNetworkServiceProcessor()
     )
     
-    private let postProcessor: NetworkServicePostProcessor
+    private let processor: NetworkServiceProcessor
     private lazy var networkRequestService: NetworkRequestService = .init(
         networkService: self,
-        postProcessor: postProcessor
+        processor: processor
     )
     
     // MARK: Properties - Methods
@@ -113,10 +113,7 @@ public final class NetworkService {
     
     // TRACE
     
-    // MARK: Properties - Misc
-    /// Queue on which completion is returned. Defaults to `main`.
-    public var queue: DispatchQueue = .main
-    
+    // MARK: Properties - Misc    
     /// Timeout inteval for request. Has a default value from `URLSessionConfiguration.default`, and defaults to `60`.
     public var timeoutIntervalForRequest: TimeInterval = URLSessionConfiguration.default.timeoutIntervalForRequest
     
@@ -125,7 +122,7 @@ public final class NetworkService {
     
     // MARK: Initializers
     /// Initializes `NetworkService`.
-    public init(postProcessor: NetworkServicePostProcessor) {
-        self.postProcessor = postProcessor
+    public init(processor: NetworkServiceProcessor) {
+        self.processor = processor
     }
 }

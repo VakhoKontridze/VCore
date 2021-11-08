@@ -1,8 +1,8 @@
 //
 //  View.ReadSize.swift
-//  VCore
+//  VComponents
 //
-//  Created by Vakhtang Kontridze on 10/6/21.
+//  Created by Vakhtang Kontridze on 10/28/21.
 //
 
 import SwiftUI
