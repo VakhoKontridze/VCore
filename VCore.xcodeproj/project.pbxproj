@@ -35,6 +35,7 @@
 		17B23E7C27354D3A00914FEB /* UIFont.Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */; };
 		17FDE9862738F8B50085DE40 /* UIApplication.AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */; };
 		17FDE9882738F9D90085DE40 /* UIImage.Compressed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */; };
+		17FDE98A2738FC590085DE40 /* UIImage.Cropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */; };
 		7A00266C26EB70370056DBC5 /* JSONEncoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */; };
 		7A00266F26EB70790056DBC5 /* JSONDecoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266E26EB70790056DBC5 /* JSONDecoderError.swift */; };
 		7A0026E226EB766E0056DBC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0026E126EB766E0056DBC5 /* AppDelegate.swift */; };
@@ -137,6 +138,7 @@
 		17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.Styling.swift; sourceTree = "<group>"; };
 		17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.AppInfo.swift; sourceTree = "<group>"; };
 		17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Compressed.swift; sourceTree = "<group>"; };
+		17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Cropped.swift; sourceTree = "<group>"; };
 		7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderError.swift; sourceTree = "<group>"; };
 		7A00266E26EB70790056DBC5 /* JSONDecoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderError.swift; sourceTree = "<group>"; };
 		7A0026DF26EB766E0056DBC5 /* VCoreDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCoreDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -525,6 +527,7 @@
 				7A86F88226EFB16200EC32EA /* UILabel.Configuration.swift */,
 				7A86F88026EFAC0800EC32EA /* UILabel.singleLineHeight.swift */,
 				17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */,
+				17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */,
 				7AB22B3426EE834E0037355D /* UINavigationBar.Height.swift */,
 				17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */,
 				17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */,
@@ -699,6 +702,7 @@
 				7A0F75C226D5172000020996 /* NetworkError.swift in Sources */,
 				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,
 				7AB22B3726EE84690037355D /* Array.SafeSubscript.swift in Sources */,
+				17FDE98A2738FC590085DE40 /* UIImage.Cropped.swift in Sources */,
 				7AF68A6926EE878300D4B5BE /* Date.Component.swift in Sources */,
 				7AB22B3526EE834E0037355D /* UINavigationBar.Height.swift in Sources */,
 				7A86F88126EFAC0800EC32EA /* UILabel.singleLineHeight.swift in Sources */,
