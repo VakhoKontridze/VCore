@@ -33,21 +33,3 @@ extension UIFont {
         return .init(descriptor: fontDescriptor.addingAttributes(attributes), size: 0)
     }
 }
-
-// MARK: - Font Styling (Optional)
-extension Optional where Wrapped == UIFont {
-    /// Returns font with bold styling.
-    public var withBoldStyling: UIFont? {
-        self.let { $0.withBoldStyling }
-    }
-    
-    /// Returns font with italic styling.
-    public var withItalicStyling: UIFont? {
-        self.let { $0.withItalicStyling }
-    }
-    
-    /// Returns font with monospaced styling.
-    public var withMonospacedStyling: UIFont? {
-        self.let { $0.withMonospacedStyling }
-    }
-}

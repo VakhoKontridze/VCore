@@ -36,6 +36,7 @@
 		17FDE9862738F8B50085DE40 /* UIApplication.AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */; };
 		17FDE9882738F9D90085DE40 /* UIImage.Compressed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */; };
 		17FDE98A2738FC590085DE40 /* UIImage.Cropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */; };
+		17FDE98C2738FE080085DE40 /* UIImage.Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE98B2738FE080085DE40 /* UIImage.Scaled.swift */; };
 		7A00266C26EB70370056DBC5 /* JSONEncoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */; };
 		7A00266F26EB70790056DBC5 /* JSONDecoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266E26EB70790056DBC5 /* JSONDecoderError.swift */; };
 		7A0026E226EB766E0056DBC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0026E126EB766E0056DBC5 /* AppDelegate.swift */; };
@@ -139,6 +140,7 @@
 		17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.AppInfo.swift; sourceTree = "<group>"; };
 		17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Compressed.swift; sourceTree = "<group>"; };
 		17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Cropped.swift; sourceTree = "<group>"; };
+		17FDE98B2738FE080085DE40 /* UIImage.Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Scaled.swift; sourceTree = "<group>"; };
 		7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderError.swift; sourceTree = "<group>"; };
 		7A00266E26EB70790056DBC5 /* JSONDecoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderError.swift; sourceTree = "<group>"; };
 		7A0026DF26EB766E0056DBC5 /* VCoreDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCoreDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -528,6 +530,7 @@
 				7A86F88026EFAC0800EC32EA /* UILabel.singleLineHeight.swift */,
 				17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */,
 				17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */,
+				17FDE98B2738FE080085DE40 /* UIImage.Scaled.swift */,
 				7AB22B3426EE834E0037355D /* UINavigationBar.Height.swift */,
 				17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */,
 				17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */,
@@ -688,6 +691,7 @@
 				7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */,
 				173C2E5C2711A947006BEAF3 /* NetworkServicePostProcessor.swift in Sources */,
 				7A0F75C626D5174500020996 /* NetworkTypeCasts.swift in Sources */,
+				17FDE98C2738FE080085DE40 /* UIImage.Scaled.swift in Sources */,
 				7AB22B2D26EE7A6F0037355D /* StringProtocol.Subscript.swift in Sources */,
 				7AB22B3D26EE86E10037355D /* UIViewController.DismissKeyboardOnOutsideTap.swift in Sources */,
 				7AB22B3B26EE85EF0037355D /* Optional.LetBlockTransformation.swift in Sources */,
