@@ -236,17 +236,11 @@ Relation between an `Interactor`  and `Gateway` is the following:
 
 ```swift
 protocol UpdateUserDataGatewayable {
-    func fetch(
-        parameters: UpdateUserDataParameters,
-        result: @escaping (UpdateUserDataResult) -> Void
-    )
+    func fetch(parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity
 }
 
 struct UpdateUserDataNetworkGateway {
-    func fetch(
-        parameters: UpdateUserDataParameters,
-        result: @escaping (UpdateUserDataResult) -> Void
-    ) {
+    func fetch(parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity {
         // Implementation
     }
 }
