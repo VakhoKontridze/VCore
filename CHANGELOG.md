@@ -1,6 +1,6 @@
 ## Change Log
 
-#### [1.2.0(6)]
+#### [1.2.0(6)](https://github.com/VakhoKontridze/VCore/releases/download/1.2.0/VCore.xcframework.zip) — *2021 11 08*
 
 - Framework now contains additional files under `Extra`
 - `LocalizationService` has been added to `Extra`
