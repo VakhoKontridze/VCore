@@ -33,6 +33,7 @@
 		17B23E7827354AEB00914FEB /* UIStackView.ArrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */; };
 		17B23E7A27354B7900914FEB /* UIStackView.Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */; };
 		17B23E7C27354D3A00914FEB /* UIFont.Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */; };
+		17FDE9862738F8B50085DE40 /* UIApplication.AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */; };
 		7A00266C26EB70370056DBC5 /* JSONEncoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */; };
 		7A00266F26EB70790056DBC5 /* JSONDecoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266E26EB70790056DBC5 /* JSONDecoderError.swift */; };
 		7A0026E226EB766E0056DBC5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0026E126EB766E0056DBC5 /* AppDelegate.swift */; };
@@ -133,6 +134,7 @@
 		17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.ArrangedSubviews.swift; sourceTree = "<group>"; };
 		17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.Configuration.swift; sourceTree = "<group>"; };
 		17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.Styling.swift; sourceTree = "<group>"; };
+		17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.AppInfo.swift; sourceTree = "<group>"; };
 		7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderError.swift; sourceTree = "<group>"; };
 		7A00266E26EB70790056DBC5 /* JSONDecoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderError.swift; sourceTree = "<group>"; };
 		7A0026DF26EB766E0056DBC5 /* VCoreDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = VCoreDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -527,6 +529,7 @@
 				7A91D6F326EFA4E200B0B096 /* NSLayoutConstraint.WithPriority.swift */,
 				17B23E71273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift */,
 				7A91D6F526EFA5B200B0B096 /* NSLayoutConstraint.Storing.swift */,
+				17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -722,6 +725,7 @@
 				173C2E492711680D006BEAF3 /* Deprecations.swift in Sources */,
 				7A00266C26EB70370056DBC5 /* JSONEncoderError.swift in Sources */,
 				7A0F75D026D517A300020996 /* NetworkRequestService.swift in Sources */,
+				17FDE9862738F8B50085DE40 /* UIApplication.AppInfo.swift in Sources */,
 				173C2C93270DDCD6006BEAF3 /* View.ConditionalModifiers.swift in Sources */,
 				173C2E5627118B0B006BEAF3 /* NetworkRequestMethodServices.swift in Sources */,
 				7A86F87F26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift in Sources */,
