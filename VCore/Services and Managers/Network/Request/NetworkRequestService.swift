@@ -46,7 +46,7 @@ final class NetworkRequestService {
         let request: URLRequest = try request(encodedParameters)
         
         do {
-            let (data, response): (Data, URLResponse) = try await urlSession.data(for: request, delegate: nil)
+            let (data, response): (Data, URLResponse) = try await data(for: request)
             
             let processedResponse: URLResponse = try processor.response(data, response)
             guard processedResponse.isValid else { throw NetworkError.invalidResponse }
@@ -60,6 +60,20 @@ final class NetworkRequestService {
             try processor.error(error)
             throw NetworkError.returnedWithError
         }
+    }
+    
+    // func data(for request: URLRequest, delegate: URLSessionTaskDelegate? = nil) async throws -> (Data, URLResponse)
+    private func data(for request: URLRequest) async throws -> (Data, URLResponse) {
+        try await withCheckedThrowingContinuation({ continuation in
+            let task: URLSessionDataTask = urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
+                if let error = error { continuation.resume(throwing: error) }
+                guard let response = response else { continuation.resume(throwing: NetworkError.invalidResponse); return }
+                guard let data = data else { continuation.resume(throwing: NetworkError.incompleteEntity); return }
+                continuation.resume(returning: (data, response))
+            })
+            
+            task.resume()
+        })
     }
 }
 
