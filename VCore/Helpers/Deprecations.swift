@@ -17,6 +17,38 @@ extension NetworkService {
     public static var shared: NetworkService { .default }
 }
 
+extension NetworkURLParametersRequestMethodService {
+    @available(*, deprecated, renamed: "json")
+    public func jsonArray<Parameters: Encodable>(
+        endpoint: String,
+        headers: [String: Any],
+        parameters: Parameters,
+        completion: @escaping (Result<[String: Any], Error>) -> Void
+    ) {
+        json(
+            endpoint: endpoint,
+            headers: headers,
+            parameters: parameters,
+            completion: completion
+        )
+    }
+    
+    @available(*, deprecated, renamed: "jsonArray")
+    public func json<Parameters: Encodable>(
+        endpoint: String,
+        headers: [String: Any],
+        parameters: Parameters,
+        completion: @escaping (Result<[[String: Any]], Error>) -> Void
+    ) {
+        jsonArray(
+            endpoint: endpoint,
+            headers: headers,
+            parameters: parameters,
+            completion: completion
+        )
+    }
+}
+
 // MARK: - VIPER Helpers
 @available(*, deprecated, renamed: "StandardNavigable")
 public typealias StandardNavigatable = StandardNavigable

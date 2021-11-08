@@ -232,6 +232,8 @@
 			isa = PBXGroup;
 			children = (
 				7A0F75CF26D517A300020996 /* NetworkRequestService.swift */,
+				173C2E5027118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift */,
+				173C2E5227118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -240,8 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				173C2E4B271169E8006BEAF3 /* NetworkRequestMethod.swift */,
-				173C2E5027118889006BEAF3 /* NetworkURLParametersRequestMethodService.swift */,
-				173C2E5227118970006BEAF3 /* NetworkBodyParametersRequestMethodService.swift */,
 				173C2E5527118B0B006BEAF3 /* NetworkRequestMethodServices.swift */,
 			);
 			path = "Request Methods";

@@ -26,24 +26,6 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     }
     
     // MARK: Data
-    /// Makes `network request with `JSON` parameters and returns `Data` or `Error`.
-    public func data(
-        endpoint: String,
-        headers: [String: Any],
-        parameters: [String: Any],
-        completion: @escaping (Result<Data, Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
-            httpMethod: httpMethod,
-            endpoint: endpoint,
-            headers: headers,
-            parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { .success($0) }
-        )
-    }
-    
     /// Makes `network request with `Encodable` parameters and returns `Data` or `Error`.
     public func data<Parameters: Encodable>(
         endpoint: String,
@@ -63,26 +45,8 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     }
 
     // MARK: JSON
-    /// Makes `network request with `JSON` parameters and returns `JSON` or `Error`.
-    public func json(
-        endpoint: String,
-        headers: [String: Any],
-        parameters: [String: Any],
-        completion: @escaping (Result<[String: Any], Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
-            httpMethod: httpMethod,
-            endpoint: endpoint,
-            headers: headers,
-            parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { JSONDecoderService.json(from: $0) }
-        )
-    }
-    
     /// Makes `network request with `Encodable` parameters and returns `JSON` or `Error`.
-    public func jsonArray<Parameters: Encodable>(
+    public func json<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
@@ -100,26 +64,8 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     }
     
     // MARK: JSON Array
-    /// Makes `network request with `JSON` parameters and returns `JSON` or `Error`.
-    public func jsonArray(
-        endpoint: String,
-        headers: [String: Any],
-        parameters: [String: Any],
-        completion: @escaping (Result<[[String: Any]], Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
-            httpMethod: httpMethod,
-            endpoint: endpoint,
-            headers: headers,
-            parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { JSONDecoderService.jsonArray(from: $0) }
-        )
-    }
-    
-    /// Makes `network request with `Encodable` parameters and returns `JSON` or `Error`.
-    public func json<Parameters: Encodable>(
+    /// Makes `network request with `Encodable` parameters and returns `JSON Array` or `Error`.
+    public func jsonArray<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
         parameters: Parameters,
@@ -137,25 +83,6 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     }
 
     // MARK: Entity
-    /// Makes `network request with `JSON` parameters and returns `Decodable` or `Error`.
-    public func entity<Entity: Decodable>(
-        endpoint: String,
-        headers: [String: Any],
-        parameters: [String: Any],
-        entityType: Entity.Type,
-        completion: @escaping (Result<Entity, Error>) -> Void
-    ) {
-        networkRequestService.requestURLParameterMethodTask(
-            httpMethod: httpMethod,
-            endpoint: endpoint,
-            headers: headers,
-            parameters: parameters,
-            completion: completion,
-            encode: { .success($0) },
-            decode: { JSONDecoderService.entity(from: $0) }
-        )
-    }
-    
     /// Makes network request with `Encodable` parameters and returns `Decodable` or `Error`.
     public func entity<Parameters: Encodable, Entity: Decodable>(
         endpoint: String,
