@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - Image Scale
+// MARK: - Image Scaling
 extension UIImage {
     /// Scales `UIImage` to specified height.
     public func scaled(
@@ -20,11 +20,11 @@ extension UIImage {
         )
         
         UIGraphicsBeginImageContextWithOptions(newSize, opaque, scale)
-        draw(in: .init(origin: .zero, size: newSize))
-        let scaledImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        defer { UIGraphicsEndImageContext() }
         
-        return scaledImage
+        draw(in: .init(origin: .zero, size: newSize))
+        
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
     
     /// Scales `UIImage` to specified width.
@@ -38,10 +38,10 @@ extension UIImage {
         )
         
         UIGraphicsBeginImageContextWithOptions(newSize, opaque, scale)
-        draw(in: .init(origin: .zero, size: newSize))
-        let scaledImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext()
+        defer { UIGraphicsEndImageContext() }
         
-        return scaledImage
+        draw(in: .init(origin: .zero, size: newSize))
+        
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
