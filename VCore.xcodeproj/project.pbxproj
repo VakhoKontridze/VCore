@@ -698,7 +698,6 @@
 				7AA4071E26F9BE2700B60742 /* View.StandardNavigationTitle.swift in Sources */,
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
 				7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */,
-				7AF68A7126EE8D4A00D4B5BE /* RemoveExtraSeparators.swift in Sources */,
 				173C2E5C2711A947006BEAF3 /* NetworkServiceProcessor.swift in Sources */,
 				17FDE990273902EC0085DE40 /* UIColor.RGBAComponents.swift in Sources */,
 				7A0F75C626D5174500020996 /* NetworkTypeCasts.swift in Sources */,
@@ -789,7 +788,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XRWP42VX24;
 				INFOPLIST_FILE = VCoreDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -811,7 +810,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = XRWP42VX24;
 				INFOPLIST_FILE = VCoreDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -959,7 +958,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = VCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -989,7 +988,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = VCore/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

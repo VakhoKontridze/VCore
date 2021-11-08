@@ -53,7 +53,7 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
     }
     
     // MARK: Data
-    /// Makes network request with `Data` parameters and returns `Data` or `Error`.
+    /// Makes network request with `Data` parameters and returns `Data`.
     public func data(
         endpoint: String,
         headers: [String: Any],
@@ -69,7 +69,7 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
         )
     }
     
-    /// Makes network request with `Encodable` parameters and returns `Data` or `Error`.
+    /// Makes network request with `Encodable` parameters and returns `Data`.
     public func data<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
@@ -86,7 +86,7 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
     }
 
     // MARK: JSON
-    /// Makes network request with `Data` parameters and returns `JSON` or `Error`.
+    /// Makes network request with `Data` parameters and returns `JSON`.
     public func json(
         endpoint: String,
         headers: [String: Any],
@@ -102,7 +102,7 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
         )
     }
 
-    /// Makes network request with `Encodable` parameters and returns `Data` or `Error`.
+    /// Makes network request with `Encodable` parameters and returns `Data`.
     public func json<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
@@ -119,7 +119,7 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
     }
     
     // MARK: JSON Array
-    /// Makes network request with `Data` parameters and returns `JSON` or `Error`.
+    /// Makes network request with `Data` parameters and returns `JSON`.
     public func jsonArray(
         endpoint: String,
         headers: [String: Any],
@@ -135,7 +135,7 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
         )
     }
 
-    /// Makes network request with `Encodable` parameters and returns `Data` or `Error`.
+    /// Makes network request with `Encodable` parameters and returns `Data`.
     public func jsonArray<Parameters: Encodable>(
         endpoint: String,
         headers: [String: Any],
@@ -152,7 +152,7 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
     }
 
     // MARK: Entity
-    /// Makes network request with `Data` parameters and returns `Decodable` or `Error`.
+    /// Makes network request with `Data` parameters and returns `Decodable`.
     public func entity<Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
@@ -168,7 +168,7 @@ public class NetworkBodyParametersRequestMethodService: NetworkRequestMethod {
         )
     }
 
-    /// Makes network request with `Encodable` parameters and returns `Decodable` or `Error`.
+    /// Makes network request with `Encodable` parameters and returns `Decodable`.
     public func entity<Parameters: Encodable, Entity: Decodable>(
         endpoint: String,
         headers: [String: Any],
