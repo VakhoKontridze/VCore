@@ -29,7 +29,7 @@ public enum NetworkError: VCoreError {
     case invalidResponse
     
     /// An indication that result cannot be decoded.
-    case incompleteEntity
+    case incompleteData
     
     // MARK: Properties
     // Overriden
@@ -45,7 +45,7 @@ public enum NetworkError: VCoreError {
         case .incompleteParameters: return 3
         case .returnedWithError: return 4
         case .invalidResponse: return 5
-        case .incompleteEntity: return 6
+        case .incompleteData: return 6
         }
     }
     
@@ -56,7 +56,7 @@ public enum NetworkError: VCoreError {
         case .incompleteParameters: return "Data cannot be encoded or is incomplete"
         case .returnedWithError: return "Server has encountered an error"
         case .invalidResponse: return "Server has returned an invalid response"
-        case .incompleteEntity: return "Data cannot be decoded or is incomplete"
+        case .incompleteData: return "Data cannot be decoded or is incomplete"
         }
     }
 }

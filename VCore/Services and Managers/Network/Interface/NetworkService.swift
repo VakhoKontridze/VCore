@@ -13,68 +13,68 @@ import Foundation
 /// Object is not inheritable, but can be extended the following way:
 ///
 ///     extension NetworkService {
-///         static let someApp: NetworkService = .init(
-///             postProcessor: SomeAppNetworkServicePostProcessor()
+///         static let someInstance: NetworkService = .init(
+///             processor: SomeNetworkServiceProcessor()
 ///         )
 ///     }
 ///
-///     struct SomeAppNetworkServicePostProcessor: NetworkServiceProcessor {
-///         func postProcess(
-///             response: response: URLResponse?,
-///             data: Data
-///         ) -> Result<Data, Error> {
-///             switch JSONDecoderService.json(from: data) {
-///             case .success(let json):
-///                 guard json["success"].toBool == true else {
-///                     return .failure(NetworkError.returnedWithError(.init(
-///                         domain: "com.SomeApp",
-///                         code: json["code"].toInt ?? 1,
-///                         description: json["message"].toString ?? "Returned with error"
-///                     )))
-///                 }
+///     struct SomeNetworkError: Error {
+///         let domain: String = "com.somecompany.someapp"
+///         var code: Int
+///         var description: String
+///     }
 ///
-///                 guard let dataJSON: [String: Any] = json["data"].toJSON else {
-///                     return .failure(NetworkError.incompleteEntity(.init(
-///                         domain: "com.SomeApp",
-///                         code: 2,
-///                         description: "Cannot retrieve data"
-///                     )))
-///                 }
+///     struct SomeNetworkServiceProcessor: NetworkServiceProcessor {
+///         func error(_ error: Error) throws {}
 ///
-///                 switch JSONEncoderService.data(from: dataJSON) {
-///                 case .success(let dataData):
-///                     return .success(dataData)
+///         func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
+///             if response.isValid { return response }
 ///
-///                 case .failure(let error):
-///                     return .failure(NetworkError.incompleteEntity(.init(
-///                         domain: (error as NSError).domain,
-///                         code: (error as NSError).code,
-///                         description: "Cannot decode data"
-///                     )))
-///                 }
+///             guard let json: [String: Any] = try? JSONDecoderService.json(from: data) else { return response }
+///             if json["success"].toBool == true { return response }
 ///
-///             case .failure(let error):
-///                 return .failure(NetworkError.incompleteEntity(.init(nsError: error as NSError)))
+///             guard
+///                 let code: Int = json["code"].toInt,
+///                 let description: String = json["message"].toString
+///             else {
+///                 throw SomeNetworkError(code: 99, description: "Unknown Error")
 ///             }
+///
+///             throw SomeNetworkError(code: code, description: description)
+///         }
+///
+///         func data(_ data: Data, _ response: URLResponse) throws -> Data {
+///             let json: [String: Any] = try JSONDecoderService.json(from: data)
+///
+///             guard let dataJSON: [String: Any] = json["json"].toJSON else { throw SomeNetworkError(code: 1, description: "Incomplete Data") }
+///
+///             let dataData: Data = try JSONEncoderService.data(from: dataJSON)
+///
+///             return dataData
 ///         }
 ///     }
 ///
 /// Usage example:
 ///
-///     NetworkService.someApp.POST.json(
-///         endpoint: "https://httpbin.org/post",
-///         headers: [
-///             "Accept": "application/json",
-///             "Content-Type": "application/json"
-///         ],
-///         parameters: [
-///             "someKey": "someValue"
-///         ],
-///         completion: { result in
-///             guard case .success(let json) = result else { return }
-///             print(json["json"].toJSON?["someKey"].toString ?? "-")
+///     Task(operation: {
+///         do {
+///             let json: [String: Any] = try await NetworkService.someInstance.POST.json(
+///                 endpoint: "https://httpbin.org/post",
+///                 headers: [
+///                     "Accept": "application/json",
+///                     "Content-Type": "application/json"
+///                 ],
+///                 parameters: [
+///                     "someKey": "someValue"
+///                 ]
+///             )
+///
+///             print(json["someKey"].toString ?? "-")
+///
+///         } catch let error {
+///             print(error.localizedDescription)
 ///         }
-///     )
+///     })
 ///
 public final class NetworkService {
     // MARK: Properties - Objects

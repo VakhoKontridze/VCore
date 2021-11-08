@@ -46,19 +46,19 @@ final class NetworkRequestService {
         let request: URLRequest = try request(encodedParameters)
         
         do {
-            let (data, response): (Data, URLResponse) = try await data(for: request)
+            guard let (data, response): (Data, URLResponse) = try? await data(for: request) else { throw NetworkError.returnedWithError }
             
             let processedResponse: URLResponse = try processor.response(data, response)
             guard processedResponse.isValid else { throw NetworkError.invalidResponse }
             
             let processedData: Data = try processor.data(data, response)
-            guard let entity: Entity = try? decode(processedData) else { throw NetworkError.incompleteEntity }
+            guard let entity: Entity = try? decode(processedData) else { throw NetworkError.incompleteData }
             
             return entity
         
         } catch let error {
             try processor.error(error)
-            throw NetworkError.returnedWithError
+            throw error
         }
     }
     
@@ -68,7 +68,7 @@ final class NetworkRequestService {
             let task: URLSessionDataTask = urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
                 if let error = error { continuation.resume(throwing: error) }
                 guard let response = response else { continuation.resume(throwing: NetworkError.invalidResponse); return }
-                guard let data = data else { continuation.resume(throwing: NetworkError.incompleteEntity); return }
+                guard let data = data else { continuation.resume(throwing: NetworkError.incompleteData); return }
                 continuation.resume(returning: (data, response))
             })
             

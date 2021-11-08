@@ -7,6 +7,7 @@
 - `NetworkService` now supports async/await
 - `VCoreErrorInfo` has been removed
 - `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`
+- `NetworkError.incompleteEntity` has been renamed to `NetworkError.incompleteData`
 
 #### [1.2.0(6)](https://github.com/VakhoKontridze/VCore/releases/download/1.2.0/VCore.xcframework.zip) — *2021 11 08*
 
