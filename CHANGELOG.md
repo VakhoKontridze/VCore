@@ -1,6 +1,6 @@
 ## Change Log
 
-#### [1.2.1(7)]
+#### [1.3.0(7)](https://github.com/VakhoKontridze/VCore/releases/download/1.3.0/VCore.xcframework.zip) — *2021 11 09*
 
 - `withTabBarItem` method has been added to `UIViewController`
 
