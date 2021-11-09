@@ -53,12 +53,13 @@ extension NetworkURLParametersRequestMethodService {
 @available(*, deprecated, renamed: "StandardNavigable")
 public typealias StandardNavigatable = StandardNavigable
 
-// MARK: - Extensions
+// MARK: - UILabel Extensions
 extension UILabel {
     @available(*, deprecated, renamed: "singleLineHeight")
     public var singleLineNaturalHeightConstant: CGFloat { singleLineHeight }
 }
 
+// MARK: - UITableView Extensions
 extension UITableView {
     @available(*, deprecated, message: "Has no effect")
     /// Removes extra separators by inserting a `tableFooterView` of height `0`.
@@ -81,6 +82,48 @@ extension UITableView {
     }
 }
 
+// MARK: - UIImage Extensions
+extension UIImage {
+    @available(*, deprecated, message: "Use method without opaque parameter")
+    /// Scales `UIImage` to specified height.
+    public func scaled(
+        toHeight newHeight: CGFloat,
+        opaque: Bool = false
+    ) -> UIImage? {
+        let newSize: CGSize = .init(
+            width: size.width * (newHeight / size.height),
+            height: newHeight
+        )
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, opaque, scale)
+        defer { UIGraphicsEndImageContext() }
+        
+        draw(in: .init(origin: .zero, size: newSize))
+        
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+    
+    @available(*, deprecated, message: "Use method without opaque parameter")
+    /// Scales `UIImage` to specified width.
+    public func scaled(
+        toWidth newWidth: CGFloat,
+        opaque: Bool = false
+    ) -> UIImage? {
+        let newSize: CGSize = .init(
+            width: newWidth,
+            height: size.height * (newWidth / size.width)
+        )
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, opaque, scale)
+        defer { UIGraphicsEndImageContext() }
+        
+        draw(in: .init(origin: .zero, size: newSize))
+        
+        return UIGraphicsGetImageFromCurrentImageContext()
+    }
+}
+
+// MARK: - UIScreen Exensions
 extension UIScreen {
     @available(*, deprecated, message: "Refer to file `UIApplication.AppRootWindow` under `Extra`")
     /// Root view of the app.

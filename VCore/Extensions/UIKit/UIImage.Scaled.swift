@@ -11,37 +11,29 @@ import UIKit
 extension UIImage {
     /// Scales `UIImage` to specified height.
     public func scaled(
-        toHeight newHeight: CGFloat,
-        opaque: Bool = false
+        toHeight newHeight: CGFloat
     ) -> UIImage? {
-        let newSize: CGSize = .init(
+        scaled(toSize: .init(
             width: size.width * (newHeight / size.height),
             height: newHeight
-        )
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, opaque, scale)
-        defer { UIGraphicsEndImageContext() }
-        
-        draw(in: .init(origin: .zero, size: newSize))
-        
-        return UIGraphicsGetImageFromCurrentImageContext()
+        ))
     }
     
     /// Scales `UIImage` to specified width.
     public func scaled(
-        toWidth newWidth: CGFloat,
-        opaque: Bool = false
+        toWidth newWidth: CGFloat
     ) -> UIImage? {
-        let newSize: CGSize = .init(
+        scaled(toSize: .init(
             width: newWidth,
             height: size.height * (newWidth / size.width)
-        )
-        
-        UIGraphicsBeginImageContextWithOptions(newSize, opaque, scale)
-        defer { UIGraphicsEndImageContext() }
-        
-        draw(in: .init(origin: .zero, size: newSize))
-        
-        return UIGraphicsGetImageFromCurrentImageContext()
+        ))
+    }
+    
+    private func scaled(
+        toSize newSize: CGSize
+    ) -> UIImage {
+        UIGraphicsImageRenderer(size: newSize).image { _ in
+            draw(in: .init(origin: .zero, size: newSize))
+        }
     }
 }
