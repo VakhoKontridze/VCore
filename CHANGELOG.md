@@ -1,13 +1,17 @@
 ## Change Log
 
-#### [2.0.0(7)]
+#### [2.0.0(8)]
 
-- Framework is no longer compatible with version `1.2.0`
+- Framework is no longer compatible with version `1.3.0`
 - Framework now supports `iOS 13`
 - `NetworkService` now supports async/await
 - `VCoreErrorInfo` has been removed
 - `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`
 - `NetworkError.incompleteEntity` has been renamed to `NetworkError.incompleteData`
+
+#### [1.3.0(7)](https://github.com/VakhoKontridze/VCore/releases/download/1.3.0/VCore.xcframework.zip) — *2021 11 09*
+
+- `withTabBarItem` method has been added to `UIViewController`
 
 #### [1.2.0(6)](https://github.com/VakhoKontridze/VCore/releases/download/1.2.0/VCore.xcframework.zip) — *2021 11 08*
 
