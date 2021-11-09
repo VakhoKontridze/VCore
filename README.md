@@ -6,6 +6,7 @@
 - [Library Structure](#library-structure)
 - [Architecture](#architecture)
 - [Gateway](#gateway)
+- [Demo](#demo)
 - [Installation](#installation)
 - [Versioning](#versioning)
 - [Contact](#contact)
@@ -257,6 +258,10 @@ struct HomeInteractor: HomeInteractive {
     }
 }
 ```
+
+## Demo
+
+Project contains demo app, that can be used to test functionality of the library.
 
 ## Installation
 
