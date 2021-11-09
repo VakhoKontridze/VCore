@@ -1,6 +1,6 @@
 ## Change Log
 
-#### [2.0.0(8)]
+#### [2.0.0(9)]
 
 - Framework is no longer compatible with version `1.3.0`
 - Framework now supports `iOS 13`
@@ -8,6 +8,11 @@
 - `VCoreErrorInfo` has been removed
 - `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`
 - `NetworkError.incompleteEntity` has been renamed to `NetworkError.incompleteData`
+
+#### [1.4.0(8)](https://github.com/VakhoKontridze/VCore/releases/download/1.4.0/VCore.xcframework.zip) — *2021 11 09*
+
+- `CALayerCornerCurve` can now be passed to `roundCorners` method in `UIView`
+- `displayCornerRadius` property has been added to `UIScreen`
 
 #### [1.3.0(7)](https://github.com/VakhoKontridze/VCore/releases/download/1.3.0/VCore.xcframework.zip) — *2021 11 09*
 

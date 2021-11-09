@@ -12,10 +12,15 @@ extension UIView {
     /// Rounds corners.
     ///
     /// - Sets `clipsToBounds` to `true`.
-    public func roundCorners(_ corners: CACornerMask, by radius: CGFloat) {
+    public func roundCorners(
+        _ corners: CACornerMask,
+        by radius: CGFloat,
+        curve: CALayerCornerCurve = .circular
+    ) {
         clipsToBounds = true
         layer.maskedCorners = corners
         layer.cornerRadius = radius
+        layer.cornerCurve = curve
     }
 }
 
