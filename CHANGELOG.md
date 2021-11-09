@@ -3,6 +3,7 @@
 #### [1.4.0(8)]
 
 - `CALayerCornerCurve` can now be passed to `roundCorners` method in `UIView`
+- `displayCornerRadius` property has been added to `UIScreen`
 
 #### [1.3.0(7)](https://github.com/VakhoKontridze/VCore/releases/download/1.3.0/VCore.xcframework.zip) — *2021 11 09*
 

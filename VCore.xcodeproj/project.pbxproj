@@ -34,6 +34,7 @@
 		17B23E7A27354B7900914FEB /* UIStackView.Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */; };
 		17B23E7C27354D3A00914FEB /* UIFont.Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */; };
 		17FD1677273A7CFB00EEAFD0 /* UIViewController.WithTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD1676273A7CFB00EEAFD0 /* UIViewController.WithTabBarItem.swift */; };
+		17FD167B273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD167A273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift */; };
 		17FDE9862738F8B50085DE40 /* UIApplication.AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */; };
 		17FDE9882738F9D90085DE40 /* UIImage.Compressed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */; };
 		17FDE98A2738FC590085DE40 /* UIImage.Cropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */; };
@@ -142,6 +143,7 @@
 		17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.Configuration.swift; sourceTree = "<group>"; };
 		17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.Styling.swift; sourceTree = "<group>"; };
 		17FD1676273A7CFB00EEAFD0 /* UIViewController.WithTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.WithTabBarItem.swift; sourceTree = "<group>"; };
+		17FD167A273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.DisplayCornerRadius.swift; sourceTree = "<group>"; };
 		17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.AppInfo.swift; sourceTree = "<group>"; };
 		17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Compressed.swift; sourceTree = "<group>"; };
 		17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Cropped.swift; sourceTree = "<group>"; };
@@ -550,6 +552,7 @@
 				7A91D6F326EFA4E200B0B096 /* NSLayoutConstraint.WithPriority.swift */,
 				17B23E71273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift */,
 				7A91D6F526EFA5B200B0B096 /* NSLayoutConstraint.Storing.swift */,
+				17FD167A273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift */,
 				17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */,
 			);
 			path = UIKit;
@@ -707,6 +710,7 @@
 				17FDE98C2738FE080085DE40 /* UIImage.Scaled.swift in Sources */,
 				7AB22B2D26EE7A6F0037355D /* StringProtocol.Subscript.swift in Sources */,
 				7AB22B3D26EE86E10037355D /* UIViewController.DismissKeyboardOnOutsideTap.swift in Sources */,
+				17FD167B273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift in Sources */,
 				7AB22B3B26EE85EF0037355D /* Optional.LetBlockTransformation.swift in Sources */,
 				7A91D6F426EFA4E200B0B096 /* NSLayoutConstraint.WithPriority.swift in Sources */,
 				173C2C95270DDE16006BEAF3 /* View.CustomFrames.swift in Sources */,
