@@ -46,7 +46,7 @@ final class NetworkRequestService {
         let request: URLRequest = try request(encodedParameters)
         
         do {
-            guard let (data, response): (Data, URLResponse) = try? await data(for: request) else { throw NetworkError.returnedWithError }
+            let (data, response): (Data, URLResponse) = try await data(for: request)
             
             let processedResponse: URLResponse = try processor.response(data, response)
             guard processedResponse.isValid else { throw NetworkError.invalidResponse }
@@ -66,9 +66,27 @@ final class NetworkRequestService {
     private func data(for request: URLRequest) async throws -> (Data, URLResponse) {
         try await withCheckedThrowingContinuation({ continuation in
             let task: URLSessionDataTask = urlSession.dataTask(with: request, completionHandler: { (data, response, error) in
-                if let error = error { continuation.resume(throwing: error) }
-                guard let response = response else { continuation.resume(throwing: NetworkError.invalidResponse); return }
-                guard let data = data else { continuation.resume(throwing: NetworkError.incompleteData); return }
+                if let error = error {
+                    if (error as NSError).domain == "NSURLErrorDomain" && (error as NSError).code == -1001 {
+                        continuation.resume(throwing: NetworkError.requestTimeOut)
+                        return
+                        
+                    } else {
+                        continuation.resume(throwing: NetworkError.returnedWithError)
+                        return
+                    }
+                }
+                
+                guard let response = response else {
+                    continuation.resume(throwing: NetworkError.invalidResponse)
+                    return
+                }
+                
+                guard let data = data else {
+                    continuation.resume(throwing: NetworkError.incompleteData)
+                    return
+                }
+                
                 continuation.resume(returning: (data, response))
             })
             

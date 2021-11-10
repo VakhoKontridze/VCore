@@ -5,6 +5,7 @@
 - Framework is no longer compatible with version `1.3.0`
 - Framework now supports `iOS 13`
 - `NetworkService` now supports async/await
+- `requestTimeOut` has been added to `NetworkError`
 - `VCoreErrorInfo` has been removed
 - `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`
 - `NetworkError.incompleteEntity` has been renamed to `NetworkError.incompleteData`
