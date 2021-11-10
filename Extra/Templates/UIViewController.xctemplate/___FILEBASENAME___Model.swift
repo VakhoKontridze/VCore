@@ -4,6 +4,9 @@ import UIKit
 
 // MARK: - ___VARIABLE_productName___ Model
 struct ___VARIABLE_productName___Model {
+    // MARK: Initializers
+    private init() {}
+    
     // MARK: Layout
     struct Layout {
         // MARK: Properties
