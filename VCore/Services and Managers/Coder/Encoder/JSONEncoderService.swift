@@ -27,10 +27,10 @@ public struct JSONEncoderService {
     }
     
     /// Encodes `Encodable` to `JSON`.
-    public static func json<EncodingData: Encodable>(from data: EncodingData) throws -> [String: Any] {
+    public static func json<EncodingData: Encodable>(from data: EncodingData) throws -> [String: Any?] {
         guard
             let jsonData: Data = try? JSONEncoder().encode(data),
-            let json: [String: Any] = try? JSONDecoderService.json(from: jsonData)
+            let json: [String: Any?] = try? JSONDecoderService.json(from: jsonData)
         else {
             throw JSONEncoderError.failedToEncode
         }

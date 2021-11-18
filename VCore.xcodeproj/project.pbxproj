@@ -18,6 +18,7 @@
 		173C2E5627118B0B006BEAF3 /* NetworkRequestMethodServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5527118B0B006BEAF3 /* NetworkRequestMethodServices.swift */; };
 		173C2E5C2711A947006BEAF3 /* NetworkServiceProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5B2711A947006BEAF3 /* NetworkServiceProcessor.swift */; };
 		1742266C2746C8F300B4B4C3 /* String.NonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742266B2746C8F300B4B4C3 /* String.NonEmpty.swift */; };
+		1742266E2746CD8C00B4B4C3 /* String.SafelyDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742266D2746CD8C00B4B4C3 /* String.SafelyDescribing.swift */; };
 		178718112730640000C2B74C /* EdgeInsets_LTTB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178718102730640000C2B74C /* EdgeInsets_LTTB.swift */; };
 		17871824273068CE00C2B74C /* EdgeInsets_LT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871823273068CE00C2B74C /* EdgeInsets_LT.swift */; };
 		17871826273069A700C2B74C /* EdgeInsets_TB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871825273069A700C2B74C /* EdgeInsets_TB.swift */; };
@@ -128,6 +129,7 @@
 		173C2E5527118B0B006BEAF3 /* NetworkRequestMethodServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestMethodServices.swift; sourceTree = "<group>"; };
 		173C2E5B2711A947006BEAF3 /* NetworkServiceProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProcessor.swift; sourceTree = "<group>"; };
 		1742266B2746C8F300B4B4C3 /* String.NonEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.NonEmpty.swift; sourceTree = "<group>"; };
+		1742266D2746CD8C00B4B4C3 /* String.SafelyDescribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.SafelyDescribing.swift; sourceTree = "<group>"; };
 		178718102730640000C2B74C /* EdgeInsets_LTTB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LTTB.swift; sourceTree = "<group>"; };
 		17871823273068CE00C2B74C /* EdgeInsets_LT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LT.swift; sourceTree = "<group>"; };
 		17871825273069A700C2B74C /* EdgeInsets_TB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_TB.swift; sourceTree = "<group>"; };
@@ -515,6 +517,7 @@
 				7AF68A6C26EE899700D4B5BE /* String.IsUserDefaultsKey.swift */,
 				1742266B2746C8F300B4B4C3 /* String.NonEmpty.swift */,
 				7AB22B2C26EE7A6F0037355D /* StringProtocol.Subscript.swift */,
+				1742266D2746CD8C00B4B4C3 /* String.SafelyDescribing.swift */,
 				7AF68A6826EE878300D4B5BE /* Date.Component.swift */,
 				7AB22B3626EE84690037355D /* Array.SafeSubscript.swift */,
 				7AF68A6E26EE8ABC00D4B5BE /* Array.CompactMapNonEmpty.swift */,
@@ -698,6 +701,7 @@
 				7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */,
 				7AA4071E26F9BE2700B60742 /* View.StandardNavigationTitle.swift in Sources */,
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
+				1742266E2746CD8C00B4B4C3 /* String.SafelyDescribing.swift in Sources */,
 				7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */,
 				173C2E5C2711A947006BEAF3 /* NetworkServiceProcessor.swift in Sources */,
 				17FDE990273902EC0085DE40 /* UIColor.RGBAComponents.swift in Sources */,

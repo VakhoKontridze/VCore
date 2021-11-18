@@ -28,9 +28,9 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     private func request<Parameters, Entity>(
         httpMethod: String,
         endpoint: String,
-        headers: [String: Any],
+        headers: [String: Any?],
         parameters: Parameters,
-        encode: @escaping (Parameters) throws -> [String: Any],
+        encode: @escaping (Parameters) throws -> [String: Any?],
         decode: @escaping (Data) throws -> Entity
     ) async throws -> Entity {
         try await networkRequestService.request(
@@ -54,8 +54,8 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     /// Makes `network request with `JSON` parameters and returns `Data`.
     public func data(
         endpoint: String,
-        headers: [String: Any],
-        parameters: [String: Any]
+        headers: [String: Any?],
+        parameters: [String: Any?]
     ) async throws -> Data {
         try await request(
             httpMethod: httpMethod,
@@ -70,7 +70,7 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     /// Makes `network request with `Encodable` parameters and returns `Data`.
     public func data<Parameters: Encodable>(
         endpoint: String,
-        headers: [String: Any],
+        headers: [String: Any?],
         parameters: Parameters
     ) async throws -> Data {
         try await request(
@@ -87,9 +87,9 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     /// Makes `network request with `JSON` parameters and returns `JSON`.
     public func json(
         endpoint: String,
-        headers: [String: Any],
-        parameters: [String: Any]
-    ) async throws -> [String: Any] {
+        headers: [String: Any?],
+        parameters: [String: Any?]
+    ) async throws -> [String: Any?] {
         try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
@@ -103,9 +103,9 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     /// Makes `network request with `Encodable` parameters and returns `JSON`.
     public func json<Parameters: Encodable>(
         endpoint: String,
-        headers: [String: Any],
+        headers: [String: Any?],
         parameters: Parameters
-    ) async throws -> [String: Any] {
+    ) async throws -> [String: Any?] {
         try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
@@ -120,9 +120,9 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     /// Makes `network request with `JSON` parameters and returns `JSON Array`.
     public func jsonArray(
         endpoint: String,
-        headers: [String: Any],
-        parameters: [String: Any]
-    ) async throws -> [[String: Any]] {
+        headers: [String: Any?],
+        parameters: [String: Any?]
+    ) async throws -> [[String: Any?]] {
         try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
@@ -136,9 +136,9 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     /// Makes `network request with `Encodable` parameters and returns `JSON`.
     public func jsonArray<Parameters: Encodable>(
         endpoint: String,
-        headers: [String: Any],
+        headers: [String: Any?],
         parameters: Parameters
-    ) async throws -> [[String: Any]] {
+    ) async throws -> [[String: Any?]] {
         try await request(
             httpMethod: httpMethod,
             endpoint: endpoint,
@@ -153,8 +153,8 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     /// Makes network request with `JSON` parameters and returns `Decodable`.
     public func entity<Entity: Decodable>(
         endpoint: String,
-        headers: [String: Any],
-        parameters: [String: Any]
+        headers: [String: Any?],
+        parameters: [String: Any?]
     ) async throws -> Entity {
         try await request(
             httpMethod: httpMethod,
@@ -169,7 +169,7 @@ public class NetworkURLParametersRequestMethodService: NetworkRequestMethod {
     /// Makes network request with `Encodable` parameters and returns `Decodable`.
     public func entity<Parameters: Encodable, Entity: Decodable>(
         endpoint: String,
-        headers: [String: Any],
+        headers: [String: Any?],
         parameters: Parameters
     ) async throws -> Entity {
         try await request(

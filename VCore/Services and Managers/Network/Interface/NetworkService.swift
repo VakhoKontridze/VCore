@@ -30,12 +30,12 @@ import Foundation
 ///         func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
 ///             if response.isValid { return response }
 ///
-///             guard let json: [String: Any] = try? JSONDecoderService.json(from: data) else { return response }
-///             if json["success"].toBool == true { return response }
+///             guard let json: [String: Any?] = try? JSONDecoderService.json(from: data) else { return response }
+///             if json["success"]?.toBool == true { return response }
 ///
 ///             guard
-///                 let code: Int = json["code"].toInt,
-///                 let description: String = json["message"].toString
+///                 let code: Int = json["code"]?.toInt,
+///                 let description: String = json["message"]?.toString
 ///             else {
 ///                 throw SomeNetworkError(code: 99, description: "Unknown Error")
 ///             }
@@ -44,9 +44,9 @@ import Foundation
 ///         }
 ///
 ///         func data(_ data: Data, _ response: URLResponse) throws -> Data {
-///             let json: [String: Any] = try JSONDecoderService.json(from: data)
+///             let json: [String: Any?] = try JSONDecoderService.json(from: data)
 ///
-///             guard let dataJSON: [String: Any] = json["json"].toJSON else { throw SomeNetworkError(code: 1, description: "Incomplete Data") }
+///             guard let dataJSON: [String: Any?] = json["json"]?.toJSON else { throw SomeNetworkError(code: 1, description: "Incomplete Data") }
 ///
 ///             let dataData: Data = try JSONEncoderService.data(from: dataJSON)
 ///
@@ -58,7 +58,7 @@ import Foundation
 ///
 ///     Task(operation: {
 ///         do {
-///             let json: [String: Any] = try await NetworkService.someInstance.POST.json(
+///             let json: [String: Any?] = try await NetworkService.someInstance.POST.json(
 ///                 endpoint: "https://httpbin.org/post",
 ///                 headers: [
 ///                     "Accept": "application/json",

@@ -10,13 +10,13 @@ import Foundation
 // MARK: Type Casts
 extension Optional where Wrapped == Any {
     /// Casts `Optional` `Any` to `JSON`.
-    public var toJSON: [String: Any]? {
-        self as? [String: Any]
+    public var toJSON: [String: Any?]? {
+        self as? [String: Any?]
     }
 
     /// Casts `Optional` `Any` to `JSON` `Array`.
-    public var toJSONArray: [[String: Any]]? {
-        self as? [[String: Any]]
+    public var toJSONArray: [[String: Any?]]? {
+        self as? [[String: Any?]]
     }
 
     /// Casts `Optional` `Any` to `Int`.
@@ -82,12 +82,12 @@ extension Optional where Wrapped == Any {
 // MARK: Wrapped Type Casts
 extension Optional where Wrapped == Any {
     /// Casts `Optional` `Any` to wrapped`JSON`.
-    public var toWrappedJSON: [String: Any] {
+    public var toWrappedJSON: [String: Any?] {
         toJSON ?? [:]
     }
 
     /// Casts `Optional` `Any` to wrapped `JSON` `Array`.
-    public var toWrappedJSONArray: [[String: Any]] {
+    public var toWrappedJSONArray: [[String: Any?]] {
         toJSONArray ?? []
     }
 }

@@ -34,7 +34,7 @@ final class NetworkRequestService {
     // MARK: Request
     func request<Parameters, EncodedParameters, Entity>(
         httpMethod: String,
-        headers: [String: Any],
+        headers: [String: Any?],
         parameters: Parameters,
         encode: @escaping (Parameters) throws -> EncodedParameters,
         decode: @escaping (Data) throws -> Entity,
@@ -114,7 +114,7 @@ extension URLResponse {
 extension URL {
     init(
         endpoint: String,
-        encodedParameters: [String: Any]
+        encodedParameters: [String: Any?]
     ) throws {
         guard var urlComponents: URLComponents = .init(string: endpoint) else { throw NetworkError.invalidEndpoint }
         urlComponents.addItems(encodedParameters)
@@ -125,19 +125,26 @@ extension URL {
 }
 
 extension URLComponents {
-    fileprivate mutating func addItems(_ items: [String: Any]) {
+    fileprivate mutating func addItems(_ items: [String: Any?]) {
         guard !items.isEmpty else { return }
         
         switch queryItems {
-        case nil: queryItems = items.map { .init($0) }
-        case _?: items.forEach { queryItems?.append(.init($0)) }
+        case nil: queryItems = items.compactMap { .init($0) }
+        case _?: items.compactMap { URLQueryItem($0) }.forEach { queryItems?.append($0) }
         }
     }
 }
 
 extension URLQueryItem {
-    fileprivate init(_ item: Dictionary<String, Any>.Element) {
-        self.init(name: item.key, value: .init(describing: item.value))
+    fileprivate init?(_ item: Dictionary<String, Any?>.Element) {
+        guard
+            let value = item.value,
+            let strValue: String = .init(safelyDescribing: value)
+        else {
+            return nil
+        }
+        
+        self.init(name: item.key, value: strValue)
     }
 }
 
@@ -146,7 +153,7 @@ extension URLRequest {
     init(
         httpMethod: String,
         url: URL,
-        headers: [String: Any],
+        headers: [String: Any?],
         body: Data?
     ) {
         self.init(url: url)
@@ -155,11 +162,18 @@ extension URLRequest {
         self.httpBody = body
     }
     
-    private mutating func addHTTPHeaders(_ items: [String: Any]) {
+    private mutating func addHTTPHeaders(_ items: [String: Any?]) {
         guard !items.isEmpty else { return }
         
         items.forEach { (key, value) in
-            addValue(.init(describing: value), forHTTPHeaderField: key)
+            guard
+                let value = value,
+                let strValue: String = .init(safelyDescribing: value)
+            else {
+                return
+            }
+            
+            addValue(strValue, forHTTPHeaderField: key)
         }
     }
 }

@@ -15,10 +15,10 @@ public struct JSONDecoderService {
 
     // MARK: Decoding
     /// Decodes `JSON` from `Data`.
-    public static func json(from data: Data) throws -> [String: Any] {
+    public static func json(from data: Data) throws -> [String: Any?] {
         guard
             let jsonObject: Any = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-            let json: [String: Any] = jsonObject as? [String: Any]
+            let json: [String: Any?] = jsonObject as? [String: Any?]
         else {
             throw JSONDecoderError.failedToDecode
         }
@@ -27,10 +27,10 @@ public struct JSONDecoderService {
     }
     
     /// Decodes `JSON` `Array` from `Data`.
-    public static func jsonArray(from data: Data) throws -> [[String: Any]] {
+    public static func jsonArray(from data: Data) throws -> [[String: Any?]] {
         guard
             let jsonObject: Any = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-            let jsonArray: [[String: Any]] = jsonObject as? [[String: Any]]
+            let jsonArray: [[String: Any?]] = jsonObject as? [[String: Any?]]
         else {
             throw JSONDecoderError.failedToDecode
         }
