@@ -3,7 +3,7 @@ import Foundation
 // MARK: - Localization Service
 final class LocalizationService {
     // MARK: Properties - Locale
-    static var locale: Locale = getLocale()
+    lazy var locale: Locale = getLocale()
         {
             didSet {
                 guard locale != oldValue else { return }
@@ -12,11 +12,16 @@ final class LocalizationService {
             }
         }
     
-    static var locales: [Locale] { Locale.supportedLocales }
+    var locales: [Locale] { Locale.supportedLocales }
     
-    // MARK: Properties - Notifications
+    // MARK: Properties - Notiifcations
     static var notificationName: NSNotification.Name { .init("LocalizationService.LocaleChanged") }
-    private static var userDefaultsKey: String { "LocalizationService.LocaleId" }
+    
+    // MARK: Properties - Misc
+    private static var userDefaultsKey: String { "LocalizationService.LocaleID" }
+    
+    // MARK: Properties - Singleton
+    static let shared: LocalizationService = .init()
     
     // MARK: Initializers
     private init() {}
@@ -41,7 +46,7 @@ final class LocalizationService {
         }
         
         var displayName: String? {
-            NSLocale(localeIdentifier: LocalizationService.locale.id)
+            NSLocale(localeIdentifier: LocalizationService.shared.locale.id)
                 .displayName(forKey: .identifier, value: id)
         }
         
@@ -55,10 +60,10 @@ final class LocalizationService {
     }
 
     // MARK: Get / Set
-    private static func getLocale() -> Locale {
+    private func getLocale() -> Locale {
         guard
-            userDefaultsKey.isUserDefaultsKey(),
-            let id: String = UserDefaults.standard.string(forKey: userDefaultsKey),
+            Self.userDefaultsKey.isUserDefaultsKey(),
+            let id: String = UserDefaults.standard.string(forKey: Self.userDefaultsKey),
             let locale: Locale = .allCases.first(where: { $0.id == id })
         else {
             setLocale(.default)
@@ -68,13 +73,13 @@ final class LocalizationService {
         return locale
     }
     
-    private static func setLocale(_ locale: Locale) {
-        UserDefaults.standard.set(locale.id, forKey: userDefaultsKey)
+    private func setLocale(_ locale: Locale) {
+        UserDefaults.standard.set(locale.id, forKey: Self.userDefaultsKey)
     }
 
     // MARK: Notifications
-    private static func postNotification() {
-        NotificationCenter.default.post(name: notificationName, object: self, userInfo: nil)
+    private func postNotification() {
+        NotificationCenter.default.post(name: Self.notificationName, object: self, userInfo: nil)
     }
 }
 
@@ -82,7 +87,7 @@ final class LocalizationService {
 extension String {
     var localized: String {
         guard
-            let path: String = Bundle.main.path(forResource: LocalizationService.locale.id, ofType: "lproj"),
+            let path: String = Bundle.main.path(forResource: LocalizationService.shared.locale.id, ofType: "lproj"),
             let bundle: Bundle = .init(path: path)
         else {
             return self
