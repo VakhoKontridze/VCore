@@ -10,6 +10,7 @@
 - `VCoreErrorInfo` has been removed
 - `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`
 - `NetworkError.incompleteEntity` has been renamed to `NetworkError.incompleteData`
+- Various extensions have been added
 
 #### [1.4.0(8)](https://github.com/VakhoKontridze/VCore/releases/download/1.4.0/VCore.xcframework.zip) — *2021 11 09*
 
