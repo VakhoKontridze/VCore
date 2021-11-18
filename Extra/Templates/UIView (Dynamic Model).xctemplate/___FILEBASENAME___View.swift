@@ -7,11 +7,11 @@ final class ___VARIABLE_productName___View: UIView {
     // MARK: Subviews
     
     // MARK: Properties
-    private var model: ___VARIABLE_productName___Model
+    private var model: ___VARIABLE_productName___ViewModel
     
     // MARK: Initializers
     init(
-        model: ___VARIABLE_productName___Model
+        model: ___VARIABLE_productName___ViewModel
     ) {
         self.model = model
         super.init(frame: .zero)
@@ -20,8 +20,8 @@ final class ___VARIABLE_productName___View: UIView {
     }
     
     convenience init(
-        model: ___VARIABLE_productName___Model,
-        viewModel: ___VARIABLE_productName___ViewModel
+        model: ___VARIABLE_productName___ViewModel,
+        viewModel: ___VARIABLE_productName___ViewViewModel
     ) {
         self.init(model: model)
         configure(with: viewModel)
@@ -53,12 +53,12 @@ final class ___VARIABLE_productName___View: UIView {
     }
 
     // MARK: Configuration - Model
-    func configure(with model: ___VARIABLE_productName___Model) {
+    func configure(with model: ___VARIABLE_productName___ViewModel) {
         self.model = model
     }
     
     // MARK: Configuration - ViewModel
-    func configure(with viewModel: ___VARIABLE_productName___ViewModel) {
+    func configure(with viewModel: ___VARIABLE_productName___ViewViewModel) {
         
     }
 }

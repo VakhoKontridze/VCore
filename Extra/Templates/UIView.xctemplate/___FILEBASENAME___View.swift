@@ -7,7 +7,7 @@ final class ___VARIABLE_productName___View: UIView {
     // MARK: Subviews
     
     // MARK: Properties
-    private typealias Model = ___VARIABLE_productName___Model
+    private typealias Model = ___VARIABLE_productName___ViewModel
     
     // MARK: Initializers
     init() {
@@ -15,7 +15,7 @@ final class ___VARIABLE_productName___View: UIView {
         setUp()
     }
     
-    convenience init(viewModel: ___VARIABLE_productName___ViewModel) {
+    convenience init(viewModel: ___VARIABLE_productName___ViewViewModel) {
         self.init()
         configure(with: viewModel)
     }
@@ -46,7 +46,7 @@ final class ___VARIABLE_productName___View: UIView {
     }
 
     // MARK: Configuration
-    func configure(with viewModel: ___VARIABLE_productName___ViewModel) {
+    func configure(with viewModel: ___VARIABLE_productName___ViewViewModel) {
         
     }
 }

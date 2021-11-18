@@ -8,7 +8,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionVi
     // MARK: Subviews
     
     // MARK: Properties
-    private typealias Model = ___VARIABLE_productName___Model
+    private typealias Model = ___VARIABLE_productName___CellModel
 
     // MARK: Lifecycle
     override func didMoveToSuperview() {
@@ -39,6 +39,6 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionVi
 
     // MARK: Configuration
     func configure(with viewModel: UICollectionViewCellViewModelable) {
-        guard let viewModel = viewModel as? ___VARIABLE_productName___ViewModel else { return }
+        guard let viewModel = viewModel as? ___VARIABLE_productName___CellViewModel else { return }
     }
 }
