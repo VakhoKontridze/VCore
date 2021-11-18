@@ -5,6 +5,7 @@
 - Framework is no longer compatible with version `1.3.0`
 - Framework now supports `iOS 13`
 - `NetworkService` now supports async/await
+- `EdgeInsets` objects now support insetting and addition/subtraction
 - `requestTimeOut` has been added to `NetworkError`
 - `VCoreErrorInfo` has been removed
 - `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`

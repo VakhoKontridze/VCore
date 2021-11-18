@@ -19,7 +19,7 @@
 		173C2E5C2711A947006BEAF3 /* NetworkServiceProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5B2711A947006BEAF3 /* NetworkServiceProcessor.swift */; };
 		178718112730640000C2B74C /* EdgeInsets_LTTB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178718102730640000C2B74C /* EdgeInsets_LTTB.swift */; };
 		17871824273068CE00C2B74C /* EdgeInsets_LT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871823273068CE00C2B74C /* EdgeInsets_LT.swift */; };
-		17871826273069A700C2B74C /* EdgeInsets_LB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871825273069A700C2B74C /* EdgeInsets_LB.swift */; };
+		17871826273069A700C2B74C /* EdgeInsets_TB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871825273069A700C2B74C /* EdgeInsets_TB.swift */; };
 		17871828273069DE00C2B74C /* EdgeInsets_HV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871827273069DE00C2B74C /* EdgeInsets_HV.swift */; };
 		1787182C27306E3E00C2B74C /* GenericStateModel_EPD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1787182B27306E3E00C2B74C /* GenericStateModel_EPD.swift */; };
 		1787182E27306F9B00C2B74C /* GenericStateModel_ED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */; };
@@ -128,7 +128,7 @@
 		173C2E5B2711A947006BEAF3 /* NetworkServiceProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceProcessor.swift; sourceTree = "<group>"; };
 		178718102730640000C2B74C /* EdgeInsets_LTTB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LTTB.swift; sourceTree = "<group>"; };
 		17871823273068CE00C2B74C /* EdgeInsets_LT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LT.swift; sourceTree = "<group>"; };
-		17871825273069A700C2B74C /* EdgeInsets_LB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LB.swift; sourceTree = "<group>"; };
+		17871825273069A700C2B74C /* EdgeInsets_TB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_TB.swift; sourceTree = "<group>"; };
 		17871827273069DE00C2B74C /* EdgeInsets_HV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_HV.swift; sourceTree = "<group>"; };
 		1787182B27306E3E00C2B74C /* GenericStateModel_EPD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_EPD.swift; sourceTree = "<group>"; };
 		1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_ED.swift; sourceTree = "<group>"; };
@@ -259,7 +259,7 @@
 				178718102730640000C2B74C /* EdgeInsets_LTTB.swift */,
 				17871827273069DE00C2B74C /* EdgeInsets_HV.swift */,
 				17871823273068CE00C2B74C /* EdgeInsets_LT.swift */,
-				17871825273069A700C2B74C /* EdgeInsets_LB.swift */,
+				17871825273069A700C2B74C /* EdgeInsets_TB.swift */,
 			);
 			path = "Edge Insets";
 			sourceTree = "<group>";
@@ -686,7 +686,7 @@
 				7AF68A6D26EE899700D4B5BE /* String.IsUserDefaultsKey.swift in Sources */,
 				7AB22AE926EB94110037355D /* InfiniteScrollingTableView.swift in Sources */,
 				7AB22AF726EB9FAB0037355D /* TODO.swift in Sources */,
-				17871826273069A700C2B74C /* EdgeInsets_LB.swift in Sources */,
+				17871826273069A700C2B74C /* EdgeInsets_TB.swift in Sources */,
 				17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */,
 				7A0F759D26D5150800020996 /* NetworkReachabilityService.swift in Sources */,
 				7A0F75BC26D516DA00020996 /* NetworkService.swift in Sources */,

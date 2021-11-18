@@ -32,4 +32,66 @@ public struct EdgeInsets_LT: Equatable {
     
     /// Initializes insets with zero values.
     public static var zero: Self { .init() }
+    
+    // MARK: Inseting
+    /// Insets `EdgeInsets` by a given value.
+    public func insetBy(inset: CGFloat) -> EdgeInsets_LT {
+        .init(
+            leading: leading + inset,
+            trailing: trailing + inset
+        )
+    }
+    
+    /// Insets `EdgeInsets` by a given leading and trailing values.
+    public func insetBy(leading leadingInset: CGFloat, trailing trailingInset: CGFloat) -> EdgeInsets_LT {
+        .init(
+            leading: leading + leadingInset,
+            trailing: trailing + leadingInset
+        )
+    }
+    
+    /// Insets `EdgeInsets` by a given leading value.
+    public func insetBy(leading leadingInset: CGFloat) -> EdgeInsets_LT {
+        .init(
+            leading: leading + leadingInset,
+            trailing: trailing
+        )
+    }
+    
+    /// Insets `EdgeInsets` by a given trailing value.
+    public func insetBy(trailing trailingInset: CGFloat) -> EdgeInsets_LT {
+        .init(
+            leading: leading,
+            trailing: trailing + trailingInset
+        )
+    }
+    
+    // MARK: Operators
+    /// Adds two `EdgeInsets` by adding up individual edge insets.
+    public static func + (lhs: EdgeInsets_LT, rhs: EdgeInsets_LT) -> EdgeInsets_LT {
+        .init(
+            leading: lhs.leading + rhs.leading,
+            trailing: lhs.trailing + rhs.trailing
+        )
+    }
+    
+    /// Adds right `EdgeInsets` to the left one by adding individual edge insets.
+    public static func += (lhs: inout EdgeInsets_LT, rhs: EdgeInsets_LT) {
+        lhs.leading += rhs.leading
+        lhs.trailing += rhs.trailing
+    }
+    
+    /// Subtracts two `EdgeInsets` by subtracting up individual edge insets.
+    public static func - (lhs: EdgeInsets_LT, rhs: EdgeInsets_LT) -> EdgeInsets_LT {
+        .init(
+            leading: lhs.leading - rhs.leading,
+            trailing: lhs.trailing - rhs.trailing
+        )
+    }
+    
+    /// Subtracts right `EdgeInsets` to the left one by subtracting individual edge insets.
+    public static func -= (lhs: inout EdgeInsets_LT, rhs: EdgeInsets_LT) {
+        lhs.leading -= rhs.leading
+        lhs.trailing -= rhs.trailing
+    }
 }

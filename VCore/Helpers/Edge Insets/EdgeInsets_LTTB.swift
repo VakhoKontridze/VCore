@@ -74,4 +74,102 @@ public struct EdgeInsets_LTTB: Equatable {
     
     /// Initializes insets with zero values.
     public static var zero: Self { .init() }
+    
+    // MARK: Inseting
+    /// Insets `EdgeInsets` by a given value.
+    public func insetBy(inset: CGFloat) -> EdgeInsets_LTTB {
+        .init(
+            leading: leading + inset,
+            trailing: trailing + inset,
+            top: top + inset,
+            bottom: bottom + inset
+        )
+    }
+    
+    /// Insets `EdgeInsets` by a given horizontal and vertical values.
+    public func insetBy(horizontal horizontalInset: CGFloat, vertical verticalInset: CGFloat) -> EdgeInsets_LTTB {
+        .init(
+            leading: leading + horizontalInset,
+            trailing: trailing + horizontalInset,
+            top: top + verticalInset,
+            bottom: bottom + verticalInset
+        )
+    }
+    
+    /// Insets `EdgeInsets` by a given leading value.
+    public func insetBy(leading leadingInset: CGFloat) -> EdgeInsets_LTTB {
+        .init(
+            leading: leading + leadingInset,
+            trailing: trailing,
+            top: top,
+            bottom: bottom
+        )
+    }
+    
+    /// Insets `EdgeInsets` by a given trailing value.
+    public func insetBy(trailing trailingInset: CGFloat) -> EdgeInsets_LTTB {
+        .init(
+            leading: leading,
+            trailing: trailing + trailingInset,
+            top: top,
+            bottom: bottom
+        )
+    }
+    
+    /// Insets `EdgeInsets` by a given top value.
+    public func insetBy(top topInset: CGFloat) -> EdgeInsets_LTTB {
+        .init(
+            leading: leading,
+            trailing: trailing,
+            top: top + topInset,
+            bottom: bottom
+        )
+    }
+    
+    /// Insets `EdgeInsets` by a given bottom value.
+    public func insetBy(bottom bottomInset: CGFloat) -> EdgeInsets_LTTB {
+        .init(
+            leading: leading,
+            trailing: trailing,
+            top: top,
+            bottom: bottom + bottomInset
+        )
+    }
+    
+    // MARK: Operators
+    /// Adds two `EdgeInsets` by adding up individual edge insets.
+    public static func + (lhs: EdgeInsets_LTTB, rhs: EdgeInsets_LTTB) -> EdgeInsets_LTTB {
+        .init(
+            leading: lhs.leading + rhs.leading,
+            trailing: lhs.trailing + rhs.trailing,
+            top: lhs.top + rhs.top,
+            bottom: lhs.bottom + rhs.bottom
+        )
+    }
+    
+    /// Adds right `EdgeInsets` to the left one by adding individual edge insets.
+    public static func += (lhs: inout EdgeInsets_LTTB, rhs: EdgeInsets_LTTB) {
+        lhs.leading += rhs.leading
+        lhs.trailing += rhs.trailing
+        lhs.top += rhs.top
+        lhs.bottom += rhs.bottom
+    }
+    
+    /// Subtracts two `EdgeInsets` by subtracting up individual edge insets.
+    public static func - (lhs: EdgeInsets_LTTB, rhs: EdgeInsets_LTTB) -> EdgeInsets_LTTB {
+        .init(
+            leading: lhs.leading - rhs.leading,
+            trailing: lhs.trailing - rhs.trailing,
+            top: lhs.top - rhs.top,
+            bottom: lhs.bottom - rhs.bottom
+        )
+    }
+    
+    /// Subtracts right `EdgeInsets` to the left one by subtracting individual edge insets.
+    public static func -= (lhs: inout EdgeInsets_LTTB, rhs: EdgeInsets_LTTB) {
+        lhs.leading -= rhs.leading
+        lhs.trailing -= rhs.trailing
+        lhs.top -= rhs.top
+        lhs.bottom -= rhs.bottom
+    }
 }
