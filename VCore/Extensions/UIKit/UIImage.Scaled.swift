@@ -31,10 +31,12 @@ extension UIImage {
     
     private func scaled(
         toSize newSize: CGSize
-    ) -> UIImage {
-        UIGraphicsImageRenderer(size: newSize).image { _ in
-            draw(in: .init(origin: .zero, size: newSize))
-        }
+    ) -> UIImage? {
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1)
+        defer { UIGraphicsEndImageContext() }
+        
+        draw(in: .init(origin: .zero, size: newSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
     }
 }
 
