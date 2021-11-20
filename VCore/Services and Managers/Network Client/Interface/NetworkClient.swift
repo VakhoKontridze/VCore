@@ -84,7 +84,7 @@ public final class NetworkClient {
     // MARK: Properties
     /// Default instance of `NetworkClient`.
     public static let `default`: NetworkClient = .init(
-        processor: DefaultNetworkClientProcessor()
+        processor: DefaultNetworkProcessor()
     )
     
     /// Configuration object that defines behavior and policies for an `URL` session.
