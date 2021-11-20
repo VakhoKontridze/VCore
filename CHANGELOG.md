@@ -5,6 +5,7 @@
 - Framework is no longer compatible with version `1.X.X`
 - Framework now supports `iOS 13`
 - `NetworkClient` now supports async/await
+- `MultiPartFormDataBuilder` has been added
 - `EdgeInsets` objects now support insetting and addition/subtraction
 - Several cases have been added to `NetworkError`
 - `UITableView` and `UICollectionView` dequeue and configure methods would no crash if a cell identifier is not registered

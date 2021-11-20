@@ -39,6 +39,10 @@
 		17B23E7827354AEB00914FEB /* UIStackView.ArrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */; };
 		17B23E7A27354B7900914FEB /* UIStackView.Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */; };
 		17B23E7C27354D3A00914FEB /* UIFont.Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */; };
+		17D2B78C27494CB00075BCAD /* MultiPartFormDataBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2B78B27494CB00075BCAD /* MultiPartFormDataBuilder.swift */; };
+		17D2B78E27494D0C0075BCAD /* MultiPartFormDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2B78D27494D0C0075BCAD /* MultiPartFormDataFile.swift */; };
+		17D2B79027494D270075BCAD /* MultiPartFormDataBuilder.JSONBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2B78F27494D270075BCAD /* MultiPartFormDataBuilder.JSONBuilder.swift */; };
+		17D2B79227494D3C0075BCAD /* MultiPartFormDataBuilder.FileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2B79127494D3C0075BCAD /* MultiPartFormDataBuilder.FileBuilder.swift */; };
 		17FD1677273A7CFB00EEAFD0 /* UIViewController.WithTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD1676273A7CFB00EEAFD0 /* UIViewController.WithTabBarItem.swift */; };
 		17FD167B273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FD167A273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift */; };
 		17FDE9862738F8B50085DE40 /* UIApplication.AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */; };
@@ -153,6 +157,10 @@
 		17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.ArrangedSubviews.swift; sourceTree = "<group>"; };
 		17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.Configuration.swift; sourceTree = "<group>"; };
 		17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.Styling.swift; sourceTree = "<group>"; };
+		17D2B78B27494CB00075BCAD /* MultiPartFormDataBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilder.swift; sourceTree = "<group>"; };
+		17D2B78D27494D0C0075BCAD /* MultiPartFormDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataFile.swift; sourceTree = "<group>"; };
+		17D2B78F27494D270075BCAD /* MultiPartFormDataBuilder.JSONBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilder.JSONBuilder.swift; sourceTree = "<group>"; };
+		17D2B79127494D3C0075BCAD /* MultiPartFormDataBuilder.FileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilder.FileBuilder.swift; sourceTree = "<group>"; };
 		17FD1676273A7CFB00EEAFD0 /* UIViewController.WithTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.WithTabBarItem.swift; sourceTree = "<group>"; };
 		17FD167A273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.DisplayCornerRadius.swift; sourceTree = "<group>"; };
 		17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.AppInfo.swift; sourceTree = "<group>"; };
@@ -289,6 +297,17 @@
 			path = "Factories and Builders";
 			sourceTree = "<group>";
 		};
+		17D2B78A27494C920075BCAD /* Multi Part Form Data Builder */ = {
+			isa = PBXGroup;
+			children = (
+				17D2B78B27494CB00075BCAD /* MultiPartFormDataBuilder.swift */,
+				17D2B78D27494D0C0075BCAD /* MultiPartFormDataFile.swift */,
+				17D2B78F27494D270075BCAD /* MultiPartFormDataBuilder.JSONBuilder.swift */,
+				17D2B79127494D3C0075BCAD /* MultiPartFormDataBuilder.FileBuilder.swift */,
+			);
+			path = "Multi Part Form Data Builder";
+			sourceTree = "<group>";
+		};
 		7A00266D26EB70440056DBC5 /* Encoder Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -395,9 +414,10 @@
 		7A0F759626D5146000020996 /* Services and Managers */ = {
 			isa = PBXGroup;
 			children = (
+				7A0F75B526D5169B00020996 /* Network Client */,
+				17D2B78A27494C920075BCAD /* Multi Part Form Data Builder */,
 				7A0F759B26D514EC00020996 /* Network Reachability Service */,
 				7A27C14726EB637F005765CB /* Coder Services */,
-				7A0F75B526D5169B00020996 /* Network Client */,
 				7A9A6AA426D5218E00C19A07 /* Session Manager */,
 				7AA4071726F9BA3100B60742 /* VIPER Helpers */,
 				7AF68A7226EE906D00D4B5BE /* Misc */,
@@ -679,6 +699,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17D2B78C27494CB00075BCAD /* MultiPartFormDataBuilder.swift in Sources */,
 				178718112730640000C2B74C /* EdgeInsets_LTTB.swift in Sources */,
 				7A00266F26EB70790056DBC5 /* JSONDecoderError.swift in Sources */,
 				179B840E2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift in Sources */,
@@ -705,6 +726,7 @@
 				17FDE98C2738FE080085DE40 /* UIImage.Scaled.swift in Sources */,
 				7AB22B2D26EE7A6F0037355D /* StringProtocol.Subscript.swift in Sources */,
 				7AB22B3D26EE86E10037355D /* UIViewController.DismissKeyboardOnOutsideTap.swift in Sources */,
+				17D2B78E27494D0C0075BCAD /* MultiPartFormDataFile.swift in Sources */,
 				17FD167B273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift in Sources */,
 				179B84082747C13B0011462D /* NetworkRequest.BodyBuilder.swift in Sources */,
 				7AB22B3B26EE85EF0037355D /* Optional.LetBlockTransformation.swift in Sources */,
@@ -726,6 +748,7 @@
 				7AB22B3926EE84EF0037355D /* NSObject.NSObjectName.swift in Sources */,
 				17B23E72273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift in Sources */,
 				179B84022747B7310011462D /* NetworkRequest.PathParametersBuilder.swift in Sources */,
+				17D2B79027494D270075BCAD /* MultiPartFormDataBuilder.JSONBuilder.swift in Sources */,
 				1787182E27306F9B00C2B74C /* GenericStateModel_ED.swift in Sources */,
 				17871824273068CE00C2B74C /* EdgeInsets_LT.swift in Sources */,
 				7AB22AE626EB8DFF0037355D /* VCoreError.swift in Sources */,
@@ -740,6 +763,7 @@
 				179B84042747B8450011462D /* NetworkRequest.HeadersBuilder.swift in Sources */,
 				17FDE9882738F9D90085DE40 /* UIImage.Compressed.swift in Sources */,
 				17B23E7A27354B7900914FEB /* UIStackView.Configuration.swift in Sources */,
+				17D2B79227494D3C0075BCAD /* MultiPartFormDataBuilder.FileBuilder.swift in Sources */,
 				17B23E762735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift in Sources */,
 				7AF68A7426EE907900D4B5BE /* DigitalTimeFormatter.swift in Sources */,
 				17871828273069DE00C2B74C /* EdgeInsets_HV.swift in Sources */,
