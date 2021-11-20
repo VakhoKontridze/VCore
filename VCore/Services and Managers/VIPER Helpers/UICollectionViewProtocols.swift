@@ -12,27 +12,57 @@ import UIKit
 ///
 /// Usage example:
 ///
-///     final class Presenter: UICollectionViewDelegatable, UICollectionViewDataSourceable {
-///         var dataSource: [[UICollectionViewCellViewModelable]] = []
+///     protocol SomeViewable: AnyObject {}
+///
+///     protocol SomePresentable: UICollectionViewDelegatable, UICollectionViewDataSourceable {}
+///
+///     final class SomeViewController: UIViewController, SomeViewable, UICollectionViewDelegate, UICollectionViewDataSource {
+///         var presenter: SomePresentable!
+///
+///         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+///             presenter.collectionViewDidSelectRow(section: indexPath.section, row: indexPath.row)
+///         }
+///
+///         func numberOfSections(in collectionView: UICollectionView) -> Int {
+///             presenter.collectionViewNumberOfSections
+///         }
+///
+///         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+///             presenter.collectionViewNumberOfItems(section: section)
+///         }
+///
+///         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+///             collectionView.dequeueAndConfigureReusableCell(
+///                 indexPath: indexPath,
+///                 dequeueID: presenter.collectionViewCellDequeueID(section: indexPath.section, row: indexPath.row),
+///                 viewModel: presenter.collectionViewCellViewModel(section: indexPath.section, row: indexPath.row)
+///             )
+///         }
+///     }
+///
+///     final class SomePresenter: SomePresentable {
+///         unowned let view: SomeViewable
+///
+///         private var collectionViewViewModels: [[UICollectionViewCellViewModelable]] = []
 ///
 ///         func collectionViewDidSelectRow(section: Int, row: Int) {
-///             print(dataSource[section][row])
+///             print(collectionViewViewModels[section][row])
 ///         }
 ///
 ///         var collectionViewNumberOfSections: Int {
-///             dataSource.count
+///             collectionViewViewModels.count
 ///         }
 ///
 ///         func collectionViewNumberOfItems(section: Int) -> Int {
-///             dataSource[section].count
+///             collectionViewViewModels[section].count
 ///         }
 ///
 ///         func collectionViewCellDequeueID(section: Int, row: Int) -> String {
-///             dataSource[section][row].dequeueID
+///             collectionViewViewModels[section][row].dequeueID
 ///         }
 ///
 ///         func collectionViewCellViewModel(section: Int, row: Int) -> UICollectionViewCellViewModelable {
-///             dataSource[section][row]
+///             collectionViewViewModels[section][row]
 ///         }
 ///     }
 ///
@@ -58,7 +88,7 @@ extension UICollectionViewDequeueable {
 // MARK: - Collection View
 /// Allows for the delegation of `UICollectionViewDelegate`
 ///
-/// In `VIP` and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`
+/// In `VIPER` arhcitecute, this protoocol is conformed to by a `Presenter`
 public protocol UICollectionViewDelegatable {
     /// Notifies that a `UICollectionViewCell` has been selected and section and row
     func collectionViewDidSelectRow(section: Int, row: Int)
@@ -66,7 +96,7 @@ public protocol UICollectionViewDelegatable {
 
 /// Allows for the delegation of `UICollectionViewDataSource`
 ///
-/// In `VIP` and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`
+/// In `VIPER` arhcitecute, this protoocol is conformed to by a `Presenter`
 public protocol UICollectionViewDataSourceable {
     /// Number of sections in `UICollectionView`
     var collectionViewNumberOfSections: Int { get }
@@ -93,8 +123,8 @@ extension UICollectionView {
 extension UICollectionView {
     /// Deques and configures a resuabe cell in `UICollectionView`
     public func dequeueAndConfigureReusableCell(
-        dequeueID: String,
         indexPath: IndexPath,
+        dequeueID: String,
         viewModel: UICollectionViewCellViewModelable
     ) -> UICollectionViewCell {
         guard

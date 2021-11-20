@@ -10,7 +10,7 @@ import UIKit
 // MARK: - Standard Navigable
 /// Standard Navigable that allows for navigation via `UINavigationController`.
 ///
-/// In `VIPER` arhcitecute, this protocol is conformed by `UIViewController`,
+/// In `VIPER` arhcitecute,, this protocol is conformed by `UIViewController`,
 /// or a protocol, which in turn `UIViewController` coforms to.
 ///
 /// Methods have default implementations for `UIViewControllers`, except for `setRoot(to:)` method.

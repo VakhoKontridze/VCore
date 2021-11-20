@@ -12,27 +12,56 @@ import UIKit
 ///
 /// Usage example:
 ///
-///     final class Presenter: UITableViewDelegatable, UITableViewDataSourceable {
-///         var dataSource: [[UITableViewCellViewModelable]] = []
+///     protocol SomeViewable: AnyObject {}
+///
+///     protocol SomePresentable: UITableViewDelegatable, UITableViewDataSourceable {}
+///
+///     final class SomeViewController: UIViewController, SomeViewable, UITableViewDelegate, UITableViewDataSource {
+///         var presenter: SomePresentable!
+///
+///         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+///             presenter.tableViewDidSelectRow(section: indexPath.section, row: indexPath.row)
+///         }
+///
+///         func numberOfSections(in tableView: UITableView) -> Int {
+///             presenter.tableViewNumberOfSections
+///         }
+///
+///         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+///             presenter.tableViewNumberOfRows(section: section)
+///         }
+///
+///         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+///             tableView.dequeueAndConfigureReusableCell(
+///                 dequeueID: presenter.tableViewCellDequeueID(section: indexPath.section, row: indexPath.row),
+///                 viewModel: presenter.tableViewCellViewModel(section: indexPath.section, row: indexPath.row)
+///             )
+///         }
+///     }
+///
+///     final class SomePresenter: SomePresentable {
+///         unowned let view: SomeViewable
+///
+///         private var tableViewViewModels: [[UITableViewCellViewModelable]] = []
 ///
 ///         func tableViewDidSelectRow(section: Int, row: Int) {
-///             print(dataSource[section][row])
+///             print(tableViewViewModels[section][row])
 ///         }
 ///
 ///         var tableViewNumberOfSections: Int {
-///             dataSource.count
+///             tableViewViewModels.count
 ///         }
 ///
 ///         func tableViewNumberOfRows(section: Int) -> Int {
-///             dataSource[section].count
+///             tableViewViewModels[section].count
 ///         }
 ///
 ///         func tableViewCellDequeueID(section: Int, row: Int) -> String {
-///             dataSource[section][row].dequeueID
+///             tableViewViewModels[section][row].dequeueID
 ///         }
 ///
 ///         func tableViewCellViewModel(section: Int, row: Int) -> UITableViewCellViewModelable {
-///             dataSource[section][row]
+///             tableViewViewModels[section][row]
 ///         }
 ///     }
 ///
@@ -58,7 +87,7 @@ extension UITableViewDequeueable {
 // MARK: - Table View
 /// Allows for the delegation of `UITableViewDelegate`
 ///
-/// In `VIP` and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`
+/// In `VIPER` arhcitecute, this protoocol is conformed to by a `Presenter`
 public protocol UITableViewDelegatable {
     /// Notifies that a `UITableViewCell` has been selected and section and row
     func tableViewDidSelectRow(section: Int, row: Int)
@@ -66,7 +95,7 @@ public protocol UITableViewDelegatable {
 
 /// Allows for the delegation of `UITableViewDataSource`
 ///
-/// In `VIP` and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`
+/// In `VIPER` arhcitecute, this protoocol is conformed to by a `Presenter`
 public protocol UITableViewDataSourceable {
     /// Number of sections in `UITableView`
     var tableViewNumberOfSections: Int { get }
