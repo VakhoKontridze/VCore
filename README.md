@@ -31,9 +31,9 @@ Project files are grouped as:
 
 - ***Extensions***. Global extensions. Methods and properties are grouped by frameworks of origin—`Foundation`, `UIKit`, and `SwiftUI`.
 
-Project also contains folder `Extra`, which contains:
+Project incudes folder `Extra`, which contains:
 
-- ***XCode Template***. Templates that can be used for accelerating workflow. Currently, templates cover  [scenes](#architecture) and [gateways](#gateway).
+- ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover  [scenes](#architecture) and [gateways](#gateway).
 
 - ***Misc***. Objects and methods that cannot be included in a library as they require additional customization or access to `AppDelegate`/`SceneDelegate`.
 
