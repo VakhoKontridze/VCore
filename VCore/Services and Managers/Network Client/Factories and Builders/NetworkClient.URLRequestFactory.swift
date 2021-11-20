@@ -1,5 +1,5 @@
 //
-//  NetworkService.URLRequestFactory.swift
+//  NetworkClient.URLRequestFactory.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/19/21.
@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - URL Request Factory
-extension NetworkService {
+extension NetworkClient {
     struct URLRequestFactory {
         // MARK: Initializers
         private init() {}

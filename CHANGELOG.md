@@ -2,14 +2,16 @@
 
 #### [2.0.0(9)]
 
-- Framework is no longer compatible with version `1.3.0`
+- Framework is no longer compatible with version `1.X.X`
 - Framework now supports `iOS 13`
-- `NetworkService` now supports async/await
+- `NetworkClient` now supports async/await
 - `EdgeInsets` objects now support insetting and addition/subtraction
-- `requestTimeOut` has been added to `NetworkError`
+- Several cases have been added to `NetworkError`
+- `UITableView` and `UICollectionView` dequeue and configure methods would no crash if a cell identifier is not registered
 - `VCoreErrorInfo` has been removed
-- `NetworkServicePostProcessor` has been renamed to `NetworkServiceProcessor`
-- `NetworkError.incompleteEntity` has been renamed to `NetworkError.incompleteData`
+- `NetworkService` has been renamed to `NetworkClient`
+- `NetworkServicePostProcessor` has been renamed to `NetworkProcessor`
+- `NetworkError.incompleteEntity` has been renamed to `NetworkError.invalidData`
 - Various extensions have been added
 
 #### [1.4.0(8)](https://github.com/VakhoKontridze/VCore/releases/download/1.4.0/VCore.xcframework.zip) — *2021 11 09*
@@ -38,9 +40,9 @@
 #### [1.1.0(5)](https://github.com/VakhoKontridze/VCore/releases/download/1.1.0/VCore.xcframework.zip) — *2021 10 30*
 
 - `NetworkService` now supports initialization and post-processing delegation
-- `NetworkSessionManager` has been renamed to `SessionManager`
 - `NetworkService.shared` has been deprecated
 - `NetworkService`, `JSONEncoderService`, and `JSONDecoderService` now return `Error` instead of subsequent error types
+- `NetworkSessionManager` has been renamed to `SessionManager`
 
 #### [1.0.3(4)](https://github.com/VakhoKontridze/VCore/releases/download/1.0.3/VCore.xcframework.zip) — *2021 10 25*
 

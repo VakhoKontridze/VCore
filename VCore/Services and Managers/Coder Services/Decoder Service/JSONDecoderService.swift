@@ -39,7 +39,7 @@ public struct JSONDecoderService {
     }
     
     /// Decodes `Decodable` from `Data`.
-    public static func entity<DecodedData: Decodable>(from data: Data) throws -> DecodedData {
+    public static func decodable<DecodedData: Decodable>(from data: Data) throws -> DecodedData {
         guard let decodedData: DecodedData = try? JSONDecoder().decode(DecodedData.self, from: data) else { throw JSONDecoderError.failedToDecode }
         return decodedData
     }

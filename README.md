@@ -23,7 +23,7 @@ Project files are grouped as:
 
 - ***Views***. Reusable non-scene views.
 
-- ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `NetworkService`.
+- ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `NetworkClient`.
 
 - ***Global Functions***. Global functions. For instance, `TODO` and operators.
 
@@ -217,11 +217,11 @@ Defines an interface by which a fetch request can occur. `Gateway` should only c
 
 #### Parameters
 
-Parameters used for the fetch request. A struct, that can conform to `Encodable`. By our convention, struct is not deleted even when it's empty.
+Parameters used for the fetch request. A struct, that can conform to `Encodable`.
 
 #### Entity
 
-Entity that's returned from the fetch request. Also a struct, that can conform to `Decodable`. By similar convention, an empty struct is also not deleted.
+Entity that's returned from the fetch request. Also a struct, that can conform to `Decodable`.
 
 #### _ Gateway
 
@@ -240,7 +240,7 @@ protocol UpdateUserDataGatewayable {
     func fetch(parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity
 }
 
-struct UpdateUserDataNetworkGateway {
+struct UpdateUserDataNetworkGateway: UpdateUserDataGatewayable {
     func fetch(parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity {
         // Implementation
     }

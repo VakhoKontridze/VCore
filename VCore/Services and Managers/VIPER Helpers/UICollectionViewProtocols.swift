@@ -97,8 +97,14 @@ extension UICollectionView {
         indexPath: IndexPath,
         viewModel: UICollectionViewCellViewModelable
     ) -> UICollectionViewCell {
-        guard let cell = dequeueReusableCell(withReuseIdentifier: dequeueID, for: indexPath) as? UICollectionViewDequeueable else { return .init() }
+        guard
+            let cell = dequeueReusableCell(withReuseIdentifier: dequeueID, for: indexPath) as? UICollectionViewDequeueable
+        else {
+            fatalError("Unable to dequeue a cell with identifier \(dequeueID)")
+        }
+        
         cell.configure(with: viewModel)
+        
         return cell
     }
 }

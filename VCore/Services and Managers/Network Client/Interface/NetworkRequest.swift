@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Network Request
-/// `URL` request executed by `NetworkService`.
+/// `URL` request executed by `NetworkClient`.
 public struct NetworkRequest {
     // MARK: Properties
     /// `URL` of the request.

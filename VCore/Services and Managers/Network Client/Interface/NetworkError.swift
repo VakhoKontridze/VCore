@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Network Error
-/// An error that occurs during the network requests made by `NetworkService`.
+/// An error that occurs during the network requests made by `NetworkClient`.
 public enum NetworkError: VCoreError {
     // MARK: Cases
     /// Indicates that device is not connected to network.
@@ -45,7 +45,7 @@ public enum NetworkError: VCoreError {
     
     // MARK: Properties
     // Overriden
-    public static var errorDomain: String { "com.vcore.networkservice" }
+    public static var errorDomain: String { "com.vcore.NetworkClient" }
     
     // MARK: VCore Error
     public var domain: String { Self.errorDomain }

@@ -96,8 +96,14 @@ extension UITableView {
         dequeueID: String,
         viewModel: UITableViewCellViewModelable
     ) -> UITableViewCell {
-        guard let cell = dequeueReusableCell(withIdentifier: dequeueID) as? UITableViewDequeueable else { return .init() }
+        guard
+            let cell = dequeueReusableCell(withIdentifier: dequeueID) as? UITableViewDequeueable
+        else {
+            fatalError("Unable to dequeue a cell with identifier \(dequeueID)")
+        }
+        
         cell.configure(with: viewModel)
+        
         return cell
     }
 }

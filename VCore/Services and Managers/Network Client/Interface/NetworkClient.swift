@@ -1,5 +1,5 @@
 //
-//  NetworkService.swift
+//  NetworkClient.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 8/24/21.
@@ -7,16 +7,16 @@
 
 import Foundation
 
-// MARK: - Network Service
-/// Network service that performs network data tasks.
+// MARK: - Network Client
+/// Network client that performs network data tasks.
 ///
 /// Object contains default `default` instance, that can be used to make requests.
 ///
 /// If additional processing is required, object can be extended the following way.
 ///
-///     extension NetworkService {
-///         static let someInstance: NetworkService = .init(
-///             processor: SomeNetworkServiceProcessor()
+///     extension NetworkClient {
+///         static let someInstance: NetworkClient = .init(
+///             processor: SomeNetworkClientProcessor()
 ///         )
 ///     }
 ///
@@ -26,7 +26,7 @@ import Foundation
 ///         var description: String
 ///     }
 ///
-///     struct SomeNetworkServiceProcessor: NetworkServiceProcessor {
+///     struct SomeNetworkClientProcessor: NetworkClientProcessor {
 ///         func error(_ error: Error) throws {}
 ///
 ///         func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
@@ -72,7 +72,7 @@ import Foundation
 ///             "someKey": "someValue"
 ///         ])
 ///
-///         let result: [String: Any?] = try await NetworkService.someInstance.json(from: request)
+///         let result: [String: Any?] = try await NetworkClient.someInstance.json(from: request)
 ///
 ///         print(result["someKey"]?.toString ?? "-")
 ///
@@ -80,21 +80,21 @@ import Foundation
 ///         print(error.localizedDescription)
 ///     }
 ///
-public final class NetworkService {
+public final class NetworkClient {
     // MARK: Properties
-    /// Default instance of `NetworkService`.
-    public static let `default`: NetworkService = .init(
-        processor: DefaultNetworkServiceProcessor()
+    /// Default instance of `NetworkClient`.
+    public static let `default`: NetworkClient = .init(
+        processor: DefaultNetworkClientProcessor()
     )
     
     /// Configuration object that defines behavior and policies for an `URL` session.
     public var sessionConfiguration: URLSessionConfiguration = .default
     
-    private let processor: NetworkServiceProcessor
+    private let processor: NetworkProcessor
     
     // MARK: Initializers
-    /// Initializes `NetworkService`.
-    public init(processor: NetworkServiceProcessor) {
+    /// Initializes `NetworkClient`.
+    public init(processor: NetworkProcessor) {
         self.processor = processor
     }
     
@@ -135,7 +135,7 @@ public final class NetworkService {
     ) async throws -> DecodableEntity {
         try await makeRequest(
             request: request,
-            decode: { try JSONDecoderService.entity(from: $0) }
+            decode: { try JSONDecoderService.decodable(from: $0) }
         )
     }
 
