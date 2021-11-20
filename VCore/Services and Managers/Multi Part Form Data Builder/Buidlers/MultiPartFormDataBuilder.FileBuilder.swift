@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Multi Part Form Data Builder File Builder
+// MARK: - File Builder
 extension MultiPartFormDataBuilder {
     struct FileBuilder {
         // MARK: Properties
@@ -26,14 +26,14 @@ extension MultiPartFormDataBuilder {
         }
         
         // MARK: Building
-        func build() -> Data {
+        func build() throws -> Data {
             var data: Data = .init()
             
             for (key, value) in files {
                 switch value {
-                case let array as [AnyMultiPartFormFile?]: appendArray(key: key, array: array, to: &data)
-                case let json as [String: AnyMultiPartFormFile?]: appendJSON(key: key, json: json, to: &data)
-                default: appendElement(key: key, element: value, to: &data)
+                case let array as [AnyMultiPartFormFile?]: try appendArray(key: key, array: array, to: &data)
+                case let json as [String: AnyMultiPartFormFile?]: try appendJSON(key: key, json: json, to: &data)
+                default: try appendElement(key: key, element: value, to: &data)
                 }
             }
             
@@ -44,11 +44,11 @@ extension MultiPartFormDataBuilder {
             key: String,
             element: AnyMultiPartFormFile?,
             to data: inout Data
-        ) {
-            guard let file: MultiPartFormDataFile = (element as? MultiPartFormDataFile) else { return }
+        ) throws {
+            guard let file: MultiPartFormDataFile = (element as? MultiPartFormDataFile) else { throw MultiPartFormDataError.invalidFiles }
             
             let _file: _MultiPartFormDataFile = .init(name: key, file: file)
-            guard let _fileData: Data = _file.data else { return }
+            guard let _fileData: Data = _file.data else { throw MultiPartFormDataError.invalidFiles }
             
             data.append("--\(boundary)\(lineBreak)")
 
@@ -63,14 +63,14 @@ extension MultiPartFormDataBuilder {
             key: String,
             json: [String: AnyMultiPartFormFile?],
             to data: inout Data
-        ) {
+        ) throws {
             for element in json {
                 let elementConcatKey: String = "\(key)[\(element.key)]"
                 
                 switch element.value {
-                case let array as [AnyMultiPartFormFile?]: appendArray(key: elementConcatKey, array: array, to: &data)
-                case let json as [String: AnyMultiPartFormFile?]: appendJSON(key: elementConcatKey, json: json, to: &data)
-                default: appendElement(key: elementConcatKey, element: element.value, to: &data)
+                case let array as [AnyMultiPartFormFile?]: try appendArray(key: elementConcatKey, array: array, to: &data)
+                case let json as [String: AnyMultiPartFormFile?]: try appendJSON(key: elementConcatKey, json: json, to: &data)
+                default: try appendElement(key: elementConcatKey, element: element.value, to: &data)
                 }
             }
         }
@@ -79,14 +79,14 @@ extension MultiPartFormDataBuilder {
             key: String,
             array: [AnyMultiPartFormFile?],
             to data: inout Data
-        ) {
+        ) throws {
             for (i, element) in array.enumerated() {
                 let elementConcatKey: String = "\(key)[\(i)]"
                 
                 switch element {
-                case let array as [AnyMultiPartFormFile?]: appendArray(key: elementConcatKey, array: array, to: &data)
-                case let json as [String: AnyMultiPartFormFile?]: appendJSON(key: elementConcatKey, json: json, to: &data)
-                default: appendElement(key: elementConcatKey, element: element, to: &data)
+                case let array as [AnyMultiPartFormFile?]: try appendArray(key: elementConcatKey, array: array, to: &data)
+                case let json as [String: AnyMultiPartFormFile?]: try appendJSON(key: elementConcatKey, json: json, to: &data)
+                default: try appendElement(key: elementConcatKey, element: element, to: &data)
                 }
             }
         }

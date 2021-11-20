@@ -45,7 +45,7 @@ public enum NetworkError: VCoreError {
     
     // MARK: Properties
     // Overriden
-    public static var errorDomain: String { "com.vcore.NetworkClient" }
+    public static var errorDomain: String { "com.vcore.networkclient" }
     
     // MARK: VCore Error
     public var domain: String { Self.errorDomain }

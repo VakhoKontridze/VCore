@@ -11,9 +11,7 @@ import Foundation
 /// An error that occurs during the processes made by `JSONEncoderService`.
 public enum JSONDecoderError: VCoreError {
     // MARK: Cases
-    /// Indicates that data cannot be decoded.
-    ///
-    /// Associated value contains info of `VCoreErrorInfo` type.
+    /// Indicates that json cannot be decoded.
     case failedToDecode
 
     // MARK: Properties
@@ -25,13 +23,13 @@ public enum JSONDecoderError: VCoreError {
     
     public var code: Int {
         switch self {
-        case .failedToDecode: return 1
+        case .failedToDecode: return 1001
         }
     }
     
     public var description: String {
         switch self {
-        case .failedToDecode: return "Cannot decode data"
+        case .failedToDecode: return "Data cannot be decoded or is incomplete"
         }
     }
 }

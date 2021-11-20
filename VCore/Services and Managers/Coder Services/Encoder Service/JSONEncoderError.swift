@@ -12,8 +12,6 @@ import Foundation
 public enum JSONEncoderError: VCoreError {
     // MARK: Cases
     /// Indicates that data cannot be encoded.
-    ///
-    /// Associated value contains info of `VCoreErrorInfo` type.
     case failedToEncode
     
     // MARK: Properties
@@ -25,13 +23,13 @@ public enum JSONEncoderError: VCoreError {
     
     public var code: Int {
         switch self {
-        case .failedToEncode: return 1
+        case .failedToEncode: return 1001
         }
     }
     
     public var description: String {
         switch self {
-        case .failedToEncode: return "Cannot encode data"
+        case .failedToEncode: return "Data cannot be encoded or is incomplete"
         }
     }
 }

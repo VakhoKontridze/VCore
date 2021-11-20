@@ -13,34 +13,34 @@ import Foundation
 /// Usage Example
 ///
 ///     Task(operation: {
-///         let profileImage: UIImage? = nil        // Initialized elsewhere
-///         let galleryImages: [UIImage?]? = nil    // Initialized elsewhere
-///
-///         let json: [String: Any?] = [
-///             "first": "Vakhtang",
-///             "last": "Kontridze"
-///         ]
-///
-///         let files: [String: AnyMultiPartFormFile?] = [
-///             "profile": MultiPartFormDataFile(
-///                 mimeType: "image/jpeg",
-///                 data: profileImage?.jpegData(compressionQuality: 0.75)
-///             ),
-///
-///             "gallery": galleryImages?.compactMap { image in
-///                 MultiPartFormDataFile(
-///                     mimeType: "image/jpeg",
-///                     data: image?.jpegData(compressionQuality: 0.75)
-///                 )
-///             }
-///         ]
-///
-///         let (boundary, data): (String, Data) = MultiPartFormDataBuilder(
-///             json: json,
-///             files: files
-///         ).build()
-///
 ///         do {
+///             let profileImage: UIImage? = nil        // Initialized elsewhere
+///             let galleryImages: [UIImage?]? = nil    // Initialized elsewhere
+///
+///             let json: [String: Any?] = [
+///                 "first": "Vakhtang",
+///                 "last": "Kontridze"
+///             ]
+///
+///             let files: [String: AnyMultiPartFormFile?] = [
+///                 "profile": MultiPartFormDataFile(
+///                     mimeType: "image/jpeg",
+///                     data: profileImage?.jpegData(compressionQuality: 0.75)
+///                 ),
+///
+///                 "gallery": galleryImages?.compactMap { image in
+///                     MultiPartFormDataFile(
+///                         mimeType: "image/jpeg",
+///                         data: image?.jpegData(compressionQuality: 0.75)
+///                     )
+///                 }
+///             ]
+///
+///             let (boundary, data): (String, Data) = try MultiPartFormDataBuilder(
+///                 json: json,
+///                 files: files
+///             ).build()
+///
 ///             var request: NetworkRequest = .init(url: "https://somewebsite.com/api/some_endpoint")
 ///
 ///             request.method = .POST
@@ -81,9 +81,9 @@ public struct MultiPartFormDataBuilder {
     
     // MARK: Building
     /// Builds and returns boundary string and `Data` that can be send using network request.
-    public func build() -> (String, Data) {
+    public func build() throws -> (String, Data) {
         let boundary: String = buildBoundary()
-        let data: Data = buildData(boundary: boundary)
+        let data: Data = try buildData(boundary: boundary)
         
         return (boundary, data)
     }
@@ -92,10 +92,10 @@ public struct MultiPartFormDataBuilder {
         UUID().uuidString
     }
     
-    private func buildData(boundary: String) -> Data {
+    private func buildData(boundary: String) throws -> Data {
         var data: Data = .init()
-        data.append(JSONBuilder(boundary: boundary, json: json).build())
-        data.append(FileBuilder(boundary: boundary, files: files).build())
+        data.append(try JSONBuilder(boundary: boundary, json: json).build())
+        data.append(try FileBuilder(boundary: boundary, files: files).build())
         data.append("--\(boundary)--\(Self.lineBreak)")
         return data
     }

@@ -14,8 +14,4 @@ final class ViewController: UIViewController {
         
         view.backgroundColor = .white
     }
-    
-    func a() {
-        
-    }
 }
