@@ -1,5 +1,5 @@
 //
-//  NetworkTypeCasts.swift
+//  JSONTypeCasts.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 8/24/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: Type Casts
+// MARK: - JSON Type Casts
 extension Optional where Wrapped == Any {
     /// Casts `Optional` `Any` to `JSON`.
     public var toJSON: [String: Any?]? {
@@ -79,7 +79,7 @@ extension Optional where Wrapped == Any {
     }
 }
 
-// MARK: Wrapped Type Casts
+// MARK: - Wrapped JSON Type Casts
 extension Optional where Wrapped == Any {
     /// Casts `Optional` `Any` to wrapped`JSON`.
     public var toWrappedJSON: [String: Any?] {
