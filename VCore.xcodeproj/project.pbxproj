@@ -22,6 +22,7 @@
 		1781D00C274A9B3300B7A7F1 /* InfiniteScrollingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D00B274A9B3300B7A7F1 /* InfiniteScrollingCollectionView.swift */; };
 		1781D00E274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D00D274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift */; };
 		1781D012274AA83300B7A7F1 /* InfiniteScrollingCollectionViewActivityIndicatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D011274AA83300B7A7F1 /* InfiniteScrollingCollectionViewActivityIndicatorModel.swift */; };
+		1781D034274AC82200B7A7F1 /* CGSize.InitWithDimension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D033274AC82200B7A7F1 /* CGSize.InitWithDimension.swift */; };
 		178718112730640000C2B74C /* EdgeInsets_LTTB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178718102730640000C2B74C /* EdgeInsets_LTTB.swift */; };
 		17871824273068CE00C2B74C /* EdgeInsets_LT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871823273068CE00C2B74C /* EdgeInsets_LT.swift */; };
 		17871826273069A700C2B74C /* EdgeInsets_TB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871825273069A700C2B74C /* EdgeInsets_TB.swift */; };
@@ -147,6 +148,7 @@
 		1781D00B274A9B3300B7A7F1 /* InfiniteScrollingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingCollectionView.swift; sourceTree = "<group>"; };
 		1781D00D274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingHelpers.swift; sourceTree = "<group>"; };
 		1781D011274AA83300B7A7F1 /* InfiniteScrollingCollectionViewActivityIndicatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingCollectionViewActivityIndicatorModel.swift; sourceTree = "<group>"; };
+		1781D033274AC82200B7A7F1 /* CGSize.InitWithDimension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSize.InitWithDimension.swift; sourceTree = "<group>"; };
 		178718102730640000C2B74C /* EdgeInsets_LTTB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LTTB.swift; sourceTree = "<group>"; };
 		17871823273068CE00C2B74C /* EdgeInsets_LT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LT.swift; sourceTree = "<group>"; };
 		17871825273069A700C2B74C /* EdgeInsets_TB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_TB.swift; sourceTree = "<group>"; };
@@ -609,6 +611,7 @@
 				7AB22B3426EE834E0037355D /* UINavigationBar.Height.swift */,
 				17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */,
 				17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */,
+				1781D033274AC82200B7A7F1 /* CGSize.InitWithDimension.swift */,
 				17FDE98F273902EC0085DE40 /* UIColor.RGBAComponents.swift */,
 				17FDE993273905C70085DE40 /* UIColor.Blend.swift */,
 				17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */,
@@ -761,6 +764,7 @@
 				7AF68A6D26EE899700D4B5BE /* String.IsUserDefaultsKey.swift in Sources */,
 				7AB22AE926EB94110037355D /* InfiniteScrollingTableView.swift in Sources */,
 				7AB22AF726EB9FAB0037355D /* TODO.swift in Sources */,
+				1781D034274AC82200B7A7F1 /* CGSize.InitWithDimension.swift in Sources */,
 				17871826273069A700C2B74C /* EdgeInsets_TB.swift in Sources */,
 				17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */,
 				7A0F759D26D5150800020996 /* NetworkReachabilityService.swift in Sources */,
