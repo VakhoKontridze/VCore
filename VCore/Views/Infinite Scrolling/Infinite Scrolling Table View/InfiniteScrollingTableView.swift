@@ -15,9 +15,9 @@ import UIKit
 /// Network call or persistent storage fetch reqiest can be made.
 /// Once finished, property must be set to either `canPaginate`, or `shouldNotPaginate`, depending on the existence of further data.
 ///
-/// Two methods must be called from `UIView` or `UIViewController to ensure proper functionality:
-/// - `detectPaginationFromScrollViewDidScroll(:_)`, whitch detects pagination on scroll.
-/// - `detectPaginationFromTableViewCellForRow(:_)`, which detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called.
+/// Two methods must be called from `UIView` or `UIViewController` to ensure proper functionality:
+/// - `detectPaginationFromScrollViewDidScroll`, whitch detects pagination on scroll.
+/// - `detectPaginationFromTableViewCellForRow`, which detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called.
 ///
 public final class InfiniteScrollingTableView: UITableView {
     // MARK: Properties
@@ -34,17 +34,41 @@ public final class InfiniteScrollingTableView: UITableView {
     public var paginationOffset: CGFloat = 20
     
     // If paginationState is set to `isLoading` before UITableView's constraint are set,
-    // InfiniteScrollingTableViewActivityIndicatorView won't layout properly.
+    // `UIActivityIndicator` won't layout properly.
     private var boundsObserver: NSKeyValueObservation?
     
     // MARK: Initializers
     public init() {
         super.init(frame: .zero, style: .plain)
-        createBoundsObserver()
+        setUp()
     }
     
     public required init?(coder: NSCoder) {
-        super.init(coder: coder)
+        fatalError()
+    }
+    
+    // MARK: Setup
+    private func setUp() {
+        createBoundsObserver()
+    }
+    
+    private func createBoundsObserver() {
+        boundsObserver = observe(
+            \.bounds,
+            options: [.new],
+            changeHandler: { [weak self] (_, change) in
+                guard let self = self else { return }
+                
+                guard
+                    change.newValue?.width != 0,
+                    self.paginationState == .isLoading
+                else {
+                    return
+                }
+
+                self.setActivityIndicatorState()
+            }
+        )
     }
 
     // MARK: Detection
@@ -71,7 +95,7 @@ public final class InfiniteScrollingTableView: UITableView {
     }
 
     // MARK: Activity Indicator
-    func setActivityIndicatorState() {
+    private func setActivityIndicatorState() {
         switch paginationState {
         case .isLoading:
             guard frame.width != 0 else { return }
@@ -81,41 +105,5 @@ public final class InfiniteScrollingTableView: UITableView {
             tableFooterView = nil
             reloadData()
         }
-    }
-    
-    private func createBoundsObserver() {
-        boundsObserver = observe(
-            \.bounds,
-            options: [.new],
-            changeHandler: { [weak self] (_, change) in
-                guard let self = self else { return }
-                
-                guard
-                    change.newValue?.width != 0,
-                    self.paginationState == .isLoading
-                else {
-                    return
-                }
-
-                self.setActivityIndicatorState()
-            }
-        )
-    }
-}
-
-// MARK: - Detection
-extension UIScrollView {
-    fileprivate func didScrollToBottom(offset: CGFloat) -> Bool {
-        guard contentOffset.y > 0 else { return false }
-        
-        let didScrollToBottom: Bool =
-            contentOffset.y + frame.size.height >=
-            contentSize.height - offset
-        
-        return didScrollToBottom
-    }
-    
-    fileprivate var contentHeightExceedsTableViewHeight: Bool {
-        contentSize.height > frame.size.height
     }
 }

@@ -16,6 +16,12 @@
 		173C2E5C2711A947006BEAF3 /* NetworkProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5B2711A947006BEAF3 /* NetworkProcessor.swift */; };
 		1742266C2746C8F300B4B4C3 /* String.NonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742266B2746C8F300B4B4C3 /* String.NonEmpty.swift */; };
 		1742266E2746CD8C00B4B4C3 /* String.SafelyDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742266D2746CD8C00B4B4C3 /* String.SafelyDescribing.swift */; };
+		1781D006274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D005274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift */; };
+		1781D008274A9AE000B7A7F1 /* InfiniteScrollingCollectionViewPaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D007274A9AE000B7A7F1 /* InfiniteScrollingCollectionViewPaginationState.swift */; };
+		1781D00A274A9AF400B7A7F1 /* InfiniteScrollingCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D009274A9AF400B7A7F1 /* InfiniteScrollingCollectionViewDelegate.swift */; };
+		1781D00C274A9B3300B7A7F1 /* InfiniteScrollingCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D00B274A9B3300B7A7F1 /* InfiniteScrollingCollectionView.swift */; };
+		1781D00E274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D00D274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift */; };
+		1781D012274AA83300B7A7F1 /* InfiniteScrollingCollectionViewActivityIndicatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D011274AA83300B7A7F1 /* InfiniteScrollingCollectionViewActivityIndicatorModel.swift */; };
 		178718112730640000C2B74C /* EdgeInsets_LTTB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178718102730640000C2B74C /* EdgeInsets_LTTB.swift */; };
 		17871824273068CE00C2B74C /* EdgeInsets_LT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871823273068CE00C2B74C /* EdgeInsets_LT.swift */; };
 		17871826273069A700C2B74C /* EdgeInsets_TB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871825273069A700C2B74C /* EdgeInsets_TB.swift */; };
@@ -86,7 +92,7 @@
 		7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AEB26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift */; };
 		7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AED26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift */; };
 		7AB22AF026EB96550037355D /* InfiniteScrollingTableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AEF26EB96550037355D /* InfiniteScrollingTableViewDelegate.swift */; };
-		7AB22AF426EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AF326EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift */; };
+		7AB22AF426EB96ED0037355D /* InfiniteScrollingPaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AF326EB96ED0037355D /* InfiniteScrollingPaginationState.swift */; };
 		7AB22AF726EB9FAB0037355D /* TODO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22AF626EB9FAB0037355D /* TODO.swift */; };
 		7AB22B2D26EE7A6F0037355D /* StringProtocol.Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B2C26EE7A6F0037355D /* StringProtocol.Subscript.swift */; };
 		7AB22B3526EE834E0037355D /* UINavigationBar.Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3426EE834E0037355D /* UINavigationBar.Height.swift */; };
@@ -135,6 +141,12 @@
 		173C2E5B2711A947006BEAF3 /* NetworkProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProcessor.swift; sourceTree = "<group>"; };
 		1742266B2746C8F300B4B4C3 /* String.NonEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.NonEmpty.swift; sourceTree = "<group>"; };
 		1742266D2746CD8C00B4B4C3 /* String.SafelyDescribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.SafelyDescribing.swift; sourceTree = "<group>"; };
+		1781D005274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewPaginationState.swift; sourceTree = "<group>"; };
+		1781D007274A9AE000B7A7F1 /* InfiniteScrollingCollectionViewPaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingCollectionViewPaginationState.swift; sourceTree = "<group>"; };
+		1781D009274A9AF400B7A7F1 /* InfiniteScrollingCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingCollectionViewDelegate.swift; sourceTree = "<group>"; };
+		1781D00B274A9B3300B7A7F1 /* InfiniteScrollingCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingCollectionView.swift; sourceTree = "<group>"; };
+		1781D00D274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingHelpers.swift; sourceTree = "<group>"; };
+		1781D011274AA83300B7A7F1 /* InfiniteScrollingCollectionViewActivityIndicatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingCollectionViewActivityIndicatorModel.swift; sourceTree = "<group>"; };
 		178718102730640000C2B74C /* EdgeInsets_LTTB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LTTB.swift; sourceTree = "<group>"; };
 		17871823273068CE00C2B74C /* EdgeInsets_LT.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LT.swift; sourceTree = "<group>"; };
 		17871825273069A700C2B74C /* EdgeInsets_TB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_TB.swift; sourceTree = "<group>"; };
@@ -207,7 +219,7 @@
 		7AB22AEB26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewActivityIndicator.swift; sourceTree = "<group>"; };
 		7AB22AED26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewActivityIndicatorModel.swift; sourceTree = "<group>"; };
 		7AB22AEF26EB96550037355D /* InfiniteScrollingTableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewDelegate.swift; sourceTree = "<group>"; };
-		7AB22AF326EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewPaginationState.swift; sourceTree = "<group>"; };
+		7AB22AF326EB96ED0037355D /* InfiniteScrollingPaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingPaginationState.swift; sourceTree = "<group>"; };
 		7AB22AF626EB9FAB0037355D /* TODO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TODO.swift; sourceTree = "<group>"; };
 		7AB22B2C26EE7A6F0037355D /* StringProtocol.Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.Subscript.swift; sourceTree = "<group>"; };
 		7AB22B3426EE834E0037355D /* UINavigationBar.Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.Height.swift; sourceTree = "<group>"; };
@@ -253,6 +265,26 @@
 				7A0F75C526D5174500020996 /* JSONTypeCasts.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1781D002274A957600B7A7F1 /* Infinite Scrolling Collection View */ = {
+			isa = PBXGroup;
+			children = (
+				1781D00B274A9B3300B7A7F1 /* InfiniteScrollingCollectionView.swift */,
+				1781D009274A9AF400B7A7F1 /* InfiniteScrollingCollectionViewDelegate.swift */,
+				1781D007274A9AE000B7A7F1 /* InfiniteScrollingCollectionViewPaginationState.swift */,
+				1781D011274AA83300B7A7F1 /* InfiniteScrollingCollectionViewActivityIndicatorModel.swift */,
+			);
+			path = "Infinite Scrolling Collection View";
+			sourceTree = "<group>";
+		};
+		1781D003274A997000B7A7F1 /* Infinite Scrolling */ = {
+			isa = PBXGroup;
+			children = (
+				7AB22AEA26EB94150037355D /* Infinite Scrolling Table View */,
+				1781D002274A957600B7A7F1 /* Infinite Scrolling Collection View */,
+			);
+			path = "Infinite Scrolling";
 			sourceTree = "<group>";
 		};
 		1787180F273063AC00C2B74C /* Edge Insets */ = {
@@ -505,7 +537,9 @@
 		7AB22AE726EB93FE0037355D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				7AB22AEA26EB94150037355D /* Infinite Scrolling Table View */,
+				1781D003274A997000B7A7F1 /* Infinite Scrolling */,
+				7AB22AF326EB96ED0037355D /* InfiniteScrollingPaginationState.swift */,
+				1781D00D274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -515,7 +549,7 @@
 			children = (
 				7AB22AE826EB94110037355D /* InfiniteScrollingTableView.swift */,
 				7AB22AEF26EB96550037355D /* InfiniteScrollingTableViewDelegate.swift */,
-				7AB22AF326EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift */,
+				1781D005274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift */,
 				7AB22AEB26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift */,
 				7AB22AED26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift */,
 			);
@@ -752,6 +786,7 @@
 				7A91D6F426EFA4E200B0B096 /* NSLayoutConstraint.WithPriority.swift in Sources */,
 				173C2C95270DDE16006BEAF3 /* View.CustomFrames.swift in Sources */,
 				173C2C99270DF000006BEAF3 /* View.CornerRadius.swift in Sources */,
+				1781D006274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift in Sources */,
 				7AF68A6F26EE8ABC00D4B5BE /* Array.CompactMapNonEmpty.swift in Sources */,
 				7A0F75C426D5173100020996 /* CustomResults.swift in Sources */,
 				17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */,
@@ -759,10 +794,12 @@
 				7A91D6F626EFA5B200B0B096 /* NSLayoutConstraint.Storing.swift in Sources */,
 				7A0F75C226D5172000020996 /* NetworkError.swift in Sources */,
 				7A0F759826D5146C00020996 /* AtomicInteger.swift in Sources */,
+				1781D00C274A9B3300B7A7F1 /* InfiniteScrollingCollectionView.swift in Sources */,
 				7AB22B3726EE84690037355D /* Array.SafeSubscript.swift in Sources */,
 				17FDE98A2738FC590085DE40 /* UIImage.Cropped.swift in Sources */,
 				7AF68A6926EE878300D4B5BE /* Date.Component.swift in Sources */,
 				7AB22B3526EE834E0037355D /* UINavigationBar.Height.swift in Sources */,
+				1781D00E274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift in Sources */,
 				17D2B794274987C60075BCAD /* MultiPartFormDataError.swift in Sources */,
 				7A86F88126EFAC0800EC32EA /* UILabel.SingleLineHeight.swift in Sources */,
 				7AB22B3926EE84EF0037355D /* NSObject.NSObjectName.swift in Sources */,
@@ -776,8 +813,10 @@
 				7AB22AF026EB96550037355D /* InfiniteScrollingTableViewDelegate.swift in Sources */,
 				179B84002747B4670011462D /* NetworkRequest.swift in Sources */,
 				7A91D6F826EFA68500B0B096 /* UIView.RoundCorners.swift in Sources */,
+				1781D00A274A9AF400B7A7F1 /* InfiniteScrollingCollectionViewDelegate.swift in Sources */,
 				17FD1677273A7CFB00EEAFD0 /* UIViewController.WithTabBarItem.swift in Sources */,
 				7A9A6AA626D521A000C19A07 /* SessionManager.swift in Sources */,
+				1781D008274A9AE000B7A7F1 /* InfiniteScrollingCollectionViewPaginationState.swift in Sources */,
 				7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */,
 				7A86F88526EFB65E00EC32EA /* Sequence.KeyPathSort.swift in Sources */,
 				179B84042747B8450011462D /* NetworkRequest.HeadersBuilder.swift in Sources */,
@@ -787,10 +826,11 @@
 				17B23E762735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift in Sources */,
 				7AF68A7426EE907900D4B5BE /* DigitalTimeFormatter.swift in Sources */,
 				17871828273069DE00C2B74C /* EdgeInsets_HV.swift in Sources */,
+				1781D012274AA83300B7A7F1 /* InfiniteScrollingCollectionViewActivityIndicatorModel.swift in Sources */,
 				17B1041D270B080100B9E296 /* UIActivityIndicatorViewable.swift in Sources */,
 				7A86F88326EFB16200EC32EA /* UILabel.Configuration.swift in Sources */,
 				17B1041B270B07E900B9E296 /* UIAlertViewable.swift in Sources */,
-				7AB22AF426EB96ED0037355D /* InfiniteScrollingTableViewPaginationState.swift in Sources */,
+				7AB22AF426EB96ED0037355D /* InfiniteScrollingPaginationState.swift in Sources */,
 				17B23E7827354AEB00914FEB /* UIStackView.ArrangedSubviews.swift in Sources */,
 				173C2E492711680D006BEAF3 /* Deprecations.swift in Sources */,
 				7A00266C26EB70370056DBC5 /* JSONEncoderError.swift in Sources */,

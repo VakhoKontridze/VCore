@@ -55,7 +55,7 @@ extension UIActivityIndicatorViewable where Self: UIViewController {
 
 // MARK: - Factory
 extension UIViewController {
-    /// Creates `UIActivityIndicatorView`
+    /// Creates `UIActivityIndicatorView`.
     public func initActivityIndicator(
         scalingFactor: CGFloat? = nil,
         color: UIColor? = nil
@@ -65,7 +65,8 @@ extension UIViewController {
 }
 
 extension UIView {
-    func initActivityIndicator(
+    /// Creates `UIActivityIndicatorView`.
+    public func initActivityIndicator(
         scalingFactor: CGFloat? = nil,
         color: UIColor? = nil
     ) -> UIActivityIndicatorView {
