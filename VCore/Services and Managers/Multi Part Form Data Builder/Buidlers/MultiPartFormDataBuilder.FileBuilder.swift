@@ -45,6 +45,8 @@ extension MultiPartFormDataBuilder {
             element: AnyMultiPartFormFile?,
             to data: inout Data
         ) throws {
+            guard let element = element else { return }
+            
             guard let file: MultiPartFormDataFile = (element as? MultiPartFormDataFile) else { throw MultiPartFormDataError.invalidFiles }
             
             let _file: _MultiPartFormDataFile = .init(name: key, file: file)
