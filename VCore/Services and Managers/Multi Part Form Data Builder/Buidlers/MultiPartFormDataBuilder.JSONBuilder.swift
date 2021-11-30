@@ -58,12 +58,12 @@ extension MultiPartFormDataBuilder {
             to data: inout Data
         ) throws {
             for element in json {
-                let elementConcatKey: String = "\(key)[\(element.key)]"
+                let elementKey: String = "\(key)[\(element.key)]"
                 
                 switch element.value {
-                case let array as [Any?]: try appendArray(key: elementConcatKey, array: array, to: &data)
-                case let json as [String: Any?]: try appendJSON(key: elementConcatKey, json: json, to: &data)
-                default: try appendElement(key: elementConcatKey, element: element.value, to: &data)
+                case let array as [Any?]: try appendArray(key: elementKey, array: array, to: &data)
+                case let json as [String: Any?]: try appendJSON(key: elementKey, json: json, to: &data)
+                default: try appendElement(key: elementKey, element: element.value, to: &data)
                 }
             }
         }
@@ -74,12 +74,12 @@ extension MultiPartFormDataBuilder {
             to data: inout Data
         ) throws {
             for (i, element) in array.enumerated() {
-                let elementConcatKey: String = "\(key)[\(i)]"
+                let elementKey: String = "\(key)[\(i)]"
                 
                 switch element {
-                case let array as [[String: Any?]]: try appendArray(key: elementConcatKey, array: array, to: &data)
-                case let json as [String: Any?]: try appendJSON(key: elementConcatKey, json: json, to: &data)
-                default: try appendElement(key: elementConcatKey, element: element, to: &data)
+                case let array as [[String: Any?]]: try appendArray(key: elementKey, array: array, to: &data)
+                case let json as [String: Any?]: try appendJSON(key: elementKey, json: json, to: &data)
+                default: try appendElement(key: elementKey, element: element, to: &data)
                 }
             }
         }

@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MARK: - Round Corners
+// MARK: - Round View Corners
 extension UIView {
     /// Rounds corners.
     ///
