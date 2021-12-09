@@ -25,9 +25,9 @@ Project files are grouped as:
 
 - ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `NetworkClient`.
 
-- ***Global Functions***. Global functions. For instance, `TODO` and operators.
-
 - ***Helpers***. Non-service, non-extension objects and methods. For instance, helper methods for creating `GenericStateModel`'s and `StandardNavigable`.
+
+- ***Global Functions***. Global functions. For instance, `TODO` and operators.
 
 - ***Extensions***. Global extensions. Methods and properties are grouped by frameworks of origin—`Foundation`, `UIKit`, and `SwiftUI`.
 
