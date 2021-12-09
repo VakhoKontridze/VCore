@@ -11,6 +11,27 @@ import Foundation
 /// Session manager that works with `AtomicInteger` to manage sessions with unique identifiers.
 ///
 /// Object contains `shared` instance, but can also be initialized for separate incrementation.
+///
+/// Usage example:
+///
+///     let sessionManager: SessionManager = .init()
+///
+///     Task(operation: {
+///         do {
+///             let sessionID: Int = sessionManager.newSessionID
+///
+///             let request: NetworkRequest = .init(url: "https://httpbin.org/get")
+///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+///
+///             guard sessionManager.sessionIsValid(id: sessionID) else { return }
+///
+///             print(result)
+///
+///         } catch let error {
+///             print(error.localizedDescription)
+///         }
+///     })
+///
 public final class SessionManager {
     // MARK: Properties
     private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
