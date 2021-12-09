@@ -50,7 +50,7 @@ extension MultiPartFormDataBuilder {
             guard let file: MultiPartFormDataFile = (element as? MultiPartFormDataFile) else { throw MultiPartFormDataError.invalidFiles }
             
             let _file: _MultiPartFormDataFile = .init(name: key, file: file)
-            guard let _fileData: Data = _file.data else { throw MultiPartFormDataError.invalidFiles }
+            guard let _fileData: Data = _file.data else { return }
             
             data.append("--\(boundary)\(lineBreak)")
 

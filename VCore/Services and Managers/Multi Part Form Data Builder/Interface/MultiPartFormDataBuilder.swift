@@ -14,9 +14,6 @@ import Foundation
 ///
 ///     Task(operation: {
 ///         do {
-///             let profileImage: UIImage? = nil        // Initialized elsewhere
-///             let galleryImages: [UIImage?]? = nil    // Initialized elsewhere
-///
 ///             let json: [String: Any?] = [
 ///                 "first": "Vakhtang",
 ///                 "last": "Kontridze"
@@ -28,8 +25,9 @@ import Foundation
 ///                     data: profileImage?.jpegData(compressionQuality: 0.75)
 ///                 ),
 ///
-///                 "gallery": galleryImages?.compactMap { image in
+///                 "gallery": galleryImages?.enumerated().compactMap { (index, image) in
 ///                     MultiPartFormDataFile(
+///                         filename: "IMG_\(index).jpg",
 ///                         mimeType: "image/jpeg",
 ///                         data: image?.jpegData(compressionQuality: 0.75)
 ///                     )

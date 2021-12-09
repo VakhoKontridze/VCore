@@ -19,18 +19,31 @@ import UIKit
 /// while those passed via array will be enumerated using indexes.
 ///
 ///     let files: [String: AnyMultiPartFormFile?] = [
-///         "main_image": MultiPartFormDataFile(mimeType: "image/jpeg", data: .init()), // "main_image"
+///         "main_image": MultiPartFormDataFile(mimeType: "image/jpeg", data: mainImageData),
 ///
 ///         "gallery": [
-///             "thumbnail": MultiPartFormDataFile(mimeType: "image/jpeg", data: thumbnailData), // "gallery[thumbnail]"
+///             "thumbnail": MultiPartFormDataFile(mimeType: "image/jpeg", data: thumbnailData),
 ///
-///             "images": [
-///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: image1Data), // "gallery[images][0]"
-///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: image2Data), // "gallery[images][1]"
-///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: image3Data)  // "gallery[images][2]"
+///             "small_images": [
+///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: smallImage1Data),
+///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: smallImage2Data),
+///             ],
+///
+///             "large_images": [
+///                 MultiPartFormDataFile(filename: "large-image-1.jpg", mimeType: "image/jpeg", data: largeImage1Data),
+///                 MultiPartFormDataFile(filename: "large-image-2.jpg", mimeType: "image/jpeg", data: largeImage2Data),
 ///             ]
 ///         ]
 ///     ]
+///
+/// Name and filenames generated once `MultiPartFormDataBuilder` executes `build` method are:
+///
+///     ... name=\"main_image\"; filename=\"main_image.jpeg\" ...
+///     ... name=\"gallery[thumbnail]\"; filename=\"gallery[thumbnail].jpeg\" ...
+///     ... name=\"gallery[small_images][0]\"; filename=\"gallery[small_images][0].jpeg\" ...
+///     ... name=\"gallery[small_images][1]\"; filename=\"gallery[small_images][1].jpeg\" ...
+///     ... name=\"gallery[large_images][0]\"; filename=\"large-image-1.jpg\" ...
+///     ... name=\"gallery[large_images][1]\"; filename=\"large-image-2.jpg\" ...
 ///
 /// For additional information, refer to `MultiPartFormDataBuilder`.
 public protocol AnyMultiPartFormFile {}
@@ -49,6 +62,12 @@ extension Optional: AnyMultiPartFormFile where Wrapped == AnyMultiPartFormFile {
 /// Can be placed in `Dictionary` or `Array`.
 public struct MultiPartFormDataFile {
     // MARK: Properties
+    /// File name.
+    ///
+    /// If `nil`, `String` passed to `[String: AnyMultiPartFormFile?]` `Dictionary` will be used.
+    /// With an explicit `filename`, a mime type is not automatically appended.
+    public let filename: String?
+    
     /// File mime type.
     public let mimeType: String
     
@@ -58,9 +77,11 @@ public struct MultiPartFormDataFile {
     // MARK: Initializers
     /// Initailizes `MultiPartFormDataFile`.
     public init(
+        filename: String? = nil,
         mimeType: String,
         data: Data?
     ) {
+        self.filename = filename
         self.mimeType = mimeType
         self.data = data
     }
@@ -81,7 +102,9 @@ struct _MultiPartFormDataFile {
     ) {
         self.name = name
         self.filename = {
-            if let fileExtension: String = file.mimeType.components(separatedBy: "/").last {
+            if let fileName: String = file.filename {
+                return fileName
+            } else if let fileExtension: String = file.mimeType.components(separatedBy: "/").last {
                 return "\(name).\(fileExtension)"
             } else {
                 return name
