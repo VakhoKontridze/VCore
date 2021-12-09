@@ -11,9 +11,9 @@ import UIKit
 /// Subclass of `UICollectionView` that handles infinite scrolling.
 ///
 /// Contains property `paginationState`, controls pagination state.
-/// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.isLoading` and delegate method is called.
+/// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
 /// Network call or persistent storage fetch reqiest can be made.
-/// Once finished, property must be set to either `canPaginate`, or `shouldNotPaginate`, depending on the existence of further data.
+/// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
 ///
 /// Three methods must be called from `UIView` or `UIViewController` to ensure proper functionality:
 /// - `detectPaginationFromScrollViewDidScroll`, whitch detects pagination on scroll.
@@ -29,17 +29,15 @@ public final class InfiniteScrollingCollectionView: UICollectionView {
     public weak var infiniteScrollingDelegate: (InfiniteScrollingCollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
     
     /// Controls pagination state.
-    /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.isLoading` and delegate method is called.
+    /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
     /// Network call or persistent storage fetch reqiest can be made.
-    /// Once finished, property must be set to either `canPaginate`, or `shouldNotPaginate`, depending on the existence of further data.
+    /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
     public var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }
     
     /// Offset that needs to be dragged vertically up for pagination to occur. Defaults to `20`.
     public var paginationOffset: CGFloat = 20
     
-    // If paginationState is set to `isLoading` before UICollectionView's constraint are set,
-    // `UIActivityIndicator` won't layout properly.
-    private var boundsObserver: NSKeyValueObservation?
+    private var frameHasLoaded: Bool = false
     
     private typealias ActivityIndicaatorModel = InfiniteScrollingCollectionViewActivityIndicatorModel
     
@@ -52,11 +50,20 @@ public final class InfiniteScrollingCollectionView: UICollectionView {
     public required init?(coder: NSCoder) {
         fatalError()
     }
+
+    // MARK: Lifecycle
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        if !frameHasLoaded && paginationState == .loading {
+            frameHasLoaded = true
+            setActivityIndicatorState()
+        }
+    }
     
     // MARK: Setup
     private func setUp() {
         registerActivityIndicatorView()
-        createBoundsObserver()
     }
     
     private func registerActivityIndicatorView() {
@@ -73,25 +80,6 @@ public final class InfiniteScrollingCollectionView: UICollectionView {
         (collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize = .init(
             width: bounds.width,
             height: ActivityIndicaatorModel.Layout.height
-        )
-    }
-    
-    private func createBoundsObserver() {
-        boundsObserver = observe(
-            \.bounds,
-            options: [.new],
-            changeHandler: { [weak self] (_, change) in
-                guard let self = self else { return }
-                
-                guard
-                    change.newValue?.width != 0,
-                    self.paginationState == .isLoading
-                else {
-                    return
-                }
-
-                self.setActivityIndicatorState()
-            }
         )
     }
 
@@ -141,18 +129,18 @@ public final class InfiniteScrollingCollectionView: UICollectionView {
     private func paginate() {
         guard paginationState == .canPaginate else { return }
         
-        paginationState = .isLoading
+        paginationState = .loading
         infiniteScrollingDelegate?.collectionViewDidScrollToBottom(sender: self)
     }
 
     // MARK: Activity Indicator
     private func setActivityIndicatorState() {
         switch paginationState {
-        case .isLoading:
+        case .loading:
             guard frame.width != 0 else { return }
             activityIndicator.startAnimating()
         
-        case .canPaginate, .shouldNotPaginate:
+        case .canPaginate, .cannotPaginate:
             activityIndicator.stopAnimating()
             reloadData()
         }
