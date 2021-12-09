@@ -10,10 +10,14 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionVi
     // MARK: Properties
     private typealias Model = ___VARIABLE_productName___CellModel
 
-    // MARK: Lifecycle
-    override func didMoveToSuperview() {
-        super.didMoveToSuperview()
+    // MARK: Initializers
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         setUp()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError()
     }
 
     // MARK: Setup
