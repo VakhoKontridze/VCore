@@ -183,7 +183,7 @@ public final class NetworkClient {
         }
     }
     
-    // This method solely exists as for `noData` method
+    // This method solely exists for `noData` method
     private func makeRequest(
         request: NetworkRequest
     ) async throws {
