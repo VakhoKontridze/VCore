@@ -22,8 +22,8 @@ extension UIView {
         layer.shadowOffset = offset
     }
     
-    /// Applies shadow to `UIView` and round corners.
-    public func applyShadowAndRoundCorners(
+    /// Rouncs corners and applies shadow to `UIView`.
+    public func roundCornersAndApplyShadow(
         cornerRadius: CGFloat,
         color: UIColor?,
         opacity: CGFloat = 1,
