@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - JSON Decoder Service
-/// Object that decodes instances of data type from JSON objects.
+/// Object that decodes instances of data types.
 public struct JSONDecoderService {
     // MARK: Initializers
     private init() {}

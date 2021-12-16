@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - JSON Encoder Service
-/// Object that encodes instances of data type as JSON objects.
+/// Object that encodes instances of data types.
 public struct JSONEncoderService {
     // MARK: Initializers
     private init() {}
