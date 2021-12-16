@@ -61,7 +61,7 @@ public enum NetworkError: VCoreError {
         case .requestTimedOut: return 1007
         case .returnedWithError: return 1008
         case .invalidResponse: return 1009
-        case .invalidData: return 10010
+        case .invalidData: return 1010
         }
     }
     
