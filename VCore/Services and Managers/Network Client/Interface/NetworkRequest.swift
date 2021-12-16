@@ -23,9 +23,14 @@ public struct NetworkRequest {
     private(set) var body: Data = .init()
     
     // MARK: Initializers
-    /// Initializes `NetworkRequest`.
+    /// Initializes `NetworkRequest` with URL string.
     public init(url: String) {
         self.url = url
+    }
+    
+    /// Initializes `NetworkRequest` with URL.
+    public init(url: URL) {
+        self.init(url: url.absoluteString)
     }
 
     // MARK: Path Parameters
