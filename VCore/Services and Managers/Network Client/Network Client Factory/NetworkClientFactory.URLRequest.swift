@@ -1,5 +1,5 @@
 //
-//  NetworkClient.URLRequestFactory.swift
+//  NetworkClientFactory.URLRequest.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/19/21.
@@ -8,8 +8,8 @@
 import Foundation
 
 // MARK: - URL Request Factory
-extension NetworkClient {
-    struct URLRequestFactory {
+extension NetworkClientFactory {
+    struct URLRequest {
         // MARK: Initializers
         private init() {}
         
@@ -21,11 +21,11 @@ extension NetworkClient {
             headers: [String: String],
             queryParameters: [String: String],
             body: Data?
-        ) throws -> URLRequest {
+        ) throws -> Foundation.URLRequest {
             let endpoint: String = try buildEndpont(endpoint: endpoint, pathParameters: pathParameters)
             let url: URL = try buildUrl(endpoint: endpoint, queryParameters: queryParameters)
             
-            var urlRequest: URLRequest = .init(url: url)
+            var urlRequest: Foundation.URLRequest = .init(url: url)
             urlRequest.httpMethod = method
             urlRequest.addHTTPHeaders(headers)
             urlRequest.httpBody = body

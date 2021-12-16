@@ -1,5 +1,5 @@
 //
-//  NetworkRequest.QueryParametersBuilder.swift
+//  NetworkRequestFactory.Headers.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/19/21.
@@ -7,31 +7,30 @@
 
 import Foundation
 
-// MARK: - Query Parameters Builder
-extension NetworkRequest {
-    struct QueryParametersBuilder {
+// MARK: - Headers Factory
+extension NetworkRequestFactory {
+    struct Headers {
         // MARK: Initializers
         private init() {}
         
         // MARK: Building
         static func build(
-            _ json: [String: Any?]
-        ) throws -> [String: String] {
+            _ json: [String: String?]
+        ) -> [String: String] {
             var result: [String: String] = [:]
             
             for (key, value) in json {
                 switch value {
                 case nil: continue
-                case let value as String: result.updateValue(value, forKey: key)
-                default: throw NetworkError.invalidQueryparameters
+                case let value?: result.updateValue(value, forKey: key)
                 }
             }
             
             return result
         }
         
-        static func build<EncodableQueryParameters: Encodable>(
-            _ encodable: EncodableQueryParameters
+        static func build<EncodableHeader: Encodable>(
+            _ encodable: EncodableHeader
         ) throws -> [String: String] {
             let json: [String: Any?] = try JSONEncoderService.json(from: encodable)
             
@@ -41,7 +40,7 @@ extension NetworkRequest {
                 switch value {
                 case nil: continue
                 case let value as String: result.updateValue(value, forKey: key)
-                default: throw NetworkError.invalidQueryparameters
+                default: throw NetworkError.invalidHeaders
                 }
             }
             

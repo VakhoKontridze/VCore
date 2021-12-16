@@ -1,5 +1,5 @@
 //
-//  NetworkRequest.BodyBuilder.swift
+//  NetworkRequestFactory.Body.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/19/21.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-// MARK: - Body Builder
-extension NetworkRequest {
-    struct BodyBuilder {
+// MARK: - Body Factory
+extension NetworkRequestFactory {
+    struct Body {
         // MARK: Initializers
         private init() {}
         

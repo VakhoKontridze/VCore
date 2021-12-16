@@ -154,7 +154,7 @@ public final class NetworkClient {
     ) async throws -> Entity {
         guard NetworkReachabilityService.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
         
-        let urlRequest: URLRequest = try URLRequestFactory.build(
+        let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(
             endpoint: request.url,
             method: request.method.httpMethod,
             pathParameters: request.pathParameters,
@@ -189,7 +189,7 @@ public final class NetworkClient {
     ) async throws {
         guard NetworkReachabilityService.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
         
-        let urlRequest: URLRequest = try URLRequestFactory.build(
+        let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(
             endpoint: request.url,
             method: request.method.httpMethod,
             pathParameters: request.pathParameters,

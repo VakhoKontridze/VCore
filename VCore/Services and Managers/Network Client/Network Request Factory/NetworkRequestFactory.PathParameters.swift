@@ -1,5 +1,5 @@
 //
-//  NetworkRequest.PathParametersBuilder.swift
+//  NetworkRequestFactory.PathParameters.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/19/21.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-// MARK: - Path Parameters Builder
-extension NetworkRequest {
-    struct PathParametersBuilder {
+// MARK: - Path Parameters Factory
+extension NetworkRequestFactory {
+    struct PathParameters {
         // MARK: Initializers
         private init() {}
         

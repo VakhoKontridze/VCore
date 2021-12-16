@@ -20,6 +20,8 @@
 		173C2E5C2711A947006BEAF3 /* NetworkProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2E5B2711A947006BEAF3 /* NetworkProcessor.swift */; };
 		1742266C2746C8F300B4B4C3 /* String.NonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742266B2746C8F300B4B4C3 /* String.NonEmpty.swift */; };
 		1742266E2746CD8C00B4B4C3 /* String.SafelyDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742266D2746CD8C00B4B4C3 /* String.SafelyDescribing.swift */; };
+		176DEE7A276B3CC100FA0FB1 /* NetworkClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176DEE79276B3CC100FA0FB1 /* NetworkClientFactory.swift */; };
+		176DEE7C276B3D7200FA0FB1 /* NetworkRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176DEE7B276B3D7200FA0FB1 /* NetworkRequestFactory.swift */; };
 		1781D006274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D005274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift */; };
 		1781D008274A9AE000B7A7F1 /* InfiniteScrollingCollectionViewPaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D007274A9AE000B7A7F1 /* InfiniteScrollingCollectionViewPaginationState.swift */; };
 		1781D00A274A9AF400B7A7F1 /* InfiniteScrollingCollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D009274A9AF400B7A7F1 /* InfiniteScrollingCollectionViewDelegate.swift */; };
@@ -34,11 +36,11 @@
 		1787182C27306E3E00C2B74C /* GenericStateModel_EPD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1787182B27306E3E00C2B74C /* GenericStateModel_EPD.swift */; };
 		1787182E27306F9B00C2B74C /* GenericStateModel_ED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */; };
 		179B84002747B4670011462D /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B83FF2747B4670011462D /* NetworkRequest.swift */; };
-		179B84022747B7310011462D /* NetworkRequest.PathParametersBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84012747B7310011462D /* NetworkRequest.PathParametersBuilder.swift */; };
-		179B84042747B8450011462D /* NetworkRequest.HeadersBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84032747B8450011462D /* NetworkRequest.HeadersBuilder.swift */; };
-		179B84062747BFB70011462D /* NetworkRequest.QueryParametersBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84052747BFB70011462D /* NetworkRequest.QueryParametersBuilder.swift */; };
-		179B84082747C13B0011462D /* NetworkRequest.BodyBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84072747C13B0011462D /* NetworkRequest.BodyBuilder.swift */; };
-		179B840C2747C3210011462D /* NetworkClient.URLRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B840B2747C3210011462D /* NetworkClient.URLRequestFactory.swift */; };
+		179B84022747B7310011462D /* NetworkRequestFactory.PathParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84012747B7310011462D /* NetworkRequestFactory.PathParameters.swift */; };
+		179B84042747B8450011462D /* NetworkRequestFactory.Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84032747B8450011462D /* NetworkRequestFactory.Headers.swift */; };
+		179B84062747BFB70011462D /* NetworkRequestFactory.QueryParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84052747BFB70011462D /* NetworkRequestFactory.QueryParameters.swift */; };
+		179B84082747C13B0011462D /* NetworkRequestFactory.Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84072747C13B0011462D /* NetworkRequestFactory.Body.swift */; };
+		179B840C2747C3210011462D /* NetworkClientFactory.URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B840B2747C3210011462D /* NetworkClientFactory.URLRequest.swift */; };
 		179B840E2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B840D2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift */; };
 		17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */; };
 		17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */; };
@@ -150,6 +152,8 @@
 		173C2E5B2711A947006BEAF3 /* NetworkProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkProcessor.swift; sourceTree = "<group>"; };
 		1742266B2746C8F300B4B4C3 /* String.NonEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.NonEmpty.swift; sourceTree = "<group>"; };
 		1742266D2746CD8C00B4B4C3 /* String.SafelyDescribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.SafelyDescribing.swift; sourceTree = "<group>"; };
+		176DEE79276B3CC100FA0FB1 /* NetworkClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientFactory.swift; sourceTree = "<group>"; };
+		176DEE7B276B3D7200FA0FB1 /* NetworkRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.swift; sourceTree = "<group>"; };
 		1781D005274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewPaginationState.swift; sourceTree = "<group>"; };
 		1781D007274A9AE000B7A7F1 /* InfiniteScrollingCollectionViewPaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingCollectionViewPaginationState.swift; sourceTree = "<group>"; };
 		1781D009274A9AF400B7A7F1 /* InfiniteScrollingCollectionViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingCollectionViewDelegate.swift; sourceTree = "<group>"; };
@@ -164,11 +168,11 @@
 		1787182B27306E3E00C2B74C /* GenericStateModel_EPD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_EPD.swift; sourceTree = "<group>"; };
 		1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_ED.swift; sourceTree = "<group>"; };
 		179B83FF2747B4670011462D /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
-		179B84012747B7310011462D /* NetworkRequest.PathParametersBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.PathParametersBuilder.swift; sourceTree = "<group>"; };
-		179B84032747B8450011462D /* NetworkRequest.HeadersBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.HeadersBuilder.swift; sourceTree = "<group>"; };
-		179B84052747BFB70011462D /* NetworkRequest.QueryParametersBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.QueryParametersBuilder.swift; sourceTree = "<group>"; };
-		179B84072747C13B0011462D /* NetworkRequest.BodyBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.BodyBuilder.swift; sourceTree = "<group>"; };
-		179B840B2747C3210011462D /* NetworkClient.URLRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.URLRequestFactory.swift; sourceTree = "<group>"; };
+		179B84012747B7310011462D /* NetworkRequestFactory.PathParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.PathParameters.swift; sourceTree = "<group>"; };
+		179B84032747B8450011462D /* NetworkRequestFactory.Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.Headers.swift; sourceTree = "<group>"; };
+		179B84052747BFB70011462D /* NetworkRequestFactory.QueryParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.QueryParameters.swift; sourceTree = "<group>"; };
+		179B84072747C13B0011462D /* NetworkRequestFactory.Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.Body.swift; sourceTree = "<group>"; };
+		179B840B2747C3210011462D /* NetworkClientFactory.URLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientFactory.URLRequest.swift; sourceTree = "<group>"; };
 		179B840D2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponse.IsSuccessHTTPStatusCode.swift; sourceTree = "<group>"; };
 		17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewProtocols.swift; sourceTree = "<group>"; };
@@ -277,6 +281,15 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
+		176DEE7D276B3DAB00FA0FB1 /* Network Client Factory */ = {
+			isa = PBXGroup;
+			children = (
+				176DEE79276B3CC100FA0FB1 /* NetworkClientFactory.swift */,
+				179B840B2747C3210011462D /* NetworkClientFactory.URLRequest.swift */,
+			);
+			path = "Network Client Factory";
+			sourceTree = "<group>";
+		};
 		1781D002274A957600B7A7F1 /* Infinite Scrolling Collection View */ = {
 			isa = PBXGroup;
 			children = (
@@ -329,16 +342,16 @@
 			path = Interface;
 			sourceTree = "<group>";
 		};
-		179B840A2747C3040011462D /* Factories and Builders */ = {
+		179B840A2747C3040011462D /* Network Request Factory */ = {
 			isa = PBXGroup;
 			children = (
-				179B840B2747C3210011462D /* NetworkClient.URLRequestFactory.swift */,
-				179B84012747B7310011462D /* NetworkRequest.PathParametersBuilder.swift */,
-				179B84052747BFB70011462D /* NetworkRequest.QueryParametersBuilder.swift */,
-				179B84032747B8450011462D /* NetworkRequest.HeadersBuilder.swift */,
-				179B84072747C13B0011462D /* NetworkRequest.BodyBuilder.swift */,
+				176DEE7B276B3D7200FA0FB1 /* NetworkRequestFactory.swift */,
+				179B84012747B7310011462D /* NetworkRequestFactory.PathParameters.swift */,
+				179B84052747BFB70011462D /* NetworkRequestFactory.QueryParameters.swift */,
+				179B84032747B8450011462D /* NetworkRequestFactory.Headers.swift */,
+				179B84072747C13B0011462D /* NetworkRequestFactory.Body.swift */,
 			);
-			path = "Factories and Builders";
+			path = "Network Request Factory";
 			sourceTree = "<group>";
 		};
 		17D2B78A27494C920075BCAD /* Multi Part Form Data Builder */ = {
@@ -499,7 +512,8 @@
 			isa = PBXGroup;
 			children = (
 				179B84092747C2FD0011462D /* Interface */,
-				179B840A2747C3040011462D /* Factories and Builders */,
+				179B840A2747C3040011462D /* Network Request Factory */,
+				176DEE7D276B3DAB00FA0FB1 /* Network Client Factory */,
 			);
 			path = "Network Client";
 			sourceTree = "<group>";
@@ -772,7 +786,8 @@
 				7A00266F26EB70790056DBC5 /* JSONDecoderError.swift in Sources */,
 				179B840E2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift in Sources */,
 				1708290F276277A70001DF39 /* ClosedRange.Range.swift in Sources */,
-				179B840C2747C3210011462D /* NetworkClient.URLRequestFactory.swift in Sources */,
+				176DEE7A276B3CC100FA0FB1 /* NetworkClientFactory.swift in Sources */,
+				179B840C2747C3210011462D /* NetworkClientFactory.URLRequest.swift in Sources */,
 				7AF68A6B26EE891A00D4B5BE /* Int.BlockNTimes.swift in Sources */,
 				7AF68A6D26EE899700D4B5BE /* String.IsUserDefaultsKey.swift in Sources */,
 				7AB22AE926EB94110037355D /* InfiniteScrollingTableView.swift in Sources */,
@@ -785,7 +800,7 @@
 				7A0F75C826D5175600020996 /* JSONEncoderService.swift in Sources */,
 				1734205B27622D190060C844 /* FloatingPoint.FixedInRange.swift in Sources */,
 				17B23E7C27354D3A00914FEB /* UIFont.Styling.swift in Sources */,
-				179B84062747BFB70011462D /* NetworkRequest.QueryParametersBuilder.swift in Sources */,
+				179B84062747BFB70011462D /* NetworkRequestFactory.QueryParameters.swift in Sources */,
 				7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */,
 				7AA4071E26F9BE2700B60742 /* View.StandardNavigationTitle.swift in Sources */,
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
@@ -799,7 +814,7 @@
 				7AB22B3D26EE86E10037355D /* UIViewController.DismissKeyboardOnOutsideTap.swift in Sources */,
 				17D2B78E27494D0C0075BCAD /* MultiPartFormDataFile.swift in Sources */,
 				17FD167B273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift in Sources */,
-				179B84082747C13B0011462D /* NetworkRequest.BodyBuilder.swift in Sources */,
+				179B84082747C13B0011462D /* NetworkRequestFactory.Body.swift in Sources */,
 				17082911276278350001DF39 /* KeyPathInitializableEnumeration.swift in Sources */,
 				7AB22B3B26EE85EF0037355D /* Optional.LetBlockTransformation.swift in Sources */,
 				7A91D6F426EFA4E200B0B096 /* NSLayoutConstraint.WithPriority.swift in Sources */,
@@ -824,7 +839,7 @@
 				7A86F88126EFAC0800EC32EA /* UILabel.SingleLineHeight.swift in Sources */,
 				7AB22B3926EE84EF0037355D /* NSObject.NSObjectName.swift in Sources */,
 				17B23E72273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift in Sources */,
-				179B84022747B7310011462D /* NetworkRequest.PathParametersBuilder.swift in Sources */,
+				179B84022747B7310011462D /* NetworkRequestFactory.PathParameters.swift in Sources */,
 				17D2B79027494D270075BCAD /* MultiPartFormDataBuilder.JSONBuilder.swift in Sources */,
 				1787182E27306F9B00C2B74C /* GenericStateModel_ED.swift in Sources */,
 				17871824273068CE00C2B74C /* EdgeInsets_LT.swift in Sources */,
@@ -839,7 +854,7 @@
 				1781D008274A9AE000B7A7F1 /* InfiniteScrollingCollectionViewPaginationState.swift in Sources */,
 				7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */,
 				7A86F88526EFB65E00EC32EA /* Sequence.KeyPathSort.swift in Sources */,
-				179B84042747B8450011462D /* NetworkRequest.HeadersBuilder.swift in Sources */,
+				179B84042747B8450011462D /* NetworkRequestFactory.Headers.swift in Sources */,
 				17FDE9882738F9D90085DE40 /* UIImage.Compressed.swift in Sources */,
 				17B23E7A27354B7900914FEB /* UIStackView.Configuration.swift in Sources */,
 				17D2B79227494D3C0075BCAD /* MultiPartFormDataBuilder.FileBuilder.swift in Sources */,
@@ -852,6 +867,7 @@
 				17B1041B270B07E900B9E296 /* UIAlertViewable.swift in Sources */,
 				7AB22AF426EB96ED0037355D /* InfiniteScrollingPaginationState.swift in Sources */,
 				17B23E7827354AEB00914FEB /* UIStackView.ArrangedSubviews.swift in Sources */,
+				176DEE7C276B3D7200FA0FB1 /* NetworkRequestFactory.swift in Sources */,
 				173C2E492711680D006BEAF3 /* Deprecations.swift in Sources */,
 				7A00266C26EB70370056DBC5 /* JSONEncoderError.swift in Sources */,
 				17FDE9862738F8B50085DE40 /* UIApplication.AppInfo.swift in Sources */,
