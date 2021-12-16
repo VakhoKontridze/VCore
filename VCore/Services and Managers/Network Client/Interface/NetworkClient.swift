@@ -47,8 +47,7 @@ import Foundation
 ///
 ///         func data(_ data: Data, _ response: URLResponse) throws -> Data {
 ///             let json: [String: Any?] = try JSONDecoderService.json(from: data)
-///
-///             guard let dataJSON: [String: Any?] = json["json"]?.toJSON else { throw SomeNetworkError(code: 1, description: "Incomplete Data") }
+///             guard let dataJSON: [String: Any?] = json["data"]?.toJSON else { throw SomeNetworkError(code: 1, description: "Incomplete Data") }
 ///
 ///             let dataData: Data = try JSONEncoderService.data(from: dataJSON)
 ///
@@ -98,7 +97,16 @@ public final class NetworkClient {
         self.processor = processor
     }
     
-    // MARK: Data Task
+    // MARK: Data Tasks
+    /// Makes network request.
+    public func noData(
+        from request: NetworkRequest
+    ) async throws {
+        try await makeRequest(
+            request: request
+        )
+    }
+    
     /// Makes network request and returns `Data`.
     public func data(
         from request: NetworkRequest
@@ -139,6 +147,7 @@ public final class NetworkClient {
         )
     }
 
+    // MARK: Requests
     private func makeRequest<Entity>(
         request: NetworkRequest,
         decode: @escaping (Data) throws -> Entity
@@ -167,6 +176,36 @@ public final class NetworkClient {
             guard let entity: Entity = try? decode(processedData) else { throw NetworkError.invalidData }
 
             return entity
+
+        } catch let error {
+            try processor.error(error)
+            throw error
+        }
+    }
+    
+    // This method solely exists as for `noData` method
+    private func makeRequest(
+        request: NetworkRequest
+    ) async throws {
+        guard NetworkReachabilityService.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
+        
+        let urlRequest: URLRequest = try URLRequestFactory.build(
+            endpoint: request.url,
+            method: request.method.httpMethod,
+            pathParameters: request.pathParameters,
+            headers: request.headers,
+            queryParameters: request.queryParameters,
+            body: request.body.nonEmpty
+        )
+
+        do {
+            let (data, response): (Data, URLResponse) = try await data(
+                request: urlRequest,
+                configuration: sessionConfiguration
+            )
+
+            let processedResponse: URLResponse = try processor.response(data, response)
+            guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkError.invalidResponse }
 
         } catch let error {
             try processor.error(error)
