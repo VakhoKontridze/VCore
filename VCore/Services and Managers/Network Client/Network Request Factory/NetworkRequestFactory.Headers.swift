@@ -20,10 +20,9 @@ extension NetworkRequestFactory {
             var result: [String: String] = [:]
             
             for (key, value) in json {
-                switch value {
-                case nil: continue
-                case let value?: result.updateValue(value, forKey: key)
-                }
+                guard let value = value else { continue }
+                
+                result.updateValue(value, forKey: key)
             }
             
             return result
@@ -37,11 +36,10 @@ extension NetworkRequestFactory {
             var result: [String: String] = [:]
             
             for (key, value) in json {
-                switch value {
-                case nil: continue
-                case let value as String: result.updateValue(value, forKey: key)
-                default: throw NetworkError.invalidHeaders
-                }
+                guard let value = value else { continue }
+                
+                guard let description: String = .init(safelyDescribing: value) else { throw NetworkError.invalidHeaders }
+                result.updateValue(description, forKey: key)
             }
             
             return result

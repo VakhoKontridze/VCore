@@ -20,11 +20,10 @@ extension NetworkRequestFactory {
             var result: [String: String] = [:]
             
             for (key, value) in json {
-                switch value {
-                case nil: continue
-                case let value as String: result.updateValue(value, forKey: key)
-                default: throw NetworkError.invalidQueryparameters
-                }
+                guard let value = value else { continue }
+                
+                guard let description: String = .init(safelyDescribing: value) else { throw NetworkError.invalidQueryparameters }
+                result.updateValue(description, forKey: key)
             }
             
             return result
@@ -38,11 +37,10 @@ extension NetworkRequestFactory {
             var result: [String: String] = [:]
             
             for (key, value) in json {
-                switch value {
-                case nil: continue
-                case let value as String: result.updateValue(value, forKey: key)
-                default: throw NetworkError.invalidQueryparameters
-                }
+                guard let value = value else { continue }
+                
+                guard let description: String = .init(safelyDescribing: value) else { throw NetworkError.invalidQueryparameters }
+                result.updateValue(description, forKey: key)
             }
             
             return result
