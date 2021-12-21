@@ -20,22 +20,22 @@ import UIKit
 /// - `detectPaginationFromCollectionViewCellForItem`, which detects instance in which loaded cells do not fill up UICollectionViews's content. So, pagination is called.
 /// - `viewForSupplementaryElement`, which returns `UIActivityIndicator`.
 ///
-public final class InfiniteScrollingCollectionView: UICollectionView {
+open class InfiniteScrollingCollectionView: UICollectionView {
     // MARK: Subviews
     private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
     
     // MARK: Properties
     /// Delegate.
-    public weak var infiniteScrollingDelegate: (InfiniteScrollingCollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
+    open weak var infiniteScrollingDelegate: (InfiniteScrollingCollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
     
     /// Controls pagination state.
     /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
     /// Network call or persistent storage fetch reqiest can be made.
     /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
-    public var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }
+    open var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }
     
     /// Offset that needs to be dragged vertically up for pagination to occur. Defaults to `20`.
-    public var paginationOffset: CGFloat = 20
+    open var paginationOffset: CGFloat = 20
     
     private var frameHasLoaded: Bool = false
     
@@ -52,7 +52,7 @@ public final class InfiniteScrollingCollectionView: UICollectionView {
     }
 
     // MARK: Lifecycle
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         if !frameHasLoaded && paginationState == .loading {
@@ -85,21 +85,21 @@ public final class InfiniteScrollingCollectionView: UICollectionView {
 
     // MARK: Detection
     /// Detects pagination on scroll.
-    public func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
+    open func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView.didScrollToBottom(offset: paginationOffset) else { return }
 
         paginate()
     }
     
     /// Detects instance in which loaded cells do not fill up UICollectionViews's content. So, pagination is called.
-    public func detectPaginationFromCollectionViewCellForItem() {
+    open func detectPaginationFromCollectionViewCellForItem() {
         guard !contentHeightExceedsCollectionViewHeight else { return }
         
         paginate()
     }
     
     /// Returns `UIActivityIndicator`.
-    public func viewForSupplementaryElement(kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    open func viewForSupplementaryElement(kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard numberOfSections <= 1 else {
             fatalError("InfiniteScrollingCollectionView doesn't support multiple sections")
         }

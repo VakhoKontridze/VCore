@@ -19,24 +19,24 @@ import UIKit
 /// - `detectPaginationFromScrollViewDidScroll`, whitch detects pagination on scroll.
 /// - `detectPaginationFromTableViewCellForRow`, which detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called.
 ///
-public final class InfiniteScrollingTableView: UITableView {
+open class InfiniteScrollingTableView: UITableView {
     // MARK: Properties
     /// Delegate.
-    public weak var infiniteScrollingDelegate: (InfiniteScrollingTableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?
+    open weak var infiniteScrollingDelegate: (InfiniteScrollingTableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?
     
     /// Controls pagination state.
     /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
     /// Network call or persistent storage fetch reqiest can be made.
     /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
-    public var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }
+    open var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }
     
     /// Offset that needs to be dragged vertically up for pagination to occur. Defaults to `20`.
-    public var paginationOffset: CGFloat = 20
+    open var paginationOffset: CGFloat = 20
     
     private var frameHasLoaded: Bool = false
 
     // MARK: Lifecycle
-    public override func layoutSubviews() {
+    open override func layoutSubviews() {
         super.layoutSubviews()
         
         if !frameHasLoaded && paginationState == .loading {
@@ -47,14 +47,14 @@ public final class InfiniteScrollingTableView: UITableView {
 
     // MARK: Detection
     /// Detects pagination on scroll.
-    public func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
+    open func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView.didScrollToBottom(offset: paginationOffset) else { return }
 
         paginate()
     }
     
     /// Detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called.
-    public func detectPaginationFromTableViewCellForRow() {
+    open func detectPaginationFromTableViewCellForRow() {
         guard !contentHeightExceedsTableViewHeight else { return }
         
         paginate()
