@@ -1,5 +1,5 @@
 //
-//  LabelNaturalHeightConstant.swift
+//  UILabel.LineHeights.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/13/21.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-// MARK: - Label Single Line Height
+// MARK: - Line Heights
 extension UILabel {
-    /// Calculates and returns natural height constant.
+    /// Calculates and returns single-line natural height constant.
     ///
     /// Used for ensuring that view doesn't flicker when new text is added to empty `UILabel`.
     ///
@@ -23,12 +23,42 @@ extension UILabel {
         }())
     }
     
-    /// Calculates and returns natural height constant.
+    /// Calculates and returns single-line natural height constant.
     ///
     /// Used for ensuring that view doesn't flicker when new text is added to empty `UILabel`.
     ///
     /// All properties from `self` are considered when calculating value.
     public func singleLineHeight(text: String) -> CGFloat {
+        calculateHeight(text: text, numberOfLines: 1)
+    }
+    
+    /// Calculates and returns multi-line natural height constant.
+    ///
+    /// Used for ensuring that view doesn't flicker when new text is added to empty `UILabel`.
+    ///
+    /// All properties from `self` are considered when calculating value.
+    ///
+    /// During calculation of height, text value is passed from `self`. If `nil`, default value of "A" will be used.
+    public var multiLineHeight: CGFloat {
+        multiLineHeight(text: {
+            guard let text = text, !text.isEmpty else { return "A" }
+            return text
+        }())
+    }
+
+    /// Calculates and returns multi-line natural height constant.
+    ///
+    /// Used for ensuring that view doesn't flicker when new text is added to empty `UILabel`.
+    ///
+    /// All properties from `self` are considered when calculating value.
+    public func multiLineHeight(text: String) -> CGFloat {
+        calculateHeight(text: text, numberOfLines: numberOfLines)
+    }
+
+    private func calculateHeight(
+        text: String,
+        numberOfLines: Int
+    ) -> CGFloat {
         let label: UILabel = {
             let label: UILabel = .init()
             
@@ -38,7 +68,7 @@ extension UILabel {
             label.textAlignment = textAlignment
             label.lineBreakMode = lineBreakMode
             
-            label.numberOfLines = 1
+            label.numberOfLines = numberOfLines
             
             label.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
             label.baselineAdjustment = baselineAdjustment

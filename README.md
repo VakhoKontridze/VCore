@@ -237,11 +237,11 @@ Relation between an `Interactor`  and `Gateway` is the following:
 
 ```swift
 protocol UpdateUserDataGatewayable {
-    func fetch(parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity
+    func fetch(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity
 }
 
 struct UpdateUserDataNetworkGateway: UpdateUserDataGatewayable {
-    func fetch(parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity {
+    func fetch(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity {
         // Implementation
     }
 }
@@ -249,12 +249,12 @@ struct UpdateUserDataNetworkGateway: UpdateUserDataGatewayable {
 
 ```swift
 protocol HomeInteractive {
-    func updateUserData(parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity
+    func updateUserData(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity
 }
 
 struct HomeInteractor: HomeInteractive {
-    func updateUserData(parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity {
-        try await UpdateUserDataNetworkGateway().fetch(parameters: parameters)
+    func updateUserData(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity {
+        try await UpdateUserDataNetworkGateway().fetch(with: parameters)
     }
 }
 ```

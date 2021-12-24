@@ -83,7 +83,7 @@
 		7A0F75C826D5175600020996 /* JSONEncoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C726D5175600020996 /* JSONEncoderService.swift */; };
 		7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F75C926D5176800020996 /* JSONDecoderService.swift */; };
 		7A86F87F26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A86F87E26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift */; };
-		7A86F88126EFAC0800EC32EA /* UILabel.SingleLineHeight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A86F88026EFAC0800EC32EA /* UILabel.SingleLineHeight.swift */; };
+		7A86F88126EFAC0800EC32EA /* UILabel.LineHeights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A86F88026EFAC0800EC32EA /* UILabel.LineHeights.swift */; };
 		7A86F88326EFB16200EC32EA /* UILabel.Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A86F88226EFB16200EC32EA /* UILabel.Configuration.swift */; };
 		7A86F88526EFB65E00EC32EA /* Sequence.KeyPathSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A86F88426EFB65E00EC32EA /* Sequence.KeyPathSort.swift */; };
 		7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A91D6EF26EF59F900B0B096 /* LogicalExclusiveOr.swift */; };
@@ -219,7 +219,7 @@
 		7A0F75C726D5175600020996 /* JSONEncoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderService.swift; sourceTree = "<group>"; };
 		7A0F75C926D5176800020996 /* JSONDecoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderService.swift; sourceTree = "<group>"; };
 		7A86F87E26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyFractionsNumberFormatter.swift; sourceTree = "<group>"; };
-		7A86F88026EFAC0800EC32EA /* UILabel.SingleLineHeight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.SingleLineHeight.swift; sourceTree = "<group>"; };
+		7A86F88026EFAC0800EC32EA /* UILabel.LineHeights.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.LineHeights.swift; sourceTree = "<group>"; };
 		7A86F88226EFB16200EC32EA /* UILabel.Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabel.Configuration.swift; sourceTree = "<group>"; };
 		7A86F88426EFB65E00EC32EA /* Sequence.KeyPathSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.KeyPathSort.swift; sourceTree = "<group>"; };
 		7A91D6EF26EF59F900B0B096 /* LogicalExclusiveOr.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalExclusiveOr.swift; sourceTree = "<group>"; };
@@ -629,7 +629,7 @@
 				7AB22B3C26EE86E10037355D /* UIViewController.DismissKeyboardOnOutsideTap.swift */,
 				17FD1676273A7CFB00EEAFD0 /* UIViewController.WithTabBarItem.swift */,
 				7A86F88226EFB16200EC32EA /* UILabel.Configuration.swift */,
-				7A86F88026EFAC0800EC32EA /* UILabel.SingleLineHeight.swift */,
+				7A86F88026EFAC0800EC32EA /* UILabel.LineHeights.swift */,
 				17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */,
 				17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */,
 				17FDE98B2738FE080085DE40 /* UIImage.Scaled.swift */,
@@ -836,7 +836,7 @@
 				7AB22B3526EE834E0037355D /* UINavigationBar.Height.swift in Sources */,
 				1781D00E274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift in Sources */,
 				17D2B794274987C60075BCAD /* MultiPartFormDataError.swift in Sources */,
-				7A86F88126EFAC0800EC32EA /* UILabel.SingleLineHeight.swift in Sources */,
+				7A86F88126EFAC0800EC32EA /* UILabel.LineHeights.swift in Sources */,
 				7AB22B3926EE84EF0037355D /* NSObject.NSObjectName.swift in Sources */,
 				17B23E72273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift in Sources */,
 				179B84022747B7310011462D /* NetworkRequestFactory.PathParameters.swift in Sources */,
