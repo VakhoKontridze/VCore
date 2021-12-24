@@ -14,6 +14,7 @@
 - `NetworkService` has been renamed to `NetworkClient`
 - `NetworkServicePostProcessor` has been renamed to `NetworkProcessor`
 - `NetworkError.incompleteEntity` has been renamed to `NetworkError.invalidData`
+- Default parameter values have been added to `UIStackView` configuration methods
 - Various extensions have been added
 
 #### [1.4.0(8)](https://github.com/VakhoKontridze/VCore/releases/download/1.4.0/VCore.xcframework.zip) — *2021 11 09*

@@ -12,9 +12,9 @@ extension UIStackView {
     /// Configures`UIStackView` with axis, distribution, alignment, and spacing.
     public func configure(
         axis: NSLayoutConstraint.Axis,
-        distribution: UIStackView.Distribution,
-        alignment: UIStackView.Alignment,
-        spacing: CGFloat
+        distribution: UIStackView.Distribution = .fill,
+        alignment: UIStackView.Alignment = .fill,
+        spacing: CGFloat = 0
     ) {
         self.axis = axis
         self.distribution = distribution
@@ -26,9 +26,9 @@ extension UIStackView {
     public convenience init(
         arrangedSubviews: [UIView] = [],
         axis: NSLayoutConstraint.Axis,
-        distribution: UIStackView.Distribution,
-        alignment: UIStackView.Alignment,
-        spacing: CGFloat
+        distribution: UIStackView.Distribution = .fill,
+        alignment: UIStackView.Alignment = .fill,
+        spacing: CGFloat = 0
     ) {
         self.init(arrangedSubviews: arrangedSubviews)
 
