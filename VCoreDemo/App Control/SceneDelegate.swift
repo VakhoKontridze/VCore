@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 // MARK: - Scene Delegate
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
@@ -18,6 +19,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         window = .init(windowScene: windowScene)
         window?.rootViewController = ViewController()
+//        window?.rootViewController = UIHostingController(rootView: ContentView())
         window?.makeKeyAndVisible()
     }
 }

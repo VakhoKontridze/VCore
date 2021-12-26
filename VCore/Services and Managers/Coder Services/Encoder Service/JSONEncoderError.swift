@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - JSON Encoder Error
 /// An error that occurs during the processes made by `JSONEncoderService`.
-public enum JSONEncoderError: VCoreError {
+public enum JSONEncoderError: Int, VCoreError, CaseIterable {
     // MARK: Cases
     /// Indicates that data cannot be encoded.
     case failedToEncode

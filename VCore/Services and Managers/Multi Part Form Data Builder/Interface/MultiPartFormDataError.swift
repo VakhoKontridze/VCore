@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Multi Part Form Data Error
 /// An error that occurs during the processes made by `JSONEncoderService`.
-public enum MultiPartFormDataError: VCoreError {
+public enum MultiPartFormDataError: Int, VCoreError, CaseIterable {
     // MARK: Cases
     /// Indicates that json is invalid.
     case invalidJSON

@@ -44,6 +44,13 @@
 		179B840E2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B840D2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift */; };
 		17B0B2DE277875F300079197 /* KeyboardResponsiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2DD277875F300079197 /* KeyboardResponsiveViewController.swift */; };
 		17B0B2E02778761100079197 /* SystemKeyboardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2DF2778761100079197 /* SystemKeyboardInfo.swift */; };
+		17B0B2E527787B5900079197 /* BaseButtonGestureRecognizer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2E427787B5900079197 /* BaseButtonGestureRecognizer.swift */; };
+		17B0B2E727787B6C00079197 /* BaseButtonGestureState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2E627787B6C00079197 /* BaseButtonGestureState.swift */; };
+		17B0B2E927787B7A00079197 /* UIKitBaseButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2E827787B7A00079197 /* UIKitBaseButtonState.swift */; };
+		17B0B2EB27787B8B00079197 /* UIKitBaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2EA27787B8B00079197 /* UIKitBaseButton.swift */; };
+		17B0B2F0277880D100079197 /* SwiftUIBaseButtonState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2EF277880D100079197 /* SwiftUIBaseButtonState.swift */; };
+		17B0B2F22778817300079197 /* SwiftUIBaseButtonViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2F12778817300079197 /* SwiftUIBaseButtonViewRepresentable.swift */; };
+		17B0B2F42778819F00079197 /* SwiftUIBaseButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2F32778819F00079197 /* SwiftUIBaseButton.swift */; };
 		17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */; };
 		17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */; };
 		17B103DC270AFE3900B9E296 /* StandardNavigable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D8270AFE3900B9E296 /* StandardNavigable.swift */; };
@@ -178,6 +185,13 @@
 		179B840D2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponse.IsSuccessHTTPStatusCode.swift; sourceTree = "<group>"; };
 		17B0B2DD277875F300079197 /* KeyboardResponsiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponsiveViewController.swift; sourceTree = "<group>"; };
 		17B0B2DF2778761100079197 /* SystemKeyboardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemKeyboardInfo.swift; sourceTree = "<group>"; };
+		17B0B2E427787B5900079197 /* BaseButtonGestureRecognizer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonGestureRecognizer.swift; sourceTree = "<group>"; };
+		17B0B2E627787B6C00079197 /* BaseButtonGestureState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonGestureState.swift; sourceTree = "<group>"; };
+		17B0B2E827787B7A00079197 /* UIKitBaseButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitBaseButtonState.swift; sourceTree = "<group>"; };
+		17B0B2EA27787B8B00079197 /* UIKitBaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIKitBaseButton.swift; sourceTree = "<group>"; };
+		17B0B2EF277880D100079197 /* SwiftUIBaseButtonState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIBaseButtonState.swift; sourceTree = "<group>"; };
+		17B0B2F12778817300079197 /* SwiftUIBaseButtonViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIBaseButtonViewRepresentable.swift; sourceTree = "<group>"; };
+		17B0B2F32778819F00079197 /* SwiftUIBaseButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIBaseButton.swift; sourceTree = "<group>"; };
 		17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D8270AFE3900B9E296 /* StandardNavigable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigable.swift; sourceTree = "<group>"; };
@@ -367,6 +381,44 @@
 				17B0B2DF2778761100079197 /* SystemKeyboardInfo.swift */,
 			);
 			path = "Keyboard Responsive ViewController";
+			sourceTree = "<group>";
+		};
+		17B0B2E327787B4A00079197 /* Base Button */ = {
+			isa = PBXGroup;
+			children = (
+				17B0B2EC2778805D00079197 /* Common */,
+				17B0B2ED2778806500079197 /* UIKit */,
+				17B0B2EE277880C000079197 /* SwiftUI */,
+			);
+			path = "Base Button";
+			sourceTree = "<group>";
+		};
+		17B0B2EC2778805D00079197 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				17B0B2E627787B6C00079197 /* BaseButtonGestureState.swift */,
+				17B0B2E427787B5900079197 /* BaseButtonGestureRecognizer.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		17B0B2ED2778806500079197 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				17B0B2EA27787B8B00079197 /* UIKitBaseButton.swift */,
+				17B0B2E827787B7A00079197 /* UIKitBaseButtonState.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		17B0B2EE277880C000079197 /* SwiftUI */ = {
+			isa = PBXGroup;
+			children = (
+				17B0B2F32778819F00079197 /* SwiftUIBaseButton.swift */,
+				17B0B2EF277880D100079197 /* SwiftUIBaseButtonState.swift */,
+				17B0B2F12778817300079197 /* SwiftUIBaseButtonViewRepresentable.swift */,
+			);
+			path = SwiftUI;
 			sourceTree = "<group>";
 		};
 		17D2B78A27494C920075BCAD /* Multi Part Form Data Builder */ = {
@@ -577,8 +629,9 @@
 		7AB22AE726EB93FE0037355D /* Views and ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				1781D003274A997000B7A7F1 /* Infinite Scrolling Views */,
+				17B0B2E327787B4A00079197 /* Base Button */,
 				17B0B2DC277875E200079197 /* Keyboard Responsive ViewController */,
+				1781D003274A997000B7A7F1 /* Infinite Scrolling Views */,
 			);
 			path = "Views and ViewControllers";
 			sourceTree = "<group>";
@@ -803,6 +856,7 @@
 				176DEE7A276B3CC100FA0FB1 /* NetworkClientFactory.swift in Sources */,
 				179B840C2747C3210011462D /* NetworkClientFactory.URLRequest.swift in Sources */,
 				7AF68A6B26EE891A00D4B5BE /* Int.BlockNTimes.swift in Sources */,
+				17B0B2F22778817300079197 /* SwiftUIBaseButtonViewRepresentable.swift in Sources */,
 				7AF68A6D26EE899700D4B5BE /* String.IsUserDefaultsKey.swift in Sources */,
 				7AB22AE926EB94110037355D /* InfiniteScrollingTableView.swift in Sources */,
 				7AB22AF726EB9FAB0037355D /* TODO.swift in Sources */,
@@ -811,6 +865,7 @@
 				17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */,
 				7A0F759D26D5150800020996 /* NetworkReachabilityService.swift in Sources */,
 				7A0F75BC26D516DA00020996 /* NetworkClient.swift in Sources */,
+				17B0B2EB27787B8B00079197 /* UIKitBaseButton.swift in Sources */,
 				7A0F75C826D5175600020996 /* JSONEncoderService.swift in Sources */,
 				1734205B27622D190060C844 /* FloatingPoint.FixedInRange.swift in Sources */,
 				17B23E7C27354D3A00914FEB /* UIFont.Styling.swift in Sources */,
@@ -824,8 +879,10 @@
 				17FDE990273902EC0085DE40 /* UIColor.RGBAComponents.swift in Sources */,
 				7A0F75C626D5174500020996 /* JSONTypeCasts.swift in Sources */,
 				17FDE98C2738FE080085DE40 /* UIImage.Scaled.swift in Sources */,
+				17B0B2E727787B6C00079197 /* BaseButtonGestureState.swift in Sources */,
 				7AB22B2D26EE7A6F0037355D /* StringProtocol.Subscript.swift in Sources */,
 				7AB22B3D26EE86E10037355D /* UIViewController.DismissKeyboardOnOutsideTap.swift in Sources */,
+				17B0B2E927787B7A00079197 /* UIKitBaseButtonState.swift in Sources */,
 				17D2B78E27494D0C0075BCAD /* MultiPartFormDataFile.swift in Sources */,
 				17FD167B273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift in Sources */,
 				179B84082747C13B0011462D /* NetworkRequestFactory.Body.swift in Sources */,
@@ -853,6 +910,8 @@
 				17D2B794274987C60075BCAD /* MultiPartFormDataError.swift in Sources */,
 				7A86F88126EFAC0800EC32EA /* UILabel.LineHeights.swift in Sources */,
 				7AB22B3926EE84EF0037355D /* NSObject.NSObjectName.swift in Sources */,
+				17B0B2F42778819F00079197 /* SwiftUIBaseButton.swift in Sources */,
+				17B0B2E527787B5900079197 /* BaseButtonGestureRecognizer.swift in Sources */,
 				17B23E72273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift in Sources */,
 				179B84022747B7310011462D /* NetworkRequestFactory.PathParameters.swift in Sources */,
 				17D2B79027494D270075BCAD /* MultiPartFormDataBuilder.JSONBuilder.swift in Sources */,
@@ -881,6 +940,7 @@
 				7A86F88326EFB16200EC32EA /* UILabel.Configuration.swift in Sources */,
 				17B1041B270B07E900B9E296 /* UIAlertViewable.swift in Sources */,
 				7AB22AF426EB96ED0037355D /* InfiniteScrollingPaginationState.swift in Sources */,
+				17B0B2F0277880D100079197 /* SwiftUIBaseButtonState.swift in Sources */,
 				17B23E7827354AEB00914FEB /* UIStackView.ArrangedSubviews.swift in Sources */,
 				176DEE7C276B3D7200FA0FB1 /* NetworkRequestFactory.swift in Sources */,
 				173C2E492711680D006BEAF3 /* Deprecations.swift in Sources */,

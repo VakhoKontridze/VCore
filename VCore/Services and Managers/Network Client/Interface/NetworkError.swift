@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Network Error
 /// An error that occurs during the network requests made by `NetworkClient`.
-public enum NetworkError: VCoreError {
+public enum NetworkError: Int, VCoreError, CaseIterable {
     // MARK: Cases
     /// Indicates that device is not connected to network.
     ///

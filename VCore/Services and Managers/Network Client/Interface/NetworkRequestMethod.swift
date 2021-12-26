@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Network Request Method
 /// `HTTP` method for `NetworkServie`.
-public enum NetworkRequestMethod {
+public enum NetworkRequestMethod: Int, CaseIterable {
     // MARK: Cases
     /// `GET` reqeust method.
     case GET
