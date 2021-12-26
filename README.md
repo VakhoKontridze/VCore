@@ -21,7 +21,7 @@ Library supports iOS 13.0 and up.
 
 Project files are grouped as:
 
-- ***Views***. Reusable non-scene views.
+- ***Views and ViewContollers***. Reusable non-scene views and viewcontrollers.
 
 - ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `NetworkClient`.
 
@@ -305,4 +305,4 @@ Since VCore is open-source, you can clone the project and build the framework ta
 
 ## Contact
 
-e-mail: vakho.kontridze@gmail.c
+e-mail: vakho.kontridze@gmail.com
