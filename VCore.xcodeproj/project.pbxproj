@@ -42,6 +42,8 @@
 		179B84082747C13B0011462D /* NetworkRequestFactory.Body.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84072747C13B0011462D /* NetworkRequestFactory.Body.swift */; };
 		179B840C2747C3210011462D /* NetworkClientFactory.URLRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B840B2747C3210011462D /* NetworkClientFactory.URLRequest.swift */; };
 		179B840E2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B840D2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift */; };
+		17B0B2DE277875F300079197 /* KeyboardResponsiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2DD277875F300079197 /* KeyboardResponsiveViewController.swift */; };
+		17B0B2E02778761100079197 /* SystemKeyboardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B0B2DF2778761100079197 /* SystemKeyboardInfo.swift */; };
 		17B103DA270AFE3900B9E296 /* UITableViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */; };
 		17B103DB270AFE3900B9E296 /* UICollectionViewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */; };
 		17B103DC270AFE3900B9E296 /* StandardNavigable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B103D8270AFE3900B9E296 /* StandardNavigable.swift */; };
@@ -174,6 +176,8 @@
 		179B84072747C13B0011462D /* NetworkRequestFactory.Body.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.Body.swift; sourceTree = "<group>"; };
 		179B840B2747C3210011462D /* NetworkClientFactory.URLRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientFactory.URLRequest.swift; sourceTree = "<group>"; };
 		179B840D2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponse.IsSuccessHTTPStatusCode.swift; sourceTree = "<group>"; };
+		17B0B2DD277875F300079197 /* KeyboardResponsiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardResponsiveViewController.swift; sourceTree = "<group>"; };
+		17B0B2DF2778761100079197 /* SystemKeyboardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemKeyboardInfo.swift; sourceTree = "<group>"; };
 		17B103D6270AFE3900B9E296 /* UITableViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D7270AFE3900B9E296 /* UICollectionViewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionViewProtocols.swift; sourceTree = "<group>"; };
 		17B103D8270AFE3900B9E296 /* StandardNavigable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StandardNavigable.swift; sourceTree = "<group>"; };
@@ -301,13 +305,15 @@
 			path = "Infinite Scrolling Collection View";
 			sourceTree = "<group>";
 		};
-		1781D003274A997000B7A7F1 /* Infinite Scrolling */ = {
+		1781D003274A997000B7A7F1 /* Infinite Scrolling Views */ = {
 			isa = PBXGroup;
 			children = (
 				7AB22AEA26EB94150037355D /* Infinite Scrolling Table View */,
 				1781D002274A957600B7A7F1 /* Infinite Scrolling Collection View */,
+				7AB22AF326EB96ED0037355D /* InfiniteScrollingPaginationState.swift */,
+				1781D00D274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift */,
 			);
-			path = "Infinite Scrolling";
+			path = "Infinite Scrolling Views";
 			sourceTree = "<group>";
 		};
 		1787180F273063AC00C2B74C /* Edge Insets */ = {
@@ -352,6 +358,15 @@
 				179B84072747C13B0011462D /* NetworkRequestFactory.Body.swift */,
 			);
 			path = "Network Request Factory";
+			sourceTree = "<group>";
+		};
+		17B0B2DC277875E200079197 /* Keyboard Responsive ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				17B0B2DD277875F300079197 /* KeyboardResponsiveViewController.swift */,
+				17B0B2DF2778761100079197 /* SystemKeyboardInfo.swift */,
+			);
+			path = "Keyboard Responsive ViewController";
 			sourceTree = "<group>";
 		};
 		17D2B78A27494C920075BCAD /* Multi Part Form Data Builder */ = {
@@ -467,7 +482,7 @@
 			isa = PBXGroup;
 			children = (
 				7A0F752226D5018200020996 /* Framework Info */,
-				7AB22AE726EB93FE0037355D /* Views */,
+				7AB22AE726EB93FE0037355D /* Views and ViewControllers */,
 				7A0F759626D5146000020996 /* Services and Managers */,
 				173C2E4727116805006BEAF3 /* Helpers */,
 				7AB22AF826EBA0620037355D /* Global Functions */,
@@ -559,14 +574,13 @@
 			path = "VIPER Helpers";
 			sourceTree = "<group>";
 		};
-		7AB22AE726EB93FE0037355D /* Views */ = {
+		7AB22AE726EB93FE0037355D /* Views and ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				1781D003274A997000B7A7F1 /* Infinite Scrolling */,
-				7AB22AF326EB96ED0037355D /* InfiniteScrollingPaginationState.swift */,
-				1781D00D274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift */,
+				1781D003274A997000B7A7F1 /* Infinite Scrolling Views */,
+				17B0B2DC277875E200079197 /* Keyboard Responsive ViewController */,
 			);
-			path = Views;
+			path = "Views and ViewControllers";
 			sourceTree = "<group>";
 		};
 		7AB22AEA26EB94150037355D /* Infinite Scrolling Table View */ = {
@@ -833,6 +847,7 @@
 				7AB22B3726EE84690037355D /* Array.SafeSubscript.swift in Sources */,
 				17FDE98A2738FC590085DE40 /* UIImage.Cropped.swift in Sources */,
 				7AF68A6926EE878300D4B5BE /* Date.Component.swift in Sources */,
+				17B0B2E02778761100079197 /* SystemKeyboardInfo.swift in Sources */,
 				7AB22B3526EE834E0037355D /* UINavigationBar.Height.swift in Sources */,
 				1781D00E274A9D9600B7A7F1 /* InfiniteScrollingHelpers.swift in Sources */,
 				17D2B794274987C60075BCAD /* MultiPartFormDataError.swift in Sources */,
@@ -876,6 +891,7 @@
 				173C2E5627118B0B006BEAF3 /* NetworkRequestMethod.swift in Sources */,
 				17FDE98E273900100085DE40 /* UIImage.Rotated.swift.swift in Sources */,
 				7A86F87F26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift in Sources */,
+				17B0B2DE277875F300079197 /* KeyboardResponsiveViewController.swift in Sources */,
 				17FDE994273905C70085DE40 /* UIColor.Blend.swift in Sources */,
 				17B103DC270AFE3900B9E296 /* StandardNavigable.swift in Sources */,
 			);
