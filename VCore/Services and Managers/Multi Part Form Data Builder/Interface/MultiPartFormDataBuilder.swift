@@ -53,7 +53,7 @@ import Foundation
 ///
 ///         print(result)
 ///
-///     } catch let error {
+///     } catch {
 ///         print(error.localizedDescription)
 ///     }
 ///

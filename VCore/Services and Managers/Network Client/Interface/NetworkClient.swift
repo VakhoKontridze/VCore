@@ -40,7 +40,7 @@ import Foundation
 ///
 ///             print(result["json"]?.toJSON?["someKey"]?.toString ?? "-")
 ///
-///         } catch let error {
+///         } catch {
 ///             print(error.localizedDescription)
 ///         }
 ///     }
@@ -189,7 +189,7 @@ public final class NetworkClient {
 
             return entity
 
-        } catch let error {
+        } catch {
             try processor.error(error)
             throw error
         }
@@ -219,7 +219,7 @@ public final class NetworkClient {
             let processedResponse: URLResponse = try processor.response(data, response)
             guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkError.invalidResponse }
 
-        } catch let error {
+        } catch {
             try processor.error(error)
             throw error
         }
