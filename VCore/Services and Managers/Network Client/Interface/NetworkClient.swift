@@ -12,6 +12,39 @@ import Foundation
 ///
 /// Object contains default `default` instance, that can be used to make requests.
 ///
+/// Usage example:
+///
+///     struct JSONRequestHeaders: Encodable {
+///         let accept: String = "application/json"
+///         let contentType: String = "application/json"
+///
+///         enum CodingKeys: String, CodingKey {
+///             case accept = "Accept"
+///             case contentType = "Content-Type"
+///         }
+///     }
+///
+///     func fetchData() async {
+///         do {
+///             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
+///             
+///             request.method = .POST
+///
+///             try request.addHeaders(JSONRequestHeaders())
+///
+///             try request.addBody([
+///                 "someKey": "someValue"
+///             ])
+///
+///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+///
+///             print(result["json"]?.toJSON?["someKey"]?.toString ?? "-")
+///
+///         } catch let error {
+///             print(error.localizedDescription)
+///         }
+///     }
+///
 /// If additional processing is required, object can be extended the following way.
 ///
 ///     extension NetworkClient {
@@ -46,37 +79,16 @@ import Foundation
 ///         }
 ///
 ///         func data(_ data: Data, _ response: URLResponse) throws -> Data {
-///             let json: [String: Any?] = try JSONDecoderService.json(from: data)
-///             guard let dataJSON: [String: Any?] = json["data"]?.toJSON else { throw SomeNetworkError(code: 1, description: "Incomplete Data") }
-///
-///             let dataData: Data = try JSONEncoderService.data(from: dataJSON)
+///             guard
+///                 let json: [String: Any?] = try? JSONDecoderService.json(from: data),
+///                 let dataJSON: [String: Any?] = json["data"]?.toJSON,
+///                 let dataData: Data = try? JSONEncoderService.data(from: dataJSON)
+///             else {
+///                 throw SomeNetworkError(code: 1, description: "Incomplete Data")
+///             }
 ///
 ///             return dataData
 ///         }
-///     }
-///
-/// Usage example:
-///
-///     do {
-///         var request: NetworkRequest = .init(url: "https://httpbin.org/post")
-///
-///         request.method = .POST
-///
-///         try request.addHeaders([
-///             "Accept": "application/json",
-///             "Content-Type": "application/json"
-///         ])
-///
-///         try request.addBody([
-///             "someKey": "someValue"
-///         ])
-///
-///         let result: [String: Any?] = try await NetworkClient.someInstance.json(from: request)
-///
-///         print(result["someKey"]?.toString ?? "-")
-///
-///     } catch let error {
-///         print(error.localizedDescription)
 ///     }
 ///
 public final class NetworkClient {
