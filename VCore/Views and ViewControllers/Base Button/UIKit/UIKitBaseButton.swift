@@ -13,7 +13,7 @@ import UIKit
 /// One implementation of `UIKitBaseButton` is using it as a base for another button.
 /// In this case, `UIKitBaseButton` would handle state and clicks on it's own,
 /// allowing a custom button to focus on UI and API.
-/// 
+///
 /// Model:
 ///
 ///     struct SomeButtonModel {
@@ -25,7 +25,7 @@ import UIKit
 ///
 ///         private init() {}
 ///
-///         typealias StateColors = GenericStateModel_EPD<Color?>
+///         typealias StateColors = GenericStateModel_EPD<UIColor?>
 ///     }
 ///
 /// State:
@@ -159,7 +159,7 @@ import UIKit
 ///         }
 ///
 ///         func configure(with state: SomeButtonState) {
-///             self.internalState = .init(state: state, isPressed: baseButton.buttonState == .pressed)
+///             self.internalState = .init(state: state, isPressed: baseButton.internalButtonState == .pressed)
 ///
 ///             configureFromStateModelChange()
 ///         }
@@ -170,13 +170,24 @@ import UIKit
 ///         }
 ///     }
 ///
+/// Usage Example:
+///
+///     let button: SomeButton = {
+///         let button: SomeButton = .init(
+///             action: { print("Clicked") },
+///             title: "Lorem Ipsum"
+///         )
+///         button.translatesAutoresizingMaskIntoConstraints = false
+///         return button
+///     }()
+///
 open class UIKitBaseButton: UIView {
     // MARK: Properties
     private lazy var gestureRecognizer: BaseButtonTapGestureRecognizer = .init(
         gesture: { [weak self] gestureState in
             guard let self = self else { return }
             
-            self.buttonState = .init(isPressed: gestureState.isPressed)
+            self.internalButtonState = .init(state: self.buttonState, isPressed: gestureState.isPressed)
             self.gestureHandler(gestureState)
         }
     )
@@ -186,14 +197,19 @@ open class UIKitBaseButton: UIView {
             gestureRecognizer.isEnabled
         }
         set {
-            gestureRecognizer.isEnabled = newValue
-            buttonState = .init(newValue)
+            internalButtonState = .init(isUserInteractionEnabled: newValue)
+            gestureRecognizer.isEnabled = internalButtonState.isUserInteractionEnabled
         }
     }
     
-    private(set) var buttonState: UIKitBaseButtonState = .default
+    /// Button state.
+    open var buttonState: UIKitBaseButtonState { .init(internalState: internalButtonState) }
     
-    var gestureHandler: (BaseButtonGestureState) -> Void
+    /// Internal button state.
+    private(set) open var internalButtonState: UIKitBaseButtonInternalState = .default
+    
+    /// Gesture handler that return `BaseButtonGestureState`.
+    open var gestureHandler: (BaseButtonGestureState) -> Void
     
     // MARK: Initializers
     /// Initializes `UIKitBaseButton` with gestureHandler.
@@ -231,5 +247,12 @@ open class UIKitBaseButton: UIView {
     
     private func setUpView() {
         backgroundColor = .clear
+    }
+    
+    // MARK: Configuration - State
+    /// Configures `UIKitBaseButton` with state.
+    open func configure(with state: UIKitBaseButtonState) {
+        internalButtonState = .init(state: state, isPressed: internalButtonState == .pressed)
+        gestureRecognizer.isEnabled = internalButtonState.isUserInteractionEnabled
     }
 }

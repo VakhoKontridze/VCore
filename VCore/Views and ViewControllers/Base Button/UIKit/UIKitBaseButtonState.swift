@@ -8,8 +8,28 @@
 import Foundation
 
 // MARK: - UIKit Base Button State
-/// Enum that describes state, such as `enabled`, `pressed`, or `disabled`.
+/// Enum that describes state, such as `enabled` or `disabled`.
 public enum UIKitBaseButtonState: Int, CaseIterable {
+    // MARK: Cases
+    /// Enabled.
+    case enabled
+    
+    /// Disabled.
+    case disabled
+    
+    // MARK: Initializers
+    init(internalState: UIKitBaseButtonInternalState) {
+        switch internalState {
+        case .enabled: self = .enabled
+        case .pressed: self = .enabled
+        case .disabled: self = .disabled
+        }
+    }
+}
+
+// MARK: - UIKit Base Button Internal State
+/// Enum that describes state, such as `enabled`, `pressed`, or `disabled`.
+public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -20,21 +40,31 @@ public enum UIKitBaseButtonState: Int, CaseIterable {
     /// Disabled.
     case disabled
     
+    // MARK: Properties
+    var isUserInteractionEnabled: Bool {
+        switch self {
+        case .enabled: return true
+        case .pressed: return true
+        case .disabled: return false
+        }
+    }
+    
     // MARK: Initializers
-    init(_ isUserInteractionEnabled: Bool) {
+    init(isUserInteractionEnabled: Bool) {
         switch isUserInteractionEnabled {
         case false: self = .disabled
         case true: self = .enabled
         }
     }
     
-    init(isPressed: Bool) {
-        switch isPressed {
-        case false: self = .enabled
-        case true: self = .pressed
+    init(state: UIKitBaseButtonState, isPressed: Bool) {
+        switch (state, isPressed) {
+        case (.enabled, false): self = .enabled
+        case (.enabled, true): self = .pressed
+        case (.disabled, _): self = .disabled
         }
     }
-    
+
     /// Default value for `UIKitBaseButtonInternalState`.
     public static var `default`: Self { .enabled }
 }
@@ -59,9 +89,9 @@ extension GenericStateModel_EPD {
     ///         disabled: .gray
     ///     )
     ///
-    ///     titleLabel.textColor = titleColor.for(baseButton.buttonState)
+    ///     titleLabel.textColor = titleColor.for(baseButton.internalButtonState)
     ///
-    public func `for`(_ state: UIKitBaseButtonState) -> Value {
+    public func `for`(_ state: UIKitBaseButtonInternalState) -> Value {
         switch state {
         case .enabled: return enabled
         case .pressed: return pressed
