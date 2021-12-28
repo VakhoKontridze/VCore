@@ -1,6 +1,6 @@
 ## Change Log
 
-#### [2.0.0(9)]
+#### [2.0.0(9)](https://github.com/VakhoKontridze/VCore/releases/download/2.0.0/VCore.xcframework.zip) — *2021 12 28*
 
 - Framework is no longer compatible with version `1.X.X`
 - Framework now supports `iOS 13`
