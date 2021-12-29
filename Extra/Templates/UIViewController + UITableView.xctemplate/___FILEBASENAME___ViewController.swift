@@ -59,7 +59,7 @@ final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIA
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        presenter.tableViewNumberOfRows(in: section)
+        presenter.tableViewNumberOfRows(section: section)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
