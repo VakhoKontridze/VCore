@@ -19,8 +19,8 @@ let package: Package = .init(
     targets: [
         .binaryTarget(
             name: "VCore",
-            url: "https://github.com/VakhoKontridze/VCore/releases/download/2.0.0/VCore.xcframework.zip",
-            checksum: "58e0c906b67c3f35c92f70b0038f4364d184dd0fda146a386cd7886852e546c4"
+            url: "https://github.com/VakhoKontridze/VCore/releases/download/2.0.1/VCore.xcframework.zip",
+            checksum: "cba56103915cafdfa6e9a8a151243ad1a10d74f04a4295784675ce325ecfc97d"
         ),
     ]
 )
