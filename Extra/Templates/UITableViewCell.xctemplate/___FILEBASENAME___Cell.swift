@@ -11,8 +11,8 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, UITableViewDequeuea
     private typealias Model = ___VARIABLE_productName___CellModel
 
     // MARK: Initializers
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
         setUp()
     }
     
