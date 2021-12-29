@@ -2,6 +2,7 @@
 
 #### [2.1.0(12)]
 
+- `KeyPath` sort method has been added to Array
 - `UIViewController` `Factory` in XCode Templates has been fixed
 
 #### [2.0.2(11)](https://github.com/VakhoKontridze/VCore/releases/download/2.0.2/VCore.xcframework.zip) — *2021 12 29*
