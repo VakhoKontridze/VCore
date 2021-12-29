@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [2.0.2(11)](https://github.com/VakhoKontridze/VCore/releases/download/2.0.2/VCore.xcframework.zip) — *2021 12 29*
+
+- `UITableViewCellDataSourceable` method in XCode Templates has been fixed
+
 #### [2.0.1(10)](https://github.com/VakhoKontridze/VCore/releases/download/2.0.1/VCore.xcframework.zip) — *2021 12 29*
 
 - `UITableViewCell` initializer in XCode Templates has been fixed
