@@ -59,7 +59,7 @@ import Foundation
 ///         var description: String
 ///     }
 ///
-///     struct SomeNetworkClientProcessor: NetworkClientProcessor {
+///     struct SomeNetworkClientProcessor: NetworkResponseProcessor {
 ///         func error(_ error: Error) throws {}
 ///
 ///         func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
@@ -95,18 +95,18 @@ public final class NetworkClient {
     // MARK: Properties
     /// Default instance of `NetworkClient`.
     public static let `default`: NetworkClient = .init(
-        processor: DefaultNetworkProcessor()
+        responseProcessor: DefaultNetworkResponseProcessor()
     )
     
     /// Configuration object that defines behavior and policies for an `URL` session.
     public var sessionConfiguration: URLSessionConfiguration = .default
     
-    private let processor: NetworkProcessor
+    private let responseProcessor: NetworkResponseProcessor
     
     // MARK: Initializers
     /// Initializes `NetworkClient`.
-    public init(processor: NetworkProcessor) {
-        self.processor = processor
+    public init(responseProcessor: NetworkResponseProcessor) {
+        self.responseProcessor = responseProcessor
     }
     
     // MARK: Data Tasks
@@ -181,16 +181,16 @@ public final class NetworkClient {
                 configuration: sessionConfiguration
             )
 
-            let processedResponse: URLResponse = try processor.response(data, response)
+            let processedResponse: URLResponse = try responseProcessor.response(data, response)
             guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkError.invalidResponse }
 
-            let processedData: Data = try processor.data(data, response)
+            let processedData: Data = try responseProcessor.data(data, response)
             guard let entity: Entity = try? decode(processedData) else { throw NetworkError.invalidData }
 
             return entity
 
         } catch {
-            try processor.error(error)
+            try responseProcessor.error(error)
             throw error
         }
     }
@@ -216,11 +216,11 @@ public final class NetworkClient {
                 configuration: sessionConfiguration
             )
 
-            let processedResponse: URLResponse = try processor.response(data, response)
+            let processedResponse: URLResponse = try responseProcessor.response(data, response)
             guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkError.invalidResponse }
 
         } catch {
-            try processor.error(error)
+            try responseProcessor.error(error)
             throw error
         }
     }

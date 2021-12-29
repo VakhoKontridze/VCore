@@ -1,5 +1,5 @@
 //
-//  NetworkProcessor.swift
+//  NetworkResponseProcessor.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10/9/21.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-// MARK: - Network Processor
+// MARK: - Network Response Processor
 /// Processor that processes `Error`, `Response,` and `Data`, before they are analyzed and`Data` is decoded.
 ///
 /// For additional docuemntation, refer to `NetworkClient`.
-public protocol NetworkProcessor {
+public protocol NetworkResponseProcessor {
     /// Processes`Error`.
     func error(_ error: Error) throws
     
@@ -23,7 +23,7 @@ public protocol NetworkProcessor {
 }
 
 // MARK: - Default Network Processor
-struct DefaultNetworkProcessor: NetworkProcessor {
+struct DefaultNetworkResponseProcessor: NetworkResponseProcessor {
     func error(_ error: Error) throws {}
     
     func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
