@@ -5,7 +5,7 @@ import UIKit
 // MARK: - ___VARIABLE_productName___ Factory
 struct ___VARIABLE_productName___Factory {
     // MARK: Initalizers
-    private init()
+    private init() {}
     
     // MARK: Factory
     static func `default`(viewModel: ___VARIABLE_productName___ViewModel) -> UIViewController {
