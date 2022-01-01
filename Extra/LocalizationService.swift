@@ -14,7 +14,7 @@ final class LocalizationService {
     
     var locales: [Locale] { Locale.supportedLocales }
     
-    // MARK: Properties - Notiifcations
+    // MARK: Properties - Notifications
     static var notificationName: NSNotification.Name { .init("LocalizationService.LocaleChanged") }
     
     // MARK: Properties - Misc
@@ -27,7 +27,7 @@ final class LocalizationService {
     private init() {}
 
     // MARK: Locale
-    enum Locale: Identifiable, CaseIterable {
+    enum Locale: Identifiable, CaseIterable, KVInitializableEnumeration {
         // MARK: Cases
         case english
 
@@ -52,7 +52,7 @@ final class LocalizationService {
         
         // MARK: Initializers
         init?(id: String) {
-            guard let locale: Self = .allCases.first(where: { $0.id == id }) else { return nil }
+            guard let locale: Self = .aCase(key: \.id, value: id) else { return nil }
             self = locale
         }
         
@@ -64,7 +64,7 @@ final class LocalizationService {
         guard
             Self.userDefaultsKey.isUserDefaultsKey(),
             let id: String = UserDefaults.standard.string(forKey: Self.userDefaultsKey),
-            let locale: Locale = .allCases.first(where: { $0.id == id })
+            let locale: Locale = .aCase(key: \.id, value: id)
         else {
             setLocale(.default)
             return .default
