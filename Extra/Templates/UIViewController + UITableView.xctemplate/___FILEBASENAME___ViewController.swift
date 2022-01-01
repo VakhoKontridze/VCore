@@ -64,7 +64,6 @@ final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIA
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueAndConfigureReusableCell(
-            dequeueID: presenter.tableViewCellDequeueID(section: indexPath.section, row: indexPath.row),
             viewModel: presenter.tableViewCellViewModel(section: indexPath.section, row: indexPath.row)
         )
     }

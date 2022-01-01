@@ -77,7 +77,7 @@ public protocol UITableViewDequeueable: UITableViewCell {
     static var dequeueID: String { get }
     
     /// Configures `UITableViewCell` using a viewmodel
-    func configure(with viewModel: UITableViewCellViewModelable)
+    func configure(viewModel: UITableViewCellViewModelable)
 }
 
 extension UITableViewDequeueable {
@@ -103,9 +103,6 @@ public protocol UITableViewDataSourceable {
     /// Number of rows in a given sections in `UITableView`
     func tableViewNumberOfRows(section: Int) -> Int
     
-    /// Dequeue ID for `UITableViewCell`
-    func tableViewCellDequeueID(section: Int, row: Int) -> String
-    
     /// Viewmodel for `UITableViewCell` used during configuration
     func tableViewCellViewModel(section: Int, row: Int) -> UITableViewCellViewModelable
 }
@@ -122,16 +119,15 @@ extension UITableView {
 extension UITableView {
     /// Deques and configures a resuabe cell in `UITableView`
     public func dequeueAndConfigureReusableCell(
-        dequeueID: String,
         viewModel: UITableViewCellViewModelable
     ) -> UITableViewCell {
         guard
-            let cell = dequeueReusableCell(withIdentifier: dequeueID) as? UITableViewDequeueable
+            let cell = dequeueReusableCell(withIdentifier: viewModel.dequeueID) as? UITableViewDequeueable
         else {
-            fatalError("Unable to dequeue a cell with identifier \(dequeueID)")
+            fatalError("Unable to dequeue a cell with identifier \(viewModel.dequeueID)")
         }
         
-        cell.configure(with: viewModel)
+        cell.configure(viewModel: viewModel)
         
         return cell
     }

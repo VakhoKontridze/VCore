@@ -158,7 +158,7 @@ import UIKit
 ///             fatalError()
 ///         }
 ///
-///         func configure(with state: SomeButtonState) {
+///         func configure(state: SomeButtonState) {
 ///             self.internalState = .init(state: state, isPressed: baseButton.internalButtonState == .pressed)
 ///
 ///             configureFromStateModelChange()
@@ -251,7 +251,7 @@ open class UIKitBaseButton: UIView {
     
     // MARK: Configuration - State
     /// Configures `UIKitBaseButton` with state.
-    open func configure(with state: UIKitBaseButtonState) {
+    open func configure(state: UIKitBaseButtonState) {
         internalButtonState = .init(state: state, isPressed: internalButtonState == .pressed)
         gestureRecognizer.isEnabled = internalButtonState.isUserInteractionEnabled
     }
