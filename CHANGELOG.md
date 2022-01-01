@@ -1,6 +1,6 @@
 ## Change Log
 
-#### [2.1.0(12)]
+#### [2.1.0(12)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.0/VCore.xcframework.zip) — *2021 01 01*
 
 - `KeyPath` sort method has been added to `Array`
 - `UIViewController` `Factory` in XCode Templates has been fixed

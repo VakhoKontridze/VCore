@@ -275,7 +275,7 @@ Add `https://github.com/VakhoKontridze/VCore` as a Swift Package in Xcode and fo
 
 ### Manual
 
-1. Download [VCore.xcframework](https://github.com/VakhoKontridze/VCore/releases/download/2.0.2/VCore.xcframework.zip).
+1. Download [VCore.xcframework](https://github.com/VakhoKontridze/VCore/releases/download/2.1.0/VCore.xcframework.zip).
 
 2. Extract the zip.
 
