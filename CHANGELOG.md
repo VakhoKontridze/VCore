@@ -2,9 +2,9 @@
 
 #### [2.1.0(12)]
 
-- `KeyPath` sort method has been added to Array
+- `KeyPath` sort method has been added to `Array`
 - `UIViewController` `Factory` in XCode Templates has been fixed
-- Sequence conditional grouping methods have been added
+- `Sequence` conditional grouping methods have been added
 - `NetworkProcessor` has been renamed to `NetworkResponseProcessor`
 - `with` parameter name has been removed from configuration methods
 - `tableViewCellDequeueID` method in `UITableViewDataSourceable` has been deprecated
