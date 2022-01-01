@@ -40,10 +40,6 @@ final class ___VARIABLE_productName___Presenter: ___VARIABLE_productName___Prese
         TODO()
     }
     
-    func tableViewCellDequeueID(section: Int, row: Int) -> String {
-        TODO()
-    }
-    
     func tableViewCellViewModel(section: Int, row: Int) -> UITableViewCellViewModelable {
         TODO()
     }

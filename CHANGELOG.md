@@ -5,6 +5,10 @@
 - `KeyPath` sort method has been added to Array
 - `UIViewController` `Factory` in XCode Templates has been fixed
 - `NetworkProcessor` has been renamed to `NetworkResponseProcessor`
+- `with` parameter name has been removed from configuration methods
+- `tableViewCellDequeueID` method in `UITableViewDataSourceable` has been deprecated
+- `collectionViewCellDequeueID` method in `UICollectionViewDataSourceable` has been deprecated
+- `dequeueID` parameter in `dequeueAndConfigureReusableCell` methods have been deprecated
 
 #### [2.0.2(11)](https://github.com/VakhoKontridze/VCore/releases/download/2.0.2/VCore.xcframework.zip) — *2021 12 29*
 

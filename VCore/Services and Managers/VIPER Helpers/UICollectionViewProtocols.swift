@@ -78,7 +78,7 @@ public protocol UICollectionViewDequeueable: UICollectionViewCell {
     static var dequeueID: String { get }
     
     /// Configures `UICollectionViewCell` using a viewmodel
-    func configure(with viewModel: UICollectionViewCellViewModelable)
+    func configure(viewModel: UICollectionViewCellViewModelable)
 }
 
 extension UICollectionViewDequeueable {
@@ -104,9 +104,6 @@ public protocol UICollectionViewDataSourceable {
     /// Number of items in a given sections in `UICollectionView`
     func collectionViewNumberOfItems(section: Int) -> Int
     
-    /// Dequeue ID for `UICollectionViewCell`
-    func collectionViewCellDequeueID(section: Int, row: Int) -> String
-    
     /// Viewmodel for `UICollectionViewCell` used during configuration
     func collectionViewCellViewModel(section: Int, row: Int) -> UICollectionViewCellViewModelable
 }
@@ -124,16 +121,15 @@ extension UICollectionView {
     /// Deques and configures a resuabe cell in `UICollectionView`
     public func dequeueAndConfigureReusableCell(
         indexPath: IndexPath,
-        dequeueID: String,
         viewModel: UICollectionViewCellViewModelable
     ) -> UICollectionViewCell {
         guard
-            let cell = dequeueReusableCell(withReuseIdentifier: dequeueID, for: indexPath) as? UICollectionViewDequeueable
+            let cell = dequeueReusableCell(withReuseIdentifier: viewModel.dequeueID, for: indexPath) as? UICollectionViewDequeueable
         else {
-            fatalError("Unable to dequeue a cell with identifier \(dequeueID)")
+            fatalError("Unable to dequeue a cell with identifier \(viewModel.dequeueID)")
         }
         
-        cell.configure(with: viewModel)
+        cell.configure(viewModel: viewModel)
         
         return cell
     }

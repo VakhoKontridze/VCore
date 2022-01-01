@@ -16,7 +16,7 @@ final class ___VARIABLE_productName___View: UIView {
         self.model = model
         super.init(frame: .zero)
         setUp()
-        configure(with: model)
+        configure(model: model)
     }
     
     convenience init(
@@ -24,7 +24,7 @@ final class ___VARIABLE_productName___View: UIView {
         viewModel: ___VARIABLE_productName___ViewViewModel
     ) {
         self.init(model: model)
-        configure(with: viewModel)
+        configure(viewModel: viewModel)
     }
     
     required init?(coder: NSCoder) {
@@ -53,12 +53,12 @@ final class ___VARIABLE_productName___View: UIView {
     }
 
     // MARK: Configuration - Model
-    func configure(with model: ___VARIABLE_productName___ViewModel) {
+    func configure(model: ___VARIABLE_productName___ViewModel) {
         self.model = model
     }
     
     // MARK: Configuration - ViewModel
-    func configure(with viewModel: ___VARIABLE_productName___ViewViewModel) {
+    func configure(viewModel: ___VARIABLE_productName___ViewViewModel) {
         
     }
 }
