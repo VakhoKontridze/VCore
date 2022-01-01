@@ -26,7 +26,14 @@ extension UIKitBaseButton {
     }
 }
 
-// MARK: - VIPER Helpers
+// MARK: - VIPER Helpers - Table View
+extension UITableViewDequeueable {
+    @available(*, deprecated, message: "Use method without `with` parameter")
+    public func configure(with viewModel: UITableViewCellViewModelable) {
+        configure(viewModel: viewModel)
+    }
+}
+
 extension UITableViewDataSourceable {
     @available(*, deprecated, message: "")
     public func tableViewCellDequeueID(section: Int, row: Int) -> String {
@@ -41,6 +48,14 @@ extension UITableView {
         viewModel: UITableViewCellViewModelable
     ) -> UITableViewCell {
         dequeueAndConfigureReusableCell(viewModel: viewModel)
+    }
+}
+
+// MARK: - VIPER Helpers - Collection View
+extension UICollectionViewDequeueable {
+    @available(*, deprecated, message: "Use method without `with` parameter")
+    public func configure(with viewModel: UICollectionViewCellViewModelable) {
+        configure(viewModel: viewModel)
     }
 }
 
