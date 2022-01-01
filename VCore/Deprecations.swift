@@ -35,7 +35,7 @@ extension UITableViewDequeueable {
 }
 
 extension UITableViewDataSourceable {
-    @available(*, deprecated, message: "")
+    @available(*, deprecated)
     public func tableViewCellDequeueID(section: Int, row: Int) -> String {
         tableViewCellViewModel(section: section, row: row).dequeueID
     }
@@ -60,7 +60,7 @@ extension UICollectionViewDequeueable {
 }
 
 extension UICollectionViewDataSourceable {
-    @available(*, deprecated, message: "")
+    @available(*, deprecated)
     public func collectionViewCellDequeueID(section: Int, row: Int) -> String {
         collectionViewCellViewModel(section: section, row: row).dequeueID
     }
