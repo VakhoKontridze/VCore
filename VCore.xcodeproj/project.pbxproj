@@ -20,6 +20,7 @@
 		1742266C2746C8F300B4B4C3 /* String.NonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742266B2746C8F300B4B4C3 /* String.NonEmpty.swift */; };
 		1742266E2746CD8C00B4B4C3 /* String.SafelyDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1742266D2746CD8C00B4B4C3 /* String.SafelyDescribing.swift */; };
 		1758409E2780644E00625CB7 /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758409D2780644E00625CB7 /* Deprecations.swift */; };
+		175840A02780688600625CB7 /* Sequence.ConditionalGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1758409F2780688600625CB7 /* Sequence.ConditionalGrouping.swift */; };
 		176DEE7A276B3CC100FA0FB1 /* NetworkClientFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176DEE79276B3CC100FA0FB1 /* NetworkClientFactory.swift */; };
 		176DEE7C276B3D7200FA0FB1 /* NetworkRequestFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 176DEE7B276B3D7200FA0FB1 /* NetworkRequestFactory.swift */; };
 		1781D006274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1781D005274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift */; };
@@ -161,6 +162,7 @@
 		1742266B2746C8F300B4B4C3 /* String.NonEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.NonEmpty.swift; sourceTree = "<group>"; };
 		1742266D2746CD8C00B4B4C3 /* String.SafelyDescribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.SafelyDescribing.swift; sourceTree = "<group>"; };
 		1758409D2780644E00625CB7 /* Deprecations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Deprecations.swift; path = VCore/Deprecations.swift; sourceTree = SOURCE_ROOT; };
+		1758409F2780688600625CB7 /* Sequence.ConditionalGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.ConditionalGrouping.swift; sourceTree = "<group>"; };
 		176DEE79276B3CC100FA0FB1 /* NetworkClientFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientFactory.swift; sourceTree = "<group>"; };
 		176DEE7B276B3D7200FA0FB1 /* NetworkRequestFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.swift; sourceTree = "<group>"; };
 		1781D005274A999C00B7A7F1 /* InfiniteScrollingTableViewPaginationState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfiniteScrollingTableViewPaginationState.swift; sourceTree = "<group>"; };
@@ -680,6 +682,7 @@
 				7AB22B3626EE84690037355D /* Array.SafeSubscript.swift */,
 				7AF68A6E26EE8ABC00D4B5BE /* Array.CompactMapNonEmpty.swift */,
 				7A86F88426EFB65E00EC32EA /* Sequence.KeyPathSort.swift */,
+				1758409F2780688600625CB7 /* Sequence.ConditionalGrouping.swift */,
 				1708290E276277A70001DF39 /* ClosedRange.Range.swift */,
 				7AB22B3A26EE85EF0037355D /* Optional.LetBlockTransformation.swift */,
 				7AB22B3826EE84EF0037355D /* NSObject.NSObjectName.swift */,
@@ -927,6 +930,7 @@
 				7A9A6AA626D521A000C19A07 /* SessionManager.swift in Sources */,
 				1781D008274A9AE000B7A7F1 /* InfiniteScrollingCollectionViewPaginationState.swift in Sources */,
 				7A0F75CA26D5176800020996 /* JSONDecoderService.swift in Sources */,
+				175840A02780688600625CB7 /* Sequence.ConditionalGrouping.swift in Sources */,
 				7A86F88526EFB65E00EC32EA /* Sequence.KeyPathSort.swift in Sources */,
 				179B84042747B8450011462D /* NetworkRequestFactory.Headers.swift in Sources */,
 				17FDE9882738F9D90085DE40 /* UIImage.Compressed.swift in Sources */,
