@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [2.1.1(13)]
+
+- `isEnabled` has been added to `UIKitBaseButton` to replace `isUserInteractionEnabled` 
+
 #### [2.1.0(12)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.0/VCore.xcframework.zip) — *2021 01 01*
 
 - `KeyPath` sort method has been added to `Array`

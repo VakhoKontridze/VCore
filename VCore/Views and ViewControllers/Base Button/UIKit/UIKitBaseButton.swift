@@ -34,12 +34,12 @@ import UIKit
 ///         case enabled
 ///         case disabled
 ///
-///             init(isUserInteractionEnabled: Bool) {
-///                 switch isUserInteractionEnabled {
-///                 case false: self = .disabled
-///                 case true: self = .enabled
-///                 }
+///         init(isEnabled: Bool) {
+///             switch isEnabled {
+///             case false: self = .disabled
+///             case true: self = .enabled
 ///             }
+///         }
 ///
 ///         init(internalState: SomeButtonInternalState) {
 ///             switch internalState {
@@ -55,7 +55,7 @@ import UIKit
 ///         case pressed
 ///         case disabled
 ///
-///         var isUserInteractionEnabled: Bool {
+///         var isEnabled: Bool {
 ///             switch self {
 ///             case .enabled: return true
 ///             case .pressed: return true
@@ -113,14 +113,14 @@ import UIKit
 ///
 ///         var state: SomeButtonState { .init(internalState: internalState) }
 ///         private var internalState: SomeButtonInternalState = .default
-///         public override var isUserInteractionEnabled: Bool {
+///         public var isEnabled: Bool {
 ///             get {
-///                 internalState.isUserInteractionEnabled
+///                 internalState.isEnabled
 ///             }
 ///             set {
-///                 baseButton.isUserInteractionEnabled = newValue
+///                 baseButton.isEnabled = newValue
 ///                 internalState = .init(
-///                     state: .init(isUserInteractionEnabled: newValue),
+///                     state: .init(isEnabled: newValue),
 ///                     isPressed: baseButton.internalButtonState == .pressed
 ///                 )
 ///                 configureFromStateModelChange()
@@ -202,13 +202,13 @@ open class UIKitBaseButton: UIView {
         }
     )
     
-    open override var isUserInteractionEnabled: Bool {
+    open var isEnabled: Bool {
         get {
             gestureRecognizer.isEnabled
         }
         set {
-            internalButtonState = .init(isUserInteractionEnabled: newValue)
-            gestureRecognizer.isEnabled = internalButtonState.isUserInteractionEnabled
+            internalButtonState = .init(isEnabled: newValue)
+            gestureRecognizer.isEnabled = internalButtonState.isEnabled
         }
     }
     
@@ -263,6 +263,6 @@ open class UIKitBaseButton: UIView {
     /// Configures `UIKitBaseButton` with state.
     open func configure(state: UIKitBaseButtonState) {
         internalButtonState = .init(state: state, isPressed: internalButtonState == .pressed)
-        gestureRecognizer.isEnabled = internalButtonState.isUserInteractionEnabled
+        gestureRecognizer.isEnabled = internalButtonState.isEnabled
     }
 }
