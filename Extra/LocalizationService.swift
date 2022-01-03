@@ -79,7 +79,11 @@ final class LocalizationService {
 
     // MARK: Notifications
     private func postNotification() {
-        NotificationCenter.default.post(name: Self.notificationName, object: self, userInfo: nil)
+        NotificationCenter.default.post(
+            name: Self.notificationName,
+            object: self,
+            userInfo: nil
+        )
     }
 }
 
