@@ -1,6 +1,6 @@
 ## Change Log
 
-#### [2.1.1(13)]
+#### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.1/VCore.xcframework.zip) — *2021 01 04*
 
 - `isEnabled` has been added to `UIKitBaseButton` to replace `isUserInteractionEnabled` 
 
