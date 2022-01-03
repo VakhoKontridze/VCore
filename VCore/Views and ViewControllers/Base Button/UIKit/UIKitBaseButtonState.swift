@@ -41,7 +41,7 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     case disabled
     
     // MARK: Properties
-    var isUserInteractionEnabled: Bool {
+    var isEnabled: Bool {
         switch self {
         case .enabled: return true
         case .pressed: return true
@@ -50,8 +50,8 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    init(isUserInteractionEnabled: Bool) {
-        switch isUserInteractionEnabled {
+    init(isEnabled: Bool) {
+        switch isEnabled {
         case false: self = .disabled
         case true: self = .enabled
         }
