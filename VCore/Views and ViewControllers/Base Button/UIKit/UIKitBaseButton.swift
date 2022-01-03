@@ -34,6 +34,13 @@ import UIKit
 ///         case enabled
 ///         case disabled
 ///
+///             init(isUserInteractionEnabled: Bool) {
+///                 switch isUserInteractionEnabled {
+///                 case false: self = .disabled
+///                 case true: self = .enabled
+///                 }
+///             }
+///
 ///         init(internalState: SomeButtonInternalState) {
 ///             switch internalState {
 ///             case .enabled: self = .enabled
@@ -112,7 +119,10 @@ import UIKit
 ///             }
 ///             set {
 ///                 baseButton.isUserInteractionEnabled = newValue
-///                 internalState = .init(state: state, isPressed: baseButton.buttonState == .pressed)
+///                 internalState = .init(
+///                     state: .init(isUserInteractionEnabled: newValue),
+///                     isPressed: baseButton.internalButtonState == .pressed
+///                 )
 ///                 configureFromStateModelChange()
 ///             }
 ///         }
