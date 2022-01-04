@@ -1,8 +1,12 @@
 ## Change Log
 
+#### [2.X.X(14)]
+
+- `minimumScaleFactor` parameter has been added to `UILabel` configuration methods
+
 #### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.1/VCore.xcframework.zip) — *2021 01 04*
 
-- `isEnabled` has been added to `UIKitBaseButton` to replace `isUserInteractionEnabled` 
+- `isEnabled` has been added to `UIKitBaseButton` to replace `isUserInteractionEnabled`
 
 #### [2.1.0(12)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.0/VCore.xcframework.zip) — *2021 01 01*
 

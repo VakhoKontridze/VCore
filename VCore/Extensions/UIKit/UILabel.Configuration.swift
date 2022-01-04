@@ -14,12 +14,14 @@ extension UILabel {
         alignment: NSTextAlignment = .natural,
         lineBreakMode: NSLineBreakMode = .byTruncatingTail,
         numberOfLines: Int = 1,
+        minimumScaleFactor: CGFloat = 0,
         color: UIColor?,
         font: UIFont?
     ) {
         self.textAlignment = alignment
         self.lineBreakMode = lineBreakMode
         self.numberOfLines = numberOfLines
+        self.minimumScaleFactor = minimumScaleFactor
         self.textColor = color
         self.font = font
     }
@@ -29,6 +31,7 @@ extension UILabel {
         alignment: NSTextAlignment = .natural,
         lineBreakMode: NSLineBreakMode = .byTruncatingTail,
         numberOfLines: Int = 1,
+        minimumScaleFactor: CGFloat = 0,
         color: UIColor?,
         font: UIFont?
     ) {
@@ -38,6 +41,7 @@ extension UILabel {
             alignment: alignment,
             lineBreakMode: lineBreakMode,
             numberOfLines: numberOfLines,
+            minimumScaleFactor: minimumScaleFactor,
             color: color,
             font: font
         )
