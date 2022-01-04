@@ -9,37 +9,37 @@ import UIKit
 
 // MARK: - Label Configuration
 extension UILabel {
-    /// Configures `UILabel` with font, color, alignment, number of lines, and line break mode.
+    /// Configures `UILabel` with alignment, number of lines, line break mode, color, and font.
     public func configure(
-        font: UIFont?,
-        color: UIColor?,
         alignment: NSTextAlignment = .natural,
         numberOfLines: Int = 1,
-        lineBreakMode: NSLineBreakMode = .byTruncatingTail
+        lineBreakMode: NSLineBreakMode = .byTruncatingTail,
+        color: UIColor?,
+        font: UIFont?
     ) {
-        self.font = font
-        self.textColor = color
         self.textAlignment = alignment
         self.numberOfLines = numberOfLines
         self.lineBreakMode = lineBreakMode
+        self.textColor = color
+        self.font = font
     }
     
-    /// Initializes `UILabel` with font, color, alignment, number of lines, and line break mode.
+    /// Initializes `UILabel` with alignment, number of lines, line break mode, color, and font.
     public convenience init(
-        font: UIFont?,
-        color: UIColor?,
         alignment: NSTextAlignment = .natural,
+        lineBreakMode: NSLineBreakMode = .byTruncatingTail,
         numberOfLines: Int = 1,
-        lineBreakMode: NSLineBreakMode = .byTruncatingTail
+        color: UIColor?,
+        font: UIFont?
     ) {
         self.init()
         
         configure(
-            font: font,
-            color: color,
             alignment: alignment,
             numberOfLines: numberOfLines,
-            lineBreakMode: lineBreakMode
+            lineBreakMode: lineBreakMode,
+            color: color,
+            font: font
         )
     }
 }
