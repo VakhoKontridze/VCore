@@ -3,6 +3,7 @@
 #### [2.X.X(14)]
 
 - `minimumScaleFactor` parameter has been added to `UILabel` configuration methods
+- `UIView` (Dynamic Model) XCode Templates now has a default parameter value for model in init 
 
 #### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.1/VCore.xcframework.zip) — *2021 01 04*
 
