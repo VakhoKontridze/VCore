@@ -76,3 +76,42 @@ extension UICollectionView {
         dequeueAndConfigureReusableCell(indexPath: indexPath, viewModel: viewModel)
     }
 }
+
+// MARK: - Exteions - UIKit - UILabel
+extension UILabel {
+    @available(*, deprecated, message: "Use `init` with different parameter order")
+    public func configure(
+        font: UIFont?,
+        color: UIColor?,
+        alignment: NSTextAlignment = .natural,
+        numberOfLines: Int = 1,
+        lineBreakMode: NSLineBreakMode = .byTruncatingTail
+    ) {
+        configure(
+            alignment: alignment,
+            numberOfLines: numberOfLines,
+            lineBreakMode: lineBreakMode,
+            color: color,
+            font: font
+        )
+    }
+    
+    @available(*, deprecated, message: "Use `init` with different parameter order")
+    public convenience init(
+        font: UIFont?,
+        color: UIColor?,
+        alignment: NSTextAlignment = .natural,
+        numberOfLines: Int = 1,
+        lineBreakMode: NSLineBreakMode = .byTruncatingTail
+    ) {
+        self.init()
+        
+        configure(
+            alignment: alignment,
+            numberOfLines: numberOfLines,
+            lineBreakMode: lineBreakMode,
+            color: color,
+            font: font
+        )
+    }
+}
