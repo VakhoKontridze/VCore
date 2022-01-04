@@ -89,8 +89,8 @@ extension UILabel {
     ) {
         configure(
             alignment: alignment,
-            numberOfLines: numberOfLines,
             lineBreakMode: lineBreakMode,
+            numberOfLines: numberOfLines,
             color: color,
             font: font
         )
@@ -108,8 +108,8 @@ extension UILabel {
         
         configure(
             alignment: alignment,
-            numberOfLines: numberOfLines,
             lineBreakMode: lineBreakMode,
+            numberOfLines: numberOfLines,
             color: color,
             font: font
         )
