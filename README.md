@@ -80,7 +80,7 @@ Responsibilities of the `ViewController` include:
 - Initializing and storing views
 - Adding them to subviews
 - Setting up a layout
-- Reconfiguring self or subviews
+- Reconfiguring self and subviews
 
 Responsibilities of the `ViewController` do not include:
 
@@ -299,7 +299,7 @@ Since VCore is open-source, you can clone the project and build the framework ta
 
 ***Major***. Major changes, such as big overhauls
 
-***Minor***. Minor changes, such as new objects or extensions
+***Minor***. Minor changes, such as new objects, function, and extensions
 
 ***Patch***. Bug fixes and improvements
 
