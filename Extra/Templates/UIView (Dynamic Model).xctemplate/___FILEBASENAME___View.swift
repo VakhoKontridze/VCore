@@ -11,7 +11,7 @@ final class ___VARIABLE_productName___View: UIView {
     
     // MARK: Initializers
     init(
-        model: ___VARIABLE_productName___ViewModel
+        model: ___VARIABLE_productName___ViewModel = .init()
     ) {
         self.model = model
         super.init(frame: .zero)
@@ -20,7 +20,7 @@ final class ___VARIABLE_productName___View: UIView {
     }
     
     convenience init(
-        model: ___VARIABLE_productName___ViewModel,
+        model: ___VARIABLE_productName___ViewModel = .init(),
         viewModel: ___VARIABLE_productName___ViewViewModel
     ) {
         self.init(model: model)
