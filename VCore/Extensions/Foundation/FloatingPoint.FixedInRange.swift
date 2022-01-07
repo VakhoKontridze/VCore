@@ -7,29 +7,29 @@
 
 import Foundation
 
-// MARK: - Number Fixed in Range
+// MARK: - Number Bound in Range
 extension FloatingPoint {
     /// Combination of `min` and `max` function that returns a number fixed in a given range.
     ///
     /// Usage Example:
     ///
-    ///     let value1: Double = 0.0.fixedInRange(1...10) // 1.0
-    ///     let value2: Double = 5.0.fixedInRange(1...10) // 5.0
-    ///     let value3: Double = 11.0.fixedInRange(1...10) // 10.0
+    ///     let value1: Double = 0.0.bound(in: 1...10) // 1.0
+    ///     let value2: Double = 5.0.bound(in: 1...10) // 5.0
+    ///     let value3: Double = 11.0.bound(in: 1...10) // 10.0
     ///
-    ///     let value4: Double = 0.0.fixedInRange(1...10, step: 3) // 1.0
-    ///     let value5: Double = 5.0.fixedInRange(1...10, step: 3) // 4.0
-    ///     let value6: Double = 11.0.fixedInRange(1...10, step: 3) // 10.0
+    ///     let value4: Double = 0.0.bound(in: 1...10, step: 3) // 1.0
+    ///     let value5: Double = 5.0.bound(in: 1...10, step: 3) // 4.0
+    ///     let value6: Double = 11.0.bound(in: 1...10, step: 3) // 10.0
     ///
-    public func fixedInRange(
-        _ range: ClosedRange<Self>,
+    public func bound(
+        in range: ClosedRange<Self>,
         step: Self? = nil
     ) -> Self {
         switch (self, step) {
         case (...range.lowerBound, _): return range.lowerBound
         case (range.upperBound..., _): return range.upperBound
         case (_, nil): return self
-        case (_, let step?): return self.roundedWithStep(range, step: step)
+        case (_, let step?): return self.rounded(range: range, step: step)
         }
     }
     
@@ -37,29 +37,19 @@ extension FloatingPoint {
     ///
     /// Usage Example:
     ///
-    ///     let value1: Double = 0.0.fixedInRange(min: 1, max: 10) // 1.0
-    ///     let value2: Double = 5.0.fixedInRange(min: 1, max: 10) // 5.0
-    ///     let value3: Double = 11.0.fixedInRange(min: 1, max: 10) // 10.0
+    ///     let value1: Double = 0.0.bound(min: 1, max: 10) // 1.0
+    ///     let value2: Double = 5.0.bound(min: 1, max: 10) // 5.0
+    ///     let value3: Double = 11.0.bound(min: 1, max: 10) // 10.0
     ///
-    ///     let value4: Double = 0.0.fixedInRange(min: 1, max: 10, step: 3) // 1.0
-    ///     let value5: Double = 5.0.fixedInRange(min: 1, max: 10, step: 3) // 4.0
-    ///     let value6: Double = 11.0.fixedInRange(min: 1, max: 10, step: 3) // 10.0
+    ///     let value4: Double = 0.0.bound(min: 1, max: 10, step: 3) // 1.0
+    ///     let value5: Double = 5.0.bound(min: 1, max: 10, step: 3) // 4.0
+    ///     let value6: Double = 11.0.bound(min: 1, max: 10, step: 3) // 10.0
     ///
-    public func fixedInRange(
+    public func bound(
         min: Self,
         max: Self,
         step: Self? = nil
     ) -> Self {
-        fixedInRange(min...max, step: step)
-    }
-    
-    private func roundedWithStep(
-        _ range: ClosedRange<Self>,
-        step: Self
-    ) -> Self {
-        let min: Self = range.lowerBound
-        let rounded: Self = ((self - range.lowerBound) / step).rounded() * step
-        
-        return min + rounded
+        bound(in: min...max, step: step)
     }
 }

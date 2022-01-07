@@ -5,7 +5,8 @@
 - Issues with `fixedInRange` methods with steps have been fixed
 - Issues with conditional `View` function `if` have been fixed
 - `minimumScaleFactor` parameter has been added to `UILabel` configuration methods
-- `UIView` (Dynamic Model) XCode Templates now has a default parameter value for model in init 
+- `UIView` (Dynamic Model) XCode Templates now has a default parameter value for model in init
+- `fixedInRange` function has been renamed to `bound` 
 
 #### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.1/VCore.xcframework.zip) — *2021 01 04*
 

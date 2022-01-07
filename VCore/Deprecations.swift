@@ -78,6 +78,26 @@ extension UICollectionView {
     }
 }
 
+// MARK: - Exteions - Foundation - FloatingPoint
+extension FloatingPoint {
+    @available(*, deprecated, message: "Renamed to `bound`")
+    public func fixedInRange(
+        _ range: ClosedRange<Self>,
+        step: Self? = nil
+    ) -> Self {
+        bound(in: range, step: step)
+    }
+    
+    @available(*, deprecated, message: "Renamed to `bound`")
+    public func fixedInRange(
+        min: Self,
+        max: Self,
+        step: Self? = nil
+    ) -> Self {
+        bound(min: min, max: max, step: step)
+    }
+}
+
 // MARK: - Exteions - UIKit - UILabel
 extension UILabel {
     @available(*, deprecated, message: "Use `init` with different parameter order")
