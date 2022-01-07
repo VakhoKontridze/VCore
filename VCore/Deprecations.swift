@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SwiftUI
 
 // MARK: - Network Response Processor
 @available(*, deprecated, renamed: "NetworkResponseProcessor")
@@ -113,5 +114,17 @@ extension UILabel {
             color: color,
             font: font
         )
+    }
+}
+
+// MARK: - Extensions - SwiftUI - View
+extension View {
+    @available(*, deprecated, message: "Use method without `radius` parameter name")
+    public func cornerRadius(
+        radius: CGFloat,
+        corners: UIRectCorner
+    ) -> some View {
+        self
+            .cornerRadius(radius, corners: corners)
     }
 }

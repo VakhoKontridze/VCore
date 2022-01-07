@@ -14,10 +14,10 @@ extension View {
     ///
     ///     Color.accentColor
     ///         .frame(dimension: 100)
-    ///         .cornerRadius(radius: 10, corners: .allCorners)
+    ///         .cornerRadius(10, corners: .allCorners)
     ///
     public func cornerRadius(
-        radius: CGFloat,
+        _ radius: CGFloat,
         corners: UIRectCorner
     ) -> some View {
         self
