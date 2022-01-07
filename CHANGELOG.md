@@ -1,6 +1,6 @@
 ## Change Log
 
-#### [2.X.X(14)]
+#### [2.2.0(14)](https://github.com/VakhoKontridze/VCore/releases/download/2.2.0/VCore.xcframework.zip) — *2021 01 07*
 
 - Issues with `fixedInRange` methods with steps have been fixed
 - Issues with conditional `View` function `if` have been fixed
