@@ -3,6 +3,7 @@
 #### [2.X.X(14)]
 
 - Issues with `fixedInRange` methods with steps have been fixed
+- Issues with conditional `View` function `if` have been fixed
 - `minimumScaleFactor` parameter has been added to `UILabel` configuration methods
 - `UIView` (Dynamic Model) XCode Templates now has a default parameter value for model in init 
 
