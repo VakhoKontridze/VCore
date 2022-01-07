@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		1708290F276277A70001DF39 /* ClosedRange.Range.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1708290E276277A70001DF39 /* ClosedRange.Range.swift */; };
 		17082911276278350001DF39 /* KVInitializableEnumeration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17082910276278350001DF39 /* KVInitializableEnumeration.swift */; };
+		172C3F40278872EA00EFD136 /* FloatingPoint.RoundedWithStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172C3F3F278872EA00EFD136 /* FloatingPoint.RoundedWithStep.swift */; };
 		1734205927622B370060C844 /* UIView.ApplyShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1734205827622B370060C844 /* UIView.ApplyShadow.swift */; };
 		1734205B27622D190060C844 /* FloatingPoint.FixedInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1734205A27622D190060C844 /* FloatingPoint.FixedInRange.swift */; };
 		173C2C93270DDCD6006BEAF3 /* View.ConditionalModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 173C2C92270DDCD6006BEAF3 /* View.ConditionalModifiers.swift */; };
@@ -151,6 +152,7 @@
 /* Begin PBXFileReference section */
 		1708290E276277A70001DF39 /* ClosedRange.Range.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRange.Range.swift; sourceTree = "<group>"; };
 		17082910276278350001DF39 /* KVInitializableEnumeration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVInitializableEnumeration.swift; sourceTree = "<group>"; };
+		172C3F3F278872EA00EFD136 /* FloatingPoint.RoundedWithStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPoint.RoundedWithStep.swift; sourceTree = "<group>"; };
 		1734205827622B370060C844 /* UIView.ApplyShadow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.ApplyShadow.swift; sourceTree = "<group>"; };
 		1734205A27622D190060C844 /* FloatingPoint.FixedInRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPoint.FixedInRange.swift; sourceTree = "<group>"; };
 		173C2C92270DDCD6006BEAF3 /* View.ConditionalModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.ConditionalModifiers.swift; sourceTree = "<group>"; };
@@ -674,6 +676,7 @@
 			children = (
 				7AF68A6A26EE891A00D4B5BE /* Int.BlockNTimes.swift */,
 				1734205A27622D190060C844 /* FloatingPoint.FixedInRange.swift */,
+				172C3F3F278872EA00EFD136 /* FloatingPoint.RoundedWithStep.swift */,
 				7AF68A6C26EE899700D4B5BE /* String.IsUserDefaultsKey.swift */,
 				1742266B2746C8F300B4B4C3 /* String.NonEmpty.swift */,
 				7AB22B2C26EE7A6F0037355D /* StringProtocol.Subscript.swift */,
@@ -954,6 +957,7 @@
 				173C2C93270DDCD6006BEAF3 /* View.ConditionalModifiers.swift in Sources */,
 				173C2E5627118B0B006BEAF3 /* NetworkRequestMethod.swift in Sources */,
 				17FDE98E273900100085DE40 /* UIImage.Rotated.swift in Sources */,
+				172C3F40278872EA00EFD136 /* FloatingPoint.RoundedWithStep.swift in Sources */,
 				7A86F87F26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift in Sources */,
 				17B0B2DE277875F300079197 /* KeyboardResponsiveViewController.swift in Sources */,
 				17FDE994273905C70085DE40 /* UIColor.Blend.swift in Sources */,
