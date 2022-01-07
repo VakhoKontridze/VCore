@@ -9,7 +9,17 @@ import SwiftUI
 // MARK: - Corner Radius
 extension View {
     /// Clips this view to its bounding frame, with the specified corners and corner radius.
-    public func cornerRadius(radius: CGFloat, corners: UIRectCorner) -> some View {
+    ///
+    /// Usage Example:
+    ///
+    ///     Color.accentColor
+    ///         .frame(dimension: 100)
+    ///         .cornerRadius(radius: 10, corners: .allCorners)
+    ///
+    public func cornerRadius(
+        radius: CGFloat,
+        corners: UIRectCorner
+    ) -> some View {
         self
             .clipShape(CornerRadiusShape(radius: radius, corners: corners))
     }

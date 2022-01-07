@@ -1,5 +1,5 @@
 //
-//  UIImage.Rotated.swift.swift
+//  UIImage.Rotated.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/8/21.
@@ -10,6 +10,12 @@ import UIKit
 // MARK: - Image Rotation
 extension UIImage {
     /// Rotates `UIImage` by angle.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let rotatedImage: UIImage? = image.rotated(by: .init(value: 90, unit: .degrees))
+    ///
     public func rotated(by angle: Measurement<UnitAngle>) -> UIImage? {
         let radians: CGFloat = .init(angle.converted(to: .radians).value)
         
@@ -41,11 +47,23 @@ extension UIImage {
     }
     
     /// Rotates `UIImage` by radian.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let rotatedImage: UIImage? = image.rotated(byRadians: .pi / 2)
+    ///
     public func rotated(byRadians radians: CGFloat) -> UIImage? {
         rotated(by: Measurement(value: radians, unit: .radians))
     }
     
     /// Rotates `UIImage` by degrees.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let rotatedImage: UIImage? = image.rotated(byDegrees: 90)
+    ///
     public func rotated(byDegrees degrees: CGFloat) -> UIImage? {
         rotated(by: Measurement(value: degrees, unit: .degrees))
     }

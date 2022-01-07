@@ -10,6 +10,12 @@ import UIKit
 // MARK: - Image Scaling
 extension UIImage {
     /// Scales `UIImage` to specified width.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let scaledImage: UIImage? = image.scaled(toWidth: 500)
+    ///
     public func scaled(
         toWidth newWidth: CGFloat
     ) -> UIImage? {
@@ -20,6 +26,12 @@ extension UIImage {
     }
     
     /// Scales `UIImage` to specified height.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let scaledImage: UIImage? = image.scaled(toHeight: 500)
+    ///
     public func scaled(
         toHeight newHeight: CGFloat
     ) -> UIImage? {
@@ -43,6 +55,12 @@ extension UIImage {
 // MARK: - Image Scaling Down
 extension UIImage {
     /// Scales `UIImage` down to specified width, if new width is smaller.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let scaledDownImage: UIImage? = image.scaledDown(toWidth: 500)
+    ///
     public func scaledDown(
         toWidth newWidth: CGFloat
     ) -> UIImage? {
@@ -51,6 +69,12 @@ extension UIImage {
     }
     
     /// Scales `UIImage` down to specified height, if new height is smaller.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let scaledDownImage: UIImage? = image.scaledDown(toHeight: 500)
+    ///
     public func scaledDown(
         toHeight newHeight: CGFloat
     ) -> UIImage? {
@@ -59,6 +83,12 @@ extension UIImage {
     }
     
     /// Scales `UIImage` down, by scaling smaller side to specified dimension.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let scaledDownImage: UIImage? = image.scaledDown(toDimension: 500)
+    ///
     public func scaledDown(
         toDimension newDimension: CGFloat
     ) -> UIImage? {

@@ -10,6 +10,11 @@ import UIKit
 // MARK: - Blend Color
 extension UIColor {
     /// Blends two colors together.
+    ///
+    /// Usage Example:
+    ///
+    ///     let purple: UIColor = .blend(.red, with: .blue)
+    ///
     public static func blend(
         _ color1: UIColor,
         ratio1: CGFloat = 0.5,
@@ -36,27 +41,37 @@ extension UIColor {
     /// Lightens `UIColor` by value.
     ///
     /// `value` ranges from `0` to `1`.
+    ///
+    /// Usage Example:
+    ///
+    ///     let lightBlue: UIColor = .systemBlue.lighten(by: 0.1)
+    ///
     public func lighten(by value: CGFloat) -> UIColor {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
         return .init(
-            red: min(values.red + value, 1),
-            green: min(values.green + value, 1),
-            blue: min(values.blue + value, 1),
+            red: (values.red + value).fixedInRange(0...1),
+            green: (values.green + value).fixedInRange(0...1),
+            blue: (values.blue + value).fixedInRange(0...1),
             alpha: values.alpha
         )
     }
     
     /// Darkens `UIColor` by value.
     ///
-    /// `value` ranges from `0` to `1`.
+    /// `value` ranges from `0` to `1`
+    ///
+    /// Usage Example:
+    ///
+    ///     let darkBlue: UIColor = .systemBlue.darken(by: 0.1)
+    ///
     public func darken(by value: CGFloat) -> UIColor {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
         return .init(
-            red: max(values.red - value, 0),
-            green: max(values.green - value, 0),
-            blue: max(values.blue - value, 0),
+            red: (values.red - value).fixedInRange(0...1),
+            green: (values.green - value).fixedInRange(0...1),
+            blue: (values.blue - value).fixedInRange(0...1),
             alpha: values.alpha
         )
     }

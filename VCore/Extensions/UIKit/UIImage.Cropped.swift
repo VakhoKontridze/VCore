@@ -10,6 +10,16 @@ import UIKit
 // MARK: - Image Crop
 extension UIImage {
     /// Cropps `UIImage` with specified rect.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///
+    ///     let croppedImage: UIImage? = image.cropped(to: .init(
+    ///         origin: .init(x: 10, y: 10),
+    ///         size: .init(width: 500, height: 500)
+    ///     ))
+    ///
     public func cropped(to newRect: CGRect) -> UIImage {
         guard
             newRect.size.width <= size.width,
@@ -28,6 +38,16 @@ extension UIImage {
     }
     
     /// Cropps `UIImage` with specified size starting at the origin.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///
+    ///     let croppedImage: UIImage? = image.cropped(to: .init(
+    ///         width: 500,
+    ///         height: 500
+    ///     ))
+    ///
     public func cropped(to newSize: CGSize) -> UIImage {
         cropped(to: .init(origin: .zero, size: newSize))
     }
