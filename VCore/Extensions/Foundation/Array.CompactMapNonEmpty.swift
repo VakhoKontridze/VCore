@@ -8,6 +8,29 @@
 import Foundation
 
 // MARK: - Compact Map Non Empty
+extension Array where Element == String {
+    /// Returns a string array containing non-nil, non-empty values, given transformation with each non-empty element of this sequence.
+    ///
+    ///  Usage Example:
+    ///
+    ///     let array: [String] = ["", "Lorem Ipsum"]
+    ///     let nonEmptyArray: [String] = array.compactMapNonEmpty { $0 } // ["Lorem Ipsum"]
+    ///
+    public func compactMapNonEmpty(_ transform: (String) throws -> String?) rethrows -> [String] {
+        try compactMap { element in
+            guard
+                !element.isEmpty,
+                let transformedElement: String = try transform(element),
+                !transformedElement.isEmpty
+            else {
+                return nil
+            }
+            
+            return transformedElement
+        }
+    }
+}
+
 extension Array where Element == Optional<String> {
     /// Returns a string array containing non-nil, non-empty values, given transformation with each non-empty element of this sequence.
     ///
