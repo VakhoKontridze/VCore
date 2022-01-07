@@ -57,20 +57,9 @@ extension FloatingPoint {
         _ range: ClosedRange<Self>,
         step: Self
     ) -> Self {
-        let rawValue: Self = {
-            let low: Self = floor(self / step) * step
-            let high: Self = ceil(self / step) * step
-            
-            let lowDiff: Self = abs(self - low)
-            let highDiff: Self = abs(self - high)
-            
-            return highDiff > lowDiff ? low : high
-        }()
+        let min: Self = range.lowerBound
+        let rounded: Self = ((self - range.lowerBound) / step).rounded() * step
         
-        switch rawValue {
-        case ...range.lowerBound: return range.lowerBound
-        case range.upperBound...: return range.upperBound
-        case _: return rawValue
-        }
+        return min + rounded
     }
 }
