@@ -10,6 +10,11 @@ import Foundation
 // MARK: - NS Object Name
 extension NSObject {
     /// `NSObject` class name.
+    ///
+    /// Usage Example:
+    ///
+    ///     let appDelegateName: String? = AppDelegate.nsObjectName // "AppDelegate"
+    ///
     public static var nsObjectName: String? {
         NSStringFromClass(self)
             .components(separatedBy: ".")

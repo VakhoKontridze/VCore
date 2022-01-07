@@ -11,7 +11,7 @@ import Foundation
 extension String {
     /// Sreates a `String` representing the given value, or returns `nil`.
     ///
-    /// Usage Example
+    /// Usage Example:
     ///
     ///     let a: Int? = 5
     ///     print(String(describing: a))        // "Optional(5)"

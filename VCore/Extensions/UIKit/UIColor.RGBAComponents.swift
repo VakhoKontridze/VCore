@@ -13,6 +13,12 @@ extension UIColor {
     ///
     /// `red`, `green`, and `blue` values range from `0` to `1`.
     /// `alpha` value ranges from `0` to `1`.
+    ///
+    /// Usage Example:
+    ///
+    ///     let (red, green, blue, alpha) = UIColor.systemBlue.rgbaValues
+    ///     // (0.0, 0.4..., 1.0, 1.0)
+    ///
     public var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
         var red: CGFloat = 0
         var green: CGFloat = 0
@@ -33,6 +39,12 @@ extension UIColor {
     ///
     /// `red`, `green`, and `blue` values range from `0` to `255`.
     /// `alpha` value ranges from `0` to `1`.
+    ///
+    /// Usage Example:
+    ///
+    ///     let (red, green, blue, alpha) = UIColor.systemBlue.rgbaComponents
+    ///     // (0, 122, 255, 1.0)
+    ///
     public var rgbaComponents: (red: Int, green: Int, blue: Int, alpha: CGFloat) {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         

@@ -9,7 +9,13 @@ import UIKit
 
 // MARK: - Image Compressed
 extension UIImage {
-    /// Compressed `UIImage` with specified quality.
+    /// Compresses `UIImage` with specified quality.
+    ///
+    /// Usage Example:
+    ///
+    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let compressedImage: UIImage? = image.compressed(quality: 0.75)
+    ///
     public func compressed(quality: CGFloat) -> UIImage? {
         jpegData(compressionQuality: quality).let { .init(data: $0) }
     }

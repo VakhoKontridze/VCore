@@ -10,6 +10,20 @@ import UIKit
 // MARK: - Label Configuration
 extension UILabel {
     /// Configures `UILabel` with alignment, line break mode, number of lines, color, and font.
+    ///
+    /// Usage Example:
+    ///
+    ///     let label: UILabel = .init()
+    ///
+    ///     label.configure(
+    ///         alignment: .natural,
+    ///         lineBreakMode: .byTruncatingTail,
+    ///         numberOfLines: 3,
+    ///         minimumScaleFactor: 0.5,
+    ///         color: .label,
+    ///         font: .systemFont(ofSize: 13)
+    ///     )
+    ///
     public func configure(
         alignment: NSTextAlignment = .natural,
         lineBreakMode: NSLineBreakMode = .byTruncatingTail,
@@ -27,6 +41,18 @@ extension UILabel {
     }
     
     /// Initializes `UILabel` with alignment, line break mode, number of lines, color, and font.
+    ///
+    /// Usage Example:
+    ///
+    ///     let label: UILabel = .init(
+    ///         alignment: .natural,
+    ///         lineBreakMode: .byTruncatingTail,
+    ///         numberOfLines: 3,
+    ///         minimumScaleFactor: 0.5,
+    ///         color: .label,
+    ///         font: .systemFont(ofSize: 13)
+    ///     )
+    ///
     public convenience init(
         alignment: NSTextAlignment = .natural,
         lineBreakMode: NSLineBreakMode = .byTruncatingTail,

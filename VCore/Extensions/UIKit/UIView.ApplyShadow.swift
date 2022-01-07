@@ -10,6 +10,15 @@ import UIKit
 // MARK: - Apply View Shadow
 extension UIView {
     /// Applies shadow to `UIView`.
+    ///
+    /// Usage Example:
+    ///
+    ///     view.applyShadow(
+    ///         color: .black.withAlphaComponent(0.16),
+    ///         radius: 5,
+    ///         offset: .init(width: 0, height: 5)
+    ///     )
+    ///
     public func applyShadow(
         color: UIColor?,
         radius: CGFloat,
@@ -22,6 +31,16 @@ extension UIView {
     }
     
     /// Rounds corners and applies shadow to `UIView`.
+    ///
+    /// Usage Example:
+    ///
+    ///     view.roundCornersAndApplyShadow(
+    ///         cornerRadius: 10,
+    ///         color: .black.withAlphaComponent(0.16),
+    ///         radius: 5,
+    ///         offset: .init(width: 0, height: 5)
+    ///     )
+    ///
     public func roundCornersAndApplyShadow(
         cornerRadius: CGFloat,
         color: UIColor?,

@@ -11,6 +11,14 @@ import SwiftUI
 @available(iOS 13, *)
 extension View {
     /// Positions this view within an invisible frame with the specified dimension.
+    ///
+    /// Usage Example:
+    ///
+    ///     var body: some View {
+    ///         Color.accentColor
+    ///             .frame(dimension: 100)
+    ///     }
+    ///
     public func frame(
         dimension: CGFloat,
         alignment: Alignment = .center
@@ -22,6 +30,14 @@ extension View {
     }
     
     /// Positions this view within an invisible frame with the specified size.
+    ///
+    /// Usage Example:
+    ///
+    ///     var body: some View {
+    ///         Color.accentColor
+    ///             .frame(size: .init(width: 100, height: 100))
+    ///     }
+    ///
     public func frame(
         size: CGSize,
         alignment: Alignment = .center
@@ -34,6 +50,18 @@ extension View {
     }
     
     /// Positions this view within an invisible frame with the specified size configuration.
+    ///
+    /// Usage Example:
+    ///
+    ///     var body: some View {
+    ///         Color.accentColor
+    ///             .frame(size: .init(
+    ///                 min: .zero,
+    ///                 ideal: .init(dimension: 100),
+    ///                 max: .init(dimension: .infinity)
+    ///             ))
+    ///     }
+    ///
     public func frame(
         size: SizeConfiguration,
         alignment: Alignment = .center

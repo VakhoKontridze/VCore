@@ -10,6 +10,14 @@ import Foundation
 // MARK: - URL Response Is Success HTTP Status Code
 extension URLResponse {
     /// Checks that response `HTTP` code is successful.
+    ///
+    /// Compares status code against `200...299`.
+    ///
+    /// Usage Example:
+    ///
+    ///     URLSession.shared.dataTask(with: someUrl, completionHandler: { (data, response, url) in
+    ///         let isSuccess: Bool = response?.isSuccessHTTPStatusCode ?? false
+    ///     })
     public var isSuccessHTTPStatusCode: Bool {
         guard
             let httpResponse: HTTPURLResponse = self as? HTTPURLResponse,

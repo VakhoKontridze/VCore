@@ -73,7 +73,7 @@
 		17FDE9882738F9D90085DE40 /* UIImage.Compressed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */; };
 		17FDE98A2738FC590085DE40 /* UIImage.Cropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */; };
 		17FDE98C2738FE080085DE40 /* UIImage.Scaled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE98B2738FE080085DE40 /* UIImage.Scaled.swift */; };
-		17FDE98E273900100085DE40 /* UIImage.Rotated.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE98D273900100085DE40 /* UIImage.Rotated.swift.swift */; };
+		17FDE98E273900100085DE40 /* UIImage.Rotated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE98D273900100085DE40 /* UIImage.Rotated.swift */; };
 		17FDE990273902EC0085DE40 /* UIColor.RGBAComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE98F273902EC0085DE40 /* UIColor.RGBAComponents.swift */; };
 		17FDE994273905C70085DE40 /* UIColor.Blend.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17FDE993273905C70085DE40 /* UIColor.Blend.swift */; };
 		7A00266C26EB70370056DBC5 /* JSONEncoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */; };
@@ -215,7 +215,7 @@
 		17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Compressed.swift; sourceTree = "<group>"; };
 		17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Cropped.swift; sourceTree = "<group>"; };
 		17FDE98B2738FE080085DE40 /* UIImage.Scaled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Scaled.swift; sourceTree = "<group>"; };
-		17FDE98D273900100085DE40 /* UIImage.Rotated.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Rotated.swift.swift; sourceTree = "<group>"; };
+		17FDE98D273900100085DE40 /* UIImage.Rotated.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Rotated.swift; sourceTree = "<group>"; };
 		17FDE98F273902EC0085DE40 /* UIColor.RGBAComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.RGBAComponents.swift; sourceTree = "<group>"; };
 		17FDE993273905C70085DE40 /* UIColor.Blend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.Blend.swift; sourceTree = "<group>"; };
 		7A00266B26EB70370056DBC5 /* JSONEncoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderError.swift; sourceTree = "<group>"; };
@@ -703,7 +703,7 @@
 				17FDE9872738F9D90085DE40 /* UIImage.Compressed.swift */,
 				17FDE9892738FC590085DE40 /* UIImage.Cropped.swift */,
 				17FDE98B2738FE080085DE40 /* UIImage.Scaled.swift */,
-				17FDE98D273900100085DE40 /* UIImage.Rotated.swift.swift */,
+				17FDE98D273900100085DE40 /* UIImage.Rotated.swift */,
 				7AB22B3426EE834E0037355D /* UINavigationBar.Height.swift */,
 				17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */,
 				17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */,
@@ -953,7 +953,7 @@
 				1742266C2746C8F300B4B4C3 /* String.NonEmpty.swift in Sources */,
 				173C2C93270DDCD6006BEAF3 /* View.ConditionalModifiers.swift in Sources */,
 				173C2E5627118B0B006BEAF3 /* NetworkRequestMethod.swift in Sources */,
-				17FDE98E273900100085DE40 /* UIImage.Rotated.swift.swift in Sources */,
+				17FDE98E273900100085DE40 /* UIImage.Rotated.swift in Sources */,
 				7A86F87F26EFAB4D00EC32EA /* PrettyFractionsNumberFormatter.swift in Sources */,
 				17B0B2DE277875F300079197 /* KeyboardResponsiveViewController.swift in Sources */,
 				17FDE994273905C70085DE40 /* UIColor.Blend.swift in Sources */,
