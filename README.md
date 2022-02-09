@@ -231,7 +231,7 @@ A specific implementation of a gateway. To differentiate the gateways from one a
 
 Although an `Interactor` component in VIPER is part of the scene, Gateways are not bound to specific scenes.
 
-This design choice follows CLEAN architecture. But we are not using `UseCase`'s as their responsibility is entirely covered by `Interactor`'s.
+This design choice follows CLEAN architecture. But I am not using `UseCase`'s as their responsibility is entirely covered by `Interactor`'s.
 
 Relation between an `Interactor`  and `Gateway` is the following:
 

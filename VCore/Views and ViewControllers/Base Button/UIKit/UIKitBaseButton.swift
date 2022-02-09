@@ -113,12 +113,12 @@ import UIKit
 ///
 ///         var state: SomeButtonState { .init(internalState: internalState) }
 ///         private var internalState: SomeButtonInternalState = .default
+///             { didSet { baseButton.isEnabled = internalState.isEnabled } }
 ///         public var isEnabled: Bool {
 ///             get {
 ///                 internalState.isEnabled
 ///             }
 ///             set {
-///                 baseButton.isEnabled = newValue
 ///                 internalState = .init(
 ///                     state: .init(isEnabled: newValue),
 ///                     isPressed: baseButton.internalButtonState == .pressed
