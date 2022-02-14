@@ -78,6 +78,19 @@ extension UICollectionView {
     }
 }
 
+// MARK: - VIPER Helpers - Activity Indicaator
+extension UIActivityIndicatorViewable {
+    @available(*, deprecated, renamed: "startActivityIndicatorAnimationAndDisableInteraction")
+    public func startActivityIndicatorAnimationAndDisableInterraction() {
+        startActivityIndicatorAnimationAndDisableInteraction()
+    }
+    
+    @available(*, deprecated, renamed: "stopActivityIndicatorAnimationAndEnableInteraction")
+    public func stopActivityIndicatorAnimationAndEnableInterraction() {
+        stopActivityIndicatorAnimationAndEnableInteraction()
+    }
+}
+
 // MARK: - Exteions - Foundation - FloatingPoint
 extension FloatingPoint {
     @available(*, deprecated, message: "Renamed to `bound`")

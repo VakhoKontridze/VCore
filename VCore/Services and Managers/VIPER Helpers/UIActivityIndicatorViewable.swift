@@ -8,7 +8,7 @@
 import UIKit
 
 // MARK: - UI Activity Indicator Viewable
-/// Porotocl for presenting an `UIActivityIndicatorView` and controling user interraction.
+/// Porotocl for presenting an `UIActivityIndicatorView` and controling user interaction.
 ///
 /// In `VIPER` arhcitecute, this protocol is conformed to by a `View/Controller`.
 ///
@@ -26,11 +26,11 @@ public protocol UIActivityIndicatorViewable {
     /// Stops `UIActivityIndicator`.
     func stopActivityIndicatorAnimation()
     
-    /// Starts `UIActivityIndicator`, and disables user interraction.
-    func startActivityIndicatorAnimationAndDisableInterraction()
+    /// Starts `UIActivityIndicator`, and disables user interaction.
+    func startActivityIndicatorAnimationAndDisableInteraction()
     
-    /// Stops `UIActivityIndicator`, and enables user interraction.
-    func stopActivityIndicatorAnimationAndEnableInterraction()
+    /// Stops `UIActivityIndicator`, and enables user interaction.
+    func stopActivityIndicatorAnimationAndEnableInteraction()
 }
 
 extension UIActivityIndicatorViewable where Self: UIViewController {
@@ -42,12 +42,12 @@ extension UIActivityIndicatorViewable where Self: UIViewController {
         activityIndicator.stopAnimating()
     }
     
-    public func startActivityIndicatorAnimationAndDisableInterraction() {
+    public func startActivityIndicatorAnimationAndDisableInteraction() {
         startActivityIndicatorAnimation()
         view.isUserInteractionEnabled = false
     }
     
-    public func stopActivityIndicatorAnimationAndEnableInterraction() {
+    public func stopActivityIndicatorAnimationAndEnableInteraction() {
         stopActivityIndicatorAnimation()
         view.isUserInteractionEnabled = true
     }
