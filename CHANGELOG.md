@@ -1,12 +1,13 @@
 ## Change Log
 
-#### [2.2.1(15)]
+#### [2.2.1(15)](https://github.com/VakhoKontridze/VCore/releases/download/2.2.1/VCore.xcframework.zip) — *2022 02 14*
 
 - `UITableViewCell` and `UICollectionViewCell` background colors are not set directly to cell, and not to `contentView` in XCode Templates
 - Typo in `UIActivityIndicatorViewable` methods have been fixed
 - State logic in `UIKitBaseButton` documentation has been updated
+- `with` parameter named has been added to `Gateway` in XCode Templates
 
-#### [2.2.0(14)](https://github.com/VakhoKontridze/VCore/releases/download/2.2.0/VCore.xcframework.zip) — *2021 01 07*
+#### [2.2.0(14)](https://github.com/VakhoKontridze/VCore/releases/download/2.2.0/VCore.xcframework.zip) — *2022 01 07*
 
 - Issues with `fixedInRange` methods with steps have been fixed
 - Issues with conditional `View` function `if` have been fixed
@@ -14,11 +15,11 @@
 - `UIView` (Dynamic Model) XCode Templates now has a default parameter value for model in init
 - `fixedInRange` function has been renamed to `bound` 
 
-#### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.1/VCore.xcframework.zip) — *2021 01 04*
+#### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.1/VCore.xcframework.zip) — *2022 01 04*
 
 - `isEnabled` has been added to `UIKitBaseButton` to replace `isUserInteractionEnabled`
 
-#### [2.1.0(12)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.0/VCore.xcframework.zip) — *2021 01 01*
+#### [2.1.0(12)](https://github.com/VakhoKontridze/VCore/releases/download/2.1.0/VCore.xcframework.zip) — *2022 01 01*
 
 - `KeyPath` sort method has been added to `Array`
 - `UIViewController` `Factory` in XCode Templates has been fixed
