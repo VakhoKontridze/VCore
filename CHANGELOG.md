@@ -1,5 +1,10 @@
 ## Change Log
 
+#### [2.2.1(15)]
+
+- `UITableViewCell` and `UICollectionViewCell` background colors are not set directly to cell, and not to `contentView` in XCode Templates
+- State logic in `UIKitBaseButton` documentation has been updated
+
 #### [2.2.0(14)](https://github.com/VakhoKontridze/VCore/releases/download/2.2.0/VCore.xcframework.zip) — *2021 01 07*
 
 - Issues with `fixedInRange` methods with steps have been fixed

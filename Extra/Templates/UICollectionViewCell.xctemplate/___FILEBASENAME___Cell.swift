@@ -28,7 +28,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionVi
     }
     
     private func setUpView() {
-        contentView.backgroundColor = Model.Colors.background
+        backgroundColor = Model.Colors.background
     }
     
     private func addSubviews() {
