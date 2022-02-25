@@ -91,7 +91,7 @@ extension UIActivityIndicatorViewable {
     }
 }
 
-// MARK: - Exteions - Foundation - FloatingPoint
+// MARK: - Extensions - Foundation - FloatingPoint
 extension FloatingPoint {
     @available(*, deprecated, message: "Renamed to `bound`")
     public func fixedInRange(
@@ -111,7 +111,22 @@ extension FloatingPoint {
     }
 }
 
-// MARK: - Exteions - UIKit - UILabel
+// MARK: - Extensions - Foundation - Optional
+extension Optional {
+    @available(*, deprecated, message: "Use native `map` and `flatMap` methods instead")
+    public func `let`<T>(_ transform: (Wrapped) throws -> T?) rethrows -> T? {
+        guard
+            let self = self,
+            let result: T = try transform(self)
+        else {
+            return nil
+        }
+        
+        return result
+    }
+}
+
+// MARK: - Extensions - UIKit - UILabel
 extension UILabel {
     @available(*, deprecated, message: "Use `init` with different parameter order")
     public func configure(

@@ -17,6 +17,6 @@ extension UIImage {
     ///     let compressedImage: UIImage? = image.compressed(quality: 0.75)
     ///
     public func compressed(quality: CGFloat) -> UIImage? {
-        jpegData(compressionQuality: quality).let { .init(data: $0) }
+        jpegData(compressionQuality: quality).flatMap { .init(data: $0) }
     }
 }

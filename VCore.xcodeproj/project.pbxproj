@@ -118,7 +118,6 @@
 		7AB22B3526EE834E0037355D /* UINavigationBar.Height.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3426EE834E0037355D /* UINavigationBar.Height.swift */; };
 		7AB22B3726EE84690037355D /* Array.SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3626EE84690037355D /* Array.SafeSubscript.swift */; };
 		7AB22B3926EE84EF0037355D /* NSObject.NSObjectName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3826EE84EF0037355D /* NSObject.NSObjectName.swift */; };
-		7AB22B3B26EE85EF0037355D /* Optional.LetBlockTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3A26EE85EF0037355D /* Optional.LetBlockTransformation.swift */; };
 		7AB22B3D26EE86E10037355D /* UIViewController.DismissKeyboardOnOutsideTap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AB22B3C26EE86E10037355D /* UIViewController.DismissKeyboardOnOutsideTap.swift */; };
 		7AF68A6926EE878300D4B5BE /* Date.Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A6826EE878300D4B5BE /* Date.Component.swift */; };
 		7AF68A6B26EE891A00D4B5BE /* Int.BlockNTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF68A6A26EE891A00D4B5BE /* Int.BlockNTimes.swift */; };
@@ -265,7 +264,6 @@
 		7AB22B3426EE834E0037355D /* UINavigationBar.Height.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBar.Height.swift; sourceTree = "<group>"; };
 		7AB22B3626EE84690037355D /* Array.SafeSubscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.SafeSubscript.swift; sourceTree = "<group>"; };
 		7AB22B3826EE84EF0037355D /* NSObject.NSObjectName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.NSObjectName.swift; sourceTree = "<group>"; };
-		7AB22B3A26EE85EF0037355D /* Optional.LetBlockTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Optional.LetBlockTransformation.swift; sourceTree = "<group>"; };
 		7AB22B3C26EE86E10037355D /* UIViewController.DismissKeyboardOnOutsideTap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewController.DismissKeyboardOnOutsideTap.swift; sourceTree = "<group>"; };
 		7AF68A6826EE878300D4B5BE /* Date.Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Component.swift; sourceTree = "<group>"; };
 		7AF68A6A26EE891A00D4B5BE /* Int.BlockNTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.BlockNTimes.swift; sourceTree = "<group>"; };
@@ -701,7 +699,6 @@
 				7A86F88426EFB65E00EC32EA /* Sequence.KeyPathSort.swift */,
 				1758409F2780688600625CB7 /* Sequence.ConditionalGrouping.swift */,
 				1708290E276277A70001DF39 /* ClosedRange.Range.swift */,
-				7AB22B3A26EE85EF0037355D /* Optional.LetBlockTransformation.swift */,
 				7AB22B3826EE84EF0037355D /* NSObject.NSObjectName.swift */,
 				17B23E752735481C00914FEB /* Calendar.NumberOfDaysInMonth.swift */,
 			);
@@ -908,7 +905,6 @@
 				17FD167B273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift in Sources */,
 				179B84082747C13B0011462D /* NetworkRequestFactory.Body.swift in Sources */,
 				17082911276278350001DF39 /* KVInitializableEnumeration.swift in Sources */,
-				7AB22B3B26EE85EF0037355D /* Optional.LetBlockTransformation.swift in Sources */,
 				7A91D6F426EFA4E200B0B096 /* NSLayoutConstraint.WithPriority.swift in Sources */,
 				173C2C95270DDE16006BEAF3 /* View.CustomFrames.swift in Sources */,
 				1734205927622B370060C844 /* UIView.ApplyShadow.swift in Sources */,

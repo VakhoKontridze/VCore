@@ -97,7 +97,7 @@ open class ScrollableView: UIView {
 // MARK: - Helpers
 extension NSLayoutConstraint {
     func withPriority(_ priority: UILayoutPriority?) -> NSLayoutConstraint {
-        priority.let { self.priority = $0 }
+        priority.map { self.priority = $0 }
         return self
     }
 }
