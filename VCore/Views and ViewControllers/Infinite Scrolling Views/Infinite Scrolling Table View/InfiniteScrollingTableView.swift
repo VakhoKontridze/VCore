@@ -33,15 +33,18 @@ open class InfiniteScrollingTableView: UITableView {
     /// Offset that needs to be dragged vertically up for pagination to occur. Defaults to `20`.
     open var paginationOffset: CGFloat = 20
     
-    private var frameHasLoaded: Bool = false
+    private var isFirstLayoutSubviews: Bool = false
 
     // MARK: Lifecycle
     open override func layoutSubviews() {
         super.layoutSubviews()
         
-        if !frameHasLoaded && paginationState == .loading {
-            frameHasLoaded = true
-            setActivityIndicatorState()
+        if isFirstLayoutSubviews {
+            isFirstLayoutSubviews = false
+            
+            if paginationState == .loading {
+                setActivityIndicatorState()
+            }
         }
     }
 
