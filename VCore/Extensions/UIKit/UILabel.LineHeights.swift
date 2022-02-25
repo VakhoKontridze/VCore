@@ -15,69 +15,42 @@ extension UILabel {
     ///
     /// All properties from `self` are considered when calculating value.
     ///
-    /// During calculation of height, text value is passed from `self`. If `nil`, default value of "A" will be used.
+    /// During calculation of height, `text` value is passed from `self`.
+    /// If `nil`, default value of "A" will be used.
     ///
     /// Usage Example:
     ///
     ///     let label: UILabel = .init()
     ///     label.text = "Lorem Ipsum"
     ///
-    ///     let height: CGFloat = label.singleLineHeight // 20.33...
+    ///     let height: CGFloat = label // 20.33...
+    ///         .singleLineHeight
     ///
     public var singleLineHeight: CGFloat {
-        singleLineHeight(text: {
-            guard let text = text, !text.isEmpty else { return "A" }
-            return text
-        }())
-    }
-    
-    /// Calculates and returns single-line natural height constant.
-    ///
-    /// Used for ensuring that view doesn't flicker when new text is added to empty `UILabel`.
-    ///
-    /// All properties from `self` are considered when calculating value.
-    ///
-    /// Usage Example:
-    ///
-    ///     let label: UILabel = .init()
-    ///
-    ///     let height: CGFloat = label.singleLineHeight(text: "Lorem Ipsum") // 20.33...
-    ///
-    public func singleLineHeight(text: String) -> CGFloat {
-        calculateHeight(text: text, numberOfLines: 1)
-    }
-    
-    /// Calculates and returns multi-line natural height constant.
-    ///
-    /// Used for ensuring that view doesn't flicker when new text is added to empty `UILabel`.
-    ///
-    /// All properties from `self` are considered when calculating value.
-    ///
-    /// During calculation of height, text value is passed from `self`. If `nil`, default value of "A" will be used.
-    ///
-    /// Usage Example:
-    ///
-    ///     let label: UILabel = .init()
-    ///     label.translatesAutoresizingMaskIntoConstraints = false
-    ///     label.numberOfLines = 3
-    ///     label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    ///
-    ///     view.addSubview(label)
-    ///
-    ///     NSLayoutConstraint.activate([
-    ///         label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-    ///             label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-    ///         label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
-    ///     ])
-    ///
-    ///     // Must be calculated after layout happens
-    ///     let height: CGFloat = label.multiLineHeight // 40.66...
-    ///
-    public var multiLineHeight: CGFloat {
-        multiLineHeight(text: {
-            guard let text = text, !text.isEmpty else { return "A" }
-            return text
-        }())
+        let label: UILabel = { // `preferredMaxLayoutWidth` is not set
+            let label: UILabel = .init()
+            
+            label.text = text?.nonEmpty ?? "A"
+            
+            label.font = font
+            label.textAlignment = textAlignment
+            label.lineBreakMode = lineBreakMode
+            
+            label.numberOfLines = 1
+            
+            label.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
+            label.baselineAdjustment = baselineAdjustment
+            label.minimumScaleFactor = minimumScaleFactor
+            
+            label.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation
+            
+            label.lineBreakStrategy = lineBreakStrategy
+            
+            return label
+        }()
+        
+        label.sizeToFit()
+        return label.intrinsicContentSize.height
     }
 
     /// Calculates and returns multi-line natural height constant.
@@ -85,6 +58,11 @@ extension UILabel {
     /// Used for ensuring that view doesn't flicker when new text is added to empty `UILabel`.
     ///
     /// All properties from `self` are considered when calculating value.
+    ///
+    /// During calculation of height,  parameter `text` is used.
+    /// If nil, `text` value is passed from `self`.
+    /// If `nil`, default value of "A" will be used.
+    ///
     /// Usage Example:
     ///
     ///     let label: UILabel = .init()
@@ -95,27 +73,36 @@ extension UILabel {
     ///
     ///     NSLayoutConstraint.activate([
     ///         label.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-    ///             label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+    ///         label.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
     ///         label.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
     ///     ])
     ///
-    ///     // Must be calculated after layout happens
-    ///     let height: CGFloat = label.multiLineHeight( // 40.66...
-    ///         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    ///     )
+    /// Multi line height can only be calculated after layout takes place.
+    /// Otherwise, `preferredMaxLayoutWidth` parameter will be `0`, and either `0` or a single-line height will be retuned.
+    /// To ensure proper calculations, this method must be called after `UILabel` has been laid out.
+    /// For instance, this method can be called in `UIView`'s `layoutSubviews`.
+    /// In some cases, `async` can also work.
     ///
-    public func multiLineHeight(text: String) -> CGFloat {
-        calculateHeight(text: text, numberOfLines: numberOfLines)
-    }
-
-    private func calculateHeight(
-        text: String,
-        numberOfLines: Int
-    ) -> CGFloat {
+    ///     DispatchQueue.main.async(execute: {
+    ///         let height: CGFloat = label // 40.66...
+    ///             .multiLineHeight(
+    ///                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    ///             )
+    ///     })
+    ///
+    /// Alternately, a predefined with value can be passed:
+    ///
+    ///     let height: CGFloat = label // 40.66...
+    ///         .multiLineHeight(
+    ///             width: view.frame.width - 40,
+    ///             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    ///         )
+    ///
+    public func multiLineHeight(width: CGFloat? = nil, text: String? = nil) -> CGFloat {
         let label: UILabel = {
             let label: UILabel = .init()
             
-            label.text = text
+            label.text = text ?? self.text ?? "A"
             
             label.font = font
             label.textAlignment = textAlignment
@@ -131,7 +118,7 @@ extension UILabel {
             
             label.lineBreakStrategy = lineBreakStrategy
             
-            label.preferredMaxLayoutWidth = preferredMaxLayoutWidth
+            label.preferredMaxLayoutWidth = width ?? preferredMaxLayoutWidth
             
             return label
         }()
