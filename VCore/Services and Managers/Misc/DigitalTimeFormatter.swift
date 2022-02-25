@@ -72,7 +72,7 @@ public struct DigitalTimeFormatter {
             }
         }()
         
-        let formattedTime: String? = formattedComponents.let { $0.joined(separator: delimiter) }
+        let formattedTime: String? = formattedComponents.map { $0.joined(separator: delimiter) }
         
         return formattedTime
     }

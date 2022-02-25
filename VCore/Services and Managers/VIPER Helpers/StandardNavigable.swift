@@ -55,10 +55,10 @@ public protocol StandardNavigable {
     func popToRoot()
     
     /// Presents a view controller modally.
-    func present(_ viewController: UIViewController)
+    func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
     
     /// Presents a view controller modally.
-    func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
+    func present(_ viewController: UIViewController)
     
     /// Dismisses the view controller that was presented modally by the view controller.
     func dismiss(animated: Bool, completion: (() -> Void)?)

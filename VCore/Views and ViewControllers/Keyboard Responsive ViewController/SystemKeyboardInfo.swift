@@ -31,7 +31,7 @@ public struct SystemKeyboardInfo {
             0.25
         
         self.animationOptions =
-            (notification.userInfo?.uInt(key: UIResponder.keyboardAnimationCurveUserInfoKey)).let { .init(rawValue: $0) } ??
+            (notification.userInfo?.uInt(key: UIResponder.keyboardAnimationCurveUserInfoKey)).map { .init(rawValue: $0) } ??
             .curveLinear
     }
     
