@@ -2,7 +2,7 @@
 
 import UIKit
 
-// MARK: - ___VARIABLE_productName___ Model
+// MARK: - ___VARIABLE_productName___ View Model
 struct ___VARIABLE_productName___ViewModel {
     // MARK: Initializers
     private init() {}
