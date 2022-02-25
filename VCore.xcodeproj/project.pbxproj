@@ -647,9 +647,9 @@
 			isa = PBXGroup;
 			children = (
 				17B0B2E327787B4A00079197 /* Base Buttons */,
+				17BE45AF27C90D1400D69C3A /* Scrollable View */,
 				17B0B2DC277875E200079197 /* Keyboard Responsive ViewController */,
 				1781D003274A997000B7A7F1 /* Infinite Scrolling Views */,
-				17BE45AF27C90D1400D69C3A /* Scrollable View */,
 			);
 			path = "Views and ViewControllers";
 			sourceTree = "<group>";
