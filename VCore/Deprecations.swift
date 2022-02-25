@@ -165,6 +165,18 @@ extension UILabel {
     }
 }
 
+extension UILabel {
+    @available(*, deprecated, message: "Use method without `text` parameter")
+    public func singleLineHeight(text: String) -> CGFloat {
+        singleLineHeight
+    }
+    
+    @available(*, deprecated, message: "Use method instead of property")
+    public var multiLineHeight: CGFloat {
+        multiLineHeight()
+    }
+}
+
 // MARK: - Extensions - SwiftUI - View
 extension View {
     @available(*, deprecated, message: "Use method without `radius` parameter name")

@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [2.4.0(17)]
+
+- Width parameter can now be passed to `UILabel`'s `multiLineHeight` method
+
 #### [2.3.0(16)](https://github.com/VakhoKontridze/VCore/releases/download/2.3.0/VCore.xcframework.zip) — *2022 02 25*
 
 - `ScrollableView` has been added
