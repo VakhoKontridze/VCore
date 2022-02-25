@@ -3,6 +3,7 @@
 #### [2.3.0(16)]
 
 - `ScrollableView` has been added
+- `animated` and `completion` parameters can now be passed to methods in `StandardNavigable`
 
 #### [2.2.1(15)](https://github.com/VakhoKontridze/VCore/releases/download/2.2.1/VCore.xcframework.zip) — *2022 02 14*
 

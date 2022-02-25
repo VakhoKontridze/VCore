@@ -101,12 +101,12 @@ func setInfoLabelText(to text: String)
 
 ```swift
 protocol StandardNavigable {
-    func push(_ viewController: UIViewController)
-    func pop()
-    func popToRoot()
+    func push(_ viewController: UIViewController, animated: Bool)
+    func pop(animated: Bool)
+    func popToRoot(animated: Bool)
     
-    func present(_ viewController: UIViewController)
-    func dismiss()
+    func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
+    func dismiss(animated: Bool, completion: (() -> Void)?)
     
     func setRoot(to viewController: UIViewController)
 }
