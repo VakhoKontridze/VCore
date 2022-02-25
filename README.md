@@ -180,7 +180,7 @@ Responsibilities of the `Interactor` do not include:
 `Interacive` protocol is used by `Presenter` to perform fetch requests. Some methods used in the protocol may include:
 
 ```swift
-func fetchSomeData(parameters: SomeParameters) async throws -> SomeEntity
+func fetchSomeData(with parameters: SomeParameters) async throws -> SomeEntity
 ```
 
 #### ViewModel ***(Optional)***
