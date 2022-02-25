@@ -68,6 +68,7 @@ extension UILabel {
     ///     let label: UILabel = .init()
     ///     label.translatesAutoresizingMaskIntoConstraints = false
     ///     label.numberOfLines = 3
+    ///     label.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
     ///
     ///     view.addSubview(label)
     ///
@@ -85,17 +86,14 @@ extension UILabel {
     ///
     ///     DispatchQueue.main.async(execute: {
     ///         let height: CGFloat = label // 40.66...
-    ///             .multiLineHeight(
-    ///                 text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-    ///             )
+    ///             .multiLineHeight()
     ///     })
     ///
     /// Alternately, a predefined with value can be passed:
     ///
     ///     let height: CGFloat = label // 40.66...
     ///         .multiLineHeight(
-    ///             width: view.frame.width - 40,
-    ///             text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+    ///             width: view.frame.width - 40
     ///         )
     ///
     public func multiLineHeight(width: CGFloat? = nil, text: String? = nil) -> CGFloat {
