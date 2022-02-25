@@ -1,5 +1,9 @@
 ## Change Log
 
+#### [2.3.0(16)]
+
+- `ScrollableView` has been added
+
 #### [2.2.1(15)](https://github.com/VakhoKontridze/VCore/releases/download/2.2.1/VCore.xcframework.zip) — *2022 02 14*
 
 - `UITableViewCell` and `UICollectionViewCell` background colors are not set directly to cell, and not to `contentView` in XCode Templates

@@ -63,6 +63,8 @@
 		17B23E7827354AEB00914FEB /* UIStackView.ArrangedSubviews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */; };
 		17B23E7A27354B7900914FEB /* UIStackView.Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */; };
 		17B23E7C27354D3A00914FEB /* UIFont.Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */; };
+		17BE45B127C90D7E00D69C3A /* ScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE45B027C90D7E00D69C3A /* ScrollableView.swift */; };
+		17BE45B327C90DEC00D69C3A /* ScrollableView.ScrollDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE45B227C90DEC00D69C3A /* ScrollableView.ScrollDirection.swift */; };
 		17D2B78C27494CB00075BCAD /* MultiPartFormDataBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2B78B27494CB00075BCAD /* MultiPartFormDataBuilder.swift */; };
 		17D2B78E27494D0C0075BCAD /* MultiPartFormDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2B78D27494D0C0075BCAD /* MultiPartFormDataFile.swift */; };
 		17D2B79027494D270075BCAD /* MultiPartFormDataBuilder.JSONBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17D2B78F27494D270075BCAD /* MultiPartFormDataBuilder.JSONBuilder.swift */; };
@@ -206,6 +208,8 @@
 		17B23E7727354AEB00914FEB /* UIStackView.ArrangedSubviews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.ArrangedSubviews.swift; sourceTree = "<group>"; };
 		17B23E7927354B7900914FEB /* UIStackView.Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackView.Configuration.swift; sourceTree = "<group>"; };
 		17B23E7B27354D3A00914FEB /* UIFont.Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.Styling.swift; sourceTree = "<group>"; };
+		17BE45B027C90D7E00D69C3A /* ScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableView.swift; sourceTree = "<group>"; };
+		17BE45B227C90DEC00D69C3A /* ScrollableView.ScrollDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableView.ScrollDirection.swift; sourceTree = "<group>"; };
 		17D2B78B27494CB00075BCAD /* MultiPartFormDataBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilder.swift; sourceTree = "<group>"; };
 		17D2B78D27494D0C0075BCAD /* MultiPartFormDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataFile.swift; sourceTree = "<group>"; };
 		17D2B78F27494D270075BCAD /* MultiPartFormDataBuilder.JSONBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilder.JSONBuilder.swift; sourceTree = "<group>"; };
@@ -387,14 +391,14 @@
 			path = "Keyboard Responsive ViewController";
 			sourceTree = "<group>";
 		};
-		17B0B2E327787B4A00079197 /* Base Button */ = {
+		17B0B2E327787B4A00079197 /* Base Buttons */ = {
 			isa = PBXGroup;
 			children = (
 				17B0B2EC2778805D00079197 /* Common */,
 				17B0B2ED2778806500079197 /* UIKit */,
 				17B0B2EE277880C000079197 /* SwiftUI */,
 			);
-			path = "Base Button";
+			path = "Base Buttons";
 			sourceTree = "<group>";
 		};
 		17B0B2EC2778805D00079197 /* Common */ = {
@@ -423,6 +427,15 @@
 				17B0B2F12778817300079197 /* SwiftUIBaseButtonViewRepresentable.swift */,
 			);
 			path = SwiftUI;
+			sourceTree = "<group>";
+		};
+		17BE45AF27C90D1400D69C3A /* Scrollable View */ = {
+			isa = PBXGroup;
+			children = (
+				17BE45B027C90D7E00D69C3A /* ScrollableView.swift */,
+				17BE45B227C90DEC00D69C3A /* ScrollableView.ScrollDirection.swift */,
+			);
+			path = "Scrollable View";
 			sourceTree = "<group>";
 		};
 		17D2B78A27494C920075BCAD /* Multi Part Form Data Builder */ = {
@@ -633,9 +646,10 @@
 		7AB22AE726EB93FE0037355D /* Views and ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				17B0B2E327787B4A00079197 /* Base Button */,
+				17B0B2E327787B4A00079197 /* Base Buttons */,
 				17B0B2DC277875E200079197 /* Keyboard Responsive ViewController */,
 				1781D003274A997000B7A7F1 /* Infinite Scrolling Views */,
+				17BE45AF27C90D1400D69C3A /* Scrollable View */,
 			);
 			path = "Views and ViewControllers";
 			sourceTree = "<group>";
@@ -879,6 +893,7 @@
 				7AB22AEE26EB94FE0037355D /* InfiniteScrollingTableViewActivityIndicatorModel.swift in Sources */,
 				7AA4071E26F9BE2700B60742 /* View.StandardNavigationTitle.swift in Sources */,
 				7AB22AEC26EB94260037355D /* InfiniteScrollingTableViewActivityIndicator.swift in Sources */,
+				17BE45B327C90DEC00D69C3A /* ScrollableView.ScrollDirection.swift in Sources */,
 				1742266E2746CD8C00B4B4C3 /* String.SafelyDescribing.swift in Sources */,
 				7A91D6F026EF59F900B0B096 /* LogicalExclusiveOr.swift in Sources */,
 				173C2E5C2711A947006BEAF3 /* NetworkResponseProcessor.swift in Sources */,
@@ -927,6 +942,7 @@
 				1787182C27306E3E00C2B74C /* GenericStateModel_EPD.swift in Sources */,
 				7AB22AF026EB96550037355D /* InfiniteScrollingTableViewDelegate.swift in Sources */,
 				179B84002747B4670011462D /* NetworkRequest.swift in Sources */,
+				17BE45B127C90D7E00D69C3A /* ScrollableView.swift in Sources */,
 				7A91D6F826EFA68500B0B096 /* UIView.RoundCorners.swift in Sources */,
 				1781D00A274A9AF400B7A7F1 /* InfiniteScrollingCollectionViewDelegate.swift in Sources */,
 				17FD1677273A7CFB00EEAFD0 /* UIViewController.WithTabBarItem.swift in Sources */,

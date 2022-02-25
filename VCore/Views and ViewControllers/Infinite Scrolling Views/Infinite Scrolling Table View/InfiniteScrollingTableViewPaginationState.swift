@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Pagination State
+// MARK: - Infinite Scrolling Table View Pagination State
 extension InfiniteScrollingTableView {
     public typealias PaginationState = InfiniteScrollingPaginationState
 }
