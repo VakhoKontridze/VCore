@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Pagination State
+// MARK: - Infinite Scrolling Collection View Pagination State
 extension InfiniteScrollingCollectionView {
     public typealias PaginationState = InfiniteScrollingPaginationState
 }
