@@ -48,7 +48,7 @@ final class BaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRec
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent) {
         if
             touchIsOnView(touches) == false ||
-                gestureViewLocationIsUnchanged == false
+            gestureViewLocationIsUnchanged == false
         {
             state = .ended
             initialTouchViewCenterLocationOnSuperView = nil
