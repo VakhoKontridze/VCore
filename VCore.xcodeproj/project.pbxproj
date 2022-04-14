@@ -37,6 +37,7 @@
 		17871828273069DE00C2B74C /* EdgeInsets_HV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17871827273069DE00C2B74C /* EdgeInsets_HV.swift */; };
 		1787182C27306E3E00C2B74C /* GenericStateModel_EPD.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1787182B27306E3E00C2B74C /* GenericStateModel_EPD.swift */; };
 		1787182E27306F9B00C2B74C /* GenericStateModel_ED.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */; };
+		178BF2A42808076500862606 /* UIApplication.AppKeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178BF2A32808076500862606 /* UIApplication.AppKeyWindow.swift */; };
 		179B84002747B4670011462D /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B83FF2747B4670011462D /* NetworkRequest.swift */; };
 		179B84022747B7310011462D /* NetworkRequestFactory.PathParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84012747B7310011462D /* NetworkRequestFactory.PathParameters.swift */; };
 		179B84042747B8450011462D /* NetworkRequestFactory.Headers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179B84032747B8450011462D /* NetworkRequestFactory.Headers.swift */; };
@@ -181,6 +182,7 @@
 		17871827273069DE00C2B74C /* EdgeInsets_HV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_HV.swift; sourceTree = "<group>"; };
 		1787182B27306E3E00C2B74C /* GenericStateModel_EPD.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_EPD.swift; sourceTree = "<group>"; };
 		1787182D27306F9B00C2B74C /* GenericStateModel_ED.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_ED.swift; sourceTree = "<group>"; };
+		178BF2A32808076500862606 /* UIApplication.AppKeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.AppKeyWindow.swift; sourceTree = "<group>"; };
 		179B83FF2747B4670011462D /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		179B84012747B7310011462D /* NetworkRequestFactory.PathParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.PathParameters.swift; sourceTree = "<group>"; };
 		179B84032747B8450011462D /* NetworkRequestFactory.Headers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestFactory.Headers.swift; sourceTree = "<group>"; };
@@ -729,6 +731,7 @@
 				17B23E71273543D700914FEB /* NSLayoutConstraint.WithMultiplier.swift */,
 				7A91D6F526EFA5B200B0B096 /* NSLayoutConstraint.Storing.swift */,
 				17FD167A273AAA3C00EEAFD0 /* UIScreen.DisplayCornerRadius.swift */,
+				178BF2A32808076500862606 /* UIApplication.AppKeyWindow.swift */,
 				17FDE9852738F8B50085DE40 /* UIApplication.AppInfo.swift */,
 				179B840D2747C6E00011462D /* URLResponse.IsSuccessHTTPStatusCode.swift */,
 			);
@@ -958,6 +961,7 @@
 				17B1041D270B080100B9E296 /* UIActivityIndicatorViewable.swift in Sources */,
 				7A86F88326EFB16200EC32EA /* UILabel.Configuration.swift in Sources */,
 				1758409E2780644E00625CB7 /* Deprecations.swift in Sources */,
+				178BF2A42808076500862606 /* UIApplication.AppKeyWindow.swift in Sources */,
 				17B1041B270B07E900B9E296 /* UIAlertViewable.swift in Sources */,
 				7AB22AF426EB96ED0037355D /* InfiniteScrollingPaginationState.swift in Sources */,
 				17B0B2F0277880D100079197 /* SwiftUIBaseButtonState.swift in Sources */,
