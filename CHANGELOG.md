@@ -27,7 +27,7 @@ Extensions
 
 #### [2.2.1(15)](https://github.com/VakhoKontridze/VCore/releases/tag/2.2.1) — *2022 02 14*
 
-Base Button
+Views and ViewControllers
 
 - State logic in `UIKitBaseButton` documentation is updated
 
@@ -55,7 +55,7 @@ XCode Templates
 
 #### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/tag/2.1.1) — *2022 01 04*
 
-Base Button
+Views and ViewControllers
 
 - `isEnabled` is added to `UIKitBaseButton` to replace `isUserInteractionEnabled`
 
@@ -192,7 +192,7 @@ VIPER Helpers
 
 #### [1.0.1(2)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.1) — *2021 10 07*
 
-Custom Result Types
+Custom Results
 
 - Result enums are now marked as `@frozen`
 
