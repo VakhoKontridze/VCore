@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/1/21.
 //
 
-import CoreGraphics
+import SwiftUI
 
 // MARK: - Edge Insets (Horizontal, Vertical)
 /// Edge insets containing `horizontal` and `vertical` values.
@@ -96,5 +96,30 @@ public struct EdgeInsets_HV: Equatable {
     public static func -= (lhs: inout EdgeInsets_HV, rhs: EdgeInsets_HV) {
         lhs.horizontal -= rhs.horizontal
         lhs.vertical -= rhs.vertical
+    }
+}
+
+// MARK: - Extension
+extension View {
+    /// Adds a specific padding amount to each edge of this view from `EdgeInsets_HV`.
+    ///
+    /// Usage Example
+    ///
+    ///     let insets: EdgeInsets_HV = .init(
+    ///         horizontal: 10,
+    ///         vertical: 10
+    ///     )
+    ///
+    ///     var body: some View {
+    ///         Text("Lorem Ipsum")
+    ///             .padding(insets)
+    ///     }
+    ///
+    public func padding(_ insets: EdgeInsets_HV) -> some View {
+        self
+            .padding(.leading, insets.horizontal)
+            .padding(.trailing, insets.horizontal)
+            .padding(.top, insets.vertical)
+            .padding(.bottom, insets.vertical)
     }
 }

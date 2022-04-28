@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/1/21.
 //
 
-import CoreGraphics
+import SwiftUI
 
 // MARK: - Edge Insets (Leading, Trailing, Top, Bottom)
 /// Edge insets containing `leading`, `trailing`, `top` and `bottom` values.
@@ -171,5 +171,32 @@ public struct EdgeInsets_LTTB: Equatable {
         lhs.trailing -= rhs.trailing
         lhs.top -= rhs.top
         lhs.bottom -= rhs.bottom
+    }
+}
+
+// MARK: - Extension
+extension View {
+    /// Adds a specific padding amount to each edge of this view from `EdgeInsets_LTTB`.
+    ///
+    /// Usage Example
+    ///
+    ///     let insets: EdgeInsets_LTTB = .init(
+    ///         leading: 10,
+    ///         trailing: 10,
+    ///         top: 10,
+    ///         bottom: 10
+    ///     )
+    ///
+    ///     var body: some View {
+    ///         Text("Lorem Ipsum")
+    ///             .padding(insets)
+    ///     }
+    ///
+    public func padding(_ insets: EdgeInsets_LTTB) -> some View {
+        self
+            .padding(.leading, insets.leading)
+            .padding(.trailing, insets.trailing)
+            .padding(.top, insets.top)
+            .padding(.bottom, insets.bottom)
     }
 }
