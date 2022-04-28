@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 9/10/21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - Infinite Scrolling Table View Activity Indicator Model
@@ -18,3 +20,5 @@ struct InfiniteScrollingTableViewActivityIndicatorModel {
         private init() {}
     }
 }
+
+#endif

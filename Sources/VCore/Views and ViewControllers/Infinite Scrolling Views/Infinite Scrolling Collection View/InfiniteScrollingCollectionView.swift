@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 11/21/21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - Infinite Scrolling Collection View
@@ -149,3 +151,5 @@ open class InfiniteScrollingCollectionView: UICollectionView {
         }
     }
 }
+
+#endif

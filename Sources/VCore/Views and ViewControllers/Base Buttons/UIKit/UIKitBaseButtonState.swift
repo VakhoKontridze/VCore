@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
+#if os(iOS)
+
 import Foundation
 
 // MARK: - UIKit Base Button State
@@ -99,3 +101,5 @@ extension GenericStateModel_EPD {
         }
     }
 }
+
+#endif

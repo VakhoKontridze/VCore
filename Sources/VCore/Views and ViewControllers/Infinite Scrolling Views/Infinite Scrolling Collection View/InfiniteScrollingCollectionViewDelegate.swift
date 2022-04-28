@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 11/21/21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import Foundation
 
 // MARK: - Infinite Scrolling Collection View Delegate
@@ -12,3 +14,5 @@ import Foundation
 public protocol InfiniteScrollingCollectionViewDelegate: AnyObject {
     func collectionViewDidScrollToBottom(sender infiniteScrollingCollectionView: InfiniteScrollingCollectionView)
 }
+
+#endif

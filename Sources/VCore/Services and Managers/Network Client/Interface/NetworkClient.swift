@@ -164,7 +164,9 @@ public final class NetworkClient {
         request: NetworkRequest,
         decode: @escaping (Data) throws -> Entity
     ) async throws -> Entity {
+        #if canImport(NetworkReachabilityService)
         guard NetworkReachabilityService.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
+        #endif
         
         let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(
             endpoint: request.url,
@@ -199,7 +201,9 @@ public final class NetworkClient {
     private func makeRequest(
         request: NetworkRequest
     ) async throws {
+        #if canImport(NetworkReachabilityService)
         guard NetworkReachabilityService.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
+        #endif
         
         let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(
             endpoint: request.url,

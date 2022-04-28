@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/1/21.
 //
 
-import UIKit
+import CoreGraphics
 
 // MARK: - Edge Insets (Leading, Trailing, Top, Bottom)
 /// Edge insets containing `leading`, `trailing`, `top` and `bottom` values.

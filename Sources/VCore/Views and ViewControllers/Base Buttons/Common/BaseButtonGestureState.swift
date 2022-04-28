@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
+#if os(iOS)
+
 import Foundation
 
 // MARK: - Base Button Gesture State
@@ -43,3 +45,5 @@ import Foundation
         }
     }
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
+#if os(iOS)
+
 import UIKit
 
 // MARK: - UIKit Base Button
@@ -266,3 +268,5 @@ open class UIKitBaseButton: UIView {
         gestureRecognizer.isEnabled = internalButtonState.isEnabled
     }
 }
+
+#endif

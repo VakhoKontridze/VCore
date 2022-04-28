@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 11/5/21.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 // MARK: - Font Styling
@@ -31,3 +33,5 @@ extension UIFont {
         fontDescriptor.withSymbolicTraits(.traitItalic).map { .init(descriptor: $0, size: 0) }
     }
 }
+
+#endif

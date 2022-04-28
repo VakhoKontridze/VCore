@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 11/8/21.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 // MARK: - Image Compressed
@@ -20,3 +22,5 @@ extension UIImage {
         jpegData(compressionQuality: quality).flatMap { .init(data: $0) }
     }
 }
+
+#endif

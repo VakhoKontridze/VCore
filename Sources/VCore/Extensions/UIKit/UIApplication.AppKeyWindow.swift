@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 4/14/22.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - App Key Window
@@ -46,3 +48,5 @@ extension UIApplication {
         appRootViewController?.view
     }
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 2/25/22.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - Scrollable View
@@ -101,3 +103,5 @@ extension NSLayoutConstraint {
         return self
     }
 }
+
+#endif

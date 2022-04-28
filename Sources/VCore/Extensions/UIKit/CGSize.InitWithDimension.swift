@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/21/21.
 //
 
-import UIKit
+import CoreGraphics
 
 // MARK: - Init Size with Dimension
 extension CGSize {

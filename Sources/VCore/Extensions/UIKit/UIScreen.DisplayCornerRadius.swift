@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 11/9/21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - Screen Display Corner Radius
@@ -24,3 +26,5 @@ extension UIScreen {
         value(forKey: "_displayCornerRadius") as? CGFloat
     }
 }
+
+#endif

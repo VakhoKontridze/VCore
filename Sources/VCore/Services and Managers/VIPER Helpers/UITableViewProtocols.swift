@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 4/10/21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - ViewModel
@@ -132,3 +134,5 @@ extension UITableView {
         return cell
     }
 }
+
+#endif

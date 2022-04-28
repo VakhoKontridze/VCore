@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
+#if os(iOS)
+
 import UIKit
 
 // MARK: - Base Button Tap Gesture Recognizer
@@ -146,3 +148,5 @@ extension UIView {
         superview?.convert(center, to: nil)
     }
 }
+
+#endif

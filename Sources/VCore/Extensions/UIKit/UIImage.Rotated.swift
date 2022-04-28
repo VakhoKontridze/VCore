@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 11/8/21.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 // MARK: - Image Rotation
@@ -68,3 +70,5 @@ extension UIImage {
         rotated(by: Measurement(value: degrees, unit: .degrees))
     }
 }
+
+#endif
