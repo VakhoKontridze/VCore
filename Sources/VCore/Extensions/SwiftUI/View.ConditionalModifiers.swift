@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - Conditional View Modifiers
-@available(iOS 13, *)
 extension View {
     /// Applies modifier and transforms view if condition is met.
     ///

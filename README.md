@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Description](#description)
+- [Compatibility](#compatibility)
 - [Library Structure](#library-structure)
 - [Architecture](#architecture)
 - [Gateway](#gateway)
@@ -15,7 +16,13 @@
 
 VCore is a Swift collection containing objects, functions, and extensions that I use for all my projects
 
-Library supports iOS 13.0 and up.
+## Compatibility
+
+| VCore | iOS    |
+| ---   | ---    |
+| 3.x.x | 13.x.x |
+| 2.x.x | 13.x.x |
+| 1.x.x | 14.x.x |
 
 ## Library Structure
 
