@@ -52,7 +52,7 @@ Project contains demo app, that can be used to test functionality of the library
 
 Library doesn't support CocoaPods or Carthage.
 
-### Swift Package Manager
+#### Swift Package Manager
 
 Add `https://github.com/VakhoKontridze/VCore` as a Swift Package in Xcode and follow the instructions.
 
