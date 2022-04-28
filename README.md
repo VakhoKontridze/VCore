@@ -38,7 +38,7 @@ Project files are grouped as:
 
 Project incudes folder `Extra`, which contains:
 
-- ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover scenes and gateways.
+- ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover scenes and gateways. For more info, refer to documnetation folder.
 
 - ***Misc***. Objects and methods that cannot be included in a library as they require additional customization or access to `AppDelegate`/`SceneDelegate`.
 
