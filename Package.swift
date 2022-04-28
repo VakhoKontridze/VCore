@@ -6,7 +6,7 @@ let package: Package = .init(
     name: "VCore",
     
     platforms: [
-        .iOS(.v14)
+        .iOS(.v13)
     ],
     
     products: [
