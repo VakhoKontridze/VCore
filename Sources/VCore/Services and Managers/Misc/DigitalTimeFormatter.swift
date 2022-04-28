@@ -119,7 +119,7 @@ public struct DigitalTimeFormatter {
         return (d, h, m, s)
     }
     
-    fileprivate enum TimeComponent {
+    private enum TimeComponent {
         case day
         case hour
         case minute

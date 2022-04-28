@@ -27,17 +27,17 @@ extension View {
 }
 
 // MARK: - Standard Navigation Title View Modifier
-fileprivate struct StandardNavigationTitle: ViewModifier {
+private struct StandardNavigationTitle: ViewModifier {
     // MARK: Properties
     private let title: String
     
     // MARK: Initializers
-    fileprivate init(_ title: String) {
+    init(_ title: String) {
         self.title = title
     }
 
     // MARK: Body
-    fileprivate func body(content: Content) -> some View {
+    func body(content: Content) -> some View {
         if #available(iOS 14.0, *) {
             content
                 .navigationTitle(title)
