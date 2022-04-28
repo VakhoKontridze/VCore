@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/1/21.
 //
 
-import UIKit
+import CoreGraphics
 
 // MARK: - Edge Insets (Horizontal, Vertical)
 /// Edge insets containing `horizontal` and `vertical` values.

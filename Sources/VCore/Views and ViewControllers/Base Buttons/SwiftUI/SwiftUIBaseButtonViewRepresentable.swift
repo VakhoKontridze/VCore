@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
+#if os(iOS)
+
 import SwiftUI
 
 // MARK: - SwiftUI Base Button View Representable
@@ -50,3 +52,5 @@ struct SwiftUIBaseButtonViewRepresentable: UIViewRepresentable {
         gestureRecognizer?.update(gesture: gestureHandler)
     }
 }
+
+#endif

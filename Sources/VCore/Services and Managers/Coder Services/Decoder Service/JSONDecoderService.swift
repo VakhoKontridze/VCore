@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 8/24/21.
 //
 
-import UIKit
+import Foundation
 
 // MARK: - JSON Decoder Service
 /// Object that decodes instances of data types.

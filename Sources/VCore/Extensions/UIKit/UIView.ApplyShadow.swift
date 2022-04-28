@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 12/9/21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - Apply View Shadow
@@ -55,3 +57,5 @@ extension UIView {
         )
     }
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 4/10/21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - Standard Navigable
@@ -111,3 +113,5 @@ extension StandardNavigable where Self: UIViewController {
         navigationController?.dismiss(animated: true, completion: nil)
     }
 }
+
+#endif

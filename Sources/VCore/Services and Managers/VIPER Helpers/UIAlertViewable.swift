@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 04.10.21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - UI Alert Viewable
@@ -152,3 +154,5 @@ public enum UIAlertViewModel {
         }
     }
 }
+
+#endif

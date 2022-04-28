@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 9/10/21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import Foundation
 
 // MARK: - Infinite Scrolling Pagination State
@@ -19,3 +21,5 @@ public enum InfiniteScrollingPaginationState: Int, CaseIterable {
     /// Indicates that pagination cannot occur.
     case cannotPaginate
 }
+
+#endif

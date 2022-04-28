@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 2/25/22.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import Foundation
 
 // MARK: - Scrollable View Scroll Direction
@@ -29,3 +31,5 @@ extension ScrollableView {
         }
     }
 }
+
+#endif

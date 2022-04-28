@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
+#if os(iOS)
+
 import UIKit
 
 // MARK: - System Keyboard Info
@@ -62,3 +64,5 @@ extension Dictionary where Key == AnyHashable, Value == Any {
         (self[key] as? NSValue)?.cgRectValue
     }
 }
+
+#endif

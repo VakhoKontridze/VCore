@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
+#if os(iOS)
+
 import UIKit
 
 // MARK: - Keyboard Responsive View Controller
@@ -73,3 +75,5 @@ open class KeyboardResponsiveViewController: UIViewController {
         viewIfLoaded?.window != nil
     }
 }
+
+#endif

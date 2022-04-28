@@ -4,6 +4,9 @@
 //
 //  Created by Vakhtang Kontridze on 10/28/21.
 //
+
+#if canImport(UIRectCorner)
+
 import SwiftUI
 
 // MARK: - Corner Radius
@@ -46,3 +49,5 @@ private struct CornerRadiusShape: Shape {
         ).cgPath)
     }
 }
+
+#endif

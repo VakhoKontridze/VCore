@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/20/21.
 //
 
-import UIKit
+import Foundation
 
 // MARK: - Any Multi Part Form File
 /// Type that can be passed to `MultiPartFormDataBuilder`.

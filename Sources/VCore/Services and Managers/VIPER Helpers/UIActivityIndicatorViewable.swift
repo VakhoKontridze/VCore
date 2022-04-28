@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 04.10.21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - UI Activity Indicator Viewable
@@ -81,3 +83,5 @@ extension UIView {
         return activityIndicator
     }
 }
+
+#endif

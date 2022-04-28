@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 9/13/21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - Label Configuration
@@ -73,3 +75,5 @@ extension UILabel {
         )
     }
 }
+
+#endif

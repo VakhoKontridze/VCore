@@ -5,10 +5,11 @@
 //  Created by Vakhtang Kontridze on 9/21/21.
 //
 
+#if os(iOS)
+
 import SwiftUI
 
 // MARK: - Extension
-@available(iOS 14, *)
 extension View {
     /// Configures the view’s title for purposes of navigation, using a string in a inline display mode.
     ///
@@ -26,7 +27,6 @@ extension View {
 }
 
 // MARK: - Standard Navigation Title View Modifier
-@available(iOS 14, *)
 fileprivate struct StandardNavigationTitle: ViewModifier {
     // MARK: Properties
     private let title: String
@@ -38,8 +38,16 @@ fileprivate struct StandardNavigationTitle: ViewModifier {
 
     // MARK: Body
     fileprivate func body(content: Content) -> some View {
-        content
-            .navigationTitle(title)
-            .navigationBarTitleDisplayMode(.inline)
+        if #available(iOS 14.0, *) {
+            content
+                .navigationTitle(title)
+                .navigationBarTitleDisplayMode(.inline)
+        
+        } else {
+            content
+                .navigationBarTitle(title)
+        }
     }
 }
+
+#endif

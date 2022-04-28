@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
+#if canImport(BaseButtonTapGestureRecognizer)
+
 import SwiftUI
 
 // MARK: - SwiftUI Base Button
@@ -227,3 +229,5 @@ struct SwiftUIBaseButton_Previews: PreviewProvider {
         )
     }
 }
+
+#endif

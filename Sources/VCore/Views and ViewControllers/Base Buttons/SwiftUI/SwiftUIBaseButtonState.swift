@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
+#if os(iOS)
+
 import Foundation
 
 // MARK: - Base Button State
@@ -34,3 +36,5 @@ public enum SwiftUIBaseButtonState: Int, CaseIterable {
         }
     }
 }
+
+#endif

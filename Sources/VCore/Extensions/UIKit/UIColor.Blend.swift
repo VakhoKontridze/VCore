@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 11/8/21.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 // MARK: - Blend Color
@@ -76,3 +78,5 @@ extension UIColor {
         )
     }
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 9/12/21.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import UIKit
 
 // MARK: - Dismiss Keyboard On Outside Tap
@@ -30,3 +32,5 @@ extension UIViewController {
         view.endEditing(true)
     }
 }
+
+#endif

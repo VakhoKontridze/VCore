@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 8/24/21.
 //
 
+#if !os(watchOS)
+
 import Foundation
 import Network
 import SystemConfiguration
@@ -89,3 +91,5 @@ public struct NetworkReachabilityService {
         return isConnected
     }
 }
+
+#endif
