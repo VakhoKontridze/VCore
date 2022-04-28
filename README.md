@@ -56,8 +56,6 @@ Library doesn't support CocoaPods or Carthage.
 
 Add `https://github.com/VakhoKontridze/VCore` as a Swift Package in Xcode and follow the instructions.
 
-![SPM1](./img/SPM1.jpg)
-
 ## Versioning
 
 ***Major***. Major changes, such as big overhauls
