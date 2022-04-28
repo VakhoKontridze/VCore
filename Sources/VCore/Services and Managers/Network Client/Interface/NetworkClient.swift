@@ -239,17 +239,17 @@ public final class NetworkClient {
                 with: request,
                 completionHandler: { (data, response, error) in
                     if let error = error {
-                        if
-                            (error as NSError).domain == NSURLErrorDomain &&
-                            (error as NSError).code == NSURLErrorTimedOut
-                        {
-                            continuation.resume(throwing: NetworkError.requestTimedOut)
-                            return
+                        continuation.resume(throwing: {
+                            guard (error as NSError).domain == NSURLErrorDomain else { return NetworkError.returnedWithError }
                             
-                        } else {
-                            continuation.resume(throwing: NetworkError.returnedWithError)
-                            return
-                        }
+                            switch (error as NSError).code {
+                            case NSURLErrorTimedOut: return NetworkError.requestTimedOut
+                            case NSURLErrorNetworkConnectionLost: return NetworkError.notConnectedToNetwork
+                            case NSURLErrorNotConnectedToInternet: return NetworkError.notConnectedToNetwork
+                            default: return NetworkError.returnedWithError
+                            }
+                        }())
+                        return
                     }
                     
                     guard let response = response else {
