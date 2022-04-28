@@ -10,6 +10,10 @@ General
 Network Client
 
 - Requests methods with completion and result types are added
+
+Helpers
+
+- `EdgeInsets` objects now support `SwiftUI`'s `.padding()` modifiers
  
 Extensions
 

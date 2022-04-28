@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/1/21.
 //
 
-import CoreGraphics
+import SwiftUI
 
 // MARK: - Edge Insets (Top, Bottom)
 /// Edge insets containing `top` and `bottom` values.
@@ -93,5 +93,28 @@ public struct EdgeInsets_TB: Equatable {
     public static func -= (lhs: inout EdgeInsets_TB, rhs: EdgeInsets_TB) {
         lhs.top -= rhs.top
         lhs.bottom -= rhs.bottom
+    }
+}
+
+// MARK: - Extension
+extension View {
+    /// Adds a specific padding amount to each edge of this view from `EdgeInsets_TB`.
+    ///
+    /// Usage Example
+    ///
+    ///     let insets: EdgeInsets_TB = .init(
+    ///         top: 10,
+    ///         bottom: 10
+    ///     )
+    ///
+    ///     var body: some View {
+    ///         Text("Lorem Ipsum")
+    ///             .padding(insets)
+    ///     }
+    ///
+    public func padding(_ insets: EdgeInsets_TB) -> some View {
+        self
+            .padding(.top, insets.top)
+            .padding(.bottom, insets.bottom)
     }
 }
