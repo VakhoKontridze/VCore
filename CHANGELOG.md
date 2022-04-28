@@ -6,6 +6,10 @@ General
 
 - Project is migrated from `XCFramework` to `Swift Package`
 - Project now partially supports `macOS`, `tvOS`, and `watchOS`
+
+Network Client
+
+- Requests methods with completion and result types are added
  
 Extensions
 

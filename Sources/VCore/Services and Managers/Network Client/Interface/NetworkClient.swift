@@ -109,7 +109,7 @@ public final class NetworkClient {
         self.responseProcessor = responseProcessor
     }
     
-    // MARK: Data Tasks
+    // MARK: Data Tasks (Async Throws)
     /// Makes network request.
     public func noData(
         from request: NetworkRequest
@@ -158,6 +158,79 @@ public final class NetworkClient {
             decode: { try JSONDecoderService.decodable(from: $0) }
         )
     }
+    
+    // MARK: Data Tasks (Result)
+    /// Makes network calls completion handler with a result of success or `Error`.
+    public func noData(
+        from request: NetworkRequest,
+        completion: @escaping (ResultNoSuccess<Error>) -> Void
+    ) {
+        Task(operation: {
+            do {
+                try await noData(from: request)
+                completion(.success)
+            } catch {
+                completion(.failure(error))
+            }
+        })
+    }
+    
+    /// Makes network request and calls completion handler with a result of `Data`or `Error`.
+    public func data(
+        from request: NetworkRequest,
+        completion: @escaping (Result<Data, Error>) -> Void
+    ) {
+        Task(operation: {
+            do {
+                completion(.success(try await data(from: request)))
+            } catch {
+                completion(.failure(error))
+            }
+        })
+    }
+    
+    /// Makes network request and calls completion handler with a result of `JSON`or `Error`.
+    public func json(
+        from request: NetworkRequest,
+        completion: @escaping ( Result<[String: Any?], Error>) -> Void
+    ) {
+        Task(operation: {
+            do {
+                completion(.success(try await json(from: request)))
+            } catch {
+                completion(.failure(error))
+            }
+        })
+    }
+    
+    /// Makes network request and calls completion handler with a result of `JSON` `Array`or `Error`.
+    public func jsonArray(
+        from request: NetworkRequest,
+        completion: @escaping (Result<[[String: Any?]], Error>) -> Void
+    ) {
+        Task(operation: {
+            do {
+                completion(.success(try await jsonArray(from: request)))
+            } catch {
+                completion(.failure(error))
+            }
+        })
+    }
+    
+    /// Makes network request and calls completion handler with a result of `Decodable` or `Error`or `Error`.
+    public func decodable<DecodableEntity: Decodable>(
+        from request: NetworkRequest,
+        completion: @escaping (Result<DecodableEntity, Error> ) -> Void
+    ) {
+        Task(operation: {
+            do {
+                completion(.success(try await decodable(from: request)))
+            } catch {
+                completion(.failure(error))
+            }
+        })
+    }
+    
 
     // MARK: Requests
     private func makeRequest<Entity>(
