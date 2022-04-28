@@ -9,7 +9,7 @@ import UIKit
 import SwiftUI
 import VCore
 
-final class ViewController: UIViewController {
+@MainActor final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
