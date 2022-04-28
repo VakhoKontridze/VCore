@@ -10,6 +10,7 @@ General
 Network Client
 
 - Requests methods with completion and result types are added
+- JSON request headers are added
 
 Helpers
 

@@ -14,16 +14,6 @@ import Foundation
 ///
 /// Usage example:
 ///
-///     struct JSONRequestHeaders: Encodable {
-///         let accept: String = "application/json"
-///         let contentType: String = "application/json"
-///
-///         enum CodingKeys: String, CodingKey {
-///             case accept = "Accept"
-///             case contentType = "Content-Type"
-///         }
-///     }
-///
 ///     func fetchData() async {
 ///         do {
 ///             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
