@@ -310,7 +310,7 @@ public final class NetworkClient {
                 body: request.body.nonEmpty
             )
             
-            data(request: urlRequest, completion: { [weak self] result in
+            dataTask(request: urlRequest, completion: { [weak self] result in
                 guard let self = self else { return }
                 
                 switch result {
@@ -372,7 +372,7 @@ public final class NetworkClient {
                 body: request.body.nonEmpty
             )
             
-            data(request: urlRequest, completion: { [weak self] result in
+            dataTask(request: urlRequest, completion: { [weak self] result in
                 guard let self = self else { return }
                 
                 switch result {
@@ -406,7 +406,7 @@ public final class NetworkClient {
         }
     }
     
-    private func data(
+    private func dataTask(
         request: URLRequest,
         completion: @escaping (Result<(Data, URLResponse), Error>) -> Void
     ) {
