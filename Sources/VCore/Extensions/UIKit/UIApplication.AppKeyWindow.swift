@@ -9,12 +9,32 @@
 
 import UIKit
 
-// MARK: - App Key Window
+// MARK: - Root
 extension UIApplication {
-    /// Active `UIWindow` in applicaiton.
-    public static var appKeyWindow: UIWindow? {
-        UIApplication.shared
-            .connectedScenes
+    /// Root `UIWindow` in application.
+    public var rootWindow: UIWindow? {
+        if #available(iOS 15, *) {
+            return connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .compactMap { $0.keyWindow }
+                .first
+        
+        } else {
+            return connectedScenes
+                .filter { $0.activationState == .foregroundActive }
+                .first { $0 is UIWindowScene }
+                .flatMap { $0 as? UIWindowScene }?
+                .windows
+                .first(where: \.isKeyWindow)
+        }
+    }
+}
+
+// MARK: - Active
+extension UIApplication {
+    /// Active `UIWindow` in application.
+    public var activeWindow: UIWindow? {
+        connectedScenes
             .filter { $0.activationState == .foregroundActive }
             .first { $0 is UIWindowScene }
             .flatMap { $0 as? UIWindowScene }?
@@ -22,11 +42,24 @@ extension UIApplication {
             .first(where: \.isKeyWindow)
     }
     
-    /// Top-most `UIViewController` in applicaiton.
-    static var topMostViewController: UIViewController? {
+    /// Active `UIViewController` in application.
+    public var activeViewController: UIViewController? {
+        activeWindow?.rootViewController
+    }
+    
+    /// Active `UIView` in application.
+    public var activeView: UIView? {
+        activeViewController?.view
+    }
+}
+
+// MARK: - Top-Most
+extension UIApplication {
+    /// Top-most `UIViewController` in application.
+    public var topMostViewController: UIViewController? {
         guard
-            let keyWindow = appKeyWindow,
-            var topMostViewController: UIViewController = keyWindow.rootViewController
+            let activeWindow = activeWindow,
+            var topMostViewController: UIViewController = activeWindow.rootViewController
         else {
             return nil
         }
@@ -38,14 +71,9 @@ extension UIApplication {
         return topMostViewController
     }
     
-    /// Root `UIViewController` of active `UIWindow` in application.
-    public static var appRootViewController: UIViewController? {
-        appKeyWindow?.rootViewController
-    }
-    
-    /// Root `UIView` of active `UIWindow` in application.
-    public static var appRootView: UIView? {
-        appRootViewController?.view
+    /// Top-most `UIView` in application.
+    public var topMostView: UIView? {
+        topMostViewController?.view
     }
 }
 
