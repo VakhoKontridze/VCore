@@ -1,6 +1,6 @@
 //
 //  JSONAuthorizedRequestHeaders.swift
-//  
+//  VCore
 //
 //  Created by Vakhtang Kontridze on 28.04.22.
 //
