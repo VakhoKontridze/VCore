@@ -91,6 +91,9 @@ public final class NetworkClient {
     /// Configuration object that defines behavior and policies for an `URL` session.
     public var sessionConfiguration: URLSessionConfiguration = .default
     
+    /// Queue on which completion is returned. Defaults to `main`.
+    public var completionQeueue: DispatchQueue = .main
+    
     private let responseProcessor: NetworkResponseProcessor
     
     // MARK: Initializers
@@ -99,7 +102,7 @@ public final class NetworkClient {
         self.responseProcessor = responseProcessor
     }
     
-    // MARK: Data Tasks (Async Throws)
+    // MARK: Data Tasks (Async)
     /// Makes network request.
     public func noData(
         from request: NetworkRequest
@@ -149,85 +152,11 @@ public final class NetworkClient {
         )
     }
     
-    // MARK: Data Tasks (Result)
-    /// Makes network calls completion handler with a result of success or `Error`.
-    public func noData(
-        from request: NetworkRequest,
-        completion: @escaping (ResultNoSuccess<Error>) -> Void
-    ) {
-        Task(operation: {
-            do {
-                try await noData(from: request)
-                completion(.success)
-            } catch {
-                completion(.failure(error))
-            }
-        })
-    }
-    
-    /// Makes network request and calls completion handler with a result of `Data`or `Error`.
-    public func data(
-        from request: NetworkRequest,
-        completion: @escaping (Result<Data, Error>) -> Void
-    ) {
-        Task(operation: {
-            do {
-                completion(.success(try await data(from: request)))
-            } catch {
-                completion(.failure(error))
-            }
-        })
-    }
-    
-    /// Makes network request and calls completion handler with a result of `JSON`or `Error`.
-    public func json(
-        from request: NetworkRequest,
-        completion: @escaping ( Result<[String: Any?], Error>) -> Void
-    ) {
-        Task(operation: {
-            do {
-                completion(.success(try await json(from: request)))
-            } catch {
-                completion(.failure(error))
-            }
-        })
-    }
-    
-    /// Makes network request and calls completion handler with a result of `JSON` `Array`or `Error`.
-    public func jsonArray(
-        from request: NetworkRequest,
-        completion: @escaping (Result<[[String: Any?]], Error>) -> Void
-    ) {
-        Task(operation: {
-            do {
-                completion(.success(try await jsonArray(from: request)))
-            } catch {
-                completion(.failure(error))
-            }
-        })
-    }
-    
-    /// Makes network request and calls completion handler with a result of `Decodable` or `Error`or `Error`.
-    public func decodable<DecodableEntity: Decodable>(
-        from request: NetworkRequest,
-        completion: @escaping (Result<DecodableEntity, Error> ) -> Void
-    ) {
-        Task(operation: {
-            do {
-                completion(.success(try await decodable(from: request)))
-            } catch {
-                completion(.failure(error))
-            }
-        })
-    }
-    
-
-    // MARK: Requests
     private func makeRequest<Entity>(
         request: NetworkRequest,
         decode: @escaping (Data) throws -> Entity
     ) async throws -> Entity {
-        #if canImport(NetworkReachabilityService)
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
         #endif
         
@@ -241,10 +170,7 @@ public final class NetworkClient {
         )
 
         do {
-            let (data, response): (Data, URLResponse) = try await data(
-                request: urlRequest,
-                configuration: sessionConfiguration
-            )
+            let (data, response): (Data, URLResponse) = try await data(request: urlRequest)
 
             let processedResponse: URLResponse = try responseProcessor.response(data, response)
             guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkError.invalidResponse }
@@ -264,7 +190,7 @@ public final class NetworkClient {
     private func makeRequest(
         request: NetworkRequest
     ) async throws {
-        #if canImport(NetworkReachabilityService)
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
         #endif
         
@@ -278,10 +204,7 @@ public final class NetworkClient {
         )
 
         do {
-            let (data, response): (Data, URLResponse) = try await data(
-                request: urlRequest,
-                configuration: sessionConfiguration
-            )
+            let (data, response): (Data, URLResponse) = try await data(request: urlRequest)
 
             let processedResponse: URLResponse = try responseProcessor.response(data, response)
             guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkError.invalidResponse }
@@ -291,46 +214,234 @@ public final class NetworkClient {
             throw error
         }
     }
-
-    // func data(for request: URLRequest, delegate: URLSessionTaskDelegate? = nil) async throws -> (Data, URLResponse)
+    
     private func data(
-        request: URLRequest,
-        configuration: URLSessionConfiguration
+        request: URLRequest
     ) async throws -> (Data, URLResponse) {
         try await withCheckedThrowingContinuation({ continuation in
-            let task: URLSessionDataTask = URLSession(configuration: configuration).dataTask(
-                with: request,
-                completionHandler: { (data, response, error) in
-                    if let error = error {
-                        continuation.resume(throwing: {
-                            guard (error as NSError).domain == NSURLErrorDomain else { return NetworkError.returnedWithError }
-                            
-                            switch (error as NSError).code {
-                            case NSURLErrorTimedOut: return NetworkError.requestTimedOut
-                            case NSURLErrorNetworkConnectionLost: return NetworkError.notConnectedToNetwork
-                            case NSURLErrorNotConnectedToInternet: return NetworkError.notConnectedToNetwork
-                            default: return NetworkError.returnedWithError
-                            }
-                        }())
-                        return
-                    }
-                    
-                    guard let response = response else {
-                        continuation.resume(throwing: NetworkError.invalidResponse)
-                        return
-                    }
-                    
-                    guard let data = data else {
-                        continuation.resume(throwing: NetworkError.invalidData)
-                        return
-                    }
-                    
-                    continuation.resume(returning: (data, response))
+            data(request: request, completion: { result in
+                switch result {
+                case .success((let data, let response)): continuation.resume(returning: (data, response))
+                case .failure(let error): continuation.resume(throwing: error)
                 }
+            })
+        })
+    }
+    
+    // MARK: Data Tasks (Completion)
+    /// Makes network calls completion handler with a result of success or `Error`.
+    public func noData(
+        from request: NetworkRequest,
+        completion: @escaping (ResultNoSuccess<Error>) -> Void
+    ) {
+        makeRequest(
+            request: request,
+            completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
+        )
+    }
+
+    /// Makes network request and calls completion handler with a result of `Data`or `Error`.
+    public func data(
+        from request: NetworkRequest,
+        completion: @escaping (Result<Data, Error>) -> Void
+    ) {
+        makeRequest(
+            request: request,
+            decode: { $0 },
+            completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
+        )
+    }
+
+    /// Makes network request and calls completion handler with a result of `JSON`or `Error`.
+    public func json(
+        from request: NetworkRequest,
+        completion: @escaping ( Result<[String: Any?], Error>) -> Void
+    ) {
+        makeRequest(
+            request: request,
+            decode: { try JSONDecoderService.json(from: $0) },
+            completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
+        )
+    }
+
+    /// Makes network request and calls completion handler with a result of `JSON` `Array`or `Error`.
+    public func jsonArray(
+        from request: NetworkRequest,
+        completion: @escaping (Result<[[String: Any?]], Error>) -> Void
+    ) {
+        makeRequest(
+            request: request,
+            decode: { try JSONDecoderService.jsonArray(from: $0) },
+            completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
+        )
+    }
+
+    /// Makes network request and calls completion handler with a result of `Decodable` or `Error`or `Error`.
+    public func decodable<DecodableEntity: Decodable>(
+        from request: NetworkRequest,
+        completion: @escaping (Result<DecodableEntity, Error> ) -> Void
+    ) {
+        makeRequest(
+            request: request,
+            decode: { try JSONDecoderService.decodable(from: $0) },
+            completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
+        )
+    }
+    
+    private func makeRequest<Entity>(
+        request: NetworkRequest,
+        decode: @escaping (Data) throws -> Entity,
+        completion: @escaping (Result<Entity, Error>) -> Void
+    ) {
+        #if !os(watchOS)
+        guard NetworkReachabilityService.isConnectedToNetwork else {
+            completion(.failure(NetworkError.notConnectedToNetwork))
+            return
+        }
+        #endif
+
+        do {
+            let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(
+                endpoint: request.url,
+                method: request.method.httpMethod,
+                pathParameters: request.pathParameters,
+                headers: request.headers,
+                queryParameters: request.queryParameters,
+                body: request.body.nonEmpty
             )
             
-            task.resume()
-        })
+            data(request: urlRequest, completion: { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success((let data, let response)):
+                    do {
+                        let processedResponse: URLResponse = try self.responseProcessor.response(data, response)
+                        guard processedResponse.isSuccessHTTPStatusCode else {
+                            completion(.failure(NetworkError.invalidResponse))
+                            return
+                        }
+                        
+                        let processedData: Data = try self.responseProcessor.data(data, response)
+                        guard let entity: Entity = try? decode(processedData) else {
+                            completion(.failure(NetworkError.invalidData))
+                            return
+                        }
+                        
+                        completion(.success(entity))
+                    
+                    } catch {
+                        completion(.failure(error))
+                    }
+                    
+                case .failure(let error):
+                    do {
+                        try self.responseProcessor.error(error)
+                        completion(.failure(error))
+                        
+                    } catch {
+                        completion(.failure(error))
+                    }
+                }
+            })
+
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
+    // This method solely exists for `noData` method
+    private func makeRequest(
+        request: NetworkRequest,
+        completion: @escaping (ResultNoSuccess<Error>) -> Void
+    ) {
+        #if !os(watchOS)
+        guard NetworkReachabilityService.isConnectedToNetwork else {
+            completion(.failure(NetworkError.notConnectedToNetwork))
+            return
+        }
+        #endif
+
+        do {
+            let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(
+                endpoint: request.url,
+                method: request.method.httpMethod,
+                pathParameters: request.pathParameters,
+                headers: request.headers,
+                queryParameters: request.queryParameters,
+                body: request.body.nonEmpty
+            )
+            
+            data(request: urlRequest, completion: { [weak self] result in
+                guard let self = self else { return }
+                
+                switch result {
+                case .success((let data, let response)):
+                    do {
+                        let processedResponse: URLResponse = try self.responseProcessor.response(data, response)
+                        guard processedResponse.isSuccessHTTPStatusCode else {
+                            completion(.failure(NetworkError.invalidResponse))
+                            return
+                        }
+                        
+                        completion(.success)
+                    
+                    } catch {
+                        completion(.failure(error))
+                    }
+                    
+                case .failure(let error):
+                    do {
+                        try self.responseProcessor.error(error)
+                        completion(.failure(error))
+                        
+                    } catch {
+                        completion(.failure(error))
+                    }
+                }
+            })
+
+        } catch {
+            completion(.failure(error))
+        }
+    }
+    
+    private func data(
+        request: URLRequest,
+        completion: @escaping (Result<(Data, URLResponse), Error>) -> Void
+    ) {
+        let task: URLSessionDataTask = URLSession(configuration: sessionConfiguration).dataTask(
+            with: request,
+            completionHandler: { (data, response, error) in
+                if let error = error {
+                    completion(.failure({
+                        guard (error as NSError).domain == NSURLErrorDomain else { return NetworkError.returnedWithError }
+                        
+                        switch (error as NSError).code {
+                        case NSURLErrorTimedOut: return NetworkError.requestTimedOut
+                        case NSURLErrorNetworkConnectionLost: return NetworkError.notConnectedToNetwork
+                        case NSURLErrorNotConnectedToInternet: return NetworkError.notConnectedToNetwork
+                        default: return NetworkError.returnedWithError
+                        }
+                    }()))
+                    return
+                }
+                
+                guard let response = response else {
+                    completion(.failure(NetworkError.invalidResponse))
+                    return
+                }
+                
+                guard let data = data else {
+                    completion(.failure(NetworkError.invalidData))
+                    return
+                }
+                
+                completion(.success((data, response)))
+            }
+        )
+        
+        task.resume()
     }
 }
 
