@@ -219,7 +219,7 @@ public final class NetworkClient {
         request: URLRequest
     ) async throws -> (Data, URLResponse) {
         try await withCheckedThrowingContinuation({ continuation in
-            data(request: request, completion: { result in
+            dataTask(request: request, completion: { result in
                 switch result {
                 case .success((let data, let response)): continuation.resume(returning: (data, response))
                 case .failure(let error): continuation.resume(throwing: error)
