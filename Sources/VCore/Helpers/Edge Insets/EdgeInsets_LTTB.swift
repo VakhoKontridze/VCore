@@ -43,16 +43,6 @@ public struct EdgeInsets_LTTB: Equatable {
         self.bottom = bottom
     }
     
-    /// Initializes insets with value.
-    public init(
-        _ value: CGFloat
-    ) {
-        self.leading = value
-        self.trailing = value
-        self.top = value
-        self.bottom = value
-    }
-    
     /// Initializes insets with horizontal and vertical values.
     public init(
         horizontal: CGFloat,
@@ -62,6 +52,16 @@ public struct EdgeInsets_LTTB: Equatable {
         self.trailing = horizontal
         self.top = vertical
         self.bottom = vertical
+    }
+    
+    /// Initializes insets with value.
+    public init(
+        _ value: CGFloat
+    ) {
+        self.leading = value
+        self.trailing = value
+        self.top = value
+        self.bottom = value
     }
     
     /// Initializes insets with zero values.

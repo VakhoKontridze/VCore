@@ -19,9 +19,20 @@ public struct EdgeInsets_LT: Equatable {
     
     // MARK: Initializers
     /// Initializes group with values.
-    public init(leading: CGFloat, trailing: CGFloat) {
+    public init(
+        leading: CGFloat,
+        trailing: CGFloat
+    ) {
         self.leading = leading
         self.trailing = trailing
+    }
+    
+    /// Initializes group with value.
+    public init(
+        _ value: CGFloat
+    ) {
+        self.leading = value
+        self.trailing = value
     }
     
     /// Initializes insets with zero values.

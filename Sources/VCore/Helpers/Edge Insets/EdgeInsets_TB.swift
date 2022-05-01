@@ -19,9 +19,20 @@ public struct EdgeInsets_TB: Equatable {
     
     // MARK: Initializers
     /// Initializes insets with values.
-    public init(top: CGFloat, bottom: CGFloat) {
+    public init(
+        top: CGFloat,
+        bottom: CGFloat
+    ) {
         self.top = top
         self.bottom = bottom
+    }
+    
+    /// Initializes insets with value.
+    public init(
+        _ value: CGFloat
+    ) {
+        self.top = value
+        self.bottom = value
     }
     
     /// Initializes insets with zero values.
