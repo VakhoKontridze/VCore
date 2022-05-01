@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 29.04.22.
 //
 
+#if !os(tvOS)
+
 import SwiftUI
 
 // MARK: - Drag Gesture Value Velocity
@@ -50,3 +52,5 @@ extension DragGesture.Value {
         )
     }
 }
+
+#endif

@@ -13,10 +13,10 @@ extension Array {
     ///
     /// Usage Example:
     ///
-    ///     let array: [Int] = [1, 3, 5]
+    ///     let nums: [Int] = [1, 3, 5]
     ///
-    ///     let firstElement: Int? = array[safe: 0] // 1
-    ///     let fourthElement: Int? = array[safe: 4] // nil
+    ///     let firstNum: Int? = nums[safe: 0] // 1
+    ///     let fourthNum: Int? = nums[safe: 4] // nil
     ///
     public subscript(safe index: Int) -> Element? {
         guard index >= 0, index < count else { return nil }

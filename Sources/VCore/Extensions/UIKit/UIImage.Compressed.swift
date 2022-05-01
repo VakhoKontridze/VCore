@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Image Compressed
 extension UIImage {
-    /// Compresses `UIImage` with specified quality.
+    /// Returns `UIImage` compressed with specified quality.
     ///
     /// Usage Example:
     ///

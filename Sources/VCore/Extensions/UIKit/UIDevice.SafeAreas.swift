@@ -1,5 +1,5 @@
 //
-//  UIWindow.SafeAreas.swift
+//  UIDevice.SafeAreas.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 29.04.22.
@@ -9,8 +9,8 @@
 
 import UIKit
 
-// MARK: - Window Safe Areas
-extension UIWindow {
+// MARK: - Device Safe Areas
+extension UIDevice {
     /// Safe area insets in root window of `UIApplication.shared`.
     public static var safeAreaInsets: UIEdgeInsets? {
         UIApplication.shared.rootWindow?.safeAreaInsets

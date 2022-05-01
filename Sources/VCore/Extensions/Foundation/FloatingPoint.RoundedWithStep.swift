@@ -28,7 +28,7 @@ extension FloatingPoint {
         self = self.rounded(range: range, step: step)
     }
     
-    /// Returns this value rounded to a floating point in a range with a given step.
+    /// Returns value rounded to a floating point in a range with a given step.
     ///
     /// Usage Example:
     ///

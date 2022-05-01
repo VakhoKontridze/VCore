@@ -19,6 +19,7 @@ Helpers
 Extensions
 
 - `width` parameter can now be passed to `UILabel`'s `multiLineHeight` method
+- `FloatingPoint` method `bound` is renamed to `clamp`
 - Various extensions are added
 
 #### [2.3.0(16)](https://github.com/VakhoKontridze/VCore/releases/tag/2.3.0) — *2022 02 25*

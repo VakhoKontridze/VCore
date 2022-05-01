@@ -52,9 +52,9 @@ extension UIColor {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
         return .init(
-            red: (values.red + value).bound(in: 0...1),
-            green: (values.green + value).bound(in: 0...1),
-            blue: (values.blue + value).bound(in: 0...1),
+            red: (values.red + value).clamped(in: 0...1),
+            green: (values.green + value).clamped(in: 0...1),
+            blue: (values.blue + value).clamped(in: 0...1),
             alpha: values.alpha
         )
     }
@@ -71,9 +71,9 @@ extension UIColor {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
         return .init(
-            red: (values.red - value).bound(in: 0...1),
-            green: (values.green - value).bound(in: 0...1),
-            blue: (values.blue - value).bound(in: 0...1),
+            red: (values.red - value).clamped(in: 0...1),
+            green: (values.green - value).clamped(in: 0...1),
+            blue: (values.blue - value).clamped(in: 0...1),
             alpha: values.alpha
         )
     }
