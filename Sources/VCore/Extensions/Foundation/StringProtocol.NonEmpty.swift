@@ -1,5 +1,5 @@
 //
-//  String.NonEmpty.swift
+//  StringProtocol.NonEmpty.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/18/21.
@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Non Empty String
-extension String {
+extension StringProtocol {
     /// Indicates whether a string has no characters or whitespaces.
     ///
     /// Usage Example:
@@ -33,7 +33,7 @@ extension String {
     }
 }
 
-extension String {
+extension StringProtocol {
     /// Returns non-empty version of `String`, or `nil`.
     ///
     /// Usage Example:
@@ -41,7 +41,7 @@ extension String {
     ///     let value1: String? = "".nonEmpty // nil
     ///     let value2: String? = "Lorem Ipsum".nonEmpty // "Lorem Ipsum"
     ///     
-    public var nonEmpty: String? {
+    public var nonEmpty: Self? {
         guard !self.isEmpty else { return nil }
         return self
     }
@@ -54,7 +54,7 @@ extension String {
     ///     let value2: String? = " ".nonEmptyOrWhiteSpace // nil
     ///     let value3: String? = "Lorem Ipsum".nonEmptyOrWhiteSpace // "Lorem Ipsum"
     ///
-    public var nonEmptyOrWhiteSpace: String? {
+    public var nonEmptyOrWhiteSpace: Self? {
         guard !self.isEmptyOrWhiteSpace else { return nil }
         return self
     }
@@ -68,7 +68,7 @@ extension String {
     ///     let value3: String? = "\n".nonEmptyWhiteSpaceOrNewLines // nil
     ///     let value4: String? = "Lorem Ipsum".nonEmptyWhiteSpaceOrNewLines // "Lorem Ipsum"
     ///
-    public var nonEmptyWhiteSpaceOrNewLines: String? {
+    public var nonEmptyWhiteSpaceOrNewLines: Self? {
         guard !self.isEmptyWhiteSpaceOrNewLines else { return nil }
         return self
     }

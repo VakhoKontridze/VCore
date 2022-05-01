@@ -13,7 +13,7 @@ import UIKit
 extension UIApplication {
     /// Root `UIWindow` in application.
     public var rootWindow: UIWindow? {
-        if #available(iOS 15, *) {
+        if #available(iOS 15, tvOS 15, *) {
             return connectedScenes
                 .compactMap { $0 as? UIWindowScene }
                 .compactMap { $0.keyWindow }

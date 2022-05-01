@@ -11,7 +11,7 @@ import Foundation
 extension Array where Element == String {
     /// Returns a string array containing non-nil, non-empty values, given transformation with each non-empty element of this sequence.
     ///
-    ///  Usage Example:
+    /// Usage Example:
     ///
     ///     let array: [String] = ["", "Lorem Ipsum"]
     ///     let nonEmptyArray: [String] = array.compactMapNonEmpty { $0 } // ["Lorem Ipsum"]
@@ -34,7 +34,7 @@ extension Array where Element == String {
 extension Array where Element == Optional<String> {
     /// Returns a string array containing non-nil, non-empty values, given transformation with each non-empty element of this sequence.
     ///
-    ///  Usage Example:
+    /// Usage Example:
     ///
     ///     let array: [String?] = [nil, "", "Lorem Ipsum"]
     ///     let nonEmptyArray: [String] = array.compactMapNonEmpty { $0 } // ["Lorem Ipsum"]
