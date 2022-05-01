@@ -593,7 +593,7 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
-		OBJ_5 /*  */ = {
+		OBJ_5 = {
 			isa = PBXGroup;
 			children = (
 				OBJ_7 /* Sources */,
@@ -601,7 +601,6 @@
 				OBJ_6 /* Package.swift */,
 				OBJ_163 /* Products */,
 			);
-			name = "";
 			sourceTree = "<group>";
 		};
 		OBJ_61 /* Global Functions */ = {
@@ -630,10 +629,10 @@
 		OBJ_67 /* Edge Insets */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_68 /* EdgeInsets_HV.swift */,
-				OBJ_69 /* EdgeInsets_LT.swift */,
 				OBJ_70 /* EdgeInsets_LTTB.swift */,
+				OBJ_69 /* EdgeInsets_LT.swift */,
 				OBJ_71 /* EdgeInsets_TB.swift */,
+				OBJ_68 /* EdgeInsets_HV.swift */,
 			);
 			path = "Edge Insets";
 			sourceTree = "<group>";
@@ -835,7 +834,7 @@
 			knownRegions = (
 				en,
 			);
-			mainGroup = OBJ_5 /*  */;
+			mainGroup = OBJ_5;
 			productRefGroup = OBJ_163 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
