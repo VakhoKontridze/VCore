@@ -22,6 +22,10 @@ Extensions
 - `FloatingPoint` method `bound` is renamed to `clamp`
 - Various extensions are added
 
+LocalizationService
+
+- `LocalizationService` now supports langauge switching from app settings
+
 #### [2.3.0(16)](https://github.com/VakhoKontridze/VCore/releases/tag/2.3.0) — *2022 02 25*
 
 Views and ViewControllers

@@ -2,8 +2,10 @@ import Foundation
 
 // MARK: - Localization Service
 final class LocalizationService {
-    // MARK: Properties - Locale
-    lazy var locale: Locale = getLocale()
+    // MARK: Properties
+    static let shared: LocalizationService = .init()
+    
+    lazy var locale: SupportedLocale = getLocale()
         {
             didSet {
                 guard locale != oldValue else { return }
@@ -12,25 +14,29 @@ final class LocalizationService {
             }
         }
     
-    var locales: [Locale] { Locale.supportedLocales }
+    static var currentLocaleDidChangeNotification: NSNotification.Name { NSLocale.currentLocaleDidChangeNotification }
     
-    // MARK: Properties - Notifications
-    static var notificationName: NSNotification.Name { .init("LocalizationService.LocaleChanged") }
-    
-    // MARK: Properties - Misc
-    private static var userDefaultsKey: String { "LocalizationService.LocaleID" }
-    
-    // MARK: Properties - Singleton
-    static let shared: LocalizationService = .init()
-    
-    // MARK: Initializers
-    private init() {}
+    private static var appleLanguagesUserDefaultsKey: String { "AppleLanguages" }
 
+    // MARK: Initializers
+    private init() {
+        for localeID in SupportedLocale.localeIDs where !SupportedLocale.systemLocaleIDs.contains(localeID) {
+            fatalError("Locale `\(localeID)` is not added to project")
+        }
+        
+        for localeID in SupportedLocale.systemLocaleIDs where !SupportedLocale.localeIDs.contains(localeID) {
+            fatalError("Locale `\(localeID)` is not added to `LocalizationService.SupportedLocale`")
+        }
+    }
+    
     // MARK: Locale
-    enum Locale: Identifiable, CaseIterable, KVInitializableEnumeration {
+    enum SupportedLocale: Identifiable, CaseIterable, KVInitializableEnumeration {
         // MARK: Cases
         case english
-
+        
+        // MARK: Initializers
+        static var `default`: Self { .aCase(key: \.id, value: preferredSystemLocaleID)! } // fatalError
+        
         // MARK: Properties
         var id: String {
             switch self {
@@ -38,33 +44,31 @@ final class LocalizationService {
             }
         }
         
-        static var supportedLocales: [Locale] {
-            Bundle.main
-                .localizations
-                .filter { $0 != "Base" }
-                .compactMap { .init(id: $0) }
-        }
-        
         var displayName: String? {
             NSLocale(localeIdentifier: LocalizationService.shared.locale.id)
                 .displayName(forKey: .identifier, value: id)
         }
         
-        // MARK: Initializers
-        init?(id: String) {
-            guard let locale: Self = .aCase(key: \.id, value: id) else { return nil }
-            self = locale
-        }
+        static let localeIDs: [String] = locales.map { $0.id }
+        static var locales: [Self] { Self.allCases }
         
-        static var `default`: Self { .english }
+        static let systemLocaleIDs: [String] = {
+            Locale.preferredLanguages
+                .map { $0.components(separatedBy: "-").first! } // fatalError
+                .filter { Bundle.main.localizations.filter { $0 != "Base" }.contains($0) }
+        }()
+        static let systemLocales: [Self] = systemLocaleIDs.map { .aCase(key: \.id, value: $0)! } // fatalError
+        
+        static let preferredSystemLocaleID: String = Locale.current.identifier.components(separatedBy: "_").first! // fatalError
+        static let preferredSystemLocale: Self = .aCase(key: \.id, value: preferredSystemLocaleID)! // fatalError
     }
-
+    
     // MARK: Get / Set
-    private func getLocale() -> Locale {
+    private func getLocale() -> SupportedLocale {
         guard
-            Self.userDefaultsKey.isUserDefaultsKey(),
-            let id: String = UserDefaults.standard.string(forKey: Self.userDefaultsKey),
-            let locale: Locale = .aCase(key: \.id, value: id)
+            let languagesIDs: [String] = UserDefaults.standard.value(forKey: Self.appleLanguagesUserDefaultsKey) as? [String],
+            let languageID: String = languagesIDs.first?.components(separatedBy: "-").first,
+            let locale: SupportedLocale = .aCase(key: \.id, value: languageID)
         else {
             setLocale(.default)
             return .default
@@ -72,15 +76,29 @@ final class LocalizationService {
         
         return locale
     }
-    
-    private func setLocale(_ locale: Locale) {
-        UserDefaults.standard.set(locale.id, forKey: Self.userDefaultsKey)
-    }
 
+    private func setLocale(_ locale: SupportedLocale) {
+        guard
+            var languageIDs: [String] = UserDefaults.standard.value(forKey: Self.appleLanguagesUserDefaultsKey) as? [String],
+            let index: Int = languageIDs.firstIndex(of: {
+                switch Locale.current.regionCode {
+                case nil: return locale.id
+                case let regionCode?: return "\(locale.id)-\(regionCode)"
+                }
+            }())
+        else {
+            return
+        }
+        
+        languageIDs.insert(languageIDs.remove(at: index), at: 0)
+        
+        UserDefaults.standard.set(languageIDs, forKey: Self.appleLanguagesUserDefaultsKey)
+    }
+    
     // MARK: Notifications
     private func postNotification() {
         NotificationCenter.default.post(
-            name: Self.notificationName,
+            name: Self.currentLocaleDidChangeNotification,
             object: self,
             userInfo: nil
         )
@@ -90,13 +108,12 @@ final class LocalizationService {
 // MARK: - Localization
 extension String {
     var localized: String {
-        guard
-            let path: String = Bundle.main.path(forResource: LocalizationService.shared.locale.id, ofType: "lproj"),
-            let bundle: Bundle = .init(path: path)
-        else {
-            return self
-        }
-
-        return bundle.localizedString(forKey: self, value: nil, table: nil)
+        NSLocalizedString(
+            self,
+            tableName: nil,
+            bundle: .main,
+            value: "",
+            comment: ""
+        )
     }
 }
