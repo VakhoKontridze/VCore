@@ -22,7 +22,7 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 | 2.x.x | 2021 12 28 | -       | 13.x.x | -      | -         |
 | 1.x.x | 2021 10 07 | -       | 14.x.x | -      | -         |
 
-**Limited or no support*
+**Limited support*
 
 ## Library Structure
 
@@ -42,7 +42,7 @@ Project incudes folder `Extra`, which contains:
 
 - ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover scenes and gateways. For more info, refer to documnetation folder.
 
-- ***Misc***. Objects and methods that cannot be included in a library as they require additional customization or access to `AppDelegate`/`SceneDelegate`.
+- Objects and methods that cannot be included in a library as they require additional customization or access to `AppDelegate`/`SceneDelegate`.
 
 ## Demo
 
