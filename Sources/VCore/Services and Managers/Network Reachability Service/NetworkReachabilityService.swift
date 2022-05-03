@@ -16,8 +16,10 @@ import SystemConfiguration
 public struct NetworkReachabilityService {
     // MARK: Properties
     /// Name of notification that will be posted when reachability status changes.
-    public static var connectedNotificationName: NSNotification.Name { .init("NetworkReachabilityService.Connected") }
-    public static var disconnectedNotificationName: NSNotification.Name { .init("NetworkReachabilityService.Disconnected") }
+    public static var connectedNotification: NSNotification.Name { .init("NetworkReachabilityService.Connected") }
+    
+    /// Name of notification that will be posted when reachability status changes.
+    public static var disconnectedNotification: NSNotification.Name { .init("NetworkReachabilityService.Disconnected") }
     
     private lazy var statusMonitor: NWPathMonitor = {
         let monitor: NWPathMonitor = .init()
@@ -44,10 +46,10 @@ public struct NetworkReachabilityService {
     // MARK: Status
     private func statusChanged(_ path: NWPath) {
         switch path.status {
-        case .satisfied: postNotification(name: Self.connectedNotificationName)
-        case .unsatisfied: postNotification(name: Self.disconnectedNotificationName)
-        case .requiresConnection: postNotification(name: Self.disconnectedNotificationName)
-        @unknown default: postNotification(name: Self.disconnectedNotificationName)
+        case .satisfied: postNotification(name: Self.connectedNotification)
+        case .unsatisfied: postNotification(name: Self.disconnectedNotification)
+        case .requiresConnection: postNotification(name: Self.disconnectedNotification)
+        @unknown default: postNotification(name: Self.disconnectedNotification)
         }
     }
     
