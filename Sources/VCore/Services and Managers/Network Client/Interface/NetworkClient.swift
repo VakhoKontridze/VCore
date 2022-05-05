@@ -279,6 +279,7 @@ public final class NetworkClient {
     /// Makes network request and calls completion handler with a result of `Decodable` or `Error`or `Error`.
     public func decodable<DecodableEntity: Decodable>(
         from request: NetworkRequest,
+        entityType: NetworkRequest.Type,
         completion: @escaping (Result<DecodableEntity, Error> ) -> Void
     ) {
         makeRequest(
