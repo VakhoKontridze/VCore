@@ -12,7 +12,7 @@ import Foundation
 ///
 /// Group can be used to map model to viewmodel using a state represented by an enum.
 ///
-/// Usage example:
+/// Usage Example:
 ///
 ///     typealias StateColors = GenericStateModel_EPD<UIColor?>
 ///

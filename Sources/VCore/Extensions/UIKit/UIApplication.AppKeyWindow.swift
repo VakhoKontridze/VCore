@@ -11,7 +11,12 @@ import UIKit
 
 // MARK: - Root
 extension UIApplication {
-    /// Root `UIWindow` in application.
+    /// Return root `UIWindow` in application.
+    ///
+    /// Usage Example:
+    ///
+    ///     let rootWindow: UIWindow? = UIApplication.shared.rootWindow
+    ///
     public var rootWindow: UIWindow? {
         if #available(iOS 15, tvOS 15, *) {
             return connectedScenes
@@ -32,7 +37,12 @@ extension UIApplication {
 
 // MARK: - Active
 extension UIApplication {
-    /// Active `UIWindow` in application.
+    /// Returns active `UIWindow` in application.
+    ///
+    /// Usage Example:
+    ///
+    ///     let activeWindow: UIWindow? = UIApplication.shared.activeWindow
+    ///
     public var activeWindow: UIWindow? {
         connectedScenes
             .filter { $0.activationState == .foregroundActive }
@@ -42,12 +52,22 @@ extension UIApplication {
             .first(where: \.isKeyWindow)
     }
     
-    /// Active `UIViewController` in application.
+    /// Returns active `UIViewController` in application.
+    ///
+    /// Usage Example:
+    ///
+    ///     let activeViewController: UIViewController? = UIApplication.shared.activeViewController
+    ///
     public var activeViewController: UIViewController? {
         activeWindow?.rootViewController
     }
     
-    /// Active `UIView` in application.
+    /// Returns active `UIView` in application.
+    ///
+    /// Usage Example:
+    ///
+    ///     let activeView: UIView? = UIApplication.shared.activeView
+    ///
     public var activeView: UIView? {
         activeViewController?.view
     }
@@ -55,7 +75,12 @@ extension UIApplication {
 
 // MARK: - Top-Most
 extension UIApplication {
-    /// Top-most `UIViewController` in application.
+    /// Returns top-most `UIViewController` in application.
+    ///
+    /// Usage Example:
+    ///
+    ///     let topMostViewController: UIViewController? = UIApplication.shared.topMostViewController
+    ///
     public var topMostViewController: UIViewController? {
         guard
             let activeWindow = activeWindow,
@@ -71,7 +96,12 @@ extension UIApplication {
         return topMostViewController
     }
     
-    /// Top-most `UIView` in application.
+    /// Return top-most `UIView` in application.
+    ///
+    /// Usage Example:
+    ///
+    ///     let topMostView: UIView? = UIApplication.shared.topMostView
+    ///
     public var topMostView: UIView? {
         topMostViewController?.view
     }

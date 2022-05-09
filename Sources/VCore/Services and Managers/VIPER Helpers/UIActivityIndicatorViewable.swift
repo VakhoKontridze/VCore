@@ -14,7 +14,7 @@ import UIKit
 ///
 /// In `VIPER` arhcitecute, this protocol is conformed to by a `View/Controller`.
 ///
-/// Usage example:
+/// Usage Example:
 ///
 ///     lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
 ///

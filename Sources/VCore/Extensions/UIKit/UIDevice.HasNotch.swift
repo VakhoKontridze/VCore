@@ -16,7 +16,7 @@ extension UIDevice {
     /// Check is made against bottom safe are insets. If they are more than `0`, expression evaluates to`true`.
     /// The result may break with future devices.
     ///
-    /// Usage Example
+    /// Usage Example:
     ///
     ///     let hasNotch: Bool = UIDevice.hasNotch
     ///

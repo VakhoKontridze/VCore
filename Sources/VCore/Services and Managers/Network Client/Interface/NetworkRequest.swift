@@ -35,7 +35,7 @@ public struct NetworkRequest {
 
     // MARK: Path Parameters
     /// Adds `String` `Array` to path parameters.
-    public mutating func addPathParameters(
+    mutating public func addPathParameters(
         _ stringArray: [String]
     ) {
         pathParameters.append(contentsOf: NetworkRequestFactory.PathParameters.build(stringArray))
@@ -43,14 +43,14 @@ public struct NetworkRequest {
     
     // MARK: Query Parameters
     /// Adds `String` `Array` to query parameters.
-    public mutating func addQueryParameters(
+    mutating public func addQueryParameters(
         _ json: [String: Any?]
     ) throws {
         queryParameters.append(try NetworkRequestFactory.QueryParameters.build(json))
     }
 
     /// Adds `Encodable` to query parameters.
-    public mutating func addQueryParameters<EncodableQueryParameters: Encodable>(
+    mutating public func addQueryParameters<EncodableQueryParameters: Encodable>(
         _ encodable: EncodableQueryParameters
     ) throws {
         queryParameters.append(try NetworkRequestFactory.QueryParameters.build(encodable))
@@ -58,14 +58,14 @@ public struct NetworkRequest {
 
     // MARK: Headers
     /// Adds `JSON` to headers.
-    public mutating func addHeaders(
+    mutating public func addHeaders(
         _ json: [String: String?]
     ) {
         headers.append(NetworkRequestFactory.Headers.build(json))
     }
 
     /// Adds `Encodable` to headers.
-    public mutating func addHeaders<EncodableHeaders: Encodable>(
+    mutating public func addHeaders<EncodableHeaders: Encodable>(
         _ encodable: EncodableHeaders
     ) throws {
         headers.append(try NetworkRequestFactory.Headers.build(encodable))
@@ -73,21 +73,21 @@ public struct NetworkRequest {
     
     // MARK: Body
     /// Adds `Data` to body.
-    public mutating func addBody(
+    mutating public func addBody(
         _ data: Data
     ) {
         body.append(NetworkRequestFactory.Body.build(data))
     }
 
     /// Adds `JSON` to headers.
-    public mutating func addBody(
+    mutating public func addBody(
         _ json: [String: Any?]
     ) throws {
         body.append(try NetworkRequestFactory.Body.build(json))
     }
 
     /// Adds `Encodable` to headers.
-    public mutating func addBody<EncodableBody: Encodable>(
+    mutating public func addBody<EncodableBody: Encodable>(
         _ encodable: EncodableBody
     ) throws {
         body.append(try NetworkRequestFactory.Body.build(encodable))

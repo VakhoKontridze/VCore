@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		874F80FA2829240E003FFDDA /* StringProtocolSubscriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F80F92829240E003FFDDA /* StringProtocolSubscriptTests.swift */; };
+		874F80FC282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F80FB282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift */; };
 		87954346281F057D00874A69 /* Date.Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954345281F057D00874A69 /* Date.Age.swift */; };
 		87954348281F0AC100874A69 /* String.KeepingOnlyChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */; };
 		8795434A281F0BA300874A69 /* String.RemovingChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954349281F0BA300874A69 /* String.RemovingChars.swift */; };
@@ -29,6 +31,25 @@
 		87954350281F185D00874A69 /* UIDevice.IsSimulator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8795434F281F185D00874A69 /* UIDevice.IsSimulator.swift */; };
 		87954352281F18F600874A69 /* UIDevice.HasNotch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954351281F18F600874A69 /* UIDevice.HasNotch.swift */; };
 		87954354281F194500874A69 /* CGRect.ToNSLayoutConstraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954353281F194500874A69 /* CGRect.ToNSLayoutConstraints.swift */; };
+		87C473C62823CBB400695047 /* ArrayCompactMapNonEmptyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473C42823CB4E00695047 /* ArrayCompactMapNonEmptyTests.swift */; };
+		87C473C92823CC8E00695047 /* ArraySafeSubscriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473C72823CC7100695047 /* ArraySafeSubscriptTests.swift */; };
+		87C473CB2823CE6300695047 /* ArrayFirstIndexAndElementTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473CA2823CE6300695047 /* ArrayFirstIndexAndElementTests.swift */; };
+		87C473CD2823CFD700695047 /* CalendarNumberOfDaysInMonthTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473CC2823CFD700695047 /* CalendarNumberOfDaysInMonthTests.swift */; };
+		87C473CF2823D4F000695047 /* ClosedRangeRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473CE2823D4F000695047 /* ClosedRangeRangeTests.swift */; };
+		87C473D12823D61700695047 /* CollectionEnumeratedArrayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473D02823D61700695047 /* CollectionEnumeratedArrayTests.swift */; };
+		87C473D32825148400695047 /* DateAgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473D22825148400695047 /* DateAgeTests.swift */; };
+		87C473D52825187500695047 /* DateComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473D42825187500695047 /* DateComponentTests.swift */; };
+		87C473D72825191200695047 /* FloatingPointClampedInRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473D62825191200695047 /* FloatingPointClampedInRangeTests.swift */; };
+		87C473D928251C4F00695047 /* FloatingPointRoundedWithStepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473D828251C4F00695047 /* FloatingPointRoundedWithStepTests.swift */; };
+		87C473DB28251DEF00695047 /* IntRunBlockNTimesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473DA28251DEF00695047 /* IntRunBlockNTimesTests.swift */; };
+		87C473DF282520C600695047 /* SetToggleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473DE282520C600695047 /* SetToggleTests.swift */; };
+		87C473E1282521EB00695047 /* SequenceConditionalGroupingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473E0282521EB00695047 /* SequenceConditionalGroupingTests.swift */; };
+		87C473E32825309000695047 /* SequenceKeyPathSortTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473E22825309000695047 /* SequenceKeyPathSortTests.swift */; };
+		87C473E52825328700695047 /* StringIsUserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473E42825328700695047 /* StringIsUserDefaultsKey.swift */; };
+		87C473E72825337900695047 /* StringKeepingOnlyCharsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473E62825337900695047 /* StringKeepingOnlyCharsTests.swift */; };
+		87C473E928291EC700695047 /* StringRemovingCharsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473E828291EC700695047 /* StringRemovingCharsTests.swift */; };
+		87C473EB2829205200695047 /* StringUnwrappedDescribingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473EA2829205200695047 /* StringUnwrappedDescribingTests.swift */; };
+		87C473ED2829210000695047 /* StringProtocolNonEmptyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473EC2829210000695047 /* StringProtocolNonEmptyTests.swift */; };
 		OBJ_177 /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Deprecations.swift */; };
 		OBJ_178 /* Array.CompactMapNonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Array.CompactMapNonEmpty.swift */; };
 		OBJ_179 /* Array.SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Array.SafeSubscript.swift */; };
@@ -39,12 +60,11 @@
 		OBJ_184 /* FloatingPoint.ClampedInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* FloatingPoint.ClampedInRange.swift */; };
 		OBJ_185 /* FloatingPoint.RoundedWithStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* FloatingPoint.RoundedWithStep.swift */; };
 		OBJ_186 /* Int.BlockNTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Int.BlockNTimes.swift */; };
-		OBJ_187 /* NSObject.NSObjectName.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_21 /* NSObject.NSObjectName.swift */; };
 		OBJ_188 /* Sequence.ConditionalGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Sequence.ConditionalGrouping.swift */; };
 		OBJ_189 /* Sequence.KeyPathSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Sequence.KeyPathSort.swift */; };
 		OBJ_190 /* String.IsUserDefaultsKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_24 /* String.IsUserDefaultsKey.swift */; };
 		OBJ_191 /* StringProtocol.NonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_25 /* StringProtocol.NonEmpty.swift */; };
-		OBJ_192 /* String.SafelyDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* String.SafelyDescribing.swift */; };
+		OBJ_192 /* String.UnwrappedDescribing.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_26 /* String.UnwrappedDescribing.swift */; };
 		OBJ_193 /* StringProtocol.Subscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_27 /* StringProtocol.Subscript.swift */; };
 		OBJ_194 /* URLResponse.IsSuccessHTTPStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_28 /* URLResponse.IsSuccessHTTPStatusCode.swift */; };
 		OBJ_195 /* DragGesture.Value.Velocity.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_30 /* DragGesture.Value.Velocity.swift */; };
@@ -147,7 +167,6 @@
 		OBJ_292 /* ScrollableView.ScrollDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_158 /* ScrollableView.ScrollDirection.swift */; };
 		OBJ_293 /* ScrollableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_159 /* ScrollableView.swift */; };
 		OBJ_300 /* Package.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_6 /* Package.swift */; };
-		OBJ_311 /* VCoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_162 /* VCoreTests.swift */; };
 		OBJ_313 /* VCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = "~vcore::VCore::Product" /* VCore.framework */; };
 /* End PBXBuildFile section */
 
@@ -169,6 +188,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		874F80F92829240E003FFDDA /* StringProtocolSubscriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocolSubscriptTests.swift; sourceTree = "<group>"; };
+		874F80FB282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponseIsSuccessHTTPStatusCodeTests.swift; sourceTree = "<group>"; };
 		87954345281F057D00874A69 /* Date.Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Age.swift; sourceTree = "<group>"; };
 		87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.KeepingOnlyChars.swift; sourceTree = "<group>"; };
 		87954349281F0BA300874A69 /* String.RemovingChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.RemovingChars.swift; sourceTree = "<group>"; };
@@ -177,6 +198,25 @@
 		8795434F281F185D00874A69 /* UIDevice.IsSimulator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.IsSimulator.swift; sourceTree = "<group>"; };
 		87954351281F18F600874A69 /* UIDevice.HasNotch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIDevice.HasNotch.swift; sourceTree = "<group>"; };
 		87954353281F194500874A69 /* CGRect.ToNSLayoutConstraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRect.ToNSLayoutConstraints.swift; sourceTree = "<group>"; };
+		87C473C42823CB4E00695047 /* ArrayCompactMapNonEmptyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayCompactMapNonEmptyTests.swift; sourceTree = "<group>"; };
+		87C473C72823CC7100695047 /* ArraySafeSubscriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArraySafeSubscriptTests.swift; sourceTree = "<group>"; };
+		87C473CA2823CE6300695047 /* ArrayFirstIndexAndElementTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayFirstIndexAndElementTests.swift; sourceTree = "<group>"; };
+		87C473CC2823CFD700695047 /* CalendarNumberOfDaysInMonthTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNumberOfDaysInMonthTests.swift; sourceTree = "<group>"; };
+		87C473CE2823D4F000695047 /* ClosedRangeRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClosedRangeRangeTests.swift; sourceTree = "<group>"; };
+		87C473D02823D61700695047 /* CollectionEnumeratedArrayTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionEnumeratedArrayTests.swift; sourceTree = "<group>"; };
+		87C473D22825148400695047 /* DateAgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAgeTests.swift; sourceTree = "<group>"; };
+		87C473D42825187500695047 /* DateComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponentTests.swift; sourceTree = "<group>"; };
+		87C473D62825191200695047 /* FloatingPointClampedInRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointClampedInRangeTests.swift; sourceTree = "<group>"; };
+		87C473D828251C4F00695047 /* FloatingPointRoundedWithStepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointRoundedWithStepTests.swift; sourceTree = "<group>"; };
+		87C473DA28251DEF00695047 /* IntRunBlockNTimesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntRunBlockNTimesTests.swift; sourceTree = "<group>"; };
+		87C473DE282520C600695047 /* SetToggleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetToggleTests.swift; sourceTree = "<group>"; };
+		87C473E0282521EB00695047 /* SequenceConditionalGroupingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceConditionalGroupingTests.swift; sourceTree = "<group>"; };
+		87C473E22825309000695047 /* SequenceKeyPathSortTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceKeyPathSortTests.swift; sourceTree = "<group>"; };
+		87C473E42825328700695047 /* StringIsUserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringIsUserDefaultsKey.swift; sourceTree = "<group>"; };
+		87C473E62825337900695047 /* StringKeepingOnlyCharsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringKeepingOnlyCharsTests.swift; sourceTree = "<group>"; };
+		87C473E828291EC700695047 /* StringRemovingCharsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringRemovingCharsTests.swift; sourceTree = "<group>"; };
+		87C473EA2829205200695047 /* StringUnwrappedDescribingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUnwrappedDescribingTests.swift; sourceTree = "<group>"; };
+		87C473EC2829210000695047 /* StringProtocolNonEmptyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocolNonEmptyTests.swift; sourceTree = "<group>"; };
 		OBJ_100 /* JSONRequestHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRequestHeaders.swift; sourceTree = "<group>"; };
 		OBJ_101 /* MultiPartFormDataAuthorizedRequestHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataAuthorizedRequestHeaders.swift; sourceTree = "<group>"; };
 		OBJ_102 /* MultiPartFormDataRequestHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataRequestHeaders.swift; sourceTree = "<group>"; };
@@ -226,17 +266,15 @@
 		OBJ_158 /* ScrollableView.ScrollDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableView.ScrollDirection.swift; sourceTree = "<group>"; };
 		OBJ_159 /* ScrollableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScrollableView.swift; sourceTree = "<group>"; };
 		OBJ_16 /* Collection.EnumeratedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.EnumeratedArray.swift; sourceTree = "<group>"; };
-		OBJ_162 /* VCoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreTests.swift; sourceTree = "<group>"; };
 		OBJ_17 /* Date.Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Component.swift; sourceTree = "<group>"; };
 		OBJ_18 /* FloatingPoint.ClampedInRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPoint.ClampedInRange.swift; sourceTree = "<group>"; };
 		OBJ_19 /* FloatingPoint.RoundedWithStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPoint.RoundedWithStep.swift; sourceTree = "<group>"; };
 		OBJ_20 /* Int.BlockNTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.BlockNTimes.swift; sourceTree = "<group>"; };
-		OBJ_21 /* NSObject.NSObjectName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSObject.NSObjectName.swift; sourceTree = "<group>"; };
 		OBJ_22 /* Sequence.ConditionalGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.ConditionalGrouping.swift; sourceTree = "<group>"; };
 		OBJ_23 /* Sequence.KeyPathSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.KeyPathSort.swift; sourceTree = "<group>"; };
 		OBJ_24 /* String.IsUserDefaultsKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.IsUserDefaultsKey.swift; sourceTree = "<group>"; };
 		OBJ_25 /* StringProtocol.NonEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.NonEmpty.swift; sourceTree = "<group>"; };
-		OBJ_26 /* String.SafelyDescribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.SafelyDescribing.swift; sourceTree = "<group>"; };
+		OBJ_26 /* String.UnwrappedDescribing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.UnwrappedDescribing.swift; sourceTree = "<group>"; };
 		OBJ_27 /* StringProtocol.Subscript.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocol.Subscript.swift; sourceTree = "<group>"; };
 		OBJ_28 /* URLResponse.IsSuccessHTTPStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponse.IsSuccessHTTPStatusCode.swift; sourceTree = "<group>"; };
 		OBJ_30 /* DragGesture.Value.Velocity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragGesture.Value.Velocity.swift; sourceTree = "<group>"; };
@@ -319,6 +357,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		87C473C22823CB3D00695047 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				87C473C32823CB4200695047 /* Foundation */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		87C473C32823CB4200695047 /* Foundation */ = {
+			isa = PBXGroup;
+			children = (
+				87C473C42823CB4E00695047 /* ArrayCompactMapNonEmptyTests.swift */,
+				87C473CA2823CE6300695047 /* ArrayFirstIndexAndElementTests.swift */,
+				87C473C72823CC7100695047 /* ArraySafeSubscriptTests.swift */,
+				87C473CC2823CFD700695047 /* CalendarNumberOfDaysInMonthTests.swift */,
+				87C473CE2823D4F000695047 /* ClosedRangeRangeTests.swift */,
+				87C473D02823D61700695047 /* CollectionEnumeratedArrayTests.swift */,
+				87C473D22825148400695047 /* DateAgeTests.swift */,
+				87C473D42825187500695047 /* DateComponentTests.swift */,
+				87C473D62825191200695047 /* FloatingPointClampedInRangeTests.swift */,
+				87C473D828251C4F00695047 /* FloatingPointRoundedWithStepTests.swift */,
+				87C473DA28251DEF00695047 /* IntRunBlockNTimesTests.swift */,
+				87C473E0282521EB00695047 /* SequenceConditionalGroupingTests.swift */,
+				87C473E22825309000695047 /* SequenceKeyPathSortTests.swift */,
+				87C473DE282520C600695047 /* SetToggleTests.swift */,
+				87C473E42825328700695047 /* StringIsUserDefaultsKey.swift */,
+				87C473E62825337900695047 /* StringKeepingOnlyCharsTests.swift */,
+				87C473EC2829210000695047 /* StringProtocolNonEmptyTests.swift */,
+				874F80F92829240E003FFDDA /* StringProtocolSubscriptTests.swift */,
+				87C473E828291EC700695047 /* StringRemovingCharsTests.swift */,
+				87C473EA2829205200695047 /* StringUnwrappedDescribingTests.swift */,
+				874F80FB282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift */,
+			);
+			path = Foundation;
+			sourceTree = "<group>";
+		};
 		OBJ_10 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -354,8 +428,8 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_12 /* Array.CompactMapNonEmpty.swift */,
-				OBJ_13 /* Array.SafeSubscript.swift */,
 				8795434B281F0C7F00874A69 /* Array.FirstIndexAndElement.swift */,
+				OBJ_13 /* Array.SafeSubscript.swift */,
 				OBJ_14 /* Calendar.NumberOfDaysInMonth.swift */,
 				OBJ_15 /* ClosedRange.Range.swift */,
 				OBJ_16 /* Collection.EnumeratedArray.swift */,
@@ -364,14 +438,13 @@
 				OBJ_18 /* FloatingPoint.ClampedInRange.swift */,
 				OBJ_19 /* FloatingPoint.RoundedWithStep.swift */,
 				OBJ_20 /* Int.BlockNTimes.swift */,
-				OBJ_21 /* NSObject.NSObjectName.swift */,
-				8795434D281F0E3100874A69 /* Set.Toggle.swift */,
 				OBJ_22 /* Sequence.ConditionalGrouping.swift */,
 				OBJ_23 /* Sequence.KeyPathSort.swift */,
+				8795434D281F0E3100874A69 /* Set.Toggle.swift */,
 				OBJ_24 /* String.IsUserDefaultsKey.swift */,
 				87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */,
 				87954349281F0BA300874A69 /* String.RemovingChars.swift */,
-				OBJ_26 /* String.SafelyDescribing.swift */,
+				OBJ_26 /* String.UnwrappedDescribing.swift */,
 				OBJ_25 /* StringProtocol.NonEmpty.swift */,
 				OBJ_27 /* StringProtocol.Subscript.swift */,
 				OBJ_28 /* URLResponse.IsSuccessHTTPStatusCode.swift */,
@@ -531,7 +604,7 @@
 		OBJ_161 /* VCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				OBJ_162 /* VCoreTests.swift */,
+				87C473C22823CB3D00695047 /* Extensions */,
 			);
 			name = VCoreTests;
 			path = Tests/VCoreTests;
@@ -571,8 +644,8 @@
 				OBJ_42 /* UIApplication.AppKeyWindow.swift */,
 				OBJ_43 /* UIColor.Blend.swift */,
 				OBJ_44 /* UIColor.RGBAComponents.swift */,
-				8795434F281F185D00874A69 /* UIDevice.IsSimulator.swift */,
 				87954351281F18F600874A69 /* UIDevice.HasNotch.swift */,
+				8795434F281F185D00874A69 /* UIDevice.IsSimulator.swift */,
 				OBJ_60 /* UIDevice.SafeAreas.swift */,
 				OBJ_45 /* UIFont.Styling.swift */,
 				OBJ_46 /* UIImage.Compressed.swift */,
@@ -863,12 +936,11 @@
 				OBJ_184 /* FloatingPoint.ClampedInRange.swift in Sources */,
 				OBJ_185 /* FloatingPoint.RoundedWithStep.swift in Sources */,
 				OBJ_186 /* Int.BlockNTimes.swift in Sources */,
-				OBJ_187 /* NSObject.NSObjectName.swift in Sources */,
 				OBJ_188 /* Sequence.ConditionalGrouping.swift in Sources */,
 				OBJ_189 /* Sequence.KeyPathSort.swift in Sources */,
 				OBJ_190 /* String.IsUserDefaultsKey.swift in Sources */,
 				OBJ_191 /* StringProtocol.NonEmpty.swift in Sources */,
-				OBJ_192 /* String.SafelyDescribing.swift in Sources */,
+				OBJ_192 /* String.UnwrappedDescribing.swift in Sources */,
 				OBJ_193 /* StringProtocol.Subscript.swift in Sources */,
 				87954350281F185D00874A69 /* UIDevice.IsSimulator.swift in Sources */,
 				OBJ_194 /* URLResponse.IsSuccessHTTPStatusCode.swift in Sources */,
@@ -992,7 +1064,27 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 0;
 			files = (
-				OBJ_311 /* VCoreTests.swift in Sources */,
+				87C473E928291EC700695047 /* StringRemovingCharsTests.swift in Sources */,
+				87C473D52825187500695047 /* DateComponentTests.swift in Sources */,
+				87C473CF2823D4F000695047 /* ClosedRangeRangeTests.swift in Sources */,
+				87C473D12823D61700695047 /* CollectionEnumeratedArrayTests.swift in Sources */,
+				87C473D928251C4F00695047 /* FloatingPointRoundedWithStepTests.swift in Sources */,
+				87C473D32825148400695047 /* DateAgeTests.swift in Sources */,
+				87C473C92823CC8E00695047 /* ArraySafeSubscriptTests.swift in Sources */,
+				87C473C62823CBB400695047 /* ArrayCompactMapNonEmptyTests.swift in Sources */,
+				874F80FA2829240E003FFDDA /* StringProtocolSubscriptTests.swift in Sources */,
+				87C473CB2823CE6300695047 /* ArrayFirstIndexAndElementTests.swift in Sources */,
+				87C473DB28251DEF00695047 /* IntRunBlockNTimesTests.swift in Sources */,
+				87C473E72825337900695047 /* StringKeepingOnlyCharsTests.swift in Sources */,
+				87C473DF282520C600695047 /* SetToggleTests.swift in Sources */,
+				87C473E52825328700695047 /* StringIsUserDefaultsKey.swift in Sources */,
+				87C473EB2829205200695047 /* StringUnwrappedDescribingTests.swift in Sources */,
+				87C473D72825191200695047 /* FloatingPointClampedInRangeTests.swift in Sources */,
+				87C473E1282521EB00695047 /* SequenceConditionalGroupingTests.swift in Sources */,
+				87C473CD2823CFD700695047 /* CalendarNumberOfDaysInMonthTests.swift in Sources */,
+				87C473ED2829210000695047 /* StringProtocolNonEmptyTests.swift in Sources */,
+				87C473E32825309000695047 /* SequenceKeyPathSortTests.swift in Sources */,
+				874F80FC282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

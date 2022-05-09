@@ -18,7 +18,7 @@ extension UIScreen {
     ///
     /// Usage Example:
     ///
-    ///     UIScreen.main.displayCornerRadius.let {
+    ///     UIScreen.main.displayCornerRadius.map {
     ///         view.roundCorners(.layerMinYCorners, by: $0)
     ///     }
     ///

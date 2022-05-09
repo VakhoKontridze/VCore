@@ -75,7 +75,7 @@ open class InfiniteScrollingCollectionView: UICollectionView {
         register(
             UICollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-            withReuseIdentifier: UICollectionReusableView.nsObjectName!
+            withReuseIdentifier: .init(describing: UICollectionReusableView.self)
         )
         
         guard (collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection == .vertical else {
@@ -113,7 +113,7 @@ open class InfiniteScrollingCollectionView: UICollectionView {
         
         let footer: UICollectionReusableView = dequeueReusableSupplementaryView(
             ofKind: kind,
-            withReuseIdentifier: UICollectionReusableView.nsObjectName!,
+            withReuseIdentifier: .init(describing: UICollectionReusableView.self),
             for: indexPath
         )
         

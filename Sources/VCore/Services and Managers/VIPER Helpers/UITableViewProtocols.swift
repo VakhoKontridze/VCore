@@ -12,7 +12,7 @@ import UIKit
 // MARK: - ViewModel
 /// Protocol that allows viewmodel to dequeue an `UITableViewCell`
 ///
-/// Usage example:
+/// Usage Example:
 ///
 ///     protocol SomeViewable: AnyObject {}
 ///
@@ -83,7 +83,7 @@ public protocol UITableViewDequeueable: UITableViewCell {
 }
 
 extension UITableViewDequeueable {
-    public static var dequeueID: String { nsObjectName! }
+    public static var dequeueID: String { .init(describing: self) }
 }
 
 // MARK: - Table View
