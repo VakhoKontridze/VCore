@@ -12,7 +12,7 @@ import UIKit
 // MARK: - ViewModel
 /// Protocol that allows viewmodel to dequeue an `UICollectionViewCell`
 ///
-/// Usage example:
+/// Usage Example:
 ///
 ///     protocol SomeViewable: AnyObject {}
 ///
@@ -84,7 +84,7 @@ public protocol UICollectionViewDequeueable: UICollectionViewCell {
 }
 
 extension UICollectionViewDequeueable {
-    public static var dequeueID: String { nsObjectName! }
+    public static var dequeueID: String { .init(describing: self) }
 }
 
 // MARK: - Collection View

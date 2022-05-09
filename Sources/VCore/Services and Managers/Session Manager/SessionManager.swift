@@ -12,7 +12,7 @@ import Foundation
 ///
 /// Object contains `shared` instance, but can also be initialized for separate incrementation.
 ///
-/// Usage example:
+/// Usage Example:
 ///
 ///     let sessionManager: SessionManager = .init()
 ///

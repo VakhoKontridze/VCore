@@ -12,26 +12,51 @@ import UIKit
 // MARK: - Device Safe Areas
 extension UIDevice {
     /// Safe area insets in root window of `UIApplication.shared`.
+    ///
+    /// Usage Example:
+    ///
+    ///     let insets: UIEdgeInsets? = UIDevice.safeAreaInsets
+    ///
     public static var safeAreaInsets: UIEdgeInsets? {
         UIApplication.shared.rootWindow?.safeAreaInsets
     }
     
     /// Left safe area inset in root window of `UIApplication.shared`.
+    ///
+    /// Usage Example:
+    ///
+    ///     let inset: CGFloat = UIDevice.safeAreaInsetLeft
+    ///
     public static var safeAreaInsetLeft: CGFloat {
         safeAreaInsets?.left ?? 0
     }
 
     /// Right safe area inset in root window of `UIApplication.shared`.
+    ///
+    /// Usage Example:
+    ///
+    ///     let inset: CGFloat = UIDevice.safeAreaInsetRight
+    ///
     public static var safeAreaInsetRight: CGFloat {
         safeAreaInsets?.right ?? 0
     }
 
     /// Top safe area inset in root window of `UIApplication.shared`.
+    ///
+    /// Usage Example:
+    ///
+    ///     let inset: CGFloat = UIDevice.safeAreaInsetTop
+    ///
     public static var safeAreaInsetTop: CGFloat {
         safeAreaInsets?.top ?? 0
     }
 
     /// Bottom safe area inset in root window of `UIApplication.shared`.
+    ///
+    /// Usage Example:
+    ///
+    ///     let inset: CGFloat = UIDevice.safeAreaInsetBottom
+    ///
     public static var safeAreaInsetBottom: CGFloat {
         safeAreaInsets?.bottom ?? 0
     }

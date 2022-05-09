@@ -20,6 +20,7 @@ Extensions
 
 - `width` parameter can now be passed to `UILabel`'s `multiLineHeight` method
 - `FloatingPoint` method `bound` is renamed to `clamp`
+- `NSObject` method `nsObjectName` is deprecated in favor of `String(describing:)` method
 - Various extensions are added
 
 LocalizationService

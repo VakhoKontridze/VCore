@@ -38,7 +38,7 @@ extension NetworkRequestFactory {
             for (key, value) in json {
                 guard let value = value else { continue }
                 
-                guard let description: String = .init(safelyDescribing: value) else { throw NetworkError.invalidHeaders }
+                guard let description: String = .init(unwrappedDescribing: value) else { throw NetworkError.invalidHeaders }
                 result.updateValue(description, forKey: key)
             }
             

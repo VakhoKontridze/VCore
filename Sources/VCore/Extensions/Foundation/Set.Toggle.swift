@@ -11,13 +11,13 @@ import Foundation
 extension Set {
     /// Inserts element in a set if it's not present, and if present, removes it.
     ///
-    /// Usage Example
+    /// Usage Example:
     ///
     ///     var nums: Set<Int> = [1, 3, 5]
     ///     nums.toggle(1) // [3, 5]
     ///     nums.toggle(1) // [1, 3, 5]
     ///
-    public mutating func toggle(
+    mutating public func toggle(
         _ element: Element
     ) {
         switch contains(element) {

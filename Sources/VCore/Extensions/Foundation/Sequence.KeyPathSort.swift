@@ -47,7 +47,7 @@ extension Array {
     ///     cities.sort(by: \.name)
     ///     // [City(name: "London"), City(name: "New York"), City(name: "Paris")]
     ///
-    public mutating func sort<T: Comparable>(
+    mutating public func sort<T: Comparable>(
         by keypath: KeyPath<Element, T>
     ) {
         sort { $0[keyPath: keypath] < $1[keyPath: keypath] }

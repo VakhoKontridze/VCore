@@ -11,7 +11,7 @@ import Foundation
 extension StringProtocol {
     /// Accesses the element at the specified position.
     ///
-    ///  Usage Example:
+    /// Usage Example:
     ///
     ///     let string: String = "Lorem Ipsum"
     ///     let firstChar: Character = string[0] // "L"
@@ -43,7 +43,7 @@ extension StringProtocol {
     ///     var string: String = "Lorem ipsum"
     ///     string.replacing(at: 0, with: "l") // "lorem ipsum"
     ///
-    public mutating func replacing(at i: Int, with element: Element) {
+    mutating public func replacing(at i: Int, with element: Element) {
         self = replaced(at: i, with: element)
     }
 }

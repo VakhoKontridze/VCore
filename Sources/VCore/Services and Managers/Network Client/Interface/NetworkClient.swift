@@ -12,7 +12,7 @@ import Foundation
 ///
 /// Object contains default `default` instance, that can be used to make requests.
 ///
-/// Usage example:
+/// Usage Example:
 ///
 ///     func fetchData() async {
 ///         do {

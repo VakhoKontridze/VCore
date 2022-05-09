@@ -45,7 +45,7 @@ extension MultiPartFormDataBuilder {
             element: Any?,
             to data: inout Data
         ) throws {
-            guard let value: String = .init(safelyDescribing: element) else { throw MultiPartFormDataError.invalidFiles }
+            guard let value: String = .init(unwrappedDescribing: element) else { throw MultiPartFormDataError.invalidFiles }
             
             data.append("--\(boundary)\(lineBreak)")
             data.append("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak)\(lineBreak)")
