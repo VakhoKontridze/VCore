@@ -9,6 +9,5 @@ import Foundation
 
 // MARK: - Network Request Factory
 struct NetworkRequestFactory {
-    // MARK: Initializers
     private init() {}
 }

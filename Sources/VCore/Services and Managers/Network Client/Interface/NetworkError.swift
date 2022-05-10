@@ -50,20 +50,7 @@ public enum NetworkError: Int, VCoreError, CaseIterable {
     // MARK: VCore Error
     public var domain: String { Self.errorDomain }
     
-    public var code: Int {
-        switch self {
-        case .notConnectedToNetwork: return 1001
-        case .invalidEndpoint: return 1002
-        case .invalidPathParameters: return 1003
-        case .invalidQueryparameters: return 1004
-        case .invalidHeaders: return 1005
-        case .invalidBody: return 1006
-        case .requestTimedOut: return 1007
-        case .returnedWithError: return 1008
-        case .invalidResponse: return 1009
-        case .invalidData: return 1010
-        }
-    }
+    public var code: Int { 1000 + (rawValue+1) }
     
     public var description: String {
         switch self {

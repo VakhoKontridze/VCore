@@ -15,9 +15,15 @@ extension NetworkRequestFactory {
         
         // MARK: Building
         static func build(
-            _ array: [String]
+            string: String
         ) -> [String] {
-            array
+            [string]
+        }
+        
+        static func build(
+            stringArray: [String]
+        ) -> [String] {
+            stringArray
         }
     }
 }

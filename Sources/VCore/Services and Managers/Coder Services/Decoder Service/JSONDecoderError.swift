@@ -21,11 +21,7 @@ public enum JSONDecoderError: Int, VCoreError, CaseIterable {
     // MARK: VCore Error
     public var domain: String { Self.errorDomain }
     
-    public var code: Int {
-        switch self {
-        case .failedToDecode: return 1001
-        }
-    }
+    public var code: Int { 1000 + (rawValue+1) }
     
     public var description: String {
         switch self {

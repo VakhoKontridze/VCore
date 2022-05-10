@@ -34,8 +34,10 @@ final class AtomicIntegerTests: XCTestCase {
             })
         }
         
-        waitForExpectations(timeout: 1, handler: nil)
-        XCTAssertEqual(Set(container.allElements()).count, container.allElements().count)
+        waitForExpectations(timeout: 10, handler: { _ in
+            XCTAssertEqual(container.allElements().count, count)
+            XCTAssertTrue(container.allElements().isUnique)
+        })
     }
 }
  

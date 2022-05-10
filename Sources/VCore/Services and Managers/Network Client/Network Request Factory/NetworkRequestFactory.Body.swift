@@ -15,13 +15,13 @@ extension NetworkRequestFactory {
         
         // MARK: Building
         static func build(
-            _ data: Data
+            data: Data
         ) -> Data {
             data
         }
         
         static func build(
-            _ json: [String: Any?]
+            json: [String: Any?]
         ) throws -> Data {
             do {
                 return try JSONEncoderService.data(from: json)
@@ -31,7 +31,7 @@ extension NetworkRequestFactory {
         }
         
         static func build<EncodableBody: Encodable>(
-            _ encodable: EncodableBody
+            encodable: EncodableBody
         ) throws -> Data {
             do {
                 return try JSONEncoderService.data(from: encodable)

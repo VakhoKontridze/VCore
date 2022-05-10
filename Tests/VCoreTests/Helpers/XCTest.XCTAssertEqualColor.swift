@@ -17,8 +17,8 @@ extension XCTest {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let lhs = try! expression1().rgbaValues
-        let rhs = try! expression2().rgbaValues
+        let lhs = try! expression1().rgbaValues // fatalError
+        let rhs = try! expression2().rgbaValues // fatalError
         
         XCTAssertEqual(lhs.red, rhs.red, message(), file: file, line: line)
         XCTAssertEqual(lhs.green, rhs.green, message(), file: file, line: line)

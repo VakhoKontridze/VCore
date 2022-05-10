@@ -41,6 +41,15 @@
 		8781816F282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781816E282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift */; };
 		87818171282A8DEA00A9AEDE /* VCoreErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818170282A8DEA00A9AEDE /* VCoreErrorTests.swift */; };
 		87818174282A8E8700A9AEDE /* LogicalExclusiveOrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818173282A8E8700A9AEDE /* LogicalExclusiveOrTests.swift */; };
+		87818179282A8FBE00A9AEDE /* NetworkClientTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818178282A8FBE00A9AEDE /* NetworkClientTests.swift */; };
+		8781817B282A981100A9AEDE /* NetworkRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781817A282A981100A9AEDE /* NetworkRequestTests.swift */; };
+		8781817D282AA71A00A9AEDE /* NetworkRequestMethodTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781817C282AA71A00A9AEDE /* NetworkRequestMethodTests.swift */; };
+		8781817F282AAA3300A9AEDE /* NetworkErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781817E282AAA3300A9AEDE /* NetworkErrorTests.swift */; };
+		87818181282AAC4400A9AEDE /* Array.RemovingDuplicates.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818180282AAC4400A9AEDE /* Array.RemovingDuplicates.swift */; };
+		87818183282AAD4500A9AEDE /* ArrayRemovingDuplicatesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818182282AAD4500A9AEDE /* ArrayRemovingDuplicatesTests.swift */; };
+		87818187282AAE0300A9AEDE /* Sequence.IsUnique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818186282AAE0300A9AEDE /* Sequence.IsUnique.swift */; };
+		87818189282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818188282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift */; };
+		8781818B282AB12600A9AEDE /* NetworkResponseProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781818A282AB12600A9AEDE /* NetworkResponseProcessorTests.swift */; };
 		87954346281F057D00874A69 /* Date.Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954345281F057D00874A69 /* Date.Age.swift */; };
 		87954348281F0AC100874A69 /* String.KeepingOnlyChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */; };
 		8795434A281F0BA300874A69 /* String.RemovingChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954349281F0BA300874A69 /* String.RemovingChars.swift */; };
@@ -243,6 +252,15 @@
 		8781816E282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVInitializableEnumerationTests.swift; sourceTree = "<group>"; };
 		87818170282A8DEA00A9AEDE /* VCoreErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreErrorTests.swift; sourceTree = "<group>"; };
 		87818173282A8E8700A9AEDE /* LogicalExclusiveOrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalExclusiveOrTests.swift; sourceTree = "<group>"; };
+		87818178282A8FBE00A9AEDE /* NetworkClientTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientTests.swift; sourceTree = "<group>"; };
+		8781817A282A981100A9AEDE /* NetworkRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestTests.swift; sourceTree = "<group>"; };
+		8781817C282AA71A00A9AEDE /* NetworkRequestMethodTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequestMethodTests.swift; sourceTree = "<group>"; };
+		8781817E282AAA3300A9AEDE /* NetworkErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkErrorTests.swift; sourceTree = "<group>"; };
+		87818180282AAC4400A9AEDE /* Array.RemovingDuplicates.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array.RemovingDuplicates.swift; sourceTree = "<group>"; };
+		87818182282AAD4500A9AEDE /* ArrayRemovingDuplicatesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayRemovingDuplicatesTests.swift; sourceTree = "<group>"; };
+		87818186282AAE0300A9AEDE /* Sequence.IsUnique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.IsUnique.swift; sourceTree = "<group>"; };
+		87818188282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceIsUniqueTests.swift; sourceTree = "<group>"; };
+		8781818A282AB12600A9AEDE /* NetworkResponseProcessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponseProcessorTests.swift; sourceTree = "<group>"; };
 		87954345281F057D00874A69 /* Date.Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Age.swift; sourceTree = "<group>"; };
 		87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.KeepingOnlyChars.swift; sourceTree = "<group>"; };
 		87954349281F0BA300874A69 /* String.RemovingChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.RemovingChars.swift; sourceTree = "<group>"; };
@@ -494,6 +512,26 @@
 			path = "Global Functions";
 			sourceTree = "<group>";
 		};
+		87818175282A8ECE00A9AEDE /* Services and Managers */ = {
+			isa = PBXGroup;
+			children = (
+				87818176282A8F3F00A9AEDE /* Network Client */,
+			);
+			path = "Services and Managers";
+			sourceTree = "<group>";
+		};
+		87818176282A8F3F00A9AEDE /* Network Client */ = {
+			isa = PBXGroup;
+			children = (
+				87818178282A8FBE00A9AEDE /* NetworkClientTests.swift */,
+				8781817A282A981100A9AEDE /* NetworkRequestTests.swift */,
+				8781817C282AA71A00A9AEDE /* NetworkRequestMethodTests.swift */,
+				8781817E282AAA3300A9AEDE /* NetworkErrorTests.swift */,
+				8781818A282AB12600A9AEDE /* NetworkResponseProcessorTests.swift */,
+			);
+			path = "Network Client";
+			sourceTree = "<group>";
+		};
 		87C473C22823CB3D00695047 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -508,6 +546,7 @@
 			children = (
 				87C473C42823CB4E00695047 /* ArrayCompactMapNonEmptyTests.swift */,
 				87C473CA2823CE6300695047 /* ArrayFirstIndexAndElementTests.swift */,
+				87818182282AAD4500A9AEDE /* ArrayRemovingDuplicatesTests.swift */,
 				87C473C72823CC7100695047 /* ArraySafeSubscriptTests.swift */,
 				87C473CC2823CFD700695047 /* CalendarNumberOfDaysInMonthTests.swift */,
 				87C473CE2823D4F000695047 /* ClosedRangeRangeTests.swift */,
@@ -518,6 +557,7 @@
 				87C473D828251C4F00695047 /* FloatingPointRoundedWithStepTests.swift */,
 				87C473DA28251DEF00695047 /* IntRunBlockNTimesTests.swift */,
 				87C473E0282521EB00695047 /* SequenceConditionalGroupingTests.swift */,
+				87818188282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift */,
 				87C473E22825309000695047 /* SequenceKeyPathSortTests.swift */,
 				87C473DE282520C600695047 /* SetToggleTests.swift */,
 				87C473E42825328700695047 /* StringIsUserDefaultsKey.swift */,
@@ -545,6 +585,7 @@
 		87E867AE282A4F5800EE0BA9 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				87818175282A8ECE00A9AEDE /* Services and Managers */,
 				87818172282A8E7D00A9AEDE /* Global Functions */,
 				87818159282A6F0C00A9AEDE /* Helpers */,
 				87C473C22823CB3D00695047 /* Extensions */,
@@ -588,6 +629,7 @@
 			children = (
 				OBJ_12 /* Array.CompactMapNonEmpty.swift */,
 				8795434B281F0C7F00874A69 /* Array.FirstIndexAndElement.swift */,
+				87818180282AAC4400A9AEDE /* Array.RemovingDuplicates.swift */,
 				OBJ_13 /* Array.SafeSubscript.swift */,
 				OBJ_14 /* Calendar.NumberOfDaysInMonth.swift */,
 				OBJ_15 /* ClosedRange.Range.swift */,
@@ -598,6 +640,7 @@
 				OBJ_19 /* FloatingPoint.RoundedWithStep.swift */,
 				OBJ_20 /* Int.BlockNTimes.swift */,
 				OBJ_22 /* Sequence.ConditionalGrouping.swift */,
+				87818186282AAE0300A9AEDE /* Sequence.IsUnique.swift */,
 				OBJ_23 /* Sequence.KeyPathSort.swift */,
 				8795434D281F0E3100874A69 /* Set.Toggle.swift */,
 				OBJ_24 /* String.IsUserDefaultsKey.swift */,
@@ -621,14 +664,6 @@
 				OBJ_113 /* NetworkRequestFactory.Body.swift */,
 			);
 			path = "Network Request Factory";
-			sourceTree = "<group>";
-		};
-		OBJ_118 /* Network Reachability Service */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_119 /* NetworkReachabilityService.swift */,
-			);
-			path = "Network Reachability Service";
 			sourceTree = "<group>";
 		};
 		OBJ_120 /* Session Manager */ = {
@@ -892,12 +927,13 @@
 			isa = PBXGroup;
 			children = (
 				OBJ_97 /* Network Client */,
-				OBJ_118 /* Network Reachability Service */,
 				OBJ_89 /* Multi Part Form Data Builder */,
 				OBJ_79 /* Coder Services */,
 				OBJ_120 /* Session Manager */,
 				OBJ_122 /* VIPER Helpers */,
-				OBJ_86 /* Misc */,
+				OBJ_119 /* NetworkReachabilityService.swift */,
+				OBJ_87 /* DigitalTimeFormatter.swift */,
+				OBJ_88 /* PrettyFractionsNumberFormatter.swift */,
 			);
 			path = "Services and Managers";
 			sourceTree = "<group>";
@@ -941,15 +977,6 @@
 				OBJ_84 /* JSONEncoderError.swift */,
 			);
 			path = "Encoder Service";
-			sourceTree = "<group>";
-		};
-		OBJ_86 /* Misc */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_87 /* DigitalTimeFormatter.swift */,
-				OBJ_88 /* PrettyFractionsNumberFormatter.swift */,
-			);
-			path = Misc;
 			sourceTree = "<group>";
 		};
 		OBJ_89 /* Multi Part Form Data Builder */ = {
@@ -1227,7 +1254,9 @@
 			files = (
 				87C473E928291EC700695047 /* StringRemovingCharsTests.swift in Sources */,
 				87C473D52825187500695047 /* DateComponentTests.swift in Sources */,
+				87818183282AAD4500A9AEDE /* ArrayRemovingDuplicatesTests.swift in Sources */,
 				87C473CF2823D4F000695047 /* ClosedRangeRangeTests.swift in Sources */,
+				87818181282AAC4400A9AEDE /* Array.RemovingDuplicates.swift in Sources */,
 				87E867AC282A414B00EE0BA9 /* UIImageCroppedTests.swift in Sources */,
 				87C473D12823D61700695047 /* CollectionEnumeratedArrayTests.swift in Sources */,
 				874F810128292B0A003FFDDA /* CGSizeInitWithDimensionTests.swift in Sources */,
@@ -1244,7 +1273,9 @@
 				874F80FA2829240E003FFDDA /* StringProtocolSubscriptTests.swift in Sources */,
 				8781815D282A6F9E00A9AEDE /* EdgeInsets_LTTBTests.swift in Sources */,
 				87E76C65282A690A007A7019 /* UIViewApplyShadowTests.swift in Sources */,
+				87818187282AAE0300A9AEDE /* Sequence.IsUnique.swift in Sources */,
 				87C473CB2823CE6300695047 /* ArrayFirstIndexAndElementTests.swift in Sources */,
+				8781817B282A981100A9AEDE /* NetworkRequestTests.swift in Sources */,
 				87C473DB28251DEF00695047 /* IntRunBlockNTimesTests.swift in Sources */,
 				87E867A42829435F00EE0BA9 /* UIColorRGBAValuesTests.swift in Sources */,
 				87E867E6282A5D1B00EE0BA9 /* UILabelConfigurationTests.swift in Sources */,
@@ -1252,8 +1283,10 @@
 				87C473E72825337900695047 /* StringKeepingOnlyCharsTests.swift in Sources */,
 				87818162282A7DA000A9AEDE /* EdgeInsets_TBTests.swift in Sources */,
 				87C473DF282520C600695047 /* SetToggleTests.swift in Sources */,
+				8781817D282AA71A00A9AEDE /* NetworkRequestMethodTests.swift in Sources */,
 				87C473E52825328700695047 /* StringIsUserDefaultsKey.swift in Sources */,
 				87E867AA282A408400EE0BA9 /* UIImage.InitWithColor.swift in Sources */,
+				87818179282A8FBE00A9AEDE /* NetworkClientTests.swift in Sources */,
 				87818167282A7E6300A9AEDE /* GenericStateModel_EDTests.swift in Sources */,
 				8781816D282A84E800A9AEDE /* JSONTypeCastsTests.swift in Sources */,
 				874F80FF28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift in Sources */,
@@ -1272,13 +1305,16 @@
 				87818153282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift in Sources */,
 				87E867E0282A554D00EE0BA9 /* XCTest.XCTAssertEqualColor.swift in Sources */,
 				87818155282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift in Sources */,
+				87818189282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift in Sources */,
 				87E867DB282A531A00EE0BA9 /* UIImage.MergeHorizontally.swift in Sources */,
 				87818164282A7DD600A9AEDE /* EdgeInsets_HVTests.swift in Sources */,
 				87818171282A8DEA00A9AEDE /* VCoreErrorTests.swift in Sources */,
+				8781817F282AAA3300A9AEDE /* NetworkErrorTests.swift in Sources */,
 				8781816F282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift in Sources */,
 				87C473ED2829210000695047 /* StringProtocolNonEmptyTests.swift in Sources */,
 				87E867A8282A3F6800EE0BA9 /* UIImageCompressedTests.swift in Sources */,
 				87E867B7282A523700EE0BA9 /* UIImageInitWithColorTests.swift in Sources */,
+				8781818B282AB12600A9AEDE /* NetworkResponseProcessorTests.swift in Sources */,
 				87C473E32825309000695047 /* SequenceKeyPathSortTests.swift in Sources */,
 				874F80FC282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift in Sources */,
 			);
