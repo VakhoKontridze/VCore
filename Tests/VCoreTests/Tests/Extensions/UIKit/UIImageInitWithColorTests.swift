@@ -16,7 +16,7 @@ final class UIImageInitWithColorTests: XCTestCase {
         let dimension: CGFloat = 100
         let color: UIColor = .red
         
-        let image: UIImage = .init(color: color, size: .init(dimension: dimension))!
+        let image: UIImage = .init(size: .init(dimension: dimension), color: color)!
 
         XCTAssertEqual(image.size, .init(dimension: dimension))
         XCTAssertEqualColor(image.averageColor!, color)

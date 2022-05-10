@@ -14,8 +14,8 @@ import XCTest
 final class UIImageScaledTests: XCTestCase {
     func testScaledToWidth() {
         let image: UIImage = .init(
-            color: .red,
-            size: .init(width: 100, height: 200)
+            size: .init(width: 100, height: 200),
+            color: .red
         )!
         
         let scaledDownImage: UIImage = image.scaled(toWidth: 50)!
@@ -27,8 +27,8 @@ final class UIImageScaledTests: XCTestCase {
     
     func testScaledToHeight() {
         let image: UIImage = .init(
-            color: .red,
-            size: .init(width: 200, height: 100)
+            size: .init(width: 200, height: 100),
+            color: .red
         )!
         
         let scaledDownImage: UIImage = image.scaled(toHeight: 50)!
@@ -40,8 +40,8 @@ final class UIImageScaledTests: XCTestCase {
     
     func testScaledDownToWidth() {
         let image: UIImage = .init(
-            color: .red,
-            size: .init(width: 100, height: 200)
+            size: .init(width: 100, height: 200),
+            color: .red
         )!
         
         let scaledImage: UIImage = image.scaledDown(toWidth: 100)!
@@ -53,8 +53,8 @@ final class UIImageScaledTests: XCTestCase {
     
     func testScaledDownToHeight() {
         let image: UIImage = .init(
-            color: .red,
-            size: .init(width: 200, height: 100)
+            size: .init(width: 200, height: 100),
+            color: .red
         )!
         
         let scaledImage: UIImage = image.scaledDown(toHeight: 100)!
@@ -66,15 +66,15 @@ final class UIImageScaledTests: XCTestCase {
     
     func testScaledDownToDimension() {
         let image1: UIImage = .init(
-            color: .red,
-            size: .init(width: 100, height: 200)
+            size: .init(width: 100, height: 200),
+            color: .red
         )!
         let scaledImageW: UIImage = image1.scaledDown(toDimension: 50)!
         XCTAssertEqual(scaledImageW.size, .init(width: 50, height: 100))
         
         let image2: UIImage = .init(
-            color: .red,
-            size: .init(width: 200, height: 100)
+            size: .init(width: 200, height: 100),
+            color: .red
         )!
         let scaledImageH: UIImage = image2.scaledDown(toDimension: 50)!
         XCTAssertEqual(scaledImageH.size, .init(width: 100, height: 50))

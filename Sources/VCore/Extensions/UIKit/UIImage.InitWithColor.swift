@@ -15,11 +15,14 @@ extension UIImage {
     ///
     /// Usage Example:
     ///
-    ///     let image: UIImage = .init(color: .black, size: .init(dimension: 100))!
+    ///     let image: UIImage = .init(
+    ///         size: .init(dimension: 100),
+    ///         color: .black
+    ///     )!
     ///
     public convenience init?(
-        color: UIColor,
-        size: CGSize
+        size: CGSize,
+        color: UIColor
     ) {
         UIGraphicsBeginImageContextWithOptions(size, false, 1)
         defer { UIGraphicsEndImageContext() }
