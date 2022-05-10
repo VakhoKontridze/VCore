@@ -15,7 +15,7 @@ extension NetworkRequestFactory {
         
         // MARK: Building
         static func build(
-            _ json: [String: Any?]
+            json: [String: Any?]
         ) throws -> [String: String] {
             var result: [String: String] = [:]
             
@@ -30,7 +30,7 @@ extension NetworkRequestFactory {
         }
         
         static func build<EncodableQueryParameters: Encodable>(
-            _ encodable: EncodableQueryParameters
+            encodable: EncodableQueryParameters
         ) throws -> [String: String] {
             let json: [String: Any?] = try JSONEncoderService.json(from: encodable)
             

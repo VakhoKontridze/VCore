@@ -17,14 +17,9 @@ import Foundation
 ///     func fetchData() async {
 ///         do {
 ///             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
-///             
 ///             request.method = .POST
-///
-///             try request.addHeaders(JSONRequestHeaders())
-///
-///             try request.addBody([
-///                 "someKey": "someValue"
-///             ])
+///             try request.addHeaders(encodable: JSONRequestHeaders())
+///             try request.addBody(json: ["someKey": "someValue"])
 ///
 ///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 ///
@@ -279,7 +274,7 @@ public final class NetworkClient {
     /// Makes network request and calls completion handler with a result of `Decodable` or `Error`or `Error`.
     public func decodable<DecodableEntity: Decodable>(
         from request: NetworkRequest,
-        entityType: NetworkRequest.Type,
+        entityType: DecodableEntity.Type,
         completion: @escaping (Result<DecodableEntity, Error> ) -> Void
     ) {
         makeRequest(
