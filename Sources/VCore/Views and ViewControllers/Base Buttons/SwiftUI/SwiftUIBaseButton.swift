@@ -225,7 +225,7 @@ struct SwiftUIBaseButton_Previews: PreviewProvider {
                 case .click: print("Clicked")
                 }
             },
-            content: { Text("Lorem ipsum") }
+            content: { Text("Lorem Ipsum") }
         )
     }
 }
