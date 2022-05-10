@@ -16,6 +16,8 @@ Network Client
 Helpers
 
 - `EdgeInsets` objects now support `SwiftUI`'s `.padding()` modifiers
+- `JSONTypeCasts` now support `Character`
+- Issue when casting `Float` to `Double` in `JSONTypeCasts` is fixed
  
 Extensions
 

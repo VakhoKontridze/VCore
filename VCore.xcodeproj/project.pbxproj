@@ -30,6 +30,16 @@
 		874F8109282940FD003FFDDA /* UIColorBlendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F8108282940FD003FFDDA /* UIColorBlendTests.swift */; };
 		87818153282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818152282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift */; };
 		87818155282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818154282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift */; };
+		8781815D282A6F9E00A9AEDE /* EdgeInsets_LTTBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781815B282A6F5D00A9AEDE /* EdgeInsets_LTTBTests.swift */; };
+		87818160282A7D0500A9AEDE /* EdgeInsets_LTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781815E282A7CDF00A9AEDE /* EdgeInsets_LTTests.swift */; };
+		87818162282A7DA000A9AEDE /* EdgeInsets_TBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818161282A7DA000A9AEDE /* EdgeInsets_TBTests.swift */; };
+		87818164282A7DD600A9AEDE /* EdgeInsets_HVTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818163282A7DD600A9AEDE /* EdgeInsets_HVTests.swift */; };
+		87818167282A7E6300A9AEDE /* GenericStateModel_EDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818166282A7E6300A9AEDE /* GenericStateModel_EDTests.swift */; };
+		87818169282A7E7B00A9AEDE /* GenericStateModel_EPDTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818168282A7E7B00A9AEDE /* GenericStateModel_EPDTests.swift */; };
+		8781816B282A7F1A00A9AEDE /* AtomicIntegerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781816A282A7F1A00A9AEDE /* AtomicIntegerTests.swift */; };
+		8781816D282A84E800A9AEDE /* JSONTypeCastsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781816C282A84E800A9AEDE /* JSONTypeCastsTests.swift */; };
+		8781816F282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781816E282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift */; };
+		87818171282A8DEA00A9AEDE /* VCoreErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818170282A8DEA00A9AEDE /* VCoreErrorTests.swift */; };
 		87954346281F057D00874A69 /* Date.Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954345281F057D00874A69 /* Date.Age.swift */; };
 		87954348281F0AC100874A69 /* String.KeepingOnlyChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */; };
 		8795434A281F0BA300874A69 /* String.RemovingChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954349281F0BA300874A69 /* String.RemovingChars.swift */; };
@@ -221,6 +231,16 @@
 		874F8108282940FD003FFDDA /* UIColorBlendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorBlendTests.swift; sourceTree = "<group>"; };
 		87818152282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRoundCornersTests.swift; sourceTree = "<group>"; };
 		87818154282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerWithTabBarItemTests.swift; sourceTree = "<group>"; };
+		8781815B282A6F5D00A9AEDE /* EdgeInsets_LTTBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LTTBTests.swift; sourceTree = "<group>"; };
+		8781815E282A7CDF00A9AEDE /* EdgeInsets_LTTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_LTTests.swift; sourceTree = "<group>"; };
+		87818161282A7DA000A9AEDE /* EdgeInsets_TBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_TBTests.swift; sourceTree = "<group>"; };
+		87818163282A7DD600A9AEDE /* EdgeInsets_HVTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EdgeInsets_HVTests.swift; sourceTree = "<group>"; };
+		87818166282A7E6300A9AEDE /* GenericStateModel_EDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_EDTests.swift; sourceTree = "<group>"; };
+		87818168282A7E7B00A9AEDE /* GenericStateModel_EPDTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GenericStateModel_EPDTests.swift; sourceTree = "<group>"; };
+		8781816A282A7F1A00A9AEDE /* AtomicIntegerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicIntegerTests.swift; sourceTree = "<group>"; };
+		8781816C282A84E800A9AEDE /* JSONTypeCastsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTypeCastsTests.swift; sourceTree = "<group>"; };
+		8781816E282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVInitializableEnumerationTests.swift; sourceTree = "<group>"; };
+		87818170282A8DEA00A9AEDE /* VCoreErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreErrorTests.swift; sourceTree = "<group>"; };
 		87954345281F057D00874A69 /* Date.Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Age.swift; sourceTree = "<group>"; };
 		87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.KeepingOnlyChars.swift; sourceTree = "<group>"; };
 		87954349281F0BA300874A69 /* String.RemovingChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.RemovingChars.swift; sourceTree = "<group>"; };
@@ -431,6 +451,39 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		87818159282A6F0C00A9AEDE /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				8781815A282A6F1000A9AEDE /* Edge Insets */,
+				87818165282A7E5300A9AEDE /* Generic State Models */,
+				8781816A282A7F1A00A9AEDE /* AtomicIntegerTests.swift */,
+				8781816C282A84E800A9AEDE /* JSONTypeCastsTests.swift */,
+				8781816E282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift */,
+				87818170282A8DEA00A9AEDE /* VCoreErrorTests.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		8781815A282A6F1000A9AEDE /* Edge Insets */ = {
+			isa = PBXGroup;
+			children = (
+				8781815B282A6F5D00A9AEDE /* EdgeInsets_LTTBTests.swift */,
+				8781815E282A7CDF00A9AEDE /* EdgeInsets_LTTests.swift */,
+				87818161282A7DA000A9AEDE /* EdgeInsets_TBTests.swift */,
+				87818163282A7DD600A9AEDE /* EdgeInsets_HVTests.swift */,
+			);
+			path = "Edge Insets";
+			sourceTree = "<group>";
+		};
+		87818165282A7E5300A9AEDE /* Generic State Models */ = {
+			isa = PBXGroup;
+			children = (
+				87818166282A7E6300A9AEDE /* GenericStateModel_EDTests.swift */,
+				87818168282A7E7B00A9AEDE /* GenericStateModel_EPDTests.swift */,
+			);
+			path = "Generic State Models";
+			sourceTree = "<group>";
+		};
 		87C473C22823CB3D00695047 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -482,6 +535,7 @@
 		87E867AE282A4F5800EE0BA9 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				87818159282A6F0C00A9AEDE /* Helpers */,
 				87C473C22823CB3D00695047 /* Extensions */,
 			);
 			path = Tests;
@@ -1166,14 +1220,17 @@
 				87E867AC282A414B00EE0BA9 /* UIImageCroppedTests.swift in Sources */,
 				87C473D12823D61700695047 /* CollectionEnumeratedArrayTests.swift in Sources */,
 				874F810128292B0A003FFDDA /* CGSizeInitWithDimensionTests.swift in Sources */,
+				87818169282A7E7B00A9AEDE /* GenericStateModel_EPDTests.swift in Sources */,
 				87C473D928251C4F00695047 /* FloatingPointRoundedWithStepTests.swift in Sources */,
 				87C473D32825148400695047 /* DateAgeTests.swift in Sources */,
+				8781816B282A7F1A00A9AEDE /* AtomicIntegerTests.swift in Sources */,
 				87C473C92823CC8E00695047 /* ArraySafeSubscriptTests.swift in Sources */,
 				87C473C62823CBB400695047 /* ArrayCompactMapNonEmptyTests.swift in Sources */,
 				87E867EA282A5F4E00EE0BA9 /* UIScreen.DisplayCornerRadiusTests.swift in Sources */,
 				87E867A6282A3E5F00EE0BA9 /* UIFontStylingTests.swift in Sources */,
 				87E867BA282A530000EE0BA9 /* UIImageRotatedTests.swift in Sources */,
 				874F80FA2829240E003FFDDA /* StringProtocolSubscriptTests.swift in Sources */,
+				8781815D282A6F9E00A9AEDE /* EdgeInsets_LTTBTests.swift in Sources */,
 				87E76C65282A690A007A7019 /* UIViewApplyShadowTests.swift in Sources */,
 				87C473CB2823CE6300695047 /* ArrayFirstIndexAndElementTests.swift in Sources */,
 				87C473DB28251DEF00695047 /* IntRunBlockNTimesTests.swift in Sources */,
@@ -1181,11 +1238,15 @@
 				87E867E6282A5D1B00EE0BA9 /* UILabelConfigurationTests.swift in Sources */,
 				874F810328292C22003FFDDA /* NSLayoutConstraintStoringTests.swift in Sources */,
 				87C473E72825337900695047 /* StringKeepingOnlyCharsTests.swift in Sources */,
+				87818162282A7DA000A9AEDE /* EdgeInsets_TBTests.swift in Sources */,
 				87C473DF282520C600695047 /* SetToggleTests.swift in Sources */,
 				87C473E52825328700695047 /* StringIsUserDefaultsKey.swift in Sources */,
 				87E867AA282A408400EE0BA9 /* UIImage.InitWithColor.swift in Sources */,
+				87818167282A7E6300A9AEDE /* GenericStateModel_EDTests.swift in Sources */,
+				8781816D282A84E800A9AEDE /* JSONTypeCastsTests.swift in Sources */,
 				874F80FF28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift in Sources */,
 				87E867DD282A531A00EE0BA9 /* UIImage.AverageColor.swift in Sources */,
+				87818160282A7D0500A9AEDE /* EdgeInsets_LTTests.swift in Sources */,
 				87C473EB2829205200695047 /* StringUnwrappedDescribingTests.swift in Sources */,
 				874F8107282931CC003FFDDA /* NSLayoutConstraintWithPriorityTests.swift in Sources */,
 				87E867E3282A56C100EE0BA9 /* UIImageScaledTests.swift in Sources */,
@@ -1200,6 +1261,9 @@
 				87E867E0282A554D00EE0BA9 /* XCTest.XCTAssertEqualColor.swift in Sources */,
 				87818155282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift in Sources */,
 				87E867DB282A531A00EE0BA9 /* UIImage.MergeHorizontally.swift in Sources */,
+				87818164282A7DD600A9AEDE /* EdgeInsets_HVTests.swift in Sources */,
+				87818171282A8DEA00A9AEDE /* VCoreErrorTests.swift in Sources */,
+				8781816F282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift in Sources */,
 				87C473ED2829210000695047 /* StringProtocolNonEmptyTests.swift in Sources */,
 				87E867A8282A3F6800EE0BA9 /* UIImageCompressedTests.swift in Sources */,
 				87E867B7282A523700EE0BA9 /* UIImageInitWithColorTests.swift in Sources */,
