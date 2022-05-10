@@ -40,6 +40,7 @@
 		8781816D282A84E800A9AEDE /* JSONTypeCastsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781816C282A84E800A9AEDE /* JSONTypeCastsTests.swift */; };
 		8781816F282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781816E282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift */; };
 		87818171282A8DEA00A9AEDE /* VCoreErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818170282A8DEA00A9AEDE /* VCoreErrorTests.swift */; };
+		87818174282A8E8700A9AEDE /* LogicalExclusiveOrTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818173282A8E8700A9AEDE /* LogicalExclusiveOrTests.swift */; };
 		87954346281F057D00874A69 /* Date.Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954345281F057D00874A69 /* Date.Age.swift */; };
 		87954348281F0AC100874A69 /* String.KeepingOnlyChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */; };
 		8795434A281F0BA300874A69 /* String.RemovingChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954349281F0BA300874A69 /* String.RemovingChars.swift */; };
@@ -241,6 +242,7 @@
 		8781816C282A84E800A9AEDE /* JSONTypeCastsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTypeCastsTests.swift; sourceTree = "<group>"; };
 		8781816E282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KVInitializableEnumerationTests.swift; sourceTree = "<group>"; };
 		87818170282A8DEA00A9AEDE /* VCoreErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreErrorTests.swift; sourceTree = "<group>"; };
+		87818173282A8E8700A9AEDE /* LogicalExclusiveOrTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogicalExclusiveOrTests.swift; sourceTree = "<group>"; };
 		87954345281F057D00874A69 /* Date.Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Age.swift; sourceTree = "<group>"; };
 		87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.KeepingOnlyChars.swift; sourceTree = "<group>"; };
 		87954349281F0BA300874A69 /* String.RemovingChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.RemovingChars.swift; sourceTree = "<group>"; };
@@ -484,6 +486,14 @@
 			path = "Generic State Models";
 			sourceTree = "<group>";
 		};
+		87818172282A8E7D00A9AEDE /* Global Functions */ = {
+			isa = PBXGroup;
+			children = (
+				87818173282A8E8700A9AEDE /* LogicalExclusiveOrTests.swift */,
+			);
+			path = "Global Functions";
+			sourceTree = "<group>";
+		};
 		87C473C22823CB3D00695047 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +545,7 @@
 		87E867AE282A4F5800EE0BA9 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				87818172282A8E7D00A9AEDE /* Global Functions */,
 				87818159282A6F0C00A9AEDE /* Helpers */,
 				87C473C22823CB3D00695047 /* Extensions */,
 			);
@@ -1229,6 +1240,7 @@
 				87E867EA282A5F4E00EE0BA9 /* UIScreen.DisplayCornerRadiusTests.swift in Sources */,
 				87E867A6282A3E5F00EE0BA9 /* UIFontStylingTests.swift in Sources */,
 				87E867BA282A530000EE0BA9 /* UIImageRotatedTests.swift in Sources */,
+				87818174282A8E8700A9AEDE /* LogicalExclusiveOrTests.swift in Sources */,
 				874F80FA2829240E003FFDDA /* StringProtocolSubscriptTests.swift in Sources */,
 				8781815D282A6F9E00A9AEDE /* EdgeInsets_LTTBTests.swift in Sources */,
 				87E76C65282A690A007A7019 /* UIViewApplyShadowTests.swift in Sources */,
