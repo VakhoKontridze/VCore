@@ -56,7 +56,7 @@ extension UIImage {
 
 // MARK: - Image Scaling Down
 extension UIImage {
-    /// Scales `UIImage` down to specified width, if new width is smaller.
+    /// Returns `UIImage` scaled down to specified width, if new width is smaller.
     ///
     /// Usage Example:
     ///
@@ -70,7 +70,7 @@ extension UIImage {
         return scaled(toWidth: newWidth)
     }
     
-    /// Scales `UIImage` down to specified height, if new height is smaller.
+    /// Returns `UIImage` scaled down to specified height, if new height is smaller.
     ///
     /// Usage Example:
     ///
@@ -84,7 +84,7 @@ extension UIImage {
         return scaled(toHeight: newHeight)
     }
     
-    /// Scales `UIImage` down, by scaling smaller side to specified dimension.
+    /// Returns `UIImage` scaled down, by scaling smaller side to specified dimension.
     ///
     /// Usage Example:
     ///

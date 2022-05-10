@@ -23,6 +23,13 @@
 /* Begin PBXBuildFile section */
 		874F80FA2829240E003FFDDA /* StringProtocolSubscriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F80F92829240E003FFDDA /* StringProtocolSubscriptTests.swift */; };
 		874F80FC282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F80FB282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift */; };
+		874F80FF28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F80FE28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift */; };
+		874F810128292B0A003FFDDA /* CGSizeInitWithDimensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F810028292B0A003FFDDA /* CGSizeInitWithDimensionTests.swift */; };
+		874F810328292C22003FFDDA /* NSLayoutConstraintStoringTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F810228292C22003FFDDA /* NSLayoutConstraintStoringTests.swift */; };
+		874F8107282931CC003FFDDA /* NSLayoutConstraintWithPriorityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F8106282931CC003FFDDA /* NSLayoutConstraintWithPriorityTests.swift */; };
+		874F8109282940FD003FFDDA /* UIColorBlendTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F8108282940FD003FFDDA /* UIColorBlendTests.swift */; };
+		87818153282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818152282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift */; };
+		87818155282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818154282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift */; };
 		87954346281F057D00874A69 /* Date.Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954345281F057D00874A69 /* Date.Age.swift */; };
 		87954348281F0AC100874A69 /* String.KeepingOnlyChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */; };
 		8795434A281F0BA300874A69 /* String.RemovingChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954349281F0BA300874A69 /* String.RemovingChars.swift */; };
@@ -50,6 +57,23 @@
 		87C473E928291EC700695047 /* StringRemovingCharsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473E828291EC700695047 /* StringRemovingCharsTests.swift */; };
 		87C473EB2829205200695047 /* StringUnwrappedDescribingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473EA2829205200695047 /* StringUnwrappedDescribingTests.swift */; };
 		87C473ED2829210000695047 /* StringProtocolNonEmptyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473EC2829210000695047 /* StringProtocolNonEmptyTests.swift */; };
+		87E76C65282A690A007A7019 /* UIViewApplyShadowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E76C64282A690A007A7019 /* UIViewApplyShadowTests.swift */; };
+		87E867A42829435F00EE0BA9 /* UIColorRGBAValuesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867A32829435F00EE0BA9 /* UIColorRGBAValuesTests.swift */; };
+		87E867A6282A3E5F00EE0BA9 /* UIFontStylingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867A5282A3E5F00EE0BA9 /* UIFontStylingTests.swift */; };
+		87E867A8282A3F6800EE0BA9 /* UIImageCompressedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867A7282A3F6800EE0BA9 /* UIImageCompressedTests.swift */; };
+		87E867AA282A408400EE0BA9 /* UIImage.InitWithColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867A9282A408400EE0BA9 /* UIImage.InitWithColor.swift */; };
+		87E867AC282A414B00EE0BA9 /* UIImageCroppedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867AB282A414B00EE0BA9 /* UIImageCroppedTests.swift */; };
+		87E867B7282A523700EE0BA9 /* UIImageInitWithColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867B5282A521100EE0BA9 /* UIImageInitWithColorTests.swift */; };
+		87E867BA282A530000EE0BA9 /* UIImageRotatedTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867B8282A52E700EE0BA9 /* UIImageRotatedTests.swift */; };
+		87E867DB282A531A00EE0BA9 /* UIImage.MergeHorizontally.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867B1282A4FB800EE0BA9 /* UIImage.MergeHorizontally.swift */; };
+		87E867DC282A531A00EE0BA9 /* MockUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867B3282A501C00EE0BA9 /* MockUserDefaults.swift */; };
+		87E867DD282A531A00EE0BA9 /* UIImage.AverageColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867AF282A4F9200EE0BA9 /* UIImage.AverageColor.swift */; };
+		87E867E0282A554D00EE0BA9 /* XCTest.XCTAssertEqualColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867DE282A550300EE0BA9 /* XCTest.XCTAssertEqualColor.swift */; };
+		87E867E3282A56C100EE0BA9 /* UIImageScaledTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867E1282A56BB00EE0BA9 /* UIImageScaledTests.swift */; };
+		87E867E6282A5D1B00EE0BA9 /* UILabelConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867E4282A5D1600EE0BA9 /* UILabelConfigurationTests.swift */; };
+		87E867E8282A5EFA00EE0BA9 /* UINavigationBarHeightTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867E7282A5EFA00EE0BA9 /* UINavigationBarHeightTests.swift */; };
+		87E867EA282A5F4E00EE0BA9 /* UIScreen.DisplayCornerRadiusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867E9282A5F4E00EE0BA9 /* UIScreen.DisplayCornerRadiusTests.swift */; };
+		87E867EC282A609E00EE0BA9 /* UIStackViewConfigurationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E867EB282A609E00EE0BA9 /* UIStackViewConfigurationTests.swift */; };
 		OBJ_177 /* Deprecations.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_9 /* Deprecations.swift */; };
 		OBJ_178 /* Array.CompactMapNonEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_12 /* Array.CompactMapNonEmpty.swift */; };
 		OBJ_179 /* Array.SafeSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_13 /* Array.SafeSubscript.swift */; };
@@ -80,7 +104,7 @@
 		OBJ_205 /* UIApplication.AppInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_41 /* UIApplication.AppInfo.swift */; };
 		OBJ_206 /* UIApplication.AppKeyWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_42 /* UIApplication.AppKeyWindow.swift */; };
 		OBJ_207 /* UIColor.Blend.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_43 /* UIColor.Blend.swift */; };
-		OBJ_208 /* UIColor.RGBAComponents.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* UIColor.RGBAComponents.swift */; };
+		OBJ_208 /* UIColor.RGBAValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_44 /* UIColor.RGBAValues.swift */; };
 		OBJ_209 /* UIFont.Styling.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_45 /* UIFont.Styling.swift */; };
 		OBJ_210 /* UIImage.Compressed.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_46 /* UIImage.Compressed.swift */; };
 		OBJ_211 /* UIImage.Cropped.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_47 /* UIImage.Cropped.swift */; };
@@ -190,6 +214,13 @@
 /* Begin PBXFileReference section */
 		874F80F92829240E003FFDDA /* StringProtocolSubscriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocolSubscriptTests.swift; sourceTree = "<group>"; };
 		874F80FB282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponseIsSuccessHTTPStatusCodeTests.swift; sourceTree = "<group>"; };
+		874F80FE28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectToNSLayoutConstraintsTests.swift; sourceTree = "<group>"; };
+		874F810028292B0A003FFDDA /* CGSizeInitWithDimensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSizeInitWithDimensionTests.swift; sourceTree = "<group>"; };
+		874F810228292C22003FFDDA /* NSLayoutConstraintStoringTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintStoringTests.swift; sourceTree = "<group>"; };
+		874F8106282931CC003FFDDA /* NSLayoutConstraintWithPriorityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSLayoutConstraintWithPriorityTests.swift; sourceTree = "<group>"; };
+		874F8108282940FD003FFDDA /* UIColorBlendTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorBlendTests.swift; sourceTree = "<group>"; };
+		87818152282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewRoundCornersTests.swift; sourceTree = "<group>"; };
+		87818154282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerWithTabBarItemTests.swift; sourceTree = "<group>"; };
 		87954345281F057D00874A69 /* Date.Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Age.swift; sourceTree = "<group>"; };
 		87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.KeepingOnlyChars.swift; sourceTree = "<group>"; };
 		87954349281F0BA300874A69 /* String.RemovingChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.RemovingChars.swift; sourceTree = "<group>"; };
@@ -217,6 +248,23 @@
 		87C473E828291EC700695047 /* StringRemovingCharsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringRemovingCharsTests.swift; sourceTree = "<group>"; };
 		87C473EA2829205200695047 /* StringUnwrappedDescribingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringUnwrappedDescribingTests.swift; sourceTree = "<group>"; };
 		87C473EC2829210000695047 /* StringProtocolNonEmptyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocolNonEmptyTests.swift; sourceTree = "<group>"; };
+		87E76C64282A690A007A7019 /* UIViewApplyShadowTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewApplyShadowTests.swift; sourceTree = "<group>"; };
+		87E867A32829435F00EE0BA9 /* UIColorRGBAValuesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorRGBAValuesTests.swift; sourceTree = "<group>"; };
+		87E867A5282A3E5F00EE0BA9 /* UIFontStylingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontStylingTests.swift; sourceTree = "<group>"; };
+		87E867A7282A3F6800EE0BA9 /* UIImageCompressedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageCompressedTests.swift; sourceTree = "<group>"; };
+		87E867A9282A408400EE0BA9 /* UIImage.InitWithColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.InitWithColor.swift; sourceTree = "<group>"; };
+		87E867AB282A414B00EE0BA9 /* UIImageCroppedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageCroppedTests.swift; sourceTree = "<group>"; };
+		87E867AF282A4F9200EE0BA9 /* UIImage.AverageColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.AverageColor.swift; sourceTree = "<group>"; };
+		87E867B1282A4FB800EE0BA9 /* UIImage.MergeHorizontally.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.MergeHorizontally.swift; sourceTree = "<group>"; };
+		87E867B3282A501C00EE0BA9 /* MockUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserDefaults.swift; sourceTree = "<group>"; };
+		87E867B5282A521100EE0BA9 /* UIImageInitWithColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageInitWithColorTests.swift; sourceTree = "<group>"; };
+		87E867B8282A52E700EE0BA9 /* UIImageRotatedTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageRotatedTests.swift; sourceTree = "<group>"; };
+		87E867DE282A550300EE0BA9 /* XCTest.XCTAssertEqualColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTest.XCTAssertEqualColor.swift; sourceTree = "<group>"; };
+		87E867E1282A56BB00EE0BA9 /* UIImageScaledTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageScaledTests.swift; sourceTree = "<group>"; };
+		87E867E4282A5D1600EE0BA9 /* UILabelConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelConfigurationTests.swift; sourceTree = "<group>"; };
+		87E867E7282A5EFA00EE0BA9 /* UINavigationBarHeightTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarHeightTests.swift; sourceTree = "<group>"; };
+		87E867E9282A5F4E00EE0BA9 /* UIScreen.DisplayCornerRadiusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIScreen.DisplayCornerRadiusTests.swift; sourceTree = "<group>"; };
+		87E867EB282A609E00EE0BA9 /* UIStackViewConfigurationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIStackViewConfigurationTests.swift; sourceTree = "<group>"; };
 		OBJ_100 /* JSONRequestHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONRequestHeaders.swift; sourceTree = "<group>"; };
 		OBJ_101 /* MultiPartFormDataAuthorizedRequestHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataAuthorizedRequestHeaders.swift; sourceTree = "<group>"; };
 		OBJ_102 /* MultiPartFormDataRequestHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataRequestHeaders.swift; sourceTree = "<group>"; };
@@ -290,7 +338,7 @@
 		OBJ_41 /* UIApplication.AppInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.AppInfo.swift; sourceTree = "<group>"; };
 		OBJ_42 /* UIApplication.AppKeyWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplication.AppKeyWindow.swift; sourceTree = "<group>"; };
 		OBJ_43 /* UIColor.Blend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.Blend.swift; sourceTree = "<group>"; };
-		OBJ_44 /* UIColor.RGBAComponents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.RGBAComponents.swift; sourceTree = "<group>"; };
+		OBJ_44 /* UIColor.RGBAValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColor.RGBAValues.swift; sourceTree = "<group>"; };
 		OBJ_45 /* UIFont.Styling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFont.Styling.swift; sourceTree = "<group>"; };
 		OBJ_46 /* UIImage.Compressed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Compressed.swift; sourceTree = "<group>"; };
 		OBJ_47 /* UIImage.Cropped.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.Cropped.swift; sourceTree = "<group>"; };
@@ -357,10 +405,37 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		874F80FD2829285D003FFDDA /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				874F80FE28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift */,
+				874F810028292B0A003FFDDA /* CGSizeInitWithDimensionTests.swift */,
+				874F810228292C22003FFDDA /* NSLayoutConstraintStoringTests.swift */,
+				874F8106282931CC003FFDDA /* NSLayoutConstraintWithPriorityTests.swift */,
+				874F8108282940FD003FFDDA /* UIColorBlendTests.swift */,
+				87E867A32829435F00EE0BA9 /* UIColorRGBAValuesTests.swift */,
+				87E867A5282A3E5F00EE0BA9 /* UIFontStylingTests.swift */,
+				87E867A7282A3F6800EE0BA9 /* UIImageCompressedTests.swift */,
+				87E867AB282A414B00EE0BA9 /* UIImageCroppedTests.swift */,
+				87E867B5282A521100EE0BA9 /* UIImageInitWithColorTests.swift */,
+				87E867B8282A52E700EE0BA9 /* UIImageRotatedTests.swift */,
+				87E867E1282A56BB00EE0BA9 /* UIImageScaledTests.swift */,
+				87E867E4282A5D1600EE0BA9 /* UILabelConfigurationTests.swift */,
+				87E867E7282A5EFA00EE0BA9 /* UINavigationBarHeightTests.swift */,
+				87E867E9282A5F4E00EE0BA9 /* UIScreen.DisplayCornerRadiusTests.swift */,
+				87E867EB282A609E00EE0BA9 /* UIStackViewConfigurationTests.swift */,
+				87E76C64282A690A007A7019 /* UIViewApplyShadowTests.swift */,
+				87818152282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift */,
+				87818154282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		87C473C22823CB3D00695047 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
 				87C473C32823CB4200695047 /* Foundation */,
+				874F80FD2829285D003FFDDA /* UIKit */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -391,6 +466,25 @@
 				874F80FB282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift */,
 			);
 			path = Foundation;
+			sourceTree = "<group>";
+		};
+		87E867AD282A4F4A00EE0BA9 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				87E867B3282A501C00EE0BA9 /* MockUserDefaults.swift */,
+				87E867AF282A4F9200EE0BA9 /* UIImage.AverageColor.swift */,
+				87E867B1282A4FB800EE0BA9 /* UIImage.MergeHorizontally.swift */,
+				87E867DE282A550300EE0BA9 /* XCTest.XCTAssertEqualColor.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		87E867AE282A4F5800EE0BA9 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				87C473C22823CB3D00695047 /* Extensions */,
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		OBJ_10 /* Extensions */ = {
@@ -604,7 +698,8 @@
 		OBJ_161 /* VCoreTests */ = {
 			isa = PBXGroup;
 			children = (
-				87C473C22823CB3D00695047 /* Extensions */,
+				87E867AE282A4F5800EE0BA9 /* Tests */,
+				87E867AD282A4F4A00EE0BA9 /* Helpers */,
 			);
 			name = VCoreTests;
 			path = Tests/VCoreTests;
@@ -643,13 +738,14 @@
 				OBJ_41 /* UIApplication.AppInfo.swift */,
 				OBJ_42 /* UIApplication.AppKeyWindow.swift */,
 				OBJ_43 /* UIColor.Blend.swift */,
-				OBJ_44 /* UIColor.RGBAComponents.swift */,
+				OBJ_44 /* UIColor.RGBAValues.swift */,
 				87954351281F18F600874A69 /* UIDevice.HasNotch.swift */,
 				8795434F281F185D00874A69 /* UIDevice.IsSimulator.swift */,
 				OBJ_60 /* UIDevice.SafeAreas.swift */,
 				OBJ_45 /* UIFont.Styling.swift */,
 				OBJ_46 /* UIImage.Compressed.swift */,
 				OBJ_47 /* UIImage.Cropped.swift */,
+				87E867A9282A408400EE0BA9 /* UIImage.InitWithColor.swift */,
 				OBJ_48 /* UIImage.Rotated.swift */,
 				OBJ_49 /* UIImage.Scaled.swift */,
 				OBJ_50 /* UILabel.Configuration.swift */,
@@ -958,7 +1054,7 @@
 				OBJ_205 /* UIApplication.AppInfo.swift in Sources */,
 				OBJ_206 /* UIApplication.AppKeyWindow.swift in Sources */,
 				OBJ_207 /* UIColor.Blend.swift in Sources */,
-				OBJ_208 /* UIColor.RGBAComponents.swift in Sources */,
+				OBJ_208 /* UIColor.RGBAValues.swift in Sources */,
 				OBJ_209 /* UIFont.Styling.swift in Sources */,
 				OBJ_210 /* UIImage.Compressed.swift in Sources */,
 				OBJ_211 /* UIImage.Cropped.swift in Sources */,
@@ -1067,22 +1163,46 @@
 				87C473E928291EC700695047 /* StringRemovingCharsTests.swift in Sources */,
 				87C473D52825187500695047 /* DateComponentTests.swift in Sources */,
 				87C473CF2823D4F000695047 /* ClosedRangeRangeTests.swift in Sources */,
+				87E867AC282A414B00EE0BA9 /* UIImageCroppedTests.swift in Sources */,
 				87C473D12823D61700695047 /* CollectionEnumeratedArrayTests.swift in Sources */,
+				874F810128292B0A003FFDDA /* CGSizeInitWithDimensionTests.swift in Sources */,
 				87C473D928251C4F00695047 /* FloatingPointRoundedWithStepTests.swift in Sources */,
 				87C473D32825148400695047 /* DateAgeTests.swift in Sources */,
 				87C473C92823CC8E00695047 /* ArraySafeSubscriptTests.swift in Sources */,
 				87C473C62823CBB400695047 /* ArrayCompactMapNonEmptyTests.swift in Sources */,
+				87E867EA282A5F4E00EE0BA9 /* UIScreen.DisplayCornerRadiusTests.swift in Sources */,
+				87E867A6282A3E5F00EE0BA9 /* UIFontStylingTests.swift in Sources */,
+				87E867BA282A530000EE0BA9 /* UIImageRotatedTests.swift in Sources */,
 				874F80FA2829240E003FFDDA /* StringProtocolSubscriptTests.swift in Sources */,
+				87E76C65282A690A007A7019 /* UIViewApplyShadowTests.swift in Sources */,
 				87C473CB2823CE6300695047 /* ArrayFirstIndexAndElementTests.swift in Sources */,
 				87C473DB28251DEF00695047 /* IntRunBlockNTimesTests.swift in Sources */,
+				87E867A42829435F00EE0BA9 /* UIColorRGBAValuesTests.swift in Sources */,
+				87E867E6282A5D1B00EE0BA9 /* UILabelConfigurationTests.swift in Sources */,
+				874F810328292C22003FFDDA /* NSLayoutConstraintStoringTests.swift in Sources */,
 				87C473E72825337900695047 /* StringKeepingOnlyCharsTests.swift in Sources */,
 				87C473DF282520C600695047 /* SetToggleTests.swift in Sources */,
 				87C473E52825328700695047 /* StringIsUserDefaultsKey.swift in Sources */,
+				87E867AA282A408400EE0BA9 /* UIImage.InitWithColor.swift in Sources */,
+				874F80FF28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift in Sources */,
+				87E867DD282A531A00EE0BA9 /* UIImage.AverageColor.swift in Sources */,
 				87C473EB2829205200695047 /* StringUnwrappedDescribingTests.swift in Sources */,
+				874F8107282931CC003FFDDA /* NSLayoutConstraintWithPriorityTests.swift in Sources */,
+				87E867E3282A56C100EE0BA9 /* UIImageScaledTests.swift in Sources */,
+				874F8109282940FD003FFDDA /* UIColorBlendTests.swift in Sources */,
+				87E867EC282A609E00EE0BA9 /* UIStackViewConfigurationTests.swift in Sources */,
+				87E867E8282A5EFA00EE0BA9 /* UINavigationBarHeightTests.swift in Sources */,
 				87C473D72825191200695047 /* FloatingPointClampedInRangeTests.swift in Sources */,
+				87E867DC282A531A00EE0BA9 /* MockUserDefaults.swift in Sources */,
 				87C473E1282521EB00695047 /* SequenceConditionalGroupingTests.swift in Sources */,
 				87C473CD2823CFD700695047 /* CalendarNumberOfDaysInMonthTests.swift in Sources */,
+				87818153282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift in Sources */,
+				87E867E0282A554D00EE0BA9 /* XCTest.XCTAssertEqualColor.swift in Sources */,
+				87818155282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift in Sources */,
+				87E867DB282A531A00EE0BA9 /* UIImage.MergeHorizontally.swift in Sources */,
 				87C473ED2829210000695047 /* StringProtocolNonEmptyTests.swift in Sources */,
+				87E867A8282A3F6800EE0BA9 /* UIImageCompressedTests.swift in Sources */,
+				87E867B7282A523700EE0BA9 /* UIImageInitWithColorTests.swift in Sources */,
 				87C473E32825309000695047 /* SequenceKeyPathSortTests.swift in Sources */,
 				874F80FC282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift in Sources */,
 			);

@@ -13,6 +13,8 @@ final class SequenceConditionalGroupingTests: XCTestCase {
     private struct Student: Equatable {
         let name: String
         var firstChar: Character { name.first! }
+        
+        init(_ name: String) { self.name = name }
     }
     
     func testGroupingComparison() {
@@ -25,8 +27,8 @@ final class SequenceConditionalGroupingTests: XCTestCase {
     }
     
     func testGroupingKeyPath() {
-        let input: [Student] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].map { .init(name: $0) }
-        let output: [[Student]] = [[.init(name: "Kofi"), .init(name: "Kweku")], [.init(name: "Abena"), .init(name: "Akosua")], [.init(name: "Efua")]]
+        let input: [Student] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].map { .init($0) }
+        let output: [[Student]] = [[.init("Kofi"), .init("Kweku")], [.init("Abena"), .init("Akosua")], [.init("Efua")]]
 
         let result: [[Student]] = input.grouped(by: \.firstChar)
         

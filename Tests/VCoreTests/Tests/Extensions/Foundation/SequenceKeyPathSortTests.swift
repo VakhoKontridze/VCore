@@ -12,9 +12,11 @@ import XCTest
 final class SequenceKeyPathSortTests: XCTestCase {
     private struct City: Equatable {
         let name: String
+        
+        init(_ name: String) { self.name = name }
     }
     
-    private let input: [City] = ["London", "Paris", "New York"].map { .init(name: $0) }
+    private let input: [City] = ["London", "Paris", "New York"].map { .init($0) }
     private var output: [City] { input.sorted(by: { $0.name < $1.name }) }
     
     func testSort() {
@@ -24,8 +26,6 @@ final class SequenceKeyPathSortTests: XCTestCase {
     }
     
     func testSorted() {
-        let result: [City] = input.sorted(by: \.name)
-        
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(input.sorted(by: \.name), output)
     }
 }

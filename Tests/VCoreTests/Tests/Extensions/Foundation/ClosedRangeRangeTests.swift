@@ -11,11 +11,6 @@ import XCTest
 // MARK: - Tests
 final class ClosedRangeRangeTests: XCTestCase {
     func test() {
-        let input: ClosedRange<Int> = 3...10
-        let output: Int = 7
-        
-        let result: Int = input.range
-        
-        XCTAssertEqual(result, output)
+        XCTAssertEqual((3...10).range, 7)
     }
 }

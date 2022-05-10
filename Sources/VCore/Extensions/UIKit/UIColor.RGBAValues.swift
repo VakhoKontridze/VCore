@@ -1,5 +1,5 @@
 //
-//  UIColor.RGBAComponents.swift
+//  UIColor.RGBAValues.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/8/21.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - RGBA Components
+// MARK: - RGBA Values
 extension UIColor {
     /// RGBA values of `UIColor`.
     ///
@@ -56,6 +56,25 @@ extension UIColor {
             blue: .init(values.blue * 255),
             alpha: values.alpha
         )
+    }
+    
+    /// Indicates if two color are RGBA equivalent.
+    ///
+    /// Comparison is made to each color component.
+    ///
+    /// Usage Example:
+    ///
+    ///     let color1: UIColor = .red
+    ///     let color2: UIColor = .red
+    ///     let isEqual: Bool = color1.isRGBAEqual(to: color2) // true
+    ///
+    public func isRGBAEqual(to otherColor: UIColor) -> Bool {
+        let lhs = self.rgbaValues
+        let rhs = otherColor.rgbaValues
+        
+        return
+            (lhs.red, lhs.green, lhs.blue, lhs.alpha) ==
+            (rhs.red, rhs.green, rhs.blue, rhs.alpha)
     }
 }
 

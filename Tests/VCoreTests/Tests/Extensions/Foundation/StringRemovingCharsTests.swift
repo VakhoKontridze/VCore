@@ -14,9 +14,7 @@ final class StringRemovingCharsTests: XCTestCase {
     private let output: String = "0123456789"
     
     func testRemoving() {
-        let result: String = input.removing(.symbols)
-        
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(input.removing(.symbols), output)
     }
     
     func testRemove() {

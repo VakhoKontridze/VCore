@@ -25,7 +25,7 @@ extension CGRect {
     ///
     /// Usage Example:
     ///
-    ///     let constant: CGFloag = rect.trailingConstraintConstant(in: view.width)
+    ///     let constant: CGFloag = rect.trailingConstraintConstant(in: view.frame.width)
     ///
     public func trailingConstraintConstant(in width: CGFloat) -> CGFloat {
         width - size.width - origin.x
@@ -45,7 +45,7 @@ extension CGRect {
     ///
     /// Usage Example:
     ///
-    ///     let constant: CGFloag = rect.bottomConstraintConstant(in: view.height)
+    ///     let constant: CGFloag = rect.bottomConstraintConstant(in: view.frame.height)
     ///
     public func bottomConstraintConstant(in height: CGFloat) -> CGFloat {
         height - size.height - origin.y

@@ -34,7 +34,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .frame(size: .init(width: 100, height: 100))
+    ///             .frame(size: .init(dimension: 100))
     ///     }
     ///
     public func frame(
