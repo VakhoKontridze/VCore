@@ -13,7 +13,7 @@ import XCTest
 // MARK: - Tests
 final class UIImageCompressedTests: XCTestCase {
     func test() {
-        let image: UIImage = .init(color: .red, size: .init(dimension: 100))!
+        let image: UIImage = .init(size: .init(dimension: 100), color: .red)!
         let compressedImage: UIImage = image.compressed(quality: 0.75)!
         
         let imageData: Data = image.jpegData(compressionQuality: 1)!

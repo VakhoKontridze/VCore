@@ -13,7 +13,7 @@ import XCTest
 // MARK: - Tests
 final class UIImageCroppedTests: XCTestCase {
     func testSingleColorCroppedToRect() {
-        let image: UIImage = .init(color: .red, size: .init(dimension: 100))!
+        let image: UIImage = .init(size: .init(dimension: 100), color: .red)!
         
         let croppedImage: UIImage = image.cropped(to: .init(
             origin: .init(x: 25, y: 25),
@@ -24,7 +24,7 @@ final class UIImageCroppedTests: XCTestCase {
     }
     
     func testSingleColorCroppedToSize() {
-        let image: UIImage = .init(color: .red, size: .init(dimension: 100))!
+        let image: UIImage = .init(size: .init(dimension: 100), color: .red)!
         
         let croppedImage: UIImage = image.cropped(to: .init(dimension: 50))
         
@@ -32,9 +32,9 @@ final class UIImageCroppedTests: XCTestCase {
     }
     
     func testMultiColorCroppedToRect() {
-        let image1: UIImage = .init(color: .red, size: .init(dimension: 100))!
+        let image1: UIImage = .init(size: .init(dimension: 100), color: .red)!
         
-        let image2: UIImage = .init(color: .blue, size: .init(dimension: 100))!
+        let image2: UIImage = .init(size: .init(dimension: 100), color: .blue)!
         
         let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)!
         

@@ -13,9 +13,9 @@ import XCTest
 // MARK: - Tests
 final class UIImageRotatedTests: XCTestCase { // Not testing helper methods
     func test() {
-        let image1: UIImage = .init(color: .red, size: .init(dimension: 100))!
+        let image1: UIImage = .init(size: .init(dimension: 100), color: .red)!
         
-        let image2: UIImage = .init(color: .blue, size: .init(dimension: 100))!
+        let image2: UIImage = .init(size: .init(dimension: 100), color: .blue)!
         
         let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)!
         
