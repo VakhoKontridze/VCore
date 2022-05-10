@@ -15,8 +15,8 @@ extension UIFont {
     ///
     /// Usage Example:
     ///
-    ///     let systemFont: UIFont? = .systemFont(ofSize: 13)
-    ///     let boldSystemFont: UIFont? = systemFont.withBoldStyling
+    ///     let systemFont: UIFont = .systemFont(ofSize: 13)
+    ///     let boldSystemFont: UIFont = systemFont.withBoldStyling
     ///
     public var withBoldStyling: UIFont? {
         fontDescriptor.withSymbolicTraits(.traitBold).map { .init(descriptor: $0, size: 0) }
@@ -26,8 +26,8 @@ extension UIFont {
     ///
     /// Usage Example:
     ///
-    ///     let systemFont: UIFont? = .systemFont(ofSize: 13)
-    ///     let italicSystemFont: UIFont? = systemFont.withItalicStyling
+    ///     let systemFont: UIFont = .systemFont(ofSize: 13)
+    ///     let italicSystemFont: UIFont = systemFont.withItalicStyling
     ///
     public var withItalicStyling: UIFont? {
         fontDescriptor.withSymbolicTraits(.traitItalic).map { .init(descriptor: $0, size: 0) }

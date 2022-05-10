@@ -30,7 +30,7 @@ public struct DigitalTimeFormatter {
     public var delimiter: String = ":"
     
     // MARK: Initializers
-    /// Initialzies `DigitalTimeFormatter`.
+    /// Initializes `DigitalTimeFormatter`.
     public init() {}
 
     // MARK: Formatting

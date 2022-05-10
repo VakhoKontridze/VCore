@@ -6,6 +6,7 @@ General
 
 - Project is migrated from `XCFramework` to `Swift Package`
 - Project now partially supports `macOS`, `tvOS`, and `watchOS`
+- Project is now covered under unit tests
 
 Network Client
 

@@ -24,24 +24,18 @@ final class FloatingPointRoundedWithStepTests: XCTestCase {
     private let output3: Double = 10
     
     func testRounded() {
-        let result1 = input1.rounded(range: range, step: step)
-        XCTAssertEqual(result1, output1)
-        
-        let result2 = input2.rounded(range: range, step: step)
-        XCTAssertEqual(result2, output2)
-        
-        let result3 = input3.rounded(range: range, step: step)
-        XCTAssertEqual(result3, output3)
+        XCTAssertEqual(input1.rounded(range: range, step: step), output1)
+        XCTAssertEqual(input2.rounded(range: range, step: step), output2)
+        XCTAssertEqual(input3.rounded(range: range, step: step), output3)
     }
     
     func testRound() {
         var result1 = input1; result1.round(range: range, step: step)
-        XCTAssertEqual(result1, output1)
-        
         var result2 = input2; result2.round(range: range, step: step)
-        XCTAssertEqual(result2, output2)
-        
         var result3 = input3; result3.round(range: range, step: step)
+        
+        XCTAssertEqual(result1, output1)
+        XCTAssertEqual(result2, output2)
         XCTAssertEqual(result3, output3)
     }
 }

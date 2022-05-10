@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Image Rotation
 extension UIImage {
-    /// Rotates `UIImage` by angle.
+    /// Returns `UIImage` rotated by angle.
     ///
     /// Usage Example:
     ///

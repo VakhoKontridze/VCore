@@ -14,9 +14,7 @@ final class StringKeepingOnlyCharsTests: XCTestCase {
     private let output: String = "0123456789"
     
     func testKeeping() {
-        let result: String = input.keeping(only: .decimalDigits)
-        
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(input.keeping(only: .decimalDigits), output)
     }
     
     func testKeep() {

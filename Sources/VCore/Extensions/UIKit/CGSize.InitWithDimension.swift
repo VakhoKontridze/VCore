@@ -9,7 +9,7 @@ import CoreGraphics
 
 // MARK: - Init Size with Dimension
 extension CGSize {
-    /// Initialzies `CGSize` with dimension.
+    /// Initializes `CGSize` with dimension.
     ///
     /// Usage Example:
     ///

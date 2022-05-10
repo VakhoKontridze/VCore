@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Image Crop
 extension UIImage {
-    /// Cropps `UIImage` with specified rect.
+    /// Retusn `UIImage` cropped with rect.
     ///
     /// Usage Example:
     ///
@@ -39,7 +39,7 @@ extension UIImage {
         )
     }
     
-    /// Cropps `UIImage` with specified size starting at the origin.
+    /// Returns `UIImage`cropped with size starting at the origin.
     ///
     /// Usage Example:
     ///
