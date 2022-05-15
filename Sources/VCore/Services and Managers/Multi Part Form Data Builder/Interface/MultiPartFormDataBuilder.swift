@@ -41,13 +41,12 @@ import Foundation
 ///
 ///         request.method = .POST
 ///
-///         try request.addHeaders([
-///             "Accept": "application/json",
-///             "Content-Type": "multipart/form-data; boundary=\(boundary)",
-///             "Authorization": "Bearer \("sometoken")"
-///         ])
+///         try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
+///             boundary: boundary,
+///             token: "sometoken"
+///         ))
 ///
-///         request.addBody(data)
+///         request.addBody(data: data)
 ///
 ///         let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 ///

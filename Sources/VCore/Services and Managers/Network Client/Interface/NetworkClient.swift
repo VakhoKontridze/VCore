@@ -414,9 +414,12 @@ public final class NetworkClient {
                         guard (error as NSError).domain == NSURLErrorDomain else { return NetworkError.returnedWithError }
                         
                         switch (error as NSError).code {
-                        case NSURLErrorTimedOut: return NetworkError.requestTimedOut
                         case NSURLErrorNetworkConnectionLost: return NetworkError.notConnectedToNetwork
                         case NSURLErrorNotConnectedToInternet: return NetworkError.notConnectedToNetwork
+                        case NSURLErrorCannotFindHost: return NetworkError.invalidEndpoint
+                        case NSURLErrorBadURL: return NetworkError.invalidEndpoint
+                        case NSURLErrorUnsupportedURL: return NetworkError.invalidEndpoint
+                        case NSURLErrorTimedOut: return NetworkError.requestTimedOut
                         default: return NetworkError.returnedWithError
                         }
                     }()))
