@@ -14,7 +14,7 @@ final class StringUnwrappedDescribingTests: XCTestCase {
         let num: Int? = 5
         
         XCTAssertEqual(
-            .init(unwrappedDescribing: num)!,
+            .init(unwrappedDescribing: num)!, // fatalError
             "5"
         )
     }
