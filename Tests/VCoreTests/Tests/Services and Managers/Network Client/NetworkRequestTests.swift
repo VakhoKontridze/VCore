@@ -29,7 +29,7 @@ final class NetworkRequestTests: XCTestCase {
     }
     
     func testInitURL() {
-        let request: NetworkRequest = .init(url: URL(string: url)!)
+        let request: NetworkRequest = .init(url: URL(string: url)!) // fatalError
         
         XCTAssertEqual(request.url, url)
     }
@@ -129,14 +129,14 @@ final class NetworkRequestTests: XCTestCase {
     func testBodyStacking() {
         do {
             var request: NetworkRequest = .init(url: url)
-            request.addBody(data: "[\"".data(using: .utf8)!)
+            request.addBody(data: "[\"".data(using: .utf8)!) // fatalError
             try request.addBody(json: ["key1": "value1"])
-            request.addBody(data: ",".data(using: .utf8)!)
+            request.addBody(data: ",".data(using: .utf8)!) // fatalError
             try request.addBody(json: ["key2": "value2"])
-            request.addBody(data: "\"]".data(using: .utf8)!)
+            request.addBody(data: "\"]".data(using: .utf8)!) // fatalError
 
             XCTAssertEqual(
-                .init(data: request.body, encoding: .utf8)!,
+                .init(data: request.body, encoding: .utf8)!, // fatalError
                 """
                 ["{"key1":"value1"},{"key2":"value2"}"]
                 """
@@ -148,7 +148,7 @@ final class NetworkRequestTests: XCTestCase {
     }
     
     func testBodyData() {
-        let data: Data = UIImage(size: .init(dimension: 100), color: .red)!.pngData()!
+        let data: Data = UIImage(size: .init(dimension: 100), color: .red)!.pngData()! // fatalError
         
         var request: NetworkRequest = .init(url: url)
         request.addBody(data: data)

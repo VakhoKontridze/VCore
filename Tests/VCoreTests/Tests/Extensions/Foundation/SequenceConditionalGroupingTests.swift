@@ -12,7 +12,7 @@ import XCTest
 final class SequenceConditionalGroupingTests: XCTestCase {
     private struct Student: Equatable {
         let name: String
-        var firstChar: Character { name.first! }
+        var firstChar: Character { name.first! } // fatalError
         
         init(_ name: String) { self.name = name }
     }

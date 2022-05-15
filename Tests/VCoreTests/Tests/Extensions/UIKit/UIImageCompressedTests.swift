@@ -13,11 +13,11 @@ import XCTest
 // MARK: - Tests
 final class UIImageCompressedTests: XCTestCase {
     func test() {
-        let image: UIImage = .init(size: .init(dimension: 100), color: .red)!
-        let compressedImage: UIImage = image.compressed(quality: 0.75)!
+        let image: UIImage = .init(size: .init(dimension: 100), color: .red)! // fatalError
+        let compressedImage: UIImage = image.compressed(quality: 0.75)! // fatalError
         
-        let imageData: Data = image.jpegData(compressionQuality: 1)!
-        let compressedImageData: Data = compressedImage.jpegData(compressionQuality: 1)!
+        let imageData: Data = image.jpegData(compressionQuality: 1)! // fatalError
+        let compressedImageData: Data = compressedImage.jpegData(compressionQuality: 1)! // fatalError
         
         XCTAssertLessThan(compressedImageData.count, imageData.count)
     }
