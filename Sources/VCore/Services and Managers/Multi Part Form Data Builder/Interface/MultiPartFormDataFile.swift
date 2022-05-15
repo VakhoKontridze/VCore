@@ -50,11 +50,11 @@ public protocol AnyMultiPartFormFile {}
 
 extension MultiPartFormDataFile: AnyMultiPartFormFile {}
 
-extension Dictionary: AnyMultiPartFormFile where Key == String, Value == Optional<AnyMultiPartFormFile> {}
+extension Optional: AnyMultiPartFormFile where Wrapped == AnyMultiPartFormFile {}
 
 extension Array: AnyMultiPartFormFile where Element == Optional<AnyMultiPartFormFile> {}
 
-extension Optional: AnyMultiPartFormFile where Wrapped == AnyMultiPartFormFile {}
+extension Dictionary: AnyMultiPartFormFile where Key == String, Value == Optional<AnyMultiPartFormFile> {}
  
 // MARK: - Mutli Part Form Data File
 /// Building block of objects conforming to `AnyMultiPartFormFile`.
@@ -104,7 +104,10 @@ struct _MultiPartFormDataFile {
         self.filename = {
             if let fileName: String = file.filename {
                 return fileName
-            } else if let fileExtension: String = file.mimeType.components(separatedBy: "/").last {
+            } else if
+                let fileExtension: String = file.mimeType.components(separatedBy: "/").last,
+                !fileExtension.isEmpty
+            {
                 return "\(name).\(fileExtension)"
             } else {
                 return name

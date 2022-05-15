@@ -50,6 +50,9 @@
 		87818187282AAE0300A9AEDE /* Sequence.IsUnique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818186282AAE0300A9AEDE /* Sequence.IsUnique.swift */; };
 		87818189282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818188282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift */; };
 		8781818B282AB12600A9AEDE /* NetworkResponseProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781818A282AB12600A9AEDE /* NetworkResponseProcessorTests.swift */; };
+		8781819128311BC000A9AEDE /* MultiPartFormDataErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781818D28311B4800A9AEDE /* MultiPartFormDataErrorTests.swift */; };
+		8781819228311BC500A9AEDE /* MultiPartFormDataFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781818F28311BBC00A9AEDE /* MultiPartFormDataFileTests.swift */; };
+		878181952831265000A9AEDE /* MultiPartFormDataBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181932831264100A9AEDE /* MultiPartFormDataBuilderTests.swift */; };
 		87954346281F057D00874A69 /* Date.Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954345281F057D00874A69 /* Date.Age.swift */; };
 		87954348281F0AC100874A69 /* String.KeepingOnlyChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */; };
 		8795434A281F0BA300874A69 /* String.RemovingChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954349281F0BA300874A69 /* String.RemovingChars.swift */; };
@@ -261,6 +264,9 @@
 		87818186282AAE0300A9AEDE /* Sequence.IsUnique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.IsUnique.swift; sourceTree = "<group>"; };
 		87818188282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceIsUniqueTests.swift; sourceTree = "<group>"; };
 		8781818A282AB12600A9AEDE /* NetworkResponseProcessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponseProcessorTests.swift; sourceTree = "<group>"; };
+		8781818D28311B4800A9AEDE /* MultiPartFormDataErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataErrorTests.swift; sourceTree = "<group>"; };
+		8781818F28311BBC00A9AEDE /* MultiPartFormDataFileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataFileTests.swift; sourceTree = "<group>"; };
+		878181932831264100A9AEDE /* MultiPartFormDataBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilderTests.swift; sourceTree = "<group>"; };
 		87954345281F057D00874A69 /* Date.Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Age.swift; sourceTree = "<group>"; };
 		87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.KeepingOnlyChars.swift; sourceTree = "<group>"; };
 		87954349281F0BA300874A69 /* String.RemovingChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.RemovingChars.swift; sourceTree = "<group>"; };
@@ -516,6 +522,7 @@
 			isa = PBXGroup;
 			children = (
 				87818176282A8F3F00A9AEDE /* Network Client */,
+				8781818C28311B3300A9AEDE /* Multi Part Form Data Builder */,
 			);
 			path = "Services and Managers";
 			sourceTree = "<group>";
@@ -530,6 +537,16 @@
 				8781818A282AB12600A9AEDE /* NetworkResponseProcessorTests.swift */,
 			);
 			path = "Network Client";
+			sourceTree = "<group>";
+		};
+		8781818C28311B3300A9AEDE /* Multi Part Form Data Builder */ = {
+			isa = PBXGroup;
+			children = (
+				878181932831264100A9AEDE /* MultiPartFormDataBuilderTests.swift */,
+				8781818F28311BBC00A9AEDE /* MultiPartFormDataFileTests.swift */,
+				8781818D28311B4800A9AEDE /* MultiPartFormDataErrorTests.swift */,
+			);
+			path = "Multi Part Form Data Builder";
 			sourceTree = "<group>";
 		};
 		87C473C22823CB3D00695047 /* Extensions */ = {
@@ -1256,6 +1273,7 @@
 				87C473D52825187500695047 /* DateComponentTests.swift in Sources */,
 				87818183282AAD4500A9AEDE /* ArrayRemovingDuplicatesTests.swift in Sources */,
 				87C473CF2823D4F000695047 /* ClosedRangeRangeTests.swift in Sources */,
+				878181952831265000A9AEDE /* MultiPartFormDataBuilderTests.swift in Sources */,
 				87818181282AAC4400A9AEDE /* Array.RemovingDuplicates.swift in Sources */,
 				87E867AC282A414B00EE0BA9 /* UIImageCroppedTests.swift in Sources */,
 				87C473D12823D61700695047 /* CollectionEnumeratedArrayTests.swift in Sources */,
@@ -1279,6 +1297,7 @@
 				87C473DB28251DEF00695047 /* IntRunBlockNTimesTests.swift in Sources */,
 				87E867A42829435F00EE0BA9 /* UIColorRGBAValuesTests.swift in Sources */,
 				87E867E6282A5D1B00EE0BA9 /* UILabelConfigurationTests.swift in Sources */,
+				8781819128311BC000A9AEDE /* MultiPartFormDataErrorTests.swift in Sources */,
 				874F810328292C22003FFDDA /* NSLayoutConstraintStoringTests.swift in Sources */,
 				87C473E72825337900695047 /* StringKeepingOnlyCharsTests.swift in Sources */,
 				87818162282A7DA000A9AEDE /* EdgeInsets_TBTests.swift in Sources */,
@@ -1295,6 +1314,7 @@
 				87C473EB2829205200695047 /* StringUnwrappedDescribingTests.swift in Sources */,
 				874F8107282931CC003FFDDA /* NSLayoutConstraintWithPriorityTests.swift in Sources */,
 				87E867E3282A56C100EE0BA9 /* UIImageScaledTests.swift in Sources */,
+				8781819228311BC500A9AEDE /* MultiPartFormDataFileTests.swift in Sources */,
 				874F8109282940FD003FFDDA /* UIColorBlendTests.swift in Sources */,
 				87E867EC282A609E00EE0BA9 /* UIStackViewConfigurationTests.swift in Sources */,
 				87E867E8282A5EFA00EE0BA9 /* UINavigationBarHeightTests.swift in Sources */,
