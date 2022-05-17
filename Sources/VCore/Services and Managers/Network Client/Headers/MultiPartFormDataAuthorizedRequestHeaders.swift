@@ -36,7 +36,7 @@ public struct MultiPartFormDataAuthorizedRequestHeaders: Encodable {
         case authorization = "Authorization"
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container: KeyedEncodingContainer<CodingKeys> = encoder.container(keyedBy: CodingKeys.self)
         
         try container.encode(accept, forKey: .accept)
