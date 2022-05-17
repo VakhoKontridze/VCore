@@ -10,6 +10,7 @@ import XCTest
 
 // MARK: - Tests
 final class KVInitializableEnumerationTests: XCTestCase {
+    // MARK: Test Data
     private enum SomeEnum: KVInitializableEnumeration {
         case first
         case second
@@ -22,6 +23,7 @@ final class KVInitializableEnumerationTests: XCTestCase {
         }
     }
 
+    // MARK: Tests
     func test() {
         XCTAssertNil(SomeEnum.aCase(key: \.someProperty, value: 0))
         XCTAssertEqual(SomeEnum.aCase(key: \.someProperty, value: 1), .first)

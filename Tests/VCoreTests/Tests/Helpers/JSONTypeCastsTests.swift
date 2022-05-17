@@ -10,6 +10,7 @@ import XCTest
 
 // MARK: - Tests
 final class JSONTypeCastsTests: XCTestCase {
+    // MARK: Test Data
     private let json: [String: Any?] = ["key": "value"]
     private let jsonArray: [[String: Any?]] = [["key": "value"]]
     
@@ -20,6 +21,7 @@ final class JSONTypeCastsTests: XCTestCase {
     private let char: Character = "1"
     private let string: String = "10"
     
+    // MARK: Tests
     func testJSONCast() {
         XCTAssertEqual(
             (json as Any?).toJSON?["key"]?.toString,

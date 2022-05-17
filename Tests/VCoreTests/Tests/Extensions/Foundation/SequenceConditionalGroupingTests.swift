@@ -10,6 +10,7 @@ import XCTest
 
 // MARK: - Tests
 final class SequenceConditionalGroupingTests: XCTestCase {
+    // MARK: Test Data
     private struct Student: Equatable {
         let name: String
         var firstChar: Character { name.first! } // fatalError
@@ -17,6 +18,7 @@ final class SequenceConditionalGroupingTests: XCTestCase {
         init(_ name: String) { self.name = name }
     }
     
+    // MARK: Tests
     func testGroupingComparison() {
         let input: [String] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"]
         let output: [[String]] = [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]

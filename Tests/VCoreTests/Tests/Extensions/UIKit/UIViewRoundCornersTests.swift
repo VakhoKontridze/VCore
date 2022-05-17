@@ -12,7 +12,7 @@ import XCTest
 
 // MARK: - Tests
 final class UIViewRoundCornersTests: XCTestCase {
-    func tests() {
+    func test() {
         let corners: CACornerMask = .layerAllCorners
         let cornerRadius: CGFloat = 10
         let curve: CALayerCornerCurve = .circular

@@ -10,6 +10,7 @@ import XCTest
 
 // MARK: - Tests
 final class SequenceKeyPathSortTests: XCTestCase {
+    // MARK: Test Data
     private struct City: Equatable {
         let name: String
         
@@ -19,6 +20,7 @@ final class SequenceKeyPathSortTests: XCTestCase {
     private let input: [City] = ["London", "Paris", "New York"].map { .init($0) }
     private var output: [City] { input.sorted(by: { $0.name < $1.name }) }
     
+    // MARK: Tests
     func testSort() {
         var result: [City] = input; result.sort(by: \.name)
         

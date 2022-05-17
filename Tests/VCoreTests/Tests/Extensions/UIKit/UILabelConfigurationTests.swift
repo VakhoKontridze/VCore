@@ -12,6 +12,7 @@ import XCTest
 
 // MARK: - Tests
 final class UILabelConfigurationTests: XCTestCase {
+    // MARK: Test Data
     private let alignment: NSTextAlignment = .natural
     private let lineBreakMode: NSLineBreakMode = .byTruncatingTail
     private let numberOfLines: Int = 3
@@ -19,6 +20,7 @@ final class UILabelConfigurationTests: XCTestCase {
     private let color: UIColor = .label
     private let font: UIFont = .systemFont(ofSize: 13)
     
+    // MARK: Tests
     func testConfiguration() {
         let label: UILabel = .init()
         

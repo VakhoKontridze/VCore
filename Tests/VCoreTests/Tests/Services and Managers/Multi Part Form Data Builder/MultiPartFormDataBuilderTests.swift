@@ -10,8 +10,10 @@ import XCTest
 
 // MARK: - Tests
 final class MultiPartFormDataBuilderTests: XCTestCase {
+    // MARK: Test Data
     private let imagePrefix: String = "data:image/jpeg;base64,"
     
+    // MARK: Tests
     func test() async {
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
         

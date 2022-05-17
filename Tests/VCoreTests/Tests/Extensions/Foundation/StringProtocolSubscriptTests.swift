@@ -10,9 +10,11 @@ import XCTest
 
 // MARK: - Tests
 final class StringProtocolSubscriptTests: XCTestCase {
+    // MARK: Test Data
     private let input: String = "Lorem ipsum"
     private let output: String = "lorem ipsum"
     
+    // MARK: Tests
     func testGet() {
         XCTAssertEqual("Lorem Ipsum"[0], "L")
     }

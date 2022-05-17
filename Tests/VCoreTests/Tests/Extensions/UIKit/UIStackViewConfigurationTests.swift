@@ -12,11 +12,13 @@ import XCTest
 
 // MARK: - Tests
 final class UIStackViewConfigurationTests: XCTestCase {
+    // MARK: Test Data
     private let axis: NSLayoutConstraint.Axis = .vertical
     private let distribution: UIStackView.Distribution = .equalSpacing
     private let alignment: UIStackView.Alignment = .leading
     private let spacing: CGFloat = 10
     
+    // MARK: Test
     func testConfiguration() {
         let stackView: UIStackView = .init()
         

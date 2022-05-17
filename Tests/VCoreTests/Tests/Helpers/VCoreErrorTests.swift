@@ -10,13 +10,15 @@ import XCTest
 
 // MARK: - Tests
 final class VCoreErrorTests: XCTestCase {
-    func test() {
-        XCTAssertEqual(SomeError.errorDomain, "com.vcore")
-    }
-    
+    // MARK: Test Data
     private struct SomeError: VCoreError {
         var domain: String
         var code: Int
         var description: String
+    }
+    
+    // MARK: Tests
+    func test() {
+        XCTAssertEqual(SomeError.errorDomain, "com.vcore")
     }
 }

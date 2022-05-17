@@ -9,10 +9,12 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class StringRemovingCharsTests: XCTestCase {    
+final class StringRemovingCharsTests: XCTestCase {
+    // MARK: Test Data
     private let input: String = "+0123456789"
     private let output: String = "0123456789"
     
+    // MARK: Tests
     func testRemoving() {
         XCTAssertEqual(input.removing(.symbols), output)
     }

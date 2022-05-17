@@ -10,10 +10,12 @@ import XCTest
 
 // MARK: - Tests
 final class JSONDecoderServiceTests: XCTestCase {
+    // MARK: Test Data
     private struct SomeObject: Codable {
         let key: String?
     }
     
+    // MARK: Tests
     func testDataToJSON() {
         let json: [String: Any?] = ["key": "value"]
         let jsonData: Data = try! JSONEncoderService.data(any: json) // fatalError

@@ -10,8 +10,10 @@ import XCTest
 
 // MARK: - Tests
 final class ArraySafeSubscriptTests: XCTestCase {
+    // MARK: Test Data
     private let nums: [Int] = [1, 3, 5]
     
+    // MARK: Tests
     func testLowerOutOfBoundsSubscript() {
         XCTAssertNil(nums[safe: -1])
     }
