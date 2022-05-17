@@ -78,7 +78,6 @@
 		87C473D32825148400695047 /* DateAgeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473D22825148400695047 /* DateAgeTests.swift */; };
 		87C473D52825187500695047 /* DateComponentTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473D42825187500695047 /* DateComponentTests.swift */; };
 		87C473D72825191200695047 /* FloatingPointClampedInRangeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473D62825191200695047 /* FloatingPointClampedInRangeTests.swift */; };
-		87C473D928251C4F00695047 /* FloatingPointRoundedWithStepTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473D828251C4F00695047 /* FloatingPointRoundedWithStepTests.swift */; };
 		87C473DB28251DEF00695047 /* IntRunBlockNTimesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473DA28251DEF00695047 /* IntRunBlockNTimesTests.swift */; };
 		87C473DF282520C600695047 /* SetToggleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473DE282520C600695047 /* SetToggleTests.swift */; };
 		87C473E1282521EB00695047 /* SequenceConditionalGroupingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C473E0282521EB00695047 /* SequenceConditionalGroupingTests.swift */; };
@@ -113,7 +112,6 @@
 		OBJ_182 /* Collection.EnumeratedArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_16 /* Collection.EnumeratedArray.swift */; };
 		OBJ_183 /* Date.Component.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_17 /* Date.Component.swift */; };
 		OBJ_184 /* FloatingPoint.ClampedInRange.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_18 /* FloatingPoint.ClampedInRange.swift */; };
-		OBJ_185 /* FloatingPoint.RoundedWithStep.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_19 /* FloatingPoint.RoundedWithStep.swift */; };
 		OBJ_186 /* Int.BlockNTimes.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_20 /* Int.BlockNTimes.swift */; };
 		OBJ_188 /* Sequence.ConditionalGrouping.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_22 /* Sequence.ConditionalGrouping.swift */; };
 		OBJ_189 /* Sequence.KeyPathSort.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_23 /* Sequence.KeyPathSort.swift */; };
@@ -300,7 +298,6 @@
 		87C473D22825148400695047 /* DateAgeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateAgeTests.swift; sourceTree = "<group>"; };
 		87C473D42825187500695047 /* DateComponentTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateComponentTests.swift; sourceTree = "<group>"; };
 		87C473D62825191200695047 /* FloatingPointClampedInRangeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointClampedInRangeTests.swift; sourceTree = "<group>"; };
-		87C473D828251C4F00695047 /* FloatingPointRoundedWithStepTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPointRoundedWithStepTests.swift; sourceTree = "<group>"; };
 		87C473DA28251DEF00695047 /* IntRunBlockNTimesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntRunBlockNTimesTests.swift; sourceTree = "<group>"; };
 		87C473DE282520C600695047 /* SetToggleTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetToggleTests.swift; sourceTree = "<group>"; };
 		87C473E0282521EB00695047 /* SequenceConditionalGroupingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceConditionalGroupingTests.swift; sourceTree = "<group>"; };
@@ -378,7 +375,6 @@
 		OBJ_16 /* Collection.EnumeratedArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Collection.EnumeratedArray.swift; sourceTree = "<group>"; };
 		OBJ_17 /* Date.Component.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Component.swift; sourceTree = "<group>"; };
 		OBJ_18 /* FloatingPoint.ClampedInRange.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPoint.ClampedInRange.swift; sourceTree = "<group>"; };
-		OBJ_19 /* FloatingPoint.RoundedWithStep.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPoint.RoundedWithStep.swift; sourceTree = "<group>"; };
 		OBJ_20 /* Int.BlockNTimes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Int.BlockNTimes.swift; sourceTree = "<group>"; };
 		OBJ_22 /* Sequence.ConditionalGrouping.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.ConditionalGrouping.swift; sourceTree = "<group>"; };
 		OBJ_23 /* Sequence.KeyPathSort.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.KeyPathSort.swift; sourceTree = "<group>"; };
@@ -618,7 +614,6 @@
 				87C473D22825148400695047 /* DateAgeTests.swift */,
 				87C473D42825187500695047 /* DateComponentTests.swift */,
 				87C473D62825191200695047 /* FloatingPointClampedInRangeTests.swift */,
-				87C473D828251C4F00695047 /* FloatingPointRoundedWithStepTests.swift */,
 				87C473DA28251DEF00695047 /* IntRunBlockNTimesTests.swift */,
 				87C473E0282521EB00695047 /* SequenceConditionalGroupingTests.swift */,
 				87818188282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift */,
@@ -702,7 +697,6 @@
 				87954345281F057D00874A69 /* Date.Age.swift */,
 				OBJ_17 /* Date.Component.swift */,
 				OBJ_18 /* FloatingPoint.ClampedInRange.swift */,
-				OBJ_19 /* FloatingPoint.RoundedWithStep.swift */,
 				OBJ_20 /* Int.BlockNTimes.swift */,
 				OBJ_22 /* Sequence.ConditionalGrouping.swift */,
 				87818186282AAE0300A9AEDE /* Sequence.IsUnique.swift */,
@@ -1179,7 +1173,6 @@
 				OBJ_182 /* Collection.EnumeratedArray.swift in Sources */,
 				OBJ_183 /* Date.Component.swift in Sources */,
 				OBJ_184 /* FloatingPoint.ClampedInRange.swift in Sources */,
-				OBJ_185 /* FloatingPoint.RoundedWithStep.swift in Sources */,
 				OBJ_186 /* Int.BlockNTimes.swift in Sources */,
 				OBJ_188 /* Sequence.ConditionalGrouping.swift in Sources */,
 				OBJ_189 /* Sequence.KeyPathSort.swift in Sources */,
@@ -1319,7 +1312,6 @@
 				87C473D12823D61700695047 /* CollectionEnumeratedArrayTests.swift in Sources */,
 				874F810128292B0A003FFDDA /* CGSizeInitWithDimensionTests.swift in Sources */,
 				87818169282A7E7B00A9AEDE /* GenericStateModel_EPDTests.swift in Sources */,
-				87C473D928251C4F00695047 /* FloatingPointRoundedWithStepTests.swift in Sources */,
 				8781819E283141A000A9AEDE /* JSONDecoderError.swift in Sources */,
 				87C473D32825148400695047 /* DateAgeTests.swift in Sources */,
 				8781816B282A7F1A00A9AEDE /* AtomicIntegerTests.swift in Sources */,
