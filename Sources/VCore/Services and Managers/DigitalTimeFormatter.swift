@@ -14,17 +14,19 @@ public struct DigitalTimeFormatter {
     /// Indicates if empty components still show up as zeroes in format. Defaults to `false`.
     public var emptyComponentsShowAsZeroes: Bool = false
     
-    /// Indicates if hour component in `HH:MM:SS` or `00:MM:SS` format shows two digits. Defaults to `false`.
+    /// Indicates if hour component in `HH:MM:SS` format shows two digits. Defaults to `false`.
     public var hourComponentHasTwoDigits: Bool = false
     
-    /// Indicates if minute component in `MM:SS` or `00:SS` format shows two digits. Defaults to `false`.
+    /// Indicates if minute component in `MM:SS` format shows two digits. Defaults to `false`.
     public var minuteComponentHasTwoDigits: Bool = false
     
     /// Indicates if second component in `SS` format shows two digits. Defaults to `true`.
+    ///
+    /// `minuteComponentShowsIfSecondComponentShows` must be set to false.
     public var secondComponentHasTwoDigits: Bool = true
     
     /// Indicates if minute component is visible if only second component exists. Defaults to `true`.
-    public var minuteComponentIsVisibleIfOnlySecondComponentExists: Bool = true
+    public var minuteComponentShowsIfSecondComponentShows: Bool = true
     
     /// Component delimiter. Defaults to `:`.
     public var delimiter: String = ":"
@@ -59,7 +61,7 @@ public struct DigitalTimeFormatter {
                 }
                 
             } else if s >= 0 {
-                switch (emptyComponentsShowAsZeroes, minuteComponentIsVisibleIfOnlySecondComponentExists, minuteComponentHasTwoDigits, secondComponentHasTwoDigits) {
+                switch (emptyComponentsShowAsZeroes, minuteComponentShowsIfSecondComponentShows, minuteComponentHasTwoDigits, secondComponentHasTwoDigits) {
                 case (false, false, _, false): return [.init(s)]
                 case (false, false, _, true): return [s.padded]
                 case (false, true, false, _): return ["0", s.padded]
