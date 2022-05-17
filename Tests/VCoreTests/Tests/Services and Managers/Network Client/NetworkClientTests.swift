@@ -55,7 +55,7 @@ final class NetworkClientTests: XCTestCase {
             
             let data: Data = try await NetworkClient.default.data(from: request)
             
-            let json: [String: Any?] = try JSONDecoderService.json(from: data)
+            let json: [String: Any?] = try JSONDecoderService.json(data: data)
             XCTAssertEqual(json["json"]?.toJSON?["key"]?.toString, "value")
             
         } catch {
@@ -160,7 +160,7 @@ final class NetworkClientTests: XCTestCase {
             NetworkClient.default.data(from: request, completion: { result in
                 switch result {
                 case .success(let data):
-                    let json: [String: Any?] = try! JSONDecoderService.json(from: data) // fatalError
+                    let json: [String: Any?] = try! JSONDecoderService.json(data: data) // fatalError
                     XCTAssertEqual(json["json"]?.toJSON?["key"]?.toString, "value")
                     
                     expectation.fulfill()
@@ -243,21 +243,17 @@ final class NetworkClientTests: XCTestCase {
             request.method = .GET
             try request.addHeaders(encodable: JSONRequestHeaders())
 
-            NetworkClient.default.decodable(
-                from: request,
-                entityType: [Post].self,
-                completion: { result in
-                    switch result {
-                    case .success(let posts):
-                        XCTAssertEqual(posts.first?.id, 1)
-                        
-                        expectation.fulfill()
+            NetworkClient.default.decodable([Post].self, from: request, completion: { result in
+                switch result {
+                case .success(let posts):
+                    XCTAssertEqual(posts.first?.id, 1)
                     
-                    case .failure(let error):
-                        fatalError(error.localizedDescription)
-                    }
+                    expectation.fulfill()
+                
+                case .failure(let error):
+                    fatalError(error.localizedDescription)
                 }
-            )
+            })
 
         } catch {
             fatalError(error.localizedDescription)

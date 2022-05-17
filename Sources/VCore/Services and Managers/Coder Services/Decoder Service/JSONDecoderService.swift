@@ -14,8 +14,8 @@ public struct JSONDecoderService {
     private init() {}
 
     // MARK: Decoding
-    /// Decodes `JSON` from `Data`.
-    public static func json(from data: Data) throws -> [String: Any?] {
+    /// Decodes `Data` to `JSON`.
+    public static func json(data: Data) throws -> [String: Any?] {
         guard
             let jsonObject: Any = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
             let json: [String: Any?] = jsonObject as? [String: Any?]
@@ -26,8 +26,8 @@ public struct JSONDecoderService {
         return json
     }
     
-    /// Decodes `JSON` `Array` from `Data`.
-    public static func jsonArray(from data: Data) throws -> [[String: Any?]] {
+    /// Decodes `Data` to `JSON` `Array`.
+    public static func jsonArray(data: Data) throws -> [[String: Any?]] {
         guard
             let jsonObject: Any = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
             let jsonArray: [[String: Any?]] = jsonObject as? [[String: Any?]]
@@ -38,9 +38,27 @@ public struct JSONDecoderService {
         return jsonArray
     }
     
-    /// Decodes `Decodable` from `Data`.
-    public static func decodable<DecodedData: Decodable>(from data: Data) throws -> DecodedData {
-        guard let decodedData: DecodedData = try? JSONDecoder().decode(DecodedData.self, from: data) else { throw JSONDecoderError.failedToDecode }
-        return decodedData
+    /// Decodes `Data` to `Decodable`.
+    public static func decodable<T: Decodable>(data: Data) throws -> T {
+        guard let decodable: T = try? JSONDecoder().decode(T.self, from: data) else { throw JSONDecoderError.failedToDecode }
+        return decodable
+    }
+    
+    /// Decodes `JSON` to `Decodable`.
+    public static func decodable<T: Decodable>(json: [String: Any?]) throws -> T {
+        guard let data: Data = try? JSONSerialization.data(withJSONObject: json) else {
+            throw JSONEncoderError.failedToEncode
+        }
+        
+        return try decodable(data: data)
+    }
+    
+    /// Decodes `JSON` `Array` to `Decodable`.
+    public static func decodable<T: Decodable>(jsonArray: [[String: Any?]]) throws -> T {
+        guard let data: Data = try? JSONSerialization.data(withJSONObject: jsonArray) else {
+            throw JSONEncoderError.failedToEncode
+        }
+        
+        return try decodable(data: data)
     }
 }

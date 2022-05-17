@@ -60,11 +60,11 @@ extension Sequence {
     ///
     ///     // [[Student(name: "Kofi"), Student(name: "Kweku")], [Student(name: "Abena"), Student(name: "Akosua")], [Student(name: "Efua")]]
     ///
-    public func grouped<Value: Comparable>(
-        by value: KeyPath<Element, Value>
+    public func grouped<Property: Comparable>(
+        by keyPath: KeyPath<Element, Property>
     ) -> [[Element]] {
         grouped(by: { (lhs, rhs) in
-            lhs[keyPath: value] == rhs[keyPath: value]
+            lhs[keyPath: keyPath] == rhs[keyPath: keyPath]
         })
     }
 }

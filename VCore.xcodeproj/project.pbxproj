@@ -53,6 +53,10 @@
 		8781819128311BC000A9AEDE /* MultiPartFormDataErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781818D28311B4800A9AEDE /* MultiPartFormDataErrorTests.swift */; };
 		8781819228311BC500A9AEDE /* MultiPartFormDataFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781818F28311BBC00A9AEDE /* MultiPartFormDataFileTests.swift */; };
 		878181952831265000A9AEDE /* MultiPartFormDataBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181932831264100A9AEDE /* MultiPartFormDataBuilderTests.swift */; };
+		8781819A2831389E00A9AEDE /* JSONEncoderErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181992831389E00A9AEDE /* JSONEncoderErrorTests.swift */; };
+		8781819C283139D200A9AEDE /* JSONEncoderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781819B283139D200A9AEDE /* JSONEncoderServiceTests.swift */; };
+		8781819E283141A000A9AEDE /* JSONDecoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781819D283141A000A9AEDE /* JSONDecoderError.swift */; };
+		878181A0283141B500A9AEDE /* JSONDecoderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781819F283141B500A9AEDE /* JSONDecoderServiceTests.swift */; };
 		87954346281F057D00874A69 /* Date.Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954345281F057D00874A69 /* Date.Age.swift */; };
 		87954348281F0AC100874A69 /* String.KeepingOnlyChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */; };
 		8795434A281F0BA300874A69 /* String.RemovingChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954349281F0BA300874A69 /* String.RemovingChars.swift */; };
@@ -267,6 +271,10 @@
 		8781818D28311B4800A9AEDE /* MultiPartFormDataErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataErrorTests.swift; sourceTree = "<group>"; };
 		8781818F28311BBC00A9AEDE /* MultiPartFormDataFileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataFileTests.swift; sourceTree = "<group>"; };
 		878181932831264100A9AEDE /* MultiPartFormDataBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilderTests.swift; sourceTree = "<group>"; };
+		878181992831389E00A9AEDE /* JSONEncoderErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderErrorTests.swift; sourceTree = "<group>"; };
+		8781819B283139D200A9AEDE /* JSONEncoderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderServiceTests.swift; sourceTree = "<group>"; };
+		8781819D283141A000A9AEDE /* JSONDecoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderError.swift; sourceTree = "<group>"; };
+		8781819F283141B500A9AEDE /* JSONDecoderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderServiceTests.swift; sourceTree = "<group>"; };
 		87954345281F057D00874A69 /* Date.Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Age.swift; sourceTree = "<group>"; };
 		87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.KeepingOnlyChars.swift; sourceTree = "<group>"; };
 		87954349281F0BA300874A69 /* String.RemovingChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.RemovingChars.swift; sourceTree = "<group>"; };
@@ -523,6 +531,7 @@
 			children = (
 				87818176282A8F3F00A9AEDE /* Network Client */,
 				8781818C28311B3300A9AEDE /* Multi Part Form Data Builder */,
+				878181962831347300A9AEDE /* Coder Services */,
 			);
 			path = "Services and Managers";
 			sourceTree = "<group>";
@@ -547,6 +556,33 @@
 				8781818D28311B4800A9AEDE /* MultiPartFormDataErrorTests.swift */,
 			);
 			path = "Multi Part Form Data Builder";
+			sourceTree = "<group>";
+		};
+		878181962831347300A9AEDE /* Coder Services */ = {
+			isa = PBXGroup;
+			children = (
+				878181972831347B00A9AEDE /* Encoder Service */,
+				878181982831348000A9AEDE /* Decoder Service */,
+			);
+			path = "Coder Services";
+			sourceTree = "<group>";
+		};
+		878181972831347B00A9AEDE /* Encoder Service */ = {
+			isa = PBXGroup;
+			children = (
+				8781819B283139D200A9AEDE /* JSONEncoderServiceTests.swift */,
+				878181992831389E00A9AEDE /* JSONEncoderErrorTests.swift */,
+			);
+			path = "Encoder Service";
+			sourceTree = "<group>";
+		};
+		878181982831348000A9AEDE /* Decoder Service */ = {
+			isa = PBXGroup;
+			children = (
+				8781819F283141B500A9AEDE /* JSONDecoderServiceTests.swift */,
+				8781819D283141A000A9AEDE /* JSONDecoderError.swift */,
+			);
+			path = "Decoder Service";
 			sourceTree = "<group>";
 		};
 		87C473C22823CB3D00695047 /* Extensions */ = {
@@ -681,14 +717,6 @@
 				OBJ_113 /* NetworkRequestFactory.Body.swift */,
 			);
 			path = "Network Request Factory";
-			sourceTree = "<group>";
-		};
-		OBJ_120 /* Session Manager */ = {
-			isa = PBXGroup;
-			children = (
-				OBJ_121 /* SessionManager.swift */,
-			);
-			path = "Session Manager";
 			sourceTree = "<group>";
 		};
 		OBJ_122 /* VIPER Helpers */ = {
@@ -903,6 +931,7 @@
 			children = (
 				OBJ_67 /* Edge Insets */,
 				OBJ_72 /* Generic State Models */,
+				OBJ_122 /* VIPER Helpers */,
 				OBJ_65 /* AtomicInteger.swift */,
 				OBJ_66 /* CustomResults.swift */,
 				OBJ_75 /* JSONTypeCasts.swift */,
@@ -946,9 +975,8 @@
 				OBJ_97 /* Network Client */,
 				OBJ_89 /* Multi Part Form Data Builder */,
 				OBJ_79 /* Coder Services */,
-				OBJ_120 /* Session Manager */,
-				OBJ_122 /* VIPER Helpers */,
 				OBJ_119 /* NetworkReachabilityService.swift */,
+				OBJ_121 /* SessionManager.swift */,
 				OBJ_87 /* DigitalTimeFormatter.swift */,
 				OBJ_88 /* PrettyFractionsNumberFormatter.swift */,
 			);
@@ -1280,6 +1308,7 @@
 				874F810128292B0A003FFDDA /* CGSizeInitWithDimensionTests.swift in Sources */,
 				87818169282A7E7B00A9AEDE /* GenericStateModel_EPDTests.swift in Sources */,
 				87C473D928251C4F00695047 /* FloatingPointRoundedWithStepTests.swift in Sources */,
+				8781819E283141A000A9AEDE /* JSONDecoderError.swift in Sources */,
 				87C473D32825148400695047 /* DateAgeTests.swift in Sources */,
 				8781816B282A7F1A00A9AEDE /* AtomicIntegerTests.swift in Sources */,
 				87C473C92823CC8E00695047 /* ArraySafeSubscriptTests.swift in Sources */,
@@ -1305,12 +1334,14 @@
 				8781817D282AA71A00A9AEDE /* NetworkRequestMethodTests.swift in Sources */,
 				87C473E52825328700695047 /* StringIsUserDefaultsKey.swift in Sources */,
 				87E867AA282A408400EE0BA9 /* UIImage.InitWithColor.swift in Sources */,
+				8781819A2831389E00A9AEDE /* JSONEncoderErrorTests.swift in Sources */,
 				87818179282A8FBE00A9AEDE /* NetworkClientTests.swift in Sources */,
 				87818167282A7E6300A9AEDE /* GenericStateModel_EDTests.swift in Sources */,
 				8781816D282A84E800A9AEDE /* JSONTypeCastsTests.swift in Sources */,
 				874F80FF28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift in Sources */,
 				87E867DD282A531A00EE0BA9 /* UIImage.AverageColor.swift in Sources */,
 				87818160282A7D0500A9AEDE /* EdgeInsets_LTTests.swift in Sources */,
+				878181A0283141B500A9AEDE /* JSONDecoderServiceTests.swift in Sources */,
 				87C473EB2829205200695047 /* StringUnwrappedDescribingTests.swift in Sources */,
 				874F8107282931CC003FFDDA /* NSLayoutConstraintWithPriorityTests.swift in Sources */,
 				87E867E3282A56C100EE0BA9 /* UIImageScaledTests.swift in Sources */,
@@ -1318,6 +1349,7 @@
 				874F8109282940FD003FFDDA /* UIColorBlendTests.swift in Sources */,
 				87E867EC282A609E00EE0BA9 /* UIStackViewConfigurationTests.swift in Sources */,
 				87E867E8282A5EFA00EE0BA9 /* UINavigationBarHeightTests.swift in Sources */,
+				8781819C283139D200A9AEDE /* JSONEncoderServiceTests.swift in Sources */,
 				87C473D72825191200695047 /* FloatingPointClampedInRangeTests.swift in Sources */,
 				87E867DC282A531A00EE0BA9 /* MockUserDefaults.swift in Sources */,
 				87C473E1282521EB00695047 /* SequenceConditionalGroupingTests.swift in Sources */,

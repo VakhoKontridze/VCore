@@ -15,26 +15,44 @@ public struct JSONEncoderService {
 
     // MARK: Encoding
     /// Encodes `Any` to `Data`.
-    public static func data(from data: Any) throws -> Data {
-        guard let data: Data = try? JSONSerialization.data(withJSONObject: data) else { throw JSONEncoderError.failedToEncode }
+    public static func data(any: Any?) throws -> Data {
+        guard
+            let any = any,
+            let data: Data = try? JSONSerialization.data(withJSONObject: any)
+        else {
+            throw JSONEncoderError.failedToEncode
+        }
+        
         return data
     }
     
     /// Encodes `Encodable` to `Data`.
-    public static func data<EncodingData: Encodable>(from data: EncodingData) throws -> Data {
-        guard let data: Data = try? JSONEncoder().encode(data) else { throw JSONEncoderError.failedToEncode }
+    public static func data<T: Encodable>(encodable: T) throws -> Data {
+        guard let data: Data = try? JSONEncoder().encode(encodable) else { throw JSONEncoderError.failedToEncode }
         return data
     }
     
     /// Encodes `Encodable` to `JSON`.
-    public static func json<EncodingData: Encodable>(from data: EncodingData) throws -> [String: Any?] {
+    public static func json<T: Encodable>(encodable: T) throws -> [String: Any?] {
         guard
-            let jsonData: Data = try? JSONEncoder().encode(data),
-            let json: [String: Any?] = try? JSONDecoderService.json(from: jsonData)
+            let jsonData: Data = try? JSONEncoder().encode(encodable),
+            let json: [String: Any?] = try? JSONDecoderService.json(data: jsonData)
         else {
             throw JSONEncoderError.failedToEncode
         }
         
         return json
+    }
+    
+    /// Encodes `Encodable` to `JSON` `Array`.
+    public static func jsonArray<T: Encodable>(encodable: T) throws -> [[String: Any?]] {
+        guard
+            let jsonData: Data = try? JSONEncoder().encode(encodable),
+            let jsonArray: [[String: Any?]] = try? JSONDecoderService.jsonArray(data: jsonData)
+        else {
+            throw JSONEncoderError.failedToEncode
+        }
+        
+        return jsonArray
     }
 }

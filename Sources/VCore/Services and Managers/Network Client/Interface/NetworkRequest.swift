@@ -57,8 +57,8 @@ public struct NetworkRequest {
     }
 
     /// Adds `Encodable` to query parameters.
-    mutating public func addQueryParameters<EncodableQueryParameters: Encodable>(
-        encodable: EncodableQueryParameters
+    mutating public func addQueryParameters<T: Encodable>(
+        encodable: T
     ) throws {
         queryParameters.append(try NetworkRequestFactory.QueryParameters.build(encodable: encodable))
     }
@@ -72,8 +72,8 @@ public struct NetworkRequest {
     }
 
     /// Adds `Encodable` to headers.
-    mutating public func addHeaders<EncodableHeaders: Encodable>(
-        encodable: EncodableHeaders
+    mutating public func addHeaders<T: Encodable>(
+        encodable: T
     ) throws {
         headers.append(try NetworkRequestFactory.Headers.build(encodable: encodable))
     }
@@ -94,8 +94,8 @@ public struct NetworkRequest {
     }
 
     /// Adds `Encodable` to headers.
-    mutating public func addBody<EncodableBody: Encodable>(
-        encodable: EncodableBody
+    mutating public func addBody<T: Encodable>(
+        encodable: T
     ) throws {
         body.append(try NetworkRequestFactory.Body.build(encodable: encodable))
     }
