@@ -4,7 +4,7 @@
 
 General
 
-- missing `public` access modifiers are added
+- Missing `public` access modifiers are added
 
 #### [3.0.0(17)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.0) — *2022 05 17*
 
