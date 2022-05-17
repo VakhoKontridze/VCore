@@ -11,7 +11,7 @@ import Foundation
 /// JSON request headers that pass `application/json` as `accept`, `multipart/form-data; boundary=\(boundary)` as `contentType`, and `authorization` as `Bearer \(token)`.
 ///
 /// Can be used in `NetworkClient` with `MultiPartFormDataBuilder`.
-struct MultiPartFormDataAuthorizedRequestHeaders: Encodable {
+public struct MultiPartFormDataAuthorizedRequestHeaders: Encodable {
     // MARK: Properties
     /// Accept. Defaults to `application/json`.
     public let accept: String = "application/json"

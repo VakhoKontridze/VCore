@@ -16,7 +16,7 @@ extension Sequence where Element: Hashable {
     ///     let nums: [Int] = [1, 3, 5]
     ///     let isUnique: Bool = nums.isUnique // true
     ///
-    var isUnique: Bool {
+    public var isUnique: Bool {
         var encountered: Set<Element> = []
         return allSatisfy { encountered.insert($0).inserted }
     }
@@ -28,7 +28,7 @@ extension Sequence where Element: Hashable {
     ///     let nums: [Int] = [1, 1, 3, 5, 5]
     ///     let containsDuplicates: Bool = nums.containsDuplicates // true
     ///
-    var containsDuplicates: Bool {
+    public var containsDuplicates: Bool {
         var encountered: Set<Element> = []
         
         for element in self {
