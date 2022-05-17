@@ -20,7 +20,7 @@ extension UIDevice {
     ///
     ///     let hasNotch: Bool = UIDevice.hasNotch
     ///
-    static var hasNotch: Bool {
+    public static var hasNotch: Bool {
         UIDevice.safeAreaInsetBottom > 0
     }
 }
