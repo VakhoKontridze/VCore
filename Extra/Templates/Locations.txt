@@ -1,0 +1,2 @@
+~/Library/Developer/Xcode
+~/Library/Developer/Xcode/Templates/File Templates/VCore
