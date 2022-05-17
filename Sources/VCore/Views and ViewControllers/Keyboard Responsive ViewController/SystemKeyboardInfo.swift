@@ -23,7 +23,15 @@ public struct SystemKeyboardInfo {
     public let animationOptions: UIView.AnimationOptions
     
     // MARK: Initializers
-    init(notification: Notification) {
+    /// Initializes `SystemKeyboardInfo` with parameters.
+    public init(frame: CGRect, animationDuration: TimeInterval, animationOptions: UIView.AnimationOptions) {
+        self.frame = frame
+        self.animationDuration = animationDuration
+        self.animationOptions = animationOptions
+    }
+    
+    /// Initialzies `SystemKeyboardInfo` with `Notification`.
+    public init(notification: Notification) {
         self.frame =
             notification.userInfo?.rect(key: UIResponder.keyboardFrameEndUserInfoKey) ??
             Self.estimatedKeyboardFrame

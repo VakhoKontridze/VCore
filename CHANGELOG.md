@@ -1,5 +1,11 @@
 # Change Log
 
+#### [3.0.2(19)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.2) — *2022 05 17*
+
+Views and ViewControllers
+
+- Public initializer is added to `SystemKeyboardInfo`
+
 #### [3.0.1(18)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.1) — *2022 05 17*
 
 General
