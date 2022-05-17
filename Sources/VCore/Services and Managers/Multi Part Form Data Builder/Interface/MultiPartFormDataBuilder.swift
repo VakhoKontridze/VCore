@@ -14,7 +14,7 @@ import Foundation
 ///
 ///     do {
 ///         let json: [String: Any?] = [
-///             "someKey": "someValue"
+///             "key": "value"
 ///         ]
 ///
 ///         let files: [String: AnyMultiPartFormFile?] = [
@@ -43,7 +43,7 @@ import Foundation
 ///
 ///         try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
 ///             boundary: boundary,
-///             token: "sometoken"
+///             token: "token"
 ///         ))
 ///
 ///         request.addBody(data: data)

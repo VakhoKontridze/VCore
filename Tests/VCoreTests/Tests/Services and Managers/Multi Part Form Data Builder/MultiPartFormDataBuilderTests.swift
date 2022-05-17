@@ -26,7 +26,7 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
         
         do {
             let json: [String: Any?] = [
-                "someKey": "someValue"
+                "key": "value"
             ]
 
             let files: [String: AnyMultiPartFormFile?] = [
@@ -55,7 +55,7 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
 
             try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
                 boundary: boundary,
-                token: "sometoken"
+                token: "token"
             ))
 
             request.addBody(data: data)
@@ -63,8 +63,8 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 
             XCTAssertEqual(
-                result["form"]?.toWrappedJSON["someKey"]?.toString,
-                "someValue"
+                result["form"]?.toWrappedJSON["key"]?.toString,
+                "value"
             )
             
             XCTAssertEqual(
