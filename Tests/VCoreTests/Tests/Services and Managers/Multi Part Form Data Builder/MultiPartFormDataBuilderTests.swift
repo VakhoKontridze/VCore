@@ -15,7 +15,11 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
     
     // MARK: Tests
     func test() async {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
+        
+        #if canImport(UIKit)
         
         let profileImage: UIImage? = .init(size: .init(dimension: 100), color: .red)
         
@@ -85,5 +89,43 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
         } catch {
             fatalError(error.localizedDescription)
         }
+        
+        #else
+        
+        do {
+            let json: [String: Any?] = [
+                "key": "value"
+            ]
+
+            let files: [String: AnyMultiPartFormFile?] = [:]
+            
+            let (boundary, data): (String, Data) = MultiPartFormDataBuilder(
+                json: json,
+                files: files
+            ).build()
+
+            var request: NetworkRequest = .init(url: "https://httpbin.org/post")
+
+            request.method = .POST
+
+            try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
+                boundary: boundary,
+                token: "token"
+            ))
+
+            request.addBody(data: data)
+
+            let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+
+            XCTAssertEqual(
+                result["form"]?.toWrappedJSON["key"]?.toString,
+                "value"
+            )
+            
+        } catch {
+            fatalError(error.localizedDescription)
+        }
+        
+        #endif
     }
 }

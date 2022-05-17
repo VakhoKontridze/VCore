@@ -44,7 +44,9 @@ final class NetworkResponseProcessorTests: XCTestCase {
     }
     
     func testData() async {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")

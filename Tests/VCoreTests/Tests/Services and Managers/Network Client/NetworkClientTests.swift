@@ -27,7 +27,9 @@ final class NetworkClientTests: XCTestCase {
     
     // MARK: Data Tasks (Async)
     func testDataTaskNoDataAsync() async {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -45,7 +47,9 @@ final class NetworkClientTests: XCTestCase {
     }
     
     func testDataTaskDataAsync() async {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -64,7 +68,9 @@ final class NetworkClientTests: XCTestCase {
     }
     
     func testDataTaskJSONAsync() async {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -82,7 +88,9 @@ final class NetworkClientTests: XCTestCase {
     }
     
     func testDataTaskJSONArrayAsync() async {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
@@ -99,7 +107,9 @@ final class NetworkClientTests: XCTestCase {
     }
     
     func testDataTaskDecodableAsync() async {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
@@ -117,7 +127,9 @@ final class NetworkClientTests: XCTestCase {
     
     // MARK: Data Tasks (Completion)
     func testDataTaskNoDataCompletion() {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
         defer { waitForExpectations(timeout: 10) }
@@ -146,7 +158,9 @@ final class NetworkClientTests: XCTestCase {
     }
     
     func testDataTaskDataCompletion() {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
         defer { waitForExpectations(timeout: 10) }
@@ -176,7 +190,9 @@ final class NetworkClientTests: XCTestCase {
     }
     
     func testDataTaskJSONCompletion() {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
         defer { waitForExpectations(timeout: 10) }
@@ -205,7 +221,9 @@ final class NetworkClientTests: XCTestCase {
     }
 
     func testDataTaskJSONArrayCompletion() {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
         defer { waitForExpectations(timeout: 10) }
@@ -233,7 +251,9 @@ final class NetworkClientTests: XCTestCase {
     }
 
     func testDataTaskDecodableCompletion() {
+        #if !os(watchOS)
         guard NetworkReachabilityService.isConnectedToNetwork else { return }
+        #endif
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
         defer { waitForExpectations(timeout: 10) }
