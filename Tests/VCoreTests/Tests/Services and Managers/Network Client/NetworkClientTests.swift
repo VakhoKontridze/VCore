@@ -60,7 +60,7 @@ final class NetworkClientTests: XCTestCase {
             let data: Data = try await NetworkClient.default.data(from: request)
             
             let json: [String: Any?] = try JSONDecoderService.json(data: data)
-            XCTAssertEqual(json["json"]?.toWrappedJSON["key"]?.toString, "value")
+            XCTAssertEqual(json["json"]?.toUnwrappedJSON["key"]?.toString, "value")
             
         } catch {
             fatalError(error.localizedDescription)
@@ -80,7 +80,7 @@ final class NetworkClientTests: XCTestCase {
             
             let json: [String: Any?] = try await NetworkClient.default.json(from: request)
             
-            XCTAssertEqual(json["json"]?.toWrappedJSON["key"]?.toString, "value")
+            XCTAssertEqual(json["json"]?.toUnwrappedJSON["key"]?.toString, "value")
             
         } catch {
             fatalError(error.localizedDescription)
@@ -175,7 +175,7 @@ final class NetworkClientTests: XCTestCase {
                 switch result {
                 case .success(let data):
                     let json: [String: Any?] = try! JSONDecoderService.json(data: data) // fatalError
-                    XCTAssertEqual(json["json"]?.toWrappedJSON["key"]?.toString, "value")
+                    XCTAssertEqual(json["json"]?.toUnwrappedJSON["key"]?.toString, "value")
                     
                     expectation.fulfill()
                 
@@ -206,7 +206,7 @@ final class NetworkClientTests: XCTestCase {
             NetworkClient.default.json(from: request, completion: { result in
                 switch result {
                 case .success(let json):
-                    XCTAssertEqual(json["json"]?.toWrappedJSON["key"]?.toString, "value")
+                    XCTAssertEqual(json["json"]?.toUnwrappedJSON["key"]?.toString, "value")
                     
                     expectation.fulfill()
                 

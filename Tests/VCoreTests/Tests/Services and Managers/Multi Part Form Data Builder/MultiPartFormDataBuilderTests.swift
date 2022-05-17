@@ -67,22 +67,22 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 
             XCTAssertEqual(
-                result["form"]?.toWrappedJSON["key"]?.toString,
+                result["form"]?.toUnwrappedJSON["key"]?.toString,
                 "value"
             )
             
             XCTAssertEqual(
-                result["files"]?.toWrappedJSON["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
+                result["files"]?.toUnwrappedJSON["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
                 profileImage?.jpegData(compressionQuality: 0.75)?.base64EncodedString()
             )
             
             XCTAssertEqual(
-                result["files"]?.toWrappedJSON["gallery[0]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
+                result["files"]?.toUnwrappedJSON["gallery[0]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
                 galleryImages?[0]?.jpegData(compressionQuality: 0.75)?.base64EncodedString()
             )
             
             XCTAssertEqual(
-                result["files"]?.toWrappedJSON["gallery[1]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
+                result["files"]?.toUnwrappedJSON["gallery[1]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
                 galleryImages?[1]?.jpegData(compressionQuality: 0.75)?.base64EncodedString()
             )
             
@@ -118,7 +118,7 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 
             XCTAssertEqual(
-                result["form"]?.toWrappedJSON["key"]?.toString,
+                result["form"]?.toUnwrappedJSON["key"]?.toString,
                 "value"
             )
             

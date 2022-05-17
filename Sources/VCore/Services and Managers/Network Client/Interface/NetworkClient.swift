@@ -23,7 +23,7 @@ import Foundation
 ///
 ///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 ///
-///             print(result["json"]?.toWrappedJSON["key"]?.toString ?? "-")
+///             print(result["json"]?.toUnwrappedJSON["key"]?.toString ?? "-")
 ///
 ///         } catch {
 ///             print(error.localizedDescription)

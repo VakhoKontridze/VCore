@@ -5,12 +5,18 @@
 //  Created by Vakhtang Kontridze on 10/9/21.
 //
 
-#if canImport(UIKit)
-import UIKit
-#endif
+import Foundation
 
-#if canImport(AppKit)
-import AppKit
-#endif
+// MARK: - JSON Type Casts
+extension Optional where Wrapped == Any {
+    @available(*, deprecated, renamed: "toUnwrappedJSON")
+    public var toWrappedJSON: [String: Any?] {
+        toUnwrappedJSON
+    }
 
-import SwiftUI
+    @available(*, deprecated, renamed: "toUnwrappedJSONArray")
+    public var toWrappedJSONArray: [[String: Any?]] {
+        toUnwrappedJSONArray
+    }
+}
+
