@@ -10,8 +10,10 @@ import XCTest
 
 // MARK: - Tests
 final class MultiPartFormDataFileTests: XCTestCase {
+    // MARK: Test Data
     private struct SomeMultiPartFormDataFile: AnyMultiPartFormFile {}
     
+    // MARK: Tests
     func testInit() {
         let file1: _MultiPartFormDataFile = .init(
             name: "file",

@@ -10,6 +10,7 @@ import XCTest
 
 // MARK: - Tests
 final class FloatingPointRoundedWithStepTests: XCTestCase {
+    // MARK: Test Data
     private let step: Double = 3
     private let min: Double = 1
     private let max: Double = 10
@@ -23,6 +24,7 @@ final class FloatingPointRoundedWithStepTests: XCTestCase {
     private let output2: Double = 4
     private let output3: Double = 10
     
+    // MARK: Tests
     func testRounded() {
         XCTAssertEqual(input1.rounded(range: range, step: step), output1)
         XCTAssertEqual(input2.rounded(range: range, step: step), output2)

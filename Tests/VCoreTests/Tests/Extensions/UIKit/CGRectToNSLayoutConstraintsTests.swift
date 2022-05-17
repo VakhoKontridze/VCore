@@ -12,6 +12,7 @@ import XCTest
 
 // MARK: - Tests
 final class CGRectToNSLayoutConstraintsTests: XCTestCase {
+    // MARK: Test Data
     private let superview: UIView = .init(frame: .init(
         origin: .zero,
         size: .init(width: 300, height: 400)
@@ -22,6 +23,7 @@ final class CGRectToNSLayoutConstraintsTests: XCTestCase {
         size: .init(width: 150, height: 200)
     )
     
+    // MARK: Tests
     func testLeadingConstraint() {
         XCTAssertEqual(
             viewRect.leadingConstraintConstant,

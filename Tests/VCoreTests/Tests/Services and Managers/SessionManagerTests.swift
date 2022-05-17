@@ -10,8 +10,10 @@ import XCTest
 
 // MARK: - Tests
 final class SessionManagerTests: XCTestCase {
+    // MARK: Test Data
     private let sessionsManger: SessionManager = .init()
     
+    // MARK: Tests
     func testValidID() {
         let id: Int = sessionsManger.newSessionID
         XCTAssertTrue(sessionsManger.sessionIsValid(id: id))

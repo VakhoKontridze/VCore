@@ -10,6 +10,7 @@ import XCTest
 
 // MARK: - Tests
 final class FloatingPointClampedInRangeTests: XCTestCase {
+    // MARK: Test Data
     private let step: Double = 3
     private let min: Double = 1
     private let max: Double = 10
@@ -27,6 +28,7 @@ final class FloatingPointClampedInRangeTests: XCTestCase {
     private let output2Step: Double = 4
     private let output3Step: Double = 10
     
+    // MARK: Tests
     func testClampedRange() {
         XCTAssertEqual(input1.clamped(in: range), output1)
         XCTAssertEqual(input2.clamped(in: range), output2)

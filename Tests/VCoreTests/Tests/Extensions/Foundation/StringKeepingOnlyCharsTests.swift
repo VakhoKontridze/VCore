@@ -10,9 +10,11 @@ import XCTest
 
 // MARK: - Tests
 final class StringKeepingOnlyCharsTests: XCTestCase {
+    // MARK: Test Data
     private let input: String = "+0123456789"
     private let output: String = "0123456789"
     
+    // MARK: Tests
     func testKeeping() {
         XCTAssertEqual(input.keeping(only: .decimalDigits), output)
     }

@@ -12,11 +12,13 @@ import XCTest
 
 // MARK: - Tests
 final class UIViewApplyShadowTests: XCTestCase {
+    // MARK: Test Data
     private let cornerRadius: CGFloat = 10
     private let color: UIColor = .black
     private let radius: CGFloat = 5
     private let offset: CGSize = .init(width: 0, height: 5)
     
+    // MARK: Tests
     func testShadow() {
         let view: UIView = .init()
 

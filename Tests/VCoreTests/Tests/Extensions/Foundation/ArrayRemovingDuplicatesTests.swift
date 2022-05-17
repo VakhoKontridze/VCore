@@ -10,9 +10,11 @@ import XCTest
 
 // MARK: - Tests
 final class ArrayRemovingDuplicatesTests: XCTestCase {
+    // MARK: Test Data
     private let input: [Int] = [1, 1, 3, 5, 5]
     private let output: [Int] = [1, 3, 5]
     
+    // MARK: Tests
     func ArrayRemovingDuplicatesTests() {
         XCTAssertEqual(input.removingDuplicates(), output)
     }

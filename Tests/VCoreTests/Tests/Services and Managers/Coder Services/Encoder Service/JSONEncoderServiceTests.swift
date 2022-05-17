@@ -10,10 +10,12 @@ import XCTest
 
 // MARK: - Tests
 final class JSONEncoderServiceTests: XCTestCase {
+    // MARK: Test Data
     private struct SomeObject: Codable {
         let key: String?
     }
     
+    // MARK: Tests
     func testAnyToData() {
         let json: [String: Any?] = ["key": "value"]
         

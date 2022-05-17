@@ -10,8 +10,10 @@ import XCTest
 
 // MARK: - Tests
 final class ArrayFirstIndexAndElementTest: XCTestCase {
+    // MARK: Test Data
     private let nums: [Int] = [1, 3, 5]
     
+    // MARK: Tests
     func testInvalidElement() {
         XCTAssertNil(nums.firstIndexAndElement { $0 == 0 })
     }

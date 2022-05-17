@@ -10,8 +10,10 @@ import XCTest
 
 // MARK: - Tests
 final class NetworkResponseProcessorTests: XCTestCase {
+    // MARK: Test Data
     private let networkClient: NetworkClient = .init(responseProcessor: TestNetworkReponseProcessor())
 
+    // MARK: Tests
     func testResponse() {
         let code: Int = 404
         let message: String = "Something has gone wrong"
