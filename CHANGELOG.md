@@ -4,7 +4,7 @@
 
 Views and ViewControllers
 
-- Public initializer is added to `SystemKeyboardInfo`
+- Public initializers are added to `SystemKeyboardInfo`
 
 #### [3.0.1(18)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.1) — *2022 05 17*
 
