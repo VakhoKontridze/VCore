@@ -57,6 +57,8 @@
 		8781819C283139D200A9AEDE /* JSONEncoderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781819B283139D200A9AEDE /* JSONEncoderServiceTests.swift */; };
 		8781819E283141A000A9AEDE /* JSONDecoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781819D283141A000A9AEDE /* JSONDecoderError.swift */; };
 		878181A0283141B500A9AEDE /* JSONDecoderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781819F283141B500A9AEDE /* JSONDecoderServiceTests.swift */; };
+		878181A2283394FB00A9AEDE /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181A1283394FB00A9AEDE /* SessionManagerTests.swift */; };
+		878181A42833969F00A9AEDE /* AtomicContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181A32833969F00A9AEDE /* AtomicContainer.swift */; };
 		87954346281F057D00874A69 /* Date.Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954345281F057D00874A69 /* Date.Age.swift */; };
 		87954348281F0AC100874A69 /* String.KeepingOnlyChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */; };
 		8795434A281F0BA300874A69 /* String.RemovingChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954349281F0BA300874A69 /* String.RemovingChars.swift */; };
@@ -275,6 +277,8 @@
 		8781819B283139D200A9AEDE /* JSONEncoderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderServiceTests.swift; sourceTree = "<group>"; };
 		8781819D283141A000A9AEDE /* JSONDecoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderError.swift; sourceTree = "<group>"; };
 		8781819F283141B500A9AEDE /* JSONDecoderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderServiceTests.swift; sourceTree = "<group>"; };
+		878181A1283394FB00A9AEDE /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
+		878181A32833969F00A9AEDE /* AtomicContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicContainer.swift; sourceTree = "<group>"; };
 		87954345281F057D00874A69 /* Date.Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Age.swift; sourceTree = "<group>"; };
 		87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.KeepingOnlyChars.swift; sourceTree = "<group>"; };
 		87954349281F0BA300874A69 /* String.RemovingChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.RemovingChars.swift; sourceTree = "<group>"; };
@@ -532,6 +536,7 @@
 				87818176282A8F3F00A9AEDE /* Network Client */,
 				8781818C28311B3300A9AEDE /* Multi Part Form Data Builder */,
 				878181962831347300A9AEDE /* Coder Services */,
+				878181A1283394FB00A9AEDE /* SessionManagerTests.swift */,
 			);
 			path = "Services and Managers";
 			sourceTree = "<group>";
@@ -627,6 +632,7 @@
 		87E867AD282A4F4A00EE0BA9 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				878181A32833969F00A9AEDE /* AtomicContainer.swift */,
 				87E867B3282A501C00EE0BA9 /* MockUserDefaults.swift */,
 				87E867AF282A4F9200EE0BA9 /* UIImage.AverageColor.swift */,
 				87E867B1282A4FB800EE0BA9 /* UIImage.MergeHorizontally.swift */,
@@ -1329,6 +1335,7 @@
 				8781819128311BC000A9AEDE /* MultiPartFormDataErrorTests.swift in Sources */,
 				874F810328292C22003FFDDA /* NSLayoutConstraintStoringTests.swift in Sources */,
 				87C473E72825337900695047 /* StringKeepingOnlyCharsTests.swift in Sources */,
+				878181A2283394FB00A9AEDE /* SessionManagerTests.swift in Sources */,
 				87818162282A7DA000A9AEDE /* EdgeInsets_TBTests.swift in Sources */,
 				87C473DF282520C600695047 /* SetToggleTests.swift in Sources */,
 				8781817D282AA71A00A9AEDE /* NetworkRequestMethodTests.swift in Sources */,
@@ -1354,6 +1361,7 @@
 				87E867DC282A531A00EE0BA9 /* MockUserDefaults.swift in Sources */,
 				87C473E1282521EB00695047 /* SequenceConditionalGroupingTests.swift in Sources */,
 				87C473CD2823CFD700695047 /* CalendarNumberOfDaysInMonthTests.swift in Sources */,
+				878181A42833969F00A9AEDE /* AtomicContainer.swift in Sources */,
 				87818153282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift in Sources */,
 				87E867E0282A554D00EE0BA9 /* XCTest.XCTAssertEqualColor.swift in Sources */,
 				87818155282A6A8200A9AEDE /* UIViewControllerWithTabBarItemTests.swift in Sources */,

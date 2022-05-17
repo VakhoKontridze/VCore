@@ -95,6 +95,8 @@ public final class NetworkClient {
     /// Initializes `NetworkClient`.
     public init(responseProcessor: NetworkResponseProcessor) {
         self.responseProcessor = responseProcessor
+        
+        NetworkReachabilityService.configure()
     }
     
     // MARK: Data Tasks (Async)
