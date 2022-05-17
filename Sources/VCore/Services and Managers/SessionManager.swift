@@ -54,6 +54,7 @@ public final class SessionManager {
     public static let shared: AtomicInteger = .init()
     
     // MARK: Initializers
+    /// Initializes `SessionManager`.
     public init() {}
 
     // MARK: Validation

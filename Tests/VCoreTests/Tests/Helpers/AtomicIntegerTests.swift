@@ -18,7 +18,7 @@ final class AtomicIntegerTests: XCTestCase {
     }
     
     func testThreads() {
-        let expectation: XCTestExpectation = expectation(description: "ThreadedTest")
+        let expectation: XCTestExpectation = expectation(description: "ThreadTest")
         
         let instance: AtomicInteger = .init(initialValue: 0)
         let container: AtomicContainer<Int> = .init()
@@ -36,50 +36,8 @@ final class AtomicIntegerTests: XCTestCase {
         
         waitForExpectations(timeout: 10, handler: { _ in
             XCTAssertEqual(container.allElements().count, count)
+            
             XCTAssertTrue(container.allElements().isUnique)
         })
-    }
-}
- 
-// MARK: - Atomic Container
-private final class AtomicContainer<Value> where Value: Hashable {
-    // MARK: Properties
-    private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
-    private var storage: [Value]
-
-    // MARK: Initializers
-    init() {
-        self.storage = []
-    }
-
-    // MARK: Methods
-    subscript(index: Int) -> Value {
-        get {
-            dispatchSemaphore.wait()
-            defer { dispatchSemaphore.signal() }
-
-            return storage[index]
-        }
-
-        set {
-            dispatchSemaphore.wait()
-            defer { dispatchSemaphore.signal() }
-
-            storage[index] = newValue
-        }
-    }
-
-    func append(_ element: Value) {
-        dispatchSemaphore.wait()
-        defer { dispatchSemaphore.signal() }
-
-        storage.append(element)
-    }
-
-    func allElements() -> [Value] {
-        dispatchSemaphore.wait()
-        defer { dispatchSemaphore.signal() }
-
-        return storage
     }
 }
