@@ -60,6 +60,7 @@
 		878181A2283394FB00A9AEDE /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181A1283394FB00A9AEDE /* SessionManagerTests.swift */; };
 		878181A42833969F00A9AEDE /* AtomicContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181A32833969F00A9AEDE /* AtomicContainer.swift */; };
 		878181A62833984900A9AEDE /* AutoPrecisionNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181A52833984900A9AEDE /* AutoPrecisionNumberFormatterTests.swift */; };
+		878181A828339B2400A9AEDE /* DigitalTimeFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181A728339B2400A9AEDE /* DigitalTimeFormatterTests.swift */; };
 		87954346281F057D00874A69 /* Date.Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954345281F057D00874A69 /* Date.Age.swift */; };
 		87954348281F0AC100874A69 /* String.KeepingOnlyChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */; };
 		8795434A281F0BA300874A69 /* String.RemovingChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954349281F0BA300874A69 /* String.RemovingChars.swift */; };
@@ -281,6 +282,7 @@
 		878181A1283394FB00A9AEDE /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
 		878181A32833969F00A9AEDE /* AtomicContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicContainer.swift; sourceTree = "<group>"; };
 		878181A52833984900A9AEDE /* AutoPrecisionNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPrecisionNumberFormatterTests.swift; sourceTree = "<group>"; };
+		878181A728339B2400A9AEDE /* DigitalTimeFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalTimeFormatterTests.swift; sourceTree = "<group>"; };
 		87954345281F057D00874A69 /* Date.Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Age.swift; sourceTree = "<group>"; };
 		87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.KeepingOnlyChars.swift; sourceTree = "<group>"; };
 		87954349281F0BA300874A69 /* String.RemovingChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.RemovingChars.swift; sourceTree = "<group>"; };
@@ -539,6 +541,7 @@
 				8781818C28311B3300A9AEDE /* Multi Part Form Data Builder */,
 				878181962831347300A9AEDE /* Coder Services */,
 				878181A1283394FB00A9AEDE /* SessionManagerTests.swift */,
+				878181A728339B2400A9AEDE /* DigitalTimeFormatterTests.swift */,
 				878181A52833984900A9AEDE /* AutoPrecisionNumberFormatterTests.swift */,
 			);
 			path = "Services and Managers";
@@ -1364,6 +1367,7 @@
 				87C473D72825191200695047 /* FloatingPointClampedInRangeTests.swift in Sources */,
 				87E867DC282A531A00EE0BA9 /* MockUserDefaults.swift in Sources */,
 				87C473E1282521EB00695047 /* SequenceConditionalGroupingTests.swift in Sources */,
+				878181A828339B2400A9AEDE /* DigitalTimeFormatterTests.swift in Sources */,
 				87C473CD2823CFD700695047 /* CalendarNumberOfDaysInMonthTests.swift in Sources */,
 				878181A42833969F00A9AEDE /* AtomicContainer.swift in Sources */,
 				87818153282A6A0D00A9AEDE /* UIViewRoundCornersTests.swift in Sources */,
