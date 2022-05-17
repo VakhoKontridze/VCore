@@ -275,7 +275,7 @@ public final class NetworkClient {
         )
     }
 
-    /// Makes network request and calls completion handler with a result of `Decodable` or `Error`or `Error`.
+    /// Makes network request and calls completion handler with a result of `Decodable` or `Error`.
     public func decodable<T: Decodable>(
         _ type: T.Type,
         from request: NetworkRequest,
