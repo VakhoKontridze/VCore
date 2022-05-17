@@ -122,12 +122,12 @@ extension Optional where Wrapped == Any {
 // MARK: - Wrapped JSON Type Casts
 extension Optional where Wrapped == Any {
     /// Casts `Optional` `Any` to wrapped`JSON`.
-    public var toWrappedJSON: [String: Any?] {
+    public var toUnwrappedJSON: [String: Any?] {
         toJSON ?? [:]
     }
 
     /// Casts `Optional` `Any` to wrapped `JSON` `Array`.
-    public var toWrappedJSONArray: [[String: Any?]] {
+    public var toUnwrappedJSONArray: [[String: Any?]] {
         toJSONArray ?? []
     }
 }
