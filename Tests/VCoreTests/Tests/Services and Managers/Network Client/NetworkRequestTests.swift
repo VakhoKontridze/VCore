@@ -148,7 +148,7 @@ final class NetworkRequestTests: XCTestCase {
     }
     
     func testBodyData() {
-        let data: Data = UIImage(size: .init(dimension: 100), color: .red)!.pngData()! // fatalError
+        let data: Data = .init(repeating: 1, count: 8)
         
         var request: NetworkRequest = .init(url: url)
         request.addBody(data: data)

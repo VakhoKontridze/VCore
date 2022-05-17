@@ -96,7 +96,9 @@ public final class NetworkClient {
     public init(responseProcessor: NetworkResponseProcessor) {
         self.responseProcessor = responseProcessor
         
+        #if !os(watchOS)
         NetworkReachabilityService.configure()
+        #endif
     }
     
     // MARK: Data Tasks (Async)
