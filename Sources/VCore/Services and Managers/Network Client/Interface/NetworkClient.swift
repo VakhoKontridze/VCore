@@ -19,11 +19,11 @@ import Foundation
 ///             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
 ///             request.method = .POST
 ///             try request.addHeaders(encodable: JSONRequestHeaders())
-///             try request.addBody(json: ["someKey": "someValue"])
+///             try request.addBody(json: ["key": "value"])
 ///
 ///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 ///
-///             print(result["json"]?.toWrappedJSON["someKey"]?.toString ?? "-")
+///             print(result["json"]?.toWrappedJSON["key"]?.toString ?? "-")
 ///
 ///         } catch {
 ///             print(error.localizedDescription)

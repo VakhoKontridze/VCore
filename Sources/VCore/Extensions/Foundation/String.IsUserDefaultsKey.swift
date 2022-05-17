@@ -13,7 +13,7 @@ extension String {
     ///
     /// Usage Example:
     ///
-    ///     "someKey".isUserDefaultsKey()
+    ///     "key".isUserDefaultsKey()
     ///
     public func isUserDefaultsKey(in defaults: UserDefaults = .standard) -> Bool {
         defaults.value(forKey: self) != nil
