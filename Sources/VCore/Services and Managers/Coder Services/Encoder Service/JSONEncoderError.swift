@@ -24,8 +24,6 @@ public enum JSONEncoderError: Int, VCoreError, CaseIterable {
     public var code: Int { 1000 + (rawValue+1) }
     
     public var description: String {
-        switch self {
-        case .failedToEncode: return "Data cannot be encoded or is incomplete"
-        }
+        VCoreLocalizationService.shared.localizationProvider.value(jsonEncoderError: self)
     }
 }

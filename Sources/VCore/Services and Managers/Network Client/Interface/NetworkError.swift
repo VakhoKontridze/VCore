@@ -53,17 +53,6 @@ public enum NetworkError: Int, VCoreError, CaseIterable {
     public var code: Int { 1000 + (rawValue+1) }
     
     public var description: String {
-        switch self {
-        case .notConnectedToNetwork: return "Not connected to network"
-        case .invalidEndpoint: return "Cannot connect to the server. An incorrect handler is being used."
-        case .invalidPathParameters: return "Data cannot be encoded or is incomplete"
-        case .invalidQueryparameters: return "Data cannot be encoded or is incomplete"
-        case .invalidHeaders: return "Data cannot be encoded or is incomplete"
-        case .invalidBody: return "Data cannot be encoded or is incomplete"
-        case .requestTimedOut: return "Request has timed out"
-        case .returnedWithError: return "Server has encountered an error"
-        case .invalidResponse: return "Server has returned an invalid response"
-        case .invalidData: return "Data cannot be decoded or is incomplete"
-        }
+        VCoreLocalizationService.shared.localizationProvider.value(networkError: self)
     }
 }

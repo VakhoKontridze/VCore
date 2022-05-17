@@ -8,6 +8,10 @@ General
 - Project now partially supports `macOS`, `tvOS`, and `watchOS`
 - Project is now covered under unit tests
 
+Services and Managers
+
+- `MultiPartFormDataBuilder` no longer throws errors
+
 Network Client
 
 - Requests methods with completion and result types are added
@@ -25,6 +29,10 @@ Extensions
 - `FloatingPoint` method `bound` is renamed to `clamp`
 - `NSObject` method `nsObjectName` is deprecated in favor of `String(describing:)` method
 - Various extensions are added
+
+API
+
+- `VCoreLocalizationService` is added, that supports localization within the package
 
 LocalizationService
 
