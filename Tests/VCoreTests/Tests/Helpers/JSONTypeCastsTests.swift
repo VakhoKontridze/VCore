@@ -24,14 +24,14 @@ final class JSONTypeCastsTests: XCTestCase {
     // MARK: Tests
     func testJSONCast() {
         XCTAssertEqual(
-            (json as Any?).toJSON?["key"]?.toString,
+            (json as Any?).toWrappedJSON["key"]?.toString,
             "value"
         )
     }
     
     func testJSONArrayCast() {
         XCTAssertEqual(
-            (jsonArray as Any?).toJSONArray?[0]["key"]?.toString,
+            (jsonArray as Any?).toWrappedJSONArray[0]["key"]?.toString,
             "value"
         )
     }

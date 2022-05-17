@@ -38,7 +38,7 @@ final class NetworkRequestMethodTests: XCTestCase {
             
             let json: [String: Any?] = try await NetworkClient.default.json(from: request)
             
-            XCTAssertEqual(json["json"]?.toJSON?["key"]?.toString, "value")
+            XCTAssertEqual(json["json"]?.toWrappedJSON["key"]?.toString, "value")
             
         } catch {
             fatalError(error.localizedDescription)
@@ -56,7 +56,7 @@ final class NetworkRequestMethodTests: XCTestCase {
             
             let json: [String: Any?] = try await NetworkClient.default.json(from: request)
             
-            XCTAssertEqual(json["json"]?.toJSON?["key"]?.toString, "value")
+            XCTAssertEqual(json["json"]?.toWrappedJSON["key"]?.toString, "value")
             
         } catch {
             fatalError(error.localizedDescription)
@@ -74,7 +74,7 @@ final class NetworkRequestMethodTests: XCTestCase {
             
             let json: [String: Any?] = try await NetworkClient.default.json(from: request)
             
-            XCTAssertEqual(json["json"]?.toJSON?["key"]?.toString, "value")
+            XCTAssertEqual(json["json"]?.toWrappedJSON["key"]?.toString, "value")
             
         } catch {
             fatalError(error.localizedDescription)
@@ -92,7 +92,7 @@ final class NetworkRequestMethodTests: XCTestCase {
             
             let json: [String: Any?] = try await NetworkClient.default.json(from: request)
             
-            XCTAssertEqual(json["json"]?.toJSON?["key"]?.toString, "value")
+            XCTAssertEqual(json["json"]?.toWrappedJSON["key"]?.toString, "value")
             
         } catch {
             fatalError(error.localizedDescription)
