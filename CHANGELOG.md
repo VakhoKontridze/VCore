@@ -1,6 +1,6 @@
 # Change Log
 
-#### [3.0.0(17)]
+#### [3.0.0(17)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.0) — *2022 05 17*
 
 General
 
