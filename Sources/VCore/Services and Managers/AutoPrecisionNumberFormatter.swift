@@ -10,11 +10,16 @@ import Foundation
 // MARK: - Extension
 extension Double {
     /// Returns string from number with specified min and max fractions.
+    ///
+    /// Usage Example:
+    ///
+    ///     let rounded: String = 3.1415.rounded(maxFractions: 2) // "3.14"
+    ///
     public func rounded(
-        min: Int = 0,
-        max: Int
+        minFractions: Int = 0,
+        maxFractions: Int
     ) -> String? {
-        AutoPrecisionNumberFormatter(minFractions: min, maxFractions: max)
+        AutoPrecisionNumberFormatter(minFractions: minFractions, maxFractions: maxFractions)
             .string(from: self)
     }
 }
