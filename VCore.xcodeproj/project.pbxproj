@@ -59,6 +59,7 @@
 		878181A0283141B500A9AEDE /* JSONDecoderServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781819F283141B500A9AEDE /* JSONDecoderServiceTests.swift */; };
 		878181A2283394FB00A9AEDE /* SessionManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181A1283394FB00A9AEDE /* SessionManagerTests.swift */; };
 		878181A42833969F00A9AEDE /* AtomicContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181A32833969F00A9AEDE /* AtomicContainer.swift */; };
+		878181A62833984900A9AEDE /* AutoPrecisionNumberFormatterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181A52833984900A9AEDE /* AutoPrecisionNumberFormatterTests.swift */; };
 		87954346281F057D00874A69 /* Date.Age.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954345281F057D00874A69 /* Date.Age.swift */; };
 		87954348281F0AC100874A69 /* String.KeepingOnlyChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */; };
 		8795434A281F0BA300874A69 /* String.RemovingChars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87954349281F0BA300874A69 /* String.RemovingChars.swift */; };
@@ -168,7 +169,7 @@
 		OBJ_240 /* JSONEncoderError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_84 /* JSONEncoderError.swift */; };
 		OBJ_241 /* JSONEncoderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_85 /* JSONEncoderService.swift */; };
 		OBJ_242 /* DigitalTimeFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_87 /* DigitalTimeFormatter.swift */; };
-		OBJ_243 /* PrettyFractionsNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* PrettyFractionsNumberFormatter.swift */; };
+		OBJ_243 /* AutoPrecisionNumberFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_88 /* AutoPrecisionNumberFormatter.swift */; };
 		OBJ_244 /* MultiPartFormDataBuilder.FileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_91 /* MultiPartFormDataBuilder.FileBuilder.swift */; };
 		OBJ_245 /* MultiPartFormDataBuilder.JSONBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_92 /* MultiPartFormDataBuilder.JSONBuilder.swift */; };
 		OBJ_246 /* MultiPartFormDataBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* MultiPartFormDataBuilder.swift */; };
@@ -279,6 +280,7 @@
 		8781819F283141B500A9AEDE /* JSONDecoderServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderServiceTests.swift; sourceTree = "<group>"; };
 		878181A1283394FB00A9AEDE /* SessionManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerTests.swift; sourceTree = "<group>"; };
 		878181A32833969F00A9AEDE /* AtomicContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AtomicContainer.swift; sourceTree = "<group>"; };
+		878181A52833984900A9AEDE /* AutoPrecisionNumberFormatterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPrecisionNumberFormatterTests.swift; sourceTree = "<group>"; };
 		87954345281F057D00874A69 /* Date.Age.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.Age.swift; sourceTree = "<group>"; };
 		87954347281F0AC100874A69 /* String.KeepingOnlyChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.KeepingOnlyChars.swift; sourceTree = "<group>"; };
 		87954349281F0BA300874A69 /* String.RemovingChars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.RemovingChars.swift; sourceTree = "<group>"; };
@@ -432,7 +434,7 @@
 		OBJ_84 /* JSONEncoderError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderError.swift; sourceTree = "<group>"; };
 		OBJ_85 /* JSONEncoderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderService.swift; sourceTree = "<group>"; };
 		OBJ_87 /* DigitalTimeFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DigitalTimeFormatter.swift; sourceTree = "<group>"; };
-		OBJ_88 /* PrettyFractionsNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrettyFractionsNumberFormatter.swift; sourceTree = "<group>"; };
+		OBJ_88 /* AutoPrecisionNumberFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPrecisionNumberFormatter.swift; sourceTree = "<group>"; };
 		OBJ_9 /* Deprecations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Deprecations.swift; sourceTree = "<group>"; };
 		OBJ_91 /* MultiPartFormDataBuilder.FileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilder.FileBuilder.swift; sourceTree = "<group>"; };
 		OBJ_92 /* MultiPartFormDataBuilder.JSONBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilder.JSONBuilder.swift; sourceTree = "<group>"; };
@@ -537,6 +539,7 @@
 				8781818C28311B3300A9AEDE /* Multi Part Form Data Builder */,
 				878181962831347300A9AEDE /* Coder Services */,
 				878181A1283394FB00A9AEDE /* SessionManagerTests.swift */,
+				878181A52833984900A9AEDE /* AutoPrecisionNumberFormatterTests.swift */,
 			);
 			path = "Services and Managers";
 			sourceTree = "<group>";
@@ -984,7 +987,7 @@
 				OBJ_119 /* NetworkReachabilityService.swift */,
 				OBJ_121 /* SessionManager.swift */,
 				OBJ_87 /* DigitalTimeFormatter.swift */,
-				OBJ_88 /* PrettyFractionsNumberFormatter.swift */,
+				OBJ_88 /* AutoPrecisionNumberFormatter.swift */,
 			);
 			path = "Services and Managers";
 			sourceTree = "<group>";
@@ -1234,7 +1237,7 @@
 				OBJ_240 /* JSONEncoderError.swift in Sources */,
 				OBJ_241 /* JSONEncoderService.swift in Sources */,
 				OBJ_242 /* DigitalTimeFormatter.swift in Sources */,
-				OBJ_243 /* PrettyFractionsNumberFormatter.swift in Sources */,
+				OBJ_243 /* AutoPrecisionNumberFormatter.swift in Sources */,
 				OBJ_244 /* MultiPartFormDataBuilder.FileBuilder.swift in Sources */,
 				OBJ_245 /* MultiPartFormDataBuilder.JSONBuilder.swift in Sources */,
 				OBJ_246 /* MultiPartFormDataBuilder.swift in Sources */,
@@ -1317,6 +1320,7 @@
 				8781819E283141A000A9AEDE /* JSONDecoderError.swift in Sources */,
 				87C473D32825148400695047 /* DateAgeTests.swift in Sources */,
 				8781816B282A7F1A00A9AEDE /* AtomicIntegerTests.swift in Sources */,
+				878181A62833984900A9AEDE /* AutoPrecisionNumberFormatterTests.swift in Sources */,
 				87C473C92823CC8E00695047 /* ArraySafeSubscriptTests.swift in Sources */,
 				87C473C62823CBB400695047 /* ArrayCompactMapNonEmptyTests.swift in Sources */,
 				87E867EA282A5F4E00EE0BA9 /* UIScreen.DisplayCornerRadiusTests.swift in Sources */,
