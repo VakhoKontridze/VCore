@@ -32,7 +32,7 @@ import Foundation
 ///             }
 ///         ]
 ///
-///         let (boundary, data): (String, Data) = try MultiPartFormDataBuilder(
+///         let (boundary, data): (String, Data) = MultiPartFormDataBuilder(
 ///             json: json,
 ///             files: files
 ///         ).build()
@@ -75,9 +75,9 @@ public struct MultiPartFormDataBuilder {
     
     // MARK: Building
     /// Builds and returns boundary string and `Data` that can be send using network request.
-    public func build() throws -> (String, Data) {
+    public func build() -> (String, Data) {
         let boundary: String = buildBoundary()
-        let data: Data = try buildData(boundary: boundary)
+        let data: Data = buildData(boundary: boundary)
         
         return (boundary, data)
     }
@@ -86,10 +86,10 @@ public struct MultiPartFormDataBuilder {
         UUID().uuidString
     }
     
-    private func buildData(boundary: String) throws -> Data {
+    private func buildData(boundary: String) -> Data {
         var data: Data = .init()
-        data.append(try JSONBuilder(boundary: boundary, json: json).build())
-        data.append(try FileBuilder(boundary: boundary, files: files).build())
+        data.append(JSONBuilder(boundary: boundary, json: json).build())
+        data.append(FileBuilder(boundary: boundary, files: files).build())
         data.append("--\(boundary)--\(Self.lineBreak)")
         return data
     }

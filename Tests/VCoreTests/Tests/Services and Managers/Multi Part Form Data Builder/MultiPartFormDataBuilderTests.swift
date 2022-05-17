@@ -44,7 +44,7 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
                 }
             ]
             
-            let (boundary, data): (String, Data) = try MultiPartFormDataBuilder(
+            let (boundary, data): (String, Data) = MultiPartFormDataBuilder(
                 json: json,
                 files: files
             ).build()

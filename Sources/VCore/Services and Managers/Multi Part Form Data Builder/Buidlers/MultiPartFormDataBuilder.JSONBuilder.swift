@@ -26,14 +26,14 @@ extension MultiPartFormDataBuilder {
         }
         
         // MARK: Build
-        func build() throws -> Data {
+        func build() -> Data {
             var data: Data = .init()
             
             for (key, value) in json {
                 switch value {
-                case let array as [Any?]: try appendArray(key: key, array: array, to: &data)
-                case let json as [String: Any?]: try appendJSON(key: key, json: json, to: &data)
-                default: try appendElement(key: key, element: value, to: &data)
+                case let array as [Any?]: appendArray(key: key, array: array, to: &data)
+                case let json as [String: Any?]: appendJSON(key: key, json: json, to: &data)
+                default: appendElement(key: key, element: value, to: &data)
                 }
             }
             
@@ -44,8 +44,8 @@ extension MultiPartFormDataBuilder {
             key: String,
             element: Any?,
             to data: inout Data
-        ) throws {
-            guard let value: String = .init(unwrappedDescribing: element) else { throw MultiPartFormDataError.invalidFiles }
+        ) {
+            guard let value: String = .init(unwrappedDescribing: element) else { return }
             
             data.append("--\(boundary)\(lineBreak)")
             data.append("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak)\(lineBreak)")
@@ -56,14 +56,14 @@ extension MultiPartFormDataBuilder {
             key: String,
             json: [String: Any?],
             to data: inout Data
-        ) throws {
+        ) {
             for element in json {
                 let elementKey: String = "\(key)[\(element.key)]"
                 
                 switch element.value {
-                case let array as [Any?]: try appendArray(key: elementKey, array: array, to: &data)
-                case let json as [String: Any?]: try appendJSON(key: elementKey, json: json, to: &data)
-                default: try appendElement(key: elementKey, element: element.value, to: &data)
+                case let array as [Any?]: appendArray(key: elementKey, array: array, to: &data)
+                case let json as [String: Any?]: appendJSON(key: elementKey, json: json, to: &data)
+                default: appendElement(key: elementKey, element: element.value, to: &data)
                 }
             }
         }
@@ -72,14 +72,14 @@ extension MultiPartFormDataBuilder {
             key: String,
             array: [Any?],
             to data: inout Data
-        ) throws {
+        ) {
             for (i, element) in array.enumerated() {
                 let elementKey: String = "\(key)[\(i)]"
                 
                 switch element {
-                case let array as [[String: Any?]]: try appendArray(key: elementKey, array: array, to: &data)
-                case let json as [String: Any?]: try appendJSON(key: elementKey, json: json, to: &data)
-                default: try appendElement(key: elementKey, element: element, to: &data)
+                case let array as [[String: Any?]]: appendArray(key: elementKey, array: array, to: &data)
+                case let json as [String: Any?]: appendJSON(key: elementKey, json: json, to: &data)
+                default: appendElement(key: elementKey, element: element, to: &data)
                 }
             }
         }

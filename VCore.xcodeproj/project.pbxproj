@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		8721EA242833BF60002760BC /* VCoreLocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721EA232833BF60002760BC /* VCoreLocalizationService.swift */; };
+		8721EA262833BF7B002760BC /* VCoreLocalizationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8721EA252833BF7B002760BC /* VCoreLocalizationServiceTests.swift */; };
 		874F80FA2829240E003FFDDA /* StringProtocolSubscriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F80F92829240E003FFDDA /* StringProtocolSubscriptTests.swift */; };
 		874F80FC282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F80FB282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift */; };
 		874F80FF28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874F80FE28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift */; };
@@ -50,7 +52,6 @@
 		87818187282AAE0300A9AEDE /* Sequence.IsUnique.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818186282AAE0300A9AEDE /* Sequence.IsUnique.swift */; };
 		87818189282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87818188282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift */; };
 		8781818B282AB12600A9AEDE /* NetworkResponseProcessorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781818A282AB12600A9AEDE /* NetworkResponseProcessorTests.swift */; };
-		8781819128311BC000A9AEDE /* MultiPartFormDataErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781818D28311B4800A9AEDE /* MultiPartFormDataErrorTests.swift */; };
 		8781819228311BC500A9AEDE /* MultiPartFormDataFileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8781818F28311BBC00A9AEDE /* MultiPartFormDataFileTests.swift */; };
 		878181952831265000A9AEDE /* MultiPartFormDataBuilderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181932831264100A9AEDE /* MultiPartFormDataBuilderTests.swift */; };
 		8781819A2831389E00A9AEDE /* JSONEncoderErrorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878181992831389E00A9AEDE /* JSONEncoderErrorTests.swift */; };
@@ -172,7 +173,6 @@
 		OBJ_244 /* MultiPartFormDataBuilder.FileBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_91 /* MultiPartFormDataBuilder.FileBuilder.swift */; };
 		OBJ_245 /* MultiPartFormDataBuilder.JSONBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_92 /* MultiPartFormDataBuilder.JSONBuilder.swift */; };
 		OBJ_246 /* MultiPartFormDataBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_94 /* MultiPartFormDataBuilder.swift */; };
-		OBJ_247 /* MultiPartFormDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_95 /* MultiPartFormDataError.swift */; };
 		OBJ_248 /* MultiPartFormDataFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_96 /* MultiPartFormDataFile.swift */; };
 		OBJ_249 /* JSONAuthorizedRequestHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_99 /* JSONAuthorizedRequestHeaders.swift */; };
 		OBJ_250 /* JSONRequestHeaders.swift in Sources */ = {isa = PBXBuildFile; fileRef = OBJ_100 /* JSONRequestHeaders.swift */; };
@@ -241,6 +241,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8721EA232833BF60002760BC /* VCoreLocalizationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreLocalizationService.swift; sourceTree = "<group>"; };
+		8721EA252833BF7B002760BC /* VCoreLocalizationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCoreLocalizationServiceTests.swift; sourceTree = "<group>"; };
 		874F80F92829240E003FFDDA /* StringProtocolSubscriptTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringProtocolSubscriptTests.swift; sourceTree = "<group>"; };
 		874F80FB282924D1003FFDDA /* URLResponseIsSuccessHTTPStatusCodeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLResponseIsSuccessHTTPStatusCodeTests.swift; sourceTree = "<group>"; };
 		874F80FE28292869003FFDDA /* CGRectToNSLayoutConstraintsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGRectToNSLayoutConstraintsTests.swift; sourceTree = "<group>"; };
@@ -270,7 +272,6 @@
 		87818186282AAE0300A9AEDE /* Sequence.IsUnique.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sequence.IsUnique.swift; sourceTree = "<group>"; };
 		87818188282AAFEA00A9AEDE /* SequenceIsUniqueTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SequenceIsUniqueTests.swift; sourceTree = "<group>"; };
 		8781818A282AB12600A9AEDE /* NetworkResponseProcessorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkResponseProcessorTests.swift; sourceTree = "<group>"; };
-		8781818D28311B4800A9AEDE /* MultiPartFormDataErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataErrorTests.swift; sourceTree = "<group>"; };
 		8781818F28311BBC00A9AEDE /* MultiPartFormDataFileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataFileTests.swift; sourceTree = "<group>"; };
 		878181932831264100A9AEDE /* MultiPartFormDataBuilderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilderTests.swift; sourceTree = "<group>"; };
 		878181992831389E00A9AEDE /* JSONEncoderErrorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderErrorTests.swift; sourceTree = "<group>"; };
@@ -437,7 +438,6 @@
 		OBJ_91 /* MultiPartFormDataBuilder.FileBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilder.FileBuilder.swift; sourceTree = "<group>"; };
 		OBJ_92 /* MultiPartFormDataBuilder.JSONBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilder.JSONBuilder.swift; sourceTree = "<group>"; };
 		OBJ_94 /* MultiPartFormDataBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataBuilder.swift; sourceTree = "<group>"; };
-		OBJ_95 /* MultiPartFormDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataError.swift; sourceTree = "<group>"; };
 		OBJ_96 /* MultiPartFormDataFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultiPartFormDataFile.swift; sourceTree = "<group>"; };
 		OBJ_99 /* JSONAuthorizedRequestHeaders.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONAuthorizedRequestHeaders.swift; sourceTree = "<group>"; };
 		"~vcore::VCore::Product" /* VCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = VCore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -463,6 +463,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8721EA212833BF44002760BC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8721EA232833BF60002760BC /* VCoreLocalizationService.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
+		8721EA222833BF50002760BC /* API */ = {
+			isa = PBXGroup;
+			children = (
+				8721EA252833BF7B002760BC /* VCoreLocalizationServiceTests.swift */,
+			);
+			path = API;
+			sourceTree = "<group>";
+		};
 		874F80FD2829285D003FFDDA /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -560,7 +576,6 @@
 			children = (
 				878181932831264100A9AEDE /* MultiPartFormDataBuilderTests.swift */,
 				8781818F28311BBC00A9AEDE /* MultiPartFormDataFileTests.swift */,
-				8781818D28311B4800A9AEDE /* MultiPartFormDataErrorTests.swift */,
 			);
 			path = "Multi Part Form Data Builder";
 			sourceTree = "<group>";
@@ -649,6 +664,7 @@
 				87818172282A8E7D00A9AEDE /* Global Functions */,
 				87818159282A6F0C00A9AEDE /* Helpers */,
 				87C473C22823CB3D00695047 /* Extensions */,
+				8721EA222833BF50002760BC /* API */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -1006,6 +1022,7 @@
 				OBJ_61 /* Global Functions */,
 				OBJ_64 /* Helpers */,
 				OBJ_10 /* Extensions */,
+				8721EA212833BF44002760BC /* API */,
 				OBJ_9 /* Deprecations.swift */,
 			);
 			name = VCore;
@@ -1053,7 +1070,6 @@
 			children = (
 				OBJ_94 /* MultiPartFormDataBuilder.swift */,
 				OBJ_96 /* MultiPartFormDataFile.swift */,
-				OBJ_95 /* MultiPartFormDataError.swift */,
 			);
 			path = Interface;
 			sourceTree = "<group>";
@@ -1237,7 +1253,6 @@
 				OBJ_244 /* MultiPartFormDataBuilder.FileBuilder.swift in Sources */,
 				OBJ_245 /* MultiPartFormDataBuilder.JSONBuilder.swift in Sources */,
 				OBJ_246 /* MultiPartFormDataBuilder.swift in Sources */,
-				OBJ_247 /* MultiPartFormDataError.swift in Sources */,
 				OBJ_248 /* MultiPartFormDataFile.swift in Sources */,
 				OBJ_249 /* JSONAuthorizedRequestHeaders.swift in Sources */,
 				OBJ_250 /* JSONRequestHeaders.swift in Sources */,
@@ -1286,6 +1301,7 @@
 				OBJ_290 /* KeyboardResponsiveViewController.swift in Sources */,
 				OBJ_291 /* SystemKeyboardInfo.swift in Sources */,
 				OBJ_292 /* ScrollableView.ScrollDirection.swift in Sources */,
+				8721EA242833BF60002760BC /* VCoreLocalizationService.swift in Sources */,
 				OBJ_293 /* ScrollableView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1331,7 +1347,6 @@
 				87C473DB28251DEF00695047 /* IntRunBlockNTimesTests.swift in Sources */,
 				87E867A42829435F00EE0BA9 /* UIColorRGBAValuesTests.swift in Sources */,
 				87E867E6282A5D1B00EE0BA9 /* UILabelConfigurationTests.swift in Sources */,
-				8781819128311BC000A9AEDE /* MultiPartFormDataErrorTests.swift in Sources */,
 				874F810328292C22003FFDDA /* NSLayoutConstraintStoringTests.swift in Sources */,
 				87C473E72825337900695047 /* StringKeepingOnlyCharsTests.swift in Sources */,
 				878181A2283394FB00A9AEDE /* SessionManagerTests.swift in Sources */,
@@ -1372,6 +1387,7 @@
 				8781817F282AAA3300A9AEDE /* NetworkErrorTests.swift in Sources */,
 				8781816F282A8CFA00A9AEDE /* KVInitializableEnumerationTests.swift in Sources */,
 				87C473ED2829210000695047 /* StringProtocolNonEmptyTests.swift in Sources */,
+				8721EA262833BF7B002760BC /* VCoreLocalizationServiceTests.swift in Sources */,
 				87E867A8282A3F6800EE0BA9 /* UIImageCompressedTests.swift in Sources */,
 				87E867B7282A523700EE0BA9 /* UIImageInitWithColorTests.swift in Sources */,
 				8781818B282AB12600A9AEDE /* NetworkResponseProcessorTests.swift in Sources */,

@@ -38,6 +38,8 @@ Project files are grouped as:
 
 - ***Extensions***. Global extensions. Methods and properties are grouped by frameworks of origin—`Foundation`, `UIKit`, and `SwiftUI`.
 
+- ***API***. Objects used for interfacing from you app/package to `VCore`. For instances, `VCoreLocalizationService`.
+
 Project incudes folder `Extra`, which contains:
 
 - ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover scenes and gateways. For more info, refer to documnetation folder.
