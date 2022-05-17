@@ -23,7 +23,7 @@ final class NetworkResponseProcessorTests: XCTestCase {
             headerFields: nil
         )!
         
-        let data: Data = try! JSONEncoderService.data(from: [ // fatalError
+        let data: Data = try! JSONEncoderService.data(any: [ // fatalError
             "success": false,
             "code": code,
             "message": message
@@ -66,7 +66,7 @@ private struct TestNetworkReponseProcessor: NetworkResponseProcessor {
     func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
         if response.isSuccessHTTPStatusCode { return response }
 
-        guard let json: [String: Any?] = try? JSONDecoderService.json(from: data) else { return response }
+        guard let json: [String: Any?] = try? JSONDecoderService.json(data: data) else { return response }
         if json["success"]?.toBool == true { return response }
 
         guard
@@ -81,9 +81,9 @@ private struct TestNetworkReponseProcessor: NetworkResponseProcessor {
 
     func data(_ data: Data, _ response: URLResponse) throws -> Data {
         guard
-            let json: [String: Any?] = try? JSONDecoderService.json(from: data),
+            let json: [String: Any?] = try? JSONDecoderService.json(data: data),
             let dataJSON: [String: Any?] = json["json"]?.toJSON,
-            let dataData: Data = try? JSONEncoderService.data(from: dataJSON)
+            let dataData: Data = try? JSONEncoderService.data(any: dataJSON)
         else {
             throw TestNetworkError(code: 1, description: "Incomplete Data")
         }

@@ -24,17 +24,17 @@ extension NetworkRequestFactory {
             json: [String: Any?]
         ) throws -> Data {
             do {
-                return try JSONEncoderService.data(from: json)
+                return try JSONEncoderService.data(any: json)
             } catch {
                 throw NetworkError.invalidBody
             }
         }
         
-        static func build<EncodableBody: Encodable>(
-            encodable: EncodableBody
+        static func build<T: Encodable>(
+            encodable: T
         ) throws -> Data {
             do {
-                return try JSONEncoderService.data(from: encodable)
+                return try JSONEncoderService.data(encodable: encodable)
             } catch {
                 throw NetworkError.invalidBody
             }

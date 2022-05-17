@@ -29,10 +29,10 @@ extension NetworkRequestFactory {
             return result
         }
         
-        static func build<EncodableQueryParameters: Encodable>(
-            encodable: EncodableQueryParameters
+        static func build<T: Encodable>(
+            encodable: T
         ) throws -> [String: String] {
-            let json: [String: Any?] = try JSONEncoderService.json(from: encodable)
+            let json: [String: Any?] = try JSONEncoderService.json(encodable: encodable)
             
             var result: [String: String] = [:]
             

@@ -29,7 +29,7 @@ import Foundation
 ///     let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
 ///
 public protocol KVInitializableEnumeration: CaseIterable {
-    static func aCase <Property>(
+    static func aCase<Property>(
         key keyPath: KeyPath<Self, Property>,
         value: Property
     ) -> Self?
@@ -37,7 +37,7 @@ public protocol KVInitializableEnumeration: CaseIterable {
 }
 
 extension KVInitializableEnumeration {
-    public static func aCase <Property>(
+    public static func aCase<Property>(
         key keyPath: KeyPath<Self, Property>,
         value: Property
     ) -> Self?

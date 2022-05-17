@@ -50,7 +50,7 @@ import Foundation
 ///         func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
 ///             if response.isSuccessHTTPStatusCode { return response }
 ///
-///             guard let json: [String: Any?] = try? JSONDecoderService.json(from: data) else { return response }
+///             guard let json: [String: Any?] = try? JSONDecoderService.json(data: data) else { return response }
 ///             if json["success"]?.toBool == true { return response }
 ///
 ///             guard
@@ -65,9 +65,9 @@ import Foundation
 ///
 ///         func data(_ data: Data, _ response: URLResponse) throws -> Data {
 ///             guard
-///                 let json: [String: Any?] = try? JSONDecoderService.json(from: data),
+///                 let json: [String: Any?] = try? JSONDecoderService.json(data: data),
 ///                 let dataJSON: [String: Any?] = json["data"]?.toJSON,
-///                 let dataData: Data = try? JSONEncoderService.data(from: dataJSON)
+///                 let dataData: Data = try? JSONEncoderService.data(encodable: dataJSON)
 ///             else {
 ///                 throw SomeNetworkError(code: 1, description: "Incomplete Data")
 ///             }
@@ -123,7 +123,7 @@ public final class NetworkClient {
     ) async throws -> [String: Any?] {
         try await makeRequest(
             request: request,
-            decode: { try JSONDecoderService.json(from: $0) }
+            decode: { try JSONDecoderService.json(data: $0) }
         )
     }
     
@@ -133,17 +133,17 @@ public final class NetworkClient {
     ) async throws -> [[String: Any?]] {
         try await makeRequest(
             request: request,
-            decode: { try JSONDecoderService.jsonArray(from: $0) }
+            decode: { try JSONDecoderService.jsonArray(data: $0) }
         )
     }
     
     /// Makes network request and returns `Decodable`.
-    public func decodable<DecodableEntity: Decodable>(
+    public func decodable<T: Decodable>(
         from request: NetworkRequest
-    ) async throws -> DecodableEntity {
+    ) async throws -> T {
         try await makeRequest(
             request: request,
-            decode: { try JSONDecoderService.decodable(from: $0) }
+            decode: { try JSONDecoderService.decodable(data: $0) }
         )
     }
     
@@ -254,7 +254,7 @@ public final class NetworkClient {
     ) {
         makeRequest(
             request: request,
-            decode: { try JSONDecoderService.json(from: $0) },
+            decode: { try JSONDecoderService.json(data: $0) },
             completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
         )
     }
@@ -266,20 +266,20 @@ public final class NetworkClient {
     ) {
         makeRequest(
             request: request,
-            decode: { try JSONDecoderService.jsonArray(from: $0) },
+            decode: { try JSONDecoderService.jsonArray(data: $0) },
             completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
         )
     }
 
     /// Makes network request and calls completion handler with a result of `Decodable` or `Error`or `Error`.
-    public func decodable<DecodableEntity: Decodable>(
+    public func decodable<T: Decodable>(
+        _ type: T.Type,
         from request: NetworkRequest,
-        entityType: DecodableEntity.Type,
-        completion: @escaping (Result<DecodableEntity, Error> ) -> Void
+        completion: @escaping (Result<T, Error> ) -> Void
     ) {
         makeRequest(
             request: request,
-            decode: { try JSONDecoderService.decodable(from: $0) },
+            decode: { try JSONDecoderService.decodable(data: $0) },
             completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
         )
     }
