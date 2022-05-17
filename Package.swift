@@ -27,6 +27,6 @@ let package: Package = .init(
         .testTarget(
             name: "VCoreTests",
             dependencies: ["VCore"]
-        ),
+        )
     ]
 )

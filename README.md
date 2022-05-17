@@ -4,7 +4,7 @@
 
 - [Description](#description)
 - [Compatibility](#compatibility)
-- [Library Structure](#library-structure)
+- [Package Structure](#package-structure)
 - [Demo](#demo)
 - [Installation](#installation)
 - [Versioning](#versioning)
@@ -24,7 +24,7 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 
 **Limited support*
 
-## Library Structure
+## Package Structure
 
 Project files are grouped as:
 
@@ -44,15 +44,13 @@ Project incudes folder `Extra`, which contains:
 
 - ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover scenes and gateways. For more info, refer to documnetation folder.
 
-- Objects and methods that cannot be included in a library as they require additional customization or access to `AppDelegate`/`SceneDelegate`.
+- Objects and methods that cannot be included in the package as they require additional customization or access to `AppDelegate`/`SceneDelegate`.
 
 ## Demo
 
-Project contains demo app, that can be used to test functionality of the library.
+Project contains demo app, that can be used to test functionality of the package.
 
 ## Installation
-
-Library doesn't support CocoaPods or Carthage.
 
 #### Swift Package Manager
 
