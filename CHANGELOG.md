@@ -46,7 +46,7 @@ API
 
 - `VCoreLocalizationService` is added, that supports localization within the package
 
-LocalizationService
+Localization Service
 
 - `LocalizationService` now supports langauge switching from app settings
 
