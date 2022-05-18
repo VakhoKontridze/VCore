@@ -47,7 +47,7 @@ extension MultiPartFormDataBuilder {
         ) {
             guard
                 let element = element,
-                let file: MultiPartFormDataFile = (element as? MultiPartFormDataFile)
+                let file: MultiPartFormDataFile = element as? MultiPartFormDataFile
             else {
                 return
             }
