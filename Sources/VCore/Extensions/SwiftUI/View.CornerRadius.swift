@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 10/28/21.
 //
 
-#if canImport(UIRectCorner)
+#if canImport(UIKit)
 
 import SwiftUI
 

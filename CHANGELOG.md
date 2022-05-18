@@ -1,5 +1,11 @@
 # Change Log
 
+#### [3.0.3(20)]
+
+Extensions
+
+- Issue with accessing `cornerRadius` method in SwiftUI is fixed
+
 #### [3.0.2(19)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.2) — *2022 05 17*
 
 Views and ViewControllers
