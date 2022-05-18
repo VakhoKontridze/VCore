@@ -11,7 +11,7 @@ import XCTest
 // MARK: - Tests
 final class MultiPartFormDataFileTests: XCTestCase {
     // MARK: Test Data
-    private struct SomeMultiPartFormDataFile: AnyMultiPartFormFile {}
+    private struct SomeMultiPartFormDataFile: AnyMultiPartFormDataFile {}
     
     // MARK: Tests
     func testInit() {

@@ -33,7 +33,7 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
                 "key": "value"
             ]
 
-            let files: [String: AnyMultiPartFormFile?] = [
+            let files: [String: AnyMultiPartFormDataFile?] = [
                 "profile": MultiPartFormDataFile(
                     mimeType: "image/jpeg",
                     data: profileImage?.jpegData(compressionQuality: 0.75)
@@ -97,7 +97,7 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
                 "key": "value"
             ]
 
-            let files: [String: AnyMultiPartFormFile?] = [:]
+            let files: [String: AnyMultiPartFormDataFile?] = [:]
             
             let (boundary, data): (String, Data) = MultiPartFormDataBuilder(
                 json: json,
