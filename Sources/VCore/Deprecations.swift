@@ -11,7 +11,7 @@ import Foundation
 extension Optional where Wrapped == Any {
     @available(*, deprecated, renamed: "toUnwrappedJSON")
     public var toWrappedJSON: [String: Any?] {
-        toUnwrappedJSON
+        return toUnwrappedJSON
     }
 
     @available(*, deprecated, renamed: "toUnwrappedJSONArray")
@@ -19,4 +19,3 @@ extension Optional where Wrapped == Any {
         toUnwrappedJSONArray
     }
 }
-
