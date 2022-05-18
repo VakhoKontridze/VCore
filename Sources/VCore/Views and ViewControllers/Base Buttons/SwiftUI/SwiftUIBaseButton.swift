@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if canImport(BaseButtonTapGestureRecognizer)
+#if os(iOS)
 
 import SwiftUI
 
