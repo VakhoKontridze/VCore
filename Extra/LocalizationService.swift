@@ -1,4 +1,5 @@
 import Foundation
+import VCore
 
 // MARK: - Localization Service
 final class LocalizationService {
