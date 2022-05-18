@@ -17,7 +17,7 @@ import Foundation
 ///             "key": "value"
 ///         ]
 ///
-///         let files: [String: AnyMultiPartFormFile?] = [
+///         let files: [String: AnyMultiPartFormDataFile?] = [
 ///             "profile": MultiPartFormDataFile(
 ///                 mimeType: "image/jpeg",
 ///                 data: profileImage?.jpegData(compressionQuality: 0.75)
@@ -59,7 +59,7 @@ import Foundation
 public struct MultiPartFormDataBuilder {
     // MARK: Properties
     private let json: [String: Any?]
-    private let files: [String: AnyMultiPartFormFile?]
+    private let files: [String: AnyMultiPartFormDataFile?]
     
     static let lineBreak = "\r\n"
     
@@ -67,7 +67,7 @@ public struct MultiPartFormDataBuilder {
     /// Initializes `MultiPartFormDataBuilder`.
     public init(
         json: [String: Any?],
-        files: [String: AnyMultiPartFormFile?]
+        files: [String: AnyMultiPartFormDataFile?]
     ) {
         self.json = json
         self.files = files

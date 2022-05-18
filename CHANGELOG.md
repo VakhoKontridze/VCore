@@ -2,6 +2,10 @@
 
 #### [3.0.3(20)]
 
+Services and Managers
+
+- `AnyMultiPartFormFile` is renamed to `AnyMultiPartFormDataFile`
+
 Extensions
 
 - Issue with accessing `cornerRadius` method in SwiftUI is fixed

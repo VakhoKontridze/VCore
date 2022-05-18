@@ -7,18 +7,18 @@
 
 import Foundation
 
-// MARK: - Any Multi Part Form File
+// MARK: - Any Multi Part Form Data File
 /// Type that can be passed to `MultiPartFormDataBuilder`.
 ///
-/// While not a non-nomilal type, `AnyMultiPartFormFile` mimics `Any`.
+/// While not a non-nomilal type, `AnyMultiPartFormDataFile` mimics `Any`.
 ///
-/// `MultiPartFormDataFile`, `Dictionary` with a value of `AnyMultiPartFormFile`, and array of `AnyMultiPartFormFile` all conform to this protocol.
+/// `MultiPartFormDataFile`, `Dictionary` with a value of `AnyMultiPartFormDataFile`, and array of `AnyMultiPartFormDataFile` all conform to this protocol.
 /// This allows `MultiPartFormDataBuilder` to effectively send a single item, dictionary, array, combination, or a nested structue of each other.
 ///
 /// Files passed to `MultiParFormDataBuilder` via dicrioanry will have joined names,
 /// while those passed via array will be enumerated using indexes.
 ///
-///     let files: [String: AnyMultiPartFormFile?] = [
+///     let files: [String: AnyMultiPartFormDataFile?] = [
 ///         "main_image": MultiPartFormDataFile(mimeType: "image/jpeg", data: mainImageData),
 ///
 ///         "gallery": [
@@ -46,25 +46,25 @@ import Foundation
 ///     ... name=\"gallery[large_images][1]\"; filename=\"large-image-2.jpg\" ...
 ///
 /// For additional information, refer to `MultiPartFormDataBuilder`.
-public protocol AnyMultiPartFormFile {}
+public protocol AnyMultiPartFormDataFile {}
 
-extension MultiPartFormDataFile: AnyMultiPartFormFile {}
+extension MultiPartFormDataFile: AnyMultiPartFormDataFile {}
 
-extension Optional: AnyMultiPartFormFile where Wrapped == AnyMultiPartFormFile {}
+extension Optional: AnyMultiPartFormDataFile where Wrapped == AnyMultiPartFormDataFile {}
 
-extension Array: AnyMultiPartFormFile where Element == Optional<AnyMultiPartFormFile> {}
+extension Array: AnyMultiPartFormDataFile where Element == Optional<AnyMultiPartFormDataFile> {}
 
-extension Dictionary: AnyMultiPartFormFile where Key == String, Value == Optional<AnyMultiPartFormFile> {}
+extension Dictionary: AnyMultiPartFormDataFile where Key == String, Value == Optional<AnyMultiPartFormDataFile> {}
  
 // MARK: - Mutli Part Form Data File
-/// Building block of objects conforming to `AnyMultiPartFormFile`.
+/// Building block of objects conforming to `AnyMultiPartFormDataFile`.
 ///
 /// Can be placed in `Dictionary` or `Array`.
 public struct MultiPartFormDataFile {
     // MARK: Properties
     /// File name.
     ///
-    /// If `nil`, `String` passed to `[String: AnyMultiPartFormFile?]` `Dictionary` will be used.
+    /// If `nil`, `String` passed to `[String: AnyMultiPartFormDataFile?]` `Dictionary` will be used.
     /// With an explicit `filename`, a mime type is not automatically appended.
     public let filename: String?
     
