@@ -1,6 +1,6 @@
 # Change Log
 
-#### [3.0.3(20)]
+#### [3.1.0(20)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.0) — *2022 05 20*
 
 Views and ViewControllers
 
@@ -10,7 +10,7 @@ Services and Managers
 
 - `AnyMultiPartFormFile` is renamed to `AnyMultiPartFormDataFile`
 
-Extensions:
+Extensions
 
 - `bindToModalContext` method is added
 - `OptionSet` `elements` property is added
