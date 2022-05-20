@@ -28,9 +28,9 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 
 Project files are grouped as:
 
-- ***Views and ViewContollers***. Reusable non-scene `UIView`'s and `UIViewController`'s.
-
 - ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `NetworkClient`.
+
+- ***Views and ViewContollers***. Reusable non-scene `UIView`'s and `UIViewController`'s.
 
 - ***Helpers***. Non-service, non-extension objects and methods. For instance, helper methods for creating `GenericStateModel`'s and `StandardNavigable`.
 
