@@ -2,13 +2,13 @@
 
 #### [3.1.0(20)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.0) — *2022 05 20*
 
-Views and ViewControllers
-
-- Issue with accessing `SwiftUIBaseButton` in SwiftUI is fixed
-
 Services and Managers
 
 - `AnyMultiPartFormFile` is renamed to `AnyMultiPartFormDataFile`
+
+Views and ViewControllers
+
+- Issue with accessing `SwiftUIBaseButton` in SwiftUI is fixed
 
 Extensions
 
@@ -166,7 +166,7 @@ Network Client
 - Several cases are added to `NetworkError`
 - `NetworkError.incompleteEntity` is renamed to `NetworkError.invalidData`
 
-Views and ViewContollers
+Views and ViewControllers
 
 - `UIKitBaseButton` and `SwiftUIBaseButton` are added
 - `KeyboardResponsiveViewController` are added
