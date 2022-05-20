@@ -1,6 +1,6 @@
 //
 //  View.BindValueToModalContext.swift
-//  
+//  VCore
 //
 //  Created by Vakhtang Kontridze on 20.05.22.
 //

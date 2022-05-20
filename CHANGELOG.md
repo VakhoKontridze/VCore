@@ -4,7 +4,7 @@
 
 Views and ViewControllers
 
-- Issue with importing `SwiftUIBaseButton` is fixed
+- Issue with accessing `SwiftUIBaseButton` in SwiftUI is fixed
 
 Services and Managers
 
@@ -13,10 +13,7 @@ Services and Managers
 Extensions:
 
 - `bindToModalContext` method is added
-- Issue with importing `SwiftUI` method `cornerRadius` is fixed
-
-Extensions
-
+- `OptionSet` `elements` property is added
 - Issue with accessing `cornerRadius` method in SwiftUI is fixed
 
 #### [3.0.2(19)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.2) — *2022 05 17*
