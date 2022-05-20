@@ -69,7 +69,10 @@ extension View {
     ///                 Text(String(isOn)) // Displays "true"
     ///             })
     ///     }
+    @available(iOS 14.0, *)
+    @available(macOS 11.0, *)
     @available(tvOS 14.0, *)
+    @available(watchOS 7.0, *)
     public func bindToModalContext<V>(_ value: V) -> some View
         where V : Equatable
     {
