@@ -2,9 +2,18 @@
 
 #### [3.0.3(20)]
 
+Views and ViewControllers
+
+- Issue with importing `SwiftUIBaseButton` is fixed
+
 Services and Managers
 
 - `AnyMultiPartFormFile` is renamed to `AnyMultiPartFormDataFile`
+
+Extensions:
+
+- `bindToModalContext` method is added
+- Issue with importing `SwiftUI` method `cornerRadius` is fixed
 
 Extensions
 
