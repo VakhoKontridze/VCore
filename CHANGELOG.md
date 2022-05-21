@@ -1,5 +1,11 @@
 # Change Log
 
+#### [3.1.1(21)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.1) — *2022 05 21*
+
+Services and Managers
+
+- Issue with deprecation rename suggestion for `AnyMultiPartFormDataFile` is fixed
+
 #### [3.1.0(20)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.0) — *2022 05 20*
 
 Services and Managers
