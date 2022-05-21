@@ -102,8 +102,8 @@ final class EdgeInsets_TBTests: XCTestCase {
             .init(
                 top: input1Top,
                 bottom: input1Bottom
-            ) +
-            .init(
+            )
+            + .init(
                 top: input2Top,
                 bottom: input2Bottom
             )
@@ -143,8 +143,8 @@ final class EdgeInsets_TBTests: XCTestCase {
             .init(
                 top: input1Top,
                 bottom: input1Bottom
-            ) -
-            .init(
+            )
+            - .init(
                 top: input2Top,
                 bottom: input2Bottom
             )

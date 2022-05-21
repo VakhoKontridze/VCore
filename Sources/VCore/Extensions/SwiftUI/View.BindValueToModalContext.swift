@@ -74,7 +74,7 @@ extension View {
     @available(tvOS 14.0, *)
     @available(watchOS 7.0, *)
     public func bindToModalContext<V>(_ value: V) -> some View
-        where V : Equatable
+        where V: Equatable
     {
         self
             .onChange(of: value, perform: { _ in })
