@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Multi Part Form Data Builder
-@available(*, deprecated, renamed: "toUnwrappedJSON")
+@available(*, deprecated, renamed: "AnyMultiPartFormDataFile")
 public typealias AnyMultiPartFormFile = AnyMultiPartFormDataFile
 
 // MARK: - JSON Type Casts
