@@ -1,5 +1,11 @@
 # Change Log
 
+#### [3.2.0(22)]
+
+Extensions
+
+- `Sequence` `count(where:)` method is added
+
 #### [3.1.1(21)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.1) — *2022 05 21*
 
 Services and Managers
