@@ -33,16 +33,16 @@ public struct SystemKeyboardInfo {
     /// Initialzies `SystemKeyboardInfo` with `Notification`.
     public init(notification: Notification) {
         self.frame =
-            notification.userInfo?.rect(key: UIResponder.keyboardFrameEndUserInfoKey)
-            ?? Self.estimatedKeyboardFrame
+            notification.userInfo?.rect(key: UIResponder.keyboardFrameEndUserInfoKey) ??
+            Self.estimatedKeyboardFrame
         
         self.animationDuration =
-            notification.userInfo?.double(key: UIResponder.keyboardAnimationDurationUserInfoKey)
-            ?? 0.25
+            notification.userInfo?.double(key: UIResponder.keyboardAnimationDurationUserInfoKey) ??
+            0.25
         
         self.animationOptions =
-            (notification.userInfo?.uInt(key: UIResponder.keyboardAnimationCurveUserInfoKey)).map { .init(rawValue: $0) }
-            ?? .curveLinear
+            (notification.userInfo?.uInt(key: UIResponder.keyboardAnimationCurveUserInfoKey)).map { .init(rawValue: $0) } ??
+            .curveLinear
     }
     
     // MARK: Helpers
