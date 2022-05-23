@@ -37,7 +37,7 @@ public protocol VCoreLocalizationProvider {
 }
 
 // MARK: - Default VCore Localization Provider
-/// Defaults VCore Localization Provider.
+/// Defaults VCore localization provider.
 public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
     public func value(networkError: NetworkError) -> String {
         switch networkError {
