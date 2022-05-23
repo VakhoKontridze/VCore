@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - V Core Localization Service
-/// Localization Service that can be used to localize the package.
+/// Localization service that can be used to localize the package.
 ///
 /// `localizationProvider` in `shared` instance can be set to override the localized values.
 public final class VCoreLocalizationService {
