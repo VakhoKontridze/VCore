@@ -102,8 +102,8 @@ final class EdgeInsets_HVTests: XCTestCase {
             .init(
                 horizontal: input1Horizontal,
                 vertical: input1Vertical
-            )
-            + .init(
+            ) +
+            .init(
                 horizontal: input2Horizontal,
                 vertical: input2Vertical
             )
@@ -143,8 +143,8 @@ final class EdgeInsets_HVTests: XCTestCase {
             .init(
                 horizontal: input1Horizontal,
                 vertical: input1Vertical
-            )
-            - .init(
+            ) -
+            .init(
                 horizontal: input2Horizontal,
                 vertical: input2Vertical
             )
