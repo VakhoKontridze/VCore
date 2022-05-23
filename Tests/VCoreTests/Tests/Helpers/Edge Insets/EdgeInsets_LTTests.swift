@@ -102,8 +102,8 @@ final class EdgeInsets_LTTests: XCTestCase {
             .init(
                 leading: input1Leading,
                 trailing: input1Trailing
-            )
-            + .init(
+            ) +
+            .init(
                 leading: input2Leading,
                 trailing: input2Trailing
             )
@@ -143,8 +143,8 @@ final class EdgeInsets_LTTests: XCTestCase {
             .init(
                 leading: input1Leading,
                 trailing: input1Trailing
-            )
-            - .init(
+            ) -
+            .init(
                 leading: input2Leading,
                 trailing: input2Trailing
             )
