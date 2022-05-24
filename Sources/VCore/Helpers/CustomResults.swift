@@ -19,7 +19,7 @@ import Foundation
 
 // MARK: - Result with No Failure
 /// Represents either Success or Failure, including an associated value in success case.
-@frozen public enum ResultNoFailure<Success> {
+public enum ResultNoFailure<Success> {
     /// Success, storing a `Success` value.
     case success(Success)
     
@@ -29,7 +29,7 @@ import Foundation
 
 // MARK: - Result with No Success
 /// Represents either Success or Failure, including an associated value in failure case.
-@frozen public enum ResultNoSuccess<Failure> where Failure: Error {
+public enum ResultNoSuccess<Failure> where Failure: Error {
     /// Success.
     case success
     
@@ -39,7 +39,7 @@ import Foundation
 
 // MARK: - Result with No Success and No Failure
 /// Represents either Success or Failure.
-@frozen public enum ResultNoSuccessNoFailure {
+public enum ResultNoSuccessNoFailure {
     /// Success.
     case success
     
