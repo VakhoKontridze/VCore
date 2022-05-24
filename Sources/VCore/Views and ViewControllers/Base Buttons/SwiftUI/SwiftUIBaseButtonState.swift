@@ -9,7 +9,7 @@
 
 import Foundation
 
-// MARK: - Base Button State
+// MARK: - Swift UI Base Button State
 /// Enum that describes state, such as `enabled` or `disabled`.
 public enum SwiftUIBaseButtonState: Int, CaseIterable {
     // MARK: Cases

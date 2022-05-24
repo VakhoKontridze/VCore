@@ -23,3 +23,48 @@ extension Optional where Wrapped == Any {
         toUnwrappedJSONArray
     }
 }
+
+// MARK: - Swift UI Base Button
+#if os(iOS)
+
+import SwiftUI
+
+extension SwiftUIBaseButton {
+    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifer")
+    public init(
+        state: SwiftUIBaseButtonState,
+        gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
+        @ViewBuilder content: @escaping () -> Label
+    ) {
+        fatalError()
+    }
+    
+    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifer")
+    public init(
+        state: SwiftUIBaseButtonState,
+        action: @escaping () -> Void,
+        @ViewBuilder content: @escaping () -> Label
+    ) {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifer")
+    public init(
+        isEnabled: Bool,
+        gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
+        @ViewBuilder content: @escaping () -> Label
+    ) {
+        fatalError()
+    }
+    
+    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifer")
+    public init(
+        isEnabled: Bool,
+        action: @escaping () -> Void,
+        @ViewBuilder content: @escaping () -> Label
+    ) {
+        fatalError()
+    }
+}
+
+#endif

@@ -2,6 +2,10 @@
 
 #### [3.2.0(22)]
 
+Views and ViewControllers
+
+- `SwiftUIBaseButton` API is updated and old `init`'s are deprecated
+
 Extensions
 
 - `Sequence` `count(where:)` method is added

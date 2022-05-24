@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-// MARK: - SwiftUI Base Button
+// MARK: - Swift UI Base Button
 /// A `SwiftUI` `View` that can be used as a base for all interactive views and buttons.
 ///
 /// `Bool` can also be passed as state.
@@ -34,42 +34,25 @@ import SwiftUI
 ///
 /// State:
 ///
-///     public enum SomeButtonState {
-///         case enabled
-///         case disabled
-///
-///         init(internalState: SomeButtonInternalState) {
-///             switch internalState {
-///             case .enabled: self = .enabled
-///             case .pressed: self = .enabled
-///             case .disabled: self = .disabled
-///             }
-///         }
-///     }
-///
 ///     enum SomeButtonInternalState {
 ///         case enabled
 ///         case pressed
 ///         case disabled
 ///
-///         var baseButtonState: SwiftUIBaseButtonState {
+///         var isEnabled: Bool {
 ///             switch self {
-///             case .enabled: return .enabled
-///             case .pressed: return .enabled
-///             case .disabled: return .disabled
+///             case .enabled: return true
+///             case .pressed: return true
+///             case .disabled: return false
 ///             }
 ///         }
 ///
-///         init(state: SomeButtonState, isPressed: Bool) {
-///             switch (state, isPressed) {
-///             case (.enabled, false): self = .enabled
-///             case (.enabled, true): self = .pressed
-///             case (.disabled, _): self = .disabled
+///         init(isEnabled: Bool, isPressed: Bool) {
+///             switch (isEnabled, isPressed) {
+///             case (false, _): self = .disabled
+///             case (true, false): self = .enabled
+///             case (true, true): self = .pressed
 ///             }
-///         }
-///
-///         static func `default`(state: SomeButtonState) -> Self {
-///             .init(state: state, isPressed: false)
 ///         }
 ///     }
 ///
@@ -90,50 +73,32 @@ import SwiftUI
 ///     public struct SomeButton: View {
 ///         private typealias Model = SomeButtonModel
 ///
-///         private let state: SomeButtonState
-///         @State private var internalStateRaw: SomeButtonInternalState?
-///         private var internalState: SomeButtonInternalState { internalStateRaw ?? .default(state: state) }
+///         @Environment(\.isEnabled) private var isEnabled: Bool
+///         @State private var isPressed: Bool = false
+///         private var internalState: SomeButtonInternalState { .init(isEnabled: isEnabled, isPressed: isPressed) }
 ///
 ///         private let action: () -> Void
 ///
 ///         private let title: String
 ///
 ///         public init(
-///             state: SomeButtonState = .enabled,
 ///             action: @escaping () -> Void,
 ///             title: String
 ///         ) {
-///             self.state = state
 ///             self.action = action
 ///             self.title = title
 ///         }
 ///
 ///         public var body: some View {
-///             syncInternalStateWithState()
-///
-///             return SwiftUIBaseButton(
-///                 state: internalState.baseButtonState,
-///                 gesture: gestureHandler,
-///                 content: {
-///                     Text(title)
-///                         .foregroundColor(Model.titleColor.for(internalState))
-///                 }
-///             )
-///         }
-///
-///         private func syncInternalStateWithState() {
-///             DispatchQueue.main.async(execute: {
-///                 if
-///                     internalStateRaw == nil ||
-///                     .init(internalState: internalState) != state
-///                 {
-///                     internalStateRaw = .default(state: state)
-///                 }
+///             SwiftUIBaseButton(gesture: gestureHandler, label: {
+///                 Text(title)
+///                     .foregroundColor(Model.titleColor.for(internalState))
 ///             })
+///                 .disabled(!internalState.isEnabled)
 ///         }
 ///
 ///         private func gestureHandler(gestureState: BaseButtonGestureState) {
-///             internalStateRaw = .init(state: state, isPressed: gestureState.isPressed)
+///             isPressed = gestureState.isPressed
 ///             if gestureState.isClicked { action() }
 ///         }
 ///     }
@@ -147,65 +112,38 @@ import SwiftUI
 ///         )
 ///     }
 ///
-public struct SwiftUIBaseButton<Content>: View where Content: View {
+public struct SwiftUIBaseButton<Label>: View where Label: View {
     // MARK: Properties
-    private let state: SwiftUIBaseButtonState
+    @Environment(\.isEnabled) private var isEnabled: Bool
     
     private var gestureHandler: (BaseButtonGestureState) -> Void
     
-    private let content: () -> Content
+    private let label: () -> Label
     
-    // MARK: Initializers - State
-    /// Initializes component with state, gesture handler, and content.
+    // MARK: Initializers
+    /// Initializes component with gesture handler and label.
     public init(
-        state: SwiftUIBaseButtonState,
         gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
-        @ViewBuilder content: @escaping () -> Content
+        @ViewBuilder label: @escaping () -> Label
     ) {
-        self.state = state
         self.gestureHandler = gestureHandler
-        self.content = content
+        self.label = label
     }
     
-    /// Initializes component with state, action, and content.
+    /// Initializes component with action and label.
     public init(
-        state: SwiftUIBaseButtonState,
         action: @escaping () -> Void,
-        @ViewBuilder content: @escaping () -> Content
+        @ViewBuilder label: @escaping () -> Label
     ) {
-        self.state = state
         self.gestureHandler = { gestureState in if gestureState.isClicked { action() } }
-        self.content = content
-    }
-    
-    // MARK: Initializers - Bool
-    /// Initializes component with bool, gesture handler, and content.
-    public init(
-        isEnabled: Bool,
-        gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
-        @ViewBuilder content: @escaping () -> Content
-    ) {
-        self.state = .init(isEnabled: isEnabled)
-        self.gestureHandler = gestureHandler
-        self.content = content
-    }
-    
-    /// Initializes component with bool, action, and content.
-    public init(
-        isEnabled: Bool,
-        action: @escaping () -> Void,
-        @ViewBuilder content: @escaping () -> Content
-    ) {
-        self.state = .init(isEnabled: isEnabled)
-        self.gestureHandler = { gestureState in if gestureState.isClicked { action() } }
-        self.content = content
+        self.label = label
     }
 
     // MARK: Body
     public var body: some View {
-        content()
+        label()
             .overlay(SwiftUIBaseButtonViewRepresentable(
-                isEnabled: state.isEnabled,
+                isEnabled: isEnabled,
                 gesture: gestureHandler
             ))
     }
@@ -213,11 +151,8 @@ public struct SwiftUIBaseButton<Content>: View where Content: View {
 
 // MARK: - Preview
 struct SwiftUIBaseButton_Previews: PreviewProvider {
-    @State private static var state: SwiftUIBaseButtonState = .enabled
-    
     static var previews: some View {
         SwiftUIBaseButton(
-            state: state,
             gesture: { gestureState in
                 switch gestureState {
                 case .none: print("-")
@@ -225,7 +160,7 @@ struct SwiftUIBaseButton_Previews: PreviewProvider {
                 case .click: print("Clicked")
                 }
             },
-            content: { Text("Lorem Ipsum") }
+            label: { Text("Lorem Ipsum") }
         )
     }
 }

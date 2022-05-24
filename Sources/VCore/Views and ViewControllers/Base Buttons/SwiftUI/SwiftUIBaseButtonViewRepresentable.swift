@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-// MARK: - SwiftUI Base Button View Representable
+// MARK: - Swift UI Base Button View Representable
 struct SwiftUIBaseButtonViewRepresentable: UIViewRepresentable {
     // MARK: Properties
     private let isEnabled: Bool
