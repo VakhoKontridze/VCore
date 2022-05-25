@@ -13,8 +13,6 @@ import UIKit
 extension UIFont {
     /// Returns font with bold styling.
     ///
-    /// Usage Example:
-    ///
     ///     let systemFont: UIFont = .systemFont(ofSize: 13)
     ///     let boldSystemFont: UIFont = systemFont.withBoldStyling
     ///
@@ -23,8 +21,6 @@ extension UIFont {
     }
     
     /// Returns font with italic styling.
-    ///
-    /// Usage Example:
     ///
     ///     let systemFont: UIFont = .systemFont(ofSize: 13)
     ///     let italicSystemFont: UIFont = systemFont.withItalicStyling

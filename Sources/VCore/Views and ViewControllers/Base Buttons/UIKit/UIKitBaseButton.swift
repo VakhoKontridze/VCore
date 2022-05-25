@@ -182,8 +182,6 @@ import UIKit
 ///         }
 ///     }
 ///
-/// Usage Example:
-///
 ///     let button: SomeButton = {
 ///         let button: SomeButton = .init(
 ///             action: { print("Clicked") },

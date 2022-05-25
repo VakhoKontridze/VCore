@@ -13,8 +13,6 @@ import UIKit
 extension UIStackView {
     /// Adds views as arranged subviews.
     ///
-    /// Usage Example:
-    ///
     ///     let stackView: UIStackView = .init()
     ///
     ///     stackView.addArrangedSubviews([
@@ -28,8 +26,6 @@ extension UIStackView {
     }
     
     /// Removes all views from arranged subviews.
-    ///
-    /// Usage Example:
     ///
     ///     stackView.removeArrangedSubviews()
     ///

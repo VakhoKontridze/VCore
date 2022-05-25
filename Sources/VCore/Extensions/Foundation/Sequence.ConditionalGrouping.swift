@@ -14,8 +14,6 @@ extension Sequence {
     /// Works similar to `Dictionary(grouping:by:)`, but without generating keys.
     /// In addition to similar begavior, allows for a custom logic to be written, as generating a specific key is not required.
     ///
-    /// Usage Example:
-    ///
     ///     let students: [String] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"]
     ///     let studentsByLetter: [[String]] = students.grouped(by: { $0.first == $1.first })
     ///
@@ -47,8 +45,6 @@ extension Sequence {
     ///
     /// Works similar to `Dictionary(grouping:by:)`, but without generating keys.
     /// In addition to similar begavior, allows for a custom logic to be written, as generating a specific key is not required.
-    ///
-    /// Usage Example:
     ///
     ///     struct Student {
     ///         let name: String

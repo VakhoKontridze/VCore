@@ -13,8 +13,6 @@ import UIKit
 extension UINavigationBar {
     /// Navigation bar height.
     ///
-    /// Usage Example:
-    ///
     ///     let height: CGFloat = UINavigationBar.height // 44.0
     ///     
     public static var height: CGFloat {

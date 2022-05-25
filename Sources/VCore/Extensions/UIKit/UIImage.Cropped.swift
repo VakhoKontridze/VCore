@@ -13,8 +13,6 @@ import UIKit
 extension UIImage {
     /// Retusn `UIImage` cropped with rect.
     ///
-    /// Usage Example:
-    ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///
     ///     let croppedImage: UIImage? = image.cropped(to: .init(
@@ -40,8 +38,6 @@ extension UIImage {
     }
     
     /// Returns `UIImage`cropped with size starting at the origin.
-    ///
-    /// Usage Example:
     ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///

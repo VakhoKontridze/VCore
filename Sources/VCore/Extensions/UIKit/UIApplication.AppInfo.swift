@@ -13,8 +13,6 @@ import UIKit
 extension UIApplication {
     /// App display name.
     ///
-    /// Usage Example:
-    ///
     ///     let displayName: String? = UIApplication.shared.displayName
     ///
     public var displayName: String? {
@@ -22,8 +20,6 @@ extension UIApplication {
     }
     
     /// App version.
-    ///
-    /// Usage Example:
     ///
     ///     let version: String? = UIApplication.shared.version
     ///
@@ -33,8 +29,6 @@ extension UIApplication {
     
     /// App build number.
     ///
-    /// Usage Example:
-    ///
     ///     let buildNumber: String? = UIApplication.shared.buildNumber
     ///
     public var buildNumber: String? {
@@ -42,8 +36,6 @@ extension UIApplication {
     }
     
     /// App bundle ID.
-    ///
-    /// Usage Example:
     ///
     ///     let bundleID: String? = UIApplication.shared.bundleID
     ///

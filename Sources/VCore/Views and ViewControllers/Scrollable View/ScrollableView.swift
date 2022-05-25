@@ -16,8 +16,6 @@ import UIKit
 /// To modify `UIScrollView` properties, access `scrollView` members.
 /// To modify container `UIView` properties, access `contentView` members.
 ///
-/// Usage Example:
-///
 ///     view.addSubview(scrollableView)
 ///     scrollableView.contentView.addSubview(someView1)
 ///     scrollableView.contentView.addSubview(someView2)

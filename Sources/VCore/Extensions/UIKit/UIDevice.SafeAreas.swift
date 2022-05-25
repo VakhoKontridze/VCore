@@ -13,8 +13,6 @@ import UIKit
 extension UIDevice {
     /// Safe area insets in root window of `UIApplication.shared`.
     ///
-    /// Usage Example:
-    ///
     ///     let insets: UIEdgeInsets? = UIDevice.safeAreaInsets
     ///
     public static var safeAreaInsets: UIEdgeInsets? {
@@ -22,8 +20,6 @@ extension UIDevice {
     }
     
     /// Left safe area inset in root window of `UIApplication.shared`.
-    ///
-    /// Usage Example:
     ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetLeft
     ///
@@ -33,8 +29,6 @@ extension UIDevice {
 
     /// Right safe area inset in root window of `UIApplication.shared`.
     ///
-    /// Usage Example:
-    ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetRight
     ///
     public static var safeAreaInsetRight: CGFloat {
@@ -43,8 +37,6 @@ extension UIDevice {
 
     /// Top safe area inset in root window of `UIApplication.shared`.
     ///
-    /// Usage Example:
-    ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetTop
     ///
     public static var safeAreaInsetTop: CGFloat {
@@ -52,8 +44,6 @@ extension UIDevice {
     }
 
     /// Bottom safe area inset in root window of `UIApplication.shared`.
-    ///
-    /// Usage Example:
     ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetBottom
     ///

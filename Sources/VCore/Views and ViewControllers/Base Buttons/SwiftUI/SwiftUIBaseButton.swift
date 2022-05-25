@@ -103,8 +103,6 @@ import SwiftUI
 ///         }
 ///     }
 ///
-/// Usage Example:
-///
 ///     var body: some View {
 ///         SomeButton(
 ///             action: { print("Clicked") },

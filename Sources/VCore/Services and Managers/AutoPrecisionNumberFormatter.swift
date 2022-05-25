@@ -11,8 +11,6 @@ import Foundation
 extension Double {
     /// Returns string from number with specified min and max fractions.
     ///
-    /// Usage Example:
-    ///
     ///     let rounded: String = 3.1415.rounded(maxFractions: 2) // "3.14"
     ///
     public func rounded(

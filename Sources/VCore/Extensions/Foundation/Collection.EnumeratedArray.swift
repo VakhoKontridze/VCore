@@ -13,8 +13,6 @@ extension Collection {
     ///
     /// Element can be used as id in `ForEach` without use of an explicit identifier.
     ///
-    /// Usage Example:
-    ///
     ///     struct EnumeratedArrayView<Data, Content>: View
     ///         where
     ///             Data: RandomAccessCollection,

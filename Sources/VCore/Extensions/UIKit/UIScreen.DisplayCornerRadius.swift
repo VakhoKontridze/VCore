@@ -16,8 +16,6 @@ extension UIScreen {
     /// Can be used to round corner of half modal component.
     /// Accessed private API and may be deprecated.
     ///
-    /// Usage Example:
-    ///
     ///     UIScreen.main.displayCornerRadius.map {
     ///         view.roundCorners(.layerMinYCorners, by: $0)
     ///     }

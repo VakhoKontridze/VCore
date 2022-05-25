@@ -11,8 +11,6 @@ import SwiftUI
 extension View {
     /// Positions this view within an invisible frame with the specified dimension.
     ///
-    /// Usage Example:
-    ///
     ///     var body: some View {
     ///         Color.accentColor
     ///             .frame(dimension: 100)
@@ -29,8 +27,6 @@ extension View {
     }
     
     /// Positions this view within an invisible frame with the specified size.
-    ///
-    /// Usage Example:
     ///
     ///     var body: some View {
     ///         Color.accentColor
@@ -49,8 +45,6 @@ extension View {
     }
     
     /// Positions this view within an invisible frame with the specified size configuration.
-    ///
-    /// Usage Example:
     ///
     ///     var body: some View {
     ///         Color.accentColor

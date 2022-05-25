@@ -15,8 +15,6 @@ import UIKit
 extension UIDevice {
     /// Indicates if device is simulator.
     ///
-    /// Usage Example:
-    ///
     ///     let isSimulator: Bool = UIDevice.isSimulator
     ///
     public static var isSimulator: Bool {
@@ -34,8 +32,6 @@ import WatchKit
 
 extension WKInterfaceDevice {
     /// Indicates if device is simulator.
-    ///
-    /// Usage Example:
     ///
     ///     let isSimulator: Bool = WKInterfaceDevice.isSimulator
     ///

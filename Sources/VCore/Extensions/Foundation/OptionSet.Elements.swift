@@ -11,8 +11,6 @@ import Foundation
 extension OptionSet where RawValue: FixedWidthInteger {
     /// Returns all elements in `OptionSet`.
     ///
-    /// Usage Example:
-    ///
     ///     struct SomeOptionSet: OptionSet {
     ///         let rawValue: Int
     ///

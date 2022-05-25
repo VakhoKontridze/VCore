@@ -14,8 +14,6 @@ import UIKit
 extension View {
     /// Clips this view to its bounding frame, with the specified corners and corner radius.
     ///
-    /// Usage Example:
-    ///
     ///     Color.accentColor
     ///         .frame(dimension: 100)
     ///         .cornerRadius(10, corners: .allCorners)

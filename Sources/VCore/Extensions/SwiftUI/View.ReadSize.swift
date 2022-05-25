@@ -11,8 +11,6 @@ import SwiftUI
 extension View {
     /// Reads `View` size and calls an on-change block.
     ///
-    /// Usage Example:
-    ///
     ///     @State private var size: CGSize = .zero
     ///
     ///     var body: some View {

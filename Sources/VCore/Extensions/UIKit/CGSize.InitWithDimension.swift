@@ -11,8 +11,6 @@ import CoreGraphics
 extension CGSize {
     /// Initializes `CGSize` with dimension.
     ///
-    /// Usage Example:
-    ///
     ///     let size: CGSize = .init(dimension: 100)
     ///
     public init(dimension: CGFloat) {

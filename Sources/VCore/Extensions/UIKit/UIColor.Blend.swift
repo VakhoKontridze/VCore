@@ -13,8 +13,6 @@ import UIKit
 extension UIColor {
     /// Blends two colors together.
     ///
-    /// Usage Example:
-    ///
     ///     let purple: UIColor = .blend(.red, with: .blue)
     ///
     public static func blend(
@@ -44,8 +42,6 @@ extension UIColor {
     ///
     /// `value` ranges from `0` to `1`.
     ///
-    /// Usage Example:
-    ///
     ///     let lightBlue: UIColor = .systemBlue.lighten(by: 0.1)
     ///
     public func lighten(by value: CGFloat) -> UIColor {
@@ -62,8 +58,6 @@ extension UIColor {
     /// Darkens `UIColor` by value.
     ///
     /// `value` ranges from `0` to `1`
-    ///
-    /// Usage Example:
     ///
     ///     let darkBlue: UIColor = .systemBlue.darken(by: 0.1)
     ///

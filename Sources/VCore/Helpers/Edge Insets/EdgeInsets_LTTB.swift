@@ -178,8 +178,6 @@ public struct EdgeInsets_LTTB: Equatable {
 extension View {
     /// Adds a specific padding amount to each edge of this view from `EdgeInsets_LTTB`.
     ///
-    /// Usage Example:
-    ///
     ///     let insets: EdgeInsets_LTTB = .init(
     ///         leading: 10,
     ///         trailing: 10,

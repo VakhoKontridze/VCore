@@ -13,8 +13,6 @@ import UIKit
 extension UIImage {
     /// Scales `UIImage` to specified width.
     ///
-    /// Usage Example:
-    ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///     let scaledImage: UIImage? = image.scaled(toWidth: 500)
     ///
@@ -28,8 +26,6 @@ extension UIImage {
     }
     
     /// Scales `UIImage` to specified height.
-    ///
-    /// Usage Example:
     ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///     let scaledImage: UIImage? = image.scaled(toHeight: 500)
@@ -58,8 +54,6 @@ extension UIImage {
 extension UIImage {
     /// Returns `UIImage` scaled down to specified width, if new width is smaller.
     ///
-    /// Usage Example:
-    ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///     let scaledDownImage: UIImage? = image.scaledDown(toWidth: 500)
     ///
@@ -72,8 +66,6 @@ extension UIImage {
     
     /// Returns `UIImage` scaled down to specified height, if new height is smaller.
     ///
-    /// Usage Example:
-    ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///     let scaledDownImage: UIImage? = image.scaledDown(toHeight: 500)
     ///
@@ -85,8 +77,6 @@ extension UIImage {
     }
     
     /// Returns `UIImage` scaled down, by scaling smaller side to specified dimension.
-    ///
-    /// Usage Example:
     ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///     let scaledDownImage: UIImage? = image.scaledDown(toDimension: 500)

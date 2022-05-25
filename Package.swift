@@ -6,8 +6,8 @@ let package: Package = .init(
     name: "VCore",
     
     platforms: [
-        .macOS(.v10_15),
         .iOS(.v13),
+        .macOS(.v10_15),
         .tvOS(.v13),
         .watchOS(.v6)
     ],

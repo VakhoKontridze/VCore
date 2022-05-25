@@ -11,8 +11,6 @@ import Foundation
 extension Sequence {
     /// Returns the number of element of the sequence that satisfies the given predicate.
     ///
-    /// Usage Example:
-    ///
     ///     let nums: [Int] = [3, 7, 4, -2, 9, -6, 10, 1]
     ///     let positiveCount: Int = nums.count { $0 > 0 } // 6
     ///

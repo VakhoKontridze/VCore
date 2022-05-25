@@ -11,8 +11,6 @@ import Foundation
 extension Int {
     /// Runs block by specified times.
     ///
-    /// Usage Example:
-    ///
     ///     5.times { print("Hello, World!") }
     ///
     public func times(_ block: () -> Void) {
@@ -20,8 +18,6 @@ extension Int {
     }
     
     /// Runs block by specified times, and passes index as parameters.
-    ///
-    /// Usage Example:
     ///
     ///     5.times { i in print("Hello, World \(i)!") }
     ///

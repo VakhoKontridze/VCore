@@ -13,8 +13,6 @@ import SwiftUI
 extension View {
     /// Configures the view’s title for purposes of navigation, using a string in a inline display mode.
     ///
-    /// Usage Example:
-    ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
     ///             .standardNavigationTitle("Home")

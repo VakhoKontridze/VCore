@@ -10,8 +10,6 @@ import Foundation
 // MARK: - Multi Part Form Data Builder
 /// Builder that builds boundary string and `Data` that can be send using network request.
 ///
-/// Usage Example:
-///
 ///     do {
 ///         let json: [String: Any?] = [
 ///             "key": "value"

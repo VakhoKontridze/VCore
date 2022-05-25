@@ -12,8 +12,6 @@ import Foundation
 ///
 /// Object contains default `default` instance, that can be used to make requests.
 ///
-/// Usage Example:
-///
 ///     func fetchData() async {
 ///         do {
 ///             var request: NetworkRequest = .init(url: "https://httpbin.org/post")

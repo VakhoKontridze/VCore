@@ -15,8 +15,6 @@ extension NSLayoutConstraint {
     ///
     /// Must be called after other `NSLayoutConstraint` modifiers.
     ///
-    /// Usage Example:
-    ///
     ///     NSLayoutConstraint.activate([
     ///         view.widthAnchor.constraint(equalTo: someOtherView.widthAnchor)
     ///             .withMultiplier(0.5)

@@ -16,8 +16,6 @@ extension UIColor {
     /// `red`, `green`, and `blue` values range from `0` to `1`.
     /// `alpha` value ranges from `0` to `1`.
     ///
-    /// Usage Example:
-    ///
     ///     let (red, green, blue, alpha) = UIColor.systemBlue.rgbaValues
     ///     // (0.0, 0.4..., 1.0, 1.0)
     ///
@@ -42,8 +40,6 @@ extension UIColor {
     /// `red`, `green`, and `blue` values range from `0` to `255`.
     /// `alpha` value ranges from `0` to `1`.
     ///
-    /// Usage Example:
-    ///
     ///     let (red, green, blue, alpha) = UIColor.systemBlue.rgbaComponents
     ///     // (0, 122, 255, 1.0)
     ///
@@ -61,8 +57,6 @@ extension UIColor {
     /// Indicates if two color are RGBA equivalent.
     ///
     /// Comparison is made to each color component.
-    ///
-    /// Usage Example:
     ///
     ///     let color1: UIColor = .red
     ///     let color2: UIColor = .red

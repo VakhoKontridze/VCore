@@ -12,8 +12,6 @@ import Foundation
 ///
 /// Enumeration that allows for dynamic lookup of a case witha given property keupath and value.
 ///
-/// Usage Example:
-///
 ///     enum SomeEnum: KVInitializableEnumeration {
 ///         case first
 ///         case second

@@ -12,8 +12,6 @@ import Foundation
 ///
 /// Group can be used to map model to viewmodel using a state represented by an enum.
 ///
-/// Usage Example:
-///
 ///     typealias StateColors = GenericStateModel_EPD<UIColor?>
 ///
 ///     let titleColors: StateColors = .init(

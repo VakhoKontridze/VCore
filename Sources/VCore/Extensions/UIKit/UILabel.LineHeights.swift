@@ -20,8 +20,6 @@ extension UILabel {
     /// During calculation of height, `text` value is passed from `self`.
     /// If `nil`, default value of "A" will be used.
     ///
-    /// Usage Example:
-    ///
     ///     let label: UILabel = .init()
     ///     label.text = "Lorem Ipsum"
     ///
@@ -64,8 +62,6 @@ extension UILabel {
     /// During calculation of height,  parameter `text` is used.
     /// If nil, `text` value is passed from `self`.
     /// If `nil`, default value of "A" will be used.
-    ///
-    /// Usage Example:
     ///
     ///     let label: UILabel = .init()
     ///     label.translatesAutoresizingMaskIntoConstraints = false
