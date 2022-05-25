@@ -13,8 +13,6 @@ import UIKit
 extension UIView {
     /// Applies shadow to `UIView`.
     ///
-    /// Usage Example:
-    ///
     ///     view.applyShadow(
     ///         color: .black.withAlphaComponent(0.16),
     ///         radius: 5,
@@ -33,8 +31,6 @@ extension UIView {
     }
     
     /// Rounds corners and applies shadow to `UIView`.
-    ///
-    /// Usage Example:
     ///
     ///     view.roundCornersAndApplyShadow(
     ///         cornerRadius: 10,

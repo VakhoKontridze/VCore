@@ -12,8 +12,6 @@ import UIKit
 // MARK: - ViewModel
 /// Protocol that allows viewmodel to dequeue an `UICollectionViewCell`
 ///
-/// Usage Example:
-///
 ///     protocol SomeViewable: AnyObject {}
 ///
 ///     protocol SomePresentable: UICollectionViewDelegatable, UICollectionViewDataSourceable {}

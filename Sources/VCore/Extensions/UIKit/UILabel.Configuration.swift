@@ -13,8 +13,6 @@ import UIKit
 extension UILabel {
     /// Configures `UILabel` with alignment, line break mode, number of lines, color, and font.
     ///
-    /// Usage Example:
-    ///
     ///     let label: UILabel = .init()
     ///
     ///     label.configure(
@@ -43,8 +41,6 @@ extension UILabel {
     }
     
     /// Initializes `UILabel` with alignment, line break mode, number of lines, color, and font.
-    ///
-    /// Usage Example:
     ///
     ///     let label: UILabel = .init(
     ///         alignment: .natural,

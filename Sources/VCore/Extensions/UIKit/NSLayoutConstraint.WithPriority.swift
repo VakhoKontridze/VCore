@@ -13,8 +13,6 @@ import UIKit
 extension NSLayoutConstraint {
     /// Modifies and returns constraint with a given priority.
     ///
-    /// Usage Example:
-    ///
     ///     NSLayoutConstraint.activate([
     ///         view.widthAnchor.constraint(equalToConstant: 100)
     ///             .withPriority(.defaultHigh)
@@ -26,8 +24,6 @@ extension NSLayoutConstraint {
     }
     
     /// Modifies and returns constraint with a given priority value.
-    ///
-    /// Usage Example:
     ///
     ///     NSLayoutConstraint.activate([
     ///         view.widthAnchor.constraint(equalToConstant: 100)

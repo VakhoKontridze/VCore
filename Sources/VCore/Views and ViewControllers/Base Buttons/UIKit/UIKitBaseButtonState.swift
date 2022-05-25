@@ -75,8 +75,6 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
 extension GenericStateModel_EPD {
     /// Allows for dynamic mapping between `Model` and `State`.
     ///
-    /// Usage Example:
-    ///
     ///     let baseButton: UIKitBaseButton = {
     ///         // ...
     ///     }()

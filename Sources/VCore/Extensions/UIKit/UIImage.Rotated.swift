@@ -13,8 +13,6 @@ import UIKit
 extension UIImage {
     /// Returns `UIImage` rotated by angle.
     ///
-    /// Usage Example:
-    ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///     let rotatedImage: UIImage? = image.rotated(by: .init(value: 90, unit: .degrees))
     ///
@@ -50,8 +48,6 @@ extension UIImage {
     
     /// Rotates `UIImage` by radian.
     ///
-    /// Usage Example:
-    ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///     let rotatedImage: UIImage? = image.rotated(byRadians: .pi / 2)
     ///
@@ -60,8 +56,6 @@ extension UIImage {
     }
     
     /// Rotates `UIImage` by degrees.
-    ///
-    /// Usage Example:
     ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///     let rotatedImage: UIImage? = image.rotated(byDegrees: 90)

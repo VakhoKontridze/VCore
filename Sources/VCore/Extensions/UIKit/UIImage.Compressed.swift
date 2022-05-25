@@ -13,8 +13,6 @@ import UIKit
 extension UIImage {
     /// Returns `UIImage` compressed with specified quality.
     ///
-    /// Usage Example:
-    ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///     let compressedImage: UIImage? = image.compressed(quality: 0.75)
     ///

@@ -11,8 +11,6 @@ import Foundation
 extension Calendar {
     /// Returns number of days in a month for the given date.
     ///
-    /// Usage Example:
-    ///
     ///     let date: Date = .init()
     ///     let numberOfDaysInMonth: Int? = Calendar.current.numberOfDaysInMonth(for: date)) // 31
     ///

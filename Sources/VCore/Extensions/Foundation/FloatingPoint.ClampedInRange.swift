@@ -11,8 +11,6 @@ import Foundation
 extension FloatingPoint {
     /// Clamps value in range.
     ///
-    /// Usage Example:
-    ///
     ///     let value1: Double = 0.0.clamped(to: 1...10) // 1.0
     ///     let value2: Double = 5.0.clamped(to: 1...10) // 5.0
     ///     let value3: Double = 11.0.clamped(to: 1...10) // 10.0
@@ -43,8 +41,6 @@ extension FloatingPoint {
     
     /// Clamps value in range.
     ///
-    /// Usage Example:
-    ///
     ///     var value1: Double = 0.0; value1.clamp(to: 1...10) // 1.0
     ///     var value2: Double = 5.0; value2.clamp(to: 1...10) // 5.0
     ///     var value3: Double = 11.0; value3.clamp(to: 1...10) // 10.0
@@ -61,8 +57,6 @@ extension FloatingPoint {
     }
     
     /// Returns value clamped between `min` and `max` values.
-    ///
-    /// Usage Example:
     ///
     ///     let value1: Double = 0.0.clamped(min: 1, max: 10) // 1.0
     ///     let value2: Double = 5.0.clamped(min: 1, max: 10) // 5.0
@@ -81,8 +75,6 @@ extension FloatingPoint {
     }
     
     /// Clamps value between `min` and `max` values.
-    ///
-    /// Usage Example:
     ///
     ///     var value1: Double = 0.0; value1.clamp(min: 1, max: 10) // 1.0
     ///     var value2: Double = 5.0; value2.clamp(min: 1, max: 10) // 5.0
@@ -104,8 +96,6 @@ extension FloatingPoint {
 // MARK: - Number Clamped in Half-Open Range
 extension FloatingPoint {
     /// Clamps value in range.
-    ///
-    /// Usage Example:
     ///
     ///     let value1: Double = 0.0.clamped(to: 1..<10) // 1.0
     ///     let value2: Double = 5.0.clamped(to: 1..<10) // 5.0
@@ -131,8 +121,6 @@ extension FloatingPoint {
     }
     
     /// Clamps value in range.
-    ///
-    /// Usage Example:
     ///
     ///     var value1: Double = 0.0; value1.clamp(to: 1..<10) // 1.0
     ///     var value2: Double = 5.0; value2.clamp(to: 1..<10) // 5.0

@@ -11,8 +11,6 @@ import SwiftUI
 extension View {
     /// Applies modifier and transforms view if condition is met.
     ///
-    /// Usage Example:
-    ///
     ///     let isRed: Bool = true
     ///
     ///     var body: some View {
@@ -33,8 +31,6 @@ extension View {
     }
 
     /// Applies modifier and transforms view if condition is met, or applies alternate modifier.
-    ///
-    /// Usage Example:
     ///
     ///     let isError: Bool = true
     ///
@@ -64,8 +60,6 @@ extension View {
     
     /// Applies modifier and transforms view if value is non-nil.
     ///
-    /// Usage Example:
-    ///
     ///     let color: Color? = .accentColor
     ///
     ///     var body: some View {
@@ -86,8 +80,6 @@ extension View {
     }
     
     /// Applies modifier and transforms view if value is non-nil, or applies alternate modifier.
-    ///
-    /// Usage Example:
     ///
     ///     let color: Color? = .accentColor
     ///

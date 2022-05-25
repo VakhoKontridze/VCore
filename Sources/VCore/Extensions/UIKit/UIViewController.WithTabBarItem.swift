@@ -13,8 +13,6 @@ import UIKit
 extension UIViewController {
     /// Adds `UITabBarItem` to `UIViewController` and returns it.
     ///
-    /// Usage Example:
-    ///
     ///     let tabBarController: UITabBarController = .init()
     ///
     ///     tabBarController.viewControllers = [

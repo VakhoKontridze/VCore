@@ -11,8 +11,6 @@ import Foundation
 extension Array {
     /// Accesses the element at the specified position, but returns nil if out of bounds.
     ///
-    /// Usage Example:
-    ///
     ///     let nums: [Int] = [1, 3, 5]
     ///
     ///     let firstNum: Int? = nums[safe: 0] // 1

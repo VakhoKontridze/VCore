@@ -13,8 +13,6 @@ import UIKit
 extension CGRect {
     /// Converts rect to constant usable for creating leading constraint.
     ///
-    /// Usage Example:
-    ///
     ///     let constant: CGFloag = rect.leadingConstraintConstant
     ///
     public var leadingConstraintConstant: CGFloat {
@@ -22,8 +20,6 @@ extension CGRect {
     }
     
     /// Converts rect to constant usable for creating trailing constraint.
-    ///
-    /// Usage Example:
     ///
     ///     let constant: CGFloag = rect.trailingConstraintConstant(in: view.frame.width)
     ///
@@ -33,8 +29,6 @@ extension CGRect {
     
     /// Converts rect to constant usable for creating top constraint.
     ///
-    /// Usage Example:
-    ///
     ///     let constant: CGFloag = rect.topConstraintConstant
     ///
     public var topConstraintConstant: CGFloat {
@@ -42,8 +36,6 @@ extension CGRect {
     }
     
     /// Converts rect to constant usable for creating bottom constraint.
-    ///
-    /// Usage Example:
     ///
     ///     let constant: CGFloag = rect.bottomConstraintConstant(in: view.frame.height)
     ///
@@ -53,8 +45,6 @@ extension CGRect {
     
     /// Converts rect to constant usable for creating center constraint.
     ///
-    /// Usage Example:
-    ///
     ///     let constant: CGFloag = rect.center
     ///
     public var center: CGPoint {
@@ -63,8 +53,6 @@ extension CGRect {
 
     /// Converts rect to constant usable for creating center `x` constraint.
     ///
-    /// Usage Example:
-    ///
     ///     let constant: CGFloag = rect.centerX
     ///
     public var centerX: CGFloat {
@@ -72,8 +60,6 @@ extension CGRect {
     }
 
     /// Converts rect to constant usable for creating center `y` constraint.
-    ///
-    /// Usage Example:
     ///
     ///     let constant: CGFloag = rect.centerY
     ///

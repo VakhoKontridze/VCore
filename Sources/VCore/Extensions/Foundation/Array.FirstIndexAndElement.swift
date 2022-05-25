@@ -13,8 +13,6 @@ extension Array {
     ///
     /// Used for avoiding accessing both index and element with built-in methods.
     ///
-    /// Usage Example:
-    ///
     ///     let nums: [Int] = [1, 3, 5]
     ///     guard let (index, num): (Int, Int) = nums.firstIndexAndElement(where: { $0 * $0 >= 10 }) else { return }
     ///

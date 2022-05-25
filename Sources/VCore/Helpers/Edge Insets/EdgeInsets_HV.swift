@@ -111,8 +111,6 @@ public struct EdgeInsets_HV: Equatable {
 extension View {
     /// Adds a specific padding amount to each edge of this view from `EdgeInsets_HV`.
     ///
-    /// Usage Example:
-    ///
     ///     let insets: EdgeInsets_HV = .init(
     ///         horizontal: 10,
     ///         vertical: 10

@@ -13,8 +13,6 @@ import UIKit
 extension UIStackView {
     /// Configures`UIStackView` with axis, distribution, alignment, and spacing.
     ///
-    /// Usage Example:
-    ///
     ///     let stackView: UIStackView = .init()
     ///
     ///     stackView.configure(
@@ -37,8 +35,6 @@ extension UIStackView {
     }
     
     /// Initializes `UIStackView` with arranged subviews, axis, distribution, alignment, and spacing.
-    ///
-    /// Usage Example:
     ///
     ///     let stackView: UIStackView = .init(
     ///         arrangedSubviews: [

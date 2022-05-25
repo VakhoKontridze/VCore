@@ -11,8 +11,6 @@ import Foundation
 extension StringProtocol {
     /// Accesses the element at the specified position.
     ///
-    /// Usage Example:
-    ///
     ///     let string: String = "Lorem Ipsum"
     ///     let firstChar: Character = string[0] // "L"
     ///
@@ -26,8 +24,6 @@ extension StringProtocol {
 extension StringProtocol {
     /// Returns string with an element replaced at index.
     ///
-    /// Usage Example:
-    ///
     ///     let string: String = "Lorem ipsum"
     ///     let replacedString: String = string.replaced(at: 0, with: "l") // "lorem ipsum"
     ///
@@ -37,8 +33,6 @@ extension StringProtocol {
     }
     
     /// Replaces an element at index.
-    ///
-    /// Usage Example:
     ///
     ///     var string: String = "Lorem ipsum"
     ///     string.replacing(at: 0, with: "l") // "lorem ipsum"

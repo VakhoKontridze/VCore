@@ -11,8 +11,6 @@ import Foundation
 extension StringProtocol {
     /// Indicates whether a string has no characters or whitespaces.
     ///
-    /// Usage Example:
-    ///
     ///     let value1: Bool = "".isEmptyOrWhiteSpace // true
     ///     let value2: Bool = " ".isEmptyOrWhiteSpace // true
     ///     let value3: Bool = "Lorem Ipsum".isEmptyOrWhiteSpace // false
@@ -36,8 +34,6 @@ extension StringProtocol {
 extension StringProtocol {
     /// Returns non-empty version of `String`, or `nil`.
     ///
-    /// Usage Example:
-    ///
     ///     let value1: String? = "".nonEmpty // nil
     ///     let value2: String? = "Lorem Ipsum".nonEmpty // "Lorem Ipsum"
     ///     
@@ -47,8 +43,6 @@ extension StringProtocol {
     }
     
     /// Returns non-empty and non-whitespace version of `String`, or `nil`.
-    ///
-    /// Usage Example:
     ///
     ///     let value1: String? = "".nonEmptyOrWhiteSpace // nil
     ///     let value2: String? = " ".nonEmptyOrWhiteSpace // nil
@@ -60,8 +54,6 @@ extension StringProtocol {
     }
     
     /// Returns non-empty, non-whitespace, and non-newline version of `String`, or `nil`.
-    ///
-    /// Usage Example:
     ///
     ///     let value1: String? = "".nonEmptyWhiteSpaceOrNewLines // nil
     ///     let value2: String? = " ".nonEmptyWhiteSpaceOrNewLines // nil

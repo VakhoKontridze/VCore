@@ -11,8 +11,6 @@ import Foundation
 extension Date {
     /// Returns the value for one component, using the calendar time zone.
     ///
-    /// Usage Example:
-    ///
     ///     let year: Int = Date().component(.year) // 2022
     ///
     public func component(_ component: Calendar.Component) -> Int {

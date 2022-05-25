@@ -11,8 +11,6 @@ import Foundation
 extension String {
     /// Checks if value of this key is stored in `UserDefaults`.
     ///
-    /// Usage Example:
-    ///
     ///     "key".isUserDefaultsKey()
     ///
     public func isUserDefaultsKey(in defaults: UserDefaults = .standard) -> Bool {

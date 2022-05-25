@@ -13,8 +13,6 @@ import UIKit
 extension UIViewController {
     /// Dismisses keyboard on outside tap, by resigning first responder of the view.
     ///
-    /// Usage Example:
-    ///
     ///     override func viewDidLoad() {
     ///         super.viewDidLoad()
     ///         dismissKeyboardOnOutisdeTap()

@@ -13,8 +13,6 @@ import UIKit
 extension UIImage {
     /// Initializes `UIImage` with color and size.
     ///
-    /// Usage Example:
-    ///
     ///     let image: UIImage = .init(
     ///         size: .init(dimension: 100),
     ///         color: .black

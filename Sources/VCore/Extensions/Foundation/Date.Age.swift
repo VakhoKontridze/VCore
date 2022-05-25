@@ -11,8 +11,6 @@ import Foundation
 extension Date {
     /// Returns age as integer from given date to current time.
     ///
-    /// Usage Example:
-    ///
     ///     let age: Int? = birthDate.age
     ///
     public var age: Int? {

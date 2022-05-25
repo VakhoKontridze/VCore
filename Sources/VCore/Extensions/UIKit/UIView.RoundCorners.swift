@@ -15,8 +15,6 @@ extension UIView {
     ///
     /// Sets `clipsToBounds` to `true`.
     ///
-    /// Usage Example:
-    ///
     ///     view.roundCorners(.layerAllCorners, by: 10)
     ///
     public func roundCorners(

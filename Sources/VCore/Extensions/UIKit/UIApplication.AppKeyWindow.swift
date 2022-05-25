@@ -13,8 +13,6 @@ import UIKit
 extension UIApplication {
     /// Return root `UIWindow` in application.
     ///
-    /// Usage Example:
-    ///
     ///     let rootWindow: UIWindow? = UIApplication.shared.rootWindow
     ///
     public var rootWindow: UIWindow? {
@@ -39,8 +37,6 @@ extension UIApplication {
 extension UIApplication {
     /// Returns active `UIWindow` in application.
     ///
-    /// Usage Example:
-    ///
     ///     let activeWindow: UIWindow? = UIApplication.shared.activeWindow
     ///
     public var activeWindow: UIWindow? {
@@ -54,8 +50,6 @@ extension UIApplication {
     
     /// Returns active `UIViewController` in application.
     ///
-    /// Usage Example:
-    ///
     ///     let activeViewController: UIViewController? = UIApplication.shared.activeViewController
     ///
     public var activeViewController: UIViewController? {
@@ -63,8 +57,6 @@ extension UIApplication {
     }
     
     /// Returns active `UIView` in application.
-    ///
-    /// Usage Example:
     ///
     ///     let activeView: UIView? = UIApplication.shared.activeView
     ///
@@ -76,8 +68,6 @@ extension UIApplication {
 // MARK: - Top-Most
 extension UIApplication {
     /// Returns top-most `UIViewController` in application.
-    ///
-    /// Usage Example:
     ///
     ///     let topMostViewController: UIViewController? = UIApplication.shared.topMostViewController
     ///
@@ -97,8 +87,6 @@ extension UIApplication {
     }
     
     /// Return top-most `UIView` in application.
-    ///
-    /// Usage Example:
     ///
     ///     let topMostView: UIView? = UIApplication.shared.topMostView
     ///

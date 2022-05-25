@@ -11,8 +11,6 @@ import Foundation
 extension Sequence {
     /// Returns the elements of a sequence, sorted using the given keypath as the comparison between elements.
     ///
-    /// Usage Example:
-    ///
     ///     struct City {
     ///         let name: String
     ///     }
@@ -35,8 +33,6 @@ extension Sequence {
 
 extension Array {
     /// Sorts the elements of an array using the given keypath as the comparison between elements.
-    ///
-    /// Usage Example:
     ///
     ///     var cities: [City] = [
     ///         .init(name: "London"),
