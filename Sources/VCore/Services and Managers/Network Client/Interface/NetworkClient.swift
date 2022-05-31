@@ -28,52 +28,6 @@ import Foundation
 ///         }
 ///     }
 ///
-/// If additional processing is required, object can be extended the following way.
-///
-///     extension NetworkClient {
-///         static let someInstance: NetworkClient = .init(
-///             processor: SomeNetworkClientProcessor()
-///         )
-///     }
-///
-///     struct SomeNetworkError: Error {
-///         let domain: String = "com.somecompany.someapp"
-///         var code: Int
-///         var description: String
-///     }
-///
-///     struct SomeNetworkClientProcessor: NetworkResponseProcessor {
-///         func error(_ error: Error) throws {}
-///
-///         func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
-///             if response.isSuccessHTTPStatusCode { return response }
-///
-///             guard let json: [String: Any?] = try? JSONDecoderService.json(data: data) else { return response }
-///             if json["success"]?.toBool == true { return response }
-///
-///             guard
-///                 let code: Int = json["code"]?.toInt,
-///                 let description: String = json["message"]?.toString
-///             else {
-///                 throw SomeNetworkError(code: 99, description: "Unknown Error")
-///             }
-///
-///             throw SomeNetworkError(code: code, description: description)
-///         }
-///
-///         func data(_ data: Data, _ response: URLResponse) throws -> Data {
-///             guard
-///                 let json: [String: Any?] = try? JSONDecoderService.json(data: data),
-///                 let dataJSON: [String: Any?] = json["data"]?.toJSON,
-///                 let dataData: Data = try? JSONEncoderService.data(encodable: dataJSON)
-///             else {
-///                 throw SomeNetworkError(code: 1, description: "Incomplete Data")
-///             }
-///
-///             return dataData
-///         }
-///     }
-///
 public final class NetworkClient {
     // MARK: Properties
     /// Default instance of `NetworkClient`.
