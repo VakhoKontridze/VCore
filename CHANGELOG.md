@@ -1,5 +1,11 @@
 # Change Log
 
+#### [3.3.1(24)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.1) — *2022 06 08*
+
+Helpers
+
+- Description of error thrown by `get` method in `ResultNoFailure` is fixed
+
 #### [3.3.0(23)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.0) — *2022 06 08*
 
 Helpers

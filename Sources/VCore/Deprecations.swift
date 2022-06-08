@@ -68,3 +68,21 @@ extension SwiftUIBaseButton {
 }
 
 #endif
+
+// MARK: - VCore Localization Service
+extension VCoreLocalizationProvider {
+    @available(*, deprecated, message: "Renamed to `networkErrorDescription(_:)`")
+    public func value(networkError: NetworkError) -> String {
+        networkErrorDescription(networkError)
+    }
+    
+    @available(*, deprecated, message: "Renamed to `jsonEncoderErrorDescription(_:)`")
+    public func value(jsonEncoderError: JSONEncoderError) -> String {
+        jsonEncoderErrorDescription(jsonEncoderError)
+    }
+    
+    @available(*, deprecated, message: "Renamed to `jsonDecoderErrorDescription(_:)`")
+    public func value(jsonDecoderError: JSONDecoderError) -> String {
+        jsonDecoderErrorDescription(jsonDecoderError)
+    }
+}
