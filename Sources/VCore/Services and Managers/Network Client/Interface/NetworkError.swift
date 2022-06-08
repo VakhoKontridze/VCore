@@ -43,14 +43,8 @@ public enum NetworkError: Int, VCoreError, CaseIterable {
     /// Indicates that result cannot be decoded.
     case invalidData
     
-    // MARK: Properties
-    // Overriden
-    public static var errorDomain: String { "com.vcore.networkclient" }
-    
     // MARK: VCore Error
-    public var code: Int { 1000 + (rawValue+1) }
-    
-    public var description: String {
-        VCoreLocalizationService.shared.localizationProvider.value(networkError: self)
-    }
+    public static var errorDomain: String { "com.vcore.networkclient" }
+    public var code: Int { 1000 + rawValue }
+    public var description: String { VCoreLocalizationService.shared.localizationProvider.value(networkError: self) }
 }
