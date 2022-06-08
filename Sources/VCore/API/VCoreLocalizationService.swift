@@ -34,6 +34,9 @@ public protocol VCoreLocalizationProvider {
     
     /// Localized value for `JSONDecoderError`'s description.
     func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String
+    
+    /// Localized value for error description thrown by `get` method in `ResultNoFailure`.
+    var resultNoFailureErrorDescription: String { get }
 }
 
 // MARK: - Default VCore Localization Provider
@@ -64,5 +67,9 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
         switch jsonDecoderError {
         case .failedToDecode: return "Data cannot be decoded or is incomplete"
         }
+    }
+    
+    public var resultNoFailureErrorDescription: String {
+        "No data"
     }
 }
