@@ -1,5 +1,12 @@
 # Change Log
 
+#### [3.3.0(23)]
+
+Helpers
+
+- Custom `Result` types now container `map`/`mapError`, `flatMap`/`flatMapError`, and `get` methods
+- Custom `Result` types now conform to `Equatable`
+
 #### [3.2.0(22)](https://github.com/VakhoKontridze/VCore/releases/tag/3.2.0) — *2022 05 26*
 
 Views and ViewControllers
