@@ -12,15 +12,15 @@ import XCTest
 final class VCoreLocalizationServiceTests: XCTestCase {
     // MARK: Test Data
     private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {
-        func value(networkError: NetworkError) -> String {
+        func networkErrorDescription(_ networkError: NetworkError) -> String {
             "A"
         }
         
-        func value(jsonEncoderError: JSONEncoderError) -> String {
+        func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String {
             "B"
         }
         
-        func value(jsonDecoderError: JSONDecoderError) -> String {
+        func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String {
             "C"
         }
     }
