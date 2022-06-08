@@ -9,6 +9,9 @@ import Foundation
 
 // MARK: - V Core Error
 /// An error that occurs in `VCore`.
+///
+/// Dynamic member `domain` is linked with static member `errorDomain`.
+/// Override `errorDomain` to change both.
 public protocol VCoreError: LocalizedError, CustomNSError {
     /// Error domain.
     var domain: String { get }
@@ -21,6 +24,9 @@ public protocol VCoreError: LocalizedError, CustomNSError {
 }
 
 extension VCoreError {
+    // VCore Error
+    public var domain: String { Self.errorDomain }
+    
     // Error (Localized)
     public var errorDescription: String? { description }
     public var failureReason: String? { description }
