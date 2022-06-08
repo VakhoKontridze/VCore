@@ -1,10 +1,16 @@
 # Change Log
 
+#### [3.3.1(24)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.1) — *2022 06 08*
+
+Helpers
+
+- description of error thrown by `get` method in `ResultNoFailure` is fixed
+
 #### [3.3.0(23)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.0) — *2022 06 08*
 
 Helpers
 
-- Custom `Result` types now container `map`/`mapError`, `flatMap`/`flatMapError`, and `get` methods
+- Custom `Result` types now contains `map`/`mapError`, `flatMap`/`flatMapError`, and `get` methods
 - Custom `Result` types now conform to `Equatable`
 
 #### [3.2.0(22)](https://github.com/VakhoKontridze/VCore/releases/tag/3.2.0) — *2022 05 26*
