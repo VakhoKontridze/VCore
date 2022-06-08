@@ -19,8 +19,6 @@ public enum JSONEncoderError: Int, VCoreError, CaseIterable {
     public static var errorDomain: String { "com.vcore.jsonencoderservice" }
     
     // MARK: VCore Error
-    public var domain: String { Self.errorDomain }
-    
     public var code: Int { 1000 + (rawValue+1) }
     
     public var description: String {
