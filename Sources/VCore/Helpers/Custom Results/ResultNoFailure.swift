@@ -77,5 +77,5 @@ private struct ResultNoFailureError: VCoreError {
     // MARK: VCore Error
     static var errorDomain: String { "com.vcore.resultnofailure" }
     var code: Int { 1000 }
-    var description: String { "TODO" }
+    var description: String { VCoreLocalizationService.shared.localizationProvider.resultNoFailureErrorDescription }
 }

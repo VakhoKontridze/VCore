@@ -17,5 +17,5 @@ public enum JSONDecoderError: Int, VCoreError, CaseIterable {
     // MARK: VCore Error
     public static var errorDomain: String { "com.vcore.jsondecoderservice" }
     public var code: Int { 1000 + rawValue }
-    public var description: String { VCoreLocalizationService.shared.localizationProvider.value(jsonDecoderError: self) }
+    public var description: String { VCoreLocalizationService.shared.localizationProvider.jsonDecoderErrorDescription(self) }
 }

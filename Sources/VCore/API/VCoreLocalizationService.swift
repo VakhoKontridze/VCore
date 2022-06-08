@@ -26,20 +26,23 @@ public final class VCoreLocalizationService {
 // MARK: - VCore Localization Provider
 /// Localization provider in package.
 public protocol VCoreLocalizationProvider {
-    /// Localzied value for `NetworkError`.
-    func value(networkError: NetworkError) -> String
+    /// Localized value for `NetworkError`'s description.
+    func networkErrorDescription(_ networkError: NetworkError) -> String
     
-    /// Localzied value for `JSONEncoderError`.
-    func value(jsonEncoderError: JSONEncoderError) -> String
+    /// Localized value for `JSONEncoderError`'s description.
+    func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String
     
-    /// Localzied value for `JSONDecoderError`.
-    func value(jsonDecoderError: JSONDecoderError) -> String
+    /// Localized value for `JSONDecoderError`'s description.
+    func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String
+    
+    /// Localized value for error description thrown by `get` method in `ResultNoFailure`.
+    var resultNoFailureErrorDescription: String { get }
 }
 
 // MARK: - Default VCore Localization Provider
 /// Defaults VCore localization provider.
 public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
-    public func value(networkError: NetworkError) -> String {
+    public func networkErrorDescription(_ networkError: NetworkError) -> String {
         switch networkError {
         case .notConnectedToNetwork: return "Not connected to network"
         case .invalidEndpoint: return "Cannot connect to the server. An incorrect handler is being used."
@@ -54,15 +57,19 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
         }
     }
     
-    public func value(jsonEncoderError: JSONEncoderError) -> String {
+    public func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String {
         switch jsonEncoderError {
         case .failedToEncode: return "Data cannot be encoded or is incomplete"
         }
     }
     
-    public func value(jsonDecoderError: JSONDecoderError) -> String {
+    public func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String {
         switch jsonDecoderError {
         case .failedToDecode: return "Data cannot be decoded or is incomplete"
         }
+    }
+    
+    public var resultNoFailureErrorDescription: String {
+        "No data"
     }
 }

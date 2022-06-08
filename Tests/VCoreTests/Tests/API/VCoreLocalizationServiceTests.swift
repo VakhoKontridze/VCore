@@ -12,16 +12,20 @@ import XCTest
 final class VCoreLocalizationServiceTests: XCTestCase {
     // MARK: Test Data
     private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {
-        func value(networkError: NetworkError) -> String {
+        func networkErrorDescription(_ networkError: NetworkError) -> String {
             "A"
         }
         
-        func value(jsonEncoderError: JSONEncoderError) -> String {
+        func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String {
             "B"
         }
         
-        func value(jsonDecoderError: JSONDecoderError) -> String {
+        func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String {
             "C"
+        }
+        
+        var resultNoFailureErrorDescription: String {
+            "D"
         }
     }
     
@@ -33,7 +37,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
     }
     
     // MARK: Tests
-    func testNetworkError() async {
+    func testNetworkErrorDescription() async {
         do {
             try await NetworkClient.default.noData(from: .init(url: ""))
             fatalError()
@@ -43,7 +47,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
         }
     }
 
-    func testJSONEncoderError() {
+    func testJSONEncoderErrorDescription() {
         XCTAssertThrowsError(
             try JSONEncoderService.data(any: nil),
             "",
@@ -51,11 +55,19 @@ final class VCoreLocalizationServiceTests: XCTestCase {
         )
     }
     
-    func testJSONDecoderError() {
+    func testJSONDecoderErrorDescription() {
         XCTAssertThrowsError(
             try JSONDecoderService.json(data: .init()),
             "",
             { error in XCTAssertEqual(error.localizedDescription, "C") }
+        )
+    }
+    
+    func testResultNoFailureErrorDescription() {
+        XCTAssertThrowsError(
+            try ResultNoFailure<Any>.failure.get(),
+            "",
+            { error in XCTAssertEqual(error.localizedDescription, "D") }
         )
     }
 }
