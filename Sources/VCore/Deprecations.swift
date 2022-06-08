@@ -68,3 +68,18 @@ extension SwiftUIBaseButton {
 }
 
 #endif
+
+// MARK: - VCore Localization Service
+extension VCoreLocalizationProvider {
+    public func value(networkError: NetworkError) -> String {
+        networkErrorDescription(networkError)
+    }
+    
+    public func value(jsonEncoderError: JSONEncoderError) -> String {
+        jsonEncoderErrorDescription(jsonEncoderError)
+    }
+    
+    public func value(jsonDecoderError: JSONDecoderError) -> String {
+        jsonDecoderErrorDescription(jsonDecoderError)
+    }
+}
