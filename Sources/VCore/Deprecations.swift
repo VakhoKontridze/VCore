@@ -111,8 +111,8 @@ public enum UIAlertViewModel_OLD {
     case twoButtons(viewModel: TwoButtonsViewModel)
 
     public struct ButtonViewModel {
-        public let title: String
-        public let action: (() -> Void)?
+        public var title: String
+        public var action: (() -> Void)?
         
         public init(
             title: String,
@@ -124,9 +124,9 @@ public enum UIAlertViewModel_OLD {
     }
 
     public struct OneButtonViewModel {
-        public let title: String?
-        public let message: String
-        public let dismissButton: ButtonViewModel
+        public var title: String?
+        public var message: String
+        public var dismissButton: ButtonViewModel
         
         public init(
             title: String?,
@@ -140,10 +140,10 @@ public enum UIAlertViewModel_OLD {
     }
 
     public struct TwoButtonsViewModel {
-        public let title: String?
-        public let message: String
-        public let primaryButton: ButtonViewModel
-        public let secondaryButton: ButtonViewModel
+        public var title: String?
+        public var message: String
+        public var primaryButton: ButtonViewModel
+        public var secondaryButton: ButtonViewModel
         
         public init(
             title: String?,

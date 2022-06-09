@@ -2,6 +2,10 @@
 
 #### [3.4.0(25)]
 
+General
+
+- Several `let` declarations are no mutable
+
 Helpers
 
 - `UIAlertViewModel` has a new API that supports many buttons with state and style

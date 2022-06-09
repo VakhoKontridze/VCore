@@ -66,13 +66,13 @@ public struct MultiPartFormDataFile {
     ///
     /// If `nil`, `String` passed to `[String: AnyMultiPartFormDataFile?]` `Dictionary` will be used.
     /// With an explicit `filename`, a mime type is not automatically appended.
-    public let filename: String?
+    public var filename: String?
     
     /// File mime type.
-    public let mimeType: String
+    public var mimeType: String
     
     /// Data associated with the file.
-    public let data: Data?
+    public var data: Data?
     
     // MARK: Initializers
     /// Initailizes `MultiPartFormDataFile`.
