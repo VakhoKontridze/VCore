@@ -12,7 +12,7 @@ import UIKit
 // MARK: - UI Alert Viewable
 /// Porotocl for presenting an `UIAlert`.
 ///
-/// In `VIPER` arhcitecute, this protocol is conformed to by a `View/Controller`.
+/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `View/Controller`.
 public protocol UIAlertViewable {
     /// Presents `UIAlert` with viewmodel
     func presentAlert(viewModel: UIAlertViewModel)
@@ -31,7 +31,7 @@ extension UIAlertViewable where Self: UIViewController {
 // MARK: - UI Alert ViewModel
 /// Viewmodel for presenting an `UIAlert`.
 ///
-/// In `VIPER` arhcitecute, viewmodel is passed by`Presenter` to `View/Controller`
+/// `MVP`, `VIP`, and `VIPER` arhcitecutes, viewmodel is passed by`Presenter` to `View/Controller`
 public enum UIAlertViewModel {
     // MARK: Cases
     /// One button.
