@@ -24,8 +24,16 @@ final class VCoreLocalizationServiceTests: XCTestCase {
             "C"
         }
         
-        var resultNoFailureErrorDescription: String {
+        var alertErrorTitle: String {
             "D"
+        }
+        
+        var alertOKButtonTitle: String {
+            "E"
+        }
+        
+        var resultNoFailureErrorDescription: String {
+            "F"
         }
     }
     
@@ -63,11 +71,29 @@ final class VCoreLocalizationServiceTests: XCTestCase {
         )
     }
     
+    #if canImport(UIKit) && !os(watchOS)
+    func testAlertErrorTitle() {
+        XCTAssertEqual(
+            UIAlertViewModel(error: NetworkError.notConnectedToNetwork, action: nil).title,
+            "D"
+        )
+    }
+    #endif
+    
+    #if canImport(UIKit) && !os(watchOS)
+    func testAlertOkButtonTitle() {
+        XCTAssertEqual(
+            UIAlertViewModel(title: "T", message: "M", action: nil).actions.first!.title,
+            "E"
+        )
+    }
+    #endif
+    
     func testResultNoFailureErrorDescription() {
         XCTAssertThrowsError(
             try ResultNoFailure<Any>.failure.get(),
             "",
-            { error in XCTAssertEqual(error.localizedDescription, "D") }
+            { error in XCTAssertEqual(error.localizedDescription, "F") }
         )
     }
 }
