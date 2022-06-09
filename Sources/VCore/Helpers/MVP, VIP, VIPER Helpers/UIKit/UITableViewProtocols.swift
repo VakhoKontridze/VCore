@@ -87,7 +87,7 @@ extension UITableViewDequeueable {
 // MARK: - Table View
 /// Allows for the delegation of `UITableViewDelegate`
 ///
-/// In `VIPER` arhcitecute, this protoocol is conformed to by a `Presenter`
+/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`
 public protocol UITableViewDelegatable {
     /// Notifies that a `UITableViewCell` has been selected and section and row
     func tableViewDidSelectRow(section: Int, row: Int)
@@ -95,7 +95,7 @@ public protocol UITableViewDelegatable {
 
 /// Allows for the delegation of `UITableViewDataSource`
 ///
-/// In `VIPER` arhcitecute, this protoocol is conformed to by a `Presenter`
+/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`
 public protocol UITableViewDataSourceable {
     /// Number of sections in `UITableView`
     var tableViewNumberOfSections: Int { get }
