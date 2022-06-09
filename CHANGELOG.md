@@ -4,7 +4,7 @@
 
 General
 
-- Several `let` declarations are no mutable
+- Several `let` declarations are now mutable
 
 Architectural Pattern Helpers
 
