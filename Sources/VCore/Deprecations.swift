@@ -69,6 +69,139 @@ extension SwiftUIBaseButton {
 
 #endif
 
+#if canImport(UIKit) && !os(watchOS)
+
+// MARK: - UI Alert Viewable
+extension UIAlertViewable {
+    @available(*, deprecated, message: "Use new `struct` based ViewModel")
+    public func presentAlert(viewModel: UIAlertViewModel_OLD) {
+        switch viewModel {
+        case .oneButton(let viewModel):
+            presentAlert(viewModel: .init(
+                title: viewModel.title,
+                message: viewModel.message,
+                action: .init(
+                    title: viewModel.dismissButton.title,
+                    action: viewModel.dismissButton.action
+                )
+            ))
+            
+        case .twoButtons(let viewModel):
+            presentAlert(viewModel: .init(
+                title: viewModel.title,
+                message: viewModel.message,
+                actions: [
+                    .init(
+                        title: viewModel.primaryButton.title,
+                        action: viewModel.primaryButton.action
+                    ),
+                    .init(
+                        title: viewModel.secondaryButton.title,
+                        action: viewModel.secondaryButton.action
+                    )
+                ]
+            ))
+        }
+    }
+}
+
+@available(*, deprecated, message: "Use new `struct` based ViewModel")
+public enum UIAlertViewModel_OLD {
+    case oneButton(viewModel: OneButtonViewModel)
+    case twoButtons(viewModel: TwoButtonsViewModel)
+
+    public struct ButtonViewModel {
+        public let title: String
+        public let action: (() -> Void)?
+        
+        public init(
+            title: String,
+            action: (() -> Void)?
+        ) {
+            self.title = title
+            self.action = action
+        }
+    }
+
+    public struct OneButtonViewModel {
+        public let title: String?
+        public let message: String
+        public let dismissButton: ButtonViewModel
+        
+        public init(
+            title: String?,
+            message: String,
+            dismissButton: ButtonViewModel
+        ) {
+            self.title = title
+            self.message = message
+            self.dismissButton = dismissButton
+        }
+    }
+
+    public struct TwoButtonsViewModel {
+        public let title: String?
+        public let message: String
+        public let primaryButton: ButtonViewModel
+        public let secondaryButton: ButtonViewModel
+        
+        public init(
+            title: String?,
+            message: String,
+            primaryButton: ButtonViewModel,
+            secondaryButton: ButtonViewModel
+        ) {
+            self.title = title
+            self.message = message
+            self.primaryButton = primaryButton
+            self.secondaryButton = secondaryButton
+        }
+    }
+    
+    @available(*, deprecated, message: "Use new `struct` based ViewModel")
+    public var uiAlertController: UIAlertController {
+        switch self {
+        case .oneButton(let viewModel):
+            let alert: UIAlertController = .init(
+                title: viewModel.title ?? "", // Fixes weird bold bug when nil
+                message: viewModel.message,
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(.init(
+                title: viewModel.dismissButton.title,
+                style: .cancel,
+                handler: { _ in viewModel.dismissButton.action?() }
+            ))
+            
+            return alert
+            
+        case .twoButtons(let viewModel):
+            let alert: UIAlertController = .init(
+                title: viewModel.title ?? "", // Fixes weird bold bug when nil
+                message: viewModel.message,
+                preferredStyle: .alert
+            )
+            
+            alert.addAction(.init(
+                title: viewModel.primaryButton.title,
+                style: .default,
+                handler: { _ in viewModel.primaryButton.action?() }
+            ))
+            
+            alert.addAction(.init(
+                title: viewModel.secondaryButton.title,
+                style: .cancel,
+                handler: { _ in viewModel.secondaryButton.action?() }
+            ))
+            
+            return alert
+        }
+    }
+}
+
+#endif
+
 // MARK: - VCore Localization Service
 extension VCoreLocalizationProvider {
     @available(*, deprecated, message: "Renamed to `networkErrorDescription(_:)`")
