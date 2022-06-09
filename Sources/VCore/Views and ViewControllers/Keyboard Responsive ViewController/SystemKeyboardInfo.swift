@@ -14,13 +14,13 @@ import UIKit
 public struct SystemKeyboardInfo {
     // MARK: Properties
     /// Keyboard’s frame at the end of its animation.
-    public let frame: CGRect
+    public var frame: CGRect
     
     /// Duration of the keyboard animation in seconds.
-    public let animationDuration: TimeInterval
+    public var animationDuration: TimeInterval
     
     /// Animation curve that the system uses to animate the keyboard onto or off the screen.
-    public let animationOptions: UIView.AnimationOptions
+    public var animationOptions: UIView.AnimationOptions
     
     // MARK: Initializers
     /// Initializes `SystemKeyboardInfo` with parameters.
