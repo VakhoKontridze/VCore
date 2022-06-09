@@ -1,5 +1,11 @@
 # Change Log
 
+#### [3.4.0(25)]
+
+Helpers
+
+- `UIAlertViewModel` has a new API that supports many buttons with state and style
+
 #### [3.3.1(24)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.1) — *2022 06 08*
 
 Helpers

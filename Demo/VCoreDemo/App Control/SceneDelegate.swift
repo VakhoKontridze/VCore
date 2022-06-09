@@ -18,8 +18,8 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene: UIWindowScene = scene as? UIWindowScene else { return }
         
         window = .init(windowScene: windowScene)
-//        window?.rootViewController = ViewController()
-        window?.rootViewController = UIHostingController(rootView: ContentView())
+        window?.rootViewController = ViewController()
+        //window?.rootViewController = UIHostingController(rootView: ContentView())
         window?.makeKeyAndVisible()
     }
 }

@@ -21,7 +21,7 @@ public protocol UIAlertViewable {
 extension UIAlertViewable where Self: UIViewController {
     public func presentAlert(viewModel: UIAlertViewModel) {
         present(
-            viewModel.uiAlertController,
+            UIAlertController(viewModel: viewModel),
             animated: true,
             completion: nil
         )
@@ -32,125 +32,126 @@ extension UIAlertViewable where Self: UIViewController {
 /// Viewmodel for presenting an `UIAlert`.
 ///
 /// `MVP`, `VIP`, and `VIPER` arhcitecutes, viewmodel is passed by`Presenter` to `View/Controller`
-public enum UIAlertViewModel {
-    // MARK: Cases
-    /// One button.
-    case oneButton(viewModel: OneButtonViewModel)
+public struct UIAlertViewModel {
+    // MARK: Properties
+    /// Alert title.
+    public var title: String?
     
-    /// Two button.
-    case twoButtons(viewModel: TwoButtonsViewModel)
-
+    /// Alert message.
+    public var message: String
+    
+    /// Actions.
+    public var actions: [ButtonViewModel]
+    
+    // MARK: Initializers
+    /// Initializes UIAlertViewModel.
+    public init(
+        title: String?,
+        message: String,
+        actions: [ButtonViewModel]
+    ) {
+        self.title = title
+        self.message = message
+        self.actions = actions
+    }
+    
+    /// Initializes UIAlertViewModel with one action.
+    public init(
+        title: String?,
+        message: String,
+        action: ButtonViewModel
+    ) {
+        self.init(
+            title: title,
+            message: message,
+            actions: [action]
+        )
+    }
+    
+    /// Initializes UIAlertViewModel with "ok" action.
+    public init(
+        title: String?,
+        message: String,
+        action: (() -> Void)?
+    ) {
+        self.init(
+            title: title,
+            message: message,
+            action: .init(
+                style: .cancel,
+                title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
+                action: action
+            )
+        )
+    }
+    
+    /// Initializes UIAlertViewModel with error and "ok" action.
+    public init(
+        error: Error,
+        action: (() -> Void)?
+    ) {
+        self.init(
+            title: VCoreLocalizationService.shared.localizationProvider.alertErrorTitle,
+            message: error.localizedDescription,
+            action: .init(
+                style: .cancel,
+                title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
+                action: action
+            )
+        )
+    }
+    
     // MARK: Button ViewModel
     /// Button ViewModel.
     public struct ButtonViewModel {
+        /// Indicates if button is enabled.
+        public var isEnabled: Bool
+        
+        /// Button style.
+        public var style: UIAlertAction.Style
+        
         /// Button title.
-        public let title: String
+        public var title: String
         
         /// Button action.
-        public let action: (() -> Void)?
+        public var action: (() -> Void)?
         
         /// Initializes viewmodel.
         public init(
+            isEnabled: Bool = true,
+            style: UIAlertAction.Style = .default,
             title: String,
             action: (() -> Void)?
         ) {
+            self.isEnabled = isEnabled
+            self.style = style
             self.title = title
             self.action = action
         }
     }
+}
 
-    // MARK: One Button ViewModel
-    /// One Button ViewModel.
-    public struct OneButtonViewModel {
-        /// Alert title.
-        public let title: String?
+// MARK: - Factory
+extension UIAlertController {
+    fileprivate convenience init(viewModel: UIAlertViewModel) {
+        self.init(
+            title: viewModel.title ?? "", // Fixes weird bold bug when nil
+            message: viewModel.message,
+            preferredStyle: .alert
+        )
         
-        /// Alert message.
-        public let message: String
-        
-        /// Alert dismiss button.
-        public let dismissButton: ButtonViewModel
-        
-        /// Initializes viewmodel.
-        public init(
-            title: String?,
-            message: String,
-            dismissButton: ButtonViewModel
-        ) {
-            self.title = title
-            self.message = message
-            self.dismissButton = dismissButton
-        }
-    }
-
-    // MARK: Two Buttons ViewModel
-    /// Two Buttons ViewModel.
-    public struct TwoButtonsViewModel {
-        /// Alert title.
-        public let title: String?
-        
-        /// Alert message.
-        public let message: String
-        
-        /// Alert primary button.
-        public let primaryButton: ButtonViewModel
-        
-        /// Alert secondary button.
-        public let secondaryButton: ButtonViewModel
-        
-        /// Initializes viewmodel.
-        public init(
-            title: String?,
-            message: String,
-            primaryButton: ButtonViewModel,
-            secondaryButton: ButtonViewModel
-        ) {
-            self.title = title
-            self.message = message
-            self.primaryButton = primaryButton
-            self.secondaryButton = secondaryButton
-        }
-    }
-    
-    // MARK: Factory
-    /// Creates `UIAlertController` from viewmodel
-    public var uiAlertController: UIAlertController {
-        switch self {
-        case .oneButton(let viewModel):
-            let alert: UIAlertController = .init(
-                title: viewModel.title ?? "", // Fixes weird bold bug when nil
-                message: viewModel.message,
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(.init(
-                title: viewModel.dismissButton.title,
-                style: .cancel,
-                handler: { _ in viewModel.dismissButton.action?() }
-            ))
-            
-            return alert
-            
-        case .twoButtons(let viewModel):
-            let alert: UIAlertController = .init(
-                title: viewModel.title ?? "", // Fixes weird bold bug when nil
-                message: viewModel.message,
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(.init(
-                title: viewModel.primaryButton.title,
-                style: .default,
-                handler: { _ in viewModel.primaryButton.action?() }
-            ))
-            
-            alert.addAction(.init(
-                title: viewModel.secondaryButton.title,
-                style: .cancel,
-                handler: { _ in viewModel.secondaryButton.action?() }
-            ))
-            
-            return alert
+        for action in viewModel.actions {
+            addAction({
+                let alertAction: UIAlertAction = .init(
+                    title: action.title,
+                    style: action.style,
+                    handler: { _ in action.action?() }
+                )
+                
+                alertAction.isEnabled = action.isEnabled
+                
+                return alertAction
+            }())
         }
     }
 }
