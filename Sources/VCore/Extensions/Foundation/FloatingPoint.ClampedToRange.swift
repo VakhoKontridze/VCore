@@ -1,5 +1,5 @@
 //
-//  FloatingPoint.ClampedInRange.swift
+//  FloatingPoint.ClampedToRange.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 12/9/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Number Clamped in Closed Range
+// MARK: - Number Clamped to Closed Range
 extension FloatingPoint {
     /// Clamps value in range.
     ///
@@ -93,7 +93,7 @@ extension FloatingPoint {
     }
 }
 
-// MARK: - Number Clamped in Half-Open Range
+// MARK: - Number Clamped to Half-Open Range
 extension FloatingPoint {
     /// Clamps value in range.
     ///

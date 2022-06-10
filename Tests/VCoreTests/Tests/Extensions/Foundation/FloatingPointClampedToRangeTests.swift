@@ -1,5 +1,5 @@
 //
-//  FloatingPointClampedInRangeTests.swift
+//  FloatingPointClampedToRangeTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 06.05.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class FloatingPointClampedInClosedRangeTests: XCTestCase {
+final class FloatingPointClampedToClosedRangeTests: XCTestCase {
     // MARK: Test Data
     private let step: Double = 3
     private let min: Double = 1
@@ -94,7 +94,7 @@ final class FloatingPointClampedInClosedRangeTests: XCTestCase {
     }
 }
 
-final class FloatingPointClampedInHalfOpenRangeTests: XCTestCase {
+final class FloatingPointClampedToHalfOpenRangeTests: XCTestCase {
     // MARK: Test Data
     private let step: Double = 3
     private let min: Double = 1
