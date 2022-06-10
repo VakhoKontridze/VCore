@@ -6,6 +6,10 @@ General
 
 - Several `let` declarations are now mutable
 
+Helpers
+
+- `KVInitializableEnumeration` is renamed to `KeyPathInitializableEnumeration`
+
 Architectural Pattern Helpers
 
 - `UIAlertViewModel` has a new API that supports many buttons with state and style
