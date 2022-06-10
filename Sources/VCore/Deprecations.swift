@@ -221,6 +221,10 @@ extension Calendar {
     }
 }
 
+// MARK: - Extensions - SwiftUI
+@available(*, deprecated, renamed: "MinIdealMaxSizes")
+public typealias SizeConfiguration = MinIdealMaxSizes
+
 // MARK: - VCore Localization Service
 extension VCoreLocalizationProvider {
     @available(*, deprecated, message: "Renamed to `networkErrorDescription(_:)`")

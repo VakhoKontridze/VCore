@@ -20,6 +20,7 @@ Extensions
 - `toggling` method is added to `Set` to complement `mutating` `toggle`
 - `Optional` `String` method `compactMapNonEmpty` is renamed to `compactMapNonNilNonEmpty`
 - `Calendar` can now calculate number of days in month from year and month as arguments
+- `SizeConfiguration` is renamed to `MinIdealMaxSizes`
 
 #### [3.3.1(24)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.1) — *2022 06 08*
 

@@ -56,7 +56,7 @@ extension View {
     ///     }
     ///
     public func frame(
-        size: SizeConfiguration,
+        size: MinIdealMaxSizes,
         alignment: Alignment = .center
     ) -> some View {
         frame(
@@ -73,9 +73,9 @@ extension View {
     }
 }
 
-// MARK: - Size Configuration
+// MARK: - Min Ideal Max Sizes
 /// Object containing minimum, ideal, and maximum size configurations.
-public struct SizeConfiguration {
+public struct MinIdealMaxSizes {
     // MARK: Properties
     /// Minimum size.
     public var min: CGSize
@@ -87,7 +87,7 @@ public struct SizeConfiguration {
     public var max: CGSize
     
     // MARK: Initializers
-    /// Initializes `SizeConfiguration`.
+    /// Initializes `MinIdealMaxSizes`.
     public init(min: CGSize, ideal: CGSize, max: CGSize) {
         self.min = min
         self.ideal = ideal
