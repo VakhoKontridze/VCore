@@ -45,22 +45,21 @@ public struct NetworkReachabilityService {
     
     // MARK: Status
     private func statusChanged(_ path: NWPath) {
-        switch path.status {
-        case .satisfied: postNotification(name: Self.connectedNotification)
-        case .unsatisfied: postNotification(name: Self.disconnectedNotification)
-        case .requiresConnection: postNotification(name: Self.disconnectedNotification)
-        @unknown default: postNotification(name: Self.disconnectedNotification)
+        let isConnected: Bool = {
+            switch path.status {
+            case .satisfied: return true
+            case .unsatisfied: return false
+            case .requiresConnection: return false
+            @unknown default: return false
+            }
+        }()
+        
+        switch isConnected {
+        case false: NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
+        case true: NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
         }
     }
     
-    private func postNotification(name: NSNotification.Name) {
-        NotificationCenter.default.post(
-            name: name,
-            object: self,
-            userInfo: nil
-        )
-    }
-
     // MARK: Connection
     /// Indicates if device is connected to a network.
     public static var isConnectedToNetwork: Bool {
