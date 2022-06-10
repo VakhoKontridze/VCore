@@ -17,8 +17,11 @@ Architectural Pattern Helpers
 
 Extensions
 
+- `String` `removing` `CharacterSet` methods now support `Array`'s
+- `String` `keeping` `CharacterSet` methods now support `Array`'s
 - `toggling` method is added to `Set` to complement `mutating` `toggle`
 - `Optional` `String` method `compactMapNonEmpty` is renamed to `compactMapNonNilNonEmpty`
+- `CharacterSet` `unified` property is added
 - `Calendar` can now calculate number of days in month from year and month as arguments
 - `SizeConfiguration` is renamed to `MinIdealMaxSizes`
 
