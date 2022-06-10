@@ -7,18 +7,8 @@
 
 import Foundation
 
-// MARK: - JSON Type Casts
+// MARK: - Primitive JSON Type Casts
 extension Optional where Wrapped == Any {
-    /// Casts `Optional` `Any` to `JSON`.
-    public var toJSON: [String: Any?]? {
-        self as? [String: Any?]
-    }
-
-    /// Casts `Optional` `Any` to `JSON` `Array`.
-    public var toJSONArray: [[String: Any?]]? {
-        self as? [[String: Any?]]
-    }
-
     /// Casts `Optional` `Any` to `Int`.
     ///
     /// If type is `Bool`, `1` is returned if `true`, and `0` if `false`.
@@ -119,7 +109,20 @@ extension Optional where Wrapped == Any {
     }
 }
 
-// MARK: - Wrapped JSON Type Casts
+// MARK: - Collection JSON Type Casts
+extension Optional where Wrapped == Any {
+    /// Casts `Optional` `Any` to `JSON`.
+    public var toJSON: [String: Any?]? {
+        self as? [String: Any?]
+    }
+
+    /// Casts `Optional` `Any` to `JSON` `Array`.
+    public var toJSONArray: [[String: Any?]]? {
+        self as? [[String: Any?]]
+    }
+}
+
+// MARK: - Unwrapped Collection JSON Type Casts
 extension Optional where Wrapped == Any {
     /// Casts `Optional` `Any` to wrapped`JSON`.
     public var toUnwrappedJSON: [String: Any?] {
