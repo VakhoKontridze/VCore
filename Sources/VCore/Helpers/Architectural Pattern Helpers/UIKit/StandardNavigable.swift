@@ -47,9 +47,6 @@ public protocol StandardNavigable {
     /// Pops all the view controllers on the stack except the root view controller and updates the display.
     func popToRoot(animated: Bool)
     
-    /// Pops all the view controllers on the stack except the root view controller and updates the display.
-    func popToRoot()
-    
     /// Presents a view controller modally.
     func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
     
