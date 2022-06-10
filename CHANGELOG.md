@@ -25,6 +25,7 @@ Extensions
 - `Calendar` can now calculate number of days in month from year and month as arguments
 - `SizeConfiguration` is renamed to `MinIdealMaxSizes`
 - App info properties are moved from `UIApplication` to `Bundle`, and support is added for all platforms
+- `withTranslatesAutoresizingMaskIntoConstraints` method is added to `UIView`
 
 #### [3.3.1(24)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.1) — *2022 06 08*
 
