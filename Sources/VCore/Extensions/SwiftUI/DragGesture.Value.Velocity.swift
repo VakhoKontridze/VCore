@@ -31,6 +31,8 @@ extension DragGesture.Value {
     ///         let velocity: CGSize = dragValue.velocity(inRelationTo: lastDragValue)
     ///
     ///         // ...
+    ///
+    ///         lastDragValue = dragValue
     ///     }
     ///
     ///     private func dragEnded(dragValue: DragGesture.Value) {
