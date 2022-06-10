@@ -17,6 +17,7 @@ Architectural Pattern Helpers
 
 Extensions
 
+- `toggling` method is added to `Set` to complement `mutating` `toggle`
 - `Optional` `String` method `compactMapNonEmpty` is renamed to `compactMapNonNilNonEmpty`
 - `Calendar` can now calculate number of days in month from year and month as arguments
 

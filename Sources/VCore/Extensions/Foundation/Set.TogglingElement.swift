@@ -1,5 +1,5 @@
 //
-//  Set.Toggle.swift
+//  Set.TogglingElement.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 01.05.22.
@@ -7,9 +7,18 @@
 
 import Foundation
 
-// MARK: - Toggle Set Element
+// MARK: - Set Toggling Element
 extension Set {
-    /// Inserts element in a set if it's not present, and if present, removes it.
+    /// Returns set with element toggled, i.e., removed if it's present, and inserted if not.
+    public func toggling(
+        _ element: Element
+    ) -> Self {
+        var set = self
+        set.toggle(element)
+        return set
+    }
+    
+    /// Removes element from a set if it's present, and inserts if not.
     ///
     ///     var nums: Set<Int> = [1, 3, 5]
     ///     nums.toggle(1) // [3, 5]

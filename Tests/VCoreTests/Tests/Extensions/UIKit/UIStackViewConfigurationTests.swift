@@ -18,7 +18,7 @@ final class UIStackViewConfigurationTests: XCTestCase {
     private let alignment: UIStackView.Alignment = .leading
     private let spacing: CGFloat = 10
     
-    // MARK: Test
+    // MARK: Tests
     func testConfiguration() {
         let stackView: UIStackView = .init()
         
