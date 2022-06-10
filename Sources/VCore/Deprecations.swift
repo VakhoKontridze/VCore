@@ -71,6 +71,8 @@ extension SwiftUIBaseButton {
 
 #if canImport(UIKit) && !os(watchOS)
 
+import UIKit
+
 // MARK: - KeyPath Initializable Enumeration
 @available(*, deprecated, renamed: "KeyPathInitializableEnumeration")
 public typealias KVInitializableEnumeration = KeyPathInitializableEnumeration
@@ -220,6 +222,32 @@ extension Calendar {
         numberOfDaysInMonth(date: date)
     }
 }
+
+#if canImport(UIKit) && !os(watchOS)
+
+extension UIApplication {
+    @available(*, deprecated, message: "Use `Bundle.main.displayName`")
+    public var displayName: String? {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
+    }
+    
+    @available(*, deprecated, message: "Use `Bundle.main.version`")
+    public var version: String? {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+    
+    @available(*, deprecated, message: "Use `Bundle.main.buildNumber`")
+    public var buildNumber: String? {
+        Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as? String
+    }
+    
+    @available(*, deprecated, message: "Use native `Bundle.main.bundleIdentifier`")
+    public var bundleID: String? {
+        Bundle.main.bundleIdentifier
+    }
+}
+
+#endif
 
 // MARK: - Extensions - SwiftUI
 @available(*, deprecated, renamed: "MinIdealMaxSizes")
