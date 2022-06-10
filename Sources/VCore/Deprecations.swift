@@ -214,6 +214,13 @@ extension Array where Element == Optional<String> {
     }
 }
 
+extension Calendar {
+    @available(*, deprecated, message: "Use method with `date` parameter name")
+    public func numberOfDaysInMonth(for date: Date) -> Int? {
+        numberOfDaysInMonth(date: date)
+    }
+}
+
 // MARK: - VCore Localization Service
 extension VCoreLocalizationProvider {
     @available(*, deprecated, message: "Renamed to `networkErrorDescription(_:)`")

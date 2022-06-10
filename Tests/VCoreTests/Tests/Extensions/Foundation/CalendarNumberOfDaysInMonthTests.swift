@@ -29,12 +29,17 @@ final class CalendarNumberOfDaysInMonthTests: XCTestCase {
         numberOfDaysInMonths: [Int]
     ) {
         for i in 1...12 {
-            let numberOfDaysInMonth: Int? = Calendar
+            let numberOfDaysInMonth1: Int? = Calendar
                 .current
                 .date(from: .init(year: year, month: i))
-                .flatMap { Calendar.current.numberOfDaysInMonth(for: $0) }
+                .flatMap { Calendar.current.numberOfDaysInMonth(date: $0) }
             
-            XCTAssertEqual(numberOfDaysInMonth, numberOfDaysInMonths[i-1])
+            let numberOfDaysInMonth2: Int? = Calendar
+                .current
+                .numberOfDaysInMonth(year: year, month: i)
+            
+            XCTAssertEqual(numberOfDaysInMonth1, numberOfDaysInMonths[i-1])
+            XCTAssertEqual(numberOfDaysInMonth2, numberOfDaysInMonths[i-1])
         }
     }
 }
