@@ -22,7 +22,7 @@ final class LocalizationService {
     // MARK: Initializers
     private init() {
         for localeID in SupportedLocale.localeIDs where !SupportedLocale.systemLocaleIDs.contains(localeID) {
-            fatalError("Locale `\(localeID)` is not added to project")
+            fatalError("Locale `\(localeID)` is not added to the project")
         }
         
         for localeID in SupportedLocale.systemLocaleIDs where !SupportedLocale.localeIDs.contains(localeID) {
@@ -30,8 +30,8 @@ final class LocalizationService {
         }
     }
     
-    // MARK: Locale
-    enum SupportedLocale: Identifiable, CaseIterable, KVInitializableEnumeration {
+    // MARK: Supported Locale
+    enum SupportedLocale: Identifiable, CaseIterable, KeyPathInitializableEnumeration {
         // MARK: Cases
         case english
         
