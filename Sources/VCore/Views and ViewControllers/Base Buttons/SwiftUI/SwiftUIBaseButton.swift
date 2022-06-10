@@ -29,7 +29,7 @@ import SwiftUI
 ///
 ///         private init() {}
 ///
-///         typealias StateColors = GenericStateModel_EPD<Color?>
+///         typealias StateColors = GenericStateModel_EPD<Color>
 ///     }
 ///
 /// State:
