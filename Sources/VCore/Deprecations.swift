@@ -206,6 +206,14 @@ public enum UIAlertViewModel_OLD {
 
 #endif
 
+// MARK: - Extensions - Foundation
+extension Array where Element == Optional<String> {
+    @available(*, deprecated, renamed: "compactMapNonNilNonEmpty")
+    public func compactMapNonEmpty(_ transform: (String) throws -> String?) rethrows -> [String] {
+        try compactMapNonNilNonEmpty(transform)
+    }
+}
+
 // MARK: - VCore Localization Service
 extension VCoreLocalizationProvider {
     @available(*, deprecated, message: "Renamed to `networkErrorDescription(_:)`")

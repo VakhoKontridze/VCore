@@ -19,7 +19,7 @@ final class ArrayCompactMapNonEmptyTests: XCTestCase {
     
     func testOptionalStringArray() {
         XCTAssertEqual(
-            [nil, "", "Lorem Ipsum"].compactMapNonEmpty { $0 },
+            [nil, "", "Lorem Ipsum"].compactMapNonNilNonEmpty { $0 },
             ["Lorem Ipsum"]
         )
     }

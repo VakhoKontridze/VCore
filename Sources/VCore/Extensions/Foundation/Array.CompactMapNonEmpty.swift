@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Compact Map Non Empty
 extension Array where Element == String {
-    /// Returns a string array containing non-nil, non-empty values, given transformation with each non-empty element of this sequence.
+    /// Returns a string array containing non-empty values, given transformation with each non-empty element of this sequence.
     ///
     ///     let array: [String] = ["", "Lorem Ipsum"]
     ///     let nonEmptyArray: [String] = array.compactMapNonEmpty { $0 } // ["Lorem Ipsum"]
@@ -35,7 +35,7 @@ extension Array where Element == Optional<String> {
     ///     let array: [String?] = [nil, "", "Lorem Ipsum"]
     ///     let nonEmptyArray: [String] = array.compactMapNonEmpty { $0 } // ["Lorem Ipsum"]
     ///
-    public func compactMapNonEmpty(_ transform: (String) throws -> String?) rethrows -> [String] {
+    public func compactMapNonNilNonEmpty(_ transform: (String) throws -> String?) rethrows -> [String] {
         try compactMap { element in
             guard
                 let element = element,
