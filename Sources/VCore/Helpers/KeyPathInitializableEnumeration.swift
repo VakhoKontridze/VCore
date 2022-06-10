@@ -1,5 +1,5 @@
 //
-//  KVInitializableEnumeration.swift
+//  KeyPathInitializableEnumeration.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 12/9/21.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-// MARK: - Key-Value Initializable Enumeration
+// MARK: - KeyPath Initializable Enumeration
 /// KeyPath Initializable Enumeration.
 ///
 /// Enumeration that allows for dynamic lookup of a case witha given property keupath and value.
 ///
-///     enum SomeEnum: KVInitializableEnumeration {
+///     enum SomeEnum: KeyPathInitializableEnumeration {
 ///         case first
 ///         case second
 ///
@@ -26,7 +26,7 @@ import Foundation
 ///
 ///     let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
 ///
-public protocol KVInitializableEnumeration: CaseIterable {
+public protocol KeyPathInitializableEnumeration: CaseIterable {
     static func aCase<Property>(
         key keyPath: KeyPath<Self, Property>,
         value: Property
@@ -34,7 +34,7 @@ public protocol KVInitializableEnumeration: CaseIterable {
         where Property: Equatable
 }
 
-extension KVInitializableEnumeration {
+extension KeyPathInitializableEnumeration {
     public static func aCase<Property>(
         key keyPath: KeyPath<Self, Property>,
         value: Property

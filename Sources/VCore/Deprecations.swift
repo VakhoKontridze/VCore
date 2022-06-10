@@ -71,6 +71,10 @@ extension SwiftUIBaseButton {
 
 #if canImport(UIKit) && !os(watchOS)
 
+// MARK: - KeyPath Initializable Enumeration
+@available(*, deprecated, renamed: "KeyPathInitializableEnumeration")
+public typealias KVInitializableEnumeration = KeyPathInitializableEnumeration
+
 // MARK: - UI Alert Viewable
 extension UIAlertViewable {
     @available(*, deprecated, message: "Use new `struct` based ViewModel")

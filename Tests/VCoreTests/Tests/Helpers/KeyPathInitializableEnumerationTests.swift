@@ -1,5 +1,5 @@
 //
-//  KVInitializableEnumerationTests.swift
+//  KeyPathInitializableEnumerationTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 10.05.22.
@@ -9,9 +9,9 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class KVInitializableEnumerationTests: XCTestCase {
+final class KeyPathInitializableEnumerationTests: XCTestCase {
     // MARK: Test Data
-    private enum SomeEnum: KVInitializableEnumeration {
+    private enum SomeEnum: KeyPathInitializableEnumeration {
         case first
         case second
 
