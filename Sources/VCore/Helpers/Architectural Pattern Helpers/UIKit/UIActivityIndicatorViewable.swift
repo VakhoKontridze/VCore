@@ -33,7 +33,7 @@ public protocol UIActivityIndicatorViewable {
     func stopActivityIndicatorAnimationAndEnableInteraction()
 }
 
-extension UIActivityIndicatorViewable where Self: UIViewController {
+extension UIActivityIndicatorViewable where Self: UIView {
     public func startActivityIndicatorAnimation() {
         activityIndicator.startAnimating()
     }
@@ -44,9 +44,29 @@ extension UIActivityIndicatorViewable where Self: UIViewController {
     
     public func startActivityIndicatorAnimationAndDisableInteraction() {
         startActivityIndicatorAnimation()
-        view.isUserInteractionEnabled = false
+        isUserInteractionEnabled = false
     }
     
+    public func stopActivityIndicatorAnimationAndEnableInteraction() {
+        stopActivityIndicatorAnimation()
+        isUserInteractionEnabled = true
+    }
+}
+
+extension UIActivityIndicatorViewable where Self: UIViewController {
+    public func startActivityIndicatorAnimation() {
+        activityIndicator.startAnimating()
+    }
+
+    public func stopActivityIndicatorAnimation() {
+        activityIndicator.stopAnimating()
+    }
+
+    public func startActivityIndicatorAnimationAndDisableInteraction() {
+        startActivityIndicatorAnimation()
+        view.isUserInteractionEnabled = false
+    }
+
     public func stopActivityIndicatorAnimationAndEnableInteraction() {
         stopActivityIndicatorAnimation()
         view.isUserInteractionEnabled = true
@@ -54,16 +74,6 @@ extension UIActivityIndicatorViewable where Self: UIViewController {
 }
 
 // MARK: - Factory
-extension UIViewController {
-    /// Creates `UIActivityIndicatorView`.
-    public func initActivityIndicator(
-        scalingFactor: CGFloat? = nil,
-        color: UIColor? = nil
-    ) -> UIActivityIndicatorView {
-        view.initActivityIndicator(scalingFactor: scalingFactor, color: color)
-    }
-}
-
 extension UIView {
     /// Creates `UIActivityIndicatorView`.
     public func initActivityIndicator(
@@ -79,6 +89,16 @@ extension UIView {
         if let color = color { activityIndicator.color = color }
         
         return activityIndicator
+    }
+}
+
+extension UIViewController {
+    /// Creates `UIActivityIndicatorView`.
+    public func initActivityIndicator(
+        scalingFactor: CGFloat? = nil,
+        color: UIColor? = nil
+    ) -> UIActivityIndicatorView {
+        view.initActivityIndicator(scalingFactor: scalingFactor, color: color)
     }
 }
 
