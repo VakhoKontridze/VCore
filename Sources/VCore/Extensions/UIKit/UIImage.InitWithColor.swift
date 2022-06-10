@@ -28,8 +28,8 @@ extension UIImage {
         color.setFill()
         UIRectFill(.init(origin: .zero, size: size))
         
-        guard let aCgImage: CGImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else { return nil }
-        self.init(cgImage: aCgImage)
+        guard let cgImage: CGImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
     }
 }
 
