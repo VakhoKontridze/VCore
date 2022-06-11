@@ -12,8 +12,8 @@ Helpers
 
 Architectural Pattern Helpers
 
-- `UIActivityIndicatorViewable` now has a default implementation for `UIView`
 - `UIAlertViewModel` has a new API that supports many buttons with state and style
+- `UIActivityIndicatorViewable` now has a default implementation for `UIView`
 
 Extensions
 
