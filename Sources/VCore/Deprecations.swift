@@ -78,55 +78,35 @@ import UIKit
 public typealias KVInitializableEnumeration = KeyPathInitializableEnumeration
 
 // MARK: - UI Alert Viewable
-extension UIAlertViewable {
-    @available(*, deprecated, message: "Use new `struct` based ViewModel")
-    public func presentAlert(viewModel: UIAlertViewModel_OLD) {
-        switch viewModel {
-        case .oneButton(let viewModel):
-            presentAlert(viewModel: .init(
-                title: viewModel.title,
-                message: viewModel.message,
-                action: .init(
-                    title: viewModel.dismissButton.title,
-                    action: viewModel.dismissButton.action
-                )
-            ))
-            
-        case .twoButtons(let viewModel):
-            presentAlert(viewModel: .init(
-                title: viewModel.title,
-                message: viewModel.message,
-                actions: [
-                    .init(
-                        title: viewModel.primaryButton.title,
-                        action: viewModel.primaryButton.action
-                    ),
-                    .init(
-                        title: viewModel.secondaryButton.title,
-                        action: viewModel.secondaryButton.action
-                    )
-                ]
-            ))
-        }
+extension UIAlertViewModel {
+    @available(*, deprecated, message: "Use `init` with new API")
+    public static func oneButton(viewModel: OneButtonViewModel) -> Self {
+        self.init(
+            title: viewModel.title,
+            message: viewModel.message,
+            action: .init(
+                title: viewModel.dismissButton.title,
+                action: viewModel.dismissButton.action
+            )
+        )
     }
-}
-
-@available(*, deprecated, message: "Use new `struct` based ViewModel")
-public enum UIAlertViewModel_OLD {
-    case oneButton(viewModel: OneButtonViewModel)
-    case twoButtons(viewModel: TwoButtonsViewModel)
-
-    public struct ButtonViewModel {
-        public var title: String
-        public var action: (() -> Void)?
-        
-        public init(
-            title: String,
-            action: (() -> Void)?
-        ) {
-            self.title = title
-            self.action = action
-        }
+    
+    @available(*, deprecated, message: "Use `init` with new API")
+    public static func twoButtons(viewModel: TwoButtonsViewModel) -> Self {
+        self.init(
+            title: viewModel.title,
+            message: viewModel.message,
+            actions: [
+                .init(
+                    title: viewModel.primaryButton.title,
+                    action: viewModel.primaryButton.action
+                ),
+                .init(
+                    title: viewModel.secondaryButton.title,
+                    action: viewModel.secondaryButton.action
+                )
+            ]
+        )
     }
 
     public struct OneButtonViewModel {
@@ -164,45 +144,9 @@ public enum UIAlertViewModel_OLD {
         }
     }
     
-    @available(*, deprecated, message: "Use new `struct` based ViewModel")
+    @available(*, deprecated, message: "Use `UIAlertController.init(viewModel:)` instead")
     public var uiAlertController: UIAlertController {
-        switch self {
-        case .oneButton(let viewModel):
-            let alert: UIAlertController = .init(
-                title: viewModel.title ?? "", // Fixes weird bold bug when nil
-                message: viewModel.message,
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(.init(
-                title: viewModel.dismissButton.title,
-                style: .cancel,
-                handler: { _ in viewModel.dismissButton.action?() }
-            ))
-            
-            return alert
-            
-        case .twoButtons(let viewModel):
-            let alert: UIAlertController = .init(
-                title: viewModel.title ?? "", // Fixes weird bold bug when nil
-                message: viewModel.message,
-                preferredStyle: .alert
-            )
-            
-            alert.addAction(.init(
-                title: viewModel.primaryButton.title,
-                style: .default,
-                handler: { _ in viewModel.primaryButton.action?() }
-            ))
-            
-            alert.addAction(.init(
-                title: viewModel.secondaryButton.title,
-                style: .cancel,
-                handler: { _ in viewModel.secondaryButton.action?() }
-            ))
-            
-            return alert
-        }
+        .init(viewModel: self)
     }
 }
 

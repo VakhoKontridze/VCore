@@ -133,7 +133,8 @@ public struct UIAlertViewModel {
 
 // MARK: - Factory
 extension UIAlertController {
-    fileprivate convenience init(viewModel: UIAlertViewModel) {
+    /// Initializes `UIAlertController` with `UIAlertViewModel`.
+    public convenience init(viewModel: UIAlertViewModel) {
         self.init(
             title: viewModel.title ?? "", // Fixes weird bold bug when nil
             message: viewModel.message,
