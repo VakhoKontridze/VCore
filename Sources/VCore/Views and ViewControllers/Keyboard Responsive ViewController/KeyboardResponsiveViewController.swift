@@ -16,7 +16,7 @@ import UIKit
 /// These methods pass `SystemKeyboardInfo` as parameter, that contains information about keyboard height, animation duration, and options.
 open class KeyboardResponsiveViewController: UIViewController {
     // MARK: Properties
-    private var keyboardIsShown: Bool = false   // `keyboardWillShowNotification` is called twice
+    private var keyboardIsShown: Bool = false // `keyboardWillShowNotification` is called twice
     
     // MARK: Lifecycle
     open override func viewDidLoad() {
@@ -31,17 +31,17 @@ open class KeyboardResponsiveViewController: UIViewController {
     
     private func addKeyboardFrameChangNotificationObserver() {
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillShowObjc),
-            name: UIResponder.keyboardWillShowNotification,
-            object: nil
+            forName: UIResponder.keyboardWillShowNotification,
+            object: nil,
+            queue: nil,
+            using: keyboardWillShow
         )
         
         NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(keyboardWillHideObjc),
-            name: UIResponder.keyboardWillHideNotification,
-            object: nil
+            forName: UIResponder.keyboardWillHideNotification,
+            object: nil,
+            queue: nil,
+            using: keyboardWillHide
         )
     }
     
@@ -49,7 +49,7 @@ open class KeyboardResponsiveViewController: UIViewController {
     /// Posted immediately prior to the display of the keyboard.
     open func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {}
     
-    @objc private func keyboardWillShowObjc(notification: Notification) {
+    private func keyboardWillShow(notification: Notification) {
         guard !keyboardIsShown else { return }
         keyboardIsShown = true
         
@@ -61,7 +61,7 @@ open class KeyboardResponsiveViewController: UIViewController {
     /// Posted immediately prior to the dismissal of the keyboard.
     open func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {}
     
-    @objc private func keyboardWillHideObjc(notification: Notification) {
+    private func keyboardWillHide(notification: Notification) {
         guard keyboardIsShown else { return }
         keyboardIsShown = false
         
