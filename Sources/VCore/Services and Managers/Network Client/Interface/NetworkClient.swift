@@ -48,9 +48,7 @@ public final class NetworkClient {
     public init(responseProcessor: NetworkResponseProcessor) {
         self.responseProcessor = responseProcessor
         
-        #if !os(watchOS)
-        NetworkReachabilityService.configure()
-        #endif
+        NetworkReachabilityService.shared.configure()
     }
     
     // MARK: Data Tasks (Async)
@@ -107,9 +105,7 @@ public final class NetworkClient {
         request: NetworkRequest,
         decode: @escaping (Data) throws -> Entity
     ) async throws -> Entity {
-        #if !os(watchOS)
-        guard NetworkReachabilityService.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
-        #endif
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
         
         let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(
             endpoint: request.url,
@@ -141,9 +137,7 @@ public final class NetworkClient {
     private func makeRequest(
         request: NetworkRequest
     ) async throws {
-        #if !os(watchOS)
-        guard NetworkReachabilityService.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
-        #endif
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
         
         let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(
             endpoint: request.url,
@@ -245,12 +239,10 @@ public final class NetworkClient {
         decode: @escaping (Data) throws -> Entity,
         completion: @escaping (Result<Entity, Error>) -> Void
     ) {
-        #if !os(watchOS)
-        guard NetworkReachabilityService.isConnectedToNetwork else {
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else {
             completion(.failure(NetworkError.notConnectedToNetwork))
             return
         }
-        #endif
 
         do {
             let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(
@@ -307,12 +299,10 @@ public final class NetworkClient {
         request: NetworkRequest,
         completion: @escaping (ResultNoSuccess<Error>) -> Void
     ) {
-        #if !os(watchOS)
-        guard NetworkReachabilityService.isConnectedToNetwork else {
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else {
             completion(.failure(NetworkError.notConnectedToNetwork))
             return
         }
-        #endif
 
         do {
             let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(

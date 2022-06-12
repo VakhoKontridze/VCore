@@ -15,9 +15,7 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
     
     // MARK: Tests
     func test() async {
-        #if !os(watchOS)
-        guard NetworkReachabilityService.isConnectedToNetwork else { return }
-        #endif
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
         
         #if canImport(UIKit)
         

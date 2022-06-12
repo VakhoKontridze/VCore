@@ -7,6 +7,15 @@
 
 import Foundation
 
+// MARK: - Network Reachability Service
+extension NetworkReachabilityService {
+    @available(*, deprecated, message: "Use dynamic member of the same name")
+    public static var isConnectedToNetwork: Bool { shared.isConnectedToNetwork }
+    
+    @available(*, deprecated, message: "Use dynamic member of the same name")
+    public static func configure() { shared.configure() }
+}
+
 // MARK: - Multi Part Form Data Builder
 @available(*, deprecated, renamed: "AnyMultiPartFormDataFile")
 public typealias AnyMultiPartFormFile = AnyMultiPartFormDataFile

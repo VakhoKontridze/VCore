@@ -11,9 +11,7 @@ import XCTest
 // MARK: - Tests
 final class NetworkRequestMethodTests: XCTestCase {
     func testGET() async {
-        #if !os(watchOS)
-        guard NetworkReachabilityService.isConnectedToNetwork else { return }
-        #endif
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
         
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts/1")
@@ -30,9 +28,7 @@ final class NetworkRequestMethodTests: XCTestCase {
     }
     
     func testPOST() async {
-        #if !os(watchOS)
-        guard NetworkReachabilityService.isConnectedToNetwork else { return }
-        #endif
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -50,9 +46,7 @@ final class NetworkRequestMethodTests: XCTestCase {
     }
     
     func testPUT() async {
-        #if !os(watchOS)
-        guard NetworkReachabilityService.isConnectedToNetwork else { return }
-        #endif
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/put")
@@ -70,9 +64,7 @@ final class NetworkRequestMethodTests: XCTestCase {
     }
     
     func testPATCH() async {
-        #if !os(watchOS)
-        guard NetworkReachabilityService.isConnectedToNetwork else { return }
-        #endif
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/patch")
@@ -90,9 +82,7 @@ final class NetworkRequestMethodTests: XCTestCase {
     }
     
     func testDELETE() async {
-        #if !os(watchOS)
-        guard NetworkReachabilityService.isConnectedToNetwork else { return }
-        #endif
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/delete")
