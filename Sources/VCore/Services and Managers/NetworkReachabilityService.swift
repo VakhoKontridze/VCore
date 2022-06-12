@@ -5,16 +5,16 @@
 //  Created by Vakhtang Kontridze on 8/24/21.
 //
 
-#if !os(watchOS)
-
 import Foundation
 import Network
-import SystemConfiguration
 
 // MARK: - Network Reachability Service
 /// Network connection service that manages reachability.
-public struct NetworkReachabilityService {
+public final class NetworkReachabilityService {
     // MARK: Properties
+    /// Indicates if device is connected to a network.
+    public var isConnectedToNetwork: Bool { statusMonitor.currentPath.status.isConnected }
+    
     /// Name of notification that will be posted when reachability status changes.
     public static var connectedNotification: NSNotification.Name { .init("NetworkReachabilityService.Connected") }
     
@@ -30,7 +30,7 @@ public struct NetworkReachabilityService {
     private let statusQueue: DispatchQueue = .init(label: "NetworkReachabilityService.StatusQueue")
     
     /// Shared instance of `NetworkReachabilityService`.
-    public static let shared: Self = .init()
+    public static let shared: NetworkReachabilityService = .init()
     
     // MARK: Initializers
     private init() {
@@ -39,58 +39,27 @@ public struct NetworkReachabilityService {
     
     // MARK: Configuration
     /// Configures `NetworkReachabilityService`.
-    public static func configure() {
+    public func configure() {
         _ = Self.shared
     }
     
     // MARK: Status
     private func statusChanged(_ path: NWPath) {
-        let isConnected: Bool = {
-            switch path.status {
-            case .satisfied: return true
-            case .unsatisfied: return false
-            case .requiresConnection: return false
-            @unknown default: return false
-            }
-        }()
-        
-        switch isConnected {
+        switch path.status.isConnected {
         case false: NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
         case true: NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
         }
     }
-    
-    // MARK: Connection
-    /// Indicates if device is connected to a network.
-    public static var isConnectedToNetwork: Bool {
-        var zeroAddress: sockaddr_in = {
-            var zeroAddress: sockaddr_in = .init()
-            zeroAddress.sin_len = UInt8(MemoryLayout<sockaddr_in>.size)
-            zeroAddress.sin_family = sa_family_t(AF_INET)
-            return zeroAddress
-        }()
-
-        guard
-            let defaultRouteReachability = withUnsafePointer(to: &zeroAddress, { address in
-                address.withMemoryRebound(to: sockaddr.self, capacity: 1, { address2 in
-                    SCNetworkReachabilityCreateWithAddress(nil, address2)
-                })
-            })
-        else {
-            return false
-        }
-
-        var flags: SCNetworkReachabilityFlags = []
-        if !SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags) { return false }
-        
-        guard !flags.isEmpty else { return false }
-
-        let isReachable: Bool = flags.contains(.reachable)
-        let needsConnection: Bool = flags.contains(.connectionRequired)
-        let isConnected: Bool = isReachable && !needsConnection
-
-        return isConnected
-    }
 }
 
-#endif
+// MARK: - Helpers
+extension NWPath.Status {
+    fileprivate var isConnected: Bool {
+        switch self {
+        case .satisfied: return true
+        case .unsatisfied: return false
+        case .requiresConnection: return false
+        @unknown default: return false
+        }
+    }
+}
