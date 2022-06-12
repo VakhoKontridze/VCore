@@ -13,7 +13,7 @@ import Network
 public final class NetworkReachabilityService {
     // MARK: Properties
     /// Indicates if device is connected to a network.
-    public var isConnectedToNetwork: Bool { statusMonitor.currentPath.status.isConnected }
+    private(set) public lazy var isConnectedToNetwork: Bool = statusMonitor.currentPath.status.isConnected
     
     /// Name of notification that will be posted when reachability status changes.
     public static var connectedNotification: NSNotification.Name { .init("NetworkReachabilityService.Connected") }
@@ -45,7 +45,11 @@ public final class NetworkReachabilityService {
     
     // MARK: Status
     private func statusChanged(_ path: NWPath) {
-        switch path.status.isConnected {
+        guard isConnectedToNetwork != path.status.isConnected else { return }
+            
+        isConnectedToNetwork.toggle()
+        
+        switch isConnectedToNetwork {
         case false: NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
         case true: NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
         }
