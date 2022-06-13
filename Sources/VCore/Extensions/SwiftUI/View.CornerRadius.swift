@@ -27,29 +27,6 @@ extension View {
     }
 }
 
-// MARK: - UI Rect Corner Option Set
-extension UIRectCorner {
-    /// Top corners.
-    ///
-    /// Includes `topLeft` and  `topRight`.
-    public static var topCorners: UIRectCorner { [.topLeft, .topRight] }
-    
-    /// Right corners.
-    ///
-    /// Includes `topRight` and  `bottomRight`.
-    public static var rightCorners: UIRectCorner { [.topRight, .bottomRight] }
-    
-    /// Bottom corners.
-    ///
-    /// Includes `bottomLeft` and  `bottomRight`.
-    public static var bottomCorners: UIRectCorner { [.bottomLeft, .bottomRight] }
-    
-    /// Left corners.
-    ///
-    /// Includes `topLeft` and  `bottomLeft`.
-    public static var leftCorners: UIRectCorner { [.topLeft, .bottomLeft] }
-}
-
 // MARK: - Corner Radius Shape
 private struct CornerRadiusShape: Shape {
     // MARK: Properties
