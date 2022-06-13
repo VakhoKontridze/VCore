@@ -9,7 +9,8 @@ Services and Managers
 
 Extensions
 
-- `UIRectCorner` contains additional options for `View.cornerRadius(_:corners:)`
+- `UIApplication` now contains `rootViewController` and `rootView` to complement `rootWindow`
+- `UIRectCorner` now has additional options for `View.cornerRadius(_:corners:)`
 
 #### [3.4.0(25)](https://github.com/VakhoKontridze/VCore/releases/tag/3.4.0) — *2022 06 11*
 
