@@ -31,6 +31,20 @@ extension UIApplication {
                 .first(where: \.isKeyWindow)
         }
     }
+    
+    /// Returns root `UIViewController` in applicaiton.
+    ///
+    ///     let rootViewController: UIViewController? = UIApplication.shared.rootViewController
+    public var rootViewController: UIViewController? {
+        rootWindow?.rootViewController
+    }
+    
+    /// Returns root `UIView` in applicaiton.
+    ///
+    ///     let rootView: UIView? = UIApplication.shared.rootView
+    public var rootView: UIView? {
+        rootViewController?.view
+    }
 }
 
 // MARK: - Active
