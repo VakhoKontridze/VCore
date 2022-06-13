@@ -8,9 +8,7 @@
 import Foundation
 
 // MARK: - KeyPath Initializable Enumeration
-/// KeyPath Initializable Enumeration.
-///
-/// Enumeration that allows for dynamic lookup of a case witha given property keupath and value.
+/// Enumeration that allows for dynamic lookup of a case with a given property keypath and value.
 ///
 ///     enum SomeEnum: KeyPathInitializableEnumeration {
 ///         case first
