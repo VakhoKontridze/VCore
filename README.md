@@ -4,7 +4,7 @@
 
 - [Description](#description)
 - [Compatibility](#compatibility)
-- [Package Structure](#package-structure)
+- [Structure](#structure)
 - [Demo](#demo)
 - [Installation](#installation)
 - [Versioning](#versioning)
@@ -24,13 +24,13 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 
 **Limited support*
 
-## Package Structure
+## Structure
 
-Project files are grouped as:
+Package files are grouped as:
 
 - ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `NetworkClient`.
 
-- ***Views and ViewContollers***. Reusable non-scene `UIView`'s and `UIViewController`'s.
+- ***Views and ViewContollers***. Reusable non-scene `View`'s, `UIView`'s, and `UIViewController`'s.
 
 - ***Helpers***. Non-service, non-extension objects and methods. For instance, helper methods for creating `GenericStateModel`'s and `StandardNavigable`.
 
@@ -40,7 +40,7 @@ Project files are grouped as:
 
 - ***API***. Objects used for interfacing from you app/package to `VCore`. For instances, `VCoreLocalizationService`.
 
-Project incudes folder `Extra`, which contains:
+Package incudes folder `Extra`, which contains:
 
 - ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover scenes and gateways. For more info, refer to documnetation folder.
 
@@ -48,7 +48,7 @@ Project incudes folder `Extra`, which contains:
 
 ## Demo
 
-Project contains demo app, that can be used to test functionality of the package.
+Package contains demo app, that can be used to test functionality of the package.
 
 ## Installation
 
