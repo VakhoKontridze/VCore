@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Multi Part Form Data Builder
-/// Builder that builds boundary string and `Data` that can be send using network request.
+/// Builder that builds boundary string and `Data` that can be sent using network request.
 ///
 ///     do {
 ///         let json: [String: Any?] = [
@@ -72,7 +72,7 @@ public struct MultiPartFormDataBuilder {
     }
     
     // MARK: Building
-    /// Builds and returns boundary string and `Data` that can be send using network request.
+    /// Builds and returns boundary string and `Data` that can be sent using network request.
     public func build() -> (String, Data) {
         let boundary: String = buildBoundary()
         let data: Data = buildData(boundary: boundary)
