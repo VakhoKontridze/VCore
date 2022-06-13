@@ -7,6 +7,10 @@ Services and Managers
 - `NetworkReachabilityService` now supports `watchOS`
 - `NetworkReachabilityService` calling connection notification twice is fixed
 
+Extensions
+
+- `UIRectCorner` contains additional options for `View.cornerRadius(_:corners:)`
+
 #### [3.4.0(25)](https://github.com/VakhoKontridze/VCore/releases/tag/3.4.0) — *2022 06 11*
 
 General
