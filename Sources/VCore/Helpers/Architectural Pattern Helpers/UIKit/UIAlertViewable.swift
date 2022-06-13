@@ -40,31 +40,31 @@ public struct UIAlertViewModel {
     /// Alert message.
     public var message: String
     
-    /// Actions.
-    public var actions: [ButtonViewModel]
+    /// Buttons.
+    public var buttons: [ButtonViewModel]
     
     // MARK: Initializers
     /// Initializes UIAlertViewModel.
     public init(
         title: String?,
         message: String,
-        actions: [ButtonViewModel]
+        actions buttons: [ButtonViewModel]
     ) {
         self.title = title
         self.message = message
-        self.actions = actions
+        self.buttons = buttons
     }
     
     /// Initializes UIAlertViewModel with one action.
     public init(
         title: String?,
         message: String,
-        action: ButtonViewModel
+        action button: ButtonViewModel
     ) {
         self.init(
             title: title,
             message: message,
-            actions: [action]
+            actions: [button]
         )
     }
     
@@ -72,7 +72,7 @@ public struct UIAlertViewModel {
     public init(
         title: String?,
         message: String,
-        action: (() -> Void)?
+        completion: (() -> Void)?
     ) {
         self.init(
             title: title,
@@ -80,7 +80,7 @@ public struct UIAlertViewModel {
             action: .init(
                 style: .cancel,
                 title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
-                action: action
+                action: completion
             )
         )
     }
@@ -88,7 +88,7 @@ public struct UIAlertViewModel {
     /// Initializes UIAlertViewModel with error and "ok" action.
     public init(
         error: Error,
-        action: (() -> Void)?
+        completion: (() -> Void)?
     ) {
         self.init(
             title: VCoreLocalizationService.shared.localizationProvider.alertErrorTitle,
@@ -96,7 +96,7 @@ public struct UIAlertViewModel {
             action: .init(
                 style: .cancel,
                 title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
-                action: action
+                action: completion
             )
         )
     }
@@ -141,15 +141,15 @@ extension UIAlertController {
             preferredStyle: .alert
         )
         
-        for action in viewModel.actions {
+        for button in viewModel.buttons {
             addAction({
                 let alertAction: UIAlertAction = .init(
-                    title: action.title,
-                    style: action.style,
-                    handler: { _ in action.action?() }
+                    title: button.title,
+                    style: button.style,
+                    handler: { _ in button.action?() }
                 )
                 
-                alertAction.isEnabled = action.isEnabled
+                alertAction.isEnabled = button.isEnabled
                 
                 return alertAction
             }())

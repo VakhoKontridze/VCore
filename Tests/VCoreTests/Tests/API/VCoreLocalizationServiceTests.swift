@@ -74,7 +74,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
     #if canImport(UIKit) && !os(watchOS)
     func testAlertErrorTitle() {
         XCTAssertEqual(
-            UIAlertViewModel(error: NetworkError.notConnectedToNetwork, action: nil).title,
+            UIAlertViewModel(error: NetworkError.notConnectedToNetwork, completion: nil).title,
             "D"
         )
     }
@@ -83,7 +83,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
     #if canImport(UIKit) && !os(watchOS)
     func testAlertOkButtonTitle() {
         XCTAssertEqual(
-            UIAlertViewModel(title: "T", message: "M", action: nil).actions.first!.title,
+            UIAlertViewModel(title: "T", message: "M", completion: nil).buttons.first!.title,
             "E"
         )
     }
