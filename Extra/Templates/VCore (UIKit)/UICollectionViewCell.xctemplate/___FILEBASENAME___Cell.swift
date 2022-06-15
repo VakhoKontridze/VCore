@@ -42,7 +42,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionVi
     }
 
     // MARK: Dequeueable
-    func configure(viewModel: UICollectionViewCellViewModelable) {
+    func configure(viewModel: any UICollectionViewCellViewModelable) {
         guard let viewModel = viewModel as? ___VARIABLE_productName___CellViewModel else { return }
     }
 }

@@ -12,14 +12,14 @@ extension MultiPartFormDataBuilder {
     struct FileBuilder {
         // MARK: Properties
         private let boundary: String
-        private let files: [String: AnyMultiPartFormDataFile?]
+        private let files: [String: (any AnyMultiPartFormDataFile)?]
         
         private var lineBreak: String { MultiPartFormDataBuilder.lineBreak }
         
         // MARK: Initializers
         init(
             boundary: String,
-            files: [String: AnyMultiPartFormDataFile?]
+            files: [String: (any AnyMultiPartFormDataFile)?]
         ) {
             self.boundary = boundary
             self.files = files
@@ -31,8 +31,8 @@ extension MultiPartFormDataBuilder {
             
             for (key, value) in files {
                 switch value {
-                case let array as [AnyMultiPartFormDataFile?]: appendArray(key: key, array: array, to: &data)
-                case let json as [String: AnyMultiPartFormDataFile?]: appendJSON(key: key, json: json, to: &data)
+                case let array as [(any AnyMultiPartFormDataFile)?]: appendArray(key: key, array: array, to: &data)
+                case let json as [String: (any AnyMultiPartFormDataFile)?]: appendJSON(key: key, json: json, to: &data)
                 default: appendElement(key: key, element: value, to: &data)
                 }
             }
@@ -42,7 +42,7 @@ extension MultiPartFormDataBuilder {
         
         private func appendElement(
             key: String,
-            element: AnyMultiPartFormDataFile?,
+            element: (any AnyMultiPartFormDataFile)?,
             to data: inout Data
         ) {
             guard
@@ -66,15 +66,15 @@ extension MultiPartFormDataBuilder {
         
         private func appendJSON(
             key: String,
-            json: [String: AnyMultiPartFormDataFile?],
+            json: [String: (any AnyMultiPartFormDataFile)?],
             to data: inout Data
         ) {
             for element in json {
                 let elementKey: String = "\(key)[\(element.key)]"
                 
                 switch element.value {
-                case let array as [AnyMultiPartFormDataFile?]: appendArray(key: elementKey, array: array, to: &data)
-                case let json as [String: AnyMultiPartFormDataFile?]: appendJSON(key: elementKey, json: json, to: &data)
+                case let array as [(any AnyMultiPartFormDataFile)?]: appendArray(key: elementKey, array: array, to: &data)
+                case let json as [String: (any AnyMultiPartFormDataFile)?]: appendJSON(key: elementKey, json: json, to: &data)
                 default: appendElement(key: elementKey, element: element.value, to: &data)
                 }
             }
@@ -82,15 +82,15 @@ extension MultiPartFormDataBuilder {
         
         private func appendArray(
             key: String,
-            array: [AnyMultiPartFormDataFile?],
+            array: [(any AnyMultiPartFormDataFile)?],
             to data: inout Data
         ) {
             for (i, element) in array.enumerated() {
                 let elementKey: String = "\(key)[\(i)]"
                 
                 switch element {
-                case let array as [AnyMultiPartFormDataFile?]: appendArray(key: elementKey, array: array, to: &data)
-                case let json as [String: AnyMultiPartFormDataFile?]: appendJSON(key: elementKey, json: json, to: &data)
+                case let array as [(any AnyMultiPartFormDataFile)?]: appendArray(key: elementKey, array: array, to: &data)
+                case let json as [String: (any AnyMultiPartFormDataFile)?]: appendJSON(key: elementKey, json: json, to: &data)
                 default: appendElement(key: elementKey, element: element, to: &data)
                 }
             }

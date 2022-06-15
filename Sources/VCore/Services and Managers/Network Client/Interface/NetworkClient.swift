@@ -41,11 +41,11 @@ public final class NetworkClient {
     /// Queue on which completion is returned. Defaults to `main`.
     public var completionQeueue: DispatchQueue = .main
     
-    /*private*/ let responseProcessor: NetworkResponseProcessor
+    /*private*/ let responseProcessor: any NetworkResponseProcessor
     
     // MARK: Initializers
     /// Initializes `NetworkClient`.
-    public init(responseProcessor: NetworkResponseProcessor) {
+    public init(responseProcessor: any NetworkResponseProcessor) {
         self.responseProcessor = responseProcessor
         
         NetworkReachabilityService.shared.configure()

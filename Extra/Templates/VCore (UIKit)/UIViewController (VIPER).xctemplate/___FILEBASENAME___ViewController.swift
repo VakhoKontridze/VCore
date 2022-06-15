@@ -8,7 +8,7 @@ final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIA
     lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
 
     // MARK: Properties
-    var presenter: ___VARIABLE_productName___Presentable!
+    var presenter: (any ___VARIABLE_productName___Presentable)!
     
     private typealias Model = ___VARIABLE_productName___Model
 

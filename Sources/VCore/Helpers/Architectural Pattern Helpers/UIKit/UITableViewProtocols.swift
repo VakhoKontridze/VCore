@@ -17,7 +17,7 @@ import UIKit
 ///     protocol SomePresentable: UITableViewDelegatable, UITableViewDataSourceable {}
 ///
 ///     final class SomeViewController: UIViewController, SomeViewable, UITableViewDelegate, UITableViewDataSource {
-///         var presenter: SomePresentable!
+///         var presenter: any SomePresentable!
 ///
 ///         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 ///             presenter.tableViewDidSelectRow(section: indexPath.section, row: indexPath.row)
@@ -40,9 +40,9 @@ import UIKit
 ///     }
 ///
 ///     final class SomePresenter: SomePresentable {
-///         unowned let view: SomeViewable
+///         unowned let view: any SomeViewable
 ///
-///         private var tableViewViewModels: [[UITableViewCellViewModelable]] = []
+///         private var tableViewViewModels: [[any UITableViewCellViewModelable]] = []
 ///
 ///         func tableViewDidSelectRow(section: Int, row: Int) {
 ///             print(tableViewViewModels[section][row])
@@ -60,7 +60,7 @@ import UIKit
 ///             tableViewViewModels[section][row].dequeueID
 ///         }
 ///
-///         func tableViewCellViewModel(section: Int, row: Int) -> UITableViewCellViewModelable {
+///         func tableViewCellViewModel(section: Int, row: Int) -> any UITableViewCellViewModelable {
 ///             tableViewViewModels[section][row]
 ///         }
 ///     }
@@ -77,7 +77,7 @@ public protocol UITableViewDequeueable: UITableViewCell {
     static var dequeueID: String { get }
     
     /// Configures `UITableViewCell` using a viewmodel
-    func configure(viewModel: UITableViewCellViewModelable)
+    func configure(viewModel: any UITableViewCellViewModelable)
 }
 
 extension UITableViewDequeueable {
@@ -104,13 +104,13 @@ public protocol UITableViewDataSourceable {
     func tableViewNumberOfRows(section: Int) -> Int
     
     /// Viewmodel for `UITableViewCell` used during configuration
-    func tableViewCellViewModel(section: Int, row: Int) -> UITableViewCellViewModelable
+    func tableViewCellViewModel(section: Int, row: Int) -> any UITableViewCellViewModelable
 }
 
 // MARK: - Registering
 extension UITableView {
     /// Registers dequeueable `UITableViewCell` for reuse in a `UITableView`
-    public func register(_ cells: UITableViewDequeueable.Type...) {
+    public func register(_ cells: any UITableViewDequeueable.Type...) {
         cells.forEach { register($0, forCellReuseIdentifier: $0.dequeueID) }
     }
 }
@@ -119,10 +119,10 @@ extension UITableView {
 extension UITableView {
     /// Deques and configures a resuabe cell in `UITableView`
     public func dequeueAndConfigureReusableCell(
-        viewModel: UITableViewCellViewModelable
+        viewModel: any UITableViewCellViewModelable
     ) -> UITableViewCell {
         guard
-            let cell = dequeueReusableCell(withIdentifier: viewModel.dequeueID) as? UITableViewDequeueable
+            let cell = dequeueReusableCell(withIdentifier: viewModel.dequeueID) as? any UITableViewDequeueable
         else {
             fatalError("Unable to dequeue a cell with identifier \(viewModel.dequeueID)")
         }

@@ -24,7 +24,7 @@ import UIKit
 open class InfiniteScrollingTableView: UITableView {
     // MARK: Properties
     /// Delegate.
-    open weak var infiniteScrollingDelegate: (InfiniteScrollingTableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?
+    open weak var infiniteScrollingDelegate: (any InfiniteScrollingTableViewDelegate & UITableViewDataSource & any UIScrollViewDelegate)?
     
     /// Controls pagination state.
     /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
