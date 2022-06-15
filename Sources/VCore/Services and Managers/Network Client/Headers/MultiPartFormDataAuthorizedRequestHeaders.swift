@@ -30,7 +30,7 @@ public struct MultiPartFormDataAuthorizedRequestHeaders: Encodable {
     }
     
     // MARK: Coding Keys
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case accept = "Accept"
         case contentType = "Content-Type"
         case authorization = "Authorization"

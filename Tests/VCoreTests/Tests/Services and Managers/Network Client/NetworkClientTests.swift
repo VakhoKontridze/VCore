@@ -17,7 +17,7 @@ final class NetworkClientTests: XCTestCase {
         let title: String?
         let body: String?
         
-        enum CodingKeys: String, CodingKey {
+        private enum CodingKeys: String, CodingKey {
             case id = "id"
             case userID = "userId"
             case title = "title"

@@ -24,7 +24,7 @@ public struct JSONRequestHeaders: Encodable {
     public init() {}
     
     // MARK: Coding Keys
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         case accept = "Accept"
         case contentType = "Content-Type"
     }

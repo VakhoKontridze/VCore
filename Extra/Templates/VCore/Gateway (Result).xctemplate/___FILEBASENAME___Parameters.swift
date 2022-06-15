@@ -7,7 +7,7 @@ struct ___VARIABLE_productName___Parameters: Encodable {
     // MARK: Properties
     
     // MARK: Coding Keys
-    enum CodingKeys: String, CodingKey {
+    private enum CodingKeys: String, CodingKey {
         
     }
 }
