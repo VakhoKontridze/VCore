@@ -1,5 +1,11 @@
 # Change Log
 
+#### 3.6.1(27)
+
+Architectural Pattern Helpers
+
+- Issue with generic constraint in `StandardNavigable` is fixed
+
 #### [3.5.0(26)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.0) — *2022 06 15*
 
 Services and Managers
