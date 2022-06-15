@@ -28,8 +28,21 @@ extension NetworkClientFactory {
             var urlRequest: Foundation.URLRequest = .init(url: url)
             urlRequest.httpMethod = method
             urlRequest.addHTTPHeaders(headers)
-            urlRequest.httpBody = body
+            urlRequest.httpBody = body?.nonEmpty
             return urlRequest
+        }
+        
+        static func build(
+            from request: NetworkRequest
+        ) throws -> Foundation.URLRequest {
+            try build(
+                endpoint: request.url,
+                method: request.method.httpMethod,
+                pathParameters: request.pathParameters,
+                headers: request.headers,
+                queryParameters: request.queryParameters,
+                body: request.body
+            )
         }
         
         private static func buildEndpont(
@@ -87,5 +100,13 @@ extension URLRequest {
             guard let value = value else { return }
             addValue(value, forHTTPHeaderField: key)
         }
+    }
+}
+
+// MARK: - Helpers - Body
+extension Data {
+    fileprivate var nonEmpty: Data? {
+        guard count != 0 else { return nil }
+        return self
     }
 }
