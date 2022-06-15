@@ -16,8 +16,11 @@ import UIKit
 ///
 ///     protocol SomePresentable: UITableViewDelegatable, UITableViewDataSourceable {}
 ///
-///     final class SomeViewController: UIViewController, SomeViewable, UITableViewDelegate, UITableViewDataSource {
-///         var presenter: any SomePresentable!
+///     final class SomeViewController:
+///         UIViewController, SomeViewable,
+///         UITableViewDelegate, UITableViewDataSource
+///     {
+///         var presenter: (any SomePresentable)!
 ///
 ///         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 ///             presenter.tableViewDidSelectRow(section: indexPath.section, row: indexPath.row)
@@ -39,8 +42,10 @@ import UIKit
 ///         }
 ///     }
 ///
-///     final class SomePresenter: SomePresentable {
-///         unowned let view: any SomeViewable
+///     final class SomePresenter<View>: SomePresentable
+///         where View: SomeViewable
+///     {
+///         unowned let view: SomeViewable
 ///
 ///         private var tableViewViewModels: [[any UITableViewCellViewModelable]] = []
 ///
@@ -60,7 +65,7 @@ import UIKit
 ///             tableViewViewModels[section][row].dequeueID
 ///         }
 ///
-///         func tableViewCellViewModel(section: Int, row: Int) -> any UITableViewCellViewModelable {
+///         func tableViewCellViewModel(section: Int, row: Int) -> some UITableViewCellViewModelable {
 ///             tableViewViewModels[section][row]
 ///         }
 ///     }

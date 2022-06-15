@@ -3,15 +3,17 @@
 import Foundation
 
 // MARK: - ___VARIABLE_productName___ Router
-final class ___VARIABLE_productName___Router: ___VARIABLE_productName___Routable {
+final class ___VARIABLE_productName___Router<Navigable>: ___VARIABLE_productName___Routable
+    where Navigable: ___VARIABLE_productName___Navigable
+{
     // MARK: Properties
-    private unowned let view: any ___VARIABLE_productName___Navigable
+    private unowned let navigable: Navigable
 
     // MARK: Initializers
     init(
-        view: ___VARIABLE_productName___Navigable
+        navigable: Navigable
     ) {
-        self.view = view
+        self.navigable = navigable
     }
 
     // MARK: Routable

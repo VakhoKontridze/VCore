@@ -11,7 +11,7 @@ struct ___VARIABLE_productName___Factory {
     static func `default`(viewModel: ___VARIABLE_productName___ViewModel) -> UIViewController {
         let viewController: ___VARIABLE_productName___ViewController = .init()
         
-        let router: ___VARIABLE_productName___Router = .init(view: viewController)
+        let router: ___VARIABLE_productName___Router = .init(navigable: viewController)
 
         let interactor: ___VARIABLE_productName___Interactor = .init()
 
