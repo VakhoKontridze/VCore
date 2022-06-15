@@ -56,7 +56,7 @@ extension Sequence {
     ///
     ///     // [[Student(name: "Kofi"), Student(name: "Kweku")], [Student(name: "Abena"), Student(name: "Akosua")], [Student(name: "Efua")]]
     ///
-    public func grouped<Property: Comparable>(
+    public func grouped<Property: Equatable>(
         by keyPath: KeyPath<Element, Property>
     ) -> [[Element]] {
         grouped(by: { (lhs, rhs) in
