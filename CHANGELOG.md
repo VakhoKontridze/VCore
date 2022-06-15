@@ -19,7 +19,7 @@ Extensions
 
 XCode Templates
 
-- Templates now support existential `any`
+- Templates now implement existential `any`
 
 #### [3.4.0(25)](https://github.com/VakhoKontridze/VCore/releases/tag/3.4.0) — *2022 06 11*
 
