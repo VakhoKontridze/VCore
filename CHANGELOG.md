@@ -7,6 +7,11 @@ Services and Managers
 - `NetworkReachabilityService` now supports `watchOS`
 - `NetworkReachabilityService` calling connection notification twice is fixed
 
+Helpers
+
+- `EdgeInsets`s now conform to `Hashable`
+- `GenericStateModel` now conform to `Hashable`, `Equatable`, and `Comparable`
+
 Extensions
 
 - `UIApplication` now contains `rootViewController` and `rootView` to complement `rootWindow`

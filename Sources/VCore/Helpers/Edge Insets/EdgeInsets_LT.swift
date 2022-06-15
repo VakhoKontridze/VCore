@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Edge Insets (Leading, Trailing)
 /// Edge insets containing `leading` and `trailing` values.
-public struct EdgeInsets_LT: Equatable {
+public struct EdgeInsets_LT: Hashable, Equatable {
     // MARK: Properties
     /// Leading inset value.
     public var leading: CGFloat
