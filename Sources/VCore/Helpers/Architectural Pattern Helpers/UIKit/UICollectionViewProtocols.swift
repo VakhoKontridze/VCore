@@ -16,8 +16,11 @@ import UIKit
 ///
 ///     protocol SomePresentable: UICollectionViewDelegatable, UICollectionViewDataSourceable {}
 ///
-///     final class SomeViewController: UIViewController, SomeViewable, UICollectionViewDelegate, UICollectionViewDataSource {
-///         var presenter: any SomePresentable!
+///     final class SomeViewController:
+///         UIViewController, SomeViewable,
+///         UICollectionViewDelegate, UICollectionViewDataSource
+///     {
+///         var presenter: (any SomePresentable)!
 ///
 ///         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 ///             presenter.collectionViewDidSelectRow(section: indexPath.section, row: indexPath.row)
@@ -40,8 +43,10 @@ import UIKit
 ///         }
 ///     }
 ///
-///     final class SomePresenter: SomePresentable {
-///         unowned let view: any SomeViewable
+///     final class SomePresenter<View>: SomePresentable
+///         where View: SomeViewable
+///     {
+///         unowned let view: SomeViewable
 ///
 ///         private var collectionViewViewModels: [[any UICollectionViewCellViewModelable]] = []
 ///
@@ -61,7 +66,7 @@ import UIKit
 ///             collectionViewViewModels[section][row].dequeueID
 ///         }
 ///
-///         func collectionViewCellViewModel(section: Int, row: Int) -> any UICollectionViewCellViewModelable {
+///         func collectionViewCellViewModel(section: Int, row: Int) -> some UICollectionViewCellViewModelable {
 ///             collectionViewViewModels[section][row]
 ///         }
 ///     }

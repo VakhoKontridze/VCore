@@ -3,7 +3,10 @@
 import UIKit
 
 // MARK: - ___VARIABLE_productName___ View Controller
-final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIABLE_productName___Viewable, ___VARIABLE_productName___Navigable, UITableViewDelegate, UITableViewDataSource {
+final class ___VARIABLE_productName___ViewController:
+    UIViewController, ___VARIABLE_productName___Viewable, ___VARIABLE_productName___Navigable,
+    UITableViewDelegate, UITableViewDataSource
+{
     // MARK: Subviews
     lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
 

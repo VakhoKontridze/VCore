@@ -28,7 +28,7 @@ import UIKit
 ///         static func setRoot(to viewController: UIViewController) {
 ///             guard
 ///                 let windowScene: UIWindowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
-///                 let sceneDelegate: any SceneDelegate = windowScene.delegate as? any SceneDelegate
+///                 let sceneDelegate: SceneDelegate = windowScene.delegate as? SceneDelegate
 ///             else {
 ///                 return
 ///             }
