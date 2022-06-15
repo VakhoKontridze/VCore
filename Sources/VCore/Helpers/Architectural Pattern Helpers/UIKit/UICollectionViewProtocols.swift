@@ -37,7 +37,6 @@ import UIKit
 ///         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 ///             collectionView.dequeueAndConfigureReusableCell(
 ///                 indexPath: indexPath,
-///                 dequeueID: presenter.collectionViewCellDequeueID(section: indexPath.section, row: indexPath.row),
 ///                 viewModel: presenter.collectionViewCellViewModel(section: indexPath.section, row: indexPath.row)
 ///             )
 ///         }
@@ -49,6 +48,10 @@ import UIKit
 ///         unowned let view: SomeViewable
 ///
 ///         private var collectionViewViewModels: [[any UICollectionViewCellViewModelable]] = []
+///
+///         init(view: View) {
+///             self.view = view
+///         }
 ///
 ///         func collectionViewDidSelectRow(section: Int, row: Int) {
 ///             print(collectionViewViewModels[section][row])

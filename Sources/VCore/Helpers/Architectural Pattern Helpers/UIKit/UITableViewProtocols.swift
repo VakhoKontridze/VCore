@@ -36,7 +36,6 @@ import UIKit
 ///
 ///         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 ///             tableView.dequeueAndConfigureReusableCell(
-///                 dequeueID: presenter.tableViewCellDequeueID(section: indexPath.section, row: indexPath.row),
 ///                 viewModel: presenter.tableViewCellViewModel(section: indexPath.section, row: indexPath.row)
 ///             )
 ///         }
@@ -48,6 +47,10 @@ import UIKit
 ///         unowned let view: SomeViewable
 ///
 ///         private var tableViewViewModels: [[any UITableViewCellViewModelable]] = []
+///
+///         init(view: View) {
+///             self.view = view
+///         }
 ///
 ///         func tableViewDidSelectRow(section: Int, row: Int) {
 ///             print(tableViewViewModels[section][row])
