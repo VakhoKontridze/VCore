@@ -15,7 +15,9 @@ public struct JSONDecoderService {
 
     // MARK: Decoding
     /// Decodes `Data` to `JSON`.
-    public static func json(data: Data) throws -> [String: Any?] {
+    public static func json(
+        data: Data
+    ) throws -> [String: Any?] {
         guard
             let jsonObject: Any = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
             let json: [String: Any?] = jsonObject as? [String: Any?]
@@ -27,7 +29,9 @@ public struct JSONDecoderService {
     }
     
     /// Decodes `Data` to `JSON` `Array`.
-    public static func jsonArray(data: Data) throws -> [[String: Any?]] {
+    public static func jsonArray(
+        data: Data
+    ) throws -> [[String: Any?]] {
         guard
             let jsonObject: Any = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
             let jsonArray: [[String: Any?]] = jsonObject as? [[String: Any?]]
@@ -39,13 +43,17 @@ public struct JSONDecoderService {
     }
     
     /// Decodes `Data` to `Decodable`.
-    public static func decodable<T: Decodable>(data: Data) throws -> T {
+    public static func decodable<T: Decodable>(
+        data: Data
+    ) throws -> T {
         guard let decodable: T = try? JSONDecoder().decode(T.self, from: data) else { throw JSONDecoderError.failedToDecode }
         return decodable
     }
     
     /// Decodes `JSON` to `Decodable`.
-    public static func decodable<T: Decodable>(json: [String: Any?]) throws -> T {
+    public static func decodable<T: Decodable>(
+        json: [String: Any?]
+    ) throws -> T {
         guard let data: Data = try? JSONSerialization.data(withJSONObject: json) else {
             throw JSONEncoderError.failedToEncode
         }
@@ -54,7 +62,9 @@ public struct JSONDecoderService {
     }
     
     /// Decodes `JSON` `Array` to `Decodable`.
-    public static func decodable<T: Decodable>(jsonArray: [[String: Any?]]) throws -> T {
+    public static func decodable<T: Decodable>(
+        jsonArray: [[String: Any?]]
+    ) throws -> T {
         guard let data: Data = try? JSONSerialization.data(withJSONObject: jsonArray) else {
             throw JSONEncoderError.failedToEncode
         }
