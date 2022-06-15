@@ -138,7 +138,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
     
     // MARK: Operators
     /// Adds two `EdgeInsets` by adding up individual edge insets.
-    public static func + (lhs: EdgeInsets_LTTB, rhs: EdgeInsets_LTTB) -> EdgeInsets_LTTB {
+    public static func + (lhs: Self, rhs: Self) -> Self {
         .init(
             leading: lhs.leading + rhs.leading,
             trailing: lhs.trailing + rhs.trailing,
@@ -148,7 +148,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
     }
     
     /// Adds right `EdgeInsets` to the left one by adding individual edge insets.
-    public static func += (lhs: inout EdgeInsets_LTTB, rhs: EdgeInsets_LTTB) {
+    public static func += (lhs: inout Self, rhs: Self) {
         lhs.leading += rhs.leading
         lhs.trailing += rhs.trailing
         lhs.top += rhs.top
@@ -156,7 +156,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
     }
     
     /// Subtracts two `EdgeInsets` by subtracting up individual edge insets.
-    public static func - (lhs: EdgeInsets_LTTB, rhs: EdgeInsets_LTTB) -> EdgeInsets_LTTB {
+    public static func - (lhs: Self, rhs: Self) -> Self {
         .init(
             leading: lhs.leading - rhs.leading,
             trailing: lhs.trailing - rhs.trailing,
@@ -166,7 +166,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
     }
     
     /// Subtracts right `EdgeInsets` to the left one by subtracting individual edge insets.
-    public static func -= (lhs: inout EdgeInsets_LTTB, rhs: EdgeInsets_LTTB) {
+    public static func -= (lhs: inout Self, rhs: Self) {
         lhs.leading -= rhs.leading
         lhs.trailing -= rhs.trailing
         lhs.top -= rhs.top

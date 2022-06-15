@@ -79,7 +79,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
     
     // MARK: Operators
     /// Adds two `EdgeInsets` by adding up individual edge insets.
-    public static func + (lhs: EdgeInsets_HV, rhs: EdgeInsets_HV) -> EdgeInsets_HV {
+    public static func + (lhs: Self, rhs: Self) -> Self {
         .init(
             horizontal: lhs.horizontal + rhs.horizontal,
             vertical: lhs.vertical + rhs.vertical
@@ -87,13 +87,13 @@ public struct EdgeInsets_HV: Hashable, Equatable {
     }
     
     /// Adds right `EdgeInsets` to the left one by adding individual edge insets.
-    public static func += (lhs: inout EdgeInsets_HV, rhs: EdgeInsets_HV) {
+    public static func += (lhs: inout Self, rhs: Self) {
         lhs.horizontal += rhs.horizontal
         lhs.vertical += rhs.vertical
     }
     
     /// Subtracts two `EdgeInsets` by subtracting up individual edge insets.
-    public static func - (lhs: EdgeInsets_HV, rhs: EdgeInsets_HV) -> EdgeInsets_HV {
+    public static func - (lhs: Self, rhs: Self) -> EdgeInsets_HV {
         .init(
             horizontal: lhs.horizontal - rhs.horizontal,
             vertical: lhs.vertical - rhs.vertical
@@ -101,7 +101,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
     }
     
     /// Subtracts right `EdgeInsets` to the left one by subtracting individual edge insets.
-    public static func -= (lhs: inout EdgeInsets_HV, rhs: EdgeInsets_HV) {
+    public static func -= (lhs: inout Self, rhs: Self) {
         lhs.horizontal -= rhs.horizontal
         lhs.vertical -= rhs.vertical
     }
