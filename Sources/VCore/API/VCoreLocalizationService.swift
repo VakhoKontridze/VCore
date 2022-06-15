@@ -17,7 +17,7 @@ public final class VCoreLocalizationService {
     public static let shared: VCoreLocalizationService = .init()
     
     /// Localization provider. Defaults to `DefaultVCoreLocalizationProvider`.
-    public var localizationProvider: VCoreLocalizationProvider = DefaultVCoreLocalizationProvider()
+    public var localizationProvider: any VCoreLocalizationProvider = DefaultVCoreLocalizationProvider()
     
     // MARK: Initializers
     private init() {}

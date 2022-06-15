@@ -28,7 +28,7 @@ open class InfiniteScrollingCollectionView: UICollectionView {
     
     // MARK: Properties
     /// Delegate.
-    open weak var infiniteScrollingDelegate: (InfiniteScrollingCollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
+    open weak var infiniteScrollingDelegate: (any InfiniteScrollingCollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
     
     /// Controls pagination state.
     /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.loading` and delegate method is called.

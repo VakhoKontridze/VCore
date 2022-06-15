@@ -17,7 +17,7 @@ import UIKit
 ///     protocol SomePresentable: UICollectionViewDelegatable, UICollectionViewDataSourceable {}
 ///
 ///     final class SomeViewController: UIViewController, SomeViewable, UICollectionViewDelegate, UICollectionViewDataSource {
-///         var presenter: SomePresentable!
+///         var presenter: any SomePresentable!
 ///
 ///         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 ///             presenter.collectionViewDidSelectRow(section: indexPath.section, row: indexPath.row)
@@ -41,9 +41,9 @@ import UIKit
 ///     }
 ///
 ///     final class SomePresenter: SomePresentable {
-///         unowned let view: SomeViewable
+///         unowned let view: any SomeViewable
 ///
-///         private var collectionViewViewModels: [[UICollectionViewCellViewModelable]] = []
+///         private var collectionViewViewModels: [[any UICollectionViewCellViewModelable]] = []
 ///
 ///         func collectionViewDidSelectRow(section: Int, row: Int) {
 ///             print(collectionViewViewModels[section][row])
@@ -61,7 +61,7 @@ import UIKit
 ///             collectionViewViewModels[section][row].dequeueID
 ///         }
 ///
-///         func collectionViewCellViewModel(section: Int, row: Int) -> UICollectionViewCellViewModelable {
+///         func collectionViewCellViewModel(section: Int, row: Int) -> any UICollectionViewCellViewModelable {
 ///             collectionViewViewModels[section][row]
 ///         }
 ///     }
@@ -78,7 +78,7 @@ public protocol UICollectionViewDequeueable: UICollectionViewCell {
     static var dequeueID: String { get }
     
     /// Configures `UICollectionViewCell` using a viewmodel
-    func configure(viewModel: UICollectionViewCellViewModelable)
+    func configure(viewModel: any UICollectionViewCellViewModelable)
 }
 
 extension UICollectionViewDequeueable {
@@ -105,13 +105,13 @@ public protocol UICollectionViewDataSourceable {
     func collectionViewNumberOfItems(section: Int) -> Int
     
     /// Viewmodel for `UICollectionViewCell` used during configuration
-    func collectionViewCellViewModel(section: Int, row: Int) -> UICollectionViewCellViewModelable
+    func collectionViewCellViewModel(section: Int, row: Int) -> any UICollectionViewCellViewModelable
 }
 
 // MARK: - Registering
 extension UICollectionView {
     /// Registers dequeueable `UICollectionViewCell` for reuse in a `UICollectionView`
-    public func register(_ cells: UICollectionViewDequeueable.Type...) {
+    public func register(_ cells: any UICollectionViewDequeueable.Type...) {
         cells.forEach { register($0, forCellWithReuseIdentifier: $0.dequeueID) }
     }
 }
@@ -121,10 +121,10 @@ extension UICollectionView {
     /// Deques and configures a resuabe cell in `UICollectionView`
     public func dequeueAndConfigureReusableCell(
         indexPath: IndexPath,
-        viewModel: UICollectionViewCellViewModelable
+        viewModel: any UICollectionViewCellViewModelable
     ) -> UICollectionViewCell {
         guard
-            let cell = dequeueReusableCell(withReuseIdentifier: viewModel.dequeueID, for: indexPath) as? UICollectionViewDequeueable
+            let cell = dequeueReusableCell(withReuseIdentifier: viewModel.dequeueID, for: indexPath) as? any UICollectionViewDequeueable
         else {
             fatalError("Unable to dequeue a cell with identifier \(viewModel.dequeueID)")
         }

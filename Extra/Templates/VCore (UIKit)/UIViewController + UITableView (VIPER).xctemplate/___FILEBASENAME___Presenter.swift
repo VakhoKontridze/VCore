@@ -6,9 +6,9 @@ import VCore
 // MARK: - ___VARIABLE_productName___ Presenter
 final class ___VARIABLE_productName___Presenter: ___VARIABLE_productName___Presentable {
     // MARK: Properties
-    private unowned let view: ___VARIABLE_productName___Viewable
-    private let router: ___VARIABLE_productName___Routable
-    private let interactor: ___VARIABLE_productName___Interactive
+    private unowned let view: any ___VARIABLE_productName___Viewable
+    private let router: any ___VARIABLE_productName___Routable
+    private let interactor: any ___VARIABLE_productName___Interactive
     private let viewModel: ___VARIABLE_productName___ViewModel
 
     // MARK: Initializers
@@ -40,7 +40,7 @@ final class ___VARIABLE_productName___Presenter: ___VARIABLE_productName___Prese
         TODO()
     }
     
-    func tableViewCellViewModel(section: Int, row: Int) -> UITableViewCellViewModelable {
+    func tableViewCellViewModel(section: Int, row: Int) -> any UITableViewCellViewModelable {
         TODO()
     }
 }
