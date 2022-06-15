@@ -17,6 +17,10 @@ Extensions
 - `UIApplication` now contains `rootViewController` and `rootView` to complement `rootWindow`
 - `UIRectCorner` now has additional options for `View.cornerRadius(_:corners:)`
 
+XCode Templates
+
+- Templates now support existential `any`
+
 #### [3.4.0(25)](https://github.com/VakhoKontridze/VCore/releases/tag/3.4.0) — *2022 06 11*
 
 General
