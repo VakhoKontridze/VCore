@@ -48,6 +48,11 @@ public protocol VCoreLocalizationProvider {
 // MARK: - Default VCore Localization Provider
 /// Defaults VCore localization provider.
 public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
+    // MARK: Initializers
+    /// Initializes `DefaultVCoreLocalizationProvider`.
+    public init() {}
+    
+    // MARK: VCore Localization Provider
     public func networkErrorDescription(_ networkError: NetworkError) -> String {
         switch networkError {
         case .notConnectedToNetwork: return "Not connected to network"
