@@ -45,6 +45,28 @@ public protocol VCoreLocalizationProvider {
     var resultNoFailureErrorDescription: String { get }
 }
 
+// MARK: - VCore Human-Readable Localization Provider
+/// Localization provider in package that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable strings
+public protocol VCoreHumanReadableLocalizationProvider: VCoreLocalizationProvider {}
+
+extension VCoreHumanReadableLocalizationProvider {
+    public func networkErrorDescription(_ networkError: NetworkError) -> String {
+        DefaultVCoreLocalizationProvider().networkErrorDescription(networkError)
+    }
+    
+    public func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String {
+        DefaultVCoreLocalizationProvider().jsonEncoderErrorDescription(jsonEncoderError)
+    }
+    
+    public func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String {
+        DefaultVCoreLocalizationProvider().jsonDecoderErrorDescription(jsonDecoderError)
+    }
+    
+    public var resultNoFailureErrorDescription: String {
+        DefaultVCoreLocalizationProvider().resultNoFailureErrorDescription
+    }
+}
+
 // MARK: - Default VCore Localization Provider
 /// Defaults VCore localization provider.
 public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
