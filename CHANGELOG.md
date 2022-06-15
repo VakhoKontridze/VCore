@@ -1,6 +1,6 @@
 # Change Log
 
-#### 3.5.0(26)
+#### [3.5.0(26)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.0) — *2022 06 15*
 
 Services and Managers
 
