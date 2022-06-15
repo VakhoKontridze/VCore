@@ -57,6 +57,33 @@ public protocol StandardNavigable {
     func setRoot(to viewController: UIViewController)
 }
 
+extension StandardNavigable {
+    /// Pushes a view controller onto the receiver’s stack and updates the display.
+    public func push(_ viewController: UIViewController) {
+        push(viewController, animated: true)
+    }
+    
+    /// Pops the top view controller from the navigation stack and updates the display.
+    public func pop() {
+        pop(animated: true)
+    }
+    
+    /// Pops all the view controllers on the stack except the root view controller and updates the display.
+    public func popToRoot() {
+        popToRoot(animated: true)
+    }
+    
+    /// Presents a view controller modally.
+    public func present(_ viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    /// Dismisses the view controller that was presented modally by the view controller.
+    public func dismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
 extension StandardNavigable where Self: UIViewController {
     public func push(_ viewController: UIViewController, animated: Bool) {
         navigationController?.pushViewController(viewController, animated: animated)
@@ -76,33 +103,6 @@ extension StandardNavigable where Self: UIViewController {
     
     public func dismiss(animated: Bool, completion: (() -> Void)?) {
         navigationController?.dismiss(animated: animated, completion: completion)
-    }
-}
-
-extension StandardNavigable where Self: UIViewController {
-    /// Pushes a view controller onto the receiver’s stack and updates the display.
-    public func push(_ viewController: UIViewController) {
-        navigationController?.pushViewController(viewController, animated: true)
-    }
-    
-    /// Pops the top view controller from the navigation stack and updates the display.
-    public func pop() {
-        navigationController?.popViewController(animated: true)
-    }
-    
-    /// Pops all the view controllers on the stack except the root view controller and updates the display.
-    public func popToRoot() {
-        navigationController?.popToRootViewController(animated: true)
-    }
-    
-    /// Presents a view controller modally.
-    public func present(_ viewController: UIViewController) {
-        navigationController?.present(viewController, animated: true, completion: nil)
-    }
-    
-    /// Dismisses the view controller that was presented modally by the view controller.
-    public func dismiss() {
-        navigationController?.dismiss(animated: true, completion: nil)
     }
 }
 
