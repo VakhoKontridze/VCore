@@ -42,7 +42,7 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, UITableViewDequeuea
         ])
     }
 
-    // MARK: Configuration
+    // MARK: Dequeueable
     func configure(viewModel: UITableViewCellViewModelable) {
         guard let viewModel = viewModel as? ___VARIABLE_productName___CellViewModel else { return }
     }
