@@ -10,10 +10,20 @@ import Network
 
 // MARK: - Network Reachability Service
 /// Network connection service that manages reachability.
+///
+/// On `watchOS`, `isConnectedToNetwork` will return `nil` on app launch.
 public final class NetworkReachabilityService {
     // MARK: Properties
+    #if !os(watchOS)
     /// Indicates if device is connected to a network.
-    private(set) public lazy var isConnectedToNetwork: Bool = statusMonitor.currentPath.status.isConnected
+    public var isConnectedToNetwork: Bool { SocketConnectionNetworkReachabilityService.shared.isConnectedToNetwork }
+
+    #else
+        
+    /// Indicates if device is connected to a network.
+    private(set) public lazy var isConnectedToNetwork: Bool? = nil
+
+    #endif
     
     /// Name of notification that will be posted when reachability status changes.
     public static var connectedNotification: NSNotification.Name { .init("NetworkReachabilityService.Connected") }
@@ -47,7 +57,9 @@ public final class NetworkReachabilityService {
     private func statusChanged(_ path: NWPath) {
         guard isConnectedToNetwork != path.status.isConnected else { return }
             
-        isConnectedToNetwork.toggle()
+        #if os(watchOS)
+        isConnectedToNetwork = path.status.isConnected
+        #endif
         
         switch isConnectedToNetwork {
         case false: NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
