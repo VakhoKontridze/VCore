@@ -65,7 +65,7 @@ import UIKit
 ///             tableViewViewModels[section][row].dequeueID
 ///         }
 ///
-///         func tableViewCellViewModel(section: Int, row: Int) -> some UITableViewCellViewModelable {
+///         func tableViewCellViewModel(section: Int, row: Int) -> any UITableViewCellViewModelable {
 ///             tableViewViewModels[section][row]
 ///         }
 ///     }
