@@ -66,7 +66,7 @@ import UIKit
 ///             collectionViewViewModels[section][row].dequeueID
 ///         }
 ///
-///         func collectionViewCellViewModel(section: Int, row: Int) -> some UICollectionViewCellViewModelable {
+///         func collectionViewCellViewModel(section: Int, row: Int) -> any UICollectionViewCellViewModelable {
 ///             collectionViewViewModels[section][row]
 ///         }
 ///     }
