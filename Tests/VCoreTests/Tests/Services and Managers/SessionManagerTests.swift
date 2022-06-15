@@ -32,9 +32,7 @@ final class SessionManagerTests: XCTestCase {
         
         let count: Int = 10
         count.times { i in
-            DispatchQueue.global().async(execute: { [weak self] in
-                guard let self = self else { fatalError() }
-                
+            DispatchQueue.global().async(execute: {
                 let id: Int = self.sessionsManger.newSessionID
                 container.append(id)
                 
