@@ -1,6 +1,6 @@
 # Change Log
 
-#### [3.5.0(27)]
+#### 3.5.0(26)
 
 Services and Managers
 
