@@ -1,6 +1,6 @@
 # Change Log
 
-#### 3.6.1(27)
+#### [3.5.1(27)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.1) — *2022 06 15*
 
 Architectural Pattern Helpers
 
