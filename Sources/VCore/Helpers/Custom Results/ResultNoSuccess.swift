@@ -46,24 +46,12 @@ public enum ResultNoSuccess<Failure> where Failure: Error {
 
 // MARK: - Equatable
 extension ResultNoSuccess: Equatable where Failure: Equatable {
-    public static func == (
-        lhs: ResultNoSuccess<Failure>,
-        rhs: ResultNoSuccess<Failure>
-    ) -> Bool {
+    public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
         case (.failure(let lhs), .failure(let rhs)): return lhs == rhs
         case (.failure, .success): return false
         case (.success, .failure): return false
         case (.success, .success): return true
         }
-    }
-}
-
-extension ResultNoSuccess where Failure: Equatable, Failure: Error {
-    public static func != (
-        lhs: ResultNoSuccess<Failure>,
-        rhs: ResultNoSuccess<Failure>
-    ) -> Bool {
-        !(lhs == rhs)
     }
 }
