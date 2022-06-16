@@ -28,12 +28,12 @@ final class MultiPartFormDataFileTests: XCTestCase {
         let file2: _MultiPartFormDataFile = .init(
             name: "file",
             file: .init(
-                filename: "image-1.jpg",
+                filename: "small-image.jpg",
                 mimeType: "image/jpeg",
                 data: .init()
             )
         )
-        XCTAssertEqual(file2.filename, "image-1.jpg")
+        XCTAssertEqual(file2.filename, "small-image.jpg")
             
         let file3: _MultiPartFormDataFile = .init(
             name: "file",
@@ -48,11 +48,11 @@ final class MultiPartFormDataFileTests: XCTestCase {
         let file4: _MultiPartFormDataFile = .init(
             name: "file",
             file:  .init(
-                filename: "image-1.jpg",
+                filename: "small-image.jpg",
                 mimeType: "image/jpeg",
                 data: .init()
             )
         )
-        XCTAssertEqual(file4.filename, "image-1.jpg")
+        XCTAssertEqual(file4.filename, "small-image.jpg")
     }
 }
