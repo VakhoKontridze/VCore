@@ -35,7 +35,7 @@ open class ScrollableView: UIView {
     open var contentView: UIView = {
         let view: UIView = .init()
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         return view
     }()
     

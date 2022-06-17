@@ -2,6 +2,10 @@
 
 #### [3.6.0(28)]
 
+Views
+
+- Background colors of `contentView` in `ScrollableView` is now set to `UIColor.systemBackground`
+
 Models
 
 - `Models` folder is added
@@ -16,6 +20,11 @@ API
 
 - `VCoreHumanReadableLocalizationProvider` is added, that automatically localized errors, and only exposes human-readable strings
 - `DefaultVCoreLocalizationProvider` can now be initialized
+
+XCode Templates
+
+- Background colors of UIKit views are now set to `UIColor.systemBackground`
+- Issue with method signature in completion-based Gateway is fixed
 
 #### [3.5.1(27)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.1) — *2022 06 15*
 
