@@ -9,6 +9,7 @@ Models
 
 Extensions
 
+- `contains(_:)` method is added to `String`
 - `contains(only:)` method is added to `String`
 
 API

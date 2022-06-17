@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - String Contains Only Character Set
 extension String {
-    /// Returns bool indicating if string contains only given chracters.
+    /// Returns bool indicating if string only contains given chracters.
     ///
     ///     let phoneNumber: String = "0123456789"
     ///     let phoneNumber2: Bool = phoneNumber.contains(only: .decimalDigits) // true
@@ -21,10 +21,10 @@ extension String {
         })
     }
 }
-//
+
 // MARK: - String Contains Only Character Sets
 extension String {
-    /// Returns bool indicating if string contains only given chracters.
+    /// Returns bool indicating if string only contains given chracters.
     ///
     ///     let phoneNumber: String = "+0123456789"
     ///     let phoneNumber2: Bool = phoneNumber.contains(only: [.decimalDigits, .symbols]) // true
