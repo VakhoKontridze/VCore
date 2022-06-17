@@ -32,7 +32,9 @@ Package files are grouped as:
 
 - ***Views and ViewContollers***. Reusable non-scene `View`'s, `UIView`'s, and `UIViewController`'s.
 
-- ***Helpers***. Non-service, non-extension objects and methods. For instance, helper methods for creating `GenericStateModel`'s and `StandardNavigable`.
+- ***Models***. Reusable models. For instance, `EdgeInsets`'s and `GenericStateModel`'s.
+
+- ***Helpers***. Non-service, non-extension objects and methods. For instance `StandardNavigable`.
 
 - ***Global Functions***. Global functions. For instance, `TODO` and operators.
 

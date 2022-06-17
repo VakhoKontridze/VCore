@@ -1,5 +1,5 @@
 //
-//  GenericStateModel_EPD.swift
+//  GenericStateModel_ED.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/1/21.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - Generic State Model (Enabled, Pressed, Disabled)
-/// Value group containing generic `enabled`, `pressed`, and `disabled` values.
+// MARK: - Generic State Model (Enabled, Disabled)
+/// Value group containing generic `enabled` `disabled` values.
 ///
 /// Group can be used to map model to viewmodel using a state represented by an enum.
 ///
@@ -16,31 +16,26 @@ import Foundation
 ///
 ///     let titleColors: StateColors = .init(
 ///         enabled: .init(named: "TitleColor.enabled"),
-///         pressed: .init(named: "TitleColor.pressed"),
 ///         disabled: .init(named: "TitleColor.disabled")
 ///     )
 ///
 ///     enum SomeState {
-///         case enabled, pressed, disabled
+///         case enabled, disabled
 ///     }
 ///
 ///     extension StateColors {
 ///         func `for`(_ state: SomeState) -> Value {
 ///             switch state {
 ///             case .enabled: return enabled
-///             case .pressed: return pressed
 ///             case .disabled: return disabled
 ///             }
 ///         }
 ///     }
 ///
-public struct GenericStateModel_EPD<Value> {
+public struct GenericStateModel_ED<Value> {
     // MARK: Properties
     /// Enabled value.
     public var enabled: Value
-    
-    /// Pressed value.
-    public var pressed: Value
     
     /// Disabled value.
     public var disabled: Value
@@ -49,11 +44,9 @@ public struct GenericStateModel_EPD<Value> {
     /// Iniitalzies group with valus.
     public init(
         enabled: Value,
-        pressed: Value,
         disabled: Value
     ) {
         self.enabled = enabled
-        self.pressed = pressed
         self.disabled = disabled
     }
     
@@ -62,18 +55,17 @@ public struct GenericStateModel_EPD<Value> {
         _ value: Value
     ) {
         self.enabled = value
-        self.pressed = value
         self.disabled = value
     }
 }
 
-// MARK: - Hashable, Equatable, Comparable
-extension GenericStateModel_EPD: Hashable where Value: Hashable {}
+// MARK: Hashable, Equatable, Comparable
+extension GenericStateModel_ED: Hashable where Value: Hashable {}
 
-extension GenericStateModel_EPD: Equatable where Value: Equatable {}
+extension GenericStateModel_ED: Equatable where Value: Equatable {}
 
-extension GenericStateModel_EPD: Comparable where Value: Comparable {
+extension GenericStateModel_ED: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
-        (lhs.enabled, lhs.pressed, lhs.disabled) < (rhs.enabled, rhs.pressed, rhs.disabled)
+        (lhs.enabled, lhs.disabled) < (rhs.enabled, rhs.disabled)
     }
 }

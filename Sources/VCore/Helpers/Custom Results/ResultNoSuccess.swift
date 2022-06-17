@@ -44,7 +44,7 @@ public enum ResultNoSuccess<Failure> where Failure: Error {
     }
 }
 
-// MARK: - Equatable
+// MARK: Equatable
 extension ResultNoSuccess: Equatable where Failure: Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
