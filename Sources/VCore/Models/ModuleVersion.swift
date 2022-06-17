@@ -47,7 +47,6 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
             let string = string,
             string.contains(only: Self.allowedCharacters)
         else {
-            print("A")
             return nil
         }
         
