@@ -1,5 +1,5 @@
 //
-//  StringContainsOnlyTests.swift
+//  StringContainsOnlyCharacterSetTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 17.06.22.
