@@ -7,7 +7,7 @@ import VCore
 struct ___VARIABLE_productName___NetworkGateway: ___VARIABLE_productName___Gatewayable {
     func fetch(
         with parameters: ___VARIABLE_productName___Parameters,
-        completion: @escaping () -> Result<___VARIABLE_productName___Entity, Error>
+        completion: @escaping (Result<___VARIABLE_productName___Entity, Error>) -> Void
     ) {
         TODO()
     }
