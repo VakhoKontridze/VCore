@@ -35,7 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		876FD42F285C786600EC24FD /* UIKit Viper Architecture Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UIKit Viper Architecture Demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		876FD42F285C786600EC24FD /* UIKitViperArchitectureDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitViperArchitectureDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876FD432285C786600EC24FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		876FD434285C786600EC24FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		876FD43B285C786700EC24FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -79,7 +79,7 @@
 		876FD426285C786600EC24FD = {
 			isa = PBXGroup;
 			children = (
-				876FD431285C786600EC24FD /* UIKit Viper Architecture Demo */,
+				876FD431285C786600EC24FD /* UIKitViperArchitectureDemo */,
 				876FD45B285C7BE600EC24FD /* Packages */,
 				876FD45D285C7BF300EC24FD /* Frameworks */,
 				876FD430285C786600EC24FD /* Products */,
@@ -89,12 +89,12 @@
 		876FD430285C786600EC24FD /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				876FD42F285C786600EC24FD /* UIKit Viper Architecture Demo.app */,
+				876FD42F285C786600EC24FD /* UIKitViperArchitectureDemo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		876FD431285C786600EC24FD /* UIKit Viper Architecture Demo */ = {
+		876FD431285C786600EC24FD /* UIKitViperArchitectureDemo */ = {
 			isa = PBXGroup;
 			children = (
 				876FD448285C788900EC24FD /* App Info */,
@@ -105,7 +105,7 @@
 				876FD460285C7C1B00EC24FD /* Helpers */,
 				876FD449285C788F00EC24FD /* Resources */,
 			);
-			path = "UIKit Viper Architecture Demo";
+			path = UIKitViperArchitectureDemo;
 			sourceTree = "<group>";
 		};
 		876FD446285C787600EC24FD /* App Control */ = {
@@ -232,9 +232,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		876FD42E285C786600EC24FD /* UIKit Viper Architecture Demo */ = {
+		876FD42E285C786600EC24FD /* UIKitViperArchitectureDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 876FD443285C786700EC24FD /* Build configuration list for PBXNativeTarget "UIKit Viper Architecture Demo" */;
+			buildConfigurationList = 876FD443285C786700EC24FD /* Build configuration list for PBXNativeTarget "UIKitViperArchitectureDemo" */;
 			buildPhases = (
 				876FD42B285C786600EC24FD /* Sources */,
 				876FD42C285C786600EC24FD /* Frameworks */,
@@ -244,12 +244,12 @@
 			);
 			dependencies = (
 			);
-			name = "UIKit Viper Architecture Demo";
+			name = UIKitViperArchitectureDemo;
 			packageProductDependencies = (
 				876FD45E285C7BF300EC24FD /* VCore */,
 			);
-			productName = "UIKit Viper Architecture Demo";
-			productReference = 876FD42F285C786600EC24FD /* UIKit Viper Architecture Demo.app */;
+			productName = UIKitViperArchitectureDemo;
+			productReference = 876FD42F285C786600EC24FD /* UIKitViperArchitectureDemo.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -267,7 +267,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 876FD42A285C786600EC24FD /* Build configuration list for PBXProject "UIKit Viper Architecture Demo" */;
+			buildConfigurationList = 876FD42A285C786600EC24FD /* Build configuration list for PBXProject "UIKitViperArchitectureDemo" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -280,7 +280,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				876FD42E285C786600EC24FD /* UIKit Viper Architecture Demo */,
+				876FD42E285C786600EC24FD /* UIKitViperArchitectureDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -464,17 +464,19 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XRWP42VX24;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "UIKit Viper Architecture Demo/Info.plist";
+				INFOPLIST_FILE = UIKitViperArchitectureDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "UIKit Viper";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vakhtang-kontridze.UIKit-Viper-Architecture-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vakhtang-kontridze.UIKitViperArchitectureDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -491,17 +493,19 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = XRWP42VX24;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "UIKit Viper Architecture Demo/Info.plist";
+				INFOPLIST_FILE = UIKitViperArchitectureDemo/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "UIKit Viper";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.vakhtang-kontridze.UIKit-Viper-Architecture-Demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.vakhtang-kontridze.UIKitViperArchitectureDemo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -512,7 +516,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		876FD42A285C786600EC24FD /* Build configuration list for PBXProject "UIKit Viper Architecture Demo" */ = {
+		876FD42A285C786600EC24FD /* Build configuration list for PBXProject "UIKitViperArchitectureDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				876FD441285C786700EC24FD /* Debug */,
@@ -521,7 +525,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		876FD443285C786700EC24FD /* Build configuration list for PBXNativeTarget "UIKit Viper Architecture Demo" */ = {
+		876FD443285C786700EC24FD /* Build configuration list for PBXNativeTarget "UIKitViperArchitectureDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				876FD444285C786700EC24FD /* Debug */,

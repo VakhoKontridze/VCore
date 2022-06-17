@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "876FD42E285C786600EC24FD"
-               BuildableName = "UIKit Viper Architecture Demo.app"
-               BlueprintName = "UIKit Viper Architecture Demo"
-               ReferencedContainer = "container:UIKit Viper Architecture Demo.xcodeproj">
+               BuildableName = "UIKitViperArchitectureDemo.app"
+               BlueprintName = "UIKitViperArchitectureDemo"
+               ReferencedContainer = "container:UIKitViperArchitectureDemo.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -45,9 +45,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "876FD42E285C786600EC24FD"
-            BuildableName = "UIKit Viper Architecture Demo.app"
-            BlueprintName = "UIKit Viper Architecture Demo"
-            ReferencedContainer = "container:UIKit Viper Architecture Demo.xcodeproj">
+            BuildableName = "UIKitViperArchitectureDemo.app"
+            BlueprintName = "UIKitViperArchitectureDemo"
+            ReferencedContainer = "container:UIKitViperArchitectureDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </LaunchAction>
@@ -62,9 +62,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "876FD42E285C786600EC24FD"
-            BuildableName = "UIKit Viper Architecture Demo.app"
-            BlueprintName = "UIKit Viper Architecture Demo"
-            ReferencedContainer = "container:UIKit Viper Architecture Demo.xcodeproj">
+            BuildableName = "UIKitViperArchitectureDemo.app"
+            BlueprintName = "UIKitViperArchitectureDemo"
+            ReferencedContainer = "container:UIKitViperArchitectureDemo.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
