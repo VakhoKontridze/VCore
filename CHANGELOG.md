@@ -26,6 +26,10 @@ XCode Templates
 - Background colors of UIKit views are now set to `UIColor.systemBackground`
 - Issue with method signature in completion-based Gateway is fixed
 
+Other
+
+- Missing demo app `.xcodeproj` file is now tracked
+
 #### [3.5.1(27)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.1) — *2022 06 15*
 
 Architectural Pattern Helpers
