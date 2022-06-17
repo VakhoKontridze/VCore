@@ -61,7 +61,7 @@ extension NetworkClient {
     public func decodable<T: Decodable>(
         _ type: T.Type,
         from request: NetworkRequest,
-        completion: @escaping (Result<T, Error> ) -> Void
+        completion: @escaping (Result<T, Error>) -> Void
     ) {
         makeRequest(
             request: request,
