@@ -6,6 +6,8 @@ Architecture is highly-decoupled, follows modular design, obeys the single-respo
 
 Docoupled declarations discussed withis this variation are—`ViewController`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are—`Model`, `ViewModel`, and `Factory`. Even though VIPER contains `Entity` (E), this implementation of VIPER separates scenes from a datababase layer, and instead ties them to gateways via CLEAN architecture.
 
+Package contains demo app that demonstrates this architecture.
+
 To avoid writing boilerplate for every scene, the project includes `XCode` templates.
 
 ## Factory
