@@ -30,7 +30,7 @@ Package files are grouped as:
 
 - ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `NetworkClient`.
 
-- ***Views and ViewContollers***. Reusable non-scene `View`'s, `UIView`'s, and `UIViewController`'s.
+- ***Views and ViewControllers***. Reusable non-scene `View`'s, `UIView`'s, and `UIViewController`'s.
 
 - ***Models***. Reusable models. For instance, `EdgeInsets`'s and `GenericStateModel`'s.
 
