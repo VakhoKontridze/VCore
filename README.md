@@ -48,6 +48,12 @@ Package incudes folder `Extra`, which contains:
 
 - Objects and methods that cannot be included in the package as they require additional customization or access to `AppDelegate`/`SceneDelegate`.
 
+Project includes folder `Documentations`, which contains:
+
+- Documentations and demo apps of UIKit/SwiftUI architectures
+
+- Documentation of CLEAN architecture
+
 ## Demo
 
 Package contains demo app, that can be used to test functionality of the package.
