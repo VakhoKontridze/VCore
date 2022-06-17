@@ -18,7 +18,7 @@ struct ___VARIABLE_productName___CellModel {
     // MARK: Colors
     struct Colors {
         // MARK: Properties
-        static var background: UIColor? { .white }
+        static var background: UIColor? { .systemBackground }
         
         // MARK: Initializers
         private init() {}
