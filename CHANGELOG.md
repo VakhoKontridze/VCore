@@ -2,7 +2,7 @@
 
 #### [3.6.0(28)](https://github.com/VakhoKontridze/VCore/releases/tag/3.6.0) — *2022 06 17*
 
-Views
+Views and ViewControllers
 
 - Background colors of `contentView` in `ScrollableView` is now set to `UIColor.systemBackground`
 
