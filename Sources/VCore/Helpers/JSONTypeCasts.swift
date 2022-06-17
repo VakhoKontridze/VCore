@@ -82,7 +82,7 @@ extension Optional where Wrapped == Any {
     ///
     /// If type is `Bool`, `1` is returned if `true`, and `0` if `false`.
     ///
-    /// If type is `String`, and value contains multiple characters, crashes would occur.
+    /// If type is `String`, and value contains multiple `Character`'s, crashes would occur.
     public var toChar: Character? {
         switch self {
         case let int as Int: return .init(String(int))

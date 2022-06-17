@@ -23,7 +23,7 @@ public struct NetworkRequest {
     private(set) var body: Data = .init()
     
     // MARK: Initializers
-    /// Initializes `NetworkRequest` with URL string.
+    /// Initializes `NetworkRequest` with URL `String`.
     public init(url: String) {
         self.url = url
     }

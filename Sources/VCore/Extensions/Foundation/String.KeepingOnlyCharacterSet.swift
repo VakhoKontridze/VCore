@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - String Keeping Only Character Set
 extension String {
-    /// Returns string with chracters, that don't match the criteria, filtered out.
+    /// Returns `String` with `CharacterSet`, that don't match the criteria, filtered out.
     ///
     ///     let phoneNumber: String = "+0123456789"
     ///     let phoneNumber2: String = phoneNumber.keeping(only: .decimalDigits) // "0123456789"
@@ -21,7 +21,7 @@ extension String {
         }
     }
     
-    /// Filters out characters that don't match the criteria.
+    /// Filters out `CharacterSet` that don't match the criteria.
     ///
     ///     var phoneNumber: String = "+0123456789"
     ///     phoneNumber.keep(only: .decimalDigits) // "0123456789"
@@ -33,7 +33,7 @@ extension String {
 
 // MARK: - String Keeping Only Character Sets
 extension String {
-    /// Returns string with chracters, that don't match the criteria, filtered out.
+    /// Returns `String` with `CharacterSet`, that don't match the criteria, filtered out.
     ///
     ///     let phoneNumber: String = "+0123456789A"
     ///     let phoneNumber2: String = phoneNumber.keeping(only: [.decimalDigits, .symbols]) // "+0123456789"
@@ -42,7 +42,7 @@ extension String {
         self.keeping(only: characterSets.unified)
     }
     
-    /// Filters out characters that don't match the criteria.
+    /// Filters out `CharacterSet` that don't match the criteria.
     ///
     ///     var phoneNumber: String = "+0123456789A"
     ///     phoneNumber.keep(only: [.decimalDigits, .symbols]) // "+0123456789"

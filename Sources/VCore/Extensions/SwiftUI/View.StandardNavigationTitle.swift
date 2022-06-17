@@ -11,7 +11,7 @@ import SwiftUI
 
 // MARK: - Extension
 extension View {
-    /// Configures the view’s title for purposes of navigation, using a string in a inline display mode.
+    /// Configures the view’s title for purposes of navigation, using a `String` in a inline display mode.
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")

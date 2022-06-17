@@ -22,7 +22,7 @@ extension StringProtocol {
 
 // MARK: - Set
 extension StringProtocol {
-    /// Returns string with an element replaced at index.
+    /// Returns `String` with an element replaced at index.
     ///
     ///     let string: String = "Lorem ipsum"
     ///     let replacedString: String = string.replaced(at: 0, with: "l") // "lorem ipsum"

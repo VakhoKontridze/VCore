@@ -72,7 +72,7 @@ public struct MultiPartFormDataBuilder {
     }
     
     // MARK: Building
-    /// Builds and returns boundary string and `Data` that can be sent using network request.
+    /// Builds and returns boundary `String` and `Data` that can be sent using network request.
     public func build() -> (String, Data) {
         let boundary: String = buildBoundary()
         let data: Data = buildData(boundary: boundary)

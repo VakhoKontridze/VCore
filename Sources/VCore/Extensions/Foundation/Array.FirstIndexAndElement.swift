@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Array First Index and Element
 extension Array {
-    /// Returns first index and element of array that satisfies the given predicate.
+    /// Returns first index and element of `Array` that satisfies the given predicate.
     ///
     /// Used for avoiding accessing both index and element with built-in methods.
     ///

@@ -58,7 +58,7 @@ extension View {
         }
     }
     
-    /// Applies modifier and transforms view if value is non-nil.
+    /// Applies modifier and transforms view if value is non-`nil`.
     ///
     ///     let color: Color? = .accentColor
     ///
@@ -79,7 +79,7 @@ extension View {
         }
     }
     
-    /// Applies modifier and transforms view if value is non-nil, or applies alternate modifier.
+    /// Applies modifier and transforms view if value is non-`nil`, or applies alternate modifier.
     ///
     ///     let color: Color? = .accentColor
     ///

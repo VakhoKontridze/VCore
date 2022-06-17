@@ -32,7 +32,7 @@ extension Sequence {
 }
 
 extension Array {
-    /// Sorts the elements of an array using the given keypath as the comparison between elements.
+    /// Sorts the elements of an `Array` using the given keypath as the comparison between elements.
     ///
     ///     var cities: [City] = [
     ///         .init(name: "London"),

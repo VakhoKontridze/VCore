@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - String Contains Character Set
 extension String {
-    /// Returns bool indicating if string contains given chracters.
+    /// Returns `Bool` indicating if `String` contains given `CharacterSet`.
     ///
     ///     let phoneNumber: String = "0123456789"
     ///     let phoneNumber2: Bool = phoneNumber.contains(.decimalDigits) // true
@@ -24,7 +24,7 @@ extension String {
 
 // MARK: - String Contains Character Sets
 extension String {
-    /// Returns bool indicating if string contains given chracters.
+    /// Returns `Bool` indicating if `String` contains given `CharacterSet`.
     ///
     ///     let phoneNumber: String = "+0123456789"
     ///     let phoneNumber2: Bool = phoneNumber.contains([.decimalDigits, .symbols]) // true

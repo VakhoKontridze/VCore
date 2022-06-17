@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Safe Array Subscript
 extension Array {
-    /// Accesses the element at the specified position, but returns nil if out of bounds.
+    /// Accesses the element at the specified position, but returns `nil` if out of bounds.
     ///
     ///     let nums: [Int] = [1, 3, 5]
     ///
