@@ -13,14 +13,19 @@ import Foundation
 /// When initializing with `String`, valid formats are: `M`, `M.M`, and `M.M.P`.
 public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
     // MARK: Properties
-    /// The major version according to the semantic versioning standard.
+    /// Major version according to the semantic versioning standard.
     public let major: Int
 
-    /// The minor version according to the semantic versioning standard.
+    /// Minor version according to the semantic versioning standard.
     public let minor: Int
 
-    /// The patch version according to the semantic versioning standard.
+    /// Patch version according to the semantic versioning standard.
     public let patch: Int?
+    
+    /// Unwrapped patch version according to the semantic versioning standard.
+    ///
+    /// Contains `patch` or `0`.
+    public var patchUnwrapped: Int { patch ?? 0 }
     
     public var id: String { description }
     
@@ -66,21 +71,12 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
     
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        (lhs.major, lhs.minor, lhs.patch) == (rhs.major, rhs.minor, rhs.patch)
+        (lhs.major, lhs.minor, lhs.patchUnwrapped) == (rhs.major, rhs.minor, rhs.patchUnwrapped)
     }
     
     // MARK: Comparable
     public static func < (lhs: Self, rhs: Self) -> Bool {
-        if lhs.major != rhs.major { return lhs.major < rhs.major }
-        else if lhs.minor != rhs.minor { return lhs.minor < rhs.minor }
-        else /*if lhs.indeterminate != rhs.indeterminate*/ {
-            switch (lhs.patch, rhs.patch) {
-            case (nil, nil): return true
-            case (nil, _?): return true
-            case (_?, nil): return false
-            case (let lhs?, let rhs?): return lhs < rhs
-            }
-        }
+        (lhs.major, lhs.minor, lhs.patchUnwrapped) < (rhs.major, rhs.minor, rhs.patchUnwrapped)
     }
 }
 
