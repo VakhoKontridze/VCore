@@ -1,0 +1,96 @@
+//
+//  ModuleVersion.swift
+//  VCore
+//
+//  Created by Vakhtang Kontridze on 17.06.22.
+//
+
+import Foundation
+
+// MARK: - Module Version
+/// A version according to the semantic versioning specification.
+///
+/// When initializing with `String`, valid formats are: `M`, `M.M`, and `M.M.P`.
+public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
+    // MARK: Properties
+    /// The major version according to the semantic versioning standard.
+    public let major: Int
+
+    /// The minor version according to the semantic versioning standard.
+    public let minor: Int
+
+    /// The patch version according to the semantic versioning standard.
+    public let patch: Int?
+    
+    public var id: String { description }
+    
+    private static let allowedCharacters: CharacterSet =
+        .decimalDigits
+        .union(.init(arrayLiteral: ".".unicodeScalars.first!)) // fatalError
+    
+    // MARK: Initializers
+    /// Iniitializes `ModuleVersion` with versions.
+    public init(_ major: Int, _ minor: Int, _ patch: Int? = nil) {
+        self.major = major
+        self.minor = minor
+        self.patch = patch
+    }
+    
+    /// Initializes `ModuleVersion` with `String`.
+    public init?(string: String?) {
+        guard
+            let string = string,
+            string.contains(only: Self.allowedCharacters)
+        else {
+            print("A")
+            return nil
+        }
+        
+        let components: [Int] = string.components(separatedBy: ".").compactMap { Int($0) }
+        guard (1...3).contains(components.count) else { return nil }
+        
+        if let major: Int = components[safe: 0] {
+            if let minor: Int = components[safe: 1] {
+                if let patch: Int = components[safe: 2] {
+                    self.init(major, minor, patch)
+                } else {
+                    self.init(major, minor, nil)
+                }
+            } else {
+                self.init(major, 0, nil)
+            }
+        } else {
+            return nil
+        }
+    }
+    
+    // MARK: Equatable
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        (lhs.major, lhs.minor, lhs.patch) == (rhs.major, rhs.minor, rhs.patch)
+    }
+    
+    // MARK: Comparable
+    public static func < (lhs: Self, rhs: Self) -> Bool {
+        if lhs.major != rhs.major { return lhs.major < rhs.major }
+        else if lhs.minor != rhs.minor { return lhs.minor < rhs.minor }
+        else /*if lhs.indeterminate != rhs.indeterminate*/ {
+            switch (lhs.patch, rhs.patch) {
+            case (nil, nil): return true
+            case (nil, _?): return true
+            case (_?, nil): return false
+            case (let lhs?, let rhs?): return lhs < rhs
+            }
+        }
+    }
+}
+
+// MARK: Custom String Convertible
+extension ModuleVersion: CustomStringConvertible {
+    public var description: String {
+        if let patch = patch {
+            return "\(major).\(minor).\(patch)"
+        } else {
+            return "\(major).\(minor)"
+        }
+    }
+}
