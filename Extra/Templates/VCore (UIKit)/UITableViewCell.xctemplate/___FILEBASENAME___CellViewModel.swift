@@ -5,5 +5,8 @@ import VCore
 
 // MARK: - ___VARIABLE_productName___ Cell ViewModel
 struct ___VARIABLE_productName___CellViewModel: UITableViewCellViewModelable {
-    let dequeueID: String = ___VARIABLE_productName___Cell.dequeueID
+    // MARK: Properties
+    
+    // MARK: Table View Cell ViewModelable
+    var dequeueID: String { ___VARIABLE_productName___Cell.dequeueID }
 }
