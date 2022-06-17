@@ -7,6 +7,10 @@ API
 - `VCoreHumanReadableLocalizationProvider` is added, that automatically localized errors, and only exposes human-readable strings
 - `DefaultVCoreLocalizationProvider` can now be initialized
 
+Extensions
+
+- `contains(only:)` method is added to `String`
+
 #### [3.5.1(27)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.1) — *2022 06 15*
 
 Architectural Pattern Helpers
