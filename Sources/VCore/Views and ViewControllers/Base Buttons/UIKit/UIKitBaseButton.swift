@@ -91,17 +91,13 @@ import UIKit
 /// Button:
 ///
 ///     public final class SomeButton: UIView {
-///         private lazy var baseButton: UIKitBaseButton = {
-///             let button: UIKitBaseButton = .init(gesture: { [weak self] gestureState in
-///                 guard let self = self else { return }
+///         private lazy var baseButton: UIKitBaseButton = .init(gesture: { [weak self] gestureState in
+///             guard let self = self else { return }
 ///
-///                 self.internalState = .init(state: self.state, isPressed: gestureState.isPressed)
-///                 self.configureFromStateModelChange()
-///                 if gestureState.isClicked { self.action() }
-///             })
-///             button.translatesAutoresizingMaskIntoConstraints = false
-///             return button
-///         }()
+///             self.internalState = .init(state: self.state, isPressed: gestureState.isPressed)
+///             self.configureFromStateModelChange()
+///             if gestureState.isClicked { self.action() }
+///         }).withTranslatesAutoresizingMaskIntoConstraints(false)
 ///
 ///         private let titleLabel: UILabel = {
 ///             let label: UILabel = .init()
@@ -182,14 +178,10 @@ import UIKit
 ///         }
 ///     }
 ///
-///     let button: SomeButton = {
-///         let button: SomeButton = .init(
-///             action: { print("Clicked") },
-///             title: "Lorem Ipsum"
-///         )
-///         button.translatesAutoresizingMaskIntoConstraints = false
-///         return button
-///     }()
+///     let button: SomeButton = .init(
+///         action: { print("Clicked") },
+///         title: "Lorem Ipsum"
+///     ).withTranslatesAutoresizingMaskIntoConstraints(false)
 ///
 open class UIKitBaseButton: UIView {
     // MARK: Properties
