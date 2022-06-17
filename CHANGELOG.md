@@ -1,6 +1,6 @@
 # Change Log
 
-#### [3.6.0(28)]
+#### [3.6.0(28)](https://github.com/VakhoKontridze/VCore/releases/tag/3.6.0) — *2022 06 17*
 
 Views
 
