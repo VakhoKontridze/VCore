@@ -22,7 +22,7 @@ final class PostsRouter<Navigable>: PostsRoutable
     }
 
     // MARK: Routable
-    func toPostDetails(viewModel: PostDetailsViewModel) {
-        navigable.push(PostDetailsFactory.default(viewModel: viewModel))
+    func toPostDetails(parameters: PostDetailsParameters) {
+        navigable.push(PostDetailsFactory.default(parameters: parameters))
     }
 }

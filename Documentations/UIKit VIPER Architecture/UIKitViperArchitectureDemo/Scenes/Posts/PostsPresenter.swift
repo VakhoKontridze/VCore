@@ -20,7 +20,7 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     private let router: Router
     private let interactor: Interactor
     
-    private var tableViewCellViewModels: [PostCellViewModel] = []
+    private var tableViewCellParameters: [PostCellViewParameters] = []
 
     // MARK: Initializers
     init(
@@ -45,9 +45,9 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
 
     // MARK: Table View Delegatable
     func tableViewDidSelectRow(section: Int, row: Int) {
-        let postCellViewModel: PostCellViewModel = tableViewCellViewModels[row]
+        let postCellViewModel: PostCellViewParameters = tableViewCellParameters[row]
         
-        router.toPostDetails(viewModel: .init(
+        router.toPostDetails(parameters: .init(
             title: postCellViewModel.title,
             body: postCellViewModel.body
         ))
@@ -59,16 +59,16 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     }
     
     func tableViewNumberOfRows(section: Int) -> Int {
-        tableViewCellViewModels.count
+        tableViewCellParameters.count
     }
     
-    func tableViewCellViewModel(section: Int, row: Int) -> any UITableViewCellViewModelable {
-        tableViewCellViewModels[row]
+    func tableViewCellParameter(section: Int, row: Int) -> any UITableViewCellParameter {
+        tableViewCellParameters[row]
     }
     
     // MARK: Requests
     private func fetchPosts() {
-        tableViewCellViewModels = []
+        tableViewCellParameters = []
         view.reloadPosts()
         
         view.startActivityIndicatorAnimation()
@@ -79,11 +79,11 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
             
             switch result {
             case .success(let postsEntity):
-                self.tableViewCellViewModels = postsEntity.posts?.compactMap { $0 }.compactMap { .init(post: $0) } ?? []
+                self.tableViewCellParameters = postsEntity.posts?.compactMap { $0 }.compactMap { .init(post: $0) } ?? []
                 self.view.reloadPosts()
                 
             case .failure(let error):
-                self.view.presentAlert(viewModel: .init(error: error, completion: nil))
+                self.view.presentAlert(parameters: .init(error: error, completion: nil))
             }
         })
     }

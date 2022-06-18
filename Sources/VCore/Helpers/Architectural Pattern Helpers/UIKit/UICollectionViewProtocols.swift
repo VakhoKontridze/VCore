@@ -9,8 +9,8 @@
 
 import UIKit
 
-// MARK: - ViewModel
-/// Protocol that allows viewmodel to dequeue an `UICollectionViewCell`
+// MARK: - Parameters
+/// Protocol that allows parameter to dequeue an `UICollectionViewCell`.
 ///
 ///     protocol SomeViewable: AnyObject {}
 ///
@@ -37,7 +37,7 @@ import UIKit
 ///         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 ///             collectionView.dequeueAndConfigureReusableCell(
 ///                 indexPath: indexPath,
-///                 viewModel: presenter.collectionViewCellViewModel(section: indexPath.section, row: indexPath.row)
+///                 parameter: presenter.collectionViewCellParameter(section: indexPath.section, row: indexPath.row)
 ///             )
 ///         }
 ///     }
@@ -47,46 +47,42 @@ import UIKit
 ///     {
 ///         unowned let view: SomeViewable
 ///
-///         private var collectionViewViewModels: [[any UICollectionViewCellViewModelable]] = []
+///         private var collectionViewParameters: [[any UICollectionViewCellParameter]] = []
 ///
 ///         init(view: View) {
 ///             self.view = view
 ///         }
 ///
 ///         func collectionViewDidSelectRow(section: Int, row: Int) {
-///             print(collectionViewViewModels[section][row])
+///             print(collectionViewParameters[section][row])
 ///         }
 ///
 ///         var collectionViewNumberOfSections: Int {
-///             collectionViewViewModels.count
+///             collectionViewParameters.count
 ///         }
 ///
 ///         func collectionViewNumberOfItems(section: Int) -> Int {
-///             collectionViewViewModels[section].count
+///             collectionViewParameters[section].count
 ///         }
 ///
-///         func collectionViewCellDequeueID(section: Int, row: Int) -> String {
-///             collectionViewViewModels[section][row].dequeueID
-///         }
-///
-///         func collectionViewCellViewModel(section: Int, row: Int) -> any UICollectionViewCellViewModelable {
-///             collectionViewViewModels[section][row]
+///         func collectionViewCellViewParameter(section: Int, row: Int) -> any UICollectionViewCellParameter {
+///             collectionViewParameters[section][row]
 ///         }
 ///     }
 ///
-public protocol UICollectionViewCellViewModelable {
-    /// `UICollectionViewCell` dequeue ID
+public protocol UICollectionViewCellParameter {
+    /// `UICollectionViewCell` dequeue ID.
     var dequeueID: String { get }
 }
 
 // MARK: - Cell
-/// Protocol that allows `UICollectionViewCell` to be configured using a viewmodel
+/// Protocol that allows `UICollectionViewCell` to be configured using a parameter.
 public protocol UICollectionViewDequeueable: UICollectionViewCell {
-    /// `UICollectionViewCell` dequeue ID
+    /// `UICollectionViewCell` dequeue ID.
     static var dequeueID: String { get }
     
-    /// Configures `UICollectionViewCell` using a viewmodel
-    func configure(viewModel: any UICollectionViewCellViewModelable)
+    /// Configures `UICollectionViewCell` using a parameter.
+    func configure(parameter: any UICollectionViewCellParameter)
 }
 
 extension UICollectionViewDequeueable {
@@ -94,31 +90,31 @@ extension UICollectionViewDequeueable {
 }
 
 // MARK: - Collection View
-/// Allows for the delegation of `UICollectionViewDelegate`
+/// Allows for the delegation of `UICollectionViewDelegate`.
 ///
-/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`
+/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`.
 public protocol UICollectionViewDelegatable {
-    /// Notifies that a `UICollectionViewCell` has been selected and section and row
+    /// Notifies that a `UICollectionViewCell` has been selected and section and row.
     func collectionViewDidSelectRow(section: Int, row: Int)
 }
 
-/// Allows for the delegation of `UICollectionViewDataSource`
+/// Allows for the delegation of `UICollectionViewDataSource`.
 ///
-/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`
+/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`.
 public protocol UICollectionViewDataSourceable {
     /// Number of sections in `UICollectionView`
     var collectionViewNumberOfSections: Int { get }
     
-    /// Number of items in a given sections in `UICollectionView`
+    /// Number of items in a given sections in `UICollectionView`.
     func collectionViewNumberOfItems(section: Int) -> Int
     
-    /// Viewmodel for `UICollectionViewCell` used during configuration
-    func collectionViewCellViewModel(section: Int, row: Int) -> any UICollectionViewCellViewModelable
+    /// Parameter for `UICollectionViewCell` used during configuration.
+    func collectionViewCellParameter(section: Int, row: Int) -> any UICollectionViewCellParameter
 }
 
 // MARK: - Registering
 extension UICollectionView {
-    /// Registers dequeueable `UICollectionViewCell` for reuse in a `UICollectionView`
+    /// Registers dequeueable `UICollectionViewCell` for reuse in a `UICollectionView`.
     public func register(_ cells: any UICollectionViewDequeueable.Type...) {
         cells.forEach { register($0, forCellWithReuseIdentifier: $0.dequeueID) }
     }
@@ -126,18 +122,18 @@ extension UICollectionView {
 
 // MARK: - Dequeueing
 extension UICollectionView {
-    /// Deques and configures a resuabe cell in `UICollectionView`
+    /// Deques and configures a resuabe cell in `UICollectionView`.
     public func dequeueAndConfigureReusableCell(
         indexPath: IndexPath,
-        viewModel: any UICollectionViewCellViewModelable
+        parameter: any UICollectionViewCellParameter
     ) -> UICollectionViewCell {
         guard
-            let cell = dequeueReusableCell(withReuseIdentifier: viewModel.dequeueID, for: indexPath) as? any UICollectionViewDequeueable
+            let cell = dequeueReusableCell(withReuseIdentifier: parameter.dequeueID, for: indexPath) as? any UICollectionViewDequeueable
         else {
-            fatalError("Unable to dequeue a cell with identifier \(viewModel.dequeueID)")
+            fatalError("Unable to dequeue a cell with identifier \(parameter.dequeueID)")
         }
         
-        cell.configure(viewModel: viewModel)
+        cell.configure(parameter: parameter)
         
         return cell
     }

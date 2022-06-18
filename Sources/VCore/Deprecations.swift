@@ -87,7 +87,24 @@ import UIKit
 public typealias KVInitializableEnumeration = KeyPathInitializableEnumeration
 
 // MARK: - UI Alert Viewable
-extension UIAlertViewModel {
+extension UIAlertViewable {
+    @available(*, deprecated, message: "Use method with `parameter` label")
+    public func presentAlert(viewModel: UIAlertViewModel) {
+        presentAlert(parameters: viewModel)
+    }
+}
+
+extension UIAlertViewable where Self: UIViewController {
+    @available(*, deprecated, message: "Use method with `parameter` label")
+    public func presentAlert(viewModel: UIAlertViewModel) {
+        presentAlert(parameters: viewModel)
+    }
+}
+
+@available(*, deprecated, renamed: "UIAlertParameters")
+public typealias UIAlertViewModel = UIAlertParameters
+
+extension UIAlertParameters {
     @available(*, deprecated, message: "Use `init` with new API")
     public static func oneButton(viewModel: OneButtonViewModel) -> Self {
         self.init(
@@ -117,16 +134,19 @@ extension UIAlertViewModel {
             ]
         )
     }
+    
+    @available(*, deprecated, renamed: "UIAlertButton")
+    public typealias ButtonViewModel = Button
 
     public struct OneButtonViewModel {
         public var title: String?
         public var message: String
-        public var dismissButton: ButtonViewModel
+        public var dismissButton: Button
         
         public init(
             title: String?,
             message: String,
-            dismissButton: ButtonViewModel
+            dismissButton: Button
         ) {
             self.title = title
             self.message = message
@@ -137,14 +157,14 @@ extension UIAlertViewModel {
     public struct TwoButtonsViewModel {
         public var title: String?
         public var message: String
-        public var primaryButton: ButtonViewModel
-        public var secondaryButton: ButtonViewModel
+        public var primaryButton: Button
+        public var secondaryButton: Button
         
         public init(
             title: String?,
             message: String,
-            primaryButton: ButtonViewModel,
-            secondaryButton: ButtonViewModel
+            primaryButton: Button,
+            secondaryButton: Button
         ) {
             self.title = title
             self.message = message
@@ -156,6 +176,81 @@ extension UIAlertViewModel {
     @available(*, deprecated, message: "Use `UIAlertController.init(viewModel:)` instead")
     public var uiAlertController: UIAlertController {
         .init(viewModel: self)
+    }
+}
+
+extension UIAlertController {
+    @available(*, deprecated, message: "Use method with `parameter` label")
+    public convenience init(viewModel: UIAlertParameters) {
+        self.init(parameters: viewModel)
+    }
+}
+
+#endif
+
+// MARK: - UI Table View Protocols
+#if canImport(UIKit) && !os(watchOS)
+
+@available(*, deprecated, renamed: "UITableViewCellParameter")
+public typealias UITableViewCellViewModelable = UITableViewCellParameter
+
+extension UITableViewDequeueable {
+    @available(*, deprecated, message: "Use method with `parameter` label")
+    public func configure(viewModel: any UITableViewCellParameter) {
+        
+    }
+}
+
+extension UITableViewDataSourceable {
+    @available(*, deprecated, message: "Renamed to `TableViewCellParameter`")
+    public func tableViewCellViewModel(section: Int, row: Int) -> any UITableViewCellParameter {
+        tableViewCellParameter(section: section, row: row)
+    }
+}
+
+extension UITableView {
+    @available(*, deprecated, message: "Use method with `parameter` label")
+    public func dequeueAndConfigureReusableCell(
+        viewModel: any UITableViewCellParameter
+    ) -> UITableViewCell {
+        dequeueAndConfigureReusableCell(
+            parameter: viewModel
+        )
+    }
+}
+
+#endif
+
+// MARK: - UI Collection View Protocols
+#if canImport(UIKit) && !os(watchOS)
+
+@available(*, deprecated, renamed: "UICollectionViewCellParameter")
+public typealias UICollectionViewCellViewModelable = UICollectionViewCellParameter
+
+extension UICollectionViewDequeueable {
+    @available(*, deprecated, message: "Use method with `parameter` label")
+    public func configure(viewModel: any UICollectionViewCellParameter) {
+        
+    }
+}
+
+extension UICollectionViewDataSourceable {
+    @available(*, deprecated, message: "Renamed to `collectionViewCellParameter`")
+    public func collectionViewCellViewModel(section: Int, row: Int) -> any UICollectionViewCellParameter {
+        collectionViewCellParameter(section: section, row: row)
+    }
+}
+
+extension UICollectionView {
+    @available(*, deprecated, message: "Use method with `parameter` label")
+    public func dequeueAndConfigureReusableCell(
+        indexPath: IndexPath,
+        viewModel: any UICollectionViewCellParameter
+    ) -> UICollectionViewCell {
+        dequeueAndConfigureReusableCell(
+            indexPath: indexPath,
+            parameter: viewModel
+        )
     }
 }
 

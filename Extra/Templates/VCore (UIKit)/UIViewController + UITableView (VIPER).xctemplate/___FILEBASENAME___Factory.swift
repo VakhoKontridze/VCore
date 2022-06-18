@@ -8,7 +8,7 @@ struct ___VARIABLE_productName___Factory {
     private init() {}
     
     // MARK: Factory
-    static func `default`(viewModel: ___VARIABLE_productName___ViewModel) -> UIViewController {
+    static func `default`(parameters: ___VARIABLE_productName___Parameters) -> UIViewController {
         let viewController: ___VARIABLE_productName___ViewController = .init()
         
         let router: ___VARIABLE_productName___Router = .init(navigable: viewController)
@@ -19,7 +19,7 @@ struct ___VARIABLE_productName___Factory {
             view: viewController,
             router: router,
             interactor: interactor,
-            viewModel: viewModel
+            parameters: parameters
         )
 
         viewController.presenter = presenter

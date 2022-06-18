@@ -4,7 +4,7 @@ A backronym for `View`, `Interactor`, `Presenter`, `Entity`, and `Router`.
 
 Architecture is highly-decoupled, follows modular design, obeys the single-responsibility principle, and is built on the interface communication pattern.
 
-Docoupled declarations discussed withis this variation are—`ViewController`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are—`Model`, `ViewModel`, and `Factory`. Even though VIPER contains `Entity` (E), this implementation of VIPER separates scenes from a datababase layer, and instead ties them to gateways via CLEAN architecture.
+Docoupled declarations discussed withis this variation are—`ViewController`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are—`Factory`, `Parameters`, and `UIModel`. Even though VIPER contains `Entity` (E), this implementation of VIPER separates scenes from a datababase layer, and instead ties them to gateways via CLEAN architecture.
 
 Package contains demo app that demonstrates this architecture.
 
@@ -14,9 +14,19 @@ To avoid writing boilerplate for every scene, the project includes `XCode` templ
 
 A factory and a dependency injector that creates a scene and injects all related objects.
 
-`Factory` takes a `ViewModel` as parameter if there is data to be passed from the presenting scene. Factory is a non-initializable `struct` with `static` factory methods. By default, `Factory` includes a single method, that creates a `default` instance of the scene.
+`Factory` takes a `Parameters` as parameter if there is data to be passed from the presenting scene. Factory is a non-initializable `struct` with `static` factory methods. By default, `Factory` includes a single method, that creates a `default` instance of the scene.
 
 Since objects are communicating using protocols, some can be swapped out with a non-default implementation. For instance, we declare protocols in a shared framework, alongside with `Presenter` and `ViewController` objects, and implement different `Interactor`'s and `Router`'s in two separate apps, subsequently reusing the same scene while only changing endpoints that they connect to, and scenes to which they can navigate. When even just one component is replaced, a new factory method must be added, as it requires a different dependency injection.
+
+## Parameters ***(Optional)***
+
+#### Definition
+
+Data passed to the scene from the previous scene.
+
+#### Responsibilities
+
+None. Owned by `Presenter`.
 
 ## Interface
 
@@ -91,7 +101,7 @@ Responsibilities of the `Presenter` include:
 - Communication with `ViewController` to trigger view configuration, presentation, and other changes
 - Communicating with `Router` to trigger navigation towards or presentation of scenes, which in turn communicates with `ViewController`
 - Communicating with `Interactor` to fetch data
-- Storing and managing data. This includes `ViewModel` passed from the previous scene.
+- Storing and managing data. This includes `Parameters` passed from the previous scene.
 
 Responsibilities of the `Presenter` do not include:
 
@@ -122,7 +132,7 @@ A wireframe/navigator of the scene that performs navigation towards and presenta
     
 ```swift
 func toSomeScene()
-func toSomeOtherScene(viewModel: SomeOtherSceneViewModel)
+func toSomeOtherScene(parameters: SomeOtherSceneParameters)
 ```
     
 ## Interactor (Interactive) ***(Optional)***
@@ -149,21 +159,11 @@ Responsibilities of the `Interactor` do not include:
 func fetchSomeData(with parameters: SomeParameters) async throws -> SomeEntity
 ```
 
-## ViewModel ***(Optional)***
+## UI Model ***(Optional)***
 
 #### Definition
 
-Data passed to the scene from the previous scene. Not to be confused with reactive `ViewModel` of MVVM.
-
-#### Responsibilities
-
-None. Owned by `Presenter`.
-
-## Model ***(Optional)***
-
-#### Definition
-
-A non-initalizable `static` object that contains information needed for laying out a `ViewController` (constants).
+A non-initalizable `static` model that describes UI.
 
 #### Responsibilities
 

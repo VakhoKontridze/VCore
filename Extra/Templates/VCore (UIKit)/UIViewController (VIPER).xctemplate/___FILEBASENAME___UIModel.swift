@@ -2,8 +2,8 @@
 
 import UIKit
 
-// MARK: - ___VARIABLE_productName___ Cell Model
-struct ___VARIABLE_productName___CellModel {
+// MARK: - ___VARIABLE_productName___ UI Model
+struct ___VARIABLE_productName___UIModel {
     // MARK: Initializers
     private init() {}
     

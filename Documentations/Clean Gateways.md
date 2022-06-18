@@ -6,11 +6,11 @@ To avoid writing boilerplate for every gateway, the project includes `XCode` tem
 
 ## Gateway Components
 
-#### Gatewayable
+#### Gateway
 
 Defines a fetch request interface. `Gateway` should only contain a single method.
 
-#### Parameters
+#### Gateway Parameters
 
 Parameters used for the fetch request. A `struct`, that can conform to `Encodable`.
 
@@ -32,23 +32,23 @@ Relationship between an `Interactor`  and `Gateway` is the following:
 
 ```swift
 protocol HomeInteractive {
-    func updateUserData(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity
+    func updateUserData(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity
 }
 
 struct HomeInteractor: HomeInteractive {
-    func updateUserData(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity {
+    func updateUserData(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity {
         try await UpdateUserDataNetworkGateway().fetch(with: parameters)
     }
 }
 ```
 
 ```swift
-protocol UpdateUserDataGatewayable {
-    func fetch(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity
+protocol UpdateUserDataGateway {
+    func fetch(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity
 }
 
-struct UpdateUserDataNetworkGateway: UpdateUserDataGatewayable {
-    func fetch(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity {
+struct UpdateUserDataNetworkGateway: UpdateUserDataGateway {
+    func fetch(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity {
         // ...
     }
 }

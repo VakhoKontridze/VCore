@@ -10,7 +10,7 @@ final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIA
     // MARK: Properties
     var presenter: (any ___VARIABLE_productName___Presentable)!
     
-    private typealias Model = ___VARIABLE_productName___Model
+    private typealias UIModel = ___VARIABLE_productName___UIModel
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -27,7 +27,7 @@ final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIA
     }
     
     private func setUpView() {
-        view.backgroundColor = Model.Colors.background
+        view.backgroundColor = UIModel.Colors.background
     }
 
     private func addSubviews() {

@@ -1,5 +1,5 @@
 //  
-//  PostDetailsViewModel.swift
+//  PostDetailsParameters.swift
 //  UIKit Viper Demo
 //
 //  Created by Vakhtang Kontridze on 17.06.22.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - Post Details ViewModel
-struct PostDetailsViewModel {
+// MARK: - Post Details Parameters
+struct PostDetailsParameters {
     // MARK: Properties
     let title: String
     let body: String

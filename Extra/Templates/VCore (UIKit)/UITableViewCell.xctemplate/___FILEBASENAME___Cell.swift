@@ -8,7 +8,7 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, UITableViewDequeuea
     // MARK: Subviews
     
     // MARK: Properties
-    private typealias Model = ___VARIABLE_productName___CellModel
+    private typealias UIModel = ___VARIABLE_productName___CellUIModel
 
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -28,7 +28,7 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, UITableViewDequeuea
     }
     
     private func setUpView() {
-        backgroundColor = Model.Colors.background
+        backgroundColor = UIModel.Colors.background
         selectionStyle = .none
     }
     
@@ -43,7 +43,7 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, UITableViewDequeuea
     }
 
     // MARK: Dequeueable
-    func configure(viewModel: any UITableViewCellViewModelable) {
-        guard let viewModel = viewModel as? ___VARIABLE_productName___CellViewModel else { return }
+    func configure(parameter: any UITableViewCellParameter) {
+        guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }
     }
 }

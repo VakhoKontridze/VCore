@@ -9,8 +9,8 @@
 
 import UIKit
 
-// MARK: - ViewModel
-/// Protocol that allows viewmodel to dequeue an `UITableViewCell`
+// MARK: - Parameter
+/// Protocol that allows parameter to dequeue an `UITableViewCell`.
 ///
 ///     protocol SomeViewable: AnyObject {}
 ///
@@ -36,7 +36,7 @@ import UIKit
 ///
 ///         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 ///             tableView.dequeueAndConfigureReusableCell(
-///                 viewModel: presenter.tableViewCellViewModel(section: indexPath.section, row: indexPath.row)
+///                 parameter: presenter.tableViewCellParameter(section: indexPath.section, row: indexPath.row)
 ///             )
 ///         }
 ///     }
@@ -46,46 +46,42 @@ import UIKit
 ///     {
 ///         unowned let view: SomeViewable
 ///
-///         private var tableViewViewModels: [[any UITableViewCellViewModelable]] = []
+///         private var tableViewParameters: [[any UITableViewCellParameter]] = []
 ///
 ///         init(view: View) {
 ///             self.view = view
 ///         }
 ///
 ///         func tableViewDidSelectRow(section: Int, row: Int) {
-///             print(tableViewViewModels[section][row])
+///             print(tableViewParameters[section][row])
 ///         }
 ///
 ///         var tableViewNumberOfSections: Int {
-///             tableViewViewModels.count
+///             tableViewParameters.count
 ///         }
 ///
 ///         func tableViewNumberOfRows(section: Int) -> Int {
-///             tableViewViewModels[section].count
+///             tableViewParameters[section].count
 ///         }
 ///
-///         func tableViewCellDequeueID(section: Int, row: Int) -> String {
-///             tableViewViewModels[section][row].dequeueID
-///         }
-///
-///         func tableViewCellViewModel(section: Int, row: Int) -> any UITableViewCellViewModelable {
-///             tableViewViewModels[section][row]
+///         func tableViewCellParameter(section: Int, row: Int) -> any UITableViewCellParameter {
+///             tableViewParameters[section][row]
 ///         }
 ///     }
 ///
-public protocol UITableViewCellViewModelable {
+public protocol UITableViewCellParameter {
     /// `UITableViewCell` dequeue ID
     var dequeueID: String { get }
 }
 
 // MARK: - Cell
-/// Protocol that allows `UITableViewCell` to be configured using a viewmodel
+/// Protocol that allows `UITableViewCell` to be configured using a parameter.
 public protocol UITableViewDequeueable: UITableViewCell {
-    /// `UITableViewCell` dequeue ID
+    /// `UITableViewCell` dequeue ID.
     static var dequeueID: String { get }
     
-    /// Configures `UITableViewCell` using a viewmodel
-    func configure(viewModel: any UITableViewCellViewModelable)
+    /// Configures `UITableViewCell` using a parameter.
+    func configure(parameter: any UITableViewCellParameter)
 }
 
 extension UITableViewDequeueable {
@@ -93,31 +89,31 @@ extension UITableViewDequeueable {
 }
 
 // MARK: - Table View
-/// Allows for the delegation of `UITableViewDelegate`
+/// Allows for the delegation of `UITableViewDelegate`.
 ///
-/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`
+/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`.
 public protocol UITableViewDelegatable {
-    /// Notifies that a `UITableViewCell` has been selected and section and row
+    /// Notifies that a `UITableViewCell` has been selected and section and row.
     func tableViewDidSelectRow(section: Int, row: Int)
 }
 
-/// Allows for the delegation of `UITableViewDataSource`
+/// Allows for the delegation of `UITableViewDataSource`.
 ///
-/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`
+/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`.
 public protocol UITableViewDataSourceable {
-    /// Number of sections in `UITableView`
+    /// Number of sections in `UITableView`.
     var tableViewNumberOfSections: Int { get }
     
-    /// Number of rows in a given sections in `UITableView`
+    /// Number of rows in a given sections in `UITableView`.
     func tableViewNumberOfRows(section: Int) -> Int
     
-    /// Viewmodel for `UITableViewCell` used during configuration
-    func tableViewCellViewModel(section: Int, row: Int) -> any UITableViewCellViewModelable
+    /// Parameter for `UITableViewCell` used during configuration.
+    func tableViewCellParameter(section: Int, row: Int) -> any UITableViewCellParameter
 }
 
 // MARK: - Registering
 extension UITableView {
-    /// Registers dequeueable `UITableViewCell` for reuse in a `UITableView`
+    /// Registers dequeueable `UITableViewCell` for reuse in a `UITableView`.
     public func register(_ cells: any UITableViewDequeueable.Type...) {
         cells.forEach { register($0, forCellReuseIdentifier: $0.dequeueID) }
     }
@@ -125,17 +121,17 @@ extension UITableView {
 
 // MARK: - Dequeueing
 extension UITableView {
-    /// Deques and configures a resuabe cell in `UITableView`
+    /// Deques and configures a resuabe cell in `UITableView`.
     public func dequeueAndConfigureReusableCell(
-        viewModel: any UITableViewCellViewModelable
+        parameter: any UITableViewCellParameter
     ) -> UITableViewCell {
         guard
-            let cell = dequeueReusableCell(withIdentifier: viewModel.dequeueID) as? any UITableViewDequeueable
+            let cell = dequeueReusableCell(withIdentifier: parameter.dequeueID) as? any UITableViewDequeueable
         else {
-            fatalError("Unable to dequeue a cell with identifier \(viewModel.dequeueID)")
+            fatalError("Unable to dequeue a cell with identifier \(parameter.dequeueID)")
         }
         
-        cell.configure(viewModel: viewModel)
+        cell.configure(parameter: parameter)
         
         return cell
     }

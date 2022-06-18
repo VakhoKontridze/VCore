@@ -14,20 +14,20 @@ final class PostDetailsPresenter<View>: PostDetailsPresentable
 {
     // MARK: Properties
     private unowned let view: View
-    private let viewModel: PostDetailsViewModel
+    private let parameters: PostDetailsParameters
 
     // MARK: Initializers
     init(
         view: View,
-        viewModel: PostDetailsViewModel
+        parameters: PostDetailsParameters
     ) {
         self.view = view
-        self.viewModel = viewModel
+        self.parameters = parameters
     }
 
     // MARK: Presentable
     func viewDidLoad() {
-        view.setTitle(to: viewModel.title)
-        view.setBody(to: viewModel.body)
+        view.setTitle(to: parameters.title)
+        view.setBody(to: parameters.body)
     }
 }

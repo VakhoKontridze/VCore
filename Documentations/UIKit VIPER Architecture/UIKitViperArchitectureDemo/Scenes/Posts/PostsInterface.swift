@@ -25,7 +25,7 @@ protocol PostsPresentable: UITableViewDelegatable, UITableViewDataSourceable {
 
 // MARK: - Posts Routable
 protocol PostsRoutable {
-    func toPostDetails(viewModel: PostDetailsViewModel)
+    func toPostDetails(parameters: PostDetailsParameters)
 }
 
 // MARK: - Posts Interactive

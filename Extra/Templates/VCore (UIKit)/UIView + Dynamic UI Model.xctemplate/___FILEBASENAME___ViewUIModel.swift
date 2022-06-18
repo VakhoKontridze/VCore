@@ -2,8 +2,8 @@
 
 import UIKit
 
-// MARK: - ___VARIABLE_productName___ View Model
-struct ___VARIABLE_productName___ViewModel {
+// MARK: - ___VARIABLE_productName___ View UI Model
+struct ___VARIABLE_productName___ViewUIModel {
     // MARK: Properties
     var layout: Layout = .init()
     var colors: Colors = .init()

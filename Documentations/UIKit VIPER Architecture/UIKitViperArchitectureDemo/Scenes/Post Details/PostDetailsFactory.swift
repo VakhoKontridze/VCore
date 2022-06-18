@@ -13,12 +13,12 @@ struct PostDetailsFactory {
     private init() {}
     
     // MARK: Factory
-    static func `default`(viewModel: PostDetailsViewModel) -> UIViewController {
+    static func `default`(parameters: PostDetailsParameters) -> UIViewController {
         let viewController: PostDetailsViewController = .init()
 
         let presenter: PostDetailsPresenter = .init(
             view: viewController,
-            viewModel: viewModel
+            parameters: parameters
         )
 
         viewController.presenter = presenter

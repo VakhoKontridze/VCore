@@ -14,25 +14,25 @@ import UIKit
 ///
 /// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `View/Controller`.
 public protocol UIAlertViewable {
-    /// Presents `UIAlert` with viewmodel
-    func presentAlert(viewModel: UIAlertViewModel)
+    /// Presents `UIAlert` with parameters
+    func presentAlert(parameters: UIAlertParameters)
 }
 
 extension UIAlertViewable where Self: UIViewController {
-    public func presentAlert(viewModel: UIAlertViewModel) {
+    public func presentAlert(parameters: UIAlertParameters) {
         present(
-            UIAlertController(viewModel: viewModel),
+            UIAlertController(parameters: parameters),
             animated: true,
             completion: nil
         )
     }
 }
 
-// MARK: - UI Alert ViewModel
-/// Viewmodel for presenting an `UIAlert`.
+// MARK: - UI Alert Parameters
+/// Parameters for presenting an `UIAlert`.
 ///
-/// `MVP`, `VIP`, and `VIPER` arhcitecutes, viewmodel is passed by`Presenter` to `View/Controller`
-public struct UIAlertViewModel {
+/// `MVP`, `VIP`, and `VIPER` arhcitecutes, parameters are passed by`Presenter` to `View/Controller`
+public struct UIAlertParameters {
     // MARK: Properties
     /// Alert title.
     public var title: String?
@@ -41,25 +41,25 @@ public struct UIAlertViewModel {
     public var message: String
     
     /// Buttons.
-    public var buttons: [ButtonViewModel]
+    public var buttons: [Button]
     
     // MARK: Initializers
-    /// Initializes UIAlertViewModel.
+    /// Initializes `UIAlertParameters`.
     public init(
         title: String?,
         message: String,
-        actions buttons: [ButtonViewModel]
+        actions buttons: [Button]
     ) {
         self.title = title
         self.message = message
         self.buttons = buttons
     }
     
-    /// Initializes UIAlertViewModel with one action.
+    /// Initializes `UIAlertParameters` with one action.
     public init(
         title: String?,
         message: String,
-        action button: ButtonViewModel
+        action button: Button
     ) {
         self.init(
             title: title,
@@ -68,7 +68,7 @@ public struct UIAlertViewModel {
         )
     }
     
-    /// Initializes UIAlertViewModel with "ok" action.
+    /// Initializes `UIAlertParameters` with "ok" action.
     public init(
         title: String?,
         message: String,
@@ -85,7 +85,7 @@ public struct UIAlertViewModel {
         )
     }
     
-    /// Initializes UIAlertViewModel with error and "ok" action.
+    /// Initializes `UIAlertParameters` with error and "ok" action.
     public init(
         error: Error,
         completion: (() -> Void)?
@@ -101,9 +101,9 @@ public struct UIAlertViewModel {
         )
     }
     
-    // MARK: Button ViewModel
-    /// Button ViewModel.
-    public struct ButtonViewModel {
+    // MARK: Button.
+    /// Butto.
+    public struct Button {
         /// Indicates if button is enabled.
         public var isEnabled: Bool
         
@@ -116,7 +116,7 @@ public struct UIAlertViewModel {
         /// Button action.
         public var action: (() -> Void)?
         
-        /// Initializes viewmodel.
+        /// Initializes `Button`.
         public init(
             isEnabled: Bool = true,
             style: UIAlertAction.Style = .default,
@@ -133,15 +133,15 @@ public struct UIAlertViewModel {
 
 // MARK: - Factory
 extension UIAlertController {
-    /// Initializes `UIAlertController` with `UIAlertViewModel`.
-    public convenience init(viewModel: UIAlertViewModel) {
+    /// Initializes `UIAlertController` with `UIAlertParameters`.
+    public convenience init(parameters: UIAlertParameters) {
         self.init(
-            title: viewModel.title ?? "", // Fixes weird bold bug when nil
-            message: viewModel.message,
+            title: parameters.title ?? "", // Fixes weird bold bug when nil
+            message: parameters.message,
             preferredStyle: .alert
         )
         
-        for button in viewModel.buttons {
+        for button in parameters.buttons {
             addAction({
                 let alertAction: UIAlertAction = .init(
                     title: button.title,

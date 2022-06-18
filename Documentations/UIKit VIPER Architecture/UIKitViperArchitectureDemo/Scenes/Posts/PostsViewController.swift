@@ -101,7 +101,7 @@ final class PostsViewController:
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         tableView.dequeueAndConfigureReusableCell(
-            viewModel: presenter.tableViewCellViewModel(section: indexPath.section, row: indexPath.row)
+            parameter: presenter.tableViewCellParameter(section: indexPath.section, row: indexPath.row)
         )
     }
     

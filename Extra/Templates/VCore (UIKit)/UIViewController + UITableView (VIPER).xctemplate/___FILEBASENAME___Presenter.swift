@@ -14,19 +14,19 @@ final class ___VARIABLE_productName___Presenter<View, Router, Interactor>: ___VA
     private unowned let view: View
     private let router: Router
     private let interactor: Interactor
-    private let viewModel: ___VARIABLE_productName___ViewModel
+    private let parameters: ___VARIABLE_productName___Parameters
 
     // MARK: Initializers
     init(
         view: View,
         router: Router,
         interactor: Interactor,
-        viewModel: ___VARIABLE_productName___ViewModel
+        parameters: ___VARIABLE_productName___Parameters
     ) {
         self.view = view
         self.router = router
         self.interactor = interactor
-        self.viewModel = viewModel
+        self.parameters = parameters
     }
 
     // MARK: Presentable
@@ -45,7 +45,7 @@ final class ___VARIABLE_productName___Presenter<View, Router, Interactor>: ___VA
         TODO()
     }
     
-    func tableViewCellViewModel(section: Int, row: Int) -> any UITableViewCellViewModelable {
+    func tableViewCellParameter(section: Int, row: Int) -> any UITableViewCellParameter {
         TODO()
     }
 }

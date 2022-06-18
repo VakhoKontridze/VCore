@@ -7,7 +7,7 @@ final class ___VARIABLE_productName___View: UIView {
     // MARK: Subviews
     
     // MARK: Properties
-    private typealias Model = ___VARIABLE_productName___ViewModel
+    private typealias UIModel = ___VARIABLE_productName___ViewUIModel
     
     // MARK: Initializers
     init() {
@@ -15,9 +15,9 @@ final class ___VARIABLE_productName___View: UIView {
         setUp()
     }
     
-    convenience init(viewModel: ___VARIABLE_productName___ViewViewModel) {
+    convenience init(parameters: ___VARIABLE_productName___ViewParameters) {
         self.init()
-        configure(viewModel: viewModel)
+        configure(parameters: parameters)
     }
     
     required init?(coder: NSCoder) {
@@ -32,7 +32,7 @@ final class ___VARIABLE_productName___View: UIView {
     }
     
     private func setUpView() {
-        backgroundColor = Model.Colors.background
+        backgroundColor = UIModel.Colors.background
     }
     
     private func addSubviews() {
@@ -46,7 +46,7 @@ final class ___VARIABLE_productName___View: UIView {
     }
 
     // MARK: Configuration
-    func configure(viewModel: ___VARIABLE_productName___ViewViewModel) {
+    func configure(parameters: ___VARIABLE_productName___ViewParameters) {
         
     }
 }

@@ -8,7 +8,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionVi
     // MARK: Subviews
     
     // MARK: Properties
-    private typealias Model = ___VARIABLE_productName___CellModel
+    private typealias UIModel = ___VARIABLE_productName___CellUIModel
 
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -28,7 +28,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionVi
     }
     
     private func setUpView() {
-        backgroundColor = Model.Colors.background
+        backgroundColor = UIModel.Colors.background
     }
     
     private func addSubviews() {
@@ -42,7 +42,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionVi
     }
 
     // MARK: Dequeueable
-    func configure(viewModel: any UICollectionViewCellViewModelable) {
-        guard let viewModel = viewModel as? ___VARIABLE_productName___CellViewModel else { return }
+    func configure(parameter: any UICollectionViewCellParameter) {
+        guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }
     }
 }

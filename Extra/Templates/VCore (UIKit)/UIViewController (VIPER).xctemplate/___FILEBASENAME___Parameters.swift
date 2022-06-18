@@ -2,8 +2,8 @@
 
 import Foundation
 
-// MARK: - ___VARIABLE_productName___ ViewModel
-struct ___VARIABLE_productName___ViewModel {
+// MARK: - ___VARIABLE_productName___ Parameters
+struct ___VARIABLE_productName___Parameters {
     // MARK: Properties
     
     // MARK: Preview

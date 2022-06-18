@@ -12,18 +12,18 @@ import VCore
 final class PostCell: UITableViewCell, UITableViewDequeueable {
     // MARK: Subviews
     private let titleLabel: UILabel = .init(
-        color: Model.Colors.titleLabel,
-        font: Model.Fonts.titleLabel
+        color: UIModel.Colors.titleLabel,
+        font: UIModel.Fonts.titleLabel
     ).withTranslatesAutoresizingMaskIntoConstraints(false)
     
     private let bodyLabel: UILabel = .init(
-        numberOfLines: Model.Layout.bodyLabelNumberOfLines,
-        color: Model.Colors.bodyLabel,
-        font: Model.Fonts.bodyLabel
+        numberOfLines: UIModel.Layout.bodyLabelNumberOfLines,
+        color: UIModel.Colors.bodyLabel,
+        font: UIModel.Fonts.bodyLabel
     ).withTranslatesAutoresizingMaskIntoConstraints(false)
     
     // MARK: Properties
-    private typealias Model = PostCellModel
+    private typealias UIModel = PostCellUIModel
 
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
@@ -43,7 +43,7 @@ final class PostCell: UITableViewCell, UITableViewDequeueable {
     }
     
     private func setUpView() {
-        backgroundColor = Model.Colors.background
+        backgroundColor = UIModel.Colors.background
         selectionStyle = .none
     }
     
@@ -54,22 +54,22 @@ final class PostCell: UITableViewCell, UITableViewDequeueable {
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Model.Layout.titleLabelMarginHor),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Model.Layout.titleLabelMarginHor),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: Model.Layout.titleLabelMarginTop),
+            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIModel.Layout.titleLabelMarginHor),
+            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIModel.Layout.titleLabelMarginHor),
+            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: UIModel.Layout.titleLabelMarginTop),
             
-            bodyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Model.Layout.bodyLabelMarginHor),
-            bodyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -Model.Layout.bodyLabelMarginHor),
-            bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: Model.Layout.bodyLabelMarginTop),
-            bodyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -Model.Layout.bodyLabelMarginBottom)
+            bodyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIModel.Layout.bodyLabelMarginHor),
+            bodyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIModel.Layout.bodyLabelMarginHor),
+            bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UIModel.Layout.bodyLabelMarginTop),
+            bodyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -UIModel.Layout.bodyLabelMarginBottom)
         ])
     }
 
     // MARK: Dequeueable
-    func configure(viewModel: any UITableViewCellViewModelable) {
-        guard let viewModel = viewModel as? PostCellViewModel else { return }
+    func configure(parameter: any UITableViewCellParameter) {
+        guard let parameters = parameter as? PostCellViewParameters else { return }
         
-        titleLabel.text = viewModel.title
-        bodyLabel.text = viewModel.body
+        titleLabel.text = parameters.title
+        bodyLabel.text = parameters.body
     }
 }

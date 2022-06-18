@@ -2,8 +2,8 @@
 
 import Foundation
 
-// MARK: - ___VARIABLE_productName___ Parameters
-struct ___VARIABLE_productName___Parameters: Encodable {
+// MARK: - ___VARIABLE_productName___ Gateway Parameters
+struct ___VARIABLE_productName___GatewayParameters: Encodable {
     // MARK: Properties
     
     // MARK: Coding Keys
