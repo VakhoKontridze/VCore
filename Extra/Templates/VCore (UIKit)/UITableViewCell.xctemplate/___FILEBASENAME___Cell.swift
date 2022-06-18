@@ -28,8 +28,8 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, UITableViewDequeuea
     }
     
     private func setUpView() {
-        selectionStyle = .none
         backgroundColor = Model.Colors.background
+        selectionStyle = .none
     }
     
     private func addSubviews() {

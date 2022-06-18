@@ -24,17 +24,13 @@ final class ___VARIABLE_productName___ViewController:
     // MARK: Setup
     private func setUp() {
         setUpView()
-        setUpNavBar()
         addSubviews()
         setUpLayout()
+        setUpNavBar()
     }
     
     private func setUpView() {
         view.backgroundColor = Model.Colors.background
-    }
-
-    private func setUpNavBar() {
-        navigationItem.title = "___VARIABLE_productName___"
     }
 
     private func addSubviews() {
@@ -45,6 +41,10 @@ final class ___VARIABLE_productName___ViewController:
         NSLayoutConstraint.activate([
             
         ])
+    }
+    
+    private func setUpNavBar() {
+        navigationItem.title = "___VARIABLE_productName___"
     }
 
     // MARK: Viewable

@@ -43,8 +43,8 @@ final class PostCell: UITableViewCell, UITableViewDequeueable {
     }
     
     private func setUpView() {
-        selectionStyle = .none
         backgroundColor = Model.Colors.background
+        selectionStyle = .none
     }
     
     private func addSubviews() {
