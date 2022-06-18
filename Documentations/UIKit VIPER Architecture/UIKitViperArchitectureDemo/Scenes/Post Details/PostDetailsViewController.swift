@@ -20,8 +20,8 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     
     private let bodyLabel: UILabel = .init(
         numberOfLines: 0,
-        color: Model.Colors.bodyLabel,
-        font: Model.Fonts.bodyLabel
+        color: UIModel.Colors.bodyLabel,
+        font: UIModel.Fonts.bodyLabel
     ).withTranslatesAutoresizingMaskIntoConstraints(false)
     
     // MARK: Properties
@@ -29,7 +29,7 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     
     private var bodyLabelHeightConstraint: NSLayoutConstraint?
     
-    private typealias Model = PostDetailsModel
+    private typealias UIModel = PostDetailsUIModel
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -47,7 +47,7 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     }
     
     private func setUpView() {
-        view.backgroundColor = Model.Colors.background
+        view.backgroundColor = UIModel.Colors.background
     }
 
     private func addSubviews() {
@@ -64,10 +64,10 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
             
             bodyLabel.heightAnchor.constraint(equalToConstant: 0)
                 .storing(in: &bodyLabelHeightConstraint),
-            bodyLabel.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor, constant: Model.Layout.bodyLabelMarginHor),
-            bodyLabel.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor, constant: -Model.Layout.bodyLabelMarginHor),
-            bodyLabel.topAnchor.constraint(equalTo: scrollableView.contentView.safeAreaLayoutGuide.topAnchor, constant: Model.Layout.bodyLabelMarginTop),
-            bodyLabel.bottomAnchor.constraint(equalTo: scrollableView.contentView.safeAreaLayoutGuide.bottomAnchor, constant: -Model.Layout.bodyLabelMarginBottom)
+            bodyLabel.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor, constant: UIModel.Layout.bodyLabelMarginHor),
+            bodyLabel.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor, constant: -UIModel.Layout.bodyLabelMarginHor),
+            bodyLabel.topAnchor.constraint(equalTo: scrollableView.contentView.safeAreaLayoutGuide.topAnchor, constant: UIModel.Layout.bodyLabelMarginTop),
+            bodyLabel.bottomAnchor.constraint(equalTo: scrollableView.contentView.safeAreaLayoutGuide.bottomAnchor, constant: -UIModel.Layout.bodyLabelMarginBottom)
         ])
     }
     
@@ -83,6 +83,6 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     func setBody(to body: String) {
         bodyLabel.text = body
         bodyLabelHeightConstraint?.constant = bodyLabel
-            .multiLineHeight(width: view.frame.width - 2*Model.Layout.bodyLabelMarginHor)
+            .multiLineHeight(width: view.frame.width - 2*UIModel.Layout.bodyLabelMarginHor)
     }
 }

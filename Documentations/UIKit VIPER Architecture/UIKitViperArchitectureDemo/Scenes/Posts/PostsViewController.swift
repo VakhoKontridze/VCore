@@ -34,7 +34,7 @@ final class PostsViewController:
     // MARK: Properties
     var presenter: (any PostsPresentable)!
     
-    private typealias Model = PostsModel
+    private typealias UIModel = PostsUIModel
 
     // MARK: Lifecycle
     override func viewDidLoad() {
@@ -52,7 +52,7 @@ final class PostsViewController:
     }
     
     private func setUpView() {
-        view.backgroundColor = Model.Colors.background
+        view.backgroundColor = UIModel.Colors.background
     }
 
     private func addSubviews() {

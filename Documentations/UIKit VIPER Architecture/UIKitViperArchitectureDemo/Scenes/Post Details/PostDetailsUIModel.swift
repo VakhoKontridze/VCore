@@ -1,5 +1,5 @@
 //  
-//  PostDetailsModel.swift
+//  PostDetailsUIModel.swift
 //  UIKit Viper Demo
 //
 //  Created by Vakhtang Kontridze on 17.06.22.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-// MARK: - Post Details Model
-struct PostDetailsModel {
+// MARK: - Post Details UI Model
+struct PostDetailsUIModel {
     // MARK: Initializers
     private init() {}
     
