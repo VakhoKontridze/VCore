@@ -58,11 +58,13 @@ extension NetworkClient {
     }
 
     /// Makes network request and calls completion handler with a result of `Decodable` or `Error`.
-    public func decodable<T: Decodable>(
+    public func decodable<T>(
         _ type: T.Type,
         from request: NetworkRequest,
         completion: @escaping (Result<T, Error>) -> Void
-    ) {
+    )
+        where T: Decodable
+    {
         makeRequest(
             request: request,
             decode: { try JSONDecoderService.decodable(data: $0) },

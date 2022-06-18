@@ -29,17 +29,21 @@ public struct JSONEncoderService {
     }
     
     /// Encodes `Encodable` to `Data`.
-    public static func data<T: Encodable>(
+    public static func data<T>(
         encodable: T
-    ) throws -> Data {
+    ) throws -> Data
+        where T: Encodable
+    {
         guard let data: Data = try? JSONEncoder().encode(encodable) else { throw JSONEncoderError.failedToEncode }
         return data
     }
     
     /// Encodes `Encodable` to `JSON`.
-    public static func json<T: Encodable>(
+    public static func json<T>(
         encodable: T
-    ) throws -> [String: Any?] {
+    ) throws -> [String: Any?]
+        where T: Encodable
+    {
         guard
             let jsonData: Data = try? JSONEncoder().encode(encodable),
             let json: [String: Any?] = try? JSONDecoderService.json(data: jsonData)
@@ -51,9 +55,11 @@ public struct JSONEncoderService {
     }
     
     /// Encodes `Encodable` to `JSON` `Array`.
-    public static func jsonArray<T: Encodable>(
+    public static func jsonArray<T>(
         encodable: T
-    ) throws -> [[String: Any?]] {
+    ) throws -> [[String: Any?]]
+        where T: Encodable
+    {
         guard
             let jsonData: Data = try? JSONEncoder().encode(encodable),
             let jsonArray: [[String: Any?]] = try? JSONDecoderService.jsonArray(data: jsonData)

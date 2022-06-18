@@ -50,9 +50,11 @@ extension NetworkClient {
     }
     
     /// Makes network request and returns `Decodable`.
-    public func decodable<T: Decodable>(
+    public func decodable<T>(
         from request: NetworkRequest
-    ) async throws -> T {
+    ) async throws -> T
+        where T: Decodable
+    {
         try await makeRequest(
             request: request,
             decode: { try JSONDecoderService.decodable(data: $0) }

@@ -43,17 +43,21 @@ public struct JSONDecoderService {
     }
     
     /// Decodes `Data` to `Decodable`.
-    public static func decodable<T: Decodable>(
+    public static func decodable<T>(
         data: Data
-    ) throws -> T {
+    ) throws -> T
+        where T: Decodable
+    {
         guard let decodable: T = try? JSONDecoder().decode(T.self, from: data) else { throw JSONDecoderError.failedToDecode }
         return decodable
     }
     
     /// Decodes `JSON` to `Decodable`.
-    public static func decodable<T: Decodable>(
+    public static func decodable<T>(
         json: [String: Any?]
-    ) throws -> T {
+    ) throws -> T
+        where T: Decodable
+    {
         guard let data: Data = try? JSONSerialization.data(withJSONObject: json) else {
             throw JSONEncoderError.failedToEncode
         }
@@ -62,9 +66,11 @@ public struct JSONDecoderService {
     }
     
     /// Decodes `JSON` `Array` to `Decodable`.
-    public static func decodable<T: Decodable>(
+    public static func decodable<T>(
         jsonArray: [[String: Any?]]
-    ) throws -> T {
+    ) throws -> T
+        where T: Decodable
+    {
         guard let data: Data = try? JSONSerialization.data(withJSONObject: jsonArray) else {
             throw JSONEncoderError.failedToEncode
         }

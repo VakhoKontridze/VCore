@@ -30,9 +30,11 @@ extension NetworkRequestFactory {
             }
         }
         
-        static func build<T: Encodable>(
+        static func build<T>(
             encodable: T
-        ) throws -> Data {
+        ) throws -> Data
+            where T: Encodable
+        {
             do {
                 return try JSONEncoderService.data(encodable: encodable)
             } catch {
