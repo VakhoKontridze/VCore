@@ -46,17 +46,13 @@ final class PostsViewController:
     // MARK: Setup
     private func setUp() {
         setUpView()
-        setUpNavBar()
         addSubviews()
         setUpLayout()
+        setUpNavBar()
     }
     
     private func setUpView() {
         view.backgroundColor = Model.Colors.background
-    }
-
-    private func setUpNavBar() {
-        navigationItem.title = "Posts"
     }
 
     private func addSubviews() {
@@ -71,6 +67,10 @@ final class PostsViewController:
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
+    }
+    
+    private func setUpNavBar() {
+        navigationItem.title = "Posts"
     }
 
     // MARK: Viewable

@@ -41,17 +41,13 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     // MARK: Setup
     private func setUp() {
         setUpView()
-        setUpNavBar()
         addSubviews()
         setUpLayout()
+        setUpNavBar()
     }
     
     private func setUpView() {
         view.backgroundColor = Model.Colors.background
-    }
-
-    private func setUpNavBar() {
-        navigationItem.title = "PostDetails"
     }
 
     private func addSubviews() {
@@ -73,6 +69,10 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
             bodyLabel.topAnchor.constraint(equalTo: scrollableView.contentView.safeAreaLayoutGuide.topAnchor, constant: Model.Layout.bodyLabelMarginTop),
             bodyLabel.bottomAnchor.constraint(equalTo: scrollableView.contentView.safeAreaLayoutGuide.bottomAnchor, constant: -Model.Layout.bodyLabelMarginBottom)
         ])
+    }
+    
+    private func setUpNavBar() {
+        navigationItem.title = "PostDetails"
     }
 
     // MARK: Viewable
