@@ -1,5 +1,11 @@
 # Change Log
 
+#### 3.7.0(29)
+
+Global Functions
+
+- `KeyPath` equality and comparison functions are added, that equate and compare objects by up to six properties
+
 #### [3.6.0(28)](https://github.com/VakhoKontridze/VCore/releases/tag/3.6.0) — *2022 06 17*
 
 Views and ViewControllers
