@@ -66,6 +66,6 @@ extension GenericStateModel_ED: Equatable where Value: Equatable {}
 
 extension GenericStateModel_ED: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
-        (lhs.enabled, lhs.disabled) < (rhs.enabled, rhs.disabled)
+        isLess(lhs, than: rhs, by: \.enabled, \.disabled)
     }
 }

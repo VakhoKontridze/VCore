@@ -70,12 +70,12 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
     
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        (lhs.major, lhs.minor, lhs.patchUnwrapped) == (rhs.major, rhs.minor, rhs.patchUnwrapped)
+        isEqual(lhs, to: rhs, by: \.major, \.minor, \.patchUnwrapped)
     }
     
     // MARK: Comparable
     public static func < (lhs: Self, rhs: Self) -> Bool {
-        (lhs.major, lhs.minor, lhs.patchUnwrapped) < (rhs.major, rhs.minor, rhs.patchUnwrapped)
+        isLess(lhs, than: rhs, by: \.major, \.minor, \.patchUnwrapped)
     }
 }
 

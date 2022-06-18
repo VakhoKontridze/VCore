@@ -66,9 +66,7 @@ extension UIColor {
         let lhs = self.rgbaValues
         let rhs = otherColor.rgbaValues
         
-        return
-            (lhs.red, lhs.green, lhs.blue, lhs.alpha) ==
-            (rhs.red, rhs.green, rhs.blue, rhs.alpha)
+        return VCore.isEqual(lhs, to: rhs, by: \.red, \.green, \.blue, \.alpha)
     }
 }
 
