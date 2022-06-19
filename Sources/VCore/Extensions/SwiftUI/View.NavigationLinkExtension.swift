@@ -36,10 +36,8 @@ extension View {
     ///
     public func navigationLink<Destination>(
         isActive: Binding<Bool>,
-        @ViewBuilder destination: @escaping () -> Destination
-    ) -> some View
-        where Destination: View
-    {
+        @ViewBuilder destination: @escaping () -> some View
+    ) -> some View {
         self
             .background(
                 NavigationLink(
