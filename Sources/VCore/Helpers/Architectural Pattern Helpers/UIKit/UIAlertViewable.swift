@@ -12,7 +12,7 @@ import UIKit
 // MARK: - UI Alert Viewable
 /// Protocol for presenting an `UIAlert`.
 ///
-/// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `View/Controller`.
+/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `View/Controller`.
 public protocol UIAlertViewable {
     /// Presents `UIAlert` with parameters
     func presentAlert(parameters: UIAlertParameters)
@@ -31,7 +31,7 @@ extension UIAlertViewable where Self: UIViewController {
 // MARK: - UI Alert Parameters
 /// Parameters for presenting an `UIAlert`.
 ///
-/// `MVP`, `VIP`, and `VIPER` arhcitecutes, parameters are passed by`Presenter` to `View/Controller`
+/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, parameters are passed by`Presenter` to `View/Controller`
 public struct UIAlertParameters {
     // MARK: Properties
     /// Alert title.
