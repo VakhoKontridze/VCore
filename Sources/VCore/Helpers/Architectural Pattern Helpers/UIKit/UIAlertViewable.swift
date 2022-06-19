@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - UI Alert Viewable
-/// Porotocl for presenting an `UIAlert`.
+/// Protocol for presenting an `UIAlert`.
 ///
 /// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `View/Controller`.
 public protocol UIAlertViewable {
@@ -102,7 +102,7 @@ public struct UIAlertParameters {
     }
     
     // MARK: Button.
-    /// Butto.
+    /// Button.
     public struct Button {
         /// Indicates if button is enabled.
         public var isEnabled: Bool
