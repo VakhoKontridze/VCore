@@ -73,9 +73,7 @@ extension View {
     ///                 Text(String(isOn)) // Displays "true"
     ///             })
     ///     }
-    public func bindToModalContext<V>(_ value: V) -> some View
-        where V: Equatable
-    {
+    public func bindToModalContext(_ value: some Equatable) -> some View {
         self
             .onChange(of: value, perform: { _ in })
     }

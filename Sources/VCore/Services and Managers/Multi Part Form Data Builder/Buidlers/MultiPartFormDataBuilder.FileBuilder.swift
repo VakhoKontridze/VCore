@@ -19,7 +19,7 @@ extension MultiPartFormDataBuilder {
         // MARK: Initializers
         init(
             boundary: String,
-            files: [String: (any AnyMultiPartFormDataFile)?]
+            files: [String: (some AnyMultiPartFormDataFile)?]
         ) {
             self.boundary = boundary
             self.files = files
@@ -42,7 +42,7 @@ extension MultiPartFormDataBuilder {
         
         private func appendElement(
             key: String,
-            element: (any AnyMultiPartFormDataFile)?,
+            element: (some AnyMultiPartFormDataFile)?,
             to data: inout Data
         ) {
             guard
@@ -66,7 +66,7 @@ extension MultiPartFormDataBuilder {
         
         private func appendJSON(
             key: String,
-            json: [String: (any AnyMultiPartFormDataFile)?],
+            json: [String: (some AnyMultiPartFormDataFile)?],
             to data: inout Data
         ) {
             for element in json {
@@ -82,7 +82,7 @@ extension MultiPartFormDataBuilder {
         
         private func appendArray(
             key: String,
-            array: [(any AnyMultiPartFormDataFile)?],
+            array: [(some AnyMultiPartFormDataFile)?],
             to data: inout Data
         ) {
             for (i, element) in array.enumerated() {

@@ -18,7 +18,7 @@ import Foundation
 /// Files passed to `MultiParFormDataBuilder` via dicrioanry will have joined names,
 /// while those passed via array will be enumerated using indexes.
 ///
-///     let files: [String: (any AnyMultiPartFormDataFile)?] = [
+///     let files: [String: (some AnyMultiPartFormDataFile)?] = [
 ///         "main_image": MultiPartFormDataFile(mimeType: "image/jpeg", data: mainImageData),
 ///
 ///         "gallery": [
@@ -64,7 +64,7 @@ public struct MultiPartFormDataFile {
     // MARK: Properties
     /// File name.
     ///
-    /// If `nil`, `String` passed to `[String: (any AnyMultiPartFormDataFile)?]` `Dictionary` will be used.
+    /// If `nil`, `String` passed to `[String: (some AnyMultiPartFormDataFile)?]` `Dictionary` will be used.
     /// With an explicit `filename`, a mime type is not automatically appended.
     public var filename: String?
     

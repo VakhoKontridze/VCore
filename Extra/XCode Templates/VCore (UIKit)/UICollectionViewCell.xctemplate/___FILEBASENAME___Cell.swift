@@ -42,7 +42,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionVi
     }
 
     // MARK: Dequeueable
-    func configure(parameter: any UICollectionViewCellParameter) {
+    func configure(parameter: some UICollectionViewCellParameter) {
         guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }
     }
 }

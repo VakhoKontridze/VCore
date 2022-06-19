@@ -12,14 +12,11 @@ import Foundation
 ///
 ///     isEqual(objectA, to: objectB, by: \.a)
 ///
-public func isEqual<T, P0>(
+public func isEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keypath0: KeyPath<T, P0>
-) -> Bool
-    where
-        P0: Equatable
-{
+    by keypath0: KeyPath<T, some Equatable>
+) -> Bool {
     lhs[keyPath: keypath0] ==
     rhs[keyPath: keypath0]
 }
@@ -28,16 +25,12 @@ public func isEqual<T, P0>(
 ///
 ///     isEqual(objectA, to: objectB, by: \.a, \.b)
 ///
-public func isEqual<T, P0, P1>(
+public func isEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keypath0: KeyPath<T, P0>,
-    _ keypath1: KeyPath<T, P1>
-) -> Bool
-    where
-        P0: Equatable,
-        P1: Equatable
-{
+    by keypath0: KeyPath<T, some Equatable>,
+    _ keypath1: KeyPath<T, some Equatable>
+) -> Bool {
     (lhs[keyPath: keypath0], lhs[keyPath: keypath1]) ==
     (rhs[keyPath: keypath0], rhs[keyPath: keypath1])
 }
@@ -46,18 +39,13 @@ public func isEqual<T, P0, P1>(
 ///
 ///     isEqual(objectA, to: objectB, by: \.a, \.b, \.c)
 ///
-public func isEqual<T, P0, P1, P2>(
+public func isEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keypath0: KeyPath<T, P0>,
-    _ keypath1: KeyPath<T, P1>,
-    _ keypath2: KeyPath<T, P2>
-) -> Bool
-    where
-        P0: Equatable,
-        P1: Equatable,
-        P2: Equatable
-{
+    by keypath0: KeyPath<T, some Equatable>,
+    _ keypath1: KeyPath<T, some Equatable>,
+    _ keypath2: KeyPath<T, some Equatable>
+) -> Bool {
     (lhs[keyPath: keypath0], lhs[keyPath: keypath1], lhs[keyPath: keypath2]) ==
     (rhs[keyPath: keypath0], rhs[keyPath: keypath1], rhs[keyPath: keypath2])
 }
@@ -66,20 +54,14 @@ public func isEqual<T, P0, P1, P2>(
 ///
 ///     isEqual(objectA, to: objectB, by: \.a, \.b, \.c, \.d)
 ///
-public func isEqual<T, P0, P1, P2, P3>(
+public func isEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keypath0: KeyPath<T, P0>,
-    _ keypath1: KeyPath<T, P1>,
-    _ keypath2: KeyPath<T, P2>,
-    _ keypath3: KeyPath<T, P3>
-) -> Bool
-    where
-        P0: Equatable,
-        P1: Equatable,
-        P2: Equatable,
-        P3: Equatable
-{
+    by keypath0: KeyPath<T, some Equatable>,
+    _ keypath1: KeyPath<T, some Equatable>,
+    _ keypath2: KeyPath<T, some Equatable>,
+    _ keypath3: KeyPath<T, some Equatable>
+) -> Bool {
     (lhs[keyPath: keypath0], lhs[keyPath: keypath1], lhs[keyPath: keypath2], lhs[keyPath: keypath3]) ==
     (rhs[keyPath: keypath0], rhs[keyPath: keypath1], rhs[keyPath: keypath2], rhs[keyPath: keypath3])
 }
@@ -88,22 +70,15 @@ public func isEqual<T, P0, P1, P2, P3>(
 ///
 ///     isEqual(objectA, to: objectB, by: \.a, \.b, \.c, \.d, \.e)
 ///
-public func isEqual<T, P0, P1, P2, P3, P4>(
+public func isEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keypath0: KeyPath<T, P0>,
-    _ keypath1: KeyPath<T, P1>,
-    _ keypath2: KeyPath<T, P2>,
-    _ keypath3: KeyPath<T, P3>,
-    _ keypath4: KeyPath<T, P4>
-) -> Bool
-    where
-        P0: Equatable,
-        P1: Equatable,
-        P2: Equatable,
-        P3: Equatable,
-        P4: Equatable
-{
+    by keypath0: KeyPath<T, some Equatable>,
+    _ keypath1: KeyPath<T, some Equatable>,
+    _ keypath2: KeyPath<T, some Equatable>,
+    _ keypath3: KeyPath<T, some Equatable>,
+    _ keypath4: KeyPath<T, some Equatable>
+) -> Bool {
     (lhs[keyPath: keypath0], lhs[keyPath: keypath1], lhs[keyPath: keypath2], lhs[keyPath: keypath3], lhs[keyPath: keypath4]) ==
     (rhs[keyPath: keypath0], rhs[keyPath: keypath1], rhs[keyPath: keypath2], rhs[keyPath: keypath3], rhs[keyPath: keypath4])
 }
@@ -112,24 +87,16 @@ public func isEqual<T, P0, P1, P2, P3, P4>(
 ///
 ///     isEqual(objectA, to: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f)
 ///
-public func isEqual<T, P0, P1, P2, P3, P4, P5>(
+public func isEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keypath0: KeyPath<T, P0>,
-    _ keypath1: KeyPath<T, P1>,
-    _ keypath2: KeyPath<T, P2>,
-    _ keypath3: KeyPath<T, P3>,
-    _ keypath4: KeyPath<T, P4>,
-    _ keypath5: KeyPath<T, P5>
-) -> Bool
-    where
-        P0: Equatable,
-        P1: Equatable,
-        P2: Equatable,
-        P3: Equatable,
-        P4: Equatable,
-        P5: Equatable
-{
+    by keypath0: KeyPath<T, some Equatable>,
+    _ keypath1: KeyPath<T, some Equatable>,
+    _ keypath2: KeyPath<T, some Equatable>,
+    _ keypath3: KeyPath<T, some Equatable>,
+    _ keypath4: KeyPath<T, some Equatable>,
+    _ keypath5: KeyPath<T, some Equatable>
+) -> Bool {
     (lhs[keyPath: keypath0], lhs[keyPath: keypath1], lhs[keyPath: keypath2], lhs[keyPath: keypath3], lhs[keyPath: keypath4], lhs[keyPath: keypath5]) ==
     (rhs[keyPath: keypath0], rhs[keyPath: keypath1], rhs[keyPath: keypath2], rhs[keyPath: keypath3], rhs[keyPath: keypath4], rhs[keyPath: keypath5])
 }

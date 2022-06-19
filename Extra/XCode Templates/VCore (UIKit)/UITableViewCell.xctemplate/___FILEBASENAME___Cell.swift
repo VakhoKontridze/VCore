@@ -43,7 +43,7 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, UITableViewDequeuea
     }
 
     // MARK: Dequeueable
-    func configure(parameter: any UITableViewCellParameter) {
+    func configure(parameter: some UITableViewCellParameter) {
         guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }
     }
 }

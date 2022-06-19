@@ -82,7 +82,7 @@ public protocol UICollectionViewDequeueable: UICollectionViewCell {
     static var dequeueID: String { get }
     
     /// Configures `UICollectionViewCell` using a parameter.
-    func configure(parameter: any UICollectionViewCellParameter)
+    func configure(parameter: some UICollectionViewCellParameter)
 }
 
 extension UICollectionViewDequeueable {
@@ -127,7 +127,7 @@ extension UICollectionView {
     /// Deques and configures a resuabe cell in `UICollectionView`.
     public func dequeueAndConfigureReusableCell(
         indexPath: IndexPath,
-        parameter: any UICollectionViewCellParameter
+        parameter: some UICollectionViewCellParameter
     ) -> UICollectionViewCell {
         guard
             let cell = dequeueReusableCell(withReuseIdentifier: parameter.dequeueID, for: indexPath) as? any UICollectionViewDequeueable

@@ -81,7 +81,7 @@ public protocol UITableViewDequeueable: UITableViewCell {
     static var dequeueID: String { get }
     
     /// Configures `UITableViewCell` using a parameter.
-    func configure(parameter: any UITableViewCellParameter)
+    func configure(parameter: some UITableViewCellParameter)
 }
 
 extension UITableViewDequeueable {
@@ -125,7 +125,7 @@ extension UITableView {
 extension UITableView {
     /// Deques and configures a resuabe cell in `UITableView`.
     public func dequeueAndConfigureReusableCell(
-        parameter: any UITableViewCellParameter
+        parameter: some UITableViewCellParameter
     ) -> UITableViewCell {
         guard
             let cell = dequeueReusableCell(withIdentifier: parameter.dequeueID) as? any UITableViewDequeueable

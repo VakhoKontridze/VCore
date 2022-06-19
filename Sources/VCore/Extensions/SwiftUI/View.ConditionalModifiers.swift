@@ -18,12 +18,10 @@ extension View {
     ///             .if(isRed, transform: { $0.foregroundColor(.red) })
     ///     }
     ///
-    @ViewBuilder public func `if`<Content>(
+    @ViewBuilder public func `if`(
         _ condition: Bool,
-        transform: (Self) -> Content
-    ) -> some View
-        where Content: View
-    {
+        transform: (Self) -> some View
+    ) -> some View {
         switch condition {
         case false: self
         case true: transform(self)
@@ -43,15 +41,11 @@ extension View {
     ///             )
     ///     }
     ///
-    @ViewBuilder public func `if`<IfContent, ElseContent>(
+    @ViewBuilder public func `if`(
         _ condition: Bool,
-        ifTransform: (Self) -> IfContent,
-        elseTransform: (Self) -> ElseContent
-    ) -> some View
-        where
-            IfContent: View,
-            ElseContent: View
-    {
+        ifTransform: (Self) -> some View,
+        elseTransform: (Self) -> some View
+    ) -> some View {
         switch condition {
         case false: elseTransform(self)
         case true: ifTransform(self)
@@ -67,12 +61,10 @@ extension View {
     ///             .ifLet(color, transform: { $0.foregroundColor($1) })
     ///     }
     ///
-    @ViewBuilder public func ifLet<Value, Content>(
+    @ViewBuilder public func ifLet<Value>(
         _ value: Value?,
-        transform: (Self, Value) -> Content
-    ) -> some View
-        where Content: View
-    {
+        transform: (Self, Value) -> some View
+    ) -> some View {
         switch value {
         case let value?: transform(self, value)
         case nil: self
@@ -92,15 +84,11 @@ extension View {
     ///             )
     ///     }
     ///
-    @ViewBuilder public func `ifLet`<Value, IfContent, ElseContent>(
+    @ViewBuilder public func `ifLet`<Value>(
         _ value: Value?,
-        ifTransform: (Self, Value) -> IfContent,
-        elseTransform: (Self) -> ElseContent
-    ) -> some View
-        where
-            IfContent: View,
-            ElseContent: View
-    {
+        ifTransform: (Self, Value) -> some View,
+        elseTransform: (Self) -> some View
+    ) -> some View {
         switch value {
         case let value?: ifTransform(self, value)
         case nil: elseTransform(self)

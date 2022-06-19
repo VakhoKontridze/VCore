@@ -29,12 +29,10 @@ extension NetworkRequestFactory {
                 throw NetworkError.invalidBody
             }
         }
-        
-        static func build<T>(
-            encodable: T
-        ) throws -> Data
-            where T: Encodable
-        {
+
+        static func build(
+            encodable: some Encodable
+        ) throws -> Data {
             do {
                 return try JSONEncoderService.data(encodable: encodable)
             } catch {
