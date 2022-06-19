@@ -1,5 +1,15 @@
 # Change Log
 
+### ?.?.?(?)
+
+Extensions
+
+- `NavigationPath` append `Sequence` method is added
+
+XCode Templates
+
+- Project now includes templates for `SwiftUI`
+
 #### 3.7.0(29)
 
 Extensions
