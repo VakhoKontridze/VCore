@@ -1,6 +1,6 @@
 //  
 //  PostsPresenter.swift
-//  UIKit Viper Demo
+//  UIKitViperArchitectureDemo
 //
 //  Created by Vakhtang Kontridze on 17.06.22.
 //
@@ -21,6 +21,8 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     private let interactor: Interactor
     
     private var tableViewCellParameters: [PostCellViewParameters] = []
+    
+    private let sessionManager: SessionManager = .init()
 
     // MARK: Initializers
     init(
@@ -68,6 +70,8 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     
     // MARK: Requests
     private func fetchPosts() {
+        let sessionID: Int = sessionManager.newSessionID
+        
         tableViewCellParameters = []
         view.reloadPosts()
         
@@ -76,6 +80,8 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
             guard let self = self else { return }
             
             self.view.stopActivityIndicatorAnimation()
+            
+            guard self.sessionManager.sessionIsValid(id: sessionID) else { return }
             
             switch result {
             case .success(let postsEntity):

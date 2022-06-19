@@ -1,6 +1,6 @@
 //  
 //  PostsFactory.swift
-//  UIKit Viper Demo
+//  UIKitViperArchitectureDemo
 //
 //  Created by Vakhtang Kontridze on 17.06.22.
 //

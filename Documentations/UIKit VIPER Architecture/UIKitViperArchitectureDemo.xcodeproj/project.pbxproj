@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		870B88A3285F127E00B0D0AD /* VCore in Frameworks */ = {isa = PBXBuildFile; productRef = 870B88A2285F127E00B0D0AD /* VCore */; };
 		876FD433285C786600EC24FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD432285C786600EC24FD /* AppDelegate.swift */; };
 		876FD435285C786600EC24FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD434285C786600EC24FD /* SceneDelegate.swift */; };
 		876FD43C285C786700EC24FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 876FD43B285C786700EC24FD /* Assets.xcassets */; };
@@ -18,7 +19,6 @@
 		876FD457285C7BBF00EC24FD /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD44F285C7BBF00EC24FD /* PostsViewController.swift */; };
 		876FD458285C7BBF00EC24FD /* PostsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD450285C7BBF00EC24FD /* PostsInteractor.swift */; };
 		876FD459285C7BBF00EC24FD /* PostsUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD451285C7BBF00EC24FD /* PostsUIModel.swift */; };
-		876FD45F285C7BF300EC24FD /* VCore in Frameworks */ = {isa = PBXBuildFile; productRef = 876FD45E285C7BF300EC24FD /* VCore */; };
 		876FD462285C7C2600EC24FD /* StandardNavigableBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD461285C7C2600EC24FD /* StandardNavigableBridge.swift */; };
 		876FD468285C7C5100EC24FD /* PostsNetworkGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD464285C7C5100EC24FD /* PostsNetworkGateway.swift */; };
 		876FD46A285C7C5100EC24FD /* PostsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD466285C7C5100EC24FD /* PostsEntity.swift */; };
@@ -35,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		870B88A0285F126E00B0D0AD /* ~VCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "~VCore"; path = ../..; sourceTree = "<group>"; };
 		876FD42F285C786600EC24FD /* UIKitViperArchitectureDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitViperArchitectureDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876FD432285C786600EC24FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		876FD434285C786600EC24FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -48,7 +49,6 @@
 		876FD44F285C7BBF00EC24FD /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		876FD450285C7BBF00EC24FD /* PostsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsInteractor.swift; sourceTree = "<group>"; };
 		876FD451285C7BBF00EC24FD /* PostsUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsUIModel.swift; sourceTree = "<group>"; };
-		876FD45C285C7BE600EC24FD /* ~VCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "~VCore"; path = ../..; sourceTree = "<group>"; };
 		876FD461285C7C2600EC24FD /* StandardNavigableBridge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandardNavigableBridge.swift; sourceTree = "<group>"; };
 		876FD464285C7C5100EC24FD /* PostsNetworkGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsNetworkGateway.swift; sourceTree = "<group>"; };
 		876FD466285C7C5100EC24FD /* PostsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsEntity.swift; sourceTree = "<group>"; };
@@ -69,19 +69,34 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				876FD45F285C7BF300EC24FD /* VCore in Frameworks */,
+				870B88A3285F127E00B0D0AD /* VCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		870B889F285F126E00B0D0AD /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				870B88A0285F126E00B0D0AD /* ~VCore */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		870B88A1285F127E00B0D0AD /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		876FD426285C786600EC24FD = {
 			isa = PBXGroup;
 			children = (
 				876FD431285C786600EC24FD /* UIKitViperArchitectureDemo */,
-				876FD45B285C7BE600EC24FD /* Packages */,
-				876FD45D285C7BF300EC24FD /* Frameworks */,
+				870B889F285F126E00B0D0AD /* Packages */,
+				870B88A1285F127E00B0D0AD /* Frameworks */,
 				876FD430285C786600EC24FD /* Products */,
 			);
 			sourceTree = "<group>";
@@ -155,21 +170,6 @@
 				876FD451285C7BBF00EC24FD /* PostsUIModel.swift */,
 			);
 			path = Posts;
-			sourceTree = "<group>";
-		};
-		876FD45B285C7BE600EC24FD /* Packages */ = {
-			isa = PBXGroup;
-			children = (
-				876FD45C285C7BE600EC24FD /* ~VCore */,
-			);
-			name = Packages;
-			sourceTree = "<group>";
-		};
-		876FD45D285C7BF300EC24FD /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		876FD460285C7C1B00EC24FD /* Helpers */ = {
@@ -246,7 +246,7 @@
 			);
 			name = UIKitViperArchitectureDemo;
 			packageProductDependencies = (
-				876FD45E285C7BF300EC24FD /* VCore */,
+				870B88A2285F127E00B0D0AD /* VCore */,
 			);
 			productName = UIKitViperArchitectureDemo;
 			productReference = 876FD42F285C786600EC24FD /* UIKitViperArchitectureDemo.app */;
@@ -537,7 +537,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		876FD45E285C7BF300EC24FD /* VCore */ = {
+		870B88A2285F127E00B0D0AD /* VCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = VCore;
 		};

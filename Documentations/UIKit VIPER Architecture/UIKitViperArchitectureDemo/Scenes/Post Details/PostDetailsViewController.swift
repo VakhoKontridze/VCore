@@ -1,6 +1,6 @@
 //  
 //  PostDetailsViewController.swift
-//  UIKit Viper Demo
+//  UIKitViperArchitectureDemo
 //
 //  Created by Vakhtang Kontridze on 17.06.22.
 //
@@ -72,7 +72,7 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     }
     
     private func setUpNavBar() {
-        navigationItem.title = "PostDetails"
+        navigationItem.title = "Post Details"
     }
 
     // MARK: Viewable
