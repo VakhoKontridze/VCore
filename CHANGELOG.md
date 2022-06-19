@@ -11,6 +11,10 @@ Global Functions
 
 - `KeyPath` equality and comparison functions are added, that equate and compare objects by up to six properties
 
+XCode Templates
+
+- `async` Gateway now contains a mock object for previews in `SwiftUI`
+
 #### [3.6.0(28)](https://github.com/VakhoKontridze/VCore/releases/tag/3.6.0) — *2022 06 17*
 
 Views and ViewControllers
@@ -34,7 +38,7 @@ API
 
 XCode Templates
 
-- Background colors of UIKit views are now set to `UIColor.systemBackground`
+- Background colors of `UIKit` views are now set to `UIColor.systemBackground`
 - Issue with method signature in completion-based Gateway is fixed
 
 Other
@@ -132,13 +136,13 @@ Services and Managers
 
 Views and ViewControllers
 
-- Issue with accessing `SwiftUIBaseButton` in SwiftUI is fixed
+- Issue with accessing `SwiftUIBaseButton` in `SwiftUI` is fixed
 
 Extensions
 
 - `bindToModalContext` method is added
 - `OptionSet` `elements` property is added
-- Issue with accessing `cornerRadius` method in SwiftUI is fixed
+- Issue with accessing `cornerRadius` method in `SwiftUI` is fixed
 
 #### [3.0.2(19)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.2) — *2022 05 17*
 
