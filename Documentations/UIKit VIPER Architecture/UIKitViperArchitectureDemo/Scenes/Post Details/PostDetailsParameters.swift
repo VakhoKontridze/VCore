@@ -13,7 +13,7 @@ struct PostDetailsParameters {
     let title: String
     let body: String
     
-    // MARK: Preview
+    // MARK: Mock
     static var mock: Self {
         .init(
             title: "Lorem Ipsum",
