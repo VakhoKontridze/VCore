@@ -4,7 +4,7 @@ A backronym for `View`, `Interactor`, `Presenter`, `Entity`, and `Router`.
 
 Architecture is highly-decoupled, follows modular design, obeys the single-responsibility principle, and is built on the interface communication pattern.
 
-Docoupled declarations discussed withis this variation are—`ViewController`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are—`Factory`, `Parameters`, and `UIModel`. Even though VIPER contains `Entity` (E), this implementation of VIPER separates scenes from a datababase layer, and instead ties them to gateways via CLEAN architecture.
+Docoupled declarations discussed withis this variation are—`ViewController`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are—`Factory`, `Parameters`, and `UIModel`. Even though VIPER contains `Entity` (E), this implementation of VIPER separates scenes from a datababase layer, and instead ties them to Gateways via CLEAN architecture.
 
 Package contains demo app that demonstrates this architecture.
 
@@ -14,9 +14,9 @@ To avoid writing boilerplate for every scene, the project includes `XCode` templ
 
 A factory and a dependency injector that creates a scene and injects all related objects.
 
-`Factory` takes a `Parameters` as parameter if there is data to be passed from the presenting scene. Factory is a non-initializable `struct` with `static` factory methods. By default, `Factory` includes a single method, that creates a `default` instance of the scene.
+`Factory` takes a `Parameters` as argument if there is data to be passed from the presenting scene. Factory is a non-initializable `struct` with `static` factory methods. By default, `Factory` includes a single method, that creates a `default` instance of the scene.
 
-Since objects are communicating using protocols, some can be swapped out with a non-default implementation. For instance, we declare protocols in a shared framework, alongside with `Presenter` and `ViewController` objects, and implement different `Interactor`'s and `Router`'s in two separate apps, subsequently reusing the same scene while only changing endpoints that they connect to, and scenes to which they can navigate. When even just one component is replaced, a new factory method must be added, as it requires a different dependency injection.
+Since objects are communicating via protocols, they can be swapped out with a non-default implementations. For instance, we can declare protocols in a shared framework, alongside with `ViewController` and `Presenter` objects, and implement different `Interactor`'s and `Router`'s in two separate apps, effectively reusing the same scene while only changing endpoints that they connect to, and scenes to which they can navigate. When even just one component is replaced, a new factory method must be added, as it requires a different dependency injection.
 
 ## Parameters ***(Optional)***
 
@@ -53,7 +53,7 @@ View of the scene.
 Responsibilities of the `ViewController` include:
 
 - Initializing and storing subviews
-- Adding subvuews to view hierarchy
+- Adding subviews to the view hierarchy
 - Setting up a layout
 - Reconfiguring self and subviews
 
@@ -100,7 +100,7 @@ Responsibilities of the `Presenter` include:
 - Connecting all components
 - Communication with `ViewController` to trigger view configuration, presentation, and other changes
 - Communicating with `Router` to trigger navigation towards or presentation of scenes, which in turn communicates with `ViewController`
-- Communicating with `Interactor` to fetch data
+- Communicating with `Interactor` to interact with databases
 - Storing and managing data. This includes `Parameters` passed from the previous scene.
 
 Responsibilities of the `Presenter` do not include:
@@ -109,7 +109,7 @@ Responsibilities of the `Presenter` do not include:
 
 #### Presentable
 
-`Presentable` protocol is used by `ViewController` to notify `Presenter` that an event or an action has occurred. Some properties and methods declared in protocol are:
+`Presentable` protocol is used by `ViewController` to access data, or to  notify `Presenter` that an event or an action has occurred. Some properties and methods declared in protocol are:
 
 ```swift
 func viewDidLoad()
@@ -128,7 +128,7 @@ A wireframe/navigator of the scene that performs navigation towards and presenta
 
 #### Routable
 
-`Routable` protocol is used by `Presenter` to trigger navigation towards or presentation of scenes. Some methods declared in protocol are:
+`Routable` protocol is used by `Presenter` to trigger navigation towards, or presentation of scenes. Some methods declared in this protocol are:
     
 ```swift
 func toSomeScene()
@@ -149,7 +149,7 @@ Responsibilities of the `Interactor` include:
 
 Responsibilities of the `Interactor` do not include:
 
-- Performing fetch requests on its own independent of a `Gateway`.
+- Performing fetch requests on its own independent of `Gateway`'s.
 
 #### Interactive
 
