@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - UI Activity Indicator Viewable
-/// Porotocl for presenting an `UIActivityIndicatorView` and controling user interaction.
+/// Protocol for presenting an `UIActivityIndicatorView` and controling user interaction.
 ///
 /// `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `View/Controller`.
 ///
