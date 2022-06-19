@@ -82,9 +82,10 @@ final class LocalizationService {
         guard
             var languageIDs: [String] = UserDefaults.standard.value(forKey: Self.appleLanguagesUserDefaultsKey) as? [String],
             let index: Int = languageIDs.firstIndex(of: {
-                switch Locale.current.regionCode {
-                case nil: return locale.id
-                case let regionCode?: return "\(locale.id)-\(regionCode)"
+                if let regionCode: String = Locale.current.regionCode {
+                    return "\(locale.id)-\(regionCode)"
+                } else {
+                    return locale.id
                 }
             }())
         else {

@@ -65,9 +65,10 @@ extension View {
         _ value: Value?,
         transform: (Self, Value) -> some View
     ) -> some View {
-        switch value {
-        case let value?: transform(self, value)
-        case nil: self
+        if let value = value {
+            transform(self, value)
+        } else {
+            self
         }
     }
     
@@ -89,9 +90,10 @@ extension View {
         ifTransform: (Self, Value) -> some View,
         elseTransform: (Self) -> some View
     ) -> some View {
-        switch value {
-        case let value?: ifTransform(self, value)
-        case nil: elseTransform(self)
+        if let value = value {
+            ifTransform(self, value)
+        } else {
+            elseTransform(self)
         }
     }
 }
