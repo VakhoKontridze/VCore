@@ -34,7 +34,7 @@ extension View {
     ///            .standardNavigationTitle("Destination")
     ///     }
     ///
-    public func navigationLink<Destination>(
+    public func navigationLink(
         isActive: Binding<Bool>,
         @ViewBuilder destination: @escaping () -> some View
     ) -> some View {
