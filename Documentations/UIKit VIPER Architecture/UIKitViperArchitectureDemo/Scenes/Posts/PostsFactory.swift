@@ -16,7 +16,7 @@ struct PostsFactory {
     static func `default`() -> UIViewController {
         let viewController: PostsViewController = .init()
         
-        let router: PostsRouter = .init(navigable: viewController)
+        let router: PostsRouter = .init(navigator: viewController)
 
         let interactor: PostsInteractor = .init()
 

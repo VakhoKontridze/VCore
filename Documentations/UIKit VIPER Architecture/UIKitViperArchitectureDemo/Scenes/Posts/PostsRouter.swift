@@ -8,21 +8,21 @@
 import Foundation
 
 // MARK: - Posts Router
-final class PostsRouter<Navigable>: PostsRoutable
-    where Navigable: PostsNavigable
+final class PostsRouter<Navigator>: PostsRoutable
+    where Navigator: PostsNavigable
 {
     // MARK: Properties
-    private unowned let navigable: Navigable
+    private unowned let navigator: Navigator
 
     // MARK: Initializers
     init(
-        navigable: Navigable
+        navigator: Navigator
     ) {
-        self.navigable = navigable
+        self.navigator = navigator
     }
 
     // MARK: Routable
     func toPostDetails(parameters: PostDetailsParameters) {
-        navigable.push(PostDetailsFactory.default(parameters: parameters))
+        navigator.push(PostDetailsFactory.default(parameters: parameters))
     }
 }
