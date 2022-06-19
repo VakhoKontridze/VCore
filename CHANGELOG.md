@@ -2,6 +2,10 @@
 
 #### 3.7.0(29)
 
+Extensions
+
+- `View` navigationLink method is added that embeds invisible `NavigationLink` in view hierarchy
+
 Global Functions
 
 - `KeyPath` equality and comparison functions are added, that equate and compare objects by up to six properties
