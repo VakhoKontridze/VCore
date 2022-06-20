@@ -9,18 +9,18 @@ import SwiftUI
 import VCore
 
 // MARK: - Posts Scene View
-struct PostsView<Presentable>: View
-    where Presentable: PostsPresentable
+struct PostsView<Presenter>: View
+    where Presenter: PostsPresentable
 {
     // MARK: Properties
-    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator
-    @StateObject private var presenter: Presentable
+    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator?
+    @StateObject private var presenter: Presenter
     
     private typealias Model = PostsUIModel
     
     // MARK: Initializers
-    init(presenter: Presentable) {
-        self._presenter = .init(wrappedValue: presenter)
+    init(presenter: Presenter) {
+        self._presenter = .init(wrappedValue: presenter) 
     }
 
     // MARK: Body
@@ -30,7 +30,6 @@ struct PostsView<Presentable>: View
             contentView
         })
             .onFirstAppear(perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
-            .background(canvas)
             .standardNavigationTitle("Posts")
             .alert(parameters: $presenter.alertParameters)
             .progressView(parameters: presenter.progressViewParameters)

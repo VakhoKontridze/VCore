@@ -24,7 +24,6 @@ struct ___VARIABLE_productName___View<Presenter>: View
             contentView
         })
             .onFirstAppear(perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
-            .background(canvas)
             .standardNavigationTitle("___VARIABLE_productName___")
             .alert(parameters: $presenter.alertParameters)
             .progressView(parameters: presenter.progressViewParameters)

@@ -11,10 +11,11 @@ import VCore
 // MARK: - Posts Presentable
 @MainActor protocol PostsPresentable: ObservableObject {
     /*@Published*/ var navigationStackCoordinator: NavigationStackCoordinator? { get set }
-    /*@Published*/ var progressViewParameters: ProgressViewParameters? { get }
     /*@Published*/ var alertParameters: AlertParameters? { get set }
+    /*@Published*/ var progressViewParameters: ProgressViewParameters? { get }
     
-    var postParameters: [PostRowViewParameters] { get }
+    /*@Published*/ var postParameters: [PostRowViewParameters] { get }
+    
     func refreshPosts()
     func toPostDetails(parameters: PostRowViewParameters)
 }

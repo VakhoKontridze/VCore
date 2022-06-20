@@ -14,11 +14,13 @@ To avoid writing boilerplate for every scene, the project includes `XCode` templ
 
 A factory and a dependency injector that creates a scene and injects all related objects.
 
-`Factory` takes a `Parameters` as argument if there is data to be passed from the presenting scene. Factory is a non-initializable `struct` with `static` factory methods. By default, `Factory` includes two method, that create a `default` and `mock` instances of the scene.
+Factory is a non-initializable `struct` with `static` factory methods. By default, `Factory` includes two method, that create a `default` and `mock` instances of the scene.
+
+`Factory` takes `Parameters` as argument if there is data to be passed from the presenting scene. If not, empty `Parameters` object should not be removed, as it's used by a `Router` for identifying which scenes it navigates to using ``navigationDestination(for:destination:)` modifier. 
 
 Since objects are communicating via protocols, they can be swapped out with a non-default implementations. For instance, we can declare protocols in a shared framework, alongside with `View` and `Presenter` objects, and implement different `Interactor`'s and `Router`'s in two separate apps, effectively reusing the same scene while only changing endpoints that they connect to, and scenes to which they can navigate. When even just one component is replaced, a new factory method must be added, as it requires a different dependency injection.
 
-## Parameters ***(Optional)***
+## Parameters
 
 #### Definition
 
