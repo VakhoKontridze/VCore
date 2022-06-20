@@ -4,7 +4,7 @@
 
 Extensions
 
-- `NavigationPath` append `Sequence` method is added
+- Various methods have been added to `NavigationPath`
 
 XCode Templates
 
