@@ -14,7 +14,7 @@ struct PostsNetworkGateway: PostsGateway {
         var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
         request.method = .GET
         
-        try? await Task.sleep(nanoseconds: 1_000_000_000)
+        try? await Task.sleep(seconds: 1)
         
         let posts: [PostsEntity.Post] = try await NetworkClient.default.decodable(from: request)
         let entity: PostsEntity = .init(posts: posts)
