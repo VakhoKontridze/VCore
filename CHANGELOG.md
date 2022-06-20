@@ -1,11 +1,11 @@
 # Change Log
 
-#### 3.7.0(29)
+#### [3.7.0(29)](https://github.com/VakhoKontridze/VCore/releases/tag/3.7.0) — *2022 06 20*
 
 Extensions
 
 - `View` `onFirstAppear` method is added
-- `View` navigationLink method is added that embeds invisible `NavigationLink` in view hierarchy
+- `View` navigationLink method is added that embeds invisible `NavigationLink` in the view hierarchy
 
 Global Functions
 
