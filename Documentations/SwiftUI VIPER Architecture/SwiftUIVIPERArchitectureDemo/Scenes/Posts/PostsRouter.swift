@@ -10,10 +10,6 @@ import VCore
 
 // MARK: - Posts Router
 struct PostsRouter: PostsRoutable {
-    // MARK: Properties
-    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator
-    
-    // MARK: Body
     func body(content: Content) -> some View {
         content
             .navigationDestination(
