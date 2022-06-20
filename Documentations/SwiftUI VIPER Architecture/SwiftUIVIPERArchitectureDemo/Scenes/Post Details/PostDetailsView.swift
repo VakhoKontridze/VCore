@@ -9,16 +9,16 @@ import SwiftUI
 import VCore
 
 // MARK: - Post Details Scene View
-struct PostDetailsView<Presentable>: View
-    where Presentable: PostDetailsPresentable
+struct PostDetailsView<Presenter>: View
+    where Presenter: PostDetailsPresentable
 {
     // MARK: Properties
-    @StateObject private var presenter: Presentable
+    @StateObject private var presenter: Presenter
     
     private typealias UIModel = PostDetailsUIModel
     
     // MARK: Initializers
-    init(presenter: Presentable) {
+    init(presenter: Presenter) {
         self._presenter = .init(wrappedValue: presenter)
     }
 

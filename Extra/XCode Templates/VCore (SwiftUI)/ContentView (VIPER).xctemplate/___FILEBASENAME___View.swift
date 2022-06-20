@@ -3,17 +3,17 @@ import SwiftUI
 import VCore
 
 // MARK: - ___VARIABLE_productName___ Scene View
-struct ___VARIABLE_productName___View<Presentable>: View
-    where Presentable: ___VARIABLE_productName___Presentable
+struct ___VARIABLE_productName___View<Presenter>: View
+    where Presenter: ___VARIABLE_productName___Presentable
 {
     // MARK: Properties
-    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator
-    @StateObject private var presenter: Presentable
+    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator?
+    @StateObject private var presenter: Presenter
     
     private typealias Model = ___VARIABLE_productName___UIModel
     
     // MARK: Initializers
-    init(presenter: Presentable) {
+    init(presenter: Presenter) {
         self._presenter = .init(wrappedValue: presenter)
     }
 
