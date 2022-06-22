@@ -12,6 +12,10 @@ XCode Templates
 
 ### 3.8.0(30)
 
+Global Functions
+
+- `KeyPath` equality and comparison functions are extended to support `10` members
+
 Extensions
 
 - `Task` `sleep(seconds:)` method is added
@@ -21,7 +25,7 @@ Extensions
 Extensions
 
 - `View` `onFirstAppear` method is added
-- `View` navigationLink method is added that embeds invisible `NavigationLink` in the view hierarchy
+- `View` `navigationLink` method is added that embeds invisible `NavigationLink` in the view hierarchy
 
 Global Functions
 

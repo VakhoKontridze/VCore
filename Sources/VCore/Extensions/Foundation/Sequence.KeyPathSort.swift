@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - KeyPath Sort
 extension Sequence {
-    /// Returns the elements of a sequence, sorted using the given keypath as the comparison between elements.
+    /// Returns the elements of a sequence, sorted using the given `KeyPath` as the comparison between elements.
     ///
     ///     struct City {
     ///         let name: String
@@ -24,13 +24,13 @@ extension Sequence {
     ///     let sortedCities: [City] = cities.sorted(by: \.name)
     ///     // [City(name: "London"), City(name: "New York"), City(name: "Paris")]
     ///
-    public func sorted(by keypath: KeyPath<Element, some Comparable>) -> [Element] {
-        sorted { $0[keyPath: keypath] < $1[keyPath: keypath] }
+    public func sorted(by keyPath: KeyPath<Element, some Comparable>) -> [Element] {
+        sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
 }
 
 extension Array {
-    /// Sorts the elements of an `Array` using the given keypath as the comparison between elements.
+    /// Sorts the elements of an `Array` using the given `KeyPath` as the comparison between elements.
     ///
     ///     var cities: [City] = [
     ///         .init(name: "London"),
@@ -41,7 +41,7 @@ extension Array {
     ///     cities.sort(by: \.name)
     ///     // [City(name: "London"), City(name: "New York"), City(name: "Paris")]
     ///
-    mutating public func sort(by keypath: KeyPath<Element, some Comparable> ) {
-        sort { $0[keyPath: keypath] < $1[keyPath: keypath] }
+    mutating public func sort(by keyPath: KeyPath<Element, some Comparable> ) {
+        sort { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
 }

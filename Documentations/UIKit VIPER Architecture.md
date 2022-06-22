@@ -42,7 +42,7 @@ There are five protocols thatt explain the communication:
 | Navigable   | Router         | Presenter      | unowned   |
 | Presentable | Presenter      | ViewController | strong    |
 | Routable    | Router         | Presenter      | strong    |
-| Interactive | Interactor     | Presenter      | strong    |
+| Interactive | Interactor     | Presenter      | N/A       |
 
 ## ViewController (Viewable + Navigable)
 
@@ -68,7 +68,7 @@ Responsibilities of the `ViewController` do not include:
 `Viewable` protocol is used by `Presenter` for configuring and modifying the view in runtime. Some properties and methods declared in protocol are:
     
 ```swift
-func setContinueButtonState(to isUserInteractionEnabled: Bool)
+func setContinueButtonInteraction(to isUserInteractionEnabled: Bool)
 func setInfoLabelText(to text: String)
 ```
 

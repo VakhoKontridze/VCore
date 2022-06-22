@@ -133,4 +133,84 @@ final class IsGreaterThanOrEqualToByKeyPathTests: XCTestCase {
             by: \.a, \.b, \.c, \.d, \.e, \.f
         ))
     }
+    
+    func test7() {
+        XCTAssertTrue(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(g: -1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
+        ))
+        
+        XCTAssertTrue(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
+        ))
+        
+        XCTAssertFalse(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(g: 1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
+        ))
+    }
+    
+    func test8() {
+        XCTAssertTrue(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(h: -1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
+        ))
+        
+        XCTAssertTrue(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
+        ))
+        
+        XCTAssertFalse(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(h: 1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
+        ))
+    }
+    
+    func test9() {
+        XCTAssertTrue(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(i: -1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
+        ))
+        
+        XCTAssertTrue(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
+        ))
+        
+        XCTAssertFalse(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(i: 1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
+        ))
+    }
+    
+    func test10() {
+        XCTAssertTrue(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(j: -1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
+        ))
+        
+        XCTAssertTrue(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
+        ))
+        
+        XCTAssertFalse(VCore.isGreaterThanOrEqual(
+            SomeObject(),
+            to: .init(j: 1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
+        ))
+    }
 }
