@@ -68,6 +68,18 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
         }
     }
     
+    // MARK: Description
+    /// Textual representation.
+    public func description(showEmptyPatchVersionAsZero: Bool = false) -> String {
+        if showEmptyPatchVersionAsZero {
+            return "\(major).\(minor).\(patchUnwrapped)"
+        } else if let patch = patch {
+            return "\(major).\(minor).\(patch)"
+        } else {
+            return "\(major).\(minor)"
+        }
+    }
+    
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
         isEqual(lhs, to: rhs, by: \.major, \.minor, \.patchUnwrapped)
@@ -82,10 +94,6 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
 // MARK: Custom String Convertible
 extension ModuleVersion: CustomStringConvertible {
     public var description: String {
-        if let patch = patch {
-            return "\(major).\(minor).\(patch)"
-        } else {
-            return "\(major).\(minor)"
-        }
+        description()
     }
 }
