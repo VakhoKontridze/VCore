@@ -12,14 +12,11 @@ import Foundation
 ///
 ///     isLess(objectA, than: objectB, by: \.a)
 ///
-public func isLess<T, P0>(
+public func isLess<T>(
     _ lhs: T,
     than rhs: T,
-    by keyPath0: KeyPath<T, P0>
-) -> Bool
-    where
-        P0: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>
+) -> Bool {
     lhs[keyPath: keyPath0] <
     rhs[keyPath: keyPath0]
 }
@@ -28,16 +25,12 @@ public func isLess<T, P0>(
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b)
 ///
-public func isLess<T, P0, P1>(
+public func isLess<T>(
     _ lhs: T,
     than rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>
+) -> Bool {
     (lhs[keyPath: keyPath0], lhs[keyPath: keyPath1]) <
     (rhs[keyPath: keyPath0], rhs[keyPath: keyPath1])
 }
@@ -46,18 +39,13 @@ public func isLess<T, P0, P1>(
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c)
 ///
-public func isLess<T, P0, P1, P2>(
+public func isLess<T>(
     _ lhs: T,
     than rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>
+) -> Bool {
     (lhs[keyPath: keyPath0], lhs[keyPath: keyPath1], lhs[keyPath: keyPath2]) <
     (rhs[keyPath: keyPath0], rhs[keyPath: keyPath1], rhs[keyPath: keyPath2])
 }
@@ -66,20 +54,14 @@ public func isLess<T, P0, P1, P2>(
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d)
 ///
-public func isLess<T, P0, P1, P2, P3>(
+public func isLess<T>(
     _ lhs: T,
     than rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>
+) -> Bool {
     (lhs[keyPath: keyPath0], lhs[keyPath: keyPath1], lhs[keyPath: keyPath2], lhs[keyPath: keyPath3]) <
     (rhs[keyPath: keyPath0], rhs[keyPath: keyPath1], rhs[keyPath: keyPath2], rhs[keyPath: keyPath3])
 }
@@ -88,22 +70,15 @@ public func isLess<T, P0, P1, P2, P3>(
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e)
 ///
-public func isLess<T, P0, P1, P2, P3, P4>(
+public func isLess<T>(
     _ lhs: T,
     than rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>
+) -> Bool {
     (lhs[keyPath: keyPath0], lhs[keyPath: keyPath1], lhs[keyPath: keyPath2], lhs[keyPath: keyPath3], lhs[keyPath: keyPath4]) <
     (rhs[keyPath: keyPath0], rhs[keyPath: keyPath1], rhs[keyPath: keyPath2], rhs[keyPath: keyPath3], rhs[keyPath: keyPath4])
 }
@@ -112,24 +87,16 @@ public func isLess<T, P0, P1, P2, P3, P4>(
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f)
 ///
-public func isLess<T, P0, P1, P2, P3, P4, P5>(
+public func isLess<T>(
     _ lhs: T,
     than rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>,
-    _ keyPath5: KeyPath<T, P5>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable,
-        P5: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>,
+    _ keyPath5: KeyPath<T, some Comparable>
+) -> Bool {
     (lhs[keyPath: keyPath0], lhs[keyPath: keyPath1], lhs[keyPath: keyPath2], lhs[keyPath: keyPath3], lhs[keyPath: keyPath4], lhs[keyPath: keyPath5]) <
     (rhs[keyPath: keyPath0], rhs[keyPath: keyPath1], rhs[keyPath: keyPath2], rhs[keyPath: keyPath3], rhs[keyPath: keyPath4], rhs[keyPath: keyPath5])
 }
@@ -138,26 +105,17 @@ public func isLess<T, P0, P1, P2, P3, P4, P5>(
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g)
 ///
-public func isLess<T, P0, P1, P2, P3, P4, P5, P6>(
+public func isLess<T>(
     _ lhs: T,
     than rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>,
-    _ keyPath5: KeyPath<T, P5>,
-    _ keyPath6: KeyPath<T, P6>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable,
-        P5: Comparable,
-        P6: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>,
+    _ keyPath5: KeyPath<T, some Comparable>,
+    _ keyPath6: KeyPath<T, some Comparable>
+) -> Bool {
     if lhs[keyPath: keyPath0] != rhs[keyPath: keyPath0] { return lhs[keyPath: keyPath0] < rhs[keyPath: keyPath0] }
     else if lhs[keyPath: keyPath1] != rhs[keyPath: keyPath1] { return lhs[keyPath: keyPath1] < rhs[keyPath: keyPath1] }
     else if lhs[keyPath: keyPath2] != rhs[keyPath: keyPath2] { return lhs[keyPath: keyPath2] < rhs[keyPath: keyPath2] }
@@ -172,28 +130,18 @@ public func isLess<T, P0, P1, P2, P3, P4, P5, P6>(
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h)
 ///
-public func isLess<T, P0, P1, P2, P3, P4, P5, P6, P7>(
+public func isLess<T>(
     _ lhs: T,
     than rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>,
-    _ keyPath5: KeyPath<T, P5>,
-    _ keyPath6: KeyPath<T, P6>,
-    _ keyPath7: KeyPath<T, P7>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable,
-        P5: Comparable,
-        P6: Comparable,
-        P7: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>,
+    _ keyPath5: KeyPath<T, some Comparable>,
+    _ keyPath6: KeyPath<T, some Comparable>,
+    _ keyPath7: KeyPath<T, some Comparable>
+) -> Bool {
     if lhs[keyPath: keyPath0] != rhs[keyPath: keyPath0] { return lhs[keyPath: keyPath0] < rhs[keyPath: keyPath0] }
     else if lhs[keyPath: keyPath1] != rhs[keyPath: keyPath1] { return lhs[keyPath: keyPath1] < rhs[keyPath: keyPath1] }
     else if lhs[keyPath: keyPath2] != rhs[keyPath: keyPath2] { return lhs[keyPath: keyPath2] < rhs[keyPath: keyPath2] }
@@ -209,30 +157,19 @@ public func isLess<T, P0, P1, P2, P3, P4, P5, P6, P7>(
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i)
 ///
-public func isLess<T, P0, P1, P2, P3, P4, P5, P6, P7, P8>(
+public func isLess<T>(
     _ lhs: T,
     than rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>,
-    _ keyPath5: KeyPath<T, P5>,
-    _ keyPath6: KeyPath<T, P6>,
-    _ keyPath7: KeyPath<T, P7>,
-    _ keyPath8: KeyPath<T, P8>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable,
-        P5: Comparable,
-        P6: Comparable,
-        P7: Comparable,
-        P8: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>,
+    _ keyPath5: KeyPath<T, some Comparable>,
+    _ keyPath6: KeyPath<T, some Comparable>,
+    _ keyPath7: KeyPath<T, some Comparable>,
+    _ keyPath8: KeyPath<T, some Comparable>
+) -> Bool {
     if lhs[keyPath: keyPath0] != rhs[keyPath: keyPath0] { return lhs[keyPath: keyPath0] < rhs[keyPath: keyPath0] }
     else if lhs[keyPath: keyPath1] != rhs[keyPath: keyPath1] { return lhs[keyPath: keyPath1] < rhs[keyPath: keyPath1] }
     else if lhs[keyPath: keyPath2] != rhs[keyPath: keyPath2] { return lhs[keyPath: keyPath2] < rhs[keyPath: keyPath2] }
@@ -249,32 +186,20 @@ public func isLess<T, P0, P1, P2, P3, P4, P5, P6, P7, P8>(
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j)
 ///
-public func isLess<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(
+public func isLess<T>(
     _ lhs: T,
     than rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>,
-    _ keyPath5: KeyPath<T, P5>,
-    _ keyPath6: KeyPath<T, P6>,
-    _ keyPath7: KeyPath<T, P7>,
-    _ keyPath8: KeyPath<T, P8>,
-    _ keyPath9: KeyPath<T, P9>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable,
-        P5: Comparable,
-        P6: Comparable,
-        P7: Comparable,
-        P8: Comparable,
-        P9: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>,
+    _ keyPath5: KeyPath<T, some Comparable>,
+    _ keyPath6: KeyPath<T, some Comparable>,
+    _ keyPath7: KeyPath<T, some Comparable>,
+    _ keyPath8: KeyPath<T, some Comparable>,
+    _ keyPath9: KeyPath<T, some Comparable>
+) -> Bool {
     if lhs[keyPath: keyPath0] != rhs[keyPath: keyPath0] { return lhs[keyPath: keyPath0] < rhs[keyPath: keyPath0] }
     else if lhs[keyPath: keyPath1] != rhs[keyPath: keyPath1] { return lhs[keyPath: keyPath1] < rhs[keyPath: keyPath1] }
     else if lhs[keyPath: keyPath2] != rhs[keyPath: keyPath2] { return lhs[keyPath: keyPath2] < rhs[keyPath: keyPath2] }

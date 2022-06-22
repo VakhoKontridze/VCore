@@ -12,14 +12,11 @@ import Foundation
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a)
 ///
-public func isGreaterThanOrEqual<T, P0>(
+public func isGreaterThanOrEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keyPath0: KeyPath<T, P0>
-) -> Bool
-    where
-        P0: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>
+) -> Bool {
     !isLess(lhs, than: rhs, by: keyPath0)
 }
 
@@ -27,16 +24,12 @@ public func isGreaterThanOrEqual<T, P0>(
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b)
 ///
-public func isGreaterThanOrEqual<T, P0, P1>(
+public func isGreaterThanOrEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>
+) -> Bool {
     !isLess(lhs, than: rhs, by: keyPath0, keyPath1)
 }
 
@@ -44,18 +37,13 @@ public func isGreaterThanOrEqual<T, P0, P1>(
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b, \.c)
 ///
-public func isGreaterThanOrEqual<T, P0, P1, P2>(
+public func isGreaterThanOrEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>
+) -> Bool {
     !isLess(lhs, than: rhs, by: keyPath0, keyPath1, keyPath2)
 }
 
@@ -63,20 +51,14 @@ public func isGreaterThanOrEqual<T, P0, P1, P2>(
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b, \.c, \.d)
 ///
-public func isGreaterThanOrEqual<T, P0, P1, P2, P3>(
+public func isGreaterThanOrEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>
+) -> Bool {
     !isLess(lhs, than: rhs, by: keyPath0, keyPath1, keyPath2, keyPath3)
 }
 
@@ -84,22 +66,15 @@ public func isGreaterThanOrEqual<T, P0, P1, P2, P3>(
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b, \.c, \.d, \.e)
 ///
-public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4>(
+public func isGreaterThanOrEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>
+) -> Bool {
     !isLess(lhs, than: rhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4)
 }
 
@@ -107,24 +82,16 @@ public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4>(
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f)
 ///
-public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4, P5>(
+public func isGreaterThanOrEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>,
-    _ keyPath5: KeyPath<T, P5>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable,
-        P5: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>,
+    _ keyPath5: KeyPath<T, some Comparable>
+) -> Bool {
     !isLess(lhs, than: rhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4, keyPath5)
 }
 
@@ -132,26 +99,17 @@ public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4, P5>(
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g)
 ///
-public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4, P5, P6>(
+public func isGreaterThanOrEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>,
-    _ keyPath5: KeyPath<T, P5>,
-    _ keyPath6: KeyPath<T, P6>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable,
-        P5: Comparable,
-        P6: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>,
+    _ keyPath5: KeyPath<T, some Comparable>,
+    _ keyPath6: KeyPath<T, some Comparable>
+) -> Bool {
     !isLess(lhs, than: rhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4, keyPath5, keyPath6)
 }
 
@@ -159,28 +117,18 @@ public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4, P5, P6>(
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h)
 ///
-public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4, P5, P6, P7>(
+public func isGreaterThanOrEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>,
-    _ keyPath5: KeyPath<T, P5>,
-    _ keyPath6: KeyPath<T, P6>,
-    _ keyPath7: KeyPath<T, P7>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable,
-        P5: Comparable,
-        P6: Comparable,
-        P7: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>,
+    _ keyPath5: KeyPath<T, some Comparable>,
+    _ keyPath6: KeyPath<T, some Comparable>,
+    _ keyPath7: KeyPath<T, some Comparable>
+) -> Bool {
     !isLess(lhs, than: rhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4, keyPath5, keyPath6, keyPath7)
 }
 
@@ -188,30 +136,19 @@ public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4, P5, P6, P7>(
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i)
 ///
-public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4, P5, P6, P7, P8>(
+public func isGreaterThanOrEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>,
-    _ keyPath5: KeyPath<T, P5>,
-    _ keyPath6: KeyPath<T, P6>,
-    _ keyPath7: KeyPath<T, P7>,
-    _ keyPath8: KeyPath<T, P8>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable,
-        P5: Comparable,
-        P6: Comparable,
-        P7: Comparable,
-        P8: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>,
+    _ keyPath5: KeyPath<T, some Comparable>,
+    _ keyPath6: KeyPath<T, some Comparable>,
+    _ keyPath7: KeyPath<T, some Comparable>,
+    _ keyPath8: KeyPath<T, some Comparable>
+) -> Bool {
     !isLess(lhs, than: rhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4, keyPath5, keyPath6, keyPath7, keyPath8)
 }
 
@@ -219,31 +156,19 @@ public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4, P5, P6, P7, P8>(
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j)
 ///
-public func isGreaterThanOrEqual<T, P0, P1, P2, P3, P4, P5, P6, P7, P8, P9>(
+public func isGreaterThanOrEqual<T>(
     _ lhs: T,
     to rhs: T,
-    by keyPath0: KeyPath<T, P0>,
-    _ keyPath1: KeyPath<T, P1>,
-    _ keyPath2: KeyPath<T, P2>,
-    _ keyPath3: KeyPath<T, P3>,
-    _ keyPath4: KeyPath<T, P4>,
-    _ keyPath5: KeyPath<T, P5>,
-    _ keyPath6: KeyPath<T, P6>,
-    _ keyPath7: KeyPath<T, P7>,
-    _ keyPath8: KeyPath<T, P8>,
-    _ keyPath9: KeyPath<T, P9>
-) -> Bool
-    where
-        P0: Comparable,
-        P1: Comparable,
-        P2: Comparable,
-        P3: Comparable,
-        P4: Comparable,
-        P5: Comparable,
-        P6: Comparable,
-        P7: Comparable,
-        P8: Comparable,
-        P9: Comparable
-{
+    by keyPath0: KeyPath<T, some Comparable>,
+    _ keyPath1: KeyPath<T, some Comparable>,
+    _ keyPath2: KeyPath<T, some Comparable>,
+    _ keyPath3: KeyPath<T, some Comparable>,
+    _ keyPath4: KeyPath<T, some Comparable>,
+    _ keyPath5: KeyPath<T, some Comparable>,
+    _ keyPath6: KeyPath<T, some Comparable>,
+    _ keyPath7: KeyPath<T, some Comparable>,
+    _ keyPath8: KeyPath<T, some Comparable>,
+    _ keyPath9: KeyPath<T, some Comparable>
+) -> Bool {
     !isLess(lhs, than: rhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4, keyPath5, keyPath6, keyPath7, keyPath8, keyPath9)
 }
