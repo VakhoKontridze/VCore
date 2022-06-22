@@ -9,6 +9,17 @@ import SwiftUI
 
 // MARK: - Securable Text Field
 /// Input component that displays an editable text interface with togglable text.
+///
+///     @State var isSecure: Bool = false
+///     @State var text: String = "Lorem ipsum"
+///
+///     var body: some View {
+///         SecurableTextField(
+///             isSecure: isSecure,
+///             placeholder: "Lorem ipsum",
+///             text: $text
+///         )
+///     }
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct SecurableTextField: View {
     // MARK: Properties
