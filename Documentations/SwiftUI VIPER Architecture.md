@@ -1,4 +1,4 @@
-# UIKit VIPER Architecture
+# SwiftUI VIPER Architecture
 
 A backronym for `View`, `Interactor`, `Presenter`, `Entity`, and `Router`.
 
@@ -39,7 +39,7 @@ There are five protocols thatt explain the communication:
 | Protocol    | Conformance    | Owner          | Ownership |
 | :---------- | :------------- | :------------- | :-------- |
 | Presentable | Presenter      | View           | strong    |
-| Routable    | Router         | -              | -         |
+| Routable    | Router         | -              | N/A       |
 | Interactive | Interactor     | Presenter      | strong    |
 
 ## View
