@@ -57,8 +57,8 @@ public struct SecurableTextField: View {
 // MARK: - Preview
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct SecurableTextField_Previews: PreviewProvider {
-    @State static private var isSecure: Bool = false
-    @State static private var text: String = "Lorem ipsum"
+    @State private static var isSecure: Bool = false
+    @State private static var text: String = "Lorem ipsum"
     
     static var previews: some View {
         HStack(content: {
