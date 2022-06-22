@@ -40,7 +40,7 @@ There are five protocols thatt explain the communication:
 | Navigable   | Router         | Presenter      | unowned   |
 | Presentable | Presenter      | ViewController | strong    |
 | Routable    | Router         | Presenter      | strong    |
-| Interactive | Interactor     | Presenter      | strong    |
+| Interactive | Interactor     | Presenter      | N/A       |
 
 ## ViewController (Viewable + Navigable)
 
