@@ -2,6 +2,10 @@
 
 ### 3.8.0(30)
 
+Views and ViewControllers
+
+- `SecurableTextField` is added
+
 Global Functions
 
 - `KeyPath` equality and comparison functions are extended to support `10` members
