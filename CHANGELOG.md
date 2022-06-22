@@ -11,7 +11,7 @@ Extensions
 Extensions
 
 - `View` `onFirstAppear` method is added
-- `View` navigationLink method is added that embeds invisible `NavigationLink` in the view hierarchy
+- `View` `navigationLink` method is added that embeds invisible `NavigationLink` in the view hierarchy
 
 Global Functions
 
