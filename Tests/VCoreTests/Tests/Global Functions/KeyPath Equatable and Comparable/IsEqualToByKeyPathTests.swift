@@ -18,6 +18,10 @@ final class IsEqualToByKeyPathTests: XCTestCase {
         var d: Int = 0
         var e: Int = 0
         var f: Int = 0
+        var g: Int = 0
+        var h: Int = 0
+        var i: Int = 0
+        var j: Int = 0
     }
 
     // MARK: Tests
@@ -102,6 +106,62 @@ final class IsEqualToByKeyPathTests: XCTestCase {
             SomeObject(),
             to: .init(f: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f
+        ))
+    }
+    
+    func test7() {
+        XCTAssertTrue(VCore.isEqual(
+            SomeObject(),
+            to: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
+        ))
+        
+        XCTAssertFalse(VCore.isEqual(
+            SomeObject(),
+            to: .init(g: 1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
+        ))
+    }
+    
+    func test8() {
+        XCTAssertTrue(VCore.isEqual(
+            SomeObject(),
+            to: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
+        ))
+        
+        XCTAssertFalse(VCore.isEqual(
+            SomeObject(),
+            to: .init(h: 1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
+        ))
+    }
+    
+    func test9() {
+        XCTAssertTrue(VCore.isEqual(
+            SomeObject(),
+            to: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
+        ))
+        
+        XCTAssertFalse(VCore.isEqual(
+            SomeObject(),
+            to: .init(i: 1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
+        ))
+    }
+    
+    func test10() {
+        XCTAssertTrue(VCore.isEqual(
+            SomeObject(),
+            to: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
+        ))
+        
+        XCTAssertFalse(VCore.isEqual(
+            SomeObject(),
+            to: .init(j: 1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
         ))
     }
 }

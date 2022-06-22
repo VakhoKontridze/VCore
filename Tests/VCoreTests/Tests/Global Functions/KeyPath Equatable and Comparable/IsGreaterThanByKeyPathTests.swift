@@ -97,4 +97,60 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
             by: \.a, \.b, \.c, \.d, \.e, \.f
         ))
     }
+    
+    func test7() {
+        XCTAssertTrue(VCore.isGreater(
+            SomeObject(),
+            than: .init(g: -1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
+        ))
+        
+        XCTAssertFalse(VCore.isGreater(
+            SomeObject(),
+            than: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
+        ))
+    }
+    
+    func test8() {
+        XCTAssertTrue(VCore.isGreater(
+            SomeObject(),
+            than: .init(h: -1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
+        ))
+        
+        XCTAssertFalse(VCore.isGreater(
+            SomeObject(),
+            than: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
+        ))
+    }
+    
+    func test9() {
+        XCTAssertTrue(VCore.isGreater(
+            SomeObject(),
+            than: .init(i: -1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
+        ))
+        
+        XCTAssertFalse(VCore.isGreater(
+            SomeObject(),
+            than: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
+        ))
+    }
+    
+    func test10() {
+        XCTAssertTrue(VCore.isGreater(
+            SomeObject(),
+            than: .init(j: -1),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
+        ))
+        
+        XCTAssertFalse(VCore.isGreater(
+            SomeObject(),
+            than: .init(),
+            by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
+        ))
+    }
 }

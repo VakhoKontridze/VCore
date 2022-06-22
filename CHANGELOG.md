@@ -2,6 +2,10 @@
 
 ### 3.8.0(30)
 
+Global Functions
+
+- `KeyPath` equality and comparison functions are extended to support `10` members
+
 Extensions
 
 - `Task` `sleep(seconds:)` method is added
