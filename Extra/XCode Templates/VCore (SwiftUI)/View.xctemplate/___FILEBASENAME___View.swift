@@ -21,7 +21,7 @@ struct ___VARIABLE_productName___View: View {
     }
 }
 
-// MARK: - Previews
+// MARK: - Preview
 struct ___VARIABLE_productName___View_Previews: PreviewProvider {
     static var previews: some View {
         ___VARIABLE_productName___View(parameters: .mock)

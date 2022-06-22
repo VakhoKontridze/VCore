@@ -46,7 +46,7 @@ struct PostDetailsView<Presenter>: View
     }
 }
 
-// MARK: - Previews
+// MARK: - Preview
 struct PostDetailsViewPostDetailsPreviews: PreviewProvider {
     static var previews: some View {
         CoordinatingNavigationStack(

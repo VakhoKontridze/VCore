@@ -38,7 +38,7 @@ struct PostRowView: View {
     }
 }
 
-// MARK: - Previews
+// MARK: - Preview
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
         PostsViewPostsPreviews.previews

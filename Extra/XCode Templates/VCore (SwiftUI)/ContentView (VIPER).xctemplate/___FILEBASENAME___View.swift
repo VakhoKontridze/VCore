@@ -38,7 +38,7 @@ struct ___VARIABLE_productName___View<Presenter>: View
     }
 }
 
-// MARK: - Previews
+// MARK: - Preview
 struct ___VARIABLE_productName___View___VARIABLE_productName___Previews: PreviewProvider {
     static var previews: some View {
         CoordinatingNavigationStack(root: {
