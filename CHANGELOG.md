@@ -5,6 +5,7 @@
 Views and ViewControllers
 
 - `SecurableTextField` is added
+- `PlainDisclosureGroup` is added
 
 Global Functions
 
