@@ -26,7 +26,7 @@ public struct PlainDisclosureGroupUIModel {
     
     // MARK: Layout
     /// Sub-model containing layout properties.
-    struct Layout {
+    public struct Layout {
         // MARK: Properties
         /// Default padding in native diclsosure group. Defaults to `8`.
         ///
@@ -42,7 +42,7 @@ public struct PlainDisclosureGroupUIModel {
 
     // MARK: Colors
     /// Sub-model containing color properties.
-    struct Colors {
+    public struct Colors {
         // MARK: Properties
         /// Background color.
         ///
@@ -56,7 +56,7 @@ public struct PlainDisclosureGroupUIModel {
     
     // MARK: Animations
     /// Sub-model containing animation properties.
-    struct Animations {
+    public struct Animations {
         // MARK: Properties
         /// Expand and collapse animation. Defaults to `default`.
         public var expandCollapse: Animation? = .default
