@@ -4,7 +4,6 @@
 
 Views and ViewControllers
 
-- `DividedForEach` is added
 - `SecurableTextField` is added
 - `PlainDisclosureGroup` is added
 
