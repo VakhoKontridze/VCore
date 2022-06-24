@@ -98,7 +98,7 @@ public struct DividedForEach<Data, ID, Content, Separator>: View
             
             if
                 index == data.startIndex &&
-                uiModel.layout.showFirstSeparator
+                uiModel.layout.showsFirstSeparator
             {
                 separator()
             }
@@ -106,7 +106,7 @@ public struct DividedForEach<Data, ID, Content, Separator>: View
             content(element)
             
             if index == data.index(before: data.endIndex) {
-                if uiModel.layout.showLastSeparator {
+                if uiModel.layout.showsLastSeparator {
                     separator()
                 }
             } else {

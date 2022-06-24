@@ -23,10 +23,10 @@ public struct DividedForEachUIModel {
     public struct Layout {
         // MARK: Properties
         /// Indicates if the first row has separator before it. Defaults to `true`.
-        public var showFirstSeparator: Bool = true
+        public var showsFirstSeparator: Bool = true
         
         /// Indicates if the last row has separator after it. Defaults to `true`.
-        public var showLastSeparator: Bool = true
+        public var showsLastSeparator: Bool = true
         
         // MARK: Initializers
         /// Initializes sub-model with default values.
