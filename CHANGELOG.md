@@ -9,7 +9,7 @@ Views and ViewControllers
 
 Global Functions
 
-- `KeyPath` equality and comparison functions are extended to support `10` members
+- `KeyPath` equality and comparison functions are extended to support up to `10` members
 
 Extensions
 
