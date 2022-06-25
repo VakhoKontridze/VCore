@@ -14,6 +14,7 @@ Global Functions
 Extensions
 
 - `Task.sleep(seconds:)` method is added
+- `Sequence.grouped(by:)` method now takes a throwing closure
 
 #### [3.7.0(29)](https://github.com/VakhoKontridze/VCore/releases/tag/3.7.0) — *2022 06 20*
 

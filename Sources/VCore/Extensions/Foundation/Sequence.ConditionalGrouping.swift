@@ -20,16 +20,16 @@ extension Sequence {
     ///     // [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
     ///
     public func grouped(
-        by comparison: @escaping (Element, Element) -> Bool
-    ) -> [[Element]] {
+        by comparison: @escaping (Element, Element) throws -> Bool
+    ) rethrows -> [[Element]] {
         var result: [[Element]] = []
         
         for element in self {
             if
                 !result.isEmpty,
-                let index: Int = result.firstIndex(where: { group in
+                let index: Int = try result.firstIndex(where: { group in
                     guard let firstGroupElement: Element = group.first else { return false }
-                    return comparison(firstGroupElement, element)
+                    return try comparison(firstGroupElement, element)
                 })
             {
                 result[index].append(element)
