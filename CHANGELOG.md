@@ -237,7 +237,7 @@ VIPER Helpers
 XCode Templates
 
 - `UITableViewCell` and `UICollectionViewCell` background colors are now set directly to cell, and not to `contentView`
-- `with` parameter label is added to `Gateway`
+- `with` argument label is added to `Gateway.fetch(_:completion:)`
 
 #### [2.2.0(14)](https://github.com/VakhoKontridze/VCore/releases/tag/2.2.0) — *2022 01 07*
 
@@ -278,7 +278,7 @@ Extensions
 XCode Templates
 
 - `UIViewController` `Factory` is fixed
-- `with` parameter name are removed from configuration methods
+- `with` parameter labels are removed from configuration methods
 
 #### [2.0.2(11)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.2) — *2021 12 29*
 
