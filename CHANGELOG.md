@@ -1,6 +1,6 @@
 # Change Log
 
-### 3.8.1(31)
+### [3.8.1(31)](https://github.com/VakhoKontridze/VCore/releases/tag/3.8.1) — *2022 06 25*
 
 Documentations
 
