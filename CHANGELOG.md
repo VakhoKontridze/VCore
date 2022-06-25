@@ -4,7 +4,8 @@
 
 Extensions
 
-- Various methods have been added to `NavigationPath`
+- `NavigationPath.append(contentsOf:)` method is added
+- `NavigationPath.removeAll()` method is added
 
 XCode Templates
 
