@@ -13,21 +13,22 @@ import SwiftUI
 /// UI Model can be passed as parameter.
 ///
 ///     var body: some View {
-///         ZStack(alignment: .top, content: {
-///             ColorBook.canvas.ignoresSafeArea()
-///
-///             PlainDisclosureGroup(
-///                 isExpanded: $isExpanded,
-///                 label: { Text("Lorem Ipsum") },
-///                 content: {
-///                     VList(data: 0..<20, content: { num in
-///                         Text(String(num))
-///                          .frame(maxWidth: .infinity, alignment: .leading)
+///         PlainDisclosureGroup(
+///             isExpanded: $isExpanded,
+///             label: { Text("Lorem Ipsum") },
+///             content: {
+///                 ScrollView(content: {
+///                     LazyVStack(content: {
+///                         ForEach(0..<10, content: { num in
+///                             Text(String(num))
+///                                 .frame(maxWidth: .infinity, alignment: .leading)
+///                                 .padding(.vertical, 5)
+///                         })
 ///                     })
-///                 }
-///             )
-///                 .padding()
-///         })
+///                 })
+///             }
+///         )
+///             .padding()
 ///     }
 ///
 @available(iOS 14.0, macOS 11.0, *)
@@ -144,10 +145,23 @@ public struct PlainDisclosureGroup<Label, Content>: View
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 struct PlainDisclosureGroup_Previews: PreviewProvider {
+    @State private static var isExpanded: Bool = true
+    
     static var previews: some View {
         PlainDisclosureGroup(
+            isExpanded: $isExpanded,
             label: { Text("Lorem Ipsum") },
-            content: { Color.red.frame(height: 100) }
+            content: {
+                ScrollView(content: {
+                    LazyVStack(content: {
+                        ForEach(0..<10, content: { num in
+                            Text(String(num))
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                                .padding(.vertical, 5)
+                        })
+                    })
+                })
+            }
         )
             .padding()
     }
