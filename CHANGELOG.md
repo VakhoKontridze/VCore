@@ -1,20 +1,20 @@
 # Change Log
 
-### 3.8.0(30)
+### [3.8.0(30)](https://github.com/VakhoKontridze/VCore/releases/tag/3.8.0) — *2022 06 25*
 
 Views and ViewControllers
 
 - `SecurableTextField` is added
 - `PlainDisclosureGroup` is added
 
-Global Functions
-
-- `KeyPath` equality and comparison functions are extended to support up to `10` members
-
 Extensions
 
 - `Task.sleep(seconds:)` method is added
 - `Sequence.grouped(by:)` method now takes a throwing closure
+
+Global Functions
+
+- `KeyPath` equality and comparison functions are extended to support up to `10` members
 
 #### [3.7.0(29)](https://github.com/VakhoKontridze/VCore/releases/tag/3.7.0) — *2022 06 20*
 
