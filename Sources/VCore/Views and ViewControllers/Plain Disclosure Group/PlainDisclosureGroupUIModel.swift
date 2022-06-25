@@ -12,13 +12,13 @@ import SwiftUI
 public struct PlainDisclosureGroupUIModel {
     // MARK: Properties
     /// Sub-model containing layout properties.
-    var layout: Layout = .init()
+    public var layout: Layout = .init()
     
     /// Sub-model containing color properties.
-    var colors: Colors = .init()
+    public var colors: Colors = .init()
     
     /// Sub-model containing animation properties.
-    var animations: Animations = .init()
+    public var animations: Animations = .init()
     
     // MARK: Initializers
     /// Initializes UI model with default values.

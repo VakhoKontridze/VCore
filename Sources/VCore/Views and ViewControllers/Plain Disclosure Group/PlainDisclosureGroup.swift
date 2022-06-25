@@ -12,21 +12,23 @@ import SwiftUI
 ///
 /// UI Model can be passed as parameter.
 ///
-///     ZStack(alignment: .top, content: {
-///         ColorBook.canvas.ignoresSafeArea()
+///     var body: some View {
+///         ZStack(alignment: .top, content: {
+///             ColorBook.canvas.ignoresSafeArea()
 ///
-///         PlainDisclosureGroup(
-///             isExpanded: $isExpanded,
-///             label: { Text("Lorem Ipsum") },
-///             content: {
-///                 VList(data: 0..<20, content: { num in
-///                     Text(String(num))
-///                         .frame(maxWidth: .infinity, alignment: .leading)
-///                 })
-///             }
-///         )
-///             .padding()
-///     })
+///             PlainDisclosureGroup(
+///                 isExpanded: $isExpanded,
+///                 label: { Text("Lorem Ipsum") },
+///                 content: {
+///                     VList(data: 0..<20, content: { num in
+///                         Text(String(num))
+///                          .frame(maxWidth: .infinity, alignment: .leading)
+///                     })
+///                 }
+///             )
+///                 .padding()
+///         })
+///     }
 ///
 @available(iOS 14.0, macOS 11.0, *)
 @available(tvOS, unavailable)

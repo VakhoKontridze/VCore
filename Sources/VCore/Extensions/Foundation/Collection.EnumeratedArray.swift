@@ -26,7 +26,7 @@ extension Collection {
     ///             ForEach(
     ///                 data.enumeratedArray(),
     ///                 id: \.offset,
-    ///                 content: { (i, row) in rowContent(row) }
+    ///                 content: { (i, element) in rowContent(element) }
     ///             )
     ///         }
     ///     }

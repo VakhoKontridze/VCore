@@ -10,27 +10,30 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
-### 3.8.0(30)
+# Change Log
+
+### [3.8.0(30)](https://github.com/VakhoKontridze/VCore/releases/tag/3.8.0) — *2022 06 25*
 
 Views and ViewControllers
 
 - `SecurableTextField` is added
 - `PlainDisclosureGroup` is added
 
-Global Functions
-
-- `KeyPath` equality and comparison functions are extended to support `10` members
-
 Extensions
 
-- `Task` `sleep(seconds:)` method is added
+- `Task.sleep(seconds:)` method is added
+- `Sequence.grouped(by:)` method now takes a throwing closure
+
+Global Functions
+
+- `KeyPath` equality and comparison functions are extended to support up to `10` members
 
 #### [3.7.0(29)](https://github.com/VakhoKontridze/VCore/releases/tag/3.7.0) — *2022 06 20*
 
 Extensions
 
-- `View` `onFirstAppear` method is added
-- `View` `navigationLink` method is added that embeds invisible `NavigationLink` in the view hierarchy
+- `View.onFirstAppear(perform:)` method is added
+- `View.navigationLink(isActive:destination:)` method is added that embeds invisible `NavigationLink` in the view hierarchy
 
 Global Functions
 
@@ -53,8 +56,8 @@ Models
 
 Extensions
 
-- `contains(_:)` method is added to `String`
-- `contains(only:)` method is added to `String`
+- `String.contains(_:)` method is added
+- `String.contains(only:)` method is added
 
 API
 
@@ -90,8 +93,8 @@ Helpers
 
 Extensions
 
-- `UIApplication` now contains `rootViewController` and `rootView` to complement `rootWindow`
-- `UIRectCorner` now has additional options for `View.cornerRadius(_:corners:)`
+- `UIApplication.rootViewController` and `UIApplication.rootView` properties are added to complement `UIApplication.rootWindow`
+- `UIRectCorner` has been extended to support additional corners
 
 XCode Templates
 
@@ -114,15 +117,15 @@ Architectural Pattern Helpers
 
 Extensions
 
-- `String` `removing` `CharacterSet` methods now support `Array`'s
-- `String` `keeping` `CharacterSet` methods now support `Array`'s
-- `toggling` method is added to `Set` to complement `mutating` `toggle`
-- `Optional` `String` method `compactMapNonEmpty` is renamed to `compactMapNonNilNonEmpty`
-- `CharacterSet` `unified` property is added
-- `Calendar` can now calculate number of days in month from year and month as arguments
+- `String.removing(_:)` methods now support `CharacterSet` `Array`'s
+- `String.keeping(only:)` methods now support `CharacterSet` `Array`'s
+- `Set.toggling(_:)` method is added to complement `Set.toggle(_:)`
+- `Array.compactMapNonEmpty(_:)` is renamed to `compactMapNonNilNonEmpty`
+- `CharacterSet.unified` property is added
+- `Calendar.numberOfDaysInMonth(year:month:)` method is added
 - `SizeConfiguration` is renamed to `MinIdealMaxSizes`
 - App info properties are moved from `UIApplication` to `Bundle`, and support is added for all platforms
-- `withTranslatesAutoresizingMaskIntoConstraints` method is added to `UIView`
+- `UIView.withTranslatesAutoresizingMaskIntoConstraints(_:)` method is added
 
 #### [3.3.1(24)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.1) — *2022 06 08*
 
@@ -145,7 +148,7 @@ Views and ViewControllers
 
 Extensions
 
-- `Sequence` `count(where:)` method is added
+- `Sequence.count(where:)` method is added
 
 #### [3.1.1(21)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.1) — *2022 05 21*
 
@@ -165,8 +168,8 @@ Views and ViewControllers
 
 Extensions
 
-- `bindToModalContext` method is added
-- `OptionSet` `elements` property is added
+- `View.bindToModalContext(_:)` method is added
+- `OptionSet.elements` property is added
 - Issue with accessing `cornerRadius` method in `SwiftUI` is fixed
 
 #### [3.0.2(19)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.2) — *2022 05 17*
@@ -207,8 +210,8 @@ Helpers
 Extensions
 
 - `width` parameter can now be passed to `UILabel`'s `multiLineHeight` method
-- `FloatingPoint` method `bound` is renamed to `clamp`
-- `NSObject` method `nsObjectName` is deprecated in favor of `String(describing:)` method
+- `FloatingPoint.bound(in:step:)` is renamed to `clamp`
+- `NSObject.nsObjectName` is deprecated in favor of native `String(describing:)` method
 - Various extensions are added
 
 API
@@ -231,7 +234,7 @@ VIPER Helpers
 
 Extensions
 
-- `Optional` method `let` is deprecated in favor of native `map` and `flatMap`
+- `Optional.let(_:)` method is deprecated in favor of native `Optional.map(_:)` and `Optional.flatMap(_:)`
 
 #### [2.2.1(15)](https://github.com/VakhoKontridze/VCore/releases/tag/2.2.1) — *2022 02 14*
 
@@ -246,20 +249,20 @@ VIPER Helpers
 XCode Templates
 
 - `UITableViewCell` and `UICollectionViewCell` background colors are now set directly to cell, and not to `contentView`
-- `with` parameter label is added to `Gateway`
+- `with` argument label is added to `Gateway.fetch(_:completion:)`
 
 #### [2.2.0(14)](https://github.com/VakhoKontridze/VCore/releases/tag/2.2.0) — *2022 01 07*
 
 Extensions
 
-- Issues with `fixedInRange` extenion with steps is fixed
-- Issues with conditional `View` function `if` is fixed
-- `minimumScaleFactor` parameter is added to `UILabel` configuration methods
-- `fixedInRange` function is renamed to `bound` 
+- Issues with `FloatingPoint.fixedInRange(_:step:)` methods are fixed
+- Issues with conditional `View` function `if` are fixed
+- `minimumScaleFactor` parameter is added to `UILabel` configuration method and initializer
+- `FloatingPoint.fixedInRange(_:step:)` function is renamed to `bound` 
 
 XCode Templates
 
-- `UIView` (Dynamic Model) templates now have a default parameter value for model in `init`
+- `UIView` (Dynamic Model) templates now have a default parameter value for model in initializers
 
 #### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/tag/2.1.1) — *2022 01 04*
 
@@ -275,25 +278,25 @@ Network Client
 
 VIPER Helpers
 
-- `tableViewCellDequeueID` method in `UITableViewDataSourceable` is deprecated
-- `collectionViewCellDequeueID` method in `UICollectionViewDataSourceable` is deprecated
-- `dequeueID` parameter in `dequeueAndConfigureReusableCell` methods are deprecated
+- `UITableViewDataSourceable.tableViewCellDequeueID(section:row:)` method is deprecated
+- `UICollectionViewDataSourceable.collectionViewCellDequeueID(section:row:)` method is deprecated
+- `dequeueID` parameter in `dequeueAndConfigureReusableCell(parameter:)` and `dequeueAndConfigureReusableCell(indexPath:parameter:)` methods are deprecated
 
 Extensions
 
-- `KeyPath` sort method is added to `Array`
-- `Sequence` conditional grouping methods are added
+- `KeyPath` sort method `Sequence.sort(by:)` is added
+- Conditional and `KeyPath` grouping methods `Sequence.grouped(by:)` are added
 
 XCode Templates
 
 - `UIViewController` `Factory` is fixed
-- `with` parameter name are removed from configuration methods
+- `with` parameter labels are removed from configuration methods
 
 #### [2.0.2(11)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.2) — *2021 12 29*
 
 XCode Templates
 
-- `UITableViewCellDataSourceable` methods in are fixed
+- Issues with `UITableViewCellDataSourceable` methods are fixed
 
 #### [2.0.1(10)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.1) — *2021 12 29*
 
@@ -336,21 +339,21 @@ VIPER Helpers
 
 Extensions
 
-- Default parameter values are added to `UIStackView` configuration methods
+- Default parameters are added to `UIStackView` configuration method and initializer
 - Various extensions are added
 
 #### [1.4.0(8)](https://github.com/VakhoKontridze/VCore/releases/tag/1.4.0) — *2021 11 09*
 
 Extensions
 
-- `CALayerCornerCurve` can now be passed to `roundCorners` method in `UIView`
-- `displayCornerRadius` property is added to `UIScreen`
+- `UIView.roundCorners(_:by:)` now takes `CALayerCornerCurve` as parameter
+- `UIScreen.displayCornerRadius` property is added
 
 #### [1.3.0(7)](https://github.com/VakhoKontridze/VCore/releases/tag/1.3.0) — *2021 11 09*
 
 Extensions
 
-- `withTabBarItem` method is added to `UIViewController`
+- `UIViewController.withTabBarItem(_:)` method is added
 
 #### [1.2.0(6)](https://github.com/VakhoKontridze/VCore/releases/tag/1.2.0) — *2021 11 08*
 
@@ -365,8 +368,8 @@ VIPER Helpers
 
 Extensions
 
-- `UILabel`'s `singleLineNaturalHeightConstant` is renamed to `singleLineHeight`
-- `UITableView`'s `removeExtraSeparators` and `removeExtraAndLastSeparators` are deprecated, as have no effect
+- `UILabel.singleLineNaturalHeightConstant` property is renamed to `singleLineHeight`
+- `UITableView.removeExtraSeparators()` and `UITableView.removeExtraAndLastSeparators()` are deprecated, as they have no effect
 - `UIScreen.rootView` are deprecated in favor of `UIApplication.AppRootWindow` file under `Extra`
 - `UIScreen.safeAreaInsets` are deprecated
 - Various extensions are added
@@ -390,7 +393,7 @@ Network Service
 
 VIPER Helpers
 
-- `uiAlertController` in `ViewModel` can now be accessed to create an `UIAlertController`
+- `ViewModel.uiAlertController` property can now be accessed to create an `UIAlertController`
 
 #### [1.0.2(3)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.2) — *2021 10 08*
 
