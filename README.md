@@ -36,9 +36,9 @@ Package files are grouped as:
 
 - ***Helpers***. Non-service, non-extension objects and methods. For instance `StandardNavigable`.
 
-- ***Global Functions***. Global functions. For instance, `TODO` and operators.
-
 - ***Extensions***. Global extensions. Methods and properties are grouped by frameworks of origin—`Foundation`, `UIKit`, and `SwiftUI`.
+
+- ***Global Functions***. Global functions. For instance, `TODO` and operators.
 
 - ***API***. Objects used for interfacing from you app/package to `VCore`. For instances, `VCoreLocalizationService`.
 
