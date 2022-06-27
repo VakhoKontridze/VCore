@@ -32,13 +32,13 @@ Package files are grouped as:
 
 - ***Views and ViewControllers***. Reusable non-scene `View`'s, `UIView`'s, and `UIViewController`'s.
 
-- ***Models***. Reusable models. For instance, `EdgeInsets`'s and `GenericStateModel`'s.
+- ***Models***. Reusable models. For instance, `EdgeInsets`'s.
 
-- ***Helpers***. Non-service, non-extension objects and methods. For instance `StandardNavigable`.
+- ***Helpers***. Non-service, non-extension objects and methods. For instance architectural pattern helpers.
 
 - ***Extensions***. Global extensions. Methods and properties are grouped by frameworks of origin—`Foundation`, `UIKit`, and `SwiftUI`.
 
-- ***Global Functions***. Global functions. For instance, `TODO` and operators.
+- ***Global Functions***. Global functions. For instance, `KeyPath` equality and comparison functions.
 
 - ***API***. Objects used for interfacing from you app/package to `VCore`. For instances, `VCoreLocalizationService`.
 
