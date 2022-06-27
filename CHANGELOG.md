@@ -1,6 +1,6 @@
 # Change Log
 
-### 3.9.0(32)
+### [3.9.0(32)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.0) — *2022 06 27*
 
 Extensions
 
