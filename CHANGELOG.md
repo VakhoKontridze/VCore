@@ -11,6 +11,12 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.9.0(32)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.0) — *2022 06 27*
+
+Extensions
+
+- `View.safeAreaMarginInsets(edges:)` method is added
+
 ### [3.8.1(31)](https://github.com/VakhoKontridze/VCore/releases/tag/3.8.1) — *2022 06 25*
 
 Documentations
@@ -33,7 +39,7 @@ Global Functions
 
 - `KeyPath` equality and comparison functions are extended to support up to `10` members
 
-#### [3.7.0(29)](https://github.com/VakhoKontridze/VCore/releases/tag/3.7.0) — *2022 06 20*
+### [3.7.0(29)](https://github.com/VakhoKontridze/VCore/releases/tag/3.7.0) — *2022 06 20*
 
 Extensions
 
@@ -48,7 +54,7 @@ XCode Templates
 
 - `async` Gateway now contains a mock object for previews in `SwiftUI`
 
-#### [3.6.0(28)](https://github.com/VakhoKontridze/VCore/releases/tag/3.6.0) — *2022 06 17*
+### [3.6.0(28)](https://github.com/VakhoKontridze/VCore/releases/tag/3.6.0) — *2022 06 17*
 
 Views and ViewControllers
 
@@ -78,13 +84,13 @@ Other
 
 - Missing demo app `.xcodeproj` file is now tracked
 
-#### [3.5.1(27)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.1) — *2022 06 15*
+### [3.5.1(27)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.1) — *2022 06 15*
 
 Architectural Pattern Helpers
 
 - Issue with generic constraint in `StandardNavigable` is fixed
 
-#### [3.5.0(26)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.0) — *2022 06 15*
+### [3.5.0(26)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.0) — *2022 06 15*
 
 Services and Managers
 
@@ -105,7 +111,7 @@ XCode Templates
 
 - Templates now implement existential `any`
 
-#### [3.4.0(25)](https://github.com/VakhoKontridze/VCore/releases/tag/3.4.0) — *2022 06 11*
+### [3.4.0(25)](https://github.com/VakhoKontridze/VCore/releases/tag/3.4.0) — *2022 06 11*
 
 General
 
@@ -132,20 +138,20 @@ Extensions
 - App info properties are moved from `UIApplication` to `Bundle`, and support is added for all platforms
 - `UIView.withTranslatesAutoresizingMaskIntoConstraints(_:)` method is added
 
-#### [3.3.1(24)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.1) — *2022 06 08*
+### [3.3.1(24)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.1) — *2022 06 08*
 
 Helpers
 
 - Description of error thrown by `get` method in `ResultNoFailure` is fixed
 
-#### [3.3.0(23)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.0) — *2022 06 08*
+### [3.3.0(23)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.0) — *2022 06 08*
 
 Helpers
 
 - Custom `Result` types now contain `map`/`mapError`, `flatMap`/`flatMapError`, and `get` methods
 - Custom `Result` types now conform to `Equatable`
 
-#### [3.2.0(22)](https://github.com/VakhoKontridze/VCore/releases/tag/3.2.0) — *2022 05 26*
+### [3.2.0(22)](https://github.com/VakhoKontridze/VCore/releases/tag/3.2.0) — *2022 05 26*
 
 Views and ViewControllers
 
@@ -155,13 +161,13 @@ Extensions
 
 - `Sequence.count(where:)` method is added
 
-#### [3.1.1(21)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.1) — *2022 05 21*
+### [3.1.1(21)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.1) — *2022 05 21*
 
 Services and Managers
 
 - Issue with `AnyMultiPartFormDataFile` rename warning is fixed
 
-#### [3.1.0(20)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.0) — *2022 05 20*
+### [3.1.0(20)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.0) — *2022 05 20*
 
 Services and Managers
 
@@ -177,19 +183,19 @@ Extensions
 - `OptionSet.elements` property is added
 - Issue with accessing `cornerRadius` method in `SwiftUI` is fixed
 
-#### [3.0.2(19)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.2) — *2022 05 17*
+### [3.0.2(19)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.2) — *2022 05 17*
 
 Views and ViewControllers
 
 - Public initializers are added to `SystemKeyboardInfo`
 
-#### [3.0.1(18)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.1) — *2022 05 17*
+### [3.0.1(18)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.1) — *2022 05 17*
 
 General
 
 - Missing `public` access modifiers are added
 
-#### [3.0.0(17)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.0) — *2022 05 17*
+### [3.0.0(17)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.0) — *2022 05 17*
 
 General
 
@@ -227,7 +233,7 @@ Localization Service
 
 - `LocalizationService` now supports langauge switching from app settings
 
-#### [2.3.0(16)](https://github.com/VakhoKontridze/VCore/releases/tag/2.3.0) — *2022 02 25*
+### [2.3.0(16)](https://github.com/VakhoKontridze/VCore/releases/tag/2.3.0) — *2022 02 25*
 
 Views and ViewControllers
 
@@ -241,7 +247,7 @@ Extensions
 
 - `Optional.let(_:)` method is deprecated in favor of native `Optional.map(_:)` and `Optional.flatMap(_:)`
 
-#### [2.2.1(15)](https://github.com/VakhoKontridze/VCore/releases/tag/2.2.1) — *2022 02 14*
+### [2.2.1(15)](https://github.com/VakhoKontridze/VCore/releases/tag/2.2.1) — *2022 02 14*
 
 Views and ViewControllers
 
@@ -256,7 +262,7 @@ XCode Templates
 - `UITableViewCell` and `UICollectionViewCell` background colors are now set directly to cell, and not to `contentView`
 - `with` argument label is added to `Gateway.fetch(_:completion:)`
 
-#### [2.2.0(14)](https://github.com/VakhoKontridze/VCore/releases/tag/2.2.0) — *2022 01 07*
+### [2.2.0(14)](https://github.com/VakhoKontridze/VCore/releases/tag/2.2.0) — *2022 01 07*
 
 Extensions
 
@@ -269,13 +275,13 @@ XCode Templates
 
 - `UIView` (Dynamic Model) templates now have a default parameter value for model in initializers
 
-#### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/tag/2.1.1) — *2022 01 04*
+### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/tag/2.1.1) — *2022 01 04*
 
 Views and ViewControllers
 
 - `isEnabled` is added to `UIKitBaseButton` to replace `isUserInteractionEnabled`
 
-#### [2.1.0(12)](https://github.com/VakhoKontridze/VCore/releases/tag/2.1.0) — *2022 01 01*
+### [2.1.0(12)](https://github.com/VakhoKontridze/VCore/releases/tag/2.1.0) — *2022 01 01*
 
 Network Client
 
@@ -297,19 +303,19 @@ XCode Templates
 - `UIViewController` `Factory` is fixed
 - `with` parameter labels are removed from configuration methods
 
-#### [2.0.2(11)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.2) — *2021 12 29*
+### [2.0.2(11)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.2) — *2021 12 29*
 
 XCode Templates
 
 - Issues with `UITableViewCellDataSourceable` methods are fixed
 
-#### [2.0.1(10)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.1) — *2021 12 29*
+### [2.0.1(10)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.1) — *2021 12 29*
 
 XCode Templates
 
 - `UITableViewCell` initializer is fixed
 
-#### [2.0.0(9)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.0) — *2021 12 28*
+### [2.0.0(9)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.0) — *2021 12 28*
 
 General
 
@@ -347,20 +353,20 @@ Extensions
 - Default parameters are added to `UIStackView` configuration method and initializer
 - Various extensions are added
 
-#### [1.4.0(8)](https://github.com/VakhoKontridze/VCore/releases/tag/1.4.0) — *2021 11 09*
+### [1.4.0(8)](https://github.com/VakhoKontridze/VCore/releases/tag/1.4.0) — *2021 11 09*
 
 Extensions
 
 - `UIView.roundCorners(_:by:)` now takes `CALayerCornerCurve` as parameter
 - `UIScreen.displayCornerRadius` property is added
 
-#### [1.3.0(7)](https://github.com/VakhoKontridze/VCore/releases/tag/1.3.0) — *2021 11 09*
+### [1.3.0(7)](https://github.com/VakhoKontridze/VCore/releases/tag/1.3.0) — *2021 11 09*
 
 Extensions
 
 - `UIViewController.withTabBarItem(_:)` method is added
 
-#### [1.2.0(6)](https://github.com/VakhoKontridze/VCore/releases/tag/1.2.0) — *2021 11 08*
+### [1.2.0(6)](https://github.com/VakhoKontridze/VCore/releases/tag/1.2.0) — *2021 11 08*
 
 Helpers
 
@@ -385,7 +391,7 @@ Extra
 - `LocalizationService` is added to `Extra`
 - XCode Templates are added to `Extra`
 
-#### [1.1.0(5)](https://github.com/VakhoKontridze/VCore/releases/tag/1.1.0) — *2021 10 30*
+### [1.1.0(5)](https://github.com/VakhoKontridze/VCore/releases/tag/1.1.0) — *2021 10 30*
 
 Network Service
 
@@ -394,24 +400,24 @@ Network Service
 - `NetworkService`, `JSONEncoderService`, and `JSONDecoderService` now return `Error` instead of subsequent error types
 - `NetworkSessionManager` is renamed to `SessionManager`
 
-#### [1.0.3(4)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.3) — *2021 10 25*
+### [1.0.3(4)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.3) — *2021 10 25*
 
 VIPER Helpers
 
 - `ViewModel.uiAlertController` property can now be accessed to create an `UIAlertController`
 
-#### [1.0.2(3)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.2) — *2021 10 08*
+### [1.0.2(3)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.2) — *2021 10 08*
 
 VIPER Helpers
 
 - `UICollectionViewDataSourceable` and `UITableViewDataSourceable` APIs are updated
 
-#### [1.0.1(2)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.1) — *2021 10 07*
+### [1.0.1(2)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.1) — *2021 10 07*
 
 Custom Results
 
 - Result enums are now marked as `@frozen`
 
-#### [1.0.0(1)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.0) — *2021 10 07*
+### [1.0.0(1)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.0) — *2021 10 07*
 
 Initial release
