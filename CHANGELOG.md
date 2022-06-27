@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.9.0(32)
+
+Extensions
+
+- `View.safeAreaMarginInsets(edges:)` method is added
+
 ### [3.8.1(31)](https://github.com/VakhoKontridze/VCore/releases/tag/3.8.1) — *2022 06 25*
 
 Documentations
