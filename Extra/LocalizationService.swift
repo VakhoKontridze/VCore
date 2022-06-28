@@ -21,11 +21,11 @@ final class LocalizationService {
 
     // MARK: Initializers
     private init() {
-        for localeID in SupportedLocale.localeIDs where !SupportedLocale.systemLocaleIDs.contains(localeID) {
+        for localeID in SupportedLocale.allCases.map({ $0.id }) where !SupportedLocale.systemLocaleIDs.contains(localeID) {
             fatalError("Locale `\(localeID)` is not added to the project")
         }
         
-        for localeID in SupportedLocale.systemLocaleIDs where !SupportedLocale.localeIDs.contains(localeID) {
+        for localeID in SupportedLocale.systemLocaleIDs where !SupportedLocale.allCases.map({ $0.id }).contains(localeID) {
             fatalError("Locale `\(localeID)` is not added to `LocalizationService.SupportedLocale`")
         }
     }
@@ -36,7 +36,7 @@ final class LocalizationService {
         case english
         
         // MARK: Initializers
-        static var `default`: Self { .aCase(key: \.id, value: preferredSystemLocaleID)! } // fatalError
+        static var `default`: Self { preferredSystemLocale ?? .english }
         
         // MARK: Properties
         var id: String {
@@ -50,25 +50,21 @@ final class LocalizationService {
                 .displayName(forKey: .identifier, value: id)
         }
         
-        static let localeIDs: [String] = locales.map { $0.id }
-        static var locales: [Self] { Self.allCases }
-        
         static let systemLocaleIDs: [String] = {
             Locale.preferredLanguages
-                .map { $0.components(separatedBy: "-").first! } // fatalError
+                .map { $0.removingRegionCode() }
                 .filter { Bundle.main.localizations.filter { $0 != "Base" }.contains($0) }
         }()
-        static let systemLocales: [Self] = systemLocaleIDs.map { .aCase(key: \.id, value: $0)! } // fatalError
         
-        static let preferredSystemLocaleID: String = Locale.current.identifier.components(separatedBy: "_").first! // fatalError
-        static let preferredSystemLocale: Self = .aCase(key: \.id, value: preferredSystemLocaleID)! // fatalError
+        static let preferredSystemLocaleID: String = Locale.current.identifier.removingRegionCode()
+        static let preferredSystemLocale: Self? = .aCase(key: \.id, value: preferredSystemLocaleID)
     }
     
     // MARK: Get / Set
     private func getLocale() -> SupportedLocale {
         guard
             let languagesIDs: [String] = UserDefaults.standard.value(forKey: Self.appleLanguagesUserDefaultsKey) as? [String],
-            let languageID: String = languagesIDs.first?.components(separatedBy: "-").first,
+            let languageID: String = languagesIDs.first?.removingRegionCode(),
             let locale: SupportedLocale = .aCase(key: \.id, value: languageID)
         else {
             setLocale(.default)
@@ -117,5 +113,12 @@ extension String {
             value: "",
             comment: ""
         )
+    }
+}
+
+// MARK: - Helpers
+extension String {
+    fileprivate func removingRegionCode() -> String {
+        components(separatedBy: .init(["-", "_"])).first ?? self
     }
 }
