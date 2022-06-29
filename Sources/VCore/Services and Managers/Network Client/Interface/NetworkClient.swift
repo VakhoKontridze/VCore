@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Network Client
-/// Network client that performs network data tasks.
+/// Client that performs network tasks.
 ///
 /// Object contains default `default` instance, that can be used to make requests.
 ///
