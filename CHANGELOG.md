@@ -11,6 +11,13 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.9.1(33)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.1) — *2022 06 29*
+
+Localization Service
+
+- `LocalizationService` now reads locales directly from `Bundle`
+- `LocalizationService` no longer causes issues with default localization outside of non-English regions
+
 ### [3.9.0(32)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.0) — *2022 06 27*
 
 Extensions
