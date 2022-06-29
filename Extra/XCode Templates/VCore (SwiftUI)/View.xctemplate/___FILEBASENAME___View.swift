@@ -25,5 +25,6 @@ struct ___VARIABLE_productName___View: View {
 struct ___VARIABLE_productName___View_Previews: PreviewProvider {
     static var previews: some View {
         ___VARIABLE_productName___View(parameters: .mock)
+            .previewLayout(.sizeThatFits)
     }
 }
