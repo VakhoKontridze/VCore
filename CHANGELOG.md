@@ -1,6 +1,6 @@
 # Change Log
 
-### 3.9.2(34)
+### [3.9.2(34)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.2) — *2022 06 29*
 
 XCode Templates
 
