@@ -12,8 +12,8 @@ import UIKit
 // MARK: - Standard Navigable
 /// Standard Navigable that allows for navigation via `UINavigationController`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed by `UIViewController`,
-/// or a protocol, which in turn `UIViewController` coforms to.
+/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed by a `View/Controller`.
+/// In `MVVM` architecture, this protocol is conformed to by a `View/Controller`.
 ///
 /// Methods have default implementations for `UIViewControllers`, except for `setRoot(to:)` method.
 /// To implement this method, use the following snippet somewhere in the project:
