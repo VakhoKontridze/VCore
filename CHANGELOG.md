@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.9.2(34)
+
+XCode Templates
+
+- Missing package imports are added to async Gateway XCode template
+
 ### [3.9.1(33)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.1) — *2022 06 29*
 
 Localization Service
