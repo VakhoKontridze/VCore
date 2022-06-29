@@ -10,7 +10,7 @@ XCode Templates
 
 Localization Service
 
-- `LocalizationService` now reads locales directly from `Bundle`
+- `LocalizationService` now reads locales directly from the `Bundle`
 - `LocalizationService` no longer causes issues with default localization outside of non-English regions
 
 ### [3.9.0(32)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.0) — *2022 06 27*
