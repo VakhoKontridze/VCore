@@ -21,14 +21,34 @@ final class LocalizationService {
 
     // MARK: Initializers
     private init() {
-        for localeID in SupportedLocale.allCases.map({ $0.id }) where !SupportedLocale.systemLocaleIDs.contains(localeID) {
-            fatalError("Locale `\(localeID)` is not added to the project")
+        for localeID in SupportedLocale.allCases.map({ $0.id }) where !bundleLocaleIDs.contains(localeID) {
+            fatalError("Locale `\(localeID)` is not added to the project bundle")
         }
-        
-        for localeID in SupportedLocale.systemLocaleIDs where !SupportedLocale.allCases.map({ $0.id }).contains(localeID) {
+
+        for localeID in bundleLocaleIDs where !SupportedLocale.allCases.map({ $0.id }).contains(localeID) {
             fatalError("Locale `\(localeID)` is not added to `LocalizationService.SupportedLocale`")
         }
     }
+    
+    // MARK: Configuration
+    func configure() {
+        _ = Self.shared
+    }
+    
+    // MARK: System and Bundle Locales
+    let preferredSystemLocaleIDs: [String] = Locale.preferredLanguages
+        .map { $0.removingRegionCode() }
+        .removingBaseLoacale()
+    
+    let preferredSystemLocaleID: String = Locale.current.identifier
+        .removingRegionCode()
+    
+    let bundleLocaleIDs: [String] = Bundle.main.localizations
+        .map { $0.removingRegionCode() }
+        .removingBaseLoacale()
+    
+    let bundleLocaleID: String? = Bundle.main.preferredLocalizations.first?
+        .removingRegionCode()
     
     // MARK: Supported Locale
     enum SupportedLocale: Identifiable, CaseIterable, KeyPathInitializableEnumeration {
@@ -36,7 +56,18 @@ final class LocalizationService {
         case english
         
         // MARK: Initializers
-        static var `default`: Self { preferredSystemLocale ?? .english }
+        static var `default`: Self = {
+            if let preferredSystemLocale: Self = .aCase(key: \.id, value: LocalizationService.shared.preferredSystemLocaleID) {
+                return preferredSystemLocale
+            } else if
+                let bundleLocaleID = LocalizationService.shared.bundleLocaleID,
+                let bundleLocale: Self = .aCase(key: \.id, value: bundleLocaleID)
+            {
+                return bundleLocale
+            } else {
+                return .english
+            }
+        }()
         
         // MARK: Properties
         var id: String {
@@ -49,15 +80,6 @@ final class LocalizationService {
             NSLocale(localeIdentifier: LocalizationService.shared.locale.id)
                 .displayName(forKey: .identifier, value: id)
         }
-        
-        static let systemLocaleIDs: [String] = {
-            Locale.preferredLanguages
-                .map { $0.removingRegionCode() }
-                .filter { Bundle.main.localizations.filter { $0 != "Base" }.contains($0) }
-        }()
-        
-        static let preferredSystemLocaleID: String = Locale.current.identifier.removingRegionCode()
-        static let preferredSystemLocale: Self? = .aCase(key: \.id, value: preferredSystemLocaleID)
     }
     
     // MARK: Get / Set
@@ -120,5 +142,11 @@ extension String {
 extension String {
     fileprivate func removingRegionCode() -> String {
         components(separatedBy: .init(["-", "_"])).first ?? self
+    }
+}
+
+extension Array where Element == String {
+    fileprivate func removingBaseLoacale() -> [String] {
+        filter { $0 != "Base" }
     }
 }
