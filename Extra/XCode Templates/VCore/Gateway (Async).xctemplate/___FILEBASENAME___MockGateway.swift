@@ -1,6 +1,7 @@
 //  ___FILEHEADER___
 
 import Foundation
+import VCore
 
 // MARK: - ___VARIABLE_productName___ Mock Gateway
 struct ___VARIABLE_productName___MockGateway: ___VARIABLE_productName___Gateway {
