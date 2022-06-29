@@ -9,10 +9,15 @@ import VCore
 {
     // MARK: Properties
     private let interactor: Interactor
+    private let parameters: ___VARIABLE_productName___Parameters
     
     // MARK: Initialzers
-    init(interactor: Interactor) {
+    init(
+        interactor: Interactor,
+        parameters: ___VARIABLE_productName___Parameters
+    ) {
         self.interactor = interactor
+        self.parameters = parameters
     }
 
     // MARK: Presentable

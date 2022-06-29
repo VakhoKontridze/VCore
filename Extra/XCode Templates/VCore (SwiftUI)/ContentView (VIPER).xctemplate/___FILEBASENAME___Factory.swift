@@ -9,10 +9,11 @@ import VCore
     private init() {}
     
     // MARK: Factory
-    static func `default`() -> some View {
+    static func `default`(parameters: ___VARIABLE_productName___Parameters) -> some View {
         ___VARIABLE_productName___View(
             presenter: ___VARIABLE_productName___Presenter(
-                interactor: ___VARIABLE_productName___Interactor()
+                interactor: ___VARIABLE_productName___Interactor(),
+                parameters: parameters
             )
         )
             .modifier(___VARIABLE_productName___Router())
@@ -21,7 +22,8 @@ import VCore
     static func mock() -> some View {
         ___VARIABLE_productName___View(
             presenter: ___VARIABLE_productName___Presenter(
-                interactor: ___VARIABLE_productName___MockInteractor()
+                interactor: ___VARIABLE_productName___MockInteractor(),
+                parameters: .mock
             )
         )
             .modifier(___VARIABLE_productName___Router())
