@@ -11,7 +11,7 @@ struct ___VARIABLE_productName___View<Presenter>: View
     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator?
     @StateObject private var presenter: Presenter
     
-    private typealias Model = ___VARIABLE_productName___UIModel
+    private typealias UIModel = ___VARIABLE_productName___UIModel
     
     // MARK: Initializers
     init(presenter: Presenter) {
@@ -31,7 +31,7 @@ struct ___VARIABLE_productName___View<Presenter>: View
     }
     
     private var canvas: some View {
-        Model.Colors.background.ignoresSafeArea()
+        UIModel.Colors.background.ignoresSafeArea()
     }
     
     private var contentView: some View {
