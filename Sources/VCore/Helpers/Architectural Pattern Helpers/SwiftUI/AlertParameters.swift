@@ -15,7 +15,7 @@ import SwiftUI
 /// In `MVP`, `VIP`, and `VIPER` arhcitecutes, parameters are stored in`Presenter`.
 /// in `MVVM`, parameters are stored in `ViewModel.`
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-public struct AlertParameters {
+public struct AlertParameters: Hashable, Identifiable {
     // MARK: Properties
     /// Alert title.
     public var title: String
@@ -86,7 +86,10 @@ public struct AlertParameters {
     
     // MARK: Button
     /// Button.
-    public struct Button {
+    public struct Button: Hashable, Identifiable, Equatable {
+        // MARK: Properties
+        public let id: UUID
+        
         /// Indicates if button is enabled.
         public var isEnabled: Bool
         
@@ -106,12 +109,33 @@ public struct AlertParameters {
             title: String,
             action: (() -> Void)?
         ) {
+            self.id = .init()
             self.isEnabled = isEnabled
             self.role = role
             self.title = title
             self.action = action
         }
+        
+        // MARK: Hashable
+        public func hash(into hasher: inout Hasher) {
+            hasher.combine(id)
+        }
+        
+        // MARK: Equatable
+        public static func == (lhs: AlertParameters.Button, rhs: AlertParameters.Button) -> Bool {
+            isEqual(lhs, to: rhs, by: \.id)
+        }
     }
+    
+    // MARK: Hashable
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(title)
+        hasher.combine(message)
+        hasher.combine(buttons)
+    }
+    
+    // MARK: Identifiable
+    public var id: Int { hashValue }
 }
 
 // MARK: - Factory

@@ -15,7 +15,7 @@ import SwiftUI
 /// In `MVP`, `VIP`, and `VIPER` arhcitecutes, parameters are stored in `Presenter`.
 /// in `MVVM`, parameters are stored in`ViewModel.`
 @available(iOS 14, *)
-public struct ProgressViewParameters {
+public struct ProgressViewParameters: Hashable, Identifiable {
     // MARK: Properties
     public let isInteractionDisabled: Bool
     public let scalingFactor: CGFloat?
@@ -31,6 +31,15 @@ public struct ProgressViewParameters {
         self.scalingFactor = scalingFactor
         self.color = color
     }
+    
+    // MARK: Hashable
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(scalingFactor)
+        hasher.combine(color)
+    }
+    
+    // MARK: Identifiable
+    public var id: Int { hashValue }
 }
 
 // MARK: - Factory
