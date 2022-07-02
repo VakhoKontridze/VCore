@@ -1,6 +1,10 @@
 # Change Log
 
-### ?.?.?(?)
+### 4.0.0(?)
+
+Architectural Pattern Helpers
+
+- Architectural helpers are added for `SwiftUI`, alongside with documetation and demo
 
 Extensions
 
