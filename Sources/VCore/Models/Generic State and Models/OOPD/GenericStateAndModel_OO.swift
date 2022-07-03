@@ -39,7 +39,7 @@ public enum GenericState_OO: Int, CaseIterable {
 // MARK: Binding Init
 extension Binding where Value == GenericState_OO {
     /// Initializes `GenericState_OO` with `Bool`.
-    public init(_ isExpanded: Binding<Bool>) {
+    public init(isExpanded: Binding<Bool>) {
         self.init(
             get: { .init(isOn: isExpanded.wrappedValue) },
             set: { isExpanded.wrappedValue = $0 == .on }
@@ -110,6 +110,33 @@ extension GenericStateModel_OO {
 }
 
 #endif
+
+// MARK: Model-Casting Initializers
+extension GenericStateModel_OO {
+    /// Initializes `GenericStateModel_OO` with `GenericStateModel_OOD`.
+    public init(_ model: GenericStateModel_OOD<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on
+        )
+    }
+    
+    /// Initializes `GenericStateModel_OO` with `GenericStateModel_OOP`.
+    public init(_ model: GenericStateModel_OOP<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on
+        )
+    }
+    
+    /// Initializes `GenericStateModel_OO` with `GenericStateModel_OOPD`.
+    public init(_ model: GenericStateModel_OOPD<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on
+        )
+    }
+}
 
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_OO: Hashable where Value: Hashable {}

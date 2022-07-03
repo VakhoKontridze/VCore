@@ -43,7 +43,6 @@ public struct GenericStateModel_EL<Value> {
     /// Initializes `GenericStateModel_EPL` with values.
     public init(
         enabled: Value,
-        pressed: Value,
         loading: Value
     ) {
         self.enabled = enabled
@@ -93,6 +92,25 @@ extension GenericStateModel_EL {
 }
 
 #endif
+
+// MARK: Model-Casting Initializers
+extension GenericStateModel_EL {
+    /// Initializes `GenericStateModel_EL` with `GenericStateModel_ELD`.
+    public init(_ model: GenericStateModel_ELD<Value>) {
+        self.init(
+            enabled: model.enabled,
+            loading: model.loading
+        )
+    }
+
+    /// Initializes `GenericStateModel_EL` with `GenericStateModel_EPLD`.
+    public init(_ model: GenericStateModel_EPLD<Value>) {
+        self.init(
+            enabled: model.enabled,
+            loading: model.loading
+        )
+    }
+}
 
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_EL: Hashable where Value: Hashable {}

@@ -156,6 +156,21 @@ extension GenericStateModel_OOIP {
 
 #endif
 
+// MARK: Model-Casting Initializers
+extension GenericStateModel_OOIP {
+    /// Initializes `GenericStateModel_OOIP` with `GenericState_OOIPD`.
+    public init(_ model: GenericStateModel_OOIPD<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate,
+            pressedOff: model.pressedOff,
+            pressedOn: model.pressedOn,
+            pressedIndeterminate: model.pressedIndeterminate
+        )
+    }
+}
+
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_OOIP: Hashable where Value: Hashable {}
 

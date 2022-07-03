@@ -113,6 +113,18 @@ extension GenericStateModel_EFD {
 
 #endif
 
+// MARK: Model-Casting Initializers
+extension GenericStateModel_EFD {
+    /// Initializes `GenericStateModel_EFD` with `GenericStateModel_EPFD`.
+    public init(_ model: GenericStateModel_EPFD<Value>) {
+        self.init(
+            enabled: model.enabled,
+            focused: model.focused,
+            disabled: model.disabled
+        )
+    }
+}
+
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_EFD: Hashable where Value: Hashable {}
 

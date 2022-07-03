@@ -133,6 +133,19 @@ extension GenericStateModel_OOID {
 
 #endif
 
+// MARK: Model-Casting Initializers
+extension GenericStateModel_OOID {
+    /// Initializes `GenericStateModel_OOID` with `GenericState_OOIPD`.
+    public init(_ model: GenericStateModel_OOIPD<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate,
+            disabled: model.disabled
+        )
+    }
+}
+
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_OOID: Hashable where Value: Hashable {}
 

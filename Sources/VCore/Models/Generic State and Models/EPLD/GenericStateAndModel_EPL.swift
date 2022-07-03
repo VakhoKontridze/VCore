@@ -112,6 +112,18 @@ extension GenericStateModel_EPL {
 
 #endif
 
+// MARK: Model-Casting Initializers
+extension GenericStateModel_EPL {
+    /// Initializes `GenericStateModel_EPL` with `GenericStateModel_EPLD`.
+    public init(_ model: GenericStateModel_EPLD<Value>) {
+        self.init(
+            enabled: model.enabled,
+            pressed: model.pressed,
+            loading: model.loading
+        )
+    }
+}
+
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_EPL: Hashable where Value: Hashable {}
 

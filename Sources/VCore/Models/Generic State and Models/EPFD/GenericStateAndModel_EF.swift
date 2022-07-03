@@ -43,7 +43,6 @@ public struct GenericStateModel_EF<Value> {
     /// Initializes `GenericStateModel_EPF` with values.
     public init(
         enabled: Value,
-        pressed: Value,
         focused: Value
     ) {
         self.enabled = enabled
@@ -93,6 +92,25 @@ extension GenericStateModel_EF {
 }
 
 #endif
+
+// MARK: Model-Casting Initializers
+extension GenericStateModel_EF {
+    /// Initializes `GenericStateModel_EF` with `GenericStateModel_EFD`.
+    public init(_ model: GenericStateModel_EFD<Value>) {
+        self.init(
+            enabled: model.enabled,
+            focused: model.focused
+        )
+    }
+
+    /// Initializes `GenericStateModel_EF` with `GenericStateModel_EPFD`.
+    public init(_ model: GenericStateModel_EPFD<Value>) {
+        self.init(
+            enabled: model.enabled,
+            focused: model.focused
+        )
+    }
+}
 
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_EF: Hashable where Value: Hashable {}

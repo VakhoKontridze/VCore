@@ -102,6 +102,41 @@ extension GenericStateModel_ED {
 
 #endif
 
+// MARK: Model-Casting Initializers
+extension GenericStateModel_ED {
+    /// Initializes `GenericStateModel_ED` with `GenericStateModel_EPD`.
+    public init(_ model: GenericStateModel_EPD<Value>) {
+        self.init(
+            enabled: model.enabled,
+            disabled: model.disabled
+        )
+    }
+
+    /// Initializes `GenericStateModel_ED` with `GenericStateModel_EFD`.
+    public init(_ model: GenericStateModel_EFD<Value>) {
+        self.init(
+            enabled: model.enabled,
+            disabled: model.disabled
+        )
+    }
+
+    /// Initializes `GenericStateModel_ED` with `GenericStateModel_EPLD`.
+    public init(_ model: GenericStateModel_EPLD<Value>) {
+        self.init(
+            enabled: model.enabled,
+            disabled: model.disabled
+        )
+    }
+
+    /// Initializes `GenericStateModel_ED` with `GenericStateModel_EPFD`.
+    public init(_ model: GenericStateModel_EPFD<Value>) {
+        self.init(
+            enabled: model.enabled,
+            disabled: model.disabled
+        )
+    }
+}
+
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_ED: Hashable where Value: Hashable {}
 

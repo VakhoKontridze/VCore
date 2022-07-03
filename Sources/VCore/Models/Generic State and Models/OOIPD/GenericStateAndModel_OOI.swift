@@ -20,6 +20,15 @@ public enum GenericState_OOI: Int, CaseIterable {
     /// Indeterminate.
     case indeterminate
     
+    // MARK: Initializers
+    /// Initializes `GenericState_OOI` with flags.
+    public init(isOn: Bool) {
+        switch isOn {
+        case false: self = .off
+        case true: self = .on
+        }
+    }
+    
     // MARK: Next State
     /// Goes to the next state.
     mutating public func setNextState() {
@@ -28,6 +37,17 @@ public enum GenericState_OOI: Int, CaseIterable {
         case .on: self = .off
         case .indeterminate: self = .on
         }
+    }
+}
+
+// MARK: Binding Init
+extension Binding where Value == GenericState_OOI {
+    /// Initializes `GenericState_OOI` with `Bool`.
+    public init(isOn: Binding<Bool>) {
+        self.init(
+            get: { .init(isOn: isOn.wrappedValue) },
+            set: { isOn.wrappedValue = $0 == .on }
+        )
     }
 }
 
@@ -100,6 +120,36 @@ extension GenericStateModel_OOI {
 }
 
 #endif
+
+// MARK: Model-Casting Initializers
+extension GenericStateModel_OOI {
+    /// Initializes `GenericStateModel_OOI` with `GenericStateModel_OOID`.
+    public init(_ model: GenericStateModel_OOID<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate
+        )
+    }
+    
+    /// Initializes `GenericStateModel_OOI` with `GenericStateModel_OOIP`.
+    public init(_ model: GenericStateModel_OOIP<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate
+        )
+    }
+    
+    /// Initializes `GenericStateModel_OOI` with `GenericStateModel_OOIPD`.
+    public init(_ model: GenericStateModel_OOIPD<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate
+        )
+    }
+}
 
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_OOI: Hashable where Value: Hashable {}

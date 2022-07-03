@@ -121,6 +121,18 @@ extension GenericStateModel_OOD {
 
 #endif
 
+// MARK: Model-Casting Initializers
+extension GenericStateModel_OOD {
+    /// Initializes `GenericStateModel_OOD` with `GenericStateModel_OOPD`.
+    public init(_ model: GenericStateModel_OOPD<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            disabled: model.disabled
+        )
+    }
+}
+
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_OOD: Hashable where Value: Hashable {}
 

@@ -39,7 +39,7 @@ public enum GenericState_CE: Int, CaseIterable {
 // MARK: Binding Init
 extension Binding where Value == GenericState_CE {
     /// Initializes `GenericState_CE` with `Bool`.
-    public init(_ isExpanded: Binding<Bool>) {
+    public init(isExpanded: Binding<Bool>) {
         self.init(
             get: { .init(isExpanded: isExpanded.wrappedValue) },
             set: { isExpanded.wrappedValue = $0 == .expanded }
@@ -112,6 +112,17 @@ extension GenericStateModel_CE {
 }
 
 #endif
+
+// MARK: Model-Casting Initializers
+extension GenericStateModel_CE {
+    /// Initializes `GenericStateModel_CE` with `GenericStateModel_CED`.
+    public init(_ model: GenericStateModel_CED<Value>) {
+        self.init(
+            collapsed: model.collapsed,
+            expanded: model.expanded
+        )
+    }
+}
 
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_CE: Hashable where Value: Hashable {}
