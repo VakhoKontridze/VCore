@@ -48,7 +48,7 @@ public enum GenericState_OOIPD: Int, CaseIterable {
     
     // MARK: Initializers
     /// Initializes `GenericState_OOPD` with flags.
-    init(isEnabled: Bool, state: GenericState_OOI, isPressed: Bool) {
+    public init(isEnabled: Bool, state: GenericState_OOI, isPressed: Bool) {
         switch (isEnabled, state, isPressed) {
         case (false, _, _): self = .disabled
         case (true, .off, false): self = .off
