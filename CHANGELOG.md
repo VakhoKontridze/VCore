@@ -5,6 +5,7 @@
 Models
 
 - `HashableEnumeration` and `StringRepresentableHashableEnumeration` are added
+- `BasicAnimation` is added
 - State models are now added for `GenericStateModel`'s
 - Various `GenericState`'s' and `GenericStateModel`'s are added
 - `zero`, `clearColors`, `clearUIColors`, and `clearNSColors` factory propertise are added to  `GenericStateModel`'s
