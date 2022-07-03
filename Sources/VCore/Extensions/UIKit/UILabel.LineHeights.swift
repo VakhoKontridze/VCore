@@ -59,7 +59,7 @@ extension UILabel {
     ///
     /// All properties from `self` are considered when calculating value.
     ///
-    /// During calculation of height,  parameter `text` is used.
+    /// During calculation of height, parameter `text` is used.
     /// If nil, `text` value is passed from `self`.
     /// If `nil`, default value of "A" will be used.
     ///

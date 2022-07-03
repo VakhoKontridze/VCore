@@ -11,7 +11,7 @@ import SwiftUI
 /// Model that describes UI.
 public struct PlainDisclosureGroupUIModel {
     // MARK: Properties
-    /// Sub-model containing layout properties.
+    /// Sub-model containing layout properties. 
     public var layout: Layout = .init()
     
     /// Sub-model containing color properties.
