@@ -323,6 +323,14 @@ extension UIApplication {
 @available(*, deprecated, renamed: "MinIdealMaxSizes")
 public typealias SizeConfiguration = MinIdealMaxSizes
 
+// MARK: - Extensions - UIKit
+extension UIViewController {
+    @available(*, deprecated, renamed: "dismissKeyboardOnOutsideTap")
+    public func dismissKeyboardOnOutisdeTap() {
+        dismissKeyboardOnOutsideTap()
+    }
+}
+
 // MARK: - VCore Localization Service
 extension VCoreLocalizationProvider {
     @available(*, deprecated, message: "Renamed to `networkErrorDescription(_:)`")
