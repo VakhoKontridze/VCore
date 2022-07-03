@@ -18,7 +18,7 @@ Models
 
 Other
 
-- Platform-based compilation errors are fixed
+- Platform-specific compilation errors are fixed
 
 ### [3.9.2(34)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.2) — *2022 06 29*
 
