@@ -8,14 +8,14 @@
 import SwiftUI
 
 // MARK: - Basic Animation
-/// Wrapper on `SwiftUI`'s animation that separates curve and duration.
+/// Wrapper for `SwiftUI`'s animation that stores curve and duration.
 ///
 /// Duration can be used to asychronously perform an action when animation finishes.
-/// To use completion handler, refer to global `withBasicAnimation(_:body:completion:)` function.
+/// To use completion handler, use global `withBasicAnimation(_:body:completion:)` function.
 ///
-/// Other purpose of this model is to limit animations to basic curve and duration.
+/// Another purpose of this model is to limit animations to basic curve and duration.
 ///
-/// Object contains proeprty `swiftUIAnimation`, which can be used to create object that `SwiftUI` can interpret.
+/// Object contains proeprty `swiftUIAnimation`, which casts `BasicAnimation` to `SwiftUI`'s native `Animation`.
 public struct BasicAnimation {
     /// Animation curve.
     public var curve: AnimationCurve
