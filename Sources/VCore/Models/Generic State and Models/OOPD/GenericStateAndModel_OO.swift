@@ -125,7 +125,7 @@ extension GenericStateModel_OO: Comparable where Value: Comparable {
 // MARK: - Mapping
 extension GenericStateModel_OO {
     /// Maps `GenericState_OO` to `GenericStateModel_OO`.
-    func value(for state: GenericState_OO) -> Value {
+    public func value(for state: GenericState_OO) -> Value {
         switch state {
         case .off: return off
         case .on: return on
