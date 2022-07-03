@@ -8,29 +8,27 @@
 import SwiftUI
 
 // MARK: - Basic Animation
-/// Wrapper on `SwiftUI`'s animation that separates curve and duration.
+/// Wrapper for `SwiftUI`'s animation that stores curve and duration.
 ///
 /// Duration can be used to asychronously perform an action when animation finishes.
-/// To use completion handler, refer to global `withBasicAnimation(_:body:completion:)` function.
+/// To use completion handler, use global `withBasicAnimation(_:body:completion:)` function.
 ///
-/// Other purpose of this model is to limit animations to basic curve and duration.
+/// Another purpose of this model is to limit animations to basic curve and duration.
 ///
-/// Object contains proeprty `swiftUIAnimation`, which can be used to create object that `SwiftUI` can interpret.
+/// Object contains proeprty `swiftUIAnimation`, which casts `BasicAnimation` to `SwiftUI`'s native `Animation`.
 public struct BasicAnimation {
+    // MARK: Properties
     /// Animation curve.
     public var curve: AnimationCurve
     
     /// Animation duration.
     public var duration: TimeInterval
     
-    /// Converts `BasicAnimation` to `SwiftUI.Animation`.
-    public var toSwiftUIAnimation: Animation {
-        switch curve {
-        case .linear: return .linear(duration: duration)
-        case .easeIn: return .easeIn(duration: duration)
-        case .easeOut: return .easeOut(duration: duration)
-        case .easeInOut: return .easeInOut(duration: duration)
-        }
+    // MARK: Initializers
+    /// Initializes `BasicAnimation` with curve and duration.
+    public init(curve: AnimationCurve, duration: TimeInterval) {
+        self.curve = curve
+        self.duration = duration
     }
 
     // MARK: Animation Curve
@@ -48,6 +46,17 @@ public struct BasicAnimation {
         
         /// Ease in and out.
         case easeInOut
+    }
+    
+    // MARK: Casting
+    /// Casts `BasicAnimation` to `SwiftUI.Animation`.
+    public var toSwiftUIAnimation: Animation {
+        switch curve {
+        case .linear: return .linear(duration: duration)
+        case .easeIn: return .easeIn(duration: duration)
+        case .easeOut: return .easeOut(duration: duration)
+        case .easeInOut: return .easeInOut(duration: duration)
+        }
     }
 }
 
