@@ -9,6 +9,8 @@ import SwiftUI
 
 // MARK: - Generic State (Off, On, Pressed, Disabled)
 /// Enumeration that represents state, such as `off`, `on`, `pressed` (`off`), `pressed` (`on`), or `disabled`.
+///
+/// Used for mapping state to `GenericStateModel_OOPD`, via `value(for:)` method.
 public enum GenericState_OOPD: Int, CaseIterable {
     // MARK: Cases
     /// Off.
@@ -63,6 +65,8 @@ public enum GenericState_OOPD: Int, CaseIterable {
 
 // MARK: - Generic State Model (Off, On, Pressed, Disabled)
 /// Color group containing `off`, `on`, `pressed` (`off`), `pressed` (`on`), and `disabled`.
+///
+/// Used for mapping `GenericState_OOPD` to model, via `value(for:)` method.
 public struct GenericStateModel_OOPD<Value> {
     // MARK: Properties
     /// Off value.

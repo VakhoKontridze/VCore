@@ -9,6 +9,8 @@ import SwiftUI
 
 // MARK: - Genetic State (Enabled, Pressed, Disabled)
 /// Enumeration that represents state, such as `enabled`, `pressed`, or `disabled`.
+///
+/// Used for mapping state to `GenericStateModel_EPD`, via `value(for:)` method.
 public enum GenericState_EPD: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -44,7 +46,7 @@ public enum GenericState_EPD: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Pressed, Disabled)
 /// Value group containing generic `enabled`, `pressed`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_EPD` to model.
+/// Used for mapping `GenericState_EPD` to model, via `value(for:)` method.
 public struct GenericStateModel_EPD<Value> {
     // MARK: Properties
     /// Enabled value.
