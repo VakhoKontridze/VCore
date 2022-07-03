@@ -41,10 +41,10 @@ public enum GenericState_OO: Int, CaseIterable {
 // MARK: Binding Init
 extension Binding where Value == GenericState_OO {
     /// Initializes `GenericState_OO` with `Bool`.
-    public init(isExpanded: Binding<Bool>) {
+    public init(isOn: Binding<Bool>) {
         self.init(
-            get: { .init(isOn: isExpanded.wrappedValue) },
-            set: { isExpanded.wrappedValue = $0 == .on }
+            get: { .init(isOn: isOn.wrappedValue) },
+            set: { isOn.wrappedValue = $0 == .on }
         )
     }
 }
