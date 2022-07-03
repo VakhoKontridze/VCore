@@ -14,7 +14,7 @@ import UIKit
 ///
 ///     protocol SomeViewable: AnyObject {}
 ///
-///     protocol SomePresentable: UICollectionViewDelegatable, UICollectionViewDataSourceable {}
+///     protocol SomePresentable: UICollectionViewDelegable, UICollectionViewDataSourceable {}
 ///
 ///     final class SomeViewController:
 ///         UIViewController, SomeViewable,
@@ -94,7 +94,7 @@ extension UICollectionViewDequeueable {
 ///
 /// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `Presenter`.
 /// in `MVVM`, this protocol is conformed to by a `ViewModel.`
-public protocol UICollectionViewDelegatable {
+public protocol UICollectionViewDelegable {
     /// Notifies that a `UICollectionViewCell` has been selected and section and row.
     func collectionViewDidSelectRow(section: Int, row: Int)
 }

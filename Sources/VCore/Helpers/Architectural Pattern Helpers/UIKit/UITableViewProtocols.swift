@@ -14,7 +14,7 @@ import UIKit
 ///
 ///     protocol SomeViewable: AnyObject {}
 ///
-///     protocol SomePresentable: UITableViewDelegatable, UITableViewDataSourceable {}
+///     protocol SomePresentable: UITableViewDelegable, UITableViewDataSourceable {}
 ///
 ///     final class SomeViewController:
 ///         UIViewController, SomeViewable,
@@ -93,7 +93,7 @@ extension UITableViewDequeueable {
 ///
 /// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `Presenter`.
 /// in `MVVM`, this protocol is conformed to by a `ViewModel.`
-public protocol UITableViewDelegatable {
+public protocol UITableViewDelegable {
     /// Notifies that a `UITableViewCell` has been selected and section and row.
     func tableViewDidSelectRow(section: Int, row: Int)
 }

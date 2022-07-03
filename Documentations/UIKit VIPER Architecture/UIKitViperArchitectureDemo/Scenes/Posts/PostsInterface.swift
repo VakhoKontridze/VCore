@@ -18,7 +18,7 @@ protocol PostsViewable: AnyObject, UIAlertViewable, UIActivityIndicatorViewable 
 protocol PostsNavigable: AnyObject, StandardNavigable {}
 
 // MARK: - Posts Presentable
-protocol PostsPresentable: UITableViewDelegatable, UITableViewDataSourceable {
+protocol PostsPresentable: UITableViewDelegable, UITableViewDataSourceable {
     func viewDidLoad()
     func didPullToRefresh()
 }
