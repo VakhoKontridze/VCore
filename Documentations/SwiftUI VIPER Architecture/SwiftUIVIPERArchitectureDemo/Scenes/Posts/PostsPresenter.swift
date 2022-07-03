@@ -15,6 +15,8 @@ import VCore
     // MARK: Properties
     private let interactor: Interactor
     
+    private var fetchPostsTask: Task<Void, Never>?
+    
     // MARK: Initialzers
     init(interactor: Interactor) {
         self.interactor = interactor
@@ -45,7 +47,8 @@ import VCore
         postParameters = []
         progressViewParameters = .init()
         
-        Task(operation: {
+        fetchPostsTask?.cancel()
+        fetchPostsTask = .init(operation: {
             do {
                 let postsEntity: PostsEntity = try await interactor.fetchPosts()
                 progressViewParameters = nil
@@ -54,8 +57,8 @@ import VCore
                 postParameters = postsEntity.posts?.compactMap { $0 }.compactMap { .init(post: $0) } ?? []
             
             } catch {
-                alertParameters = .init(error: error, completion: nil)
                 progressViewParameters = nil
+                alertParameters = .init(error: error, completion: nil)
             }
         })
     }
