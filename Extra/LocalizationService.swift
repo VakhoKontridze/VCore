@@ -55,6 +55,18 @@ final class LocalizationService {
         // MARK: Cases
         case english
         
+        // MARK: Properties
+        var id: String {
+            switch self {
+            case .english: return "en"
+            }
+        }
+        
+        var displayName: String? {
+            NSLocale(localeIdentifier: LocalizationService.shared.locale.id)
+                .displayName(forKey: .identifier, value: id)
+        }
+        
         // MARK: Initializers
         static var `default`: Self = {
             if let preferredSystemLocale: Self = .aCase(key: \.id, value: LocalizationService.shared.preferredSystemLocaleID) {
@@ -68,18 +80,6 @@ final class LocalizationService {
                 return .english
             }
         }()
-        
-        // MARK: Properties
-        var id: String {
-            switch self {
-            case .english: return "en"
-            }
-        }
-        
-        var displayName: String? {
-            NSLocale(localeIdentifier: LocalizationService.shared.locale.id)
-                .displayName(forKey: .identifier, value: id)
-        }
     }
     
     // MARK: Get / Set
