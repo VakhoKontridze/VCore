@@ -45,7 +45,7 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
         view.setPullToRefreshVisibility(to: false)
     }
 
-    // MARK: Table View Delegatable
+    // MARK: Table View Delegable
     func tableViewDidSelectRow(section: Int, row: Int) {
         let postCellViewModel: PostCellViewParameters = tableViewCellParameters[row]
         

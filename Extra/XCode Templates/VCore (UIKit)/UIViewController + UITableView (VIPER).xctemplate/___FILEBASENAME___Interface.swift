@@ -14,7 +14,7 @@ protocol ___VARIABLE_productName___Navigable: AnyObject, StandardNavigable {
 }
 
 // MARK: - ___VARIABLE_productName___ Presentable
-protocol ___VARIABLE_productName___Presentable: UITableViewDelegatable, UITableViewDataSourceable {
+protocol ___VARIABLE_productName___Presentable: UITableViewDelegable, UITableViewDataSourceable {
     
 }
 

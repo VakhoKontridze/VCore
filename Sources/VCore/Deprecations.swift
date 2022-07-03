@@ -96,6 +96,14 @@ extension SwiftUIBaseButton {
 
 import UIKit
 
+// MARK: - Table View Protocols
+@available(*, deprecated, renamed: "UITableViewDelegable")
+public typealias UITableViewDelegatable = UITableViewDelegable
+
+// MARK: - Collection View Protocols
+@available(*, deprecated, renamed: "UICollectionViewDelegable")
+public typealias UICollectionViewDelegatable = UICollectionViewDelegable
+
 // MARK: - KeyPath Initializable Enumeration
 @available(*, deprecated, renamed: "KeyPathInitializableEnumeration")
 public typealias KVInitializableEnumeration = KeyPathInitializableEnumeration
