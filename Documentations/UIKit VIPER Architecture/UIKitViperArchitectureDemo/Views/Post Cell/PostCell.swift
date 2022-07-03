@@ -66,7 +66,7 @@ final class PostCell: UITableViewCell, UITableViewDequeueable {
     }
 
     // MARK: Dequeueable
-    func configure(parameter: any UITableViewCellParameter) {
+    func configure(parameter: some UITableViewCellParameter) {
         guard let parameters = parameter as? PostCellViewParameters else { return }
         
         titleLabel.text = parameters.title

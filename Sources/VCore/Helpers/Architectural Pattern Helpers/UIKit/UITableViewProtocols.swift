@@ -125,7 +125,7 @@ extension UITableView {
 extension UITableView {
     /// Dequeues and configures a reusable cell in `UITableView`.
     public func dequeueAndConfigureReusableCell(
-        parameter: some UITableViewCellParameter
+        parameter: any UITableViewCellParameter
     ) -> UITableViewCell {
         guard
             let cell = dequeueReusableCell(withIdentifier: parameter.dequeueID) as? any UITableViewDequeueable

@@ -127,7 +127,7 @@ extension UICollectionView {
     /// Dequeues and configures a reusable cell in `UICollectionView`.
     public func dequeueAndConfigureReusableCell(
         indexPath: IndexPath,
-        parameter: some UICollectionViewCellParameter
+        parameter: any UICollectionViewCellParameter
     ) -> UICollectionViewCell {
         guard
             let cell = dequeueReusableCell(withReuseIdentifier: parameter.dequeueID, for: indexPath) as? any UICollectionViewDequeueable
