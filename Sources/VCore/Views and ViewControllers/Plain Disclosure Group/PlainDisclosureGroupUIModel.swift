@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 22.06.22.
 //
 
+#if os(iOS)
+
 import SwiftUI
 
 // MARK: - Plain Disclosure Group UI Model
@@ -66,3 +68,5 @@ public struct PlainDisclosureGroupUIModel {
         public init() {}
     }
 }
+
+#endif

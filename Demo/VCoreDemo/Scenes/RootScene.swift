@@ -24,9 +24,3 @@ struct ContentView: View {
         Text("Lorem Ipsum")
     }
 }
-
-extension UIViewController: StandardNavigable {
-    public func setRoot(to viewController: UIViewController) {
-        fatalError()
-    }
-}

@@ -16,6 +16,13 @@ XCode Templates
 - Project now includes templates for `SwiftUI`
 
 ### 3.10.0(35)
+### [3.10.0(35)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.0) — *2022 07 04*
+
+Views and ViewControllers
+
+- `LeftAlignedCollectionViewFlowLayout` is added
+- `CenterAlignedCollectionViewFlowLayout` is added
+- `RightAlignedCollectionViewFlowLayout` is added
 
 Models
 
@@ -24,6 +31,10 @@ Models
 - State models are now added for `GenericStateModel`'s
 - Various `GenericState`'s' and `GenericStateModel`'s are added
 - `zero`, `clearColors`, `clearUIColors`, and `clearNSColors` factory properties are added to  `GenericStateModel`'s
+
+Other
+
+- Platform-based compilation errors are fixed
 
 ### [3.9.2(34)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.2) — *2022 06 29*
 

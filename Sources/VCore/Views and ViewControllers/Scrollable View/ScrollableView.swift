@@ -34,8 +34,13 @@ open class ScrollableView: UIView {
     /// Container in which subviews must be added.
     open var contentView: UIView = {
         let view: UIView = .init()
+
         view.translatesAutoresizingMaskIntoConstraints = false
+        
+        #if os(iOS)
         view.backgroundColor = .systemBackground
+        #endif
+        
         return view
     }()
     

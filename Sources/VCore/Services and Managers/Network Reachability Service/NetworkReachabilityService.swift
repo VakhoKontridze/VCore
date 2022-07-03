@@ -21,7 +21,9 @@ public final class NetworkReachabilityService {
     #else
         
     /// Indicates if device is connected to a network.
-    private(set) public lazy var isConnectedToNetwork: Bool? = nil
+    ///
+    /// On app launch, property is set to `false`, as `NWPath` is not available,
+    private(set) public lazy var isConnectedToNetwork: Bool = false
 
     #endif
     

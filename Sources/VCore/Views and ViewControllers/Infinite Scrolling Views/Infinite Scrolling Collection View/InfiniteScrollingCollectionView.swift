@@ -78,10 +78,10 @@ open class InfiniteScrollingCollectionView: UICollectionView {
             withReuseIdentifier: .init(describing: UICollectionReusableView.self)
         )
         
-        guard (collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection == .vertical else {
-            fatalError("InfiniteScrollingCollectionView scrollDirection must be vertical")
-        }
-        
+        assert(
+            (collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection == .vertical,
+            "`scrollDirection` must be set to `vertical`"
+        )
         (collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize = .init(
             width: bounds.width,
             height: ActivityIndicatorModel.Layout.height
@@ -105,9 +105,10 @@ open class InfiniteScrollingCollectionView: UICollectionView {
     
     /// Returns `UIActivityIndicator`.
     open func viewForSupplementaryElement(kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
-        guard numberOfSections <= 1 else {
-            fatalError("InfiniteScrollingCollectionView doesn't support multiple sections")
-        }
+        assert(
+            numberOfSections <= 1,
+            "`numberOfSections` must be set to `1`"
+        )
         
         guard kind == UICollectionView.elementKindSectionFooter else { return .init() }
         
