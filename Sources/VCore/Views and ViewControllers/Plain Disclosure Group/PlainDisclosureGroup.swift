@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 22.06.22.
 //
 
+#if os(iOS)
+
 import SwiftUI
 
 // MARK: - Plain Disclosure Group
@@ -31,9 +33,7 @@ import SwiftUI
 ///             .padding()
 ///     }
 ///
-@available(iOS 14.0, macOS 11.0, *)
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
+@available(iOS 14.0, *)
 public struct PlainDisclosureGroup<Label, Content>: View
     where
         Label: View,
@@ -44,17 +44,17 @@ public struct PlainDisclosureGroup<Label, Content>: View
     
     @State private var isExpandedInternally: Bool = false
     @Binding private var isExpandedExternally: Bool
-    private let stateManagament: StateManagement
+    private let stateManagement: StateManagement
     private var isExpanded: Binding<Bool> {
         .init(
             get: {
-                switch stateManagament {
+                switch stateManagement {
                 case .internal: return isExpandedInternally
                 case .external: return isExpandedExternally
                 }
             },
             set: { value in
-                switch stateManagament {
+                switch stateManagement {
                 case .internal: isExpandedInternally = value
                 case .external: isExpandedExternally = value
                 }
@@ -76,7 +76,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
     ) {
         self.uiModel = uiModel
         self._isExpandedExternally = .constant(false)
-        self.stateManagament = .internal
+        self.stateManagement = .internal
         self.label = label
         self.content = content
     }
@@ -90,7 +90,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
     ) {
         self.uiModel = uiModel
         self._isExpandedExternally = isExpanded
-        self.stateManagament = .external
+        self.stateManagement = .external
         self.label = label
         self.content = content
     }
@@ -166,3 +166,5 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
             .padding()
     }
 }
+
+#endif

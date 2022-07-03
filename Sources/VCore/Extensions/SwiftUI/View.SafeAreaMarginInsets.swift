@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 27.06.22.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import SwiftUI
 
 // MARK: - Safe Area Margin Insets
@@ -70,3 +72,5 @@ extension View {
         }
     }
 }
+
+#endif
