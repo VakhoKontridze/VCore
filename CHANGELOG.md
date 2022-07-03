@@ -15,6 +15,12 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.10.1(36)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.1) — *2022 07 04*
+
+Extensions
+
+- Missing deprecated name for `UIViewController.dismissKeyboardOnOutsideTap()` is added
+
 ### [3.10.0(35)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.0) — *2022 07 04*
 
 Views and ViewControllers
@@ -33,7 +39,7 @@ Models
 
 Other
 
-- Platform-based compilation errors are fixed
+- Platform-specific compilation errors are fixed
 
 ### [3.9.2(34)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.2) — *2022 06 29*
 
