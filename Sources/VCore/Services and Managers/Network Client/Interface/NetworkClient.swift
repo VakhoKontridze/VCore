@@ -39,7 +39,7 @@ public final class NetworkClient {
     public var sessionConfiguration: URLSessionConfiguration = .default
     
     /// Queue on which completion is returned. Defaults to `main`.
-    public var completionQeueue: DispatchQueue = .main
+    public var completionQueue: DispatchQueue = .main
     
     /*private*/ let responseProcessor: any NetworkResponseProcessor
     

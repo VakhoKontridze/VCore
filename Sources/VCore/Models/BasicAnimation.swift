@@ -10,12 +10,12 @@ import SwiftUI
 // MARK: - Basic Animation
 /// Wrapper for `SwiftUI`'s animation that stores curve and duration.
 ///
-/// Duration can be used to asychronously perform an action when animation finishes.
+/// Duration can be used to asynchronously perform an action when animation finishes.
 /// To use completion handler, use global `withBasicAnimation(_:body:completion:)` function.
 ///
 /// Another purpose of this model is to limit animations to basic curve and duration.
 ///
-/// Object contains proeprty `swiftUIAnimation`, which casts `BasicAnimation` to `SwiftUI`'s native `Animation`.
+/// Object contains property `swiftUIAnimation`, which casts `BasicAnimation` to `SwiftUI`'s native `Animation`.
 public struct BasicAnimation {
     // MARK: Properties
     /// Animation curve.
@@ -26,13 +26,16 @@ public struct BasicAnimation {
     
     // MARK: Initializers
     /// Initializes `BasicAnimation` with curve and duration.
-    public init(curve: AnimationCurve, duration: TimeInterval) {
+    public init(
+        curve: AnimationCurve,
+        duration: TimeInterval
+    ) {
         self.curve = curve
         self.duration = duration
     }
 
     // MARK: Animation Curve
-    /// Enumeration that represents animation curve, suh as `linear`, `easeIn`, `easeOut`, or `easeInOut`.
+    /// Enumeration that represents animation curve, such as `linear`, `easeIn`, `easeOut`, or `easeInOut`.
     public enum AnimationCurve: Hashable, Equatable {
         // MARK: Cases
         /// Linear.
@@ -64,7 +67,7 @@ public struct BasicAnimation {
 /// Returns the result of recomputing the view's body with the provided `BasicAnimation`,
 /// and optionally calls a completion handler.
 ///
-/// Comletion handler is called using `asyncAfter`,
+/// Completion handler is called using `asyncAfter`,
 /// scheduling with a deadline of `.now()` `+` animation duration.
 public func withBasicAnimation<Result>(
     _ animation: BasicAnimation?,

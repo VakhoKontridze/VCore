@@ -44,7 +44,7 @@ public struct EdgeInsets_TB: Hashable, Equatable {
     /// Initializes `EdgeInsets_TB` with zero values.
     public static var zero: Self { .init() }
     
-    // MARK: Inseting
+    // MARK: Insetting
     /// Insets `EdgeInsets` by a given value.
     public func insetBy(inset: CGFloat) -> EdgeInsets_TB {
         .init(

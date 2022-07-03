@@ -75,7 +75,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
     /// Initializes `EdgeInsets_LTTB` with zero values.
     public static var zero: Self { .init() }
     
-    // MARK: Inseting
+    // MARK: Insetting
     /// Insets `EdgeInsets` by a given value.
     public func insetBy(inset: CGFloat) -> EdgeInsets_LTTB {
         .init(

@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Digital Time Foramtter
+// MARK: - Digital Time Formatter
 /// Digital Time formatter.
 public struct DigitalTimeFormatter {
     // MARK: Properties

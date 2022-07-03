@@ -56,7 +56,7 @@ extension View {
     ///             })
     ///     }
     ///
-    /// Non-`Binding` modal can still be binded using this method:
+    /// Non-`Binding` modal can still be bound using this method:
     ///
     ///     @State private var isOn: Bool = false
     ///     @State private var isPresented: Bool = false

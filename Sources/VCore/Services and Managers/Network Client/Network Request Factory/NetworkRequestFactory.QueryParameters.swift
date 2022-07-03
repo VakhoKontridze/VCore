@@ -22,7 +22,7 @@ extension NetworkRequestFactory {
             for (key, value) in json {
                 guard let value = value else { continue }
                 
-                guard let description: String = .init(unwrappedDescribing: value) else { throw NetworkError.invalidQueryparameters }
+                guard let description: String = .init(unwrappedDescribing: value) else { throw NetworkError.invalidQueryParameters }
                 result.updateValue(description, forKey: key)
             }
             
@@ -41,7 +41,7 @@ extension NetworkRequestFactory {
             for (key, value) in json {
                 guard let value = value else { continue }
                 
-                guard let description: String = .init(unwrappedDescribing: value) else { throw NetworkError.invalidQueryparameters }
+                guard let description: String = .init(unwrappedDescribing: value) else { throw NetworkError.invalidQueryParameters }
                 result.updateValue(description, forKey: key)
             }
             

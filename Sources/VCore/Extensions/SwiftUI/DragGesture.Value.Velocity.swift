@@ -11,7 +11,7 @@ import SwiftUI
 
 // MARK: - Drag Gesture Value Velocity
 extension DragGesture.Value {
-    /// Calculates velocity of `DrageGesture` in relation to last drag value.
+    /// Calculates velocity of `DragGesture` in relation to last drag value.
     ///
     ///     @State private var lastDragValue: DragGesture.Value?
     ///

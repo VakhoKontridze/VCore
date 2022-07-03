@@ -8,10 +8,10 @@
 import Foundation
 
 // MARK: - Logical Exclusive Or
-/// Exlsuive "or" logical operator.
+/// Exclusive "or" logical operator.
 infix operator ^^
 
-/// Exlsuive "or" logical operator.
+/// Exclusive "or" logical operator.
 public func ^^(lhs: Bool, rhs: Bool) -> Bool {
     lhs != rhs
 }

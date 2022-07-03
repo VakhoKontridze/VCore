@@ -91,7 +91,7 @@ extension UITableViewDequeueable {
 // MARK: - Table View
 /// Allows for the delegation of `UITableViewDelegate`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`.
+/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `Presenter`.
 /// in `MVVM`, this protocol is conformed to by a `ViewModel.`
 public protocol UITableViewDelegatable {
     /// Notifies that a `UITableViewCell` has been selected and section and row.
@@ -100,7 +100,7 @@ public protocol UITableViewDelegatable {
 
 /// Allows for the delegation of `UITableViewDataSource`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`.
+/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `Presenter`.
 /// in `MVVM`, this protocol is conformed to by a `ViewModel.`
 public protocol UITableViewDataSourceable {
     /// Number of sections in `UITableView`.
@@ -123,7 +123,7 @@ extension UITableView {
 
 // MARK: - Dequeueing
 extension UITableView {
-    /// Deques and configures a resuabe cell in `UITableView`.
+    /// Dequeues and configures a reusable cell in `UITableView`.
     public func dequeueAndConfigureReusableCell(
         parameter: any UITableViewCellParameter
     ) -> UITableViewCell {

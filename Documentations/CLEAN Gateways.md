@@ -26,7 +26,7 @@ A specific implementation of a gateway. To differentiate the gateways from one a
 
 Although an `Interactor` in VIP/VIPER is part of the scene, Gateways are not inherently bound to specific scenes.
 
-This design choice follows CLEAN architecture. But `UseCase`'s as ommited, as their responsibility is entirely covered by `Interactor`'s.
+This design choice follows CLEAN architecture. But `UseCase`'s as omitted, as their responsibility is entirely covered by `Interactor`'s.
 
 Relationship between an `Interactor`  and `Gateway` is the following:
 

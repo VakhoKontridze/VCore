@@ -8,34 +8,34 @@
 import Foundation
 
 // MARK: - Network Request Method
-/// `HTTP` method for `NetworkServie`.
+/// `HTTP` method for `NetworkService`.
 public enum NetworkRequestMethod: Int, CaseIterable {
     // MARK: Cases
-    /// `GET` reqeust method.
+    /// `GET` request method.
     case GET
     
-    /// `POST` reqeust method.
+    /// `POST` request method.
     case POST
     
-    /// `PUT` reqeust method.
+    /// `PUT` request method.
     case PUT
     
-    /// `PATCH` reqeust method.
+    /// `PATCH` request method.
     case PATCH
     
-    /// `DELETE` reqeust method.
+    /// `DELETE` request method.
     case DELETE
     
-    /// `HEAD` reqeust method.
+    /// `HEAD` request method.
     case HEAD
     
-    /// `CONNECT` reqeust method.
+    /// `CONNECT` request method.
     case CONNECT
     
-    /// `OPTIONS` reqeust method.
+    /// `OPTIONS` request method.
     case OPTIONS
     
-    /// `TRACE` reqeust method.
+    /// `TRACE` request method.
     case TRACE
     
     // MARK: Properties

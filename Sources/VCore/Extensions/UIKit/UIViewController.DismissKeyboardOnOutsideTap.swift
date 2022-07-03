@@ -15,10 +15,10 @@ extension UIViewController {
     ///
     ///     override func viewDidLoad() {
     ///         super.viewDidLoad()
-    ///         dismissKeyboardOnOutisdeTap()
+    ///         dismissKeyboardOnOutsideTap()
     ///     }
     ///
-    public func dismissKeyboardOnOutisdeTap() {
+    public func dismissKeyboardOnOutsideTap() {
         view.addGestureRecognizer({
             let gesture: UITapGestureRecognizer = .init(target: self, action: #selector(endEditingFromOutsideTap))
             gesture.cancelsTouchesInView = false

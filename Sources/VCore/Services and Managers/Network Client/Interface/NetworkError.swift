@@ -26,7 +26,7 @@ public enum NetworkError: Int, VCoreError, CaseIterable {
     case invalidPathParameters
     
     /// Indicates that query parameters are invalid.
-    case invalidQueryparameters
+    case invalidQueryParameters
     
     /// Indicates that headers are invalid.
     case invalidHeaders
@@ -34,10 +34,10 @@ public enum NetworkError: Int, VCoreError, CaseIterable {
     /// Indicates that body is invalid.
     case invalidBody
     
-    /// Indicates that network ruquest returned an error.
+    /// Indicates that network request returned an error.
     case returnedWithError
     
-    /// Indicates that netowrk ruquest returned an invalid response.
+    /// Indicates that network request returned an invalid response.
     case invalidResponse
     
     /// Indicates that result cannot be decoded.

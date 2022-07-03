@@ -8,7 +8,7 @@ Models
 - `BasicAnimation` is added
 - State models are now added for `GenericStateModel`'s
 - Various `GenericState`'s' and `GenericStateModel`'s are added
-- `zero`, `clearColors`, `clearUIColors`, and `clearNSColors` factory propertise are added to  `GenericStateModel`'s
+- `zero`, `clearColors`, `clearUIColors`, and `clearNSColors` factory properties are added to  `GenericStateModel`'s
 
 ### [3.9.2(34)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.2) — *2022 06 29*
 
@@ -243,7 +243,7 @@ API
 
 Localization Service
 
-- `LocalizationService` now supports langauge switching from app settings
+- `LocalizationService` now supports language switching from app settings
 
 ### [2.3.0(16)](https://github.com/VakhoKontridze/VCore/releases/tag/2.3.0) — *2022 02 25*
 

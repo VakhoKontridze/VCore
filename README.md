@@ -44,7 +44,7 @@ Package files are grouped as:
 
 Package incudes folder `Extra`, which contains:
 
-- ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover scenes and gateways. For more info, refer to documnetation folder.
+- ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover scenes and gateways. For more info, refer to documentation folder.
 
 - Objects and methods that cannot be included in the package as they require additional customization or access to `AppDelegate`/`SceneDelegate`.
 
