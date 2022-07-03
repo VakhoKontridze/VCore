@@ -196,7 +196,7 @@ extension GenericStateModel_OOIPD: Comparable where Value: Comparable {
 
 // MARK: - Mapping
 extension GenericStateModel_OOIPD {
-    func value(for state: GenericState_OOIPD) -> Value {
+    public func value(for state: GenericState_OOIPD) -> Value {
         switch state {
         case .off: return off
         case .on: return on
