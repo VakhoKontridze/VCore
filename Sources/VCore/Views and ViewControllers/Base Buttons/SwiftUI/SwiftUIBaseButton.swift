@@ -59,7 +59,7 @@ import SwiftUI
 /// State-Model Mapping:
 ///
 ///     extension GenericStateModel_EPD {
-///         func `for`(_ state: SomeButtonInternalState) -> Value {
+///         func value(for state: SomeButtonInternalState) -> Value {
 ///             switch state {
 ///             case .enabled: return enabled
 ///             case .pressed: return pressed
@@ -92,7 +92,7 @@ import SwiftUI
 ///         public var body: some View {
 ///             SwiftUIBaseButton(gesture: gestureHandler, label: {
 ///                 Text(title)
-///                     .foregroundColor(Model.titleColor.for(internalState))
+///                     .foregroundColor(Model.titleColor.value(for: internalState))
 ///             })
 ///                 .disabled(!internalState.isEnabled)
 ///         }
@@ -119,7 +119,7 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
     private let label: () -> Label
     
     // MARK: Initializers
-    /// Initializes component with gesture handler and label.
+    /// Initializes `SwiftUIBaseButton` with gesture handler and label.
     public init(
         gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
         @ViewBuilder label: @escaping () -> Label
@@ -128,7 +128,7 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
         self.label = label
     }
     
-    /// Initializes component with action and label.
+    /// Initializes `SwiftUIBaseButton` with action and label.
     public init(
         action: @escaping () -> Void,
         @ViewBuilder label: @escaping () -> Label
