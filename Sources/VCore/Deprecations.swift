@@ -219,7 +219,7 @@ public typealias UITableViewCellViewModelable = UITableViewCellParameter
 extension UITableViewDequeueable {
     @available(*, deprecated, message: "Use method with `parameter` label")
     public func configure(viewModel: any UITableViewCellParameter) {
-        
+        configure(parameter: viewModel)
     }
 }
 
@@ -252,7 +252,7 @@ public typealias UICollectionViewCellViewModelable = UICollectionViewCellParamet
 extension UICollectionViewDequeueable {
     @available(*, deprecated, message: "Use method with `parameter` label")
     public func configure(viewModel: any UICollectionViewCellParameter) {
-        
+        configure(parameter: viewModel)
     }
 }
 
