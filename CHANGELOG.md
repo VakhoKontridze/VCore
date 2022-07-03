@@ -1,6 +1,6 @@
 # Change Log
 
-### 3.10.0(35)
+### [3.10.0(35)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.0) — *2022 07 04*
 
 Views and ViewControllers
 
