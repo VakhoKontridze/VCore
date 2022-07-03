@@ -12,7 +12,7 @@ import SwiftUI
 ///
 /// Parameters for presenting an `Alert`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, parameters are stored in`Presenter`.
+/// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in`Presenter`.
 /// in `MVVM`, parameters are stored in `ViewModel.`
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct AlertParameters: Hashable, Identifiable {

@@ -5,7 +5,7 @@ import VCore
 
 // MARK: - ___VARIABLE_productName___ Factory
 @MainActor struct ___VARIABLE_productName___Factory {
-    // MARK: Initalizers
+    // MARK: Initializers
     private init() {}
     
     // MARK: Factory

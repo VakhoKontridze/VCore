@@ -10,7 +10,7 @@ import VCore
 
 // MARK: - Post Details Factory
 @MainActor struct PostDetailsFactory {
-    // MARK: Initalizers
+    // MARK: Initializers
     private init() {}
     
     // MARK: Factory

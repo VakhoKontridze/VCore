@@ -4,7 +4,7 @@
 
 Architectural Pattern Helpers
 
-- Architectural helpers are added for `SwiftUI`, alongside with documetation and demo
+- Architectural helpers are added for `SwiftUI`, alongside with documentation and demo
 
 Extensions
 

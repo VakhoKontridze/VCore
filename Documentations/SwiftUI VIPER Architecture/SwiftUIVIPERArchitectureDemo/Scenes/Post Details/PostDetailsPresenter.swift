@@ -13,7 +13,7 @@ import VCore
     // MARK: Properties
     private let parameters: PostDetailsParameters
     
-    // MARK: Initialzers
+    // MARK: Initializers
     init(parameters: PostDetailsParameters) {
         self.parameters = parameters
         

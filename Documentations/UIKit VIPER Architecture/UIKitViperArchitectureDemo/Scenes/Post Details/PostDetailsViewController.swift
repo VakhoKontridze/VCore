@@ -12,10 +12,10 @@ import VCore
 final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     // MARK: Subviews
     private let scrollableView: ScrollableView = {
-        let scrollabelView: ScrollableView = .init(direction: .vertical)
-        scrollabelView.translatesAutoresizingMaskIntoConstraints = false
-        scrollabelView.scrollView.bounces = false
-        return scrollabelView
+        let scrollableView: ScrollableView = .init(direction: .vertical)
+        scrollableView.translatesAutoresizingMaskIntoConstraints = false
+        scrollableView.scrollView.bounces = false
+        return scrollableView
     }()
     
     private let bodyLabel: UILabel = .init(

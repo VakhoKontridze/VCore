@@ -17,7 +17,7 @@ import VCore
     
     private var fetchPostsTask: Task<Void, Never>?
     
-    // MARK: Initialzers
+    // MARK: Initializers
     init(interactor: Interactor) {
         self.interactor = interactor
         

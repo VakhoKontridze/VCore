@@ -4,7 +4,7 @@ A backronym for `View`, `Interactor`, `Presenter`, `Entity`, and `Router`.
 
 Architecture is highly-decoupled, follows modular design, obeys the single-responsibility principle, and is built on the interface communication pattern.
 
-Docoupled declarations discussed withis this variation are—`View`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are—`Factory`, `Parameters`, and `UIModel`. Even though VIPER contains `Entity` (E), this implementation of VIPER separates scenes from a datababase layer, and instead ties them to Gateways via CLEAN architecture.
+Decoupled declarations discussed within this variation are—`View`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are—`Factory`, `Parameters`, and `UIModel`. Even though VIPER contains `Entity` (E), this implementation of VIPER separates scenes from a database layer, and instead ties them to Gateways via CLEAN architecture.
 
 Package contains demo app that demonstrates this architecture.
 
@@ -34,7 +34,7 @@ None. Owned by `Presenter`.
 
 While not technically a component, this file lists all protocols that explain communication within the objects.
 
-There are five protocols thatt explain the communication:
+There are five protocols that explain the communication:
 
 | Protocol    | Conformance    | Owner          | Ownership |
 | :---------- | :------------- | :------------- | :-------- |
@@ -53,8 +53,8 @@ View of the scene.
 Responsibilities of the `View` include:
 
 - Creating and configuring subviews
-- Intefacing with `Presenter` to access reactive data, or to call methods
-- Interfacting with values stored in environment, and passing them off to `Presenter`, such as `NSManagedObjectContext
+- Interfacing with `Presenter` to access reactive data, or to call methods
+- Interfacing with values stored in environment, and passing them off to `Presenter`, such as `NSManagedObjectContext
 
 Responsibilities of the `View` do not include:
 
@@ -71,7 +71,7 @@ The Central object in the scene that controls the business logic and binds every
 Responsibilities of the `Presenter` include:
 
 - Connecting all components
-- Communicating with `Router` to trigger navigation towards or presentation of scenes. This occurs via updaing `NavigationPath` in `NavigationStackCoordinator`.
+- Communicating with `Router` to trigger navigation towards or presentation of scenes. This occurs via updating `NavigationPath` in `NavigationStackCoordinator`.
 - Communicating with `Interactor` to interact with databases
 - Storing and managing data. This includes `Parameters` passed from the previous scene.
 
@@ -126,7 +126,7 @@ Responsibilities of the `Interactor` do not include:
 
 #### Interactive
 
-`Interacive` protocol is used by `Presenter` to perform fetch requests. Some methods declared in protocol are:
+`Interactive` protocol is used by `Presenter` to perform fetch requests. Some methods declared in protocol are:
 
 ```swift
 func fetchSomeData(with parameters: SomeParameters) async throws -> SomeEntity

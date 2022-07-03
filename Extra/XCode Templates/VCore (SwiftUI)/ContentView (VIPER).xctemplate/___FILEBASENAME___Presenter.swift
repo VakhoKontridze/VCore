@@ -11,7 +11,7 @@ import VCore
     private let interactor: Interactor
     private let parameters: ___VARIABLE_productName___Parameters
     
-    // MARK: Initialzers
+    // MARK: Initializers
     init(
         interactor: Interactor,
         parameters: ___VARIABLE_productName___Parameters
