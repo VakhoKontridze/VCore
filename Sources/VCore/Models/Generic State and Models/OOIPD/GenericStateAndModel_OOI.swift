@@ -9,6 +9,8 @@ import SwiftUI
 
 // MARK: - Generic State (Off, On, Indeterminate)
 /// Enumeration that represents state, such as `off`, `on`, or `indeterminate`.
+///
+/// Used for mapping state to `GenericStateModel_OOI`, via `value(for:)` method.
 public enum GenericState_OOI: Int, CaseIterable {
     // MARK: Cases
     /// Off.
@@ -53,6 +55,8 @@ extension Binding where Value == GenericState_OOI {
 
 // MARK: - Generic State Model (Off, On, Indeterminate)
 /// Color group containing `off`, `on`, and `indeterminate`.
+///
+/// Used for mapping `GenericState_OOI` to model, via `value(for:)` method.
 public struct GenericStateModel_OOI<Value> {
     // MARK: Properties
     /// Off value.

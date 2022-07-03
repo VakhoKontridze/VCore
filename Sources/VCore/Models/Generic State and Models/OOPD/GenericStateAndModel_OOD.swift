@@ -9,6 +9,8 @@ import SwiftUI
 
 // MARK: - Generic State (Off, On, Disabled)
 /// Enumeration that represents state, such as `off`, `on`, or `disabled`.
+///
+/// Used for mapping state to `GenericStateModel_OOD`, via `value(for:)` method.
 public enum GenericState_OOD: Int, CaseIterable {
     // MARK: Cases
     /// Off.
@@ -53,6 +55,8 @@ public enum GenericState_OOD: Int, CaseIterable {
 
 // MARK: - Generic State Model (Off, On, Disabled)
 /// Color group containing `off`, `on`, and `disabled`.
+///
+/// Used for mapping `GenericState_OOD` to model, via `value(for:)` method.
 public struct GenericStateModel_OOD<Value> {
     // MARK: Properties
     /// Off value.

@@ -9,6 +9,8 @@ import SwiftUI
 
 // MARK: - Genetic State (Enabled, Loading)
 /// Enumeration that represents state, such as `enabled` or `loading`.
+///
+/// Used for mapping state to `GenericStateModel_EL`, via `value(for:)` method.
 public enum GenericState_EL: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -30,7 +32,7 @@ public enum GenericState_EL: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Loading)
 /// Value group containing generic `enabled`  and `loading` values.
 ///
-/// Used for mapping `GenericState_EL` to model.
+/// Used for mapping `GenericState_EL` to model, via `value(for:)` method.
 public struct GenericStateModel_EL<Value> {
     // MARK: Properties
     /// Enabled value.

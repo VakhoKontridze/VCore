@@ -9,6 +9,8 @@ import SwiftUI
 
 // MARK: - Genetic State (Collapsed, Expanded, Disabled)
 /// Enumeration that represents state, such as `collapsed`, `expanded`, or `disabled`.
+///
+/// Used for mapping state to `GenericStateModel_CED`, via `value(for:)` method.
 public enum GenericState_CED: Int, CaseIterable {
     // MARK: Cases
     /// Collapsed.
@@ -54,7 +56,7 @@ public enum GenericState_CED: Int, CaseIterable {
 // MARK: - Generic State Model (Collapsed, Expanded, Disabled)
 /// Value group containing generic `collapsed`, `expanded`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_CED` to model.
+/// Used for mapping `GenericState_CED` to model, via `value(for:)` method.
 public struct GenericStateModel_CED<Value> {
     // MARK: Properties
     /// Collapsed value.
