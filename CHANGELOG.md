@@ -2,6 +2,12 @@
 
 ### 3.10.0(35)
 
+Views and ViewControllers
+
+- `LeftAlignedCollectionViewFlowLayout` is added
+- `CenterAlignedCollectionViewFlowLayout` is added
+- `RightAlignedCollectionViewFlowLayout` is added
+
 Models
 
 - `HashableEnumeration` and `StringRepresentableHashableEnumeration` are added
