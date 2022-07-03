@@ -18,7 +18,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
     public var vertical: CGFloat
     
     // MARK: Initializers
-    /// Initializes insets with values.
+    /// Initializes `EdgeInsets_HV` with values.
     public init(
         horizontal: CGFloat,
         vertical: CGFloat
@@ -27,7 +27,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
         self.vertical = vertical
     }
     
-    /// Initializes insets with value.
+    /// Initializes `EdgeInsets_HV` with value.
     public init(
         _ value: CGFloat
     ) {
@@ -35,13 +35,13 @@ public struct EdgeInsets_HV: Hashable, Equatable {
         self.vertical = value
     }
     
-    /// Initializes insets with zero values.
+    /// Initializes `EdgeInsets_HV` with zero values.
     public init() {
         self.horizontal = 0
         self.vertical = 0
     }
     
-    /// Initializes insets with zero values.
+    /// Initializes `EdgeInsets_HV` with zero values.
     public static var zero: Self { .init() }
     
     // MARK: Inseting
@@ -109,7 +109,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
 
 // MARK: - Extension
 extension View {
-    /// Adds a specific padding amount to each edge of this view from `EdgeInsets_HV`.
+    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_HV`.
     ///
     ///     let insets: EdgeInsets_HV = .init(
     ///         horizontal: 10,

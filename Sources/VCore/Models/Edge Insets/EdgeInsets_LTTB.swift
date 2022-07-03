@@ -30,7 +30,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
     public var vertical: CGFloat { top + bottom }
     
     // MARK: Initializers
-    /// Initializes insets with values.
+    /// Initializes `EdgeInsets_LTTB` with values.
     public init(
         leading: CGFloat,
         trailing: CGFloat,
@@ -43,7 +43,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
         self.bottom = bottom
     }
     
-    /// Initializes insets with horizontal and vertical values.
+    /// Initializes `EdgeInsets_LTTB` with horizontal and vertical values.
     public init(
         horizontal: CGFloat,
         vertical: CGFloat
@@ -54,7 +54,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
         self.bottom = vertical
     }
     
-    /// Initializes insets with value.
+    /// Initializes `EdgeInsets_LTTB` with value.
     public init(
         _ value: CGFloat
     ) {
@@ -64,7 +64,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
         self.bottom = value
     }
     
-    /// Initializes insets with zero values.
+    /// Initializes `EdgeInsets_LTTB` with zero values.
     public init() {
         self.leading = 0
         self.trailing = 0
@@ -72,7 +72,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
         self.bottom = 0
     }
     
-    /// Initializes insets with zero values.
+    /// Initializes `EdgeInsets_LTTB` with zero values.
     public static var zero: Self { .init() }
     
     // MARK: Inseting
@@ -176,7 +176,7 @@ public struct EdgeInsets_LTTB: Hashable, Equatable {
 
 // MARK: - Extension
 extension View {
-    /// Adds a specific padding amount to each edge of this view from `EdgeInsets_LTTB`.
+    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_LTTB`.
     ///
     ///     let insets: EdgeInsets_LTTB = .init(
     ///         leading: 10,

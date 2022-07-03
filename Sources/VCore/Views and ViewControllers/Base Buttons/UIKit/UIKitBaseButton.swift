@@ -79,7 +79,7 @@ import UIKit
 /// State-Model Mapping:
 ///
 ///     extension GenericStateModel_EPD {
-///         func `for`(_ state: SomeButtonInternalState) -> Value {
+///         func value(for state: SomeButtonInternalState) -> Value {
 ///             switch state {
 ///             case .enabled: return enabled
 ///             case .pressed: return pressed
@@ -174,7 +174,7 @@ import UIKit
 ///
 ///         private func configureFromStateModelChange() {
 ///             print(internalState)
-///             titleLabel.textColor = Model.titleColor.for(internalState)
+///             titleLabel.textColor = Model.titleColor.value(for: internalState)
 ///         }
 ///     }
 ///

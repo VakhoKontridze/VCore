@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - View on First Appear
 extension View {
-    /// Adds an action to perform before this view appears for the first time.
+    /// Adds an action to perform before this `View` appears for the first time.
     ///
     ///     content
     ///         .onFirstAppear(perform: fetchData)

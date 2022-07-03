@@ -15,17 +15,25 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### 3.10.0(35)
+
+Models
+
+- State models are now added for `GenericStateModel`'s
+- Various `GenericState`'s' and `GenericStateModel`'s are added
+- `zero`, `clearColors`, `clearUIColors`, and `clearNSColors` factory propertise are added to  `GenericStateModel`'s
+
 ### [3.9.2(34)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.2) — *2022 06 29*
 
 XCode Templates
 
-- Missing package import is added to async Gateway XCode template
+- Missing package import is added to `async` Gateway XCode template
 
 ### [3.9.1(33)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.1) — *2022 06 29*
 
 Localization Service
 
-- `LocalizationService` now reads locales directly from `Bundle`
+- `LocalizationService` now reads locales directly from the `Bundle`
 - `LocalizationService` no longer causes issues with default localization outside of non-English regions
 
 ### [3.9.0(32)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.0) — *2022 06 27*

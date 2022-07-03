@@ -1,6 +1,6 @@
 //
 //  View.ReadSize.swift
-//  VComponents
+//  VCore
 //
 //  Created by Vakhtang Kontridze on 10/28/21.
 //

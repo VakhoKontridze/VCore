@@ -10,43 +10,6 @@ import XCTest
 
 // MARK: - Tests
 final class EdgeInsetsTBTests: XCTestCase {
-    // MARK: Initializers
-    func testInitValues() {
-        let top: CGFloat = 1
-        let bottom: CGFloat = 2
-        
-        let insets: EdgeInsets_TB = .init(
-            top: top,
-            bottom: bottom
-        )
-        
-        XCTAssertEqual(insets.top, top)
-        XCTAssertEqual(insets.bottom, bottom)
-    }
-    
-    func testInitValue() {
-        let value: CGFloat = 1
-        
-        let insets: EdgeInsets_TB = .init(value)
-        
-        XCTAssertEqual(insets.top, value)
-        XCTAssertEqual(insets.bottom, value)
-    }
-    
-    func testInitZero() {
-        let insets: EdgeInsets_TB = .init()
-        
-        XCTAssertEqual(insets.top, 0)
-        XCTAssertEqual(insets.bottom, 0)
-    }
-    
-    func testInitZeroFactory() {
-        let insets: EdgeInsets_TB = .zero
-        
-        XCTAssertEqual(insets.top, 0)
-        XCTAssertEqual(insets.bottom, 0)
-    }
-    
     // MARK: Insets
     func testInsetInset() {
         let inputTop: CGFloat = 1

@@ -89,9 +89,9 @@ extension GenericStateModel_EPD {
     ///         disabled: .gray
     ///     )
     ///
-    ///     titleLabel.textColor = titleColor.for(baseButton.internalButtonState)
+    ///     titleLabel.textColor = titleColor.value(for: baseButton.internalButtonState)
     ///
-    public func `for`(_ state: UIKitBaseButtonInternalState) -> Value {
+    public func value(for state: UIKitBaseButtonInternalState) -> Value {
         switch state {
         case .enabled: return enabled
         case .pressed: return pressed

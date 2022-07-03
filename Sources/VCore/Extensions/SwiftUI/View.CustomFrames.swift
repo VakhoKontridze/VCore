@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Custom View Frames
 extension View {
-    /// Positions this view within an invisible frame with the specified dimension.
+    /// Positions this `View` within an invisible frame with the specified dimension.
     ///
     ///     var body: some View {
     ///         Color.accentColor
@@ -26,7 +26,7 @@ extension View {
         )
     }
     
-    /// Positions this view within an invisible frame with the specified size.
+    /// Positions this `View` within an invisible frame with the specified size.
     ///
     ///     var body: some View {
     ///         Color.accentColor
@@ -44,7 +44,7 @@ extension View {
         )
     }
     
-    /// Positions this view within an invisible frame with the specified size configuration.
+    /// Positions this `View` within an invisible frame with the specified size configuration.
     ///
     ///     var body: some View {
     ///         Color.accentColor

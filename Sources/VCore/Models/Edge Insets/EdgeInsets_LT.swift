@@ -18,7 +18,7 @@ public struct EdgeInsets_LT: Hashable, Equatable {
     public var trailing: CGFloat
     
     // MARK: Initializers
-    /// Initializes group with values.
+    /// Initializes `EdgeInsets_LT` with values.
     public init(
         leading: CGFloat,
         trailing: CGFloat
@@ -27,7 +27,7 @@ public struct EdgeInsets_LT: Hashable, Equatable {
         self.trailing = trailing
     }
     
-    /// Initializes group with value.
+    /// Initializes `EdgeInsets_LT` with value.
     public init(
         _ value: CGFloat
     ) {
@@ -35,13 +35,13 @@ public struct EdgeInsets_LT: Hashable, Equatable {
         self.trailing = value
     }
     
-    /// Initializes insets with zero values.
+    /// Initializes `EdgeInsets_LT` with zero values.
     public init() {
         self.leading = 0
         self.trailing = 0
     }
     
-    /// Initializes insets with zero values.
+    /// Initializes `EdgeInsets_LT` with zero values.
     public static var zero: Self { .init() }
     
     // MARK: Inseting
@@ -109,7 +109,7 @@ public struct EdgeInsets_LT: Hashable, Equatable {
 
 // MARK: - Extension
 extension View {
-    /// Adds a specific padding amount to each edge of this view from `EdgeInsets_LT`.
+    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_LT`.
     ///
     ///     let insets: EdgeInsets_LT = .init(
     ///         leading: 10,
