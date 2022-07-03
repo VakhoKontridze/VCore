@@ -1,5 +1,11 @@
 # Change Log
 
+### [3.10.1(36)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.1) — *2022 07 04*
+
+Extensions
+
+- Missing deprecated name for `UIViewController.dismissKeyboardOnOutsideTap()` is added
+
 ### [3.10.0(35)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.0) — *2022 07 04*
 
 Views and ViewControllers
