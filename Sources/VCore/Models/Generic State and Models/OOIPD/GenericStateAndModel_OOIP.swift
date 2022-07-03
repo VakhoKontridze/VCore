@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Generic State (Off, On, Indeterminate, Pressed)
 /// Enumeration that represents state, such as `off`, `on`, `indeterminate`, `pressed` (`off`), `pressed` (`on`)` and `pressed` (`indeterminate`).
-enum GenericState_OOIP: Int, CaseIterable {
+public enum GenericState_OOIP: Int, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
