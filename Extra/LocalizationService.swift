@@ -38,14 +38,14 @@ final class LocalizationService {
     // MARK: System and Bundle Locales
     let preferredSystemLocaleIDs: [String] = Locale.preferredLanguages
         .map { $0.removingRegionCode() }
-        .removingBaseLoacale()
+        .removingBaseLocale()
     
     let preferredSystemLocaleID: String = Locale.current.identifier
         .removingRegionCode()
     
     let bundleLocaleIDs: [String] = Bundle.main.localizations
         .map { $0.removingRegionCode() }
-        .removingBaseLoacale()
+        .removingBaseLocale()
     
     let bundleLocaleID: String? = Bundle.main.preferredLocalizations.first?
         .removingRegionCode()
@@ -148,7 +148,7 @@ extension String {
 }
 
 extension Array where Element == String {
-    fileprivate func removingBaseLoacale() -> [String] {
+    fileprivate func removingBaseLocale() -> [String] {
         filter { $0 != "Base" }
     }
 }
