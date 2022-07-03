@@ -14,11 +14,11 @@ import UIKit
 ///
 /// Contains property `paginationState`, controls pagination state.
 /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
-/// Network call or persistent storage fetch reqiest can be made.
+/// Network call or persistent storage fetch request can be made.
 /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
 ///
 /// Two methods must be called from `UIView` or `UIViewController` to ensure proper functionality:
-/// - `detectPaginationFromScrollViewDidScroll`, whitch detects pagination on scroll.
+/// - `detectPaginationFromScrollViewDidScroll`, which detects pagination on scroll.
 /// - `detectPaginationFromTableViewCellForRow`, which detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called.
 ///
 open class InfiniteScrollingTableView: UITableView {
@@ -28,7 +28,7 @@ open class InfiniteScrollingTableView: UITableView {
     
     /// Controls pagination state.
     /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
-    /// Network call or persistent storage fetch reqiest can be made.
+    /// Network call or persistent storage fetch request can be made.
     /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
     open var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }
     

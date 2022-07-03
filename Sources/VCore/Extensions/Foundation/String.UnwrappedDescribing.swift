@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Unwrapped Describing String
 extension String {
-    /// Sreates a `String` representing the given value, or returns `nil`.
+    /// Creates a `String` representing the given value, or returns `nil`.
     ///
     ///     let a: Int? = 5
     ///     print(String(describing: a))            // "Optional(5)"

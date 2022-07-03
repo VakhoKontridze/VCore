@@ -10,12 +10,12 @@ import Foundation
 // MARK: - Any Multi Part Form Data File
 /// Type that can be passed to `MultiPartFormDataBuilder`.
 ///
-/// While not a non-nomilal type, `AnyMultiPartFormDataFile` mimics `Any`.
+/// While not a non-nominal type, `AnyMultiPartFormDataFile` mimics `Any`.
 ///
 /// `MultiPartFormDataFile`, `Dictionary` with a value of `AnyMultiPartFormDataFile`, and array of `AnyMultiPartFormDataFile` all conform to this protocol.
-/// This allows `MultiPartFormDataBuilder` to effectively send a single item, dictionary, array, combination, or a nested structue of each other.
+/// This allows `MultiPartFormDataBuilder` to effectively send a single item, dictionary, array, combination, or a nested structure of each other.
 ///
-/// Files passed to `MultiParFormDataBuilder` via dicrioanry will have joined names,
+/// Files passed to `MultiParFormDataBuilder` via dictionary will have joined names,
 /// while those passed via array will be enumerated using indexes.
 ///
 ///     let files: [String: (some AnyMultiPartFormDataFile)?] = [
@@ -56,7 +56,7 @@ extension Array: AnyMultiPartFormDataFile where Element == Optional<AnyMultiPart
 
 extension Dictionary: AnyMultiPartFormDataFile where Key == String, Value == Optional<AnyMultiPartFormDataFile> {}
  
-// MARK: - Mutli Part Form Data File
+// MARK: - Multi Part Form Data File
 /// Building block of objects conforming to `AnyMultiPartFormDataFile`.
 ///
 /// Can be placed in `Dictionary` or `Array`.
@@ -75,7 +75,7 @@ public struct MultiPartFormDataFile {
     public var data: Data?
     
     // MARK: Initializers
-    /// Initailizes `MultiPartFormDataFile`.
+    /// Initializes `MultiPartFormDataFile`.
     public init(
         filename: String? = nil,
         mimeType: String,
@@ -87,7 +87,7 @@ public struct MultiPartFormDataFile {
     }
 }
 
-// MARK: - _ Mutli Part Form Data File
+// MARK: - _ Multi Part Form Data File
 struct _MultiPartFormDataFile {
     // MARK: Properties
     let name: String

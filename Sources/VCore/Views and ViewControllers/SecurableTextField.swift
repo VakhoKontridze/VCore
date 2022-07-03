@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - Securable Text Field
-/// Input component that displays an editable text interface with togglable text.
+/// Input component that displays an editable text interface with toggle-able text.
 ///
 ///     @State var isSecure: Bool = false
 ///     @State var text: String = "Lorem ipsum"

@@ -17,7 +17,7 @@ extension NetworkClient {
     ) {
         makeRequest(
             request: request,
-            completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
+            completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) }
         )
     }
 
@@ -29,7 +29,7 @@ extension NetworkClient {
         makeRequest(
             request: request,
             decode: { $0 },
-            completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
+            completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) }
         )
     }
 
@@ -41,7 +41,7 @@ extension NetworkClient {
         makeRequest(
             request: request,
             decode: { try JSONDecoderService.json(data: $0) },
-            completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
+            completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) }
         )
     }
 
@@ -53,7 +53,7 @@ extension NetworkClient {
         makeRequest(
             request: request,
             decode: { try JSONDecoderService.jsonArray(data: $0) },
-            completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
+            completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) }
         )
     }
 
@@ -68,7 +68,7 @@ extension NetworkClient {
         makeRequest(
             request: request,
             decode: { try JSONDecoderService.decodable(data: $0) },
-            completion: { [weak self] result in self?.completionQeueue.async(execute: { completion(result) }) }
+            completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) }
         )
     }
     

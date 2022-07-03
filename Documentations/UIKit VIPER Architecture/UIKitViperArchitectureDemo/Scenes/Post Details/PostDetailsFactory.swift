@@ -9,7 +9,7 @@ import UIKit
 
 // MARK: - Post Details Factory
 struct PostDetailsFactory {
-    // MARK: Initalizers
+    // MARK: Initializers
     private init() {}
     
     // MARK: Factory

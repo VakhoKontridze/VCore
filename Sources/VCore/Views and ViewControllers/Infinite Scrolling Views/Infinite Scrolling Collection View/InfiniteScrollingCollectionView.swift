@@ -14,11 +14,11 @@ import UIKit
 ///
 /// Contains property `paginationState`, controls pagination state.
 /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
-/// Network call or persistent storage fetch reqiest can be made.
+/// Network call or persistent storage fetch request can be made.
 /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
 ///
 /// Three methods must be called from `UIView` or `UIViewController` to ensure proper functionality:
-/// - `detectPaginationFromScrollViewDidScroll`, whitch detects pagination on scroll.
+/// - `detectPaginationFromScrollViewDidScroll`, which detects pagination on scroll.
 /// - `detectPaginationFromCollectionViewCellForItem`, which detects instance in which loaded cells do not fill up UICollectionViews's content. So, pagination is called.
 /// - `viewForSupplementaryElement`, which returns `UIActivityIndicator`.
 ///
@@ -32,7 +32,7 @@ open class InfiniteScrollingCollectionView: UICollectionView {
     
     /// Controls pagination state.
     /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
-    /// Network call or persistent storage fetch reqiest can be made.
+    /// Network call or persistent storage fetch request can be made.
     /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
     open var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }
     
@@ -41,7 +41,7 @@ open class InfiniteScrollingCollectionView: UICollectionView {
     
     private var isFirstLayoutSubviews: Bool = false
     
-    private typealias ActivityIndicaatorModel = InfiniteScrollingCollectionViewActivityIndicatorModel
+    private typealias ActivityIndicatorModel = InfiniteScrollingCollectionViewActivityIndicatorModel
     
     // MARK: Initializers
     public override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
@@ -84,7 +84,7 @@ open class InfiniteScrollingCollectionView: UICollectionView {
         
         (collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize = .init(
             width: bounds.width,
-            height: ActivityIndicaatorModel.Layout.height
+            height: ActivityIndicatorModel.Layout.height
         )
     }
 
@@ -123,7 +123,7 @@ open class InfiniteScrollingCollectionView: UICollectionView {
             origin: .zero,
             size: .init(
                 width: frame.size.width,
-                height: ActivityIndicaatorModel.Layout.height
+                height: ActivityIndicatorModel.Layout.height
             )
         )
         

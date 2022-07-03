@@ -80,7 +80,7 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
         case .notConnectedToNetwork: return "Not connected to network"
         case .invalidEndpoint: return "Cannot connect to the server. An incorrect handler is being used."
         case .invalidPathParameters: return "Data cannot be encoded or is incomplete"
-        case .invalidQueryparameters: return "Data cannot be encoded or is incomplete"
+        case .invalidQueryParameters: return "Data cannot be encoded or is incomplete"
         case .invalidHeaders: return "Data cannot be encoded or is incomplete"
         case .invalidBody: return "Data cannot be encoded or is incomplete"
         case .requestTimedOut: return "Request has timed out"

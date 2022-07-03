@@ -66,7 +66,7 @@ extension NetworkClientFactory {
             guard var urlComponents: URLComponents = .init(string: endpoint) else { throw NetworkError.invalidEndpoint }
             urlComponents.addQueryItems(queryParameters)
             
-            guard let url: URL = urlComponents.url else { throw NetworkError.invalidQueryparameters }
+            guard let url: URL = urlComponents.url else { throw NetworkError.invalidQueryParameters }
             return url
         }
     }

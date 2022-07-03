@@ -23,10 +23,10 @@ public enum BaseButtonGestureState: Int, CaseIterable {
     
     /// Click.
     ///
-    /// Indicates if successfull click occured.
+    /// Indicates if successful click occurred.
     case click
     
-    // MARK: Propertes
+    // MARK: Properties
     /// Indicates if button is being pressed.
     public var isPressed: Bool {
         switch self {
@@ -36,7 +36,7 @@ public enum BaseButtonGestureState: Int, CaseIterable {
         }
     }
     
-    /// Indicates if successfull click occured.
+    /// Indicates if successful click occurred.
     public var isClicked: Bool {
         switch self {
         case .none: return false

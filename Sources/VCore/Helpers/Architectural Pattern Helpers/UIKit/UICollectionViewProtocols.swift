@@ -92,7 +92,7 @@ extension UICollectionViewDequeueable {
 // MARK: - Collection View
 /// Allows for the delegation of `UICollectionViewDelegate`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`.
+/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `Presenter`.
 /// in `MVVM`, this protocol is conformed to by a `ViewModel.`
 public protocol UICollectionViewDelegatable {
     /// Notifies that a `UICollectionViewCell` has been selected and section and row.
@@ -101,7 +101,7 @@ public protocol UICollectionViewDelegatable {
 
 /// Allows for the delegation of `UICollectionViewDataSource`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protoocol is conformed to by a `Presenter`.
+/// In `MVP`, `VIP`, and `VIPER` arhcitecutes, this protocol is conformed to by a `Presenter`.
 /// in `MVVM`, this protocol is conformed to by a `ViewModel.`
 public protocol UICollectionViewDataSourceable {
     /// Number of sections in `UICollectionView`
@@ -124,7 +124,7 @@ extension UICollectionView {
 
 // MARK: - Dequeueing
 extension UICollectionView {
-    /// Deques and configures a resuabe cell in `UICollectionView`.
+    /// Dequeues and configures a reusable cell in `UICollectionView`.
     public func dequeueAndConfigureReusableCell(
         indexPath: IndexPath,
         parameter: some UICollectionViewCellParameter

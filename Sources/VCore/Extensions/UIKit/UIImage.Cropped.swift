@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Image Crop
 extension UIImage {
-    /// Retusn `UIImage` cropped with rect.
+    /// Returns `UIImage` cropped with rect.
     ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///

@@ -28,7 +28,7 @@ public struct PlainDisclosureGroupUIModel {
     /// Sub-model containing layout properties.
     public struct Layout {
         // MARK: Properties
-        /// Default padding in native diclsosure group. Defaults to `8`.
+        /// Default padding in native disclosure group. Defaults to `8`.
         ///
         /// Value is used during the frame calculations, and must be provided.
         ///
@@ -46,7 +46,7 @@ public struct PlainDisclosureGroupUIModel {
         // MARK: Properties
         /// Background color.
         ///
-        /// Needed for giving a bakcground color to the label.
+        /// Needed for setting background color to the label.
         public var background: Color = .init(.systemBackground)
         
         // MARK: Initializers

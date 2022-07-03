@@ -4,7 +4,7 @@ A backronym for `View`, `Interactor`, `Presenter`, `Entity`, and `Router`.
 
 Architecture is highly-decoupled, follows modular design, obeys the single-responsibility principle, and is built on the interface communication pattern.
 
-Docoupled declarations discussed withis this variation are—`ViewController`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are—`Factory`, `Parameters`, and `UIModel`. Even though VIPER contains `Entity` (E), this implementation of VIPER separates scenes from a datababase layer, and instead ties them to Gateways via CLEAN architecture.
+Decoupled declarations discussed within this variation are—`ViewController`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are—`Factory`, `Parameters`, and `UIModel`. Even though VIPER contains `Entity` (E), this implementation of VIPER separates scenes from a database layer, and instead ties them to Gateways via CLEAN architecture.
 
 Package contains demo app that demonstrates this architecture.
 
@@ -34,7 +34,7 @@ None. Owned by `Presenter`.
 
 While not technically a component, this file lists all protocols that explain communication within the objects.
 
-There are five protocols thatt explain the communication:
+There are five protocols that explain the communication:
 
 | Protocol    | Conformance    | Owner          | Ownership |
 | :---------- | :------------- | :------------- | :-------- |
@@ -155,7 +155,7 @@ Responsibilities of the `Interactor` do not include:
 
 #### Interactive
 
-`Interacive` protocol is used by `Presenter` to perform fetch requests. Some methods declared in protocol are:
+`Interactive` protocol is used by `Presenter` to perform fetch requests. Some methods declared in protocol are:
 
 ```swift
 func fetchSomeData(with parameters: SomeParameters) async throws -> SomeEntity

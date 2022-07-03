@@ -34,7 +34,7 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
         .union(.init(arrayLiteral: ".".unicodeScalars.first!)) // fatalError
     
     // MARK: Initializers
-    /// Iniitializes `ModuleVersion` with versions.
+    /// Initializes `ModuleVersion` with versions.
     public init(_ major: Int, _ minor: Int, _ patch: Int? = nil) {
         self.major = major
         self.minor = minor

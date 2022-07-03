@@ -23,7 +23,7 @@ public struct MultiPartFormDataAuthorizedRequestHeaders: Encodable {
     public let authorization: String
     
     // MARK: Initializers
-    /// Initializes `MultiPartFormDataRequestHeaders` with boundary nad token.
+    /// Initializes `MultiPartFormDataRequestHeaders` with boundary and token.
     public init(boundary: String, token: String) {
         self.contentType = "multipart/form-data; boundary=\(boundary)"
         self.authorization = "Bearer \(token)"

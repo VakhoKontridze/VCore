@@ -12,7 +12,7 @@ extension Sequence {
     /// Groups elements of a `Sequence` by a given predicate.
     ///
     /// Works similar to `Dictionary(grouping:by:)`, but without generating keys.
-    /// In addition to similar begavior, allows for a custom logic to be written, as generating a specific key is not required.
+    /// In addition to similar behavior, allows for a custom logic to be written, as generating a specific key is not required.
     ///
     ///     let students: [String] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"]
     ///     let studentsByLetter: [[String]] = students.grouped(by: { $0.first == $1.first })
@@ -44,7 +44,7 @@ extension Sequence {
     /// Groups elements of a `Sequence` by a given `KeyPath` value.
     ///
     /// Works similar to `Dictionary(grouping:by:)`, but without generating keys.
-    /// In addition to similar begavior, allows for a custom logic to be written, as generating a specific key is not required.
+    /// In addition to similar behaviour, allows for a custom logic to be written, as generating a specific key is not required.
     ///
     ///     struct Student {
     ///         let name: String

@@ -30,7 +30,7 @@ public struct SystemKeyboardInfo {
         self.animationOptions = animationOptions
     }
     
-    /// Initialzies `SystemKeyboardInfo` with `Notification`.
+    /// Initializes `SystemKeyboardInfo` with `Notification`.
     public init(notification: Notification) {
         self.frame =
             notification.userInfo?.rect(key: UIResponder.keyboardFrameEndUserInfoKey) ??

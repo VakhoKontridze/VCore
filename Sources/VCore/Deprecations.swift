@@ -7,6 +7,20 @@
 
 import Foundation
 
+// MARK: - Network Client
+extension NetworkClient {
+    @available(*, deprecated, renamed: "completionQueue")
+    public var completionQeueue: DispatchQueue {
+        get { completionQueue }
+        set { completionQueue = newValue }
+    }
+}
+
+extension NetworkError {
+    @available(*, deprecated, renamed: "invalidQueryParameters")
+    public static var invalidQueryparameters: Self { .invalidQueryParameters }
+}
+
 // MARK: - Network Reachability Service
 extension NetworkReachabilityService {
     @available(*, deprecated, message: "Use dynamic member of the same name")
@@ -39,7 +53,7 @@ extension Optional where Wrapped == Any {
 import SwiftUI
 
 extension SwiftUIBaseButton {
-    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifer")
+    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifier")
     public init(
         state: SwiftUIBaseButtonState,
         gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
@@ -48,7 +62,7 @@ extension SwiftUIBaseButton {
         fatalError()
     }
     
-    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifer")
+    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifier")
     public init(
         state: SwiftUIBaseButtonState,
         action: @escaping () -> Void,
@@ -57,7 +71,7 @@ extension SwiftUIBaseButton {
         fatalError()
     }
 
-    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifer")
+    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifier")
     public init(
         isEnabled: Bool,
         gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
@@ -66,7 +80,7 @@ extension SwiftUIBaseButton {
         fatalError()
     }
     
-    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifer")
+    @available(*, unavailable, message: "Use `init` without `state` parameter and use `.disabled()` modifier")
     public init(
         isEnabled: Bool,
         action: @escaping () -> Void,
