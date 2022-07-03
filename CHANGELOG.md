@@ -16,6 +16,10 @@ Models
 - Various `GenericState`'s' and `GenericStateModel`'s are added
 - `zero`, `clearColors`, `clearUIColors`, and `clearNSColors` factory properties are added to  `GenericStateModel`'s
 
+Other
+
+- Platform-based compilation errors are fixed
+
 ### [3.9.2(34)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.2) — *2022 06 29*
 
 XCode Templates
