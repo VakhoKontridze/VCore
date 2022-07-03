@@ -99,7 +99,7 @@ final class LocalizationService {
     private func setLocale(_ locale: SupportedLocale) {
         guard
             var languageIDs: [String] = UserDefaults.standard.value(forKey: Self.appleLanguagesUserDefaultsKey) as? [String],
-            let index: Int = languageIDs.firstIndex(of: { locale.id.appendingRegionCode(Locale.current.regionCode) })
+            let index: Int = languageIDs.firstIndex(of: locale.id.appendingRegionCode(Locale.current.regionCode))
         else {
             return
         }
@@ -139,7 +139,7 @@ extension String {
     }
     
     fileprivate func appendingRegionCode(_ regionCode: String?) -> String {
-        if let regionCode {
+        if let regionCode = regionCode {
             return "\(self)-\(regionCode)"
         } else {
             return self
