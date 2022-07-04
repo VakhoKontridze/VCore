@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - RGBA Values
 extension UIColor {
-    /// RGBA values of `UIColor`.
+    /// Returns RGBA values of `UIColor`.
     ///
     /// `red`, `green`, and `blue` values range from `0` to `1`.
     /// `alpha` value ranges from `0` to `1`.
@@ -35,7 +35,7 @@ extension UIColor {
         )
     }
     
-    /// RGBA components of `UIColor`.
+    /// Returns RGBA components of `UIColor`.
     ///
     /// `red`, `green`, and `blue` values range from `0` to `255`.
     /// `alpha` value ranges from `0` to `1`.
@@ -54,7 +54,7 @@ extension UIColor {
         )
     }
     
-    /// Indicates if two color are RGBA equivalent.
+    /// Indicates if two `UIColor`'s are RGBA equivalent.
     ///
     /// Comparison is made to each color component.
     ///

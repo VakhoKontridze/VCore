@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Blend Color
 extension UIColor {
-    /// Blends two colors together.
+    /// Blends two `UIColor`'s together.
     ///
     ///     let purple: UIColor = .blend(.red, with: .blue)
     ///
