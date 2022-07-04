@@ -41,7 +41,7 @@ public enum GenericState_CollapsedExpanded: Int, CaseIterable {
 // MARK: Binding Init
 extension Binding where Value == GenericState_CollapsedExpanded {
     /// Initializes `GenericState_CollapsedExpanded` with `Bool`.
-    public init(_ isExpanded: Binding<Bool>) {
+    public init(isExpanded: Binding<Bool>) {
         self.init(
             get: { .init(isExpanded: isExpanded.wrappedValue) },
             set: { isExpanded.wrappedValue = $0 == .expanded }
