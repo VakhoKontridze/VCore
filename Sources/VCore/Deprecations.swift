@@ -469,7 +469,7 @@ extension UIApplication {
 public typealias SizeConfiguration = MinIdealMaxSizes
 
 // MARK: - Extensions - UIKit
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 
 import UIKit
 
