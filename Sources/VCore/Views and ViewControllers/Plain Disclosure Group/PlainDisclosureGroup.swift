@@ -33,6 +33,7 @@ import SwiftUI
 ///             .padding()
 ///     }
 ///
+@available(iOS 14.0, *)
 public struct PlainDisclosureGroup<Label, Content>: View
     where
         Label: View,
@@ -140,6 +141,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
 }
 
 // MARK: - Preview
+@available(iOS 14.0, *)
 struct PlainDisclosureGroup_Previews: PreviewProvider {
     @State private static var isExpanded: Bool = true
     
