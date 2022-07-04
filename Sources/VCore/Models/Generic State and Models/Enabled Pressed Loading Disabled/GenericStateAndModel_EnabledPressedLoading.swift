@@ -114,6 +114,18 @@ extension GenericStateModel_EnabledPressedLoading {
 
 #endif
 
+// MARK: Model-Casting Initializers
+extension GenericStateModel_EnabledPressedLoading {
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with `GenericStateModel_EnabledPressedLoadingDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
+        self.init(
+            enabled: model.enabled,
+            pressed: model.pressed,
+            loading: model.loading
+        )
+    }
+}
+
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_EnabledPressedLoading: Hashable where Value: Hashable {}
 

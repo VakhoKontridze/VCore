@@ -22,6 +22,15 @@ public enum GenericState_OffOnIndeterminate: Int, CaseIterable {
     /// Indeterminate.
     case indeterminate
     
+    // MARK: Initializers
+    /// Initializes `GenericState_OOI` with flags.
+    public init(isOn: Bool) {
+        switch isOn {
+        case false: self = .off
+        case true: self = .on
+        }
+    }
+    
     // MARK: Next State
     /// Goes to the next state.
     mutating public func setNextState() {
@@ -30,6 +39,17 @@ public enum GenericState_OffOnIndeterminate: Int, CaseIterable {
         case .on: self = .off
         case .indeterminate: self = .on
         }
+    }
+}
+
+// MARK: Binding Init
+extension Binding where Value == GenericState_OffOnIndeterminate {
+    /// Initializes `GenericState_OOI` with `Bool`.
+    public init(isOn: Binding<Bool>) {
+        self.init(
+            get: { .init(isOn: isOn.wrappedValue) },
+            set: { isOn.wrappedValue = $0 == .on }
+        )
     }
 }
 
@@ -104,6 +124,36 @@ extension GenericStateModel_OffOnIndeterminate {
 }
 
 #endif
+
+// MARK: Model-Casting Initializers
+extension GenericStateModel_OffOnIndeterminate {
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `GenericStateModel_OffOnIndeterminateDisabled`.
+    public init(_ model: GenericStateModel_OffOnIndeterminateDisabled<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate
+        )
+    }
+    
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `GenericStateModel_OffOnIndeterminatePressed`.
+    public init(_ model: GenericStateModel_OffOnIndeterminatePressed<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate
+        )
+    }
+    
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `GenericStateModel_OffOnIndeterminatePressedDisabled`.
+    public init(_ model: GenericStateModel_OffOnIndeterminatePressedDisabled<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate
+        )
+    }
+}
 
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_OffOnIndeterminate: Hashable where Value: Hashable {}

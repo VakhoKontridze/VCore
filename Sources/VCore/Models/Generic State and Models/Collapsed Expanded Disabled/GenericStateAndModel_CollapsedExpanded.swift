@@ -41,7 +41,7 @@ public enum GenericState_CollapsedExpanded: Int, CaseIterable {
 // MARK: Binding Init
 extension Binding where Value == GenericState_CollapsedExpanded {
     /// Initializes `GenericState_CollapsedExpanded` with `Bool`.
-    public init(_ isExpanded: Binding<Bool>) {
+    public init(isExpanded: Binding<Bool>) {
         self.init(
             get: { .init(isExpanded: isExpanded.wrappedValue) },
             set: { isExpanded.wrappedValue = $0 == .expanded }
@@ -114,6 +114,17 @@ extension GenericStateModel_CollapsedExpanded {
 }
 
 #endif
+
+// MARK: Model-Casting Initializers
+extension GenericStateModel_CollapsedExpanded {
+    /// Initializes `GenericStateModel_CollapsedExpanded` with `GenericStateModel_CollapsedExpandedDisabled`.
+    public init(_ model: GenericStateModel_CollapsedExpandedDisabled<Value>) {
+        self.init(
+            collapsed: model.collapsed,
+            expanded: model.expanded
+        )
+    }
+}
 
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_CollapsedExpanded: Hashable where Value: Hashable {}

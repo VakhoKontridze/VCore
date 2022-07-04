@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.10.3(38)
+
+General
+
+- Bug fixes and improvements
+
 ### [3.10.2(37)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.2) — *2022 07 04*
 
 Models

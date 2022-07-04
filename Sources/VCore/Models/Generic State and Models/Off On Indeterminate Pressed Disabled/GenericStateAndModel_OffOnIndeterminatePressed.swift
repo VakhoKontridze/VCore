@@ -160,6 +160,21 @@ extension GenericStateModel_OffOnIndeterminatePressed {
 
 #endif
 
+// MARK: Model-Casting Initializers
+extension GenericStateModel_OffOnIndeterminatePressed {
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `GenericStateModel_OffOnIndeterminatePressedDisabled`.
+    public init(_ model: GenericStateModel_OffOnIndeterminatePressedDisabled<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate,
+            pressedOff: model.pressedOff,
+            pressedOn: model.pressedOn,
+            pressedIndeterminate: model.pressedIndeterminate
+        )
+    }
+}
+
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_OffOnIndeterminatePressed: Hashable where Value: Hashable {}
 

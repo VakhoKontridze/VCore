@@ -105,6 +105,18 @@ extension GenericStateModel_EnabledPressedFocused {
 
 #endif
 
+// MARK: Model-Casting Initializers
+extension GenericStateModel_EnabledPressedFocused {
+    /// Initializes `GenericStateModel_EnabledPressedFocused` with `GenericStateModel_EnabledPressedFocusedDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedFocusedDisabled<Value>) {
+        self.init(
+            enabled: model.enabled,
+            pressed: model.pressed,
+            focused: model.focused
+        )
+    }
+}
+
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_EnabledPressedFocused: Hashable where Value: Hashable {}
 

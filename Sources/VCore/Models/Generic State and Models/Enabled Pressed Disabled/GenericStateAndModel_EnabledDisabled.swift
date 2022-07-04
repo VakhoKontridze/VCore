@@ -104,6 +104,41 @@ extension GenericStateModel_EnabledDisabled {
 
 #endif
 
+// MARK: Model-Casting Initializers
+extension GenericStateModel_EnabledDisabled {
+    /// Initializes `GenericStateModel_EnabledDisabled` with `GenericStateModel_EnabledPressedDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedDisabled<Value>) {
+        self.init(
+            enabled: model.enabled,
+            disabled: model.disabled
+        )
+    }
+
+    /// Initializes `GenericStateModel_EnabledDisabled` with `GenericStateModel_EnabledFocusedDisabled`.
+    public init(_ model: GenericStateModel_EnabledFocusedDisabled<Value>) {
+        self.init(
+            enabled: model.enabled,
+            disabled: model.disabled
+        )
+    }
+
+    /// Initializes `GenericStateModel_EnabledDisabled` with `GenericStateModel_EnabledPressedLoadingDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
+        self.init(
+            enabled: model.enabled,
+            disabled: model.disabled
+        )
+    }
+
+    /// Initializes `GenericStateModel_EnabledDisabled` with `GenericStateModel_EnabledPressedFocusedDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedFocusedDisabled<Value>) {
+        self.init(
+            enabled: model.enabled,
+            disabled: model.disabled
+        )
+    }
+}
+
 // MARK: Hashable, Equatable, Comparable
 extension GenericStateModel_EnabledDisabled: Hashable where Value: Hashable {}
 
