@@ -1,5 +1,5 @@
 //
-//  GenericStateAndModel_EPD.swift
+//  GenericStateAndModel_EnabledPressedDisabled.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/1/21.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Genetic State (Enabled, Pressed, Disabled)
 /// Enumeration that represents state, such as `enabled`, `pressed`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_EPD`, via `value(for:)` method.
-public enum GenericState_EPD: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_EnabledPressedDisabled`, via `value(for:)` method.
+public enum GenericState_EnabledPressedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -33,7 +33,7 @@ public enum GenericState_EPD: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    /// Initializes `GenericState_EPD` with flags.
+    /// Initializes `GenericState_EnabledPressedDisabled` with flags.
     public init(isEnabled: Bool, isPressed: Bool) {
         switch (isEnabled, isPressed) {
         case (false, _): self = .disabled
@@ -46,8 +46,8 @@ public enum GenericState_EPD: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Pressed, Disabled)
 /// Value group containing generic `enabled`, `pressed`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_EPD` to model, via `value(for:)` method.
-public struct GenericStateModel_EPD<Value> {
+/// Used for mapping `GenericState_EnabledPressedDisabled` to model, via `value(for:)` method.
+public struct GenericStateModel_EnabledPressedDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
     public var enabled: Value
@@ -59,7 +59,7 @@ public struct GenericStateModel_EPD<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_EPD` with values.
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with values.
     public init(
         enabled: Value,
         pressed: Value,
@@ -70,7 +70,7 @@ public struct GenericStateModel_EPD<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_EPD` with value.
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with value.
     public init(
         _ value: Value
     ) {
@@ -79,13 +79,13 @@ public struct GenericStateModel_EPD<Value> {
         self.disabled = value
     }
     
-    /// Initializes `GenericStateModel_EPD` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_EPD<CGFloat> {
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_EnabledPressedDisabled<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_EPD` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_EPD<Color> {
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_EnabledPressedDisabled<Color> {
         .init(.clear)
     }
 }
@@ -95,9 +95,9 @@ public struct GenericStateModel_EPD<Value> {
 
 import UIKit
 
-extension GenericStateModel_EPD {
-    /// Initializes `GenericStateModel_EPD` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_EP<UIColor> {
+extension GenericStateModel_EnabledPressedDisabled {
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_EnabledPressed<UIColor> {
         .init(.clear)
     }
 }
@@ -106,9 +106,9 @@ extension GenericStateModel_EPD {
 
 import AppKit
 
-extension GenericStateModel_EPD {
-    /// Initializes `GenericStateModel_EPD` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_EP<NSColor> {
+extension GenericStateModel_EnabledPressedDisabled {
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_EnabledPressed<NSColor> {
         .init(.clear)
     }
 }
@@ -116,9 +116,9 @@ extension GenericStateModel_EPD {
 #endif
 
 // MARK: Model-Casting Initializers
-extension GenericStateModel_EPD {
-    /// Initializes `GenericStateModel_EPD` with `GenericStateModel_EPLD`.
-    public init(_ model: GenericStateModel_EPLD<Value>) {
+extension GenericStateModel_EnabledPressedDisabled {
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `GenericStateModel_EnabledPressedLoadingDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
         self.init(
             enabled: model.enabled,
             pressed: model.pressed,
@@ -126,8 +126,8 @@ extension GenericStateModel_EPD {
         )
     }
     
-    /// Initializes `GenericStateModel_EPD` with `GenericStateModel_EPFD`.
-    public init(_ model: GenericStateModel_EPFD<Value>) {
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `GenericStateModel_EnabledPressedFocusedDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedFocusedDisabled<Value>) {
         self.init(
             enabled: model.enabled,
             pressed: model.pressed,
@@ -137,20 +137,20 @@ extension GenericStateModel_EPD {
 }
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_EPD: Hashable where Value: Hashable {}
+extension GenericStateModel_EnabledPressedDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_EPD: Equatable where Value: Equatable {}
+extension GenericStateModel_EnabledPressedDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_EPD: Comparable where Value: Comparable {
+extension GenericStateModel_EnabledPressedDisabled: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.enabled, \.pressed, \.disabled)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_EPD {
-    /// Maps `GenericState_EPD` to `GenericStateModel_EPD`.
-    public func value(for state: GenericState_EPD) -> Value {
+extension GenericStateModel_EnabledPressedDisabled {
+    /// Maps `GenericState_EnabledPressedDisabled` to `GenericStateModel_EnabledPressedDisabled`.
+    public func value(for state: GenericState_EnabledPressedDisabled) -> Value {
         switch state {
         case .enabled: return enabled
         case .pressed: return pressed

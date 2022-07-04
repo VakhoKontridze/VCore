@@ -1,5 +1,5 @@
 //
-//  GenericStateAndModel_OOIPD.swift
+//  GenericStateAndModel_OffOnIndeterminatePressedDisabled.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 3/1/22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Generic State (Off, On, Indeterminate, Pressed, Disabled)
 /// Enumeration that represents state, such as `off`, `on`, `indeterminate`, `pressed` (`off`), `pressed` (`on`)`, `pressed` (`indeterminate`), or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_OOIPD`, via `value(for:)` method.
-public enum GenericState_OOIPD: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_OffOnIndeterminatePressedDisabled`, via `value(for:)` method.
+public enum GenericState_OffOnIndeterminatePressedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -49,8 +49,8 @@ public enum GenericState_OOIPD: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    /// Initializes `GenericState_OOPD` with flags.
-    public init(isEnabled: Bool, state: GenericState_OOI, isPressed: Bool) {
+    /// Initializes `GenericState_OffOnPressedDisabled` with flags.
+    public init(isEnabled: Bool, state: GenericState_OffOnIndeterminate, isPressed: Bool) {
         switch (isEnabled, state, isPressed) {
         case (false, _, _): self = .disabled
         case (true, .off, false): self = .off
@@ -77,8 +77,8 @@ public enum GenericState_OOIPD: Int, CaseIterable {
 // MARK: - Generic State Model (Off, On, Indeterminate, Pressed, Disabled)
 /// Color group containing `off`, `on`, `indeterminate`, `pressed` (`off`), `pressed` (`on`), `pressed`(`indeterminate`), and `disabled`.
 ///
-/// Used for mapping `GenericState_OOIPD` to model, via `value(for:)` method.
-public struct GenericStateModel_OOIPD<Value> {
+/// Used for mapping `GenericState_OffOnIndeterminatePressedDisabled` to model, via `value(for:)` method.
+public struct GenericStateModel_OffOnIndeterminatePressedDisabled<Value> {
     // MARK: Properties
     /// Off value.
     public var off: Value
@@ -102,7 +102,7 @@ public struct GenericStateModel_OOIPD<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_OOIPD` with values.
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressedDisabled` with values.
     public init(
         off: Value,
         on: Value,
@@ -121,7 +121,7 @@ public struct GenericStateModel_OOIPD<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_OOIPD` with values.
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressedDisabled` with values.
     public init(
         off: Value,
         on: Value,
@@ -138,7 +138,7 @@ public struct GenericStateModel_OOIPD<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_OOIPD` with value.
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressedDisabled` with value.
     public init(
         _ value: Value
     ) {
@@ -151,13 +151,13 @@ public struct GenericStateModel_OOIPD<Value> {
         self.disabled = value
     }
     
-    /// Initializes `GenericStateModel_OOIPD` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_OOIPD<CGFloat> {
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressedDisabled` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_OffOnIndeterminatePressedDisabled<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_OOIPD` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_OOIPD<Color> {
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressedDisabled` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_OffOnIndeterminatePressedDisabled<Color> {
         .init(.clear)
     }
 }
@@ -167,9 +167,9 @@ public struct GenericStateModel_OOIPD<Value> {
 
 import UIKit
 
-extension GenericStateModel_OOIPD {
-    /// Initializes `GenericStateModel_OOIPD` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_OOIPD<UIColor> {
+extension GenericStateModel_OffOnIndeterminatePressedDisabled {
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_OffOnIndeterminatePressedDisabled<UIColor> {
         .init(.clear)
     }
 }
@@ -178,9 +178,9 @@ extension GenericStateModel_OOIPD {
 
 import AppKit
 
-extension GenericStateModel_OOIPD {
-    /// Initializes `GenericStateModel_OOIPD` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_OOIPD<NSColor> {
+extension GenericStateModel_OffOnIndeterminatePressedDisabled {
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_OffOnIndeterminatePressedDisabled<NSColor> {
         .init(.clear)
     }
 }
@@ -188,19 +188,19 @@ extension GenericStateModel_OOIPD {
 #endif
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_OOIPD: Hashable where Value: Hashable {}
+extension GenericStateModel_OffOnIndeterminatePressedDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_OOIPD: Equatable where Value: Equatable {}
+extension GenericStateModel_OffOnIndeterminatePressedDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_OOIPD: Comparable where Value: Comparable {
+extension GenericStateModel_OffOnIndeterminatePressedDisabled: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.off, \.on, \.indeterminate, \.pressedOff, \.pressedOn, \.pressedIndeterminate, \.disabled)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_OOIPD {
-    public func value(for state: GenericState_OOIPD) -> Value {
+extension GenericStateModel_OffOnIndeterminatePressedDisabled {
+    public func value(for state: GenericState_OffOnIndeterminatePressedDisabled) -> Value {
         switch state {
         case .off: return off
         case .on: return on

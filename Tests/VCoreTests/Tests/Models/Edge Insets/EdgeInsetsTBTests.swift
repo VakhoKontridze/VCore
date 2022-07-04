@@ -16,7 +16,7 @@ final class EdgeInsetsTBTests: XCTestCase {
         let inputBottom: CGFloat = 2
         let inset: CGFloat = 10
 
-        let result: EdgeInsets_TB = .init(
+        let result: EdgeInsets_TopBottom = .init(
             top: inputTop,
             bottom: inputBottom
         ).insetBy(inset: inset)
@@ -30,7 +30,7 @@ final class EdgeInsetsTBTests: XCTestCase {
         let inputBottom: CGFloat = 2
         let inset: CGFloat = 10
 
-        let result: EdgeInsets_TB = .init(
+        let result: EdgeInsets_TopBottom = .init(
             top: inputTop,
             bottom: inputBottom
         ).insetBy(top: inset)
@@ -44,7 +44,7 @@ final class EdgeInsetsTBTests: XCTestCase {
         let inputBottom: CGFloat = 2
         let inset: CGFloat = 10
 
-        let result: EdgeInsets_TB = .init(
+        let result: EdgeInsets_TopBottom = .init(
             top: inputTop,
             bottom: inputBottom
         ).insetBy(bottom: inset)
@@ -61,7 +61,7 @@ final class EdgeInsetsTBTests: XCTestCase {
         let input2Top: CGFloat = 5
         let input2Bottom: CGFloat = 6
         
-        let result: EdgeInsets_TB =
+        let result: EdgeInsets_TopBottom =
             .init(
                 top: input1Top,
                 bottom: input1Bottom
@@ -82,7 +82,7 @@ final class EdgeInsetsTBTests: XCTestCase {
         let input2Top: CGFloat = 5
         let input2Bottom: CGFloat = 6
         
-        var result: EdgeInsets_TB = .init(
+        var result: EdgeInsets_TopBottom = .init(
             top: input1Top,
             bottom: input1Bottom
         )
@@ -102,7 +102,7 @@ final class EdgeInsetsTBTests: XCTestCase {
         let input2Top: CGFloat = 5
         let input2Bottom: CGFloat = 6
         
-        let result: EdgeInsets_TB =
+        let result: EdgeInsets_TopBottom =
             .init(
                 top: input1Top,
                 bottom: input1Bottom
@@ -123,7 +123,7 @@ final class EdgeInsetsTBTests: XCTestCase {
         let input2Top: CGFloat = 5
         let input2Bottom: CGFloat = 6
         
-        var result: EdgeInsets_TB = .init(
+        var result: EdgeInsets_TopBottom = .init(
             top: input1Top,
             bottom: input1Bottom
         )

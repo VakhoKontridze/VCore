@@ -72,7 +72,7 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
 }
 
 // MARK: - Mapping
-extension GenericStateModel_EPD {
+extension GenericStateModel_EnabledPressedDisabled {
     /// Allows for dynamic mapping between `Model` and `State`.
     ///
     ///     let baseButton: UIKitBaseButton = {
@@ -83,7 +83,7 @@ extension GenericStateModel_EPD {
     ///         // ...
     ///     }()
     ///
-    ///     let titleColor: GenericStateModel_EPD<UIColor?> = .init(
+    ///     let titleColor: GenericStateModel_EnabledPressedDisabled<UIColor?> = .init(
     ///         enabled: .black,
     ///         pressed: .gray,
     ///         disabled: .gray

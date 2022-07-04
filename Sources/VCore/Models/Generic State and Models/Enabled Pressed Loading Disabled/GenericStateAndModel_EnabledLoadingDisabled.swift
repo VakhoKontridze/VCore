@@ -1,5 +1,5 @@
 //
-//  GenericStateAndModel_ELD.swift
+//  GenericStateAndModel_EnabledLoadingDisabled.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 3/10/22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Genetic State (Enabled, Loading, Disabled)
 /// Enumeration that represents state, such as `enabled`, `loading`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_ELD`, via `value(for:)` method.
-public enum GenericState_ELD: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_EnabledLoadingDisabled`, via `value(for:)` method.
+public enum GenericState_EnabledLoadingDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -33,7 +33,7 @@ public enum GenericState_ELD: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    /// Initializes `GenericState_ELD` with flags.
+    /// Initializes `GenericState_EnabledLoadingDisabled` with flags.
     public init(isEnabled: Bool, isLoading: Bool) {
         switch (isEnabled, isLoading) {
         case (false, _): self = .disabled
@@ -46,8 +46,8 @@ public enum GenericState_ELD: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Loading, Disabled)
 /// Value group containing generic `enabled`, `loading`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_ELD` to model, via `value(for:)` method.
-public struct GenericStateModel_ELD<Value> {
+/// Used for mapping `GenericState_EnabledLoadingDisabled` to model, via `value(for:)` method.
+public struct GenericStateModel_EnabledLoadingDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
     public var enabled: Value
@@ -59,7 +59,7 @@ public struct GenericStateModel_ELD<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_ELD` with values.
+    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with values.
     public init(
         enabled: Value,
         loading: Value,
@@ -70,7 +70,7 @@ public struct GenericStateModel_ELD<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_ELD` with value.
+    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with value.
     public init(
         _ value: Value
     ) {
@@ -79,13 +79,13 @@ public struct GenericStateModel_ELD<Value> {
         self.disabled = value
     }
     
-    /// Initializes `GenericStateModel_ELD` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_ELD<CGFloat> {
+    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_EnabledLoadingDisabled<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_ELD` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_ELD<Color> {
+    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_EnabledLoadingDisabled<Color> {
         .init(.clear)
     }
 }
@@ -95,9 +95,9 @@ public struct GenericStateModel_ELD<Value> {
 
 import UIKit
 
-extension GenericStateModel_ELD {
-    /// Initializes `GenericStateModel_ELD` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_ELD<UIColor> {
+extension GenericStateModel_EnabledLoadingDisabled {
+    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_EnabledLoadingDisabled<UIColor> {
         .init(.clear)
     }
 }
@@ -106,9 +106,9 @@ extension GenericStateModel_ELD {
 
 import AppKit
 
-extension GenericStateModel_ELD {
-    /// Initializes `GenericStateModel_ELD` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_ELD<NSColor> {
+extension GenericStateModel_EnabledLoadingDisabled {
+    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_EnabledLoadingDisabled<NSColor> {
         .init(.clear)
     }
 }
@@ -116,9 +116,9 @@ extension GenericStateModel_ELD {
 #endif
 
 // MARK: Model-Casting Initializers
-extension GenericStateModel_ELD {
-    /// Initializes `GenericStateModel_ELD` with `GenericStateModel_EPLD`.
-    public init(_ model: GenericStateModel_EPLD<Value>) {
+extension GenericStateModel_EnabledLoadingDisabled {
+    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `GenericStateModel_EnabledPressedLoadingDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
         self.init(
             enabled: model.enabled,
             loading: model.loading,
@@ -128,20 +128,20 @@ extension GenericStateModel_ELD {
 }
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_ELD: Hashable where Value: Hashable {}
+extension GenericStateModel_EnabledLoadingDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_ELD: Equatable where Value: Equatable {}
+extension GenericStateModel_EnabledLoadingDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_ELD: Comparable where Value: Comparable {
+extension GenericStateModel_EnabledLoadingDisabled: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.enabled, \.loading, \.disabled)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_ELD {
-    /// Maps `GenericState_ELD` to `GenericStateModel_ELD`.
-    public func value(for state: GenericState_ELD) -> Value {
+extension GenericStateModel_EnabledLoadingDisabled {
+    /// Maps `GenericState_EnabledLoadingDisabled` to `GenericStateModel_EnabledLoadingDisabled`.
+    public func value(for state: GenericState_EnabledLoadingDisabled) -> Value {
         switch state {
         case .enabled: return enabled
         case .loading: return loading

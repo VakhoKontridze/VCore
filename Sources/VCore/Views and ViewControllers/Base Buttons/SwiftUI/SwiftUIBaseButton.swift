@@ -29,44 +29,12 @@ import SwiftUI
 ///
 ///         private init() {}
 ///
-///         typealias StateColors = GenericStateModel_EPD<Color>
+///         typealias StateColors = GenericStateModel_EnabledPressedDisabled<Color>
 ///     }
 ///
 /// State:
 ///
-///     enum SomeButtonInternalState {
-///         case enabled
-///         case pressed
-///         case disabled
-///
-///         var isEnabled: Bool {
-///             switch self {
-///             case .enabled: return true
-///             case .pressed: return true
-///             case .disabled: return false
-///             }
-///         }
-///
-///         init(isEnabled: Bool, isPressed: Bool) {
-///             switch (isEnabled, isPressed) {
-///             case (false, _): self = .disabled
-///             case (true, false): self = .enabled
-///             case (true, true): self = .pressed
-///             }
-///         }
-///     }
-///
-/// State-Model Mapping:
-///
-///     extension GenericStateModel_EPD {
-///         func value(for state: SomeButtonInternalState) -> Value {
-///             switch state {
-///             case .enabled: return enabled
-///             case .pressed: return pressed
-///             case .disabled: return disabled
-///             }
-///         }
-///     }
+///     typealias SomeButtonInternalState = GenericState_EnabledPressedDisabled
 ///
 /// Button:
 ///

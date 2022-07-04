@@ -1,5 +1,5 @@
 //
-//  GenericStateAndModel_CE.swift
+//  GenericStateAndModel_CollapsedExpanded.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.07.22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Genetic State (Collapsed, Expanded)
 /// Enumeration that represents state, such as `collapsed` or `expanded`.
 ///
-/// Used for mapping state to `GenericStateModel_CE`, via `value(for:)` method.
-public enum GenericState_CE: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_CollapsedExpanded`, via `value(for:)` method.
+public enum GenericState_CollapsedExpanded: Int, CaseIterable {
     // MARK: Cases
     /// Collapsed.
     case collapsed
@@ -20,7 +20,7 @@ public enum GenericState_CE: Int, CaseIterable {
     case expanded
     
     // MARK: Initializers
-    /// Initializes `GenericState_CE` with flags.
+    /// Initializes `GenericState_CollapsedExpanded` with flags.
     public init(isExpanded: Bool) {
         switch isExpanded {
         case false: self = .collapsed
@@ -39,9 +39,9 @@ public enum GenericState_CE: Int, CaseIterable {
 }
 
 // MARK: Binding Init
-extension Binding where Value == GenericState_CE {
-    /// Initializes `GenericState_CE` with `Bool`.
-    public init(isExpanded: Binding<Bool>) {
+extension Binding where Value == GenericState_CollapsedExpanded {
+    /// Initializes `GenericState_CollapsedExpanded` with `Bool`.
+    public init(_ isExpanded: Binding<Bool>) {
         self.init(
             get: { .init(isExpanded: isExpanded.wrappedValue) },
             set: { isExpanded.wrappedValue = $0 == .expanded }
@@ -52,8 +52,8 @@ extension Binding where Value == GenericState_CE {
 // MARK: - Generic State Model (Collapsed, Expanded)
 /// Value group containing generic `collapsed` and `expanded` values.
 ///
-/// Used for mapping `GenericState_CE` to model, via `value(for:)` method.
-public struct GenericStateModel_CE<Value> {
+/// Used for mapping `GenericState_CollapsedExpanded` to model, via `value(for:)` method.
+public struct GenericStateModel_CollapsedExpanded<Value> {
     // MARK: Properties
     /// Collapsed value.
     public var collapsed: Value
@@ -62,7 +62,7 @@ public struct GenericStateModel_CE<Value> {
     public var expanded: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_CE` with values.
+    /// Initializes `GenericStateModel_CollapsedExpanded` with values.
     public init(
         collapsed: Value,
         expanded: Value
@@ -71,7 +71,7 @@ public struct GenericStateModel_CE<Value> {
         self.expanded = expanded
     }
     
-    /// Initializes `GenericStateModel_CE` with value.
+    /// Initializes `GenericStateModel_CollapsedExpanded` with value.
     public init(
         _ value: Value
     ) {
@@ -80,12 +80,12 @@ public struct GenericStateModel_CE<Value> {
     }
     
     /// Initializes `GenericStateModel_CE` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_CE<CGFloat> {
+    public static var zero: GenericStateModel_CollapsedExpanded<CGFloat> {
         .init(0)
     }
     
     /// Initializes `GenericStateModel_CE` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_CE<Color> {
+    public static var clearColors: GenericStateModel_CollapsedExpanded<Color> {
         .init(.clear)
     }
 }
@@ -95,9 +95,9 @@ public struct GenericStateModel_CE<Value> {
 
 import UIKit
 
-extension GenericStateModel_CE {
+extension GenericStateModel_CollapsedExpanded {
     /// Initializes `GenericStateModel_CE` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_CE<UIColor> {
+    public static var clearUIColors: GenericStateModel_CollapsedExpanded<UIColor> {
         .init(.clear)
     }
 }
@@ -106,9 +106,9 @@ extension GenericStateModel_CE {
 
 import AppKit
 
-extension GenericStateModel_CE {
+extension GenericStateModel_CollapsedExpanded {
     /// Initializes `GenericStateModel_CE` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_CE<NSColor> {
+    public static var clearNSColors: GenericStateModel_CollapsedExpanded<NSColor> {
         .init(.clear)
     }
 }
@@ -116,9 +116,9 @@ extension GenericStateModel_CE {
 #endif
 
 // MARK: Model-Casting Initializers
-extension GenericStateModel_CE {
-    /// Initializes `GenericStateModel_CE` with `GenericStateModel_CED`.
-    public init(_ model: GenericStateModel_CED<Value>) {
+extension GenericStateModel_CollapsedExpanded {
+    /// Initializes `GenericStateModel_CollapsedExpanded` with `GenericStateModel_CollapsedExpandedDisabled`.
+    public init(_ model: GenericStateModel_CollapsedExpandedDisabled<Value>) {
         self.init(
             collapsed: model.collapsed,
             expanded: model.expanded
@@ -127,20 +127,20 @@ extension GenericStateModel_CE {
 }
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_CE: Hashable where Value: Hashable {}
+extension GenericStateModel_CollapsedExpanded: Hashable where Value: Hashable {}
 
-extension GenericStateModel_CE: Equatable where Value: Equatable {}
+extension GenericStateModel_CollapsedExpanded: Equatable where Value: Equatable {}
 
-extension GenericStateModel_CE: Comparable where Value: Comparable {
+extension GenericStateModel_CollapsedExpanded: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.collapsed, \.expanded)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_CE {
-    /// Maps `GenericState_CE` to `GenericStateModel_CE`.
-    public func value(for state: GenericState_CE) -> Value {
+extension GenericStateModel_CollapsedExpanded {
+    /// Maps `GenericState_CollapsedExpanded` to `GenericStateModel_CollapsedExpanded`.
+    public func value(for state: GenericState_CollapsedExpanded) -> Value {
         switch state {
         case .collapsed: return collapsed
         case .expanded: return expanded

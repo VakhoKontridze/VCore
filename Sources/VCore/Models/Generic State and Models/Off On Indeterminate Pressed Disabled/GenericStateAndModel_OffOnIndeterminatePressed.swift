@@ -1,5 +1,5 @@
 //
-//  GenericStateAndModel_OOIP.swift
+//  GenericStateAndModel_OffOnIndeterminatePressed.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.07.22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Generic State (Off, On, Indeterminate, Pressed)
 /// Enumeration that represents state, such as `off`, `on`, `indeterminate`, `pressed` (`off`), `pressed` (`on`)` and `pressed` (`indeterminate`).
 ///
-/// Used for mapping state to `GenericStateModel_OOIP`, via `value(for:)` method.
-public enum GenericState_OOIP: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_OffOnIndeterminatePressed`, via `value(for:)` method.
+public enum GenericState_OffOnIndeterminatePressed: Int, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -32,8 +32,8 @@ public enum GenericState_OOIP: Int, CaseIterable {
     case pressedIndeterminate
     
     // MARK: Initializers
-    /// Initializes `GenericState_OOPD` with flags.
-    public init(state: GenericState_OOI, isPressed: Bool) {
+    /// Initializes `GenericState_OffOnPressedDisabled` with flags.
+    public init(state: GenericState_OffOnIndeterminate, isPressed: Bool) {
         switch (state, isPressed) {
         case (.off, false): self = .off
         case (.off, true): self = .pressedOff
@@ -58,8 +58,8 @@ public enum GenericState_OOIP: Int, CaseIterable {
 // MARK: - Generic State Model (Off, On, Indeterminate, Pressed)
 /// Color group containing `off`, `on`, `indeterminate`, `pressed` (`off`), `pressed` (`on`), and `pressed`(`indeterminate`).
 ///
-/// Used for mapping `GenericState_OOIP` to model, via `value(for:)` method.
-public struct GenericStateModel_OOIP<Value> {
+/// Used for mapping `GenericState_OffOnIndeterminatePressed` to model, via `value(for:)` method.
+public struct GenericStateModel_OffOnIndeterminatePressed<Value> {
     // MARK: Properties
     /// Off value.
     public var off: Value
@@ -80,7 +80,7 @@ public struct GenericStateModel_OOIP<Value> {
     public var pressedIndeterminate: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_OOIP` with values.
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with values.
     public init(
         off: Value,
         on: Value,
@@ -97,7 +97,7 @@ public struct GenericStateModel_OOIP<Value> {
         self.pressedIndeterminate = pressedIndeterminate
     }
     
-    /// Initializes `GenericStateModel_OOIP` with values.
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with values.
     public init(
         off: Value,
         on: Value,
@@ -112,7 +112,7 @@ public struct GenericStateModel_OOIP<Value> {
         self.pressedIndeterminate = pressed
     }
     
-    /// Initializes `GenericStateModel_OOIP` with value.
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with value.
     public init(
         _ value: Value
     ) {
@@ -124,13 +124,13 @@ public struct GenericStateModel_OOIP<Value> {
         self.pressedIndeterminate = value
     }
     
-    /// Initializes `GenericStateModel_OOIP` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_OOIP<CGFloat> {
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_OffOnIndeterminatePressed<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_OOIP` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_OOIP<Color> {
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_OffOnIndeterminatePressed<Color> {
         .init(.clear)
     }
 }
@@ -140,9 +140,9 @@ public struct GenericStateModel_OOIP<Value> {
 
 import UIKit
 
-extension GenericStateModel_OOIP {
-    /// Initializes `GenericStateModel_OOIP` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_OOIP<UIColor> {
+extension GenericStateModel_OffOnIndeterminatePressed {
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_OffOnIndeterminatePressed<UIColor> {
         .init(.clear)
     }
 }
@@ -151,9 +151,9 @@ extension GenericStateModel_OOIP {
 
 import AppKit
 
-extension GenericStateModel_OOIP {
-    /// Initializes `GenericStateModel_OOIP` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_OOIP<NSColor> {
+extension GenericStateModel_OffOnIndeterminatePressed {
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_OffOnIndeterminatePressed<NSColor> {
         .init(.clear)
     }
 }
@@ -161,9 +161,9 @@ extension GenericStateModel_OOIP {
 #endif
 
 // MARK: Model-Casting Initializers
-extension GenericStateModel_OOIP {
-    /// Initializes `GenericStateModel_OOIP` with `GenericState_OOIPD`.
-    public init(_ model: GenericStateModel_OOIPD<Value>) {
+extension GenericStateModel_OffOnIndeterminatePressed {
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `GenericStateModel_OffOnIndeterminatePressedDisabled`.
+    public init(_ model: GenericStateModel_OffOnIndeterminatePressedDisabled<Value>) {
         self.init(
             off: model.off,
             on: model.on,
@@ -176,19 +176,19 @@ extension GenericStateModel_OOIP {
 }
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_OOIP: Hashable where Value: Hashable {}
+extension GenericStateModel_OffOnIndeterminatePressed: Hashable where Value: Hashable {}
 
-extension GenericStateModel_OOIP: Equatable where Value: Equatable {}
+extension GenericStateModel_OffOnIndeterminatePressed: Equatable where Value: Equatable {}
 
-extension GenericStateModel_OOIP: Comparable where Value: Comparable {
+extension GenericStateModel_OffOnIndeterminatePressed: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.off, \.on, \.indeterminate, \.pressedOff, \.pressedOn, \.pressedIndeterminate)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_OOIP {
-    public func value(for state: GenericState_OOIP) -> Value {
+extension GenericStateModel_OffOnIndeterminatePressed {
+    public func value(for state: GenericState_OffOnIndeterminatePressed) -> Value {
         switch state {
         case .off: return off
         case .on: return on

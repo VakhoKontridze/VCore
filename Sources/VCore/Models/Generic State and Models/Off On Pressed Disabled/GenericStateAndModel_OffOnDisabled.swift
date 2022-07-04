@@ -1,5 +1,5 @@
 //
-//  GenericState_OOD.swift
+//  GenericState_OffOnDisabled.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.07.22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Generic State (Off, On, Disabled)
 /// Enumeration that represents state, such as `off`, `on`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_OOD`, via `value(for:)` method.
-public enum GenericState_OOD: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_OffOnDisabled`, via `value(for:)` method.
+public enum GenericState_OffOnDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -33,7 +33,7 @@ public enum GenericState_OOD: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    /// Initializes `GenericState_OOD` with flags.
+    /// Initializes `GenericState_OffOnDisabled` with flags.
     public init(isEnabled: Bool, isOn: Bool) {
         switch (isEnabled, isOn) {
         case (false, _): self = .disabled
@@ -56,8 +56,8 @@ public enum GenericState_OOD: Int, CaseIterable {
 // MARK: - Generic State Model (Off, On, Disabled)
 /// Color group containing `off`, `on`, and `disabled`.
 ///
-/// Used for mapping `GenericState_OOD` to model, via `value(for:)` method.
-public struct GenericStateModel_OOD<Value> {
+/// Used for mapping `GenericState_OffOnDisabled` to model, via `value(for:)` method.
+public struct GenericStateModel_OffOnDisabled<Value> {
     // MARK: Properties
     /// Off value.
     public var off: Value
@@ -69,7 +69,7 @@ public struct GenericStateModel_OOD<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_OOD` with values.
+    /// Initializes `GenericStateModel_OffOnDisabled` with values.
     public init(
         off: Value,
         on: Value,
@@ -80,7 +80,7 @@ public struct GenericStateModel_OOD<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_OOD` with value.
+    /// Initializes `GenericStateModel_OffOnDisabled` with value.
     public init(
         _ value: Value
     ) {
@@ -89,13 +89,13 @@ public struct GenericStateModel_OOD<Value> {
         self.disabled = value
     }
     
-    /// Initializes `GenericStateModel_OOD` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_OOD<CGFloat> {
+    /// Initializes `GenericStateModel_OffOnDisabled` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_OffOnDisabled<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_OOD` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_OOD<Color> {
+    /// Initializes `GenericStateModel_OffOnDisabled` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_OffOnDisabled<Color> {
         .init(.clear)
     }
 }
@@ -105,9 +105,9 @@ public struct GenericStateModel_OOD<Value> {
 
 import UIKit
 
-extension GenericStateModel_OOD {
-    /// Initializes `GenericStateModel_OOD` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_OOD<UIColor> {
+extension GenericStateModel_OffOnDisabled {
+    /// Initializes `GenericStateModel_OffOnDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_OffOnDisabled<UIColor> {
         .init(.clear)
     }
 }
@@ -116,9 +116,9 @@ extension GenericStateModel_OOD {
 
 import AppKit
 
-extension GenericStateModel_OOD {
-    /// Initializes `GenericStateModel_OOD` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_OOD<NSColor> {
+extension GenericStateModel_OffOnDisabled {
+    /// Initializes `GenericStateModel_OffOnDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_OffOnDisabled<NSColor> {
         .init(.clear)
     }
 }
@@ -126,9 +126,9 @@ extension GenericStateModel_OOD {
 #endif
 
 // MARK: Model-Casting Initializers
-extension GenericStateModel_OOD {
-    /// Initializes `GenericStateModel_OOD` with `GenericStateModel_OOPD`.
-    public init(_ model: GenericStateModel_OOPD<Value>) {
+extension GenericStateModel_OffOnDisabled {
+    /// Initializes `GenericStateModel_OffOnDisabled` with `GenericStateModel_OffOnPressedDisabled`.
+    public init(_ model: GenericStateModel_OffOnPressedDisabled<Value>) {
         self.init(
             off: model.off,
             on: model.on,
@@ -138,20 +138,20 @@ extension GenericStateModel_OOD {
 }
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_OOD: Hashable where Value: Hashable {}
+extension GenericStateModel_OffOnDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_OOD: Equatable where Value: Equatable {}
+extension GenericStateModel_OffOnDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_OOD: Comparable where Value: Comparable {
+extension GenericStateModel_OffOnDisabled: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.off, \.on, \.disabled)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_OOD {
-    /// Maps `GenericState_OOD` to `GenericStateModel_OOD`.
-    public func value(for state: GenericState_OOD) -> Value {
+extension GenericStateModel_OffOnDisabled {
+    /// Maps `GenericState_OffOnDisabled` to `GenericStateModel_OffOnDisabled`.
+    public func value(for state: GenericState_OffOnDisabled) -> Value {
         switch state {
         case .off: return off
         case .on: return on

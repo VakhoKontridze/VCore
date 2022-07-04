@@ -1,5 +1,5 @@
 //
-//  EdgeInsets_HV.swift
+//  EdgeInsets_HorizontalVertical.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/1/21.
@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Edge Insets (Horizontal, Vertical)
 /// Edge insets containing `horizontal` and `vertical` values.
-public struct EdgeInsets_HV: Hashable, Equatable {
+public struct EdgeInsets_HorizontalVertical: Hashable, Equatable {
     // MARK: Properties
     /// Horizontal inset value.
     public var horizontal: CGFloat
@@ -18,7 +18,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
     public var vertical: CGFloat
     
     // MARK: Initializers
-    /// Initializes `EdgeInsets_HV` with values.
+    /// Initializes `EdgeInsets_HorizontalVertical` with values.
     public init(
         horizontal: CGFloat,
         vertical: CGFloat
@@ -27,7 +27,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
         self.vertical = vertical
     }
     
-    /// Initializes `EdgeInsets_HV` with value.
+    /// Initializes `EdgeInsets_HorizontalVertical` with value.
     public init(
         _ value: CGFloat
     ) {
@@ -35,7 +35,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
         self.vertical = value
     }
     
-    /// Initializes `EdgeInsets_HV` with zero values.
+    /// Initializes `EdgeInsets_HorizontalVertical` with zero values.
     public init() {
         self.horizontal = 0
         self.vertical = 0
@@ -46,7 +46,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
     
     // MARK: Insetting
     /// Insets `EdgeInsets` by a given value.
-    public func insetBy(inset: CGFloat) -> EdgeInsets_HV {
+    public func insetBy(inset: CGFloat) -> EdgeInsets_HorizontalVertical {
         .init(
             horizontal: horizontal + inset,
             vertical: vertical + inset
@@ -54,7 +54,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
     }
     
     /// Insets `EdgeInsets` by a given horizontal and vertical values.
-    public func insetBy(horizontal horizontalInset: CGFloat, vertical verticalInset: CGFloat) -> EdgeInsets_HV {
+    public func insetBy(horizontal horizontalInset: CGFloat, vertical verticalInset: CGFloat) -> EdgeInsets_HorizontalVertical {
         .init(
             horizontal: horizontal + horizontalInset,
             vertical: vertical + horizontalInset
@@ -62,7 +62,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
     }
     
     /// Insets `EdgeInsets` by a given horizontal value.
-    public func insetBy(horizontal horizontalInset: CGFloat) -> EdgeInsets_HV {
+    public func insetBy(horizontal horizontalInset: CGFloat) -> EdgeInsets_HorizontalVertical {
         .init(
             horizontal: horizontal + horizontalInset,
             vertical: vertical
@@ -70,7 +70,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
     }
     
     /// Insets `EdgeInsets` by a given vertical value.
-    public func insetBy(vertical verticalInset: CGFloat) -> EdgeInsets_HV {
+    public func insetBy(vertical verticalInset: CGFloat) -> EdgeInsets_HorizontalVertical {
         .init(
             horizontal: horizontal,
             vertical: vertical + verticalInset
@@ -93,7 +93,7 @@ public struct EdgeInsets_HV: Hashable, Equatable {
     }
     
     /// Subtracts two `EdgeInsets` by subtracting up individual edge insets.
-    public static func - (lhs: Self, rhs: Self) -> EdgeInsets_HV {
+    public static func - (lhs: Self, rhs: Self) -> EdgeInsets_HorizontalVertical {
         .init(
             horizontal: lhs.horizontal - rhs.horizontal,
             vertical: lhs.vertical - rhs.vertical
@@ -109,9 +109,9 @@ public struct EdgeInsets_HV: Hashable, Equatable {
 
 // MARK: - Extension
 extension View {
-    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_HV`.
+    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_HorizontalVertical`.
     ///
-    ///     let insets: EdgeInsets_HV = .init(
+    ///     let insets: EdgeInsets_HorizontalVertical = .init(
     ///         horizontal: 10,
     ///         vertical: 10
     ///     )
@@ -121,7 +121,7 @@ extension View {
     ///             .padding(insets)
     ///     }
     ///
-    public func padding(_ insets: EdgeInsets_HV) -> some View {
+    public func padding(_ insets: EdgeInsets_HorizontalVertical) -> some View {
         self
             .padding(.leading, insets.horizontal)
             .padding(.trailing, insets.horizontal)

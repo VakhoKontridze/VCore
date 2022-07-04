@@ -1,5 +1,5 @@
 //
-//  GenericState_EPL.swift
+//  GenericState_EnabledPressedLoading.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.07.22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Genetic State (Enabled, Pressed, Loading)
 /// Enumeration that represents state, such as `enabled`, `pressed`, or `loading`.
 ///
-/// Used for mapping state to `GenericStateModel_EPL`, via `value(for:)` method.
-public enum GenericState_EPL: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_EnabledPressedLoading`, via `value(for:)` method.
+public enum GenericState_EnabledPressedLoading: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -32,7 +32,7 @@ public enum GenericState_EPL: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    /// Initializes `GenericState_EPL` with flags.
+    /// Initializes `GenericState_EnabledPressedLoading` with flags.
     public init(isPressed: Bool, isLoading: Bool) {
         switch (isPressed, isLoading) {
         case (false, false): self = .enabled
@@ -45,8 +45,8 @@ public enum GenericState_EPL: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Pressed, Loading)
 /// Value group containing generic `enabled`, `pressed`, and `loading` values.
 ///
-/// Used for mapping `GenericState_EPL` to model, via `value(for:)` method.
-public struct GenericStateModel_EPL<Value> {
+/// Used for mapping `GenericState_EnabledPressedLoading` to model, via `value(for:)` method.
+public struct GenericStateModel_EnabledPressedLoading<Value> {
     // MARK: Properties
     /// Enabled value.
     public var enabled: Value
@@ -58,7 +58,7 @@ public struct GenericStateModel_EPL<Value> {
     public var loading: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_EPL` with values.
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with values.
     public init(
         enabled: Value,
         pressed: Value,
@@ -69,7 +69,7 @@ public struct GenericStateModel_EPL<Value> {
         self.loading = loading
     }
     
-    /// Initializes `GenericStateModel_EPL` with value.
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with value.
     public init(
         _ value: Value
     ) {
@@ -78,13 +78,13 @@ public struct GenericStateModel_EPL<Value> {
         self.loading = value
     }
     
-    /// Initializes `GenericStateModel_EPL` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_EPL<CGFloat> {
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_EnabledPressedLoading<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_EPL` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_EPL<Color> {
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_EnabledPressedLoading<Color> {
         .init(.clear)
     }
 }
@@ -94,9 +94,9 @@ public struct GenericStateModel_EPL<Value> {
 
 import UIKit
 
-extension GenericStateModel_EPL {
-    /// Initializes `GenericStateModel_EPL` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_EPL<UIColor> {
+extension GenericStateModel_EnabledPressedLoading {
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_EnabledPressedLoading<UIColor> {
         .init(.clear)
     }
 }
@@ -105,9 +105,9 @@ extension GenericStateModel_EPL {
 
 import AppKit
 
-extension GenericStateModel_EPL {
-    /// Initializes `GenericStateModel_EPL` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_EPL<NSColor> {
+extension GenericStateModel_EnabledPressedLoading {
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_EnabledPressedLoading<NSColor> {
         .init(.clear)
     }
 }
@@ -115,9 +115,9 @@ extension GenericStateModel_EPL {
 #endif
 
 // MARK: Model-Casting Initializers
-extension GenericStateModel_EPL {
-    /// Initializes `GenericStateModel_EPL` with `GenericStateModel_EPLD`.
-    public init(_ model: GenericStateModel_EPLD<Value>) {
+extension GenericStateModel_EnabledPressedLoading {
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with `GenericStateModel_EnabledPressedLoadingDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
         self.init(
             enabled: model.enabled,
             pressed: model.pressed,
@@ -127,20 +127,20 @@ extension GenericStateModel_EPL {
 }
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_EPL: Hashable where Value: Hashable {}
+extension GenericStateModel_EnabledPressedLoading: Hashable where Value: Hashable {}
 
-extension GenericStateModel_EPL: Equatable where Value: Equatable {}
+extension GenericStateModel_EnabledPressedLoading: Equatable where Value: Equatable {}
 
-extension GenericStateModel_EPL: Comparable where Value: Comparable {
+extension GenericStateModel_EnabledPressedLoading: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.enabled, \.pressed, \.loading)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_EPL {
-    /// Maps `GenericState_EPL` to `GenericStateModel_EPL`.
-    public func value(for state: GenericState_EPL) -> Value {
+extension GenericStateModel_EnabledPressedLoading {
+    /// Maps `GenericState_EnabledPressedLoading` to `GenericStateModel_EnabledPressedLoading`.
+    public func value(for state: GenericState_EnabledPressedLoading) -> Value {
         switch state {
         case .enabled: return enabled
         case .pressed: return pressed

@@ -1,5 +1,5 @@
 //
-//  GenericStateAndModel_OOPD.swift
+//  GenericStateAndModel_OffOnPressedDisabled.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 3/1/22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Generic State (Off, On, Pressed, Disabled)
 /// Enumeration that represents state, such as `off`, `on`, `pressed` (`off`), `pressed` (`on`), or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_OOPD`, via `value(for:)` method.
-public enum GenericState_OOPD: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_OffOnPressedDisabled`, via `value(for:)` method.
+public enum GenericState_OffOnPressedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -41,7 +41,7 @@ public enum GenericState_OOPD: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    /// Initializes `GenericState_OOPD` with flags.
+    /// Initializes `GenericState_OffOnPressedDisabled` with flags.
     public init(isEnabled: Bool, isOn: Bool, isPressed: Bool) {
         switch (isEnabled, isOn, isPressed) {
         case (false, _, _): self = .disabled
@@ -66,8 +66,8 @@ public enum GenericState_OOPD: Int, CaseIterable {
 // MARK: - Generic State Model (Off, On, Pressed, Disabled)
 /// Color group containing `off`, `on`, `pressed` (`off`), `pressed` (`on`), and `disabled`.
 ///
-/// Used for mapping `GenericState_OOPD` to model, via `value(for:)` method.
-public struct GenericStateModel_OOPD<Value> {
+/// Used for mapping `GenericState_OffOnPressedDisabled` to model, via `value(for:)` method.
+public struct GenericStateModel_OffOnPressedDisabled<Value> {
     // MARK: Properties
     /// Off value.
     public var off: Value
@@ -85,7 +85,7 @@ public struct GenericStateModel_OOPD<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_OOPD` with values.
+    /// Initializes `GenericStateModel_OffOnPressedDisabled` with values.
     public init(
         off: Value,
         on: Value,
@@ -100,7 +100,7 @@ public struct GenericStateModel_OOPD<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_OOPD` with values.
+    /// Initializes `GenericStateModel_OffOnPressedDisabled` with values.
     public init(
         off: Value,
         on: Value,
@@ -114,7 +114,7 @@ public struct GenericStateModel_OOPD<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_OOPD` with value.
+    /// Initializes `GenericStateModel_OffOnPressedDisabled` with value.
     public init(
         _ value: Value
     ) {
@@ -125,13 +125,13 @@ public struct GenericStateModel_OOPD<Value> {
         self.disabled = value
     }
     
-    /// Initializes `GenericStateModel_OOPD` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_OOPD<CGFloat> {
+    /// Initializes `GenericStateModel_OffOnPressedDisabled` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_OffOnPressedDisabled<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_OOPD` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_OOPD<Color> {
+    /// Initializes `GenericStateModel_OffOnPressedDisabled` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_OffOnPressedDisabled<Color> {
         .init(.clear)
     }
 }
@@ -141,9 +141,9 @@ public struct GenericStateModel_OOPD<Value> {
 
 import UIKit
 
-extension GenericStateModel_OOPD {
-    /// Initializes `GenericStateModel_OOPD` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_OOPD<UIColor> {
+extension GenericStateModel_OffOnPressedDisabled {
+    /// Initializes `GenericStateModel_OffOnPressedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_OffOnPressedDisabled<UIColor> {
         .init(.clear)
     }
 }
@@ -152,9 +152,9 @@ extension GenericStateModel_OOPD {
 
 import AppKit
 
-extension GenericStateModel_OOPD {
-    /// Initializes `GenericStateModel_OOPD` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_OOPD<NSColor> {
+extension GenericStateModel_OffOnPressedDisabled {
+    /// Initializes `GenericStateModel_OffOnPressedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_OffOnPressedDisabled<NSColor> {
         .init(.clear)
     }
 }
@@ -162,20 +162,20 @@ extension GenericStateModel_OOPD {
 #endif
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_OOPD: Hashable where Value: Hashable {}
+extension GenericStateModel_OffOnPressedDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_OOPD: Equatable where Value: Equatable {}
+extension GenericStateModel_OffOnPressedDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_OOPD: Comparable where Value: Comparable {
+extension GenericStateModel_OffOnPressedDisabled: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.off, \.on, \.pressedOff, \.pressedOn, \.disabled)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_OOPD {
-    /// Maps `GenericState_OOPD` to `GenericStateModel_OOPD`.
-    public func value(for state: GenericState_OOPD) -> Value {
+extension GenericStateModel_OffOnPressedDisabled {
+    /// Maps `GenericState_OffOnPressedDisabled` to `GenericStateModel_OffOnPressedDisabled`.
+    public func value(for state: GenericState_OffOnPressedDisabled) -> Value {
         switch state {
         case .off: return off
         case .on: return on

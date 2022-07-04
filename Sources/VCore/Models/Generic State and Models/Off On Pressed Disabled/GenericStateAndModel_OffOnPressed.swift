@@ -1,5 +1,5 @@
 //
-//  GenericState_OOP.swift
+//  GenericState_OffOnPressed.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.07.22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Generic State (Off, On, Pressed)
 /// Enumeration that represents state, such as `off`, `on`, `pressed` (`off`), or `pressed` (`on`).
 ///
-/// Used for mapping state to `GenericStateModel_OOP`, via `value(for:)` method.
-public enum GenericState_OOP: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_OffOnPressed`, via `value(for:)` method.
+public enum GenericState_OffOnPressed: Int, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -26,7 +26,7 @@ public enum GenericState_OOP: Int, CaseIterable {
     case pressedOn
         
     // MARK: Initializers
-    /// Initializes `GenericState_OOP` with flags.
+    /// Initializes `GenericState_OffOnPressed` with flags.
     public init(isOn: Bool, isPressed: Bool) {
         switch (isOn, isPressed) {
         case (false, false): self = .off
@@ -49,8 +49,8 @@ public enum GenericState_OOP: Int, CaseIterable {
 // MARK: - Generic State Model (Off, On, Pressed)
 /// Color group containing `off`, `on`, `pressed` (`off`), and `pressed` (`on`).
 ///
-/// Used for mapping `GenericState_OOP` to model, via `value(for:)` method.
-public struct GenericStateModel_OOP<Value> {
+/// Used for mapping `GenericState_OffOnPressed` to model, via `value(for:)` method.
+public struct GenericStateModel_OffOnPressed<Value> {
     // MARK: Properties
     /// Off value.
     public var off: Value
@@ -65,7 +65,7 @@ public struct GenericStateModel_OOP<Value> {
     public var pressedOn: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_OOP` with values.
+    /// Initializes `GenericStateModel_OffOnPressed` with values.
     public init(
         off: Value,
         on: Value,
@@ -78,7 +78,7 @@ public struct GenericStateModel_OOP<Value> {
         self.pressedOn = pressedOn
     }
     
-    /// Initializes `GenericStateModel_OOP` with values.
+    /// Initializes `GenericStateModel_OffOnPressed` with values.
     public init(
         off: Value,
         on: Value,
@@ -90,7 +90,7 @@ public struct GenericStateModel_OOP<Value> {
         self.pressedOn = pressed
     }
     
-    /// Initializes `GenericStateModel_OOP` with value.
+    /// Initializes `GenericStateModel_OffOnPressed` with value.
     public init(
         _ value: Value
     ) {
@@ -100,13 +100,13 @@ public struct GenericStateModel_OOP<Value> {
         self.pressedOn = value
     }
     
-    /// Initializes `GenericStateModel_OOP` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_OOP<CGFloat> {
+    /// Initializes `GenericStateModel_OffOnPressed` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_OffOnPressed<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_OOP` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_OOP<Color> {
+    /// Initializes `GenericStateModel_OffOnPressed` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_OffOnPressed<Color> {
         .init(.clear)
     }
 }
@@ -116,9 +116,9 @@ public struct GenericStateModel_OOP<Value> {
 
 import UIKit
 
-extension GenericStateModel_OOP {
-    /// Initializes `GenericStateModel_OOP` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_OOP<UIColor> {
+extension GenericStateModel_OffOnPressed {
+    /// Initializes `GenericStateModel_OffOnPressed` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_OffOnPressed<UIColor> {
         .init(.clear)
     }
 }
@@ -127,9 +127,9 @@ extension GenericStateModel_OOP {
 
 import AppKit
 
-extension GenericStateModel_OOP {
-    /// Initializes `GenericStateModel_OOP` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_OOP<NSColor> {
+extension GenericStateModel_OffOnPressed {
+    /// Initializes `GenericStateModel_OffOnPressed` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_OffOnPressed<NSColor> {
         .init(.clear)
     }
 }
@@ -137,9 +137,9 @@ extension GenericStateModel_OOP {
 #endif
 
 // MARK: Model-Casting Initializers
-extension GenericStateModel_OOP {
-    /// Initializes `GenericStateModel_OOP` with `GenericStateModel_OOPD`.
-    public init(_ model: GenericStateModel_OOPD<Value>) {
+extension GenericStateModel_OffOnPressed {
+    /// Initializes `GenericStateModel_OffOnPressed` with `GenericStateModel_OffOnPressedDisabled`.
+    public init(_ model: GenericStateModel_OffOnPressedDisabled<Value>) {
         self.init(
             off: model.off,
             on: model.on,
@@ -150,20 +150,20 @@ extension GenericStateModel_OOP {
 }
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_OOP: Hashable where Value: Hashable {}
+extension GenericStateModel_OffOnPressed: Hashable where Value: Hashable {}
 
-extension GenericStateModel_OOP: Equatable where Value: Equatable {}
+extension GenericStateModel_OffOnPressed: Equatable where Value: Equatable {}
 
-extension GenericStateModel_OOP: Comparable where Value: Comparable {
+extension GenericStateModel_OffOnPressed: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.off, \.on, \.pressedOff, \.pressedOn)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_OOP {
-    /// Maps `GenericState_OOP` to `GenericStateModel_OOP`.
-    public func value(for state: GenericState_OOP) -> Value {
+extension GenericStateModel_OffOnPressed {
+    /// Maps `GenericState_OffOnPressed` to `GenericStateModel_OffOnPressed`.
+    public func value(for state: GenericState_OffOnPressed) -> Value {
         switch state {
         case .off: return off
         case .on: return on
