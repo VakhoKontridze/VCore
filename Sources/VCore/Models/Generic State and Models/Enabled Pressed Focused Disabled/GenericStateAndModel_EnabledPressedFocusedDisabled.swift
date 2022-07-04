@@ -1,5 +1,5 @@
 //
-//  GenericStateAndModel_EPFD.swift
+//  GenericStateAndModel_EnabledPressedFocusedDisabled.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 3/10/22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Genetic State (Enabled, Pressed, Focused, Disabled)
 /// Enumeration that represents state, such as `enabled`, `pressed`, `focused`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_EPFD`, via `value(for:)` method.
-public enum GenericState_EPFD: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_EnabledPressedFocusedDisabled`, via `value(for:)` method.
+public enum GenericState_EnabledPressedFocusedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -37,7 +37,7 @@ public enum GenericState_EPFD: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    /// Initializes `GenericState_EPFD` with flags.
+    /// Initializes `GenericState_EnabledPressedFocusedDisabled` with flags.
     public init(isEnabled: Bool, isPressed: Bool, isFocused: Bool) {
         switch (isEnabled, isPressed, isFocused) {
         case (false, _, _): self = .disabled
@@ -51,8 +51,8 @@ public enum GenericState_EPFD: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Pressed, Focused, Disabled)
 /// Value group containing generic `enabled`, `pressed`, `focused`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_EPFD` to model, via `value(for:)` method.
-public struct GenericStateModel_EPFD<Value> {
+/// Used for mapping `GenericState_EnabledPressedFocusedDisabled` to model, via `value(for:)` method.
+public struct GenericStateModel_EnabledPressedFocusedDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
     public var enabled: Value
@@ -67,7 +67,7 @@ public struct GenericStateModel_EPFD<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_EPFD` with values.
+    /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with values.
     public init(
         enabled: Value,
         pressed: Value,
@@ -80,7 +80,7 @@ public struct GenericStateModel_EPFD<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_EPFD` with value.
+    /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with value.
     public init(
         _ value: Value
     ) {
@@ -90,13 +90,13 @@ public struct GenericStateModel_EPFD<Value> {
         self.disabled = value
     }
     
-    /// Initializes `GenericStateModel_EPFD` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_EPFD<CGFloat> {
+    /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_EnabledPressedFocusedDisabled<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_EPFD` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_EPFD<Color> {
+    /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_EnabledPressedFocusedDisabled<Color> {
         .init(.clear)
     }
 }
@@ -106,9 +106,9 @@ public struct GenericStateModel_EPFD<Value> {
 
 import UIKit
 
-extension GenericStateModel_EPFD {
-    /// Initializes `GenericStateModel_EPFD` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_EPFD<UIColor> {
+extension GenericStateModel_EnabledPressedFocusedDisabled {
+    /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_EnabledPressedFocusedDisabled<UIColor> {
         .init(.clear)
     }
 }
@@ -117,9 +117,9 @@ extension GenericStateModel_EPFD {
 
 import AppKit
 
-extension GenericStateModel_EPFD {
-    /// Initializes `GenericStateModel_EPFD` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_EPFD<NSColor> {
+extension GenericStateModel_EnabledPressedFocusedDisabled {
+    /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_EnabledPressedFocusedDisabled<NSColor> {
         .init(.clear)
     }
 }
@@ -127,20 +127,20 @@ extension GenericStateModel_EPFD {
 #endif
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_EPFD: Hashable where Value: Hashable {}
+extension GenericStateModel_EnabledPressedFocusedDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_EPFD: Equatable where Value: Equatable {}
+extension GenericStateModel_EnabledPressedFocusedDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_EPFD: Comparable where Value: Comparable {
+extension GenericStateModel_EnabledPressedFocusedDisabled: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.enabled, \.pressed, \.focused, \.disabled)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_EPFD {
-    /// Maps `GenericState_EPFD` to `GenericStateModel_EPFD`.
-    public func value(for state: GenericState_EPFD) -> Value {
+extension GenericStateModel_EnabledPressedFocusedDisabled {
+    /// Maps `GenericState_EnabledPressedFocusedDisabled` to `GenericStateModel_EnabledPressedFocusedDisabled`.
+    public func value(for state: GenericState_EnabledPressedFocusedDisabled) -> Value {
         switch state {
         case .enabled: return enabled
         case .pressed: return pressed

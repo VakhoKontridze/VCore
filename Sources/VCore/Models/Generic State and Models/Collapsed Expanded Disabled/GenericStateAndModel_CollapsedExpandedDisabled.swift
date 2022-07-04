@@ -1,5 +1,5 @@
 //
-//  GenericStateAndModel_CED.swift
+//  GenericStateAndModel_CollapsedExpandedDisabled.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 4/6/22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Genetic State (Collapsed, Expanded, Disabled)
 /// Enumeration that represents state, such as `collapsed`, `expanded`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_CED`, via `value(for:)` method.
-public enum GenericState_CED: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_CollapsedExpandedDisabled`, via `value(for:)` method.
+public enum GenericState_CollapsedExpandedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Collapsed.
     case collapsed
@@ -33,7 +33,7 @@ public enum GenericState_CED: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    /// Initializes `GenericState_CED` with flags.
+    /// Initializes `GenericState_CollapsedExpandedDisabled` with flags.
     public init(isEnabled: Bool, isExpanded: Bool) {
         switch (isEnabled, isExpanded) {
         case (false, _): self = .disabled
@@ -56,8 +56,8 @@ public enum GenericState_CED: Int, CaseIterable {
 // MARK: - Generic State Model (Collapsed, Expanded, Disabled)
 /// Value group containing generic `collapsed`, `expanded`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_CED` to model, via `value(for:)` method.
-public struct GenericStateModel_CED<Value> {
+/// Used for mapping `GenericState_CollapsedExpandedDisabled` to model, via `value(for:)` method.
+public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
     // MARK: Properties
     /// Collapsed value.
     public var collapsed: Value
@@ -69,7 +69,7 @@ public struct GenericStateModel_CED<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_CED` with values.
+    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with values.
     public init(
         collapsed: Value,
         expanded: Value,
@@ -80,7 +80,7 @@ public struct GenericStateModel_CED<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_CED` with value.
+    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with value.
     public init(
         _ value: Value
     ) {
@@ -89,13 +89,13 @@ public struct GenericStateModel_CED<Value> {
         self.disabled = value
     }
     
-    /// Initializes `GenericStateModel_CED` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_CED<CGFloat> {
+    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_CollapsedExpandedDisabled<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_CED` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_CED<Color> {
+    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_CollapsedExpandedDisabled<Color> {
         .init(.clear)
     }
 }
@@ -105,9 +105,9 @@ public struct GenericStateModel_CED<Value> {
 
 import UIKit
 
-extension GenericStateModel_CED {
-    /// Initializes `GenericStateModel_CED` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_CED<UIColor> {
+extension GenericStateModel_CollapsedExpandedDisabled {
+    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_CollapsedExpandedDisabled<UIColor> {
         .init(.clear)
     }
 }
@@ -116,9 +116,9 @@ extension GenericStateModel_CED {
 
 import AppKit
 
-extension GenericStateModel_CED {
-    /// Initializes `GenericStateModel_CED` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_CED<NSColor> {
+extension GenericStateModel_CollapsedExpandedDisabled {
+    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_CollapsedExpandedDisabled<NSColor> {
         .init(.clear)
     }
 }
@@ -126,20 +126,20 @@ extension GenericStateModel_CED {
 #endif
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_CED: Hashable where Value: Hashable {}
+extension GenericStateModel_CollapsedExpandedDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_CED: Equatable where Value: Equatable {}
+extension GenericStateModel_CollapsedExpandedDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_CED: Comparable where Value: Comparable {
+extension GenericStateModel_CollapsedExpandedDisabled: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.collapsed, \.expanded, \.disabled)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_CED {
-    /// Maps `GenericState_CED` to `GenericStateModel_CED`.
-    public func value(for state: GenericState_CED) -> Value {
+extension GenericStateModel_CollapsedExpandedDisabled {
+    /// Maps `GenericState_CollapsedExpandedDisabled` to `GenericStateModel_CollapsedExpandedDisabled`.
+    public func value(for state: GenericState_CollapsedExpandedDisabled) -> Value {
         switch state {
         case .collapsed: return collapsed
         case .expanded: return expanded

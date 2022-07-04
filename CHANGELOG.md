@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.10.2(37)
+
+Models
+
+- `GenericState`'s' and `GenericStateModel`'s are renamed to full names
+
 ### [3.10.1(36)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.1) — *2022 07 04*
 
 Extensions

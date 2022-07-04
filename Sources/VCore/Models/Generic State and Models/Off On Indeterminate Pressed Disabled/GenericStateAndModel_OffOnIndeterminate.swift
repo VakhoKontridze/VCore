@@ -1,5 +1,5 @@
 //
-//  GenericStateAndModel_OOI.swift
+//  GenericStateAndModel_OffOnIndeterminate.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.07.22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Generic State (Off, On, Indeterminate)
 /// Enumeration that represents state, such as `off`, `on`, or `indeterminate`.
 ///
-/// Used for mapping state to `GenericStateModel_OOI`, via `value(for:)` method.
-public enum GenericState_OOI: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_OffOnIndeterminate`, via `value(for:)` method.
+public enum GenericState_OffOnIndeterminate: Int, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -36,8 +36,8 @@ public enum GenericState_OOI: Int, CaseIterable {
 // MARK: - Generic State Model (Off, On, Indeterminate)
 /// Color group containing `off`, `on`, and `indeterminate`.
 ///
-/// Used for mapping `GenericState_OOI` to model, via `value(for:)` method.
-public struct GenericStateModel_OOI<Value> {
+/// Used for mapping `GenericState_OffOnIndeterminate` to model, via `value(for:)` method.
+public struct GenericStateModel_OffOnIndeterminate<Value> {
     // MARK: Properties
     /// Off value.
     public var off: Value
@@ -49,7 +49,7 @@ public struct GenericStateModel_OOI<Value> {
     public var indeterminate: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_OOI` with values.
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with values.
     public init(
         off: Value,
         on: Value,
@@ -60,7 +60,7 @@ public struct GenericStateModel_OOI<Value> {
         self.indeterminate = indeterminate
     }
     
-    /// Initializes `GenericStateModel_OOI` with value.
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with value.
     public init(
         _ value: Value
     ) {
@@ -69,13 +69,13 @@ public struct GenericStateModel_OOI<Value> {
         self.indeterminate = value
     }
     
-    /// Initializes `GenericStateModel_OOI` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_OOI<CGFloat> {
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_OffOnIndeterminate<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_OOI` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_OOI<Color> {
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_OffOnIndeterminate<Color> {
         .init(.clear)
     }
 }
@@ -85,9 +85,9 @@ public struct GenericStateModel_OOI<Value> {
 
 import UIKit
 
-extension GenericStateModel_OOI {
-    /// Initializes `GenericStateModel_OOI` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_OOI<UIColor> {
+extension GenericStateModel_OffOnIndeterminate {
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_OffOnIndeterminate<UIColor> {
         .init(.clear)
     }
 }
@@ -96,9 +96,9 @@ extension GenericStateModel_OOI {
 
 import AppKit
 
-extension GenericStateModel_OOI {
-    /// Initializes `GenericStateModel_OOI` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_OOI<NSColor> {
+extension GenericStateModel_OffOnIndeterminate {
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_OffOnIndeterminate<NSColor> {
         .init(.clear)
     }
 }
@@ -106,19 +106,19 @@ extension GenericStateModel_OOI {
 #endif
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_OOI: Hashable where Value: Hashable {}
+extension GenericStateModel_OffOnIndeterminate: Hashable where Value: Hashable {}
 
-extension GenericStateModel_OOI: Equatable where Value: Equatable {}
+extension GenericStateModel_OffOnIndeterminate: Equatable where Value: Equatable {}
 
-extension GenericStateModel_OOI: Comparable where Value: Comparable {
+extension GenericStateModel_OffOnIndeterminate: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.off, \.on, \.indeterminate)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_OOI {
-    public func value(for state: GenericState_OOI) -> Value {
+extension GenericStateModel_OffOnIndeterminate {
+    public func value(for state: GenericState_OffOnIndeterminate) -> Value {
         switch state {
         case .off: return off
         case .on: return on

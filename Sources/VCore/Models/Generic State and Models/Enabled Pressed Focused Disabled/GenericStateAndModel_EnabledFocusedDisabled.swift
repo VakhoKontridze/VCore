@@ -1,5 +1,5 @@
 //
-//  GenericStateAndModel_EFD.swift
+//  GenericStateAndModel_EnabledFocusedDisabled.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 3/10/22.
@@ -10,8 +10,8 @@ import SwiftUI
 // MARK: - Genetic State (Enabled, Focused, Disabled)
 /// Enumeration that represents state, such as `enabled`, `focused`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_EFD`, via `value(for:)` method.
-public enum GenericState_EFD: Int, CaseIterable {
+/// Used for mapping state to `GenericStateModel_EnabledFocusedDisabled`, via `value(for:)` method.
+public enum GenericState_EnabledFocusedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -33,7 +33,7 @@ public enum GenericState_EFD: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    /// Initializes `GenericState_EFD` with flags.
+    /// Initializes `GenericState_EnabledFocusedDisabled` with flags.
     public init(isEnabled: Bool, isFocused: Bool) {
         switch (isEnabled, isFocused) {
         case (false, _): self = .disabled
@@ -46,8 +46,8 @@ public enum GenericState_EFD: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Focused, Disabled)
 /// Value group containing generic `enabled`, `focused`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_EFD` to model, via `value(for:)` method.
-public struct GenericStateModel_EFD<Value> {
+/// Used for mapping `GenericState_EnabledFocusedDisabled` to model, via `value(for:)` method.
+public struct GenericStateModel_EnabledFocusedDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
     public var enabled: Value
@@ -59,7 +59,7 @@ public struct GenericStateModel_EFD<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_EFD` with values.
+    /// Initializes `GenericStateModel_EnabledFocusedDisabled` with values.
     public init(
         enabled: Value,
         focused: Value,
@@ -70,7 +70,7 @@ public struct GenericStateModel_EFD<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_EFD` with value.
+    /// Initializes `GenericStateModel_EnabledFocusedDisabled` with value.
     public init(
         _ value: Value
     ) {
@@ -79,13 +79,13 @@ public struct GenericStateModel_EFD<Value> {
         self.disabled = value
     }
     
-    /// Initializes `GenericStateModel_EFD` with `0` `CGFloat` values.
-    public static var zero: GenericStateModel_EFD<CGFloat> {
+    /// Initializes `GenericStateModel_EnabledFocusedDisabled` with `0` `CGFloat` values.
+    public static var zero: GenericStateModel_EnabledFocusedDisabled<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_EFD` with `clear` `Color` values.
-    public static var clearColors: GenericStateModel_EFD<Color> {
+    /// Initializes `GenericStateModel_EnabledFocusedDisabled` with `clear` `Color` values.
+    public static var clearColors: GenericStateModel_EnabledFocusedDisabled<Color> {
         .init(.clear)
     }
 }
@@ -95,9 +95,9 @@ public struct GenericStateModel_EFD<Value> {
 
 import UIKit
 
-extension GenericStateModel_EFD {
-    /// Initializes `GenericStateModel_EFD` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_EFD<UIColor> {
+extension GenericStateModel_EnabledFocusedDisabled {
+    /// Initializes `GenericStateModel_EnabledFocusedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_EnabledFocusedDisabled<UIColor> {
         .init(.clear)
     }
 }
@@ -106,9 +106,9 @@ extension GenericStateModel_EFD {
 
 import AppKit
 
-extension GenericStateModel_EFD {
-    /// Initializes `GenericStateModel_EFD` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_EFD<NSColor> {
+extension GenericStateModel_EnabledFocusedDisabled {
+    /// Initializes `GenericStateModel_EnabledFocusedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_EnabledFocusedDisabled<NSColor> {
         .init(.clear)
     }
 }
@@ -116,20 +116,20 @@ extension GenericStateModel_EFD {
 #endif
 
 // MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_EFD: Hashable where Value: Hashable {}
+extension GenericStateModel_EnabledFocusedDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_EFD: Equatable where Value: Equatable {}
+extension GenericStateModel_EnabledFocusedDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_EFD: Comparable where Value: Comparable {
+extension GenericStateModel_EnabledFocusedDisabled: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.enabled, \.focused, \.disabled)
     }
 }
 
 // MARK: - Mapping
-extension GenericStateModel_EFD {
-    /// Maps `GenericState_EFD` to `GenericStateModel_EFD`.
-    public func value(for state: GenericState_EFD) -> Value {
+extension GenericStateModel_EnabledFocusedDisabled {
+    /// Maps `GenericState_EnabledFocusedDisabled` to `GenericStateModel_EnabledFocusedDisabled`.
+    public func value(for state: GenericState_EnabledFocusedDisabled) -> Value {
         switch state {
         case .enabled: return enabled
         case .focused: return focused

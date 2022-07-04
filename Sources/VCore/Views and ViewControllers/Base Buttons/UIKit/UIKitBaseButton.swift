@@ -27,66 +27,14 @@ import UIKit
 ///
 ///         private init() {}
 ///
-///         typealias StateColors = GenericStateModel_EPD<UIColor?>
+///         typealias StateColors = GenericStateModel_EnabledPressedDisabled<UIColor?>
 ///     }
 ///
 /// State:
 ///
-///     public enum SomeButtonState {
-///         case enabled
-///         case disabled
+///     typealias SomeButtonState = GenericState_EnabledDisabled
 ///
-///         init(isEnabled: Bool) {
-///             switch isEnabled {
-///             case false: self = .disabled
-///             case true: self = .enabled
-///             }
-///         }
-///
-///         init(internalState: SomeButtonInternalState) {
-///             switch internalState {
-///             case .enabled: self = .enabled
-///             case .pressed: self = .enabled
-///             case .disabled: self = .disabled
-///             }
-///         }
-///     }
-///
-///     enum SomeButtonInternalState {
-///         case enabled
-///         case pressed
-///         case disabled
-///
-///         var isEnabled: Bool {
-///             switch self {
-///             case .enabled: return true
-///             case .pressed: return true
-///             case .disabled: return false
-///             }
-///         }
-///
-///         init(state: SomeButtonState, isPressed: Bool) {
-///             switch (state, isPressed) {
-///             case (.enabled, false): self = .enabled
-///             case (.enabled, true): self = .pressed
-///             case (.disabled, _): self = .disabled
-///             }
-///         }
-///
-///         static var `default`: Self { .enabled }
-///     }
-///
-/// State-Model Mapping:
-///
-///     extension GenericStateModel_EPD {
-///         func value(for state: SomeButtonInternalState) -> Value {
-///             switch state {
-///             case .enabled: return enabled
-///             case .pressed: return pressed
-///             case .disabled: return disabled
-///             }
-///         }
-///     }
+///     typealias SomeButtonInternalState = GenericState_EnabledPressedDisabled
 ///
 /// Button:
 ///
@@ -94,7 +42,7 @@ import UIKit
 ///         private lazy var baseButton: UIKitBaseButton = .init(gesture: { [weak self] gestureState in
 ///             guard let self = self else { return }
 ///
-///             self.internalState = .init(state: self.state, isPressed: gestureState.isPressed)
+///             self.internalState = .init(isEnabled: self.state.isEnabled, isPressed: gestureState.isPressed)
 ///             self.configureFromStateModelChange()
 ///             if gestureState.isClicked { self.action() }
 ///         }).withTranslatesAutoresizingMaskIntoConstraints(false)
@@ -109,18 +57,15 @@ import UIKit
 ///
 ///         private typealias Model = SomeButtonModel
 ///
-///         var state: SomeButtonState { .init(internalState: internalState) }
-///         private var internalState: SomeButtonInternalState = .default
+///         var state: SomeButtonState { .init(isEnabled: internalState.isEnabled) }
+///         private var internalState: SomeButtonInternalState = .enabled
 ///             { didSet { baseButton.isEnabled = internalState.isEnabled } }
 ///         public var isEnabled: Bool {
 ///             get {
 ///                 internalState.isEnabled
 ///             }
 ///             set {
-///                 internalState = .init(
-///                     state: .init(isEnabled: newValue),
-///                     isPressed: baseButton.internalButtonState == .pressed
-///                 )
+///                 internalState = .init(isEnabled: newValue, isPressed: baseButton.internalButtonState == .pressed)
 ///                 configureFromStateModelChange()
 ///             }
 ///         }
@@ -167,7 +112,7 @@ import UIKit
 ///         }
 ///
 ///         func configure(state: SomeButtonState) {
-///             self.internalState = .init(state: state, isPressed: baseButton.internalButtonState == .pressed)
+///             self.internalState = .init(isEnabled: state.isEnabled, isPressed: baseButton.internalButtonState == .pressed)
 ///
 ///             configureFromStateModelChange()
 ///         }

@@ -92,6 +92,138 @@ extension SwiftUIBaseButton {
 
 #endif
 
+// MARK: - Generic State and Models (CED)
+@available(*, deprecated, renamed: "GenericState_CollapsedExpanded")
+public typealias GenericState_CE = GenericState_CollapsedExpanded
+
+@available(*, deprecated, renamed: "GenericStateModel_CollapsedExpanded")
+public typealias GenericStateModel_CE = GenericStateModel_CollapsedExpanded
+
+@available(*, deprecated, renamed: "GenericState_CollapsedExpandedDisabled")
+public typealias GenericState_CED = GenericState_CollapsedExpandedDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_CollapsedExpandedDisabled")
+public typealias GenericStateModel_CED = GenericStateModel_CollapsedExpandedDisabled
+
+// MARK: - Generic State and Models (EPD)
+@available(*, deprecated, renamed: "GenericState_EnabledDisabled")
+public typealias GenericState_ED = GenericState_EnabledDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledDisabled")
+public typealias GenericStateModel_ED = GenericStateModel_EnabledDisabled
+
+@available(*, deprecated, renamed: "GenericState_EnabledPressed")
+public typealias GenericState_EP = GenericState_EnabledPressed
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledPressed")
+public typealias GenericStateModel_EP = GenericStateModel_EnabledPressed
+
+@available(*, deprecated, renamed: "GenericState_EnabledPressedDisabled")
+public typealias GenericState_EPD = GenericState_EnabledPressedDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledPressedDisabled")
+public typealias GenericStateModel_EPD = GenericStateModel_EnabledPressedDisabled
+
+// MARK: - Generic State and Models (EPFD)
+@available(*, deprecated, renamed: "GenericState_EnabledFocused")
+public typealias GenericState_EF = GenericState_EnabledFocused
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledFocused")
+public typealias GenericStateModel_EF = GenericStateModel_EnabledFocused
+
+@available(*, deprecated, renamed: "GenericState_EnabledFocusedDisabled")
+public typealias GenericState_EFD = GenericState_EnabledFocusedDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledFocusedDisabled")
+public typealias GenericStateModel_EFD = GenericStateModel_EnabledFocusedDisabled
+
+@available(*, deprecated, renamed: "GenericState_EnabledPressedFocused")
+public typealias GenericState_EPF = GenericState_EnabledPressedFocused
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledPressedFocused")
+public typealias GenericStateModel_EPF = GenericStateModel_EnabledPressedFocused
+
+@available(*, deprecated, renamed: "GenericState_EnabledPressedFocusedDisabled")
+public typealias GenericState_EPFD = GenericState_EnabledPressedFocusedDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledPressedFocusedDisabled")
+public typealias GenericStateModel_EPFD = GenericStateModel_EnabledPressedFocusedDisabled
+
+// MARK: - Generic State and Models (EPLD)
+@available(*, deprecated, renamed: "GenericState_EnabledLoading")
+public typealias GenericState_EL = GenericState_EnabledLoading
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledLoading")
+public typealias GenericStateModel_EL = GenericStateModel_EnabledLoading
+
+@available(*, deprecated, renamed: "GenericState_EnabledLoadingDisabled")
+public typealias GenericState_ELD = GenericState_EnabledLoadingDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledLoadingDisabled")
+public typealias GenericStateModel_ELD = GenericStateModel_EnabledLoadingDisabled
+
+@available(*, deprecated, renamed: "GenericState_EnabledPressedLoading")
+public typealias GenericState_EPL = GenericState_EnabledPressedLoading
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledPressedLoading")
+public typealias GenericStateModel_EPL = GenericStateModel_EnabledPressedLoading
+
+@available(*, deprecated, renamed: "GenericState_EnabledPressedLoadingDisabled")
+public typealias GenericState_EPLD = GenericState_EnabledPressedLoadingDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_EnabledPressedLoadingDisabled")
+public typealias GenericStateModel_EPLD = GenericStateModel_EnabledPressedLoadingDisabled
+
+// MARK: - Generic State and Models (OOIPD)
+@available(*, deprecated, renamed: "GenericState_OffOnIndeterminate")
+public typealias GenericState_OOI = GenericState_OffOnIndeterminate
+
+@available(*, deprecated, renamed: "GenericStateModel_OffOnIndeterminate")
+public typealias GenericStateModel_OOI = GenericStateModel_OffOnIndeterminate
+
+@available(*, deprecated, renamed: "GenericState_OffOnIndeterminateDisabled")
+public typealias GenericState_OOID = GenericState_OffOnIndeterminateDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_OffOnIndeterminateDisabled")
+public typealias GenericStateModel_OOID = GenericStateModel_OffOnIndeterminateDisabled
+
+@available(*, deprecated, renamed: "GenericState_OffOnIndeterminatePressed")
+public typealias GenericState_OOIP = GenericState_OffOnIndeterminatePressed
+
+@available(*, deprecated, renamed: "GenericStateModel_OffOnIndeterminatePressed")
+public typealias GenericStateModel_OOIP = GenericStateModel_OffOnIndeterminatePressed
+
+@available(*, deprecated, renamed: "GenericState_OffOnIndeterminatePressedDisabled")
+public typealias GenericState_OOIPD = GenericState_OffOnIndeterminatePressedDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_OffOnIndeterminatePressedDisabled")
+public typealias GenericStateModel_OOIPD = GenericStateModel_OffOnIndeterminatePressedDisabled
+
+// MARK: - Generic State and Models (OOPD)
+@available(*, deprecated, renamed: "GenericState_OffOn")
+public typealias GenericState_OO = GenericState_OffOn
+
+@available(*, deprecated, renamed: "GenericStateModel_OffOn")
+public typealias GenericStateModel_OO = GenericStateModel_OffOn
+
+@available(*, deprecated, renamed: "GenericState_OffOnDisabled")
+public typealias GenericState_OOD = GenericState_OffOnDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_OffOnDisabled")
+public typealias GenericStateModel_OOD = GenericStateModel_OffOnDisabled
+
+@available(*, deprecated, renamed: "GenericState_OffOnPressed")
+public typealias GenericState_OOP = GenericState_OffOnPressed
+
+@available(*, deprecated, renamed: "GenericStateModel_OffOnPressed")
+public typealias GenericStateModel_OOP = GenericStateModel_OffOnPressed
+
+@available(*, deprecated, renamed: "GenericState_OffOnPressedDisabled")
+public typealias GenericState_OOPD = GenericState_OffOnPressedDisabled
+
+@available(*, deprecated, renamed: "GenericStateModel_OffOnPressedDisabled")
+public typealias GenericStateModel_OOPD = GenericStateModel_OffOnPressedDisabled
+
 #if canImport(UIKit) && !os(watchOS)
 
 import UIKit
