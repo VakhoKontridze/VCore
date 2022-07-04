@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - Basic Animation
-/// Wrapper for `SwiftUI`'s animation that stores curve and duration.
+/// Wrapper for `SwiftUI`'s native `Animation` that stores curve and duration.
 ///
 /// Duration can be used to asynchronously perform an action when animation finishes.
 /// To use completion handler, use global `withBasicAnimation(_:body:completion:)` function.
