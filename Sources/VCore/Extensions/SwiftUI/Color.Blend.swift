@@ -13,7 +13,7 @@ import SwiftUI
 @available(tvOS 15.0, *)
 @available(watchOS 8.0, *)
 extension Color {
-    /// Blends two `Color`'s together.
+    /// Blends two `Color`s together.
     ///
     ///     let purple: Color = .blend(.red, with: .blue)
     ///

@@ -45,7 +45,7 @@ extension Color {
         #endif
     }
     
-    /// Indicates if two `Color`'s are RGBA equivalent.
+    /// Indicates if two `Color`s are RGBA equivalent.
     ///
     /// Comparison is made to each color component.
     ///

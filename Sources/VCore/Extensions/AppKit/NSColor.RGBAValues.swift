@@ -54,7 +54,7 @@ extension NSColor {
         )
     }
     
-    /// Indicates if two `NSColor`'s are RGBA equivalent.
+    /// Indicates if two `NSColor`s are RGBA equivalent.
     ///
     /// Comparison is made to each color component.
     ///

@@ -54,7 +54,7 @@ extension UIColor {
         )
     }
     
-    /// Indicates if two `UIColor`'s are RGBA equivalent.
+    /// Indicates if two `UIColor`s are RGBA equivalent.
     ///
     /// Comparison is made to each color component.
     ///

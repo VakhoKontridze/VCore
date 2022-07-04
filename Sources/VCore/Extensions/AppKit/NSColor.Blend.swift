@@ -11,7 +11,7 @@ import AppKit
 
 // MARK: - Blend Color
 extension NSColor {
-    /// Blends two `NSColor`'s together.
+    /// Blends two `NSColor`s together.
     ///
     ///     let purple: NSColor = .blend(.red, with: .blue)
     ///

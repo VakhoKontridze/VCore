@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Is Greater than by KeyPath
-/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a)
 ///
@@ -23,7 +23,7 @@ public func isGreater<T, P0>(
     isLess(rhs, than: lhs, by: keyPath0)
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b)
 ///
@@ -40,7 +40,7 @@ public func isGreater<T, P0, P1>(
     isLess(rhs, than: lhs, by: keyPath0, keyPath1)
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b, \.c)
 ///
@@ -59,7 +59,7 @@ public func isGreater<T, P0, P1, P2>(
     isLess(rhs, than: lhs, by: keyPath0, keyPath1, keyPath2)
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b, \.c, \.d)
 ///
@@ -80,7 +80,7 @@ public func isGreater<T, P0, P1, P2, P3>(
     isLess(rhs, than: lhs, by: keyPath0, keyPath1, keyPath2, keyPath3)
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e)
 ///
@@ -103,7 +103,7 @@ public func isGreater<T, P0, P1, P2, P3, P4>(
     isLess(rhs, than: lhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4)
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f)
 ///
@@ -128,7 +128,7 @@ public func isGreater<T, P0, P1, P2, P3, P4, P5>(
     isLess(rhs, than: lhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4, keyPath5)
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g)
 ///
@@ -155,7 +155,7 @@ public func isGreater<T, P0, P1, P2, P3, P4, P5, P6>(
     isLess(rhs, than: lhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4, keyPath5, keyPath6)
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g \.h)
 ///
@@ -184,7 +184,7 @@ public func isGreater<T, P0, P1, P2, P3, P4, P5, P6, P7>(
     isLess(rhs, than: lhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4, keyPath5, keyPath6, keyPath7)
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g \.h, \.i)
 ///
@@ -215,7 +215,7 @@ public func isGreater<T, P0, P1, P2, P3, P4, P5, P6, P7, P8>(
     isLess(rhs, than: lhs, by: keyPath0, keyPath1, keyPath2, keyPath3, keyPath4, keyPath5, keyPath6, keyPath7, keyPath8)
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g \.h, \.i, \.j)
 ///

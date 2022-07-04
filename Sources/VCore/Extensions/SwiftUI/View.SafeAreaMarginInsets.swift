@@ -15,7 +15,7 @@ import SwiftUI
 @available(tvOS 15.0, *)
 @available(watchOS 8.0, *)
 extension View {
-    /// Inserts `Spacer`'s with width or height of safe are inset as margins for specified edges.
+    /// Inserts `Spacer`s with width or height of safe are inset as margins for specified edges.
     ///
     /// Can be used to reverse effects of `ignoresSafeArea(_:edges:)` in nested view.
     ///

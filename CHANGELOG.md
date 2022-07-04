@@ -26,8 +26,8 @@ General
 
 Models
 
-- `EdgeInsets`'s are renamed to full names
-- `GenericState`'s and `GenericStateModel`'s are renamed to full names
+- `EdgeInsets`s are renamed to full names
+- `GenericState`s and `GenericStateModel`s are renamed to full names
 
 ### [3.10.1(36)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.1) — *2022 07 04*
 
@@ -47,9 +47,9 @@ Models
 
 - `HashableEnumeration` and `StringRepresentableHashableEnumeration` are added
 - `BasicAnimation` is added
-- State models are now added for `GenericStateModel`'s
-- Various `GenericState`'s' and `GenericStateModel`'s are added
-- `zero`, `clearColors`, `clearUIColors`, and `clearNSColors` factory properties are added to  `GenericStateModel`'s
+- State models are now added for `GenericStateModel`s
+- Various `GenericState`s' and `GenericStateModel`s are added
+- `zero`, `clearColors`, `clearUIColors`, and `clearNSColors` factory properties are added to  `GenericStateModel`s
 
 Other
 
@@ -185,8 +185,8 @@ Architectural Pattern Helpers
 
 Extensions
 
-- `String.removing(_:)` methods now support `CharacterSet` `Array`'s
-- `String.keeping(only:)` methods now support `CharacterSet` `Array`'s
+- `String.removing(_:)` methods now support `CharacterSet` `Array`s
+- `String.keeping(only:)` methods now support `CharacterSet` `Array`s
 - `Set.toggling(_:)` method is added to complement `Set.toggle(_:)`
 - `Array.compactMapNonEmpty(_:)` is renamed to `compactMapNonNilNonEmpty`
 - `CharacterSet.unified` property is added
@@ -212,7 +212,7 @@ Helpers
 
 Views and ViewControllers
 
-- `SwiftUIBaseButton` API is updated and old `init`'s are deprecated
+- `SwiftUIBaseButton` API is updated and old `init`s are deprecated
 
 Extensions
 
@@ -277,7 +277,7 @@ Helpers
  
 Extensions
 
-- `width` parameter can now be passed to `UILabel`'s `multiLineHeight` method
+- `width` parameter can now be passed to `UILabel.multiLineHeight()` method
 - `FloatingPoint.bound(in:step:)` is renamed to `clamp`
 - `NSObject.nsObjectName` is deprecated in favor of native `String(describing:)` method
 - Various extensions are added

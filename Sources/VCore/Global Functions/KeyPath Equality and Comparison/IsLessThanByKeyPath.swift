@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Is Less than by KeyPath
-/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a)
 ///
@@ -24,7 +24,7 @@ public func isLess<T, P0>(
     rhs[keyPath: keyPath0]
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b)
 ///
@@ -42,7 +42,7 @@ public func isLess<T, P0, P1>(
     (rhs[keyPath: keyPath0], rhs[keyPath: keyPath1])
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c)
 ///
@@ -62,7 +62,7 @@ public func isLess<T, P0, P1, P2>(
     (rhs[keyPath: keyPath0], rhs[keyPath: keyPath1], rhs[keyPath: keyPath2])
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d)
 ///
@@ -84,7 +84,7 @@ public func isLess<T, P0, P1, P2, P3>(
     (rhs[keyPath: keyPath0], rhs[keyPath: keyPath1], rhs[keyPath: keyPath2], rhs[keyPath: keyPath3])
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e)
 ///
@@ -108,7 +108,7 @@ public func isLess<T, P0, P1, P2, P3, P4>(
     (rhs[keyPath: keyPath0], rhs[keyPath: keyPath1], rhs[keyPath: keyPath2], rhs[keyPath: keyPath3], rhs[keyPath: keyPath4])
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f)
 ///
@@ -134,7 +134,7 @@ public func isLess<T, P0, P1, P2, P3, P4, P5>(
     (rhs[keyPath: keyPath0], rhs[keyPath: keyPath1], rhs[keyPath: keyPath2], rhs[keyPath: keyPath3], rhs[keyPath: keyPath4], rhs[keyPath: keyPath5])
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g)
 ///
@@ -168,7 +168,7 @@ public func isLess<T, P0, P1, P2, P3, P4, P5, P6>(
     return false
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h)
 ///
@@ -205,7 +205,7 @@ public func isLess<T, P0, P1, P2, P3, P4, P5, P6, P7>(
     return false
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i)
 ///
@@ -245,7 +245,7 @@ public func isLess<T, P0, P1, P2, P3, P4, P5, P6, P7, P8>(
     return false
 }
 
-/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`'s.
+/// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j)
 ///
