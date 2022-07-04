@@ -324,12 +324,18 @@ extension UIApplication {
 public typealias SizeConfiguration = MinIdealMaxSizes
 
 // MARK: - Extensions - UIKit
+#if canImport(UIKit)
+
+import UIKit
+
 extension UIViewController {
     @available(*, deprecated, renamed: "dismissKeyboardOnOutsideTap")
     public func dismissKeyboardOnOutisdeTap() {
         dismissKeyboardOnOutsideTap()
     }
 }
+
+#endif
 
 // MARK: - VCore Localization Service
 extension VCoreLocalizationProvider {
