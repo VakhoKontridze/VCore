@@ -33,7 +33,6 @@ import SwiftUI
 ///             .padding()
 ///     }
 ///
-@available(iOS 14.0, *)
 public struct PlainDisclosureGroup<Label, Content>: View
     where
         Label: View,
@@ -68,7 +67,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
     @State private var labelHeight: CGFloat = 0
     
     // MARK: Initializers
-    /// Initializes `PlainDiclosureGroup` with label and content.
+    /// Initializes `PlainDisclosureGroup` with label and content.
     public init(
         uiModel: PlainDisclosureGroupUIModel = .init(),
         label: @escaping () -> Label,
@@ -81,7 +80,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
         self.content = content
     }
     
-    /// Initializes `PlainDiclosureGroup` with active state, label, and content.
+    /// Initializes `PlainDisclosureGroup` with active state, label, and content.
     public init(
         uiModel: PlainDisclosureGroupUIModel = .init(),
         isExpanded: Binding<Bool>,
@@ -141,9 +140,6 @@ public struct PlainDisclosureGroup<Label, Content>: View
 }
 
 // MARK: - Preview
-@available(iOS 14.0, macOS 11.0, *)
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
 struct PlainDisclosureGroup_Previews: PreviewProvider {
     @State private static var isExpanded: Bool = true
     
