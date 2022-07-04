@@ -1,5 +1,5 @@
 //
-//  EdgeInsets_TB.swift
+//  EdgeInsets_TopBottom.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/1/21.
@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Edge Insets (Top, Bottom)
 /// Edge insets containing `top` and `bottom` values.
-public struct EdgeInsets_TB: Hashable, Equatable {
+public struct EdgeInsets_TopBottom: Hashable, Equatable {
     // MARK: Properties
     /// Top inset value.
     public var top: CGFloat
@@ -18,7 +18,7 @@ public struct EdgeInsets_TB: Hashable, Equatable {
     public var bottom: CGFloat
     
     // MARK: Initializers
-    /// Initializes `EdgeInsets_TB` with values.
+    /// Initializes `EdgeInsets_TopBottom` with values.
     public init(
         top: CGFloat,
         bottom: CGFloat
@@ -27,7 +27,7 @@ public struct EdgeInsets_TB: Hashable, Equatable {
         self.bottom = bottom
     }
     
-    /// Initializes `EdgeInsets_TB` with value.
+    /// Initializes `EdgeInsets_TopBottom` with value.
     public init(
         _ value: CGFloat
     ) {
@@ -35,7 +35,7 @@ public struct EdgeInsets_TB: Hashable, Equatable {
         self.bottom = value
     }
     
-    /// Initializes `EdgeInsets_TB` with zero values.
+    /// Initializes `EdgeInsets_TopBottom` with zero values.
     public init() {
         self.top = 0
         self.bottom = 0
@@ -46,7 +46,7 @@ public struct EdgeInsets_TB: Hashable, Equatable {
     
     // MARK: Insetting
     /// Insets `EdgeInsets` by a given value.
-    public func insetBy(inset: CGFloat) -> EdgeInsets_TB {
+    public func insetBy(inset: CGFloat) -> EdgeInsets_TopBottom {
         .init(
             top: top + inset,
             bottom: bottom + inset
@@ -54,7 +54,7 @@ public struct EdgeInsets_TB: Hashable, Equatable {
     }
     
     /// Insets `EdgeInsets` by a given top and bottom values.
-    public func insetBy(top topInset: CGFloat, bottom bottomInset: CGFloat) -> EdgeInsets_TB {
+    public func insetBy(top topInset: CGFloat, bottom bottomInset: CGFloat) -> EdgeInsets_TopBottom {
         .init(
             top: top + topInset,
             bottom: bottom + topInset
@@ -62,7 +62,7 @@ public struct EdgeInsets_TB: Hashable, Equatable {
     }
     
     /// Insets `EdgeInsets` by a given top value.
-    public func insetBy(top topInset: CGFloat) -> EdgeInsets_TB {
+    public func insetBy(top topInset: CGFloat) -> EdgeInsets_TopBottom {
         .init(
             top: top + topInset,
             bottom: bottom
@@ -70,7 +70,7 @@ public struct EdgeInsets_TB: Hashable, Equatable {
     }
     
     /// Insets `EdgeInsets` by a given bottom value.
-    public func insetBy(bottom bottomInset: CGFloat) -> EdgeInsets_TB {
+    public func insetBy(bottom bottomInset: CGFloat) -> EdgeInsets_TopBottom {
         .init(
             top: top,
             bottom: bottom + bottomInset
@@ -109,9 +109,9 @@ public struct EdgeInsets_TB: Hashable, Equatable {
 
 // MARK: - Extension
 extension View {
-    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_TB`.
+    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_TopBottom`.
     ///
-    ///     let insets: EdgeInsets_TB = .init(
+    ///     let insets: EdgeInsets_TopBottom = .init(
     ///         top: 10,
     ///         bottom: 10
     ///     )
@@ -121,7 +121,7 @@ extension View {
     ///             .padding(insets)
     ///     }
     ///
-    public func padding(_ insets: EdgeInsets_TB) -> some View {
+    public func padding(_ insets: EdgeInsets_TopBottom) -> some View {
         self
             .padding(.top, insets.top)
             .padding(.bottom, insets.bottom)

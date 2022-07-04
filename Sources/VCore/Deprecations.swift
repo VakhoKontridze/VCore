@@ -92,6 +92,19 @@ extension SwiftUIBaseButton {
 
 #endif
 
+// MARK: - Edge Insets
+@available(*, deprecated, renamed: "EdgeInsets_HorizontalVertical")
+public typealias EdgeInsets_HV = EdgeInsets_HorizontalVertical
+
+@available(*, deprecated, renamed: "EdgeInsets_LeadingTrailing")
+public typealias EdgeInsets_LT = EdgeInsets_LeadingTrailing
+
+@available(*, deprecated, renamed: "EdgeInsets_LeadingTrailingTopBottom")
+public typealias EdgeInsets_LTTB = EdgeInsets_LeadingTrailingTopBottom
+
+@available(*, deprecated, renamed: "EdgeInsets_TopBottom")
+public typealias EdgeInsets_TB = EdgeInsets_TopBottom
+
 // MARK: - Generic State and Models (CED)
 @available(*, deprecated, renamed: "GenericState_CollapsedExpanded")
 public typealias GenericState_CE = GenericState_CollapsedExpanded

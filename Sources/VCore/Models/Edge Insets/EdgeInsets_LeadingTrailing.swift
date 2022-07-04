@@ -1,5 +1,5 @@
 //
-//  EdgeInsets_LT.swift
+//  EdgeInsets_LeadingTrailing.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/1/21.
@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Edge Insets (Leading, Trailing)
 /// Edge insets containing `leading` and `trailing` values.
-public struct EdgeInsets_LT: Hashable, Equatable {
+public struct EdgeInsets_LeadingTrailing: Hashable, Equatable {
     // MARK: Properties
     /// Leading inset value.
     public var leading: CGFloat
@@ -18,7 +18,7 @@ public struct EdgeInsets_LT: Hashable, Equatable {
     public var trailing: CGFloat
     
     // MARK: Initializers
-    /// Initializes `EdgeInsets_LT` with values.
+    /// Initializes `EdgeInsets_LeadingTrailing` with values.
     public init(
         leading: CGFloat,
         trailing: CGFloat
@@ -27,7 +27,7 @@ public struct EdgeInsets_LT: Hashable, Equatable {
         self.trailing = trailing
     }
     
-    /// Initializes `EdgeInsets_LT` with value.
+    /// Initializes `EdgeInsets_LeadingTrailing` with value.
     public init(
         _ value: CGFloat
     ) {
@@ -35,7 +35,7 @@ public struct EdgeInsets_LT: Hashable, Equatable {
         self.trailing = value
     }
     
-    /// Initializes `EdgeInsets_LT` with zero values.
+    /// Initializes `EdgeInsets_LeadingTrailing` with zero values.
     public init() {
         self.leading = 0
         self.trailing = 0
@@ -46,7 +46,7 @@ public struct EdgeInsets_LT: Hashable, Equatable {
     
     // MARK: Insetting
     /// Insets `EdgeInsets` by a given value.
-    public func insetBy(inset: CGFloat) -> EdgeInsets_LT {
+    public func insetBy(inset: CGFloat) -> EdgeInsets_LeadingTrailing {
         .init(
             leading: leading + inset,
             trailing: trailing + inset
@@ -54,7 +54,7 @@ public struct EdgeInsets_LT: Hashable, Equatable {
     }
     
     /// Insets `EdgeInsets` by a given leading and trailing values.
-    public func insetBy(leading leadingInset: CGFloat, trailing trailingInset: CGFloat) -> EdgeInsets_LT {
+    public func insetBy(leading leadingInset: CGFloat, trailing trailingInset: CGFloat) -> EdgeInsets_LeadingTrailing {
         .init(
             leading: leading + leadingInset,
             trailing: trailing + leadingInset
@@ -62,7 +62,7 @@ public struct EdgeInsets_LT: Hashable, Equatable {
     }
     
     /// Insets `EdgeInsets` by a given leading value.
-    public func insetBy(leading leadingInset: CGFloat) -> EdgeInsets_LT {
+    public func insetBy(leading leadingInset: CGFloat) -> EdgeInsets_LeadingTrailing {
         .init(
             leading: leading + leadingInset,
             trailing: trailing
@@ -70,7 +70,7 @@ public struct EdgeInsets_LT: Hashable, Equatable {
     }
     
     /// Insets `EdgeInsets` by a given trailing value.
-    public func insetBy(trailing trailingInset: CGFloat) -> EdgeInsets_LT {
+    public func insetBy(trailing trailingInset: CGFloat) -> EdgeInsets_LeadingTrailing {
         .init(
             leading: leading,
             trailing: trailing + trailingInset
@@ -109,9 +109,9 @@ public struct EdgeInsets_LT: Hashable, Equatable {
 
 // MARK: - Extension
 extension View {
-    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_LT`.
+    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_LeadingTrailing`.
     ///
-    ///     let insets: EdgeInsets_LT = .init(
+    ///     let insets: EdgeInsets_LeadingTrailing = .init(
     ///         leading: 10,
     ///         trailing: 10
     ///     )
@@ -121,7 +121,7 @@ extension View {
     ///             .padding(insets)
     ///     }
     ///
-    public func padding(_ insets: EdgeInsets_LT) -> some View {
+    public func padding(_ insets: EdgeInsets_LeadingTrailing) -> some View {
         self
             .padding(.leading, insets.leading)
             .padding(.trailing, insets.trailing)
