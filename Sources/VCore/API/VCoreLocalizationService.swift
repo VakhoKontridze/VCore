@@ -46,7 +46,7 @@ public protocol VCoreLocalizationProvider {
 }
 
 // MARK: - VCore Human-Readable Localization Provider
-/// Localization provider in package that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable`String`'s
+/// Localization provider in package that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable`String`s
 public protocol VCoreHumanReadableLocalizationProvider: VCoreLocalizationProvider {}
 
 extension VCoreHumanReadableLocalizationProvider {

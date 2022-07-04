@@ -5,12 +5,17 @@
 //  Created by Vakhtang Kontridze on 9/13/21.
 //
 
-#if canImport(UIKit) && !os(watchOS)
+#if !os(watchOS)
 
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Layout Constraint with Priority
 extension NSLayoutConstraint {
+    #if canImport(UIKit)
     /// Modifies and returns constraint with a given priority.
     ///
     ///     NSLayoutConstraint.activate([
@@ -22,6 +27,21 @@ extension NSLayoutConstraint {
         self.priority = priority
         return self
     }
+    #endif
+    
+    #if canImport(AppKit)
+    /// Modifies and returns constraint with a given priority.
+    ///
+    ///     NSLayoutConstraint.activate([
+    ///         view.widthAnchor.constraint(equalToConstant: 100)
+    ///             .withPriority(.defaultHigh)
+    ///     ])
+    ///
+    public func withPriority(_ priority: Priority) -> NSLayoutConstraint {
+        self.priority = priority
+        return self
+    }
+    #endif
     
     /// Modifies and returns constraint with a given priority value.
     ///

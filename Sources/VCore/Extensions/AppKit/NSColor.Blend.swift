@@ -1,26 +1,26 @@
 //
-//  UIColor.Blend.swift
+//  NSColor.Blend.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 11/8/21.
+//  Created by Vakhtang Kontridze on 04.07.22.
 //
 
-#if canImport(UIKit)
+#if canImport(AppKit)
 
-import UIKit
+import AppKit
 
 // MARK: - Blend Color
-extension UIColor {
-    /// Blends two `UIColor`s together.
+extension NSColor {
+    /// Blends two `NSColor`s together.
     ///
-    ///     let purple: UIColor = .blend(.red, with: .blue)
+    ///     let purple: NSColor = .blend(.red, with: .blue)
     ///
     public static func blend(
-        _ color1: UIColor,
+        _ color1: NSColor,
         ratio1: CGFloat = 0.5,
-        with color2: UIColor,
+        with color2: NSColor,
         ratio2: CGFloat = 0.5
-    ) -> UIColor {
+    ) -> NSColor {
         let weight1: CGFloat = ratio1 / (ratio1 + ratio2)
         let weight2: CGFloat = ratio2 / (ratio1 + ratio2)
         
@@ -38,13 +38,13 @@ extension UIColor {
         )
     }
     
-    /// Lightens `UIColor` by value.
+    /// Lightens `NSColor` by value.
     ///
     /// `value` ranges from `0` to `1`.
     ///
-    ///     let lightBlue: UIColor = .systemBlue.lighten(by: 0.1)
+    ///     let lightBlue: NSColor = .systemBlue.lighten(by: 0.1)
     ///
-    public func lighten(by value: CGFloat) -> UIColor {
+    public func lighten(by value: CGFloat) -> NSColor {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
         return .init(
@@ -55,13 +55,13 @@ extension UIColor {
         )
     }
     
-    /// Darkens `UIColor` by value.
+    /// Darkens `NSColor` by value.
     ///
     /// `value` ranges from `0` to `1`
     ///
-    ///     let darkBlue: UIColor = .systemBlue.darken(by: 0.1)
+    ///     let darkBlue: NSColor = .systemBlue.darken(by: 0.1)
     ///
-    public func darken(by value: CGFloat) -> UIColor {
+    public func darken(by value: CGFloat) -> NSColor {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
         return .init(
@@ -74,3 +74,4 @@ extension UIColor {
 }
 
 #endif
+

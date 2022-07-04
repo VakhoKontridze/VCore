@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Font Styling
 extension UIFont {
-    /// Returns font with bold styling.
+    /// Returns `UIFont` with bold styling.
     ///
     ///     let systemFont: UIFont = .systemFont(ofSize: 13)
     ///     let boldSystemFont: UIFont? = systemFont.withBoldStyling
@@ -20,7 +20,7 @@ extension UIFont {
         fontDescriptor.withSymbolicTraits(.traitBold).map { .init(descriptor: $0, size: 0) }
     }
     
-    /// Returns font with italic styling.
+    /// Returns `UIFont` with italic styling.
     ///
     ///     let systemFont: UIFont = .systemFont(ofSize: 13)
     ///     let italicSystemFont: UIFont? = systemFont.withItalicStyling

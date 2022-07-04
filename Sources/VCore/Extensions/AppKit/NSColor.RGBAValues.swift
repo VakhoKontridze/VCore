@@ -1,22 +1,22 @@
 //
-//  UIColor.RGBAValues.swift
+//  NSColor.RGBAValues.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 11/8/21.
+//  Created by Vakhtang Kontridze on 04.07.22.
 //
 
-#if canImport(UIKit)
+#if canImport(AppKit)
 
-import UIKit
+import AppKit
 
 // MARK: - RGBA Values
-extension UIColor {
-    /// Returns RGBA values of `UIColor`.
+extension NSColor {
+    /// Returns RGBA values of `NSColor`.
     ///
     /// `red`, `green`, and `blue` values range from `0` to `1`.
     /// `alpha` value ranges from `0` to `1`.
     ///
-    ///     let (red, green, blue, alpha) = UIColor.systemBlue.rgbaValues
+    ///     let (red, green, blue, alpha) = NSColor.systemBlue.rgbaValues
     ///     // (0.0, 0.4..., 1.0, 1.0)
     ///
     public var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
@@ -40,7 +40,7 @@ extension UIColor {
     /// `red`, `green`, and `blue` values range from `0` to `255`.
     /// `alpha` value ranges from `0` to `1`.
     ///
-    ///     let (red, green, blue, alpha) = UIColor.systemBlue.rgbaComponents
+    ///     let (red, green, blue, alpha) = NSColor.systemBlue.rgbaComponents
     ///     // (0, 122, 255, 1.0)
     ///
     public var rgbaComponents: (red: Int, green: Int, blue: Int, alpha: CGFloat) {
@@ -54,15 +54,15 @@ extension UIColor {
         )
     }
     
-    /// Indicates if two `UIColor`s are RGBA equivalent.
+    /// Indicates if two `NSColor`s are RGBA equivalent.
     ///
     /// Comparison is made to each color component.
     ///
-    ///     let color1: UIColor = .red
-    ///     let color2: UIColor = .red
+    ///     let color1: NSColor = .red
+    ///     let color2: NSColor = .red
     ///     let isEqual: Bool = color1.isRGBAEqual(to: color2) // true
     ///
-    public func isRGBAEqual(to otherColor: UIColor) -> Bool {
+    public func isRGBAEqual(to otherColor: NSColor) -> Bool {
         let lhs = self.rgbaValues
         let rhs = otherColor.rgbaValues
         
@@ -71,3 +71,4 @@ extension UIColor {
 }
 
 #endif
+

@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Character Set Unified
 extension Array where Element == CharacterSet {
-    /// Returns a union of the CharacterSet `Array`'s.
+    /// Returns a union of the CharacterSet `Array`s.
     ///
     ///     let unifiedCharacterSet: CharacterSet = [.decimalDigits, .letters, .symbols].unified
     ///

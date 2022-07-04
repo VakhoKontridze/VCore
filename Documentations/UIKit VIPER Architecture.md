@@ -18,7 +18,7 @@ Factory is a non-initializable `struct` with `static` factory methods. By defaul
 
 `Factory` takes `Parameters` as argument if there is data to be passed from the presenting scene.
 
-Since objects are communicating via protocols, they can be swapped out with a non-default implementations. For instance, we can declare protocols in a shared framework, alongside with `ViewController` and `Presenter` objects, and implement different `Interactor`'s and `Router`'s in two separate apps, effectively reusing the same scene while only changing endpoints that they connect to, and scenes to which they can navigate. When even just one component is replaced, a new factory method must be added, as it requires a different dependency injection.
+Since objects are communicating via protocols, they can be swapped out with a non-default implementations. For instance, we can declare protocols in a shared framework, alongside with `ViewController` and `Presenter` objects, and implement different `Interactor`s and `Router`s in two separate apps, effectively reusing the same scene while only changing endpoints that they connect to, and scenes to which they can navigate. When even just one component is replaced, a new factory method must be added, as it requires a different dependency injection.
 
 ## Parameters ***(Optional)***
 
@@ -147,11 +147,11 @@ Performs fetch request to remote or local databases.
 
 Responsibilities of the `Interactor` include:
 
-- Calling `Gateway`'s for fetch request. That's why an `Interactive` has a combined protocol body of all the `Gateway`'s it has access to.
+- Calling `Gateway`s for fetch request. That's why an `Interactive` has a combined protocol body of all the `Gateway`s it has access to.
 
 Responsibilities of the `Interactor` do not include:
 
-- Performing fetch requests on its own independent of `Gateway`'s.
+- Performing fetch requests on its own independent of `Gateway`s.
 
 #### Interactive
 
@@ -165,7 +165,7 @@ func fetchSomeData(with parameters: SomeParameters) async throws -> SomeEntity
 
 #### Definition
 
-A non-initalizable `static` model that describes UI.
+A non-initializable `static` model that describes UI.
 
 #### Responsibilities
 

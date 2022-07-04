@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Non Empty String
 extension StringProtocol {
-    /// Indicates whether a `String` has no `Character`'s or whitespaces.
+    /// Indicates whether a `String` has no `Character`s or whitespaces.
     ///
     ///     let value1: Bool = "".isEmptyOrWhiteSpace // true
     ///     let value2: Bool = " ".isEmptyOrWhiteSpace // true
@@ -19,7 +19,7 @@ extension StringProtocol {
         trimmingCharacters(in: .whitespaces).isEmpty
     }
     
-    /// Indicates whether a `String` has no `Character`'s, whitespaces, or newlines.
+    /// Indicates whether a `String` has no `Character`s, whitespaces, or newlines.
     ///
     ///     let value1: Bool = "".isEmptyWhiteSpaceOrNewLines // true
     ///     let value2: Bool = " ".isEmptyWhiteSpaceOrNewLines // true

@@ -1,17 +1,18 @@
 //
-//  UIColorBlendTests.swift
+//  NSColorBlendTests.swift
 //  VCoreTests
 //
-//  Created by Vakhtang Kontridze on 09.05.22.
+//  Created by Vakhtang Kontridze on 04.07.22.
 //
 
-#if canImport(UIKit)
+#if canImport(AppKit)
 
 import XCTest
+import AppKit
 @testable import VCore
 
 // MARK: - Tests
-final class UIColorBlendTests: XCTestCase {
+final class NSColorBlendTests: XCTestCase {
     func testBlend() {
         let input1R: CGFloat = 1/3
         let input1G: CGFloat = 1/3
@@ -28,10 +29,10 @@ final class UIColorBlendTests: XCTestCase {
         let outputB: CGFloat = (input1B + input2B) / 2
         let outputA: CGFloat = (input1A + input2A) / 2
         
-        let color1: UIColor = .init(red: input1R, green: input1G, blue: input1B, alpha: input1A)
-        let color2: UIColor = .init(red: input2R, green: input2G, blue: input2B, alpha: input2A)
+        let color1: NSColor = .init(red: input1R, green: input1G, blue: input1B, alpha: input1A)
+        let color2: NSColor = .init(red: input2R, green: input2G, blue: input2B, alpha: input2A)
         
-        let result = UIColor.blend(color1, with: color2).rgbaValues
+        let result = NSColor.blend(color1, with: color2).rgbaValues
         
         XCTAssertEqual(result.red, outputR)
         XCTAssertEqual(result.green, outputG)
@@ -57,10 +58,10 @@ final class UIColorBlendTests: XCTestCase {
         let outputB: CGFloat = input1B * ratio1 + input2B * ratio2
         let outputA: CGFloat = input1A * ratio1 + input2A * ratio2
         
-        let color1: UIColor = .init(red: input1R, green: input1G, blue: input1B, alpha: input1A)
-        let color2: UIColor = .init(red: input2R, green: input2G, blue: input2B, alpha: input2A)
+        let color1: NSColor = .init(red: input1R, green: input1G, blue: input1B, alpha: input1A)
+        let color2: NSColor = .init(red: input2R, green: input2G, blue: input2B, alpha: input2A)
         
-        let result = UIColor.blend(color1, ratio1: ratio1, with: color2, ratio2: ratio2).rgbaValues
+        let result = NSColor.blend(color1, ratio1: ratio1, with: color2, ratio2: ratio2).rgbaValues
         
         XCTAssertEqual(result.red, outputR)
         XCTAssertEqual(result.green, outputG)
@@ -80,7 +81,7 @@ final class UIColorBlendTests: XCTestCase {
         let outputB: CGFloat = inputB + value
         let outputA: CGFloat = inputA
         
-        let color: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: inputA)
+        let color: NSColor = .init(red: inputR, green: inputG, blue: inputB, alpha: inputA)
         
         let result = color.lighten(by: value).rgbaValues
         
@@ -102,7 +103,7 @@ final class UIColorBlendTests: XCTestCase {
         let outputB: CGFloat = inputB - value
         let outputA: CGFloat = inputA
         
-        let color: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: inputA)
+        let color: NSColor = .init(red: inputR, green: inputG, blue: inputB, alpha: inputA)
         
         let result = color.darken(by: value).rgbaValues
         
