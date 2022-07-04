@@ -1,5 +1,21 @@
 # Change Log
 
+### 3.11.0(39)
+
+Extensions
+
+- `AppKit` extensions are added, but only for supporting underlying `SwiftUI` types
+- Several `UIKit` extension are expanded to `macOS`, and are move to `Core Frameworks` directory
+- `Color.blend(_:ratio1:with:ratio2)` method is added
+- `Color.lighten(by:)` and `NSColor.darken(by:)` methods are added
+- `Color.rgbaValues` and `NSColor.rgbaComponents` properties are added
+- `Color.isRGBAEqual(to:)` method is added
+- `NSColor.blend(_:ratio1:with:ratio2)` method is added
+- `NSColor.lighten(by:)` and `NSColor.darken(by:)` methods are added
+- `NSColor.rgbaValues` and `NSColor.rgbaComponents` properties are added
+- `NSColor.isRGBAEqual(to:)` method is added
+- `NSFont.withBoldStyling` and `NSColor.withItalicStyling` properties are added
+
 ### [3.10.3(38)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.3) — *2022 07 04*
 
 General

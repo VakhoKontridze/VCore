@@ -5,9 +5,13 @@
 //  Created by Vakhtang Kontridze on 11/5/21.
 //
 
-#if canImport(UIKit) && !os(watchOS)
+#if !os(watchOS)
 
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Layout Constraint with Multiplier
 extension NSLayoutConstraint {

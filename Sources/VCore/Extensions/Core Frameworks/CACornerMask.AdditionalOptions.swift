@@ -5,9 +5,9 @@
 //  Created by Vakhtang Kontridze on 13.06.22.
 //
 
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(QuartzCore) && !os(watchOS)
 
-import UIKit
+import QuartzCore
 
 // MARK: - CA Corner Mask Additional Options
 extension CACornerMask {

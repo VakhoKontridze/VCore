@@ -5,9 +5,9 @@
 //  Created by Vakhtang Kontridze on 01.05.22.
 //
 
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(CoreGraphics) && !os(watchOS)
 
-import UIKit
+import CoreGraphics
 
 // MARK: - CGRect to NSLayoutConstraints
 extension CGRect {
