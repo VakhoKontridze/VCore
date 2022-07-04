@@ -25,9 +25,9 @@ final class ColorRGBAValuesTests: XCTestCase {
         
         let result = color.rgbaValues
         
-        XCTAssertEqual(result.red, inputR)
-        XCTAssertEqual(result.green, inputG)
-        XCTAssertEqual(result.blue, inputB)
+        XCTAssertEqual(result.red, inputR, accuracy: pow(10, -5))
+        XCTAssertEqual(result.green, inputG, accuracy: pow(10, -5))
+        XCTAssertEqual(result.blue, inputB, accuracy: pow(10, -5))
         XCTAssertEqual(result.alpha, inputA)
     }
     

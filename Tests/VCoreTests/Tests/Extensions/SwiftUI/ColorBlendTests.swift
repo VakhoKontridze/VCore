@@ -65,9 +65,9 @@ final class ColorBlendTests: XCTestCase {
         
         let result = Color.blend(color1, ratio1: ratio1, with: color2, ratio2: ratio2).rgbaValues
         
-        XCTAssertEqual(result.red, outputR)
-        XCTAssertEqual(result.green, outputG)
-        XCTAssertEqual(result.blue, outputB)
+        XCTAssertEqual(result.red, outputR, accuracy: pow(10, -5))
+        XCTAssertEqual(result.green, outputG, accuracy: pow(10, -5))
+        XCTAssertEqual(result.blue, outputB, accuracy: pow(10, -5))
         XCTAssertEqual(result.alpha, outputA)
     }
     

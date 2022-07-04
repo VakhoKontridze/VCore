@@ -57,7 +57,18 @@ extension Color {
         #if canImport(UIKit)
         return UIColor(self).isRGBAEqual(to: .init(otherColor))
         #elseif canImport(AppKit)
-        return NSColor(self).isRGBAEqual(to: .init(otherColor))
+        return NSColor(self).fixedColorSpace.isRGBAEqual(to: .init(otherColor).fixedColorSpace)
         #endif
     }
 }
+
+// MARK: - Helpers
+#if canImport(AppKit)
+import AppKit
+
+extension NSColor {
+    fileprivate var fixedColorSpace: NSColor {
+        self.usingColorSpace(.deviceRGB)! // fatalError
+    }
+}
+#endif
