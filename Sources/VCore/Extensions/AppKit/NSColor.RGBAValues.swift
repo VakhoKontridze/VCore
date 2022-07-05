@@ -16,7 +16,9 @@ extension NSColor {
     /// `red`, `green`, and `blue` values range from `0` to `1`.
     /// `alpha` value ranges from `0` to `1`.
     ///
-    ///     let (red, green, blue, alpha) = NSColor.systemBlue.rgbaValues
+    /// `NSColor` must be first converted to a colorspace, otherwise `getRed(_:green:blue:alpha)` method would crash.
+    ///
+    ///     let (red, green, blue, alpha) = NSColor.systemBlue.usingColorSpace(.deviceRGB)!.rgbaValues
     ///     // (0.0, 0.4..., 1.0, 1.0)
     ///
     public var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
@@ -40,7 +42,7 @@ extension NSColor {
     /// `red`, `green`, and `blue` values range from `0` to `255`.
     /// `alpha` value ranges from `0` to `1`.
     ///
-    ///     let (red, green, blue, alpha) = NSColor.systemBlue.rgbaComponents
+    ///     let (red, green, blue, alpha) = NSColor.systemBlue.usingColorSpace(.deviceRGB)!.rgbaComponents
     ///     // (0, 122, 255, 1.0)
     ///
     public var rgbaComponents: (red: Int, green: Int, blue: Int, alpha: CGFloat) {
@@ -70,5 +72,11 @@ extension NSColor {
     }
 }
 
-#endif
+// MARK: - Helpers
+extension NSColor {
+    var calibrated: NSColor {
+        self.usingColorSpace(.deviceRGB)! // fatalError
+    }
+}
 
+#endif

@@ -14,7 +14,7 @@ import SwiftUI
 @available(macOS 12.0, *)
 @available(tvOS 15.0, *)
 @available(watchOS 8.0, *)
-final class ColorBlendTests: XCTestCase {
+final class ColorBlendTests: XCTestCase { 
     func testBlend() {
         let input1R: CGFloat = 1/3
         let input1G: CGFloat = 1/3

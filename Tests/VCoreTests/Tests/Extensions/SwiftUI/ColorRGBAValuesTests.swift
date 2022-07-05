@@ -32,6 +32,14 @@ final class ColorRGBAValuesTests: XCTestCase {
     }
     
     func testComponents() {
+        let accuracy: Int = { // Colorspace conversion on `macOS` may cause issues
+            #if os(macOS)
+            return 1
+            #else
+            return 0
+            #endif
+        }()
+        
         let inputR: Int = 10
         let inputG: Int = 20
         let inputB: Int = 30
@@ -41,9 +49,9 @@ final class ColorRGBAValuesTests: XCTestCase {
         
         let result = color.rgbaComponents
         
-        XCTAssertEqual(result.red, inputR)
-        XCTAssertEqual(result.green, inputG)
-        XCTAssertEqual(result.blue, inputB)
+        XCTAssertEqual(result.red, inputR, accuracy: accuracy)
+        XCTAssertEqual(result.green, inputG, accuracy: accuracy)
+        XCTAssertEqual(result.blue, inputB, accuracy: accuracy)
         XCTAssertEqual(result.alpha, inputA)
     }
     

@@ -45,8 +45,8 @@ final class UIColorRGBAValuesTests: XCTestCase {
     }
     
     func testISRGBAEqual() {
-        XCTAssertTrue(UIColor.red.isRGBAEqual(to: .red))
-        XCTAssertFalse(UIColor.red.isRGBAEqual(to: .blue))
+        XCTAssertTrue(UIColor.systemRed.isRGBAEqual(to: .systemRed))
+        XCTAssertFalse(UIColor.systemRed.isRGBAEqual(to: .systemBlue))
     }
 }
 
