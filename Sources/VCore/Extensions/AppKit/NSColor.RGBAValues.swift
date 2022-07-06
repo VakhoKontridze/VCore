@@ -16,7 +16,9 @@ extension NSColor {
     /// `red`, `green`, and `blue` values range from `0` to `1`.
     /// `alpha` value ranges from `0` to `1`.
     ///
-    ///     let (red, green, blue, alpha) = NSColor.systemBlue.rgbaValues
+    /// `NSColor` must be first converted to a colorspace, otherwise `getRed(_:green:blue:alpha)` method would crash.
+    ///
+    ///     let (red, green, blue, alpha) = NSColor.systemBlue.usingColorSpace(.deviceRGB)!.rgbaValues
     ///     // (0.0, 0.4..., 1.0, 1.0)
     ///
     public var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
@@ -40,7 +42,7 @@ extension NSColor {
     /// `red`, `green`, and `blue` values range from `0` to `255`.
     /// `alpha` value ranges from `0` to `1`.
     ///
-    ///     let (red, green, blue, alpha) = NSColor.systemBlue.rgbaComponents
+    ///     let (red, green, blue, alpha) = NSColor.systemBlue.usingColorSpace(.deviceRGB)!.rgbaComponents
     ///     // (0, 122, 255, 1.0)
     ///
     public var rgbaComponents: (red: Int, green: Int, blue: Int, alpha: CGFloat) {
@@ -63,12 +65,15 @@ extension NSColor {
     ///     let isEqual: Bool = color1.isRGBAEqual(to: color2) // true
     ///
     public func isRGBAEqual(to otherColor: NSColor) -> Bool {
-        let lhs = self.rgbaValues
-        let rhs = otherColor.rgbaValues
-        
-        return VCore.isEqual(lhs, to: rhs, by: \.red, \.green, \.blue, \.alpha)
+        VCore.isEqual(rgbaValues, to: otherColor.rgbaValues, by: \.red, \.green, \.blue, \.alpha)
+    }
+}
+
+// MARK: - Helpers
+extension NSColor {
+    var calibrated: NSColor {
+        self.usingColorSpace(.deviceRGB)! // fatalError
     }
 }
 
 #endif
-

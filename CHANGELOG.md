@@ -15,7 +15,7 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
-### 3.11.0(39)
+### [3.11.0(39)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.3) — *2022 07 06*
 
 Extensions
 
@@ -51,6 +51,10 @@ Extensions
 - Missing deprecated name for `UIViewController.dismissKeyboardOnOutsideTap()` is added
 
 ### [3.10.0(35)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.0) — *2022 07 04*
+
+Services and Managers
+
+- `isConnectedToNetwork` `NetworkReachabilityService` on `watchOS` is no longer optional. Property will be set to `false` on app launch.
 
 Views and ViewControllers
 

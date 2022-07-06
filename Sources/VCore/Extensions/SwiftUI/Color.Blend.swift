@@ -24,9 +24,23 @@ extension Color {
         ratio2: CGFloat = 0.5
     ) -> Color {
         #if canImport(UIKit)
-        return .init(uiColor: UIColor.blend(.init(color1), ratio1: ratio1, with: .init(color2), ratio2: ratio2))
+        
+        return .init(uiColor: UIColor.blend(
+            .init(color1),
+            ratio1: ratio1,
+            with: .init(color2),
+            ratio2: ratio2
+        ))
+        
         #elseif canImport(AppKit)
-        return .init(nsColor: NSColor.blend(.init(color1), ratio1: ratio1, with: .init(color2), ratio2: ratio2))
+        
+        return .init(nsColor: NSColor.blend(
+            .init(color1).calibrated,
+            ratio1: ratio1,
+            with: .init(color2).calibrated,
+            ratio2: ratio2
+        ))
+        
         #endif
     }
     
@@ -40,7 +54,7 @@ extension Color {
         #if canImport(UIKit)
         return .init(uiColor: UIColor(self).lighten(by: value))
         #elseif canImport(AppKit)
-        return .init(nsColor: NSColor(self).lighten(by: value))
+        return .init(nsColor: NSColor(self).calibrated.lighten(by: value))
         #endif
     }
     
@@ -54,7 +68,7 @@ extension Color {
         #if canImport(UIKit)
         return .init(uiColor: UIColor(self).darken(by: value))
         #elseif canImport(AppKit)
-        return .init(nsColor: NSColor(self).darken(by: value))
+        return .init(nsColor: NSColor(self).calibrated.darken(by: value))
         #endif
     }
 }

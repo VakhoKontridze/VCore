@@ -46,8 +46,15 @@ final class NSColorRGBAValuesTests: XCTestCase {
     }
     
     func testISRGBAEqual() {
-        XCTAssertTrue(NSColor.red.isRGBAEqual(to: .red))
-        XCTAssertFalse(NSColor.red.isRGBAEqual(to: .blue))
+        XCTAssertTrue(
+            NSColor.systemRed.usingColorSpace(.deviceRGB)!
+                .isRGBAEqual(to: .systemRed.usingColorSpace(.deviceRGB)!)
+        )
+        
+        XCTAssertFalse(
+            NSColor.systemRed.usingColorSpace(.deviceRGB)!
+                .isRGBAEqual(to: .systemBlue.usingColorSpace(.deviceRGB)!)
+        )
     }
 }
 
