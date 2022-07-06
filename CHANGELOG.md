@@ -37,6 +37,10 @@ Extensions
 
 ### [3.10.0(35)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.0) — *2022 07 04*
 
+Services and Managers
+
+- `isConnectedToNetwork` `NetworkReachabilityService` on `watchOS` is no longer optional. Property will be set to `false` on app launch.
+
 Views and ViewControllers
 
 - `LeftAlignedCollectionViewFlowLayout` is added
