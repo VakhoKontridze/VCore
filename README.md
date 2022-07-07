@@ -30,11 +30,11 @@ Package files are grouped as:
 
 - ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `NetworkClient`.
 
-- ***Views and ViewControllers***. Reusable non-scene `View`s, `UIView`s, and `UIViewController`s.
+- ***Views and ViewControllers***. Reusable non-scene `View`s, `UIView`s, and `UIViewController`s. For instance `BaseButton`s.
 
 - ***Models***. Reusable models. For instance, `EdgeInsets`s.
 
-- ***Helpers***. Non-service, non-extension objects and methods. For instance architectural pattern helpers.
+- ***Helpers***. Non-service, non-extension objects and methods. For instance, architectural pattern helpers.
 
 - ***Extensions***. Global extensions. Methods and properties are grouped by frameworks of origin—`Core Frameworks`, `Foundation`, `SwiftUI`, `UIKit`, and `AppKit` (only for supporting underlying `SwiftUI` types).
 
