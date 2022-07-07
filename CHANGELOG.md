@@ -1,6 +1,6 @@
 # Change Log
 
-### 3.12.1(41)
+### [3.12.1(41)](https://github.com/VakhoKontridze/VCore/releases/tag/3.12.1) — *2022 07 07*
 
 Extensions
 
