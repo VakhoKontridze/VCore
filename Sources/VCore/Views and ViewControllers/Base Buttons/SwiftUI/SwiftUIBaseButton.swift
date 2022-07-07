@@ -38,7 +38,7 @@ import SwiftUI
 ///
 /// Button:
 ///
-///     public struct SomeButton: View {
+///     struct SomeButton: View {
 ///         private typealias UIModel = SomeButtonUIModel
 ///
 ///         @Environment(\.isEnabled) private var isEnabled: Bool
@@ -49,7 +49,7 @@ import SwiftUI
 ///
 ///         private let title: String
 ///
-///         public init(
+///         init(
 ///             action: @escaping () -> Void,
 ///             title: String
 ///         ) {
@@ -57,7 +57,7 @@ import SwiftUI
 ///             self.title = title
 ///         }
 ///
-///         public var body: some View {
+///         var body: some View {
 ///             SwiftUIBaseButton(gesture: gestureHandler, label: {
 ///                 Text(title)
 ///                     .foregroundColor(UIModel.titleColor.value(for: internalState))
