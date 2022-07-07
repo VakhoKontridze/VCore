@@ -62,10 +62,10 @@ final class PostsViewController:
 
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            tableView.constraintLeading(to: view),
+            tableView.constraintTrailing(to: view),
+            tableView.constraintTop(to: view, attribute: .safeTop),
+            tableView.constraintBottom(to: view)
         ])
     }
     

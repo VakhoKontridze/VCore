@@ -1,6 +1,7 @@
 //  ___FILEHEADER___
 
 import UIKit
+import VCore
 
 // MARK: - ___VARIABLE_productName___ View
 final class ___VARIABLE_productName___View: UIView {

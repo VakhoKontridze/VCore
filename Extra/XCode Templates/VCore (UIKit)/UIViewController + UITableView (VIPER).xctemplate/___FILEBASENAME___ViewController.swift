@@ -1,6 +1,7 @@
 //  ___FILEHEADER___
 
 import UIKit
+import VCore
 
 // MARK: - ___VARIABLE_productName___ View Controller
 final class ___VARIABLE_productName___ViewController:
