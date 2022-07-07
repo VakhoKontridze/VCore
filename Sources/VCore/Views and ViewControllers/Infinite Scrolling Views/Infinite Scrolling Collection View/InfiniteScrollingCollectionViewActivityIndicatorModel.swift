@@ -10,6 +10,6 @@
 import Foundation
 
 // MARK: - Infinite Scrolling Table View Activity Indicator Model
-typealias InfiniteScrollingCollectionViewActivityIndicatorModel = InfiniteScrollingTableViewActivityIndicatorModel
+typealias InfiniteScrollingCollectionViewActivityIndicatorModel = InfiniteScrollingTableViewActivityIndicatorUIModel
 
 #endif

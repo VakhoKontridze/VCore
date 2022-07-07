@@ -18,7 +18,7 @@ import UIKit
 ///
 /// Model:
 ///
-///     struct SomeButtonModel {
+///     struct SomeButtonUIModel {
 ///         static let titleColor: StateColors = .init(
 ///             enabled: .black,
 ///             pressed: .gray,
@@ -55,7 +55,7 @@ import UIKit
 ///             return label
 ///         }()
 ///
-///         private typealias Model = SomeButtonModel
+///         private typealias UIModel = SomeButtonUIModel
 ///
 ///         var state: SomeButtonState { .init(isEnabled: internalState.isEnabled) }
 ///         private var internalState: SomeButtonInternalState = .enabled
@@ -118,8 +118,7 @@ import UIKit
 ///         }
 ///
 ///         private func configureFromStateModelChange() {
-///             print(internalState)
-///             titleLabel.textColor = Model.titleColor.value(for: internalState)
+///             titleLabel.textColor = UIModel.titleColor.value(for: internalState)
 ///         }
 ///     }
 ///
