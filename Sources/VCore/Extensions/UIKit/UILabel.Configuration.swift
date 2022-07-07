@@ -35,6 +35,7 @@ extension UILabel {
         self.textAlignment = alignment
         self.lineBreakMode = lineBreakMode
         self.numberOfLines = numberOfLines
+        self.adjustsFontSizeToFitWidth = true // Needed for `minimumScaleFactor` to work
         self.minimumScaleFactor = minimumScaleFactor
         self.textColor = color
         self.font = font

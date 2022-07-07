@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.12.1(41)
+
+Extensions
+
+- Issue with `minimumScaleFactor` in `UILabel.configure(alignment:lineBreakMode:numberOfLines:minimumScaleFactor:color:font:)` is fixed
+
 ### [3.12.0(40)](https://github.com/VakhoKontridze/VCore/releases/tag/3.12.0) — *2022 07 07*
 
 Helpers
