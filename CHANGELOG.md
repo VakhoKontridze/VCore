@@ -1,12 +1,12 @@
 # Change Log
 
-### 3.12.0(40)
+### [3.12.0(40)](https://github.com/VakhoKontridze/VCore/releases/tag/3.12.0) — *2022 07 07*
 
 Helpers
 
 - `UIView` helper `NSLayoutConstraint` methods are added
 
-### [3.11.0(39)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.3) — *2022 07 06*
+### [3.11.0(39)](https://github.com/VakhoKontridze/VCore/releases/tag/3.11.0) — *2022 07 06*
 
 Extensions
 
