@@ -57,17 +57,17 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
 
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            scrollableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            scrollableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            scrollableView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            scrollableView.constraintLeading(to: view),
+            scrollableView.constraintTrailing(to: view),
+            scrollableView.constraintTop(to: view),
+            scrollableView.constraintBottom(to: view),
             
-            bodyLabel.heightAnchor.constraint(equalToConstant: 0)
+            bodyLabel.constraintHeight(to: nil, constant: 0)
                 .storing(in: &bodyLabelHeightConstraint),
-            bodyLabel.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor, constant: UIModel.Layout.bodyLabelMarginHor),
-            bodyLabel.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor, constant: -UIModel.Layout.bodyLabelMarginHor),
-            bodyLabel.topAnchor.constraint(equalTo: scrollableView.contentView.safeAreaLayoutGuide.topAnchor, constant: UIModel.Layout.bodyLabelMarginTop),
-            bodyLabel.bottomAnchor.constraint(equalTo: scrollableView.contentView.safeAreaLayoutGuide.bottomAnchor, constant: -UIModel.Layout.bodyLabelMarginBottom)
+            bodyLabel.constraintLeading(to: scrollableView.contentView, constant: UIModel.Layout.bodyLabelMarginHor),
+            bodyLabel.constraintTrailing(to: scrollableView.contentView, constant: -UIModel.Layout.bodyLabelMarginHor),
+            bodyLabel.constraintTop(to: scrollableView.contentView, attribute: .safeTop, constant: UIModel.Layout.bodyLabelMarginTop),
+            bodyLabel.constraintBottom(to: scrollableView.contentView, attribute: .safeBottom, constant: -UIModel.Layout.bodyLabelMarginBottom)
         ])
     }
     

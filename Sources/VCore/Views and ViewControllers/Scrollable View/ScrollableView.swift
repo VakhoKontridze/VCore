@@ -82,19 +82,17 @@ open class ScrollableView: UIView {
         let heightConstraintPriority: UILayoutPriority? = scrollDirection.contains(.vertical) ? .defaultLow : nil
         
         NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            scrollView.topAnchor.constraint(equalTo: topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            scrollView.constraintLeading(to: self),
+            scrollView.constraintTrailing(to: self),
+            scrollView.constraintTop(to: self),
+            scrollView.constraintBottom(to: self),
             
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-                .withPriority(widthConstraintPriority),
-            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-                .withPriority(heightConstraintPriority),
-            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
+            contentView.constraintWidth(to: scrollView, priority: widthConstraintPriority),
+            contentView.constraintHeight(to: scrollView, priority: heightConstraintPriority),
+            contentView.constraintLeading(to: scrollView),
+            contentView.constraintTrailing(to: scrollView),
+            contentView.constraintTop(to: scrollView),
+            contentView.constraintBottom(to: scrollView)
         ])
     }
 }

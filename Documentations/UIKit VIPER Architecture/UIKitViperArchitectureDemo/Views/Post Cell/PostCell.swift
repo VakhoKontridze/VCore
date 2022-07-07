@@ -54,14 +54,14 @@ final class PostCell: UITableViewCell, UITableViewDequeueable {
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            titleLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIModel.Layout.titleLabelMarginHor),
-            titleLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIModel.Layout.titleLabelMarginHor),
-            titleLabel.topAnchor.constraint(equalTo: contentView.topAnchor, constant: UIModel.Layout.titleLabelMarginTop),
+            titleLabel.constraintLeading(to: contentView, constant: UIModel.Layout.titleLabelMarginHor),
+            titleLabel.constraintTrailing(to: contentView, constant: -UIModel.Layout.titleLabelMarginHor),
+            titleLabel.constraintTop(to: contentView, constant: UIModel.Layout.titleLabelMarginTop),
             
-            bodyLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: UIModel.Layout.bodyLabelMarginHor),
-            bodyLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -UIModel.Layout.bodyLabelMarginHor),
-            bodyLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: UIModel.Layout.bodyLabelMarginTop),
-            bodyLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -UIModel.Layout.bodyLabelMarginBottom)
+            bodyLabel.constraintLeading(to: contentView, constant: UIModel.Layout.bodyLabelMarginHor),
+            bodyLabel.constraintTrailing(to: contentView, constant: -UIModel.Layout.bodyLabelMarginHor),
+            bodyLabel.constraintTop(to: titleLabel, attribute: .bottom, constant: UIModel.Layout.bodyLabelMarginTop),
+            bodyLabel.constraintBottom(to: contentView, constant: -UIModel.Layout.bodyLabelMarginBottom)
         ])
     }
 

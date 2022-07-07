@@ -19,7 +19,8 @@ final class NSLayoutConstraintStoringTests: XCTestCase {
         
         var constraint: NSLayoutConstraint? = nil
         NSLayoutConstraint.activate([
-            view.widthAnchor.constraint(equalToConstant: width).storing(in: &constraint)
+            view.widthAnchor.constraint(equalToConstant: width)
+                .storing(in: &constraint)
         ])
         
         XCTAssertEqual(constraint?.constant, width)
