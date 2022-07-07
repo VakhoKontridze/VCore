@@ -58,7 +58,7 @@ final class ___VARIABLE_productName___View: UIView {
         self.uiModel = uiModel
     }
     
-    // MARK: Configuration - Paramameters
+    // MARK: Configuration - Parameters
     func configure(parameters: ___VARIABLE_productName___ViewParameters) {
         
     }

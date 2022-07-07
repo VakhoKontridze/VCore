@@ -13,6 +13,7 @@ struct ___VARIABLE_productName___ViewUIModel {
     
     // MARK: Layout
     struct Layout {
+        
     }
 
     // MARK: Colors

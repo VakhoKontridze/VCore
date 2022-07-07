@@ -73,24 +73,7 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
 
 // MARK: - Mapping
 extension GenericStateModel_EnabledPressedDisabled {
-    /// Allows for dynamic mapping between `Model` and `State`.
-    ///
-    ///     let baseButton: UIKitBaseButton = {
-    ///         // ...
-    ///     }()
-    ///
-    ///     let titleLabel: UILabel = {
-    ///         // ...
-    ///     }()
-    ///
-    ///     let titleColor: GenericStateModel_EnabledPressedDisabled<UIColor?> = .init(
-    ///         enabled: .black,
-    ///         pressed: .gray,
-    ///         disabled: .gray
-    ///     )
-    ///
-    ///     titleLabel.textColor = titleColor.value(for: baseButton.internalButtonState)
-    ///
+    /// Maps `UIKitBaseButtonInternalState` to `GenericStateModel_EnabledPressedDisabled`.
     public func value(for state: UIKitBaseButtonInternalState) -> Value {
         switch state {
         case .enabled: return enabled

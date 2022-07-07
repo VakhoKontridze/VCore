@@ -18,7 +18,7 @@ import UIKit
 ///
 /// Model:
 ///
-///     struct SomeButtonModel {
+///     struct SomeButtonUIModel {
 ///         static let titleColor: StateColors = .init(
 ///             enabled: .black,
 ///             pressed: .gray,
@@ -38,7 +38,7 @@ import UIKit
 ///
 /// Button:
 ///
-///     public final class SomeButton: UIView {
+///     final class SomeButton: UIView {
 ///         private lazy var baseButton: UIKitBaseButton = .init(gesture: { [weak self] gestureState in
 ///             guard let self = self else { return }
 ///
@@ -55,12 +55,12 @@ import UIKit
 ///             return label
 ///         }()
 ///
-///         private typealias Model = SomeButtonModel
+///         private typealias UIModel = SomeButtonUIModel
 ///
 ///         var state: SomeButtonState { .init(isEnabled: internalState.isEnabled) }
 ///         private var internalState: SomeButtonInternalState = .enabled
 ///             { didSet { baseButton.isEnabled = internalState.isEnabled } }
-///         public var isEnabled: Bool {
+///         var isEnabled: Bool {
 ///             get {
 ///                 internalState.isEnabled
 ///             }
@@ -77,7 +77,7 @@ import UIKit
 ///             set { titleLabel.text = newValue }
 ///         }
 ///
-///         public init(
+///         init(
 ///             action: @escaping () -> Void,
 ///             title: String
 ///         ) {
@@ -118,8 +118,7 @@ import UIKit
 ///         }
 ///
 ///         private func configureFromStateModelChange() {
-///             print(internalState)
-///             titleLabel.textColor = Model.titleColor.value(for: internalState)
+///             titleLabel.textColor = UIModel.titleColor.value(for: internalState)
 ///         }
 ///     }
 ///

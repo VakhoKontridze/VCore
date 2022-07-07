@@ -1,5 +1,5 @@
 //
-//  InfiniteScrollingTableViewActivityIndicatorModel.swift
+//  InfiniteScrollingTableViewActivityIndicatorUIModel.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/10/21.
@@ -9,8 +9,8 @@
 
 import UIKit
 
-// MARK: - Infinite Scrolling Table View Activity Indicator Model
-struct InfiniteScrollingTableViewActivityIndicatorModel {
+// MARK: - Infinite Scrolling Table View Activity Indicator UI Model
+struct InfiniteScrollingTableViewActivityIndicatorUIModel {
     // MARK: Layout
     struct Layout {
         // MARK: Properties

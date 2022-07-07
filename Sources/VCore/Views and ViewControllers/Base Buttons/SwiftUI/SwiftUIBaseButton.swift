@@ -20,7 +20,7 @@ import SwiftUI
 ///
 /// Model:
 ///
-///     struct SomeButtonModel {
+///     struct SomeButtonUIModel {
 ///         static let titleColor: StateColors = .init(
 ///             enabled: .black,
 ///             pressed: .gray,
@@ -38,8 +38,8 @@ import SwiftUI
 ///
 /// Button:
 ///
-///     public struct SomeButton: View {
-///         private typealias Model = SomeButtonModel
+///     struct SomeButton: View {
+///         private typealias UIModel = SomeButtonUIModel
 ///
 ///         @Environment(\.isEnabled) private var isEnabled: Bool
 ///         @State private var isPressed: Bool = false
@@ -49,7 +49,7 @@ import SwiftUI
 ///
 ///         private let title: String
 ///
-///         public init(
+///         init(
 ///             action: @escaping () -> Void,
 ///             title: String
 ///         ) {
@@ -57,10 +57,10 @@ import SwiftUI
 ///             self.title = title
 ///         }
 ///
-///         public var body: some View {
+///         var body: some View {
 ///             SwiftUIBaseButton(gesture: gestureHandler, label: {
 ///                 Text(title)
-///                     .foregroundColor(Model.titleColor.value(for: internalState))
+///                     .foregroundColor(UIModel.titleColor.value(for: internalState))
 ///             })
 ///                 .disabled(!internalState.isEnabled)
 ///         }
