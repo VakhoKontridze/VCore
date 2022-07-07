@@ -22,7 +22,7 @@ import UIKit
 ///         var colors: Colors = .init()
 ///
 ///         struct Colors {
-///             var titleLabel: StateColors = .init(
+///             var title: StateColors = .init(
 ///                 enabled: .black,
 ///                 pressed: .gray,
 ///                 disabled: .gray
@@ -123,7 +123,7 @@ import UIKit
 ///         }
 ///
 ///         private func configureFromStateModelChange() {
-///             titleLabel.textColor = uiModel.colors.titleLabel.value(for: internalState)
+///             titleLabel.textColor = uiModel.colors.title.value(for: internalState)
 ///         }
 ///     }
 ///

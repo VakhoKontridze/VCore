@@ -24,7 +24,7 @@ import SwiftUI
 ///         var colors: Colors = .init()
 ///
 ///         struct Colors {
-///             var titleText: StateColors = .init(
+///             var title: StateColors = .init(
 ///                 enabled: .black,
 ///                 pressed: .gray,
 ///                 disabled: .gray
@@ -64,7 +64,7 @@ import SwiftUI
 ///         var body: some View {
 ///             SwiftUIBaseButton(gesture: gestureHandler, label: {
 ///                 Text(title)
-///                     .foregroundColor(uiModel.colors.titleText.value(for: internalState))
+///                     .foregroundColor(uiModel.colors.title.value(for: internalState))
 ///             })
 ///                 .disabled(!internalState.isEnabled)
 ///         }
