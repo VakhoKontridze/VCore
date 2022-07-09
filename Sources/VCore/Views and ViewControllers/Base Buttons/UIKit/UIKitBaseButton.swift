@@ -138,14 +138,14 @@ open class UIKitBaseButton: UIView {
         gesture: { [weak self] gestureState in
             guard let self = self else { return }
             
-            self.internalButtonState = .init(state: self.buttonState, isPressed: gestureState.isPressed)
+            self.internalButtonState = .init(isEnabled: self.buttonState.isEnabled, isPressed: gestureState.isPressed)
             self.gestureHandler(gestureState)
         }
     )
     
     open var isEnabled: Bool {
         get {
-            gestureRecognizer.isEnabled
+            internalButtonState.isEnabled
         }
         set {
             internalButtonState = .init(isEnabled: newValue)
@@ -203,7 +203,7 @@ open class UIKitBaseButton: UIView {
     // MARK: Configuration - State
     /// Configures `UIKitBaseButton` with state.
     open func configure(state: UIKitBaseButtonState) {
-        internalButtonState = .init(state: state, isPressed: internalButtonState == .pressed)
+        internalButtonState = .init(isEnabled: state.isEnabled, isPressed: internalButtonState == .pressed)
         gestureRecognizer.isEnabled = internalButtonState.isEnabled
     }
 }

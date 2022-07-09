@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.12.2(42)
+
+Views and ViewControllers
+
+- Several members in `SwiftUIBaseButtonState` and `UIKitBaseButtonState` are now marked as `public`
+
 ### [3.12.1(41)](https://github.com/VakhoKontridze/VCore/releases/tag/3.12.1) — *2022 07 07*
 
 Extensions

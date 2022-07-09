@@ -19,7 +19,24 @@ public enum UIKitBaseButtonState: Int, CaseIterable {
     /// Disabled.
     case disabled
     
+    // MARK: Properties
+    /// Indicates if UIKitBaseButtonState is enabled.
+    public var isEnabled: Bool {
+        switch self {
+        case .enabled: return true
+        case .disabled: return false
+        }
+    }
+    
     // MARK: Initializers
+    /// Initializes `UIKitBaseButtonState` with flag.
+    public init(isEnabled: Bool) {
+        switch isEnabled {
+        case false: self = .disabled
+        case true: self = .enabled
+        }
+    }
+    
     init(internalState: UIKitBaseButtonInternalState) {
         switch internalState {
         case .enabled: self = .enabled
@@ -43,7 +60,8 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     case disabled
     
     // MARK: Properties
-    var isEnabled: Bool {
+    /// Indicates if interaction is enabled.
+    public var isEnabled: Bool {
         switch self {
         case .enabled: return true
         case .pressed: return true
@@ -52,18 +70,20 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    init(isEnabled: Bool) {
+    /// Initializes `UIKitBaseButtonInternalState` with flag.
+    public init(isEnabled: Bool) {
         switch isEnabled {
         case false: self = .disabled
         case true: self = .enabled
         }
     }
     
-    init(state: UIKitBaseButtonState, isPressed: Bool) {
-        switch (state, isPressed) {
-        case (.enabled, false): self = .enabled
-        case (.enabled, true): self = .pressed
-        case (.disabled, _): self = .disabled
+    /// Initializes `UIKitBaseButtonInternalState` with flags.
+    public init(isEnabled: Bool, isPressed: Bool) {
+        switch (isEnabled, isPressed) {
+        case (false, _): self = .disabled
+        case (true, false): self = .enabled
+        case (true, true): self = .pressed
         }
     }
 
