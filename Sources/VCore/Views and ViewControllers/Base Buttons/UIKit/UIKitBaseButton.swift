@@ -141,6 +141,7 @@ open class UIKitBaseButton: UIView {
         }
     )
     
+    /// Indicates if interaction is enabled.
     open var isEnabled: Bool {
         get {
             internalButtonState.isEnabled
