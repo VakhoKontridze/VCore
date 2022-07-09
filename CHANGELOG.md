@@ -1,6 +1,6 @@
 # Change Log
 
-### 3.12.2(42)
+### 3.13.0(42)
 
 Views and ViewControllers
 
@@ -8,6 +8,7 @@ Views and ViewControllers
 
 Extensions
 
+- `UIView.addSubviews(:_)` and `UIView.removeSubviews()` methods are added
 - Issue with `UIStackView.addArrangedSubviews(_:)` is fixed
 - `UIStackView.addArrangedSubviews(_:)` method is added that takes variadic `UIView`s
 

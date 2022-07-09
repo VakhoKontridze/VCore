@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Arranged Subviews
+// MARK: - Stack View Add Arranged Subviews
 extension UIStackView {
     /// Adds `UIView`s as arranged subviews.
     ///
