@@ -42,13 +42,12 @@ import UIKit
 ///
 ///     final class SomeButton: UIView {
 ///         // Action is passed during configuration
-///         private lazy var baseButton: UIKitBaseButton = .init(action: configureFromStateModelChange)
+///         private lazy var baseButton: UIKitBaseButton = .init(action: configureFromStateUIModelChange)
 ///             .withTranslatesAutoresizingMaskIntoConstraints(false)
 ///
 ///         private let titleLabel: UILabel = {
 ///             let label: UILabel = .init()
 ///             label.translatesAutoresizingMaskIntoConstraints = false
-///             label.isUserInteractionEnabled = false
 ///             label.textAlignment = .center
 ///             return label
 ///         }()
@@ -77,8 +76,6 @@ import UIKit
 ///         }
 ///
 ///         private func setUp() {
-///             backgroundColor = .clear
-///
 ///             addSubview(baseButton)
 ///             addSubview(titleLabel)
 ///
@@ -88,6 +85,7 @@ import UIKit
 ///                 baseButton.topAnchor.constraint(equalTo: topAnchor),
 ///                 baseButton.bottomAnchor.constraint(equalTo: bottomAnchor),
 ///
+///                 titleLabel.constraintHeight(to: nil, constant: titleLabel.singleLineHeight),
 ///                 titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
 ///                 titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 ///                 titleLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -98,13 +96,13 @@ import UIKit
 ///         func configure(uiModel: SomeButtonUIModel) {
 ///             self.uiModel = uiModel
 ///
-///             configureFromStateModelChange()
+///             configureFromStateUIModelChange()
 ///         }
 ///
 ///         func configure(state: SomeButtonState) {
 ///             internalState = .init(isEnabled: state.isEnabled, isPressed: baseButton.internalButtonState == .pressed)
 ///
-///             configureFromStateModelChange()
+///             configureFromStateUIModelChange()
 ///         }
 ///
 ///         func configure(action: @escaping () -> Void) {
@@ -113,7 +111,7 @@ import UIKit
 ///
 ///                 self.internalState = .init(isEnabled: self.state.isEnabled, isPressed: gestureState.isPressed)
 ///
-///                 self.configureFromStateModelChange()
+///                 self.configureFromStateUIModelChange()
 ///                 if gestureState.isClicked { action() }
 ///             }
 ///         }
@@ -122,7 +120,7 @@ import UIKit
 ///             titleLabel.text = title
 ///         }
 ///
-///         private func configureFromStateModelChange() {
+///         private func configureFromStateUIModelChange() {
 ///             titleLabel.textColor = uiModel.colors.title.value(for: internalState)
 ///         }
 ///     }
