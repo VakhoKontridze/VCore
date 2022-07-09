@@ -15,6 +15,18 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.13.0(42)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.0) — *2022 07 09*
+
+Views and ViewControllers
+
+- Several members in `SwiftUIBaseButtonState` and `UIKitBaseButtonState` are now marked as `public`
+
+Extensions
+
+- `UIView.addSubviews(:_)` and `UIView.removeSubviews()` methods are added
+- Issue with `UIStackView.addArrangedSubviews(_:)` is fixed
+- `UIStackView.addArrangedSubviews(_:)` method is added that takes variadic `UIView`s
+
 ### [3.12.1(41)](https://github.com/VakhoKontridze/VCore/releases/tag/3.12.1) — *2022 07 07*
 
 Extensions

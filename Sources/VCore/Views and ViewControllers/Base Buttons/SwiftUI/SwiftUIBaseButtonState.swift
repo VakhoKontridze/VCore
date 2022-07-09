@@ -29,7 +29,8 @@ public enum SwiftUIBaseButtonState: Int, CaseIterable {
     }
     
     // MARK: Initializers
-    init(isEnabled: Bool) {
+    /// Initializes `SwiftUIBaseButtonState` with flag.
+    public init(isEnabled: Bool) {
         switch isEnabled {
         case false: self = .disabled
         case true: self = .enabled

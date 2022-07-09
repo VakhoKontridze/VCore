@@ -9,9 +9,9 @@
 
 import UIKit
 
-// MARK: - Arranged Subviews
+// MARK: - Stack View Add Arranged Subviews
 extension UIStackView {
-    /// Adds views as arranged subviews.
+    /// Adds `UIView`s as arranged subviews.
     ///
     ///     let stackView: UIStackView = .init()
     ///
@@ -22,10 +22,24 @@ extension UIStackView {
     ///     ])
     ///
     public func addArrangedSubviews(_ views: [UIView]) {
-        arrangedSubviews.forEach { addArrangedSubview($0) }
+        views.forEach { addArrangedSubview($0) }
     }
     
-    /// Removes all views from arranged subviews.
+    /// Adds `UIView`s as arranged subviews.
+    ///
+    ///     let stackView: UIStackView = .init()
+    ///
+    ///     stackView.addArrangedSubviews(
+    ///         subview1,
+    ///         subview2,
+    ///         subview3
+    ///     ]
+    ///
+    public func addArrangedSubviews(_ views: UIView...) {
+        views.forEach { addArrangedSubview($0) }
+    }
+    
+    /// Removes all `UIView`s from arranged subviews.
     ///
     ///     stackView.removeArrangedSubviews()
     ///
