@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.13.2(44)
+
+XCode Templates
+
+- `UIColor`s in `UIKit` XCode templates are no longer optional
+
 ### [3.13.1(43)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.1) — *2022 07 11*
 
 XCode Templates
