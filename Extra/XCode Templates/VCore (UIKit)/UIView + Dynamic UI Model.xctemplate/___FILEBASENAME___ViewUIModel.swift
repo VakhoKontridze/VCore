@@ -18,7 +18,7 @@ struct ___VARIABLE_productName___ViewUIModel {
 
     // MARK: Colors
     struct Colors {
-        var background: UIColor? = .systemBackground
+        var background: UIColor = .systemBackground
     }
 
     // MARK: Fonts
