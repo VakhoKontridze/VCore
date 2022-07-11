@@ -28,7 +28,7 @@ import UIKit
 ///                 disabled: .gray
 ///             )
 ///
-///             typealias StateColors = GenericStateModel_EnabledPressedDisabled<UIColor?>
+///             typealias StateColors = GenericStateModel_EnabledPressedDisabled<UIColor>
 ///         }
 ///     }
 ///
@@ -54,6 +54,10 @@ import UIKit
 ///
 ///         private var uiModel: SomeButtonUIModel
 ///
+///         var isEnabled: Bool {
+///             get { internalState.isEnabled }
+///             set { configure(state: .init(isEnabled: newValue)) }
+///         }
 ///         var state: SomeButtonState { .init(isEnabled: internalState.isEnabled) }
 ///         private var internalState: SomeButtonInternalState = .enabled
 ///             { didSet { baseButton.isEnabled = internalState.isEnabled } }
@@ -141,6 +145,7 @@ open class UIKitBaseButton: UIView {
         }
     )
     
+    /// Indicates if interaction is enabled.
     open var isEnabled: Bool {
         get {
             internalButtonState.isEnabled

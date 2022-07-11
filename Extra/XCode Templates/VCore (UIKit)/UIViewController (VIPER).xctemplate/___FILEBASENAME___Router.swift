@@ -13,7 +13,7 @@ final class ___VARIABLE_productName___Router<Navigator>: ___VARIABLE_productName
     init(
         navigator: Navigator
     ) {
-        self.navigator = Navigator
+        self.navigator = navigator
     }
 
     // MARK: Routable

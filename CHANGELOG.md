@@ -15,6 +15,12 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.13.1(43)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.1) — *2022 07 11*
+
+XCode Templates
+
+- Routers in `UIKit` XCode templates are fixed
+
 ### [3.13.0(42)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.0) — *2022 07 09*
 
 Views and ViewControllers
