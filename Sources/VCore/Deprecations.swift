@@ -92,6 +92,49 @@ extension SwiftUIBaseButton {
 
 #endif
 
+// MARK: - Keyboard Responsive View Controller
+#if os(iOS)
+
+extension UIView {
+    @available(*, deprecated, message: "Renamed to `animateKeyboardResponsivenessByOffsettingContainer`")
+    open class func animateKeyboardResponsivenessOffsettingContainer(
+        show: Bool,
+        superview: UIView?,
+        containerView: UIView,
+        systemKeyboardInfo: SystemKeyboardInfo,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        animateKeyboardResponsivenessByOffsettingContainer(
+            show: show,
+            superview: superview,
+            containerView: containerView,
+            systemKeyboardInfo: systemKeyboardInfo,
+            completion: completion
+        )
+    }
+    
+    @available(*, deprecated, message: "Renamed to `animateKeyboardResponsivenessByMinimallyOffsettingContainer`")
+    open class func animateKeyboardResponsivenessMinimallyOffsettingContainer(
+        show: Bool,
+        firstResponderView: UIView,
+        containerView: UIView,
+        systemKeyboardInfo: SystemKeyboardInfo,
+        marginBottom: CGFloat = 20,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        animateKeyboardResponsivenessByMinimallyOffsettingContainer(
+            show: show,
+            firstResponderView: firstResponderView,
+            containerView: containerView,
+            systemKeyboardInfo: systemKeyboardInfo,
+            marginBottom: marginBottom,
+            completion: completion
+        )
+    }
+}
+    
+#endif
+
 // MARK: - Edge Insets
 @available(*, deprecated, renamed: "EdgeInsets_HorizontalVertical")
 public typealias EdgeInsets_HV = EdgeInsets_HorizontalVertical

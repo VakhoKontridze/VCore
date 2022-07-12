@@ -98,7 +98,7 @@ extension UIView {
     ///         }
     ///
     ///         override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
-    ///             UIView.animateKeyboardResponsivenessOffsettingContainer(
+    ///             UIView.animateKeyboardResponsivenessByOffsettingContainer(
     ///                 show: true,
     ///                 superview: view,
     ///                 containerView: view,
@@ -107,7 +107,7 @@ extension UIView {
     ///         }
     ///
     ///         override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
-    ///             UIView.animateKeyboardResponsivenessOffsettingContainer(
+    ///             UIView.animateKeyboardResponsivenessByOffsettingContainer(
     ///                 show: false,
     ///                 superview: view,
     ///                 containerView: view,
@@ -116,7 +116,7 @@ extension UIView {
     ///         }
     ///     }
     ///
-    open class func animateKeyboardResponsivenessOffsettingContainer(
+    open class func animateKeyboardResponsivenessByOffsettingContainer(
         show: Bool,
         superview: UIView?,
         containerView: UIView,
@@ -171,7 +171,7 @@ extension UIView {
     ///         }
     ///
     ///         override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
-    ///             UIView.animateKeyboardResponsivenessMinimallyOffsettingContainer(
+    ///             UIView.animateKeyboardResponsivenessByMinimallyOffsettingContainer(
     ///                 show: true,
     ///                 firstResponderView: textField,
     ///                 containerView: view,
@@ -180,7 +180,7 @@ extension UIView {
     ///         }
     ///
     ///         override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
-    ///             UIView.animateKeyboardResponsivenessMinimallyOffsettingContainer(
+    ///             UIView.animateKeyboardResponsivenessByMinimallyOffsettingContainer(
     ///                 show: false,
     ///                 firstResponderView: textField,
     ///                 containerView: view,
@@ -189,7 +189,7 @@ extension UIView {
     ///         }
     ///     }
     ///
-    open class func animateKeyboardResponsivenessMinimallyOffsettingContainer(
+    open class func animateKeyboardResponsivenessByMinimallyOffsettingContainer(
         show: Bool,
         firstResponderView: UIView,
         containerView: UIView,
@@ -199,7 +199,7 @@ extension UIView {
     ) {
         switch show {
         case false:
-            UIView.animateKeyboardResponsivenessOffsettingContainer(
+            UIView.animateKeyboardResponsivenessByOffsettingContainer(
                 show: false,
                 superview: firstResponderView.superview,
                 containerView: containerView,
