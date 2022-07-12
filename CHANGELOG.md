@@ -1,5 +1,13 @@
 # Change Log
 
+### 3.14.0(45)
+
+Views and ViewControllers
+
+- `KeyboardResponsiveViewController.notifiesWhenKeyboardIsAlreadyShownOrHidden` is added
+- `KeyboardResponsiveViewController.notifiesWhenViewControllerIsNotVisible` is added
+- `KeyboardResponsiveViewController.keyboardIsShown` is exposed to public
+
 ### [3.13.2(44)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.2) — *2022 07 12*
 
 XCode Templates
