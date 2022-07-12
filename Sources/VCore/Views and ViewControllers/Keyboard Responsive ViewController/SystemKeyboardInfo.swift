@@ -34,19 +34,19 @@ public struct SystemKeyboardInfo {
     public init(notification: Notification) {
         self.frame =
             notification.userInfo?.rect(key: UIResponder.keyboardFrameEndUserInfoKey) ??
-            Self.estimatedKeyboardFrame
+            Self.defaultKeyboardFrame
         
         self.animationDuration =
             notification.userInfo?.double(key: UIResponder.keyboardAnimationDurationUserInfoKey) ??
-            0.25
+            Self.defaultAnimationDuration
         
         self.animationOptions =
             (notification.userInfo?.uInt(key: UIResponder.keyboardAnimationCurveUserInfoKey)).map { .init(rawValue: $0) } ??
-            .curveLinear
+            Self.defaultAnimationOptions
     }
     
-    // MARK: Helpers
-    private static var estimatedKeyboardFrame: CGRect {
+    // MARK: Default Values
+    static var defaultKeyboardFrame: CGRect {
         let estimatedKeyboardHeight: CGFloat = 400
         
         return .init(
@@ -56,6 +56,10 @@ public struct SystemKeyboardInfo {
             height: estimatedKeyboardHeight
         )
     }
+    
+    static var defaultAnimationDuration: TimeInterval { 0.25 }
+    
+    static var defaultAnimationOptions: UIView.AnimationOptions { .curveLinear }
 }
 
 // MARK: - Helpers

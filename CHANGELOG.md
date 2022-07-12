@@ -4,6 +4,7 @@
 
 Views and ViewControllers
 
+- `UIView` animation methods are added that support `KeyboardResponsiveViewController`
 - `KeyboardResponsiveViewController.notifiesWhenKeyboardIsAlreadyShownOrHidden` is added
 - `KeyboardResponsiveViewController.notifiesWhenViewControllerIsNotVisible` is added
 - `KeyboardResponsiveViewController.keyboardIsShown` is exposed to public
