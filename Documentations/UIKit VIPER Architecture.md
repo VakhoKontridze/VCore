@@ -37,7 +37,7 @@ There are five protocols that explain the communication:
 | Protocol    | Conformance    | Owner          | Ownership |
 | :---------- | :------------- | :------------- | :-------- |
 | Viewable    | ViewController | Presenter      | unowned   |
-| Navigable   | Router         | Presenter      | unowned   |
+| Navigable   | ViewController | Router         | unowned   |
 | Presentable | Presenter      | ViewController | strong    |
 | Routable    | Router         | Presenter      | strong    |
 | Interactive | Interactor     | Presenter      | N/A       |
