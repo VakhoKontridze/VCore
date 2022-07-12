@@ -13,6 +13,8 @@ import UIKit
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`.
     ///
+    /// Much like `UIView` animations, there may be discrepancy between physical device and simulator.
+    ///
     /// Parameter `superview` is used for calling `layoutIfNeeded()`.
     /// In `UIViewController`, `view` can be passed.
     ///
@@ -72,6 +74,8 @@ extension UIView {
 // MARK: - Keyboard Animation - Frame
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`, by offsetting container `y` origin by keyboard height.
+    ///
+    /// Much like `UIView` animations, there may be discrepancy between physical device and simulator.
     ///
     /// Parameter `show` indicates if keyboard is shown, or hidden.
     ///
@@ -146,6 +150,8 @@ extension UIView {
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`, by offsetting container `y` origin by minimal distance,
     /// so that `firstResponderView` is not obscured by the keyboard.
+    ///
+    /// Much like `UIView` animations, there may be discrepancy between physical device and simulator.
     ///
     /// Parameter `show` indicates if keyboard is shown, or hidden.
     ///
