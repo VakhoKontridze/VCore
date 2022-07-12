@@ -9,6 +9,10 @@ Views and ViewControllers
 - `KeyboardResponsiveViewController.notifiesWhenViewControllerIsNotVisible` is added
 - `KeyboardResponsiveViewController.keyboardIsShown` is exposed to public
 
+Extensions
+
+- `NSAttributedString.init(attributedStrings:)` is added
+
 ### [3.13.2(44)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.2) — *2022 07 12*
 
 XCode Templates
