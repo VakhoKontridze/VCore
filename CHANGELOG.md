@@ -15,6 +15,19 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.14.0(45)](https://github.com/VakhoKontridze/VCore/releases/tag/3.14.0) — *2022 07 12*
+
+Views and ViewControllers
+
+- `UIView` animation methods are added that support `KeyboardResponsiveViewController`
+- `KeyboardResponsiveViewController.notifiesWhenKeyboardIsAlreadyShownOrHidden` is added
+- `KeyboardResponsiveViewController.notifiesWhenViewControllerIsNotVisible` is added
+- `KeyboardResponsiveViewController.keyboardIsShown` is exposed to public
+
+Extensions
+
+- `NSAttributedString.init(attributedStrings:)` is added
+
 ### [3.13.2(44)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.2) — *2022 07 12*
 
 XCode Templates

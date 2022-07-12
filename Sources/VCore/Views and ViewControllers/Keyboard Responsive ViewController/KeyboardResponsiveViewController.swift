@@ -16,7 +16,20 @@ import UIKit
 /// These methods pass `SystemKeyboardInfo` as parameter, that contains information about keyboard height, animation duration, and options.
 open class KeyboardResponsiveViewController: UIViewController {
     // MARK: Properties
-    private var keyboardIsShown: Bool = false // `keyboardWillShowNotification` is called twice
+    /// Indicates, if `KeyboardResponsiveViewController` should call
+    /// `keyboardWillShow(_:)` and `keyboardWillHide(_:)` methods,
+    /// even if keyboard is already shown or hidden.
+    /// Defaults to `true`.
+    open var notifiesWhenKeyboardIsAlreadyShownOrHidden: Bool = true
+    
+    /// Indicates if keyboard is currently shown.
+    open private(set) var keyboardIsShown: Bool = false
+    
+    /// Indicates, if `KeyboardResponsiveViewController` should call
+    /// `keyboardWillShow(_:)` and `keyboardWillHide(_:)` methods,
+    /// even if `KeyboardResponsiveViewController` is not visible.
+    /// Defaults to `false`.
+    open var notifiesWhenViewControllerIsNotVisible: Bool = false
     
     // MARK: Lifecycle
     open override func viewDidLoad() {
@@ -50,10 +63,14 @@ open class KeyboardResponsiveViewController: UIViewController {
     open func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {}
     
     private func keyboardWillShow(notification: Notification) {
-        guard !keyboardIsShown else { return }
+        if !notifiesWhenKeyboardIsAlreadyShownOrHidden {
+            guard !keyboardIsShown else { return }
+        }
         keyboardIsShown = true
         
-        guard viewIsVisible else { return }
+        if !notifiesWhenViewControllerIsNotVisible {
+            guard viewIsVisible else { return }
+        }
         
         keyboardWillShow(.init(notification: notification))
     }
@@ -62,10 +79,14 @@ open class KeyboardResponsiveViewController: UIViewController {
     open func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {}
     
     private func keyboardWillHide(notification: Notification) {
-        guard keyboardIsShown else { return }
+        if !notifiesWhenKeyboardIsAlreadyShownOrHidden {
+            guard keyboardIsShown else { return }
+        }
         keyboardIsShown = false
         
-        guard viewIsVisible else { return }
+        if !notifiesWhenViewControllerIsNotVisible {
+            guard viewIsVisible else { return }
+        }
         
         keyboardWillHide(.init(notification: notification))
     }
