@@ -16,6 +16,10 @@ Views and ViewControllers
 - `InfiniteScrollingCollectionViewDelegate` is renamed to `InfiniteScrollingUICollectionViewDelegate`
 - `ScrollableView` is renamed to `ScrollableUIView`
 
+Extensions
+
+- `Double.rounded(fractions:)` and `Double.round(fractions:)` methods are added
+
 ### [3.14.0(45)](https://github.com/VakhoKontridze/VCore/releases/tag/3.14.0) — *2022 07 12*
 
 Views and ViewControllers
