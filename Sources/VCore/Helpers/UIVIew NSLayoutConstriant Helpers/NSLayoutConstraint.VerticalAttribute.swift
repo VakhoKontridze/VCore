@@ -23,30 +23,13 @@ extension NSLayoutConstraint {
         /// Bottom of the object’s alignment rectangle.
         case bottom
         
-        /// Safe top of the object’s alignment rectangle.
-        case safeTop
-        
-        /// Safe center along the y-axis of the object’s alignment rectangle.
-        case safeCenterY
-        
-        /// Safe bottom of the object’s alignment rectangle.
-        case safeBottom
-        
         // MARK: Properties
         /// Converts `VerticalAttribute` to `Attribute`.
         public var toAttribute: Attribute {
             switch self {
-            case .top, .safeTop: return .top
-            case .centerY, .safeCenterY: return .centerY
-            case .bottom, .safeBottom: return .bottom
-            }
-        }
-        
-        /// Indicates if attribute is constrained to `safeAreaLayoutGuide`.
-        public var isSafe: Bool {
-            switch self {
-            case .top, .centerY, .bottom: return false
-            case .safeTop, .safeCenterY, .safeBottom: return true
+            case .top: return .top
+            case .centerY: return .centerY
+            case .bottom: return .bottom
             }
         }
     }
@@ -63,7 +46,9 @@ extension UIView {
     ///         view1.constraintTop(to: view2),
     ///
     ///         view3.constraintTop(
+    ///             on: .safeArea,
     ///             to: view4,
+    ///             layoutGuide: .safeArea,
     ///             attribute: .top,
     ///             relation: .equal,
     ///             constant: 0,
@@ -73,7 +58,9 @@ extension UIView {
     ///     ])
     ///
     public func constraintTop(
-        to view: UIView,
+        on selfLayoutGuide: UILayoutGuideType? = nil,
+        to view: UIView?,
+        layoutGuide: UILayoutGuideType? = nil,
         attribute: NSLayoutConstraint.VerticalAttribute = .top,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
@@ -81,10 +68,10 @@ extension UIView {
         priority: UILayoutPriority? = nil
     ) -> NSLayoutConstraint {
         .init(
-            item: self.layoutItem(isSafe: false),
+            item: selfLayoutGuide?.toLayoutGuide(in: self) ?? self,
             attribute: .top,
             relatedBy: relation,
-            toItem: view.layoutItem(isSafe: attribute.isSafe),
+            toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
             attribute: attribute.toAttribute,
             multiplier: multiplier,
             constant: constant,
@@ -101,7 +88,9 @@ extension UIView {
     ///         view1.constraintCenterY(to: view2),
     ///
     ///         view3.constraintCenterY(
+    ///             on: .safeArea,
     ///             to: view4,
+    ///             layoutGuide: .safeArea,
     ///             attribute: .top,
     ///             relation: .centerY,
     ///             constant: 0,
@@ -111,7 +100,9 @@ extension UIView {
     ///     ])
     ///
     public func constraintCenterY(
-        to view: UIView,
+        on selfLayoutGuide: UILayoutGuideType? = nil,
+        to view: UIView?,
+        layoutGuide: UILayoutGuideType? = nil,
         attribute: NSLayoutConstraint.VerticalAttribute = .centerY,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
@@ -119,10 +110,10 @@ extension UIView {
         priority: UILayoutPriority? = nil
     ) -> NSLayoutConstraint {
         .init(
-            item: self.layoutItem(isSafe: false),
+            item: selfLayoutGuide?.toLayoutGuide(in: self) ?? self,
             attribute: .centerY,
             relatedBy: relation,
-            toItem: view.layoutItem(isSafe: attribute.isSafe),
+            toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
             attribute: attribute.toAttribute,
             multiplier: multiplier,
             constant: constant,
@@ -139,7 +130,9 @@ extension UIView {
     ///         view1.constraintBottom(to: view2),
     ///
     ///         view3.constraintBottom(
+    ///             on: .safeArea,
     ///             to: view4,
+    ///             layoutGuide: .safeArea,
     ///             attribute: .top,
     ///             relation: .bottom,
     ///             constant: 0,
@@ -149,7 +142,9 @@ extension UIView {
     ///     ])
     ///
     public func constraintBottom(
-        to view: UIView,
+        on selfLayoutGuide: UILayoutGuideType? = nil,
+        to view: UIView?,
+        layoutGuide: UILayoutGuideType? = nil,
         attribute: NSLayoutConstraint.VerticalAttribute = .bottom,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
@@ -157,124 +152,10 @@ extension UIView {
         priority: UILayoutPriority? = nil
     ) -> NSLayoutConstraint {
         .init(
-            item: self.layoutItem(isSafe: false),
+            item: selfLayoutGuide?.toLayoutGuide(in: self) ?? self,
             attribute: .bottom,
             relatedBy: relation,
-            toItem: view.layoutItem(isSafe: attribute.isSafe),
-            attribute: attribute.toAttribute,
-            multiplier: multiplier,
-            constant: constant,
-            priority: priority
-        )
-    }
-    
-    /// Constraints `UIView`'s `DimensionAttribute.safeTop` to another `UIView`'s `VerticalAttribute`,
-    /// with given `relation`, `constant`, `multiplier`, and `priority`.
-    ///
-    /// By default, another `UIView`'s `VerticalAttribute` is set to `safeTop`.
-    ///
-    ///     NSLayoutConstraint.activate([
-    ///         view1.constraintSafeTop(to: view2),
-    ///
-    ///         view3.constraintSafeTop(
-    ///             to: view4,
-    ///             attribute: .top,
-    ///             relation: .safeTop,
-    ///             constant: 0,
-    ///             multiplier: 1,
-    ///             priority: .defaultHigh
-    ///         )
-    ///     ])
-    ///
-    public func constraintSafeTop(
-        to view: UIView,
-        attribute: NSLayoutConstraint.VerticalAttribute = .safeTop,
-        relation: NSLayoutConstraint.Relation = .equal,
-        constant: CGFloat = 0,
-        multiplier: CGFloat = 1,
-        priority: UILayoutPriority? = nil
-    ) -> NSLayoutConstraint {
-        .init(
-            item: self.layoutItem(isSafe: true),
-            attribute: .top,
-            relatedBy: relation,
-            toItem: view.layoutItem(isSafe: attribute.isSafe),
-            attribute: attribute.toAttribute,
-            multiplier: multiplier,
-            constant: constant,
-            priority: priority
-        )
-    }
-
-    /// Constraints `UIView`'s `DimensionAttribute.safeCenterY` to another `UIView`'s `VerticalAttribute`,
-    /// with given `relation`, `constant`, `multiplier`, and `priority`.
-    ///
-    /// By default, another `UIView`'s `VerticalAttribute` is set to `safeCenterY`.
-    ///
-    ///     NSLayoutConstraint.activate([
-    ///         view1.constraintSafeCenterY(to: view2),
-    ///
-    ///         view3.constraintSafeCenterY(
-    ///             to: view4,
-    ///             attribute: .top,
-    ///             relation: .safeCenterY,
-    ///             constant: 0,
-    ///             multiplier: 1,
-    ///             priority: .defaultHigh
-    ///         )
-    ///     ])
-    ///
-    public func constraintSafeCenterY(
-        to view: UIView,
-        attribute: NSLayoutConstraint.VerticalAttribute = .safeCenterY,
-        relation: NSLayoutConstraint.Relation = .equal,
-        constant: CGFloat = 0,
-        multiplier: CGFloat = 1,
-        priority: UILayoutPriority? = nil
-    ) -> NSLayoutConstraint {
-        .init(
-            item: self.layoutItem(isSafe: true),
-            attribute: .centerY,
-            relatedBy: relation,
-            toItem: view.layoutItem(isSafe: attribute.isSafe),
-            attribute: attribute.toAttribute,
-            multiplier: multiplier,
-            constant: constant,
-            priority: priority
-        )
-    }
-
-    /// Constraints `UIView`'s `DimensionAttribute.safeBottom` to another `UIView`'s `VerticalAttribute`,
-    /// with given `relation`, `constant`, `multiplier`, and `priority`.
-    ///
-    /// By default, another `UIView`'s `VerticalAttribute` is set to `safeBottom`.
-    ///
-    ///     NSLayoutConstraint.activate([
-    ///         view1.constraintSafeBottom(to: view2),
-    ///
-    ///         view3.constraintSafeBottom(
-    ///             to: view4,
-    ///             attribute: .top,
-    ///             relation: .safeBottom,
-    ///             constant: 0,
-    ///             multiplier: 1,
-    ///             priority: .defaultHigh
-    ///         )
-    ///     ])
-    ///
-    public func constraintSafeBottom(
-        to view: UIView,
-        attribute: NSLayoutConstraint.VerticalAttribute = .safeBottom,
-        relation: NSLayoutConstraint.Relation = .equal,
-        constant: CGFloat = 0,
-        multiplier: CGFloat = 1,
-        priority: UILayoutPriority? = nil
-    ) -> NSLayoutConstraint {
-        .init(
-            item: self.layoutItem(isSafe: true),
-            attribute: .bottom,
-            relatedBy: relation,
-            toItem: view.layoutItem(isSafe: attribute.isSafe),
+            toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
             attribute: attribute.toAttribute,
             multiplier: multiplier,
             constant: constant,

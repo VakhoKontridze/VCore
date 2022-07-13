@@ -20,26 +20,12 @@ extension NSLayoutConstraint {
         /// Height of the object’s alignment rectangle.
         case height
         
-        /// Safe width of the object’s alignment rectangle.
-        case safeWidth
-        
-        /// Safe height of the object’s alignment rectangle.
-        case safeHeight
-        
         // MARK: Properties
         /// Converts `DimensionAttribute` to `Attribute`.
         public var toAttribute: Attribute {
             switch self {
-            case .width, .safeWidth: return .width
-            case .height, .safeHeight: return .height
-            }
-        }
-        
-        /// Indicates if attribute is constrained to `safeAreaLayoutGuide`.
-        public var isSafe: Bool {
-            switch self {
-            case .width, .height: return false
-            case .safeWidth, .safeHeight: return true
+            case .width: return .width
+            case .height: return .height
             }
         }
     }
@@ -56,7 +42,9 @@ extension UIView {
     ///         view1.constraintWidth(to: view2),
     ///
     ///         view3.constraintWidth(
+    ///             on: .safeArea,
     ///             to: view4,
+    ///             layoutGuide: .safeArea,
     ///             attribute: .width,
     ///             relation: .equal,
     ///             constant: 0,
@@ -66,7 +54,9 @@ extension UIView {
     ///     ])
     ///
     public func constraintWidth(
+        on selfLayoutGuide: UILayoutGuideType? = nil,
         to view: UIView?,
+        layoutGuide: UILayoutGuideType? = nil,
         attribute: NSLayoutConstraint.DimensionAttribute = .width,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
@@ -74,10 +64,10 @@ extension UIView {
         priority: UILayoutPriority? = nil
     ) -> NSLayoutConstraint {
         .init(
-            item: self.layoutItem(isSafe: false),
+            item: selfLayoutGuide?.toLayoutGuide(in: self) ?? self,
             attribute: .width,
             relatedBy: relation,
-            toItem: view?.layoutItem(isSafe: attribute.isSafe),
+            toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
             attribute: attribute.toAttribute,
             multiplier: multiplier,
             constant: constant,
@@ -94,7 +84,9 @@ extension UIView {
     ///         view1.constraintHeight(to: view2),
     ///
     ///         view3.constraintHeight(
+    ///             on: .safeArea,
     ///             to: view4,
+    ///             layoutGuide: .safeArea,
     ///             attribute: .height,
     ///             relation: .equal,
     ///             constant: 0,
@@ -104,7 +96,9 @@ extension UIView {
     ///     ])
     ///
     public func constraintHeight(
+        on selfLayoutGuide: UILayoutGuideType? = nil,
         to view: UIView?,
+        layoutGuide: UILayoutGuideType? = nil,
         attribute: NSLayoutConstraint.DimensionAttribute = .height,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
@@ -112,86 +106,10 @@ extension UIView {
         priority: UILayoutPriority? = nil
     ) -> NSLayoutConstraint {
         .init(
-            item: self.layoutItem(isSafe: false),
+            item: selfLayoutGuide?.toLayoutGuide(in: self) ?? self,
             attribute: .height,
             relatedBy: relation,
-            toItem: view?.layoutItem(isSafe: attribute.isSafe),
-            attribute: attribute.toAttribute,
-            multiplier: multiplier,
-            constant: constant,
-            priority: priority
-        )
-    }
-    
-    /// Constraints `UIView`'s `DimensionAttribute.safeWidth` to another `UIView`'s `DimensionAttribute`,
-    /// with given `relation`, `constant`, `multiplier`, and `priority`.
-    ///
-    /// By default, another `UIView`'s `DimensionAttribute` is set to `safeWidth`.
-    ///
-    ///     NSLayoutConstraint.activate([
-    ///         view1.constraintSafeWidth(to: view2),
-    ///
-    ///         view3.constraintSafeWidth(
-    ///             to: view4,
-    ///             attribute: .safeWidth,
-    ///             relation: .equal,
-    ///             constant: 0,
-    ///             multiplier: 1,
-    ///             priority: .defaultHigh
-    ///         )
-    ///     ])
-    ///
-    public func constraintSafeWidth(
-        to view: UIView?,
-        attribute: NSLayoutConstraint.DimensionAttribute = .safeWidth,
-        relation: NSLayoutConstraint.Relation = .equal,
-        constant: CGFloat = 0,
-        multiplier: CGFloat = 1,
-        priority: UILayoutPriority? = nil
-    ) -> NSLayoutConstraint {
-        .init(
-            item: self.layoutItem(isSafe: true),
-            attribute: .width,
-            relatedBy: relation,
-            toItem: view?.layoutItem(isSafe: attribute.isSafe),
-            attribute: attribute.toAttribute,
-            multiplier: multiplier,
-            constant: constant,
-            priority: priority
-        )
-    }
-    
-    /// Constraints `UIView`'s `DimensionAttribute.safeHeight` to another `UIView`'s `DimensionAttribute`,
-    /// with given `relation`, `constant`, `multiplier`, and `priority`.
-    ///
-    /// By default, another `UIView`'s `DimensionAttribute` is set to `safeHeight`.
-    ///
-    ///     NSLayoutConstraint.activate([
-    ///         view1.constraintSafeHeight(to: view2),
-    ///
-    ///         view3.constraintSafeHeight(
-    ///             to: view4,
-    ///             attribute: .safeHeight,
-    ///             relation: .equal,
-    ///             constant: 0,
-    ///             multiplier: 1,
-    ///             priority: .defaultHigh
-    ///         )
-    ///     ])
-    ///
-    public func constraintSafeHeight(
-        to view: UIView?,
-        attribute: NSLayoutConstraint.DimensionAttribute = .safeHeight,
-        relation: NSLayoutConstraint.Relation = .equal,
-        constant: CGFloat = 0,
-        multiplier: CGFloat = 1,
-        priority: UILayoutPriority? = nil
-    ) -> NSLayoutConstraint {
-        .init(
-            item: self.layoutItem(isSafe: true),
-            attribute: .height,
-            relatedBy: relation,
-            toItem: view?.layoutItem(isSafe: attribute.isSafe),
+            toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
             attribute: attribute.toAttribute,
             multiplier: multiplier,
             constant: constant,

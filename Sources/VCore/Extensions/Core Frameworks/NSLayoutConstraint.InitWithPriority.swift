@@ -5,13 +5,30 @@
 //  Created by Vakhtang Kontridze on 07.07.22.
 //
 
-#if canImport(UIKit) && !os(watchOS)
+#if !os(watchOS)
 
+#if canImport(UIKit)
 import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
-// MARK: - NS Layout Constraint Constraint Method Helpers
+// MARK: - NS Layout Constraint Init with Priority
 extension NSLayoutConstraint {
-    convenience init(
+    /// Initializes `NSLayoutConstraint` with all parameters, plus `UILayoutPriority`.
+    ///
+    ///     let constraint: NSLayoutConstraint = .init(
+    ///         item: view1,
+    ///         attribute: .width,
+    ///         relatedBy: .equal,
+    ///         toItem: view2,
+    ///         attribute: .width,
+    ///         multiplier: 1,
+    ///         constant: 0,
+    ///         priority: .required
+    ///     )
+    ///
+    convenience public init(
         item view1: Any,
         attribute attribute1: Attribute,
         relatedBy relation: Relation,
@@ -32,16 +49,6 @@ extension NSLayoutConstraint {
         )
         
         if let priority = priority { self.priority = priority }
-    }
-}
-
-extension UIView {
-    func layoutItem(isSafe: Bool) -> Any {
-        if isSafe {
-            return safeAreaLayoutGuide
-        } else {
-            return self
-        }
     }
 }
 
