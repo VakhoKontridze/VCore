@@ -1,5 +1,11 @@
 # Change Log
 
+### [3.15.1(47)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.1) — *2022 07 13*
+
+Other
+
+- Compilation errors are fixed
+
 ### [3.15.0(46)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.0) — *2022 07 13*
 
 Views and ViewControllers
