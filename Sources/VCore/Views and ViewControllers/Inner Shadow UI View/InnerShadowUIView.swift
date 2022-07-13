@@ -13,35 +13,23 @@ import UIKit
 /// `UIView` that casts inner shadow.
 open class InnerShadowUIView: UIView {
     // MARK: Subviews
-    private lazy var innerShadowShapeLayer: CAShapeLayer = {
+    private let innerShadowShapeLayer: CAShapeLayer = {
         let shapeLayer: CAShapeLayer = .init()
         shapeLayer.shadowOpacity = 1
-        shapeLayer.shadowColor = shadowColor.cgColor
-        shapeLayer.shadowRadius = shadowRadius
-        shapeLayer.shadowOffset = shadowOffset
         shapeLayer.fillRule = .evenOdd
         return shapeLayer
     }()
     
     // MARK: Properties
-    private let shadowColor: UIColor
-    private let shadowRadius: CGFloat
-    private let shadowOffset: CGSize
+    private var uiModel: InnerShadowUIViewUIModel
 
     // MARK: Initializers
-    /// Initializes `InnerShadowUIView` with color, radius, and offset.
-    public init(
-        shadowColor: UIColor,
-        shadowRadius: CGFloat,
-        shadowOffset: CGSize
-    ) {
-        self.shadowColor = shadowColor
-        self.shadowRadius = shadowRadius
-        self.shadowOffset = shadowOffset
-        
+    /// Initializes `InnerShadowUIView`.
+    public init(uiModel: InnerShadowUIViewUIModel = .init()) {
+        self.uiModel = uiModel
         super.init(frame: .zero)
-        
         setUp()
+        configure(uiModel: uiModel)
     }
     
     required public init?(coder: NSCoder) {
@@ -65,6 +53,16 @@ open class InnerShadowUIView: UIView {
     private func setUp() {
         layer.masksToBounds = true
         layer.addSublayer(innerShadowShapeLayer)
+    }
+    
+    // MARK: Configuration - UI Model
+    /// Configures `InnerShadowUIView` with `InnerShadowUIViewUIModel`.
+    open func configure(uiModel: InnerShadowUIViewUIModel) {
+        self.uiModel = uiModel
+        
+        innerShadowShapeLayer.shadowColor = uiModel.colors.shadowColor.cgColor
+        innerShadowShapeLayer.shadowRadius = uiModel.colors.shadowRadius
+        innerShadowShapeLayer.shadowOffset = uiModel.colors.shadowOffset
     }
 }
 

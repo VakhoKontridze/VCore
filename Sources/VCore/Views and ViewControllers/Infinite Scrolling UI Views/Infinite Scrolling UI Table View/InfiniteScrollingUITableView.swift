@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - Infinite Scrolling UI Table View
-/// Subclass of `UITableView` that handles infinite scrolling.
+/// `UITableView` that handles infinite scrolling.
 ///
 /// Contains property `paginationState`, controls pagination state.
 /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
