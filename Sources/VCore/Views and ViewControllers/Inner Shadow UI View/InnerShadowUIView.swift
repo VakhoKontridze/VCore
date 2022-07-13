@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - Inner Shadow UI View
-/// `UIView` that casts inner shadow.
+/// `UIView` that casts an inner shadow.
 open class InnerShadowUIView: UIView {
     // MARK: Subviews
     private let shapeLayer: CAShapeLayer = {

@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - Interactive Popping UI Navigation Controller
-/// `UINavigationController` that conforms to `interactivePopGestureRecognizer` delegate,
+/// `UINavigationController` that conforms to `UIGestureRecognizerDelegate` via `interactivePopGestureRecognizer`,
 /// and handles interactive popping.
 open class InteractivePoppingUINavigationController: UINavigationController, UIGestureRecognizerDelegate {
     // MARK: Lifecycle

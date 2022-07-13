@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - Left Aligned UI Collection View Flow Layout
-/// Layout object that organizes items into a grid with left alignment.
+/// Layout object that organizes items into a grid with a left alignment.
 open class LeftAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard
