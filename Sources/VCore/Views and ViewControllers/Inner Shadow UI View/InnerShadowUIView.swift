@@ -41,7 +41,7 @@ open class InnerShadowUIView: UIView {
         super.layoutSubviews()
 
         shapeLayer.path = {
-            let inset: CGFloat = -innerShadowShapeLayer.shadowRadius * 2
+            let inset: CGFloat = -shapeLayer.shadowRadius * 2
             
             let path: CGMutablePath = .init()
             

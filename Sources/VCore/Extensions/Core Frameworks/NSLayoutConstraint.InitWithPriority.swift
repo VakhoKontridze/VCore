@@ -5,13 +5,9 @@
 //  Created by Vakhtang Kontridze on 07.07.22.
 //
 
-#if !os(watchOS)
+#if canImport(UIKit) && !os(watchOS)
 
-#if canImport(UIKit)
 import UIKit
-#elseif canImport(AppKit)
-import AppKit
-#endif
 
 // MARK: - NS Layout Constraint Init with Priority
 extension NSLayoutConstraint {
