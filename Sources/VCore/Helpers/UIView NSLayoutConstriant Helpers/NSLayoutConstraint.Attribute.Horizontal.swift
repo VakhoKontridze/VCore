@@ -1,5 +1,5 @@
 //
-//  NSLayoutConstraint.HorizontalAttribute.swift
+//  NSLayoutConstraint.Attribute.Horizontal.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 07.07.22.
@@ -10,9 +10,9 @@
 import UIKit
 
 // MARK: - Horizontal Attribute
-extension NSLayoutConstraint {
+extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual horizontal representation that should be used to get the value for the constraint.
-    public enum HorizontalAttribute: Int, CaseIterable, @unchecked Sendable {
+    public enum Horizontal: Int, CaseIterable, @unchecked Sendable {
         // MARK: Cases
         /// Leading edge of the object’s alignment rectangle.
         case leading
@@ -23,13 +23,21 @@ extension NSLayoutConstraint {
         /// Trailing edge of the object’s alignment rectangle.
         case trailing
         
+        /// Left side of the object’s alignment rectangle.
+        case left
+        
+        /// Right side of the object’s alignment rectangle.
+        case right
+        
         // MARK: Properties
-        /// Converts `HorizontalAttribute` to `Attribute`.
-        public var toAttribute: Attribute {
+        /// Converts `HorizontalAttribute` to `NSLayoutConstraint.Attribute`.
+        public var toAttribute: NSLayoutConstraint.Attribute {
             switch self {
             case .leading: return .leading
             case .centerX: return .centerX
             case .trailing: return .trailing
+            case .left: return .left
+            case .right: return .right
             }
         }
     }
@@ -61,13 +69,13 @@ extension UIView {
         on selfLayoutGuide: UILayoutGuideType? = nil,
         to view: UIView?,
         layoutGuide: UILayoutGuideType? = nil,
-        attribute: NSLayoutConstraint.HorizontalAttribute = .leading,
+        attribute: NSLayoutConstraint.Attribute.Horizontal = .leading,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
         priority: UILayoutPriority? = nil
     ) -> NSLayoutConstraint {
-        return .init(
+        .init(
             item: selfLayoutGuide?.toLayoutGuide(in: self) ?? self,
             attribute: .leading,
             relatedBy: relation,
@@ -103,7 +111,7 @@ extension UIView {
         on selfLayoutGuide: UILayoutGuideType? = nil,
         to view: UIView?,
         layoutGuide: UILayoutGuideType? = nil,
-        attribute: NSLayoutConstraint.HorizontalAttribute = .centerX,
+        attribute: NSLayoutConstraint.Attribute.Horizontal = .centerX,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -145,7 +153,7 @@ extension UIView {
         on selfLayoutGuide: UILayoutGuideType? = nil,
         to view: UIView?,
         layoutGuide: UILayoutGuideType? = nil,
-        attribute: NSLayoutConstraint.HorizontalAttribute = .trailing,
+        attribute: NSLayoutConstraint.Attribute.Horizontal = .trailing,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,

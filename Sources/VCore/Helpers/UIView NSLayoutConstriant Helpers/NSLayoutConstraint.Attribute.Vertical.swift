@@ -1,5 +1,5 @@
 //
-//  NSLayoutConstraint.VerticalAttribute.swift
+//  NSLayoutConstraint.Attribute.Vertical.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 07.07.22.
@@ -10,9 +10,9 @@
 import UIKit
 
 // MARK: - Vertical Attribute
-extension NSLayoutConstraint {
+extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual vertical representation that should be used to get the value for the constraint.
-    public enum VerticalAttribute: Int, CaseIterable, @unchecked Sendable {
+    public enum Vertical: Int, CaseIterable, @unchecked Sendable {
         // MARK: Cases
         /// Top of the object’s alignment rectangle.
         case top
@@ -23,13 +23,21 @@ extension NSLayoutConstraint {
         /// Bottom of the object’s alignment rectangle.
         case bottom
         
+        /// Object’s baseline. For objects with more than one line of text, this is the baseline for the topmost line of text.
+        case firstBaseline
+        
+        /// Object’s baseline. For objects with more than one line of text, this is the baseline for the bottommost line of text.
+        case lastBaseline
+        
         // MARK: Properties
-        /// Converts `VerticalAttribute` to `Attribute`.
-        public var toAttribute: Attribute {
+        /// Converts `VerticalAttribute` to `NSLayoutConstraint.Attribute`.
+        public var toAttribute: NSLayoutConstraint.Attribute {
             switch self {
             case .top: return .top
             case .centerY: return .centerY
             case .bottom: return .bottom
+            case .firstBaseline: return .firstBaseline
+            case .lastBaseline: return .lastBaseline
             }
         }
     }
@@ -61,7 +69,7 @@ extension UIView {
         on selfLayoutGuide: UILayoutGuideType? = nil,
         to view: UIView?,
         layoutGuide: UILayoutGuideType? = nil,
-        attribute: NSLayoutConstraint.VerticalAttribute = .top,
+        attribute: NSLayoutConstraint.Attribute.Vertical = .top,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -103,7 +111,7 @@ extension UIView {
         on selfLayoutGuide: UILayoutGuideType? = nil,
         to view: UIView?,
         layoutGuide: UILayoutGuideType? = nil,
-        attribute: NSLayoutConstraint.VerticalAttribute = .centerY,
+        attribute: NSLayoutConstraint.Attribute.Vertical = .centerY,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -145,7 +153,7 @@ extension UIView {
         on selfLayoutGuide: UILayoutGuideType? = nil,
         to view: UIView?,
         layoutGuide: UILayoutGuideType? = nil,
-        attribute: NSLayoutConstraint.VerticalAttribute = .bottom,
+        attribute: NSLayoutConstraint.Attribute.Vertical = .bottom,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,

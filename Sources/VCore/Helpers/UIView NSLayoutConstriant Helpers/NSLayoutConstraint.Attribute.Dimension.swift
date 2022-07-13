@@ -1,5 +1,5 @@
 //
-//  NSLayoutConstraint.DimensionAttribute.swift
+//  NSLayoutConstraint.Attribute.Dimension.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 07.07.22.
@@ -10,9 +10,9 @@
 import UIKit
 
 // MARK: - Dimension Attribute
-extension NSLayoutConstraint {
+extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual dimension representation that should be used to get the value for the constraint.
-    public enum DimensionAttribute: Int, CaseIterable, @unchecked Sendable {
+    public enum Dimension: Int, CaseIterable, @unchecked Sendable {
         // MARK: Cases
         /// Width of the object’s alignment rectangle.
         case width
@@ -21,8 +21,8 @@ extension NSLayoutConstraint {
         case height
         
         // MARK: Properties
-        /// Converts `DimensionAttribute` to `Attribute`.
-        public var toAttribute: Attribute {
+        /// Converts `DimensionAttribute` to `NSLayoutConstraint.Attribute`.
+        public var toAttribute: NSLayoutConstraint.Attribute {
             switch self {
             case .width: return .width
             case .height: return .height
@@ -57,7 +57,7 @@ extension UIView {
         on selfLayoutGuide: UILayoutGuideType? = nil,
         to view: UIView?,
         layoutGuide: UILayoutGuideType? = nil,
-        attribute: NSLayoutConstraint.DimensionAttribute = .width,
+        attribute: NSLayoutConstraint.Attribute.Dimension = .width,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -99,7 +99,7 @@ extension UIView {
         on selfLayoutGuide: UILayoutGuideType? = nil,
         to view: UIView?,
         layoutGuide: UILayoutGuideType? = nil,
-        attribute: NSLayoutConstraint.DimensionAttribute = .height,
+        attribute: NSLayoutConstraint.Attribute.Dimension = .height,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
