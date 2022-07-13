@@ -1,5 +1,5 @@
 //
-//  KeyboardResponsiveViewControllerAnimations.swift
+//  KeyboardResponsiveUIViewControllerAnimations.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 12.07.22.
@@ -18,7 +18,7 @@ extension UIView {
     /// Parameter `superview` is used for calling `layoutIfNeeded()`.
     /// In `UIViewController`, `view` can be passed.
     ///
-    ///     final class SomeViewController: KeyboardResponsiveViewController {
+    ///     final class SomeViewController: KeyboardResponsiveUIViewController {
     ///         private let textField: UITextField = { ... }()
     ///
     ///         override func viewDidLoad() {
@@ -82,7 +82,7 @@ extension UIView {
     ///
     /// Parameter `containerView` is `UIView` on which frame animations will be applied.
     ///
-    ///     final class SomeViewController: KeyboardResponsiveViewController {
+    ///     final class SomeViewController: KeyboardResponsiveUIViewController {
     ///         private let textField: UITextField = { ... }()
     ///
     ///         override func viewDidLoad() {
@@ -153,7 +153,7 @@ extension UIView {
     ///
     /// Parameter `containerView` is `UIView` on which frame animations will be applied.
     ///
-    ///     final class SomeViewController: KeyboardResponsiveViewController {
+    ///     final class SomeViewController: KeyboardResponsiveUIViewController {
     ///         private let textField: UITextField = { ... }()
     ///
     ///         override func viewDidLoad() {

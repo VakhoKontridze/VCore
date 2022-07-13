@@ -1,5 +1,5 @@
 //
-//  CenterAlignedCollectionViewFlowLayout.swift
+//  CenterAlignedUICollectionViewFlowLayout.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.07.22.
@@ -9,11 +9,11 @@
 
 import UIKit
 
-// MARK: - Center Aligned Collection View Flow Layout
+// MARK: - Center Aligned UI Collection View Flow Layout
 /// Layout object that organizes items into a grid with center alignment.
 ///
 /// Requires `UICollectionViewDelegateFlowLayout` to be set via `delegate`.
-open class CenterAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Properties
     private var itemLayoutAttributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
 

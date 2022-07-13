@@ -1,5 +1,5 @@
 //
-//  RightAlignedCollectionViewFlowLayout.swift
+//  RightAlignedUICollectionViewFlowLayout.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.07.22.
@@ -9,9 +9,9 @@
 
 import UIKit
 
-// MARK: - Right Aligned Collection View Flow Layout
+// MARK: - Right Aligned UI Collection View Flow Layout
 /// Layout object that organizes items into a grid with right alignment.
-open class RightAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Item Attributes
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard

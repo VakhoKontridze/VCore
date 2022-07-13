@@ -1,5 +1,5 @@
 //
-//  LeftAlignedCollectionViewFlowLayout.swift
+//  LeftAlignedUICollectionViewFlowLayout.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.07.22.
@@ -9,9 +9,9 @@
 
 import UIKit
 
-// MARK: - Left Aligned Collection View Flow Layout
+// MARK: - Left Aligned UI Collection View Flow Layout
 /// Layout object that organizes items into a grid with left alignment.
-open class LeftAlignedCollectionViewFlowLayout: UICollectionViewFlowLayout {
+open class LeftAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard
             let layoutAttributes: [UICollectionViewLayoutAttributes] = super.layoutAttributesForElements(in: rect)

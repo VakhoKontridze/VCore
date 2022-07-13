@@ -1,5 +1,5 @@
 //
-//  InfiniteScrollingCollectionViewPaginationState.swift
+//  InfiniteScrollingTableViewPaginationState.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/21/21.
@@ -7,10 +7,10 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+import Foundation
 
-// MARK: - Infinite Scrolling Collection View Pagination State
-extension InfiniteScrollingCollectionView {
+// MARK: - Infinite Scrolling UI Table View Pagination State
+extension InfiniteScrollingUITableView {
     public typealias PaginationState = InfiniteScrollingPaginationState
 }
 

@@ -1,5 +1,5 @@
 //
-//  KeyboardResponsiveViewController.swift
+//  KeyboardResponsiveUIViewController.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 12/26/21.
@@ -9,12 +9,12 @@
 
 import UIKit
 
-// MARK: - Keyboard Responsive View Controller
+// MARK: - Keyboard Responsive UI View Controller
 /// Keyboard Responsive ViewController that handles keyboard notifications.
 ///
 /// Subclass, and override `keyboardWillShow` and `keyboardWillHide` methods, to observe keyboard notifications.
 /// These methods pass `SystemKeyboardInfo` as parameter, that contains information about keyboard height, animation duration, and options.
-open class KeyboardResponsiveViewController: UIViewController {
+open class KeyboardResponsiveUIViewController: UIViewController {
     // MARK: Properties
     /// Indicates, if `KeyboardResponsiveViewController` should call
     /// `keyboardWillShow(_:)` and `keyboardWillHide(_:)` methods,

@@ -1,5 +1,5 @@
 //
-//  ScrollableView.swift
+//  ScrollableUIView.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 2/25/22.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Scrollable View
+// MARK: - Scrollable UI View
 /// View that allows the scrolling and zooming of its contained views.
 ///
 /// A wrapper class that handles subviews and constraints between `UIScrollView` and content `UIView`.
@@ -21,7 +21,7 @@ import UIKit
 ///     scrollableView.contentView.addSubview(someView2)
 ///     scrollableView.contentView.addSubview(someView3)
 ///
-open class ScrollableView: UIView {
+open class ScrollableUIView: UIView {
     // MARK: Subviews
     /// `UIScrollView` object.
     open var scrollView: UIScrollView = {
@@ -48,7 +48,7 @@ open class ScrollableView: UIView {
     private var scrollDirection: ScrollDirection
     
     // MARK: Initializers
-    /// Initializes `ScrollableView` with `ScrollDirection`.
+    /// Initializes `ScrollableUIView` with `ScrollDirection`.
     public init(
         direction scrollDirection: ScrollDirection
     ) {

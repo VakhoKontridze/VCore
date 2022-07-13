@@ -1,5 +1,5 @@
 //
-//  ScrollableView.ScrollDirection.swift
+//  ScrollableUIView.ScrollDirection.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 2/25/22.
@@ -9,8 +9,8 @@
 
 import Foundation
 
-// MARK: - Scrollable View Scroll Direction
-extension ScrollableView {
+// MARK: - Scrollable UI View Scroll Direction
+extension ScrollableUIView {
     /// Scroll Direction.
     public struct ScrollDirection: OptionSet {
         // MARK: Properties

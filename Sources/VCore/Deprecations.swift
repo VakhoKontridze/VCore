@@ -47,6 +47,39 @@ extension Optional where Wrapped == Any {
     }
 }
 
+// MARK: - UI Prefixes in Views
+
+#if canImport(UIKit) && !os(watchOS)
+
+@available(*, deprecated, renamed: "LeftAlignedUICollectionViewFlowLayout")
+typealias LeftAlignedCollectionViewFlowLayout = LeftAlignedUICollectionViewFlowLayout
+
+@available(*, deprecated, renamed: "CenterAlignedUICollectionViewFlowLayout")
+typealias CenterAlignedCollectionViewFlowLayout = CenterAlignedUICollectionViewFlowLayout
+
+@available(*, deprecated, renamed: "RightAlignedUICollectionViewFlowLayout")
+typealias RightAlignedCollectionViewFlowLayout = RightAlignedUICollectionViewFlowLayout
+
+@available(*, deprecated, renamed: "InfiniteScrollingUITableView")
+typealias InfiniteScrollingTableView = InfiniteScrollingUITableView
+
+@available(*, deprecated, renamed: "InfiniteScrollingUITableViewDelegate")
+typealias InfiniteScrollingTableViewDelegate = InfiniteScrollingUITableViewDelegate
+
+@available(*, deprecated, renamed: "InfiniteScrollingUICollectionView")
+typealias InfiniteScrollingCollectionView = InfiniteScrollingUICollectionView
+
+@available(*, deprecated, renamed: "InfiniteScrollingUICollectionViewDelegate")
+typealias InfiniteScrollingCollectionViewDelegate = InfiniteScrollingUICollectionViewDelegate
+
+@available(*, deprecated, renamed: "KeyboardResponsiveUIViewController")
+typealias KeyboardResponsiveViewController = KeyboardResponsiveUIViewController
+
+@available(*, deprecated, renamed: "ScrollableUIView")
+typealias ScrollableView = ScrollableUIView
+
+#endif
+
 // MARK: - Swift UI Base Button
 #if os(iOS)
 

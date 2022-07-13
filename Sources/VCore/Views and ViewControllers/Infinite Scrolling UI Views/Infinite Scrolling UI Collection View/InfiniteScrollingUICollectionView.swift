@@ -1,5 +1,5 @@
 //
-//  InfiniteScrollingCollectionView.swift
+//  InfiniteScrollingUICollectionView.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/21/21.
@@ -9,8 +9,8 @@
 
 import UIKit
 
-// MARK: - Infinite Scrolling Collection View
-/// Subclass of `UICollectionView` that handles infinite scrolling.
+// MARK: - Infinite Scrolling UI Collection View
+/// `UICollectionView` that handles infinite scrolling.
 ///
 /// Contains property `paginationState`, controls pagination state.
 /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
@@ -22,13 +22,13 @@ import UIKit
 /// - `detectPaginationFromCollectionViewCellForItem`, which detects instance in which loaded cells do not fill up UICollectionViews's content. So, pagination is called.
 /// - `viewForSupplementaryElement`, which returns `UIActivityIndicator`.
 ///
-open class InfiniteScrollingCollectionView: UICollectionView {
+open class InfiniteScrollingUICollectionView: UICollectionView {
     // MARK: Subviews
     private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
     
     // MARK: Properties
     /// Delegate.
-    open weak var infiniteScrollingDelegate: (any InfiniteScrollingCollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
+    open weak var infiniteScrollingDelegate: (any InfiniteScrollingUICollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
     
     /// Controls pagination state.
     /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
@@ -41,7 +41,7 @@ open class InfiniteScrollingCollectionView: UICollectionView {
     
     private var isFirstLayoutSubviews: Bool = false
     
-    private typealias ActivityIndicatorModel = InfiniteScrollingCollectionViewActivityIndicatorModel
+    private typealias ActivityIndicatorModel = InfiniteScrollingUICollectionViewActivityIndicatorViewUIModel
     
     // MARK: Initializers
     public override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {

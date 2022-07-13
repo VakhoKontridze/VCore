@@ -1,5 +1,5 @@
 //
-//  InfiniteScrollingTableViewActivityIndicator.swift
+//  InfiniteScrollingUITableViewActivityIndicatorView.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/10/21.
@@ -9,13 +9,13 @@
 
 import UIKit
 
-// MARK: - Infinite Scrolling Table View Activity Indicator
-final class InfiniteScrollingTableViewActivityIndicatorView: UIView {
+// MARK: - Infinite Scrolling UI Table View Activity Indicator
+final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
     // MARK: Subviews
     private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
     
     // MARK: Properties
-    private typealias UIModel = InfiniteScrollingTableViewActivityIndicatorUIModel
+    private typealias UIModel = InfiniteScrollingUITableViewActivityIndicatorViewUIModel
     
     // MARK: Initializers
     init(in tableView: UITableView) {

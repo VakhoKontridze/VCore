@@ -1,5 +1,5 @@
 //
-//  InfiniteScrollingTableView.swift
+//  InfiniteScrollingUITableView.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/10/21.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Infinite Scrolling Table View
+// MARK: - Infinite Scrolling UI Table View
 /// Subclass of `UITableView` that handles infinite scrolling.
 ///
 /// Contains property `paginationState`, controls pagination state.
@@ -21,10 +21,10 @@ import UIKit
 /// - `detectPaginationFromScrollViewDidScroll`, which detects pagination on scroll.
 /// - `detectPaginationFromTableViewCellForRow`, which detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called.
 ///
-open class InfiniteScrollingTableView: UITableView {
+open class InfiniteScrollingUITableView: UITableView {
     // MARK: Properties
     /// Delegate.
-    open weak var infiniteScrollingDelegate: (any InfiniteScrollingTableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?
+    open weak var infiniteScrollingDelegate: (any InfiniteScrollingUITableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?
     
     /// Controls pagination state.
     /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
@@ -78,7 +78,7 @@ open class InfiniteScrollingTableView: UITableView {
         switch paginationState {
         case .loading:
             guard frame.width != 0 else { return }
-            tableFooterView = InfiniteScrollingTableViewActivityIndicatorView(in: self)
+            tableFooterView = InfiniteScrollingUITableViewActivityIndicatorView(in: self)
         
         case .canPaginate, .cannotPaginate:
             tableFooterView = nil

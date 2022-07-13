@@ -1,5 +1,5 @@
 //
-//  InnerShadowView.swift
+//  InnerShadowUIView.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 13.07.22.
@@ -9,9 +9,9 @@
 
 import UIKit
 
-// MARK: - Inner Shadow View
+// MARK: - Inner Shadow UI View
 /// `UIView` that casts inner shadow.
-open class InnerShadowView: UIView {
+open class InnerShadowUIView: UIView {
     // MARK: Subviews
     private lazy var innerShadowShapeLayer: CAShapeLayer = {
         let shapeLayer: CAShapeLayer = .init()
@@ -29,7 +29,7 @@ open class InnerShadowView: UIView {
     private let shadowOffset: CGSize
 
     // MARK: Initializers
-    /// Initializes `InnerShadowView` with color, radius, and offset.
+    /// Initializes `InnerShadowUIView` with color, radius, and offset.
     public init(
         shadowColor: UIColor,
         shadowRadius: CGFloat,

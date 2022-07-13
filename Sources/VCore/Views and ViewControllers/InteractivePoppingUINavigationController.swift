@@ -1,5 +1,5 @@
 //
-//  InteractivePoppingNavigationController.swift
+//  InteractivePoppingUINavigationController.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 13.07.22.
@@ -9,10 +9,10 @@
 
 import UIKit
 
-// MARK: - Interactive Popping Navigation Controller
+// MARK: - Interactive Popping UI Navigation Controller
 /// `UINavigationController` that conforms to `interactivePopGestureRecognizer` delegate,
 /// and handles interactive popping.
-open class InteractivePoppingNavigationController: UINavigationController, UIGestureRecognizerDelegate {
+open class InteractivePoppingUINavigationController: UINavigationController, UIGestureRecognizerDelegate {
     // MARK: Lifecycle
     open override func viewDidLoad() {
         super.viewDidLoad()

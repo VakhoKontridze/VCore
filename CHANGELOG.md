@@ -1,11 +1,20 @@
 # Change Log
 
-### 4.15.0(46)
+### 3.15.0(46)
 
 Views and ViewControllers
 
-- `InnerShadowView` is added
-- `InteractivePoppingNavigationController` is added
+- `InnerShadowUIView` is added
+- `InteractivePoppingUINavigationController` is added
+- `LeftAlignedCollectionViewFlowLayout` is renamed to `LeftAlignedUICollectionViewFlowLayout`
+- `CenterAlignedCollectionViewFlowLayout` is renamed to `CenterAlignedUICollectionViewFlowLayout`
+- `RightAlignedCollectionViewFlowLayout` is renamed to `RightAlignedUICollectionViewFlowLayout`
+- `KeyboardResponsiveViewController` is renamed to `KeyboardResponsiveUIViewController`
+- `InfiniteScrollingTableView` is renamed to `InfiniteScrollingUITableView`
+- `InfiniteScrollingTableViewDelegate` is renamed to `InfiniteScrollingUITableViewDelegate`
+- `InfiniteScrollingCollectionView` is renamed to `InfiniteScrollingUICollectionView`
+- `InfiniteScrollingCollectionViewDelegate` is renamed to `InfiniteScrollingUICollectionViewDelegate`
+- `ScrollableView` is renamed to `ScrollableUIView`
 
 ### [3.14.0(45)](https://github.com/VakhoKontridze/VCore/releases/tag/3.14.0) — *2022 07 12*
 
