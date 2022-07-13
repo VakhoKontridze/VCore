@@ -7,7 +7,7 @@ Views and ViewControllers
 - `InnerShadowUIView` is added
 - `InteractivePoppingUINavigationController` is added
 - `nonZeroAnimationDuration` is added to `SystemKeyboardInfo`
-- `UIView.firstResponderSubview` property is added
+- `UIView.childFirstResponder` and `UIView.childFirstResponderView` properties are added
 - Default `static` properties are exposed to public in `SystemKeyboardInfo`
 - `LeftAlignedCollectionViewFlowLayout` is renamed to `LeftAlignedUICollectionViewFlowLayout`
 - `CenterAlignedCollectionViewFlowLayout` is renamed to `CenterAlignedUICollectionViewFlowLayout`
