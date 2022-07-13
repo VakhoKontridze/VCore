@@ -502,8 +502,10 @@ extension UICollectionView {
 #if canImport(UIKit) && !os(watchOS)
 
 extension NSLayoutConstraint.DimensionAttribute {
+    @available(*, unavailable, message: "Use `width` with `safeArea` `UILayoutGuideType`")
     public static var safeWidth: Self { fatalError() }
     
+    @available(*, unavailable, message: "Use `height` with `safeArea` `UILayoutGuideType`")
     public static var safeHeight: Self { fatalError() }
     
     @available(*, unavailable)
@@ -514,7 +516,7 @@ extension UIView {
     @available(*, unavailable, message: "Use `constraintWidth` with `safeArea` `UILayoutGuideType`")
     public func constraintSafeWidth(
         to view: UIView?,
-        attribute: NSLayoutConstraint.DimensionAttribute = .safeWidth,
+        attribute: NSLayoutConstraint.DimensionAttribute,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -526,7 +528,7 @@ extension UIView {
     @available(*, unavailable, message: "Use `constraintHeight` with `safeArea` `UILayoutGuideType`")
     public func constraintSafeHeight(
         to view: UIView?,
-        attribute: NSLayoutConstraint.DimensionAttribute = .safeHeight,
+        attribute: NSLayoutConstraint.DimensionAttribute,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -537,10 +539,13 @@ extension UIView {
 }
 
 extension NSLayoutConstraint.HorizontalAttribute {
+    @available(*, unavailable, message: "Use `leading` with `safeArea` `UILayoutGuideType`")
     public static var safeLeading: Self { fatalError() }
     
+    @available(*, unavailable, message: "Use `centerX` with `safeArea` `UILayoutGuideType`")
     public static var safeCenterX: Self { fatalError() }
     
+    @available(*, unavailable, message: "Use `trailing` with `safeArea` `UILayoutGuideType`")
     public static var safeTrailing: Self { fatalError() }
     
     @available(*, unavailable)
@@ -551,7 +556,7 @@ extension UIView {
     @available(*, unavailable, message: "Use `constraintLeading` with `safeArea` `UILayoutGuideType`")
     public func constraintSafeLeading(
         to view: UIView,
-        attribute: NSLayoutConstraint.HorizontalAttribute = .safeLeading,
+        attribute: NSLayoutConstraint.HorizontalAttribute,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -563,7 +568,7 @@ extension UIView {
     @available(*, unavailable, message: "Use `constraintCenterX` with `safeArea` `UILayoutGuideType`")
     public func constraintSafeCenterX(
         to view: UIView,
-        attribute: NSLayoutConstraint.HorizontalAttribute = .safeCenterX,
+        attribute: NSLayoutConstraint.HorizontalAttribute,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -575,7 +580,7 @@ extension UIView {
     @available(*, unavailable, message: "Use `constraintTrailing` with `safeArea` `UILayoutGuideType`")
     public func constraintSafeTrailing(
         to view: UIView,
-        attribute: NSLayoutConstraint.HorizontalAttribute = .safeTrailing,
+        attribute: NSLayoutConstraint.HorizontalAttribute,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -586,10 +591,13 @@ extension UIView {
 }
 
 extension NSLayoutConstraint.VerticalAttribute {
+    @available(*, unavailable, message: "Use `top` with `safeArea` `UILayoutGuideType`")
     public static var safeTop: Self { fatalError() }
     
+    @available(*, unavailable, message: "Use `centerY` with `safeArea` `UILayoutGuideType`")
     public static var safeCenterY: Self { fatalError() }
     
+    @available(*, unavailable, message: "Use `bottom` with `safeArea` `UILayoutGuideType`")
     public static var safeBottom: Self { fatalError() }
     
     @available(*, unavailable)
@@ -600,7 +608,7 @@ extension UIView {
     @available(*, unavailable, message: "Use `constraintTop` with `safeArea` `UILayoutGuideType`")
     public func constraintSafeTop(
         to view: UIView,
-        attribute: NSLayoutConstraint.VerticalAttribute = .safeTop,
+        attribute: NSLayoutConstraint.VerticalAttribute,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -612,7 +620,7 @@ extension UIView {
     @available(*, unavailable, message: "Use `constraintCenterY` with `safeArea` `UILayoutGuideType`")
     public func constraintSafeCenterY(
         to view: UIView,
-        attribute: NSLayoutConstraint.VerticalAttribute = .safeCenterY,
+        attribute: NSLayoutConstraint.VerticalAttribute,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
@@ -624,7 +632,7 @@ extension UIView {
     @available(*, unavailable, message: "Use `constraintBottom` with `safeArea` `UILayoutGuideType`")
     public func constraintSafeBottom(
         to view: UIView,
-        attribute: NSLayoutConstraint.VerticalAttribute = .safeBottom,
+        attribute: NSLayoutConstraint.VerticalAttribute,
         relation: NSLayoutConstraint.Relation = .equal,
         constant: CGFloat = 0,
         multiplier: CGFloat = 1,
