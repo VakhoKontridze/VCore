@@ -20,6 +20,7 @@ Extensions
 
 - `Double.rounded(fractions:)` and `Double.round(fractions:)` methods are added
 - `String.diacriticInsensitiveString(locale:)` method is added
+- `UIViewController.isRootViewController` and `UIViewController.isNonRootViewController` properties are added
 
 ### [3.14.0(45)](https://github.com/VakhoKontridze/VCore/releases/tag/3.14.0) — *2022 07 12*
 
