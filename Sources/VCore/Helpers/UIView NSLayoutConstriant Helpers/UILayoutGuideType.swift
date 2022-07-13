@@ -10,31 +10,41 @@
 import UIKit
 
 // MARK: - UI Layout Guide Type
-/// ???.
-public enum UILayoutGuideType: Int, CaseIterable {
+/// Enumeration that represents `UILayoutGuide`.
+public enum UILayoutGuideType {
     // MARK: Cases
-    /// ???.
+    /// Layout guide representing the view’s margins.
     case margins
     
-    /// ???.
+    /// Layout guide representing an area with a readable width within the view.
     case readableContent
     
-    /// ???.
+    /// Layout guide representing the portion of your view that is unobscured by bars and other content.
     case safeArea
     
-    /// ???.
+    /// Layout guide that tracks the keyboard’s position in your app’s layout.
     @available(iOS 15.0, *)
     case keyboard
     
-    // MARK: Properties
-    public static var allCases: [UILayoutGuideType] {
-        if #available(iOS 15.0, *) {
-            return [.margins, .readableContent, .safeArea, .keyboard]
-        } else {
-            return [.margins, .readableContent, .safeArea]
-        }
-    }
+    /// Custom layout guide.
+    ///
+    ///     extension UIView {
+    ///         var someOtherLayoutGuide: UILayoutGuide { ... }
+    ///     }
+    ///
+    ///     extension UILayoutGuideType {
+    ///         static var someOther: Self { .custom(\.someLayoutGuide) }
+    ///     }
+    ///
+    ///     view.constraintLeading(
+    ///         ...
+    ///         layoutGuide: .someOther,
+    ///         ...
+    ///     )
+    ///
+    case custom(KeyPath<UIView, UILayoutGuide>)
     
+    // MARK: Properties
     /// Converts `UILayoutGuideType` to `UILayoutGuide` within the context of an `UIView`.
     public func toLayoutGuide(in view: UIView) -> UILayoutGuide {
         switch self {
@@ -53,6 +63,9 @@ public enum UILayoutGuideType: Int, CaseIterable {
             } else {
                 fatalError()
             }
+            
+        case .custom(let layoutGuideKeyPath):
+            return view[keyPath: layoutGuideKeyPath]
         }
     }
 }
