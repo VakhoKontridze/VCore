@@ -13,7 +13,7 @@ import UIKit
 /// `UIView` that casts inner shadow.
 open class InnerShadowUIView: UIView {
     // MARK: Subviews
-    private let innerShadowShapeLayer: CAShapeLayer = {
+    private let shapeLayer: CAShapeLayer = {
         let shapeLayer: CAShapeLayer = .init()
         shapeLayer.shadowOpacity = 1
         shapeLayer.fillRule = .evenOdd
@@ -40,11 +40,14 @@ open class InnerShadowUIView: UIView {
     open override func layoutSubviews() {
         super.layoutSubviews()
 
-        innerShadowShapeLayer.path = {
-            let path: CGMutablePath = .init()
+        shapeLayer.path = {
             let inset: CGFloat = -innerShadowShapeLayer.shadowRadius * 2
+            
+            let path: CGMutablePath = .init()
+            
             path.addRect(bounds.insetBy(dx: inset, dy: inset))
             path.addRect(bounds)
+            
             return path
         }()
     }
@@ -52,7 +55,7 @@ open class InnerShadowUIView: UIView {
     // MARK: Setup
     private func setUp() {
         layer.masksToBounds = true
-        layer.addSublayer(innerShadowShapeLayer)
+        layer.addSublayer(shapeLayer)
     }
     
     // MARK: Configuration - UI Model
@@ -60,9 +63,9 @@ open class InnerShadowUIView: UIView {
     open func configure(uiModel: InnerShadowUIViewUIModel) {
         self.uiModel = uiModel
         
-        innerShadowShapeLayer.shadowColor = uiModel.colors.shadowColor.cgColor
-        innerShadowShapeLayer.shadowRadius = uiModel.colors.shadowRadius
-        innerShadowShapeLayer.shadowOffset = uiModel.colors.shadowOffset
+        shapeLayer.shadowColor = uiModel.colors.shadowColor.cgColor
+        shapeLayer.shadowRadius = uiModel.colors.shadowRadius
+        shapeLayer.shadowOffset = uiModel.colors.shadowOffset
     }
 }
 
