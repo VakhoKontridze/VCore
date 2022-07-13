@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Extension
 extension Double {
-    /// Returns `String` from number with specified min and max fractions.
+    /// Returns `String` from `Double` with specified min and max fractions.
     ///
     ///     let rounded: String = 3.1415.rounded(maxFractions: 2) // "3.14"
     ///
