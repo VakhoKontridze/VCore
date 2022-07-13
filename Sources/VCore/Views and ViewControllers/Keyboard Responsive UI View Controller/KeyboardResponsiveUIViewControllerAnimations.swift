@@ -145,6 +145,9 @@ extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`, by offsetting container `y` origin by minimal distance,
     /// so that `firstResponderView` is not obscured by the keyboard.
     ///
+    /// In order to use this method on `UITableView`/`UITableViewCell`s, pass `tableView.childFirstResponderView`
+    /// as parameter in `firstResponderView`.
+    ///
     /// Much like `UIView` animations, there may be discrepancy between physical device and simulator.
     ///
     /// Parameter `containerView` is `UIView` on which frame animations will be applied.
