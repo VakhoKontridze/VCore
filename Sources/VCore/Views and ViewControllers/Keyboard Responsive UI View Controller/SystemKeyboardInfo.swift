@@ -34,7 +34,7 @@ public struct SystemKeyboardInfo {
     public init(notification: Notification) {
         self.frame =
             notification.userInfo?.rect(key: UIResponder.keyboardFrameEndUserInfoKey) ??
-            Self.defaultKeyboardFrame
+            Self.defaultEstimatedKeyboardFrame
         
         self.animationDuration =
             notification.userInfo?.double(key: UIResponder.keyboardAnimationDurationUserInfoKey) ??
@@ -46,7 +46,8 @@ public struct SystemKeyboardInfo {
     }
     
     // MARK: Default Values
-    static var defaultKeyboardFrame: CGRect {
+    /// Default estimated keyboard frame. Defaults to screen width times `400` points positioned on the bottom.
+    public static var defaultEstimatedKeyboardFrame: CGRect {
         let estimatedKeyboardHeight: CGFloat = 400
         
         return .init(
@@ -57,9 +58,28 @@ public struct SystemKeyboardInfo {
         )
     }
     
-    static var defaultAnimationDuration: TimeInterval { 0.25 }
+    /// Default animation duration. Defaults to `0.25`
+    ///
+    /// If keyboard is already shown, but first responder changes, animation duration returned by the `Notification` will be `0`.
+    /// In that case, this value can be used to perform additional animation.
+    /// Alternately, consider checking out `nonZeroAnimationDuration`.
+    public static var defaultAnimationDuration: TimeInterval { 0.25 }
     
-    static var defaultAnimationOptions: UIView.AnimationOptions { .curveLinear }
+    /// Default animation options. Defaults to `curveLinear`.
+    public static var defaultAnimationOptions: UIView.AnimationOptions { .curveLinear }
+    
+    // MARK: Other Values
+    /// Non-zero animation duration.
+    ///
+    /// If keyboard is already shown, but first responder changes, animation duration returned by the `Notification` will be `0`.
+    /// In that case, this value can be used to perform additional animation.
+    public var nonZeroAnimationDuration: CGFloat {
+        if animationDuration != 0 {
+            return animationDuration
+        } else {
+            return Self.defaultAnimationDuration
+        }
+    }
 }
 
 // MARK: - Helpers

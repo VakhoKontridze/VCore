@@ -54,12 +54,10 @@ extension UIView {
         animations: @escaping () -> Void,
         completion: ((Bool) -> Void)? = nil
     ) {
-        let animationDuration: TimeInterval = max(systemKeyboardInfo.animationDuration, SystemKeyboardInfo.defaultAnimationDuration)
-        
         superview?.layoutIfNeeded()
         
         UIView.animate(
-            withDuration: animationDuration,
+            withDuration: systemKeyboardInfo.nonZeroAnimationDuration,
             delay: 0,
             options: systemKeyboardInfo.animationOptions,
             animations: {
@@ -121,12 +119,10 @@ extension UIView {
         systemKeyboardInfo: SystemKeyboardInfo,
         completion: ((Bool) -> Void)? = nil
     ) {
-        let animationDuration: TimeInterval = max(systemKeyboardInfo.animationDuration, SystemKeyboardInfo.defaultAnimationDuration)
-        
         superview?.layoutIfNeeded()
         
         UIView.animate(
-            withDuration: animationDuration,
+            withDuration: systemKeyboardInfo.nonZeroAnimationDuration,
             delay: 0,
             options: systemKeyboardInfo.animationOptions,
             animations: {

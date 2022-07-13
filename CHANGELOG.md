@@ -6,6 +6,8 @@ Views and ViewControllers
 
 - `InnerShadowUIView` is added
 - `InteractivePoppingUINavigationController` is added
+- `nonZeroAnimationDuration` is added to `SystemKeyboardInfo`
+- Default `static` properties are exposed to public in `SystemKeyboardInfo`
 - `LeftAlignedCollectionViewFlowLayout` is renamed to `LeftAlignedUICollectionViewFlowLayout`
 - `CenterAlignedCollectionViewFlowLayout` is renamed to `CenterAlignedUICollectionViewFlowLayout`
 - `RightAlignedCollectionViewFlowLayout` is renamed to `RightAlignedUICollectionViewFlowLayout`
