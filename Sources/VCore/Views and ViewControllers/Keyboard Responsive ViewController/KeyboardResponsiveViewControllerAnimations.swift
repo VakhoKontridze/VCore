@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Keyboard Animation
+// MARK: - Keyboard Animation - Custom
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`.
     ///
@@ -71,13 +71,11 @@ extension UIView {
     }
 }
 
-// MARK: - Keyboard Animation - Frame
+// MARK: - Keyboard Animation - Container Offset
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`, by offsetting container `y` origin by keyboard height.
     ///
     /// Much like `UIView` animations, there may be discrepancy between physical device and simulator.
-    ///
-    /// Parameter `show` indicates if keyboard is shown, or hidden.
     ///
     /// Parameter `superview` is used for calling `layoutIfNeeded()`.
     /// In `UIViewController`, `view` can be passed.
@@ -99,7 +97,7 @@ extension UIView {
     ///
     ///         override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
     ///             UIView.animateKeyboardResponsivenessByOffsettingContainer(
-    ///                 show: true,
+    ///                 keyboardWillShow: true,
     ///                 superview: view,
     ///                 containerView: view,
     ///                 systemKeyboardInfo: systemKeyboardInfo
@@ -108,7 +106,7 @@ extension UIView {
     ///
     ///         override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
     ///             UIView.animateKeyboardResponsivenessByOffsettingContainer(
-    ///                 show: false,
+    ///                 keyboardWillShow: false,
     ///                 superview: view,
     ///                 containerView: view,
     ///                 systemKeyboardInfo: systemKeyboardInfo
@@ -117,7 +115,7 @@ extension UIView {
     ///     }
     ///
     open class func animateKeyboardResponsivenessByOffsettingContainer(
-        show: Bool,
+        keyboardWillShow: Bool,
         superview: UIView?,
         containerView: UIView,
         systemKeyboardInfo: SystemKeyboardInfo,
@@ -133,7 +131,7 @@ extension UIView {
             options: systemKeyboardInfo.animationOptions,
             animations: {
                 containerView.frame.origin.y = {
-                    if show {
+                    if keyboardWillShow {
                         return -systemKeyboardInfo.frame.height
                     } else {
                         return 0
@@ -146,14 +144,12 @@ extension UIView {
     }
 }
 
-// MARK: - Keyboard Animation - Minimal Frame
+// MARK: - Keyboard Animation - Minimal Container Offset
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`, by offsetting container `y` origin by minimal distance,
     /// so that `firstResponderView` is not obscured by the keyboard.
     ///
     /// Much like `UIView` animations, there may be discrepancy between physical device and simulator.
-    ///
-    /// Parameter `show` indicates if keyboard is shown, or hidden.
     ///
     /// Parameter `containerView` is `UIView` on which frame animations will be applied.
     ///
@@ -172,7 +168,7 @@ extension UIView {
     ///
     ///         override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
     ///             UIView.animateKeyboardResponsivenessByMinimallyOffsettingContainer(
-    ///                 show: true,
+    ///                 keyboardWillShow: true,
     ///                 firstResponderView: textField,
     ///                 containerView: view,
     ///                 systemKeyboardInfo: systemKeyboardInfo
@@ -181,7 +177,7 @@ extension UIView {
     ///
     ///         override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
     ///             UIView.animateKeyboardResponsivenessByMinimallyOffsettingContainer(
-    ///                 show: false,
+    ///                 keyboardWillShow: false,
     ///                 firstResponderView: textField,
     ///                 containerView: view,
     ///                 systemKeyboardInfo: systemKeyboardInfo
@@ -190,17 +186,17 @@ extension UIView {
     ///     }
     ///
     open class func animateKeyboardResponsivenessByMinimallyOffsettingContainer(
-        show: Bool,
+        keyboardWillShow: Bool,
         firstResponderView: UIView,
         containerView: UIView,
         systemKeyboardInfo: SystemKeyboardInfo,
         marginBottom: CGFloat = 20,
         completion: ((Bool) -> Void)? = nil
     ) {
-        switch show {
+        switch keyboardWillShow {
         case false:
             UIView.animateKeyboardResponsivenessByOffsettingContainer(
-                show: false,
+                keyboardWillShow: false,
                 superview: firstResponderView.superview,
                 containerView: containerView,
                 systemKeyboardInfo: systemKeyboardInfo,

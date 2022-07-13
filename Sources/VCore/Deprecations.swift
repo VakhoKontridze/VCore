@@ -105,7 +105,7 @@ extension UIView {
         completion: ((Bool) -> Void)? = nil
     ) {
         animateKeyboardResponsivenessByOffsettingContainer(
-            show: show,
+            keyboardWillShow: show,
             superview: superview,
             containerView: containerView,
             systemKeyboardInfo: systemKeyboardInfo,
@@ -123,7 +123,7 @@ extension UIView {
         completion: ((Bool) -> Void)? = nil
     ) {
         animateKeyboardResponsivenessByMinimallyOffsettingContainer(
-            show: show,
+            keyboardWillShow: show,
             firstResponderView: firstResponderView,
             containerView: containerView,
             systemKeyboardInfo: systemKeyboardInfo,
