@@ -52,31 +52,31 @@ extension Optional where Wrapped == Any {
 #if canImport(UIKit) && !os(watchOS)
 
 @available(*, deprecated, renamed: "LeftAlignedUICollectionViewFlowLayout")
-typealias LeftAlignedCollectionViewFlowLayout = LeftAlignedUICollectionViewFlowLayout
+public typealias LeftAlignedCollectionViewFlowLayout = LeftAlignedUICollectionViewFlowLayout
 
 @available(*, deprecated, renamed: "CenterAlignedUICollectionViewFlowLayout")
-typealias CenterAlignedCollectionViewFlowLayout = CenterAlignedUICollectionViewFlowLayout
+public typealias CenterAlignedCollectionViewFlowLayout = CenterAlignedUICollectionViewFlowLayout
 
 @available(*, deprecated, renamed: "RightAlignedUICollectionViewFlowLayout")
-typealias RightAlignedCollectionViewFlowLayout = RightAlignedUICollectionViewFlowLayout
+public typealias RightAlignedCollectionViewFlowLayout = RightAlignedUICollectionViewFlowLayout
 
 @available(*, deprecated, renamed: "InfiniteScrollingUITableView")
-typealias InfiniteScrollingTableView = InfiniteScrollingUITableView
+public typealias InfiniteScrollingTableView = InfiniteScrollingUITableView
 
 @available(*, deprecated, renamed: "InfiniteScrollingUITableViewDelegate")
-typealias InfiniteScrollingTableViewDelegate = InfiniteScrollingUITableViewDelegate
+public typealias InfiniteScrollingTableViewDelegate = InfiniteScrollingUITableViewDelegate
 
 @available(*, deprecated, renamed: "InfiniteScrollingUICollectionView")
-typealias InfiniteScrollingCollectionView = InfiniteScrollingUICollectionView
+public typealias InfiniteScrollingCollectionView = InfiniteScrollingUICollectionView
 
 @available(*, deprecated, renamed: "InfiniteScrollingUICollectionViewDelegate")
-typealias InfiniteScrollingCollectionViewDelegate = InfiniteScrollingUICollectionViewDelegate
+public typealias InfiniteScrollingCollectionViewDelegate = InfiniteScrollingUICollectionViewDelegate
 
 @available(*, deprecated, renamed: "KeyboardResponsiveUIViewController")
-typealias KeyboardResponsiveViewController = KeyboardResponsiveUIViewController
+public typealias KeyboardResponsiveViewController = KeyboardResponsiveUIViewController
 
 @available(*, deprecated, renamed: "ScrollableUIView")
-typealias ScrollableView = ScrollableUIView
+public typealias ScrollableView = ScrollableUIView
 
 #endif
 
