@@ -10,7 +10,7 @@ import SwiftUI
 import VCore
 
 // MARK: - View Controller
-@MainActor final class ViewController: UIViewController {
+final class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         

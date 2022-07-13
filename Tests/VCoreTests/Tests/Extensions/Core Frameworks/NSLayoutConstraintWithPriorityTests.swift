@@ -13,7 +13,7 @@ import XCTest
 // MARK: - Tests
 final class NSLayoutConstraintWithPriorityTests: XCTestCase {
     func testLayoutPriority() {
-        let priority: UILayoutPriority = .defaultHigh
+        let priority: UILayoutPriority = .required
         
         let view: UIView = .init()
 

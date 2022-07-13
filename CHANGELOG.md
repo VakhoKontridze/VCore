@@ -15,6 +15,36 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.15.0(46)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.0) — *2022 07 13*
+
+Views and ViewControllers
+
+- `InnerShadowUIView` is added
+- `InteractivePoppingUINavigationController` is added
+- `nonZeroAnimationDuration` is added to `SystemKeyboardInfo`
+- `UIView.childFirstResponder` and `UIView.childFirstResponderView` properties are added
+- Default `static` properties are exposed to public in `SystemKeyboardInfo`
+- `LeftAlignedCollectionViewFlowLayout` is renamed to `LeftAlignedUICollectionViewFlowLayout`
+- `CenterAlignedCollectionViewFlowLayout` is renamed to `CenterAlignedUICollectionViewFlowLayout`
+- `RightAlignedCollectionViewFlowLayout` is renamed to `RightAlignedUICollectionViewFlowLayout`
+- `KeyboardResponsiveViewController` is renamed to `KeyboardResponsiveUIViewController`
+- `InfiniteScrollingTableView` is renamed to `InfiniteScrollingUITableView`
+- `InfiniteScrollingTableViewDelegate` is renamed to `InfiniteScrollingUITableViewDelegate`
+- `InfiniteScrollingCollectionView` is renamed to `InfiniteScrollingUICollectionView`
+- `InfiniteScrollingCollectionViewDelegate` is renamed to `InfiniteScrollingUICollectionViewDelegate`
+- `ScrollableView` is renamed to `ScrollableUIView`
+
+Helpers
+
+- `UIView` helper `NSLayoutConstraint` API has been updated
+
+Extensions
+
+- `Double.rounded(fractions:)` and `Double.round(fractions:)` methods are added
+- `String.diacriticInsensitiveString(locale:)` method is added
+- `UIViewController.isRootViewController` and `UIViewController.isNonRootViewController` properties are added
+- `NSLayoutConstraint.init(item:attribute:relatedBy:toItem:attribute:multiplier:constant:priority)` initializer is added
+
 ### [3.14.0(45)](https://github.com/VakhoKontridze/VCore/releases/tag/3.14.0) — *2022 07 12*
 
 Views and ViewControllers
@@ -26,7 +56,7 @@ Views and ViewControllers
 
 Extensions
 
-- `NSAttributedString.init(attributedStrings:)` is added
+- `NSAttributedString.init(attributedStrings:)` initializer is added
 
 ### [3.13.2(44)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.2) — *2022 07 12*
 
