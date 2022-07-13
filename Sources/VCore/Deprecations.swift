@@ -96,7 +96,7 @@ extension SwiftUIBaseButton {
 #if os(iOS)
 
 extension UIView {
-    @available(*, deprecated, message: "Renamed to `animateKeyboardResponsivenessByOffsettingContainer`")
+    @available(*, deprecated, message: "Renamed to `animateKeyboardResponsivenessByOffsettingContainer`. `show` parameter renamed to `keyboardWillShow.")
     open class func animateKeyboardResponsivenessOffsettingContainer(
         show: Bool,
         superview: UIView?,
@@ -113,7 +113,7 @@ extension UIView {
         )
     }
     
-    @available(*, deprecated, message: "Renamed to `animateKeyboardResponsivenessByMinimallyOffsettingContainer`")
+    @available(*, deprecated, message: "Renamed to `animateKeyboardResponsivenessByMinimallyOffsettingContainer`. `show` parameter renamed to `keyboardWillShow.")
     open class func animateKeyboardResponsivenessMinimallyOffsettingContainer(
         show: Bool,
         firstResponderView: UIView,
