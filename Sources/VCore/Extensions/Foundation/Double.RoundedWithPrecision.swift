@@ -16,9 +16,9 @@ extension Double {
     ///     let rounded2: Double = 3.1415.rounded(fractions: 3) // 3.142
     ///
     public func rounded(fractions: Int) -> Double {
-        assert(precision >= 0)
+        assert(fractions >= 0)
         
-        let power: Double = pow(10, .init(precision))
+        let power: Double = pow(10, .init(fractions))
         return (self * power).rounded() / power
     }
     
