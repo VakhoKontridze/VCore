@@ -4,7 +4,7 @@
 
 Helpers
 
-- Missing method are added to `UIView` helper `NSLayoutConstraint` methods
+- Missing methods are added to `UIView` helper `NSLayoutConstraint` methods
 
 ### [3.15.1(47)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.1) — *2022 07 13*
 
