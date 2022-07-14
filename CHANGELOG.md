@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.15.2(48)
+
+Helpers
+
+- Missing method are added to `UIView` helper `NSLayoutConstraint` methods
+
 ### [3.15.1(47)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.1) — *2022 07 13*
 
 Other

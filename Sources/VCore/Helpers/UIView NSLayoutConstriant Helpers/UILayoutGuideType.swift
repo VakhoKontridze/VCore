@@ -33,7 +33,7 @@ public enum UILayoutGuideType {
     ///     }
     ///
     ///     extension UILayoutGuideType {
-    ///         static var someOther: Self { .custom(\.someLayoutGuide) }
+    ///         static var someOther: Self { .custom(\.someOtherLayoutGuide) }
     ///     }
     ///
     ///     view.constraintLeading(

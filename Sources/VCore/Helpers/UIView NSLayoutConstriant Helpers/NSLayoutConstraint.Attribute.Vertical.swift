@@ -99,8 +99,8 @@ extension UIView {
     ///             on: .safeArea,
     ///             to: view4,
     ///             layoutGuide: .safeArea,
-    ///             attribute: .top,
-    ///             relation: .centerY,
+    ///             attribute: .centerY,
+    ///             relation: .equal,
     ///             constant: 0,
     ///             multiplier: 1,
     ///             priority: .defaultHigh
@@ -141,8 +141,8 @@ extension UIView {
     ///             on: .safeArea,
     ///             to: view4,
     ///             layoutGuide: .safeArea,
-    ///             attribute: .top,
-    ///             relation: .bottom,
+    ///             attribute: .bottom,
+    ///             relation: .equal,
     ///             constant: 0,
     ///             multiplier: 1,
     ///             priority: .defaultHigh
@@ -162,6 +162,90 @@ extension UIView {
         .init(
             item: selfLayoutGuide?.toLayoutGuide(in: self) ?? self,
             attribute: .bottom,
+            relatedBy: relation,
+            toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
+            attribute: attribute.toAttribute,
+            multiplier: multiplier,
+            constant: constant,
+            priority: priority
+        )
+    }
+    
+    /// Constraints `UIView`'s `DimensionAttribute.firstBaseline` to another `UIView`'s `VerticalAttribute`,
+    /// with given `relation`, `constant`, `multiplier`, and `priority`.
+    ///
+    /// By default, another `UIView`'s `VerticalAttribute` is set to `firstBaseline`.
+    ///
+    ///     NSLayoutConstraint.activate([
+    ///         view1.constraintFirstBaseline(to: view2),
+    ///
+    ///         view3.constraintFirstBaseline(
+    ///             on: .safeArea,
+    ///             to: view4,
+    ///             layoutGuide: .safeArea,
+    ///             attribute: .firstBaseline,
+    ///             relation: .equal,
+    ///             constant: 0,
+    ///             multiplier: 1,
+    ///             priority: .defaultHigh
+    ///         )
+    ///     ])
+    ///
+    public func constraintFirstBaseline(
+        on selfLayoutGuide: UILayoutGuideType? = nil,
+        to view: UIView?,
+        layoutGuide: UILayoutGuideType? = nil,
+        attribute: NSLayoutConstraint.Attribute.Vertical = .firstBaseline,
+        relation: NSLayoutConstraint.Relation = .equal,
+        constant: CGFloat = 0,
+        multiplier: CGFloat = 1,
+        priority: UILayoutPriority? = nil
+    ) -> NSLayoutConstraint {
+        .init(
+            item: selfLayoutGuide?.toLayoutGuide(in: self) ?? self,
+            attribute: .firstBaseline,
+            relatedBy: relation,
+            toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
+            attribute: attribute.toAttribute,
+            multiplier: multiplier,
+            constant: constant,
+            priority: priority
+        )
+    }
+    
+    /// Constraints `UIView`'s `DimensionAttribute.lastBaseline` to another `UIView`'s `VerticalAttribute`,
+    /// with given `relation`, `constant`, `multiplier`, and `priority`.
+    ///
+    /// By default, another `UIView`'s `VerticalAttribute` is set to `lastBaseline`.
+    ///
+    ///     NSLayoutConstraint.activate([
+    ///         view1.constraintLastBaseline(to: view2),
+    ///
+    ///         view3.constraintLastBaseline(
+    ///             on: .safeArea,
+    ///             to: view4,
+    ///             layoutGuide: .safeArea,
+    ///             attribute: .lastBaseline,
+    ///             relation: .equal,
+    ///             constant: 0,
+    ///             multiplier: 1,
+    ///             priority: .defaultHigh
+    ///         )
+    ///     ])
+    ///
+    public func constraintLastBaseline(
+        on selfLayoutGuide: UILayoutGuideType? = nil,
+        to view: UIView?,
+        layoutGuide: UILayoutGuideType? = nil,
+        attribute: NSLayoutConstraint.Attribute.Vertical = .lastBaseline,
+        relation: NSLayoutConstraint.Relation = .equal,
+        constant: CGFloat = 0,
+        multiplier: CGFloat = 1,
+        priority: UILayoutPriority? = nil
+    ) -> NSLayoutConstraint {
+        .init(
+            item: selfLayoutGuide?.toLayoutGuide(in: self) ?? self,
+            attribute: .lastBaseline,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
             attribute: attribute.toAttribute,
