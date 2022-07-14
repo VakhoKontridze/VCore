@@ -28,12 +28,15 @@ public enum UILayoutGuideType {
     
     /// Custom layout guide.
     ///
+    /// A `KeyPath` cannot be used in declaration, as generic `Value` disallows the use of subclasses,
+    /// such as `UITrackingLayoutGuide` and `UIKeyboardLayoutGuide`.
+    ///
     ///     extension UIView {
     ///         var someOtherLayoutGuide: UILayoutGuide { ... }
     ///     }
     ///
     ///     extension UILayoutGuideType {
-    ///         static var someOther: Self { .custom(\.someOtherLayoutGuide) }
+    ///         static var someOther: Self { .custom({ $0.someOtherLayoutGuide })
     ///     }
     ///
     ///     view.constraintLeading(
@@ -42,7 +45,7 @@ public enum UILayoutGuideType {
     ///         ...
     ///     )
     ///
-    case custom(KeyPath<UIView, UILayoutGuide>)
+    case custom((UIView) -> UILayoutGuide)
     
     // MARK: Properties
     /// Converts `UILayoutGuideType` to `UILayoutGuide` within the context of an `UIView`.
@@ -64,8 +67,8 @@ public enum UILayoutGuideType {
                 fatalError()
             }
             
-        case .custom(let layoutGuideKeyPath):
-            return view[keyPath: layoutGuideKeyPath]
+        case .custom(let block):
+            return block(view)
         }
     }
 }

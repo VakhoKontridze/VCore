@@ -642,6 +642,13 @@ extension UIView {
     }
 }
 
+extension UILayoutGuideType {
+    @available(*, deprecated, message: "Use `custom` with closure instead")
+    public static func custom(_ keyPath: KeyPath<UIView, UILayoutGuide>) -> Self {
+        .custom({ $0[keyPath: keyPath] })
+    }
+}
+
 #endif
 
 // MARK: - Extensions - Foundation
