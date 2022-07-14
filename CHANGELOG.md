@@ -1,6 +1,6 @@
 # Change Log
 
-### 3.15.2(48)
+### [3.15.2(48)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.2) — *2022 07 14*
 
 Helpers
 
