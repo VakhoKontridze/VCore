@@ -145,7 +145,7 @@ extension UIView {
         )
     }
     
-    @available(*, deprecated, message: "Renamed to `animateKeyboardResponsivenessByMinimallyOffsettingContainer`. `show` parameter renamed to `keyboardWillShow.")
+    @available(*, deprecated, message: "Renamed to `animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight`. `show` parameter renamed to `keyboardWillShow.")
     open class func animateKeyboardResponsivenessMinimallyOffsettingContainer(
         show: Bool,
         firstResponderView: UIView,
@@ -154,8 +154,27 @@ extension UIView {
         marginBottom: CGFloat = 20,
         completion: ((Bool) -> Void)? = nil
     ) {
-        animateKeyboardResponsivenessByMinimallyOffsettingContainer(
+        animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
             keyboardWillShow: show,
+            firstResponderView: firstResponderView,
+            containerView: containerView,
+            systemKeyboardInfo: systemKeyboardInfo,
+            marginBottom: marginBottom,
+            completion: completion
+        )
+    }
+    
+    @available(*, deprecated, renamed: "animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight")
+    open class func animateKeyboardResponsivenessByMinimallyOffsettingContainer(
+        keyboardWillShow: Bool,
+        firstResponderView: UIView,
+        containerView: UIView,
+        systemKeyboardInfo: SystemKeyboardInfo,
+        marginBottom: CGFloat = 20,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
+            keyboardWillShow: keyboardWillShow,
             firstResponderView: firstResponderView,
             containerView: containerView,
             systemKeyboardInfo: systemKeyboardInfo,

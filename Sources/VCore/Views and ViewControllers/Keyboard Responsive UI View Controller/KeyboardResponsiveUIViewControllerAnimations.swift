@@ -140,7 +140,7 @@ extension UIView {
     }
 }
 
-// MARK: - Keyboard Animation - Minimal Container Offset
+// MARK: - Keyboard Animation - Container Offset by Obscured Subview Height
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`, by offsetting container `y` origin by minimal distance,
     /// so that `firstResponderView` is not obscured by the keyboard.
@@ -166,7 +166,7 @@ extension UIView {
     ///         }
     ///
     ///         override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
-    ///             UIView.animateKeyboardResponsivenessByMinimallyOffsettingContainer(
+    ///             UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
     ///                 keyboardWillShow: true,
     ///                 firstResponderView: textField,
     ///                 containerView: view,
@@ -175,7 +175,7 @@ extension UIView {
     ///         }
     ///
     ///         override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
-    ///             UIView.animateKeyboardResponsivenessByMinimallyOffsettingContainer(
+    ///             UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
     ///                 keyboardWillShow: false,
     ///                 firstResponderView: textField,
     ///                 containerView: view,
@@ -184,7 +184,7 @@ extension UIView {
     ///         }
     ///     }
     ///
-    open class func animateKeyboardResponsivenessByMinimallyOffsettingContainer(
+    open class func animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
         keyboardWillShow: Bool,
         firstResponderView: UIView,
         containerView: UIView,
