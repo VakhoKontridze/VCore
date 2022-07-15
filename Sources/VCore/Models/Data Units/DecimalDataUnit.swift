@@ -13,7 +13,7 @@ import Foundation
 /// `rawValue` defines the `magnitude`.
 ///
 /// Only defines officially recognized units.
-public enum DecimalDataUnit: Int, DataUnit, CaseIterable, Hashable, Equatable, Identifiable {
+public enum DecimalDataUnit: Int, DataUnit, Hashable, Equatable, Identifiable, CaseIterable {
     // MARK: Cases
     /// Byte (1000^0).
     case B = 0
