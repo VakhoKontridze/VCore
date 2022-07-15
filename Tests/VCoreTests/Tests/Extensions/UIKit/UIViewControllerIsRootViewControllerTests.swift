@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 13.07.22.
 //
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 
 import XCTest
 @testable import VCore

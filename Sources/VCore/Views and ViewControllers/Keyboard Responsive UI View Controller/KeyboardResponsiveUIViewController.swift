@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - Keyboard Responsive UI View Controller
-/// Keyboard Responsive ViewController that handles keyboard notifications.
+/// Keyboard Responsive `UIViewController` that handles keyboard notifications.
 ///
 /// Subclass, and override `keyboardWillShow` and `keyboardWillHide` methods, to observe keyboard notifications.
 /// These methods pass `SystemKeyboardInfo` as parameter, that contains information about keyboard height, animation duration, and options.

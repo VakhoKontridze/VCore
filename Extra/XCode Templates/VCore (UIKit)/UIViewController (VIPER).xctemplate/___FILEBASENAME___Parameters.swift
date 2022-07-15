@@ -6,6 +6,6 @@ import Foundation
 struct ___VARIABLE_productName___Parameters {
     // MARK: Properties
     
-    // MARK: Preview
+    // MARK: Mock
     static var mock: Self { .init() }
 }

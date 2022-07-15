@@ -15,11 +15,33 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.16.0(49)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.0) — *2022 07 15*
+
+View and ViewControllers
+
+- `KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight` is added that handles keyboard notifications and calls `UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight`
+
+Models
+
+- `DataUnit` `protocol` is added, alongside with `DecimalDataUnit` and `BinaryDataUnit`
+
+Helpers
+
+- `KeyPath`-based `UILayoutGuideType` `case` is replaced with closure-based one
+
+Extensions
+
+- `UIImage.sizeInKilobytes`, `UIImage.sizeInMegabytes`, `UIImage.sizeInKibibytes`, and `UIImage.sizeInMebibytes` properties are added
+
+Other
+
+- Platform-specific compilation errors are fixed
+
 ### [3.15.2(48)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.2) — *2022 07 14*
 
 Helpers
 
-- Missing method are added to `UIView` helper `NSLayoutConstraint` methods
+- Missing methods are added to `UIView` helper `NSLayoutConstraint` methods
 
 ### [3.15.1(47)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.1) — *2022 07 13*
 
