@@ -2,6 +2,10 @@
 
 ### 3.16.0(49)
 
+View and ViewControllers
+
+- `KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight` is added that handles keyboard notifications and calls `UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight`
+
 Models
 
 - `DataUnit` `protocol` is added, alongside with `DecimalDataUnit` and `BinaryDataUnit`
