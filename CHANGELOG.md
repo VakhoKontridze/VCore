@@ -1,10 +1,18 @@
 # Change Log
 
-### 3.15.3(49)
+### 3.16.0(49)
+
+Models
+
+- `DataUnit` `protocol` is added, alongside with `DecimalDataUnit` and `BinaryDataUnit`
 
 Helpers
 
 - `KeyPath`-based `UILayoutGuideType` `case` is replaced with closure-based one
+
+Extensions
+
+- `UIImage.sizeInKilobytes`, `UIImage.sizeInMegabytes`, `UIImage.sizeInKibibytes`, and `UIImage.sizeInMebibytes` properties are added
 
 ### [3.15.2(48)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.2) — *2022 07 14*
 
