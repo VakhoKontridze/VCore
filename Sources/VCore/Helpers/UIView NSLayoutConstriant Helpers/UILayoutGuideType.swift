@@ -24,6 +24,7 @@ public enum UILayoutGuideType {
     
     /// Layout guide that tracks the keyboard’s position in your app’s layout.
     @available(iOS 15.0, *)
+    @available(tvOS, unavailable)
     case keyboard
     
     /// Custom layout guide.
@@ -60,12 +61,14 @@ public enum UILayoutGuideType {
         case .safeArea:
             return view.safeAreaLayoutGuide
         
+        #if os(iOS)
         case .keyboard:
             if #available(iOS 15.0, *) {
                 return view.keyboardLayoutGuide
             } else {
-                fatalError()
+                fatalError() // Safe to call, as case will never be created
             }
+        #endif
             
         case .custom(let block):
             return block(view)

@@ -71,8 +71,10 @@ public typealias InfiniteScrollingCollectionView = InfiniteScrollingUICollection
 @available(*, deprecated, renamed: "InfiniteScrollingUICollectionViewDelegate")
 public typealias InfiniteScrollingCollectionViewDelegate = InfiniteScrollingUICollectionViewDelegate
 
+#if os(iOS)
 @available(*, deprecated, renamed: "KeyboardResponsiveUIViewController")
 public typealias KeyboardResponsiveViewController = KeyboardResponsiveUIViewController
+#endif
 
 @available(*, deprecated, renamed: "ScrollableUIView")
 public typealias ScrollableView = ScrollableUIView

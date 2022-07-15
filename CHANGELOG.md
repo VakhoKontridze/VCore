@@ -18,6 +18,10 @@ Extensions
 
 - `UIImage.sizeInKilobytes`, `UIImage.sizeInMegabytes`, `UIImage.sizeInKibibytes`, and `UIImage.sizeInMebibytes` properties are added
 
+Other
+
+- Platform-specific compilation errors are fixed
+
 ### [3.15.2(48)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.2) — *2022 07 14*
 
 Helpers
