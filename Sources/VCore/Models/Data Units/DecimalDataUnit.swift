@@ -53,9 +53,9 @@ public enum DecimalDataUnit: Int, DataUnit, Hashable, Equatable, Identifiable, C
 extension Double {
     /// Converts bytes to decimal data unit.
     ///
-    ///     1000.convertDecimalBytes(to: .kB) // 1
+    ///     let kilobytes: Double = 1000.decimalBytesConverted(to: .kB) // 1
     ///
-    public func convertDecimalBytes(to dataUnit: DecimalDataUnit) -> Double {
+    public func decimalBytesConverted(to dataUnit: DecimalDataUnit) -> Double {
         DecimalDataUnit.convert(self, .B, to: dataUnit)
     }
 }

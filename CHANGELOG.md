@@ -1,5 +1,12 @@
 # Change Log
 
+### 3.16.1(50)
+
+Models
+
+- `Double.convertDecimalBytes(to:)` is renamed to `Double.decimalBytesConverted(to:)`
+- `Double.convertBinaryBytes(to:)` is renamed to `Double.binaryBytesConverted(to:)`
+
 ### [3.16.0(49)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.0) — *2022 07 15*
 
 View and ViewControllers

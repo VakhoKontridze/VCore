@@ -188,6 +188,19 @@ extension UIView {
     
 #endif
 
+// MARK: - Data Units
+extension Double {
+    @available(*, deprecated, renamed: "decimalBytesConverted")
+    public func convertDecimalBytes(to dataUnit: DecimalDataUnit) -> Double {
+        decimalBytesConverted(to: dataUnit)
+    }
+    
+    @available(*, deprecated, renamed: "binaryBytesConverted")
+    public func convertBinaryBytes(to dataUnit: BinaryDataUnit) -> Double {
+        binaryBytesConverted(to: dataUnit)
+    }
+}
+
 // MARK: - Edge Insets
 @available(*, deprecated, renamed: "EdgeInsets_HorizontalVertical")
 public typealias EdgeInsets_HV = EdgeInsets_HorizontalVertical
