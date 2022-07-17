@@ -16,7 +16,7 @@ struct PostDetailsUIModel {
     // MARK: Layout
     struct Layout {
         // MARK: Properties
-        static var bodyTextPadding: EdgeInsets_LTTB { .init(leading: 20, trailing: 20, top: 10, bottom: 20) }
+        static var bodyTextPadding: EdgeInsets_LeadingTrailingTopBottom { .init(leading: 20, trailing: 20, top: 10, bottom: 20) }
         
         // MARK: Initializers
         private init() {}

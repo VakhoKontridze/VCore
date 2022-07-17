@@ -16,7 +16,7 @@ struct PostRowViewUIModel {
     // MARK: Layout
     struct Layout {
         // MARK: Properties
-        static var padding: EdgeInsets_HV { .init(horizontal: 20, vertical: 5) }
+        static var padding: EdgeInsets_HorizontalVertical { .init(horizontal: 20, vertical: 5) }
         static var spacing: CGFloat { 2 }
         
         static var bodyTextLineLimit: Int { 2 }
