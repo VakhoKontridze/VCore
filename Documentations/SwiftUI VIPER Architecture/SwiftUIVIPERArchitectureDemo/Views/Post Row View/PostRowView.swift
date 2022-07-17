@@ -28,7 +28,7 @@ struct PostRowView: View {
                 .font(UIModel.Fonts.titleText)
             
             Text(parameters.body)
-                .lineLimit(UIModel.Layout.bodyTextLineLimit...UIModel.Layout.bodyTextLineLimit) // FIXME: Bug
+                .lineLimit(UIModel.Layout.bodyTextLineLimit)
                 .foregroundColor(UIModel.Colors.bodyText)
                 .font(UIModel.Fonts.bodyText)
         })
