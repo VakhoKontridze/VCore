@@ -14,6 +14,8 @@ import UIKit
 open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight: KeyboardResponsiveUIViewController {
     // MARK: Properties
     /// `UIView` on which offset animations will be applied. Defaults to `view`.
+    ///
+    /// In case of `ScrollableUIView`, `contentView` can be passed.
     open lazy var keyboardResponsivenessContainerView: UIView = view
     
     // MARK: Keyboard Responsiveness
@@ -25,7 +27,7 @@ open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubvie
         UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
             keyboardWillShow: true,
             firstResponderView: firstResponderSubview,
-            containerView: view,
+            containerView: keyboardResponsivenessContainerView,
             systemKeyboardInfo: systemKeyboardInfo
         )
     }
@@ -38,7 +40,7 @@ open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubvie
         UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
             keyboardWillShow: false,
             firstResponderView: firstResponderSubview,
-            containerView: view,
+            containerView: keyboardResponsivenessContainerView,
             systemKeyboardInfo: systemKeyboardInfo
         )
     }
