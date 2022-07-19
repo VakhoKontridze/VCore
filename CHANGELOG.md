@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.16.2(51)
+
+View and ViewControllers
+
+- Issue with `KeyboardResponsiveUIViewController` offset-based animation, not considering pre-offsetted container is fixed
+
 ### [3.16.1(50)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.1) — *2022 07 19*
 
 View and ViewControllers
