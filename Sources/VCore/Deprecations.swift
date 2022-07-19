@@ -185,6 +185,51 @@ extension UIView {
         )
     }
 }
+
+extension UIView {
+    @available(*, deprecated, message: "`superview` parameter is removed. Call `superview?.layoutIfNeeded()` directly inside the `animations` block.")
+    open class func animateKeyboardResponsiveness(
+        superview: UIView?,
+        systemKeyboardInfo: SystemKeyboardInfo,
+        animations: @escaping () -> Void,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        animateKeyboardResponsiveness(
+            systemKeyboardInfo: systemKeyboardInfo,
+            animations: {
+                superview?.layoutIfNeeded()
+                animations()
+            },
+            completion: completion
+        )
+    }
+    
+    @available(*, deprecated)
+    open class func animateKeyboardResponsivenessByOffsettingContainer(
+        keyboardWillShow: Bool,
+        superview: UIView?,
+        containerView: UIView,
+        systemKeyboardInfo: SystemKeyboardInfo,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        UIView.animate(
+            withDuration: systemKeyboardInfo.nonZeroAnimationDuration,
+            delay: 0,
+            options: systemKeyboardInfo.animationOptions,
+            animations: {
+                superview?.layoutIfNeeded()
+                containerView.bounds.origin.y = {
+                    if keyboardWillShow {
+                        return systemKeyboardInfo.frame.height
+                    } else {
+                        return 0
+                    }
+                }()
+            },
+            completion: completion
+        )
+    }
+}
     
 #endif
 

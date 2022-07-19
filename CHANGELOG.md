@@ -2,6 +2,10 @@
 
 ### 3.16.1(50)
 
+View and ViewControllers
+
+- Issues with `KeyboardResponsiveUIViewController` animations are fixed
+
 Models
 
 - `Double.convertDecimalBytes(to:)` is renamed to `Double.decimalBytesConverted(to:)`
