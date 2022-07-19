@@ -58,15 +58,13 @@ extension UIView {
         animations: @escaping () -> Void,
         completion: ((Bool) -> Void)? = nil
     ) {
-        superview?.layoutIfNeeded()
-        
         UIView.animate(
             withDuration: systemKeyboardInfo.nonZeroAnimationDuration,
             delay: 0,
             options: systemKeyboardInfo.animationOptions,
             animations: {
-                animations()
                 superview?.layoutIfNeeded()
+                animations()
             },
             completion: completion
         )
@@ -127,21 +125,19 @@ extension UIView {
         systemKeyboardInfo: SystemKeyboardInfo,
         completion: ((Bool) -> Void)? = nil
     ) {
-        superview?.layoutIfNeeded()
-        
         UIView.animate(
             withDuration: systemKeyboardInfo.nonZeroAnimationDuration,
             delay: 0,
             options: systemKeyboardInfo.animationOptions,
             animations: {
-                containerView.frame.origin.y = {
+                superview?.layoutIfNeeded()
+                containerView.bounds.origin.y = {
                     if keyboardWillShow {
-                        return -systemKeyboardInfo.frame.height
+                        return systemKeyboardInfo.frame.height
                     } else {
                         return 0
                     }
                 }()
-                superview?.layoutIfNeeded()
             },
             completion: completion
         )
@@ -226,7 +222,7 @@ extension UIView {
             
             let offset: CGFloat = {
                 if obscuredHeight > 0 {
-                    return -obscuredHeight
+                    return obscuredHeight
                 } else {
                     return 0
                 }
@@ -235,7 +231,7 @@ extension UIView {
             UIView.animateKeyboardResponsiveness(
                 superview: firstResponderView.superview,
                 systemKeyboardInfo: systemKeyboardInfo,
-                animations: { containerView.frame.origin.y = offset },
+                animations: { containerView.bounds.origin.y = offset },
                 completion: completion
             )
         }
