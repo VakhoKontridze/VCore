@@ -15,9 +15,6 @@ extension UIView {
     ///
     /// Much like `UIView` animations, there may be discrepancy between physical device and simulator.
     ///
-    /// Parameter `superview` is used for calling `layoutIfNeeded()`.
-    /// In `UIViewController`, `view` can be passed.
-    ///
     ///     final class SomeViewController: KeyboardResponsiveUIViewController {
     ///         private let textField: UITextField = { ... }()
     ///
@@ -35,9 +32,13 @@ extension UIView {
     ///             super.keyboardWillShow(systemKeyboardInfo)
     ///
     ///             UIView.animateKeyboardResponsiveness(
-    ///                 superview: view,
     ///                 systemKeyboardInfo: systemKeyboardInfo,
-    ///                 animations: { [weak self] in self?.view.frame.origin.y = -systemKeyboardInfo.frame.height }
+    ///                 animations: { [weak self] in
+    ///                     guard let self = self else { return }
+    ///
+    ///                     self.view.superview?.layoutIfNeeded()
+    ///                     self.view.frame.origin.y = -systemKeyboardInfo.frame.height
+    ///                 }
     ///             )
     ///         }
     ///
@@ -45,104 +46,27 @@ extension UIView {
     ///             super.keyboardWillHide(systemKeyboardInfo)
     ///
     ///             UIView.animateKeyboardResponsiveness(
-    ///                 superview: view,
     ///                 systemKeyboardInfo: systemKeyboardInfo,
-    ///                 animations: { [weak self] in self?.view.frame.origin.y = 0 }
+    ///                 animations: { [weak self] in
+    ///                     guard let self = self else { return }
+    ///
+    ///                     self.view.superview?.layoutIfNeeded()
+    ///                     self.view.frame.origin.y = 0
+    ///                 }
     ///             )
     ///         }
     ///     }
     ///
     open class func animateKeyboardResponsiveness(
-        superview: UIView?,
         systemKeyboardInfo: SystemKeyboardInfo,
         animations: @escaping () -> Void,
         completion: ((Bool) -> Void)? = nil
     ) {
-        superview?.layoutIfNeeded()
-        
         UIView.animate(
             withDuration: systemKeyboardInfo.nonZeroAnimationDuration,
             delay: 0,
             options: systemKeyboardInfo.animationOptions,
-            animations: {
-                animations()
-                superview?.layoutIfNeeded()
-            },
-            completion: completion
-        )
-    }
-}
-
-// MARK: - Keyboard Animation - Container Offset
-extension UIView {
-    /// Animates changes to `UIView` using `SystemKeyboardInfo`, by offsetting container `y` origin by keyboard height.
-    ///
-    /// Much like `UIView` animations, there may be discrepancy between physical device and simulator.
-    ///
-    /// Parameter `superview` is used for calling `layoutIfNeeded()`.
-    /// In `UIViewController`, `view` can be passed.
-    ///
-    /// Parameter `containerView` is `UIView` on which frame animations will be applied.
-    ///
-    ///     final class SomeViewController: KeyboardResponsiveUIViewController {
-    ///         private let textField: UITextField = { ... }()
-    ///
-    ///         override func viewDidLoad() {
-    ///             super.viewDidLoad()
-    ///
-    ///             view.addSubview(textField)
-    ///
-    ///             NSLayoutConstraint.activate([
-    ///                 ...
-    ///             ])
-    ///         }
-    ///
-    ///         override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
-    ///             super.keyboardWillShow(systemKeyboardInfo)
-    ///
-    ///             UIView.animateKeyboardResponsivenessByOffsettingContainer(
-    ///                 keyboardWillShow: true,
-    ///                 superview: view,
-    ///                 containerView: view,
-    ///                 systemKeyboardInfo: systemKeyboardInfo
-    ///             )
-    ///         }
-    ///
-    ///         override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
-    ///             super.keyboardWillHide(systemKeyboardInfo)
-    ///
-    ///             UIView.animateKeyboardResponsivenessByOffsettingContainer(
-    ///                 keyboardWillShow: false,
-    ///                 superview: view,
-    ///                 containerView: view,
-    ///                 systemKeyboardInfo: systemKeyboardInfo
-    ///             )
-    ///         }
-    ///     }
-    ///
-    open class func animateKeyboardResponsivenessByOffsettingContainer(
-        keyboardWillShow: Bool,
-        superview: UIView?,
-        containerView: UIView,
-        systemKeyboardInfo: SystemKeyboardInfo,
-        completion: ((Bool) -> Void)? = nil
-    ) {
-        superview?.layoutIfNeeded()
-        
-        UIView.animate(
-            withDuration: systemKeyboardInfo.nonZeroAnimationDuration,
-            delay: 0,
-            options: systemKeyboardInfo.animationOptions,
-            animations: {
-                containerView.frame.origin.y = {
-                    if keyboardWillShow {
-                        return -systemKeyboardInfo.frame.height
-                    } else {
-                        return 0
-                    }
-                }()
-                superview?.layoutIfNeeded()
-            },
+            animations: animations,
             completion: completion
         )
     }
@@ -207,11 +131,14 @@ extension UIView {
     ) {
         switch keyboardWillShow {
         case false:
-            UIView.animateKeyboardResponsivenessByOffsettingContainer(
-                keyboardWillShow: false,
-                superview: firstResponderView.superview,
-                containerView: containerView,
+            UIView.animateKeyboardResponsiveness(
                 systemKeyboardInfo: systemKeyboardInfo,
+                animations: {
+                    firstResponderView.superview?.layoutIfNeeded()
+                    containerView.superview?.layoutIfNeeded()
+                    
+                    containerView.bounds.origin.y = 0
+                },
                 completion: completion
             )
             
@@ -226,16 +153,20 @@ extension UIView {
             
             let offset: CGFloat = {
                 if obscuredHeight > 0 {
-                    return -obscuredHeight
+                    return obscuredHeight
                 } else {
                     return 0
                 }
             }()
-            
+
             UIView.animateKeyboardResponsiveness(
-                superview: firstResponderView.superview,
                 systemKeyboardInfo: systemKeyboardInfo,
-                animations: { containerView.frame.origin.y = offset },
+                animations: {
+                    firstResponderView.superview?.layoutIfNeeded()
+                    containerView.superview?.layoutIfNeeded()
+                    
+                    containerView.bounds.origin.y = offset
+                },
                 completion: completion
             )
         }

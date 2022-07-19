@@ -15,6 +15,17 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.16.1(50)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.1) — *2022 07 19*
+
+View and ViewControllers
+
+- Issues with `KeyboardResponsiveUIViewController` animations are fixed
+
+Models
+
+- `Double.convertDecimalBytes(to:)` is renamed to `Double.decimalBytesConverted(to:)`
+- `Double.convertBinaryBytes(to:)` is renamed to `Double.binaryBytesConverted(to:)`
+
 ### [3.16.0(49)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.0) — *2022 07 15*
 
 View and ViewControllers
