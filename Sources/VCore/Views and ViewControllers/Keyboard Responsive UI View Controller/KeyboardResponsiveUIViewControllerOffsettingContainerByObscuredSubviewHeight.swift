@@ -12,6 +12,11 @@ import UIKit
 // MARK: - Keyboard Responsive UI View Controller Offsetting Container by Obscured Subview Height
 /// Subclass of  `KeyboardResponsiveUIViewController` that handles keyboard notifications by offsetting container by the obscured subview height.
 open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight: KeyboardResponsiveUIViewController {
+    // MARK: Properties
+    /// `UIView` on which offset animations will be applied. Defaults to `view`.
+    open lazy var keyboardResponsivenessContainerView: UIView = view
+    
+    // MARK: Keyboard Responsiveness
     open override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
         super.keyboardWillShow(systemKeyboardInfo)
         
