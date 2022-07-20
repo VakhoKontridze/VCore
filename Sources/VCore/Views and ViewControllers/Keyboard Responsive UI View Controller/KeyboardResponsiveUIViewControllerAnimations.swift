@@ -37,7 +37,7 @@ extension UIView {
     ///                     guard let self = self else { return }
     ///
     ///                     self.view.superview?.layoutIfNeeded()
-    ///                     self.view.frame.origin.y = -systemKeyboardInfo.frame.height
+    ///                     self.view.bounds.origin.y = -systemKeyboardInfo.frame.height
     ///                 }
     ///             )
     ///         }
@@ -51,7 +51,7 @@ extension UIView {
     ///                     guard let self = self else { return }
     ///
     ///                     self.view.superview?.layoutIfNeeded()
-    ///                     self.view.frame.origin.y = 0
+    ///                     self.view.bounds.origin.y = 0
     ///                 }
     ///             )
     ///         }
@@ -83,7 +83,7 @@ extension UIView {
     ///
     /// Much like `UIView` animations, there may be discrepancy between physical device and simulator.
     ///
-    /// Parameter `containerView` is `UIView` on which frame animations will be applied.
+    /// Parameter `containerView` is `UIView` on which `bound` animations will be applied.
     ///
     ///     final class SomeViewController: KeyboardResponsiveUIViewController {
     ///         private let textField: UITextField = { ... }()
@@ -147,7 +147,7 @@ extension UIView {
             
             let viewGlobalBounds: CGRect = firstResponderView.convert(firstResponderView.bounds, to: firstResponderView.window)
             let viewGlobalBoundsMaxY: CGFloat = viewGlobalBounds.maxY
-            let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalBoundsMaxY
+            let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalBoundsMaxY - containerView.bounds.origin.y
             
             let obscuredHeight: CGFloat = systemKeyboardInfo.frame.height + marginBottom - viewDistanceToBottom
             

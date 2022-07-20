@@ -15,6 +15,13 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.16.2(51)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.2) — *2022 07 21*
+
+View and ViewControllers
+
+- `keyboardResponsivenessContainerView` property is added in `KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight`
+- Issue with `KeyboardResponsiveUIViewController` offset-based animation, not considering pre-offsetted container is fixed
+
 ### [3.16.1(50)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.1) — *2022 07 19*
 
 View and ViewControllers
