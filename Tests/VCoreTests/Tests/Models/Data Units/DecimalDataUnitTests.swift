@@ -21,6 +21,6 @@ final class DecimalDataUnitTests: XCTestCase {
     }
     
     func testDoubleExtension() {
-        XCTAssertEqual(5_000_000.convertDecimalBytes(to: .MB), 5)
+        XCTAssertEqual(5_000_000.decimalBytesConverted(to: .MB), 5)
     }
 }

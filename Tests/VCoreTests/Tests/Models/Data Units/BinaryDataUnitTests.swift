@@ -21,6 +21,6 @@ final class BinaryDataUnitTests: XCTestCase {
     }
     
     func testDoubleExtension() {
-        XCTAssertEqual(5_000_000.convertBinaryBytes(to: .MiB), 4.76837, accuracy: pow(10, -5))
+        XCTAssertEqual(5_000_000.binaryBytesConverted(to: .MiB), 4.76837, accuracy: pow(10, -5))
     }
 }
