@@ -133,32 +133,6 @@ extension KeychainStorage where Value: Codable, Value: ExpressibleByNilLiteral {
     }
 }
 
-// MARK: Initializers - Raw Representable
-extension KeychainStorage where Value: RawRepresentable, Value.RawValue: Codable {
-    /// Initializes `KeychainStorage` from `RawRepresentable`.
-    public init(
-        wrappedValue defaultValue: Value,
-        rawRepresented key: String
-    ) {
-        self.init(
-            initialValue: .init(rawValue: Self.getValue(key: key, defaultValue: defaultValue.rawValue))!,
-            valueSetter: { Self.setValue($0.rawValue, key: key) }
-        )
-    }
-}
-
-extension KeychainStorage where Value: RawRepresentable, Value.RawValue: Codable, Value: ExpressibleByNilLiteral {
-    /// Initializes `KeychainStorage` from `nil` `RawRepresentable` literal.
-    public init(
-        rawRepresented key: String
-    ) {
-        self.init(
-            wrappedValue: nil,
-            rawRepresented: key
-        )
-    }
-}
-
 // MARK: - Observable Storage
 private final class ObservableStorage<Value>: ObservableObject {
     // MARK: Properties
