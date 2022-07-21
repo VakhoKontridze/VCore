@@ -44,6 +44,21 @@ import Combine
         self.valueSetter = valueSetter
     }
     
+    // MARK: Observable Support
+    public static subscript<T: ObservableObject>(
+        _enclosingInstance instance: T,
+        wrapped wrappedKeyPath: ReferenceWritableKeyPath<T, Value>,
+        storage storageKeyPath: ReferenceWritableKeyPath<T, Self>
+    ) -> Value {
+        get {
+            instance[keyPath: storageKeyPath].wrappedValue
+        }
+        set {
+            instance[keyPath: storageKeyPath].wrappedValue = newValue
+            (instance.objectWillChange as? ObservableObjectPublisher)?.send()
+        }
+    }
+    
     // MARK: Get and Set
     private static func getValue<T>(
         key: String,
@@ -87,22 +102,6 @@ import Combine
         where T: Decodable
     {
         try? JSONDecoder().decode(T.self, from: data)
-    }
-    
-    // MARK: Observable Support
-    public static subscript<T: ObservableObject>(
-        _enclosingInstance instance: T,
-        wrapped wrappedKeyPath: ReferenceWritableKeyPath<T, Value>,
-        storage storageKeyPath: ReferenceWritableKeyPath<T, Self>
-    ) -> Value {
-        get {
-            instance[keyPath: storageKeyPath].wrappedValue
-        }
-        set {
-            print(">>")
-            instance[keyPath: storageKeyPath].wrappedValue = newValue
-            (instance.objectWillChange as? ObservableObjectPublisher)?.send()
-        }
     }
 }
 
