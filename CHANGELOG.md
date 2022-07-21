@@ -2,9 +2,13 @@
 
 ### 3.17.0(52)
 
-- Models
+Models
 
 - `KeychainStorage` `PropertyWrapper` is added
+
+Architectural Pattern Helpers
+
+- `UIAlertParameters` now builds actions using `resultBuilder`
 
 ### [3.16.2(51)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.2) — *2022 07 21*
 

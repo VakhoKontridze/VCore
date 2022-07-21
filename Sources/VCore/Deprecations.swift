@@ -443,16 +443,17 @@ extension UIAlertParameters {
         self.init(
             title: viewModel.title,
             message: viewModel.message,
-            actions: [
-                .init(
+            actions: {
+                UIAlertButton(
                     title: viewModel.primaryButton.title,
                     action: viewModel.primaryButton.action
-                ),
-                .init(
+                )
+                
+                UIAlertButton(
                     title: viewModel.secondaryButton.title,
                     action: viewModel.secondaryButton.action
                 )
-            ]
+            }
         )
     }
     
@@ -497,6 +498,47 @@ extension UIAlertParameters {
     @available(*, deprecated, message: "Use `UIAlertController.init(viewModel:)` instead")
     public var uiAlertController: UIAlertController {
         .init(viewModel: self)
+    }
+}
+
+extension UIAlertParameters {
+    public struct Button {
+        public var isEnabled: Bool
+        public var style: UIAlertAction.Style
+        public var title: String
+        public var action: (() -> Void)?
+        
+        public init(
+            isEnabled: Bool = true,
+            style: UIAlertAction.Style = .default,
+            title: String,
+            action: (() -> Void)?
+        ) {
+            self.isEnabled = isEnabled
+            self.style = style
+            self.title = title
+            self.action = action
+        }
+    }
+    
+    @available(*, deprecated, message: "Use `init` with `actions` instead")
+    public init(
+        title: String?,
+        message: String,
+        action button: Button
+    ) {
+        self.init(
+            title: title,
+            message: message,
+            actions: {
+                UIAlertButton(
+                    isEnabled: button.isEnabled,
+                    style: button.style,
+                    title: button.title,
+                    action: button.action
+                )
+            }
+        )
     }
 }
 
