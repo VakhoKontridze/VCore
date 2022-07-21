@@ -121,7 +121,7 @@ extension KeychainStorage where Value: Codable {
     }
 }
 
-extension KeychainStorage where Value: ExpressibleByNilLiteral, Value: Codable {
+extension KeychainStorage where Value: Codable, Value: ExpressibleByNilLiteral {
     /// Initializes `KeychainStorage` from `nil` `Codable` literal.
     public init(
         _ key: String
@@ -133,31 +133,31 @@ extension KeychainStorage where Value: ExpressibleByNilLiteral, Value: Codable {
     }
 }
 
-// MARK: Initializers - RawRepresentable
-extension KeychainStorage where Value: RawRepresentable, Value.RawValue: Codable {
-    /// Initializes `KeychainStorage` from `RawRepresentable`.
-    public init(
-        wrappedValue defaultValue: Value,
-        _ key: String
-    ) {
-        self.init(
-            initialValue: .init(rawValue: Self.getValue(key: key, defaultValue: defaultValue.rawValue))!,
-            valueSetter: { Self.setValue($0.rawValue, key: key) }
-        )
-    }
-}
-
-extension KeychainStorage where Value: ExpressibleByNilLiteral, Value: RawRepresentable, Value.RawValue: Codable {
-    /// Initializes `KeychainStorage` from `nil` `RawRepresentable` literal.
-    public init(
-        _ key: String
-    ) {
-        self.init(
-            wrappedValue: nil,
-            key
-        )
-    }
-}
+// MARK: Initializers - Raw Representable
+//extension KeychainStorage where Value: RawRepresentable, Value.RawValue: Codable {
+//    /// Initializes `KeychainStorage` from `RawRepresentable`.
+//    public init(
+//        wrappedValue defaultValue: Value,
+//        _ key: String
+//    ) {
+//        self.init(
+//            initialValue: .init(rawValue: Self.getValue(key: key, defaultValue: defaultValue.rawValue))!,
+//            valueSetter: { Self.setValue($0.rawValue, key: key) }
+//        )
+//    }
+//}
+//
+//extension KeychainStorage where Value: RawRepresentable, Value.RawValue: Codable, Value: ExpressibleByNilLiteral {
+//    /// Initializes `KeychainStorage` from `nil` `RawRepresentable` literal.
+//    public init(
+//        _ key: String
+//    ) {
+//        self.init(
+//            wrappedValue: nil,
+//            key
+//        )
+//    }
+//}
 
 // MARK: - Observable Storage
 private final class ObservableStorage<Value>: ObservableObject {
