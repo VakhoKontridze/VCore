@@ -19,7 +19,24 @@ import UIKit
 ///     view.addSubview(scrollableView)
 ///     scrollableView.contentView.addSubview(someView1)
 ///     scrollableView.contentView.addSubview(someView2)
-///     scrollableView.contentView.addSubview(someView3)
+///
+///     NSLayoutConstraint.activate([
+///         scrollableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+///         scrollableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+///         scrollableView.topAnchor.constraint(equalTo: view.topAnchor),
+///         scrollableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+///
+///         someView1.heightAnchor.constraint(equalToConstant: 500),
+///         someView1.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor),
+///         someView1.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor),
+///         someView1.topAnchor.constraint(equalTo: scrollableView.contentView.topAnchor),
+///
+///         someView2.heightAnchor.constraint(equalToConstant: 500),
+///         someView2.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor),
+///         someView2.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor),
+///         someView2.topAnchor.constraint(equalTo: someView1.bottomAnchor, constant: 20),
+///         someView2.bottomAnchor.constraint(equalTo: scrollableView.contentView.bottomAnchor)
+///     ])
 ///
 open class ScrollableUIView: UIView {
     // MARK: Subviews
