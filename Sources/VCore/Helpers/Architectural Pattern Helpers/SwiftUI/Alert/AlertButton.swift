@@ -26,11 +26,10 @@ extension AlertButtonProtocol {
 }
 
 // MARK: - Alert Button
-/// Alert button.
+/// `Alert` button.
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct AlertButton: AlertButtonProtocol {
     // MARK: Properties
-    /// Indicates if button is enabled.
     private var isEnabled: Bool = true
     
     /// Button role.
@@ -42,7 +41,8 @@ public struct AlertButton: AlertButtonProtocol {
     /// Button action.
     public var action: (() -> Void)?
     
-    /// Initializes `Button`.
+    // MARK: Initializes
+    /// Initializes `AlertButton`.
     public init(
         role: ButtonRole? = nil,
         title: String,

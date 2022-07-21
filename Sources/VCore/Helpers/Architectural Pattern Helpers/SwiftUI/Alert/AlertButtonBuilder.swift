@@ -20,7 +20,7 @@ extension Array: AlertButtonConvertible where Element == AlertButtonProtocol {
     public func toButtons() -> [any AlertButtonProtocol] { self }
 }
 
-// MARK: - V Alert Button Builder
+// MARK: - Alert Button Builder
 /// Custom parameter attribute that constructs views from closures.
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 @resultBuilder public struct AlertButtonBuilder {
