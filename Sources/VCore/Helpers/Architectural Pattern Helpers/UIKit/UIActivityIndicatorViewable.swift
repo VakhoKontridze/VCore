@@ -17,6 +17,18 @@ import UIKit
 ///
 ///     lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
 ///
+///     func fetch() {
+///         startActivityIndicatorAnimationAndDisableInteraction()
+///
+///         URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
+///             guard let self = self else { return }
+///
+///             self.stopActivityIndicatorAnimationAndEnableInteraction()
+///
+///             ...
+///         })
+///     }
+///
 public protocol UIActivityIndicatorViewable {
     /// `UIActivityIndicator`.
     var activityIndicator: UIActivityIndicatorView { get }

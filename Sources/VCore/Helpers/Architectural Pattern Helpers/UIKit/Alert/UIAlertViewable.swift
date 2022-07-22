@@ -14,6 +14,16 @@ import UIKit
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `View/Controller`.
 /// In `MVVM` architecture, this protocol is conformed to by a `View/Controller`.
+///
+///     presentAlert(parameters: .init(
+///         title: "Lorem Ipsum",
+///         message: "Lorem ipsum",
+///         actions: {
+///             UIAlertButton(title: "Confirm", action: { print("Confirmed") })
+///             UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///         }
+///     ))
+///     
 public protocol UIAlertViewable {
     /// Presents `UIAlert` with parameters
     func presentAlert(parameters: UIAlertParameters)
@@ -34,6 +44,8 @@ extension UIAlertViewable where Self: UIViewController {
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are passed by`Presenter` to `View/Controller`
 /// In `MVVM` architecture, parameters are passed by`ViewModel` to `View/Controller`
+///
+/// For usage example, refer to `UIAlertViewable`.
 public struct UIAlertParameters {
     // MARK: Properties
     /// Alert title.
