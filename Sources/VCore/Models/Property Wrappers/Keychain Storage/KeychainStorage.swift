@@ -13,6 +13,9 @@ import Combine
 /// A property wrapper type that reflects a value from key chain and invalidates a view on a change in value in that key chain.
 ///
 /// Unlike `SwiftUI`'s `AppStorage`, a `class` containing `KeychainStorage` must conform to `ObservableObject`.
+///
+///     @KeychainStorage("AccessToken") private var accessToken: String?
+///
 @propertyWrapper public struct KeychainStorage<Value>: DynamicProperty {
     // MARK: Properties
     @ObservedObject private var storage: ObservableStorage<Value>
