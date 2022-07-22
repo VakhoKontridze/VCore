@@ -11,6 +11,13 @@ import SwiftUI
 /// `NavigationStack` that manages `NavigationPath` for representing content in the stack.
 ///
 /// `View` embeds `NavigationStackCoordinator` to the environment for it to be used by contents in the stack.
+///
+///     var body: some View {
+///         CoordinatingNavigationStack(root: { coordinator in
+///             ContentView()
+///         })
+///     }
+///
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 public struct CoordinatingNavigationStack<Root>: View where Root: View {
     // MARK: Properties
