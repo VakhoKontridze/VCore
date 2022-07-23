@@ -2,6 +2,10 @@
 
 ### 3.17.0(52)
 
+Services and Managers
+
+- `KeychainService` is added
+
 Models
 
 - `KeychainStorage` `PropertyWrapper` is added

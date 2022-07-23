@@ -72,14 +72,14 @@ import Combine
         where T: Codable
     {
         if
-            let data: Data = KeychainService.get(key: key),
+            let data: Data = KeychainService[key],
             let value: T = decode(data)
         {
-            KeychainService.set(key: key, data: nil) // Removes data if type has changed
+            KeychainService[key] = nil // Removes data if type has changed
             return value
 
         } else {
-            KeychainService.set(key: key, data: encode(defaultValue))
+            KeychainService[key] = encode(defaultValue)
             return defaultValue
         }
     }
@@ -90,7 +90,7 @@ import Combine
     )
         where T: Encodable
     {
-        KeychainService.set(key: key, data: encode(value))
+        KeychainService[key] = encode(value)
     }
 
     private static func encode<T>(
