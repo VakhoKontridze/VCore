@@ -117,7 +117,7 @@ extension UIAlertController {
             preferredStyle: .alert
         )
         
-        parameters.buttons().forEach { addAction($0.alertAction) }
+        parameters.buttons().forEach { addAction($0.toUIAlertAction) }
     }
 }
 

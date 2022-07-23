@@ -12,8 +12,8 @@ import UIKit
 // MARK: - UI Alert Button Protocol
 /// `UIAlertController` button protocol.
 public protocol UIAlertButtonProtocol: UIAlertButtonConvertible {
-    /// Underlying `UIAlertAction`.
-    var alertAction: UIAlertAction { get }
+    /// Converts `UIAlertButtonProtocol` to `UIAlertAction`.
+    var toUIAlertAction: UIAlertAction { get }
 }
 
 extension UIAlertButtonProtocol {
@@ -21,7 +21,7 @@ extension UIAlertButtonProtocol {
 }
 
 // MARK: - UI Alert Button
-/// `UIAlert` button.
+/// `UIAlertController` button.
 public struct UIAlertButton: UIAlertButtonProtocol {
     // MARK: Properties
     /// Indicates if button is enabled.
@@ -51,7 +51,7 @@ public struct UIAlertButton: UIAlertButtonProtocol {
     }
     
     // MARK: Body
-    public var alertAction: UIAlertAction {
+    public var toUIAlertAction: UIAlertAction {
         .init(
             isEnabled: isEnabled,
             title: title,
