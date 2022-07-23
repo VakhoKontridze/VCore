@@ -10,6 +10,30 @@ import Foundation
 // MARK: - Network Response Processor
 /// Processor that processes `Error`, `Response,` and `Data`, before they are analyzed and`Data` is decoded.
 ///
+/// If backend returns success response:
+///
+///     {
+///         "success": true,
+///         "data": {
+///             ...
+///         }
+///     }
+///
+/// and error response as:
+///
+///     {
+///         "success": false,
+///         "code": 401,
+///         "message": "You are unauthorized"
+///     }
+///
+/// then the example of `SomeNetworkClientProcessor` performs the proper processing.
+/// Therefore, the purpose of response processing is not sacrificing `Decodable` protocol for entities,
+/// that may be nested under `"data"` in response `JSON`;
+/// also, retrieving error codes and messages independently from the entity.
+///
+/// `Error` returned by the client represents internal `URLSession` errors, and most of the time don't have to be handled.
+///
 ///     extension NetworkClient {
 ///         static let someInstance: NetworkClient = .init(
 ///             processor: SomeNetworkClientProcessor()

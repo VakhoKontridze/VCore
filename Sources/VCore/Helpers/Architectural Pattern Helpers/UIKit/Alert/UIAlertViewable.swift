@@ -14,6 +14,16 @@ import UIKit
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `View/Controller`.
 /// In `MVVM` architecture, this protocol is conformed to by a `View/Controller`.
+///
+///     presentAlert(parameters: .init(
+///         title: "Lorem Ipsum",
+///         message: "Lorem ipsum",
+///         actions: {
+///             UIAlertButton(title: "Confirm", action: { print("Confirmed") })
+///             UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///         }
+///     ))
+///     
 public protocol UIAlertViewable {
     /// Presents `UIAlert` with parameters
     func presentAlert(parameters: UIAlertParameters)
@@ -34,6 +44,8 @@ extension UIAlertViewable where Self: UIViewController {
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are passed by`Presenter` to `View/Controller`
 /// In `MVVM` architecture, parameters are passed by`ViewModel` to `View/Controller`
+///
+/// For usage example, refer to `UIAlertViewable`.
 public struct UIAlertParameters {
     // MARK: Properties
     /// Alert title.
@@ -43,31 +55,18 @@ public struct UIAlertParameters {
     public var message: String
     
     /// Buttons.
-    public var buttons: [Button]
+    public var buttons: () -> [any UIAlertButtonProtocol]
     
     // MARK: Initializers
     /// Initializes `UIAlertParameters`.
     public init(
         title: String?,
         message: String,
-        actions buttons: [Button]
+        @UIAlertButtonBuilder actions buttons: @escaping () -> [any UIAlertButtonProtocol]
     ) {
         self.title = title
         self.message = message
         self.buttons = buttons
-    }
-    
-    /// Initializes `UIAlertParameters` with one action.
-    public init(
-        title: String?,
-        message: String,
-        action button: Button
-    ) {
-        self.init(
-            title: title,
-            message: message,
-            actions: [button]
-        )
     }
     
     /// Initializes `UIAlertParameters` with "ok" action.
@@ -79,11 +78,13 @@ public struct UIAlertParameters {
         self.init(
             title: title,
             message: message,
-            action: .init(
-                style: .cancel,
-                title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
-                action: completion
-            )
+            actions: {
+                UIAlertButton(
+                    style: .cancel,
+                    title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
+                    action: completion
+                )
+            }
         )
     }
     
@@ -95,41 +96,14 @@ public struct UIAlertParameters {
         self.init(
             title: VCoreLocalizationService.shared.localizationProvider.alertErrorTitle,
             message: error.localizedDescription,
-            action: .init(
-                style: .cancel,
-                title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
-                action: completion
-            )
+            actions: {
+                UIAlertButton(
+                    style: .cancel,
+                    title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
+                    action: completion
+                )
+            }
         )
-    }
-    
-    // MARK: Button.
-    /// Button.
-    public struct Button {
-        /// Indicates if button is enabled.
-        public var isEnabled: Bool
-        
-        /// Button style.
-        public var style: UIAlertAction.Style
-        
-        /// Button title.
-        public var title: String
-        
-        /// Button action.
-        public var action: (() -> Void)?
-        
-        /// Initializes `Button`.
-        public init(
-            isEnabled: Bool = true,
-            style: UIAlertAction.Style = .default,
-            title: String,
-            action: (() -> Void)?
-        ) {
-            self.isEnabled = isEnabled
-            self.style = style
-            self.title = title
-            self.action = action
-        }
     }
 }
 
@@ -138,24 +112,12 @@ extension UIAlertController {
     /// Initializes `UIAlertController` with `UIAlertParameters`.
     public convenience init(parameters: UIAlertParameters) {
         self.init(
-            title: parameters.title ?? "", // Fixes weird bold bug when nil
+            title: parameters.title ?? "", // Fixes weird bold bug when `nil`
             message: parameters.message,
             preferredStyle: .alert
         )
         
-        for button in parameters.buttons {
-            addAction({
-                let alertAction: UIAlertAction = .init(
-                    title: button.title,
-                    style: button.style,
-                    handler: { _ in button.action?() }
-                )
-                
-                alertAction.isEnabled = button.isEnabled
-                
-                return alertAction
-            }())
-        }
+        parameters.buttons().forEach { addAction($0.toUIAlertAction) }
     }
 }
 

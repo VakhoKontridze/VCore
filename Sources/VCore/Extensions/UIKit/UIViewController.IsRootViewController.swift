@@ -15,7 +15,11 @@ extension UIViewController {
     ///
     /// If `UIViewController` is not embedded in `UINavigationController`, `nil` is returned.
     ///
-    ///     let isRootViewController: UIViewController = viewController.isRootViewController
+    /// Can be used to insert a subviews on `UIViewControllers`'s conditionally.
+    ///
+    ///     if isRootViewController == true {
+    ///         addSideBarButton()
+    ///     }
     ///
     public var isRootViewController: Bool? {
         guard let navigationController = navigationController else { return nil }
@@ -27,7 +31,11 @@ extension UIViewController {
     ///
     /// If `UIViewController` is not embedded in `UINavigationController`, `nil` is returned.
     ///
-    ///     let isNonRootViewController: UIViewController = viewController.isNonRootViewController
+    /// Can be used to insert a custom back button on `UIViewControllers`'s conditionally.
+    ///
+    ///     if isNonRootViewController == true {
+    ///         addBackButton()
+    ///     }
     ///
     public var isNonRootViewController: Bool? {
         guard let navigationController = navigationController else { return nil }

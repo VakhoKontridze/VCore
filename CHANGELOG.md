@@ -15,6 +15,20 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### 3.17.0(52)
+
+Services and Managers
+
+- `KeychainService` is added
+
+Models
+
+- `KeychainStorage` `PropertyWrapper` is added
+
+Architectural Pattern Helpers
+
+- `UIAlertParameters` now builds actions using `resultBuilder`
+
 ### [3.16.2(51)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.2) — *2022 07 21*
 
 View and ViewControllers
