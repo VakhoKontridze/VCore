@@ -83,7 +83,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
     #if canImport(UIKit) && !os(watchOS)
     func testAlertOkButtonTitle() {
         XCTAssertEqual(
-            UIAlertParameters(title: "T", message: "M", completion: nil).buttons.first!.title,
+            (UIAlertParameters(title: "T", message: "M", completion: nil).buttons().first! as! UIAlertButton).title,
             "E"
         )
     }

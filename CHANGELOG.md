@@ -15,7 +15,7 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
-### 3.17.0(52)
+### [3.17.0(52)](https://github.com/VakhoKontridze/VCore/releases/tag/3.17.0) — *2022 07 23*
 
 Services and Managers
 
