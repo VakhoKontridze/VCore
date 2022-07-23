@@ -75,7 +75,7 @@ import Combine
             let data: Data = KeychainService.get(key: key),
             let value: T = decode(data)
         {
-            KeychainService.set(key: key, data: nil) // Removes data is type is changed
+            KeychainService.set(key: key, data: nil) // Removes data if type has changed
             return value
 
         } else {
@@ -125,7 +125,7 @@ extension KeychainStorage where Value: Codable {
 }
 
 extension KeychainStorage where Value: Codable, Value: ExpressibleByNilLiteral {
-    /// Initializes `KeychainStorage` from `nil` `Codable` literal.
+    /// Initializes `KeychainStorage` from `Codable`.
     public init(
         _ key: String
     ) {
