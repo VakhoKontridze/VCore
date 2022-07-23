@@ -41,7 +41,7 @@ public struct AlertButton: AlertButtonProtocol {
     /// Button action.
     public var action: (() -> Void)?
     
-    // MARK: Initializes
+    // MARK: Initializers
     /// Initializes `AlertButton`.
     public init(
         role: ButtonRole? = nil,

@@ -14,6 +14,23 @@ import SwiftUI
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in`Presenter`.
 /// in `MVVM`, parameters are stored in `ViewModel.`
+///
+///     @State private var parameters: AlertParameters?
+///
+///     var body: some View {
+///         Button("Lorem ipsum", action: {
+///             parameters = AlertParameters(
+///                 title: "Lorem Ipsum",
+///                 message: "Lorem ipsum",
+///                 actions: {
+///                     AlertButton(title: "Confirm", action: { print("Confirmed") })
+///                     AlertButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
+///                 }
+///             )
+///         })
+///             .alert(parameters: $parameters)
+///     }
+///
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct AlertParameters {
     // MARK: Properties

@@ -14,6 +14,16 @@ import SwiftUI
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in `Presenter`.
 /// in `MVVM`, parameters are stored in`ViewModel.`
+///
+///     @State private var parameters: ProgressViewParameters? = .init()
+///
+///     var body: some View {
+///         Button("Lorem ipsum", action: {
+///             parameters = .init()
+///         })
+///             .progressView(parameters: parameters)
+///     }
+///     
 @available(iOS 14, *)
 public struct ProgressViewParameters: Hashable, Identifiable {
     // MARK: Properties
