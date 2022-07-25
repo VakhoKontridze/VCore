@@ -66,7 +66,7 @@ extension NetworkClient {
         request: NetworkRequest,
         decode: @escaping (Data) throws -> Entity
     ) async throws -> Entity {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else { throw NetworkClientError.notConnectedToNetwork }
         
         let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(from: request)
 
@@ -74,10 +74,10 @@ extension NetworkClient {
             let (data, response): (Data, URLResponse) = try await data(request: urlRequest)
 
             let processedResponse: URLResponse = try responseProcessor.response(data, response)
-            guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkError.invalidResponse }
+            guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkClientError.invalidResponse }
 
             let processedData: Data = try responseProcessor.data(data, response)
-            guard let entity: Entity = try? decode(processedData) else { throw NetworkError.invalidData }
+            guard let entity: Entity = try? decode(processedData) else { throw NetworkClientError.invalidData }
 
             return entity
 
@@ -91,7 +91,7 @@ extension NetworkClient {
     private func makeRequest(
         request: NetworkRequest
     ) async throws {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { throw NetworkError.notConnectedToNetwork }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork else { throw NetworkClientError.notConnectedToNetwork }
         
         let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(from: request)
 
@@ -99,7 +99,7 @@ extension NetworkClient {
             let (data, response): (Data, URLResponse) = try await data(request: urlRequest)
 
             let processedResponse: URLResponse = try responseProcessor.response(data, response)
-            guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkError.invalidResponse }
+            guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkClientError.invalidResponse }
 
         } catch {
             try responseProcessor.error(error)

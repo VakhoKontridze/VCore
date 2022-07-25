@@ -26,8 +26,8 @@ public final class VCoreLocalizationService {
 // MARK: - VCore Localization Provider
 /// Localization provider in package.
 public protocol VCoreLocalizationProvider {
-    /// Localized value for `NetworkError`'s description.
-    func networkErrorDescription(_ networkError: NetworkError) -> String
+    /// Localized value for `NetworkClientError`'s description.
+    func networkClientErrorDescription(_ networkClientError: NetworkClientError) -> String
     
     /// Localized value for `JSONEncoderError`'s description.
     func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String
@@ -50,8 +50,8 @@ public protocol VCoreLocalizationProvider {
 public protocol VCoreHumanReadableLocalizationProvider: VCoreLocalizationProvider {}
 
 extension VCoreHumanReadableLocalizationProvider {
-    public func networkErrorDescription(_ networkError: NetworkError) -> String {
-        DefaultVCoreLocalizationProvider().networkErrorDescription(networkError)
+    public func networkClientErrorDescription(_ networkClientError: NetworkClientError) -> String {
+        DefaultVCoreLocalizationProvider().networkClientErrorDescription(networkClientError)
     }
     
     public func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String {
@@ -75,8 +75,8 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
     public init() {}
     
     // MARK: VCore Localization Provider
-    public func networkErrorDescription(_ networkError: NetworkError) -> String {
-        switch networkError {
+    public func networkClientErrorDescription(_ networkClientError: NetworkClientError) -> String {
+        switch networkClientError {
         case .notConnectedToNetwork: return "Not connected to network"
         case .invalidEndpoint: return "Cannot connect to the server. An incorrect handler is being used."
         case .invalidPathParameters: return "Data cannot be encoded or is incomplete"

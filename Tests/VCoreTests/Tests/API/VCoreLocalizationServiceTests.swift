@@ -12,7 +12,7 @@ import XCTest
 final class VCoreLocalizationServiceTests: XCTestCase {
     // MARK: Test Data
     private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {
-        func networkErrorDescription(_ networkError: NetworkError) -> String {
+        func networkErrorDescription(_ networkError: NetworkClientError) -> String {
             "A"
         }
         
@@ -74,7 +74,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
     #if canImport(UIKit) && !os(watchOS)
     func testAlertErrorTitle() {
         XCTAssertEqual(
-            UIAlertParameters(error: NetworkError.notConnectedToNetwork, completion: nil).title,
+            UIAlertParameters(error: NetworkClientError.notConnectedToNetwork, completion: nil).title,
             "D"
         )
     }

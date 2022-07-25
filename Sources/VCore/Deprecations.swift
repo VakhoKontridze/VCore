@@ -16,10 +16,13 @@ extension NetworkClient {
     }
 }
 
-extension NetworkError {
+extension NetworkClientError {
     @available(*, deprecated, renamed: "invalidQueryParameters")
     public static var invalidQueryparameters: Self { .invalidQueryParameters }
 }
+
+@available(*, deprecated, renamed: "NetworkClientError")
+public typealias NetworkError = NetworkClientError
 
 // MARK: - Network Reachability Service
 extension NetworkReachabilityService {
@@ -833,8 +836,8 @@ extension UIViewController {
 
 // MARK: - VCore Localization Service
 extension VCoreLocalizationProvider {
-    @available(*, deprecated, message: "Renamed to `networkErrorDescription(_:)`")
-    public func value(networkError: NetworkError) -> String {
+    @available(*, deprecated, message: "Renamed to `networkClientErrorDescription(_:)`")
+    public func value(networkError: NetworkClientError) -> String {
         networkErrorDescription(networkError)
     }
     
@@ -846,5 +849,10 @@ extension VCoreLocalizationProvider {
     @available(*, deprecated, message: "Renamed to `jsonDecoderErrorDescription(_:)`")
     public func value(jsonDecoderError: JSONDecoderError) -> String {
         jsonDecoderErrorDescription(jsonDecoderError)
+    }
+    
+    @available(*, deprecated, message: "Renamed to `networkClientErrorDescription(_:)`")
+    public func networkErrorDescription(_ networkError: NetworkClientError) -> String {
+        networkClientErrorDescription(networkError)
     }
 }
