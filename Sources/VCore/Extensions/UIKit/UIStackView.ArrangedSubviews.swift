@@ -39,11 +39,19 @@ extension UIStackView {
         views.forEach { addArrangedSubview($0) }
     }
     
-    /// Removes all `UIView`s from arranged subviews.
+    /// Removes all `UIView`s from arranged subviews, but keeps as subviews.
     ///
     ///     stackView.removeArrangedSubviews()
     ///
     public func removeArrangedSubviews() {
+        arrangedSubviews.forEach { removeArrangedSubview($0) }
+    }
+    
+    /// Removes all `UIView`s from arranged subviews and from superview.
+    ///
+    ///     stackView.removeArrangedSubviews()
+    ///
+    public func removeArrangedSubviewsFromSuperview() {
         arrangedSubviews.forEach { $0.removeFromSuperview() }
     }
 }

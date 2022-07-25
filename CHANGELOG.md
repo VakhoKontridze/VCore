@@ -8,7 +8,7 @@ Network Client
 
 Extensions
 
-- Issue with `UIStackView.removeArrangedSubviews()` is fixed
+- `UIStackView.removeArrangedSubviewsFromSuperview()` is added
 
 ### [3.17.0(52)](https://github.com/VakhoKontridze/VCore/releases/tag/3.17.0) — *2022 07 23*
 
