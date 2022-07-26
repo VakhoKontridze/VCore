@@ -75,7 +75,6 @@ import Combine
             let data: Data = KeychainService[key],
             let value: T = decode(data)
         {
-            KeychainService[key] = nil // Removes data if type has changed
             return value
 
         } else {

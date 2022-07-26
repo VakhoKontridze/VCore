@@ -47,14 +47,14 @@ open class KeyboardResponsiveUIViewController: UIViewController {
             forName: UIResponder.keyboardWillShowNotification,
             object: nil,
             queue: nil,
-            using: keyboardWillShow
+            using: { [weak self] in self?.keyboardWillShow(notification: $0) }
         )
         
         NotificationCenter.default.addObserver(
             forName: UIResponder.keyboardWillHideNotification,
             object: nil,
             queue: nil,
-            using: keyboardWillHide
+            using: { [weak self] in self?.keyboardWillHide(notification: $0) }
         )
     }
     
