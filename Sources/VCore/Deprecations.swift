@@ -236,6 +236,14 @@ extension UIView {
     
 #endif
 
+// MARK: - Capsule UI Image View
+#if canImport(UIKit) && !os(watchOS)
+
+@available(*, deprecated, renamed: "CapsuleUIImageView")
+public typealias CapsuleImageView = CapsuleUIImageView
+
+#endif
+
 // MARK: - Data Units
 extension Double {
     @available(*, deprecated, renamed: "decimalBytesConverted")

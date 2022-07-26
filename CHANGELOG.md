@@ -4,6 +4,12 @@
 
 View and ViewControllers
 
+- `CapsuleImageView` is renamed to `CapsuleUIImageView`
+
+### [3.18.0(53)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.0) — *2022 07 26*
+
+View and ViewControllers
+
 - `CapsuleUIView` is added
 - `CapsuleUIImageView` is added
 
