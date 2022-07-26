@@ -6,6 +6,10 @@ View and ViewControllers
 
 - `CapsuleImageView` is renamed to `CapsuleUIImageView`
 
+Architectural Pattern Helpers
+
+- Missing `public` modifier is added to default implementation of `pop(count: Int, animated: Bool)` method
+
 ### [3.18.0(53)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.0) — *2022 07 26*
 
 View and ViewControllers
