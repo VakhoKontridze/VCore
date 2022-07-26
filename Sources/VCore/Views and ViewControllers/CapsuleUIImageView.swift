@@ -9,11 +9,11 @@
 
 import UIKit
 
-// MARK: - Capsule View
+// MARK: - Capsule UI Image View
 /// `UIImageView` that rounds corners to capsule.
 ///
 /// `clipsToBounds` is set to `true`, and `layer.maskedCorners` is set to `layerAllCorners`.
-open class CapsuleImageView: UIImageView {
+open class CapsuleUIImageView: UIImageView {
     // MARK: Lifecycle
     open override func layoutSubviews() {
         super.layoutSubviews()

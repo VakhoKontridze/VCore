@@ -105,7 +105,7 @@ extension StandardNavigable where Self: UIViewController {
         navigationController?.popViewController(animated: animated)
     }
     
-    func pop(count: Int, animated: Bool = true) {
+    public func pop(count: Int, animated: Bool) {
         guard let navigationController = navigationController else { return }
 
         let viewControllers: [UIViewController] = navigationController.viewControllers
