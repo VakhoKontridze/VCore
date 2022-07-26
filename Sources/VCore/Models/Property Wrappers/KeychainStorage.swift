@@ -14,7 +14,7 @@ import Combine
 ///
 /// Unlike `SwiftUI`'s `AppStorage`, a `class` containing `KeychainStorage` must conform to `ObservableObject`.
 ///
-///     @KeychainStorage("AccessToken") private var accessToken: String?
+///     @KeychainStorage("AccessToken") var accessToken: String?
 ///
 @propertyWrapper public struct KeychainStorage<Value>: DynamicProperty {
     // MARK: Properties
@@ -71,16 +71,15 @@ import Combine
     ) -> T
         where T: Codable
     {
-        if
+        guard
             let data: Data = KeychainService[key],
             let value: T = decode(data)
-        {
-            return value
-
-        } else {
+        else {
             KeychainService[key] = encode(defaultValue)
             return defaultValue
         }
+        
+        return value
     }
 
     private static func setValue<T>(
