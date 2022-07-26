@@ -79,12 +79,12 @@ public struct GenericStateModel_CollapsedExpanded<Value> {
         self.expanded = value
     }
     
-    /// Initializes `GenericStateModel_CE` with `0` `CGFloat` values.
+    /// Initializes `GenericStateModel_CollapsedExpanded` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_CollapsedExpanded<CGFloat> {
         .init(0)
     }
     
-    /// Initializes `GenericStateModel_CE` with `clear` `Color` values.
+    /// Initializes `GenericStateModel_CollapsedExpanded` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_CollapsedExpanded<Color> {
         .init(.clear)
     }
@@ -96,7 +96,7 @@ public struct GenericStateModel_CollapsedExpanded<Value> {
 import UIKit
 
 extension GenericStateModel_CollapsedExpanded {
-    /// Initializes `GenericStateModel_CE` with `clear` `UIColor` values.
+    /// Initializes `GenericStateModel_CollapsedExpanded` with `clear` `UIColor` values.
     public static var clearUIColors: GenericStateModel_CollapsedExpanded<UIColor> {
         .init(.clear)
     }
@@ -107,7 +107,7 @@ extension GenericStateModel_CollapsedExpanded {
 import AppKit
 
 extension GenericStateModel_CollapsedExpanded {
-    /// Initializes `GenericStateModel_CE` with `clear` `NSColor` values.
+    /// Initializes `GenericStateModel_CollapsedExpanded` with `clear` `NSColor` values.
     public static var clearNSColors: GenericStateModel_CollapsedExpanded<NSColor> {
         .init(.clear)
     }
