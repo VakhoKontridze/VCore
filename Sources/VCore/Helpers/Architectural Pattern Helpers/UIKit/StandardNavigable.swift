@@ -76,7 +76,7 @@ extension StandardNavigable {
     /// Pops the given number of top `UIViewController` from navigation stack and updates the display.
     ///
     /// If there are less `UIViewController`'s in the navigation stack, than`count`, methods returns.
-    func pop(count: Int) {
+    public func pop(count: Int) {
         pop(count: count, animated: false)
     }
     
