@@ -2,6 +2,11 @@
 
 ### 3.18.0(53)
 
+View and ViewControllers
+
+- `CapsuleUIView` is added
+- `CapsuleUIImageView` is added
+
 Network Client
 
 - `NetworkError` is renamed to `NetworkClientError`
