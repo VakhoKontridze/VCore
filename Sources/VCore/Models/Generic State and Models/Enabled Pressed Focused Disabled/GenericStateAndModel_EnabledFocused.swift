@@ -42,7 +42,7 @@ public struct GenericStateModel_EnabledFocused<Value> {
     public var focused: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_EnabledPressedFocused` with values.
+    /// Initializes `GenericStateModel_EnabledFocused` with values.
     public init(
         enabled: Value,
         pressed: Value,
@@ -52,7 +52,7 @@ public struct GenericStateModel_EnabledFocused<Value> {
         self.focused = focused
     }
     
-    /// Initializes `GenericStateModel_EnabledPressedFocused` with value.
+    /// Initializes `GenericStateModel_EnabledFocused` with value.
     public init(
         _ value: Value
     ) {
@@ -60,7 +60,7 @@ public struct GenericStateModel_EnabledFocused<Value> {
         self.focused = value
     }
     
-    /// Initializes `GenericStateModel_EnabledPressedFocused` with `0` `CGFloat` values.
+    /// Initializes `GenericStateModel_EnabledFocused` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_EnabledFocused<CGFloat> {
         .init(0)
     }

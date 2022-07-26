@@ -97,7 +97,7 @@ import UIKit
 
 extension GenericStateModel_EnabledPressedDisabled {
     /// Initializes `GenericStateModel_EnabledPressedDisabled` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_EnabledPressed<UIColor> {
+    public static var clearUIColors: GenericStateModel_EnabledPressedDisabled<UIColor> {
         .init(.clear)
     }
 }
@@ -108,7 +108,7 @@ import AppKit
 
 extension GenericStateModel_EnabledPressedDisabled {
     /// Initializes `GenericStateModel_EnabledPressedDisabled` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_EnabledPressed<NSColor> {
+    public static var clearNSColors: GenericStateModel_EnabledPressedDisabled<NSColor> {
         .init(.clear)
     }
 }
