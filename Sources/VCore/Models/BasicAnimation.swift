@@ -63,6 +63,43 @@ public struct BasicAnimation {
     }
 }
 
+// MARK: Casting
+#if canImport(QuartzCore)
+
+import QuartzCore
+
+extension BasicAnimation {
+    /// Casts `BasicAnimation` to `CAMediaTimingFunction`.
+    public var toCAMediaTimingFunction: CAMediaTimingFunction {
+        switch curve {
+        case .linear: return .init(name: .linear)
+        case .easeIn: return .init(name: .easeIn)
+        case .easeOut: return .init(name: .easeOut)
+        case .easeInOut: return .init(name: .easeInEaseOut)
+        }
+    }
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+extension BasicAnimation {
+    /// Casts `BasicAnimation` to `UIView.AnimationOptions`.
+    public var toUIViewAnimationOptions: UIView.AnimationOptions {
+        switch curve {
+        case .linear: return .curveLinear
+        case .easeIn: return .curveEaseIn
+        case .easeOut: return .curveEaseOut
+        case .easeInOut: return .curveEaseInOut
+        }
+    }
+}
+
+#endif
+
 // MARK: - Extension
 /// Returns the result of recomputing the view's body with the provided `BasicAnimation`,
 /// and optionally calls a completion handler.
