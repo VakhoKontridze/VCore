@@ -6,6 +6,10 @@ Network Client
 
 - `NetworkError` is renamed to `NetworkClientError`
 
+Architectural Pattern Helpers
+
+- `func pop(count: Int, animated: Bool)` is added to `StandardNavigable`
+
 Extensions
 
 - `UIStackView.removeArrangedSubviewsFromSuperview()` is added
