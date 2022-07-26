@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.18.4(57)
+
+View and ViewControllers
+
+- Retain cycle caused by `KeyboardResponsiveViewController` is fixed
+
 ### [3.18.3(56)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.3) — *2022 07 26*
 
 Models
