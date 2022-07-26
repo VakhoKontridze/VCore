@@ -12,7 +12,7 @@ import XCTest
 final class VCoreLocalizationServiceTests: XCTestCase {
     // MARK: Test Data
     private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {
-        func networkErrorDescription(_ networkError: NetworkClientError) -> String {
+        func networkClientErrorDescription(_ networkClientError: NetworkClientError) -> String {
             "A"
         }
         
