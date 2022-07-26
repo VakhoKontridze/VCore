@@ -79,7 +79,7 @@ extension NetworkClient {
         completion: @escaping (Result<Entity, Error>) -> Void
     ) {
         guard NetworkReachabilityService.shared.isConnectedToNetwork else {
-            completion(.failure(NetworkError.notConnectedToNetwork))
+            completion(.failure(NetworkClientError.notConnectedToNetwork))
             return
         }
 
@@ -94,13 +94,13 @@ extension NetworkClient {
                     do {
                         let processedResponse: URLResponse = try self.responseProcessor.response(data, response)
                         guard processedResponse.isSuccessHTTPStatusCode else {
-                            completion(.failure(NetworkError.invalidResponse))
+                            completion(.failure(NetworkClientError.invalidResponse))
                             return
                         }
                         
                         let processedData: Data = try self.responseProcessor.data(data, response)
                         guard let entity: Entity = try? decode(processedData) else {
-                            completion(.failure(NetworkError.invalidData))
+                            completion(.failure(NetworkClientError.invalidData))
                             return
                         }
                         
@@ -132,7 +132,7 @@ extension NetworkClient {
         completion: @escaping (ResultNoSuccess<Error>) -> Void
     ) {
         guard NetworkReachabilityService.shared.isConnectedToNetwork else {
-            completion(.failure(NetworkError.notConnectedToNetwork))
+            completion(.failure(NetworkClientError.notConnectedToNetwork))
             return
         }
 
@@ -147,7 +147,7 @@ extension NetworkClient {
                     do {
                         let processedResponse: URLResponse = try self.responseProcessor.response(data, response)
                         guard processedResponse.isSuccessHTTPStatusCode else {
-                            completion(.failure(NetworkError.invalidResponse))
+                            completion(.failure(NetworkClientError.invalidResponse))
                             return
                         }
                         
@@ -182,28 +182,28 @@ extension NetworkClient {
             completionHandler: { (data, response, error) in
                 if let error = error {
                     completion(.failure({
-                        guard (error as NSError).domain == NSURLErrorDomain else { return NetworkError.returnedWithError }
+                        guard (error as NSError).domain == NSURLErrorDomain else { return NetworkClientError.returnedWithError }
                         
                         switch (error as NSError).code {
-                        case NSURLErrorNetworkConnectionLost: return NetworkError.notConnectedToNetwork
-                        case NSURLErrorNotConnectedToInternet: return NetworkError.notConnectedToNetwork
-                        case NSURLErrorCannotFindHost: return NetworkError.invalidEndpoint
-                        case NSURLErrorBadURL: return NetworkError.invalidEndpoint
-                        case NSURLErrorUnsupportedURL: return NetworkError.invalidEndpoint
-                        case NSURLErrorTimedOut: return NetworkError.requestTimedOut
-                        default: return NetworkError.returnedWithError
+                        case NSURLErrorNetworkConnectionLost: return NetworkClientError.notConnectedToNetwork
+                        case NSURLErrorNotConnectedToInternet: return NetworkClientError.notConnectedToNetwork
+                        case NSURLErrorCannotFindHost: return NetworkClientError.invalidEndpoint
+                        case NSURLErrorBadURL: return NetworkClientError.invalidEndpoint
+                        case NSURLErrorUnsupportedURL: return NetworkClientError.invalidEndpoint
+                        case NSURLErrorTimedOut: return NetworkClientError.requestTimedOut
+                        default: return NetworkClientError.returnedWithError
                         }
                     }()))
                     return
                 }
                 
                 guard let response = response else {
-                    completion(.failure(NetworkError.invalidResponse))
+                    completion(.failure(NetworkClientError.invalidResponse))
                     return
                 }
                 
                 guard let data = data else {
-                    completion(.failure(NetworkError.invalidData))
+                    completion(.failure(NetworkClientError.invalidData))
                     return
                 }
                 

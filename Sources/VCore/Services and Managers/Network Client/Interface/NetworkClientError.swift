@@ -1,5 +1,5 @@
 //
-//  NetworkError.swift
+//  NetworkClientError.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 8/24/21.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-// MARK: - Network Error
+// MARK: - Network Client Error
 /// An error that occurs during the network requests made by `NetworkClient`.
-public enum NetworkError: Int, VCoreError, CaseIterable {
+public enum NetworkClientError: Int, VCoreError, CaseIterable {
     // MARK: Cases
     /// Indicates that device is not connected to network.
     ///
@@ -46,5 +46,5 @@ public enum NetworkError: Int, VCoreError, CaseIterable {
     // MARK: VCore Error
     public static var errorDomain: String { "com.vcore.networkclient" }
     public var code: Int { 1000 + rawValue }
-    public var description: String { VCoreLocalizationService.shared.localizationProvider.networkErrorDescription(self) }
+    public var description: String { VCoreLocalizationService.shared.localizationProvider.networkClientErrorDescription(self) }
 }

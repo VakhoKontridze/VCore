@@ -11,7 +11,7 @@ import XCTest
 // MARK: - Tests
 final class NetworkErrorTests: XCTestCase {
     func testErrorCodes() {
-        let codes: [Int] = NetworkError.allCases.map { $0.code }
+        let codes: [Int] = NetworkClientError.allCases.map { $0.code }
         
         XCTAssertTrue(codes.isUnique)
     }

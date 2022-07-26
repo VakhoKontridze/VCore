@@ -1,5 +1,5 @@
 //
-//  JSONDecoderError.swift
+//  JSONDecoderErrorTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 15.05.22.

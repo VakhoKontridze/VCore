@@ -26,7 +26,7 @@ extension NetworkRequestFactory {
             do {
                 return try JSONEncoderService.data(any: json)
             } catch {
-                throw NetworkError.invalidBody
+                throw NetworkClientError.invalidBody
             }
         }
 
@@ -36,7 +36,7 @@ extension NetworkRequestFactory {
             do {
                 return try JSONEncoderService.data(encodable: encodable)
             } catch {
-                throw NetworkError.invalidBody
+                throw NetworkClientError.invalidBody
             }
         }
     }

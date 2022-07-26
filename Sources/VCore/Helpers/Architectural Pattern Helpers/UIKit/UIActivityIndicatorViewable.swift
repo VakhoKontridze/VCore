@@ -17,6 +17,14 @@ import UIKit
 ///
 ///     lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
 ///
+///     override func viewDidLoad() {
+///         super.viewDidLoad()
+///
+///         ...
+///
+///         view.addSubview(activityIndicator)
+///     }
+///
 ///     func fetch() {
 ///         startActivityIndicatorAnimationAndDisableInteraction()
 ///

@@ -38,47 +38,59 @@ import UIKit
 ///     }
 ///
 public protocol StandardNavigable {
-    /// Pushes a view controller onto the receiver’s stack and updates the display.
+    /// Pushes a `UIViewController` onto the receiver’s stack and updates the display.
     func push(_ viewController: UIViewController, animated: Bool)
     
-    /// Pops the top view controller from the navigation stack and updates the display.
+    /// Pops the top `UIViewController` from the navigation stack and updates the display.
     func pop(animated: Bool)
     
-    /// Pops all the view controllers on the stack except the root view controller and updates the display.
+    /// Pops the given number of top `UIViewController` from navigation stack and updates the display.
+    ///
+    /// If there are less `UIViewController`'s in the navigation stack, than`count`, methods returns.
+    func pop(count: Int, animated: Bool)
+    
+    /// Pops all the `UIViewController`s on the stack except the root `UIViewController` and updates the display.
     func popToRoot(animated: Bool)
     
-    /// Presents a view controller modally.
+    /// Presents a `UIViewController` modally.
     func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
     
-    /// Dismisses the view controller that was presented modally by the view controller.
+    /// Dismisses the `UIViewController` that was presented modally by the `UIViewController`.
     func dismiss(animated: Bool, completion: (() -> Void)?)
     
-    /// Sets view controller as root view controller and updates the display.
+    /// Sets `UIViewController` as root `UIViewController` and updates the display.
     func setRoot(to viewController: UIViewController)
 }
 
 extension StandardNavigable {
-    /// Pushes a view controller onto the receiver’s stack and updates the display.
+    /// Pushes a `UIViewController` onto the receiver’s stack and updates the display.
     public func push(_ viewController: UIViewController) {
         push(viewController, animated: true)
     }
     
-    /// Pops the top view controller from the navigation stack and updates the display.
+    /// Pops the top `UIViewController` from the navigation stack and updates the display.
     public func pop() {
         pop(animated: true)
     }
     
-    /// Pops all the view controllers on the stack except the root view controller and updates the display.
+    /// Pops the given number of top `UIViewController` from navigation stack and updates the display.
+    ///
+    /// If there are less `UIViewController`'s in the navigation stack, than`count`, methods returns.
+    func pop(count: Int) {
+        pop(count: count, animated: false)
+    }
+    
+    /// Pops all the `UIViewController`s on the stack except the root `UIViewController` and updates the display.
     public func popToRoot() {
         popToRoot(animated: true)
     }
     
-    /// Presents a view controller modally.
+    /// Presents a `UIViewController` modally.
     public func present(_ viewController: UIViewController) {
         present(viewController, animated: true, completion: nil)
     }
     
-    /// Dismisses the view controller that was presented modally by the view controller.
+    /// Dismisses the `UIViewController` that was presented modally by the `UIViewController`.
     public func dismiss() {
         dismiss(animated: true, completion: nil)
     }
@@ -91,6 +103,15 @@ extension StandardNavigable where Self: UIViewController {
     
     public func pop(animated: Bool) {
         navigationController?.popViewController(animated: animated)
+    }
+    
+    func pop(count: Int, animated: Bool = true) {
+        guard let navigationController = navigationController else { return }
+
+        let viewControllers: [UIViewController] = navigationController.viewControllers
+        guard viewControllers.count >= (count + 1) else { return }
+
+        navigationController.popToViewController(viewControllers[(viewControllers.count-1) - count], animated: animated)
     }
     
     public func popToRoot(animated: Bool) {

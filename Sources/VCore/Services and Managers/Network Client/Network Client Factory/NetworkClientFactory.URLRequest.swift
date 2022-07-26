@@ -63,10 +63,10 @@ extension NetworkClientFactory {
             endpoint: String,
             queryParameters: [String: String]
         ) throws -> URL {
-            guard var urlComponents: URLComponents = .init(string: endpoint) else { throw NetworkError.invalidEndpoint }
+            guard var urlComponents: URLComponents = .init(string: endpoint) else { throw NetworkClientError.invalidEndpoint }
             urlComponents.addQueryItems(queryParameters)
             
-            guard let url: URL = urlComponents.url else { throw NetworkError.invalidQueryParameters }
+            guard let url: URL = urlComponents.url else { throw NetworkClientError.invalidQueryParameters }
             return url
         }
     }
