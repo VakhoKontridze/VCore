@@ -15,6 +15,12 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.18.3(56)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.3) — *2022 07 26*
+
+Models
+
+- Issue with `clearUIColors` and `clearNSColors` initializers in `GenericStateModel_EnabledPressedDisabled` is fixed
+
 ### [3.18.2(55)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.2) — *2022 07 26*
 
 Architectural Pattern Helpers

@@ -42,7 +42,7 @@ public struct GenericStateModel_EnabledLoading<Value> {
     public var loading: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_EnabledPressedLoading` with values.
+    /// Initializes `GenericStateModel_EnabledLoading` with values.
     public init(
         enabled: Value,
         pressed: Value,
@@ -52,7 +52,7 @@ public struct GenericStateModel_EnabledLoading<Value> {
         self.loading = loading
     }
     
-    /// Initializes `GenericStateModel_EnabledPressedLoading` with value.
+    /// Initializes `GenericStateModel_EnabledLoading` with value.
     public init(
         _ value: Value
     ) {
