@@ -4,7 +4,7 @@
 
 Architectural Pattern Helpers
 
-- Missing `public` modifier is added to extension method of `pop(count: Int, animated: Bool)` in StanardNavigable
+- Missing `public` modifier is added to extension method of `pop(count: Int, animated: Bool)` in `StandardNavigable`
 
 ### [3.18.1(54)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.1) — *2022 07 26*
 
@@ -14,7 +14,7 @@ View and ViewControllers
 
 Architectural Pattern Helpers
 
-- Missing `public` modifier is added to default implementation of `pop(count: Int, animated: Bool)` method in StanardNavigable
+- Missing `public` modifier is added to default implementation of `pop(count: Int, animated: Bool)` method in `StandardNavigable`
 
 ### [3.18.0(53)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.0) — *2022 07 26*
 
