@@ -21,7 +21,6 @@ import UIKit
 /// - `detectPaginationFromScrollViewDidScroll`, which detects pagination on scroll.
 /// - `detectPaginationFromCollectionViewCellForItem`, which detects instance in which loaded cells do not fill up UICollectionViews's content. So, pagination is called.
 /// - `viewForSupplementaryElement`, which returns `UIActivityIndicator`.
-///
 open class InfiniteScrollingUICollectionView: UICollectionView {
     // MARK: Subviews
     private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()

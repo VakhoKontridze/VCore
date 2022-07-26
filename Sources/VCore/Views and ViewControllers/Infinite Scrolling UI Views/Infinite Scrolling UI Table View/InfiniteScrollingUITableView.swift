@@ -20,7 +20,6 @@ import UIKit
 /// Two methods must be called from `UIView` or `UIViewController` to ensure proper functionality:
 /// - `detectPaginationFromScrollViewDidScroll`, which detects pagination on scroll.
 /// - `detectPaginationFromTableViewCellForRow`, which detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called.
-///
 open class InfiniteScrollingUITableView: UITableView {
     // MARK: Properties
     /// Delegate.
