@@ -114,12 +114,4 @@ open class ScrollableUIView: UIView {
     }
 }
 
-// MARK: - Helpers
-extension NSLayoutConstraint {
-    func withPriority(_ priority: UILayoutPriority?) -> NSLayoutConstraint {
-        priority.map { self.priority = $0 }
-        return self
-    }
-}
-
 #endif
