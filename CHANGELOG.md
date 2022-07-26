@@ -1,6 +1,6 @@
 # Change Log
 
-### [3.18.4(57)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.4) — *2022 07 25*
+### [3.18.4(57)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.4) — *2022 07 26*
 
 View and ViewControllers
 
