@@ -7,6 +7,10 @@ Models
 - `BasicAnimation.toCAMediaTimingFunction` is added
 - `BasicAnimation.toUIViewAnimationOptions` is added
 
+Extensions
+
+- `UIView.removeSubviews` is renamed to `UIView.removeSubviewsFromSuperview`
+
 ### [3.18.4(57)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.4) — *2022 07 26*
 
 View and ViewControllers

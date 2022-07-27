@@ -840,6 +840,13 @@ extension UIViewController {
     }
 }
 
+extension UIView {
+    @available(*, deprecated, renamed: "removeSubviewsFromSuperview")
+    public func removeSubviews() {
+        removeSubviewsFromSuperview()
+    }
+}
+
 #endif
 
 // MARK: - VCore Localization Service
