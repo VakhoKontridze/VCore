@@ -57,7 +57,7 @@ extension UIView {
     ///         }
     ///     }
     ///
-    open class func animateKeyboardResponsiveness(
+    public class func animateKeyboardResponsiveness(
         systemKeyboardInfo: SystemKeyboardInfo,
         animations: @escaping () -> Void,
         completion: ((Bool) -> Void)? = nil
@@ -121,7 +121,7 @@ extension UIView {
     ///         }
     ///     }
     ///
-    open class func animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
+    public class func animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
         keyboardWillShow: Bool,
         firstResponderView: UIView,
         containerView: UIView,
