@@ -16,8 +16,8 @@ open class KeychainService {
     private init() {}
     
     // MARK: Get
-    /// Returns `Data` or `KeychainServiceError` from key.
-    open class func get(key: String) -> Result<Data, Error> {
+    /// Returns `Data` from key.
+    open class func get(key: String) throws -> Data {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword,
             kSecAttrAccount as String: key,
@@ -32,25 +32,18 @@ open class KeychainService {
             status == noErr,
             let data: Data = valueObject as? Data
         else {
-            return .failure(KeychainServiceError(code: status))
+            throw KeychainServiceError.failedToGet
         }
         
-        return .success(data)
-    }
-    
-    /// Returns `Optional` `Data` from key.
-    open class func get(key: String) -> Data? {
-        guard case .success(let data) = get(key: key) else { return nil }
         return data
     }
     
     // MARK: Set
     /// Sets `Data` with key, and returns success, or `KeychainServiceError`.
-    @discardableResult
-    open class func set(key: String, data: Data?) -> ResultNoSuccess<Error> {
+    open class func set(key: String, data: Data?) throws {
         switch data {
         case nil:
-            return delete(key: key)
+            try delete(key: key)
 
         case let data?:
             let query: [String: Any] = [
@@ -62,18 +55,13 @@ open class KeychainService {
             let _: OSStatus = SecItemDelete(query as CFDictionary)
             let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
             
-            guard status == noErr else {
-                return .failure(KeychainServiceError(code: status))
-            }
-            
-            return .success
+            guard status == noErr else { throw KeychainServiceError.failedToSet }
         }
     }
     
     // MARK: Delete
     /// Deletes `Data` with key, and returns success, or `KeychainServiceError`.
-    @discardableResult
-    open class func delete(key: String) -> ResultNoSuccess<Error> {
+    open class func delete(key: String) throws {
         let query: [String: Any] = [
             kSecClass as String: kSecClassGenericPassword as String,
             kSecAttrAccount as String: key
@@ -81,16 +69,12 @@ open class KeychainService {
 
         let status: OSStatus = SecItemDelete(query as CFDictionary)
         
-        guard status == noErr else {
-            return .failure(KeychainServiceError(code: status))
-        }
-        
-        return .success
+        guard status == noErr else { throw KeychainServiceError.failedToDelete }
     }
     
     // MARK: Subscript
     open class subscript(_ key: String) -> Data? {
-        get { Self.get(key: key) }
-        set { Self.set(key: key, data: newValue) }
+        get { try? Self.get(key: key) }
+        set { try? Self.set(key: key, data: newValue) }
     }
 }

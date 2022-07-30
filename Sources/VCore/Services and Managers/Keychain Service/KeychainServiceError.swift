@@ -8,25 +8,20 @@
 import Foundation
 
 // MARK: - Keychain Service Error
-/// Error thrown by `KeychainService`.
-///
-/// A simple container of `OSStatus`.
-public struct KeychainServiceError: VCoreError {
-    // MARK: Properties
+/// An error that occurs during encoding and decoding in `KeychainService`.
+public enum KeychainServiceError: Int, VCoreError, CaseIterable {
+    // MARK: Cases
+    /// Indicates that get operation has failed.
+    case failedToGet
+    
+    /// Indicates that set operation has failed.
+    case failedToSet
+    
+    /// Indicates that delete operation has failed.
+    case failedToDelete
+    
+    // MARK: VCore Error
     public static var errorDomain: String { "com.vcore.keychainservice" }
-    public var code: Int
-    public var description: String
-    
-    // MARK: Initializers
-    /// Initializers `KeychainService` with code.
-    public init(code: Int, description: String = "") {
-        self.code = code
-        self.description = description
-    }
-    
-    /// Initializers `KeychainService` with code.
-    public init(code: Int32, description: String = "") {
-        self.code = .init(code)
-        self.description = description
-    }
+    public var code: Int { 1000 + rawValue }
+    public var description: String { VCoreLocalizationService.shared.localizationProvider.keychainServiceErrorDescription(self) }
 }

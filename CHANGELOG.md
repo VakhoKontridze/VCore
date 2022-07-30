@@ -2,6 +2,11 @@
 
 ### 4.0.0(?)
 
+Services and Managers
+
+- `KeychainService` API is changed from `Result` types to throwing methods
+- `KeychainServiceError` is no an `enum`
+
 Architectural Pattern Helpers
 
 - Architectural helpers are added for `SwiftUI`, alongside with documentation and demo
@@ -10,6 +15,10 @@ Extensions
 
 - `NavigationPath.append(contentsOf:)` method is added
 - `NavigationPath.removeAll()` method is added
+
+API
+
+- `keychainServiceErrorDescription(_:)` is added to `VCoreLocalizationProvider`
 
 XCode Templates
 

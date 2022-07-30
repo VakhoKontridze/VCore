@@ -35,6 +35,9 @@ public protocol VCoreLocalizationProvider {
     /// Localized value for `JSONDecoderError`'s description.
     func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String
     
+    /// Localized value for `JSONDecoderError`'s description.
+    func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError) -> String
+    
     /// Localized value for error title in alerts.
     var alertErrorTitle: String { get }
     
@@ -60,6 +63,10 @@ extension VCoreHumanReadableLocalizationProvider {
     
     public func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String {
         DefaultVCoreLocalizationProvider().jsonDecoderErrorDescription(jsonDecoderError)
+    }
+    
+    public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError) -> String {
+        DefaultVCoreLocalizationProvider().keychainServiceErrorDescription(keychainServiceError)
     }
     
     public var resultNoFailureErrorDescription: String {
@@ -99,6 +106,14 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
     public func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String {
         switch jsonDecoderError {
         case .failedToDecode: return "Data cannot be decoded or is incomplete"
+        }
+    }
+    
+    public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError) -> String {
+        switch keychainServiceError {
+        case .failedToGet: return "Data cannot be retrieved"
+        case .failedToSet: return "Data cannot be set"
+        case .failedToDelete: return "Data cannot be deleted"
         }
     }
     
