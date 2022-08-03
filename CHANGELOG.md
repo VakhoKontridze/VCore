@@ -7,6 +7,10 @@ Models
 - `BasicAnimation.toCAMediaTimingFunction` is added
 - `BasicAnimation.toUIViewAnimationOptions` is added
 
+Architectural Pattern Helpers
+
+- `UIActionSheetViewable` is added
+
 Extensions
 
 - `UIView.removeSubviews` is renamed to `UIView.removeSubviewsFromSuperview`
