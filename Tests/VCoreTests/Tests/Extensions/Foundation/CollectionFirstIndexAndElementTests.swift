@@ -1,5 +1,5 @@
 //
-//  ArrayFirstIndexAndElementTests.swift
+//  CollectionFirstIndexAndElementTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 05.05.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class ArrayFirstIndexAndElementTest: XCTestCase {
+final class CollectionFirstIndexAndElementTest: XCTestCase {
     // MARK: Test Data
     private let nums: [Int] = [1, 3, 5]
     
