@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - View Add Subviews
 extension UIView {
-    /// Adds `UIView`s as arranged subviews.
+    /// Adds `UIView`s as subviews.
     ///
     ///     let view: UIView = .init()
     ///
@@ -25,7 +25,7 @@ extension UIView {
         views.forEach { addSubview($0) }
     }
     
-    /// Adds `UIView`s as arranged subviews.
+    /// Adds `UIView`s as subviews.
     ///
     ///     let view: UIView = .init()
     ///
@@ -39,11 +39,11 @@ extension UIView {
         views.forEach { addSubview($0) }
     }
     
-    /// Removes all `UIView`s from arranged subviews.
+    /// Removes all `UIView`s from superview.
     ///
-    ///     view.removeSubviews()
+    ///     view.removeSubviewsFromSuperview()
     ///
-    public func removeSubviews() {
+    public func removeSubviewsFromSuperview() {
         subviews.forEach { $0.removeFromSuperview() }
     }
 }

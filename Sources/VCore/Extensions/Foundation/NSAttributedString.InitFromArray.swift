@@ -27,7 +27,7 @@ extension NSAttributedString {
     ///                 NSAttributedString.Key.foregroundColor: UIColor.label as Any,
     ///                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 13) as Any
     ///             ]
-    ///         ),
+    ///         )
     ///     ])
     ///
     convenience public init(attributedStrings: [NSAttributedString]) {
