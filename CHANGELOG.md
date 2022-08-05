@@ -1,6 +1,6 @@
 # Change Log
 
-### [3.19.0(58)](https://github.com/VakhoKontridze/VCore/releases/tag/3.19.0) — *2022 08 25*
+### [3.19.0(58)](https://github.com/VakhoKontridze/VCore/releases/tag/3.19.0) — *2022 08 05*
 
 Models
 
