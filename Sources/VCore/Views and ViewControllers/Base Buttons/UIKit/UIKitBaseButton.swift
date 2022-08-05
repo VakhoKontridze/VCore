@@ -42,7 +42,7 @@ import UIKit
 ///
 ///     final class SomeButton: UIView {
 ///         // Action is passed during configuration
-///         private lazy var baseButton: UIKitBaseButton = .init(action: configureFromStateUIModelChange)
+///         private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateUIModelChange() )
 ///             .withTranslatesAutoresizingMaskIntoConstraints(false)
 ///
 ///         private let titleLabel: UILabel = {
