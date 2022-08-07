@@ -93,7 +93,7 @@ extension UICollectionViewDequeueable {
 /// Allows for the delegation of `UICollectionViewDelegate`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `Presenter`.
-/// in `MVVM`, this protocol is conformed to by a `ViewModel.`
+/// in `MVVM` architecture, this protocol is conformed to by a `ViewModel.`
 public protocol UICollectionViewDelegable {
     /// Notifies that a `UICollectionViewCell` has been selected and section and row.
     func collectionViewDidSelectRow(section: Int, row: Int)
@@ -102,7 +102,7 @@ public protocol UICollectionViewDelegable {
 /// Allows for the delegation of `UICollectionViewDataSource`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `Presenter`.
-/// in `MVVM`, this protocol is conformed to by a `ViewModel.`
+/// in `MVVM` architecture, this protocol is conformed to by a `ViewModel.`
 public protocol UICollectionViewDataSourceable {
     /// Number of sections in `UICollectionView`
     var collectionViewNumberOfSections: Int { get }
