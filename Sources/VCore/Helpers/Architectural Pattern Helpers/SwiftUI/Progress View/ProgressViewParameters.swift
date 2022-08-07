@@ -24,7 +24,7 @@ import SwiftUI
 ///             .progressView(parameters: parameters)
 ///     }
 ///     
-@available(iOS 14, *)
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public struct ProgressViewParameters: Hashable, Identifiable {
     // MARK: Properties
     public let isInteractionDisabled: Bool
@@ -53,7 +53,7 @@ public struct ProgressViewParameters: Hashable, Identifiable {
 }
 
 // MARK: - Factory
-@available(iOS 14, *)
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 extension View {
     /// Presents `ProgressView` when `ProgressViewParameters` is non-`nil`.
     @ViewBuilder public func progressView(
@@ -75,7 +75,7 @@ extension View {
     }
 }
 
-@available(iOS 14, *)
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 extension View {
     @ViewBuilder fileprivate func progressViewStyle(parameters: ProgressViewParameters) -> some View {
         switch parameters.color {
