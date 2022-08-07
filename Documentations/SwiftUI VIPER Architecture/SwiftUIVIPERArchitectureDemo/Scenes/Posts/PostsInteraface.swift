@@ -9,11 +9,7 @@ import SwiftUI
 import VCore
 
 // MARK: - Posts Presentable
-@MainActor protocol PostsPresentable: ObservableObject {
-    /*@Published*/ var navigationStackCoordinator: NavigationStackCoordinator? { get set }
-    /*@Published*/ var alertParameters: AlertParameters? { get set }
-    /*@Published*/ var progressViewParameters: ProgressViewParameters? { get }
-    
+@MainActor protocol PostsPresentable: ObservableObject, NavigationStackCoordinable, AlertPresentable, ProgressViewPresentable {
     /*@Published*/ var postParameters: [PostRowViewParameters] { get }
     
     func refreshPosts()

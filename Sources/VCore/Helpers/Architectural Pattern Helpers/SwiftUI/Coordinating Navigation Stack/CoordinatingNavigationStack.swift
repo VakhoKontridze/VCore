@@ -54,33 +54,3 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
             .environment(\.navigationStackCoordinator, navigationStackCoordinator)
     }
 }
-
-// MARK: - Navigation Stack Coordinator
-/// `ObservableObject` that stores `NavigationPath` for coordinating with `CoordinatingNavigationStack`.
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
-public final class NavigationStackCoordinator: ObservableObject {
-    // MARK: Properties
-    /// `NavigationPath`.
-    @Published public var path: NavigationPath
-    
-    // MARK: Initializers
-    /// Initializes `NavigationStackCoordinator`.
-    public init(path: NavigationPath) {
-        self.path = path
-    }
-}
-
-// MARK: - Navigation Stack Coordinator Environment Value
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
-extension EnvironmentValues {
-    /// `NavigationStackCoordinator` of the view associated with the environment.`
-    public var navigationStackCoordinator: NavigationStackCoordinator? {
-        get { self[NavigationStackCoordinatorEnvironmentKey.self] }
-        set { self[NavigationStackCoordinatorEnvironmentKey.self] = newValue }
-    }
-}
-
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
-struct NavigationStackCoordinatorEnvironmentKey: EnvironmentKey {
-    static var defaultValue: NavigationStackCoordinator? = nil
-}

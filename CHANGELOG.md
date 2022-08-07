@@ -9,7 +9,10 @@ Services and Managers
 
 Architectural Pattern Helpers
 
-- Architectural helpers are added for `SwiftUI`, alongside with documentation and demo
+- `CoordinatingNavigationStack` is added for `SwiftUI`
+- `AlertPresentable` is added for `SwiftUI`
+- `ProgressViewPresentable` is added for `SwiftUI`
+- `SwiftUI` `VIPER` documentation and demo is added
 
 Extensions
 
@@ -536,7 +539,7 @@ Views and ViewControllers
 
 - `ScrollableView` is added
 
-VIPER Helpers
+Architectural Pattern Helpers
 
 - `animated` and `completion` parameters are added to methods in `StandardNavigable`
 
@@ -550,7 +553,7 @@ Views and ViewControllers
 
 - State logic in `UIKitBaseButton` documentation is updated
 
-VIPER Helpers
+Architectural Pattern Helpers
 
 - Typo in `UIActivityIndicatorViewable` methods are fixed
 
@@ -584,7 +587,7 @@ Network Client
 
 - `NetworkProcessor` is renamed to `NetworkResponseProcessor`
 
-VIPER Helpers
+Architectural Pattern Helpers
 
 - `UITableViewDataSourceable.tableViewCellDequeueID(section:row:)` method is deprecated
 - `UICollectionViewDataSourceable.collectionViewCellDequeueID(section:row:)` method is deprecated
@@ -641,7 +644,7 @@ Helpers
 - `EdgeInsets` objects now support insetting and addition/subtraction
 - `VCoreErrorInfo` is removed
 
-VIPER Helpers
+Architectural Pattern Helpers
 
 - `UITableView` and `UICollectionView` dequeue and configure methods no longer crash if a cell identifier is not registered
 
@@ -670,7 +673,7 @@ Helpers
 - Custom `EdgeInset` objects are added
 - Generic `GenericStateModel` objects are added
 
-VIPER Helpers
+Architectural Pattern Helpers
 
 - `StandardNavigatable` is renamed to `StandardNavigable`
 
@@ -699,13 +702,13 @@ Network Service
 
 ### [1.0.3(4)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.3) — *2021 10 25*
 
-VIPER Helpers
+Architectural Pattern Helpers
 
 - `ViewModel.uiAlertController` property can now be accessed to create an `UIAlertController`
 
 ### [1.0.2(3)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.2) — *2021 10 08*
 
-VIPER Helpers
+Architectural Pattern Helpers
 
 - `UICollectionViewDataSourceable` and `UITableViewDataSourceable` APIs are updated
 

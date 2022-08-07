@@ -4,10 +4,8 @@ import SwiftUI
 import VCore
 
 // MARK: - ___VARIABLE_productName___ Presentable
-@MainActor protocol ___VARIABLE_productName___Presentable: ObservableObject {
+@MainActor protocol ___VARIABLE_productName___Presentable: ObservableObject, AlertPresentable, ProgressViewPresentable {
     /*@Published*/ var navigationStackCoordinator: NavigationStackCoordinator? { get set }
-    /*@Published*/ var alertParameters: AlertParameters? { get set }
-    /*@Published*/ var progressViewParameters: ProgressViewParameters? { get }
 }
 
 // MARK: - ___VARIABLE_productName___ Routable

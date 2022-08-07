@@ -3,7 +3,7 @@
 import Foundation
 
 // MARK: - ___VARIABLE_productName___ Parameters
-struct PostParameters: Hashable {
+struct ___VARIABLE_productName___Parameters: Hashable {
     // MARK: Properties
     
     // MARK: Mock
