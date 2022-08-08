@@ -31,7 +31,7 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
     
     private static let allowedCharacters: CharacterSet =
         .decimalDigits
-        .union(.init(arrayLiteral: ".".unicodeScalars.first!)) // fatalError
+        .union(.init(charactersIn: "."))
     
     // MARK: Initializers
     /// Initializes `ModuleVersion` with versions.
