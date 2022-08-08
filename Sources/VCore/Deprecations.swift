@@ -849,6 +849,16 @@ extension UIView {
 
 #endif
 
+#if os(iOS)
+
+extension UIDevice {
+    public static var hasNotch: Bool {
+        hasNoPhysicalHomeButton
+    }
+}
+
+#endif
+
 // MARK: - VCore Localization Service
 extension VCoreLocalizationProvider {
     @available(*, deprecated, message: "Renamed to `networkClientErrorDescription(_:)`")

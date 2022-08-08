@@ -1,5 +1,5 @@
 //
-//  UIDevice.HasNotch.swift
+//  UIDevice.HasNoPhysicalHomeButton.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 01.05.22.
@@ -9,16 +9,15 @@
 
 import UIKit
 
-// MARK: - Device Has Notch
+// MARK: - Device Has No Physical Home Button
 extension UIDevice {
-    /// Indicates if device has notch.
+    /// Indicates if device has no physical home button.
     ///
     /// Check is made against bottom safe are insets. If they are more than `0`, expression evaluates to`true`.
-    /// The result may break with future devices.
     ///
-    ///     let hasNotch: Bool = UIDevice.hasNotch
+    ///     let hasNoPhysicalHomeButton: Bool = UIDevice.hasNoPhysicalHomeButton
     ///
-    public static var hasNotch: Bool {
+    public static var hasNoPhysicalHomeButton: Bool {
         UIDevice.safeAreaInsetBottom > 0
     }
 }
