@@ -34,14 +34,14 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
             let files: [String: (any AnyMultiPartFormDataFile)?] = [
                 "profile": MultiPartFormDataFile(
                     mimeType: "image/jpeg",
-                    data: profileImage?.jpegData(compressionQuality: 0.75)
+                    data: profileImage?.jpegData(compressionQuality: 0.25)
                 ),
 
                 "gallery": galleryImages?.enumerated().compactMap { (index, image) in
                     MultiPartFormDataFile(
                         filename: "IMG_\(index).jpg",
                         mimeType: "image/jpeg",
-                        data: image?.jpegData(compressionQuality: 0.75)
+                        data: image?.jpegData(compressionQuality: 0.25)
                     )
                 }
             ]
@@ -71,17 +71,17 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
             
             XCTAssertEqual(
                 result["files"]?.toUnwrappedJSON["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
-                profileImage?.jpegData(compressionQuality: 0.75)?.base64EncodedString()
+                profileImage?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
             )
             
             XCTAssertEqual(
                 result["files"]?.toUnwrappedJSON["gallery[0]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
-                galleryImages?[0]?.jpegData(compressionQuality: 0.75)?.base64EncodedString()
+                galleryImages?[0]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
             )
             
             XCTAssertEqual(
                 result["files"]?.toUnwrappedJSON["gallery[1]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
-                galleryImages?[1]?.jpegData(compressionQuality: 0.75)?.base64EncodedString()
+                galleryImages?[1]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
             )
             
         } catch {
