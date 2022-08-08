@@ -5,7 +5,7 @@
 Services and Managers
 
 - `KeychainService` API is changed from `Result` types to throwing methods
-- `KeychainServiceError` is no an `enum`
+- `KeychainServiceError` is now an `enum`
 
 Architectural Pattern Helpers
 
