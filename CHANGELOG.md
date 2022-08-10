@@ -11,6 +11,7 @@ Architectural Pattern Helpers
 
 - `CoordinatingNavigationStack` is added for `SwiftUI`
 - `AlertPresentable` is added for `SwiftUI`
+- `ConfirmationDialogPresentable` is added for `SwiftUI`
 - `ProgressViewPresentable` is added for `SwiftUI`
 - `SwiftUI` `VIPER` documentation and demo is added
 
