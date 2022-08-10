@@ -29,7 +29,7 @@ import UIKit
 ///         startActivityIndicatorAnimationAndDisableInteraction()
 ///
 ///         URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
-///             guard let self = self else { return }
+///             guard let self else { return }
 ///
 ///             self.stopActivityIndicatorAnimationAndEnableInteraction()
 ///
@@ -106,8 +106,8 @@ extension UIView {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .medium
         activityIndicator.center = center
-        if let scalingFactor = scalingFactor { activityIndicator.transform = .init(scaleX: scalingFactor, y: scalingFactor) }
-        if let color = color { activityIndicator.color = color }
+        if let scalingFactor { activityIndicator.transform = .init(scaleX: scalingFactor, y: scalingFactor) }
+        if let color { activityIndicator.color = color }
         
         return activityIndicator
     }

@@ -43,7 +43,7 @@ final class SessionManagerTests: XCTestCase {
         }
         
         waitForExpectations(timeout: 10, handler: { [weak self] _ in
-            guard let self = self else { fatalError() }
+            guard let self else { fatalError() }
             
             XCTAssertEqual(container.allElements().count, count)
             

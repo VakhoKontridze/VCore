@@ -19,7 +19,7 @@ public struct JSONEncoderService {
         any: Any?
     ) throws -> Data {
         guard
-            let any = any,
+            let any,
             let data: Data = try? JSONSerialization.data(withJSONObject: any)
         else {
             throw JSONEncoderError.failedToEncode

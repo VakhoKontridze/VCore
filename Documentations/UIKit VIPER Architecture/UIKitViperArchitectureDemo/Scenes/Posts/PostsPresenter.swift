@@ -77,7 +77,7 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
         
         view.startActivityIndicatorAnimation()
         interactor.fetchPosts(completion: { [weak self] result in
-            guard let self = self else { return }
+            guard let self else { return }
             
             self.view.stopActivityIndicatorAnimation()
             

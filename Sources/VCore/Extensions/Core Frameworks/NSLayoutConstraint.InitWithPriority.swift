@@ -44,7 +44,7 @@ extension NSLayoutConstraint {
             constant: constant
         )
         
-        if let priority = priority { self.priority = priority }
+        if let priority { self.priority = priority }
     }
 }
 

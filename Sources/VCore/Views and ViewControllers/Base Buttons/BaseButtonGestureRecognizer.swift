@@ -104,7 +104,7 @@ final class BaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRec
     private func touchIsOnView(_ touches: Set<UITouch>) -> Bool? {
         guard
             let touch: UITouch = touches.first,
-            let view: UIView = view
+            let view
         else {
             return nil
         }

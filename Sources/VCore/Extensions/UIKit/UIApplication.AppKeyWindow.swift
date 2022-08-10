@@ -87,7 +87,7 @@ extension UIApplication {
     ///
     public var topMostViewController: UIViewController? {
         guard
-            let activeWindow = activeWindow,
+            let activeWindow,
             var topMostViewController: UIViewController = activeWindow.rootViewController
         else {
             return nil

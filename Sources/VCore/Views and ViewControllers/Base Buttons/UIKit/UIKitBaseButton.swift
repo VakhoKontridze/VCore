@@ -111,7 +111,7 @@ import UIKit
 ///
 ///         func configure(action: @escaping () -> Void) {
 ///             baseButton.gestureHandler = { [weak self] gestureState in
-///                 guard let self = self else { return }
+///                 guard let self else { return }
 ///
 ///                 self.internalState = .init(isEnabled: self.state.isEnabled, isPressed: gestureState.isPressed)
 ///
@@ -138,7 +138,7 @@ open class UIKitBaseButton: UIView {
     // MARK: Properties
     private lazy var gestureRecognizer: BaseButtonTapGestureRecognizer = .init(
         gesture: { [weak self] gestureState in
-            guard let self = self else { return }
+            guard let self else { return }
             
             self.internalButtonState = .init(isEnabled: self.buttonState.isEnabled, isPressed: gestureState.isPressed)
             self.gestureHandler(gestureState)

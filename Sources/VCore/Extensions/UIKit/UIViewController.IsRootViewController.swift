@@ -22,7 +22,7 @@ extension UIViewController {
     ///     }
     ///
     public var isRootViewController: Bool? {
-        guard let navigationController = navigationController else { return nil }
+        guard let navigationController else { return nil }
         
         return navigationController.viewControllers.first == self
     }
@@ -38,7 +38,7 @@ extension UIViewController {
     ///     }
     ///
     public var isNonRootViewController: Bool? {
-        guard let navigationController = navigationController else { return nil }
+        guard let navigationController else { return nil }
 
         return navigationController.viewControllers.first != self
     }

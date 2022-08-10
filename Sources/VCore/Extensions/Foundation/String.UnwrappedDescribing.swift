@@ -20,7 +20,7 @@ extension String {
     ///     print(String(unwrappedDescribing: b))   // nil
     ///
     public init?<Subject>(unwrappedDescribing instance: Subject?) {
-        guard let instance = instance else { return nil }
+        guard let instance else { return nil }
         self.init(describing: instance)
     }
 }

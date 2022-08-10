@@ -97,7 +97,7 @@ extension URLRequest {
         guard !items.isEmpty else { return }
         
         items.forEach { (key, value) in
-            guard let value = value else { return }
+            guard let value else { return }
             addValue(value, forHTTPHeaderField: key)
         }
     }

@@ -42,7 +42,7 @@ extension DragGesture.Value {
     ///     }
     ///
     public func velocity(inRelationTo oldValue: DragGesture.Value?) -> CGSize {
-        guard let oldValue = oldValue else { return .zero }
+        guard let oldValue else { return .zero }
         
         let duration: CGFloat = time.timeIntervalSince(oldValue.time)
         

@@ -44,7 +44,7 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
     /// Initializes `ModuleVersion` with `String`.
     public init?(string: String?) {
         guard
-            let string = string,
+            let string,
             string.contains(only: Self.allowedCharacters)
         else {
             return nil

@@ -38,7 +38,7 @@ extension Array where Element == Optional<String> {
     public func compactMapNonNilNonEmpty(_ transform: (String) throws -> String?) rethrows -> [String] {
         try compactMap { element in
             guard
-                let element = element,
+                let element,
                 !element.isEmpty,
                 let transformedElement: String = try transform(element),
                 !transformedElement.isEmpty

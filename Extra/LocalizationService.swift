@@ -139,7 +139,7 @@ extension String {
     }
     
     fileprivate func appendingRegionCode(_ regionCode: String?) -> String {
-        if let regionCode = regionCode {
+        if let regionCode {
             return "\(self)-\(regionCode)"
         } else {
             return self

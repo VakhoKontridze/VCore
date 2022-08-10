@@ -34,7 +34,7 @@ open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Item Attributes
     open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard
-            let collectionView = collectionView,
+            let collectionView,
             let layoutAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes
         else {
             return nil

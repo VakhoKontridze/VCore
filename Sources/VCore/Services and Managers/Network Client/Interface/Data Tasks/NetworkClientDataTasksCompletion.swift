@@ -87,7 +87,7 @@ extension NetworkClient {
             let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(from: request)
             
             dataTask(request: urlRequest, completion: { [weak self] result in
-                guard let self = self else { return }
+                guard let self else { return }
                 
                 switch result {
                 case .success((let data, let response)):
@@ -140,7 +140,7 @@ extension NetworkClient {
             let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(from: request)
             
             dataTask(request: urlRequest, completion: { [weak self] result in
-                guard let self = self else { return }
+                guard let self else { return }
                 
                 switch result {
                 case .success((let data, let response)):
@@ -180,7 +180,7 @@ extension NetworkClient {
         let task: URLSessionDataTask = URLSession(configuration: sessionConfiguration).dataTask(
             with: request,
             completionHandler: { (data, response, error) in
-                if let error = error {
+                if let error {
                     completion(.failure({
                         guard (error as NSError).domain == NSURLErrorDomain else { return NetworkClientError.returnedWithError }
                         
@@ -197,12 +197,12 @@ extension NetworkClient {
                     return
                 }
                 
-                guard let response = response else {
+                guard let response else {
                     completion(.failure(NetworkClientError.invalidResponse))
                     return
                 }
                 
-                guard let data = data else {
+                guard let data else {
                     completion(.failure(NetworkClientError.invalidData))
                     return
                 }

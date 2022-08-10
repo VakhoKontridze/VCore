@@ -20,7 +20,7 @@ extension NetworkRequestFactory {
             var result: [String: String] = [:]
             
             for (key, value) in json {
-                guard let value = value else { continue }
+                guard let value else { continue }
                 
                 result.updateValue(value, forKey: key)
             }
@@ -36,7 +36,7 @@ extension NetworkRequestFactory {
             var result: [String: String] = [:]
             
             for (key, value) in json {
-                guard let value = value else { continue }
+                guard let value else { continue }
                 
                 guard let description: String = .init(unwrappedDescribing: value) else { throw NetworkClientError.invalidHeaders }
                 result.updateValue(description, forKey: key)
