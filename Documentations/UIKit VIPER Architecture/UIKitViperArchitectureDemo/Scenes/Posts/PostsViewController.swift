@@ -64,7 +64,7 @@ final class PostsViewController:
         NSLayoutConstraint.activate([
             tableView.constraintLeading(to: view),
             tableView.constraintTrailing(to: view),
-            tableView.constraintTop(to: view, attribute: .safeTop),
+            tableView.constraintTop(to: view, layoutGuide: .safeArea),
             tableView.constraintBottom(to: view)
         ])
     }

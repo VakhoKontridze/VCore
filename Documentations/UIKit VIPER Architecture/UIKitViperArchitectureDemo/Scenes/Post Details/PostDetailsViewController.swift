@@ -11,11 +11,11 @@ import VCore
 // MARK: - Post Details View Controller
 final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     // MARK: Subviews
-    private let scrollableView: ScrollableView = {
-        let scrollableView: ScrollableView = .init(direction: .vertical)
-        scrollableView.translatesAutoresizingMaskIntoConstraints = false
-        scrollableView.scrollView.bounces = false
-        return scrollableView
+    private let scrollableUIView: ScrollableUIView = {
+        let scrollableUIView: ScrollableUIView = .init(direction: .vertical)
+        scrollableUIView.translatesAutoresizingMaskIntoConstraints = false
+        scrollableUIView.scrollView.bounces = false
+        return scrollableUIView
     }()
     
     private let bodyLabel: UILabel = .init(
@@ -51,23 +51,23 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     }
 
     private func addSubviews() {
-        view.addSubview(scrollableView)
-        scrollableView.contentView.addSubview(bodyLabel)
+        view.addSubview(scrollableUIView)
+        scrollableUIView.contentView.addSubview(bodyLabel)
     }
 
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            scrollableView.constraintLeading(to: view),
-            scrollableView.constraintTrailing(to: view),
-            scrollableView.constraintTop(to: view),
-            scrollableView.constraintBottom(to: view),
+            scrollableUIView.constraintLeading(to: view),
+            scrollableUIView.constraintTrailing(to: view),
+            scrollableUIView.constraintTop(to: view),
+            scrollableUIView.constraintBottom(to: view),
             
             bodyLabel.constraintHeight(to: nil, constant: 0)
                 .storing(in: &bodyLabelHeightConstraint),
-            bodyLabel.constraintLeading(to: scrollableView.contentView, constant: UIModel.Layout.bodyLabelMarginHor),
-            bodyLabel.constraintTrailing(to: scrollableView.contentView, constant: -UIModel.Layout.bodyLabelMarginHor),
-            bodyLabel.constraintTop(to: scrollableView.contentView, attribute: .safeTop, constant: UIModel.Layout.bodyLabelMarginTop),
-            bodyLabel.constraintBottom(to: scrollableView.contentView, attribute: .safeBottom, constant: -UIModel.Layout.bodyLabelMarginBottom)
+            bodyLabel.constraintLeading(to: scrollableUIView.contentView, constant: UIModel.Layout.bodyLabelMarginHor),
+            bodyLabel.constraintTrailing(to: scrollableUIView.contentView, constant: -UIModel.Layout.bodyLabelMarginHor),
+            bodyLabel.constraintTop(to: scrollableUIView.contentView, layoutGuide: .safeArea, constant: UIModel.Layout.bodyLabelMarginTop),
+            bodyLabel.constraintBottom(to: scrollableUIView.contentView, layoutGuide: .safeArea, constant: -UIModel.Layout.bodyLabelMarginBottom)
         ])
     }
     
