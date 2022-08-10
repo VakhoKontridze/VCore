@@ -30,5 +30,5 @@ struct PostCellViewParameters: UITableViewCellParameter {
     }
     
     // MARK: Table View Cell Parameter
-    var dequeueID: String { PostCell.dequeueID }
+    var reuseID: String { PostCell.reuseID }
 }

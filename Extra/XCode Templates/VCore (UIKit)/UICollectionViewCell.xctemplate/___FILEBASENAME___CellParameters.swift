@@ -8,5 +8,5 @@ struct ___VARIABLE_productName___CellParameters: UICollectionViewCellParameter {
     // MARK: Properties
     
     // MARK: Collection View Cell Parameter
-    var dequeueID: String { ___VARIABLE_productName___Cell.dequeueID }
+    var reuseID: String { ___VARIABLE_productName___Cell.reuseID }
 }

@@ -4,7 +4,7 @@ import UIKit
 import VCore
 
 // MARK: - ___VARIABLE_productName___ Cell
-final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionViewDequeueable {
+final class ___VARIABLE_productName___Cell: UICollectionViewCell, ConfigurableUICollectionViewCell {
     // MARK: Subviews
     
     // MARK: Properties
@@ -41,7 +41,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, UICollectionVi
         ])
     }
 
-    // MARK: Dequeueable
+    // MARK: Configurable
     func configure(parameter: some UICollectionViewCellParameter) {
         guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }
     }

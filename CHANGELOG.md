@@ -14,6 +14,10 @@ Architectural Pattern Helpers
 - `ConfirmationDialogPresentable` is added for `SwiftUI`
 - `ProgressViewPresentable` is added for `SwiftUI`
 - `SwiftUI` `VIPER` documentation and demo is added
+- `UITableViewDequeueable` is renamed to `ConfigurableUITableViewCell`
+- `ConfigurableUITableViewCell.dequeueID` is renamed to `ConfigurableUITableViewCell.reuseID`
+- `UICollectionViewDequeueable` is renamed to `ConfigurableUICollectionViewCell`
+- `ConfigurableUICollectionViewCell.dequeueID` is renamed to `ConfigurableUICollectionViewCell.reuseID`
 
 Extensions
 

@@ -4,7 +4,7 @@ import UIKit
 import VCore
 
 // MARK: - ___VARIABLE_productName___ Cell
-final class ___VARIABLE_productName___Cell: UITableViewCell, UITableViewDequeueable {
+final class ___VARIABLE_productName___Cell: UITableViewCell, ConfigurableUITableViewCell {
     // MARK: Subviews
     
     // MARK: Properties
@@ -42,7 +42,7 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, UITableViewDequeuea
         ])
     }
 
-    // MARK: Dequeueable
+    // MARK: Configurable
     func configure(parameter: some UITableViewCellParameter) {
         guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }
     }

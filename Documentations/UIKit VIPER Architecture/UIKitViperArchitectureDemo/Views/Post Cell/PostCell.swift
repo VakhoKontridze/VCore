@@ -9,7 +9,7 @@ import UIKit
 import VCore
 
 // MARK: - Post Cell
-final class PostCell: UITableViewCell, UITableViewDequeueable {
+final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
     // MARK: Subviews
     private let titleLabel: UILabel = .init(
         color: UIModel.Colors.titleLabel,
@@ -65,7 +65,7 @@ final class PostCell: UITableViewCell, UITableViewDequeueable {
         ])
     }
 
-    // MARK: Dequeueable
+    // MARK: Configurable
     func configure(parameter: some UITableViewCellParameter) {
         guard let parameters = parameter as? PostCellViewParameters else { return }
         

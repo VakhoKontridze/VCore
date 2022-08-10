@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - Parameters
-/// Protocol that allows parameter to dequeue an `UICollectionViewCell`.
+/// Protocol that allows parameter to configure an `UICollectionViewCell`.
 ///
 ///     protocol SomeViewable: AnyObject {}
 ///
@@ -71,22 +71,22 @@ import UIKit
 ///     }
 ///
 public protocol UICollectionViewCellParameter {
-    /// `UICollectionViewCell` dequeue ID.
-    var dequeueID: String { get }
+    /// `UICollectionViewCell` reuse ID.
+    var reuseID: String { get }
 }
 
 // MARK: - Cell
 /// Protocol that allows `UICollectionViewCell` to be configured using a parameter.
-public protocol UICollectionViewDequeueable: UICollectionViewCell {
-    /// `UICollectionViewCell` dequeue ID.
-    static var dequeueID: String { get }
+public protocol ConfigurableUICollectionViewCell: UICollectionViewCell {
+    /// `UICollectionViewCell` reuse ID.
+    static var reuseID: String { get }
     
     /// Configures `UICollectionViewCell` using a parameter.
     func configure(parameter: some UICollectionViewCellParameter)
 }
 
-extension UICollectionViewDequeueable {
-    public static var dequeueID: String { .init(describing: self) }
+extension ConfigurableUICollectionViewCell {
+    public static var reuseID: String { .init(describing: self) }
 }
 
 // MARK: - Collection View
@@ -116,13 +116,13 @@ public protocol UICollectionViewDataSourceable {
 
 // MARK: - Registering
 extension UICollectionView {
-    /// Registers dequeueable `UICollectionViewCell` for reuse in a `UICollectionView`.
-    public func register(_ cells: any UICollectionViewDequeueable.Type...) {
-        cells.forEach { register($0, forCellWithReuseIdentifier: $0.dequeueID) }
+    /// Registers `ConfigurableUICollectionViewCell` for reuse in a `UICollectionView`.
+    public func register(_ cells: any ConfigurableUICollectionViewCell.Type...) {
+        cells.forEach { register($0, forCellWithReuseIdentifier: $0.reuseID) }
     }
 }
 
-// MARK: - Dequeueing
+// MARK: - Dequeueing and Configuring
 extension UICollectionView {
     /// Dequeues and configures a reusable cell in `UICollectionView`.
     public func dequeueAndConfigureReusableCell(
@@ -130,9 +130,9 @@ extension UICollectionView {
         parameter: any UICollectionViewCellParameter
     ) -> UICollectionViewCell {
         guard
-            let cell = dequeueReusableCell(withReuseIdentifier: parameter.dequeueID, for: indexPath) as? any UICollectionViewDequeueable
+            let cell = dequeueReusableCell(withReuseIdentifier: parameter.reuseID, for: indexPath) as? any ConfigurableUICollectionViewCell
         else {
-            fatalError("Unable to dequeue a cell with identifier \(parameter.dequeueID)")
+            fatalError("Unable to dequeue a cell with identifier \(parameter.reuseID)")
         }
         
         cell.configure(parameter: parameter)

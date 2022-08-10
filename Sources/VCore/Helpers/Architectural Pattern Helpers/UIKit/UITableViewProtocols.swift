@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - Parameter
-/// Protocol that allows parameter to dequeue an `UITableViewCell`.
+/// Protocol that allows parameter to configure an `UITableViewCell`.
 ///
 ///     protocol SomeViewable: AnyObject {}
 ///
@@ -70,22 +70,22 @@ import UIKit
 ///     }
 ///
 public protocol UITableViewCellParameter {
-    /// `UITableViewCell` dequeue ID
-    var dequeueID: String { get }
+    /// `UITableViewCell` reuse ID
+    var reuseID: String { get }
 }
 
 // MARK: - Cell
 /// Protocol that allows `UITableViewCell` to be configured using a parameter.
-public protocol UITableViewDequeueable: UITableViewCell {
-    /// `UITableViewCell` dequeue ID.
-    static var dequeueID: String { get }
+public protocol ConfigurableUITableViewCell: UITableViewCell {
+    /// `UITableViewCell` reuse ID.
+    static var reuseID: String { get }
     
     /// Configures `UITableViewCell` using a parameter.
     func configure(parameter: some UITableViewCellParameter)
 }
 
-extension UITableViewDequeueable {
-    public static var dequeueID: String { .init(describing: self) }
+extension ConfigurableUITableViewCell {
+    public static var reuseID: String { .init(describing: self) }
 }
 
 // MARK: - Table View
@@ -115,22 +115,22 @@ public protocol UITableViewDataSourceable {
 
 // MARK: - Registering
 extension UITableView {
-    /// Registers dequeueable `UITableViewCell` for reuse in a `UITableView`.
-    public func register(_ cells: any UITableViewDequeueable.Type...) {
-        cells.forEach { register($0, forCellReuseIdentifier: $0.dequeueID) }
+    /// Registers `ConfigurableUITableViewCell` for reuse in a `UITableView`.
+    public func register(_ cells: any ConfigurableUITableViewCell.Type...) {
+        cells.forEach { register($0, forCellReuseIdentifier: $0.reuseID) }
     }
 }
 
-// MARK: - Dequeueing
+// MARK: - Dequeueing and Configuring
 extension UITableView {
     /// Dequeues and configures a reusable cell in `UITableView`.
     public func dequeueAndConfigureReusableCell(
         parameter: any UITableViewCellParameter
     ) -> UITableViewCell {
         guard
-            let cell = dequeueReusableCell(withIdentifier: parameter.dequeueID) as? any UITableViewDequeueable
+            let cell = dequeueReusableCell(withIdentifier: parameter.reuseID) as? any ConfigurableUITableViewCell
         else {
-            fatalError("Unable to dequeue a cell with identifier \(parameter.dequeueID)")
+            fatalError("Unable to dequeue a cell with identifier \(parameter.reuseID)")
         }
         
         cell.configure(parameter: parameter)
