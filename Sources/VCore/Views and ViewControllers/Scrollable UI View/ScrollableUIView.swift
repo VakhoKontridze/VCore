@@ -16,26 +16,26 @@ import UIKit
 /// To modify `UIScrollView` properties, access `scrollView` members.
 /// To modify container `UIView` properties, access `contentView` members.
 ///
-///     view.addSubview(scrollableView)
-///     scrollableView.contentView.addSubview(someView1)
-///     scrollableView.contentView.addSubview(someView2)
+///     view.addSubview(scrollableUIView)
+///     scrollableUIView.contentView.addSubview(someView1)
+///     scrollableUIView.contentView.addSubview(someView2)
 ///
 ///     NSLayoutConstraint.activate([
-///         scrollableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-///         scrollableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-///         scrollableView.topAnchor.constraint(equalTo: view.topAnchor),
-///         scrollableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+///         scrollableUIView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+///         scrollableUIView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+///         scrollableUIView.topAnchor.constraint(equalTo: view.topAnchor),
+///         scrollableUIView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 ///
 ///         someView1.heightAnchor.constraint(equalToConstant: 500),
-///         someView1.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor),
-///         someView1.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor),
-///         someView1.topAnchor.constraint(equalTo: scrollableView.contentView.topAnchor),
+///         someView1.leadingAnchor.constraint(equalTo: scrollableUIView.contentView.leadingAnchor),
+///         someView1.trailingAnchor.constraint(equalTo: scrollableUIView.contentView.trailingAnchor),
+///         someView1.topAnchor.constraint(equalTo: scrollableUIView.contentView.topAnchor),
 ///
 ///         someView2.heightAnchor.constraint(equalToConstant: 500),
-///         someView2.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor),
-///         someView2.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor),
+///         someView2.leadingAnchor.constraint(equalTo: scrollableUIView.contentView.leadingAnchor),
+///         someView2.trailingAnchor.constraint(equalTo: scrollableUIView.contentView.trailingAnchor),
 ///         someView2.topAnchor.constraint(equalTo: someView1.bottomAnchor, constant: 20),
-///         someView2.bottomAnchor.constraint(equalTo: scrollableView.contentView.bottomAnchor)
+///         someView2.bottomAnchor.constraint(equalTo: scrollableUIView.contentView.bottomAnchor)
 ///     ])
 ///
 open class ScrollableUIView: UIView {
