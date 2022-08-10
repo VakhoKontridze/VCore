@@ -14,8 +14,6 @@ import SwiftUI
 /// To use completion handler, use global `withBasicAnimation(_:body:completion:)` function.
 ///
 /// Another purpose of this model is to limit animations to basic curve and duration.
-///
-/// Object contains property `swiftUIAnimation`, which casts `BasicAnimation` to `SwiftUI`'s native `Animation`.
 public struct BasicAnimation {
     // MARK: Properties
     /// Animation curve.

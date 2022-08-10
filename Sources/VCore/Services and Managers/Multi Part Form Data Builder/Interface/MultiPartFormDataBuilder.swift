@@ -18,14 +18,14 @@ import Foundation
 ///         let files: [String: (some AnyMultiPartFormDataFile)?] = [
 ///             "profile": MultiPartFormDataFile(
 ///                 mimeType: "image/jpeg",
-///                 data: profileImage?.jpegData(compressionQuality: 0.75)
+///                 data: profileImage?.jpegData(compressionQuality: 0.25)
 ///             ),
 ///
 ///             "gallery": galleryImages?.enumerated().compactMap { (index, image) in
 ///                 MultiPartFormDataFile(
 ///                     filename: "IMG_\(index).jpg",
 ///                     mimeType: "image/jpeg",
-///                     data: image?.jpegData(compressionQuality: 0.75)
+///                     data: image?.jpegData(compressionQuality: 0.25)
 ///                 )
 ///             }
 ///         ]

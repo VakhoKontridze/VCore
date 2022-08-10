@@ -27,6 +27,12 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### 3.19.1(59)
+
+Extensions
+
+- `UIDevice.hasNotch` is renamed to `UIDevice.hasNoPhysicalHomeButton`
+
 ### [3.19.0(58)](https://github.com/VakhoKontridze/VCore/releases/tag/3.19.0) — *2022 08 05*
 
 Models
@@ -41,7 +47,7 @@ Architectural Pattern Helpers
 Extensions
 
 - `Array.firstIndexAndElement(where:)` is expanded to `Collection`
-- `UIView.removeSubviews` is renamed to `UIView.removeSubviewsFromSuperview`
+- `UIView.removeSubviews()` is renamed to `UIView.removeSubviewsFromSuperview()`
 
 ### [3.18.4(57)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.4) — *2022 07 25*
 
