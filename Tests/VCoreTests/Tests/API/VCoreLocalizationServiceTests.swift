@@ -11,7 +11,7 @@ import XCTest
 // MARK: - Tests
 final class VCoreLocalizationServiceTests: XCTestCase {
     // MARK: Test Data
-    private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {
+    private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {        
         func networkClientErrorDescription(_ networkClientError: NetworkClientError) -> String {
             "A"
         }
@@ -24,16 +24,20 @@ final class VCoreLocalizationServiceTests: XCTestCase {
             "C"
         }
         
-        var alertErrorTitle: String {
+        func keychainServiceErrorDescription(_ keychainServiceError: VCore.KeychainServiceError) -> String {
             "D"
         }
         
-        var alertOKButtonTitle: String {
+        var alertErrorTitle: String {
             "E"
         }
         
-        var resultNoFailureErrorDescription: String {
+        var alertOKButtonTitle: String {
             "F"
+        }
+        
+        var resultNoFailureErrorDescription: String {
+            "G"
         }
     }
     
@@ -71,11 +75,19 @@ final class VCoreLocalizationServiceTests: XCTestCase {
         )
     }
     
+    func testKeychainServiceErrorDescription() {
+        XCTAssertThrowsError(
+            try KeychainService.get(key: "N/A"),
+            "",
+            { error in XCTAssertEqual(error.localizedDescription, "D") }
+        )
+    }
+    
     #if canImport(UIKit) && !os(watchOS)
     func testAlertErrorTitle() {
         XCTAssertEqual(
             UIAlertParameters(error: NetworkClientError.notConnectedToNetwork, completion: nil).title,
-            "D"
+            "E"
         )
     }
     #endif
@@ -84,7 +96,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
     func testAlertOkButtonTitle() {
         XCTAssertEqual(
             (UIAlertParameters(title: "T", message: "M", completion: nil).buttons().first! as! UIAlertButton).title,
-            "E"
+            "F"
         )
     }
     #endif
@@ -93,7 +105,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
         XCTAssertThrowsError(
             try ResultNoFailure<Any>.failure.get(),
             "",
-            { error in XCTAssertEqual(error.localizedDescription, "F") }
+            { error in XCTAssertEqual(error.localizedDescription, "G") }
         )
     }
 }
