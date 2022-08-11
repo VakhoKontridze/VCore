@@ -8,8 +8,6 @@
 import SwiftUI
 
 // MARK: - Alert Parameters
-/// Alert Parameters.
-///
 /// Parameters for presenting an `Alert`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in`Presenter`.

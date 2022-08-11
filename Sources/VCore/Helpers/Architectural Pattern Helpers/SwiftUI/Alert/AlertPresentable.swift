@@ -14,5 +14,6 @@ import SwiftUI
 /// in `MVVM` architecture, this protocol is conformed to by a `ViewModel.`
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 @MainActor public protocol AlertPresentable: ObservableObject {
+    /// Alert parameters.
     /*@Published*/ var alertParameters: AlertParameters? { get set }
 }

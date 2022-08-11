@@ -8,8 +8,6 @@
 import SwiftUI
 
 // MARK: - ConfirmationDialog Parameters
-/// Confirmation dialog Parameters.
-///
 /// Parameters for presenting a `ConfirmationDialog`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in`Presenter`.

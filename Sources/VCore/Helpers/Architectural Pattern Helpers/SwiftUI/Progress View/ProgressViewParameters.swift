@@ -8,8 +8,6 @@
 import SwiftUI
 
 // MARK: - Progress View Parameters
-/// Progress View Parameters.
-///
 /// Parameters for presenting an `ProgressView`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in `Presenter`.

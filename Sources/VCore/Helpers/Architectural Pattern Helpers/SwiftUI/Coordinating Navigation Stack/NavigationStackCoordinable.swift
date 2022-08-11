@@ -14,5 +14,6 @@ import SwiftUI
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `Presenter`.
 /// in `MVVM` architecture, this protocol is conformed to by a `ViewModel.`
 @MainActor public protocol NavigationStackCoordinable: ObservableObject {
+    /// Navigation stack coordinator.
     /*@Published*/ var navigationStackCoordinator: NavigationStackCoordinator? { get set }
 }
