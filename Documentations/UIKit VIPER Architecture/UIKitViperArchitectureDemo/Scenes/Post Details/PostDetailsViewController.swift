@@ -22,7 +22,8 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
         numberOfLines: 0,
         color: UIModel.Colors.bodyLabel,
         font: UIModel.Fonts.bodyLabel
-    ).withTranslatesAutoresizingMaskIntoConstraints(false)
+    )
+        .withTranslatesAutoresizingMaskIntoConstraints(false)
     
     // MARK: Properties
     var presenter: (any PostDetailsPresentable)!

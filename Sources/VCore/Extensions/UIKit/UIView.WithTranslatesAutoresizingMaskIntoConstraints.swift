@@ -13,7 +13,8 @@ import UIKit
 extension UIView {
     /// Applies flag to `translatesAutoresizingMaskIntoConstraints` property of `UIView`, and returns it.
     ///
-    ///     let button: UILabel = .init().withTranslatesAutoresizingMaskIntoConstraints(false)
+    ///     let button: UILabel = .init()
+    ///         .withTranslatesAutoresizingMaskIntoConstraints(false)
     ///
     public func withTranslatesAutoresizingMaskIntoConstraints(_ flag: Bool) -> Self {
         translatesAutoresizingMaskIntoConstraints = flag

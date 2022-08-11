@@ -132,7 +132,8 @@ import UIKit
 ///     let button: SomeButton = .init(
 ///         action: { print("Clicked") },
 ///         title: "Lorem Ipsum"
-///     ).withTranslatesAutoresizingMaskIntoConstraints(false)
+///     )
+///         .withTranslatesAutoresizingMaskIntoConstraints(false)
 ///
 open class UIKitBaseButton: UIView {
     // MARK: Properties

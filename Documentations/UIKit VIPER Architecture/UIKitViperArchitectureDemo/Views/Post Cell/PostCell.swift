@@ -14,13 +14,15 @@ final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
     private let titleLabel: UILabel = .init(
         color: UIModel.Colors.titleLabel,
         font: UIModel.Fonts.titleLabel
-    ).withTranslatesAutoresizingMaskIntoConstraints(false)
+    )
+        .withTranslatesAutoresizingMaskIntoConstraints(false)
     
     private let bodyLabel: UILabel = .init(
         numberOfLines: UIModel.Layout.bodyLabelNumberOfLines,
         color: UIModel.Colors.bodyLabel,
         font: UIModel.Fonts.bodyLabel
-    ).withTranslatesAutoresizingMaskIntoConstraints(false)
+    )
+        .withTranslatesAutoresizingMaskIntoConstraints(false)
     
     // MARK: Properties
     private typealias UIModel = PostCellUIModel
