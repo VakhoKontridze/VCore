@@ -24,17 +24,10 @@ extension UIAlertButtonProtocol {
 /// `UIAlertController` button.
 public struct UIAlertButton: UIAlertButtonProtocol {
     // MARK: Properties
-    /// Indicates if button is enabled.
-    public var isEnabled: Bool
-    
-    /// Button style.
-    public let style: UIAlertAction.Style
-    
-    /// Button title.
-    public var title: String
-    
-    /// Button action.
-    public var action: (() -> Void)?
+    private var isEnabled: Bool
+    private let style: UIAlertAction.Style
+    private let title: String
+    private let action: (() -> Void)?
     
     // MARK: Initializers
     /// Initializes `UIAlertButton`.

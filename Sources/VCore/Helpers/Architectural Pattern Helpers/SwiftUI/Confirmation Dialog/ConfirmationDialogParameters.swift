@@ -34,10 +34,10 @@ import SwiftUI
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct ConfirmationDialogParameters {
     // MARK: Properties
-    /// Confirmation dialog title.
+    /// Title.
     public var title: String?
     
-    /// Confirmation dialog message.
+    /// Message.
     public var message: String?
     
     /// Buttons.

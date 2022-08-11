@@ -31,15 +31,9 @@ extension AlertButtonProtocol {
 public struct AlertButton: AlertButtonProtocol {
     // MARK: Properties
     private var isEnabled: Bool = true
-    
-    /// Button role.
-    public let role: ButtonRole?
-    
-    /// Button title.
-    public var title: String
-    
-    /// Button action.
-    public var action: (() -> Void)?
+    private let role: ButtonRole?
+    private let title: String
+    private let action: (() -> Void)?
     
     // MARK: Initializers
     /// Initializes `AlertButton`.

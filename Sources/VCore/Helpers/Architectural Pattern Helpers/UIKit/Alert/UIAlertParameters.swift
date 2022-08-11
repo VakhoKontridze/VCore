@@ -18,10 +18,10 @@ import UIKit
 /// For usage example, refer to `UIAlertViewable`.
 public struct UIAlertParameters {
     // MARK: Properties
-    /// Alert title.
+    /// Title.
     public var title: String?
     
-    /// Alert message.
+    /// Message.
     public var message: String
     
     /// Buttons.

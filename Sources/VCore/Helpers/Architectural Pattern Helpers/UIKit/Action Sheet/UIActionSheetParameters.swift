@@ -18,10 +18,10 @@ import UIKit
 /// For usage example, refer to `UIActionSheetViewable`.
 public struct UIActionSheetParameters {
     // MARK: Properties
-    /// Action sheet title.
+    /// Title.
     public var title: String?
     
-    /// Action sheet message.
+    /// Message.
     public var message: String?
     
     /// Buttons.
