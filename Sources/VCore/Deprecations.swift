@@ -859,6 +859,38 @@ extension UIDevice {
 
 #endif
 
+extension View {
+    @available(*, deprecated, message: "Use `View.onFirstAppear(didAppear:perform)` instead")
+    public func onFirstAppear(
+        perform action: (() -> Void)? = nil
+    ) -> some View {
+        self
+            .modifier(FirstAppearViewModifier(action: action))
+    }
+}
+
+private struct FirstAppearViewModifier: ViewModifier {
+    // MARK: Properties
+    @State private var didLoad: Bool = false
+    private let action: (() -> Void)?
+    
+    // MARK: Initializers
+    init(action: (() -> Void)?) {
+        self.action = action
+    }
+
+    // MARK: Body
+    func body(content: Content) -> some View {
+        content
+            .onAppear(perform: {
+                guard !didLoad else { return }
+                didLoad = true
+                
+                action?()
+            })
+    }
+}
+
 // MARK: - VCore Localization Service
 extension VCoreLocalizationProvider {
     @available(*, deprecated, message: "Renamed to `networkClientErrorDescription(_:)`")

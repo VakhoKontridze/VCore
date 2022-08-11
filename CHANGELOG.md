@@ -5,6 +5,7 @@
 Extensions
 
 - `UIDevice.hasNotch` is renamed to `UIDevice.hasNoPhysicalHomeButton`
+- `View.onFirstAppear(perform:)` is deprecated in favor of `View.onFirstAppear(didAppear:perform)`
 
 ### [3.19.0(58)](https://github.com/VakhoKontridze/VCore/releases/tag/3.19.0) — *2022 08 05*
 

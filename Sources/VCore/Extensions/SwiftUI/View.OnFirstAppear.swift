@@ -11,36 +11,41 @@ import SwiftUI
 extension View {
     /// Adds an action to perform before this `View` appears for the first time.
     ///
-    ///     content
-    ///         .onFirstAppear(perform: fetchData)
+    ///     @MainActor final class Presenter: ObservableObject, SwiftUIFirstAppearLifecycleManager {
+    ///         @Published var didAppearForTheFirstTime: Bool = false
+    ///
+    ///         func didLoad() {
+    ///             ...
+    ///         }
+    ///     }
+    ///
+    ///     @StateObject var presenter: Presenter = .init()
+    ///
+    ///     var body: some View {
+    ///         content
+    ///             .onFirstAppear(didAppear: $presenter.didAppearForTheFirstTime, perform: { presenter.didLoad() })
+    ///     }
     ///
     public func onFirstAppear(
+        didAppear didAppearForTheFirstTime: Binding<Bool>,
         perform action: (() -> Void)? = nil
     ) -> some View {
         self
-            .modifier(FirstAppearViewModifier(action: action))
-    }
-}
-
-// MARK: - First Appear View Modifier
-private struct FirstAppearViewModifier: ViewModifier {
-    // MARK: Properties
-    @State private var didLoad: Bool = false
-    private let action: (() -> Void)?
-    
-    // MARK: Initializers
-    init(action: (() -> Void)?) {
-        self.action = action
-    }
-
-    // MARK: Body
-    func body(content: Content) -> some View {
-        content
             .onAppear(perform: {
-                guard !didLoad else { return }
-                didLoad = true
+                guard !didAppearForTheFirstTime.wrappedValue else { return }
                 
+                didAppearForTheFirstTime.wrappedValue = true
                 action?()
             })
     }
+}
+
+// MARK: - SwiftUI First Appear Lifecycle Manager
+/// Protocol that manages state of `View`'s first appear.
+///
+/// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `Presenter`.
+/// in `MVVM` architecture, this protocol is conformed to by a `ViewModel.`
+@MainActor public protocol SwiftUIFirstAppearLifecycleManager: ObservableObject {
+    /// Indicates if `View` has already appeared for the first time.
+    /*@Published*/ var didAppearForTheFirstTime: Bool { get set }
 }
