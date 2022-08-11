@@ -79,9 +79,10 @@ final class PostsViewController:
     }
     
     func setPullToRefreshVisibility(to isVisible: Bool) {
-        switch isVisible {
-        case false: tableRefreshControl.endRefreshing()
-        case true: tableRefreshControl.beginRefreshing()
+        if isVisible {
+            tableRefreshControl.beginRefreshing()
+        } else {
+            tableRefreshControl.endRefreshing()
         }
     }
 

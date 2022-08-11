@@ -72,7 +72,7 @@ extension UIImage {
     public func scaledDown(
         toHeight newHeight: CGFloat
     ) -> UIImage? {
-        guard self.size.height > newHeight else { return self }
+        guard size.height > newHeight else { return self }
         return scaled(toHeight: newHeight)
     }
     
@@ -84,9 +84,10 @@ extension UIImage {
     public func scaledDown(
         toDimension newDimension: CGFloat
     ) -> UIImage? {
-        switch self.size.width > self.size.height {
-        case false: return scaledDown(toWidth: newDimension)
-        case true: return scaledDown(toHeight: newDimension)
+        if size.width > size.height {
+            return scaledDown(toHeight: newDimension)
+        } else {
+            return scaledDown(toWidth: newDimension)
         }
     }
 }

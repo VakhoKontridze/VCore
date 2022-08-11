@@ -27,9 +27,10 @@ extension Set {
     mutating public func toggle(
         _ element: Element
     ) {
-        switch contains(element) {
-        case false: insert(element)
-        case true: remove(element)
+        if contains(element) {
+            remove(element)
+        } else {
+            insert(element)
         }
     }
 }

@@ -22,9 +22,10 @@ extension View {
         _ condition: Bool,
         transform: (Self) -> some View
     ) -> some View {
-        switch condition {
-        case false: self
-        case true: transform(self)
+        if condition {
+            transform(self)
+        } else {
+            self
         }
     }
 
@@ -46,9 +47,10 @@ extension View {
         ifTransform: (Self) -> some View,
         elseTransform: (Self) -> some View
     ) -> some View {
-        switch condition {
-        case false: elseTransform(self)
-        case true: ifTransform(self)
+        if condition {
+            ifTransform(self)
+        } else {
+            elseTransform(self)
         }
     }
     

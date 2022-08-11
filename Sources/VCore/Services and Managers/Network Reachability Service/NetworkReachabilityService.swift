@@ -63,9 +63,10 @@ public final class NetworkReachabilityService {
         isConnectedToNetwork = path.status.isConnected
         #endif
         
-        switch isConnectedToNetwork {
-        case false: NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
-        case true: NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
+        if isConnectedToNetwork {
+            NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
+        } else {
+            NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
         }
     }
 }

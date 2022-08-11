@@ -28,9 +28,10 @@ extension Sequence where Element: Hashable {
         var encountered: Set<Element> = []
         
         for element in self {
-            switch encountered.contains(element) {
-            case false: encountered.insert(element)
-            case true: return true
+            if encountered.contains(element) {
+                return true
+            } else {
+                encountered.insert(element)
             }
         }
         

@@ -120,17 +120,21 @@ extension CGPoint {
     fileprivate func isOn(_ frame: CGSize, offset: CGFloat) -> Bool {
         let xIsOnTarget: Bool = {
             let isPositive: Bool = x >= 0
-            switch isPositive {
-            case false: return x >= -offset
-            case true: return x <= frame.width + offset
+            
+            if isPositive {
+                return x <= frame.width + offset
+            } else {
+                return x >= -offset
             }
         }()
         
         let yIsOnTarget: Bool = {
             let isPositive: Bool = y >= 0
-            switch isPositive {
-            case false: return y >= -offset
-            case true: return y <= frame.height + offset
+            
+            if isPositive {
+                return y <= frame.height + offset
+            } else {
+                return y >= -offset
             }
         }()
         
