@@ -9,10 +9,12 @@ import SwiftUI
 import VCore
 
 // MARK: - Posts Presentable
-@MainActor protocol PostsPresentable: ObservableObject, NavigationStackCoordinable, AlertPresentable, ProgressViewPresentable {
+@MainActor protocol PostsPresentable: ObservableObject, SwiftUIFirstAppearLifecycleManager, NavigationStackCoordinable, AlertPresentable, ProgressViewPresentable {
     /*@Published*/ var postParameters: [PostRowViewParameters] { get }
     
-    func refreshPosts()
+    func didLoad()
+    
+    func didPullToRefresh()
     func toPostDetails(parameters: PostRowViewParameters)
 }
 

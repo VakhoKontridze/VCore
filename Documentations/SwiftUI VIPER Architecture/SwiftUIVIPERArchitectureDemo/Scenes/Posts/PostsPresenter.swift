@@ -20,18 +20,22 @@ import VCore
     // MARK: Initializers
     init(interactor: Interactor) {
         self.interactor = interactor
-        
-        fetchPosts()
     }
 
     // MARK: Presentable
+    @Published var didAppearForTheFirstTime: Bool = false
+    
     @Published var navigationStackCoordinator: NavigationStackCoordinator?
     @Published var alertParameters: AlertParameters?
     @Published var progressViewParameters: ProgressViewParameters?
     
     @Published var postParameters: [PostRowViewParameters] = []
     
-    func refreshPosts() {
+    func didLoad() {
+        fetchPosts()
+    }
+    
+    func didPullToRefresh() {
         fetchPosts()
     }
     

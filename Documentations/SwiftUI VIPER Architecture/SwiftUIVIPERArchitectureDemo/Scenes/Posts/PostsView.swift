@@ -29,7 +29,10 @@ struct PostsView<Presenter>: View
             canvas
             contentView
         })
-            .onFirstAppear(perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
+            .onFirstAppear(didAppear: $presenter.didAppearForTheFirstTime, perform: {
+                presenter.navigationStackCoordinator = navigationStackCoordinator
+                presenter.didLoad()
+            })
             .standardNavigationTitle("Posts")
             .alert(parameters: $presenter.alertParameters)
             .progressView(parameters: presenter.progressViewParameters)
@@ -48,7 +51,7 @@ struct PostsView<Presenter>: View
             })
         })
             .listStyle(.plain)
-            .refreshable(action: { presenter.refreshPosts() })
+            .refreshable(action: { presenter.didPullToRefresh() })
     }
 }
 
