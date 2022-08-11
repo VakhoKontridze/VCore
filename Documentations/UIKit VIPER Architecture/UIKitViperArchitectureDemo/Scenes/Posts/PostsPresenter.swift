@@ -21,8 +21,6 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     private let interactor: Interactor
     
     private var tableViewCellParameters: [PostCellViewParameters] = []
-    
-    private let sessionManager: SessionManager = .init()
 
     // MARK: Initializers
     init(
@@ -41,8 +39,8 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     }
     
     func didPullToRefresh() {
-        fetchPosts()
         view.setPullToRefreshVisibility(to: false)
+        fetchPosts()
     }
 
     // MARK: Table View Delegable
@@ -70,8 +68,6 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     
     // MARK: Requests
     private func fetchPosts() {
-        let sessionID: Int = sessionManager.newSessionID
-        
         tableViewCellParameters = []
         view.reloadPosts()
         
@@ -81,11 +77,10 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
             
             self.view.stopActivityIndicatorAnimation()
             
-            guard self.sessionManager.sessionIsValid(id: sessionID) else { return }
-            
             switch result {
             case .success(let postsEntity):
                 self.tableViewCellParameters = postsEntity.posts?.compactMap { $0 }.compactMap { .init(post: $0) } ?? []
+                
                 self.view.reloadPosts()
                 
             case .failure(let error):
