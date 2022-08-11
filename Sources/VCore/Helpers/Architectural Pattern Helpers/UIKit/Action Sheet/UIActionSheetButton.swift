@@ -24,10 +24,17 @@ extension UIActionSheetButtonProtocol {
 /// `UIActionSheetController` button.
 public struct UIActionSheetButton: UIActionSheetButtonProtocol {
     // MARK: Properties
-    private var isEnabled: Bool
-    private let style: UIAlertAction.Style
-    private let title: String
-    private let action: (() -> Void)?
+    /// Indicates if button is enabled.
+    public var isEnabled: Bool
+    
+    /// Style.
+    public let style: UIAlertAction.Style
+    
+    /// Title.
+    public var title: String
+    
+    /// Action.
+    public var action: (() -> Void)?
     
     // MARK: Initializers
     /// Initializes `UIActionSheetButton`.
