@@ -32,7 +32,7 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
-### 3.19.1(59)
+### [3.19.1(59)](https://github.com/VakhoKontridze/VCore/releases/tag/3.19.1) — *2022 08 11*
 
 Extensions
 
