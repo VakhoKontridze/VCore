@@ -18,6 +18,8 @@ Architectural Pattern Helpers
 - `ConfigurableUITableViewCell.dequeueID` is renamed to `ConfigurableUITableViewCell.reuseID`
 - `UICollectionViewDequeueable` is renamed to `ConfigurableUICollectionViewCell`
 - `ConfigurableUICollectionViewCell.dequeueID` is renamed to `ConfigurableUICollectionViewCell.reuseID`
+- Members in `UIAlertButton` are now longer exposed to `public`
+- Members in `UIActionSheetButton` are now longer exposed to `public`
 
 Extensions
 
