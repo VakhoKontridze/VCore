@@ -3,7 +3,7 @@
 import SwiftUI
 import VCore
 
-// MARK: - ___VARIABLE_productName___ Scene View
+// MARK: - ___VARIABLE_productName___ View
 struct ___VARIABLE_productName___View<Presenter>: View
     where Presenter: ___VARIABLE_productName___Presentable
 {

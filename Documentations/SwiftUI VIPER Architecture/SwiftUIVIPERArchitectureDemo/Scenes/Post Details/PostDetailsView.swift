@@ -8,7 +8,7 @@
 import SwiftUI
 import VCore
 
-// MARK: - Post Details Scene View
+// MARK: - Post Details View
 struct PostDetailsView<Presenter>: View
     where Presenter: PostDetailsPresentable
 {
