@@ -7,6 +7,13 @@ Services and Managers
 - `KeychainService` API is changed from `Result` types to throwing methods
 - `KeychainServiceError` is now an `enum`
 
+Helpers
+
+- `AtomicContainer` is added
+- `AtomicInteger` is now an `actor`
+- `AtomicInteger` now contains many methods for incrementation and decrementation
+- `SessionManager` is now an `actor`
+
 Architectural Pattern Helpers
 
 - `CoordinatingNavigationStack` is added for `SwiftUI`

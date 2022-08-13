@@ -10,49 +10,23 @@ import XCTest
 
 // MARK: - Tests
 final class SessionManagerTests: XCTestCase {
-    // MARK: Test Data
-    private let sessionsManger: SessionManager = .init()
-    
     // MARK: Tests
-    func testValidID() {
-        let id: Int = sessionsManger.newSessionID
-        XCTAssertTrue(sessionsManger.sessionIsValid(id: id))
+    func testValidID() async {
+        let sessionsManger: SessionManager = .init()
+        
+        let id: Int = await sessionsManger.newSessionID
+        let result: Bool = await sessionsManger.sessionIsValid(id: id)
+        
+        XCTAssertTrue(result)
     }
     
-    func testInvalidID() {
-        let id: Int = sessionsManger.newSessionID
-        _ = sessionsManger.newSessionID
-        XCTAssertFalse(sessionsManger.sessionIsValid(id: id))
-    }
-    
-    func testThreads() {
-        let expectation: XCTestExpectation = expectation(description: "ThreadTest")
+    func testInvalidID() async {
+        let sessionsManger: SessionManager = .init()
         
-        let container: AtomicContainer<Int> = .init()
+        let id: Int = await sessionsManger.newSessionID
+        _ = await sessionsManger.newSessionID
+        let result: Bool = await sessionsManger.sessionIsValid(id: id)
         
-        let count: Int = 10
-        count.times { i in
-            DispatchQueue.global().async(execute: {
-                let id: Int = self.sessionsManger.newSessionID
-                container.append(id)
-                
-                if i == count-1 {
-                    DispatchQueue.global().async(execute: { expectation.fulfill() })
-                }
-            })
-        }
-        
-        waitForExpectations(timeout: 10, handler: { [weak self] _ in
-            guard let self else { fatalError() }
-            
-            XCTAssertEqual(container.allElements().count, count)
-            
-            XCTAssertTrue(container.allElements().isUnique)
-            
-            XCTAssertEqual(
-                container.allElements().filter { self.sessionsManger.sessionIsValid(id: $0) }.count,
-                1
-            )
-        })
+        XCTAssertTrue(result)
     }
 }

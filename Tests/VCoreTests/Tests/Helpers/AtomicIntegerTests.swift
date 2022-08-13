@@ -10,34 +10,73 @@ import XCTest
 
 // MARK: - Tests
 final class AtomicIntegerTests: XCTestCase {
-    func testIncrement() {
-        let instance: AtomicInteger = .init(initialValue: 0)
+    func testGet() async {
+        let atomicInteger: AtomicInteger = .init(value: 10)
         
-        XCTAssertEqual(instance.value, 0)
-        XCTAssertEqual(instance.value, 1)
+        let result1: Int = await atomicInteger.get()
+        XCTAssertEqual(result1, 10)
+        
+        let result2: Int = await atomicInteger.get()
+        XCTAssertEqual(result2, 10)
     }
     
-    func testThreads() {
-        let expectation: XCTestExpectation = expectation(description: "ThreadTest")
+    func testSet() async {
+        let atomicInteger: AtomicInteger = .init(value: 10)
         
-        let instance: AtomicInteger = .init(initialValue: 0)
-        let container: AtomicContainer<Int> = .init()
+        await atomicInteger.set(20)
         
-        let count: Int = 10
-        count.times { i in
-            DispatchQueue.global().async(execute: {
-                container.append(instance.value)
-                
-                if i == count-1 {
-                    DispatchQueue.global().async(execute: { expectation.fulfill() })
-                }
-            })
-        }
+        let result: Int = await atomicInteger.get()
+        XCTAssertEqual(result, 20)
+    }
+    
+    func testGetAndAdd() async {
+        let atomicInteger: AtomicInteger = .init(value: 10)
         
-        waitForExpectations(timeout: 10, handler: { _ in
-            XCTAssertEqual(container.allElements().count, count)
-            
-            XCTAssertTrue(container.allElements().isUnique)
-        })
+        let result1: Int = await atomicInteger.getAndAdd(10)
+        XCTAssertEqual(result1, 10)
+        
+        let result2: Int = await atomicInteger.get()
+        XCTAssertEqual(result2, 20)
+    }
+    
+    func testGetAndIncrement() async {
+        let atomicInteger: AtomicInteger = .init(value: 10)
+        
+        let result1: Int = await atomicInteger.getAndIncrement()
+        XCTAssertEqual(result1, 10)
+        
+        let result2: Int = await atomicInteger.get()
+        XCTAssertEqual(result2, 11)
+    }
+    
+    func testGetAndDecrement() async {
+        let atomicInteger: AtomicInteger = .init(value: 10)
+        
+        let result1: Int = await atomicInteger.getAndDecrement()
+        XCTAssertEqual(result1, 10)
+        
+        let result2: Int = await atomicInteger.get()
+        XCTAssertEqual(result2, 9)
+    }
+    
+    func testAddAndGet() async {
+        let atomicInteger: AtomicInteger = .init(value: 10)
+        
+        let result: Int = await atomicInteger.addAndGet(10)
+        XCTAssertEqual(result, 20)
+    }
+    
+    func testIncrementAndGet() async {
+        let atomicInteger: AtomicInteger = .init(value: 10)
+        
+        let result: Int = await atomicInteger.incrementAndGet()
+        XCTAssertEqual(result, 11)
+    }
+    
+    func testDecrementAndGet() async {
+        let atomicInteger: AtomicInteger = .init(value: 10)
+        
+        let result: Int = await atomicInteger.decrementAndGet()
+        XCTAssertEqual(result, 9)
     }
 }
