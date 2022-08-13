@@ -18,7 +18,7 @@ import Combine
 ///
 @propertyWrapper public struct KeychainStorage<Value>: DynamicProperty {
     // MARK: Properties
-    @ObservedObject private var storage: ObservableStorage<Value>
+    @ObservedObject private var storage: ObservableContainer<Value>
     private let valueSetter: (Value) -> Void
     
     /// The underlying value referenced by the state variable.
@@ -131,16 +131,5 @@ extension KeychainStorage where Value: Codable, Value: ExpressibleByNilLiteral {
             wrappedValue: nil,
             key
         )
-    }
-}
-
-// MARK: - Observable Storage
-private final class ObservableStorage<Value>: ObservableObject {
-    // MARK: Properties
-    @Published var value: Value
-    
-    // MARK: Initializers
-    init(value: Value) {
-        self.value = value
     }
 }
