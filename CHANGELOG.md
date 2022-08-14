@@ -31,6 +31,7 @@ Extensions
 
 - `NavigationPath.append(contentsOf:)` method is added
 - `NavigationPath.removeAll()` method is added
+- `SwiftUIFirstAppearLifecycleManager` is removed
 
 API
 

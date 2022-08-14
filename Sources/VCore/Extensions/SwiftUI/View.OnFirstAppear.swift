@@ -39,13 +39,3 @@ extension View {
             })
     }
 }
-
-// MARK: - SwiftUI First Appear Lifecycle Manager
-/// Protocol that manages state of `View`'s first appear.
-///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `Presenter`.
-/// in `MVVM` architecture, this protocol is conformed to by a `ViewModel.`
-@MainActor public protocol SwiftUIFirstAppearLifecycleManager: ObservableObject {
-    /// Indicates if `View` has already appeared for the first time.
-    /*@Published*/ var didAppearForTheFirstTime: Bool { get set }
-}
