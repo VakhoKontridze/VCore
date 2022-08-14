@@ -38,7 +38,7 @@ public actor SessionManager {
         self.value = initialID
     }
 
-    // MARK: ???
+    // MARK: Management
     /// Current session ID.
     public var currentSessionID: Int {
         value
