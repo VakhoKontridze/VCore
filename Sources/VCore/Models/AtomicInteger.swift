@@ -10,13 +10,10 @@ import Foundation
 // MARK: - Atomic Integer
 /// Thread-safe, automatically incremented `Int`.
 ///
-/// Object contains `shared` instance, but can also be initialized for separate incrementation.
+/// For shared instance, refer to `GlobalAtomicInteger`.
 public actor AtomicInteger {
     // MARK: Properties
     private var value: Int
-    
-    /// Shared instance of `AtomicInteger`.
-    public static let shared: AtomicInteger = .init()
     
     // MARK: Initializers
     /// Initializes `AtomicInteger` with an initial value.
@@ -69,4 +66,10 @@ public actor AtomicInteger {
     public func decrementAndGet() -> Int {
         addAndGet(-1)
     }
+}
+
+// MARK: - Global Atomic Integer
+/// Global instance of `AtomicInteger.
+@globalActor public final class GlobalAtomicInteger {
+    public static var shared: AtomicInteger = .init()
 }

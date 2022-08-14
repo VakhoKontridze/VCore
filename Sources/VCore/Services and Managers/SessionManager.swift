@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Session Manager
 /// Session manager that works with `AtomicInteger` to manage sessions with unique identifiers.
 ///
-/// Object contains `shared` instance, but can also be initialized for separate incrementation.
+/// For shared instance, refer to `GlobalSessionManager`.
 ///
 ///     Task(operation: {
 ///         do {
@@ -31,9 +31,6 @@ import Foundation
 public actor SessionManager {
     // MARK: Properties
     private var value: Int
-    
-    /// Shared instance of `SessionManager`.
-    public static let shared: SessionManager = .init()
     
     // MARK: Initializers
     /// Initializes `SessionManager` with an initial ID.
@@ -57,4 +54,10 @@ public actor SessionManager {
     public func sessionIsValid(id sessionID: Int) -> Bool {
         value == sessionID
     }
+}
+
+// MARK: - Global Session Manager
+/// Global instance of `SessionManager.
+@globalActor public final class GlobalSessionManager {
+    public static var shared: SessionManager = .init()
 }
