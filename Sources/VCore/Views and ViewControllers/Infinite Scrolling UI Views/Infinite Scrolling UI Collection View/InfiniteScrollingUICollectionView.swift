@@ -142,7 +142,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     private func setActivityIndicatorState() {
         switch paginationState {
         case .loading:
-            guard frame.width != 0 else { return }
+            guard frame.size.width != 0 else { return }
             activityIndicator.startAnimating()
         
         case .canPaginate, .cannotPaginate:

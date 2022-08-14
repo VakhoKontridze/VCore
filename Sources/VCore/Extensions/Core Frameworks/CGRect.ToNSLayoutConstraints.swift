@@ -21,7 +21,7 @@ extension CGRect {
     
     /// Converts rect to constant usable for creating trailing constraint.
     ///
-    ///     let constant: CGFloat = rect.trailingConstraintConstant(in: view.frame.width)
+    ///     let constant: CGFloat = rect.trailingConstraintConstant(in: view.frame.size.width)
     ///
     public func trailingConstraintConstant(in width: CGFloat) -> CGFloat {
         width - size.width - origin.x
@@ -37,7 +37,7 @@ extension CGRect {
     
     /// Converts rect to constant usable for creating bottom constraint.
     ///
-    ///     let constant: CGFloat = rect.bottomConstraintConstant(in: view.frame.height)
+    ///     let constant: CGFloat = rect.bottomConstraintConstant(in: view.frame.size.height)
     ///
     public func bottomConstraintConstant(in height: CGFloat) -> CGFloat {
         height - size.height - origin.y

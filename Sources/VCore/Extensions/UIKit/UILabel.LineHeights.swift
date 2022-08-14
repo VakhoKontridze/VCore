@@ -91,7 +91,7 @@ extension UILabel {
     ///
     ///     let height: CGFloat = label // 40.66...
     ///         .multiLineHeight(
-    ///             width: view.frame.width - 40
+    ///             width: view.frame.size.width - 40
     ///         )
     ///
     public func multiLineHeight(width: CGFloat? = nil, text: String? = nil) -> CGFloat {

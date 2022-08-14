@@ -117,12 +117,12 @@ final class BaseButtonTapGestureRecognizer: UITapGestureRecognizer, UIGestureRec
 
 // MARK: - Helpers
 extension CGPoint {
-    fileprivate func isOn(_ frame: CGSize, offset: CGFloat) -> Bool {
+    fileprivate func isOn(_ size: CGSize, offset: CGFloat) -> Bool {
         let xIsOnTarget: Bool = {
             let isPositive: Bool = x >= 0
             
             if isPositive {
-                return x <= frame.width + offset
+                return x <= size.width + offset
             } else {
                 return x >= -offset
             }
@@ -132,7 +132,7 @@ extension CGPoint {
             let isPositive: Bool = y >= 0
             
             if isPositive {
-                return y <= frame.height + offset
+                return y <= size.height + offset
             } else {
                 return y >= -offset
             }

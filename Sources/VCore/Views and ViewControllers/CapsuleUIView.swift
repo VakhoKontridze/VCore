@@ -23,9 +23,9 @@ open class CapsuleUIView: UIView {
         
         layer.cornerRadius = {
             if frame.size.width > frame.size.height {
-                return frame.height / 2
+                return frame.size.height / 2
             } else {
-                return frame.width / 2
+                return frame.size.width / 2
             }
         }()
     }

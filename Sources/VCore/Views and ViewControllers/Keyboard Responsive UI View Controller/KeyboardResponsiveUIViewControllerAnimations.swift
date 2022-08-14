@@ -37,7 +37,7 @@ extension UIView {
     ///                     guard let self else { return }
     ///
     ///                     self.view.superview?.layoutIfNeeded()
-    ///                     self.view.bounds.origin.y = -systemKeyboardInfo.frame.height
+    ///                     self.view.bounds.origin.y = -systemKeyboardInfo.frame.size.height
     ///                 }
     ///             )
     ///         }
@@ -143,13 +143,13 @@ extension UIView {
             )
             
         case true:
-            let windowHeight: CGFloat = firstResponderView.window?.frame.height ?? UIScreen.main.bounds.height
+            let windowHeight: CGFloat = firstResponderView.window?.frame.size.height ?? UIScreen.main.bounds.height
             
             let viewGlobalBounds: CGRect = firstResponderView.convert(firstResponderView.bounds, to: firstResponderView.window)
             let viewGlobalBoundsMaxY: CGFloat = viewGlobalBounds.maxY
             let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalBoundsMaxY - containerView.bounds.origin.y
             
-            let obscuredHeight: CGFloat = systemKeyboardInfo.frame.height + marginBottom - viewDistanceToBottom
+            let obscuredHeight: CGFloat = systemKeyboardInfo.frame.size.height + marginBottom - viewDistanceToBottom
             
             let offset: CGFloat = {
                 if obscuredHeight > 0 {
