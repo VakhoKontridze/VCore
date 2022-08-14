@@ -35,6 +35,7 @@ Extensions
 
 - `NavigationPath.append(contentsOf:)` method is added
 - `NavigationPath.removeAll()` method is added
+- `View.lineLimit(type:)` is added
 - `SwiftUIFirstAppearLifecycleManager` is removed
 
 API
