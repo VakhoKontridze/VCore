@@ -11,19 +11,17 @@ import SwiftUI
 extension View {
     /// Adds an action to perform before this `View` appears for the first time.
     ///
-    ///     @MainActor final class Presenter: ObservableObject, SwiftUIFirstAppearLifecycleManager {
-    ///         @Published var didAppearForTheFirstTime: Bool = false
-    ///
+    ///     @MainActor final class Presenter: ObservableObject {
     ///         func didLoad() {
     ///             ...
     ///         }
     ///     }
     ///
-    ///     @StateObject var presenter: Presenter = .init()
+    ///     @StateObject var didAppearForTheFirstTime: Bool = false
     ///
     ///     var body: some View {
     ///         content
-    ///             .onFirstAppear(didAppear: $presenter.didAppearForTheFirstTime, perform: { presenter.didLoad() })
+    ///             .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: { presenter.didLoad() })
     ///     }
     ///
     public func onFirstAppear(
