@@ -18,6 +18,8 @@ struct PostsView<Presenter>: View
     
     private typealias Model = PostsUIModel
     
+    @State private var didAppearForTheFirstTime: Bool = false
+    
     // MARK: Initializers
     init(presenter: Presenter) {
         self._presenter = .init(wrappedValue: presenter) 
@@ -29,7 +31,8 @@ struct PostsView<Presenter>: View
             canvas
             contentView
         })
-            .onFirstAppear(didAppear: $presenter.didAppearForTheFirstTime, perform: {
+            .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: {
+                print(">>>")
                 presenter.navigationStackCoordinator = navigationStackCoordinator
                 presenter.didLoad()
             })
