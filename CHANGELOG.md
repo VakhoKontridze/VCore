@@ -8,6 +8,10 @@ Services and Managers
 - `KeychainServiceError` is now an `enum`
 - `SessionManager` is now an `actor`
 
+Views and ViewControllers
+
+- `CapsuleUIView` and `CapsuleUIImageView` will now round corners based on width, if width is less than height
+
 Models
 
 - `ObservableContainer` is added

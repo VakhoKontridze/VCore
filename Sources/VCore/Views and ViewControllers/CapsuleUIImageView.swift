@@ -13,6 +13,8 @@ import UIKit
 /// `UIImageView` that rounds corners to capsule.
 ///
 /// `clipsToBounds` is set to `true`, and `layer.maskedCorners` is set to `layerAllCorners`.
+///
+/// If width is greater than height, half of height will be taken as corner radius. If not, otherwise.
 open class CapsuleUIImageView: UIImageView {
     // MARK: Lifecycle
     open override func layoutSubviews() {
@@ -20,7 +22,14 @@ open class CapsuleUIImageView: UIImageView {
         
         clipsToBounds = true
         layer.maskedCorners = .layerAllCorners
-        layer.cornerRadius = frame.height / 2
+        
+        layer.cornerRadius = {
+            if frame.size.width > frame.size.height {
+                return frame.height / 2
+            } else {
+                return frame.width / 2
+            }
+        }()
     }
 }
 
