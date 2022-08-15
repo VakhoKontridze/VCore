@@ -37,6 +37,8 @@ Extensions
 - `NavigationPath.removeAll()` method is added
 - `View.lineLimit(type:)` is added
 - `SwiftUIFirstAppearLifecycleManager` is removed
+- `CALayerCornerCurve` parameter is added to `UIView.roundCornersAndApplyShadow(cornerRadius:color:radius:offset)`
+- `RoundedCornerStyle` parameter is added to `View.cornerRadius(_:corners:)`
 
 API
 

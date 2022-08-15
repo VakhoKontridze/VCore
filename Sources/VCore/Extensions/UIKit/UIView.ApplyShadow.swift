@@ -41,11 +41,13 @@ extension UIView {
     ///
     public func roundCornersAndApplyShadow(
         cornerRadius: CGFloat,
+        curve: CALayerCornerCurve = .circular,
         color: UIColor?,
         radius: CGFloat,
         offset: CGSize
     ) {
         layer.cornerRadius = cornerRadius
+        layer.cornerCurve = curve
         applyShadow(
             color: color,
             radius: radius,
