@@ -13,6 +13,8 @@ struct ___VARIABLE_productName___View<Presenter>: View
     
     private typealias UIModel = ___VARIABLE_productName___UIModel
     
+    @State private var didAppearForTheFirstTime: Bool = false
+    
     // MARK: Initializers
     init(presenter: Presenter) {
         self._presenter = .init(wrappedValue: presenter)
@@ -24,7 +26,7 @@ struct ___VARIABLE_productName___View<Presenter>: View
             canvas
             contentView
         })
-            .onFirstAppear(perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
+            .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
             .standardNavigationTitle("___VARIABLE_productName___")
             .alert(parameters: $presenter.alertParameters)
             .progressView(parameters: presenter.progressViewParameters)
