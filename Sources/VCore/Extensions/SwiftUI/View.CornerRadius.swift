@@ -20,15 +20,10 @@ extension View {
     ///
     public func cornerRadius(
         _ radius: CGFloat,
-        corners: UIRectCorner,
-        style: RoundedCornerStyle = .circular
+        corners: UIRectCorner
     ) -> some View {
         self
-            .clipShape(CornerRadiusShape(
-                radius: radius,
-                corners: corners,
-                style: style
-            ))
+            .clipShape(CornerRadiusShape(radius: radius, corners: corners))
     }
 }
 
@@ -37,26 +32,20 @@ private struct CornerRadiusShape: Shape {
     // MARK: Properties
     private let radius: CGFloat
     private let corners: UIRectCorner
-    private let style: RoundedCornerStyle
     
     // MARK: Initializers
-    init(
-        radius: CGFloat,
-        corners: UIRectCorner,
-        style: RoundedCornerStyle
-    ) {
+    init(radius: CGFloat, corners: UIRectCorner) {
         self.radius = radius
         self.corners = corners
-        self.style = style
     }
 
     // MARK: Shape
     func path(in rect: CGRect) -> Path {
-        .init(
+        .init(UIBezierPath(
             roundedRect: rect,
-            cornerRadius: radius,
-            style: style
-        )
+            byRoundingCorners: corners,
+            cornerRadii: .init(width: radius, height: radius)
+        ).cgPath)
     }
 }
 
