@@ -1,5 +1,5 @@
 //
-//  View.LineLimit.swift
+//  TextLineLimitType.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 14.08.22.

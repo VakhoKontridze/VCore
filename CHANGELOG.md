@@ -18,6 +18,7 @@ Models
 - `AtomicContainer` is added
 - `AtomicInteger` is now an `actor`
 - `AtomicInteger` now contains many methods for incrementation and decrementation
+- `TextLineType` and `TextLineLimitType` are added
 
 Architectural Pattern Helpers
 
@@ -35,7 +36,6 @@ Extensions
 
 - `NavigationPath.append(contentsOf:)` method is added
 - `NavigationPath.removeAll()` method is added
-- `View.lineLimit(type:)` is added
 - `SwiftUIFirstAppearLifecycleManager` is removed
 - `CALayerCornerCurve` parameter is added to `UIView.roundCornersAndApplyShadow(cornerRadius:color:radius:offset)`
 
