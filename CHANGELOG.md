@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.20.0(60)
+
+View and ViewControllers
+
+- `CarouselCollectionViewFlowLayout` is added
+
 ### [3.19.1(59)](https://github.com/VakhoKontridze/VCore/releases/tag/3.19.1) — *2022 08 11*
 
 Extensions
