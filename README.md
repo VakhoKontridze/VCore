@@ -12,7 +12,7 @@
 
 ## Description
 
-VCore is a Swift collection containing objects, functions, and extensions that I use for all my projects
+VCore is a Swift collection containing objects, functions, and extensions that I use for my projects
 
 ## Compatibility
 
