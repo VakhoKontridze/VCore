@@ -55,7 +55,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Item Attribute
     open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard
-            let collectionView = collectionView,
+            let collectionView,
             let flowDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout
         else {
             return super.layoutAttributesForItem(at: indexPath)

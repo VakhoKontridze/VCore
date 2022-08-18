@@ -79,7 +79,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
     override open func prepare() {
         super.prepare()
 
-        guard let collectionView = collectionView else { return }
+        guard let collectionView else { return }
         
         checkPreconditions(collectionView: collectionView)
         setUp(collectionView: collectionView)
@@ -137,7 +137,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
         withScrollingVelocity velocity: CGPoint
     ) -> CGPoint {
         guard
-            let collectionView = collectionView,
+            let collectionView,
             let layoutAttributes: [UICollectionViewLayoutAttributes] = layoutAttributesForElements(in: collectionView.bounds)
         else {
             return super.targetContentOffset(
