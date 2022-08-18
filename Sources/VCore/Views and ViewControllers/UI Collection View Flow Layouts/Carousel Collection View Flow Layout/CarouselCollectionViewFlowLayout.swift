@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 18.08.22.
 //
 
-#if canImport(UIKit)
+#if canImport(UIKit) && !os(watchOS)
 
 import UIKit
 
@@ -91,7 +91,9 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
     ) {
         assert(scrollDirection == .horizontal, "`scrollDirection` must be set to `horizontal")
         
+        #if !os(tvOS)
         assert(!collectionView.isPagingEnabled, "`isPagingEnabled` must be set to `false`")
+        #endif
         
         if
             let flowDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout,

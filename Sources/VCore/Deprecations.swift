@@ -859,6 +859,8 @@ extension UIDevice {
 
 #endif
 
+import SwiftUI
+
 extension View {
     @available(*, deprecated, message: "Use `View.onFirstAppear(didAppear:perform)` instead")
     public func onFirstAppear(
