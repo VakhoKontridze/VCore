@@ -210,8 +210,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         collectionView: UICollectionView,
         flowDelegate: UICollectionViewDelegateFlowLayout
     ) -> Bool {
-        let selector: Selector = #selector(UICollectionViewDelegateFlowLayout.collectionView(_:layout:minimumInteritemSpacingForSectionAt:))
-        return flowDelegate.responds(to: selector)
+        flowDelegate.responds(to: #selector(UICollectionViewDelegateFlowLayout.collectionView(_:layout:minimumInteritemSpacingForSectionAt:)))
     }
 }
 
