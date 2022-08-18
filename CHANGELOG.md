@@ -48,6 +48,12 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.20.0(60)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.0) — *2022 08 18*
+
+View and ViewControllers
+
+- `CarouselCollectionViewFlowLayout` is added
+
 ### [3.19.1(59)](https://github.com/VakhoKontridze/VCore/releases/tag/3.19.1) — *2022 08 11*
 
 Extensions
