@@ -27,22 +27,36 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     // MARK: Initializers
     /// Initializes `CoordinatingNavigationStack`.
     public init(
-        path navigationPath: NavigationPath = .init(),
+        path navigationPath: @escaping @autoclosure () -> NavigationPath,
         @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
     ) {
-        self._navigationStackCoordinator = .init(wrappedValue: .init(path: navigationPath))
+        self._navigationStackCoordinator = .init(wrappedValue: .init(path: navigationPath()))
         self.root = root
     }
     
     /// Initializes `CoordinatingNavigationStack`.
     public init(
-        path navigationPath: NavigationPath = .init(),
+        @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
+    ) {
+        self._navigationStackCoordinator = .init(wrappedValue: .init(path: .init()))
+        self.root = root
+    }
+    
+    /// Initializes `CoordinatingNavigationStack`.
+    public init(
+        path navigationPath: @escaping @autoclosure () -> NavigationPath,
         @ViewBuilder root: @escaping () -> Root
     ) {
-        self.init(
-            path: navigationPath,
-            root: { _ in root() }
-        )
+        self._navigationStackCoordinator = .init(wrappedValue: .init(path: navigationPath()))
+        self.root = { _ in root() }
+    }
+    
+    /// Initializes `CoordinatingNavigationStack`.
+    public init(
+        @ViewBuilder root: @escaping () -> Root
+    ) {
+        self._navigationStackCoordinator = .init(wrappedValue: .init(path: .init()))
+        self.root = { _ in root() }
     }
 
     // MARK: Body
