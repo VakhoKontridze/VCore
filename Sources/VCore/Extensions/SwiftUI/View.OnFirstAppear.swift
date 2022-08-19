@@ -17,7 +17,7 @@ extension View {
     ///         }
     ///     }
     ///
-    ///     @StateObject var didAppearForTheFirstTime: Bool = false
+    ///     @State var didAppearForTheFirstTime: Bool = false
     ///
     ///     var body: some View {
     ///         content
