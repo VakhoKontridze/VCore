@@ -21,8 +21,8 @@ struct PostsView<Presenter>: View
     @State private var didAppearForTheFirstTime: Bool = false
     
     // MARK: Initializers
-    init(presenter: Presenter) {
-        self._presenter = .init(wrappedValue: presenter) 
+    init(presenter: @escaping @autoclosure () -> Presenter) {
+        self._presenter = .init(wrappedValue: presenter())
     }
 
     // MARK: Body
@@ -32,7 +32,6 @@ struct PostsView<Presenter>: View
             contentView
         })
             .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: {
-                print(">>>")
                 presenter.navigationStackCoordinator = navigationStackCoordinator
                 presenter.didLoad()
             })
