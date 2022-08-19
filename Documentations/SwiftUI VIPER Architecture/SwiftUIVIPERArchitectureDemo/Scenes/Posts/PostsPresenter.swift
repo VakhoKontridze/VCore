@@ -25,7 +25,7 @@ import VCore
     // MARK: Presentable
     @Published var didAppearForTheFirstTime: Bool = false
     
-    @Published var navigationStackCoordinator: NavigationStackCoordinator?
+    var navigationStackCoordinator: NavigationStackCoordinator?
     @Published var alertParameters: AlertParameters?
     @Published var progressViewParameters: ProgressViewParameters?
     

@@ -21,7 +21,7 @@ import VCore
     }
 
     // MARK: Presentable
-    @Published var navigationStackCoordinator: NavigationStackCoordinator?
+    var navigationStackCoordinator: NavigationStackCoordinator?
     @Published var alertParameters: AlertParameters?
     @Published var progressViewParameters: ProgressViewParameters?
 }

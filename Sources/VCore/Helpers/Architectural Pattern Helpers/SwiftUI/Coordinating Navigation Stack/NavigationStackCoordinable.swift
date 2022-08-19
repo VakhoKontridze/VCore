@@ -13,7 +13,18 @@ import SwiftUI
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `Presenter`.
 /// in `MVVM` architecture, this protocol is conformed to by a `ViewModel.`
+///
+///     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator?
+///     @StateObject private var presenter: Presenter
+///     @State private var didAppearForTheFirstTime: Bool = false
+///
+///     var body: some View {
+///         content
+///             .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: {
+///                 presenter.navigationStackCoordinator = navigationStackCoordinator
+///             })
+///             
 @MainActor public protocol NavigationStackCoordinable: ObservableObject {
     /// Navigation stack coordinator.
-    /*@Published*/ var navigationStackCoordinator: NavigationStackCoordinator? { get set }
+    var navigationStackCoordinator: NavigationStackCoordinator? { get set }
 }
