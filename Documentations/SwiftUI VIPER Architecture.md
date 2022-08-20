@@ -84,7 +84,7 @@ Responsibilities of the `Presenter` do not include:
 `Presentable` protocol is used by `View` to access data, or to notify `Presenter` that an event or an action has occurred. Some properties and methods declared in protocol are:
 
 ```swift
-/*@Published*/ var title: String { get set }
+var title: String { get set }
 
 func didAppear()
 func didTapContinueButton()

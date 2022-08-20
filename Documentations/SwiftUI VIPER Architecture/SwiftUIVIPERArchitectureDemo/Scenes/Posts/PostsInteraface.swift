@@ -10,7 +10,7 @@ import VCore
 
 // MARK: - Posts Presentable
 @MainActor protocol PostsPresentable: ObservableObject, NavigationStackCoordinable, AlertPresentable, ProgressViewPresentable {
-    /*@Published*/ var postParameters: [PostRowViewParameters] { get }
+    var postParameters: [PostRowViewParameters] { get }
     
     func didLoad()
     

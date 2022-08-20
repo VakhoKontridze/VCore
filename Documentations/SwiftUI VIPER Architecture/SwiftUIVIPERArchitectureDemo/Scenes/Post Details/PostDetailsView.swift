@@ -18,7 +18,9 @@ struct PostDetailsView<Presenter>: View
     private typealias UIModel = PostDetailsUIModel
     
     // MARK: Initializers
-    init(presenter: @escaping @autoclosure () -> Presenter) {
+    init(
+        presenter: @escaping @autoclosure () -> Presenter
+    ) {
         self._presenter = .init(wrappedValue: presenter())
     }
 

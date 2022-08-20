@@ -16,7 +16,9 @@ struct ___VARIABLE_productName___View<Presenter>: View
     @State private var didAppearForTheFirstTime: Bool = false
     
     // MARK: Initializers
-    init(presenter: @escaping @autoclosure () -> Presenter) {
+    init(
+        presenter: @escaping @autoclosure () -> Presenter
+    ) {
         self._presenter = .init(wrappedValue: presenter())
     }
 
