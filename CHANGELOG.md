@@ -8,7 +8,7 @@ Services and Managers
 - `KeychainServiceError` is now an `enum`
 - `SessionManager` is now an `actor`
 
-Views and ViewControllers
+Views
 
 - `CapsuleUIView` and `CapsuleUIImageView` will now round corners based on width, if width is less than height
 
@@ -50,7 +50,7 @@ XCode Templates
 
 ### [3.20.0(60)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.0) — *2022 08 18*
 
-View and ViewControllers
+Views
 
 - `CarouselCollectionViewFlowLayout` is added
 
@@ -79,7 +79,7 @@ Extensions
 
 ### [3.18.4(57)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.4) — *2022 07 25*
 
-View and ViewControllers
+Views
 
 - Retain cycle caused by `KeyboardResponsiveViewController` is fixed
 
@@ -101,7 +101,7 @@ Architectural Pattern Helpers
 
 ### [3.18.1(54)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.1) — *2022 07 26*
 
-View and ViewControllers
+Views
 
 - `CapsuleImageView` is renamed to `CapsuleUIImageView`
 
@@ -111,7 +111,7 @@ Architectural Pattern Helpers
 
 ### [3.18.0(53)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.0) — *2022 07 26*
 
-View and ViewControllers
+Views
 
 - `CapsuleUIView` is added
 - `CapsuleUIImageView` is added
@@ -144,14 +144,14 @@ Architectural Pattern Helpers
 
 ### [3.16.2(51)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.2) — *2022 07 21*
 
-View and ViewControllers
+Views
 
 - `keyboardResponsivenessContainerView` property is added in `KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight`
 - Issue with `KeyboardResponsiveUIViewController` offset-based animation, not considering pre-offsetted container is fixed
 
 ### [3.16.1(50)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.1) — *2022 07 19*
 
-View and ViewControllers
+Views
 
 - Issues with `KeyboardResponsiveUIViewController` animations are fixed
 
@@ -162,7 +162,7 @@ Models
 
 ### [3.16.0(49)](https://github.com/VakhoKontridze/VCore/releases/tag/3.16.0) — *2022 07 15*
 
-View and ViewControllers
+Views
 
 - `KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight` is added that handles keyboard notifications and calls `UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight`
 
@@ -196,7 +196,7 @@ Other
 
 ### [3.15.0(46)](https://github.com/VakhoKontridze/VCore/releases/tag/3.15.0) — *2022 07 13*
 
-Views and ViewControllers
+Views
 
 - `InnerShadowUIView` is added
 - `InteractivePoppingUINavigationController` is added
@@ -226,7 +226,7 @@ Extensions
 
 ### [3.14.0(45)](https://github.com/VakhoKontridze/VCore/releases/tag/3.14.0) — *2022 07 12*
 
-Views and ViewControllers
+Views
 
 - `UIView` animation methods are added that support `KeyboardResponsiveViewController`
 - `KeyboardResponsiveViewController.notifiesWhenKeyboardIsAlreadyShownOrHidden` is added
@@ -251,7 +251,7 @@ XCode Templates
 
 ### [3.13.0(42)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.0) — *2022 07 09*
 
-Views and ViewControllers
+Views
 
 - Several members in `SwiftUIBaseButtonState` and `UIKitBaseButtonState` are now marked as `public`
 
@@ -314,7 +314,7 @@ Services and Managers
 
 - `isConnectedToNetwork` `NetworkReachabilityService` on `watchOS` is no longer optional. Property will be set to `false` on app launch.
 
-Views and ViewControllers
+Views
 
 - `LeftAlignedCollectionViewFlowLayout` is added
 - `CenterAlignedCollectionViewFlowLayout` is added
@@ -359,7 +359,7 @@ Documentations
 
 ### [3.8.0(30)](https://github.com/VakhoKontridze/VCore/releases/tag/3.8.0) — *2022 06 25*
 
-Views and ViewControllers
+Views
 
 - `SecurableTextField` is added
 - `PlainDisclosureGroup` is added
@@ -390,7 +390,7 @@ XCode Templates
 
 ### [3.6.0(28)](https://github.com/VakhoKontridze/VCore/releases/tag/3.6.0) — *2022 06 17*
 
-Views and ViewControllers
+Views
 
 - Background colors of `contentView` in `ScrollableView` is now set to `UIColor.systemBackground`
 
@@ -487,7 +487,7 @@ Helpers
 
 ### [3.2.0(22)](https://github.com/VakhoKontridze/VCore/releases/tag/3.2.0) — *2022 05 26*
 
-Views and ViewControllers
+Views
 
 - `SwiftUIBaseButton` API is updated and old `init`s are deprecated
 
@@ -507,7 +507,7 @@ Services and Managers
 
 - `AnyMultiPartFormFile` is renamed to `AnyMultiPartFormDataFile`
 
-Views and ViewControllers
+Views
 
 - Issue with accessing `SwiftUIBaseButton` in `SwiftUI` is fixed
 
@@ -519,7 +519,7 @@ Extensions
 
 ### [3.0.2(19)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.2) — *2022 05 17*
 
-Views and ViewControllers
+Views
 
 - Public initializers are added to `SystemKeyboardInfo`
 
@@ -569,7 +569,7 @@ Localization Service
 
 ### [2.3.0(16)](https://github.com/VakhoKontridze/VCore/releases/tag/2.3.0) — *2022 02 25*
 
-Views and ViewControllers
+Views
 
 - `ScrollableView` is added
 
@@ -583,7 +583,7 @@ Extensions
 
 ### [2.2.1(15)](https://github.com/VakhoKontridze/VCore/releases/tag/2.2.1) — *2022 02 14*
 
-Views and ViewControllers
+Views
 
 - State logic in `UIKitBaseButton` documentation is updated
 
@@ -611,7 +611,7 @@ XCode Templates
 
 ### [2.1.1(13)](https://github.com/VakhoKontridze/VCore/releases/tag/2.1.1) — *2022 01 04*
 
-Views and ViewControllers
+Views
 
 - `isEnabled` is added to `UIKitBaseButton` to replace `isUserInteractionEnabled`
 
@@ -667,7 +667,7 @@ Network Client
 - Several cases are added to `NetworkError`
 - `NetworkError.incompleteEntity` is renamed to `NetworkError.invalidData`
 
-Views and ViewControllers
+Views
 
 - `UIKitBaseButton` and `SwiftUIBaseButton` are added
 - `KeyboardResponsiveViewController` are added
