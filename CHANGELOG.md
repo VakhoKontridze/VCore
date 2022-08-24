@@ -1,5 +1,11 @@
 # Change Log
 
+### 3.20.1(61)
+
+Services and Managers
+
+- Fix `NetworkReachabilityService` not detecting network changes in some cases
+
 ### [3.20.0(60)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.0) — *2022 08 18*
 
 View and ViewControllers
