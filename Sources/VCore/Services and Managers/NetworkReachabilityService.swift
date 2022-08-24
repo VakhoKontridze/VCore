@@ -61,9 +61,9 @@ public final class NetworkReachabilityService {
             didCheckStatusForTheFirstTime = true
             
             if isConnectedToNetwork {
-                NotificationCenter.default.post(name: Self.connectedNotification, object: nil, userInfo: nil)
+                NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
             } else {
-                NotificationCenter.default.post(name: Self.disconnectedNotification, object: nil, userInfo: nil)
+                NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
             }
         }
     }
