@@ -14,18 +14,10 @@ import Network
 /// On `watchOS`, `isConnectedToNetwork` will return `nil` on app launch.
 public final class NetworkReachabilityService {
     // MARK: Properties
-    #if !os(watchOS)
-    /// Indicates if device is connected to a network.
-    public var isConnectedToNetwork: Bool { SocketConnectionNetworkReachabilityService.shared.isConnectedToNetwork }
-
-    #else
-        
     /// Indicates if device is connected to a network.
     ///
     /// On app launch, property is set to `false`, as `NWPath` is not available,
     private(set) public lazy var isConnectedToNetwork: Bool = false
-
-    #endif
     
     /// Name of notification that will be posted when reachability status changes.
     public static var connectedNotification: NSNotification.Name { .init("NetworkReachabilityService.Connected") }
@@ -44,6 +36,8 @@ public final class NetworkReachabilityService {
     /// Shared instance of `NetworkReachabilityService`.
     public static let shared: NetworkReachabilityService = .init()
     
+    private var didCheckStatusForTheFirstTime: Bool = false
+    
     // MARK: Initializers
     private init() {
         statusMonitor.start(queue: statusQueue)
@@ -57,16 +51,20 @@ public final class NetworkReachabilityService {
     
     // MARK: Status
     private func statusChanged(_ path: NWPath) {
-        guard isConnectedToNetwork != path.status.isConnected else { return }
-            
-        #if os(watchOS)
+        let wasConnectedToNetwork: Bool = isConnectedToNetwork
         isConnectedToNetwork = path.status.isConnected
-        #endif
         
-        if isConnectedToNetwork {
-            NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
-        } else {
-            NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
+        if
+            isConnectedToNetwork != wasConnectedToNetwork ||
+            !didCheckStatusForTheFirstTime
+        {
+            didCheckStatusForTheFirstTime = true
+            
+            if isConnectedToNetwork {
+                NotificationCenter.default.post(name: Self.connectedNotification, object: nil, userInfo: nil)
+            } else {
+                NotificationCenter.default.post(name: Self.disconnectedNotification, object: nil, userInfo: nil)
+            }
         }
     }
 }

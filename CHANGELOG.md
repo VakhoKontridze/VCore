@@ -48,6 +48,12 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.20.1(61)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.1) — *2022 08 24*
+
+Services and Managers
+
+- `NetworkReachabilityService` not detecting network changes in some cases is fixed
+
 ### [3.20.0(60)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.0) — *2022 08 18*
 
 Views
