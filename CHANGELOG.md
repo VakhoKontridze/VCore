@@ -1,6 +1,6 @@
 # Change Log
 
-### 3.20.1(61)
+### [3.20.1(61)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.1) — *2022 08 24*
 
 Services and Managers
 
