@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Root
 extension UIApplication {
-    /// Return root `UIWindow` in application.
+    /// Returns root `UIWindow` in application.
     ///
     ///     let rootWindow: UIWindow? = UIApplication.shared.rootWindow
     ///
@@ -19,7 +19,7 @@ extension UIApplication {
         if #available(iOS 15, tvOS 15, *) {
             return connectedScenes
                 .compactMap { $0 as? UIWindowScene }
-                .compactMap { $0.keyWindow }
+                .compactMap { $0.keyWindow ?? $0.windows.first }
                 .first
         
         } else {
@@ -28,7 +28,7 @@ extension UIApplication {
                 .first { $0 is UIWindowScene }
                 .flatMap { $0 as? UIWindowScene }?
                 .windows
-                .first(where: \.isKeyWindow)
+                .first(where: { $0.isKeyWindow })
         }
     }
     
@@ -59,7 +59,7 @@ extension UIApplication {
             .first { $0 is UIWindowScene }
             .flatMap { $0 as? UIWindowScene }?
             .windows
-            .first(where: \.isKeyWindow)
+            .first(where: { $0.isKeyWindow })
     }
     
     /// Returns active `UIViewController` in application.
@@ -100,7 +100,7 @@ extension UIApplication {
         return topMostViewController
     }
     
-    /// Return top-most `UIView` in application.
+    /// Returns top-most `UIView` in application.
     ///
     ///     let topMostView: UIView? = UIApplication.shared.topMostView
     ///

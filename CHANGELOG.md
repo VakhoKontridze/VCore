@@ -48,6 +48,12 @@ XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
+### [3.20.2(62)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.2) — *2022 09 05*
+
+Extensions
+
+- Issue with `UIApplication.rootWindow` returning `nil` on app launch is fixed
+
 ### [3.20.1(61)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.1) — *2022 08 24*
 
 Services and Managers
