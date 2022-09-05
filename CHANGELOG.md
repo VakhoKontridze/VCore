@@ -1,10 +1,16 @@
 # Change Log
 
+### 3.20.2(62)
+
+Extensions
+
+- Issue with `UIApplication.rootWindow` returning `nil` on app launch is fixed
+
 ### [3.20.1(61)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.1) — *2022 08 24*
 
 Services and Managers
 
-- Fix `NetworkReachabilityService` not detecting network changes in some cases
+- `NetworkReachabilityService` not detecting network changes in some cases is fixed
 
 ### [3.20.0(60)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.0) — *2022 08 18*
 
