@@ -15,6 +15,8 @@ open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubvie
     // MARK: Properties
     /// `UIView` on which offset animations will be applied. Defaults to `view`.
     ///
+    /// In case of `UITableView`, `UITableView` itself can be passed.
+    ///
     /// In case of `ScrollableUIView`, `contentView` can be passed.
     open lazy var keyboardResponsivenessContainerView: UIView = view
     
