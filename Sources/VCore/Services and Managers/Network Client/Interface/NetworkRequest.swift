@@ -49,7 +49,7 @@ public struct NetworkRequest {
     }
     
     // MARK: Query Parameters
-    /// Adds `String` `Array` to query parameters.
+    /// Adds `JSON` to query parameters.
     mutating public func addQueryParameters(
         json: [String: Any?]
     ) throws {
