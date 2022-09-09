@@ -1,5 +1,5 @@
 //
-//  EdgeInsetsTBTests.swift
+//  EdgeInsetsTopBottomTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 10.05.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class EdgeInsetsTBTests: XCTestCase {
+final class EdgeInsetsTopBottomTests: XCTestCase {
     // MARK: Insets
     func testInsetInset() {
         let inputTop: CGFloat = 1

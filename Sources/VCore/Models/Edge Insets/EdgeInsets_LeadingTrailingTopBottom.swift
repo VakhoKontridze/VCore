@@ -23,11 +23,17 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Hashable, Equatable {
     /// Bottom inset value.
     public var bottom: CGFloat
     
-    /// Horizontal inset value, that's a sum of `leading` and `trailing` values.
-    public var horizontal: CGFloat { leading + trailing }
+    /// Sum of `leading` and `trailing` values.
+    public var horizontalSum: CGFloat { leading + trailing }
     
-    /// Vertical inset value, that's a sum of `top` and `bottom` values.
-    public var vertical: CGFloat { top + bottom }
+    /// Average of `leading` and `trailing` values.
+    public var horizontalAverage: CGFloat { (leading + trailing)/2 }
+    
+    /// Sum of `top` and `bottom` values.
+    public var verticalSum: CGFloat { top + bottom }
+    
+    /// Average of `top` and `bottom` values.
+    public var verticalAverage: CGFloat { (top + bottom)/2 }
     
     // MARK: Initializers
     /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with values.

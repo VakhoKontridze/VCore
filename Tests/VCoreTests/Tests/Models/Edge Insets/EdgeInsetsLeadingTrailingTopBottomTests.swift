@@ -1,5 +1,5 @@
 //
-//  EdgeInsetsLTTBTests.swift
+//  EdgeInsetsLeadingTrailingTopBottomTests.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10.05.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class EdgeInsetsLTTBTests: XCTestCase {
+final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
     // MARK: Properties
     func testProperties() {
         let leading: CGFloat = 1
@@ -24,10 +24,13 @@ final class EdgeInsetsLTTBTests: XCTestCase {
             bottom: bottom
         )
         
-        XCTAssertEqual(insets.horizontal, leading + trailing)
-        XCTAssertEqual(insets.vertical, top + bottom)
+        XCTAssertEqual(insets.horizontalSum, leading + trailing)
+        XCTAssertEqual(insets.verticalSum, top + bottom)
+        
+        XCTAssertEqual(insets.horizontalAverage, (leading + trailing)/2)
+        XCTAssertEqual(insets.verticalAverage, (top + bottom)/2)
     }
-    
+
     // MARK: Insets
     func testInsetInset() {
         let inputLeading: CGFloat = 1

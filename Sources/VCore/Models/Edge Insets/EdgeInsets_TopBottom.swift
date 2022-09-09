@@ -17,6 +17,12 @@ public struct EdgeInsets_TopBottom: Hashable, Equatable {
     /// Bottom inset  value.
     public var bottom: CGFloat
     
+    /// Sum of `top` and `bottom` values.
+    public var verticalSum: CGFloat { top + bottom }
+    
+    /// Average of `top` and `bottom` values.
+    public var verticalAverage: CGFloat { (top + bottom)/2 }
+    
     // MARK: Initializers
     /// Initializes `EdgeInsets_TopBottom` with values.
     public init(

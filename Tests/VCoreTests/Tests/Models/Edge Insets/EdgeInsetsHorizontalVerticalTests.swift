@@ -1,5 +1,5 @@
 //
-//  EdgeInsetsHVTests.swift
+//  EdgeInsetsHorizontalVerticalTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 10.05.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class EdgeInsetsHVTests: XCTestCase {
+final class EdgeInsetsHorizontalVerticalTests: XCTestCase {
     // MARK: Insets
     func testInsetInset() {
         let inputHorizontal: CGFloat = 1

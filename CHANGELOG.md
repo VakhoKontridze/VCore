@@ -20,6 +20,9 @@ Models
 - `AtomicInteger` is now an `actor`
 - `AtomicInteger` now contains many methods for incrementation and decrementation
 - `TextLineType` and `TextLineLimitType` are added
+- `horizontalAverage` and `verticalAverage` are added to `EdgeInset`s
+- `horizontal` is renamed to `horizontalSum` in `EdgeInsets_LeadingTrailingTopBottom`
+- `vertical` is renamed to `verticalSum` in `EdgeInsets_LeadingTrailingTopBottom`
 
 Architectural Pattern Helpers
 

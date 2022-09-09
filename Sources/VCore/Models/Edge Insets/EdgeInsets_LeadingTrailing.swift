@@ -17,6 +17,12 @@ public struct EdgeInsets_LeadingTrailing: Hashable, Equatable {
     /// Trailing inset value.
     public var trailing: CGFloat
     
+    /// Sum of `leading` and `trailing` values.
+    public var horizontalSum: CGFloat { leading + trailing }
+    
+    /// Average of `leading` and `trailing` values.
+    public var horizontalAverage: CGFloat { (leading + trailing)/2 }
+    
     // MARK: Initializers
     /// Initializes `EdgeInsets_LeadingTrailing` with values.
     public init(

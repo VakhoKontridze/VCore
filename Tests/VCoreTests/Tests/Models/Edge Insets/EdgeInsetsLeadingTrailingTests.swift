@@ -1,5 +1,5 @@
 //
-//  EdgeInsetsLTTests.swift
+//  EdgeInsetsLeadingTrailingTests.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10.05.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class EdgeInsetsLTTests: XCTestCase {
+final class EdgeInsetsLeadingTrailingTests: XCTestCase {
     // MARK: Insets
     func testInsetInset() {
         let inputLeading: CGFloat = 1

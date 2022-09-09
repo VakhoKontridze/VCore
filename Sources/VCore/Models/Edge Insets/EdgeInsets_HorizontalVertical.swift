@@ -17,6 +17,18 @@ public struct EdgeInsets_HorizontalVertical: Hashable, Equatable {
     /// Vertical inset  value.
     public var vertical: CGFloat
     
+    /// Leading inset value.
+    public var leading: CGFloat { horizontal }
+    
+    /// Trailing inset value.
+    public var trailing: CGFloat { horizontal }
+    
+    /// Top inset value.
+    public var top: CGFloat { vertical }
+    
+    /// Bottom inset value.
+    public var bottom: CGFloat { vertical }
+    
     // MARK: Initializers
     /// Initializes `EdgeInsets_HorizontalVertical` with values.
     public init(
