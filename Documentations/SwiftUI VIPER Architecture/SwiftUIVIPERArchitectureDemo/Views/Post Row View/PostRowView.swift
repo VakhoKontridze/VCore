@@ -34,7 +34,7 @@ struct PostRowView: View {
         })
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(UIModel.Layout.padding)
-            .background(UIModel.Colors.background.ignoresSafeArea())
+            .background(content: { UIModel.Colors.background.ignoresSafeArea() })
     }
 }
 

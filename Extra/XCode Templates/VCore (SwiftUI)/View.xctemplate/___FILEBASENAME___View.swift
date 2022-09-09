@@ -17,7 +17,7 @@ struct ___VARIABLE_productName___View: View {
     // MARK: Body
     var body: some View {
         EmptyView()
-            .background(UIModel.Colors.background.ignoresSafeArea())
+            .background(content: { UIModel.Colors.background.ignoresSafeArea() })
     }
 }
 
