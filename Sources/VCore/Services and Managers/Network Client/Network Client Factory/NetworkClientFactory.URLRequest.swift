@@ -22,7 +22,7 @@ extension NetworkClientFactory {
             queryParameters: [String: String],
             body: Data?
         ) throws -> Foundation.URLRequest {
-            let endpoint: String = try buildEndpont(endpoint: endpoint, pathParameters: pathParameters)
+            let endpoint: String = try buildEndpoint(endpoint: endpoint, pathParameters: pathParameters)
             let url: URL = try buildUrl(endpoint: endpoint, queryParameters: queryParameters)
             
             var urlRequest: Foundation.URLRequest = .init(url: url)
@@ -45,7 +45,7 @@ extension NetworkClientFactory {
             )
         }
         
-        private static func buildEndpont(
+        private static func buildEndpoint(
             endpoint: String,
             pathParameters: [String]
         ) throws -> String {
