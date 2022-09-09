@@ -19,10 +19,12 @@ import SwiftUI
 ///     @State private var didAppearForTheFirstTime: Bool = false
 ///
 ///     var body: some View {
-///         content
-///             .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: {
-///                 presenter.navigationStackCoordinator = navigationStackCoordinator
+///         CoordinatingNavigationStack(root: {
+///             content
+///                 .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: {
+///                     presenter.navigationStackCoordinator = navigationStackCoordinator
 ///             })
+///         })
 ///             
 @MainActor public protocol NavigationStackCoordinable: ObservableObject {
     /// Navigation stack coordinator.
