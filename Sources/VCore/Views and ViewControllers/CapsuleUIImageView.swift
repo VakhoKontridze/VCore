@@ -22,14 +22,7 @@ open class CapsuleUIImageView: UIImageView {
         
         clipsToBounds = true
         layer.maskedCorners = .layerAllCorners
-        
-        layer.cornerRadius = {
-            if frame.size.width > frame.size.height {
-                return frame.size.height / 2
-            } else {
-                return frame.size.width / 2
-            }
-        }()
+        layer.cornerRadius = min(frame.size.width, frame.size.height) / 2
     }
 }
 

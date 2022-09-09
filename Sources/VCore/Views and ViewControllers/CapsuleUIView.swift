@@ -20,14 +20,7 @@ open class CapsuleUIView: UIView {
         
         // `clipsToBounds` and `layer.maskedCorners` are not necessary.
         // Plus, they conflict with shadows.
-        
-        layer.cornerRadius = {
-            if frame.size.width > frame.size.height {
-                return frame.size.height / 2
-            } else {
-                return frame.size.width / 2
-            }
-        }()
+        layer.cornerRadius = min(frame.size.width, frame.size.height) / 2
     }
 }
 
