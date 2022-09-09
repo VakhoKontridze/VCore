@@ -13,18 +13,25 @@ import Network
 ///
 /// On `watchOS`, `isConnectedToNetwork` will return `nil` on app launch.
 public final class NetworkReachabilityService {
-    // MARK: Properties
-    /// Indicates if device is connected to a network.
-    ///
-    /// On app launch, property is set to `false`, as `NWPath` is not available,
-    private(set) public lazy var isConnectedToNetwork: Bool = false
+    // MARK: Properties - Singleton
+    /// Shared instance of `NetworkReachabilityService`.
+    public static let shared: NetworkReachabilityService = .init()
     
+    // MARK: Properties - Status
+    /// Network connection status.
+    private(set) public lazy var status: NWPath.Status = statusMonitor.currentPath.status
+    
+    /// Indicates if device is connected to a network.
+    public var isConnectedToNetwork: Bool { status.isConnected }
+    
+    // MARK: Properties - Notifications
     /// Name of notification that will be posted when reachability status changes.
     public static var connectedNotification: NSNotification.Name { .init("NetworkReachabilityService.Connected") }
     
     /// Name of notification that will be posted when reachability status changes.
     public static var disconnectedNotification: NSNotification.Name { .init("NetworkReachabilityService.Disconnected") }
     
+    // MARK: Properties - Monitor
     private lazy var statusMonitor: NWPathMonitor = {
         let monitor: NWPathMonitor = .init()
         monitor.pathUpdateHandler = statusChanged
@@ -32,9 +39,6 @@ public final class NetworkReachabilityService {
     }()
     
     private let statusQueue: DispatchQueue = .init(label: "NetworkReachabilityService.StatusQueue")
-    
-    /// Shared instance of `NetworkReachabilityService`.
-    public static let shared: NetworkReachabilityService = .init()
     
     private var didCheckStatusForTheFirstTime: Bool = false
     
@@ -51,20 +55,22 @@ public final class NetworkReachabilityService {
     
     // MARK: Status
     private func statusChanged(_ path: NWPath) {
-        let wasConnectedToNetwork: Bool = isConnectedToNetwork
-        isConnectedToNetwork = path.status.isConnected
+        let oldStatus = status
+        status = path.status
         
-        if
-            isConnectedToNetwork != wasConnectedToNetwork ||
+        guard
+            status != oldStatus ||
             !didCheckStatusForTheFirstTime
-        {
-            didCheckStatusForTheFirstTime = true
-            
-            if isConnectedToNetwork {
-                NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
-            } else {
-                NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
-            }
+        else {
+            return
+        }
+        
+        didCheckStatusForTheFirstTime = true
+        
+        if isConnectedToNetwork {
+            NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
+        } else {
+            NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
         }
     }
 }

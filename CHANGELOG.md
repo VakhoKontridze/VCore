@@ -4,6 +4,7 @@
 
 Services and Managers
 
+- `status` is added to `NetworkReachabilityService`
 - `KeychainService` API is changed from `Result` types to throwing methods
 - `KeychainServiceError` is now an `enum`
 - `SessionManager` is now an `actor`
