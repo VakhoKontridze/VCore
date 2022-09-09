@@ -39,7 +39,7 @@ There are five protocols that explain the communication:
 | Protocol    | Conformance    | Owner          | Ownership |
 | :---------- | :------------- | :------------- | :-------- |
 | Presentable | Presenter      | View           | strong    |
-| Routable    | Router         | -              | N/A       |
+| Routable    | Router         | N/             | N/A       |
 | Interactive | Interactor     | Presenter      | strong    |
 
 ## View
