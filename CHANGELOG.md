@@ -42,6 +42,7 @@ Extensions
 - `NavigationPath.removeAll()` method is added
 - `SwiftUIFirstAppearLifecycleManager` is removed
 - `CALayerCornerCurve` parameter is added to `UIView.roundCornersAndApplyShadow(cornerRadius:color:radius:offset)`
+- `View.fitToAspect(_:contentMode)` method is added
 - `View.shadow(color:radius:offset)` method is added
 
 API
