@@ -27,6 +27,6 @@ final class SessionManagerTests: XCTestCase {
         _ = await sessionsManger.newSessionID
         let result: Bool = await sessionsManger.sessionIsValid(id: id)
         
-        XCTAssertTrue(result)
+        XCTAssertFalse(result)
     }
 }

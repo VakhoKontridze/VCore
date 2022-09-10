@@ -11,54 +11,97 @@ import Foundation
 /// Object that encodes instances of data types.
 public struct JSONEncoderService {
     // MARK: Initializers
-    private init() {}
+    /// Initializes `JSONEncoderService`.
+    public init() {}
 
     // MARK: Encoding
     /// Encodes `Any` to `Data`.
-    public static func data(
+    public func data(
         any: Any?
     ) throws -> Data {
-        guard
-            let any,
-            let data: Data = try? JSONSerialization.data(withJSONObject: any)
-        else {
-            throw JSONEncoderError.failedToEncode
+        guard let any else {
+            let error: JSONEncoderError = .init(.failedToCast)
+            VCoreLog(error)
+            throw error
+        }
+        
+        let data: Data
+        do {
+            data = try JSONSerialization.data(withJSONObject: any)
+            
+        } catch let _error {
+            let error: JSONEncoderError = .init(.failedToEncode)
+            VCoreLog(error, _error)
+            throw error
         }
         
         return data
     }
     
     /// Encodes `Encodable` to `Data`.
-    public static func data(
+    public func data(
         encodable: some Encodable
     ) throws -> Data {
-        guard let data: Data = try? JSONEncoder().encode(encodable) else { throw JSONEncoderError.failedToEncode }
-        return data
+        do {
+            let data: Data = try JSONEncoder().encode(encodable)
+            return data
+            
+        } catch let _error {
+            let error: JSONEncoderError = .init(.failedToEncode)
+            VCoreLog(error, _error)
+            throw error
+        }
     }
     
     /// Encodes `Encodable` to `JSON`.
-    public static func json(
+    public func json(
         encodable: some Encodable
     ) throws -> [String: Any?] {
-        guard
-            let jsonData: Data = try? JSONEncoder().encode(encodable),
-            let json: [String: Any?] = try? JSONDecoderService.json(data: jsonData)
-        else {
-            throw JSONEncoderError.failedToEncode
+        let data: Data
+        do {
+            data = try JSONEncoder().encode(encodable)
+            
+        } catch let _error {
+            let error: JSONEncoderError = .init(.failedToEncode)
+            VCoreLog(error, _error)
+            throw error
+        }
+        
+        let json: [String: Any?]
+        do {
+            json = try JSONDecoderService().json(data: data)
+            
+        } catch /*let _error*/ { // Logged internally
+            let error: JSONEncoderError = .init(.failedToDecode)
+            VCoreLog(error)
+            throw error
         }
         
         return json
     }
     
     /// Encodes `Encodable` to `JSON` `Array`.
-    public static func jsonArray(
+    public func jsonArray(
         encodable: some Encodable
     ) throws -> [[String: Any?]] {
-        guard
-            let jsonData: Data = try? JSONEncoder().encode(encodable),
-            let jsonArray: [[String: Any?]] = try? JSONDecoderService.jsonArray(data: jsonData)
-        else {
-            throw JSONEncoderError.failedToEncode
+        let data: Data
+        do {
+            data = try JSONEncoder().encode(encodable)
+            
+        } catch let _error {
+            let error: JSONEncoderError = .init(.failedToEncode)
+            VCoreLog(error, _error)
+            throw error
+        }
+        
+        let jsonArray: [[String: Any?]]
+        do {
+            jsonArray = try JSONDecoderService().jsonArray(data: data)
+            
+        } catch /*let _error*/ { // Logged internally
+            let error: JSONEncoderError = .init(.failedToDecode)
+            VCoreLog(error)
+            throw error
         }
         
         return jsonArray

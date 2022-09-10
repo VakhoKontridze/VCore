@@ -28,11 +28,16 @@ open class KeychainService {
         var valueObject: AnyObject? = nil
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &valueObject)
 
-        guard
-            status == noErr,
-            let data: Data = valueObject as? Data
-        else {
-            throw KeychainServiceError.failedToGet
+        guard status == noErr else {
+            let error: KeychainServiceError = .init(.failedToGet)
+            VCoreLog(error, "Security framework error with status code \(status)")
+            throw error
+        }
+        
+        guard let data: Data = valueObject as? Data else {
+            let error: KeychainServiceError = .init(.failedToCast)
+            VCoreLog(error)
+            throw error
         }
         
         return data
@@ -43,7 +48,7 @@ open class KeychainService {
     open class func set(key: String, data: Data?) throws {
         switch data {
         case nil:
-            try delete(key: key)
+            try delete(key: key) // Logged internally
 
         case let data?:
             let query: [String: Any] = [
@@ -55,7 +60,11 @@ open class KeychainService {
             let _: OSStatus = SecItemDelete(query as CFDictionary)
             let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
             
-            guard status == noErr else { throw KeychainServiceError.failedToSet }
+            guard status == noErr else {
+                let error: KeychainServiceError = .init(.failedToSet)
+                VCoreLog(error, "Security framework error with status code \(status)")
+                throw error
+            }
         }
     }
     
@@ -69,12 +78,16 @@ open class KeychainService {
 
         let status: OSStatus = SecItemDelete(query as CFDictionary)
         
-        guard status == noErr else { throw KeychainServiceError.failedToDelete }
+        guard status == noErr else {
+            let error: KeychainServiceError = .init(.failedToDelete)
+            VCoreLog(error, "Security framework error with status code \(status)")
+            throw error
+        }
     }
     
     // MARK: Subscript
     open class subscript(_ key: String) -> Data? {
-        get { try? Self.get(key: key) }
-        set { try? Self.set(key: key, data: newValue) }
+        get { try? Self.get(key: key) } // Logged internally
+        set { try? Self.set(key: key, data: newValue) } // Logged internally
     }
 }

@@ -22,8 +22,8 @@ extension NetworkClientFactory {
             queryParameters: [String: String],
             body: Data?
         ) throws -> Foundation.URLRequest {
-            let endpoint: String = try buildEndpoint(endpoint: endpoint, pathParameters: pathParameters)
-            let url: URL = try buildUrl(endpoint: endpoint, queryParameters: queryParameters)
+            let endpoint: String = buildEndpoint(endpoint: endpoint, pathParameters: pathParameters)
+            let url: URL = try buildUrl(endpoint: endpoint, queryParameters: queryParameters) // Logged internally
             
             var urlRequest: Foundation.URLRequest = .init(url: url)
             urlRequest.httpMethod = method
@@ -35,7 +35,7 @@ extension NetworkClientFactory {
         static func build(
             from request: NetworkRequest
         ) throws -> Foundation.URLRequest {
-            try build(
+            try build( // Logged internally
                 endpoint: request.url,
                 method: request.method.httpMethod,
                 pathParameters: request.pathParameters,
@@ -48,7 +48,7 @@ extension NetworkClientFactory {
         private static func buildEndpoint(
             endpoint: String,
             pathParameters: [String]
-        ) throws -> String {
+        ) -> String {
             var endpoint = endpoint
             if endpoint.hasSuffix("/") { _ = endpoint.removeLast() }
             
@@ -63,10 +63,19 @@ extension NetworkClientFactory {
             endpoint: String,
             queryParameters: [String: String]
         ) throws -> URL {
-            guard var urlComponents: URLComponents = .init(string: endpoint) else { throw NetworkClientError.invalidEndpoint }
+            guard var urlComponents: URLComponents = .init(string: endpoint) else {
+                let error: NetworkClientError = .init(.invalidEndpoint)
+                VCoreLog(error)
+                throw error
+            }
+            
             urlComponents.addQueryItems(queryParameters)
             
-            guard let url: URL = urlComponents.url else { throw NetworkClientError.invalidQueryParameters }
+            guard let url: URL = urlComponents.url else {
+                let error: NetworkClientError = .init(.invalidQueryParameters)
+                VCoreLog(error)
+                throw error
+            }
             return url
         }
     }

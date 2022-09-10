@@ -12,19 +12,19 @@ import XCTest
 final class VCoreLocalizationServiceTests: XCTestCase {
     // MARK: Test Data
     private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {        
-        func networkClientErrorDescription(_ networkClientError: NetworkClientError) -> String {
+        func networkClientErrorDescription(_ networkClientError: NetworkClientError.ErrorCode) -> String {
             "A"
         }
         
-        func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String {
+        func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError.ErrorCode) -> String {
             "B"
         }
         
-        func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String {
+        func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError.ErrorCode) -> String {
             "C"
         }
         
-        func keychainServiceErrorDescription(_ keychainServiceError: VCore.KeychainServiceError) -> String {
+        func keychainServiceErrorDescription(_ keychainServiceError: VCore.KeychainServiceError.ErrorCode) -> String {
             "D"
         }
         
@@ -61,7 +61,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
 
     func testJSONEncoderErrorDescription() {
         XCTAssertThrowsError(
-            try JSONEncoderService.data(any: nil),
+            try JSONEncoderService().data(any: nil),
             "",
             { error in XCTAssertEqual(error.localizedDescription, "B") }
         )
@@ -69,7 +69,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
     
     func testJSONDecoderErrorDescription() {
         XCTAssertThrowsError(
-            try JSONDecoderService.json(data: .init()),
+            try JSONDecoderService().json(data: .init()),
             "",
             { error in XCTAssertEqual(error.localizedDescription, "C") }
         )

@@ -11,7 +11,10 @@ import XCTest
 // MARK: - Tests
 final class NetworkRequestMethodTests: XCTestCase {
     func testGET() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts/1")
@@ -28,7 +31,10 @@ final class NetworkRequestMethodTests: XCTestCase {
     }
     
     func testPOST() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -46,7 +52,10 @@ final class NetworkRequestMethodTests: XCTestCase {
     }
     
     func testPUT() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/put")
@@ -64,7 +73,10 @@ final class NetworkRequestMethodTests: XCTestCase {
     }
     
     func testPATCH() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/patch")
@@ -82,7 +94,10 @@ final class NetworkRequestMethodTests: XCTestCase {
     }
     
     func testDELETE() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/delete")

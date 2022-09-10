@@ -11,70 +11,128 @@ import Foundation
 /// Object that decodes instances of data types.
 public struct JSONDecoderService {
     // MARK: Initializers
-    private init() {}
+    /// Initializes `JSONDecoderService`.
+    public init() {}
 
     // MARK: Decoding
     /// Decodes `Data` to `JSON`.
-    public static func json(
+    public func json(
         data: Data
     ) throws -> [String: Any?] {
-        guard
-            let jsonObject: Any = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-            let json: [String: Any?] = jsonObject as? [String: Any?]
-        else {
-            throw JSONDecoderError.failedToDecode
+        let jsonObject: Any
+        do {
+            jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            
+        } catch let _error {
+            let error: JSONDecoderError = .init(.failedToDecode)
+            VCoreLog(error, _error)
+            throw error
+        }
+        
+        guard let json: [String: Any?] = jsonObject as? [String: Any?] else {
+            let error: JSONDecoderError = .init(.failedToCast)
+            VCoreLog(error)
+            throw error
         }
         
         return json
     }
     
     /// Decodes `Data` to `JSON` `Array`.
-    public static func jsonArray(
+    public func jsonArray(
         data: Data
     ) throws -> [[String: Any?]] {
-        guard
-            let jsonObject: Any = try? JSONSerialization.jsonObject(with: data, options: .allowFragments),
-            let jsonArray: [[String: Any?]] = jsonObject as? [[String: Any?]]
-        else {
-            throw JSONDecoderError.failedToDecode
+        let jsonObject: Any
+        do {
+            jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            
+        } catch let _error {
+            let error: JSONDecoderError = .init(.failedToDecode)
+            VCoreLog(error, _error)
+            throw error
+        }
+        
+        guard let jsonArray: [[String: Any?]] = jsonObject as? [[String: Any?]] else {
+            let error: JSONDecoderError = .init(.failedToCast)
+            VCoreLog(error)
+            throw error
         }
 
         return jsonArray
     }
     
     /// Decodes `Data` to `Decodable`.
-    public static func decodable<T>(
+    public func decodable<T>(
         data: Data
     ) throws -> T
         where T: Decodable
     {
-        guard let decodable: T = try? JSONDecoder().decode(T.self, from: data) else { throw JSONDecoderError.failedToDecode }
-        return decodable
+        do {
+            let decodable: T = try JSONDecoder().decode(T.self, from: data)
+            return decodable
+            
+        } catch let _error {
+            let error: JSONDecoderError = .init(.failedToDecode)
+            VCoreLog(error, _error)
+            throw error
+        }
     }
     
     /// Decodes `JSON` to `Decodable`.
-    public static func decodable<T>(
+    public func decodable<T>(
         json: [String: Any?]
     ) throws -> T
         where T: Decodable
     {
-        guard let data: Data = try? JSONSerialization.data(withJSONObject: json) else {
-            throw JSONEncoderError.failedToEncode
+        let data: Data
+        do {
+            data = try JSONSerialization.data(withJSONObject: json)
+            
+        } catch let _error {
+            let error: JSONDecoderError = .init(.failedToEncode)
+            VCoreLog(error, _error)
+            throw error
         }
         
-        return try decodable(data: data)
+        let decodable: T
+        do {
+            decodable = try JSONDecoderService().decodable(data: data)
+            
+        } catch /*let _error*/ { // Logged internally
+            let error: JSONDecoderError = .init(.failedToDecode)
+            VCoreLog(error)
+            throw error
+        }
+        
+        return decodable
     }
     
     /// Decodes `JSON` `Array` to `Decodable`.
-    public static func decodable<T>(
+    public func decodable<T>(
         jsonArray: [[String: Any?]]
     ) throws -> T
         where T: Decodable
     {
-        guard let data: Data = try? JSONSerialization.data(withJSONObject: jsonArray) else {
-            throw JSONEncoderError.failedToEncode
+        let data: Data
+        do {
+            data = try JSONSerialization.data(withJSONObject: jsonArray)
+            
+        } catch let _error {
+            let error: JSONDecoderError = .init(.failedToEncode)
+            VCoreLog(error, _error)
+            throw error
         }
         
-        return try decodable(data: data)
+        let decodable: T
+        do {
+            decodable = try JSONDecoderService().decodable(data: data)
+            
+        } catch /*let _error*/ { // Logged internally
+            let error: JSONDecoderError = .init(.failedToDecode)
+            VCoreLog(error)
+            throw error
+        }
+        
+        return decodable
     }
 }

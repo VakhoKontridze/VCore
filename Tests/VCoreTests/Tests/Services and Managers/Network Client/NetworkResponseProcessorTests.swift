@@ -25,7 +25,7 @@ final class NetworkResponseProcessorTests: XCTestCase {
             headerFields: nil
         )!
         
-        let data: Data = try! JSONEncoderService.data(any: [ // fatalError
+        let data: Data = try! JSONEncoderService().data(any: [ // fatalError
             "success": false,
             "code": code,
             "message": message
@@ -44,7 +44,10 @@ final class NetworkResponseProcessorTests: XCTestCase {
     }
     
     func testData() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -63,12 +66,10 @@ final class NetworkResponseProcessorTests: XCTestCase {
 }
 
 private struct TestNetworkReponseProcessor: NetworkResponseProcessor {
-    func error(_ error: Error) throws {}
-
     func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
         if response.isSuccessHTTPStatusCode { return response }
 
-        guard let json: [String: Any?] = try? JSONDecoderService.json(data: data) else { return response }
+        guard let json: [String: Any?] = try? JSONDecoderService().json(data: data) else { return response }
         if json["success"]?.toBool == true { return response }
 
         guard
@@ -83,9 +84,9 @@ private struct TestNetworkReponseProcessor: NetworkResponseProcessor {
 
     func data(_ data: Data, _ response: URLResponse) throws -> Data {
         guard
-            let json: [String: Any?] = try? JSONDecoderService.json(data: data),
+            let json: [String: Any?] = try? JSONDecoderService().json(data: data),
             let dataJSON: [String: Any?] = json["json"]?.toJSON,
-            let dataData: Data = try? JSONEncoderService.data(any: dataJSON)
+            let dataData: Data = try? JSONEncoderService().data(any: dataJSON)
         else {
             throw TestNetworkError(code: 1, description: "Incomplete Data")
         }

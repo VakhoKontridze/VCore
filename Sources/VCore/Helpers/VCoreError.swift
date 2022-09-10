@@ -24,17 +24,17 @@ public protocol VCoreError: LocalizedError, CustomNSError {
 }
 
 extension VCoreError {
-    // VCore Error
+    // VCoreError
     public var domain: String { Self.errorDomain }
     
-    // Error (Localized)
+    // LocalizedError
     public var errorDescription: String? { description }
-    public var failureReason: String? { description }
+    public var failureReason: String? { nil }
     public var recoverySuggestion: String? { nil }
     public var helpAnchor: String? { nil }
     public var localizedDescription: String { description }
     
-    // NS Error
-    public static var errorDomain: String { "com.vcore" }
+    // NSError
+    public static var errorDomain: String { "com.vcore.\(String(describing: Self.self).lowercased())" }
     public var errorCode: Int { code }
 }

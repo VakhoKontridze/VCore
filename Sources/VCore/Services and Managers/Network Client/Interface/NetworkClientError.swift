@@ -9,42 +9,89 @@ import Foundation
 
 // MARK: - Network Client Error
 /// An error that occurs during the network requests made by `NetworkClient`.
-public enum NetworkClientError: Int, VCoreError, CaseIterable {
-    // MARK: Cases
+public struct NetworkClientError: VCoreError, Equatable {
+    // MARK: Properties
+    private let errorCode: ErrorCode
+    
+    // MARK: VCore Error
+    public var code: Int { errorCode.rawValue }
+    public var description: String { VCoreLocalizationService.shared.localizationProvider.networkClientErrorDescription(errorCode) }
+    
+    // MARK: Initializers
+    init(_ errorCode: ErrorCode) {
+        self.errorCode = errorCode
+    }
+    
     /// Indicates that device is not connected to network.
     ///
     /// A check against `NetworkConnectionService` is made.
-    case notConnectedToNetwork
+    public static var notConnectedToNetwork: Self { .init(.notConnectedToNetwork) }
     
     /// Indicates that endpoint url is invalid.
-    case invalidEndpoint
+    public static var invalidEndpoint: Self { .init(.invalidEndpoint) }
     
     /// Indicates that request has timed out.
-    case requestTimedOut
+    public static var requestTimedOut: Self { .init(.requestTimedOut) }
     
     /// Indicates that path parameters are invalid.
-    case invalidPathParameters
+    public static var invalidPathParameters: Self { .init(.invalidPathParameters) }
     
     /// Indicates that query parameters are invalid.
-    case invalidQueryParameters
+    public static var invalidQueryParameters: Self { .init(.invalidQueryParameters) }
     
     /// Indicates that headers are invalid.
-    case invalidHeaders
+    public static var invalidHeaders: Self { .init(.invalidHeaders) }
     
     /// Indicates that body is invalid.
-    case invalidBody
+    public static var invalidBody: Self { .init(.invalidBody) }
     
     /// Indicates that network request returned an error.
-    case returnedWithError
+    public static var returnedWithError: Self { .init(.returnedWithError) }
     
     /// Indicates that network request returned an invalid response.
-    case invalidResponse
+    public static var invalidResponse: Self { .init(.invalidResponse) }
     
     /// Indicates that result cannot be decoded.
-    case invalidData
+    public static var invalidData: Self { .init(.invalidData) }
     
-    // MARK: VCore Error
-    public static var errorDomain: String { "com.vcore.networkclient" }
-    public var code: Int { 1000 + rawValue }
-    public var description: String { VCoreLocalizationService.shared.localizationProvider.networkClientErrorDescription(self) }
+    // MARK: Error Code
+    /// Error code.
+    public enum ErrorCode: Int, Equatable {
+        /// Indicates that device is not connected to network.
+        ///
+        /// A check against `NetworkConnectionService` is made.
+        case notConnectedToNetwork
+        
+        /// Indicates that endpoint url is invalid.
+        case invalidEndpoint
+        
+        /// Indicates that request has timed out.
+        case requestTimedOut
+        
+        /// Indicates that path parameters are invalid.
+        case invalidPathParameters
+        
+        /// Indicates that query parameters are invalid.
+        case invalidQueryParameters
+        
+        /// Indicates that headers are invalid.
+        case invalidHeaders
+        
+        /// Indicates that body is invalid.
+        case invalidBody
+        
+        /// Indicates that network request returned an error.
+        case returnedWithError
+        
+        /// Indicates that network request returned an invalid response.
+        case invalidResponse
+        
+        /// Indicates that result cannot be decoded.
+        case invalidData
+    }
+    
+    // MARK: Equatable
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.errorCode == rhs.errorCode
+    }
 }

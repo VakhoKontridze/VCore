@@ -53,14 +53,14 @@ public struct NetworkRequest {
     mutating public func addQueryParameters(
         json: [String: Any?]
     ) throws {
-        queryParameters.append(try NetworkRequestFactory.QueryParameters.build(json: json))
+        queryParameters.append(try NetworkRequestFactory.QueryParameters.build(json: json)) // Logged internally
     }
 
     /// Adds `Encodable` to query parameters.
     mutating public func addQueryParameters(
         encodable: some Encodable
     ) throws {
-        queryParameters.append(try NetworkRequestFactory.QueryParameters.build(encodable: encodable))
+        queryParameters.append(try NetworkRequestFactory.QueryParameters.build(encodable: encodable)) // Logged internally
     }
 
     // MARK: Headers
@@ -75,7 +75,7 @@ public struct NetworkRequest {
     mutating public func addHeaders(
         encodable: some Encodable
     ) throws {
-        headers.append(try NetworkRequestFactory.Headers.build(encodable: encodable))
+        headers.append(try NetworkRequestFactory.Headers.build(encodable: encodable)) // Logged internally
     }
     
     // MARK: Body
@@ -90,14 +90,14 @@ public struct NetworkRequest {
     mutating public func addBody(
         json: [String: Any?]
     ) throws {
-        body.append(try NetworkRequestFactory.Body.build(json: json))
+        body.append(try NetworkRequestFactory.Body.build(json: json)) // Logged internally
     }
 
     /// Adds `Encodable` to headers.
     mutating public func addBody(
         encodable: some Encodable
     ) throws {
-        body.append(try NetworkRequestFactory.Body.build(encodable: encodable))
+        body.append(try NetworkRequestFactory.Body.build(encodable: encodable)) // Logged internally
     }
 }
 

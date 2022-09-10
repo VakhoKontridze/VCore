@@ -2,12 +2,18 @@
 
 ### 4.0.0(?)
 
+General
+
+- `Error`s are now `struct`s, backed by `ErrorCode` enumerations
+- `VCoreLog(_:)` is added that logs errors throws by objects, such as `NetworkClient`, `KeychainService`, `JSONEncoderService`, and `JSONDecoderService`
+
 Services and Managers
 
 - `status` is added to `NetworkReachabilityService`
 - `KeychainService` API is changed from `Result` types to throwing methods
-- `KeychainServiceError` is now an `enum`
 - `SessionManager` is now an `actor`
+- `error(_:)` is removed from `NetworkErrorProcessor`
+- `JSONEncoderService` and `JSONDecoderService` now have instance-based APIs
 
 Views
 

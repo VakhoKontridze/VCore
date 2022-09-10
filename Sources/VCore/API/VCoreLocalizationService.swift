@@ -23,20 +23,20 @@ public final class VCoreLocalizationService {
     private init() {}
 }
 
-// MARK: - VCore Localization Provider
+// MARK: - V Core Localization Provider
 /// Localization provider in package.
 public protocol VCoreLocalizationProvider {
     /// Localized value for `NetworkClientError`'s description.
-    func networkClientErrorDescription(_ networkClientError: NetworkClientError) -> String
+    func networkClientErrorDescription(_ networkClientError: NetworkClientError.ErrorCode) -> String
     
     /// Localized value for `JSONEncoderError`'s description.
-    func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String
+    func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError.ErrorCode) -> String
     
     /// Localized value for `JSONDecoderError`'s description.
-    func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String
+    func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError.ErrorCode) -> String
     
     /// Localized value for `JSONDecoderError`'s description.
-    func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError) -> String
+    func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.ErrorCode) -> String
     
     /// Localized value for error title in alerts.
     var alertErrorTitle: String { get }
@@ -48,24 +48,24 @@ public protocol VCoreLocalizationProvider {
     var resultNoFailureErrorDescription: String { get }
 }
 
-// MARK: - VCore Human-Readable Localization Provider
-/// Localization provider in package that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable`String`s
+// MARK: - V Core Human-Readable Localization Provider
+/// Localization provider in package that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable `String`s.
 public protocol VCoreHumanReadableLocalizationProvider: VCoreLocalizationProvider {}
 
 extension VCoreHumanReadableLocalizationProvider {
-    public func networkClientErrorDescription(_ networkClientError: NetworkClientError) -> String {
+    public func networkClientErrorDescription(_ networkClientError: NetworkClientError.ErrorCode) -> String {
         DefaultVCoreLocalizationProvider().networkClientErrorDescription(networkClientError)
     }
     
-    public func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String {
+    public func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError.ErrorCode) -> String {
         DefaultVCoreLocalizationProvider().jsonEncoderErrorDescription(jsonEncoderError)
     }
     
-    public func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String {
+    public func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError.ErrorCode) -> String {
         DefaultVCoreLocalizationProvider().jsonDecoderErrorDescription(jsonDecoderError)
     }
     
-    public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError) -> String {
+    public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.ErrorCode) -> String {
         DefaultVCoreLocalizationProvider().keychainServiceErrorDescription(keychainServiceError)
     }
     
@@ -82,7 +82,7 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
     public init() {}
     
     // MARK: VCore Localization Provider
-    public func networkClientErrorDescription(_ networkClientError: NetworkClientError) -> String {
+    public func networkClientErrorDescription(_ networkClientError: NetworkClientError.ErrorCode) -> String {
         switch networkClientError {
         case .notConnectedToNetwork: return "Not connected to network"
         case .invalidEndpoint: return "Cannot connect to the server. An incorrect handler is being used."
@@ -97,23 +97,28 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
         }
     }
     
-    public func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError) -> String {
+    public func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError.ErrorCode) -> String {
         switch jsonEncoderError {
         case .failedToEncode: return "Data cannot be encoded or is incomplete"
+        case .failedToDecode: return "Data cannot be decoded or is incomplete"
+        case .failedToCast: return "Data cannot be encoded or is incomplete"
         }
     }
     
-    public func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError) -> String {
+    public func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError.ErrorCode) -> String {
         switch jsonDecoderError {
         case .failedToDecode: return "Data cannot be decoded or is incomplete"
+        case .failedToEncode: return "Data cannot be encoded or is incomplete"
+        case .failedToCast: return "Data cannot be decoded or is incomplete"
         }
     }
     
-    public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError) -> String {
+    public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.ErrorCode) -> String {
         switch keychainServiceError {
         case .failedToGet: return "Data cannot be retrieved"
         case .failedToSet: return "Data cannot be set"
         case .failedToDelete: return "Data cannot be deleted"
+        case .failedToCast: return "Data cannot be retrieved"
         }
     }
     

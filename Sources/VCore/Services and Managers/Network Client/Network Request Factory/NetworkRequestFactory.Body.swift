@@ -24,9 +24,12 @@ extension NetworkRequestFactory {
             json: [String: Any?]
         ) throws -> Data {
             do {
-                return try JSONEncoderService.data(any: json)
-            } catch {
-                throw NetworkClientError.invalidBody
+                return try JSONEncoderService().data(any: json)
+                
+            } catch /*let _error*/ { // Logged internally
+                let error: NetworkClientError = .init(.invalidBody)
+                VCoreLog(error)
+                throw error
             }
         }
 
@@ -34,9 +37,12 @@ extension NetworkRequestFactory {
             encodable: some Encodable
         ) throws -> Data {
             do {
-                return try JSONEncoderService.data(encodable: encodable)
-            } catch {
-                throw NetworkClientError.invalidBody
+                return try JSONEncoderService().data(encodable: encodable)
+
+            } catch /*let _error*/ { // Logged internally
+                let error: NetworkClientError = .init(.invalidBody)
+                VCoreLog(error)
+                throw error
             }
         }
     }

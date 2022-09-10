@@ -14,8 +14,9 @@ extension NetworkClient {
     public func noData(
         from request: NetworkRequest
     ) async throws {
-        try await makeRequest(
-            request: request
+        try await makeRequest( // Logged internally
+            request: request,
+            decode: { _ in Void() }
         )
     }
     
@@ -23,7 +24,7 @@ extension NetworkClient {
     public func data(
         from request: NetworkRequest
     ) async throws -> Data {
-        try await makeRequest(
+        try await makeRequest( // Logged internally
             request: request,
             decode: { $0 }
         )
@@ -33,9 +34,9 @@ extension NetworkClient {
     public func json(
         from request: NetworkRequest
     ) async throws -> [String: Any?] {
-        try await makeRequest(
+        try await makeRequest( // Logged internally
             request: request,
-            decode: { try JSONDecoderService.json(data: $0) }
+            decode: { try JSONDecoderService().json(data: $0) }
         )
     }
     
@@ -43,9 +44,9 @@ extension NetworkClient {
     public func jsonArray(
         from request: NetworkRequest
     ) async throws -> [[String: Any?]] {
-        try await makeRequest(
+        try await makeRequest( // Logged internally
             request: request,
-            decode: { try JSONDecoderService.jsonArray(data: $0) }
+            decode: { try JSONDecoderService().jsonArray(data: $0) }
         )
     }
     
@@ -55,9 +56,9 @@ extension NetworkClient {
     ) async throws -> T
         where T: Decodable
     {
-        try await makeRequest(
+        try await makeRequest( // Logged internally
             request: request,
-            decode: { try JSONDecoderService.decodable(data: $0) }
+            decode: { try JSONDecoderService().decodable(data: $0) }
         )
     }
     
@@ -66,57 +67,17 @@ extension NetworkClient {
         request: NetworkRequest,
         decode: @escaping (Data) throws -> Entity
     ) async throws -> Entity {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { throw NetworkClientError.notConnectedToNetwork }
-        
-        let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(from: request)
-
-        do {
-            let (data, response): (Data, URLResponse) = try await data(request: urlRequest)
-
-            let processedResponse: URLResponse = try responseProcessor.response(data, response)
-            guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkClientError.invalidResponse }
-
-            let processedData: Data = try responseProcessor.data(data, response)
-            guard let entity: Entity = try? decode(processedData) else { throw NetworkClientError.invalidData }
-
-            return entity
-
-        } catch {
-            try responseProcessor.error(error)
-            throw error
-        }
-    }
-    
-    // This method solely exists for `noData` method
-    private func makeRequest(
-        request: NetworkRequest
-    ) async throws {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { throw NetworkClientError.notConnectedToNetwork }
-        
-        let urlRequest: URLRequest = try NetworkClientFactory.URLRequest.build(from: request)
-
-        do {
-            let (data, response): (Data, URLResponse) = try await data(request: urlRequest)
-
-            let processedResponse: URLResponse = try responseProcessor.response(data, response)
-            guard processedResponse.isSuccessHTTPStatusCode else { throw NetworkClientError.invalidResponse }
-
-        } catch {
-            try responseProcessor.error(error)
-            throw error
-        }
-    }
-    
-    private func data(
-        request: URLRequest
-    ) async throws -> (Data, URLResponse) {
         try await withCheckedThrowingContinuation({ continuation in
-            dataTask(request: request, completion: { result in
-                switch result {
-                case .success((let data, let response)): continuation.resume(returning: (data, response))
-                case .failure(let error): continuation.resume(throwing: error)
+            makeRequest(
+                request: request,
+                decode: decode,
+                completion: { result in
+                    switch result {
+                    case .success(let data): continuation.resume(returning: data)
+                    case .failure(let error): continuation.resume(throwing: error)
+                    }
                 }
-            })
+            )
         })
     }
 }

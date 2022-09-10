@@ -15,7 +15,10 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
     
     // MARK: Tests
     func test() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         #if canImport(UIKit)
         

@@ -18,11 +18,15 @@ extension NetworkRequestFactory {
             json: [String: Any?]
         ) throws -> [String: String] {
             var result: [String: String] = [:]
-            
             for (key, value) in json {
                 guard let value else { continue }
                 
-                guard let description: String = .init(unwrappedDescribing: value) else { throw NetworkClientError.invalidQueryParameters }
+                guard let description: String = .init(unwrappedDescribing: value) else {
+                    let error: NetworkClientError = .init(.invalidQueryParameters)
+                    VCoreLog(error, "\(value) cannot be encoded as a query parameter")
+                    throw error
+                }
+                
                 result.updateValue(description, forKey: key)
             }
             
@@ -32,14 +36,26 @@ extension NetworkRequestFactory {
         static func build(
             encodable: some Encodable
         ) throws -> [String: String] {
-            let json: [String: Any?] = try JSONEncoderService.json(encodable: encodable)
+            let json: [String: Any?]
+            do {
+                json = try JSONEncoderService().json(encodable: encodable)
+                
+            } catch /*let _error*/ { // Logged internally
+                let error: NetworkClientError = .init(.invalidQueryParameters)
+                VCoreLog(error)
+                throw error
+            }
             
             var result: [String: String] = [:]
-            
             for (key, value) in json {
                 guard let value else { continue }
                 
-                guard let description: String = .init(unwrappedDescribing: value) else { throw NetworkClientError.invalidQueryParameters }
+                guard let description: String = .init(unwrappedDescribing: value) else {
+                    let error: NetworkClientError = .init(.invalidQueryParameters)
+                    VCoreLog(error, "\(value) cannot be encoded as a query parameter")
+                    throw error
+                }
+                
                 result.updateValue(description, forKey: key)
             }
             

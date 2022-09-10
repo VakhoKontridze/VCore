@@ -10,8 +10,6 @@ import Network
 
 // MARK: - Network Reachability Service
 /// Network connection service that manages reachability.
-///
-/// On `watchOS`, `isConnectedToNetwork` will return `nil` on app launch.
 public final class NetworkReachabilityService {
     // MARK: Properties - Singleton
     /// Shared instance of `NetworkReachabilityService`.
@@ -19,10 +17,12 @@ public final class NetworkReachabilityService {
     
     // MARK: Properties - Status
     /// Network connection status.
-    private(set) public lazy var status: NWPath.Status = statusMonitor.currentPath.status
+    private(set) public var status: NWPath.Status?
     
     /// Indicates if device is connected to a network.
-    public var isConnectedToNetwork: Bool { status.isConnected }
+    ///
+    /// On app launch, `nil` is returned.
+    public var isConnectedToNetwork: Bool? { status?.isConnected }
     
     // MARK: Properties - Notifications
     /// Name of notification that will be posted when reachability status changes.
@@ -58,31 +58,31 @@ public final class NetworkReachabilityService {
         let oldStatus = status
         status = path.status
         
-        guard
-            status != oldStatus ||
-            !didCheckStatusForTheFirstTime
-        else {
-            return
-        }
-        
-        didCheckStatusForTheFirstTime = true
-        
-        if isConnectedToNetwork {
-            NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
-        } else {
-            NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
+        if status != oldStatus || !didCheckStatusForTheFirstTime {
+            didCheckStatusForTheFirstTime = true
+            
+            switch isConnectedToNetwork {
+            case nil:
+                break
+                
+            case false?:
+                NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
+                
+            case true?:
+                NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
+            }
         }
     }
 }
 
 // MARK: - Helpers
 extension NWPath.Status {
-    fileprivate var isConnected: Bool {
+    fileprivate var isConnected: Bool? {
         switch self {
         case .satisfied: return true
         case .unsatisfied: return false
         case .requiresConnection: return false
-        @unknown default: return false
+        @unknown default: return nil
         }
     }
 }

@@ -10,7 +10,7 @@ import VCore
 
 // MARK: - Posts Network Gateway
 struct PostsNetworkGateway: PostsGateway {
-    func fetch(completion: @escaping (Result<PostsEntity, Error>) -> Void) {
+    func fetch(completion: @escaping (Result<PostsEntity, any Error>) -> Void) {
         var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
         request.method = .GET
         

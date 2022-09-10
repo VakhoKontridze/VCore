@@ -27,7 +27,10 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
     
     // MARK: Tests
     func testDataTaskNoDataCompletion() {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
         defer { waitForExpectations(timeout: 10) }
@@ -56,7 +59,10 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
     }
 
     func testDataTaskDataCompletion() {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
         defer { waitForExpectations(timeout: 10) }
@@ -70,7 +76,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
             NetworkClient.default.data(from: request, completion: { result in
                 switch result {
                 case .success(let data):
-                    let json: [String: Any?] = try! JSONDecoderService.json(data: data) // fatalError
+                    let json: [String: Any?] = try! JSONDecoderService().json(data: data) // fatalError
                     XCTAssertEqual(json["json"]?.toUnwrappedJSON["key"]?.toString, "value")
                     
                     expectation.fulfill()
@@ -86,7 +92,10 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
     }
 
     func testDataTaskJSONCompletion() {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
         defer { waitForExpectations(timeout: 10) }
@@ -115,7 +124,10 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
     }
 
     func testDataTaskJSONArrayCompletion() {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
         defer { waitForExpectations(timeout: 10) }
@@ -143,7 +155,10 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
     }
 
     func testDataTaskDecodableCompletion() {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
         defer { waitForExpectations(timeout: 10) }

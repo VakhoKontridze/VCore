@@ -60,7 +60,7 @@ public struct UIAlertParameters {
     
     /// Initializes `UIAlertParameters` with error and "ok" action.
     public init(
-        error: Error,
+        error: some Error,
         completion: (() -> Void)?
     ) {
         self.init(

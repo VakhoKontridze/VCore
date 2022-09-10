@@ -38,9 +38,15 @@ public struct MultiPartFormDataAuthorizedRequestHeaders: Encodable {
     
     public func encode(to encoder: Encoder) throws {
         var container: KeyedEncodingContainer<CodingKeys> = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(accept, forKey: .accept)
-        try container.encode(contentType, forKey: .contentType)
-        try container.encode(authorization, forKey: .authorization)
+    
+        do {
+            try container.encode(accept, forKey: .accept)
+            try container.encode(contentType, forKey: .contentType)
+            try container.encode(authorization, forKey: .authorization)
+            
+        } catch {
+            VCoreLog(error)
+            throw error
+        }
     }
 }

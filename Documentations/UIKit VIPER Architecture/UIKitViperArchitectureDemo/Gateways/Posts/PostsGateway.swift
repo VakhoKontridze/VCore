@@ -9,5 +9,5 @@ import Foundation
 
 // MARK: - Posts Gateway
 protocol PostsGateway {
-    func fetch(completion: @escaping (Result<PostsEntity, Error>) -> Void)
+    func fetch(completion: @escaping (Result<PostsEntity, any Error>) -> Void)
 }

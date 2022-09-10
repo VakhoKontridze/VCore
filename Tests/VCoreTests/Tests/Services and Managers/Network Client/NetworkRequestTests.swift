@@ -162,7 +162,7 @@ final class NetworkRequestTests: XCTestCase {
             try request.addBody(json: ["key": "value"])
             
             XCTAssertEqual(
-                try JSONDecoderService.json(data: request.body)["key"]?.toString,
+                try JSONDecoderService().json(data: request.body)["key"]?.toString,
                 "value"
             )
             
@@ -176,7 +176,7 @@ final class NetworkRequestTests: XCTestCase {
             var request: NetworkRequest = .init(url: url)
             try request.addBody(encodable: Body(key: "value"))
             
-            let body: Body = try JSONDecoderService.decodable(data: request.body)
+            let body: Body = try JSONDecoderService().decodable(data: request.body)
             XCTAssertEqual(
                 body.key,
                 "value"

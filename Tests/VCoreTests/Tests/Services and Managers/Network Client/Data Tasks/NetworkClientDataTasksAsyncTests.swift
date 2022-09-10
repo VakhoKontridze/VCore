@@ -15,7 +15,10 @@ final class NetworkClientDataTasksAsyncTests: XCTestCase {
     
     // MARK: Tests
     func testDataTaskNoDataAsync() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -33,7 +36,10 @@ final class NetworkClientDataTasksAsyncTests: XCTestCase {
     }
     
     func testDataTaskDataAsync() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -43,7 +49,7 @@ final class NetworkClientDataTasksAsyncTests: XCTestCase {
             
             let data: Data = try await NetworkClient.default.data(from: request)
             
-            let json: [String: Any?] = try JSONDecoderService.json(data: data)
+            let json: [String: Any?] = try JSONDecoderService().json(data: data)
             XCTAssertEqual(json["json"]?.toUnwrappedJSON["key"]?.toString, "value")
             
         } catch {
@@ -52,7 +58,10 @@ final class NetworkClientDataTasksAsyncTests: XCTestCase {
     }
     
     func testDataTaskJSONAsync() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -70,7 +79,10 @@ final class NetworkClientDataTasksAsyncTests: XCTestCase {
     }
     
     func testDataTaskJSONArrayAsync() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
@@ -87,7 +99,10 @@ final class NetworkClientDataTasksAsyncTests: XCTestCase {
     }
     
     func testDataTaskDecodableAsync() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork else { return }
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
+            return
+        }
         
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")

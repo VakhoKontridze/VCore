@@ -96,7 +96,15 @@ import Combine
     ) -> Data?
         where T: Encodable
     {
-        try? JSONEncoder().encode(value)
+        do {
+            let data: Data = try JSONEncoder().encode(value)
+            return data
+            
+        } catch let _error {
+            let error: KeychainServiceError = .init(.failedToSet)
+            VCoreLog(error, _error)
+            return nil
+        }
     }
 
     private static func decode<T>(
@@ -104,7 +112,15 @@ import Combine
     ) -> T?
         where T: Decodable
     {
-        try? JSONDecoder().decode(T.self, from: data)
+        do {
+            let decodable: T = try JSONDecoder().decode(T.self, from: data)
+            return decodable
+            
+        } catch let _error {
+            let error: KeychainServiceError = .init(.failedToGet)
+            VCoreLog(error, _error)
+            return nil
+        }
     }
 }
 
