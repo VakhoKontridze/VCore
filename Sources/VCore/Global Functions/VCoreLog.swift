@@ -43,5 +43,5 @@ public func VCoreLog(
     
     let file: String = file.components(separatedBy: "/").last ?? file
     
-    NSLog("VCore error in \(file) at line \(line). \(description)")
+    NSLog("VCore error has occurred in file \(file) at line \(line) of function \(function). \(description)")
 }
