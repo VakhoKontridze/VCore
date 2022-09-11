@@ -5,7 +5,6 @@
 //  Created by Vakhtang Kontridze on 21.07.22.
 //
 
-import Foundation
 import SwiftUI
 import Combine
 
@@ -63,65 +62,6 @@ import Combine
             (instance.objectWillChange as? ObservableObjectPublisher)?.send()
         }
     }
-    
-    // MARK: Get and Set
-    private static func getValue<T>(
-        key: String,
-        defaultValue: T
-    ) -> T
-        where T: Codable
-    {
-        guard
-            let data: Data = KeychainService[key],
-            let value: T = decode(data)
-        else {
-            KeychainService[key] = encode(defaultValue)
-            return defaultValue
-        }
-        
-        return value
-    }
-
-    private static func setValue<T>(
-        _ value: T,
-        key: String
-    )
-        where T: Encodable
-    {
-        KeychainService[key] = encode(value)
-    }
-
-    private static func encode<T>(
-        _ value: T
-    ) -> Data?
-        where T: Encodable
-    {
-        do {
-            let data: Data = try JSONEncoder().encode(value)
-            return data
-            
-        } catch let _error {
-            let error: KeychainServiceError = .init(.failedToSet)
-            VCoreLog(error, _error)
-            return nil
-        }
-    }
-
-    private static func decode<T>(
-        _ data: Data
-    ) -> T?
-        where T: Decodable
-    {
-        do {
-            let decodable: T = try JSONDecoder().decode(T.self, from: data)
-            return decodable
-            
-        } catch let _error {
-            let error: KeychainServiceError = .init(.failedToGet)
-            VCoreLog(error, _error)
-            return nil
-        }
-    }
 }
 
 // MARK: Initializers - Codable
@@ -147,5 +87,50 @@ extension KeychainStorage where Value: Codable, Value: ExpressibleByNilLiteral {
             wrappedValue: nil,
             key
         )
+    }
+}
+
+extension KeychainStorage {
+    fileprivate static func getValue<T>(
+        key: String,
+        defaultValue: T
+    ) -> T
+        where T: Codable
+    {
+        let encodeDefaultValue: () -> Void = {
+            KeychainService[key] = try? JSONEncoder().encode(defaultValue)
+        }
+        
+        guard let data: Data = KeychainService[key] else {
+            encodeDefaultValue()
+            return defaultValue
+        }
+        
+        do {
+            let value: T = try JSONDecoder().decode(T.self, from: data)
+            return value
+            
+        } catch let _error {
+            let error: KeychainServiceError = .init(.failedToSet)
+            VCoreLog(error, _error)
+            
+            encodeDefaultValue()
+            return defaultValue
+        }
+    }
+
+    fileprivate static func setValue<T>(
+        _ value: T,
+        key: String
+    )
+        where T: Encodable
+    {
+        do {
+            KeychainService[key] = try JSONEncoder().encode(value)
+
+        } catch let _error {
+            let error: KeychainServiceError = .init(.failedToSet)
+            VCoreLog(error, _error)
+        }
     }
 }
