@@ -11,15 +11,15 @@ import Foundation
 /// An error that occurs during the processes made by `JSONEncoderService`.
 public struct JSONDecoderError: VCoreError, Equatable {
     // MARK: Properties
-    private let errorCode: ErrorCode
+    private let _code: Code
     
     // MARK: VCore Error
-    public var code: Int { errorCode.rawValue }
-    public var description: String { VCoreLocalizationService.shared.localizationProvider.jsonDecoderErrorDescription(errorCode) }
+    public var code: Int { _code.rawValue }
+    public var description: String { VCoreLocalizationService.shared.localizationProvider.jsonDecoderErrorDescription(_code) }
     
     // MARK: Initializers
-    init(_ errorCode: ErrorCode) {
-        self.errorCode = errorCode
+    init(_ code: Code) {
+        self._code = code
     }
     
     /// Indicates that JSON cannot be decoded.
@@ -31,9 +31,9 @@ public struct JSONDecoderError: VCoreError, Equatable {
     /// Indicates that type cannot be casted to another type.
     public static var failedToCast: Self { .init(.failedToCast) }
     
-    // MARK: Error Code
+    // MARK: Code
     /// Error code.
-    public enum ErrorCode: Int, Equatable {
+    public enum Code: Int, Equatable {
         /// Indicates that JSON cannot be decoded.
         case failedToDecode
         
@@ -46,6 +46,6 @@ public struct JSONDecoderError: VCoreError, Equatable {
     
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.errorCode == rhs.errorCode
+        lhs.code == rhs.code
     }
 }

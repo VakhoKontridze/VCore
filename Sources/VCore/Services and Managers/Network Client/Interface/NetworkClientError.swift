@@ -11,15 +11,15 @@ import Foundation
 /// An error that occurs during the network requests made by `NetworkClient`.
 public struct NetworkClientError: VCoreError, Equatable {
     // MARK: Properties
-    private let errorCode: ErrorCode
+    private let _code: Code
     
     // MARK: VCore Error
-    public var code: Int { errorCode.rawValue }
-    public var description: String { VCoreLocalizationService.shared.localizationProvider.networkClientErrorDescription(errorCode) }
+    public var code: Int { _code.rawValue }
+    public var description: String { VCoreLocalizationService.shared.localizationProvider.networkClientErrorDescription(_code) }
     
     // MARK: Initializers
-    init(_ errorCode: ErrorCode) {
-        self.errorCode = errorCode
+    init(_ code: Code) {
+        self._code = code
     }
     
     /// Indicates that device is not connected to network.
@@ -54,9 +54,9 @@ public struct NetworkClientError: VCoreError, Equatable {
     /// Indicates that result cannot be decoded.
     public static var invalidData: Self { .init(.invalidData) }
     
-    // MARK: Error Code
+    // MARK: Code
     /// Error code.
-    public enum ErrorCode: Int, Equatable {
+    public enum Code: Int, Equatable {
         /// Indicates that device is not connected to network.
         ///
         /// A check against `NetworkConnectionService` is made.
@@ -92,6 +92,6 @@ public struct NetworkClientError: VCoreError, Equatable {
     
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.errorCode == rhs.errorCode
+        lhs.code == rhs.code
     }
 }

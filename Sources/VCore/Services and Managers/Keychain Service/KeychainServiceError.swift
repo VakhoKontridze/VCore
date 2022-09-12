@@ -11,15 +11,15 @@ import Foundation
 /// An error that occurs during encoding and decoding in `KeychainService`.
 public struct KeychainServiceError: VCoreError, Equatable {
     // MARK: Properties
-    private let errorCode: ErrorCode
+    private let _code: Code
     
     // MARK: VCore Error
-    public var code: Int { errorCode.rawValue }
-    public var description: String { VCoreLocalizationService.shared.localizationProvider.keychainServiceErrorDescription(errorCode) }
+    public var code: Int { _code.rawValue }
+    public var description: String { VCoreLocalizationService.shared.localizationProvider.keychainServiceErrorDescription(_code) }
     
     // MARK: Initializers
-    init(_ errorCode: ErrorCode) {
-        self.errorCode = errorCode
+    init(_ code: Code) {
+        self._code = code
     }
     
     /// Indicates that get operation has failed.
@@ -31,9 +31,9 @@ public struct KeychainServiceError: VCoreError, Equatable {
     /// Indicates that delete operation has failed.
     public static var failedToDelete: Self { .init(.failedToDelete) }
     
-    // MARK: Error Code
+    // MARK: Code
     /// Error code.
-    public enum ErrorCode: Int, Equatable {
+    public enum Code: Int, Equatable {
         /// Indicates that get operation has failed.
         case failedToGet
         
@@ -49,6 +49,6 @@ public struct KeychainServiceError: VCoreError, Equatable {
     
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.errorCode == rhs.errorCode
+        lhs.code == rhs.code
     }
 }
