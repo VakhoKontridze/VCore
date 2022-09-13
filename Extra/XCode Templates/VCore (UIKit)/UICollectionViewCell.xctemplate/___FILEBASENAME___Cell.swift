@@ -41,7 +41,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, ConfigurableUI
         ])
     }
 
-    // MARK: Configurable
+    // MARK: Configurable Collection View Cell
     func configure(parameter: some UICollectionViewCellParameter) {
         guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }
     }

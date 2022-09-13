@@ -42,7 +42,7 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, ConfigurableUITable
         ])
     }
 
-    // MARK: Configurable
+    // MARK: Configurable Table View Cell
     func configure(parameter: some UITableViewCellParameter) {
         guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }
     }

@@ -67,7 +67,7 @@ final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
         ])
     }
 
-    // MARK: Configurable
+    // MARK: Configurable Table View Cell
     func configure(parameter: some UITableViewCellParameter) {
         guard let parameters = parameter as? PostCellViewParameters else { return }
         
