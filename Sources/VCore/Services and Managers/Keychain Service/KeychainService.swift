@@ -29,9 +29,7 @@ open class KeychainService {
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &valueObject)
 
         guard status == noErr else {
-            let error: KeychainServiceError = .init(.failedToGet)
-            VCoreLog(error, "Security framework error with status code \(status)")
-            throw error
+            throw KeychainServiceError(.failedToGet) // No logging should occur if data simply isn't there
         }
         
         guard let data: Data = valueObject as? Data else {
