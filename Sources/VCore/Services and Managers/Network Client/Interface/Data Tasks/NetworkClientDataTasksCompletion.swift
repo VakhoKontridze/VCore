@@ -170,7 +170,7 @@ extension NetworkClient {
                 }
                 
                 guard Entity.self != Void.self else {
-                    completion(.success(Void() as! Entity))
+                    completion(.success(Void() as! Entity)) // Force-unwrap
                     return
                 }
                 
