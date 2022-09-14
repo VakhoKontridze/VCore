@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 14.08.22.
 //
 
+#if !os(macOS) // TODO: Support macOS on release of 13.0
+
 import SwiftUI
 
 // MARK: - View Line Limit
@@ -85,3 +87,5 @@ private struct TextLineLimitViewModifier: ViewModifier {
         }
     }
 }
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 19.06.22.
 //
 
+#if !os(macOS) // TODO: Support macOS on release of 13.0
+
 import SwiftUI
 
 // MARK: - Navigation Path Methods
@@ -30,3 +32,5 @@ extension NavigationPath {
         removeLast(count)
     }
 }
+
+#endif

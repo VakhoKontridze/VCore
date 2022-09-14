@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 07.08.22.
 //
 
+#if !os(macOS) // TODO: Support macOS on release of 13.0
+
 import SwiftUI
 
 // MARK: - Environment Values Navigation Stack Coordinator
@@ -21,3 +23,5 @@ extension EnvironmentValues {
 struct NavigationStackCoordinatorEnvironmentKey: EnvironmentKey {
     static var defaultValue: NavigationStackCoordinator? = nil
 }
+
+#endif

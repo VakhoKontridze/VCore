@@ -98,7 +98,11 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
                 "key": "value"
             ]
 
+            #if os(macOS)
+            let files: [String: (any AnyMultiPartFormDataFile)?] = [:] // TODO: Support macOS on release of 13.0
+            #else
             let files: [String: (some AnyMultiPartFormDataFile)?] = [:]
+            #endif
             
             let (boundary, data): (String, Data) = MultiPartFormDataBuilder(
                 json: json,

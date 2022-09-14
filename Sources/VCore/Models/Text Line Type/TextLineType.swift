@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 17.08.22.
 //
 
+#if !os(macOS) // TODO: Support macOS on release of 13.0
+
 import SwiftUI
 
 // MARK: - Text Line Type
@@ -118,3 +120,5 @@ public enum _TextLineType {
         }
     }
 }
+
+#endif
