@@ -11,7 +11,7 @@ import XCTest
 // MARK: - Tests
 final class NetworkResponseProcessorTests: XCTestCase {
     // MARK: Test Data
-    private let networkClient: NetworkClient = .init(responseProcessor: TestNetworkReponseProcessor())
+    private let networkClient: NetworkClient = .init(responseProcessor: TestNetworkResponseProcessor())
 
     // MARK: Tests
     func testResponse() {
@@ -32,7 +32,7 @@ final class NetworkResponseProcessorTests: XCTestCase {
         ])
         
         XCTAssertThrowsError(
-            try TestNetworkReponseProcessor().response(data, urlResponse),
+            try TestNetworkResponseProcessor().response(data, urlResponse),
             "",
             { error in
                 guard let error = error as? TestNetworkError else { fatalError() }
@@ -65,7 +65,7 @@ final class NetworkResponseProcessorTests: XCTestCase {
     }
 }
 
-private struct TestNetworkReponseProcessor: NetworkResponseProcessor {
+private struct TestNetworkResponseProcessor: NetworkResponseProcessor {
     func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
         if response.isSuccessHTTPStatusCode { return response }
 
