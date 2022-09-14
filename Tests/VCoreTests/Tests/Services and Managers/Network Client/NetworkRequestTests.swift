@@ -29,7 +29,7 @@ final class NetworkRequestTests: XCTestCase {
     }
     
     func testInitURL() {
-        let request: NetworkRequest = .init(url: URL(string: url)!) // fatalError
+        let request: NetworkRequest = .init(url: URL(string: url)!) // Force-unwrap
         
         XCTAssertEqual(request.url, url)
     }
@@ -129,14 +129,14 @@ final class NetworkRequestTests: XCTestCase {
     func testBodyStacking() {
         do {
             var request: NetworkRequest = .init(url: url)
-            request.addBody(data: "[\"".data(using: .utf8)!) // fatalError
+            request.addBody(data: "[\"".data(using: .utf8)!) // Force-unwrap
             try request.addBody(json: ["key1": "value1"])
-            request.addBody(data: ",".data(using: .utf8)!) // fatalError
+            request.addBody(data: ",".data(using: .utf8)!) // Force-unwrap
             try request.addBody(json: ["key2": "value2"])
-            request.addBody(data: "\"]".data(using: .utf8)!) // fatalError
+            request.addBody(data: "\"]".data(using: .utf8)!) // Force-unwrap
 
             XCTAssertEqual(
-                .init(data: request.body, encoding: .utf8)!, // fatalError
+                .init(data: request.body, encoding: .utf8)!, // Force-unwrap
                 """
                 ["{"key1":"value1"},{"key2":"value2"}"]
                 """

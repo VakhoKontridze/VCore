@@ -19,13 +19,13 @@ final class NetworkResponseProcessorTests: XCTestCase {
         let message: String = "Something has gone wrong"
         
         let urlResponse: HTTPURLResponse = .init(
-            url: .init(string: "https://www.apple.com")!, // fatalError
+            url: .init(string: "https://www.apple.com")!, // Force-unwrap
             statusCode: code,
             httpVersion: nil,
             headerFields: nil
         )!
         
-        let data: Data = try! JSONEncoderService().data(any: [ // fatalError
+        let data: Data = try! JSONEncoderService().data(any: [ // Force-unwrap
             "success": false,
             "code": code,
             "message": message

@@ -16,12 +16,12 @@ final class UIImageInitWithColorTests: XCTestCase {
         let dimension: CGFloat = 100
         let color: UIColor = .red
         
-        let image: UIImage = .init(size: .init(dimension: dimension), color: color)! // fatalError
+        let image: UIImage = .init(size: .init(dimension: dimension), color: color)! // Force-unwrap
 
         XCTAssertEqual(image.size, .init(dimension: dimension))
         
         #if !os(watchOS)
-        XCTAssertEqualColor(image.averageColor!, color) // fatalError
+        XCTAssertEqualColor(image.averageColor!, color) // Force-unwrap
         #endif
     }
 }

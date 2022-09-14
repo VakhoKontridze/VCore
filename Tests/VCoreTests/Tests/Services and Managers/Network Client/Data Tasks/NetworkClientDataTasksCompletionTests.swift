@@ -76,7 +76,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
             NetworkClient.default.data(from: request, completion: { result in
                 switch result {
                 case .success(let data):
-                    let json: [String: Any?] = try! JSONDecoderService().json(data: data) // fatalError
+                    let json: [String: Any?] = try! JSONDecoderService().json(data: data) // Force-unwrap
                     XCTAssertEqual(json["json"]?.toUnwrappedJSON["key"]?.toString, "value")
                     
                     expectation.fulfill()

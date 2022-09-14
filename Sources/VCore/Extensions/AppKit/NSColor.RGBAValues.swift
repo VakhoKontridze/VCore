@@ -72,7 +72,7 @@ extension NSColor {
 // MARK: - Helpers
 extension NSColor {
     var calibrated: NSColor {
-        self.usingColorSpace(.deviceRGB)! // fatalError
+        self.usingColorSpace(.deviceRGB)! // Force-unwrap
     }
 }
 

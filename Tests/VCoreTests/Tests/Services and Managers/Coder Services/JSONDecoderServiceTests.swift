@@ -18,7 +18,7 @@ final class JSONDecoderServiceTests: XCTestCase {
     // MARK: Tests
     func testDataToJSON() {
         let json: [String: Any?] = ["key": "value"]
-        let jsonData: Data = try! JSONEncoderService().data(any: json) // fatalError
+        let jsonData: Data = try! JSONEncoderService().data(any: json) // Force-unwrap
         
         do {
             let json2: [String: Any?] = try JSONDecoderService().json(data: jsonData)
@@ -36,7 +36,7 @@ final class JSONDecoderServiceTests: XCTestCase {
     func testDataToJSONArray() {
         let json: [String: Any?] = ["key": "value"]
         let jsonArray: [[String: Any?]] = [json]
-        let jsonArrayData = try! JSONEncoderService().data(any: jsonArray) // fatalError
+        let jsonArrayData = try! JSONEncoderService().data(any: jsonArray) // Force-unwrap
         
         do {
             let jsonArray2: [[String: Any?]] = try JSONDecoderService().jsonArray(data: jsonArrayData)
@@ -52,7 +52,7 @@ final class JSONDecoderServiceTests: XCTestCase {
     
     func testDataToDecodable() {
         let decodable: SomeObject = .init(key: "value")
-        let decodableData: Data = try! JSONEncoderService().data(encodable: decodable) // fatalError
+        let decodableData: Data = try! JSONEncoderService().data(encodable: decodable) // Force-unwrap
         
         do {
             let decodable2: SomeObject = try JSONDecoderService().decodable(data: decodableData)
@@ -65,7 +65,7 @@ final class JSONDecoderServiceTests: XCTestCase {
     
     func testJSONToDecodable() {
         let decodable: SomeObject = .init(key: "value")
-        let decodableJSON: [String: Any?] = try! JSONEncoderService().json(encodable: decodable) // fatalError
+        let decodableJSON: [String: Any?] = try! JSONEncoderService().json(encodable: decodable) // Force-unwrap
         
         do {
             let decodable2: SomeObject = try JSONDecoderService().decodable(json: decodableJSON)
@@ -78,7 +78,7 @@ final class JSONDecoderServiceTests: XCTestCase {
     
     func testJSONArrayToDecodable() {
         let decodables: [SomeObject] = [.init(key: "value1"), .init(key: "value2")]
-        let decodableJSONArray: [[String: Any?]] = try! JSONEncoderService().jsonArray(encodable: decodables) // fatalError
+        let decodableJSONArray: [[String: Any?]] = try! JSONEncoderService().jsonArray(encodable: decodables) // Force-unwrap
         
         do {
             let decodables2: [SomeObject] = try JSONDecoderService().decodable(jsonArray: decodableJSONArray)

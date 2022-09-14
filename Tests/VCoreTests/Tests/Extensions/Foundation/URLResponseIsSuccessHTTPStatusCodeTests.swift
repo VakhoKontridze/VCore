@@ -12,8 +12,8 @@ import XCTest
 final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
     func testSuccess() {
         let urlResponse: HTTPURLResponse = .init(
-            url: .init(string: "https://www.apple.com")!, // fatalError
-            statusCode: (200...299).randomElement()!, // fatalError
+            url: .init(string: "https://www.apple.com")!, // Force-unwrap
+            statusCode: (200...299).randomElement()!, // Force-unwrap
             httpVersion: nil,
             headerFields: nil
         )!
@@ -25,7 +25,7 @@ final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
     
     func testFailure() {
         let urlResponse: HTTPURLResponse = .init(
-            url: .init(string: "https://www.apple.com")!, // fatalError
+            url: .init(string: "https://www.apple.com")!, // Force-unwrap
             statusCode: 404,
             httpVersion: nil,
             headerFields: nil

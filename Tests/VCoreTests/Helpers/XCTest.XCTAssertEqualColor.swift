@@ -20,8 +20,8 @@ extension XCTest {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let lhs = try! expression1().rgbaValues // fatalError
-        let rhs = try! expression2().rgbaValues // fatalError
+        let lhs = try! expression1().rgbaValues // Force-unwrap
+        let rhs = try! expression2().rgbaValues // Force-unwrap
         
         XCTAssertEqual(lhs.red, rhs.red, message(), file: file, line: line)
         XCTAssertEqual(lhs.green, rhs.green, message(), file: file, line: line)
@@ -40,8 +40,8 @@ extension XCTest {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        let lhs = try! expression1().rgbaValues // fatalError
-        let rhs = try! expression2().rgbaValues // fatalError
+        let lhs = try! expression1().rgbaValues // Force-unwrap
+        let rhs = try! expression2().rgbaValues // Force-unwrap
         
         XCTAssertEqual(lhs.red, rhs.red, message(), file: file, line: line)
         XCTAssertEqual(lhs.green, rhs.green, message(), file: file, line: line)

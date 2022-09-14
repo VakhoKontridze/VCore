@@ -22,7 +22,7 @@ final class JSONEncoderServiceTests: XCTestCase {
         do {
             let data: Data = try JSONEncoderService().data(any: json)
             
-            let json2: [String: Any?] = try! JSONDecoderService().json(data: data) // fatalError
+            let json2: [String: Any?] = try! JSONDecoderService().json(data: data) // Force-unwrap
             XCTAssertEqual(json2["key"]?.toString, "value")
         
         } catch {
@@ -36,7 +36,7 @@ final class JSONEncoderServiceTests: XCTestCase {
         do {
             let data: Data = try JSONEncoderService().data(encodable: encodable)
             
-            let encodable2: SomeObject = try! JSONDecoderService().decodable(data: data) // fatalError
+            let encodable2: SomeObject = try! JSONDecoderService().decodable(data: data) // Force-unwrap
             XCTAssertEqual(encodable2.key, encodable.key)
             
         } catch {
@@ -50,7 +50,7 @@ final class JSONEncoderServiceTests: XCTestCase {
         do {
             let json: [String: Any?] = try JSONEncoderService().json(encodable: encodable)
             
-            let encodable2: SomeObject = try! JSONDecoderService().decodable(json: json) // fatalError
+            let encodable2: SomeObject = try! JSONDecoderService().decodable(json: json) // Force-unwrap
             XCTAssertEqual(encodable2.key, encodable.key)
             
         } catch {
@@ -64,7 +64,7 @@ final class JSONEncoderServiceTests: XCTestCase {
         do {
             let jsonArray: [[String: Any?]] = try JSONEncoderService().jsonArray(encodable: encodables)
             
-            let encodables2: [SomeObject] = try! JSONDecoderService().decodable(jsonArray: jsonArray) // fatalError
+            let encodables2: [SomeObject] = try! JSONDecoderService().decodable(jsonArray: jsonArray) // Force-unwrap
             for i in encodables.indices {
                 XCTAssertEqual(encodables2[i].key, encodables[i].key)
             }
