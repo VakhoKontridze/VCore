@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.0.1(64)
+
+Services and Managers
+
+- Issue with `Data` being empty in `NetworkResponseProcessor.response(_:_:)` when calling `noData(from:)` in `NetworkClient` is fixed
+
 ### [4.0.0(63)](https://github.com/VakhoKontridze/VCore/releases/tag/4.0.0) — *2022 09 14*
 
 General

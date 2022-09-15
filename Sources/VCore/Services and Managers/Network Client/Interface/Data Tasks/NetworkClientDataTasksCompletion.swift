@@ -146,7 +146,7 @@ extension NetworkClient {
                             return
                         }
                     } else {
-                        processedResponse = try self.responseProcessor.response(.init(), response)
+                        processedResponse = try self.responseProcessor.response(data ?? .init(), response)
                     }
                     
                 } catch {
