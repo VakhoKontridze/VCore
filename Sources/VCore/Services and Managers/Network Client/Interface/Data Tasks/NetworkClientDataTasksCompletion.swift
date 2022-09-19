@@ -137,14 +137,15 @@ extension NetworkClient {
                 let processedResponse: URLResponse
                 do {
                     if Entity.self != Void.self {
-                        if let data {
-                            processedResponse = try self.responseProcessor.response(data, response)
-                        } else {
+                        guard let data else {
                             let error: NetworkClientError = .init(.invalidData)
                             VCoreLog(error)
                             completion(.failure(error))
                             return
                         }
+                        
+                        processedResponse = try self.responseProcessor.response(data, response)
+                        
                     } else {
                         processedResponse = try self.responseProcessor.response(data ?? .init(), response)
                     }
