@@ -29,9 +29,10 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
     
     public var id: String { description }
     
-    private static let allowedCharacters: CharacterSet =
+    private static var allowedCharacters: CharacterSet {
         .decimalDigits
         .union(.init(charactersIn: "."))
+    }
     
     // MARK: Initializers
     /// Initializes `ModuleVersion` with versions.

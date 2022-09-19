@@ -59,7 +59,7 @@ public struct MultiPartFormDataBuilder {
     private let json: [String: Any?]
     private let files: [String: (any AnyMultiPartFormDataFile)?]
     
-    static let lineBreak = "\r\n"
+    static var lineBreak: String { "\r\n" }
     
     // MARK: Initializers
     /// Initializes `MultiPartFormDataBuilder`.
