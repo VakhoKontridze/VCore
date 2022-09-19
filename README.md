@@ -16,6 +16,8 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 
 ## Compatibility
 
+Versions with different majors are not compatible.
+
 | Release Date | VCore | iOS  | macOS\* | tvOS\* | watchOS\* |
 | ---          | ---   | ---  | ---     | ---    | ---       |
 | 2022 09 14   | 4.0   | 13.0 | 10.15   | 13.0   | 6.0       |
