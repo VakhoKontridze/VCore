@@ -14,12 +14,12 @@ import Foundation
 ///
 ///     Task(operation: {
 ///         do {
-///             let sessionID: Int = await SessionManager.shared.newSessionID
+///             let sessionID: Int = await GlobalSessionManager.shared.newSessionID
 ///
 ///             let request: NetworkRequest = .init(url: "https://httpbin.org/get")
 ///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 ///
-///             guard await SessionManager.shared.sessionIsValid(id: sessionID) else { return }
+///             guard await GlobalSessionManager.shared.sessionIsValid(id: sessionID) else { return }
 ///
 ///             print(result)
 ///
