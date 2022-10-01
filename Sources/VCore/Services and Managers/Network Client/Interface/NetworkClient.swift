@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Network Client
 /// Client that performs network tasks.
 ///
-/// Object contains default `default` instance, that can be used to make requests.
+/// Object contains default instance `default`, that can be used to make requests.
 ///
 ///     func fetchData() async {
 ///         do {
