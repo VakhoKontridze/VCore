@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Network Response Processor
 /// Processor that processes `Response,` and `Data`, before they are analyzed and`Data` is decoded.
 ///
-/// If backend returns success response:
+/// If success response is represented as:
 ///
 ///     {
 ///         "success": true,
@@ -27,7 +27,7 @@ import Foundation
 ///         "message": "You are unauthorized"
 ///     }
 ///
-/// then the example of `SomeNetworkClientProcessor` performs the proper processing.
+/// then the following example performs proper processing.
 /// Therefore, the purpose of response processing is not sacrificing `Decodable` protocol for entities,
 /// that may be nested under `"data"` in response `JSON`;
 /// also, retrieving error codes and messages independently from the entity.
@@ -67,7 +67,7 @@ import Foundation
 ///                 let dataJSON: [String: Any?] = json["data"]?.toJSON,
 ///                 let dataData: Data = try? JSONEncoderService().data(encodable: dataJSON)
 ///             else {
-///                 throw SomeNetworkError(code: 1, description: "Incomplete Data")
+///                 throw NetworkClientError.invalidData
 ///             }
 ///
 ///             return dataData
