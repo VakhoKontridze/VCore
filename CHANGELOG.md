@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.1.0(65)
+
+- Models
+
+- Underlying type `_textLineType` in TextLineType is no longer `public`. Instead, it's being replaced by `textAlignment` and `textLineLimitType`.
+
 ### [4.0.1(64)](https://github.com/VakhoKontridze/VCore/releases/tag/4.0.1) — *2022 09 15*
 
 Services and Managers

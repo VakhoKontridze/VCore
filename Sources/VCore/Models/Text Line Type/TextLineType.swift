@@ -14,8 +14,29 @@ import SwiftUI
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 public struct TextLineType {
     // MARK: Properties
-    /// Underlying type.
-    public let _textLineType: _TextLineType
+    private let _textLineType: _TextLineType
+    
+    /// `TextAlignment`.
+    public var textAlignment: TextAlignment? {
+        switch _textLineType {
+        case .singleLine:
+            return nil
+            
+        case .multiLine(let alignment, _):
+            return alignment
+        }
+    }
+    
+    /// `TextLineLimitType`.
+    public var textLineLimitType: TextLineLimitType {
+        switch _textLineType {
+        case .singleLine:
+            return .fixed(lineLimit: 1)
+            
+        case .multiLine(_, let textLineLimitType):
+            return textLineLimitType
+        }
+    }
     
     // MARK: Initializers
     private init(
@@ -87,38 +108,10 @@ public struct TextLineType {
 }
 
 // MARK: - _ V Text Type
-/// Underlying type for `TextLineType`.
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
-public enum _TextLineType {
-    // MARK: Cases
-    /// Singleline.
+enum _TextLineType {
     case singleLine
-    
-    /// Multiline.
     case multiLine(alignment: TextAlignment, textLineLimitType: TextLineLimitType)
-    
-    // MARK: Properties
-    /// `TextAlignment`.
-    public var textAlignment: TextAlignment? {
-        switch self {
-        case .singleLine:
-            return nil
-            
-        case .multiLine(let alignment, _):
-            return alignment
-        }
-    }
-    
-    /// `TextLineLimitType`.
-    public var textLineLimitType: TextLineLimitType {
-        switch self {
-        case .singleLine:
-            return .fixed(lineLimit: 1)
-            
-        case .multiLine(_, let textLineLimitType):
-            return textLineLimitType
-        }
-    }
 }
 
 #endif
