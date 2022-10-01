@@ -29,17 +29,17 @@ public struct SecurableTextField: View {
     // MARK: Properties
     private let isSecure: Bool
     
-    private let placeholder: String?
+    private let placeholder: Text?
     @Binding private var text: String
     
     @FocusState private var isTextFieldFocused
     @FocusState private var isSecureFieldFocused
     
     // MARK: Initializers
-    /// Initializes `SecurableTextField`.
+    /// Initializes `SecurableTextField` with text.
     public init(
         isSecure: Bool,
-        placeholder: String?,
+        placeholder: Text?,
         text: Binding<String>
     ) {
         self.isSecure = isSecure
@@ -52,7 +52,7 @@ public struct SecurableTextField: View {
         ZStack(content: {
             TextField(
                 text: $text,
-                prompt: placeholder.map { .init($0) },
+                prompt: placeholder,
                 label: EmptyView.init
             )
                 .focused($isTextFieldFocused)
@@ -60,7 +60,7 @@ public struct SecurableTextField: View {
             
             SecureField(
                 text: $text,
-                prompt: placeholder.map { .init($0) },
+                prompt: placeholder,
                 label: EmptyView.init
             )
                 .focused($isSecureFieldFocused)
@@ -82,7 +82,7 @@ struct SecurableTextField_Previews: PreviewProvider {
         HStack(content: {
             SecurableTextField(
                 isSecure: isSecure,
-                placeholder: "Lorem ipsum",
+                placeholder: .init("Lorem ipsum"),
                 text: $text
             )
             
