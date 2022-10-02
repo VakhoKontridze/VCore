@@ -14,7 +14,7 @@ import SwiftUI
 ///
 /// UI Model can be passed as parameter.
 ///
-///     @State var isPresented: Bool = true
+///     @State var isExpanded: Bool = true
 ///
 ///     var body: some View {
 ///         PlainDisclosureGroup(
