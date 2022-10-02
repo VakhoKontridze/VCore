@@ -2,14 +2,14 @@
 
 ### [4.1.0(65)](https://github.com/VakhoKontridze/VCore/releases/tag/4.0.2) — *2022 10 02*
 
-Models
-
-- Underlying type `_textLineType` in TextLineType is no longer `public`. Instead, it's being replaced by `textAlignment` and `textLineLimitType`.
-
 Views
 
 - `SecurableTextField` now takes `Text` as placeholder
 - `ProgressViewParameters` now causes `View` to ignore interaction, instead of disabling it
+
+Models
+
+- Underlying type `_textLineType` in TextLineType is no longer `public`. Instead, it's being replaced by `textAlignment` and `textLineLimitType`.
 
 Architectural Pattern Helpers
 
