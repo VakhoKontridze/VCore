@@ -17,7 +17,7 @@ import UIKit
 ///
 ///     presentAlert(parameters: .init(
 ///         title: "Lorem Ipsum",
-///         message: "Lorem ipsum",
+///         message: "Lorem ipsum dolor sit amet",
 ///         actions: {
 ///             UIAlertButton(title: "Confirm", action: { print("Confirmed") })
 ///             UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })

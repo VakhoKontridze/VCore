@@ -12,8 +12,36 @@ import SwiftUI
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `Presenter`.
 /// in `MVVM` architecture, this protocol is conformed to by a `ViewModel.`
+///
+///     struct ContentView: View {
+///         @StateObject private var presenter: Presenter = .init()
+///
+///         var body: some View {
+///             Button(
+///                 "Lorem ipsum",
+///                 action: { presenter.didTapButton() }
+///             )
+///                 .alert(parameters: $presenter.alertParameters)
+///         }
+///     }
+///
+///     final class Presenter: ObservableObject, AlertPresentable {
+///         @Published var alertParameters: AlertParameters?
+///
+///         func didTapButton() {
+///             alertParameters = AlertParameters(
+///                 title: "Lorem Ipsum",
+///                 message: "Lorem ipsum dolor sit amet",
+///                 actions: {
+///                     AlertButton(title: "Confirm", action: { print("Confirmed") })
+///                     AlertButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
+///                 }
+///             )
+///         }
+///     }
+///
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 @MainActor public protocol AlertPresentable: ObservableObject {
-    /// Alert parameters.
+    /// `AlertParameters`.
     var alertParameters: AlertParameters? { get set }
 }

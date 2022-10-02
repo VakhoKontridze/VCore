@@ -12,16 +12,6 @@ import SwiftUI
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in `Presenter`.
 /// in `MVVM` architecture, parameters are stored in`ViewModel.`
-///
-///     @State private var parameters: ProgressViewParameters? = .init()
-///
-///     var body: some View {
-///         Button("Lorem ipsum", action: {
-///             parameters = .init()
-///         })
-///             .progressView(parameters: parameters)
-///     }
-///     
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public struct ProgressViewParameters: Hashable, Identifiable {
     // MARK: Properties
@@ -48,44 +38,4 @@ public struct ProgressViewParameters: Hashable, Identifiable {
     
     // MARK: Identifiable
     public var id: Int { hashValue }
-}
-
-// MARK: - Factory
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
-extension View {
-    /// Presents `ProgressView` when `ProgressViewParameters` is non-`nil`.
-    @ViewBuilder public func progressView(
-        parameters: ProgressViewParameters?
-    ) -> some View {
-        switch parameters {
-        case nil:
-            self
-            
-        case let parameters?:
-            self
-                .disabled(parameters.isInteractionDisabled)
-                .overlay(
-                    ProgressView()
-                        .scaleEffect(parameters: parameters)
-                        .progressViewStyle(parameters: parameters)
-                )
-        }
-    }
-}
-
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
-extension View {
-    @ViewBuilder fileprivate func progressViewStyle(parameters: ProgressViewParameters) -> some View {
-        switch parameters.color {
-        case nil: self.progressViewStyle(CircularProgressViewStyle())
-        case let color?: self.progressViewStyle(CircularProgressViewStyle(tint: color))
-        }
-    }
-    
-    @ViewBuilder fileprivate func scaleEffect(parameters: ProgressViewParameters) -> some View {
-        switch parameters.scalingFactor {
-        case nil: self
-        case let scalingFactor?: self.scaleEffect(x: scalingFactor, y: scalingFactor, anchor: .center)
-        }
-    }
 }
