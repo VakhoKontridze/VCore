@@ -15,11 +15,17 @@ import SwiftUI
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public struct ProgressViewParameters: Hashable, Identifiable {
     // MARK: Properties
+    /// Indicates if interaction is disabled.
     public let isInteractionDisabled: Bool
+    
+    /// Scaling factor.
     public let scalingFactor: CGFloat?
+    
+    /// Color.
     public let color: Color?
     
     // MARK: Initializers
+    /// Initializes `ProgressViewParameters`.
     public init(
         isInteractionDisabled: Bool = false,
         scalingFactor: CGFloat? = nil,

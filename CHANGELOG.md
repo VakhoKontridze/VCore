@@ -9,6 +9,7 @@ Models
 Views
 
 - `SecurableTextField` now takes `Text` as placeholder
+- `ProgressViewParameters` now causes `View` to ignore interaction, instead of disabling it
 
 ### [4.0.1(64)](https://github.com/VakhoKontridze/VCore/releases/tag/4.0.1) — *2022 09 15*
 

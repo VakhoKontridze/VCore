@@ -26,10 +26,11 @@ import SwiftUI
 ///     }
 ///
 ///     final class Presenter: ObservableObject, ProgressViewPresentable {
-///         @Published var progressViewParameters: ProgressViewParameters? = .init()
+///         @Published var progressViewParameters: ProgressViewParameters?
 ///
 ///         func didTapButton() {
-///             progressViewParameters = .init()
+///             progressViewParameters = .init(isInteractionDisabled: true)
+///             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [weak self] in self?.progressViewParameters = nil })
 ///         }
 ///     }
 ///

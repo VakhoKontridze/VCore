@@ -20,7 +20,10 @@ extension View {
             
         case let parameters?:
             self
-                .disabled(parameters.isInteractionDisabled)
+                .if(parameters.isInteractionDisabled, transform: {
+                    $0
+                        .overlay(Color.clear.contentShape(Rectangle()))
+                })
                 .overlay(
                     ProgressView()
                         .scaleEffect(parameters: parameters)
