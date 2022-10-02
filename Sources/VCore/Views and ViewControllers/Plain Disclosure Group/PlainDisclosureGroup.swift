@@ -14,10 +14,15 @@ import SwiftUI
 ///
 /// UI Model can be passed as parameter.
 ///
+///     @State var isPresented: Bool = true
+///
 ///     var body: some View {
 ///         PlainDisclosureGroup(
 ///             isExpanded: $isExpanded,
-///             label: { Text("Lorem Ipsum") },
+///             label: {
+///                 Text("Lorem Ipsum")
+///                     .allowsHitTesting(false)
+///             },
 ///             content: {
 ///                 ScrollView(content: {
 ///                     LazyVStack(content: {
@@ -148,7 +153,10 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
     static var previews: some View {
         PlainDisclosureGroup(
             isExpanded: $isExpanded,
-            label: { Text("Lorem Ipsum") },
+            label: {
+                Text("Lorem Ipsum")
+                    .allowsHitTesting(false)
+            },
             content: {
                 ScrollView(content: {
                     LazyVStack(content: {

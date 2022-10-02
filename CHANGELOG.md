@@ -1,6 +1,6 @@
 # Change Log
 
-### 4.0.2(65)
+### [4.0.2(65)](https://github.com/VakhoKontridze/VCore/releases/tag/4.0.2) — *2022 10 02*
 
 Models
 
