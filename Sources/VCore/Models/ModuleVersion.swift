@@ -27,8 +27,6 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
     /// Contains `patch` or `0`.
     public var patchUnwrapped: Int { patch ?? 0 }
     
-    public var id: String { description }
-    
     private static var allowedCharacters: CharacterSet {
         .decimalDigits
         .union(.init(charactersIn: "."))
@@ -80,6 +78,9 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
             return "\(major).\(minor)"
         }
     }
+    
+    // MARK: Identifiable
+    public var id: String { description }
     
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
