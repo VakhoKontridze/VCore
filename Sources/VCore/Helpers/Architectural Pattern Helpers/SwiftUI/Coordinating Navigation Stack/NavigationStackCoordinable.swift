@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 07.08.22.
 //
 
-#if !os(macOS) // TODO: Support macOS on release of 13.0
-
 import SwiftUI
 
 // MARK: - Navigation Stack Coordinable
@@ -32,5 +30,3 @@ import SwiftUI
     /// Navigation stack coordinator.
     var navigationStackCoordinator: NavigationStackCoordinator? { get set }
 }
-
-#endif
