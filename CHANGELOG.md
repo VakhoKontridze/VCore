@@ -4,7 +4,7 @@
 
 General
 
-- `macOS` `13` API is now exposed to macOS
+- `macOS` `13.0` API is now exposed to `macOS`
 
 ### [4.1.0(65)](https://github.com/VakhoKontridze/VCore/releases/tag/4.1.0) — *2022 10 02*
 
