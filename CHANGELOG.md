@@ -1,12 +1,12 @@
 # Change Log
 
-### 4.2.0(66)
+### [4.2.0(66)](https://github.com/VakhoKontridze/VCore/releases/tag/4.2.0) — *2022 10 29*
 
 General
 
 - `macOS` `13` API is now exposed to macOS
 
-### [4.1.0(65)](https://github.com/VakhoKontridze/VCore/releases/tag/4.0.2) — *2022 10 02*
+### [4.1.0(65)](https://github.com/VakhoKontridze/VCore/releases/tag/4.1.0) — *2022 10 02*
 
 Views
 
