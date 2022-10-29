@@ -16,7 +16,7 @@ A factory and a dependency injector that creates a scene and injects all related
 
 Factory is a non-initializable `struct` with `static` factory methods. By default, `Factory` includes two method, that create a `default` and `mock` instances of the scene.
 
-`Factory` takes `Parameters` as argument if there is data to be passed from the presenting scene. If not, empty `Parameters` object should not be removed, as it's used by a `Router` for identifying which scenes it navigates to using ``navigationDestination(for:destination:)` modifier. 
+`Factory` takes `Parameters` as argument if there is data to be passed from the presenting scene. If not, empty `Parameters` object should not be removed, as it's used by a `Router` for identifying which scenes it navigates to using `navigationDestination(for:destination:)` modifier. 
 
 Since objects are communicating via protocols, they can be swapped out with a non-default implementations. For instance, we can declare protocols in a shared framework, alongside with `View` and `Presenter` objects, and implement different `Interactor`s and `Router`s in two separate apps, effectively reusing the same scene while only changing endpoints that they connect to, and scenes to which they can navigate. When even just one component is replaced, a new factory method must be added, as it requires a different dependency injection.
 
@@ -39,7 +39,7 @@ There are five protocols that explain the communication:
 | Protocol    | Conformance    | Owner          | Ownership |
 | :---------- | :------------- | :------------- | :-------- |
 | Presentable | Presenter      | View           | strong    |
-| Routable    | Router         | N/             | N/A       |
+| Routable    | Router         | N/A            | N/A       |
 | Interactive | Interactor     | Presenter      | strong    |
 
 ## View
@@ -54,7 +54,7 @@ Responsibilities of the `View` include:
 
 - Creating and configuring subviews
 - Interfacing with `Presenter` to access reactive data, or to call methods
-- Interfacing with values stored in environment, and passing them off to `Presenter`, such as `NSManagedObjectContext
+- Interfacing with values stored in environment, and passing them off to `Presenter`, such as `NSManagedObjectContext`
 
 Responsibilities of the `View` do not include:
 
