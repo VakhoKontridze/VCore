@@ -13,7 +13,7 @@ extension Date {
     ///
     ///     let age: Int? = birthDate.age
     ///
-    public var age: Int? {
-        Calendar.current.dateComponents([.year], from: self, to: .init()).year
+    public func age(inCalendar calendar: Calendar = .current) -> Int? {
+        calendar.dateComponents([.year], from: self, to: .init()).year
     }
 }

@@ -13,8 +13,11 @@ extension Date {
     ///
     ///     let year: Int = Date().component(.year) // 2022
     ///
-    public func component(_ component: Calendar.Component) -> Int {
-        Calendar.current.component(component, from: self)
+    public func component(
+        _ component: Calendar.Component,
+        inCalendar calendar: Calendar = .current
+    ) -> Int {
+        calendar.component(component, from: self)
     }
     
     /// Returns all the date components of a date, using the calendar time zone.
@@ -25,7 +28,10 @@ extension Date {
     ///     let month: Int? = components.month // 1
     ///     let day: Int? = components.day // 1
     ///
-    public func components(_ components: Set<Calendar.Component>) -> DateComponents {
-        Calendar.current.dateComponents(components, from: self)
+    public func components(
+        _ components: Set<Calendar.Component>,
+        inCalendar calendar: Calendar = .current
+    ) -> DateComponents {
+        calendar.dateComponents(components, from: self)
     }
 }

@@ -11,8 +11,10 @@ import XCTest
 // MARK: - Tests
 final class DateAgeTests: XCTestCase {
     func test() {
-        guard let birthDate: Date = Calendar.current.date(from: .init(year: 1970, month: 1, day: 1)) else { fatalError() }
+        let calendar: Calendar = .current
         
-        XCTAssertNotNil(birthDate.age)
+        guard let birthDate: Date = calendar.date(from: .init(year: 1970, month: 1, day: 1)) else { fatalError() }
+        
+        XCTAssertNotNil(birthDate.age(inCalendar: calendar))
     }
 }

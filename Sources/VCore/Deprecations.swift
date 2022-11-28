@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 10/9/21.
 //
 
+import Foundation
+
 // MARK: - Keychain Service
 extension KeychainService {
     @available(*, deprecated, message: "Use instance method")
@@ -69,5 +71,13 @@ extension ProgressViewParameters {
             color: color,
             isInteractionDisabled: isInteractionDisabled
         )
+    }
+}
+
+// MARK: - Extensions - Foundation
+extension Date {
+    @available(*, deprecated, message: "Use method instead")
+    public var age: Int? {
+        age()
     }
 }

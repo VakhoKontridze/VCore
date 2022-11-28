@@ -12,6 +12,12 @@ Models
 
 - `KeychainStorage` no longer saves default value to Keychain, until it's retrieved for the first time
 
+Extensions
+
+- `Calendar` parameters is added to `Date.age`
+- `Calendar` parameters is added to `Date.component(_:)`
+- `Calendar` parameters is added to `Date.components(_:)`
+
 ### [4.2.0(66)](https://github.com/VakhoKontridze/VCore/releases/tag/4.2.0) — *2022 10 29*
 
 General
