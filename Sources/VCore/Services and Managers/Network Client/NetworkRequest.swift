@@ -38,18 +38,14 @@ public struct NetworkRequest {
     mutating public func addPathParameters(
         string: String
     ) {
-        pathParameters.append(contentsOf: NetworkRequestFactory.PathParameters.build(
-            string: string
-        ))
+        pathParameters.append(string)
     }
     
     /// Adds `String` `Array` to path parameters.
     mutating public func addPathParameters(
         stringArray: [String]
     ) {
-        pathParameters.append(contentsOf: NetworkRequestFactory.PathParameters.build(
-            stringArray: stringArray
-        ))
+        pathParameters.append(contentsOf: stringArray)
     }
     
     // MARK: Query Parameters
@@ -57,9 +53,17 @@ public struct NetworkRequest {
     mutating public func addQueryParameters(
         json: [String: Any?]
     ) throws {
-        queryParameters.append(try NetworkRequestFactory.QueryParameters.build( // Logged internally
-            json: json
-        ))
+        for (key, value) in json {
+            guard let value else { continue }
+            
+            guard let description: String = .init(unwrappedDescribing: value) else {
+                let error: NetworkClientError = .init(.invalidQueryParameters)
+                VCoreLog(error, "\(value) cannot be encoded as a query parameter")
+                throw error
+            }
+            
+            queryParameters[key] = description
+        }
     }
 
     /// Adds `Encodable` to query parameters.
@@ -67,20 +71,35 @@ public struct NetworkRequest {
         encodable: some Encodable,
         optionsDataToJSON: JSONSerialization.ReadingOptions = []
     ) throws {
-        queryParameters.append(try NetworkRequestFactory.QueryParameters.build( // Logged internally
-            encodable: encodable,
-            optionsDataToJSON: optionsDataToJSON
-        ))
+        let json: [String: Any?]
+        do {
+            json = try JSONEncoderService().json(encodable: encodable, optionsDataToJSON: optionsDataToJSON)
+            
+        } catch /*let _error*/ { // Logged internally
+            let error: NetworkClientError = .init(.invalidQueryParameters)
+            VCoreLog(error)
+            throw error
+        }
+        
+        try addQueryParameters(json: json)
     }
 
     // MARK: Headers
     /// Adds `JSON` to headers.
     mutating public func addHeaders(
-        json: [String: String?]
-    ) {
-        headers.append(NetworkRequestFactory.Headers.build(
-            json: json
-        ))
+        json: [String: Any?]
+    ) throws {
+        for (key, value) in json {
+            guard let value else { continue }
+            
+            guard let description: String = .init(unwrappedDescribing: value) else {
+                let error: NetworkClientError = .init(.invalidHeaders)
+                VCoreLog(error, "\(value) cannot be encoded as a header parameter")
+                throw error
+            }
+            
+            headers[key] = description
+        }
     }
 
     /// Adds `Encodable` to headers.
@@ -88,10 +107,17 @@ public struct NetworkRequest {
         encodable: some Encodable,
         optionsDataToJSON: JSONSerialization.ReadingOptions = []
     ) throws {
-        headers.append(try NetworkRequestFactory.Headers.build( // Logged internally
-            encodable: encodable,
-            optionsDataToJSON: optionsDataToJSON
-        ))
+        let json: [String: Any?]
+        do {
+            json = try JSONEncoderService().json(encodable: encodable, optionsDataToJSON: optionsDataToJSON)
+            
+        } catch /*let _error*/ { // Logged internally
+            let error: NetworkClientError = .init(.invalidHeaders)
+            VCoreLog(error)
+            throw error
+        }
+        
+        try addHeaders(json: json)
     }
     
     // MARK: Body
@@ -99,9 +125,7 @@ public struct NetworkRequest {
     mutating public func addBody(
         data: Data
     ) {
-        body.append(NetworkRequestFactory.Body.build(
-            data: data
-        ))
+        body.append(data)
     }
 
     /// Adds `JSON` to headers.
@@ -109,27 +133,112 @@ public struct NetworkRequest {
         json: [String: Any?],
         options: JSONSerialization.WritingOptions = []
     ) throws {
-        body.append(try NetworkRequestFactory.Body.build( // Logged internally
-            json: json,
-            options: options
-        ))
+        do {
+            try body.append(JSONEncoderService().data(any: json, options: options))
+            
+        } catch /*let _error*/ { // Logged internally
+            let error: NetworkClientError = .init(.invalidBody)
+            VCoreLog(error)
+            throw error
+        }
     }
 
     /// Adds `Encodable` to headers.
     mutating public func addBody(
         encodable: some Encodable
     ) throws {
-        body.append(try NetworkRequestFactory.Body.build( // Logged internally
-            encodable: encodable
-        ))
+        do {
+            try body.append(JSONEncoderService().data(encodable: encodable))
+
+        } catch /*let _error*/ { // Logged internally
+            let error: NetworkClientError = .init(.invalidBody)
+            VCoreLog(error)
+            throw error
+        }
+    }
+    
+    // MARK: URL Request
+    func buildURLRequest() throws -> URLRequest {
+        let url: URL = try .init(
+            endpoint: url,
+            pathParameters: pathParameters,
+            queryParameters: queryParameters
+        )
+        
+        var urlRequest: URLRequest = .init(url: url)
+        urlRequest.httpMethod = method.httpMethod
+        urlRequest.addHTTPHeaders(headers)
+        urlRequest.httpBody = body.nonEmpty
+        return urlRequest
     }
 }
 
-// MARK: - Helpers
-extension Dictionary {
-    fileprivate mutating func append(_ other: Dictionary) {
-        for (key, value) in other {
-            updateValue(value, forKey: key)
+// MARK: - Helpers - URL Init
+extension URL {
+    fileprivate init(
+        endpoint: String,
+        pathParameters: [String],
+        queryParameters: [String: String]
+    ) throws {
+        var endpoint = endpoint
+        if endpoint.hasSuffix("/") { _ = endpoint.removeLast() }
+        
+        for pathParameter in pathParameters {
+            endpoint.append("/\(pathParameter)")
         }
+        
+        guard var urlComponents: URLComponents = .init(string: endpoint) else {
+            let error: NetworkClientError = .init(.invalidEndpoint)
+            VCoreLog(error)
+            throw error
+        }
+        
+        urlComponents.addQueryItems(queryParameters)
+        
+        guard let url: URL = urlComponents.url else {
+            let error: NetworkClientError = .init(.invalidEndpoint)
+            VCoreLog(error)
+            throw error
+        }
+        
+        self = url
+    }
+}
+
+// MARK: - Helpers - Query Parameters
+extension URLComponents {
+    fileprivate mutating func addQueryItems(_ newQueryItems: [String: String?]) {
+        guard !newQueryItems.isEmpty else { return }
+
+        switch queryItems {
+        case nil: queryItems = newQueryItems.compactMap { .init($0) }
+        case _?: newQueryItems.compactMap { URLQueryItem($0) }.forEach { queryItems?.append($0) }
+        }
+    }
+}
+
+extension URLQueryItem {
+    fileprivate init?(_ queryItem: Dictionary<String, String?>.Element) {
+        guard let value: String = queryItem.value else { return nil }
+        self.init(name: queryItem.key, value: value)
+    }
+}
+
+// MARK: - Helpers - Headers
+extension URLRequest {
+    fileprivate mutating func addHTTPHeaders(_ items: [String: String?]) {
+        for (key, value) in items {
+            guard let value else { return }
+            
+            addValue(value, forHTTPHeaderField: key)
+        }
+    }
+}
+
+// MARK: - Helpers - Body
+extension Data {
+    fileprivate var nonEmpty: Data? {
+        guard count != 0 else { return nil }
+        return self
     }
 }

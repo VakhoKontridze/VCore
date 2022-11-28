@@ -100,7 +100,7 @@ extension NetworkClient {
         
         let urlRequest: URLRequest
         do {
-            urlRequest = try NetworkClientFactory.URLRequest.build(from: request)
+            urlRequest = try request.buildURLRequest()
             
         } catch {
             completion(.failure(error)) // Logged internally

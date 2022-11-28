@@ -41,7 +41,7 @@ public final class NetworkClient {
     /// Queue on which completion is returned. Defaults to `main`.
     public var completionQueue: DispatchQueue = .main
     
-    /*private*/ let responseProcessor: any NetworkResponseProcessor
+    let responseProcessor: any NetworkResponseProcessor
     
     // MARK: Initializers
     /// Initializes `NetworkClient`.

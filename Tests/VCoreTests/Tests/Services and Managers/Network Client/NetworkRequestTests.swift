@@ -97,18 +97,18 @@ final class NetworkRequestTests: XCTestCase {
     }
     
     // MARK: Headers
-    func testHeadersStacking() {
+    func testHeadersStacking() throws {
         var request: NetworkRequest = .init(url: url)
-        request.addHeaders(json: ["key1": "value1"])
-        request.addHeaders(json: ["key2": "value2"])
+        try request.addHeaders(json: ["key1": "value1"])
+        try request.addHeaders(json: ["key2": "value2"])
         
         XCTAssertEqual(request.headers["key1"], "value1")
         XCTAssertEqual(request.headers["key2"], "value2")
     }
     
-    func testHeadersJSON() {
+    func testHeadersJSON() throws {
         var request: NetworkRequest = .init(url: url)
-        request.addHeaders(json: ["key": "value"])
+        try request.addHeaders(json: ["key": "value"])
         
         XCTAssertEqual(request.headers["key"], "value")
     }
