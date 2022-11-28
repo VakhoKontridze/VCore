@@ -15,8 +15,20 @@ import Combine
 ///
 ///     @KeychainStorage("AccessToken") var accessToken: String?
 ///
+/// Alternately, a `KeychainServiceConfiguration` can be passed to customize queries.
+///
+///     static let configuration: KeychainServiceConfiguration = { ... }()
+///     @KeychainStorage("AccessToken", configuration: .default) var accessToken: String?
+///
+/// Or, a reference to an instance of `KeychainService` can be used.
+///
+///     static let keychainService: KeychainService = { ... }()
+///     @KeychainStorage("AccessToken", keychainService: keychainService) var accessToken: String?
+///
 @propertyWrapper public struct KeychainStorage<Value>: DynamicProperty {
     // MARK: Properties
+    private let keychainService: KeychainService
+    
     @ObservedObject private var storage: ObservableContainer<Value>
     private let valueSetter: (Value) -> Void
     
@@ -41,9 +53,11 @@ import Combine
 
     // MARK: Initializers
     fileprivate init(
+        keychainService: KeychainService,
         initialValue: Value,
         valueSetter: @escaping (Value) -> Void
     ) {
+        self.keychainService = keychainService
         self.storage = .init(value: initialValue)
         self.valueSetter = valueSetter
     }
@@ -69,23 +83,52 @@ extension KeychainStorage where Value: Codable {
     /// Initializes `KeychainStorage` from `Codable`.
     public init(
         wrappedValue defaultValue: Value,
-        _ key: String
+        _ key: String,
+        keychainService: KeychainService
     ) {
         self.init(
-            initialValue: Self.getValue(key: key, defaultValue: defaultValue),
-            valueSetter: { Self.setValue($0, key: key) }
+            keychainService: keychainService,
+            initialValue: Self.getValue(key: key, defaultValue: defaultValue, in: keychainService),
+            valueSetter: { Self.setValue($0, key: key, in: keychainService) }
+        )
+    }
+    
+    /// Initializes `KeychainStorage` from `Codable`.
+    public init(
+        wrappedValue defaultValue: Value,
+        _ key: String,
+        configuration: KeychainServiceConfiguration = .default
+    ) {
+        self.init(
+            wrappedValue: defaultValue,
+            key,
+            keychainService: .init(configuration: configuration)
         )
     }
 }
 
 extension KeychainStorage where Value: Codable, Value: ExpressibleByNilLiteral {
-    /// Initializes `KeychainStorage` from `Codable`.
+    /// Initializes `KeychainStorage` from `Optional` `Codable`.
     public init(
-        _ key: String
+        _ key: String,
+        keychainService: KeychainService
     ) {
         self.init(
             wrappedValue: nil,
-            key
+            key,
+            keychainService: keychainService
+        )
+    }
+    
+    /// Initializes `KeychainStorage` from `Optional` `Codable`.
+    public init(
+        _ key: String,
+        configuration: KeychainServiceConfiguration = .default
+    ) {
+        self.init(
+            wrappedValue: nil,
+            key,
+            configuration: configuration
         )
     }
 }
@@ -93,16 +136,13 @@ extension KeychainStorage where Value: Codable, Value: ExpressibleByNilLiteral {
 extension KeychainStorage {
     fileprivate static func getValue<T>(
         key: String,
-        defaultValue: T
+        defaultValue: T,
+        in keychainService: KeychainService
     ) -> T
         where T: Codable
     {
-        let encodeDefaultValue: () -> Void = {
-            KeychainService[key] = try? JSONEncoder().encode(defaultValue)
-        }
-        
-        guard let data: Data = KeychainService[key] else {
-            encodeDefaultValue()
+        guard let data: Data = keychainService[key] else {
+            //encodeDefaultValue() // Default value is no longer saved to Keychain, until retrieved for the first time
             return defaultValue
         }
         
@@ -114,19 +154,20 @@ extension KeychainStorage {
             let error: KeychainServiceError = .init(.failedToSet)
             VCoreLog(error, _error)
             
-            encodeDefaultValue()
+            //encodeDefaultValue() // Default value is no longer saved to Keychain, until retrieved for the first time
             return defaultValue
         }
     }
 
     fileprivate static func setValue<T>(
         _ value: T,
-        key: String
+        key: String,
+        in keychainService: KeychainService
     )
         where T: Encodable
     {
         do {
-            KeychainService[key] = try JSONEncoder().encode(value)
+            keychainService[key] = try JSONEncoder().encode(value)
 
         } catch let _error {
             let error: KeychainServiceError = .init(.failedToSet)

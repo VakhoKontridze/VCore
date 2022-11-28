@@ -10,22 +10,31 @@ import Foundation
 // MARK: - Keychain Service
 /// Service objects that performs `Data` get, set, and delete operations to keychain.
 ///
+/// Object contains default instance `default`.
+///
 /// For error codes, refer to [documentation](https://developer.apple.com/documentation/security/1542001-security_framework_result_codes).
-open class KeychainService {
+public final class KeychainService {
+    // MARK: Properties
+    /// Configuration.
+    public var configuration: KeychainServiceConfiguration
+    
+    /// Default instance of KeychainService.
+    ///
+    /// `default` instance is used as `KeychainServiceConfiguration`.
+    public static let `default`: KeychainService = .init(configuration: .default)
+    
     // MARK: Initializers
-    private init() {}
+    /// Initializes `KeychainService` with `KeychainServiceConfiguration`.
+    public init(configuration: KeychainServiceConfiguration) {
+        self.configuration = configuration
+    }
     
     // MARK: Get
     /// Returns `Data` from key.
-    open class func get(key: String) throws -> Data {
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword,
-            kSecAttrAccount as String: key,
-            kSecReturnData as String: kCFBooleanTrue as Any,
-            kSecMatchLimit as String: kSecMatchLimitOne
-        ]
+    public func get(key: String) throws -> Data {
+        let query: [String: Any] = configuration.getQuery.build(key: key)
 
-        var valueObject: AnyObject? = nil
+        var valueObject: AnyObject?
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &valueObject)
 
         guard status == noErr else {
@@ -42,20 +51,17 @@ open class KeychainService {
     }
     
     // MARK: Set
-    /// Sets `Data` with key, and returns success, or `KeychainServiceError`.
-    open class func set(key: String, data: Data?) throws {
+    /// Sets `Data` with key.
+    public func set(key: String, data: Data?) throws {
         switch data {
         case nil:
             try delete(key: key) // Logged internally
 
         case let data?:
-            let query: [String: Any] = [
-                kSecClass as String: kSecClassGenericPassword as String,
-                kSecAttrAccount as String: key,
-                kSecValueData as String: data
-            ]
+            try? delete(key: key)
+            
+            let query: [String: Any] = configuration.setQuery.build(key: key, data: data)
 
-            let _: OSStatus = SecItemDelete(query as CFDictionary)
             let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
             
             guard status == noErr else {
@@ -67,12 +73,9 @@ open class KeychainService {
     }
     
     // MARK: Delete
-    /// Deletes `Data` with key, and returns success, or `KeychainServiceError`.
-    open class func delete(key: String) throws {
-        let query: [String: Any] = [
-            kSecClass as String: kSecClassGenericPassword as String,
-            kSecAttrAccount as String: key
-        ]
+    /// Deletes `Data` with key.
+    public func delete(key: String) throws {
+        let query: [String: Any] = configuration.deleteQuery.build(key: key)
 
         let status: OSStatus = SecItemDelete(query as CFDictionary)
         
@@ -84,8 +87,8 @@ open class KeychainService {
     }
     
     // MARK: Subscript
-    open class subscript(_ key: String) -> Data? {
-        get { try? Self.get(key: key) } // Logged internally
-        set { try? Self.set(key: key, data: newValue) } // Logged internally
+    public subscript(_ key: String) -> Data? {
+        get { try? get(key: key) } // Logged internally
+        set { try? set(key: key, data: newValue) } // Logged internally
     }
 }

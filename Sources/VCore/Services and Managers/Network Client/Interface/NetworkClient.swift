@@ -31,9 +31,9 @@ import Foundation
 public final class NetworkClient {
     // MARK: Properties
     /// Default instance of `NetworkClient`.
-    public static let `default`: NetworkClient = .init(
-        responseProcessor: DefaultNetworkResponseProcessor()
-    )
+    ///
+    /// `DefaultNetworkResponseProcessor` is passed as `NetworkResponseProcessor`.
+    public static let `default`: NetworkClient = .init(responseProcessor: DefaultNetworkResponseProcessor())
     
     /// Configuration object that defines behavior and policies for an `URL` session.
     public var sessionConfiguration: URLSessionConfiguration = .default

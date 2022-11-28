@@ -5,6 +5,30 @@
 //  Created by Vakhtang Kontridze on 10/9/21.
 //
 
+// MARK: - Keychain Service
+extension KeychainService {
+    @available(*, deprecated, message: "Use instance method")
+    public class func get(key: String) throws -> Data {
+        try KeychainService.default.get(key: key)
+    }
+    
+    @available(*, deprecated, message: "Use instance method")
+    public class func set(key: String, data: Data?) throws {
+        try KeychainService.default.set(key: key, data: data)
+    }
+    
+    @available(*, deprecated, message: "Use instance method")
+    public class func delete(key: String) throws {
+        try KeychainService.default.delete(key: key)
+    }
+    
+    @available(*, deprecated, message: "Use instance method")
+    public class subscript(_ key: String) -> Data? {
+        get { try? Self.default.get(key: key) } // Logged internally
+        set { try? Self.default.set(key: key, data: newValue) } // Logged internally
+    }
+}
+
 // MARK: - Architectural Pattern Helpers
 import SwiftUI
 
