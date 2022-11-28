@@ -77,7 +77,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
     
     func testKeychainServiceErrorDescription() {
         XCTAssertThrowsError(
-            try KeychainService().get(key: "N/A"),
+            try KeychainService.default.get(key: "N/A"),
             "",
             { error in XCTAssertEqual(error.localizedDescription, "D") }
         )
