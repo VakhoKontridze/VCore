@@ -21,10 +21,11 @@ extension NetworkRequestFactory {
         }
         
         static func build(
-            json: [String: Any?]
+            json: [String: Any?],
+            options: JSONSerialization.WritingOptions
         ) throws -> Data {
             do {
-                return try JSONEncoderService().data(any: json)
+                return try JSONEncoderService().data(any: json, options: options)
                 
             } catch /*let _error*/ { // Logged internally
                 let error: NetworkClientError = .init(.invalidBody)

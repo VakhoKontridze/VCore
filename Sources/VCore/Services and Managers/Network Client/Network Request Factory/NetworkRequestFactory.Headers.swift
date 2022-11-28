@@ -29,11 +29,12 @@ extension NetworkRequestFactory {
         }
         
         static func build(
-            encodable: some Encodable
+            encodable: some Encodable,
+            optionsDataToJSON: JSONSerialization.ReadingOptions
         ) throws -> [String: String] {
             let json: [String: Any?]
             do {
-                json = try JSONEncoderService().json(encodable: encodable)
+                json = try JSONEncoderService().json(encodable: encodable, optionsDataToJSON: optionsDataToJSON)
                 
             } catch /*let _error*/ { // Logged internally
                 let error: NetworkClientError = .init(.invalidHeaders)

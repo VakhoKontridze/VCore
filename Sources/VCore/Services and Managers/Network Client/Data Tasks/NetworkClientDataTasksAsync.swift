@@ -32,21 +32,23 @@ extension NetworkClient {
     
     /// Makes network request and returns `JSON`.
     public func json(
-        from request: NetworkRequest
+        from request: NetworkRequest,
+        decodingOptions: JSONSerialization.ReadingOptions = []
     ) async throws -> [String: Any?] {
         try await makeRequest( // Logged internally
             request: request,
-            decode: { try JSONDecoderService().json(data: $0) }
+            decode: { try JSONDecoderService().json(data: $0, options: decodingOptions) }
         )
     }
     
     /// Makes network request and returns `JSON` `Array`.
     public func jsonArray(
-        from request: NetworkRequest
+        from request: NetworkRequest,
+        decodingOptions: JSONSerialization.ReadingOptions = []
     ) async throws -> [[String: Any?]] {
         try await makeRequest( // Logged internally
             request: request,
-            decode: { try JSONDecoderService().jsonArray(data: $0) }
+            decode: { try JSONDecoderService().jsonArray(data: $0, options: decodingOptions) }
         )
     }
     

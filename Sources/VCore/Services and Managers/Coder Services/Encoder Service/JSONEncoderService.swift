@@ -17,7 +17,8 @@ public struct JSONEncoderService {
     // MARK: Encoding
     /// Encodes `Any` to `Data`.
     public func data(
-        any: Any?
+        any: Any?,
+        options: JSONSerialization.WritingOptions = []
     ) throws -> Data {
         guard let any else {
             let error: JSONEncoderError = .init(.failedToCast)
@@ -27,7 +28,7 @@ public struct JSONEncoderService {
         
         let data: Data
         do {
-            data = try JSONSerialization.data(withJSONObject: any)
+            data = try JSONSerialization.data(withJSONObject: any, options: options)
             
         } catch let _error {
             let error: JSONEncoderError = .init(.failedToEncode)
@@ -55,7 +56,8 @@ public struct JSONEncoderService {
     
     /// Encodes `Encodable` to `JSON`.
     public func json(
-        encodable: some Encodable
+        encodable: some Encodable,
+        optionsDataToJSON: JSONSerialization.ReadingOptions = []
     ) throws -> [String: Any?] {
         let data: Data
         do {
@@ -69,7 +71,7 @@ public struct JSONEncoderService {
         
         let json: [String: Any?]
         do {
-            json = try JSONDecoderService().json(data: data)
+            json = try JSONDecoderService().json(data: data, options: optionsDataToJSON)
             
         } catch /*let _error*/ { // Logged internally
             let error: JSONEncoderError = .init(.failedToDecode)
@@ -82,7 +84,8 @@ public struct JSONEncoderService {
     
     /// Encodes `Encodable` to `JSON` `Array`.
     public func jsonArray(
-        encodable: some Encodable
+        encodable: some Encodable,
+        optionsDataToJSONArray: JSONSerialization.ReadingOptions = []
     ) throws -> [[String: Any?]] {
         let data: Data
         do {
@@ -96,7 +99,7 @@ public struct JSONEncoderService {
         
         let jsonArray: [[String: Any?]]
         do {
-            jsonArray = try JSONDecoderService().jsonArray(data: data)
+            jsonArray = try JSONDecoderService().jsonArray(data: data, options: optionsDataToJSONArray)
             
         } catch /*let _error*/ { // Logged internally
             let error: JSONEncoderError = .init(.failedToDecode)

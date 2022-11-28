@@ -58,9 +58,10 @@ public struct NetworkRequest {
 
     /// Adds `Encodable` to query parameters.
     mutating public func addQueryParameters(
-        encodable: some Encodable
+        encodable: some Encodable,
+        optionsDataToJSON: JSONSerialization.ReadingOptions = []
     ) throws {
-        queryParameters.append(try NetworkRequestFactory.QueryParameters.build(encodable: encodable)) // Logged internally
+        queryParameters.append(try NetworkRequestFactory.QueryParameters.build(encodable: encodable, optionsDataToJSON: optionsDataToJSON)) // Logged internally
     }
 
     // MARK: Headers
@@ -73,9 +74,10 @@ public struct NetworkRequest {
 
     /// Adds `Encodable` to headers.
     mutating public func addHeaders(
-        encodable: some Encodable
+        encodable: some Encodable,
+        optionsDataToJSON: JSONSerialization.ReadingOptions = []
     ) throws {
-        headers.append(try NetworkRequestFactory.Headers.build(encodable: encodable)) // Logged internally
+        headers.append(try NetworkRequestFactory.Headers.build(encodable: encodable, optionsDataToJSON: optionsDataToJSON)) // Logged internally
     }
     
     // MARK: Body
@@ -88,9 +90,10 @@ public struct NetworkRequest {
 
     /// Adds `JSON` to headers.
     mutating public func addBody(
-        json: [String: Any?]
+        json: [String: Any?],
+        options: JSONSerialization.WritingOptions = []
     ) throws {
-        body.append(try NetworkRequestFactory.Body.build(json: json)) // Logged internally
+        body.append(try NetworkRequestFactory.Body.build(json: json, options: options)) // Logged internally
     }
 
     /// Adds `Encodable` to headers.

@@ -47,11 +47,12 @@ extension NetworkClient {
     /// Makes network request and calls completion handler with a result of `JSON`or `Error`.
     public func json(
         from request: NetworkRequest,
+        decodingOptions: JSONSerialization.ReadingOptions = [],
         completion: @escaping ( Result<[String: Any?], any Error>) -> Void
     ) {
         makeRequest(
             request: request,
-            decode: { try JSONDecoderService().json(data: $0) },
+            decode: { try JSONDecoderService().json(data: $0, options: decodingOptions) },
             completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) } // Logged internally
         )
     }
@@ -59,11 +60,12 @@ extension NetworkClient {
     /// Makes network request and calls completion handler with a result of `JSON` `Array`or `Error`.
     public func jsonArray(
         from request: NetworkRequest,
+        decodingOptions: JSONSerialization.ReadingOptions = [],
         completion: @escaping (Result<[[String: Any?]], any Error>) -> Void
     ) {
         makeRequest(
             request: request,
-            decode: { try JSONDecoderService().jsonArray(data: $0) },
+            decode: { try JSONDecoderService().jsonArray(data: $0, options: decodingOptions) },
             completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) } // Logged internally
         )
     }

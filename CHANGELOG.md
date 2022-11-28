@@ -5,8 +5,12 @@
 Services
 
 - `KeychainServiceConfiguration` is added to allow modification of queries in `KeychainService`
-- `KeychainStorage` no longer saves default value to Keychain, until it's retrieved for the first time
 - `class` subscripts in `KeychainService` are replaced with instance ones
+- Methods in `JSONEncoderService`, `JSONDecoderService`, and `NetworkClient` now take `JSONSerialization.ReadingOptions` and `JSONSerialization.WritingOptions` as parameters
+
+Models
+
+- `KeychainStorage` no longer saves default value to Keychain, until it's retrieved for the first time
 
 ### [4.2.0(66)](https://github.com/VakhoKontridze/VCore/releases/tag/4.2.0) — *2022 10 29*
 

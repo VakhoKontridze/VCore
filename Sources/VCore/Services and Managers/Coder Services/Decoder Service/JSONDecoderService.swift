@@ -17,11 +17,12 @@ public struct JSONDecoderService {
     // MARK: Decoding
     /// Decodes `Data` to `JSON`.
     public func json(
-        data: Data
+        data: Data,
+        options: JSONSerialization.ReadingOptions = []
     ) throws -> [String: Any?] {
         let jsonObject: Any
         do {
-            jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            jsonObject = try JSONSerialization.jsonObject(with: data, options: options)
             
         } catch let _error {
             let error: JSONDecoderError = .init(.failedToDecode)
@@ -40,11 +41,12 @@ public struct JSONDecoderService {
     
     /// Decodes `Data` to `JSON` `Array`.
     public func jsonArray(
-        data: Data
+        data: Data,
+        options: JSONSerialization.ReadingOptions = []
     ) throws -> [[String: Any?]] {
         let jsonObject: Any
         do {
-            jsonObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments)
+            jsonObject = try JSONSerialization.jsonObject(with: data, options: options)
             
         } catch let _error {
             let error: JSONDecoderError = .init(.failedToDecode)
@@ -80,13 +82,14 @@ public struct JSONDecoderService {
     
     /// Decodes `JSON` to `Decodable`.
     public func decodable<T>(
-        json: [String: Any?]
+        json: [String: Any?],
+        options: JSONSerialization.WritingOptions = []
     ) throws -> T
         where T: Decodable
     {
         let data: Data
         do {
-            data = try JSONSerialization.data(withJSONObject: json)
+            data = try JSONSerialization.data(withJSONObject: json, options: options)
             
         } catch let _error {
             let error: JSONDecoderError = .init(.failedToEncode)
@@ -109,13 +112,14 @@ public struct JSONDecoderService {
     
     /// Decodes `JSON` `Array` to `Decodable`.
     public func decodable<T>(
-        jsonArray: [[String: Any?]]
+        jsonArray: [[String: Any?]],
+        options: JSONSerialization.WritingOptions = []
     ) throws -> T
         where T: Decodable
     {
         let data: Data
         do {
-            data = try JSONSerialization.data(withJSONObject: jsonArray)
+            data = try JSONSerialization.data(withJSONObject: jsonArray, options: options)
             
         } catch let _error {
             let error: JSONDecoderError = .init(.failedToEncode)
