@@ -9,10 +9,6 @@ Services
 - `class` subscripts in `KeychainService` are replaced with instance ones
 - Methods in `JSONEncoderService`, `JSONDecoderService`, and `NetworkClient` now take `JSONSerialization.ReadingOptions` and `JSONSerialization.WritingOptions` as parameters
 
-Models
-
-- `KeychainStorage` no longer saves default value to Keychain, until it's retrieved for the first time
-
 Extensions
 
 - `Array.firstInstanceOfType(_:)` method is added
