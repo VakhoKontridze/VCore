@@ -12,28 +12,32 @@ extension MultiPartFormDataBuilder {
     struct JSONBuilder {
         // MARK: Properties
         private let boundary: String
-        private let json: [String: Any?]
         
         private var lineBreak: String { MultiPartFormDataBuilder.lineBreak }
         
         // MARK: Initializers
         init(
-            boundary: String,
-            json: [String: Any?]
+            boundary: String
         ) {
             self.boundary = boundary
-            self.json = json
         }
         
         // MARK: Build
-        func build() -> Data {
+        func build(
+            json: [String: Any?]
+        ) throws -> Data {
             var data: Data = .init()
             
             for (key, value) in json {
                 switch value {
-                case let array as [Any?]: appendArray(key: key, array: array, to: &data)
-                case let json as [String: Any?]: appendJSON(key: key, json: json, to: &data)
-                default: appendElement(key: key, element: value, to: &data)
+                case let array as [Any?]:
+                    try appendArray(key: key, array: array, to: &data)
+                
+                case let json as [String: Any?]:
+                    try appendJSON(key: key, json: json, to: &data)
+                
+                default:
+                    try appendElement(key: key, element: value, to: &data)
                 }
             }
             
@@ -44,26 +48,31 @@ extension MultiPartFormDataBuilder {
             key: String,
             element: Any?,
             to data: inout Data
-        ) {
+        ) throws {
             guard let value: String = .init(unwrappedDescribing: element) else { return }
             
-            data.append("--\(boundary)\(lineBreak)")
-            data.append("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak)\(lineBreak)")
-            data.append("\(value)\(lineBreak)")
+            try data.appendString("--\(boundary)\(lineBreak)")
+            try data.appendString("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak)\(lineBreak)")
+            try data.appendString("\(value)\(lineBreak)")
         }
         
         private func appendJSON(
             key: String,
             json: [String: Any?],
             to data: inout Data
-        ) {
+        ) throws {
             for element in json {
                 let elementKey: String = "\(key)[\(element.key)]"
                 
                 switch element.value {
-                case let array as [Any?]: appendArray(key: elementKey, array: array, to: &data)
-                case let json as [String: Any?]: appendJSON(key: elementKey, json: json, to: &data)
-                default: appendElement(key: elementKey, element: element.value, to: &data)
+                case let array as [Any?]:
+                    try appendArray(key: elementKey, array: array, to: &data)
+                
+                case let json as [String: Any?]:
+                    try appendJSON(key: elementKey, json: json, to: &data)
+                
+                default:
+                    try appendElement(key: elementKey, element: element.value, to: &data)
                 }
             }
         }
@@ -72,14 +81,19 @@ extension MultiPartFormDataBuilder {
             key: String,
             array: [Any?],
             to data: inout Data
-        ) {
+        ) throws {
             for (i, element) in array.enumerated() {
                 let elementKey: String = "\(key)[\(i)]"
                 
                 switch element {
-                case let array as [[String: Any?]]: appendArray(key: elementKey, array: array, to: &data)
-                case let json as [String: Any?]: appendJSON(key: elementKey, json: json, to: &data)
-                default: appendElement(key: elementKey, element: element, to: &data)
+                case let array as [[String: Any?]]:
+                    try appendArray(key: elementKey, array: array, to: &data)
+                
+                case let json as [String: Any?]:
+                    try appendJSON(key: elementKey, json: json, to: &data)
+                
+                default:
+                    try appendElement(key: elementKey, element: element, to: &data)
                 }
             }
         }

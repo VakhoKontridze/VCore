@@ -7,6 +7,22 @@
 
 import Foundation
 
+// MARK: - Multi Part Form Data Builder
+extension MultiPartFormDataBuilder {
+    @available(*, unavailable, message: "Use empty init with new `build` method")
+    public init(
+        json: [String: Any?],
+        files: [String: (some AnyMultiPartFormDataFile)?]
+    ) {
+        fatalError()
+    }
+    
+    @available(*, unavailable, message: "Use build method that takes parameters")
+    public func build() -> (String, Data) {
+        fatalError()
+    }
+}
+
 // MARK: - Keychain Service
 extension KeychainService {
     @available(*, deprecated, message: "Use instance method")

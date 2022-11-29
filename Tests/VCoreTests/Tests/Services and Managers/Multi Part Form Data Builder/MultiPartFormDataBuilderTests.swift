@@ -13,6 +13,14 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
     // MARK: Test Data
     private let imagePrefix: String = "data:image/jpeg;base64,"
     
+    private struct JSONPart: Encodable {
+        let key: String
+        
+        private enum CodingKeys: String, CodingKey {
+            case key = "key"
+        }
+    }
+    
     // MARK: Tests
     func test() async {
         guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
@@ -29,17 +37,21 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
             .init(size: .init(dimension: 100), color: .blue)
         ]
         
+        #endif
+        
         do {
-            let json: [String: Any?] = [
-                "key": "value"
-            ]
-
+            let json: JSONPart = .init(
+                key: "value"
+            )
+            
+            #if canImport(UIKit)
+            
             let files: [String: (some AnyMultiPartFormDataFile)?] = [
                 "profile": MultiPartFormDataFile(
                     mimeType: "image/jpeg",
                     data: profileImage?.jpegData(compressionQuality: 0.25)
                 ),
-
+                
                 "gallery": galleryImages?.enumerated().compactMap { (index, image) in
                     MultiPartFormDataFile(
                         filename: "IMG_\(index).jpg",
@@ -49,28 +61,33 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
                 }
             ]
             
-            let (boundary, data): (String, Data) = MultiPartFormDataBuilder(
-                json: json,
+            #else
+            
+            let files: [String: (any AnyMultiPartFormDataFile)?] = [:]
+            
+            #endif
+            
+            let (boundary, data): (String, Data) = try MultiPartFormDataBuilder().build(
+                encodable: json,
                 files: files
-            ).build()
-
+            )
+            
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
-
             request.method = .POST
-
             try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
                 boundary: boundary,
                 token: "token"
             ))
-
             request.addBody(data: data)
-
+            
             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
-
+            
             XCTAssertEqual(
                 result["form"]?.toUnwrappedJSON["key"]?.toString,
                 "value"
             )
+            
+            #if canImport(UIKit)
             
             XCTAssertEqual(
                 result["files"]?.toUnwrappedJSON["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
@@ -87,50 +104,10 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
                 galleryImages?[1]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
             )
             
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-        
-        #else
-        
-        do {
-            let json: [String: Any?] = [
-                "key": "value"
-            ]
-
-            #if os(macOS)
-            let files: [String: (any AnyMultiPartFormDataFile)?] = [:] // TODO: Support macOS on release of 13.0
-            #else
-            let files: [String: (some AnyMultiPartFormDataFile)?] = [:]
             #endif
             
-            let (boundary, data): (String, Data) = MultiPartFormDataBuilder(
-                json: json,
-                files: files
-            ).build()
-
-            var request: NetworkRequest = .init(url: "https://httpbin.org/post")
-
-            request.method = .POST
-
-            try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
-                boundary: boundary,
-                token: "token"
-            ))
-
-            request.addBody(data: data)
-
-            let result: [String: Any?] = try await NetworkClient.default.json(from: request)
-
-            XCTAssertEqual(
-                result["form"]?.toUnwrappedJSON["key"]?.toString,
-                "value"
-            )
-            
         } catch {
             fatalError(error.localizedDescription)
         }
-        
-        #endif
     }
 }

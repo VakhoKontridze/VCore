@@ -4,6 +4,7 @@
 
 Services
 
+- `MultiPartFormDataBuilder` API is updated, and boundary can be changed
 - `KeychainServiceConfiguration` is added to allow modification of queries in `KeychainService`
 - `class` subscripts in `KeychainService` are replaced with instance ones
 - Methods in `JSONEncoderService`, `JSONDecoderService`, and `NetworkClient` now take `JSONSerialization.ReadingOptions` and `JSONSerialization.WritingOptions` as parameters

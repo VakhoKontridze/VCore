@@ -30,20 +30,17 @@ import Foundation
 ///             }
 ///         ]
 ///
-///         let (boundary, data): (String, Data) = MultiPartFormDataBuilder(
+///         let (boundary, data): (String, Data) = try MultiPartFormDataBuilder().build(
 ///             json: json,
 ///             files: files
-///         ).build()
+///         )
 ///
 ///         var request: NetworkRequest = .init(url: "https://somewebsite.com/api/some_endpoint")
-///
 ///         request.method = .POST
-///
 ///         try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
 ///             boundary: boundary,
 ///             token: "token"
 ///         ))
-///
 ///         request.addBody(data: data)
 ///
 ///         let result: [String: Any?] = try await NetworkClient.default.json(from: request)
@@ -56,47 +53,73 @@ import Foundation
 ///
 public struct MultiPartFormDataBuilder {
     // MARK: Properties
-    private let json: [String: Any?]
-    private let files: [String: (any AnyMultiPartFormDataFile)?]
+    /// Boundary.
+    ///
+    /// By default, an `UUID` will be used.
+    public var boundary: String
     
     static var lineBreak: String { "\r\n" }
     
     // MARK: Initializers
-    /// Initializes `MultiPartFormDataBuilder`.
-    public init(
-        json: [String: Any?],
-        files: [String: (some AnyMultiPartFormDataFile)?]
-    ) {
-        self.json = json
-        self.files = files
+    /// Initializes `MultiPartFormDataBuilder` with boundary.
+    ///
+    /// By default, an `UUID` will be used as a boundary.
+    public init(boundary: String = UUID().uuidString) {
+        self.boundary = boundary
     }
     
     // MARK: Building
     /// Builds and returns boundary `String` and `Data` that can be sent using network request.
-    public func build() -> (String, Data) {
-        let boundary: String = buildBoundary()
-        let data: Data = buildData(boundary: boundary)
+    public func build(
+        json: [String: Any?],
+        files: [String: (some AnyMultiPartFormDataFile)?]
+    ) throws -> (boundary: String, data: Data) {
+        var data: Data = .init()
+        data.append(try JSONBuilder(boundary: boundary).build(json: json)) // Logged internally
+        data.append(try FileBuilder(boundary: boundary).build(files: files)) // Logged internally
+        try data.appendString("--\(boundary)--\(Self.lineBreak)") // Logged internally
         
         return (boundary, data)
     }
-
-    private func buildBoundary() -> String {
-        UUID().uuidString
+    
+    /// Builds and returns boundary `String` and `Data` that can be sent using network request.
+    public func build(
+        data: Data,
+        files: [String: (some AnyMultiPartFormDataFile)?],
+        optionsDataToJSON: JSONSerialization.ReadingOptions = []
+    ) throws -> (boundary: String, data: Data) {
+        let json: [String: Any?] = try JSONDecoderService().json( // Logged internally
+            data: data,
+            options: optionsDataToJSON
+        )
+        
+        return try build(json: json, files: files)
     }
     
-    private func buildData(boundary: String) -> Data {
-        var data: Data = .init()
-        data.append(JSONBuilder(boundary: boundary, json: json).build())
-        data.append(FileBuilder(boundary: boundary, files: files).build())
-        data.append("--\(boundary)--\(Self.lineBreak)")
-        return data
+    /// Builds and returns boundary `String` and `Data` that can be sent using network request.
+    public func build(
+        encodable: some Encodable,
+        files: [String: (some AnyMultiPartFormDataFile)?],
+        optionsDataToJSON: JSONSerialization.ReadingOptions = []
+    ) throws -> (boundary: String, data: Data) {
+        let json: [String: Any?] = try JSONEncoderService().json( // Logged internally
+            encodable: encodable,
+            optionsDataToJSON: optionsDataToJSON
+        )
+        
+        return try build(json: json, files: files)
     }
 }
 
 // MARK: - Helpers
 extension Data {
-    mutating func append(_ value: String) {
-        guard let data: Data = value.data(using: .utf8) else { return }
+    mutating func appendString(_ string: String) throws {
+        guard let data: Data = string.data(using: .utf8) else {
+            let error: JSONEncoderError = .init(.failedToEncode)
+            VCoreLog(error, "Failed to encode `String` \(string) as `Data`")
+            throw error
+        }
+        
         append(data)
     }
 }
