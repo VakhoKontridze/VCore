@@ -15,6 +15,8 @@ Models
 
 Extensions
 
+- `Array.firstInstanceOfType(_:)` method is added
+- `Array.lastInstanceOfType(_:)` method is added
 - `Calendar` parameters is added to `Date.age`
 - `Calendar` parameters is added to `Date.component(_:)`
 - `Calendar` parameters is added to `Date.components(_:)`
