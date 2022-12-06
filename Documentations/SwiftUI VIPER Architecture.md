@@ -362,8 +362,8 @@ Responsibilities of the `Presenter` do not include:
 `Router` is a wireframe/navigator of the scene that performs navigation towards and presentation of scenes.
 
 ```swift
-// MARK: - ___VARIABLE_productName___ Router
-struct ___VARIABLE_productName___Router: ___VARIABLE_productName___Routable {
+// MARK: - Home Router
+struct HomeRouter: HomeRoutable {
     func body(content: Content) -> some View {
         content
             .navigationDestination(
