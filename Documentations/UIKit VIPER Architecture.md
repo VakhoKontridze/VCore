@@ -515,7 +515,7 @@ struct HomeUIModel {
     struct Layout {
         // MARK: Properties
         static var imageViewDimension: CGFloat { 50 }
-        static var titleLabelSpacing: CGFloat { 10 }
+        static var titleTextSpacing: CGFloat { 10 }
         static var primaryButtonMarginHor: CGFloat { 20 }
         
         // MARK: Initializers
@@ -527,7 +527,7 @@ struct HomeUIModel {
         // MARK: Properties
         static var background: UIColor { .systemBackground }
         
-        static var titleLabel: UIColor { .label }
+        static var titleText: UIColor { .label }
         
         // MARK: Initializers
         private init() {}
@@ -536,7 +536,7 @@ struct HomeUIModel {
     // MARK: Fonts
     struct Fonts {
         // MARK: Properties
-        static var titleLabel: UIFont { .systemFont(ofSize: 14) }
+        static var titleText: UIFont { .systemFont(ofSize: 14) }
         
         // MARK: Initializers
         private init() {}
