@@ -44,7 +44,7 @@ struct ___VARIABLE_productName___View<Presenter>: View
 }
 
 // MARK: - Preview
-struct ___VARIABLE_productName___View___VARIABLE_productName___Previews: PreviewProvider {
+struct ___VARIABLE_productName___View_Previews: PreviewProvider {
     static var previews: some View {
         CoordinatingNavigationStack(root: {
             ___VARIABLE_productName___Factory.mock()

@@ -15,7 +15,7 @@ import VCore
     func didLoad()
     
     func didPullToRefresh()
-    func toPostDetails(parameters: PostRowViewParameters)
+    func didTapPost(parameters: PostRowViewParameters)
 }
 
 // MARK: - Posts Routable

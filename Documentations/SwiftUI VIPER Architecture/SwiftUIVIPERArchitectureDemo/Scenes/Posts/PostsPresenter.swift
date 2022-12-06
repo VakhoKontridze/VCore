@@ -39,7 +39,7 @@ import VCore
         fetchPosts()
     }
     
-    func toPostDetails(parameters: PostRowViewParameters) {
+    func didTapPost(parameters: PostRowViewParameters) {
         navigationStackCoordinator?.path.append(PostDetailsParameters(
             title: parameters.title,
             body: parameters.body

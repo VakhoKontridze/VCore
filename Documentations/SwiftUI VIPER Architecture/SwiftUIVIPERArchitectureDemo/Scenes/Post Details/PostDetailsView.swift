@@ -49,7 +49,7 @@ struct PostDetailsView<Presenter>: View
 }
 
 // MARK: - Preview
-struct PostDetailsViewPostDetailsPreviews: PreviewProvider {
+struct PostDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         CoordinatingNavigationStack(
             path: .init([PostDetailsParameters.mock]),

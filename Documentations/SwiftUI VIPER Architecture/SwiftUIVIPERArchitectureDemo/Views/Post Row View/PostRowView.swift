@@ -41,6 +41,6 @@ struct PostRowView: View {
 // MARK: - Preview
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PostsViewPostsPreviews.previews
+        PostsView_Previews.previews
     }
 }

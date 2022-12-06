@@ -51,7 +51,7 @@ struct PostsView<Presenter>: View
             ForEach(presenter.postParameters, content: { parameters in
                 PostRowView(parameters: parameters)
                     .listRowInsets(.init())
-                    .onTapGesture(perform: { presenter.toPostDetails(parameters: parameters) })
+                    .onTapGesture(perform: { presenter.didTapPost(parameters: parameters) })
             })
         })
             .listStyle(.plain)
@@ -60,7 +60,7 @@ struct PostsView<Presenter>: View
 }
 
 // MARK: - Preview
-struct PostsViewPostsPreviews: PreviewProvider {
+struct PostsView_Previews: PreviewProvider {
     static var previews: some View {
         CoordinatingNavigationStack(root: {
             PostsFactory.mock()
