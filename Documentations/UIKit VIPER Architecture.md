@@ -6,7 +6,7 @@
 
 A backronym for `View`, `Interactor`, `Presenter`, `Entity`, and a `Router`.
 
-Implementation of VIPER presented in this docuemnt is highly-decoupled, follows modular design, obeys the single-responsibility principle, and is built on the interface communication pattern.
+Implementation of VIPER presented in this document is highly-decoupled, follows modular design, obeys the single-responsibility principle, and is built on the interface communication pattern.
 
 Decoupled objects are `ViewController`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are `Factory`, `Parameters`, `Delegate`, and an `UIModel`. Even though VIPER contains `Entity` (E) in it's name, this implementation of VIPER separates scenes from the domain layer, and instead ties them to `Gateway`s via the CLEAN architecture.
 
@@ -64,7 +64,7 @@ struct HomeFactory {
 
 `Factory` is a non-initializable `struct` with `static` factory methods. By default, `Factory` includes a single method, `default`, that creates a an instance of the scene.
 
-`Factory` doesn't expose any types to caller. Only members of the scene that can be exposed (to `public`, for instance, if we are defining a scene in a separate module) are `Factory`, `Parameters`, `protocol`s defined under the interface, and a `Delegate`. If a scene is intended for a cross-module composition (more on that in Interface section), components can be exposed as well.
+`Factory` doesn't expose any types to a caller. Only members of the scene that can be exposed (to `public`, for instance, if we are defining a scene in a separate module) are `Factory`, `Parameters`, `protocol`s defined under the interface, and a `Delegate`. If a scene is intended for a cross-module composition (more on that in the Interface section), components can be exposed as well.
 
 #### Parameters
 
@@ -81,7 +81,7 @@ Given a scene:
 
 ```swift
 struct PostDetailsFactory {
-    func `default`(parameters: HomeParameters) -> UIViewController { ... }
+    static func `default`(parameters: HomeParameters) -> UIViewController { ... }
 }
 
 final class PostDetailsPresenter: PostsPresentable {
@@ -166,16 +166,16 @@ Objects:
 
 ```swift
 struct HomeFactory {
-    func patient(parameters: HomeParameters) -> UIViewController { ... }
+    static func patient(parameters: HomeParameters) -> UIViewController { ... }
     
-    func doctor(parameters: HomeParameters) -> UIViewController { ... }
+    static func doctor(parameters: HomeParameters) -> UIViewController { ... }
 }
 
 struct HomeParameters { ... }
 
-struct HomeViewController: UIViewController, HomeViewable, HomeNavigable { ... }
+final class HomeViewController: UIViewController, HomeViewable, HomeNavigable { ... }
 
-struct HomePresenter: HomePresentable { ... }
+final class HomePresenter: HomePresentable { ... }
 
 struct HomeRouter: HomeRoutable { ... }
 
@@ -211,9 +211,9 @@ struct HomeFactory {} // No methods are defined here
 
 struct HomeParameters { ... }
 
-struct HomeViewController: UIViewController, HomeViewable, HomeNavigable { ... }
+final class HomeViewController: UIViewController, HomeViewable, HomeNavigable { ... }
 
-struct HomePresenter: HomePresentable { ... }
+final class HomePresenter: HomePresentable { ... }
 
 struct HomeRouter: HomeRoutable { ... }
 
@@ -224,17 +224,17 @@ Scene in the first module:
 
 ```swift
 extension HomeFactory {
-    func patient(parameters: HomeParameters) -> UIViewController { ... }
+    static func patient(parameters: HomeParameters) -> UIViewController { ... }
 }
 
 struct HomeInteractor_Patient: HomeInteractive { ... }
 ```
 
-Scene is the second mdule:
+Scene is the second module:
 
 ```swift
 extension HomeFactory {
-    func doctor(parameters: HomeParameters) -> UIViewController { ... }
+    static func doctor(parameters: HomeParameters) -> UIViewController { ... }
 }
 
 struct HomeInteractor_Doctor: HomeInteractive { ... }
@@ -337,10 +337,11 @@ Responsibilities of the `ViewController` include:
 - Adding subviews to the view hierarchy
 - Setting up a layout
 - Reconfiguring self and subviews
+- Interacting with `Presenter` to notify that an event or an action has occurred.
 
 Responsibilities of the `ViewController` do not include:
 
-- Storing and managing data, as it's entirely taken by a `Presenter` or `Interactor`
+- Storing and managing data, as it's entirely taken by a `Presenter`
 
 #### Viewable
 
@@ -350,13 +351,13 @@ Responsibilities of the `ViewController` do not include:
 
 `Navigable` `protocol` is used by a `Router` to perform navigation and presentation of scenes. A keyword here is "scenes", as presentation of non-scene views—such as alerts, popups, or animatable views—should be handled between `View` and `Presenter`.
 
-By default, `Navigable` `protocol` conforms to `StandardNavigable`—a helper `protocol` used by all scenes, that's defined within the `VCore` library. `StandardNavigable` has a default implementation for `UIViewController`, and thus, no additional implementation is required.
+By default, `Navigable` `protocol` conforms to `StandardNavigable`—a helper `protocol` used by all scenes, that's defined within the `VCore` library.
     
 ## Presenter (Presentable)
 
 #### Definition
 
-`Presenter` is a central object in the scene that controls the business logic and connects everything together.
+`Presenter` is a central object of the scene that controls the business logic and connects everything together.
 
 ```swift
 // MARK: - Home Presenter
@@ -399,9 +400,9 @@ final class HomePresenter<View, Router, Interactor>: HomePresentable
 Responsibilities of the `Presenter` include:
 
 - Connecting all components
-- Communication with `ViewController` to trigger view configuration and other changes
+- Communicating with `ViewController` to trigger view configuration and other changes
 - Communicating with `Router` to trigger navigation towards and presentation of scenes, which in turn communicates with `ViewController`
-- Communicating with `Interactor` to interact with databases
+- Communicating with `Interactor` to interact with the databases
 - Storing and managing data. This includes `Parameters` passed from the previous scene.
 
 Responsibilities of the `Presenter` do not include:
@@ -410,7 +411,7 @@ Responsibilities of the `Presenter` do not include:
 
 #### Presentable
 
-`Presentable` `protocol` is used by `ViewController` to access data, or to  notify `Presenter` that an event or an action has occurred.
+`Presentable` `protocol` is used by `ViewController` to access data, or to notify `Presenter` that an event or an action has occurred.
 
 ## Router (Routable)
 
@@ -451,7 +452,22 @@ final class HomeRouter<Navigator>: HomeRoutable
 }
 ```
 
-`Router` has access to `ViewController` via `Navigable` `protocol`. By default, `Navigable` `protocol` inherits `StandardNavigable` `protocol`, which allows it to access the common methods of `UINavigationController`, without exposing the type.
+`Router` has access to `ViewController` via `Navigable` `protocol`. By default, `Navigable` `protocol` inherits `StandardNavigable` `protocol`, which allows it to access the common methods of `UINavigationController`, without exposing the type.` StandardNavigable` has a default implementation for `UIViewController`, and thus, no additional implementation is required. This is why, most of the time, `Routable` `protocol` has no body.
+
+```swift
+protocol StandardNavigable {
+    func push(_ viewController: UIViewController, animated: Bool)
+        
+    ...
+}
+
+extension StandardNavigable where Self: UIViewController {
+    func push(_ viewController: UIViewController, animated: Bool) {
+        navigationController?.pushViewController(viewController, animated: animated)
+    }
+    
+    ...
+```
 
 `Router` is also responsible for determining which method of `Factory` it calls.
 
@@ -468,7 +484,7 @@ final class HomeRouter<Navigator>: HomeRoutable
 ```swift
 // MARK: - Home Interactor
 struct HomeInteractor: HomeInteractive {
-    func updateUserData(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity { ... }
+    func fetchPosts(completion: @escaping (Result<PostsEntity, any Error>) -> Void) { ... }
 }
 ```
 
@@ -482,7 +498,7 @@ struct HomeInteractor: HomeInteractive {
 
 #### Definition
 
-`UI Model` is a non-initializable `static` `strurct` that describes UI.
+`UI Model` is a non-initializable `static` `struct` that describes UI.
 
 ```
 // MARK: - Home UI Model
@@ -526,7 +542,7 @@ struct HomeUIModel {
         // MARK: Properties
         static var appearDuration: TimeInterval { 0.25 }
         static var appearDelay: TimeInterval { 0 }
-        static var appearOptions: UIView.AnimationOptions { .curveEaseOut }
+        static var appearOptions: UIView.AnimationOptions { .curveEaseInEaseOut }
         
         // MARK: Initializers
         private init() {}
@@ -541,5 +557,4 @@ struct HomeUIModel {
         private init() {}
     }
 }
-
 ```
