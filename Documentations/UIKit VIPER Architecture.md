@@ -70,7 +70,7 @@ struct HomeFactory {
 
 `Factory` can take `Parameters` as an argument, but this step is optional.
 
-## Parameters ***(Optional)***
+## Parameters
 
 #### Definition
 
@@ -412,7 +412,7 @@ Responsibilities of the `Presenter` do not include:
 
 `Presentable` `protocol` is used by `ViewController` to access data, or to  notify `Presenter` that an event or an action has occurred.
 
-## Router (Routable) ***(Optional)***
+## Router (Routable)
 
 #### Definition
 
@@ -459,7 +459,7 @@ final class HomeRouter<Navigator>: HomeRoutable
 
 `Routable` `protocol` is used by `Presenter` to trigger navigation towards and presentation of scenes.
     
-## Interactor (Interactive) ***(Optional)***
+## Interactor (Interactive)
 
 #### Definition
 
@@ -478,7 +478,7 @@ struct HomeInteractor: HomeInteractive {
 
 `Interactive` `protocol` is used by `Presenter` to perform fetch requests.
 
-## UI Model ***(Optional)***
+## UI Model
 
 #### Definition
 
