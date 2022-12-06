@@ -379,8 +379,10 @@ Unlike it's `UIKit` counterpart, `SwiftUI`'s router is not responsible for the p
 `Router` is embedded inside the `View` as a `ViewModifier`, which allows it to create `navigationDestination(for:destination:)` modifiers. `Router` primarily works off of `NavigationStackCoordinator`, an `ObservableObject` placed in the environment of by `CoordinatingNavigationStack`. This allows `Router` to catch `Parameters` passed by `Presenter`, and to create navigation links. This is why, most of the time, `Routable` `protocol` has no body. Navigation can be initiated via `Presenter`:
 
 ```swift
-navigationStackCoordinator?.path.append(AccountInfoFactory(...))
+navigationStackCoordinator?.path.append(AccountInfoParameters(...))
 ```
+
+`Router` is also responsible for determining which method of `Factory` it calls.
 
 #### Routable
 
@@ -411,7 +413,7 @@ struct HomeInteractor: HomeInteractive {
 
 `UI Model` is a non-initializable `static` `struct` that describes UI.
 
-```
+```swift
 // MARK: - Home UI Model
 struct HomeUIModel {
     // MARK: Initializers

@@ -505,7 +505,7 @@ struct HomeInteractor: HomeInteractive {
 
 `UI Model` is a non-initializable `static` `struct` that describes UI.
 
-```
+```swift
 // MARK: - Home UI Model
 struct HomeUIModel {
     // MARK: Initializers
