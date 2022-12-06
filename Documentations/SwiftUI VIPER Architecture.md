@@ -91,12 +91,13 @@ struct HomeViewPreviews: PreviewProvider {
 
 Given a scene:
 
-
 ```swift
 struct PostDetailsFactory {
     static func `default`(parameters: HomeParameters) -> some View { ... }
 }
+```
 
+```swift
 @MainActor final class PostDetailsPresenter: PostsPresentable {
     private let parameters: PostDetailsParameters
     
@@ -226,7 +227,9 @@ Scene in the first module:
 extension HomeFactory {
     static func patient(parameters: HomeParameters) -> some View { ... }
 }
+```
 
+```swift
 struct HomeInteractor_Patient: HomeInteractive { ... }
 ```
 
@@ -236,7 +239,9 @@ Scene is the second module:
 extension HomeFactory {
     static func doctor(parameters: HomeParameters) -> some View { ... }
 }
+```
 
+```swift
 struct HomeInteractor_Doctor: HomeInteractive { ... }
 ```
 ## View

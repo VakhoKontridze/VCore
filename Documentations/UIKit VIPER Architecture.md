@@ -78,12 +78,13 @@ struct HomeFactory {
 
 Given a scene:
 
-
 ```swift
 struct PostDetailsFactory {
     static func `default`(parameters: HomeParameters) -> UIViewController { ... }
 }
+```
 
+```swift
 final class PostDetailsPresenter: PostsPresentable {
     private let parameters: PostDetailsParameters
     
@@ -226,7 +227,9 @@ Scene in the first module:
 extension HomeFactory {
     static func patient(parameters: HomeParameters) -> UIViewController { ... }
 }
+```
 
+```swift
 struct HomeInteractor_Patient: HomeInteractive { ... }
 ```
 
@@ -236,7 +239,9 @@ Scene is the second module:
 extension HomeFactory {
     static func doctor(parameters: HomeParameters) -> UIViewController { ... }
 }
+```
 
+```swift
 struct HomeInteractor_Doctor: HomeInteractive { ... }
 ```
 
