@@ -287,7 +287,7 @@ struct HomeView<Presenter>: View
     }
     
     private var contentView: some View {
-        EmptyView()
+        ...
     }
     
     ...
