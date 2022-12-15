@@ -1,6 +1,6 @@
 # Change Log
 
-### 4.3.0(67)
+### 4.3.0(68)
 
 Services
 
@@ -16,6 +16,12 @@ Extensions
 - `Calendar` parameters is added to `Date.age`
 - `Calendar` parameters is added to `Date.component(_:)`
 - `Calendar` parameters is added to `Date.components(_:)`
+
+### [4.2.1(67)](https://github.com/VakhoKontridze/VCore/releases/tag/4.2.1) — *2022 12 15*
+
+General
+
+- `UILabel.lineBreakStrategy` is now placed under `iOS` `14` API availability check
 
 ### [4.2.0(66)](https://github.com/VakhoKontridze/VCore/releases/tag/4.2.0) — *2022 10 29*
 
