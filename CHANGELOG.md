@@ -1,6 +1,6 @@
 # Change Log
 
-### 4.2.1(67)
+### [4.2.1(67)](https://github.com/VakhoKontridze/VCore/releases/tag/4.2.1) — *2022 12 15*
 
 General
 
