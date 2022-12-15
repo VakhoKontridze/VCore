@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.2.1(67)
+
+General
+
+- `UILabel.lineBreakStrategy` is now placed under `iOS` `14` API availability check
+
 ### [4.2.0(66)](https://github.com/VakhoKontridze/VCore/releases/tag/4.2.0) — *2022 10 29*
 
 General

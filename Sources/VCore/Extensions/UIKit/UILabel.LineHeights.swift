@@ -44,7 +44,9 @@ extension UILabel {
             
             label.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation
             
-            label.lineBreakStrategy = lineBreakStrategy
+            if #available(iOS 14.0, *) {
+                label.lineBreakStrategy = lineBreakStrategy
+            }
             
             return label
         }()
@@ -112,7 +114,9 @@ extension UILabel {
             
             label.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation
             
-            label.lineBreakStrategy = lineBreakStrategy
+            if #available(iOS 14.0, *) {
+                label.lineBreakStrategy = lineBreakStrategy
+            }
             
             label.preferredMaxLayoutWidth = width ?? preferredMaxLayoutWidth
             
