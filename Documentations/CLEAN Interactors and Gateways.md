@@ -4,7 +4,7 @@
 
 #### Definition
 
-Proposed architecture aims to separate the domain layer (`Gateway`) from the scenes, which the `Interactor` is part of. `Gateway` is a `protocol` defines a single method by which a fetch request is performed.
+Proposed architecture aims to separate the domain layer (`Gateway`) from the scenes, which the `Interactor` is part of. `Gateway` is a `protocol` that defines a single method by which a fetch request is performed.
 
 #### XCode Templates
 
@@ -30,11 +30,9 @@ A specific implementation of a gateway.
 
 ## Interactor-Gateway Relationship
 
-Although an `Interactor` in VIP/VIPER is part of the scene, `Gateway`s are not inherently bound to specific scenes.
+Although an `Interactor` in VIP/VIPER is part of the scene, `Gateway`s are not inherently bound to specific scenes. This allows for reusability.
 
-
-
-This design choice follows CLEAN architecture. But `UseCase`s as omitted, as their responsibility is entirely covered by `Interactor`s.
+`Usecase`s are omitted, as their responsibility is entirely covered by `Interactor`s.
 
 Relationship between an `Interactor`  and `Gateway` is the following:
 
@@ -55,9 +53,45 @@ protocol UpdateUserDataGateway {
     func fetch(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity
 }
 
+struct UpdateUserDataGatewayParameters: Encodable {
+    ...
+}
+
+struct UpdateUserDataEntity: Decodable {
+    ...
+}
+
 struct UpdateUserDataNetworkGateway: UpdateUserDataGateway {
     func fetch(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity {
-        // ...
+        ...
+    }
+}
+```
+
+This allows a presenter to perform a fetch request:
+
+```swift
+@MainActor final class HomePresenter<Interactor>: HomePresentable
+    where Interactor: HomeInteractive
+{
+    private let interactor: Interactor
+    
+    init(
+        interactor: Interactor
+    ) {
+        self.interactor = interactor
+    }
+
+    func fetchData() async {
+        let parameters: UpdateUserDataGatewayParameters = .init(...)
+    
+        do {
+            let entity: UpdateUserDataEntity = try await interactor.updateUserData(with: parameters)
+            ...
+            
+        } catch {
+            ...
+        }
     }
 }
 ```

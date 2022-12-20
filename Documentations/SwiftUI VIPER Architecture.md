@@ -20,11 +20,13 @@ A single scene can be represented as a set of 3 components:
 | Routable    | Router         | N/A            | N/A       |
 | Interactive | Interactor     | Presenter      | strong    |
 
-#### Demo and XCode Templates
+#### Demo
 
 Package contains demo app that demonstrates the architecture.
 
-To avoid writing boilerplate for every scene, project includes `XCode` templates.
+#### XCode Templates
+
+To avoid writing boilerplate for every scene, project includes XCode templates.
 
 ## Factory
 
