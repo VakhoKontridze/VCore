@@ -10,6 +10,11 @@ import Foundation
 // MARK: - Set Toggling Element
 extension Set {
     /// Returns set with element toggled, i.e., removed if it's present, and inserted if not.
+    ///
+    ///     let nums1: Set<Int> = [1, 3, 5]
+    ///     let nums2: Set<Int> = nums1.toggling(1) // [3, 5]
+    ///     let nums3: Set<Int> = nums2.toggling(1) // [1, 3, 5]
+    ///
     public func toggling(
         _ element: Element
     ) -> Self {

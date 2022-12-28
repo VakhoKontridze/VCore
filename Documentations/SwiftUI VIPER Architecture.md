@@ -278,8 +278,8 @@ struct HomeView<Presenter>: View
             canvas
             contentView
         })
-            .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
-            .standardNavigationTitle("Home")
+            .onFirstAppear($didAppearForTheFirstTime, perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
+            .inlineNavigationTitle("Home")
             .alert(parameters: $presenter.alertParameters)
             .progressView(parameters: presenter.progressViewParameters)
     }

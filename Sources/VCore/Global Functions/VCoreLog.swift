@@ -9,6 +9,9 @@ import Foundation
 
 // MARK: - V Core Log
 /// Logs an error message to the Apple System Log facility.
+///
+///     VCoreLog(error)
+///
 public func VCoreLog(
     _ items: Any...,
     file: String = #file,

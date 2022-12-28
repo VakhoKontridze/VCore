@@ -9,6 +9,26 @@ import Foundation
 
 // MARK: - Keychain Service Configuration
 /// Configuration for `KeychainService`.
+///
+/// Can be used to customize queries:
+///
+///     let configuration: KeychainServiceConfiguration = .init(
+///         getQuery: .init(query: [
+///             kSecClass as String: kSecClassGenericPassword,
+///             kSecAttrSynchronizable as String: kCFBooleanTrue as Any,
+///             kSecReturnData as String: kCFBooleanTrue as Any,
+///             kSecMatchLimit as String: kSecMatchLimitOne
+///         ]),
+///         setQuery: ...,
+///         deleteQuery: ...
+///     )
+///
+/// Configuration object is eventually passed to `KeychainService`:
+///
+///     let keychainService: KeychainService = .init(configuration: configuration)
+///
+///     let data: Data? = keychainService.get(key: "SomeKey")
+///
 public struct KeychainServiceConfiguration {
     // MARK: Properties
     /// Get query.

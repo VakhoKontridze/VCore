@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - System Keyboard Info
-/// Contains information about software keyboard.
+/// Contains information about software keyboard, that can be used during animations.
 public struct SystemKeyboardInfo {
     // MARK: Properties
     /// Keyboard’s frame at the end of its animation.

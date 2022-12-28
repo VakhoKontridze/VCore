@@ -22,6 +22,16 @@ extension UIActionSheetButtonProtocol {
 
 // MARK: - UI Action Sheet Button
 /// `UIActionSheetController` button.
+///
+///     presentActionSheet(parameters: .init(
+///         title: "Lorem Ipsum",
+///         message: "Lorem ipsum dolor sit amet",
+///         actions: {
+///             UIActionSheetButton(title: "Confirm", action: { print("Confirmed") })
+///             UIActionSheetButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///         }
+///     ))
+///
 public struct UIActionSheetButton: UIActionSheetButtonProtocol {
     // MARK: Properties
     /// Indicates if button is enabled.

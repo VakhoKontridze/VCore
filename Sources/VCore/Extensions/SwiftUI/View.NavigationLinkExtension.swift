@@ -31,7 +31,7 @@ extension View {
     ///
     ///     var destination: some View {
     ///         Color.white.ignoresSafeArea()
-    ///            .standardNavigationTitle("Destination")
+    ///            .inlineNavigationTitle("Destination")
     ///     }
     ///
     public func navigationLink(

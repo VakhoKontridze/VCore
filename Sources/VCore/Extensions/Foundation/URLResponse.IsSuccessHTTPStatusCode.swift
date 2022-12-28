@@ -16,6 +16,7 @@ extension URLResponse {
     ///     URLSession.shared.dataTask(with: someUrl, completionHandler: { (data, response, url) in
     ///         let isSuccess: Bool = response?.isSuccessHTTPStatusCode ?? false
     ///     })
+    ///
     public var isSuccessHTTPStatusCode: Bool {
         guard
             let httpResponse: HTTPURLResponse = self as? HTTPURLResponse,

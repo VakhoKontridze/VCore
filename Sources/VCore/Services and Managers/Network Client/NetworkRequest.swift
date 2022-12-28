@@ -9,6 +9,23 @@ import Foundation
 
 // MARK: - Network Request
 /// `URL` request executed by `NetworkClient`.
+///
+///     func fetchData() async {
+///         do {
+///             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
+///             request.method = .POST
+///             try request.addHeaders(encodable: JSONRequestHeaders())
+///             try request.addBody(json: ["key": "value"])
+///
+///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+///
+///             print(result["json"]?.toUnwrappedJSON["key"]?.toString ?? "-")
+///
+///         } catch {
+///             print(error.localizedDescription)
+///         }
+///     }
+///
 public struct NetworkRequest {
     // MARK: Properties
     /// `URL` of the request.

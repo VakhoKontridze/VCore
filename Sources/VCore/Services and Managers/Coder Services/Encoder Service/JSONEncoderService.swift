@@ -9,6 +9,20 @@ import Foundation
 
 // MARK: - JSON Encoder Service
 /// Object that encodes instances of data types.
+///
+///     struct SomeObject: Encodable {
+///         let value: Int?
+///     }
+///
+///     do {
+///         let someObject: SomeObject = .init(value: 10)
+///         let data: Data = try JSONEncoderService().data(encodable: someObject)
+///         ...
+///
+///     } catch {
+///         ...
+///     }
+///
 public struct JSONEncoderService {
     // MARK: Initializers
     /// Initializes `JSONEncoderService`.

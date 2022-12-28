@@ -27,7 +27,7 @@ extension String {
     ///     phoneNumber.remove(.symbols) // "0123456789"
     ///
     mutating public func remove(_ characterSet: CharacterSet) {
-        self = self.removing(characterSet)
+        self = removing(characterSet)
     }
 }
 
@@ -39,7 +39,7 @@ extension String {
     ///     let phoneNumber2: String = phoneNumber.removing([.symbols, .letters]) // "0123456789"
     ///
     public func removing(_ characterSets: [CharacterSet]) -> String {
-        return self.removing(characterSets.unified)
+        removing(characterSets.unified)
     }
     
     /// Filters out `CharacterSet` that don't match the criteria.
@@ -48,6 +48,6 @@ extension String {
     ///     phoneNumber.remove([.symbols, .letters]) // "0123456789"
     ///
     mutating public func remove(_ characterSets: [CharacterSet]) {
-        self = self.removing(characterSets)
+        self = removing(characterSets)
     }
 }

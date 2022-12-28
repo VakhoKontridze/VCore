@@ -29,12 +29,26 @@ import SwiftUI
 ///         @Published var progressViewParameters: ProgressViewParameters?
 ///
 ///         func didTapButton() {
-///             progressViewParameters = .init(isInteractionDisabled: true)
-///             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [weak self] in self?.progressViewParameters = nil })
+///             Task(operation: {
+///                 do {
+///                     let (data, response) = try await URLSession.shared.data(for: request)
+///                     progressViewParameters = nil
+///
+///                     ...
+///
+///                 } catch {
+///                     progressViewParameters = nil
+///
+///                     ...
+///                 }
+///             })
 ///         }
 ///     }
 ///
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
+@available(iOS 14.0, *)
+@available(macOS 11.0, *)
+@available(tvOS 14.0, *)
+@available(watchOS 7.0, *)
 @MainActor public protocol ProgressViewPresentable: ObservableObject {
     /// `ProgressViewParameters`.
     var progressViewParameters: ProgressViewParameters? { get set }

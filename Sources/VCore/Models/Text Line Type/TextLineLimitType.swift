@@ -8,7 +8,10 @@
 import SwiftUI
 
 // MARK: - View Line Limit
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+@available(iOS 16.0, *)
+@available(macOS 13.0, *)
+@available(tvOS 16.0, *)
+@available(watchOS 9.0, *)
 extension View {
     /// Sets line limit based on `TextLineLimitType`.
     ///
@@ -25,7 +28,10 @@ extension View {
 
 // MARK: - Text Line Limit Type
 /// Enumeration that represents line limit type.
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+@available(iOS 16.0, *)
+@available(macOS 13.0, *)
+@available(tvOS 16.0, *)
+@available(watchOS 9.0, *)
 public enum TextLineLimitType {
     /// No line limit.
     case none
@@ -47,7 +53,10 @@ public enum TextLineLimitType {
 }
 
 // MARK: - Text Line Limit View Modifier
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+@available(iOS 16.0, *)
+@available(macOS 13.0, *)
+@available(tvOS 16.0, *)
+@available(watchOS 9.0, *)
 private struct TextLineLimitViewModifier: ViewModifier {
     // MARK: Properties
     private let textLineLimitType: TextLineLimitType

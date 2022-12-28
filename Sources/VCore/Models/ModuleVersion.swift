@@ -11,6 +11,9 @@ import Foundation
 /// A version according to the semantic versioning specification.
 ///
 /// When initializing with `String`, valid formats are: `M`, `M.M`, and `M.M.P`.
+///
+///     ModuleVersion(string: Bundle.main.version)?.description // 1.0
+///
 public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
     // MARK: Properties
     /// Major version according to the semantic versioning standard.

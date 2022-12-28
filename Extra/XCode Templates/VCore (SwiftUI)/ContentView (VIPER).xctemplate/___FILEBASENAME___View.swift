@@ -28,8 +28,8 @@ struct ___VARIABLE_productName___View<Presenter>: View
             canvas
             contentView
         })
-            .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
-            .standardNavigationTitle("___VARIABLE_productName___")
+            .onFirstAppear($didAppearForTheFirstTime, perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
+            .inlineNavigationTitle("___VARIABLE_productName___")
             .alert(parameters: $presenter.alertParameters)
             .progressView(parameters: presenter.progressViewParameters)
     }

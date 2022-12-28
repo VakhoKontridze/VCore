@@ -13,34 +13,25 @@ import SwiftUI
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in`Presenter`.
 /// in `MVVM` architecture, parameters are stored in `ViewModel.`
 ///
-///     struct ContentView: View {
-///         @StateObject private var presenter: Presenter = .init()
-///
-///         var body: some View {
-///             Button(
-///                 "Lorem ipsum",
-///                 action: { presenter.didTapButton() }
-///             )
-///                 .confirmationDialog(parameters: $presenter.confirmationDialogParameters)
+///     @State private var parameters: ConfirmationDialogParameters? = .init(
+///         title: "Lorem Ipsum",
+///         message: "Lorem ipsum dolor sit amet",
+///         actions: {
+///             ConfirmationDialogButton(title: "Confirm", action: { print("Confirmed") })
+///             ConfirmationDialogButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
 ///         }
+///     )
+///
+///     var body: some View {
+///         content
+///             .confirmationDialog(parameters: $parameters)
 ///     }
 ///
-///     final class Presenter: ObservableObject, ConfirmationDialogPresentable {
-///         @Published var confirmationDialogParameters: ConfirmationDialogParameters?
 ///
-///         func didTapButton() {
-///             confirmationDialogParameters = ConfirmationDialogParameters(
-///                 title: "Lorem Ipsum",
-///                 message: "Lorem ipsum dolor sit amet",
-///                 actions: {
-///                     ConfirmationDialogButton(title: "Confirm", action: { print("Confirmed") })
-///                     ConfirmationDialogButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
-///                 }
-///             )
-///         }
-///     }
-///
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
+@available(macOS 12.0, *)
+@available(tvOS 15.0, *)
+@available(watchOS 8.0, *)
 public struct ConfirmationDialogParameters {
     // MARK: Properties
     /// Title.

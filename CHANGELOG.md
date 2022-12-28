@@ -9,6 +9,10 @@ Services
 - `class` subscripts in `KeychainService` are replaced with instance ones
 - Methods in `JSONEncoderService`, `JSONDecoderService`, and `NetworkClient` now take `JSONSerialization.ReadingOptions` and `JSONSerialization.WritingOptions` as parameters
 
+Models
+
+- `setValue(to:)` is added to `AtomicContainer`
+
 Extensions
 
 - `Array.firstInstanceOfType(_:)` method is added
@@ -16,6 +20,8 @@ Extensions
 - `Calendar` parameters is added to `Date.age`
 - `Calendar` parameters is added to `Date.component(_:)`
 - `Calendar` parameters is added to `Date.components(_:)`
+- `View.onFirstAppear(didAppear:perform)` is renamed to `View.onFirstAppear(_:perform)`
+- `View.standardNavigationTitle(_:)` is renamed to `View.inlineNavigationTitle(_:)` 
 
 ### [4.2.1(67)](https://github.com/VakhoKontridze/VCore/releases/tag/4.2.1) — *2022 12 15*
 
@@ -132,7 +138,7 @@ Views
 Extensions
 
 - `UIDevice.hasNotch` is renamed to `UIDevice.hasNoPhysicalHomeButton`
-- `View.onFirstAppear(perform:)` is deprecated in favor of `View.onFirstAppear(didAppear:perform)`
+- `View.onFirstAppear(perform:)` is renamed to `View.onFirstAppear(didAppear:perform)`
 
 ### [3.19.0(58)](https://github.com/VakhoKontridze/VCore/releases/tag/3.19.0) — *2022 08 05*
 

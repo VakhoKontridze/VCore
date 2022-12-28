@@ -21,11 +21,11 @@ extension View {
     ///
     ///     var body: some View {
     ///         content
-    ///             .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: { presenter.didLoad() })
+    ///             .onFirstAppear($didAppearForTheFirstTime, perform: { presenter.didLoad() })
     ///     }
     ///
     public func onFirstAppear(
-        didAppear didAppearForTheFirstTime: Binding<Bool>,
+        _ didAppearForTheFirstTime: Binding<Bool>,
         perform action: (() -> Void)? = nil
     ) -> some View {
         self

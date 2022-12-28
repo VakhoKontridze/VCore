@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Unwrapped Describing String
+// MARK: - String Unwrapped Describing
 extension String {
     /// Creates a `String` representing the given value, or returns `nil`.
     ///

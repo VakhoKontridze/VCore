@@ -25,7 +25,10 @@ extension UIImage {
             newRect.size.width <= size.width,
             newRect.size.height <= size.height,
             
-            let croppedImage: CGImage = cgImage?.cropping(to: newRect.applying(.init(scaleX: scale, y: scale)))
+            let croppedImage: CGImage = cgImage?.cropping(to: newRect.applying(.init(
+                scaleX: scale,
+                y: scale
+            )))
         else {
             return self
         }

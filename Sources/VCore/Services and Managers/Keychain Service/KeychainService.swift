@@ -13,6 +13,11 @@ import Foundation
 /// Object contains default instance `default`.
 ///
 /// For error codes, refer to [documentation](https://developer.apple.com/documentation/security/1542001-security_framework_result_codes).
+///
+///     KeychainService.default.get(key: "SomeKey")
+///     KeychainService.default.set(key: "SomeKey", data: data)
+///     KeychainService.default.delete(key: "SomeKey")
+///
 public final class KeychainService {
     // MARK: Properties
     /// Configuration.

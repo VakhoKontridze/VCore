@@ -22,6 +22,16 @@ extension UIAlertButtonProtocol {
 
 // MARK: - UI Alert Button
 /// `UIAlertController` button.
+///
+///     presentAlert(parameters: .init(
+///         title: "Lorem Ipsum",
+///         message: "Lorem ipsum dolor sit amet",
+///         actions: {
+///             UIAlertButton(title: "Confirm", action: { print("Confirmed") })
+///             UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///         }
+///     ))
+///     
 public struct UIAlertButton: UIAlertButtonProtocol {
     // MARK: Properties
     /// Indicates if button is enabled.

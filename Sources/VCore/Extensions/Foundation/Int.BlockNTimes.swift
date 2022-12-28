@@ -23,6 +23,7 @@ extension Int {
     ///
     public func times(_ block: (Int) -> Void) {
         guard self > 0 else { return }
+        
         for i in 0..<self { block(i) }
     }
 }

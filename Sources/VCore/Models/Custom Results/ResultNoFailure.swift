@@ -9,6 +9,17 @@ import Foundation
 
 // MARK: - Result with No Failure
 /// Represents either Success or Failure, including an associated value in success case.
+///
+/// Can be used to represent a result type that has no associated Failure type to it.
+/// For instance, a network request that doesn't return an error.
+///
+///     struct UpdateUserDataGateway {
+///         func fetch(
+///             parameters: UpdateUserDataGatewayParameters,
+///             completion: (ResultNoFailure<UpdateUserDataEntity>) -> Void
+///         )
+///     }
+///
 public enum ResultNoFailure<Success> {
     // MARK: Cases
     /// Success, storing a `Success` value.

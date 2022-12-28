@@ -53,7 +53,7 @@ extension FloatingPoint {
         to range: ClosedRange<Self>,
         step: Self? = nil
     ) {
-        self = self.clamped(to: range, step: step)
+        self = clamped(to: range, step: step)
     }
     
     /// Returns value clamped between `min` and `max` values.
@@ -89,7 +89,7 @@ extension FloatingPoint {
         max: Self,
         step: Self? = nil
     ) {
-        self = self.clamped(min: min, max: max, step: step)
+        self = clamped(min: min, max: max, step: step)
     }
 }
 
@@ -134,6 +134,6 @@ extension FloatingPoint {
         to range: Range<Self>,
         step: Self? = nil
     ) {
-        self = self.clamped(to: range, step: step)
+        self = clamped(to: range, step: step)
     }
 }

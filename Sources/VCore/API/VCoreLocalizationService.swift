@@ -11,6 +11,13 @@ import Foundation
 /// Localization service that can be used to localize the package.
 ///
 /// `localizationProvider` in `shared` instance can be set to override the localized values.
+///
+///     struct SomeLocalizationProvider: VCoreLocalizationProvider { ... }
+///
+///     VCoreLocalizationService.shared.localizationProvider = SomeLocalizationProvider()
+///
+/// Alternately, consider using `VCoreHumanReadableLocalizationProvider`
+/// that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable `String`s.
 public final class VCoreLocalizationService {
     // MARK: Properties
     /// Shared instance of `VCoreLocalizationService`.
@@ -25,6 +32,9 @@ public final class VCoreLocalizationService {
 
 // MARK: - V Core Localization Provider
 /// Localization provider in package.
+///
+/// Alternately, consider using `VCoreHumanReadableLocalizationProvider`
+/// that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable `String`s.
 public protocol VCoreLocalizationProvider {
     /// Localized value for `NetworkClientError`'s description.
     func networkClientErrorDescription(_ networkClientError: NetworkClientError.Code) -> String
@@ -49,7 +59,8 @@ public protocol VCoreLocalizationProvider {
 }
 
 // MARK: - V Core Human-Readable Localization Provider
-/// Localization provider in package that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable `String`s.
+/// Localization provider in package that automatically localized errors from `DefaultLocalizationProvider`,
+/// and only exposes human-readable `String`s.
 public protocol VCoreHumanReadableLocalizationProvider: VCoreLocalizationProvider {}
 
 extension VCoreHumanReadableLocalizationProvider {

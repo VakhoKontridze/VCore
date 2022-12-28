@@ -9,20 +9,44 @@ import Foundation
 
 // MARK: - Alert Button Convertible
 /// Type that allows for conversion to `AlertButtonProtocol`.
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
+@available(macOS 12.0, *)
+@available(tvOS 15.0, *)
+@available(watchOS 8.0, *)
 public protocol AlertButtonConvertible {
     /// Converts `AlertButtonConvertible` to `AlertButtonProtocol` `Array`.
     func toButtons() -> [any AlertButtonProtocol]
 }
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+@available(iOS 15.0, *)
+@available(macOS 12.0, *)
+@available(tvOS 15.0, *)
+@available(watchOS 8.0, *)
 extension Array: AlertButtonConvertible where Element == AlertButtonProtocol {
     public func toButtons() -> [any AlertButtonProtocol] { self }
 }
 
 // MARK: - Alert Button Builder
 /// Custom parameter attribute that constructs views from closures.
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+///
+///     @State private var parameters: AlertParameters? = .init(
+///         title: "Lorem Ipsum",
+///         message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+///         actions: {
+///             AlertButton(title: "Confirm", action: { print("Confirmed") })
+///             AlertButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
+///         }
+///     )
+///
+///     var body: some View {
+///         content
+///             .alert(parameters: $parameters)
+///     }
+///
+@available(iOS 15.0, *)
+@available(macOS 12.0, *)
+@available(tvOS 15.0, *)
+@available(watchOS 8.0, *)
 @resultBuilder public struct AlertButtonBuilder {
     // MARK: Properties
     public typealias Component = any AlertButtonConvertible

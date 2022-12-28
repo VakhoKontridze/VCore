@@ -30,7 +30,7 @@ struct PostDetailsView<Presenter>: View
             canvas
             contentView
         })
-            .standardNavigationTitle(presenter.title)
+            .inlineNavigationTitle(presenter.title)
     }
     
     private var canvas: some View {

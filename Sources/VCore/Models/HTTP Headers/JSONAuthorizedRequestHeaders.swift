@@ -11,6 +11,10 @@ import Foundation
 /// Authorized JSON request headers that pass `application/json` as `accept`, `application/json` as `contentType`, and `authorization` as `Bearer \(token)`.
 ///
 /// Can be used in `NetworkClient`.
+///
+///     var request: NetworkRequest = .init(url: ...)
+///     try request.addHeaders(encodable: JSONAuthorizedRequestHeaders())
+///
 public struct JSONAuthorizedRequestHeaders: Encodable {
     // MARK: Properties
     /// Accept. Defaults to `application/json`.

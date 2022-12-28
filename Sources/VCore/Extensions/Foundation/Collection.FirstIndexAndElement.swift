@@ -20,6 +20,7 @@ extension Collection {
         where predicate: (Element) throws -> Bool
     ) rethrows -> (index: Index, element: Element)? {
         guard let index: Index = try firstIndex(where: predicate) else { return nil }
+        
         let element: Element = self[index]
         
         return (index, element)

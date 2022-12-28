@@ -60,7 +60,7 @@ extension UIImage {
     public func scaledDown(
         toWidth newWidth: CGFloat
     ) -> UIImage? {
-        guard self.size.width > newWidth else { return self }
+        guard size.width > newWidth else { return self }
         return scaled(toWidth: newWidth)
     }
     

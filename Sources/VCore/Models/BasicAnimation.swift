@@ -14,6 +14,18 @@ import SwiftUI
 /// To use completion handler, use global `withBasicAnimation(_:body:completion:)` function.
 ///
 /// Another purpose of this model is to limit animations to basic curve and duration.
+///
+///     withAnimation(
+///         BasicAnimation(curve: .easeIn, duration: 1).toSwiftUIAnimation,
+///         { ... }
+///     )
+///
+///     withBasicAnimation(
+///         .init(curve: .easeIn, duration: 1),
+///         body: { ... },
+///         completion: { ... }
+///     )
+///
 public struct BasicAnimation {
     // MARK: Properties
     /// Animation curve.
@@ -104,6 +116,13 @@ extension BasicAnimation {
 ///
 /// Completion handler is called using `asyncAfter`,
 /// scheduling with a deadline of `.now()` `+` animation duration.
+///
+///     withBasicAnimation(
+///         .init(curve: .easeIn, duration: 1),
+///         body: { ... },
+///         completion: { ... }
+///     )
+///
 public func withBasicAnimation<Result>(
     _ animation: BasicAnimation?,
     body: () throws -> Result,

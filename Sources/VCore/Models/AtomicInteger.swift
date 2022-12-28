@@ -10,6 +10,12 @@ import Foundation
 // MARK: - Atomic Integer
 /// Thread-safe, automatically incremented `Int`.
 ///
+///     let idGenerator: AtomicInteger = .init()
+///
+///     func generateID() async -> Int {
+///         await idGenerator.getAndIncrement()
+///     }
+///
 /// For shared instance, refer to `GlobalAtomicInteger`.
 public actor AtomicInteger {
     // MARK: Properties
@@ -69,7 +75,12 @@ public actor AtomicInteger {
 }
 
 // MARK: - Global Atomic Integer
-/// Global instance of `AtomicInteger.
+/// Global instance of `AtomicInteger`.
+///
+///     func generateID() async -> Int {
+///         await GlobalAtomicInteger.shared.getAndIncrement()
+///     }
+///
 @globalActor public final class GlobalAtomicInteger {
     public static var shared: AtomicInteger = .init()
 }

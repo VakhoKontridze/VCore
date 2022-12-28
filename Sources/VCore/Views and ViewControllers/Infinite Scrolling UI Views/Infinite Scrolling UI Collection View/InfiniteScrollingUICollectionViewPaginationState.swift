@@ -11,6 +11,7 @@ import UIKit
 
 // MARK: - Infinite Scrolling UI Collection View Pagination State
 extension InfiniteScrollingUICollectionView {
+    /// Enum that describes state, such as `loading`, `canPaginate`, or `cannotPaginate`.
     public typealias PaginationState = InfiniteScrollingPaginationState
 }
 

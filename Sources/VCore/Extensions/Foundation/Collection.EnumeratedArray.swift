@@ -32,6 +32,6 @@ extension Collection {
     ///     }
     ///
     public func enumeratedArray() -> Array<(offset: Int, element: Element)> {
-        .init(self.enumerated())
+        .init(enumerated())
     }
 }

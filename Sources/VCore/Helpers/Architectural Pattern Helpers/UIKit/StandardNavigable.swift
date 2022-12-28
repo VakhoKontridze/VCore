@@ -15,6 +15,40 @@ import UIKit
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed by a `View/Controller`.
 /// In `MVVM` architecture, this protocol is conformed to by a `View/Controller`.
 ///
+///     final class ViewController: UIViewController, StandardNavigable {
+///         var presenter: Presenter!
+///     }
+///
+///     final class Presenter {
+///         unowned let view: ViewController
+///         let router: Router
+///
+///         init(
+///             view: ViewController,
+///             router: Router
+///         ) {
+///             ...
+///         }
+///
+///         func navigate() {
+///             router.toDestination()
+///         }
+///     }
+///
+///     struct Router {
+///         let navigator: ViewController
+///
+///         init(navigator: ViewController) {
+///             ...
+///         }
+///
+///         func toDestination() {
+///             navigator.push(Destination())
+///         }
+///     }
+///
+///     final class Destination: UIViewController {}
+///
 /// Methods have default implementations for `UIViewControllers`, except for `setRoot(to:)` method.
 /// To implement this method, use the following snippet somewhere in the project:
 ///

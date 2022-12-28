@@ -9,6 +9,15 @@ import Foundation
 
 // MARK: - JSON Decoder Service
 /// Object that decodes instances of data types.
+///
+///     do {
+///         let json: [String: Any?] = try JSONDecoderService().json(data: data)
+///         ...
+///
+///     } catch {
+///         ...
+///     }
+///
 public struct JSONDecoderService {
     // MARK: Initializers
     /// Initializes `JSONDecoderService`.

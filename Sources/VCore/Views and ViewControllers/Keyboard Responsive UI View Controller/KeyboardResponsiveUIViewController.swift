@@ -14,6 +14,49 @@ import UIKit
 ///
 /// Subclass, and override `keyboardWillShow` and `keyboardWillHide` methods, to observe keyboard notifications.
 /// These methods pass `SystemKeyboardInfo` as parameter, that contains information about keyboard height, animation duration, and options.
+///
+///     final class ViewController: KeyboardResponsiveUIViewController {
+///         private let textField: UITextField = { ... }()
+///
+///         override func viewDidLoad() {
+///             super.viewDidLoad()
+///
+///             view.addSubview(textField)
+///
+///             NSLayoutConstraint.activate([
+///                 ...
+///             ])
+///         }
+///
+///         override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
+///             super.keyboardWillShow(systemKeyboardInfo)
+///
+///             UIView.animateKeyboardResponsiveness(
+///                 systemKeyboardInfo: systemKeyboardInfo,
+///                 animations: { [weak self] in
+///                     guard let self else { return }
+///
+///                     self.view.superview?.layoutIfNeeded()
+///                     self.view.bounds.origin.y = -systemKeyboardInfo.frame.size.height
+///                 }
+///             )
+///         }
+///
+///         override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
+///             super.keyboardWillHide(systemKeyboardInfo)
+///
+///             UIView.animateKeyboardResponsiveness(
+///                 systemKeyboardInfo: systemKeyboardInfo,
+///                 animations: { [weak self] in
+///                     guard let self else { return }
+///
+///                     self.view.superview?.layoutIfNeeded()
+///                     self.view.bounds.origin.y = 0
+///                 }
+///             )
+///         }
+///     }
+///
 open class KeyboardResponsiveUIViewController: UIViewController {
     // MARK: Properties
     /// Indicates, if `KeyboardResponsiveViewController` should call

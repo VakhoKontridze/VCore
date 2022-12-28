@@ -8,7 +8,10 @@
 import SwiftUI
 
 // MARK: - Navigation Path Methods
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+@available(iOS 16.0, *)
+@available(macOS 13.0, *)
+@available(tvOS 16.0, *)
+@available(watchOS 9.0, *)
 extension NavigationPath {
     /// Adds the elements of a sequence or collection to the end of the path.
     ///
@@ -23,7 +26,7 @@ extension NavigationPath {
     ///
     /// Can be used to pop too root.
     ///
-    ///     var path: NavigationPath = .init(/*...*/)
+    ///     var path: NavigationPath = .init(...)
     ///     path.removeAll()
     ///
     mutating public func removeAll() {

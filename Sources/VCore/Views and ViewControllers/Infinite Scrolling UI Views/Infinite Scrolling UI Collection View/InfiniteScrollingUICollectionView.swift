@@ -19,8 +19,108 @@ import UIKit
 ///
 /// Three methods must be called from `UIView` or `UIViewController` to ensure proper functionality:
 /// - `detectPaginationFromScrollViewDidScroll`, which detects pagination on scroll.
-/// - `detectPaginationFromCollectionViewCellForItem`, which detects instance in which loaded cells do not fill up UICollectionViews's content. So, pagination is called.
+/// - `detectPaginationFromCollectionViewCellForItem`, which detects instance in which loaded cells do not fill up `UICollectionView`'s content. So, pagination is called.
 /// - `viewForSupplementaryElement`, which returns `UIActivityIndicator`.
+///
+/// `collectionViewDidScrollToBottom(sender:)` can be implemented as:
+///
+///     final class ViewController:
+///         UIViewController,
+///         UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,
+///         InfiniteScrollingUICollectionViewDelegate
+///     {
+///         lazy var collectionView: InfiniteScrollingUICollectionView = {
+///             let layout: UICollectionViewFlowLayout = .init()
+///             layout.minimumLineSpacing = 0
+///             layout.minimumInteritemSpacing = 0
+///             layout.scrollDirection = .vertical
+///
+///             let collectionView: InfiniteScrollingUICollectionView = .init(frame: .zero, collectionViewLayout: layout)
+///
+///             collectionView.translatesAutoresizingMaskIntoConstraints = false
+///
+///             collectionView.delegate = self
+///             collectionView.dataSource = self
+///             collectionView.infiniteScrollingDelegate = self
+///
+///             collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+///
+///             return collectionView
+///         }()
+///
+///         private static var dataChunk: [UIColor] { [.red, .green, .blue, .systemPink, .yellow] }
+///         private var data: [UIColor] = ViewController.dataChunk
+///
+///         override func viewDidLoad() {
+///             super.viewDidLoad()
+///
+///             view.backgroundColor = .white
+///
+///             view.addSubview(collectionView)
+///             NSLayoutConstraint.activate([
+///                 collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+///                 collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+///                 collectionView.topAnchor.constraint(equalTo: view.topAnchor),
+///                 collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+///             ])
+///
+///             collectionView.reloadData()
+///         }
+///
+///         func scrollViewDidScroll(_ scrollView: UIScrollView) {
+///             collectionView.detectPaginationFromScrollViewDidScroll(scrollView)
+///         }
+///
+///         func collectionView(
+///             _ collectionView: UICollectionView,
+///             layout collectionViewLayout: UICollectionViewLayout,
+///             sizeForItemAt indexPath: IndexPath
+///         ) -> CGSize {
+///             .init(dimension: collectionView.frame.size.width / 3)
+///         }
+///
+///         func collectionView(
+///             _ collectionView: UICollectionView,
+///             numberOfItemsInSection section: Int
+///         ) -> Int {
+///             data.count
+///         }
+///
+///         func collectionView(
+///             _ collectionView: UICollectionView,
+///             cellForItemAt indexPath: IndexPath
+///         ) -> UICollectionViewCell {
+///             self.collectionView.detectPaginationFromCollectionViewCellForItem()
+///
+///             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
+///
+///             cell.contentView.backgroundColor = data[indexPath.row]
+///
+///             return cell
+///         }
+///
+///         func collectionView(
+///             _ collectionView: UICollectionView,
+///             viewForSupplementaryElementOfKind kind: String,
+///             at indexPath: IndexPath
+///         ) -> UICollectionReusableView {
+///             self.collectionView.viewForSupplementaryElement(kind: kind, at: indexPath)
+///         }
+///
+///         func collectionViewDidScrollToBottom(
+///             sender infiniteScrollingUICollectionView: InfiniteScrollingUICollectionView
+///         ) {
+///             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [weak self] in
+///                 guard let self else { return }
+///
+///                 self.data.append(contentsOf: Self.dataChunk)
+///
+///                 self.collectionView.paginationState = .canPaginate
+///                 self.collectionView.reloadData()
+///             })
+///         }
+///     }
+///
 open class InfiniteScrollingUICollectionView: UICollectionView {
     // MARK: Subviews
     private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()

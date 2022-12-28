@@ -35,6 +35,7 @@ extension UIApplication {
     /// Returns root `UIViewController` in application.
     ///
     ///     let rootViewController: UIViewController? = UIApplication.shared.rootViewController
+    ///
     public var rootViewController: UIViewController? {
         rootWindow?.rootViewController
     }
@@ -42,6 +43,7 @@ extension UIApplication {
     /// Returns root `UIView` in application.
     ///
     ///     let rootView: UIView? = UIApplication.shared.rootView
+    ///
     public var rootView: UIView? {
         rootViewController?.view
     }

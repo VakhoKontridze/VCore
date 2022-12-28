@@ -31,6 +31,6 @@ extension Double {
     ///     num2.round(fractions: 3) // 3.142
     ///
     mutating public func round(fractions: Int) {
-        self = self.rounded(fractions: fractions)
+        self = rounded(fractions: fractions)
     }
 }

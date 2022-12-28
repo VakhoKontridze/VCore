@@ -19,7 +19,7 @@ extension View {
     ///         )
     ///
     public func shadow(
-        color: Color = Color(.sRGBLinear, white: 0, opacity: 0.33),
+        color: Color = .init(.sRGBLinear, white: 0, opacity: 0.33),
         radius: CGFloat,
         offset: CGPoint
     ) -> some View {

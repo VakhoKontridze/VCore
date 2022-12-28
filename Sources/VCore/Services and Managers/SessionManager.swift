@@ -12,14 +12,16 @@ import Foundation
 ///
 /// For shared instance, refer to `GlobalSessionManager`.
 ///
+///     let sessionManager: SessionManager = .init()
+///
 ///     Task(operation: {
 ///         do {
-///             let sessionID: Int = await GlobalSessionManager.shared.newSessionID
+///             let sessionID: Int = await sessionManager.newSessionID
 ///
 ///             let request: NetworkRequest = .init(url: "https://httpbin.org/get")
 ///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 ///
-///             guard await GlobalSessionManager.shared.sessionIsValid(id: sessionID) else { return }
+///             guard await sessionManager.sessionIsValid(id: sessionID) else { return }
 ///
 ///             print(result)
 ///
@@ -57,7 +59,24 @@ public actor SessionManager {
 }
 
 // MARK: - Global Session Manager
-/// Global instance of `SessionManager.
+/// Global instance of `SessionManager`.
+///
+///     Task(operation: {
+///         do {
+///             let sessionID: Int = await GlobalSessionManager.shared.newSessionID
+///
+///             let request: NetworkRequest = .init(url: "https://httpbin.org/get")
+///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+///
+///             guard await GlobalSessionManager.shared.sessionIsValid(id: sessionID) else { return }
+///
+///             print(result)
+///
+///         } catch {
+///             print(error.localizedDescription)
+///         }
+///     })
+///
 @globalActor public final class GlobalSessionManager {
     public static var shared: SessionManager = .init()
 }

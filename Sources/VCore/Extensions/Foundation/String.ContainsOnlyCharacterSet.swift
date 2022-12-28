@@ -30,6 +30,6 @@ extension String {
     ///     let phoneNumber2: Bool = phoneNumber.contains(only: [.decimalDigits, .symbols]) // true
     ///
     public func contains(only characterSets: [CharacterSet]) -> Bool {
-        self.contains(only: characterSets.unified)
+        contains(only: characterSets.unified)
     }
 }

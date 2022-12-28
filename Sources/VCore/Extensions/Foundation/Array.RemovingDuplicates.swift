@@ -32,6 +32,6 @@ extension Array where Element: Equatable {
     ///     nums.removeDuplicates() // [1, 3, 5]
     ///
     mutating public func removeDuplicates() {
-        self = self.removingDuplicates()
+        self = removingDuplicates()
     }
 }

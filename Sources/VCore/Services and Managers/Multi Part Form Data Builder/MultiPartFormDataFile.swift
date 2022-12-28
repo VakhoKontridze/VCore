@@ -60,6 +60,25 @@ extension Dictionary: AnyMultiPartFormDataFile where Key == String, Value == Opt
 /// Building block of objects conforming to `AnyMultiPartFormDataFile`.
 ///
 /// Can be placed in `Dictionary` or `Array`.
+///
+///     let files: [String: (some AnyMultiPartFormDataFile)?] = [
+///         "main_image": MultiPartFormDataFile(mimeType: "image/jpeg", data: mainImageData),
+///
+///         "gallery": [
+///             "thumbnail": MultiPartFormDataFile(mimeType: "image/jpeg", data: thumbnailData),
+///
+///             "small_images": [
+///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: smallImage1Data),
+///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: smallImage2Data),
+///             ],
+///
+///             "large_images": [
+///                 MultiPartFormDataFile(filename: "large-image-1.jpg", mimeType: "image/jpeg", data: largeImage1Data),
+///                 MultiPartFormDataFile(filename: "large-image-2.jpg", mimeType: "image/jpeg", data: largeImage2Data),
+///             ]
+///         ]
+///     ]
+///
 public struct MultiPartFormDataFile {
     // MARK: Properties
     /// File name.

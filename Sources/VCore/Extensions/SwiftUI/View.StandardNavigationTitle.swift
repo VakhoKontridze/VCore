@@ -1,5 +1,5 @@
 //
-//  View.StandardNavigationTitle.swift
+//  View.InlineNavigationTitle.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/21/21.
@@ -15,17 +15,17 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
-    ///             .standardNavigationTitle("Home")
+    ///             .inlineNavigationTitle("Home")
     ///     }
     ///
-    public func standardNavigationTitle(_ title: String) -> some View {
+    public func inlineNavigationTitle(_ title: String) -> some View {
         self
-            .modifier(StandardNavigationTitle(title))
+            .modifier(InlineNavigationTitle(title))
     }
 }
 
-// MARK: - Standard Navigation Title View Modifier
-private struct StandardNavigationTitle: ViewModifier {
+// MARK: - Inline Navigation Title View Modifier
+private struct InlineNavigationTitle: ViewModifier {
     // MARK: Properties
     private let title: String
     

@@ -11,6 +11,12 @@ import Foundation
 /// JSON request headers that pass `application/json` as `accept` and `multipart/form-data; boundary=\(boundary)` as `contentType`.
 ///
 /// Can be used in `NetworkClient` with `MultiPartFormDataBuilder`.
+///
+///     var request: NetworkRequest = .init(url: ...)
+///     try request.addHeaders(encodable: MultiPartFormDataRequestHeaders(
+///         boundary: boundary
+///     ))
+///
 public struct MultiPartFormDataRequestHeaders: Encodable {
     // MARK: Properties
     /// Accept. Defaults to `application/json`.

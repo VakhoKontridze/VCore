@@ -11,6 +11,10 @@ import Foundation
 /// JSON request headers that pass `application/json` as `accept` and `application/json` as `contentType`.
 ///
 /// Can be used in `NetworkClient`.
+///
+///     var request: NetworkRequest = .init(url: ...)
+///     try request.addHeaders(encodable: JSONRequestHeaders())
+///
 public struct JSONRequestHeaders: Encodable {
     // MARK: Properties
     /// Accept. Defaults to `application/json`.

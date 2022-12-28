@@ -27,7 +27,7 @@ extension String {
     ///     phoneNumber.keep(only: .decimalDigits) // "0123456789"
     ///
     mutating public func keep(only characterSet: CharacterSet) {
-        self = self.keeping(only: characterSet)
+        self = keeping(only: characterSet)
     }
 }
 
@@ -48,6 +48,6 @@ extension String {
     ///     phoneNumber.keep(only: [.decimalDigits, .symbols]) // "+0123456789"
     ///
     mutating public func keep(only characterSets: [CharacterSet]) {
-        self = self.keeping(only: characterSets)
+        self = keeping(only: characterSets)
     }
 }

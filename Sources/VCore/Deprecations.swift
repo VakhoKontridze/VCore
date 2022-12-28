@@ -50,7 +50,10 @@ extension KeychainService {
 // MARK: - Architectural Pattern Helpers
 import SwiftUI
 
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
+@available(iOS 14.0, *)
+@available(macOS 11.0, *)
+@available(tvOS 14.0, *)
+@available(watchOS 7.0, *)
 extension ProgressViewParameters {
     @available(*, deprecated, message: "Use init without default value for `isInteractionDisabled`")
     public init(
@@ -95,5 +98,30 @@ extension Date {
     @available(*, deprecated, message: "Use method instead")
     public var age: Int? {
         age()
+    }
+}
+
+// MARK: - Extensions - Swift UI
+extension View {
+    @available(*, deprecated, message: "Use method without flag argument name")
+    public func onFirstAppear(
+        didAppear didAppearForTheFirstTime: Binding<Bool>,
+        perform action: (() -> Void)? = nil
+    ) -> some View {
+        self
+            .onAppear(perform: {
+                guard !didAppearForTheFirstTime.wrappedValue else { return }
+                
+                didAppearForTheFirstTime.wrappedValue = true
+                action?()
+            })
+    }
+}
+
+extension View {
+    @available(*, deprecated, renamed: "inlineNavigationTitle")
+    public func standardNavigationTitle(_ title: String) -> some View {
+        self
+            .inlineNavigationTitle(title)
     }
 }

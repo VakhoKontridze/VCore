@@ -33,11 +33,11 @@ struct PostsView<Presenter>: View
             canvas
             contentView
         })
-            .onFirstAppear(didAppear: $didAppearForTheFirstTime, perform: {
+            .onFirstAppear($didAppearForTheFirstTime, perform: {
                 presenter.navigationStackCoordinator = navigationStackCoordinator
                 presenter.didLoad()
             })
-            .standardNavigationTitle("Posts")
+            .inlineNavigationTitle("Posts")
             .alert(parameters: $presenter.alertParameters)
             .progressView(parameters: presenter.progressViewParameters)
     }

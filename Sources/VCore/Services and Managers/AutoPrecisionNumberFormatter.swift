@@ -27,6 +27,10 @@ extension Double {
 ///
 /// Rounds number to fractions specified by `min` and `max`.
 /// If number ends with zeroes, they will be removed until `min` fraction requirement is met.
+///
+///     let formatter: AutoPrecisionNumberFormatter = .init(maxFractions: 2)
+///     let rounded: String = formatter.string(from: 3.1415) // "3.14"
+///
 public struct AutoPrecisionNumberFormatter {
     // MARK: Properties
     /// Minimum number of fractions. Defaults to `0`.

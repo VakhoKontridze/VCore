@@ -9,7 +9,10 @@ import SwiftUI
 
 // MARK: - Text Line Type
 /// Model that represents text line, such as `singleLine` or `multiLine`.
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+@available(iOS 16.0, *)
+@available(macOS 13.0, *)
+@available(tvOS 16.0, *)
+@available(watchOS 9.0, *)
 public struct TextLineType {
     // MARK: Properties
     private let _textLineType: _TextLineType
@@ -106,7 +109,10 @@ public struct TextLineType {
 }
 
 // MARK: - _ V Text Type
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+@available(iOS 16.0, *)
+@available(macOS 13.0, *)
+@available(tvOS 16.0, *)
+@available(watchOS 9.0, *)
 enum _TextLineType {
     case singleLine
     case multiLine(alignment: TextAlignment, textLineLimitType: TextLineLimitType)

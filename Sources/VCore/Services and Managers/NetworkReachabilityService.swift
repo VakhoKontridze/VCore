@@ -10,6 +10,23 @@ import Network
 
 // MARK: - Network Reachability Service
 /// Network connection service that manages reachability.
+///
+///     NetworkReachabilityService.shared.configure()
+///
+///     NotificationCenter.default.addObserver(
+///         forName: NetworkReachabilityService.connectedNotification,
+///         object: nil,
+///         queue: .main,
+///         using: { _ in self?.presentNoNetworkConnectionScreen() }
+///     )
+///
+///     NotificationCenter.default.addObserver(
+///         forName: NetworkReachabilityService.disconnectedNotification,
+///         object: nil,
+///         queue: .main,
+///         using: { _ in self?.dismissNoNetworkConnectionScreen() }
+///     )
+///
 public final class NetworkReachabilityService {
     // MARK: Properties - Singleton
     /// Shared instance of `NetworkReachabilityService`.

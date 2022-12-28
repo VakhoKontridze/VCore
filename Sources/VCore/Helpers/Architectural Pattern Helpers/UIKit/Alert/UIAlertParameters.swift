@@ -16,6 +16,16 @@ import UIKit
 /// In `MVVM` architecture, parameters are passed by`ViewModel` to `View/Controller`
 ///
 /// For usage example, refer to `UIAlertViewable`.
+///
+///     presentAlert(parameters: .init(
+///         title: "Lorem Ipsum",
+///         message: "Lorem ipsum dolor sit amet",
+///         actions: {
+///             UIAlertButton(title: "Confirm", action: { print("Confirmed") })
+///             UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///         }
+///     ))
+///
 public struct UIAlertParameters {
     // MARK: Properties
     /// Title.

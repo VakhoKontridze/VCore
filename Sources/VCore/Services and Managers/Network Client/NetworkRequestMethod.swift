@@ -9,6 +9,10 @@ import Foundation
 
 // MARK: - Network Request Method
 /// `HTTP` method for `NetworkService`.
+///
+///     var request: NetworkRequest = .init(url: ...)
+///     request.method = .POST
+///
 public enum NetworkRequestMethod: Int, CaseIterable {
     // MARK: Cases
     /// `GET` request method.

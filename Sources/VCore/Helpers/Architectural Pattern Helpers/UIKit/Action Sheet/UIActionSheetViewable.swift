@@ -15,14 +15,26 @@ import UIKit
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `View/Controller`.
 /// In `MVVM` architecture, this protocol is conformed to by a `View/Controller`.
 ///
-///     presentActionSheet(parameters: .init(
-///         title: "Lorem Ipsum",
-///         message: "Lorem ipsum dolor sit amet",
-///         actions: {
-///             UIActionSheetButton(title: "Confirm", action: { print("Confirmed") })
-///             UIActionSheetButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///     final class ViewController: UIViewController, UIActionSheetViewable {}
+///
+///     final class Presenter {
+///         unowned let view: ViewController
+///
+///         init(view: ViewController) {
+///             ...
 ///         }
-///     ))
+///
+///         func present() {
+///             view.presentActionSheet(parameters: .init(
+///                 title: "Lorem Ipsum",
+///                 message: "Lorem ipsum dolor sit amet",
+///                 actions: {
+///                     UIActionSheetButton(title: "Confirm", action: { print("Confirmed") })
+///                     UIActionSheetButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///                 }
+///             ))
+///         }
+///     }
 ///
 public protocol UIActionSheetViewable {
     /// Presents `UIActionSheet` with parameters

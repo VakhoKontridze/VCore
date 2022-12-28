@@ -15,14 +15,27 @@ import UIKit
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `View/Controller`.
 /// In `MVVM` architecture, this protocol is conformed to by a `View/Controller`.
 ///
-///     presentAlert(parameters: .init(
-///         title: "Lorem Ipsum",
-///         message: "Lorem ipsum dolor sit amet",
-///         actions: {
-///             UIAlertButton(title: "Confirm", action: { print("Confirmed") })
-///             UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///     final class ViewController: UIViewController, UIAlertViewable {}
+///
+///     final class Presenter {
+///         unowned let view: ViewController
+///
+///         init(view: ViewController) {
+///             ...
 ///         }
-///     ))
+///
+///         func present() {
+///             view.presentActionSheet(parameters: .init(
+///                 title: "Lorem Ipsum",
+///                 message: "Lorem ipsum dolor sit amet",
+///                 actions: {
+///                     UIAlertButton(title: "Confirm", action: { print("Confirmed") })
+///                     UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///                 }
+///             ))
+///         }
+///     }
+///
 ///     
 public protocol UIAlertViewable {
     /// Presents `UIAlert` with parameters

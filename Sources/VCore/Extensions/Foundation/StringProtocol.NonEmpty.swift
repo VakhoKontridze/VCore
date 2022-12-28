@@ -38,7 +38,7 @@ extension StringProtocol {
     ///     let value2: String? = "Lorem Ipsum".nonEmpty // "Lorem Ipsum"
     ///     
     public var nonEmpty: Self? {
-        guard !self.isEmpty else { return nil }
+        guard !isEmpty else { return nil }
         return self
     }
     
@@ -49,7 +49,7 @@ extension StringProtocol {
     ///     let value3: String? = "Lorem Ipsum".nonEmptyOrWhiteSpace // "Lorem Ipsum"
     ///
     public var nonEmptyOrWhiteSpace: Self? {
-        guard !self.isEmptyOrWhiteSpace else { return nil }
+        guard !isEmptyOrWhiteSpace else { return nil }
         return self
     }
     
@@ -61,7 +61,7 @@ extension StringProtocol {
     ///     let value4: String? = "Lorem Ipsum".nonEmptyWhiteSpaceOrNewLines // "Lorem Ipsum"
     ///
     public var nonEmptyWhiteSpaceOrNewLines: Self? {
-        guard !self.isEmptyWhiteSpaceOrNewLines else { return nil }
+        guard !isEmptyWhiteSpaceOrNewLines else { return nil }
         return self
     }
 }
