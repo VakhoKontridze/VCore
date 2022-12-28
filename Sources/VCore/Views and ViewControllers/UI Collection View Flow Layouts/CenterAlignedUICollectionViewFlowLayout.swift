@@ -153,7 +153,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             while true {
                 guard currentIndex <= collectionView.numberOfItems(inSection: indexPath.section) - 1 else { break }
 
-                let currentIndexPath = IndexPath(row: currentIndex, section: indexPath.section)
+                let currentIndexPath: IndexPath = .init(row: currentIndex, section: indexPath.section)
                 guard
                     let currentAttributes: UICollectionViewLayoutAttributes = super.layoutAttributesForItem(at: currentIndexPath),
                     currentAttributes.frame.intersects(defaultRowFrame),
