@@ -2,6 +2,10 @@
 
 ### 4.4.0(69)
 
+Extensions
+
+- Optional comparison methods are added
+
 Other
 
 - Platform-specific compilation errors are fixed
