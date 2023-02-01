@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.4.0(69)
+
+Other
+
+- Platform-specific compilation errors are fixed
+
 ### [4.3.0(68)](https://github.com/VakhoKontridze/VCore/releases/tag/4.3.0) — *2022 12 28*
 
 Services
