@@ -1,5 +1,11 @@
 # CLEAN Interactors and Gateways
 
+## Table of Contents
+
+- [Intro](#intro)
+- [Gateway Components](#gateway-components)
+- [Interactor-Gateway Relationship](#interactor-gateway-relationship)
+
 ## Intro
 
 #### Definition
