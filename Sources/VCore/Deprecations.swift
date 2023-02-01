@@ -118,6 +118,8 @@ extension View {
     }
 }
 
+#if os(iOS)
+
 extension View {
     @available(*, deprecated, renamed: "inlineNavigationTitle")
     public func standardNavigationTitle(_ title: String) -> some View {
@@ -125,3 +127,5 @@ extension View {
             .inlineNavigationTitle(title)
     }
 }
+
+#endif
