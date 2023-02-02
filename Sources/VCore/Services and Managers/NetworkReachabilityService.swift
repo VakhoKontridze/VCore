@@ -43,10 +43,10 @@ public final class NetworkReachabilityService {
     
     // MARK: Properties - Notifications
     /// Name of notification that will be posted when reachability status changes.
-    public static var connectedNotification: NSNotification.Name { .init("NetworkReachabilityService.Connected") }
+    public static var connectedNotification: Notification.Name { .init("NetworkReachabilityService.Connected") }
     
     /// Name of notification that will be posted when reachability status changes.
-    public static var disconnectedNotification: NSNotification.Name { .init("NetworkReachabilityService.Disconnected") }
+    public static var disconnectedNotification: Notification.Name { .init("NetworkReachabilityService.Disconnected") }
     
     // MARK: Properties - Monitor
     private lazy var statusMonitor: NWPathMonitor = {
