@@ -21,9 +21,9 @@ extension Locale {
     ///     let lhs: Locale = .init(identifier: "en")
     ///     let rhs: Locale = .init(identifier: "en-US")
     ///
-    ///     lhs == rhs // False
+    ///     lhs == rhs // false
     ///
-    ///     lhs.isEquivalent(to: rhs) // True, if `Locale.current.regionCode` is "US"
+    ///     lhs.isEquivalent(to: rhs) // true, if `Locale.current.regionCode` is "US"
     ///
     public func isEquivalent(to other: Locale) -> Bool {
         guard languageCode == other.languageCode else { return false }
