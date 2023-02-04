@@ -21,6 +21,7 @@ Extensions
 - `Locale.isEquivalent(to:)` method is added
 - `Optional` comparison methods are added
 - `UIImage.compressed(quality:)` is renamed to `UIImage.jpegCompressed(quality:)`
+- `Array.compactMapNonEmpty(_:)` and `Array.compactMapNonNilNonEmpty(_:)` are removed due to ambiguous API
 
 API
 

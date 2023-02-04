@@ -114,6 +114,41 @@ extension Date {
     }
 }
 
+extension Array where Element == String {
+    @available(*, unavailable, message: "Removed due to ambiguous API")
+    public func compactMapNonEmpty(_ transform: (String) throws -> String?) rethrows -> [String] {
+        try compactMap { element in
+            guard
+                !element.isEmpty,
+                let transformedElement: String = try transform(element),
+                !transformedElement.isEmpty
+            else {
+                return nil
+            }
+            
+            return transformedElement
+        }
+    }
+}
+
+extension Array where Element == Optional<String> {
+    @available(*, unavailable, message: "Removed due to ambiguous API")
+    public func compactMapNonNilNonEmpty(_ transform: (String) throws -> String?) rethrows -> [String] {
+        try compactMap { element in
+            guard
+                let element,
+                !element.isEmpty,
+                let transformedElement: String = try transform(element),
+                !transformedElement.isEmpty
+            else {
+                return nil
+            }
+            
+            return transformedElement
+        }
+    }
+}
+
 // MARK: - Extensions UI Kit
 #if canImport(UIKit)
 
