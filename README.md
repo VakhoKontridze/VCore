@@ -185,7 +185,7 @@ enum SomeEnum: KeyPathInitializableEnumeration {
 let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
 ```
 
-`DigitalTimeFormatter` with customizable configurations:
+`DigitalTimeFormatter` with various configurations:
 
 ```swift
 let formatter: DigitalTimeFormatter = .init()
