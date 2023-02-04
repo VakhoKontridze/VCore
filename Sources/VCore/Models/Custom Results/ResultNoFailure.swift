@@ -75,5 +75,5 @@ extension ResultNoFailure: Equatable where Success: Equatable {
 private struct ResultNoFailureError: VCoreError {
     // MARK: VCore Error
     var code: Int { 1000 }
-    var description: String { VCoreLocalizationService.shared.localizationProvider.resultNoFailureErrorDescription }
+    var description: String { VCoreLocalizationManager.shared.localizationProvider.resultNoFailureErrorDescription }
 }

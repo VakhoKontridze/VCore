@@ -15,7 +15,7 @@ public struct JSONEncoderError: VCoreError, Equatable {
     
     // MARK: VCore Error
     public var code: Int { _code.rawValue }
-    public var description: String { VCoreLocalizationService.shared.localizationProvider.jsonEncoderErrorDescription(_code) }
+    public var description: String { VCoreLocalizationManager.shared.localizationProvider.jsonEncoderErrorDescription(_code) }
     
     // MARK: Initializers
     init(_ code: Code) {

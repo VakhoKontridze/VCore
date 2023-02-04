@@ -1,5 +1,5 @@
 //
-//  VCoreLocalizationService.swift
+//  VCoreLocalizationManager.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 17.05.22.
@@ -7,21 +7,21 @@
 
 import Foundation
 
-// MARK: - V Core Localization Service
+// MARK: - V Core Localization Manager
 /// Localization service that can be used to localize the package.
 ///
 /// `localizationProvider` in `shared` instance can be set to override the localized values.
 ///
 ///     struct SomeLocalizationProvider: VCoreLocalizationProvider { ... }
 ///
-///     VCoreLocalizationService.shared.localizationProvider = SomeLocalizationProvider()
+///     VCoreLocalizationManager.shared.localizationProvider = SomeLocalizationProvider()
 ///
 /// Alternately, consider using `VCoreHumanReadableLocalizationProvider`
 /// that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable `String`s.
-public final class VCoreLocalizationService {
+public final class VCoreLocalizationManager {
     // MARK: Properties
-    /// Shared instance of `VCoreLocalizationService`.
-    public static let shared: VCoreLocalizationService = .init()
+    /// Shared instance of `VCoreLocalizationManager`.
+    public static let shared: VCoreLocalizationManager = .init()
     
     /// Localization provider. Defaults to `DefaultVCoreLocalizationProvider`.
     public var localizationProvider: any VCoreLocalizationProvider = DefaultVCoreLocalizationProvider()

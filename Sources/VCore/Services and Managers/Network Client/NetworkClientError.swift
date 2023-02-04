@@ -15,7 +15,7 @@ public struct NetworkClientError: VCoreError, Equatable {
     
     // MARK: VCore Error
     public var code: Int { _code.rawValue }
-    public var description: String { VCoreLocalizationService.shared.localizationProvider.networkClientErrorDescription(_code) }
+    public var description: String { VCoreLocalizationManager.shared.localizationProvider.networkClientErrorDescription(_code) }
     
     // MARK: Initializers
     init(_ code: Code) {

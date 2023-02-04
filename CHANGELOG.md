@@ -6,6 +6,10 @@ Extensions
 
 - Optional comparison methods are added
 
+API
+
+- `VCoreLocalizationService` is renamed to `VCoreLocalizationManager`
+
 Other
 
 - Platform-specific compilation errors are fixed

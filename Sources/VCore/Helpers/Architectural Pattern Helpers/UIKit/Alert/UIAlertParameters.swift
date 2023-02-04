@@ -61,7 +61,7 @@ public struct UIAlertParameters {
             actions: {
                 UIAlertButton(
                     style: .cancel,
-                    title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
+                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle,
                     action: completion
                 )
             }
@@ -74,12 +74,12 @@ public struct UIAlertParameters {
         completion: (() -> Void)?
     ) {
         self.init(
-            title: VCoreLocalizationService.shared.localizationProvider.alertErrorTitle,
+            title: VCoreLocalizationManager.shared.localizationProvider.alertErrorTitle,
             message: error.localizedDescription,
             actions: {
                 UIAlertButton(
                     style: .cancel,
-                    title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
+                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle,
                     action: completion
                 )
             }

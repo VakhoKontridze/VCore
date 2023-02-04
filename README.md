@@ -43,7 +43,7 @@ Package files are grouped as:
 
 - ***Global Functions***. Global functions. For instance, `VCoreLog`.
 
-- ***API***. Objects used for interfacing from you app/package to `VCore`. For instances, `VCoreLocalizationService`.
+- ***API***. Objects used for interfacing from you app/package to `VCore`. For instances, `VCoreLocalizationManager`.
 
 Package incudes folder `Extra`, which contains:
 

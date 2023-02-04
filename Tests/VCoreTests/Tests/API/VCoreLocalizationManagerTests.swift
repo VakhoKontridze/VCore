@@ -1,5 +1,5 @@
 //
-//  VCoreLocalizationServiceTests.swift
+//  VCoreLocalizationManagerTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 17.05.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class VCoreLocalizationServiceTests: XCTestCase {
+final class VCoreLocalizationManagerTests: XCTestCase {
     // MARK: Test Data
     private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {        
         func networkClientErrorDescription(_ networkClientError: NetworkClientError.Code) -> String {
@@ -45,7 +45,7 @@ final class VCoreLocalizationServiceTests: XCTestCase {
     override class func setUp() {
         super.setUp()
         
-        VCoreLocalizationService.shared.localizationProvider = TestVCoreLocalizationProvider()
+        VCoreLocalizationManager.shared.localizationProvider = TestVCoreLocalizationProvider()
     }
     
     // MARK: Tests

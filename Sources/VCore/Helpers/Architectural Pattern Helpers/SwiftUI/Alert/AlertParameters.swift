@@ -66,7 +66,7 @@ public struct AlertParameters {
             actions: {
                 AlertButton(
                     role: .cancel,
-                    title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
+                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle,
                     action: completion
                 )
             }
@@ -79,12 +79,12 @@ public struct AlertParameters {
         completion: (() -> Void)?
     ) {
         self.init(
-            title: VCoreLocalizationService.shared.localizationProvider.alertErrorTitle,
+            title: VCoreLocalizationManager.shared.localizationProvider.alertErrorTitle,
             message: error.localizedDescription,
             actions: {
                 AlertButton(
                     role: .cancel,
-                    title: VCoreLocalizationService.shared.localizationProvider.alertOKButtonTitle,
+                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle,
                     action: completion
                 )
             }

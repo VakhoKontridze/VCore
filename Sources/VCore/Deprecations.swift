@@ -129,3 +129,7 @@ extension View {
 }
 
 #endif
+
+// MARK: - V Core Localization Manager
+@available(*, deprecated, renamed: "VCoreLocalizationManager")
+public typealias VCoreLocalizationService = VCoreLocalizationManager
