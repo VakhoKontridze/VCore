@@ -314,17 +314,6 @@ let flag1: Bool = phoneNumber.contains(.decimalDigits) // true
 let flag2: Bool = phoneNumber.contains(only: .decimalDigits) // false
 ```
 
-`Locale` Equivalence:
-
-```swift
-let lhs: Locale = .init(identifier: "en")
-let rhs: Locale = .init(identifier: "en-US")
-
-lhs == rhs // false
-
-lhs.isEquivalent(to: rhs) // true, if `Locale.current.regionCode` is "US"
-```
-
 ## Demo
 
 Package contains demo app, that can be used to test functionality of the package.
