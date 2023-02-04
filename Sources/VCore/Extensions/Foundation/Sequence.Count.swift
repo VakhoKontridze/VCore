@@ -14,7 +14,9 @@ extension Sequence {
     ///     let nums: [Int] = [3, 7, 4, -2, 9, -6, 10, 1]
     ///     let positiveCount: Int = nums.count { $0 > 0 } // 6
     ///
-    public func count(where predicate: (Element) throws -> Bool) rethrows -> Int {
+    public func count(
+        where predicate: (Element) throws -> Bool
+    ) rethrows -> Int {
         var count: Int = 0
         
         for element in self {
