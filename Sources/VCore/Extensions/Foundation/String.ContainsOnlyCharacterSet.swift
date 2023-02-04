@@ -12,7 +12,7 @@ extension String {
     /// Returns `Bool` indicating if `String` only contains given `CharacterSet`.
     ///
     ///     let phoneNumber: String = "0123456789"
-    ///     let phoneNumber2: Bool = phoneNumber.contains(only: .decimalDigits) // true
+    ///     let flag: Bool = phoneNumber.contains(only: .decimalDigits) // true
     ///
     public func contains(only characterSet: CharacterSet) -> Bool {
         !contains(where: { char in
@@ -27,7 +27,7 @@ extension String {
     /// Returns `Bool` indicating if `String` only contains given `CharacterSet`.
     ///
     ///     let phoneNumber: String = "+0123456789"
-    ///     let phoneNumber2: Bool = phoneNumber.contains(only: [.decimalDigits, .symbols]) // true
+    ///     let flag: Bool = phoneNumber.contains(only: [.decimalDigits, .symbols]) // true
     ///
     public func contains(only characterSets: [CharacterSet]) -> Bool {
         contains(only: characterSets.unified)
