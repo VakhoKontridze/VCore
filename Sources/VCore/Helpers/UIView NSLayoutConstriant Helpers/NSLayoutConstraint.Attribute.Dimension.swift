@@ -12,7 +12,7 @@ import UIKit
 // MARK: - Dimension Attribute
 extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual dimension representation that should be used to get the value for the constraint.
-    public enum Dimension: Int, CaseIterable, @unchecked Sendable {
+    public enum Dimension: Int, CaseIterable {
         // MARK: Cases
         /// Width of the object’s alignment rectangle.
         case width

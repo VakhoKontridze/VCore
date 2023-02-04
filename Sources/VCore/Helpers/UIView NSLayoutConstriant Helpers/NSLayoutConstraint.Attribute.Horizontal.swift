@@ -12,7 +12,7 @@ import UIKit
 // MARK: - Horizontal Attribute
 extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual horizontal representation that should be used to get the value for the constraint.
-    public enum Horizontal: Int, CaseIterable, @unchecked Sendable {
+    public enum Horizontal: Int, CaseIterable {
         // MARK: Cases
         /// Leading edge of the object’s alignment rectangle.
         case leading

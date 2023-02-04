@@ -12,7 +12,7 @@ import UIKit
 // MARK: - Vertical Attribute
 extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual vertical representation that should be used to get the value for the constraint.
-    public enum Vertical: Int, CaseIterable, @unchecked Sendable {
+    public enum Vertical: Int, CaseIterable {
         // MARK: Cases
         /// Top of the object’s alignment rectangle.
         case top
