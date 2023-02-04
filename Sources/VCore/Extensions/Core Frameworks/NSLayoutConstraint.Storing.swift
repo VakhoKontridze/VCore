@@ -17,7 +17,7 @@ import AppKit
 extension NSLayoutConstraint {
     /// Allows for the storing of a layout constraint, while using it in `NSLayoutConstraint.activate(:_)`.
     ///
-    ///     private var tableViewLeadingConstraint: NSLayoutConstraint!
+    ///     var tableViewLeadingConstraint: NSLayoutConstraint!
     ///
     ///     NSLayoutConstraint.activate([
     ///         tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor)

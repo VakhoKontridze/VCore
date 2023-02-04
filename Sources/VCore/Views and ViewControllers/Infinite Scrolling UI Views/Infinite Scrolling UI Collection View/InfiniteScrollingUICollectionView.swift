@@ -29,7 +29,7 @@ import UIKit
 ///         UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,
 ///         InfiniteScrollingUICollectionViewDelegate
 ///     {
-///         lazy var collectionView: InfiniteScrollingUICollectionView = {
+///         private lazy var collectionView: InfiniteScrollingUICollectionView = {
 ///             let layout: UICollectionViewFlowLayout = .init()
 ///             layout.minimumLineSpacing = 0
 ///             layout.minimumInteritemSpacing = 0

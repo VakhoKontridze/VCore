@@ -28,7 +28,7 @@ import UIKit
 ///         UITableViewDelegate, UITableViewDataSource,
 ///         InfiniteScrollingUITableViewDelegate
 ///     {
-///         lazy var tableView: InfiniteScrollingUITableView = {
+///         private lazy var tableView: InfiniteScrollingUITableView = {
 ///             let tableView: InfiniteScrollingUITableView = .init()
 ///
 ///             tableView.translatesAutoresizingMaskIntoConstraints = false

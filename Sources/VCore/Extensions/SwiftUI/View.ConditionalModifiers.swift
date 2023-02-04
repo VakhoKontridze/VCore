@@ -11,7 +11,7 @@ import SwiftUI
 extension View {
     /// Applies modifier and transforms view if condition is met.
     ///
-    ///     let isRed: Bool = true
+    ///     private let isRed: Bool = true
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
@@ -31,7 +31,7 @@ extension View {
 
     /// Applies modifier and transforms view if condition is met, or applies alternate modifier.
     ///
-    ///     let isError: Bool = true
+    ///     private let isError: Bool = true
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
@@ -56,7 +56,7 @@ extension View {
     
     /// Applies modifier and transforms view if value is non-`nil`.
     ///
-    ///     let color: Color? = .accentColor
+    ///     private let color: Color? = .accentColor
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
@@ -76,7 +76,7 @@ extension View {
     
     /// Applies modifier and transforms view if value is non-`nil`, or applies alternate modifier.
     ///
-    ///     let color: Color? = .accentColor
+    ///     private let color: Color? = .accentColor
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")

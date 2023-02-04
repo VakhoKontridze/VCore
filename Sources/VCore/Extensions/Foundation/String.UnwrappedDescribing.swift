@@ -12,12 +12,12 @@ extension String {
     /// Creates a `String` representing the given value, or returns `nil`.
     ///
     ///     let a: Int? = 5
-    ///     print(String(describing: a))            // "Optional(5)"
-    ///     print(String(unwrappedDescribing: a)!)  // "5"
+    ///     String(describing: a)           // "Optional(5)"
+    ///     String(unwrappedDescribing: a)! // "5"
     ///
     ///     let b: Int? = nil
-    ///     print(String(describing: b))            // nil
-    ///     print(String(unwrappedDescribing: b))   // nil
+    ///     String(describing: b)           // nil
+    ///     String(unwrappedDescribing: b)  // nil
     ///
     public init?<Subject>(unwrappedDescribing instance: Subject?) {
         guard let instance else { return nil }

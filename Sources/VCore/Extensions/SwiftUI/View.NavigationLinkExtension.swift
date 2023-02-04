@@ -11,7 +11,7 @@ import SwiftUI
 extension View {
     /// Allows for navigation without an explicit `NavigationLink`.
     ///
-    ///     @State var isActive: Bool = false
+    ///     @State private var isActive: Bool = false
     ///
     ///     var body: some View {
     ///         NavigationView(content: {
@@ -29,7 +29,7 @@ extension View {
     ///         })
     ///     }
     ///
-    ///     var destination: some View {
+    ///     private var destination: some View {
     ///         Color.white.ignoresSafeArea()
     ///            .inlineNavigationTitle("Destination")
     ///     }
