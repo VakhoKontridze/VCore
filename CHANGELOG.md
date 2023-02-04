@@ -2,9 +2,20 @@
 
 ### 4.4.0(69)
 
+Services and Managers
+
+- `LocalizationService` is removed from `Extra`, and added to package as `LocalizationManager` 
+
+Views
+
+- `ViewResettingContainer` is added that allows for view reset on demand
+
 Extensions
 
-- Optional comparison methods are added
+- `String.localized(tableName:bundle:value:comment)` method is added
+- `Locale.displayName(forKey:)` method is added
+- `Locale.isEquivalent(to:)` method is added
+- `Optional` comparison methods are added
 
 API
 
@@ -16,7 +27,7 @@ Other
 
 ### [4.3.0(68)](https://github.com/VakhoKontridze/VCore/releases/tag/4.3.0) — *2022 12 28*
 
-Services
+Services and Managers
 
 - `MultiPartFormDataBuilder` API is updated, and boundary can be changed
 - `KeychainServiceConfiguration` is added to allow modification of queries in `KeychainService`

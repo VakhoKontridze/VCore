@@ -94,6 +94,19 @@ extension ProgressViewParameters {
 }
 
 // MARK: - Extensions - Foundation
+extension String {
+    @available(*, deprecated, message: "Use method instead")
+    public var localized: String {
+        NSLocalizedString(
+            self,
+            tableName: nil,
+            bundle: .main,
+            value: "",
+            comment: ""
+        )
+    }
+}
+
 extension Date {
     @available(*, deprecated, message: "Use method instead")
     public var age: Int? {
