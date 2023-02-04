@@ -150,17 +150,25 @@ public final class LocalizationManager {
     ///
     /// If `Locale` is not already added to `Bundle.main`, app will crash.
     public func addLocale(_ locale: Locale) {
-        assertIsAddedToBundle(locale)
-        guard !validateIsAdded(locale) else { return }
-
-        locales.append(locale)
+        addLocales([locale])
     }
 
     /// Adds `Array` of `Locale`s to `LocalizationManager`.
     ///
     /// If `Locale`s are not already added to `Bundle.main`, app will crash.
-    public func addLocales(_ locale: [Locale]) {
-        locale.forEach { addLocale($0) }
+    public func addLocales(_ locales: [Locale]) {
+        for locale in locales {
+            assertIsAddedToBundle(locale)
+            guard !validateIsAdded(locale) else { return }
+
+            self.locales.append(locale)
+        }
+        
+        for bundleLocale in bundleLocales {
+            if !validateIsAdded(bundleLocale) {
+                VCoreLogWarning("Localization `\(bundleLocale.identifier)` is not added to `LocalizationManager`")
+            }
+        }
     }
 
     // MARK: Configuration - Default Locale

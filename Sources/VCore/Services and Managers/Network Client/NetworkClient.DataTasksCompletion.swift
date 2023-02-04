@@ -93,7 +93,7 @@ extension NetworkClient {
     ) {
         guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
             let error: NetworkClientError = .init(.notConnectedToNetwork)
-            VCoreLog(error)
+            VCoreLogError(error)
             completion(.failure(error))
             return
         }
@@ -124,14 +124,14 @@ extension NetworkClient {
                         default: return NetworkClientError(.returnedWithError)
                         }
                     }()
-                    VCoreLog(error, _error)
+                    VCoreLogError(error, _error)
                     completion(.failure(error))
                     return
                 }
                 
                 guard let response else {
                     let error: NetworkClientError = .init(.invalidResponse)
-                    VCoreLog(error)
+                    VCoreLogError(error)
                     completion(.failure(error))
                     return
                 }
@@ -141,7 +141,7 @@ extension NetworkClient {
                     if Entity.self != Void.self {
                         guard let data else {
                             let error: NetworkClientError = .init(.invalidData)
-                            VCoreLog(error)
+                            VCoreLogError(error)
                             completion(.failure(error))
                             return
                         }
@@ -153,21 +153,21 @@ extension NetworkClient {
                     }
                     
                 } catch {
-                    VCoreLog(error)
+                    VCoreLogError(error)
                     completion(.failure(error))
                     return
                 }
                 
                 guard processedResponse.isSuccessHTTPStatusCode else {
                     let error: NetworkClientError = .init(.invalidResponse)
-                    VCoreLog(error)
+                    VCoreLogError(error)
                     completion(.failure(error))
                     return
                 }
                 
                 guard let data else {
                     let error: NetworkClientError = .init(.invalidData)
-                    VCoreLog(error)
+                    VCoreLogError(error)
                     completion(.failure(error))
                     return
                 }
@@ -182,7 +182,7 @@ extension NetworkClient {
                     processedData = try self.responseProcessor.data(data, response)
                     
                 } catch {
-                    VCoreLog(error)
+                    VCoreLogError(error)
                     completion(.failure(error))
                     return
                 }
@@ -193,7 +193,7 @@ extension NetworkClient {
                     
                 } catch {
                     let error: NetworkClientError = .init(.invalidData)
-                    VCoreLog(error)
+                    VCoreLogError(error)
                     completion(.failure(error))
                     return
                 }

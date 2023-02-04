@@ -108,6 +108,22 @@ extension ProgressViewParameters {
     }
 }
 
+// MARK: - Global Functions
+@available(*, deprecated, renamed: "VCoreLogError")
+public func VCoreLog(
+    _ items: Any...,
+    file: String = #file,
+    line: Int = #line,
+    function: String = #function
+) {
+    VCoreLogError(
+        items,
+        file: file,
+        line: line,
+        function: function
+    )
+}
+
 // MARK: - Extensions - Foundation
 extension String {
     @available(*, deprecated, message: "Use method instead")

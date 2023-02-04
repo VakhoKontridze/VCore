@@ -45,7 +45,7 @@ public struct MultipartFormDataRequestHeaders: Encodable {
             try container.encode(contentType, forKey: .contentType)
             
         } catch {
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
     }

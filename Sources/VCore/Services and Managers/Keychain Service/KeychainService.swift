@@ -48,7 +48,7 @@ public final class KeychainService {
         
         guard let data: Data = valueObject as? Data else {
             let error: KeychainServiceError = .init(.failedToCast)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
         
@@ -71,7 +71,7 @@ public final class KeychainService {
             
             guard status == noErr else {
                 let error: KeychainServiceError = .init(.failedToSet)
-                VCoreLog(error, "Security framework error with status code \(status)")
+                VCoreLogError(error, "Security framework error with status code \(status)")
                 throw error
             }
         }
@@ -86,7 +86,7 @@ public final class KeychainService {
         
         guard status == noErr else {
             let error: KeychainServiceError = .init(.failedToDelete)
-            VCoreLog(error, "Security framework error with status code \(status)")
+            VCoreLogError(error, "Security framework error with status code \(status)")
             throw error
         }
     }

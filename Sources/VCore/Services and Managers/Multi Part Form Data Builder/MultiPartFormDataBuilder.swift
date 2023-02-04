@@ -116,7 +116,7 @@ extension Data {
     mutating func appendString(_ string: String) throws {
         guard let data: Data = string.data(using: .utf8) else {
             let error: JSONEncoderError = .init(.failedToEncode)
-            VCoreLog(error, "Failed to encode `String` \(string) as `Data`")
+            VCoreLogError(error, "Failed to encode `String` \(string) as `Data`")
             throw error
         }
         

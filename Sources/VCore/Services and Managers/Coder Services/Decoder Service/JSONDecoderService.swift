@@ -35,13 +35,13 @@ public struct JSONDecoderService {
             
         } catch let _error {
             let error: JSONDecoderError = .init(.failedToDecode)
-            VCoreLog(error, _error)
+            VCoreLogError(error, _error)
             throw error
         }
         
         guard let json: [String: Any?] = jsonObject as? [String: Any?] else {
             let error: JSONDecoderError = .init(.failedToCast)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
         
@@ -59,13 +59,13 @@ public struct JSONDecoderService {
             
         } catch let _error {
             let error: JSONDecoderError = .init(.failedToDecode)
-            VCoreLog(error, _error)
+            VCoreLogError(error, _error)
             throw error
         }
         
         guard let jsonArray: [[String: Any?]] = jsonObject as? [[String: Any?]] else {
             let error: JSONDecoderError = .init(.failedToCast)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
 
@@ -84,7 +84,7 @@ public struct JSONDecoderService {
             
         } catch let _error {
             let error: JSONDecoderError = .init(.failedToDecode)
-            VCoreLog(error, _error)
+            VCoreLogError(error, _error)
             throw error
         }
     }
@@ -102,7 +102,7 @@ public struct JSONDecoderService {
             
         } catch let _error {
             let error: JSONDecoderError = .init(.failedToEncode)
-            VCoreLog(error, _error)
+            VCoreLogError(error, _error)
             throw error
         }
         
@@ -112,7 +112,7 @@ public struct JSONDecoderService {
             
         } catch /*let _error*/ { // Logged internally
             let error: JSONDecoderError = .init(.failedToDecode)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
         
@@ -132,7 +132,7 @@ public struct JSONDecoderService {
             
         } catch let _error {
             let error: JSONDecoderError = .init(.failedToEncode)
-            VCoreLog(error, _error)
+            VCoreLogError(error, _error)
             throw error
         }
         
@@ -142,7 +142,7 @@ public struct JSONDecoderService {
             
         } catch /*let _error*/ { // Logged internally
             let error: JSONDecoderError = .init(.failedToDecode)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
         

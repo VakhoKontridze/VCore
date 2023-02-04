@@ -52,7 +52,7 @@ public struct MultipartFormDataAuthorizedRequestHeaders: Encodable {
             try container.encode(authorization, forKey: .authorization)
             
         } catch {
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
     }

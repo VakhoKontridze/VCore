@@ -1,5 +1,5 @@
 //
-//  VCoreLog.swift
+//  VCoreLogError.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11.09.22.
@@ -7,12 +7,12 @@
 
 import Foundation
 
-// MARK: - V Core Log
+// MARK: - V Core Log Error
 /// Logs an error message to the Apple System Log facility.
 ///
-///     VCoreLog(error)
+///     VCoreLogError(error)
 ///
-public func VCoreLog(
+public func VCoreLogError(
     _ items: Any...,
     file: String = #file,
     line: Int = #line,
@@ -46,5 +46,5 @@ public func VCoreLog(
     
     let file: String = file.components(separatedBy: "/").last ?? file
     
-    NSLog("[VCore] Error has occurred in \(function) in \(file)(\(line)): \(description)")
+    NSLog("[VCore] Error in \(function) in \(file)(\(line)): \(description)")
 }

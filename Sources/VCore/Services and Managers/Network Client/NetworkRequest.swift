@@ -75,7 +75,7 @@ public struct NetworkRequest {
             
             guard let description: String = .init(unwrappedDescribing: value) else {
                 let error: NetworkClientError = .init(.invalidQueryParameters)
-                VCoreLog(error, "\(value) cannot be encoded as a query parameter")
+                VCoreLogError(error, "\(value) cannot be encoded as a query parameter")
                 throw error
             }
             
@@ -94,7 +94,7 @@ public struct NetworkRequest {
             
         } catch /*let _error*/ { // Logged internally
             let error: NetworkClientError = .init(.invalidQueryParameters)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
         
@@ -111,7 +111,7 @@ public struct NetworkRequest {
             
             guard let description: String = .init(unwrappedDescribing: value) else {
                 let error: NetworkClientError = .init(.invalidHeaders)
-                VCoreLog(error, "\(value) cannot be encoded as a header parameter")
+                VCoreLogError(error, "\(value) cannot be encoded as a header parameter")
                 throw error
             }
             
@@ -130,7 +130,7 @@ public struct NetworkRequest {
             
         } catch /*let _error*/ { // Logged internally
             let error: NetworkClientError = .init(.invalidHeaders)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
         
@@ -155,7 +155,7 @@ public struct NetworkRequest {
             
         } catch /*let _error*/ { // Logged internally
             let error: NetworkClientError = .init(.invalidBody)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
     }
@@ -169,7 +169,7 @@ public struct NetworkRequest {
 
         } catch /*let _error*/ { // Logged internally
             let error: NetworkClientError = .init(.invalidBody)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
     }
@@ -206,7 +206,7 @@ extension URL {
         
         guard var urlComponents: URLComponents = .init(string: endpoint) else {
             let error: NetworkClientError = .init(.invalidEndpoint)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
         
@@ -214,7 +214,7 @@ extension URL {
         
         guard let url: URL = urlComponents.url else {
             let error: NetworkClientError = .init(.invalidEndpoint)
-            VCoreLog(error)
+            VCoreLogError(error)
             throw error
         }
         

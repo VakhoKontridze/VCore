@@ -24,6 +24,11 @@ Extensions
 - `UIImage.compressed(quality:)` is renamed to `UIImage.jpegCompressed(quality:)`
 - `Array.compactMapNonEmpty(_:)` and `Array.compactMapNonNilNonEmpty(_:)` are removed due to ambiguous API
 
+Global Functions
+
+- `VCoreLogWarning(_:file:line:function)` method is added
+- `VCoreLog(_:file:line:function)` is renamed to `VCoreLogError(_:file:line:function)`
+
 API
 
 - `VCoreLocalizationService` is renamed to `VCoreLocalizationManager`
