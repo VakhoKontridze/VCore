@@ -82,5 +82,5 @@ public actor AtomicInteger {
 ///     }
 ///
 @globalActor public final class GlobalAtomicInteger {
-    public static var shared: AtomicInteger = .init()
+    public static let shared: AtomicInteger = .init()
 }
