@@ -84,7 +84,7 @@ func fetchData() async {
 
 #### Multipart Form Data Builder
 
-`MultipartFormDataBuilder` with DSL API:
+`MultipartFormDataBuilder` with a DSL API:
 
 ```swift
 do {
@@ -129,23 +129,9 @@ do {
 }
 ```
 
-#### Keychain Service:
-
-`KeychainService` that supports custom queries and proeprty wrappers:
-
-```swift
-KeychainService.default.get(key: "SomeKey")
-KeychainService.default.set(key: "SomeKey", data: data)
-KeychainService.default.delete(key: "SomeKey")
-```
-
-```swift
-@KeychainStorage("AccessToken") var accessToken: String?
-```
-
 #### Localization Manager
 
-`LocaliationManager` that manages localization without interacting with raw `String`s:
+`LocaliationManager` that manages localizations without interacting with raw `String`s:
 
 ```swift
 extension Locale {
@@ -165,7 +151,21 @@ LocalizationManager.shared.setCurrentLocale(
 )
 ```
 
-#### Various Helpful Decalrations
+#### Keychain Service:
+
+`KeychainService` that supports custom queries and property wrappers:
+
+```swift
+KeychainService.default.get(key: "SomeKey")
+KeychainService.default.set(key: "SomeKey", data: data)
+KeychainService.default.delete(key: "SomeKey")
+```
+
+```swift
+@KeychainStorage("AccessToken") var accessToken: String?
+```
+
+#### Various Helpful Declarations
 
 `KeyPathInitializableEnumeration` that allows for initialization of an `enum` with a `KeyPath`:
 
@@ -185,7 +185,12 @@ enum SomeEnum: KeyPathInitializableEnumeration {
 let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
 ```
 
-#### Varius UIKit Views/ViewControllers
+`DigitalTimeFormatter` with customizable configurations:
+
+let formatter: DigitalTimeFormatter = .init()
+formatter.string(from: 905047.6) // "10:11:24:08"
+
+#### Various UIKit Views/ViewControllers
 
 `KeyboardResponsiveUIViewController` that handles keyboard notifications:
 
@@ -290,7 +295,7 @@ var body: some View {
 Conditional `ViewModifiers`:
 
 ```swift
-let isRed: Bool = true
+private let isRed: Bool = true
 
 var body: some View {
     Text("Lorem Ipsum")
