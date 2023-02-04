@@ -114,6 +114,20 @@ extension Date {
     }
 }
 
+// MARK: - Extensions UI Kit
+#if canImport(UIKit)
+
+import UIKit
+
+extension UIImage {
+    @available(*, deprecated, renamed: "jpegCompressed")
+    public func compressed(quality: CGFloat) -> UIImage? {
+        jpegCompressed(quality: quality)
+    }
+}
+
+#endif
+
 // MARK: - Extensions - Swift UI
 extension View {
     @available(*, deprecated, message: "Use method without flag argument name")

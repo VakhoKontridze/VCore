@@ -14,9 +14,9 @@ extension UIImage {
     /// Returns `UIImage` compressed with specified quality.
     ///
     ///     let image: UIImage = .init(named: "SomeImage")!
-    ///     let compressedImage: UIImage? = image.compressed(quality: 0.75)
+    ///     let compressedImage: UIImage? = image.jpegCompressed(quality: 0.75)
     ///
-    public func compressed(quality: CGFloat) -> UIImage? {
+    public func jpegCompressed(quality: CGFloat) -> UIImage? {
         jpegData(compressionQuality: quality).flatMap { .init(data: $0) }
     }
 }

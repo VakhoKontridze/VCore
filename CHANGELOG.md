@@ -20,6 +20,7 @@ Extensions
 - `Locale.displayName(forKey:)` method is added
 - `Locale.isEquivalent(to:)` method is added
 - `Optional` comparison methods are added
+- `UIImage.compressed(quality:)` is renamed to `UIImage.jpegCompressed(quality:)`
 
 API
 
