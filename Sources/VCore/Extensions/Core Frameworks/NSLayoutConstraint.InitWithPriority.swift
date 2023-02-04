@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - NS Layout Constraint Init with Priority
+// MARK: - Layout Constraint Init with Priority
 extension NSLayoutConstraint {
     /// Initializes `NSLayoutConstraint` with all parameters, plus `UILayoutPriority`.
     ///

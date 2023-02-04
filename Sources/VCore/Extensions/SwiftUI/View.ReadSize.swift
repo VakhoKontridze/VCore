@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Read View Size
+// MARK: - View Read Size
 extension View {
     /// Reads `View` size and calls an on-change block.
     ///
