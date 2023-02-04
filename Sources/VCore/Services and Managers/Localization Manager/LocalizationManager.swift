@@ -135,7 +135,7 @@ public final class LocalizationManager {
             currentLocale = locale
             setCurrentAppLocale(locale)
 
-            bundles?.forEach { replaceLocalizationTable(toLocale: locale, inBundle: $0) }
+            bundles?.forEach { LocalizationTableOverridingBundle.overrideTable(toLocale: locale, inBundle: $0) }
             
             NotificationCenter.default.post(name: Self.currentLocaleDidChangeNotification, object: self, userInfo: nil)
         }
@@ -238,24 +238,6 @@ public final class LocalizationManager {
             validateIsAdded(locale),
             "Localization `\(locale.identifier)` is not added to `LocalizationManager`"
         )
-    }
-
-    // MARK: Replacing Localization Table
-    private func replaceLocalizationTable(
-        toLocale locale: Locale,
-        inBundle bundle: Bundle
-    ) {
-        guard
-            let bundleIdentifier: String = bundle.bundleIdentifier,
-            let path: String =
-                bundle.path(forResource: locale.identifier, ofType: "lproj") ??
-                bundle.path(forResource: locale.languageCode, ofType: "lproj") // Just in case "en_US" is passed, but file is called "en"
-        else {
-            return
-        }
-
-        _ = object_setClass(bundle, LocalizationTableReplacingBundle.self)
-        LocalizationTableReplacingBundle.localizationTablePaths[bundleIdentifier] = path
     }
 }
 
