@@ -52,9 +52,9 @@ Package incudes folder `Extra`, which contains:
 
 - Objects and methods that cannot be included in the package as they require additional customization or access to `AppDelegate`/`SceneDelegate`.
 
-Project includes folder `Documentations`, which contains:
+Project includes folder `Documentation`, which contains:
 
-- Documentations and demo apps of UIKit/SwiftUI architectures
+- Documentation and demo apps of UIKit/SwiftUI architectures
 
 - Documentation of CLEAN architecture
 
@@ -62,7 +62,7 @@ Project includes folder `Documentations`, which contains:
 
 #### Network Client
 
-`NetworkClient` with customizable request, responses, and return types:
+`NetworkClient` with customizable requests, responses, and return types:
 
 ```swift
 func fetchData() async {
@@ -82,9 +82,9 @@ func fetchData() async {
 }
 ```
 
-#### Multipart Form Data Builder
+#### Multipart/Form-Data Builder
 
-`MultipartFormDataBuilder` with a DSL API:
+`MultipartFormDataBuilder` with a `Dictionary`-based file API:
 
 ```swift
 do {
