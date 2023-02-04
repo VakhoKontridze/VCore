@@ -29,7 +29,7 @@ import Foundation
 ///
 /// then the following example performs proper processing.
 /// Therefore, the purpose of response processing is not sacrificing `Decodable` protocol for entities,
-/// that may be nested under `"data"` in response `JSON`;
+/// that may be nested under `data` in response `JSON`;
 /// also, retrieving error codes and messages independently from the entity.
 ///
 ///     extension NetworkClient {

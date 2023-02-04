@@ -60,7 +60,7 @@ extension Optional where Wrapped == Any {
     ///
     /// If type is `Char`, `true` is returned if `wholeNumberValue` is non-zero.
     ///
-    /// If type is `String`, `true` is returned if value is `"1"`, `"true"`, `"t"`, `"yes"`, or`"y"`.
+    /// If type is `String`, `true` is returned if value is "1", "true", `t`, `yes`, or`y`.
     public var toBool: Bool? {
         switch self {
         case let int as Int: return int != 0
