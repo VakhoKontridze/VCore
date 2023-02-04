@@ -23,4 +23,13 @@ extension Locale {
         return NSLocale(localeIdentifier: currentLocaleID)
             .displayName(forKey: key, value: identifier)
     }
+    
+    /// Returns the display name for `identifier` in native localization.
+    ///
+    ///     Locale(identifier: "es").displayNameNative // "Español"
+    ///
+    public var displayNameNative: String? {
+        NSLocale(localeIdentifier: identifier)
+            .displayName(forKey: .identifier, value: identifier)
+    }
 }
