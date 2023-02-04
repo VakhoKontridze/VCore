@@ -28,35 +28,26 @@ import Foundation
 ///         replaceLocalizationTableInBundles: [.main]
 ///     )
 ///
-/// If you wish to enumerate localizations within your app, there are convenient configuration methods,
-/// if you make use of `LocalizationManagerLocalizationProvider` `protocol`:
+/// It's recommended that you do not enumerate localizations just to be able to use switch-case.
+/// Enumerating will force you to declare an identifier or a `RawValue`.
+/// But `LocalizationManager` works on equivalence principle, where "en" and "en-US" are equivalent, if `Locale.current.regionCode.
+/// Use the following approach instead of switch-case:
 ///
-///     enum Language: LocalizationManagerLocalizationProvider {
-///         case english
-///         case english_uk
-///         case spanish
-///
-///         static var `default`: Self { .english }
-///
-///         var id: String {
-///             switch self {
-///             case .english: return "en"
-///             case .english_uk: return "en-GB"
-///             case .spanish: return "es"
-///             }
-///         }
+///     extension Locale {
+///         static var english: Self { .init(identifier: "en") }
+///         static var english_uk: Self { .init(identifier: "en-GB") }
+///         static var spanish: Self { .init(identifier: "es") }
 ///     }
 ///
-///     LocalizationManager.shared.addLocaleAndSetDefaultLocale(
-///         fromLocalizationProvider: Language.self
-///     )
-///
-/// Use the following method to change current `Locale`:
-///
-///     LocalizationManager.shared.setCurrentLocale(
-///         fromLocalization: Language.english,
-///         replaceLocalizationTableInBundles: [.main]
-///     )
+///     if LocalizationManager.shared.currentLocale.isEquivalent(to: .english) {
+///         ...
+///     } else if LocalizationManager.shared.currentLocale.isEquivalent(to: .english_uk) {
+///         ...
+///     } else if LocalizationManager.shared.currentLocale.isEquivalent(to: .spanish) {
+///         ...
+///     } else {
+///         fatalError()
+///     }
 ///
 /// When setting current `Locale`, optionally, you can pass `Bundle`s in `replaceLocalizationTableInBundles` argument
 /// to replace localization table without having to restart the app.
@@ -71,6 +62,11 @@ public final class LocalizationManager {
 
     // MARK: Properties - Locales
     /// Current `Locale`.
+    ///
+    /// It's important to keep in mind what differentiates `LocalizationManager.shared.currentLocale`
+    /// and `Locale.current`.
+    /// `LocalizationManager.shared.currentLocale` is `Locale` associated with the language either set through this object,or picker from `iOS` settings.
+    /// While `Locale.current` is `Locale` region from user's settings.
     ///
     /// To set property, refer to `setCurrentLocale(to:replaceLocalizationTableInBundles)` method.
     private(set) public lazy var currentLocale: Locale = getCurrentAppLocale()
@@ -186,33 +182,6 @@ public final class LocalizationManager {
         assertIsAdded(locale)
 
         _defaultLocale = locale
-    }
-    
-    // MARK: Configuration - Localization Manager Locale Provider
-    /// Adds `Array` of `Locale`s and sets a default `Locale` according to a data source that conforms to `LocalizationManagerLocalizationProvider`.
-    ///
-    /// If `Locale`s are not already added to `Bundle.main`, app will crash.
-    ///
-    /// If `Locale`s are not already added to `LocalizationManager`, app will crash.
-    public func addLocaleAndSetDefaultLocale<T>(
-        fromLocalizationProvider localizationProvider: T.Type
-    ) where T: LocalizationManagerLocalizationProvider {
-        addLocales(localizationProvider.allCases.map { $0.toLocale() })
-        setDefaultLocale(to: localizationProvider.default.toLocale())
-    }
-    
-    /// Sets current `Locale` from `LocalizationManagerLocalizationProvider`.
-    ///
-    /// For additional info regarding `replaceLocalizationTableInBundles`, refer
-    /// to `setCurrentLocale(to:replaceLocalizationTableInBundles)`.
-    public func setCurrentLocale<T>(
-        fromLocalization localization: T,
-        replaceLocalizationTableInBundles bundles: [Bundle]? = nil
-    ) where T: LocalizationManagerLocalizationProvider {
-        setCurrentLocale(
-            to: localization.toLocale(),
-            replaceLocalizationTableInBundles: bundles
-        )
     }
 
     // MARK: Bundle, Preferred, Current, and App Locales
