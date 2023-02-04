@@ -4,7 +4,8 @@
 
 Services and Managers
 
-- `LocalizationService` is removed from `Extra`, and added to package as `LocalizationManager` 
+- `LocalizationService` is removed from `Extra`, and added to package as `LocalizationManager`
+- `MultiPartFormDataBuilder` is renamed to `MultipartFormDataBuilder` 
 
 Views
 

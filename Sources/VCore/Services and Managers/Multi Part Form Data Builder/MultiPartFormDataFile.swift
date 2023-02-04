@@ -1,5 +1,5 @@
 //
-//  MultiPartFormDataFile.swift
+//  MultipartFormDataFile.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/20/21.
@@ -7,36 +7,36 @@
 
 import Foundation
 
-// MARK: - Any Multi Part Form Data File
-/// Type that can be passed to `MultiPartFormDataBuilder`.
+// MARK: - Any Multipart Form Data File
+/// Type that can be passed to `MultipartFormDataBuilder`.
 ///
-/// While not a non-nominal type, `AnyMultiPartFormDataFile` mimics `Any`.
+/// While not a non-nominal type, `AnyMultipartFormDataFile` mimics `Any`.
 ///
-/// `MultiPartFormDataFile`, `Dictionary` with a value of `AnyMultiPartFormDataFile`, and array of `AnyMultiPartFormDataFile` all conform to this protocol.
-/// This allows `MultiPartFormDataBuilder` to effectively send a single item, dictionary, array, combination, or a nested structure of each other.
+/// `MultipartFormDataFile`, `Dictionary` with a value of `AnyMultipartFormDataFile`, and array of `AnyMultipartFormDataFile` all conform to this protocol.
+/// This allows `MultipartFormDataBuilder` to effectively send a single item, dictionary, array, combination, or a nested structure of each other.
 ///
 /// Files passed to `MultiParFormDataBuilder` via dictionary will have joined names,
 /// while those passed via array will be enumerated using indexes.
 ///
-///     let files: [String: (some AnyMultiPartFormDataFile)?] = [
-///         "main_image": MultiPartFormDataFile(mimeType: "image/jpeg", data: mainImageData),
+///     let files: [String: (some AnyMultipartFormDataFile)?] = [
+///         "main_image": MultipartFormDataFile(mimeType: "image/jpeg", data: mainImageData),
 ///
 ///         "gallery": [
-///             "thumbnail": MultiPartFormDataFile(mimeType: "image/jpeg", data: thumbnailData),
+///             "thumbnail": MultipartFormDataFile(mimeType: "image/jpeg", data: thumbnailData),
 ///
 ///             "small_images": [
-///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: smallImage1Data),
-///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: smallImage2Data),
+///                 MultipartFormDataFile(mimeType: "image/jpeg", data: smallImage1Data),
+///                 MultipartFormDataFile(mimeType: "image/jpeg", data: smallImage2Data),
 ///             ],
 ///
 ///             "large_images": [
-///                 MultiPartFormDataFile(filename: "large-image-1.jpg", mimeType: "image/jpeg", data: largeImage1Data),
-///                 MultiPartFormDataFile(filename: "large-image-2.jpg", mimeType: "image/jpeg", data: largeImage2Data),
+///                 MultipartFormDataFile(filename: "large-image-1.jpg", mimeType: "image/jpeg", data: largeImage1Data),
+///                 MultipartFormDataFile(filename: "large-image-2.jpg", mimeType: "image/jpeg", data: largeImage2Data),
 ///             ]
 ///         ]
 ///     ]
 ///
-/// Name and filenames generated once `MultiPartFormDataBuilder` executes `build` method are:
+/// Name and filenames generated once `MultipartFormDataBuilder` executes `build` method are:
 ///
 ///     ... name=\"main_image\"; filename=\"main_image.jpeg\" ...
 ///     ... name=\"gallery[thumbnail]\"; filename=\"gallery[thumbnail].jpeg\" ...
@@ -45,45 +45,45 @@ import Foundation
 ///     ... name=\"gallery[large_images][0]\"; filename=\"large-image-1.jpg\" ...
 ///     ... name=\"gallery[large_images][1]\"; filename=\"large-image-2.jpg\" ...
 ///
-/// For additional info, refer to `MultiPartFormDataBuilder`.
-public protocol AnyMultiPartFormDataFile {}
+/// For additional info, refer to `MultipartFormDataBuilder`.
+public protocol AnyMultipartFormDataFile {}
 
-extension MultiPartFormDataFile: AnyMultiPartFormDataFile {}
+extension MultipartFormDataFile: AnyMultipartFormDataFile {}
 
-extension Optional: AnyMultiPartFormDataFile where Wrapped == AnyMultiPartFormDataFile {}
+extension Optional: AnyMultipartFormDataFile where Wrapped == AnyMultipartFormDataFile {}
 
-extension Array: AnyMultiPartFormDataFile where Element == Optional<AnyMultiPartFormDataFile> {}
+extension Array: AnyMultipartFormDataFile where Element == Optional<AnyMultipartFormDataFile> {}
 
-extension Dictionary: AnyMultiPartFormDataFile where Key == String, Value == Optional<AnyMultiPartFormDataFile> {}
+extension Dictionary: AnyMultipartFormDataFile where Key == String, Value == Optional<AnyMultipartFormDataFile> {}
  
-// MARK: - Multi Part Form Data File
-/// Building block of objects conforming to `AnyMultiPartFormDataFile`.
+// MARK: - Multipart Form Data File
+/// Building block of objects conforming to `AnyMultipartFormDataFile`.
 ///
 /// Can be placed in `Dictionary` or `Array`.
 ///
-///     let files: [String: (some AnyMultiPartFormDataFile)?] = [
-///         "main_image": MultiPartFormDataFile(mimeType: "image/jpeg", data: mainImageData),
+///     let files: [String: (some AnyMultipartFormDataFile)?] = [
+///         "main_image": MultipartFormDataFile(mimeType: "image/jpeg", data: mainImageData),
 ///
 ///         "gallery": [
-///             "thumbnail": MultiPartFormDataFile(mimeType: "image/jpeg", data: thumbnailData),
+///             "thumbnail": MultipartFormDataFile(mimeType: "image/jpeg", data: thumbnailData),
 ///
 ///             "small_images": [
-///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: smallImage1Data),
-///                 MultiPartFormDataFile(mimeType: "image/jpeg", data: smallImage2Data),
+///                 MultipartFormDataFile(mimeType: "image/jpeg", data: smallImage1Data),
+///                 MultipartFormDataFile(mimeType: "image/jpeg", data: smallImage2Data),
 ///             ],
 ///
 ///             "large_images": [
-///                 MultiPartFormDataFile(filename: "large-image-1.jpg", mimeType: "image/jpeg", data: largeImage1Data),
-///                 MultiPartFormDataFile(filename: "large-image-2.jpg", mimeType: "image/jpeg", data: largeImage2Data),
+///                 MultipartFormDataFile(filename: "large-image-1.jpg", mimeType: "image/jpeg", data: largeImage1Data),
+///                 MultipartFormDataFile(filename: "large-image-2.jpg", mimeType: "image/jpeg", data: largeImage2Data),
 ///             ]
 ///         ]
 ///     ]
 ///
-public struct MultiPartFormDataFile {
+public struct MultipartFormDataFile {
     // MARK: Properties
     /// File name.
     ///
-    /// If `nil`, `String` passed to `[String: (some AnyMultiPartFormDataFile)?]` `Dictionary` will be used.
+    /// If `nil`, `String` passed to `[String: (some AnyMultipartFormDataFile)?]` `Dictionary` will be used.
     /// With an explicit `filename`, a mime type is not automatically appended.
     public var filename: String?
     
@@ -94,7 +94,7 @@ public struct MultiPartFormDataFile {
     public var data: Data?
     
     // MARK: Initializers
-    /// Initializes `MultiPartFormDataFile`.
+    /// Initializes `MultipartFormDataFile`.
     public init(
         filename: String? = nil,
         mimeType: String,
@@ -106,8 +106,8 @@ public struct MultiPartFormDataFile {
     }
 }
 
-// MARK: - _ Multi Part Form Data File
-struct _MultiPartFormDataFile {
+// MARK: - _ Multipart Form Data File
+struct _MultipartFormDataFile {
     // MARK: Properties
     let name: String
     let filename: String
@@ -117,7 +117,7 @@ struct _MultiPartFormDataFile {
     // MARK: Initializers
     init(
         name: String,
-        file: MultiPartFormDataFile
+        file: MultipartFormDataFile
     ) {
         self.name = name
         self.filename = {

@@ -92,14 +92,14 @@ do {
         "key": "value"
     ]
 
-    let files: [String: (some AnyMultiPartFormDataFile)?] = [
-        "profile": MultiPartFormDataFile(
+    let files: [String: (some AnyMultipartFormDataFile)?] = [
+        "profile": MultipartFormDataFile(
             mimeType: "image/jpeg",
             data: profileImage?.jpegData(compressionQuality: 0.25)
         ),
 
         "gallery": galleryImages?.enumerated().compactMap { (index, image) in
-            MultiPartFormDataFile(
+            MultipartFormDataFile(
                 filename: "IMG_\(index).jpg",
                 mimeType: "image/jpeg",
                 data: image?.jpegData(compressionQuality: 0.25)
@@ -107,14 +107,14 @@ do {
         }
     ]
 
-    let (boundary, data): (String, Data) = try MultiPartFormDataBuilder().build(
+    let (boundary, data): (String, Data) = try MultipartFormDataBuilder().build(
         json: json,
         files: files
     )
 
     var request: NetworkRequest = .init(url: "https://somewebsite.com/api/some_endpoint")
     request.method = .POST
-    try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
+    try request.addHeaders(encodable: MultipartFormDataAuthorizedRequestHeaders(
         boundary: boundary,
         token: "token"
     ))
@@ -294,7 +294,7 @@ var body: some View {
 }
 ```
 
-Conditional `ViewModifiers`:
+Conditional `ViewModifier`s:
 
 ```swift
 private let isRed: Bool = true

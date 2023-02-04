@@ -1,5 +1,5 @@
 //
-//  MultiPartFormDataRequestHeaders.swift
+//  MultipartFormDataRequestHeaders.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 28.04.22.
@@ -7,17 +7,17 @@
 
 import Foundation
 
-// MARK: - Multi Part Form Data Request Headers
+// MARK: - Multipart Form Data Request Headers
 /// JSON request headers that pass `application/json` as `accept` and `multipart/form-data; boundary=\(boundary)` as `contentType`.
 ///
-/// Can be used in `NetworkClient` with `MultiPartFormDataBuilder`.
+/// Can be used in `NetworkClient` with `MultipartFormDataBuilder`.
 ///
 ///     var request: NetworkRequest = .init(url: ...)
-///     try request.addHeaders(encodable: MultiPartFormDataRequestHeaders(
+///     try request.addHeaders(encodable: MultipartFormDataRequestHeaders(
 ///         boundary: boundary
 ///     ))
 ///
-public struct MultiPartFormDataRequestHeaders: Encodable {
+public struct MultipartFormDataRequestHeaders: Encodable {
     // MARK: Properties
     /// Accept. Defaults to `application/json`.
     public let accept: String = "application/json"
@@ -26,7 +26,7 @@ public struct MultiPartFormDataRequestHeaders: Encodable {
     public let contentType: String
     
     // MARK: Initializers
-    /// Initializes `MultiPartFormDataRequestHeaders` with boundary.
+    /// Initializes `MultipartFormDataRequestHeaders` with boundary.
     public init(boundary: String) {
         self.contentType = "multipart/form-data; boundary=\(boundary)"
     }

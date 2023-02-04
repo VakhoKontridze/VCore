@@ -7,12 +7,12 @@
 
 import Foundation
 
-// MARK: - Multi Part Form Data Builder
-extension MultiPartFormDataBuilder {
+// MARK: - Multipart Form Data Builder
+extension MultipartFormDataBuilder {
     @available(*, unavailable, message: "Use empty init with new `build` method")
     public init(
         json: [String: Any?],
-        files: [String: (some AnyMultiPartFormDataFile)?]
+        files: [String: (some AnyMultipartFormDataFile)?]
     ) {
         fatalError()
     }
@@ -22,6 +22,21 @@ extension MultiPartFormDataBuilder {
         fatalError()
     }
 }
+
+@available(*, deprecated, renamed: "MultipartFormDataAuthorizedRequestHeaders")
+public typealias MultiPartFormDataAuthorizedRequestHeaders = MultipartFormDataAuthorizedRequestHeaders
+
+@available(*, deprecated, renamed: "MultipartFormDataRequestHeaders")
+public typealias MultiPartFormDataRequestHeaders = MultipartFormDataRequestHeaders
+
+@available(*, deprecated, renamed: "MultipartFormDataBuilder")
+public typealias MultiPartFormDataBuilder = MultipartFormDataBuilder
+
+@available(*, deprecated, renamed: "AnyMultiPartFormDataFile")
+public typealias AnyMultiPartFormDataFile = AnyMultipartFormDataFile
+
+@available(*, deprecated, renamed: "MultiPartFormDataFile")
+public typealias MultiPartFormDataFile = MultipartFormDataFile
 
 // MARK: - Keychain Service
 extension KeychainService {

@@ -1,5 +1,5 @@
 //
-//  MultiPartFormDataBuilder.swift
+//  MultipartFormDataBuilder.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/20/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Multi Part Form Data Builder
+// MARK: - Multipart Form Data Builder
 /// Builder that generates boundary `String` and generated `Data` for network requests.
 ///
 ///     do {
@@ -15,14 +15,14 @@ import Foundation
 ///             "key": "value"
 ///         ]
 ///
-///         let files: [String: (some AnyMultiPartFormDataFile)?] = [
-///             "profile": MultiPartFormDataFile(
+///         let files: [String: (some AnyMultipartFormDataFile)?] = [
+///             "profile": MultipartFormDataFile(
 ///                 mimeType: "image/jpeg",
 ///                 data: profileImage?.jpegData(compressionQuality: 0.25)
 ///             ),
 ///
 ///             "gallery": galleryImages?.enumerated().compactMap { (index, image) in
-///                 MultiPartFormDataFile(
+///                 MultipartFormDataFile(
 ///                     filename: "IMG_\(index).jpg",
 ///                     mimeType: "image/jpeg",
 ///                     data: image?.jpegData(compressionQuality: 0.25)
@@ -30,14 +30,14 @@ import Foundation
 ///             }
 ///         ]
 ///
-///         let (boundary, data): (String, Data) = try MultiPartFormDataBuilder().build(
+///         let (boundary, data): (String, Data) = try MultipartFormDataBuilder().build(
 ///             json: json,
 ///             files: files
 ///         )
 ///
 ///         var request: NetworkRequest = .init(url: "https://somewebsite.com/api/some_endpoint")
 ///         request.method = .POST
-///         try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
+///         try request.addHeaders(encodable: MultipartFormDataAuthorizedRequestHeaders(
 ///             boundary: boundary,
 ///             token: "token"
 ///         ))
@@ -51,7 +51,7 @@ import Foundation
 ///         print(error.localizedDescription)
 ///     }
 ///
-public struct MultiPartFormDataBuilder {
+public struct MultipartFormDataBuilder {
     // MARK: Properties
     /// Boundary.
     ///
@@ -61,7 +61,7 @@ public struct MultiPartFormDataBuilder {
     static var lineBreak: String { "\r\n" }
     
     // MARK: Initializers
-    /// Initializes `MultiPartFormDataBuilder` with boundary.
+    /// Initializes `MultipartFormDataBuilder` with boundary.
     ///
     /// By default, an `UUID` will be used as a boundary.
     public init(boundary: String = UUID().uuidString) {
@@ -72,7 +72,7 @@ public struct MultiPartFormDataBuilder {
     /// Builds and returns boundary `String` and `Data` that can be sent using network request.
     public func build(
         json: [String: Any?],
-        files: [String: (some AnyMultiPartFormDataFile)?]
+        files: [String: (some AnyMultipartFormDataFile)?]
     ) throws -> (boundary: String, data: Data) {
         var data: Data = .init()
         data.append(try JSONBuilder(boundary: boundary).build(json: json)) // Logged internally
@@ -85,7 +85,7 @@ public struct MultiPartFormDataBuilder {
     /// Builds and returns boundary `String` and `Data` that can be sent using network request.
     public func build(
         data: Data,
-        files: [String: (some AnyMultiPartFormDataFile)?],
+        files: [String: (some AnyMultipartFormDataFile)?],
         optionsDataToJSON: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
         let json: [String: Any?] = try JSONDecoderService().json( // Logged internally
@@ -99,7 +99,7 @@ public struct MultiPartFormDataBuilder {
     /// Builds and returns boundary `String` and `Data` that can be sent using network request.
     public func build(
         encodable: some Encodable,
-        files: [String: (some AnyMultiPartFormDataFile)?],
+        files: [String: (some AnyMultipartFormDataFile)?],
         optionsDataToJSON: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
         let json: [String: Any?] = try JSONEncoderService().json( // Logged internally

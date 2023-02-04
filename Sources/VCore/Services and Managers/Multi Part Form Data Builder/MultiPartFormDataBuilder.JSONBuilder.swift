@@ -1,5 +1,5 @@
 //
-//  MultiPartFormDataBuilder.JSONBuilder.swift
+//  MultipartFormDataBuilder.JSONBuilder.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/20/21.
@@ -8,12 +8,12 @@
 import Foundation
 
 // MARK: - JSON Builder
-extension MultiPartFormDataBuilder {
+extension MultipartFormDataBuilder {
     struct JSONBuilder {
         // MARK: Properties
         private let boundary: String
         
-        private var lineBreak: String { MultiPartFormDataBuilder.lineBreak }
+        private var lineBreak: String { MultipartFormDataBuilder.lineBreak }
         
         // MARK: Initializers
         init(

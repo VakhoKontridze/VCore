@@ -1,5 +1,5 @@
 //
-//  MultiPartFormDataBuilderTests.swift
+//  MultipartFormDataBuilderTests.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 15.05.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class MultiPartFormDataBuilderTests: XCTestCase {
+final class MultipartFormDataBuilderTests: XCTestCase {
     // MARK: Test Data
     private let imagePrefix: String = "data:image/jpeg;base64,"
     
@@ -46,14 +46,14 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
             
             #if canImport(UIKit)
             
-            let files: [String: (some AnyMultiPartFormDataFile)?] = [
-                "profile": MultiPartFormDataFile(
+            let files: [String: (some AnyMultipartFormDataFile)?] = [
+                "profile": MultipartFormDataFile(
                     mimeType: "image/jpeg",
                     data: profileImage?.jpegData(compressionQuality: 0.25)
                 ),
                 
                 "gallery": galleryImages?.enumerated().compactMap { (index, image) in
-                    MultiPartFormDataFile(
+                    MultipartFormDataFile(
                         filename: "IMG_\(index).jpg",
                         mimeType: "image/jpeg",
                         data: image?.jpegData(compressionQuality: 0.25)
@@ -63,18 +63,18 @@ final class MultiPartFormDataBuilderTests: XCTestCase {
             
             #else
             
-            let files: [String: (any AnyMultiPartFormDataFile)?] = [:]
+            let files: [String: (any AnyMultipartFormDataFile)?] = [:]
             
             #endif
             
-            let (boundary, data): (String, Data) = try MultiPartFormDataBuilder().build(
+            let (boundary, data): (String, Data) = try MultipartFormDataBuilder().build(
                 encodable: json,
                 files: files
             )
             
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
             request.method = .POST
-            try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
+            try request.addHeaders(encodable: MultipartFormDataAuthorizedRequestHeaders(
                 boundary: boundary,
                 token: "token"
             ))
