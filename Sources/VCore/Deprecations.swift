@@ -32,10 +32,10 @@ public typealias MultiPartFormDataRequestHeaders = MultipartFormDataRequestHeade
 @available(*, deprecated, renamed: "MultipartFormDataBuilder")
 public typealias MultiPartFormDataBuilder = MultipartFormDataBuilder
 
-@available(*, deprecated, renamed: "AnyMultiPartFormDataFile")
+@available(*, deprecated, renamed: "AnyMultipartFormDataFile")
 public typealias AnyMultiPartFormDataFile = AnyMultipartFormDataFile
 
-@available(*, deprecated, renamed: "MultiPartFormDataFile")
+@available(*, deprecated, renamed: "MultipartFormDataFile")
 public typealias MultiPartFormDataFile = MultipartFormDataFile
 
 // MARK: - Keychain Service
