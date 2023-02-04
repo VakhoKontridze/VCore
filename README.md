@@ -187,8 +187,10 @@ let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
 
 `DigitalTimeFormatter` with customizable configurations:
 
+```swift
 let formatter: DigitalTimeFormatter = .init()
 formatter.string(from: 905047.6) // "10:11:24:08"
+```
 
 #### Various UIKit Views/ViewControllers
 
