@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - V Core Localization Manager
-/// Localization service that can be used to localize the package.
+/// Object that manages localization in the package.
 ///
 /// `localizationProvider` in `shared` instance can be set to override the localized values.
 ///
