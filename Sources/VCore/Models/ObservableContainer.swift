@@ -21,10 +21,10 @@ import Foundation
 ///         }
 ///     }
 ///
-public final class ObservableContainer<Value>: ObservableObject {
+open class ObservableContainer<Value>: ObservableObject {
     // MARK: Properties
     /// Wrapped value.
-    @Published public var value: Value
+    @Published open var value: Value
     
     // MARK: Initializers
     /// Initializes `ObservableContainer` with value.

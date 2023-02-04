@@ -10,6 +10,10 @@ Views
 
 - `ViewResettingContainer` is added that allows for view reset on demand
 
+Models
+
+- `ObservableContainer` is now has `open` access level
+
 Extensions
 
 - `String.localized(tableName:bundle:value:comment)` method is added
