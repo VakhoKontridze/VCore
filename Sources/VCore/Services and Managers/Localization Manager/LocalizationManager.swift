@@ -60,7 +60,6 @@ import Foundation
 ///
 /// When setting current `Locale`, optionally, you can pass `Bundle`s in `replaceLocalizationTableInBundles` argument
 /// to replace localization table without having to restart the app.
-/// If current `Locale` is being set when app begins, `nil` value should be passed,.
 ///
 /// However, replacing localization tables doesn't re-launch app, like changing a language does from `iOS` settings.
 /// To achieve this behavior in `UIKit`, replace `rootViewController`.
@@ -121,7 +120,6 @@ public final class LocalizationManager {
     ///
     /// Optionally, you can pass `Bundle`s in `replaceLocalizationTableInBundles` argument
     /// to replace localization table without having to restart the app.
-    /// If current `Locale` is being set when app begins, `nil` value should be passed,.
     ///
     /// However, replacing localization tables doesn't re-launch app, like changing a language does from `iOS` settings.
     /// To achieve this behavior in `UIKit`, replace `rootViewController`.
