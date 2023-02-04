@@ -125,7 +125,7 @@ public final class LocalizationManager {
     /// To achieve this behavior in `UIKit`, replace `rootViewController`.
     /// For `SwiftUI`, refer to and use `ViewResettingContainer`.
     ///
-    /// If `Locale` is not already added to main `Bundle`, app will crash.
+    /// If `Locale` is not already added to `Bundle.main`, app will crash.
     ///
     /// If `Locale` is not already added to `LocalizationManager`, app will crash.
     public func setCurrentLocale(
@@ -148,7 +148,7 @@ public final class LocalizationManager {
     // MARK: Configuration - Locales
     /// Adds `Locale` to `LocalizationManager`.
     ///
-    /// If `Locale` is not already added to main `Bundle`, app will crash.
+    /// If `Locale` is not already added to `Bundle.main`, app will crash.
     public func addLocale(_ locale: Locale) {
         assertIsAddedToBundle(locale)
         guard !validateIsAdded(locale) else { return }
@@ -158,7 +158,7 @@ public final class LocalizationManager {
 
     /// Adds `Array` of `Locale`s to `LocalizationManager`.
     ///
-    /// If `Locale`s are not already added to main `Bundle`, app will crash.
+    /// If `Locale`s are not already added to `Bundle.main`, app will crash.
     public func addLocales(_ locale: [Locale]) {
         locale.forEach { addLocale($0) }
     }
@@ -170,7 +170,7 @@ public final class LocalizationManager {
     /// unless `retrievesDefaultLocaleFromPreferences` is set to `false`.
     /// For additional info, refer to `defaultLocale`.
     ///
-    /// If `Locale` is not already added to main `Bundle`, app will crash.
+    /// If `Locale` is not already added to `Bundle.main`, app will crash.
     ///
     /// If `Locale` is not already added to `LocalizationManager`, app will crash.
     public func setDefaultLocale(to locale: Locale) {
@@ -183,7 +183,7 @@ public final class LocalizationManager {
     // MARK: Configuration - Localization Manager Locale Provider
     /// Adds `Array` of `Locale`s and sets a default `Locale` according to a data source that conforms to `LocalizationManagerLocalizationProvider`.
     ///
-    /// If `Locale`s are not already added to main `Bundle`, app will crash.
+    /// If `Locale`s are not already added to `Bundle.main`, app will crash.
     ///
     /// If `Locale`s are not already added to `LocalizationManager`, app will crash.
     public func addLocaleAndSetDefaultLocale<T>(
@@ -248,7 +248,7 @@ public final class LocalizationManager {
     private func assertIsAddedToBundle(_ locale: Locale) {
         assert(
             bundleLocales.contains(where: { $0.isEquivalent(to: locale) }),
-            "Localization `\(locale.identifier)` is not added to the main Budle"
+            "Localization `\(locale.identifier)` is not added to the `Bundle.main`"
         )
     }
     
