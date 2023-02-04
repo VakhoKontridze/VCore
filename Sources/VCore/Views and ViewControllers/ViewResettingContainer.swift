@@ -75,7 +75,7 @@ public struct ViewResettingContainer<Content>: View where Content: View {
 /// ViewModel placed inside the environment of `ViewResettingContainer`
 /// to trigger view resets on demand.
 ///
-/// For more info, refer to `ViewResettingContainer`.
+/// For additional info, refer to `ViewResettingContainer`.
 @available(iOS 14.0, *)
 @available(macOS 11.0, *)
 @available(tvOS 14.0, *)

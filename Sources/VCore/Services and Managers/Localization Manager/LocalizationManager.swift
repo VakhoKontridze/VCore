@@ -168,7 +168,7 @@ public final class LocalizationManager {
     ///
     /// This `Locale` will not be treated as first-choice default value,
     /// unless `retrievesDefaultLocaleFromPreferences` is set to `false`.
-    /// For more info, refer to `defaultLocale`.
+    /// For additional info, refer to `defaultLocale`.
     ///
     /// If `Locale` is not already added to main `Bundle`, app will crash.
     ///

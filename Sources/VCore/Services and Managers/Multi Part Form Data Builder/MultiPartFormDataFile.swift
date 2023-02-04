@@ -45,7 +45,7 @@ import Foundation
 ///     ... name=\"gallery[large_images][0]\"; filename=\"large-image-1.jpg\" ...
 ///     ... name=\"gallery[large_images][1]\"; filename=\"large-image-2.jpg\" ...
 ///
-/// For additional information, refer to `MultiPartFormDataBuilder`.
+/// For additional info, refer to `MultiPartFormDataBuilder`.
 public protocol AnyMultiPartFormDataFile {}
 
 extension MultiPartFormDataFile: AnyMultiPartFormDataFile {}
