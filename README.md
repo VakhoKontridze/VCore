@@ -5,6 +5,7 @@
 - [Description](#description)
 - [Compatibility](#compatibility)
 - [Structure](#structure)
+- [Showcase](#showcase)
 - [Demo](#demo)
 - [Installation](#installation)
 - [Versioning](#versioning)
@@ -56,6 +57,266 @@ Project includes folder `Documentations`, which contains:
 - Documentations and demo apps of UIKit/SwiftUI architectures
 
 - Documentation of CLEAN architecture
+
+## Showcase
+
+#### Network Client
+
+`NetworkClient` with customizable request, responses, and return types:
+
+```swift
+func fetchData() async {
+    do {
+        var request: NetworkRequest = .init(url: "https://httpbin.org/post")
+        request.method = .POST
+        try request.addHeaders(encodable: JSONRequestHeaders())
+        try request.addBody(json: ["key": "value"])
+
+        let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+
+        print(result["json"]?.toUnwrappedJSON["key"]?.toString ?? "-")
+
+    } catch {
+        print(error.localizedDescription)
+    }
+}
+```
+
+#### Multipart Form Data Builder
+
+`MultipartFormDataBuilder` with DSL API:
+
+```swift
+do {
+    let json: [String: Any?] = [
+        "key": "value"
+    ]
+
+    let files: [String: (some AnyMultiPartFormDataFile)?] = [
+        "profile": MultiPartFormDataFile(
+            mimeType: "image/jpeg",
+            data: profileImage?.jpegData(compressionQuality: 0.25)
+        ),
+
+        "gallery": galleryImages?.enumerated().compactMap { (index, image) in
+            MultiPartFormDataFile(
+                filename: "IMG_\(index).jpg",
+                mimeType: "image/jpeg",
+                data: image?.jpegData(compressionQuality: 0.25)
+            )
+        }
+    ]
+
+    let (boundary, data): (String, Data) = try MultiPartFormDataBuilder().build(
+        json: json,
+        files: files
+    )
+
+    var request: NetworkRequest = .init(url: "https://somewebsite.com/api/some_endpoint")
+    request.method = .POST
+    try request.addHeaders(encodable: MultiPartFormDataAuthorizedRequestHeaders(
+        boundary: boundary,
+        token: "token"
+    ))
+    request.addBody(data: data)
+
+    let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+
+    print(result)
+
+} catch {
+    print(error.localizedDescription)
+}
+```
+
+#### Keychain Service:
+
+`KeychainService` that supports custom queries and proeprty wrappers:
+
+```swift
+KeychainService.default.get(key: "SomeKey")
+KeychainService.default.set(key: "SomeKey", data: data)
+KeychainService.default.delete(key: "SomeKey")
+```
+
+```swift
+@KeychainStorage("AccessToken") var accessToken: String?
+```
+
+#### Localization Manager
+
+`LocaliationManager` that manages localization without interacting with raw `String`s:
+
+```swift
+extension Locale {
+    static var english: Self { .init(identifier: "en") }
+    static var english_uk: Self { .init(identifier: "en-GB") }
+    static var spanish: Self { .init(identifier: "es") }
+}
+
+LocalizationManager.shared.addLocales([.english, .english_uk, .spanish])
+LocalizationManager.shared.setDefaultLocale(to: .english)
+```
+
+```swift
+LocalizationManager.shared.setCurrentLocale(
+    to: .english,
+    replaceLocalizationTableInBundles: [.main]
+)
+```
+
+#### Various Helpful Decalrations
+
+`KeyPathInitializableEnumeration` that allows for initialization of an `enum` with a `KeyPath`:
+
+```swift
+enum SomeEnum: KeyPathInitializableEnumeration {
+    case first
+    case second
+
+    var someProperty: Int {
+        switch self {
+        case .first: return 1
+        case .second: return 2
+        }
+    }
+}
+
+let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
+```
+
+#### Varius UIKit Views/ViewControllers
+
+`KeyboardResponsiveUIViewController` that handles keyboard notifications:
+
+```swift
+final class ViewController: KeyboardResponsiveUIViewController {
+    private let textField: UITextField = { ... }()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(textField)
+
+        NSLayoutConstraint.activate([
+            ...
+        ])
+    }
+
+    override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
+        super.keyboardWillShow(systemKeyboardInfo)
+
+        UIView.animateKeyboardResponsiveness(
+            systemKeyboardInfo: systemKeyboardInfo,
+            animations: { [weak self] in
+                guard let self else { return }
+
+                self.view.superview?.layoutIfNeeded()
+                self.view.bounds.origin.y = -systemKeyboardInfo.frame.size.height
+            }
+        )
+    }
+
+    override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
+        super.keyboardWillHide(systemKeyboardInfo)
+
+        UIView.animateKeyboardResponsiveness(
+            systemKeyboardInfo: systemKeyboardInfo,
+            animations: { [weak self] in
+                guard let self else { return }
+
+                self.view.superview?.layoutIfNeeded()
+                self.view.bounds.origin.y = 0
+            }
+        )
+    }
+}
+```
+
+#### Various SwiftUI Views
+
+`ViewResettingContainer` that allows for a `View` reset on demand:
+
+```swift
+@main struct SomeApp: App {
+    var body: some Scene {
+        WindowGroup(content: {
+            ViewResettingContainer(content: {
+                ContentView()
+            })
+        })
+    }
+}
+
+struct ContentView: View {
+    @EnvironmentObject private var viewResetter: ViewResetter
+
+    var body: some View {
+        ScrollView(content: {
+            Color.red
+                .frame(height: UIScreen.main.bounds.height)
+
+            Button("Reset", action: { viewResetter.trigger() })
+        })
+    }
+}
+```
+
+#### Various Extensions and Global Functions
+
+`Optional` Comparison:
+
+```swift
+let a: Int? = 10
+let b: Int? = nil
+
+a.isOptionalLess(than: b, order: .nilIsLess) // false
+a.isOptionalLess(than: b, order: .nilIsGreater) // true
+```
+
+Reading `View` Size:
+
+```swift
+@State private var size: CGSize = .zero
+
+var body: some View {
+    VStack(content: {
+        Color.accentColor
+            .readSize(onChange: { size = $0 })
+    })
+}
+```
+
+Conditional `ViewModifiers`:
+
+```swift
+let isRed: Bool = true
+
+var body: some View {
+    Text("Lorem Ipsum")
+        .if(isRed, transform: { $0.foregroundColor(.red) })
+}
+```
+
+`String` Contains `CharacterSet` / `String` Contains Only `CharacterSet`:
+
+```swift
+let phoneNumber: String = "+0123456789"
+
+let flag1: Bool = phoneNumber.contains(.decimalDigits) // true
+let flag2: Bool = phoneNumber.contains(only: .decimalDigits) // false
+```
+
+`Locale` Equivalence:
+
+```swift
+let lhs: Locale = .init(identifier: "en")
+let rhs: Locale = .init(identifier: "en-US")
+
+lhs == rhs // false
+
+lhs.isEquivalent(to: rhs) // true, if `Locale.current.regionCode` is "US"
+```
 
 ## Demo
 
