@@ -54,9 +54,11 @@ Package incudes folder `Extra`, which contains:
 
 Project includes folder `Documentation`, which contains:
 
-- Documentation and demo apps of UIKit/SwiftUI architectures
+- Documentation and an example app of UIKit VIPER architecture
 
-- Documentation of CLEAN architecture
+- Documentation and an example app of SwiftUI VIPER architecture
+
+- Documentation of CLEAN gateways
 
 ## Showcase
 
