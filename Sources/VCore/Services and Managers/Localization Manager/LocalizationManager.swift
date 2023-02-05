@@ -54,7 +54,7 @@ import Foundation
 ///
 /// However, replacing localization tables doesn't re-launch app, like changing a language does from `iOS` settings.
 /// To achieve this behavior in `UIKit`, replace `rootViewController`.
-/// For `SwiftUI`, refer to and use `ViewResettingContainer`.
+/// For `SwiftUI` use `ViewResettingContainer` and trigger `View` resets when you change localization.
 public final class LocalizationManager {
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
