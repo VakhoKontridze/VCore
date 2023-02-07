@@ -18,12 +18,12 @@ import Foundation
 ///     formatter.string(from: 0) // "0:00"
 ///     formatter.string(from: 1) // "0:01"
 ///     formatter.string(from: 91) // "1:31"
-///     formatter.string(from: 535.6) // "8:56"
-///     formatter.string(from: 2335.6) // "38:56"
-///     formatter.string(from: 7247.6) // "2:00:48"
-///     formatter.string(from: 51887.6) // "14:24:48"
-///     formatter.string(from: 95047.6) // "1:02:24:08"
-///     formatter.string(from: 905047.6) // "10:11:24:08"
+///     formatter.string(from: 536) // "8:56"
+///     formatter.string(from: 2336) // "38:56"
+///     formatter.string(from: 7248) // "2:00:48"
+///     formatter.string(from: 51888) // "14:24:48"
+///     formatter.string(from: 95048) // "1:02:24:08"
+///     formatter.string(from: 905048) // "10:11:24:08"
 ///     formatter.string(from: 8553600) // "99:00:00:00"
 ///
 public struct DigitalTimeFormatter {
