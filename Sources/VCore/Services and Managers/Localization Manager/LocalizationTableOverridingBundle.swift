@@ -36,9 +36,7 @@ final class LocalizationTableOverridingBundle: Bundle {
     ) {
         guard
             let bundleIdentifier: String = bundle.bundleIdentifier,
-            let path: String =
-                bundle.path(forResource: locale.identifier, ofType: "lproj") ??
-                bundle.path(forResource: locale.languageCode, ofType: "lproj") // Just in case "en_US" is passed, but file is called "en"
+            let path: String = LocalizationManager.findLocalizationTableBundle(bundle: bundle, locale: locale)
         else {
             return
         }

@@ -10,6 +10,9 @@ import Foundation
 // MARK: - String Localized
 extension String {    
     /// Returns localized `String` from the given table and bundle.
+    ///
+    ///     "message".localized()
+    ///
     public func localized(
         tableName: String? = nil,
         bundle: Bundle = .main,

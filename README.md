@@ -133,7 +133,7 @@ do {
 
 #### Localization Manager
 
-`LocaliationManager` that manages localizations without interacting with raw `String`s:
+`LocalizationManager` that manages localizations without interacting with raw `String`s:
 
 ```swift
 extension Locale {
@@ -147,10 +147,7 @@ LocalizationManager.shared.setDefaultLocale(to: .english)
 ```
 
 ```swift
-LocalizationManager.shared.setCurrentLocale(
-    to: .english,
-    replaceLocalizationTableInBundles: [.main]
-)
+LocalizationManager.shared.setCurrentLocale(to: .english)
 ```
 
 #### Keychain Service:
