@@ -66,7 +66,7 @@ open class KeyboardResponsiveUIViewController: UIViewController {
     open var notifiesWhenKeyboardIsAlreadyShownOrHidden: Bool = true
     
     /// Indicates if keyboard is currently shown.
-    open private(set) var keyboardIsShown: Bool = false
+    private(set) open var keyboardIsShown: Bool = false
     
     /// Indicates, if `KeyboardResponsiveViewController` should call
     /// `keyboardWillShow(_:)` and `keyboardWillHide(_:)` methods,
