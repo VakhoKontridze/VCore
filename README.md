@@ -42,7 +42,7 @@ Package files are grouped as:
 
 - ***Extensions***. Global extensions. Methods and properties are grouped by frameworks of origin—`Core Frameworks`, `Foundation`, `SwiftUI`, `UIKit`, and `AppKit` (only for supporting underlying `SwiftUI` types).
 
-- ***Global Functions***. Global functions. For instance, `VCoreLog`.
+- ***Global Functions***. Global functions. For instance, `TODO`.
 
 - ***API***. Objects used for interfacing from you app/package to `VCore`. For instances, `VCoreLocalizationManager`.
 
