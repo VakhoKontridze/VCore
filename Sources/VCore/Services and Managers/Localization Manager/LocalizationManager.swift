@@ -25,10 +25,10 @@ import Foundation
 ///
 ///     LocalizationManager.shared.setCurrentLocale(to: .english)
 ///
-/// It's recommended that you do not enumerate localizations just to be able to use switch-case.
+/// It's recommended that you do not enumerate localizations just to be able to use switch statement.
 /// Enumerating will force you to declare an identifier or a `RawValue`.
 /// But `LocalizationManager` works on equivalence principle, where "en" and "en-US" are equivalent, if `Locale.current.regionCode` is "US".
-/// Use the following approach instead of switch-case:
+/// Use the following approach instead of switch statement:
 ///
 ///     if LocalizationManager.shared.currentLocale.isEquivalent(to: .english) {
 ///         ...
@@ -48,7 +48,7 @@ import Foundation
 /// within the `Bundle` and reads values from it. Alternately, you can use `String.localizedWithManager(...)`.
 ///
 /// Second option, is to replace the `Bundle` `class` with a sub-`class` that overrides table path internally.
-/// Advantage of this approach is, that now `NSLocalizedString(...)` will return correct values.
+/// Advantage of this approach is that `NSLocalizedString(...)` will return correct values.
 /// To override a `class`, use `replaceLocalizationTableInBundles` parameter when changing a localization.
 ///
 ///     LocalizationManager.shared.setCurrentLocale(
