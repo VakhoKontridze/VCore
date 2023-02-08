@@ -50,8 +50,6 @@ Package incudes folder `Extra`, which contains:
 
 - ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover scenes and gateways. For additional info, refer to documentation folder.
 
-- Objects and methods that cannot be included in the package as they require additional customization or access to `AppDelegate`/`SceneDelegate`.
-
 Project includes folder `Documentation`, which contains:
 
 - Swift style guide
