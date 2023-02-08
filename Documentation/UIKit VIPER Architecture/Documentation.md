@@ -327,7 +327,7 @@ final class HomeViewController: UIViewController, HomeViewable, HomeNavigable {
         setUpView()
         addSubviews()
         setUpLayout()
-        setUpNavBar()
+        setUpNavigationBar()
     }
     
     private func setUpView() { ... }
@@ -336,7 +336,7 @@ final class HomeViewController: UIViewController, HomeViewable, HomeNavigable {
 
     private func setUpLayout() { ... }
     
-    private func setUpNavBar() { ... }
+    private func setUpNavigationBar() { ... }
 
     // MARK: Viewable
     func setInfoText(to text: String) { ... }

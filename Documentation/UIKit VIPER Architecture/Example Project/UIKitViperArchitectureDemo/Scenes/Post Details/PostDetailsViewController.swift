@@ -44,7 +44,7 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
         setUpView()
         addSubviews()
         setUpLayout()
-        setUpNavBar()
+        setUpNavigationBar()
     }
     
     private func setUpView() {
@@ -72,7 +72,7 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
         ])
     }
     
-    private func setUpNavBar() {
+    private func setUpNavigationBar() {
         navigationItem.title = "Post Details"
     }
 

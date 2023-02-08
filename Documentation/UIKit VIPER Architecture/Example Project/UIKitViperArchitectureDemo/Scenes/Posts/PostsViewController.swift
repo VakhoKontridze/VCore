@@ -48,7 +48,7 @@ final class PostsViewController:
         setUpView()
         addSubviews()
         setUpLayout()
-        setUpNavBar()
+        setUpNavigationBar()
     }
     
     private func setUpView() {
@@ -69,7 +69,7 @@ final class PostsViewController:
         ])
     }
     
-    private func setUpNavBar() {
+    private func setUpNavigationBar() {
         navigationItem.title = "Posts"
     }
 

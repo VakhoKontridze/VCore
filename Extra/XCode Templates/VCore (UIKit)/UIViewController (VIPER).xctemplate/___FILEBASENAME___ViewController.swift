@@ -24,7 +24,7 @@ final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIA
         setUpView()
         addSubviews()
         setUpLayout()
-        setUpNavBar()
+        setUpNavigationBar()
     }
     
     private func setUpView() {
@@ -41,7 +41,7 @@ final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIA
         ])
     }
     
-    private func setUpNavBar() {
+    private func setUpNavigationBar() {
         navigationItem.title = "___VARIABLE_productName___"
     }
 
