@@ -54,6 +54,8 @@ Package incudes folder `Extra`, which contains:
 
 Project includes folder `Documentation`, which contains:
 
+- Swift style guide
+
 - Documentation and an example app of UIKit VIPER architecture
 
 - Documentation and an example app of SwiftUI VIPER architecture

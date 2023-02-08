@@ -33,6 +33,10 @@ API
 
 - `VCoreLocalizationService` is renamed to `VCoreLocalizationManager`
 
+Documentation
+
+- Swift style guide is added
+
 Other
 
 - Platform-specific compilation errors are fixed
