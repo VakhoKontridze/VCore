@@ -229,7 +229,7 @@ public final class LocalizationManager {
     private func assertIsAddedToBundle(_ locale: Locale) {
         assert(
             bundleLocales.contains(where: { $0.isEquivalent(to: locale) }),
-            "Localization `\(locale.identifier)` is not added to the `Bundle.main`"
+            "Localization `\(locale.identifier)` is not added to the `Bundle.main` or no files are localized"
         )
     }
     
