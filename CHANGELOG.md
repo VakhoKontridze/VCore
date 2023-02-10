@@ -19,7 +19,7 @@ Views
 
 Models
 
-- `ObservableContainer` is now has `open` access level
+- `ObservableContainer` now has an `open` access level
 
 Extensions
 
@@ -93,7 +93,7 @@ Models
 
 - Underlying type `_textLineType` in TextLineType is no longer `public`. Instead, it's being replaced by `textAlignment` and `textLineLimitType`.
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `isInteractionDisabled` no longer has a default value in `ProgressViewParameters`
 
@@ -133,7 +133,7 @@ Models
 - `horizontal` is renamed to `horizontalSum` in `EdgeInsets_LeadingTrailingTopBottom`
 - `vertical` is renamed to `verticalSum` in `EdgeInsets_LeadingTrailingTopBottom`
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `CoordinatingNavigationStack` is added for `SwiftUI`
 - `AlertPresentable` is added for `SwiftUI`
@@ -158,7 +158,7 @@ API
 
 - `keychainServiceErrorDescription(_:)` is added to `VCoreLocalizationProvider`
 
-XCode Templates
+Extra - XCode Templates
 
 - Project now includes templates for `SwiftUI`
 
@@ -194,7 +194,7 @@ Models
 - `BasicAnimation.toCAMediaTimingFunction` is added
 - `BasicAnimation.toUIViewAnimationOptions` is added
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `UIActionSheetViewable` is added
 
@@ -242,11 +242,11 @@ Views
 - `CapsuleUIView` is added
 - `CapsuleUIImageView` is added
 
-Network Client
+Services and Managers - Network Client
 
 - `NetworkError` is renamed to `NetworkClientError`
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `func pop(count: Int, animated: Bool)` is added to `StandardNavigable`
 
@@ -365,13 +365,13 @@ Extensions
 
 ### [3.13.2(44)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.2) — *2022 07 12*
 
-XCode Templates
+Extra - XCode Templates
 
 - `UIColor`s in `UIKit` XCode templates are no longer optional
 
 ### [3.13.1(43)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.1) — *2022 07 11*
 
-XCode Templates
+Extra - XCode Templates
 
 - Routers in `UIKit` XCode templates are fixed
 
@@ -460,13 +460,13 @@ Other
 
 ### [3.9.2(34)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.2) — *2022 06 29*
 
-XCode Templates
+Extra - XCode Templates
 
 - Missing package import is added to `async` Gateway XCode template
 
 ### [3.9.1(33)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.1) — *2022 06 29*
 
-Localization Service
+Extra - Localization Service
 
 - `LocalizationService` now reads locales directly from the `Bundle`
 - `LocalizationService` no longer causes issues with default localization outside of non-English regions
@@ -510,7 +510,7 @@ Global Functions
 
 - `KeyPath` equality and comparison functions are added, that equate and compare objects by up to six properties
 
-XCode Templates
+Extra - XCode Templates
 
 - `async` Gateway now contains a mock object for previews in `SwiftUI`
 
@@ -535,7 +535,7 @@ API
 - `VCoreHumanReadableLocalizationProvider` is added, that automatically localized errors, and only exposes human-readable strings
 - `DefaultVCoreLocalizationProvider` can now be initialized
 
-XCode Templates
+Extra - XCode Templates
 
 - Background colors of `UIKit` views are now set to `UIColor.systemBackground`
 - Issue with method signature in completion-based Gateway is fixed
@@ -546,7 +546,7 @@ Other
 
 ### [3.5.1(27)](https://github.com/VakhoKontridze/VCore/releases/tag/3.5.1) — *2022 06 15*
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - Issue with generic constraint in `StandardNavigable` is fixed
 
@@ -567,7 +567,7 @@ Extensions
 - `UIApplication.rootViewController` and `UIApplication.rootView` properties are added to complement `UIApplication.rootWindow`
 - `UIRectCorner` has been extended to support additional corners
 
-XCode Templates
+Extra - XCode Templates
 
 - Templates now implement existential `any`
 
@@ -667,7 +667,7 @@ Services and Managers
 
 - `MultiPartFormDataBuilder` no longer throws errors
 
-Network Client
+Services and Managers - Network Client
 
 - Requests methods with completion and result types are added
 - JSON request headers are added
@@ -689,7 +689,7 @@ API
 
 - `VCoreLocalizationService` is added, that supports localization within the package
 
-Localization Service
+Extra - Localization Service
 
 - `LocalizationService` now supports language switching from app settings
 
@@ -699,7 +699,7 @@ Views
 
 - `ScrollableView` is added
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `animated` and `completion` parameters are added to methods in `StandardNavigable`
 
@@ -713,11 +713,11 @@ Views
 
 - State logic in `UIKitBaseButton` documentation is updated
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - Typo in `UIActivityIndicatorViewable` methods are fixed
 
-XCode Templates
+Extra - XCode Templates
 
 - `UITableViewCell` and `UICollectionViewCell` background colors are now set directly to cell, and not to `contentView`
 - `with` argument label is added to `Gateway.fetch(_:completion:)`
@@ -731,7 +731,7 @@ Extensions
 - `minimumScaleFactor` parameter is added to `UILabel` configuration method and initializer
 - `FloatingPoint.fixedInRange(_:step:)` function is renamed to `bound` 
 
-XCode Templates
+Extra - XCode Templates
 
 - `UIView` (Dynamic Model) templates now have a default parameter value for model in initializers
 
@@ -743,11 +743,11 @@ Views
 
 ### [2.1.0(12)](https://github.com/VakhoKontridze/VCore/releases/tag/2.1.0) — *2022 01 01*
 
-Network Client
+Services and Managers - Network Client
 
 - `NetworkProcessor` is renamed to `NetworkResponseProcessor`
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `UITableViewDataSourceable.tableViewCellDequeueID(section:row:)` method is deprecated
 - `UICollectionViewDataSourceable.collectionViewCellDequeueID(section:row:)` method is deprecated
@@ -758,20 +758,20 @@ Extensions
 - `KeyPath` sort method `Sequence.sort(by:)` is added
 - Conditional and `KeyPath` grouping methods `Sequence.grouped(by:)` are added
 
-XCode Templates
+Extra - XCode Templates
 
 - `UIViewController` `Factory` is fixed
 - `with` parameter labels are removed from configuration methods
 
 ### [2.0.2(11)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.2) — *2021 12 29*
 
-XCode Templates
+Extra - XCode Templates
 
 - Issues with `UITableViewCellDataSourceable` methods are fixed
 
 ### [2.0.1(10)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.1) — *2021 12 29*
 
-XCode Templates
+Extra - XCode Templates
 
 - `UITableViewCell` initializer is fixed
 
@@ -779,13 +779,13 @@ XCode Templates
 
 General
 
-- Framework now supports `iOS 13`
+- Framework now supports `iOS` `13`
 
 Services and Managers
 
 - `MultiPartFormDataBuilder` is added
 
-Network Client
+Services and Managers - Network Client
 
 - `NetworkService` is renamed to `NetworkClient`
 - `NetworkClient` now supports async/await
@@ -804,7 +804,7 @@ Helpers
 - `EdgeInsets` objects now support insetting and addition/subtraction
 - `VCoreErrorInfo` is removed
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `UITableView` and `UICollectionView` dequeue and configure methods no longer crash if a cell identifier is not registered
 
@@ -833,7 +833,7 @@ Helpers
 - Custom `EdgeInset` objects are added
 - Generic `GenericStateModel` objects are added
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `StandardNavigatable` is renamed to `StandardNavigable`
 
@@ -853,7 +853,7 @@ Extra
 
 ### [1.1.0(5)](https://github.com/VakhoKontridze/VCore/releases/tag/1.1.0) — *2021 10 30*
 
-Network Service
+Services and Managers - Network Service
 
 - `NetworkService` now supports initialization and post-processing delegation
 - `NetworkService.shared` is deprecated
@@ -862,21 +862,21 @@ Network Service
 
 ### [1.0.3(4)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.3) — *2021 10 25*
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `ViewModel.uiAlertController` property can now be accessed to create an `UIAlertController`
 
 ### [1.0.2(3)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.2) — *2021 10 08*
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `UICollectionViewDataSourceable` and `UITableViewDataSourceable` APIs are updated
 
 ### [1.0.1(2)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.1) — *2021 10 07*
 
-Custom Results
+Models - Custom Results
 
-- Result enums are now marked as `@frozen`
+- `Result` enums are now marked as `@frozen`
 
 ### [1.0.0(1)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.0) — *2021 10 07*
 
