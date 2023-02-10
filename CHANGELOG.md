@@ -479,7 +479,7 @@ Extensions
 
 ### [3.8.1(31)](https://github.com/VakhoKontridze/VCore/releases/tag/3.8.1) — *2022 06 25*
 
-Documentations
+Documentation
 
 - Remove duplicate CLEAN Gateway documentation
 
