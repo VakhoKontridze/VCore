@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.4.1(70)
+
+Services and Managers
+
+- `LocalizationManager` will stop giving warnings about "Base" localization
+
 ### [4.4.0(69)](https://github.com/VakhoKontridze/VCore/releases/tag/4.4.0) — *2023 02 08*
 
 Services and Managers

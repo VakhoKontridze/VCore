@@ -162,7 +162,10 @@ public final class LocalizationManager {
         }
         
         for bundleLocale in bundleLocales {
-            if !validateIsAdded(bundleLocale) {
+            if
+                !validateIsAdded(bundleLocale) &&
+                bundleLocale.identifier.lowercased() != "base"
+            {
                 VCoreLogWarning("Localization `\(bundleLocale.identifier)` is not added to `LocalizationManager`")
             }
         }
@@ -245,6 +248,6 @@ public final class LocalizationManager {
 // MARK: - Helpers
 extension Array where Element == String {
     fileprivate func removingBaseLocalization() -> [String] {
-        filter { $0 != "Base" }
+        filter { $0.lowercased() != "base" }
     }
 }
