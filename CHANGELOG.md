@@ -691,7 +691,7 @@ API
 
 Extra - Localization Service
 
-- `LocalizationService` now supports language switching from app settings
+- `LocalizationService` now supports language switching from the system settings
 
 ### [2.3.0(16)](https://github.com/VakhoKontridze/VCore/releases/tag/2.3.0) — *2022 02 25*
 
