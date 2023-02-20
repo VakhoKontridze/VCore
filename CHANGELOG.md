@@ -10,7 +10,7 @@ Services and Managers
 
 Services and Managers
 
-- `LocalizationService` is removed from `Extra`, and added to package as `LocalizationManager`
+- `LocalizationService` is removed from `Extra`, and added to Package as `LocalizationManager`
 - `MultiPartFormDataBuilder` is renamed to `MultipartFormDataBuilder` 
 
 Views
@@ -462,7 +462,7 @@ Other
 
 Extra - XCode Templates
 
-- Missing package import is added to `async` Gateway XCode template
+- Missing Package import is added to `async` Gateway XCode template
 
 ### [3.9.1(33)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.1) — *2022 06 29*
 
@@ -659,7 +659,7 @@ General
 
 General
 
-- Project is migrated from `XCFramework` to `Swift Package`
+- Project is migrated from `XCFramework` to `Swift` Package
 - Project now partially supports `macOS`, `tvOS`, and `watchOS`
 - Project is now covered under unit tests
 
@@ -687,7 +687,7 @@ Extensions
 
 API
 
-- `VCoreLocalizationService` is added, that supports localization within the package
+- `VCoreLocalizationService` is added, that supports localization within the Package
 
 Extra - Localization Service
 
