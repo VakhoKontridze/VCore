@@ -19,12 +19,12 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 
 Versions with different majors are not compatible.
 
-| Release Date | VCore | iOS  | macOS\* | tvOS\* | watchOS\* | Comment              |
-| :--          | :--   | :--  | :--     | :--    | :--       | :--                  |
-| 2022 09 14   | 4.0   | 13.0 | 10.15   | 13.0   | 6.0       | API changes          |
-| 2022 05 17   | 3.0   | 13.0 | 10.15   | 13.0   | 6.0       | Converted to Package |
-| 2021 12 28   | 2.0   | 13.0 | -       | -      | -         | Support for iOS 13.0 |
-| 2021 10 07   | 1.0   | 14.0 | -       | -      | -         | Initial release      |
+| Ver | Release Date | iOS  | macOS\* | tvOS\* | watchOS\* | Comment                             |
+| :-- | :--          | :--  | :--     | :--    | :--       | :--                                 |
+| 4.0 | 2022 09 14   | 13.0 | 10.15   | 13.0   | 6.0       | API changes                         |
+| 3.0 | 2022 05 17   | 13.0 | 10.15   | 13.0   | 6.0       | Multiplatform support. SPM support. |
+| 2.0 | 2021 12 28   | 13.0 | -       | -      | -         | Support for iOS 13.0                |
+| 1.0 | 2021 10 07   | 14.0 | -       | -      | -         | Initial release                     |
 
 **Limited support*
 
