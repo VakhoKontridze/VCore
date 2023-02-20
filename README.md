@@ -24,7 +24,7 @@ Versions with different majors are not compatible.
 | 4.0 | 2022 09 14   | 13.0 | 10.15   | 13.0   | 6.0       | API changes                         |
 | 3.0 | 2022 05 17   | 13.0 | 10.15   | 13.0   | 6.0       | Multiplatform support. SPM support. |
 | 2.0 | 2021 12 28   | 13.0 | -       | -      | -         | iOS 13.0 support                    |
-| 1.0 | 2021 10 07   | 14.0 | -       | -      | -         | Initial release                     |
+| 1.0 | 2021 10 07   | 14.0 | -       | -      | -         | -                                   |
 
 **Limited support*
 
