@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.5.0(71)
+
+Extensions
+
+- `Collection.allMatch(_:)` method is added
+
 ### [4.4.1(70)](https://github.com/VakhoKontridze/VCore/releases/tag/4.4.1) — *2023 02 10*
 
 Services and Managers
