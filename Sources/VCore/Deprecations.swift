@@ -125,6 +125,24 @@ public func VCoreLog(
 }
 
 // MARK: - Extensions - Foundation
+extension FloatingPoint {
+    @available(*, unavailable, message: "Removed to impossible implementation")
+    public func clamped(
+        to range: Range<Self>,
+        step: Self? = nil
+    ) -> Self {
+        fatalError()
+    }
+    
+    @available(*, unavailable, message: "Removed to impossible implementation")
+    mutating public func clamp(
+        to range: Range<Self>,
+        step: Self? = nil
+    ) {
+        fatalError()
+    }
+}
+
 extension String {
     @available(*, deprecated, message: "Use method instead")
     public var localized: String {

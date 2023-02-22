@@ -5,6 +5,7 @@
 Extensions
 
 - `Collection.allMatch(_:)` method is added
+- Half-open range clamped methods have been removed due to an issue and an impossible implementation
 
 ### [4.4.1(70)](https://github.com/VakhoKontridze/VCore/releases/tag/4.4.1) — *2023 02 10*
 

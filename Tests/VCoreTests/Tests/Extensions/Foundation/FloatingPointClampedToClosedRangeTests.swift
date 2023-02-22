@@ -1,5 +1,5 @@
 //
-//  FloatingPointClampedToRangeTests.swift
+//  FloatingPointClampedToClosedRangeTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 06.05.22.
@@ -87,59 +87,6 @@ final class FloatingPointClampedToClosedRangeTests: XCTestCase {
         var result1 = input1; result1.clamp(min: min, max: max, step: step)
         var result2 = input2; result2.clamp(min: min, max: max, step: step)
         var result3 = input3; result3.clamp(min: min, max: max, step: step)
-        
-        XCTAssertEqual(result1, output1Step)
-        XCTAssertEqual(result2, output2Step)
-        XCTAssertEqual(result3, output3Step)
-    }
-}
-
-final class FloatingPointClampedToHalfOpenRangeTests: XCTestCase {
-    // MARK: Test Data
-    private let step: Double = 3
-    private let min: Double = 1
-    private let max: Double = 10
-    private var range: Range<Double> { min..<max }
-    
-    private let input1: Double = 0
-    private let input2: Double = 5
-    private let input3: Double = 11
-    
-    private let output1: Double = 1
-    private let output2: Double = 5
-    private let output3: Double = 9
-    
-    private let output1Step: Double = 1
-    private let output2Step: Double = 4
-    private let output3Step: Double = 9
-    
-    // MARK: Tests
-    func testClampedRange() {
-        XCTAssertEqual(input1.clamped(to: range), output1)
-        XCTAssertEqual(input2.clamped(to: range), output2)
-        XCTAssertEqual(input3.clamped(to: range), output3)
-    }
-    
-    func testClampedRangeStep() {
-        XCTAssertEqual(input1.clamped(to: range, step: step), output1Step)
-        XCTAssertEqual(input2.clamped(to: range, step: step), output2Step)
-        XCTAssertEqual(input3.clamped(to: range, step: step), output3Step)
-    }
-    
-    func testClampRange() {
-        var result1 = input1; result1.clamp(to: range)
-        var result2 = input2; result2.clamp(to: range)
-        var result3 = input3; result3.clamp(to: range)
-        
-        XCTAssertEqual(result1, output1)
-        XCTAssertEqual(result2, output2)
-        XCTAssertEqual(result3, output3)
-    }
-    
-    func testClampRangeStep() {
-        var result1 = input1; result1.clamp(to: range, step: step)
-        var result2 = input2; result2.clamp(to: range, step: step)
-        var result3 = input3; result3.clamp(to: range, step: step)
         
         XCTAssertEqual(result1, output1Step)
         XCTAssertEqual(result2, output2Step)
