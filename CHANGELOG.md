@@ -2,6 +2,10 @@
 
 ### 4.5.0(71)
 
+Models
+
+- `Clamped` property wrapper is added that clamps a value to a range
+
 Extensions
 
 - `Collection.allMatch(_:)` method is added
