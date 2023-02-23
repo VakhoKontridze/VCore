@@ -2,6 +2,10 @@
 
 ### 4.5.0(71)
 
+Views
+
+- `AlignedGridView` is added, that horizontally justifies elements
+
 Models
 
 - `Clamped` property wrapper is added that clamps a value to a range
