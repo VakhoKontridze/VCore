@@ -214,31 +214,30 @@ public struct AlignedGridView: Layout {
 struct AlignedGridView_Previews: PreviewProvider {
     static var previews: some View {
         VStack(content: {
-            content(.leading)
+            gridView(.leading)
             Divider()
-            content(.center)
+            gridView(.center)
             Divider()
-            content(.trailing)
+            gridView(.trailing)
         })
             .padding()
     }
     
-    private static let numberFormatter: NumberFormatter = {
-        let numberFormatter: NumberFormatter = .init()
-        numberFormatter.numberStyle = .spellOut
-        return numberFormatter
-    }()
+    private static let strings: [String] = [
+        "Monday", "Tuesday", "Wednesday",
+        "Thursday", "Friday", "Saturday",
+        "Sunday"
+    ]
     
-    @ViewBuilder private static func content(
+    @ViewBuilder private static func gridView(
         _ alignment: HorizontalAlignment
     ) -> some View {
         AlignedGridView(alignment: alignment, spacing: 5).callAsFunction({
-            ForEach(0..<20, id: \.self, content: { i in
-                Text(numberFormatter.string(from: i+1 as NSNumber)?.capitalized ?? "-")
-                    .padding(3)
-                    .background(content: { Color.blue.opacity(0.5) })
-                    .cornerRadius(5)
+            ForEach(strings, id: \.self, content: { string in
+                Text(string)
+                    .background(content: { Color.accentColor.opacity(0.5) })
             })
         })
+            .padding()
     }
 }
