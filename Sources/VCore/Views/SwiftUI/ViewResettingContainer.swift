@@ -5,7 +5,6 @@
 //  Created by Vakhtang Kontridze on 02.02.23.
 //
 
-import Foundation
 import SwiftUI
 
 // MARK: - View Resetting Container
