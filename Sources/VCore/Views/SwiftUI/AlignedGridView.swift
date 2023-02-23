@@ -10,7 +10,11 @@ import SwiftUI
 // MARK: - Aligned Grid View
 /// Vertical container that justifies collection of views with an alignment.
 ///
-///     let strings: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+///     private let strings: [String] = [
+///         "Monday", "Tuesday", "Wednesday",
+///         "Thursday", "Friday", "Saturday",
+///         "Sunday"
+///     ]
 ///
 ///     var body: some View {
 ///         AlignedGridView(alignment: .center, spacing: 5).callAsFunction({
