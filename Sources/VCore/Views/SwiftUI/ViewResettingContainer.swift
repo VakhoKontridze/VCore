@@ -49,21 +49,30 @@ import SwiftUI
 public struct ViewResettingContainer<Content>: View where Content: View {
     // MARK: Properties
     @StateObject private var viewResetter: ViewResetter = .init()
-    private let content: () -> Content
+    private let content: (ViewResetter) -> Content
     
     // MARK: Initializers
     /// Initializers `ViewResettingContainer` with content.
-    public init(@ViewBuilder content: @escaping () -> Content) {
+    public init(
+        @ViewBuilder content: @escaping (ViewResetter) -> Content
+    ) {
         self.content = content
+    }
+    
+    /// Initializers `ViewResettingContainer` with content.
+    public init(
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+        self.content = { _ in content() }
     }
     
     // MARK: Body
     public var body: some View {
         Group(content: {
             if viewResetter.value.isMultiple(of: 2) {
-                content()
+                content(viewResetter)
             } else {
-                content()
+                content(viewResetter)
             }
         })
             .environmentObject(viewResetter)

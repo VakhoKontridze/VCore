@@ -5,6 +5,7 @@
 Views
 
 - `AlignedGridView` is added, that horizontally justifies elements
+- Another initializer it added to `ViewResettingContainer` that passes `ViewResetter` to content closure
 
 Models
 
