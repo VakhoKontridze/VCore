@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Floating Point Clamped to Closed Range
 extension FloatingPoint {
-    /// Clamps value in range.
+    /// Clamps value to range.
     ///
     ///     let value1: Double = 0.0.clamped(to: 1...10) // 1.0
     ///     let value2: Double = 5.0.clamped(to: 1...10) // 5.0
@@ -39,7 +39,7 @@ extension FloatingPoint {
         }
     }
     
-    /// Clamps value in range.
+    /// Clamps value to range.
     ///
     ///     var value1: Double = 0.0; value1.clamp(to: 1...10) // 1.0
     ///     var value2: Double = 5.0; value2.clamp(to: 1...10) // 5.0

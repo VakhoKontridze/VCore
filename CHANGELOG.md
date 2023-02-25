@@ -19,7 +19,7 @@ Extensions
 - `Numeric.withOppositeSign()` and `Numeric.withOppositeSign(if:)` methods are added
 - `Range.reversedArray(if:)` and `ClosedRange.reversedArray(if:)` methods are added returns `Array` with reversed elements on a condition
 - `clamp` and `clamped` methods now support `BinaryInteger`
-- Half-open range clamped methods have been removed due to an issue and an impossible implementation
+- Half-open range clamped methods have been restricted to `BinaryInteger`s
 
 ### [4.4.1(70)](https://github.com/VakhoKontridze/VCore/releases/tag/4.4.1) — *2023 02 10*
 

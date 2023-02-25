@@ -126,7 +126,7 @@ public func VCoreLog(
 
 // MARK: - Extensions - Foundation
 extension FloatingPoint {
-    @available(*, unavailable, message: "Removed to impossible implementation")
+    @available(*, unavailable, message: "Half-open ranges are only available for `BinaryInteger`s")
     public func clamped(
         to range: Range<Self>,
         step: Self? = nil
@@ -134,7 +134,7 @@ extension FloatingPoint {
         fatalError()
     }
     
-    @available(*, unavailable, message: "Removed to impossible implementation")
+    @available(*, unavailable, message: "Half-open ranges are only available for `BinaryInteger`s")
     mutating public func clamp(
         to range: Range<Self>,
         step: Self? = nil

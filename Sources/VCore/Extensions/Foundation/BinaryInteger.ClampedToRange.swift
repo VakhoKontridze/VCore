@@ -1,5 +1,5 @@
 //
-//  BinaryInteger.ClampedToCloseRange.swift
+//  BinaryInteger.ClampedToRange.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 252.23.
@@ -7,9 +7,50 @@
 
 import Foundation
 
+// MARK: - Binary Integer Clamped to Range
+extension BinaryInteger {
+    /// Clamps value to range.
+    ///
+    ///     let value1: Int = 0.clamped(to: 1..<11) // 1
+    ///     let value2: Int = 5.clamped(to: 1..<11) // 5
+    ///     let value3: Int = 11.clamped(to: 1..<11) // 10
+    ///
+    ///     let value4: Int = 0.clamped(to: 1..<11, step: 3) // 1
+    ///     let value5: Int = 5.clamped(to: 1..<11, step: 3) // 4
+    ///     let value6: Int = 11.clamped(to: 1..<11, step: 3) // 10
+    ///
+    public func clamped(
+        to range: Range<Self>,
+        step: Self? = nil
+    ) -> Self {
+        let lowerBound: Self = range.lowerBound
+        let upperBound: Self = max(range.upperBound-1, range.lowerBound)
+        
+        return self.clamped(min: lowerBound, max: upperBound, step: step)
+    }
+    
+    /// Clamps value to range.
+    ///
+    ///     var value1: Int = 0; value1.clamp(to: 1..<11) // 1
+    ///     var value2: Int = 5; value2.clamp(to: 1..<11) // 5
+    ///     var value3: Int = 11; value3.clamp(to: 1..<11) // 10
+    ///
+    ///     var value4: Int = 0; value4.clamp(to: 1..<11, step: 3) // 1
+    ///     var value5: Int = 5; value5.clamp(to: 1..<11, step: 3) // 4
+    ///     var value6: Int = 11; value6.clamp(to: 1..<11, step: 3) // 10
+    ///
+    mutating public func clamp(
+        to range: Range<Self>,
+        step: Self? = nil
+    ) {
+        self = clamped(to: range, step: step)
+    }
+}
+
+
 // MARK: - Binary Integer Clamped to Closed Range
 extension BinaryInteger {
-    /// Clamps value in range.
+    /// Clamps value to range.
     ///
     ///     let value1: Int = 0.clamped(to: 1...10) // 1
     ///     let value2: Int = 5.clamped(to: 1...10) // 5
@@ -39,7 +80,7 @@ extension BinaryInteger {
         }
     }
     
-    /// Clamps value in range.
+    /// Clamps value to range.
     ///
     ///     var value1: Int = 0; value1.clamp(to: 1...10) // 1
     ///     var value2: Int = 5; value2.clamp(to: 1...10) // 5
