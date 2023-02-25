@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Number Clamped to Closed Range
+// MARK: - Floating Point Clamped to Closed Range
 extension FloatingPoint {
     /// Clamps value in range.
     ///
