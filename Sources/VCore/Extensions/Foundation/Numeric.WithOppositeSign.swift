@@ -14,7 +14,7 @@ extension Numeric {
     ///     let number: Int = 10    // -10
     ///         .withOppositeSign()
     ///
-    func withOppositeSign() -> Self {
+    public func withOppositeSign() -> Self {
         withOppositeSign(if: true)
     }
 }
@@ -26,7 +26,7 @@ extension Numeric {
     ///     let number: Int = 10
     ///         .withOppositeSign(if: reversesSign)
     ///
-    func withOppositeSign(if condition: Bool) -> Self {
+    public func withOppositeSign(if condition: Bool) -> Self {
         if condition {
             return self * -1
         } else {

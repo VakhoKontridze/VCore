@@ -14,7 +14,7 @@ extension CGSize {
     ///     let size: CGSize = .init(width: 3, height: 4)
     ///         .withReversedDimensions() // (width: 4, height: 3)
     ///
-    func withReversedDimensions() -> Self {
+    public func withReversedDimensions() -> Self {
         withReversedDimensions(if: true)
     }
 }
@@ -26,7 +26,7 @@ extension CGSize {
     ///     let size: CGSize = .init(width: 3, height: 4)
     ///         .withReversedDimensions(if: reversesDimensions)
     ///
-    func withReversedDimensions(if condition: Bool) -> Self {
+    public func withReversedDimensions(if condition: Bool) -> Self {
         if condition {
             return .init(width: height, height: width)
         } else {
