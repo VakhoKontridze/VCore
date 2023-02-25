@@ -16,6 +16,7 @@ Extensions
 - `Collection.allMatch(_:)` method is added that matches pairs in a predicate
 - `CGSize.withReversedDimensions()` and `CGSize.withReversedDimensions(if:)` methods are added
 - `Array.reversed(if:)` method is added that reverses elements on a condition
+- `Numeric.withOppositeSign()` and `Numeric.withOppositeSign(if:)` methods are added
 - Half-open range clamped methods have been removed due to an issue and an impossible implementation
 
 ### [4.4.1(70)](https://github.com/VakhoKontridze/VCore/releases/tag/4.4.1) — *2023 02 10*
