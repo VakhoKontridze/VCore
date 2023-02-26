@@ -18,31 +18,14 @@ extension View {
     ///             .inlineNavigationTitle("Home")
     ///     }
     ///
-    public func inlineNavigationTitle(_ title: String) -> some View {
-        self
-            .modifier(InlineNavigationTitle(title))
-    }
-}
-
-// MARK: - Inline Navigation Title View Modifier
-private struct InlineNavigationTitle: ViewModifier {
-    // MARK: Properties
-    private let title: String
-    
-    // MARK: Initializers
-    init(_ title: String) {
-        self.title = title
-    }
-
-    // MARK: Body
-    func body(content: Content) -> some View {
+    @ViewBuilder public func inlineNavigationTitle(_ title: String) -> some View {
         if #available(iOS 14.0, *) {
-            content
+            self
                 .navigationTitle(title)
                 .navigationBarTitleDisplayMode(.inline)
         
         } else {
-            content
+            self
                 .navigationBarTitle(title)
         }
     }
