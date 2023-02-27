@@ -1,5 +1,5 @@
 //
-//  OmniLayoutDirection.swift
+//  LayoutDirectionOmni.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 26.02.23.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-// MARK: - Omni Layout Direction
-/// Omni-directional layout in which content can be laid out.
+// MARK: - Layout Direction Omni
+/// Omni directional layout in which content can be laid out.
 ///
-/// Unlike `SwiftUI.LayoutDirection`, `OmniLayoutDirection` also supports vertical layouts.
-public enum OmniLayoutDirection: Hashable, CaseIterable {
+/// Unlike `SwiftUI.LayoutDirection`, `LayoutDirectionOmni` also supports vertical layouts.
+public enum LayoutDirectionOmni: Hashable, CaseIterable {
     // MARK: Cases
     /// Left-to-right direction.
     case leftToRight

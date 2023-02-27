@@ -10,7 +10,7 @@ Views
 Models
 
 - `Clamped` property wrapper is added that clamps a number to a range
-- `OmniLayoutDirection` is added that extends `SwiftUI.LayoutDirection` to vertical direction
+- `LayoutDirectionOmni`, `LayoutDirectionHorizontal`, and `LayoutDirectionVertical` are added
 
 Extensions
 
