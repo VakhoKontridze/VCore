@@ -24,7 +24,7 @@ public struct InnerShadowUIViewUIModel {
     /// Model that contains color properties.
     public struct Colors {
         // MARK: Properties
-        /// Shadow color. Defaults to `.black.withAlphaComponent(0.1)`.
+        /// Shadow color.
         public var shadowColor: UIColor = .black.withAlphaComponent(0.1)
         
         /// Shadow color. Defaults to `5`.
