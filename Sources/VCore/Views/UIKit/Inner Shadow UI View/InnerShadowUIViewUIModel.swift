@@ -13,7 +13,7 @@ import UIKit
 /// Model that describes UI.
 public struct InnerShadowUIViewUIModel {
     // MARK: Properties
-    /// Sub-model containing color properties.
+    /// Model that contains color properties.
     public var colors: Colors = .init()
     
     // MARK: Initializers
@@ -21,7 +21,7 @@ public struct InnerShadowUIViewUIModel {
     public init() {}
     
     // MARK: Colors
-    /// Sub-model containing color properties.
+    /// Model that contains color properties.
     public struct Colors {
         // MARK: Properties
         /// Shadow color. Defaults to `.black.withAlphaComponent(0.1)`.
@@ -34,7 +34,7 @@ public struct InnerShadowUIViewUIModel {
         public var shadowOffset: CGSize = .init(width: 5, height: 5)
         
         // MARK: Initializers
-        /// Initializes sub-model with default values.
+        /// Initializes model with default values.
         public init() {}
     }
 }
