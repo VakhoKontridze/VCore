@@ -148,28 +148,34 @@ public struct PlainDisclosureGroup<Label, Content>: View
 // MARK: - Preview
 @available(iOS 14.0, *)
 struct PlainDisclosureGroup_Previews: PreviewProvider {
-    @State private static var isExpanded: Bool = true
-    
     static var previews: some View {
-        PlainDisclosureGroup(
-            isExpanded: $isExpanded,
-            label: {
-                Text("Lorem Ipsum")
-                    .allowsHitTesting(false)
-            },
-            content: {
-                ScrollView(content: {
-                    LazyVStack(content: {
-                        ForEach(0..<10, content: { num in
-                            Text(String(num))
-                                .frame(maxWidth: .infinity, alignment: .leading)
-                                .padding(.vertical, 5)
+        Preview()
+    }
+    
+    private struct Preview: View {
+        @State private var isExpanded: Bool = true
+        
+        var body: some View {
+            PlainDisclosureGroup(
+                isExpanded: $isExpanded,
+                label: {
+                    Text("Lorem Ipsum")
+                        .allowsHitTesting(false)
+                },
+                content: {
+                    ScrollView(content: {
+                        LazyVStack(content: {
+                            ForEach(0..<10, content: { num in
+                                Text(String(num))
+                                    .frame(maxWidth: .infinity, alignment: .leading)
+                                    .padding(.vertical, 5)
+                            })
                         })
                     })
-                })
-            }
-        )
-            .padding()
+                }
+            )
+                .padding()
+        }
     }
 }
 

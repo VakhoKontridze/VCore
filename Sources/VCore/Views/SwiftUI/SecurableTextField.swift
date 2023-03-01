@@ -75,19 +75,25 @@ public struct SecurableTextField: View {
 @available(tvOS 15.0, *)
 @available(watchOS 8.0, *)
 struct SecurableTextField_Previews: PreviewProvider {
-    @State private static var isSecure: Bool = false
-    @State private static var text: String = "Lorem ipsum"
-    
     static var previews: some View {
-        HStack(content: {
-            SecurableTextField(
-                isSecure: isSecure,
-                placeholder: .init("Lorem ipsum"),
-                text: $text
-            )
-            
-            Button("Toggle", action: { isSecure.toggle() })
-        })
-            .padding()
+        Preview()
+    }
+    
+    private struct Preview: View {
+        @State private var isSecure: Bool = false
+        @State private var text: String = "Lorem ipsum"
+        
+        var body: some View {
+            VStack(content: {
+                SecurableTextField(
+                    isSecure: isSecure,
+                    placeholder: .init("Lorem ipsum"),
+                    text: $text
+                )
+                
+                Button("Toggle", action: { isSecure.toggle() })
+            })
+                .padding()
+        }
     }
 }
