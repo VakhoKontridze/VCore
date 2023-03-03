@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.6.0(72)
+
+Extensions
+
+- `View.overlayGestureBlocker(condition:)` method is added, that overlays `Rectangle`, blocking interactions
+
 ### [4.5.0(71)](https://github.com/VakhoKontridze/VCore/releases/tag/4.5.0) — *2023 03 03*
 
 Views
