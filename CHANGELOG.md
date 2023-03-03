@@ -1,6 +1,6 @@
 # Change Log
 
-### 4.5.0(71)
+### [4.5.0(71)](https://github.com/VakhoKontridze/VCore/releases/tag/4.5.0) — *2023 03 03*
 
 Views
 
@@ -14,7 +14,7 @@ Models
 
 Extensions
 
-- `Collection.allMatch(_:)` method is added that matches pairs in a predicate
+- `Collection.allMatch(_:)` method is added that matches pairs with predicate
 - `CGSize.withReversedDimensions()` and `CGSize.withReversedDimensions(if:)` methods are added
 - `Array.reversed(if:)` method is added that reverses elements on a condition
 - `Numeric.withOppositeSign()` and `Numeric.withOppositeSign(if:)` methods are added
