@@ -58,7 +58,7 @@ Project includes folder `Documentation`, which contains:
 
 - Documentation and an example app of SwiftUI VIPER architecture
 
-- Documentation of CLEAN gateways
+- Documentation of CLEAN Interactors and Gateways
 
 ## Showcase
 
