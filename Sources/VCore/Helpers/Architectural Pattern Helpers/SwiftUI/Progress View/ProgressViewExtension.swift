@@ -31,7 +31,7 @@ extension View {
             
         case let parameters?:
             self
-                .overlayGestureBlocker(if: parameters.isInteractionDisabled)
+                .blocksGestures(parameters.isInteractionDisabled)
                 .overlay(
                     ProgressView()
                         .scaleEffect(parameters: parameters)
