@@ -63,11 +63,8 @@ public enum UILayoutGuideType {
         
         #if os(iOS)
         case .keyboard:
-            if #available(iOS 15.0, *) {
-                return view.keyboardLayoutGuide
-            } else {
-                fatalError()
-            }
+            guard #available(iOS 15.0, *) else { fatalError() }
+            return view.keyboardLayoutGuide
         #endif
             
         case .custom(let block):
