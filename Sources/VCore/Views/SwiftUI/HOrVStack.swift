@@ -19,7 +19,7 @@ public struct HOrVStack<Content>: View where Content: View {
     
     // MARK: Initializers
     /// Initializes `HOrVStack` with `Bool` and content.
-    init(
+    public init(
         alignmentHor: HorizontalAlignment = .center,
         alignmentVer: VerticalAlignment = .center,
         spacing: CGFloat? = nil,
@@ -34,7 +34,7 @@ public struct HOrVStack<Content>: View where Content: View {
     }
     
     /// Initializes `HOrVStack` with `Axis` and content.
-    init(
+    public init(
         alignmentHor: HorizontalAlignment = .center,
         alignmentVer: VerticalAlignment = .center,
         spacing: CGFloat? = nil,
