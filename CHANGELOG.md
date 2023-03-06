@@ -9,6 +9,7 @@ Views
 Models
 
 - `stackView(alignmentHor:alignmentVer:spacing:content)` method is added to `LayoutDirectionOmni`
+- `TextLineType` and `TextLineLimitType` are now exposed to APIs below `iOS` `16.0`, `macOS` `13.0`, `tvOS` `16.0`, `watchOS` `9.0`
 
 Extensions
 

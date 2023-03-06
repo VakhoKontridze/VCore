@@ -8,10 +8,6 @@
 import SwiftUI
 
 // MARK: - View Line Limit
-@available(iOS 16.0, *)
-@available(macOS 13.0, *)
-@available(tvOS 16.0, *)
-@available(watchOS 9.0, *)
 extension View {
     /// Sets line limit based on `TextLineLimitType`.
     ///
@@ -32,30 +28,42 @@ extension View {
                 .lineLimit(lineLimit)
             
         case .spaceReserved(let lineLimit, let reservesSpace):
-            self
-                .lineLimit(lineLimit, reservesSpace: reservesSpace)
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                self
+                    .lineLimit(lineLimit, reservesSpace: reservesSpace)
+            } else {
+                fatalError()
+            }
             
         case .partialRangeFrom(let lineLimit):
-            self
-                .lineLimit(lineLimit)
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                self
+                    .lineLimit(lineLimit)
+            } else {
+                fatalError()
+            }
             
         case .partialRangeThrough(let lineLimit):
-            self
-                .lineLimit(lineLimit)
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                self
+                    .lineLimit(lineLimit)
+            } else {
+                fatalError()
+            }
             
         case .closedRange(let lineLimit):
-            self
-                .lineLimit(lineLimit)
+            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
+                self
+                    .lineLimit(lineLimit)
+            } else {
+                fatalError()
+            }
         }
     }
 }
 
 // MARK: - Text Line Limit Type
 /// Enumeration that represents line limit type.
-@available(iOS 16.0, *)
-@available(macOS 13.0, *)
-@available(tvOS 16.0, *)
-@available(watchOS 9.0, *)
 public enum TextLineLimitType {
     /// No line limit.
     case none

@@ -9,10 +9,6 @@ import SwiftUI
 
 // MARK: - Text Line Type
 /// Model that represents text line, such as `singleLine` or `multiLine`.
-@available(iOS 16.0, *)
-@available(macOS 13.0, *)
-@available(tvOS 16.0, *)
-@available(watchOS 9.0, *)
 public struct TextLineType {
     // MARK: Properties
     private let _textLineType: _TextLineType
@@ -63,6 +59,10 @@ public struct TextLineType {
     }
     
     /// Multi-line.
+    @available(iOS 16.0, *)
+    @available(macOS 13.0, *)
+    @available(tvOS 16.0, *)
+    @available(watchOS 9.0, *)
     public static func multiLine(
         alignment: TextAlignment,
         lineLimit: Int,
@@ -75,6 +75,10 @@ public struct TextLineType {
     }
     
     /// Multi-line.
+    @available(iOS 16.0, *)
+    @available(macOS 13.0, *)
+    @available(tvOS 16.0, *)
+    @available(watchOS 9.0, *)
     public static func multiLine(
         alignment: TextAlignment,
         lineLimit: PartialRangeFrom<Int>
@@ -86,6 +90,10 @@ public struct TextLineType {
     }
     
     /// Multi-line.
+    @available(iOS 16.0, *)
+    @available(macOS 13.0, *)
+    @available(tvOS 16.0, *)
+    @available(watchOS 9.0, *)
     public static func multiLine(
         alignment: TextAlignment,
         lineLimit: PartialRangeThrough<Int>
@@ -97,6 +105,10 @@ public struct TextLineType {
     }
     
     /// Multi-line.
+    @available(iOS 16.0, *)
+    @available(macOS 13.0, *)
+    @available(tvOS 16.0, *)
+    @available(watchOS 9.0, *)
     public static func multiLine(
         alignment: TextAlignment,
         lineLimit: ClosedRange<Int>
@@ -109,10 +121,6 @@ public struct TextLineType {
 }
 
 // MARK: - _ V Text Type
-@available(iOS 16.0, *)
-@available(macOS 13.0, *)
-@available(tvOS 16.0, *)
-@available(watchOS 9.0, *)
 enum _TextLineType {
     case singleLine
     case multiLine(alignment: TextAlignment, textLineLimitType: TextLineLimitType)
