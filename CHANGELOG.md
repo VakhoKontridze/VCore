@@ -2,6 +2,10 @@
 
 ### 4.6.0(72)
 
+Views
+
+- `HOrVstack` is added that toggles between `HStack` and `VStack`
+
 Models
 
 - `stackView(alignmentHor:alignmentVer:spacing:content)` method is added to `LayoutDirectionOmni`
