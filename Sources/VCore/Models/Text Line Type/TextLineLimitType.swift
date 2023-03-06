@@ -63,7 +63,7 @@ extension View {
 }
 
 // MARK: - Text Line Limit Type
-/// Enumeration that represents line limit type.
+/// Model that represents line limit type.
 public struct TextLineLimitType {
     // MARK: Properties
     let _textLineLimitType: _TextLineLimitType
