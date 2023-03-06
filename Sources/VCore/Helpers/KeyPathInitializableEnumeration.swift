@@ -39,6 +39,6 @@ extension KeyPathInitializableEnumeration {
     ) -> Self?
         where Property: Equatable
     {
-        Self.allCases.first(where: { $0[keyPath: keyPath] == value })
+        Self.allCases.first { $0[keyPath: keyPath] == value }
     }
 }

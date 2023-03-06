@@ -28,7 +28,7 @@ extension UIApplication {
                 .first { $0 is UIWindowScene }
                 .flatMap { $0 as? UIWindowScene }?
                 .windows
-                .first(where: { $0.isKeyWindow })
+                .first { $0.isKeyWindow }
         }
     }
     
@@ -61,7 +61,7 @@ extension UIApplication {
             .first { $0 is UIWindowScene }
             .flatMap { $0 as? UIWindowScene }?
             .windows
-            .first(where: { $0.isKeyWindow })
+            .first { $0.isKeyWindow }
     }
     
     /// Returns active `UIViewController` in application.

@@ -20,13 +20,13 @@ extension Array {
     ///     func a() {
     ///         let array: [any P] = [S()]
     ///
-    ///         let p1: S? = array.first(where: { $0 is S }) as? S
+    ///         let p1: S? = array.first { $0 is S } as? S
     ///
     ///         let p2: S? = array.firstInstanceOfType(S.self)
     ///     }
     ///
     public func firstInstanceOfType<T>(_ type: T.Type) -> T? {
-        first(where: { $0 is T }) as? T
+        first { $0 is T } as? T
     }
     
     /// Returns the last element of the sequence that is a type `T`.
