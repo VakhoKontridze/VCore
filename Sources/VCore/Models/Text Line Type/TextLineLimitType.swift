@@ -19,7 +19,7 @@ extension View {
     @ViewBuilder public func lineLimit(
         type textLineLimitType: TextLineLimitType
     ) -> some View {
-        switch textLineLimitType {
+        switch textLineLimitType._textLineLimitType {
         case .none:
             self
             
@@ -64,22 +64,81 @@ extension View {
 
 // MARK: - Text Line Limit Type
 /// Enumeration that represents line limit type.
-public enum TextLineLimitType {
+public struct TextLineLimitType {
+    // MARK: Properties
+    let _textLineLimitType: _TextLineLimitType
+    
+    // MARK: Initializers
+    private init(
+        textLineLimitType: _TextLineLimitType
+    ) {
+        self._textLineLimitType = textLineLimitType
+    }
+    
     /// No line limit.
-    case none
+    public static var none: Self {
+        .init(textLineLimitType: .none)
+    }
     
     /// Fixed line limit.
-    case fixed(lineLimit: Int?)
+    public static func fixed(lineLimit: Int?) -> Self {
+        .init(textLineLimitType: .fixed(
+            lineLimit: lineLimit
+        ))
+    }
     
     /// Fixed line limit with reserved space.
-    case spaceReserved(lineLimit: Int, reservesSpace: Bool)
+    @available(iOS 16.0, *)
+    @available(macOS 13.0, *)
+    @available(tvOS 16.0, *)
+    @available(watchOS 9.0, *)
+    public static func spaceReserved(lineLimit: Int, reservesSpace: Bool) -> Self {
+        .init(textLineLimitType: .spaceReserved(
+            lineLimit: lineLimit,
+            reservesSpace: reservesSpace
+        ))
+    }
     
     /// Partial range (from) line limit.
-    case partialRangeFrom(lineLimit: PartialRangeFrom<Int>)
+    @available(iOS 16.0, *)
+    @available(macOS 13.0, *)
+    @available(tvOS 16.0, *)
+    @available(watchOS 9.0, *)
+    public static func partialRangeFrom(lineLimit: PartialRangeFrom<Int>) -> Self {
+        .init(textLineLimitType: .partialRangeFrom(
+            lineLimit: lineLimit
+        ))
+    }
     
     /// Partial range (though) line limit.
-    case partialRangeThrough(lineLimit: PartialRangeThrough<Int>)
+    @available(iOS 16.0, *)
+    @available(macOS 13.0, *)
+    @available(tvOS 16.0, *)
+    @available(watchOS 9.0, *)
+    public static func partialRangeThrough(lineLimit: PartialRangeThrough<Int>) -> Self {
+        .init(textLineLimitType: .partialRangeThrough(
+            lineLimit: lineLimit
+        ))
+    }
     
     /// Closed range line limit.
+    @available(iOS 16.0, *)
+    @available(macOS 13.0, *)
+    @available(tvOS 16.0, *)
+    @available(watchOS 9.0, *)
+    public static func closedRange(lineLimit: ClosedRange<Int>) -> Self {
+        .init(textLineLimitType: .closedRange(
+            lineLimit: lineLimit
+        ))
+    }
+}
+
+// MARK: - _ Text Line Limit Type
+enum _TextLineLimitType {
+    case none
+    case fixed(lineLimit: Int?)
+    case spaceReserved(lineLimit: Int, reservesSpace: Bool)
+    case partialRangeFrom(lineLimit: PartialRangeFrom<Int>)
+    case partialRangeThrough(lineLimit: PartialRangeThrough<Int>)
     case closedRange(lineLimit: ClosedRange<Int>)
 }
