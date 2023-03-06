@@ -212,6 +212,85 @@ extension UIImage {
 
 #endif
 
+#if canImport(UIKit) && !os(watchOS)
+
+extension UIApplication {
+    @available(*, deprecated, renamed: "keyWindowInSingleSceneApplication")
+    public var rootWindow: UIWindow? {
+        if #available(iOS 15, tvOS 15, *) {
+            return connectedScenes
+                .compactMap { $0 as? UIWindowScene }
+                .compactMap { $0.keyWindow ?? $0.windows.first }
+                .first
+        
+        } else {
+            return connectedScenes
+                .filter { $0.activationState == .foregroundActive }
+                .first { $0 is UIWindowScene }
+                .flatMap { $0 as? UIWindowScene }?
+                .windows
+                .first { $0.isKeyWindow }
+        }
+    }
+    
+    @available(*, deprecated, message: "Use `keyWindowInSingleSceneApplication?.rootViewController` instead")
+    public var rootViewController: UIViewController? {
+        rootWindow?.rootViewController
+    }
+    
+    @available(*, deprecated, message: "Use `keyWindowInSingleSceneApplication?.rootViewController?.view` instead")
+    public var rootView: UIView? {
+        rootViewController?.view
+    }
+}
+
+extension UIApplication {
+    @available(*, deprecated, renamed: "keyWindowInSingleSceneApplication")
+    public var activeWindow: UIWindow? {
+        connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .first { $0 is UIWindowScene }
+            .flatMap { $0 as? UIWindowScene }?
+            .windows
+            .first { $0.isKeyWindow }
+    }
+    
+    @available(*, deprecated, message: "Use `keyWindowInSingleSceneApplication?.rootViewController` instead")
+    public var activeViewController: UIViewController? {
+        activeWindow?.rootViewController
+    }
+    
+    @available(*, deprecated, message: "Use `keyWindowInSingleSceneApplication?.rootViewController?.view` instead")
+    public var activeView: UIView? {
+        activeViewController?.view
+    }
+}
+
+extension UIApplication {
+    @available(*, deprecated, message: "Use method with `UIWindow` parameter instead")
+    public var topMostViewController: UIViewController? {
+        guard
+            let activeWindow,
+            var topMostViewController: UIViewController = activeWindow.rootViewController
+        else {
+            return nil
+        }
+
+        while let presentedViewController = topMostViewController.presentedViewController {
+            topMostViewController = presentedViewController
+        }
+
+        return topMostViewController
+    }
+    
+    @available(*, deprecated, message: "Use `topMostViewController(inWindow:)?.view` instead")
+    public var topMostView: UIView? {
+        topMostViewController?.view
+    }
+}
+
+#endif
+
 // MARK: - Extensions - Swift UI
 extension View {
     @available(*, deprecated, message: "Use method without flag argument name")

@@ -5,6 +5,10 @@
 Extensions
 
 - `View.overlayGestureBlocker(condition:)` method is added, that overlays `Rectangle`, blocking interactions
+- `UIApplication.firstWindow(activationStates:where)` method is added that returns first `UIWindow` that satisfies the predicate
+- `UIApplication.rootWindow`, `UIApplication.rootViewController`, and `UIApplication.rootView` are deprecated in favor of `UIApplication.keyWindowInSingleSceneApplication`
+- `UIApplication.activeWindow`, `UIApplication.activeViewController`, and `UIApplication.activeView` are deprecated in favor of `UIApplication.keyWindowInSingleSceneApplication`
+- `UIApplication.topMostViewController` and `UIApplication.topMostView` are deprecated in favor of `UIApplication.topMostViewController(inWindow:)`
 
 ### [4.5.0(71)](https://github.com/VakhoKontridze/VCore/releases/tag/4.5.0) — *2023 03 03*
 
