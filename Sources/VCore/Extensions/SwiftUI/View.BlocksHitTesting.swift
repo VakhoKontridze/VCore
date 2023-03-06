@@ -1,5 +1,5 @@
 //
-//  View.BlocksGestures.swift
+//  View.BlocksHitTesting.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.03.23.
@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-// MARK: - View Blocks Gestures
+// MARK: - View Blocks Hit Testing
 extension View {
     /// Overlays clear `Rectangle` that blocks gestures if condition is met.
     ///
     ///     var body: some View {
     ///         Button("Lorem Ipsum", action: doSomething)
-    ///             .blockGestures(!isInteractionEnabled)
+    ///             .blocksHitTesting(!isInteractionEnabled)
     ///     }
     ///
-    public func blocksGestures(
+    public func blocksHitTesting(
         _ flag: Bool = true
     ) -> some View {
         self
