@@ -66,7 +66,7 @@ public enum UILayoutGuideType {
             if #available(iOS 15.0, *) {
                 return view.keyboardLayoutGuide
             } else {
-                fatalError() // Safe to call, as case will never be created
+                fatalError()
             }
         #endif
             
