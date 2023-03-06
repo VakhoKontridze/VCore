@@ -51,7 +51,35 @@ public enum LayoutDirectionOmni: CaseIterable {
         }
     }
     
-    // MARK: Methods
+    // MARK: SwiftUI Content
+    /// Creates `View` with `HStack` or `VStack`.
+    ///
+    /// For `leftToRight` or `rightToLeft`, `HStack` will be used.
+    /// For `topToBottom` or `bottomToTop`, `VStack` will be used.
+    @ViewBuilder public func stackView<Content>(
+        alignmentHor: HorizontalAlignment = .center,
+        alignmentVer: VerticalAlignment = .center,
+        spacing: CGFloat? = nil,
+        @ViewBuilder content: @escaping () -> Content
+    ) -> some View
+        where Content: View
+    {
+        if isHorizontal {
+            HStack(
+                alignment: alignmentVer,
+                spacing: spacing,
+                content: content
+            )
+            
+        } else {
+            VStack(
+                alignment: alignmentHor,
+                spacing: spacing,
+                content: content
+            )
+        }
+    }
+    
     /// Creates stack `Layout` based on axis of direction.
     ///
     /// For `leftToRight` or `rightToLeft`, `HStackLayout` will be used.

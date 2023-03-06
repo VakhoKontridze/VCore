@@ -2,6 +2,10 @@
 
 ### 4.6.0(72)
 
+Models
+
+- `stackView(alignmentHor:alignmentVer:spacing:content)` method is added to `LayoutDirectionOmni`
+
 Extensions
 
 - `View.blocksHitTesting(_:)` method is added, that overlays `Rectangle`, blocking interactions
