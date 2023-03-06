@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Module Version
-/// A version according to the semantic versioning specification.
+/// Version according to the semantic versioning specification.
 ///
 /// When initializing with `String`, valid formats are: `M`, `M.M`, and `M.M.P`.
 ///

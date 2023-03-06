@@ -29,7 +29,7 @@ public enum UILayoutGuideType {
     
     /// Custom layout guide.
     ///
-    /// A `KeyPath` cannot be used in declaration, as generic `Value` disallows the use of subclasses,
+    /// `KeyPath` cannot be used in declaration, as generic `Value` disallows the use of subclasses,
     /// such as `UITrackingLayoutGuide` and `UIKeyboardLayoutGuide`.
     ///
     ///     extension UIView {

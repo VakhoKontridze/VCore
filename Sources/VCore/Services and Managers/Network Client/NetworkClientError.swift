@@ -24,7 +24,7 @@ public struct NetworkClientError: VCoreError, Equatable {
     
     /// Indicates that device is not connected to network.
     ///
-    /// A check against `NetworkConnectionService` is made.
+    /// Check against `NetworkConnectionService` is made.
     public static var notConnectedToNetwork: Self { .init(.notConnectedToNetwork) }
     
     /// Indicates that endpoint url is invalid.
@@ -59,7 +59,7 @@ public struct NetworkClientError: VCoreError, Equatable {
     public enum Code: Int, Equatable {
         /// Indicates that device is not connected to network.
         ///
-        /// A check against `NetworkConnectionService` is made.
+        /// Check against `NetworkConnectionService` is made.
         case notConnectedToNetwork
         
         /// Indicates that endpoint url is invalid.

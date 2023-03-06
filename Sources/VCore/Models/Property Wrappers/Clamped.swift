@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Clamped
-/// A property wrapper type that clamps a value to range.
+/// Property wrapper type that clamps a value to range.
 ///
 ///     @Clamped(1...10) var a: Double = 0 // 1.0
 ///     @Clamped(1...10) var b: Double = 5 // 5.0
