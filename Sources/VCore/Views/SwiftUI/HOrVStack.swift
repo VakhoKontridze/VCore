@@ -73,6 +73,7 @@ public struct HOrVStack<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+@available(macOS 11.0, *)
 struct HOrVStack_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 20, content: {
