@@ -27,8 +27,8 @@ extension Array: AlertButtonConvertible where Element == AlertButtonProtocol {
 ///         title: "Lorem Ipsum",
 ///         message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
 ///         actions: {
-///             AlertButton(title: "Confirm", action: { print("Confirmed") })
-///             AlertButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
+///             AlertButton(action: { print("Confirmed") }, title: "Confirm")
+///             AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
 ///         }
 ///     )
 ///

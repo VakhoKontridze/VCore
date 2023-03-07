@@ -105,6 +105,38 @@ extension ProgressViewParameters {
     }
 }
 
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+extension AlertButton {
+    @available(*, deprecated, message: "Use `init` with different parameter order")
+    public init(
+        role: ButtonRole? = nil,
+        title: String,
+        action: (() -> Void)?
+    ) {
+        self.init(
+            role: role,
+            action: action,
+            title: title
+        )
+    }
+}
+
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+extension ConfirmationDialogButton {
+    @available(*, deprecated, message: "Use `init` with different parameter order")
+    public init(
+        role: ButtonRole? = nil,
+        title: String,
+        action: (() -> Void)?
+    ) {
+        self.init(
+            role: role,
+            action: action,
+            title: title
+        )
+    }
+}
+
 // MARK: - Global Functions
 @available(*, deprecated, renamed: "VCoreLogError")
 public func VCoreLog(

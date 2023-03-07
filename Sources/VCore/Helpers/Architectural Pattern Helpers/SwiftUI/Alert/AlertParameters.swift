@@ -17,8 +17,8 @@ import SwiftUI
 ///         title: "Lorem Ipsum",
 ///         message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
 ///         actions: {
-///             AlertButton(title: "Confirm", action: { print("Confirmed") })
-///             AlertButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
+///             AlertButton(action: { print("Confirmed") }, title: "Confirm")
+///             AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
 ///         }
 ///     )
 ///
@@ -63,8 +63,8 @@ public struct AlertParameters {
             actions: {
                 AlertButton(
                     role: .cancel,
-                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle,
-                    action: completion
+                    action: completion,
+                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle
                 )
             }
         )
@@ -81,8 +81,8 @@ public struct AlertParameters {
             actions: {
                 AlertButton(
                     role: .cancel,
-                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle,
-                    action: completion
+                    action: completion,
+                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle
                 )
             }
         )

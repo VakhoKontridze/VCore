@@ -16,8 +16,8 @@ extension View {
     ///         title: "Lorem Ipsum",
     ///         message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     ///         actions: {
-    ///             AlertButton(title: "Confirm", action: { print("Confirmed") })
-    ///             AlertButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
+    ///             AlertButton(action: { print("Confirmed") }, title: "Confirm")
+    ///             AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
     ///         }
     ///     )
     ///
@@ -39,12 +39,10 @@ extension View {
                 isPresented: .constant(true),
                 actions: {
                     ForEach(_parameters.buttons().enumeratedArray(), id: \.offset, content: { (_, button) in
-                        button.body(
-                            animateOut: {
-                                parameters.wrappedValue = nil
-                                $0?()
-                            }
-                        )
+                        button.makeBody(animateOut: { completion in
+                            parameters.wrappedValue = nil
+                            completion?()
+                        })
                     })
                 },
                 message: {

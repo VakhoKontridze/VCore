@@ -28,8 +28,8 @@ extension Array: ConfirmationDialogButtonConvertible where Element == Confirmati
 ///         title: "Lorem Ipsum",
 ///         message: "Lorem ipsum dolor sit amet",
 ///         actions: {
-///             ConfirmationDialogButton(title: "Confirm", action: { print("Confirmed") })
-///             ConfirmationDialogButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
+///             ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
+///             ConfirmationDialogButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
 ///         }
 ///     )
 ///

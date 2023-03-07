@@ -14,8 +14,8 @@ public protocol ConfirmationDialogButtonProtocol: ConfirmationDialogButtonConver
     /// Body type.
     typealias Body = AnyView
     
-    /// Body.
-    func body(
+    /// Creates a `View` that represents the body of a button.
+    func makeBody(
         animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> Body
 }
@@ -32,8 +32,8 @@ extension ConfirmationDialogButtonProtocol {
 ///         title: "Lorem Ipsum",
 ///         message: "Lorem ipsum dolor sit amet",
 ///         actions: {
-///             ConfirmationDialogButton(title: "Confirm", action: { print("Confirmed") })
-///             ConfirmationDialogButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
+///             ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
+///             ConfirmationDialogButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
 ///         }
 ///     )
 ///
@@ -54,8 +54,8 @@ public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
     /// Initializes `ConfirmationDialogButton`.
     public init(
         role: ButtonRole? = nil,
-        title: String,
-        action: (() -> Void)?
+        action: (() -> Void)?,
+        title: String
     ) {
         self.role = role
         self.title = title
@@ -63,7 +63,7 @@ public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
     }
     
     // MARK: Body
-    public func body(
+    public func makeBody(
         animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> AnyView {
         .init(

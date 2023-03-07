@@ -14,8 +14,8 @@ public protocol AlertButtonProtocol: AlertButtonConvertible {
     /// Body type.
     typealias Body = AnyView
     
-    /// Body.
-    func body(
+    /// Creates a `View` that represents the body of a button.
+    func makeBody(
         animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> Body
 }
@@ -32,8 +32,8 @@ extension AlertButtonProtocol {
 ///         title: "Lorem Ipsum",
 ///         message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
 ///         actions: {
-///             AlertButton(title: "Confirm", action: { print("Confirmed") })
-///             AlertButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
+///             AlertButton(action: { print("Confirmed") }, title: "Confirm")
+///             AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
 ///         }
 ///     )
 ///
@@ -54,8 +54,8 @@ public struct AlertButton: AlertButtonProtocol {
     /// Initializes `AlertButton`.
     public init(
         role: ButtonRole? = nil,
-        title: String,
-        action: (() -> Void)?
+        action: (() -> Void)?,
+        title: String
     ) {
         self.role = role
         self.title = title
@@ -63,7 +63,7 @@ public struct AlertButton: AlertButtonProtocol {
     }
     
     // MARK: Body
-    public func body(
+    public func makeBody(
         animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> AnyView {
         .init(

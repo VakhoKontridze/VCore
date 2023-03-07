@@ -16,8 +16,8 @@ extension View {
     ///         title: "Lorem Ipsum",
     ///         message: "Lorem ipsum dolor sit amet",
     ///         actions: {
-    ///             ConfirmationDialogButton(title: "Confirm", action: { print("Confirmed") })
-    ///             ConfirmationDialogButton(role: .cancel, title: "Cancel", action: { print("Cancelled") })
+    ///             ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
+    ///             ConfirmationDialogButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
     ///         }
     ///     )
     ///
@@ -40,12 +40,10 @@ extension View {
                 titleVisibility: .confirmationDialog(title: _parameters.title, message: _parameters.message),
                 actions: {
                     ForEach(_parameters.buttons().enumeratedArray(), id: \.offset, content: { (_, button) in
-                        button.body(
-                            animateOut: {
-                                parameters.wrappedValue = nil
-                                $0?()
-                            }
-                        )
+                        button.makeBody(animateOut: { completion in
+                            parameters.wrappedValue = nil
+                            completion?()
+                        })
                     })
                 },
                 message: {
