@@ -38,7 +38,7 @@ public struct PlainDisclosureGroupUIModel {
         public var defaultDisclosureGroupPadding: CGFloat = 8
         
         // MARK: Initializers
-        /// Initializes model with default values.
+        /// Initializes UI model with default values.
         public init() {}
     }
 
@@ -52,7 +52,7 @@ public struct PlainDisclosureGroupUIModel {
         public var background: Color = .init(.systemBackground)
         
         // MARK: Initializers
-        /// Initializes model with default values.
+        /// Initializes UI model with default values.
         public init() {}
     }
     
@@ -64,7 +64,7 @@ public struct PlainDisclosureGroupUIModel {
         public var expandCollapse: Animation? = .default
         
         // MARK: Initializers
-        /// Initializes model with default values.
+        /// Initializes UI model with default values.
         public init() {}
     }
 }

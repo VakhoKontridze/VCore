@@ -34,7 +34,7 @@ public struct InnerShadowUIViewUIModel {
         public var shadowOffset: CGSize = .init(width: 5, height: 5)
         
         // MARK: Initializers
-        /// Initializes model with default values.
+        /// Initializes UI model with default values.
         public init() {}
     }
 }
