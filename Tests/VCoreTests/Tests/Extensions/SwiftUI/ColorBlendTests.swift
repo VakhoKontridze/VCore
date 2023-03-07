@@ -10,10 +10,7 @@ import SwiftUI
 @testable import VCore
 
 // MARK: - Tests
-@available(iOS 15.0, *)
-@available(macOS 12.0, *)
-@available(tvOS 15.0, *)
-@available(watchOS 8.0, *)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 final class ColorBlendTests: XCTestCase { 
     func testBlend() {
         let input1R: CGFloat = 1/3

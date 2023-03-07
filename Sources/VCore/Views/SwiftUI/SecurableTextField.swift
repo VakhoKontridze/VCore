@@ -21,10 +21,7 @@ import SwiftUI
 ///         )
 ///     }
 ///     
-@available(iOS 15.0, *)
-@available(macOS 12.0, *)
-@available(tvOS 15.0, *)
-@available(watchOS 8.0, *)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct SecurableTextField: View {
     // MARK: Properties
     private let isSecure: Bool
@@ -70,10 +67,7 @@ public struct SecurableTextField: View {
 }
 
 // MARK: - Preview
-@available(iOS 15.0, *)
-@available(macOS 12.0, *)
-@available(tvOS 15.0, *)
-@available(watchOS 8.0, *)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 struct SecurableTextField_Previews: PreviewProvider {
     static var previews: some View {
         Preview()

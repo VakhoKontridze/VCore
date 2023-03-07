@@ -9,10 +9,7 @@ import SwiftUI
 
 // MARK: - Confirmation Dialog Button Protocol
 /// `ConfirmationDialog` button protocol.
-@available(iOS 15.0, *)
-@available(macOS 12.0, *)
-@available(tvOS 15.0, *)
-@available(watchOS 8.0, *)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public protocol ConfirmationDialogButtonProtocol: ConfirmationDialogButtonConvertible {
     /// Body type.
     typealias Body = AnyView
@@ -23,10 +20,7 @@ public protocol ConfirmationDialogButtonProtocol: ConfirmationDialogButtonConver
     ) -> Body
 }
 
-@available(iOS 15.0, *)
-@available(macOS 12.0, *)
-@available(tvOS 15.0, *)
-@available(watchOS 8.0, *)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension ConfirmationDialogButtonProtocol {
     public func toButtons() -> [any ConfirmationDialogButtonProtocol] { [self] }
 }
@@ -48,10 +42,7 @@ extension ConfirmationDialogButtonProtocol {
 ///             .confirmationDialog(parameters: $parameters)
 ///     }
 ///
-@available(iOS 15.0, *)
-@available(macOS 12.0, *)
-@available(tvOS 15.0, *)
-@available(watchOS 8.0, *)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
     // MARK: Properties
     private var isEnabled: Bool = true

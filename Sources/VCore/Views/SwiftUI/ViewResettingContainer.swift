@@ -42,10 +42,7 @@ import SwiftUI
 ///         }
 ///     }
 ///
-@available(iOS 14.0, *)
-@available(macOS 11.0, *)
-@available(tvOS 14.0, *)
-@available(watchOS 7.0, *)
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public struct ViewResettingContainer<Content>: View where Content: View {
     // MARK: Properties
     @StateObject private var viewResetter: ViewResetter = .init()
@@ -84,10 +81,7 @@ public struct ViewResettingContainer<Content>: View where Content: View {
 /// to trigger view resets on demand.
 ///
 /// For additional info, refer to `ViewResettingContainer`.
-@available(iOS 14.0, *)
-@available(macOS 11.0, *)
-@available(tvOS 14.0, *)
-@available(watchOS 7.0, *)
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public final class ViewResetter: ObservableObject {
     // MARK: Properties
     @Published fileprivate var value: Int = 0

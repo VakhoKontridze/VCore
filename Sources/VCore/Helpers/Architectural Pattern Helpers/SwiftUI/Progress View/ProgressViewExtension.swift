@@ -8,10 +8,7 @@
 import SwiftUI
 
 // MARK: - Progress View Extension
-@available(iOS 14.0, *)
-@available(macOS 11.0, *)
-@available(tvOS 14.0, *)
-@available(watchOS 7.0, *)
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 extension View {
     /// Presents `ProgressView` when `ProgressViewParameters` is non-`nil`.
     ///
@@ -41,10 +38,7 @@ extension View {
     }
 }
 
-@available(iOS 14.0, *)
-@available(macOS 11.0, *)
-@available(tvOS 14.0, *)
-@available(watchOS 7.0, *)
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 extension View {
     @ViewBuilder fileprivate func progressViewStyle(parameters: ProgressViewParameters) -> some View {
         switch parameters.color {

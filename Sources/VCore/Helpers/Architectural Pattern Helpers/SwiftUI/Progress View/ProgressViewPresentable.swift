@@ -45,10 +45,7 @@ import SwiftUI
 ///         }
 ///     }
 ///
-@available(iOS 14.0, *)
-@available(macOS 11.0, *)
-@available(tvOS 14.0, *)
-@available(watchOS 7.0, *)
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 @MainActor public protocol ProgressViewPresentable: ObservableObject {
     /// `ProgressViewParameters`.
     var progressViewParameters: ProgressViewParameters? { get set }
