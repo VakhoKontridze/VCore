@@ -13,17 +13,19 @@ import Foundation
 extension ScrollableUIView {
     /// Scroll Direction.
     public struct ScrollDirection: OptionSet {
-        // MARK: Properties
-        public let rawValue: Int
-
+        // MARK: Options
         /// Horizontal scroll direction.
         public static var horizontal: ScrollDirection { .init(rawValue: 1 << 0) }
         
         /// Vertical scroll direction.
         public static var vertical: ScrollDirection { .init(rawValue: 1 << 1) }
         
+        // MARK: Options Initializers
         /// Horizontal and vertical scroll directions.
         public static var all: ScrollDirection { [.horizontal, .vertical] }
+        
+        // MARK: Properties
+        public let rawValue: Int
         
         // MARK: Initializers
         public init(rawValue: Int) {
