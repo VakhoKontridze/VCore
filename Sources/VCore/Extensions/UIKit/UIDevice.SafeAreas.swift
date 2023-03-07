@@ -11,15 +11,15 @@ import UIKit
 
 // MARK: - Device Safe Areas
 extension UIDevice {
-    /// Safe area insets in `UIApplication.shared.keyWindowInSingleSceneApplication`.
+    /// Safe area insets in `UIApplication.shared.firstWindowInSingleSceneApp`.
     ///
     ///     let insets: UIEdgeInsets? = UIDevice.safeAreaInsets
     ///
     public static var safeAreaInsets: UIEdgeInsets? {
-        UIApplication.shared.keyWindowInSingleSceneApplication?.safeAreaInsets
+        UIApplication.shared.firstWindowInSingleSceneApp?.safeAreaInsets
     }
     
-    /// Left safe area inset in `UIApplication.shared.keyWindowInSingleSceneApplication`.
+    /// Left safe area inset in `UIApplication.shared.firstWindowInSingleSceneApp`.
     ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetLeft
     ///
@@ -27,7 +27,7 @@ extension UIDevice {
         safeAreaInsets?.left ?? 0
     }
 
-    /// Right safe area inset in `UIApplication.shared.keyWindowInSingleSceneApplication`.
+    /// Right safe area inset in `UIApplication.shared.firstWindowInSingleSceneApp`.
     ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetRight
     ///
@@ -35,7 +35,7 @@ extension UIDevice {
         safeAreaInsets?.right ?? 0
     }
 
-    /// Top safe area inset in `UIApplication.shared.keyWindowInSingleSceneApplication`.
+    /// Top safe area inset in `UIApplication.shared.firstWindowInSingleSceneApp`.
     ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetTop
     ///
@@ -43,7 +43,7 @@ extension UIDevice {
         safeAreaInsets?.top ?? 0
     }
 
-    /// Bottom safe area inset in `UIApplication.shared.keyWindowInSingleSceneApplication`.
+    /// Bottom safe area inset in `UIApplication.shared.firstWindowInSingleSceneApp`.
     ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetBottom
     ///

@@ -11,16 +11,44 @@ import UIKit
 
 // MARK: - Application Key Window
 extension UIApplication {
-    /// Returns key `UIWindow` in a single-scene application.
+    /// Returns first `UIWindow` in a single-scene application.
     ///
-    /// This property assumes, that `supportsMultipleScenes` is `false`, and no `assert` is made.
+    /// This property assumes, that `supportsMultipleScenes` is `false`.
     ///
-    ///     let keyWindow: UIWindow? = UIApplication.shared.keyWindowInSingleSceneApplication
+    ///     let keyWindow: UIWindow? = UIApplication.shared.firstWindowInSingleSceneApp
     ///
-    public var keyWindowInSingleSceneApplication: UIWindow? {
-        firstWindow(where: { $0.isKeyWindow })
+    public var firstWindowInSingleSceneApp: UIWindow? {
+        connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first
     }
     
+    /// Returns key `UIWindow` in a single-scene application.
+    ///
+    /// This property assumes, that `supportsMultipleScenes` is `false`.
+    ///
+    ///     let keyWindow: UIWindow? = UIApplication.shared.keyWindowInSingleSceneApp
+    ///
+    public var keyWindowInSingleSceneApp: UIWindow? {
+        connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first(where: { $0.isKeyWindow })
+    }
+    
+    /// Returns key active `UIWindow` in a single-scene application.
+    ///
+    /// This property assumes, that `supportsMultipleScenes` is `false`.
+    ///
+    ///     let keyActiveWindow: UIWindow? = UIApplication.shared.keyActiveWindowInSingleSceneApp
+    ///
+    public var keyActiveWindowInSingleSceneApp: UIWindow? {
+        firstWindow(where: { $0.isKeyWindow })
+    }
+}
+
+extension UIApplication {
     /// Returns first `UIWindow` from all connected scenes, that satisfies predicate.
     public func firstWindow(
         activationStates: [UIScene.ActivationState] = [.foregroundActive],

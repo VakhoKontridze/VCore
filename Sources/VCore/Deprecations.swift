@@ -244,7 +244,7 @@ extension UIImage {
 #if canImport(UIKit) && !os(watchOS)
 
 extension UIApplication {
-    @available(*, deprecated, renamed: "keyWindowInSingleSceneApplication")
+    @available(*, deprecated, renamed: "firstWindowInSingleSceneApp")
     public var rootWindow: UIWindow? {
         if #available(iOS 15, tvOS 15, *) {
             return connectedScenes
@@ -262,19 +262,19 @@ extension UIApplication {
         }
     }
     
-    @available(*, deprecated, message: "Use `keyWindowInSingleSceneApplication?.rootViewController` instead")
+    @available(*, deprecated, message: "Use `firstWindowInSingleSceneApp?.rootViewController` instead")
     public var rootViewController: UIViewController? {
         rootWindow?.rootViewController
     }
     
-    @available(*, deprecated, message: "Use `keyWindowInSingleSceneApplication?.rootViewController?.view` instead")
+    @available(*, deprecated, message: "Use `firstWindowInSingleSceneApp?.rootViewController?.view` instead")
     public var rootView: UIView? {
         rootViewController?.view
     }
 }
 
 extension UIApplication {
-    @available(*, deprecated, renamed: "keyWindowInSingleSceneApplication")
+    @available(*, deprecated, renamed: "keyActiveWindowInSingleSceneApp")
     public var activeWindow: UIWindow? {
         connectedScenes
             .filter { $0.activationState == .foregroundActive }
@@ -284,12 +284,12 @@ extension UIApplication {
             .first { $0.isKeyWindow }
     }
     
-    @available(*, deprecated, message: "Use `keyWindowInSingleSceneApplication?.rootViewController` instead")
+    @available(*, deprecated, message: "Use `keyActiveWindowInSingleSceneApp?.rootViewController` instead")
     public var activeViewController: UIViewController? {
         activeWindow?.rootViewController
     }
     
-    @available(*, deprecated, message: "Use `keyWindowInSingleSceneApplication?.rootViewController?.view` instead")
+    @available(*, deprecated, message: "Use `keyActiveWindowInSingleSceneApp?.rootViewController?.view` instead")
     public var activeView: UIView? {
         activeViewController?.view
     }
