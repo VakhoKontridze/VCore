@@ -110,7 +110,7 @@ extension BasicAnimation {
 
 #endif
 
-// MARK: - Extension
+// MARK: - Function
 /// Returns the result of recomputing the view's body with the provided `BasicAnimation`,
 /// and optionally calls a completion handler.
 ///

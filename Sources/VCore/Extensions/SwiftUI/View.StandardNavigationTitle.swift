@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-// MARK: - Extension
+// MARK: - View Inline Navigation Title
 extension View {
     /// Configures the view’s title for purposes of navigation, using a `String` in a inline display mode.
     ///
