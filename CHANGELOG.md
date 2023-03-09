@@ -10,13 +10,13 @@ Services and managers
 
 - `PresentationHost` is brought from [VComponents](https://github.com/VakhoKontridze/VComponents)
 
-### [4.6.1(73)]https://github.com/VakhoKontridze/VCore/releases/tag/4.6.1) — *2023 03 09*
+### [4.6.1(73)](https://github.com/VakhoKontridze/VCore/releases/tag/4.6.1) — *2023 03 09*
 
 Other
 
 - Platform-specific compilation errors are fixed
 
-### [4.6.0(72)]https://github.com/VakhoKontridze/VCore/releases/tag/4.6.0) — *2023 03 09*
+### [4.6.0(72)](https://github.com/VakhoKontridze/VCore/releases/tag/4.6.0) — *2023 03 09*
 
 Views
 
