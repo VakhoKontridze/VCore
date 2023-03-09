@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.7.0(32)
+
+General
+
+- Demo app is removed as it served no purpose
+
 ### [4.6.0(72)]https://github.com/VakhoKontridze/VCore/releases/tag/4.6.0) — *2023 03 09*
 
 Views
