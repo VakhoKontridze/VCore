@@ -839,7 +839,7 @@ Extra - XCode Templates
 
 General
 
-- Framework now supports `iOS` `13`
+- Framework now supports `iOS` `13.0`
 
 Services and Managers
 
