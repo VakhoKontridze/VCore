@@ -16,7 +16,7 @@ extension View {
     /// For additional info, refer to [VComponents](https://github.com/VakhoKontridze/VComponents).
     ///
     ///     extension View {
-    ///         public func someModal(
+    ///         func someModal(
     ///             id: String,
     ///             isPresented: Binding<Bool>,
     ///             @ViewBuilder content: @escaping () -> some View
@@ -26,9 +26,7 @@ extension View {
     ///                     id: id,
     ///                     isPresented: isPresented,
     ///                     content: {
-    ///                         SomeModal(
-    ///                             content: content
-    ///                         )
+    ///                         SomeModal(content: content)
     ///                     }
     ///                 )
     ///         }
@@ -38,15 +36,16 @@ extension View {
     ///         @Environment(\.presentationHostPresentationMode) private var presentationMode
     ///         private let content: () -> Content
     ///
-    ///         @State private var isInternallyPresented: Bool = false // Cane be used for animations
+    ///         @State private var isInternallyPresented: Bool = false // Can be used for animations
     ///
-    ///         init(content: @escaping () -> Content) {
+    ///         init(
+    ///             @ViewBuilder content: @escaping () -> Content
+    ///         ) {
     ///             self.content = content
     ///         }
     ///
     ///         var body: some View {
     ///             content() // UI, customization, and animations go here...
-    ///
     ///                 .onAppear(perform: animateIn)
     ///                 .onTapGesture(perform: animateOut)
     ///                 .onChange(

@@ -10,9 +10,43 @@
 import SwiftUI
 
 // MARK: - Presentation Host Data Source Cache
-final class PresentationHostDataSourceCache {
+/// Caches data for Presentation Host, for when it may become `nil`.
+///
+/// Can be used to ensure that last content is visible instead of blank screen, when data is set to `nil` and modal is being dismissed.
+///
+/// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
+///
+///     extension View {
+///         func someModal<T>(
+///             id: String,
+///             isPresented: Binding<Bool>,
+///             presenting data: T?,
+///             @ViewBuilder content: @escaping (T) -> some View
+///         ) -> some View {
+///             data.map { PresentationHostDataSourceCache.shared.set(key: id, value: $0) }
+///
+///             return self
+///                 .presentationHost(
+///                     id: id,
+///                     isPresented: .init(
+///                         get: { isPresented.wrappedValue && data != nil },
+///                         set: { if !$0 { isPresented.wrappedValue = false } }
+///                     ),
+///                     content: {
+///                         SomeModal(content: {
+///                             if let data = data ?? PresentationHostDataSourceCache.shared.get(key: id) as? T {
+///                                 content(data)
+///                             }
+///                         })
+///                     }
+///                 )
+///         }
+///     }
+///
+public final class PresentationHostDataSourceCache {
     // MARK: Properties
-    static let shared: PresentationHostDataSourceCache = .init()
+    /// Shared instance of `PresentationHostDataSourceCache`.
+    public static let shared: PresentationHostDataSourceCache = .init()
     
     private var storage: [String: Any] = [:]
     
@@ -20,15 +54,18 @@ final class PresentationHostDataSourceCache {
     private init() {}
     
     // MARK: Get and Set
-    func get(key: String) -> Any? {
+    /// Returns data from key.
+    public func get(key: String) -> Any? {
         storage[key]
     }
     
-    func set(key: String, value: Any) {
+    /// Sets data with key.
+    public func set(key: String, value: Any) {
         storage[key] = value
     }
     
-    func remove(key: String) {
+    /// Deletes data with key.
+    public func remove(key: String) {
         storage[key] = nil
     }
 }
