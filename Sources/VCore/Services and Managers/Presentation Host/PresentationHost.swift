@@ -97,7 +97,10 @@ extension View {
             ))
     }
     
-    func presentationHost<Item ,Content>(
+    /// Injects an `UIHostingController` in view hierarchy that can be used to present modals in `UIKit` style.
+    ///
+    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
+    public func presentationHost<Item ,Content>(
         id: String,
         allowsHitTests: Bool = true,
         item: Binding<Item?>,
@@ -117,7 +120,10 @@ extension View {
             )
     }
     
-    func presentationHost<T ,Content>(
+    /// Injects an `UIHostingController` in view hierarchy that can be used to present modals in `UIKit` style.
+    ///
+    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
+    public func presentationHost<T ,Content>(
         id: String,
         allowsHitTests: Bool = true,
         isPresented: Binding<Bool>,
@@ -138,7 +144,10 @@ extension View {
             )
     }
     
-    func presentationHost<E ,Content>(
+    /// Injects an `UIHostingController` in view hierarchy that can be used to present modals in `UIKit` style.
+    ///
+    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
+    public func presentationHost<E ,Content>(
         id: String,
         allowsHitTests: Bool = true,
         isPresented: Binding<Bool>,
