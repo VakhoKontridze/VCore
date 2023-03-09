@@ -206,6 +206,14 @@ public struct AlignedGridView: Layout {
 // MARK: - Preview
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 struct AlignedGridView_Previews: PreviewProvider {
+    private static var strings: [String] {
+        [
+            "Monday", "Tuesday", "Wednesday",
+            "Thursday", "Friday", "Saturday",
+            "Sunday"
+        ]
+    }
+    
     static var previews: some View {
         VStack(content: {
             gridView(.leading)
@@ -216,12 +224,6 @@ struct AlignedGridView_Previews: PreviewProvider {
         })
             .padding()
     }
-    
-    private static let strings: [String] = [
-        "Monday", "Tuesday", "Wednesday",
-        "Thursday", "Friday", "Saturday",
-        "Sunday"
-    ]
     
     @ViewBuilder private static func gridView(
         _ alignment: HorizontalAlignment
