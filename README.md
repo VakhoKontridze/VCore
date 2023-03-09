@@ -6,7 +6,6 @@
 - [Compatibility](#compatibility)
 - [Structure](#structure)
 - [Showcase](#showcase)
-- [Demo](#demo)
 - [Installation](#installation)
 - [Versioning](#versioning)
 - [Contact](#contact)
@@ -312,10 +311,6 @@ let phoneNumber: String = "+0123456789"
 let flag1: Bool = phoneNumber.contains(.decimalDigits) // true
 let flag2: Bool = phoneNumber.contains(only: .decimalDigits) // false
 ```
-
-## Demo
-
-Package contains demo app, that can be used to test functionality of the package.
 
 ## Installation
 
