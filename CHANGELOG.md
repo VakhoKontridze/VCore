@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.6.1(73)
+
+Other
+
+- Platform-specific compilation errors are fixed
+
 ### [4.6.0(72)]https://github.com/VakhoKontridze/VCore/releases/tag/4.6.0) — *2023 03 09*
 
 Views
