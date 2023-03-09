@@ -1,10 +1,14 @@
 # Change Log
 
-### 4.7.0(32)
+### 4.7.0(74)
 
 General
 
 - Demo app is removed as it served no purpose
+
+Services and managers
+
+- `PresentationHost` is brought from [VComponents](https://github.com/VakhoKontridze/VComponents)
 
 ### [4.6.1(73)]https://github.com/VakhoKontridze/VCore/releases/tag/4.6.1) — *2023 03 09*
 
