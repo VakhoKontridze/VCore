@@ -38,7 +38,7 @@ public final class NetworkClient {
     /// Configuration object that defines behavior and policies for an `URL` session.
     public var sessionConfiguration: URLSessionConfiguration = .default
     
-    /// Queue on which completion is returned. Defaults to `main`.
+    /// Queue on which completion is returned. Set to `main`.
     public var completionQueue: DispatchQueue = .main
     
     let responseProcessor: any NetworkResponseProcessor

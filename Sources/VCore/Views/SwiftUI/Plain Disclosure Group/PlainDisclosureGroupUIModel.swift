@@ -30,7 +30,7 @@ public struct PlainDisclosureGroupUIModel {
     /// Model that contains layout properties.
     public struct Layout {
         // MARK: Properties
-        /// Default padding in native disclosure group. Defaults to `8`.
+        /// Default padding in native disclosure group. Set to `8`.
         ///
         /// Value is used during the frame calculations, and must be provided.
         ///
@@ -60,7 +60,7 @@ public struct PlainDisclosureGroupUIModel {
     /// Model that contains animation properties.
     public struct Animations {
         // MARK: Properties
-        /// Expand and collapse animation. Defaults to `default`.
+        /// Expand and collapse animation. Set to `default`.
         public var expandCollapse: Animation? = .default
         
         // MARK: Initializers

@@ -46,7 +46,7 @@ public struct SystemKeyboardInfo {
     }
     
     // MARK: Default Values
-    /// Default estimated keyboard frame. Defaults to screen width times `400` points positioned on the bottom.
+    /// Default estimated keyboard frame. Set to screen width times `400` points positioned on the bottom.
     public static var defaultEstimatedKeyboardFrame: CGRect {
         let estimatedKeyboardHeight: CGFloat = 400
         
@@ -58,14 +58,14 @@ public struct SystemKeyboardInfo {
         )
     }
     
-    /// Default animation duration. Defaults to `0.25`
+    /// Default animation duration. Set to `0.25`
     ///
     /// If keyboard is already shown, but first responder changes, animation duration returned by the `Notification` will be `0`.
     /// In that case, this value can be used to perform additional animation.
     /// Alternately, consider checking out `nonZeroAnimationDuration`.
     public static var defaultAnimationDuration: TimeInterval { 0.25 }
     
-    /// Default animation options. Defaults to `curveLinear`.
+    /// Default animation options. Set to `curveLinear`.
     public static var defaultAnimationOptions: UIView.AnimationOptions { .curveLinear }
     
     // MARK: Other Values

@@ -13,7 +13,7 @@ import UIKit
 /// Subclass of  `KeyboardResponsiveUIViewController` that handles keyboard notifications by offsetting container by the obscured subview height.
 open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight: KeyboardResponsiveUIViewController {
     // MARK: Properties
-    /// `UIView` on which offset animations will be applied. Defaults to `view`.
+    /// `UIView` on which offset animations will be applied. Set to `view`.
     ///
     /// In case of `UITableView`, `UITableView` itself can be passed.
     ///

@@ -31,7 +31,7 @@ public struct NetworkRequest {
     /// `URL` of the request.
     public var url: String
     
-    /// `HTTP` method. Defaults to `GET`.
+    /// `HTTP` method. Set to `GET`.
     public var method: NetworkRequestMethod = .GET
     
     private(set) var pathParameters: [String] = []

@@ -135,7 +135,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
     open var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }
     
-    /// Offset that needs to be dragged vertically up for pagination to occur. Defaults to `20`.
+    /// Offset that needs to be dragged vertically up for pagination to occur. Set to `20`.
     open var paginationOffset: CGFloat = 20
     
     private var isFirstLayoutSubviews: Bool = false

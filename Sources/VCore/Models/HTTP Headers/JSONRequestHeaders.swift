@@ -17,10 +17,10 @@ import Foundation
 ///
 public struct JSONRequestHeaders: Encodable {
     // MARK: Properties
-    /// Accept. Defaults to `application/json`.
+    /// Accept. Set to `application/json`.
     public let accept: String = "application/json"
     
-    /// Content type. Defaults to `application/json`.
+    /// Content type. Set to `application/json`.
     public let contentType: String = "application/json"
     
     // MARK: Initializers

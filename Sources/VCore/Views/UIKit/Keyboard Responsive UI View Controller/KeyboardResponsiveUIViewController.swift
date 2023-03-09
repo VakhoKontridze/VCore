@@ -62,7 +62,7 @@ open class KeyboardResponsiveUIViewController: UIViewController {
     /// Indicates, if `KeyboardResponsiveViewController` should call
     /// `keyboardWillShow(_:)` and `keyboardWillHide(_:)` methods,
     /// even if keyboard is already shown or hidden.
-    /// Defaults to `true`.
+    /// Set to `true`.
     open var notifiesWhenKeyboardIsAlreadyShownOrHidden: Bool = true
     
     /// Indicates if keyboard is currently shown.
@@ -71,7 +71,7 @@ open class KeyboardResponsiveUIViewController: UIViewController {
     /// Indicates, if `KeyboardResponsiveViewController` should call
     /// `keyboardWillShow(_:)` and `keyboardWillHide(_:)` methods,
     /// even if `KeyboardResponsiveViewController` is not visible.
-    /// Defaults to `false`.
+    /// Set to `false`.
     open var notifiesWhenViewControllerIsNotVisible: Bool = false
     
     // MARK: Lifecycle

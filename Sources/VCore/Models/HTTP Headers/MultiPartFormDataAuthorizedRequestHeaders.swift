@@ -20,7 +20,7 @@ import Foundation
 ///
 public struct MultipartFormDataAuthorizedRequestHeaders: Encodable {
     // MARK: Properties
-    /// Accept. Defaults to `application/json`.
+    /// Accept. Set to `application/json`.
     public let accept: String = "application/json"
     
     /// Content type.

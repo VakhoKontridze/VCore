@@ -23,7 +23,7 @@ public final class VCoreLocalizationManager {
     /// Shared instance of `VCoreLocalizationManager`.
     public static let shared: VCoreLocalizationManager = .init()
     
-    /// Localization provider. Defaults to `DefaultVCoreLocalizationProvider`.
+    /// Localization provider. Set to `DefaultVCoreLocalizationProvider`.
     public var localizationProvider: any VCoreLocalizationProvider = DefaultVCoreLocalizationProvider()
     
     // MARK: Initializers

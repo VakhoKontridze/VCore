@@ -28,24 +28,24 @@ import Foundation
 ///
 public struct DigitalTimeFormatter {
     // MARK: Properties
-    /// Indicates if empty components still show up as zeroes in format. Defaults to `false`.
+    /// Indicates if empty components still show up as zeroes in format. Set to `false`.
     public var emptyComponentsShowAsZeroes: Bool = false
     
-    /// Indicates if hour component in `HH:MM:SS` format shows two digits. Defaults to `false`.
+    /// Indicates if hour component in `HH:MM:SS` format shows two digits. Set to `false`.
     public var hourComponentHasTwoDigits: Bool = false
     
-    /// Indicates if minute component in `MM:SS` format shows two digits. Defaults to `false`.
+    /// Indicates if minute component in `MM:SS` format shows two digits. Set to `false`.
     public var minuteComponentHasTwoDigits: Bool = false
     
-    /// Indicates if second component in `SS` format shows two digits. Defaults to `true`.
+    /// Indicates if second component in `SS` format shows two digits. Set to `true`.
     ///
     /// `minuteComponentShowsIfSecondComponentShows` must be set to false.
     public var secondComponentHasTwoDigits: Bool = true
     
-    /// Indicates if minute component is visible if only second component exists. Defaults to `true`.
+    /// Indicates if minute component is visible if only second component exists. Set to `true`.
     public var minuteComponentShowsIfSecondComponentShows: Bool = true
     
-    /// Component delimiter. Defaults to `:`.
+    /// Component delimiter. Set to `:`.
     public var delimiter: String = ":"
     
     // MARK: Initializers

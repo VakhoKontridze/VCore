@@ -33,7 +33,7 @@ extension Double {
 ///
 public struct AutoPrecisionNumberFormatter {
     // MARK: Properties
-    /// Minimum number of fractions. Defaults to `0`.
+    /// Minimum number of fractions. Set to `0`.
     public var minFractions: Int
     
     /// Maximum number of fractions.
