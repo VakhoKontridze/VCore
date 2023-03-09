@@ -10,7 +10,7 @@
 import SwiftUI
 
 // MARK: - Safe Area Margin Insets
-@available(iOS 15.0, *)
+@available(iOS 15.0, tvOS 15.0, *)
 extension View {
     /// Inserts `Spacer`s with width or height of safe are inset as margins for specified edges.
     ///
