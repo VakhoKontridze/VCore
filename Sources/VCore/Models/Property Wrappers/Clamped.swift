@@ -5,22 +5,22 @@
 //  Created by Vakhtang Kontridze on 22.02.23.
 //
 
-import Foundation
+import SwiftUI
 
 // MARK: - Clamped
 /// Property wrapper type that clamps a value to range.
 ///
-///     @Clamped(1...10) var a: Double = 0 // 1.0
-///     @Clamped(1...10) var b: Double = 5 // 5.0
-///     @Clamped(1...10) var c: Double = 11 // 10.0
+///     @Clamped(1...10) private var a: Double = 0 // 1.0
+///     @Clamped(1...10) private var b: Double = 5 // 5.0
+///     @Clamped(1...10) private var c: Double = 11 // 10.0
 ///
-///     @Clamped(1...10, step: 3) var a: Double = 0 // 1.0
-///     @Clamped(1...10, step: 3) var b: Double = 5 // 4.0
-///     @Clamped(1...10, step: 3) var c: Double = 11 // 10.0
+///     @Clamped(1...10, step: 3) private var a: Double = 0 // 1.0
+///     @Clamped(1...10, step: 3) private var b: Double = 5 // 4.0
+///     @Clamped(1...10, step: 3) private var c: Double = 11 // 10.0
 ///
-@propertyWrapper public struct Clamped<Value> {
+@propertyWrapper public struct Clamped<Value>: DynamicProperty {
     // MARK: Properties
-    private var fieldValue: Value
+    @State private var fieldValue: Value
     
     /// The underlying value referenced by the state variable.
     public var wrappedValue: Value {
@@ -35,7 +35,7 @@ import Foundation
         wrappedValue: Value,
         transformation: @escaping (Value) -> Value
     ) {
-        self.fieldValue = transformation(wrappedValue)
+        self._fieldValue = .init(initialValue: transformation(wrappedValue))
         self.transformation = transformation
     }
 }
