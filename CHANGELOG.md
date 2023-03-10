@@ -16,6 +16,10 @@ Models
 - `projectedValue` is added to `Clamped` property wrapper
 - `projectedValue` is added to `OldValueCache` property wrapper
 
+Extensions
+
+- `Image.init(data:)` initializer is added
+
 Other
 
 - Demo app is removed as it served no purpose
