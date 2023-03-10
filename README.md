@@ -241,6 +241,7 @@ final class ViewController: KeyboardResponsiveUIViewController {
 #### Various SwiftUI Views
 
 `DelegatingAsyncImage` that asynchronously loads and displays an `Image` with a delegated fetch handler.
+You can customize request with access token and headers, implement custom caching, and more.
 
 ```swift
 var body: some View {
