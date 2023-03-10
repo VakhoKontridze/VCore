@@ -64,7 +64,7 @@ public enum LayoutDirectionOmni: CaseIterable {
     ) -> some View
         where Content: View
     {
-        HOrVStack(
+        HVStack(
             alignmentHor: alignmentHor,
             alignmentVer: alignmentVer,
             spacing: spacing,

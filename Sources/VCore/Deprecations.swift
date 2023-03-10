@@ -62,6 +62,10 @@ extension KeychainService {
     }
 }
 
+// MARK: - H Or VStack
+@available(*, deprecated, renamed: "HVStack")
+public typealias HOrVStack = HVStack
+
 // MARK: - Architectural Pattern Helpers
 import SwiftUI
 

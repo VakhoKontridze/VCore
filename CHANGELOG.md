@@ -6,6 +6,10 @@ Services and managers
 
 - `PresentationHost` is brought from [VComponents](https://github.com/VakhoKontridze/VComponents)
 
+Views
+
+- `HOrVStack` is renamed to `HVStack`
+
 Models
 
 - `KeychainStorage` property wrapper no longer requires enclosing `class` to conform to `ObservableObject`

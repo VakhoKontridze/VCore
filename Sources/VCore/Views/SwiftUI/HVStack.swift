@@ -1,5 +1,5 @@
 //
-//  HOrVStack.swift
+//  HVStack.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 06.03.23.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-// MARK: - H or V Stack
+// MARK: - HVStack
 /// `View` that arranges its subviews in a horizontal or vertical line.
-public struct HOrVStack<Content>: View where Content: View {
+public struct HVStack<Content>: View where Content: View {
     // MARK: Properties
     private let alignmentHor: HorizontalAlignment
     private let alignmentVer: VerticalAlignment
@@ -18,7 +18,7 @@ public struct HOrVStack<Content>: View where Content: View {
     private let content: () -> Content
     
     // MARK: Initializers
-    /// Initializes `HOrVStack` with `Bool` and content.
+    /// Initializes `HVStack` with `Bool` and content.
     public init(
         alignmentHor: HorizontalAlignment = .center,
         alignmentVer: VerticalAlignment = .center,
@@ -33,7 +33,7 @@ public struct HOrVStack<Content>: View where Content: View {
         self.content = content
     }
     
-    /// Initializes `HOrVStack` with `Axis` and content.
+    /// Initializes `HVStack` with `Axis` and content.
     public init(
         alignmentHor: HorizontalAlignment = .center,
         alignmentVer: VerticalAlignment = .center,
@@ -74,10 +74,10 @@ public struct HOrVStack<Content>: View where Content: View {
 
 // MARK: - Preview
 @available(macOS 11.0, *)
-struct HOrVStack_Previews: PreviewProvider {
+struct HVStack_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 20, content: {
-            HOrVStack(
+            HVStack(
                 spacing: 10,
                 axis: .horizontal,
                 content: {
@@ -88,7 +88,7 @@ struct HOrVStack_Previews: PreviewProvider {
             
             Divider()
             
-            HOrVStack(
+            HVStack(
                 spacing: 10,
                 axis: .vertical,
                 content: {
