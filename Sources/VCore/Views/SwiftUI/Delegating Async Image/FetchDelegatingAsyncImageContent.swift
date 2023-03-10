@@ -1,5 +1,5 @@
 //
-//  DelegatingAsyncImageContent.swift
+//  FetchDelegatingAsyncImageContent.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10.03.23.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-// MARK: - Delegating Async Image Content
-enum DelegatingAsyncImageContent<Content, PlaceholderContent>
+// MARK: - Fetch Delegating Async Image Content
+enum FetchDelegatingAsyncImageContent<Content, PlaceholderContent>
     where
         Content: View,
         PlaceholderContent: View

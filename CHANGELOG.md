@@ -8,7 +8,7 @@ Services and managers
 
 Views
 
-- `DelegatingAsyncImage` is added that allows you to write custom fetch function
+- `FetchDelegatingAsyncImage` is added that allows you to write custom fetch function
 - `HOrVStack` is renamed to `HVStack`
 
 Models

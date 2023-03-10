@@ -1,5 +1,5 @@
 //
-//  DelegatingAsyncImageUIModel.swift
+//  FetchDelegatingAsyncImageUIModel.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10.03.23.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-// MARK: - Delegating Async Image UI Model
+// MARK: - Fetch Delegating Async Image UI Model
 /// Model that describes UI.
-public struct DelegatingAsyncImageUIModel {
+public struct FetchDelegatingAsyncImageUIModel {
     // MARK: Properties
     /// Model that contains color properties.
     public var colors: Colors = .init()

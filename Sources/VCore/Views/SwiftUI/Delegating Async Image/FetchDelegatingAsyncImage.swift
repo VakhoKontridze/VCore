@@ -1,5 +1,5 @@
 //
-//  DelegatingAsyncImage.swift
+//  FetchDelegatingAsyncImage.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10.03.23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Delegating Async Image
+// MARK: - Fetch Delegating Async Image
 /// `View` that asynchronously loads and displays an `Image` with a delegated fetch handler.
 ///
 /// You can customize request with access token and headers, implement custom caching, and more.
@@ -15,7 +15,7 @@ import SwiftUI
 /// UI model can be passed as a parameter.
 ///
 ///     var body: some View {
-///         DelegatingAsyncImage(
+///         FetchDelegatingAsyncImage(
 ///             from: URL(string: "https://somewebsite.com/content/image.jpg")!,
 ///             fetch: fetchImage,
 ///             content: { phase in
@@ -59,28 +59,28 @@ import SwiftUI
 ///         }
 ///     }
 ///
-public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
+public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
     where
         Resource: Equatable,
         Content: View,
         PlaceholderContent: View
 {
     // MARK: Properties
-    private let uiModel: DelegatingAsyncImageUIModel
+    private let uiModel: FetchDelegatingAsyncImageUIModel
     
     private let resource: Resource?
     private let fetchHandler: (Resource) async throws -> Image
     
-    private let content: DelegatingAsyncImageContent<Content, PlaceholderContent>
+    private let content: FetchDelegatingAsyncImageContent<Content, PlaceholderContent>
     
     @State private var resourceFetched: Resource? // Needed for avoiding fetching an-already fetched image
     @State private var task: Task<Void, Never>? // Needed for canceling task, if resource changes during fetch
     @State private var result: Result<Image, Error>?
     
     // MARK: Initializers
-    /// Initializes `DelegatingAsyncImage` with resource and fetch method.
+    /// Initializes `FetchDelegatingAsyncImage` with resource and fetch method.
     public init(
-        uiModel: DelegatingAsyncImageUIModel = .init(),
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
         fetch fetchHandler: @escaping (Resource) async throws -> Image
     )
@@ -94,9 +94,9 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
         self.content = .empty
     }
     
-    /// Initializes `DelegatingAsyncImage` with resource, fetch method, and content.
+    /// Initializes `FetchDelegatingAsyncImage` with resource, fetch method, and content.
     public init(
-        uiModel: DelegatingAsyncImageUIModel = .init(),
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
         fetch fetchHandler: @escaping (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content
@@ -112,9 +112,9 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
         )
     }
     
-    /// Initializes `DelegatingAsyncImage` with resource, fetch method, content, and placeholder content.
+    /// Initializes `FetchDelegatingAsyncImage` with resource, fetch method, content, and placeholder content.
     public init(
-        uiModel: DelegatingAsyncImageUIModel = .init(),
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
         fetch fetchHandler: @escaping (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content,
@@ -129,10 +129,10 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
         )
     }
 
-    /// Initializes `DelegatingAsyncImage` with resource, fetch method, and phase-dependent content.
+    /// Initializes `FetchDelegatingAsyncImage` with resource, fetch method, and phase-dependent content.
     @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
     public init(
-        uiModel: DelegatingAsyncImageUIModel = .init(),
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
         fetch fetchHandler: @escaping (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
