@@ -6,8 +6,8 @@
 //
 
 import XCTest
-import SwiftUI
 @testable import VCore
+import SwiftUI
 
 // MARK: - Tests
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
