@@ -109,6 +109,6 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
             path: $navigationStackCoordinator.path,
             root: { root(navigationStackCoordinator) }
         )
-            .environment(\.navigationStackCoordinator, navigationStackCoordinator)
+            .navigationStackCoordinator(navigationStackCoordinator)
     }
 }
