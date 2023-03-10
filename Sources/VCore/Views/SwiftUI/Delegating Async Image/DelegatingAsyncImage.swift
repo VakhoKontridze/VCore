@@ -12,6 +12,8 @@ import SwiftUI
 ///
 /// You can customize request with access token and headers, implement custom caching, and more.
 ///
+/// UI model can be passed as a parameter.
+///
 ///     var body: some View {
 ///         DelegatingAsyncImage(
 ///             from: URL(string: "https://somewebsite.com/content/image.jpg")!,
@@ -64,8 +66,11 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
         PlaceholderContent: View
 {
     // MARK: Properties
+    private let uiModel: DelegatingAsyncImageUIModel
+    
     private let resource: Resource?
     private let fetchHandler: (Resource) async throws -> Image
+    
     private let content: DelegatingAsyncImageContent<Content, PlaceholderContent>
     
     @State private var resourceFetched: Resource? // Needed for avoiding fetching an-already fetched image
@@ -75,6 +80,7 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
     // MARK: Initializers
     /// Initializes `DelegatingAsyncImage` with resource and fetch method.
     public init(
+        uiModel: DelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
         fetch fetchHandler: @escaping (Resource) async throws -> Image
     )
@@ -82,6 +88,7 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
             Content == Never,
             PlaceholderContent == Never
     {
+        self.uiModel = uiModel
         self.resource = resource
         self.fetchHandler = fetchHandler
         self.content = .empty
@@ -89,6 +96,7 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
     
     /// Initializes `DelegatingAsyncImage` with resource, fetch method, and content.
     public init(
+        uiModel: DelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
         fetch fetchHandler: @escaping (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content
@@ -96,6 +104,7 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
         where
             PlaceholderContent == Never
     {
+        self.uiModel = uiModel
         self.resource = resource
         self.fetchHandler = fetchHandler
         self.content = .content(
@@ -105,11 +114,13 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
     
     /// Initializes `DelegatingAsyncImage` with resource, fetch method, content, and placeholder content.
     public init(
+        uiModel: DelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
         fetch fetchHandler: @escaping (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content,
         @ViewBuilder placeholder placeholderContent: @escaping () -> PlaceholderContent
     ) {
+        self.uiModel = uiModel
         self.resource = resource
         self.fetchHandler = fetchHandler
         self.content = .contentPlaceholder(
@@ -121,12 +132,14 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
     /// Initializes `DelegatingAsyncImage` with resource, fetch method, and phase-dependent content.
     @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
     public init(
+        uiModel: DelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
         fetch fetchHandler: @escaping (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
     )
         where PlaceholderContent == Never
     {
+        self.uiModel = uiModel
         self.resource = resource
         self.fetchHandler = fetchHandler
         self.content = .contentWithPhase(
@@ -197,7 +210,7 @@ public struct DelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
     }
     
     private var defaultPlaceholder: some View {
-        Color.gray.opacity(0.3)
+        uiModel.colors.placeholder
     }
     
     // MARK: Fetch
