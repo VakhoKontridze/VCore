@@ -240,29 +240,51 @@ final class ViewController: KeyboardResponsiveUIViewController {
 
 #### Various SwiftUI Views
 
-`ViewResettingContainer` that allows for a `View` reset on demand:
+`DelegatingAsyncImage` that asynchronously loads and displays an `Image` with a delegated fetch handler.
 
 ```swift
-@main struct SomeApp: App {
-    var body: some Scene {
-        WindowGroup(content: {
-            ViewResettingContainer(content: {
-                ContentView()
-            })
-        })
-    }
+var body: some View {
+    DelegatingAsyncImage(
+        from: URL(string: "https://somewebsite.com/content/image.jpg")!,
+        fetch: fetchImage,
+        content: { phase in
+            if let image = phase.image {
+                image
+                    .resizable()
+                    .fitToAspect(1, contentMode: .fill)
+
+            } else if phase.error != nil {
+                ErrorView()
+
+            } else {
+                ProgressView()
+            }
+        }
+    )
+        .frame(dimension: 200)
 }
+```
 
-struct ContentView: View {
-    @EnvironmentObject private var viewResetter: ViewResetter
+```swift
+private var cache: NSCache<NSString, UIImage> = .init()
 
-    var body: some View {
-        ScrollView(content: {
-            Color.red
-                .frame(height: UIScreen.main.bounds.height)
+private func fetchImage(url: URL) async throws -> Image {
+    let key: NSString = .init(string: url.absoluteString)
 
-            Button("Reset", action: { viewResetter.trigger() })
-        })
+    switch cache.object(forKey: key) {
+    case nil:
+        var request: NetworkRequest = .init(url: url)
+        try request.addHeaders(encodable: JSONAuthorizedRequestHeaders(token: "token"))
+
+        let data: Data = try await NetworkClient.default.data(from: request)
+        guard let uiImage: UIImage = .init(data: data) else { throw NetworkClientError.invalidData }
+
+        cache.setObject(uiImage, forKey: key)
+
+        return .init(uiImage: uiImage)
+
+    case let uiImage?:
+        return .init(uiImage: uiImage)
     }
 }
 ```
