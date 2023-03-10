@@ -63,7 +63,7 @@ import Combine
     }
     
     // MARK: Observable Support
-    public static subscript<T: ObservableObject>(
+    public static subscript<T>(
         _enclosingInstance instance: T,
         wrapped wrappedKeyPath: ReferenceWritableKeyPath<T, Value>,
         storage storageKeyPath: ReferenceWritableKeyPath<T, Self>
@@ -73,7 +73,13 @@ import Combine
         }
         set {
             instance[keyPath: storageKeyPath].wrappedValue = newValue
-            (instance.objectWillChange as? ObservableObjectPublisher)?.send()
+            
+            if
+                let instance = instance as? any ObservableObject,
+                let observableObjectPublisher = instance.objectWillChange as any Publisher as? ObservableObjectPublisher
+            {
+                observableObjectPublisher.send()
+            }
         }
     }
 }
