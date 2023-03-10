@@ -8,7 +8,9 @@ Services and managers
 
 Models
 
-- `KeychainStorage` no longer requires enclosing `class` to conform to `ObservableObject`
+- `KeychainStorage` property wrapper no longer requires enclosing `class` to conform to `ObservableObject`
+- `projectedValue` is added to `Clamped` property wrapper
+- `projectedValue` is added to `OldValueCache` property wrapper
 
 Other
 

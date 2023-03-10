@@ -25,7 +25,15 @@ import SwiftUI
     /// The underlying value referenced by the state variable.
     public var wrappedValue: Value {
         get { fieldValue }
-        set { fieldValue = transformation(newValue) }
+        nonmutating set { fieldValue = transformation(newValue) }
+    }
+    
+    /// The property for which this instance exposes a publisher.
+    public var projectedValue: Binding<Value> {
+        .init(
+            get: { wrappedValue },
+            set: { wrappedValue = $0 }
+        )
     }
     
     private let transformation: (Value) -> Value

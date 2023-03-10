@@ -23,9 +23,8 @@ import SwiftUI
 @propertyWrapper public struct OldValueCache<Value>: DynamicProperty {
     // MARK: Properties
     /// Old value.
-    @State private(set) public var wrappedValueOld: Value?
-
     @State private var fieldValue: Value
+    
     public var wrappedValue: Value {
         get {
             fieldValue
@@ -35,6 +34,16 @@ import SwiftUI
             fieldValue = newValue
         }
     }
+    
+    /// The property for which this instance exposes a publisher.
+    public var projectedValue: Binding<Value> {
+        .init(
+            get: { wrappedValue },
+            set: { wrappedValue = $0 }
+        )
+    }
+    
+    @State private(set) public var wrappedValueOld: Value?
 
     // MARK: Initializers
     /// Initializes `OldValueCache`.
