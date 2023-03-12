@@ -353,6 +353,16 @@ extension View {
 
 #endif
 
+extension View {
+    @available(*, deprecated, renamed: "onSizeChange(perform:)")
+    public func readSize(
+        onChange completion: @escaping (CGSize) -> Void
+    ) -> some View {
+        self
+            .onSizeChange(perform: completion)
+    }
+}
+
 // MARK: - V Core Localization Manager
 @available(*, deprecated, renamed: "VCoreLocalizationManager")
 public typealias VCoreLocalizationService = VCoreLocalizationManager

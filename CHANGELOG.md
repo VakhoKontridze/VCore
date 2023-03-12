@@ -20,6 +20,7 @@ Models
 Extensions
 
 - `Image.init(data:)` initializer is added
+- `View.readSize(onChange:)` is renamed to `View.onSizeChange(perform:)`
 
 Other
 
