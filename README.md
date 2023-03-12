@@ -151,7 +151,7 @@ LocalizationManager.shared.setCurrentLocale(to: .english)
 
 #### Keychain Service:
 
-`KeychainService` that supports custom queries and property wrappers:
+`KeychainService` that supports custom queries, and has a dedicated property wrapper':
 
 ```swift
 KeychainService.default.get(key: "SomeKey")
@@ -264,9 +264,9 @@ var body: some View {
     )
         .frame(dimension: 200)
 }
-```
 
-```swift
+...
+
 private var cache: NSCache<NSString, UIImage> = .init()
 
 private func fetchImage(url: URL) async throws -> Image {
@@ -324,15 +324,6 @@ var body: some View {
     Text("Lorem Ipsum")
         .if(isRed, transform: { $0.foregroundColor(.red) })
 }
-```
-
-`String` Contains `CharacterSet` / `String` Contains Only `CharacterSet`:
-
-```swift
-let phoneNumber: String = "+0123456789"
-
-let flag1: Bool = phoneNumber.contains(.decimalDigits) // true
-let flag2: Bool = phoneNumber.contains(only: .decimalDigits) // false
 ```
 
 ## Installation
