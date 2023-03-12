@@ -410,9 +410,7 @@ Views
 - `RightAlignedCollectionViewFlowLayout` is renamed to `RightAlignedUICollectionViewFlowLayout`
 - `KeyboardResponsiveViewController` is renamed to `KeyboardResponsiveUIViewController`
 - `InfiniteScrollingTableView` is renamed to `InfiniteScrollingUITableView`
-- `InfiniteScrollingTableViewDelegate` is renamed to `InfiniteScrollingUITableViewDelegate`
 - `InfiniteScrollingCollectionView` is renamed to `InfiniteScrollingUICollectionView`
-- `InfiniteScrollingCollectionViewDelegate` is renamed to `InfiniteScrollingUICollectionViewDelegate`
 - `ScrollableView` is renamed to `ScrollableUIView`
 
 Helpers
