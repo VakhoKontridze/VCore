@@ -302,7 +302,7 @@ a.isOptionalLess(than: b, order: .nilIsLess) // false
 a.isOptionalLess(than: b, order: .nilIsGreater) // true
 ```
 
-Reading `View` Size:
+Detecting changes in `View` Size:
 
 ```swift
 @State private var size: CGSize = .zero
@@ -310,7 +310,7 @@ Reading `View` Size:
 var body: some View {
     VStack(content: {
         Color.accentColor
-            .readSize(onChange: { size = $0 })
+            .onSizeChange(perform: { size = $0 })
     })
 }
 ```
