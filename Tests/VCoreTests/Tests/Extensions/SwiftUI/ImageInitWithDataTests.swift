@@ -12,7 +12,7 @@ import SwiftUI
 // MARK: - Tests
 final class ImageInitWithDataTests: XCTestCase {
     func test() {
-    #if canImport(UIKit)
+    #if canImport(UIKit) && !os(watchOS)
         let uiImage: UIImage = .init(
             size: .init(dimension: 100),
             color: .systemBlue
