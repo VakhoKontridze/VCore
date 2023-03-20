@@ -77,10 +77,7 @@ public enum LayoutDirectionOmni: CaseIterable {
     ///
     /// For `leftToRight` or `rightToLeft`, `HStackLayout` will be used.
     /// For `topToBottom` or `bottomToTop`, `VStackLayout` will be used.
-    @available(iOS 16.0, *)
-    @available(macOS 13.0, *)
-    @available(tvOS 16.0, *)
-    @available(watchOS 9.0, *)
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public func stackLayout(
         alignmentHor: HorizontalAlignment = .center,
         alignmentVer: VerticalAlignment = .center,

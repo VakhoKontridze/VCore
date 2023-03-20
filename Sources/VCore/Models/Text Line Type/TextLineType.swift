@@ -59,10 +59,7 @@ public struct TextLineType {
     }
     
     /// Multi-line.
-    @available(iOS 16.0, *)
-    @available(macOS 13.0, *)
-    @available(tvOS 16.0, *)
-    @available(watchOS 9.0, *)
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public static func multiLine(
         alignment: TextAlignment,
         lineLimit: Int,
@@ -75,10 +72,7 @@ public struct TextLineType {
     }
     
     /// Multi-line.
-    @available(iOS 16.0, *)
-    @available(macOS 13.0, *)
-    @available(tvOS 16.0, *)
-    @available(watchOS 9.0, *)
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public static func multiLine(
         alignment: TextAlignment,
         lineLimit: PartialRangeFrom<Int>
@@ -90,10 +84,7 @@ public struct TextLineType {
     }
     
     /// Multi-line.
-    @available(iOS 16.0, *)
-    @available(macOS 13.0, *)
-    @available(tvOS 16.0, *)
-    @available(watchOS 9.0, *)
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public static func multiLine(
         alignment: TextAlignment,
         lineLimit: PartialRangeThrough<Int>
@@ -105,10 +96,7 @@ public struct TextLineType {
     }
     
     /// Multi-line.
-    @available(iOS 16.0, *)
-    @available(macOS 13.0, *)
-    @available(tvOS 16.0, *)
-    @available(watchOS 9.0, *)
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public static func multiLine(
         alignment: TextAlignment,
         lineLimit: ClosedRange<Int>
