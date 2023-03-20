@@ -7,42 +7,51 @@
 
 #if os(iOS)
 
-import Foundation
+import UIKit
 
 // MARK: - Base Button Gesture State
-/// Enum that describes state, such as `none`, `press`, or `click`.
+/// Enum that describes state, such as `possible`, `began`, `ended`, or `cancelled`.
 public enum BaseButtonGestureState: Int, CaseIterable {
-    // MARK: Cases
-    /// None.
-    case none
+    /// Indicates that interaction is possible. This is a default state.
+    case possible
     
-    /// Press.
-    ///
-    /// Indicates if button is being pressed.
-    case press
+    /// Indicates that interaction has began.
+    case began
     
-    /// Click.
+    /// Indicates that interaction ended and resulted in a successful click.
     ///
-    /// Indicates if successful click occurred.
-    case click
+    /// State will reset to `possible`.
+    case ended
+    
+    /// Indicates that interaction was cancelled.
+    ///
+    /// State will reset to `possible`.
+    case cancelled
     
     // MARK: Properties
     /// Indicates if button is being pressed.
     public var isPressed: Bool {
-        switch self {
-        case .none: return false
-        case .press: return true
-        case .click: return false
-        }
+        self == .began
     }
     
-    /// Indicates if successful click occurred.
+    /// Indicates if button recognized a successful click.
     public var isClicked: Bool {
-        switch self {
-        case .none: return false
-        case .press: return false
-        case .click: return true
-        }
+        self == .ended
+    }
+    
+    // MARK: Initializers
+    init(state: UIGestureRecognizer.State) {
+        self = {
+            switch state {
+            case .possible: return .possible
+            case .began: return .began
+            case .changed: fatalError() // Never used
+            case .ended: return .ended
+            case .cancelled: return .cancelled
+            case .failed: fatalError() // Never used
+            @unknown default: fatalError()
+            }
+        }()
     }
 }
 

@@ -42,7 +42,7 @@ import UIKit
 ///
 ///     final class SomeButton: UIView {
 ///         // Action is passed during configuration
-///         private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateUIModelChange() )
+///         private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateUIModelChange() })
 ///             .withTranslatesAutoresizingMaskIntoConstraints(false)
 ///
 ///         private let titleLabel: UILabel = {
@@ -110,7 +110,7 @@ import UIKit
 ///         }
 ///
 ///         func configure(action: @escaping () -> Void) {
-///             baseButton.gestureHandler = { [weak self] gestureState in
+///             baseButton.stateChangeHandler = { [weak self] gestureState in
 ///                 guard let self else { return }
 ///
 ///                 self.internalState = .init(isEnabled: self.state.isEnabled, isPressed: gestureState.isPressed)
@@ -137,14 +137,12 @@ import UIKit
 ///
 open class UIKitBaseButton: UIView {
     // MARK: Properties
-    private lazy var gestureRecognizer: BaseButtonTapGestureRecognizer = .init(
-        gesture: { [weak self] gestureState in
-            guard let self else { return }
-            
-            self.internalButtonState = .init(isEnabled: self.buttonState.isEnabled, isPressed: gestureState.isPressed)
-            self.gestureHandler(gestureState)
-        }
-    )
+    private lazy var gestureRecognizer: BaseButtonGestureRecognizer = .init(onStateChange: { [weak self] gestureState in
+        guard let self else { return }
+        
+        self.internalButtonState = .init(isEnabled: self.buttonState.isEnabled, isPressed: gestureState.isPressed)
+        self.stateChangeHandler(gestureState)
+    })
     
     /// Indicates if interaction is enabled.
     open var isEnabled: Bool {
@@ -163,15 +161,15 @@ open class UIKitBaseButton: UIView {
     /// Internal button state.
     private(set) open var internalButtonState: UIKitBaseButtonInternalState = .default
     
-    /// Gesture handler that return `BaseButtonGestureState`.
-    open var gestureHandler: (BaseButtonGestureState) -> Void
+    /// State change handler.
+    open var stateChangeHandler: (BaseButtonGestureState) -> Void
     
     // MARK: Initializers
-    /// Initializes `UIKitBaseButton` with gestureHandler.
+    /// Initializes `UIKitBaseButton` with state change handler.
     public init(
-        gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void
+        onStateChange stateChangeHandler: @escaping (BaseButtonGestureState) -> Void
     ) {
-        self.gestureHandler = gestureHandler
+        self.stateChangeHandler = stateChangeHandler
         super.init(frame: .zero)
     }
     
@@ -179,7 +177,7 @@ open class UIKitBaseButton: UIView {
     public convenience init(
         action: @escaping () -> Void
     ) {
-        self.init(gesture: { gestureState in
+        self.init(onStateChange: { gestureState in
             if gestureState.isClicked { action() }
         })
     }

@@ -62,14 +62,17 @@ import SwiftUI
 ///         }
 ///
 ///         var body: some View {
-///             SwiftUIBaseButton(gesture: gestureHandler, label: {
-///                 Text(title)
-///                     .foregroundColor(uiModel.colors.title.value(for: internalState))
-///             })
+///             SwiftUIBaseButton(
+///                 onStateChange: stateChangeHandler,
+///                 label: {
+///                     Text(title)
+///                         .foregroundColor(uiModel.colors.title.value(for: internalState))
+///                 }
+///             )
 ///                 .disabled(!internalState.isEnabled)
 ///         }
 ///
-///         private func gestureHandler(gestureState: BaseButtonGestureState) {
+///         private func stateChangeHandler(gestureState: BaseButtonGestureState) {
 ///             isPressed = gestureState.isPressed
 ///             if gestureState.isClicked { action() }
 ///         }
@@ -86,17 +89,17 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
     // MARK: Properties
     @Environment(\.isEnabled) private var isEnabled: Bool
     
-    private var gestureHandler: (BaseButtonGestureState) -> Void
+    private var stateChangeHandler: (BaseButtonGestureState) -> Void
     
     private let label: () -> Label
     
     // MARK: Initializers
-    /// Initializes `SwiftUIBaseButton` with gesture handler and label.
+    /// Initializes `SwiftUIBaseButton` with state change handler and label.
     public init(
-        gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
+        onStateChange stateChangeHandler: @escaping (BaseButtonGestureState) -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) {
-        self.gestureHandler = gestureHandler
+        self.stateChangeHandler = stateChangeHandler
         self.label = label
     }
     
@@ -105,7 +108,9 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
         action: @escaping () -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) {
-        self.gestureHandler = { gestureState in if gestureState.isClicked { action() } }
+        self.stateChangeHandler = { gestureState in
+            if gestureState.isClicked { action() }
+        }
         self.label = label
     }
 
@@ -114,7 +119,7 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
         label()
             .overlay(SwiftUIBaseButtonViewRepresentable(
                 isEnabled: isEnabled,
-                gesture: gestureHandler
+                onStateChange: stateChangeHandler
             ))
     }
 }
@@ -123,13 +128,7 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
 struct SwiftUIBaseButton_Previews: PreviewProvider {
     static var previews: some View {
         SwiftUIBaseButton(
-            gesture: { gestureState in
-                switch gestureState {
-                case .none: print("-")
-                case .press: print("Pressing")
-                case .click: print("Clicked")
-                }
-            },
+            onStateChange: { print($0) },
             label: { Text("Lorem Ipsum") }
         )
     }

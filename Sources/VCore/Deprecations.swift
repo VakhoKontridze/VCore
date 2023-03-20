@@ -141,6 +141,47 @@ extension ConfirmationDialogButton {
     }
 }
 
+// MARK: - Base Button
+#if os(iOS)
+
+extension BaseButtonGestureState {
+    @available(*, deprecated, renamed: "cancelled")
+    public static var `none`: Self { .cancelled }
+    
+    @available(*, deprecated, renamed: "began")
+    public static var press: Self { .began }
+    
+    @available(*, deprecated, renamed: "ended")
+    public static var click: Self { .ended }
+}
+
+extension UIKitBaseButton {
+    @available(*, deprecated, renamed: "stateChangeHandler")
+    public var gestureHandler: (BaseButtonGestureState) -> Void {
+        get { stateChangeHandler }
+        set { stateChangeHandler = newValue }
+    }
+    
+    @available(*, deprecated, message: "Use `init` with `onStateChange` parameter")
+    public convenience init(
+        gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void
+    ) {
+        self.init(onStateChange: gestureHandler)
+    }
+}
+
+extension SwiftUIBaseButton {
+    @available(*, deprecated, message: "Use `init` with `onStateChange` parameter")
+    public init(
+        gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
+        @ViewBuilder label: @escaping () -> Label
+    ) {
+        self.init(onStateChange: gestureHandler, label: label)
+    }
+}
+
+#endif
+
 // MARK: - Global Functions
 @available(*, deprecated, renamed: "VCoreLogError")
 public func VCoreLog(
