@@ -5,12 +5,14 @@
 //  Created by Vakhtang Kontridze on 22.06.22.
 //
 
-#if os(iOS)
-
 import SwiftUI
 
 // MARK: - Plain Disclosure Group UI Model
 /// Model that describes UI.
+@available(iOS 14.0, *)
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public struct PlainDisclosureGroupUIModel {
     // MARK: Properties
     /// Model that contains layout properties. 
@@ -68,5 +70,3 @@ public struct PlainDisclosureGroupUIModel {
         public init() {}
     }
 }
-
-#endif

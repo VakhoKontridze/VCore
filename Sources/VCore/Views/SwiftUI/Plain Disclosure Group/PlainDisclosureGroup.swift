@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 22.06.22.
 //
 
-#if os(iOS)
-
 import SwiftUI
 
 // MARK: - Plain Disclosure Group
@@ -39,6 +37,9 @@ import SwiftUI
 ///     }
 ///
 @available(iOS 14.0, *)
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public struct PlainDisclosureGroup<Label, Content>: View
     where
         Label: View,
@@ -147,6 +148,9 @@ public struct PlainDisclosureGroup<Label, Content>: View
 
 // MARK: - Preview
 @available(iOS 14.0, *)
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 struct PlainDisclosureGroup_Previews: PreviewProvider {
     static var previews: some View {
         Preview()
@@ -178,5 +182,3 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
         }
     }
 }
-
-#endif
