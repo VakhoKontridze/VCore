@@ -55,7 +55,7 @@ public struct PlainDisclosureGroupUIModel {
 #if os(iOS)
             return .init(.systemBackground)
 #else
-            fatalError()
+            fatalError() // Not supported
 #endif
         }()
         

@@ -89,7 +89,6 @@ extension View {
         where Content: View
     {
 #if os(iOS)
-        
         self
             .onDisappear(perform: { PresentationHostViewController.forceDismiss(id: id) })
             .background(PresentationHostViewControllerRepresentable(
@@ -98,7 +97,6 @@ extension View {
                 isPresented: isPresented,
                 content: content
             ))
-        
 #endif
     }
     

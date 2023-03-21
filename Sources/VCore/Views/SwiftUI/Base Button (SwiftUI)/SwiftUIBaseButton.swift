@@ -118,13 +118,11 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
     // MARK: Body
     public var body: some View {
 #if os(iOS)
-        
         label()
             .overlay(SwiftUIBaseButtonViewRepresentable(
                 isEnabled: isEnabled,
                 onStateChange: stateChangeHandler
             ))
-        
 #endif
     }
 }

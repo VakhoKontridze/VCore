@@ -61,11 +61,11 @@ public enum UILayoutGuideType {
         case .safeArea:
             return view.safeAreaLayoutGuide
         
-        #if os(iOS)
+#if os(iOS)
         case .keyboard:
             guard #available(iOS 15.0, *) else { fatalError() }
             return view.keyboardLayoutGuide
-        #endif
+#endif
             
         case .custom(let block):
             return block(view)

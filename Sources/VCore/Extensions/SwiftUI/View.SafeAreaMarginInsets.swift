@@ -31,30 +31,24 @@ extension View {
     ///
     @ViewBuilder public func safeAreaMarginInsets(edges: Edge.Set = .all) -> some View {
 #if os(iOS) || os(tvOS)
-        
         self
             .if(edges.contains(.leading), transform: {
                 $0.safeAreaMarginInset(edge: .leading, width: UIDevice.safeAreaInsetLeft)
             })
-                
-                .if(edges.contains(.trailing), transform: {
-                    $0.safeAreaMarginInset(edge: .trailing, width: UIDevice.safeAreaInsetRight)
-                })
-                
-                    .if(edges.contains(.top), transform: {
-                        $0.safeAreaMarginInset(edge: .top, height: UIDevice.safeAreaInsetTop)
-                    })
-                
-                        .if(edges.contains(.bottom), transform: {
-                            $0.safeAreaMarginInset(edge: .bottom, height: UIDevice.safeAreaInsetBottom)
-                        })
-                
+            .if(edges.contains(.trailing), transform: {
+                $0.safeAreaMarginInset(edge: .trailing, width: UIDevice.safeAreaInsetRight)
+            })
+            .if(edges.contains(.top), transform: {
+                $0.safeAreaMarginInset(edge: .top, height: UIDevice.safeAreaInsetTop)
+            })
+            .if(edges.contains(.bottom), transform: {
+                $0.safeAreaMarginInset(edge: .bottom, height: UIDevice.safeAreaInsetBottom)
+            })
 #endif
     }
     
     @ViewBuilder private func safeAreaMarginInset(edge: HorizontalEdge, width: CGFloat) -> some View {
 #if os(iOS) || os(tvOS)
-        
         if width == 0 {
             self
         } else {
@@ -64,13 +58,11 @@ extension View {
                         .frame(width: width)
                 })
         }
-        
 #endif
     }
     
     @ViewBuilder private func safeAreaMarginInset(edge: VerticalEdge, height: CGFloat) -> some View {
 #if os(iOS) || os(tvOS)
-        
         if height == 0 {
             self
         } else {
@@ -80,7 +72,6 @@ extension View {
                         .frame(height: height)
                 })
         }
-        
 #endif
     }
 }

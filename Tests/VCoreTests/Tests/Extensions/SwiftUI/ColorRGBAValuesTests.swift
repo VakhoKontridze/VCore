@@ -30,11 +30,11 @@ final class ColorRGBAValuesTests: XCTestCase {
     
     func testComponents() {
         let accuracy: Int = { // Colorspace conversion on `macOS` may cause issues
-            #if os(macOS)
+#if os(macOS)
             return 1
-            #else
+#else
             return 0
-            #endif
+#endif
         }()
         
         let inputR: Int = 10

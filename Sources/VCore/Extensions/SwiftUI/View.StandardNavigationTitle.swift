@@ -21,7 +21,6 @@ extension View {
     ///
     @ViewBuilder public func inlineNavigationTitle(_ title: String) -> some View {
 #if os(iOS)
-        
         if #available(iOS 14.0, *) {
             self
                 .navigationTitle(title)
@@ -31,7 +30,6 @@ extension View {
             self
                 .navigationBarTitle(title)
         }
-        
 #endif
     }
 }
