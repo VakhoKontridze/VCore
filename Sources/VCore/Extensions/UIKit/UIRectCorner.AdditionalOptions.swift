@@ -11,25 +11,25 @@ import UIKit
 
 // MARK: - UI Rect Corner Additional Options
 extension UIRectCorner {
-    /// Top corners.
+    /// Top corners of the rectangle.
     ///
     /// Includes `topLeft` and  `topRight`.
-    public static var topCorners: UIRectCorner { [.topLeft, .topRight] }
+    public static var topCorners: Self { [.topLeft, .topRight] }
     
-    /// Right corners.
+    /// Right corners of the rectangle.
     ///
     /// Includes `topRight` and  `bottomRight`.
-    public static var rightCorners: UIRectCorner { [.topRight, .bottomRight] }
+    public static var rightCorners: Self { [.topRight, .bottomRight] }
     
-    /// Bottom corners.
+    /// Bottom corners of the rectangle.
     ///
     /// Includes `bottomLeft` and  `bottomRight`.
-    public static var bottomCorners: UIRectCorner { [.bottomLeft, .bottomRight] }
+    public static var bottomCorners: Self { [.bottomLeft, .bottomRight] }
     
-    /// Left corners.
+    /// Left corners of the rectangle.
     ///
     /// Includes `topLeft` and  `bottomLeft`.
-    public static var leftCorners: UIRectCorner { [.topLeft, .bottomLeft] }
+    public static var leftCorners: Self { [.topLeft, .bottomLeft] }
 }
 
 #endif

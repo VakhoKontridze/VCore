@@ -12,13 +12,13 @@ extension OptionSet where RawValue: FixedWidthInteger {
     /// Returns all elements in `OptionSet`.
     ///
     ///     struct SomeOptionSet: OptionSet {
-    ///         let rawValue: Int
-    ///
-    ///         static var first: Self { .init(rawValue: 1 << 0) }
-    ///         static var second: Self { .init(rawValue: 1 << 1) }
-    ///         static var third: Self { .init(rawValue: 1 << 2) }
+    ///         static let first: Self = .init(rawValue: 1 << 0)
+    ///         static let second: Self = .init(rawValue: 1 << 1)
+    ///         static let third: Self = .init(rawValue: 1 << 2)
     ///
     ///         static var all: Self { [.first, .second, .third] }
+    ///
+    ///         let rawValue: Int
     ///     }
     ///
     ///     let options: [SomeOptionSet] = SomeOptionSet.all.elements // [.first, .second, .third]
