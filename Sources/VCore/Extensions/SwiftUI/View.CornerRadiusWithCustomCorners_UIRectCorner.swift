@@ -1,5 +1,5 @@
 //
-//  View.CornerRadius.swift
+//  View.CornerRadiusWithCustomCorners_UIRectCorner.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10/28/21.
@@ -10,7 +10,7 @@
 import SwiftUI
 import UIKit
 
-// MARK: - Corner Radius
+// MARK: - Corner Radius with Custom Corners
 extension View {
     /// Clips this `View` to its bounding frame, with the specified corners and corner radius.
     ///
@@ -20,7 +20,7 @@ extension View {
     ///
     public func cornerRadius(
         _ radius: CGFloat,
-        corners: UIRectCorner
+        uiCorners corners: UIRectCorner
     ) -> some View {
         self
             .clipShape(CornerRadiusShape(radius: radius, corners: corners))

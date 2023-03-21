@@ -404,6 +404,21 @@ extension View {
     }
 }
 
+//#if canImport(UIKit)
+//
+//extension View {
+//    @available(*, deprecated, message: "Use method with `uiCorners` parameter)")
+//    public func cornerRadius(
+//        _ radius: CGFloat,
+//        corners: UIRectCorner
+//    ) -> some View {
+//        self
+//            .cornerRadius(radius, uiCorners: corners)
+//    }
+//}
+//
+//#endif
+
 // MARK: - V Core Localization Manager
 @available(*, deprecated, renamed: "VCoreLocalizationManager")
 public typealias VCoreLocalizationService = VCoreLocalizationManager

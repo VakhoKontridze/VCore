@@ -14,6 +14,7 @@ Views
 
 Models
 
+- `RectCorner` is added as a multi-platform alternative to `UIRectCorner`
 - `KeychainStorage` property wrapper no longer requires enclosing `class` to conform to `ObservableObject`
 - `projectedValue` is added to `Clamped` property wrapper
 - `projectedValue` is added to `OldValueCache` property wrapper
@@ -21,6 +22,7 @@ Models
 Extensions
 
 - `Image.init(data:)` initializer is added
+- `View.cornerRadius(_,corners:)` method is added for `RectCorner` model
 - `View.readSize(onChange:)` is renamed to `View.onSizeChange(perform:)`
 
 Other
