@@ -91,9 +91,9 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
     ) {
         assert(scrollDirection == .horizontal, "`scrollDirection` must be set to `horizontal")
         
-        #if !os(tvOS)
+#if !os(tvOS)
         assert(!collectionView.isPagingEnabled, "`isPagingEnabled` must be set to `false`")
-        #endif
+#endif
         
         if
             let flowDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout,

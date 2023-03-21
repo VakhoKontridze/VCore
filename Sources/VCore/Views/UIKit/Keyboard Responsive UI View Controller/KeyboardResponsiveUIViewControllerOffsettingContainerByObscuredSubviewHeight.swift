@@ -5,12 +5,13 @@
 //  Created by Vakhtang Kontridze on 15.07.22.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import UIKit
 
 // MARK: - Keyboard Responsive UI View Controller Offsetting Container by Obscured Subview Height
 /// Subclass of  `KeyboardResponsiveUIViewController` that handles keyboard notifications by offsetting container by the obscured subview height.
+@available(tvOS, unavailable)
 open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight: KeyboardResponsiveUIViewController {
     // MARK: Properties
     /// `UIView` on which offset animations will be applied. Set to `view`.

@@ -5,11 +5,12 @@
 //  Created by Vakhtang Kontridze on 10.03.23.
 //
 
-#if os(iOS)
-
 import SwiftUI
 
 // MARK: - Presentation Host Presentation Mode Extension
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 extension View {
     func presentationHostPresentationMode(
         _ presentationHostExternalDismiss: PresentationHostPresentationMode
@@ -20,6 +21,9 @@ extension View {
 }
 
 // MARK: - Presentation Host Presentation Mode Environment Value
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 extension EnvironmentValues {
     /// `PresentationHost` presentation mode of the view associated with the environment.
     public var presentationHostPresentationMode: PresentationHostPresentationMode {
@@ -29,9 +33,9 @@ extension EnvironmentValues {
 }
 
 // MARK: - Presentation Host Presentation Mode Environment Key
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 private struct PresentationHostPresentationModeEnvironmentKey: EnvironmentKey {
     static let defaultValue: PresentationHostPresentationMode = .init()
 }
-
-#endif
-

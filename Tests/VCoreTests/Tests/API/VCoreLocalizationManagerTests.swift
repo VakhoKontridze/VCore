@@ -83,23 +83,23 @@ final class VCoreLocalizationManagerTests: XCTestCase {
         )
     }
     
-    #if canImport(UIKit) && !os(watchOS)
+#if canImport(UIKit) && !os(watchOS)
     func testAlertErrorTitle() {
         XCTAssertEqual(
             UIAlertParameters(error: NetworkClientError.notConnectedToNetwork, completion: nil).title,
             "E"
         )
     }
-    #endif
+#endif
     
-    #if canImport(UIKit) && !os(watchOS)
+#if canImport(UIKit) && !os(watchOS)
     func testAlertOkButtonTitle() {
         XCTAssertEqual(
             (UIAlertParameters(title: "T", message: "M", completion: nil).buttons().first! as! UIAlertButton).title,
             "F"
         )
     }
-    #endif
+#endif
     
     func testResultNoFailureErrorDescription() {
         XCTAssertThrowsError(

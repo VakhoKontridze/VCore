@@ -5,12 +5,15 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if os(iOS)
-
+#if canImport(UIKit) && !os(watchOS)
 import UIKit
+#endif
 
 // MARK: - Base Button Gesture State
 /// Enum that describes state, such as `possible`, `began`, `ended`, or `cancelled`.
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public enum BaseButtonGestureState: Int, CaseIterable {
     /// Indicates that interaction is possible. This is a default state.
     case possible
@@ -40,6 +43,8 @@ public enum BaseButtonGestureState: Int, CaseIterable {
     }
     
     // MARK: Initializers
+#if canImport(UIKit) && !os(watchOS)
+    
     init(state: UIGestureRecognizer.State) {
         self = {
             switch state {
@@ -53,6 +58,6 @@ public enum BaseButtonGestureState: Int, CaseIterable {
             }
         }()
     }
-}
-
+    
 #endif
+}

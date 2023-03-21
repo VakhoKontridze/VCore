@@ -5,12 +5,13 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import Foundation
 
 // MARK: - UIKit Base Button State
 /// Enum that describes state, such as `enabled` or `disabled`.
+@available(tvOS, unavailable)
 public enum UIKitBaseButtonState: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -48,6 +49,8 @@ public enum UIKitBaseButtonState: Int, CaseIterable {
 
 // MARK: - UIKit Base Button Internal State
 /// Enum that describes state, such as `enabled`, `pressed`, or `disabled`.
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -92,6 +95,8 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
 }
 
 // MARK: - Mapping
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 extension GenericStateModel_EnabledPressedDisabled {
     /// Maps `UIKitBaseButtonInternalState` to `GenericStateModel_EnabledPressedDisabled`.
     public func value(for state: UIKitBaseButtonInternalState) -> Value {

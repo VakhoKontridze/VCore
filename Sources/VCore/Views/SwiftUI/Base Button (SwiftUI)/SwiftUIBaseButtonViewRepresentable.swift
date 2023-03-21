@@ -5,11 +5,12 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import SwiftUI
 
 // MARK: - Swift UI Base Button View Representable
+@available(tvOS, unavailable)
 struct SwiftUIBaseButtonViewRepresentable: UIViewRepresentable {
     // MARK: Properties
     private let isEnabled: Bool

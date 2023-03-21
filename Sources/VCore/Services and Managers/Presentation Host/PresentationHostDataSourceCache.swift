@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 26.05.22.
 //
 
-#if os(iOS)
-
 import SwiftUI
 
 // MARK: - Presentation Host Data Source Cache
@@ -43,6 +41,9 @@ import SwiftUI
 ///         }
 ///     }
 ///
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public final class PresentationHostDataSourceCache {
     // MARK: Properties
     /// Shared instance of `PresentationHostDataSourceCache`.
@@ -69,5 +70,3 @@ public final class PresentationHostDataSourceCache {
         storage[key] = nil
     }
 }
-
-#endif

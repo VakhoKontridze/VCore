@@ -5,11 +5,10 @@
 //  Created by Vakhtang Kontridze on 29.04.22.
 //
 
-#if !os(tvOS)
-
 import SwiftUI
 
 // MARK: - Drag Gesture Value Velocity
+@available(tvOS, unavailable)
 extension DragGesture.Value {
     /// Calculates velocity of `DragGesture` in relation to last drag value.
     ///
@@ -52,5 +51,3 @@ extension DragGesture.Value {
         )
     }
 }
-
-#endif

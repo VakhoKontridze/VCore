@@ -5,11 +5,12 @@
 //  Created by Vakhtang Kontridze on 4/14/22.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import SwiftUI
 
 // MARK: - Presentation Host View Controller Representable
+@available(tvOS, unavailable)
 struct PresentationHostViewControllerRepresentable<Content>: UIViewControllerRepresentable where Content: View {
     // MARK: Properties
     private let id: String

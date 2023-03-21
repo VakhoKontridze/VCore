@@ -103,6 +103,8 @@ public struct PlainDisclosureGroup<Label, Content>: View
     
     // MARK: Body
     public var body: some View {
+#if os(iOS)
+        
         ZStack(alignment: .top, content: {
             labelView
             
@@ -117,9 +119,13 @@ public struct PlainDisclosureGroup<Label, Content>: View
                 .animation(.default, value: isExpanded.wrappedValue)
                 .buttonStyle(.plain).accentColor(.clear) // Hides chevron button
         })
+        
+#endif
     }
     
-    private var labelView: some View {
+    @ViewBuilder private var labelView: some View {
+#if os(iOS)
+        
         label()
             .frame(maxWidth: .infinity)
             .onSizeChange(perform: { labelHeight = $0.height })
@@ -128,6 +134,8 @@ public struct PlainDisclosureGroup<Label, Content>: View
                     .contentShape(Rectangle())
                     .onTapGesture(perform: expandCollapseFromLabelTap)
             )
+        
+#endif
     }
     
     // MARK: Actions
@@ -160,6 +168,8 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
         @State private var isExpanded: Bool = true
         
         var body: some View {
+#if os(iOS)
+            
             PlainDisclosureGroup(
                 isExpanded: $isExpanded,
                 label: {
@@ -179,6 +189,8 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
                 }
             )
                 .padding()
+            
+#endif
         }
     }
 }

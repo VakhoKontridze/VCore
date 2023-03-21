@@ -51,7 +51,13 @@ public struct PlainDisclosureGroupUIModel {
         /// Background color.
         ///
         /// Needed for setting background color to the label.
-        public var background: Color = .init(.systemBackground)
+        public var background: Color = {
+#if os(iOS)
+            return .init(.systemBackground)
+#else
+            fatalError()
+#endif
+        }()
         
         // MARK: Initializers
         /// Initializes UI model with default values.

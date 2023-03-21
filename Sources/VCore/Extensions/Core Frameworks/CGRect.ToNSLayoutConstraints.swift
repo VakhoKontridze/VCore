@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 01.05.22.
 //
 
-#if canImport(CoreGraphics) && !os(watchOS)
+#if canImport(CoreGraphics)
 
 import CoreGraphics
 

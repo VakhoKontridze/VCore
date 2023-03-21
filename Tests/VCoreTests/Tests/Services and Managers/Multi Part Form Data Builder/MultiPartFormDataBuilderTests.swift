@@ -28,7 +28,7 @@ final class MultipartFormDataBuilderTests: XCTestCase {
             return
         }
         
-        #if canImport(UIKit)
+#if canImport(UIKit)
         
         let profileImage: UIImage? = .init(size: .init(dimension: 100), color: .red)
         
@@ -37,14 +37,14 @@ final class MultipartFormDataBuilderTests: XCTestCase {
             .init(size: .init(dimension: 100), color: .blue)
         ]
         
-        #endif
+#endif
         
         do {
             let json: JSONPart = .init(
                 key: "value"
             )
             
-            #if canImport(UIKit)
+#if canImport(UIKit)
             
             let files: [String: (some AnyMultipartFormDataFile)?] = [
                 "profile": MultipartFormDataFile(
@@ -61,11 +61,11 @@ final class MultipartFormDataBuilderTests: XCTestCase {
                 }
             ]
             
-            #else
+#else
             
             let files: [String: (any AnyMultipartFormDataFile)?] = [:]
             
-            #endif
+#endif
             
             let (boundary, data): (String, Data) = try MultipartFormDataBuilder().build(
                 encodable: json,
@@ -87,7 +87,7 @@ final class MultipartFormDataBuilderTests: XCTestCase {
                 "value"
             )
             
-            #if canImport(UIKit)
+#if canImport(UIKit)
             
             XCTAssertEqual(
                 result["files"]?.toUnwrappedJSON["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
@@ -104,7 +104,7 @@ final class MultipartFormDataBuilderTests: XCTestCase {
                 galleryImages?[1]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
             )
             
-            #endif
+#endif
             
         } catch {
             fatalError(error.localizedDescription)

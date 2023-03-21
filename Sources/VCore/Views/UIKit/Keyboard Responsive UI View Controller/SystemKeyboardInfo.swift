@@ -5,12 +5,13 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import UIKit
 
 // MARK: - System Keyboard Info
 /// Contains information about software keyboard, that can be used during animations.
+@available(tvOS, unavailable)
 public struct SystemKeyboardInfo {
     // MARK: Properties
     /// Keyboard’s frame at the end of its animation.

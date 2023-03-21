@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if os(iOS)
-
 import SwiftUI
 
 // MARK: - Swift UI Base Button
@@ -85,6 +83,9 @@ import SwiftUI
 ///         )
 ///     }
 ///
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public struct SwiftUIBaseButton<Label>: View where Label: View {
     // MARK: Properties
     @Environment(\.isEnabled) private var isEnabled: Bool
@@ -116,15 +117,22 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
 
     // MARK: Body
     public var body: some View {
+#if os(iOS)
+        
         label()
             .overlay(SwiftUIBaseButtonViewRepresentable(
                 isEnabled: isEnabled,
                 onStateChange: stateChangeHandler
             ))
+        
+#endif
     }
 }
 
 // MARK: - Preview
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 struct SwiftUIBaseButton_Previews: PreviewProvider {
     static var previews: some View {
         SwiftUIBaseButton(
@@ -133,5 +141,3 @@ struct SwiftUIBaseButton_Previews: PreviewProvider {
         )
     }
 }
-
-#endif

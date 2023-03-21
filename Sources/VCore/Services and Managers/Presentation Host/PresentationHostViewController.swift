@@ -5,11 +5,12 @@
 //  Created by Vakhtang Kontridze on 4/14/22.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import SwiftUI
 
 // MARK: - Presentation Host View Controller
+@available(tvOS, unavailable)
 final class PresentationHostViewController: UIViewController, UIViewControllerTransitioningDelegate {
     // MARK: Properties
     private let id: String

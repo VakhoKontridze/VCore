@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import UIKit
 
@@ -135,6 +135,7 @@ import UIKit
 ///     )
 ///         .withTranslatesAutoresizingMaskIntoConstraints(false)
 ///
+@available(tvOS, unavailable)
 open class UIKitBaseButton: UIView {
     // MARK: Properties
     private lazy var gestureRecognizer: BaseButtonGestureRecognizer = .init(onStateChange: { [weak self] gestureState in

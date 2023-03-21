@@ -21,11 +21,11 @@ extension Color {
     ///     // (0.0, 0.4..., 1.0, 1.0)
     ///
     public var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-        #if canImport(UIKit)
+#if canImport(UIKit)
         return UIColor(self).rgbaValues
-        #elseif canImport(AppKit)
+#elseif canImport(AppKit)
         return NSColor(self).calibrated.rgbaValues
-        #endif
+#endif
     }
     
     /// Returns RGBA components of `Color`.
@@ -39,11 +39,11 @@ extension Color {
     ///     // (0, 122, 255, 1.0)
     ///
     public var rgbaComponents: (red: Int, green: Int, blue: Int, alpha: CGFloat) {
-        #if canImport(UIKit)
+#if canImport(UIKit)
         return UIColor(self).rgbaComponents
-        #elseif canImport(AppKit)
+#elseif canImport(AppKit)
         return NSColor(self).calibrated.rgbaComponents
-        #endif
+#endif
     }
     
     /// Indicates if two `Color`s are RGBA equivalent.
@@ -57,10 +57,10 @@ extension Color {
     ///     let isEqual: Bool = color1.isRGBAEqual(to: color2) // true
     ///
     public func isRGBAEqual(to otherColor: Color) -> Bool {
-        #if canImport(UIKit)
+#if canImport(UIKit)
         return UIColor(self).isRGBAEqual(to: .init(otherColor))
-        #elseif canImport(AppKit)
+#elseif canImport(AppKit)
         return NSColor(self).calibrated.isRGBAEqual(to: .init(otherColor).calibrated)
-        #endif
+#endif
     }
 }

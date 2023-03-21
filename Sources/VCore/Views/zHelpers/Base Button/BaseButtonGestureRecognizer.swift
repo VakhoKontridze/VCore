@@ -5,11 +5,13 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import UIKit
 
 // MARK: - Base Button Gesture Recognizer
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 final class BaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureRecognizerDelegate {
     // MARK: Properties
     override var state: UIGestureRecognizer.State {

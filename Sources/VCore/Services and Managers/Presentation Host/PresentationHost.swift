@@ -5,11 +5,12 @@
 //  Created by Vakhtang Kontridze on 06.03.23.
 //
 
-#if os(iOS)
-
 import SwiftUI
 
 // MARK: - Presentation Host Extension
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 extension View {
     /// Injects an `UIHostingController` in view hierarchy that can be used to present modals in `UIKit` style.
     ///
@@ -79,7 +80,7 @@ extension View {
     ///         }
     ///     }
     ///
-    public func presentationHost<Content>(
+    @ViewBuilder public func presentationHost<Content>(
         id: String,
         allowsHitTests: Bool = true,
         isPresented: Binding<Bool>,
@@ -87,6 +88,8 @@ extension View {
     ) -> some View
         where Content: View
     {
+#if os(iOS)
+        
         self
             .onDisappear(perform: { PresentationHostViewController.forceDismiss(id: id) })
             .background(PresentationHostViewControllerRepresentable(
@@ -95,6 +98,8 @@ extension View {
                 isPresented: isPresented,
                 content: content
             ))
+        
+#endif
     }
     
     /// Injects an `UIHostingController` in view hierarchy that can be used to present modals in `UIKit` style.
@@ -168,5 +173,3 @@ extension View {
             )
     }
 }
-
-#endif

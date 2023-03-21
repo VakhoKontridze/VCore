@@ -18,11 +18,11 @@ extension UIDevice {
     ///     let isSimulator: Bool = UIDevice.isSimulator
     ///
     public static var isSimulator: Bool {
-    #if targetEnvironment(simulator)
+#if targetEnvironment(simulator)
         return true
-    #else
+#else
         return false
-    #endif
+#endif
     }
 }
 
@@ -36,11 +36,11 @@ extension WKInterfaceDevice {
     ///     let isSimulator: Bool = WKInterfaceDevice.isSimulator
     ///
     public static var isSimulator: Bool {
-    #if targetEnvironment(simulator)
+#if targetEnvironment(simulator)
         return true
-    #else
+#else
         return false
-    #endif
+#endif
     }
 }
 

@@ -5,11 +5,12 @@
 //  Created by Vakhtang Kontridze on 06.03.23.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import UIKit
 
 // MARK: - Presentation Host Animated Transitioner
+@available(tvOS, unavailable)
 final class PresentationHostAnimatedTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
     // MARK: Properties
     private let allowsHitTests: Bool

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 13.06.22.
 //
 
-#if canImport(QuartzCore) && !os(watchOS)
+#if canImport(QuartzCore)
 
 import QuartzCore
 

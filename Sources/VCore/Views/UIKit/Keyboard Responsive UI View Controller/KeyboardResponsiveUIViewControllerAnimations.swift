@@ -5,11 +5,12 @@
 //  Created by Vakhtang Kontridze on 12.07.22.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import UIKit
 
 // MARK: - Keyboard Animation - Custom
+@available(tvOS, unavailable)
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`.
     ///
@@ -73,6 +74,7 @@ extension UIView {
 }
 
 // MARK: - Keyboard Animation - Container Offset by Obscured Subview Height
+@available(tvOS, unavailable)
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`, by offsetting container `y` origin by obscured subview height.
     ///

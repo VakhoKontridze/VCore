@@ -14,34 +14,24 @@ import AppKit
 #endif
 
 // MARK: - Image Init with Data
+extension Image {
+    /// Initializes and returns the `Image` with the specified `Data`.
+    ///
+    ///     var body: some View {
+    ///         Image(data: data)
+    ///     }
+    ///
+    public init(data: Data) {
 #if canImport(UIKit)
 
-extension Image {
-    /// Initializes and returns the `Image` with the specified `Data`.
-    ///
-    ///     var body: some View {
-    ///         Image(data: data)
-    ///     }
-    ///
-    public init(data: Data) {
         guard let uiImage: UIImage = .init(data: data) else { fatalError() }
         self.init(uiImage: uiImage)
-    }
-}
-    
+        
 #elseif canImport(AppKit)
-
-extension Image {
-    /// Initializes and returns the `Image` with the specified `Data`.
-    ///
-    ///     var body: some View {
-    ///         Image(data: data)
-    ///     }
-    ///
-    public init(data: Data) {
+        
         guard let nsImage: NSImage = .init(data: data) else { fatalError() }
         self.init(nsImage: nsImage)
+        
+#endif
     }
 }
-
-#endif

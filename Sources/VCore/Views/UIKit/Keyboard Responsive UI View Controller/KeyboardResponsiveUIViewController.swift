@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import UIKit
 
@@ -57,6 +57,7 @@ import UIKit
 ///         }
 ///     }
 ///
+@available(tvOS, unavailable)
 open class KeyboardResponsiveUIViewController: UIViewController {
     // MARK: Properties
     /// Indicates, if `KeyboardResponsiveViewController` should call

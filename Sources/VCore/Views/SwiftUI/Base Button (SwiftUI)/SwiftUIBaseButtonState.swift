@@ -5,12 +5,13 @@
 //  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if os(iOS)
-
 import Foundation
 
 // MARK: - Swift UI Base Button State
 /// Enum that describes state, such as `enabled` or `disabled`.
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public enum SwiftUIBaseButtonState: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -37,5 +38,3 @@ public enum SwiftUIBaseButtonState: Int, CaseIterable {
         }
     }
 }
-
-#endif

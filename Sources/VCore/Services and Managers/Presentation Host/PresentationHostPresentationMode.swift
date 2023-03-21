@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 4/14/22.
 //
 
-#if os(iOS)
-
 import SwiftUI
 
 // MARK: - Presentation Host Presentation Mode
@@ -17,6 +15,9 @@ import SwiftUI
 /// Also contains `isExternallyDismissed` that indicates if dismiss has been triggered via code,
 /// i.e., setting `isPresented` to `false`. When this change is triggered, frame-based dismiss animation can occur.
 /// After which `externalDismissCompletion` handler must be called to remove content from view hierarchy.
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public struct PresentationHostPresentationMode {
     // MARK: Properties
     /// Instance ID of modal.
@@ -53,5 +54,3 @@ public struct PresentationHostPresentationMode {
         self.externalDismissCompletion = {}
     }
 }
-
-#endif

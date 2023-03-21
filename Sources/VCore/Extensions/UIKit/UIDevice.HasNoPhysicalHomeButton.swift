@@ -5,11 +5,12 @@
 //  Created by Vakhtang Kontridze on 01.05.22.
 //
 
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
 
 import UIKit
 
 // MARK: - Device Has No Physical Home Button
+@available(tvOS, unavailable)
 extension UIDevice {
     /// Indicates if device has no physical home button.
     ///

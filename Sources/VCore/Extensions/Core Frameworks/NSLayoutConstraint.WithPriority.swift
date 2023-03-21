@@ -15,7 +15,7 @@ import AppKit
 
 // MARK: - Layout Constraint with Priority
 extension NSLayoutConstraint {
-    #if canImport(UIKit)
+#if canImport(UIKit)
     /// Modifies and returns constraint with a given priority.
     ///
     ///     NSLayoutConstraint.activate([
@@ -27,9 +27,9 @@ extension NSLayoutConstraint {
         self.priority = priority
         return self
     }
-    #endif
+#endif
     
-    #if canImport(AppKit)
+#if canImport(AppKit)
     /// Modifies and returns constraint with a given priority.
     ///
     ///     NSLayoutConstraint.activate([
@@ -41,7 +41,7 @@ extension NSLayoutConstraint {
         self.priority = priority
         return self
     }
-    #endif
+#endif
     
     /// Modifies and returns constraint with a given priority value.
     ///
