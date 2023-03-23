@@ -28,7 +28,7 @@ struct SwiftUIBaseButtonNSViewRepresentable: NSViewRepresentable {
     }
 
     // MARK: Representable
-    func makeNSView(context: Context) -> some NSView {
+    func makeNSView(context: Context) -> NSView {
         let view: NSView = .init(frame: .zero)
 
         DispatchQueue.main.async(execute: {
@@ -43,7 +43,7 @@ struct SwiftUIBaseButtonNSViewRepresentable: NSViewRepresentable {
         return view
     }
     
-    func updateNSView(_ nsView: NSViewType, context: Context) {
+    func updateNSView(_ nsView: NSView, context: Context) {
         setBindedValues()
     }
     
