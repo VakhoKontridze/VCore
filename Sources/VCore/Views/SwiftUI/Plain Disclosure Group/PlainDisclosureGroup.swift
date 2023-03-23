@@ -48,21 +48,21 @@ public struct PlainDisclosureGroup<Label, Content>: View
     // MARK: Properties
     private let uiModel: PlainDisclosureGroupUIModel
     
-    @State private var isExpandedInternally: Bool = false
-    @Binding private var isExpandedExternally: Bool
+    @State private var _isExpanded_internal: Bool = false
+    @Binding private var _isExpanded_external: Bool
     private let stateManagement: StateManagement
     private var isExpanded: Binding<Bool> {
         .init(
             get: {
                 switch stateManagement {
-                case .internal: return isExpandedInternally
-                case .external: return isExpandedExternally
+                case .internal: return _isExpanded_internal
+                case .external: return _isExpanded_external
                 }
             },
             set: { value in
                 switch stateManagement {
-                case .internal: isExpandedInternally = value
-                case .external: isExpandedExternally = value
+                case .internal: _isExpanded_internal = value
+                case .external: _isExpanded_external = value
                 }
             }
         )
@@ -81,7 +81,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
         content: @escaping () -> Content
     ) {
         self.uiModel = uiModel
-        self._isExpandedExternally = .constant(false)
+        self.__isExpanded_external = .constant(false)
         self.stateManagement = .internal
         self.label = label
         self.content = content
@@ -95,7 +95,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
         content: @escaping () -> Content
     ) {
         self.uiModel = uiModel
-        self._isExpandedExternally = isExpanded
+        self.__isExpanded_external = isExpanded
         self.stateManagement = .external
         self.label = label
         self.content = content
