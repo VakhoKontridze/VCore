@@ -138,7 +138,7 @@ import UIKit
 @available(tvOS, unavailable)
 open class UIKitBaseButton: UIView {
     // MARK: Properties
-    private lazy var gestureRecognizer: BaseButtonGestureRecognizer = .init(onStateChange: { [weak self] gestureState in
+    private lazy var gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: { [weak self] gestureState in
         guard let self else { return }
         
         self.internalButtonState = .init(isEnabled: self.buttonState.isEnabled, isPressed: gestureState.isPressed)

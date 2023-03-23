@@ -1,5 +1,5 @@
 //
-//  SwiftUIBaseButtonViewRepresentable.swift
+//  SwiftUIBaseButtonUIViewRepresentable.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 12/26/21.
@@ -9,14 +9,14 @@
 
 import SwiftUI
 
-// MARK: - Swift UI Base Button View Representable
+// MARK: - Swift UI Base Button UI View Representable
 @available(tvOS, unavailable)
-struct SwiftUIBaseButtonViewRepresentable: UIViewRepresentable {
+struct SwiftUIBaseButtonUIViewRepresentable: UIViewRepresentable {
     // MARK: Properties
     private let isEnabled: Bool
     private let stateChangeHandler: (BaseButtonGestureState) -> Void
     
-    @State private var gestureRecognizer: BaseButtonGestureRecognizer?
+    @State private var gestureRecognizer: UIKitBaseButtonGestureRecognizer?
     
     // MARK: Initializers
     init(
@@ -32,7 +32,7 @@ struct SwiftUIBaseButtonViewRepresentable: UIViewRepresentable {
         let view: UIView = .init(frame: .zero)
         
         DispatchQueue.main.async(execute: {
-            let gestureRecognizer: BaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
+            let gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
             
             self.gestureRecognizer = gestureRecognizer
             view.addGestureRecognizer(gestureRecognizer)
@@ -44,13 +44,12 @@ struct SwiftUIBaseButtonViewRepresentable: UIViewRepresentable {
     }
 
     func updateUIView(_ uiView: UIView, context: Context) {
-        setBindedValues(uiView, context: context)
+        setBindedValues()
     }
     
-    private func setBindedValues(_ view: UIView, context: Context) {
-        view.isUserInteractionEnabled = isEnabled
-        
+    private func setBindedValues() {
         gestureRecognizer?.setStateChangeHandler(to: stateChangeHandler)
+        gestureRecognizer?.isEnabled = isEnabled
     }
 }
 

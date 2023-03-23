@@ -83,7 +83,6 @@ import SwiftUI
 ///         )
 ///     }
 ///
-@available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct SwiftUIBaseButton<Label>: View where Label: View {
@@ -119,7 +118,13 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
     public var body: some View {
 #if os(iOS)
         label()
-            .overlay(SwiftUIBaseButtonViewRepresentable(
+            .overlay(SwiftUIBaseButtonUIViewRepresentable(
+                isEnabled: isEnabled,
+                onStateChange: stateChangeHandler
+            ))
+#elseif canImport(AppKit)
+        label()
+            .overlay(SwiftUIBaseButtonNSViewRepresentable(
                 isEnabled: isEnabled,
                 onStateChange: stateChangeHandler
             ))
@@ -128,7 +133,6 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
 }
 
 // MARK: - Preview
-@available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 struct SwiftUIBaseButton_Previews: PreviewProvider {
