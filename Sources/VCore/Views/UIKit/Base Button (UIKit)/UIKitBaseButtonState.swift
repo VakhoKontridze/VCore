@@ -50,7 +50,6 @@ public enum UIKitBaseButtonState: Int, CaseIterable {
 // MARK: - UIKit Base Button Internal State
 /// Enum that describes state, such as `enabled`, `pressed`, or `disabled`.
 @available(tvOS, unavailable)
-@available(watchOS, unavailable)
 public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -96,7 +95,6 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
 
 // MARK: - Mapping
 @available(tvOS, unavailable)
-@available(watchOS, unavailable)
 extension GenericStateModel_EnabledPressedDisabled {
     /// Maps `UIKitBaseButtonInternalState` to `GenericStateModel_EnabledPressedDisabled`.
     public func value(for state: UIKitBaseButtonInternalState) -> Value {
