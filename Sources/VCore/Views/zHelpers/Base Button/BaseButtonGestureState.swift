@@ -13,7 +13,6 @@ import UIKit
 /// Enum that describes state, such as `possible`, `began`, `ended`, or `cancelled`.
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
-@available(watchOS, unavailable)
 public enum BaseButtonGestureState: Int, CaseIterable {
     /// Indicates that interaction is possible. This is a default state.
     case possible

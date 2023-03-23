@@ -11,7 +11,6 @@ import UIKit
 
 // MARK: - Base Button Gesture Recognizer
 @available(tvOS, unavailable)
-@available(watchOS, unavailable)
 final class BaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureRecognizerDelegate {
     // MARK: Properties
     override var state: UIGestureRecognizer.State {
