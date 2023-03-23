@@ -37,8 +37,8 @@ import SwiftUI
 ///     }
 ///
 @available(iOS 14.0, *)
-@available(macOS, unavailable)
-@available(tvOS, unavailable)
+@available(macOS 11.0, *)@available(macOS, unavailable)
+@available(tvOS 16.0, *)@available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct PlainDisclosureGroup<Label, Content>: View
     where
@@ -103,7 +103,6 @@ public struct PlainDisclosureGroup<Label, Content>: View
     
     // MARK: Body
     public var body: some View {
-#if os(iOS)
         ZStack(alignment: .top, content: {
             labelView
             
@@ -118,11 +117,9 @@ public struct PlainDisclosureGroup<Label, Content>: View
                 .animation(.default, value: isExpanded.wrappedValue)
                 .buttonStyle(.plain).accentColor(.clear) // Hides chevron button
         })
-#endif
     }
     
-    @ViewBuilder private var labelView: some View {
-#if os(iOS)
+    private var labelView: some View {
         label()
             .frame(maxWidth: .infinity)
             .onSizeChange(perform: { labelHeight = $0.height })
@@ -131,7 +128,6 @@ public struct PlainDisclosureGroup<Label, Content>: View
                     .contentShape(Rectangle())
                     .onTapGesture(perform: expandCollapseFromLabelTap)
             )
-#endif
     }
     
     // MARK: Actions
@@ -152,9 +148,9 @@ public struct PlainDisclosureGroup<Label, Content>: View
 
 // MARK: - Preview
 @available(iOS 14.0, *)
-@available(macOS, unavailable)
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
+@available(macOS 11.0, *)@available(macOS, unavailable)
+@available(tvOS 14.0, *)@available(tvOS, unavailable)
+@available(watchOS 7.0, *)@available(watchOS, unavailable)
 struct PlainDisclosureGroup_Previews: PreviewProvider {
     static var previews: some View {
         Preview()
@@ -164,7 +160,6 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
         @State private var isExpanded: Bool = true
         
         var body: some View {
-#if os(iOS)
             PlainDisclosureGroup(
                 isExpanded: $isExpanded,
                 label: {
@@ -184,7 +179,6 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
                 }
             )
                 .padding()
-#endif
         }
     }
 }
