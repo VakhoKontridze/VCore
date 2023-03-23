@@ -16,9 +16,9 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 
 ## Compatibility
 
-Versions with different majors are not compatible.
+Package only provides minimal `macOS`, `tvOS`, and `watchOS` support.
 
-Package provides minimal `macOS`, `tvOS`, and `watchOS` support.
+Versions with different majors are not directly compatible. When a new major is released, deprecated symbols are removed.
 
 | Ver | Release Date | SDK                                                    | Comment                                 |
 | :-- | :--          | :--                                                    | :--                                     |
