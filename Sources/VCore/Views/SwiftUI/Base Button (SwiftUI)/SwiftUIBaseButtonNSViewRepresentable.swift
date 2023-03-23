@@ -33,8 +33,8 @@ struct SwiftUIBaseButtonNSViewRepresentable: NSViewRepresentable {
 
         DispatchQueue.main.async(execute: {
             let gestureRecognizer: AppKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
-
             self.gestureRecognizer = gestureRecognizer
+            
             view.addGestureRecognizer(gestureRecognizer)
         })
 

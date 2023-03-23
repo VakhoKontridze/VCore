@@ -16,8 +16,6 @@ final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureReco
     override var state: UIGestureRecognizer.State {
         get { super.state }
         set {
-            guard newValue != .changed else { return } // Not needed
-            
             super.state = newValue
             stateChangedHandler(.init(state: newValue))
         }

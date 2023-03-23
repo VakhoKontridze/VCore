@@ -33,12 +33,10 @@ struct SwiftUIBaseButtonUIViewRepresentable: UIViewRepresentable {
         
         DispatchQueue.main.async(execute: {
             let gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
-            
             self.gestureRecognizer = gestureRecognizer
+            
             view.addGestureRecognizer(gestureRecognizer)
         })
-        
-        //setBindedValues(view, context: context)
         
         return view
     }

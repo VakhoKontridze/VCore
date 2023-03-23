@@ -15,8 +15,6 @@ final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRec
     override var state: NSGestureRecognizer.State {
         get { super.state }
         set {
-            guard newValue != .changed else { return } // Not needed
-            
             super.state = newValue
             stateChangedHandler(.init(state: newValue))
         }
