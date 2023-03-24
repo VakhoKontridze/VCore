@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
+import SwiftUI
 
 // MARK: - UI Alert Button Convertible
 /// Type that allows for conversion to `UIAlertButtonProtocol`.
@@ -18,6 +18,10 @@ public protocol UIAlertButtonConvertible {
 
 extension Array: UIAlertButtonConvertible where Element == UIAlertButtonProtocol {
     public func toButtons() -> [any UIAlertButtonProtocol] { self }
+}
+
+extension EmptyView: UIAlertButtonConvertible {
+    public func toButtons() -> [any UIAlertButtonProtocol] { [] }
 }
 
 // MARK: - UI Alert Button Builder

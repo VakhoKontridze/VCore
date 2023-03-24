@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 21.07.22.
 //
 
-import Foundation
+import SwiftUI
 
 // MARK: - Alert Button Convertible
 /// Type that allows for conversion to `AlertButtonProtocol`.
@@ -18,6 +18,11 @@ public protocol AlertButtonConvertible {
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension Array: AlertButtonConvertible where Element == AlertButtonProtocol {
     public func toButtons() -> [any AlertButtonProtocol] { self }
+}
+
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+extension EmptyView: AlertButtonConvertible {
+    public func toButtons() -> [any AlertButtonProtocol] { [] }
 }
 
 // MARK: - Alert Button Builder

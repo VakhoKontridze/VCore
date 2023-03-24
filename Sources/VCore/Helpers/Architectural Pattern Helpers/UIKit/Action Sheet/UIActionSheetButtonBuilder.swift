@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
+import SwiftUI
 
 // MARK: - UI Action Sheet Button Convertible
 /// Type that allows for conversion to `UIActionSheetButtonProtocol`.
@@ -18,6 +18,10 @@ public protocol UIActionSheetButtonConvertible {
 
 extension Array: UIActionSheetButtonConvertible where Element == UIActionSheetButtonProtocol {
     public func toButtons() -> [any UIActionSheetButtonProtocol] { self }
+}
+
+extension EmptyView: UIActionSheetButtonConvertible {
+    public func toButtons() -> [any UIActionSheetButtonProtocol] { [] }
 }
 
 // MARK: - UI Action Sheet Button Builder
