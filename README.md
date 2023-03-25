@@ -3,29 +3,15 @@
 ## Table of Contents
 
 - [Description](#description)
-- [Compatibility](#compatibility)
 - [Structure](#structure)
 - [Showcase](#showcase)
 - [Installation](#installation)
-- [Versioning](#versioning)
+- [Compatibility](#compatibility)
 - [Contact](#contact)
 
 ## Description
 
 VCore is a Swift collection containing objects, functions, and extensions that I use for my projects.
-
-## Compatibility
-
-Package provides limited `macOS`, `tvOS`, and `watchOS` support.
-
-Versions with different majors are not directly compatible. When a new major is released, deprecated symbols are removed.
-
-| Ver | Release Date | SDK                                                    | Comment                                 |
-| :-- | :--          | :--                                                    | :--                                     |
-| 4.0 | 2022 09 14   | iOS 13.0<br/>macOS 10.15<br/>tvOS 13.0<br/>watchOS 6.0 | API changes.                            | 
-| 3.0 | 2022 05 17   | iOS 13.0<br/>macOS 10.15<br/>tvOS 13.0<br/>watchOS 6.0 | Multiplatform support.<br/>SPM support. |
-| 2.0 | 2021 12 28   | iOS 13.0                                               | iOS 13.0 support                        |
-| 1.0 | 2021 10 07   | iOS 14.0                                               | -                                       |
 
 ## Structure
 
@@ -332,13 +318,28 @@ var body: some View {
 
 Add `https://github.com/VakhoKontridze/VCore` as a Swift Package in Xcode and follow the instructions.
 
-## Versioning
+## Compatibility
+
+Package provides limited `macOS`, `tvOS`, and `watchOS` support.
+
+Versions with different majors are not directly compatible. When a new major is released, deprecated symbols are removed.
+
+#### Versioning
 
 ***Major***. Major changes, such as big overhauls
 
 ***Minor***. Minor changes, such as new objects, function, and extensions
 
 ***Patch***. Bug fixes and improvements
+
+#### History
+
+| Ver | Release Date | SDK                                                    | Comment                                 |
+| :-- | :--          | :--                                                    | :--                                     |
+| 4.0 | 2022 09 14   | iOS 13.0<br/>macOS 10.15<br/>tvOS 13.0<br/>watchOS 6.0 | API changes.                            | 
+| 3.0 | 2022 05 17   | iOS 13.0<br/>macOS 10.15<br/>tvOS 13.0<br/>watchOS 6.0 | Multiplatform support.<br/>SPM support. |
+| 2.0 | 2021 12 28   | iOS 13.0                                               | iOS 13.0 support                        |
+| 1.0 | 2021 10 07   | iOS 14.0   
 
 ## Contact
 
