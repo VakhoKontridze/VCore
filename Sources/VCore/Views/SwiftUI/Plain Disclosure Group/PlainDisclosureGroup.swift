@@ -37,8 +37,8 @@ import SwiftUI
 ///     }
 ///
 @available(iOS 14.0, *)
-@available(macOS, unavailable)@available(macOS 11.0, *)
-@available(tvOS, unavailable)@available(tvOS 16.0, *)
+@available(macOS 11.0, *)@available(macOS, unavailable)
+@available(tvOS 16.0, *)@available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct PlainDisclosureGroup<Label, Content>: View
     where
@@ -148,9 +148,9 @@ public struct PlainDisclosureGroup<Label, Content>: View
 
 // MARK: - Preview
 @available(iOS 14.0, *)
-@available(macOS, unavailable)@available(macOS 11.0, *)
-@available(tvOS, unavailable)@available(tvOS 14.0, *)
-@available(watchOS, unavailable)@available(watchOS 7.0, *)
+@available(macOS 11.0, *)@available(macOS, unavailable)
+@available(tvOS 14.0, *)@available(tvOS, unavailable)
+@available(watchOS 7.0, *)@available(watchOS, unavailable)
 struct PlainDisclosureGroup_Previews: PreviewProvider {
     static var previews: some View {
         Preview()
