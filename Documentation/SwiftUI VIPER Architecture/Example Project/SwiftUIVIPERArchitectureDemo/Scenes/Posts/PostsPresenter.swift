@@ -49,7 +49,7 @@ import VCore
     // MARK: Requests
     private func fetchPosts() {
         postParameters = []
-        progressViewParameters = progressViewParameters()
+        progressViewParameters = ProgressViewParameters(isInteractionEnabled: false)
         
         fetchPostsTask?.cancel()
         fetchPostsTask = Task(operation: {

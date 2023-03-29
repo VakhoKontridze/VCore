@@ -29,7 +29,11 @@ import SwiftUI
 ///         @Published var progressViewParameters: ProgressViewParameters?
 ///
 ///         func didTapButton() {
+///             progressViewParameters = ProgressViewParameters()
+///
 ///             Task(operation: {
+///                 ...
+///
 ///                 do {
 ///                     let (data, response) = try await URLSession.shared.data(for: request)
 ///                     progressViewParameters = nil

@@ -12,7 +12,7 @@ import SwiftUI
 extension View {
     /// Presents `ProgressView` when `ProgressViewParameters` is non-`nil`.
     ///
-    ///     @State private var parameters: ProgressViewParameters = .init(isInteractionDisabled: true)
+    ///     @State private var parameters: ProgressViewParameters = .init()
     ///
     ///     var body: some View {
     ///         content
@@ -28,7 +28,7 @@ extension View {
             
         case let parameters?:
             self
-                .blocksHitTesting(parameters.isInteractionDisabled)
+                .blocksHitTesting(!parameters.isInteractionEnabled)
                 .overlay(
                     ProgressView()
                         .scaleEffect(parameters: parameters)

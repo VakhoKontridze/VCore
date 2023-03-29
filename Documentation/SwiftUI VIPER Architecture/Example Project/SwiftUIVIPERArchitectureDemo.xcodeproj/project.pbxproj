@@ -29,10 +29,10 @@
 		8780A071285F0DF6002E8F66 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A06A285F0DF6002E8F66 /* PostsView.swift */; };
 		8780A072285F0DF6002E8F66 /* PostsUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A06B285F0DF6002E8F66 /* PostsUIModel.swift */; };
 		8780A073285F0DF6002E8F66 /* PostsInteraface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A06C285F0DF6002E8F66 /* PostsInteraface.swift */; };
-		8780A079285F0E43002E8F66 /* VCore in Frameworks */ = {isa = PBXBuildFile; productRef = 8780A078285F0E43002E8F66 /* VCore */; };
 		8780A084285F0FEF002E8F66 /* PostsNetworkGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A080285F0FEF002E8F66 /* PostsNetworkGateway.swift */; };
 		8780A085285F0FEF002E8F66 /* PostsGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A081285F0FEF002E8F66 /* PostsGateway.swift */; };
 		8780A086285F0FEF002E8F66 /* PostsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A082285F0FEF002E8F66 /* PostsEntity.swift */; };
+		87846D8829D4D2AF0071CDAC /* VCore in Frameworks */ = {isa = PBXBuildFile; productRef = 87846D8729D4D2AF0071CDAC /* VCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +63,7 @@
 		8780A080285F0FEF002E8F66 /* PostsNetworkGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsNetworkGateway.swift; sourceTree = "<group>"; };
 		8780A081285F0FEF002E8F66 /* PostsGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsGateway.swift; sourceTree = "<group>"; };
 		8780A082285F0FEF002E8F66 /* PostsEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsEntity.swift; sourceTree = "<group>"; };
+		87846D8629D4D2AA0071CDAC /* ~VCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "~VCore"; path = ../../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,7 +71,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8780A079285F0E43002E8F66 /* VCore in Frameworks */,
+				87846D8829D4D2AF0071CDAC /* VCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -176,6 +177,7 @@
 			isa = PBXGroup;
 			children = (
 				8780A076285F0E3A002E8F66 /* ~VCore */,
+				87846D8629D4D2AA0071CDAC /* ~VCore */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -239,7 +241,7 @@
 			);
 			name = SwiftUIVIPERArchitectureDemo;
 			packageProductDependencies = (
-				8780A078285F0E43002E8F66 /* VCore */,
+				87846D8729D4D2AF0071CDAC /* VCore */,
 			);
 			productName = SwiftUIVIPERArchitectureDemo;
 			productReference = 8780A053285F0DA0002E8F66 /* SwiftUI VIP.app */;
@@ -524,7 +526,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		8780A078285F0E43002E8F66 /* VCore */ = {
+		87846D8729D4D2AF0071CDAC /* VCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = VCore;
 		};

@@ -13,7 +13,7 @@ import SwiftUI
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in `Presenter`.
 /// in `MVVM` architecture, parameters are stored in`ViewModel.`
 ///
-///     @State private var parameters: ProgressViewParameters = .init(isInteractionDisabled: true)
+///     @State private var parameters: ProgressViewParameters = .init()
 ///
 ///     var body: some View {
 ///         content
@@ -24,24 +24,24 @@ import SwiftUI
 public struct ProgressViewParameters: Hashable, Identifiable {
     // MARK: Properties
     /// Scaling factor.
-    public let scalingFactor: CGFloat?
+    public var scalingFactor: CGFloat?
     
     /// Color.
-    public let color: Color?
+    public var color: Color?
     
-    /// Indicates if interaction is disabled.
-    public let isInteractionDisabled: Bool
+    /// Indicates if interaction is enabled.
+    public var isInteractionEnabled: Bool
     
     // MARK: Initializers
     /// Initializes `ProgressViewParameters`.
     public init(
         scalingFactor: CGFloat? = nil,
         color: Color? = nil,
-        isInteractionDisabled: Bool
+        isInteractionEnabled: Bool = true
     ) {
         self.scalingFactor = scalingFactor
         self.color = color
-        self.isInteractionDisabled = isInteractionDisabled
+        self.isInteractionEnabled = isInteractionEnabled
     }
     
     // MARK: Hashable

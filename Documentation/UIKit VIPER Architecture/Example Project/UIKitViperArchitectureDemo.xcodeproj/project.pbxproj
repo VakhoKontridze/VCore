@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		870B88A3285F127E00B0D0AD /* VCore in Frameworks */ = {isa = PBXBuildFile; productRef = 870B88A2285F127E00B0D0AD /* VCore */; };
 		876FD433285C786600EC24FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD432285C786600EC24FD /* AppDelegate.swift */; };
 		876FD435285C786600EC24FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD434285C786600EC24FD /* SceneDelegate.swift */; };
 		876FD43C285C786700EC24FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 876FD43B285C786700EC24FD /* Assets.xcassets */; };
@@ -32,6 +31,7 @@
 		876FD489285C978E00EC24FD /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD481285C978E00EC24FD /* PostDetailsViewController.swift */; };
 		876FD48B285C978E00EC24FD /* PostDetailsUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD483285C978E00EC24FD /* PostDetailsUIModel.swift */; };
 		876FD48C285C978E00EC24FD /* PostDetailsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD484285C978E00EC24FD /* PostDetailsParameters.swift */; };
+		87846D8B29D4D2FF0071CDAC /* VCore in Frameworks */ = {isa = PBXBuildFile; productRef = 87846D8A29D4D2FF0071CDAC /* VCore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -62,6 +62,7 @@
 		876FD481285C978E00EC24FD /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		876FD483285C978E00EC24FD /* PostDetailsUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsUIModel.swift; sourceTree = "<group>"; };
 		876FD484285C978E00EC24FD /* PostDetailsParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsParameters.swift; sourceTree = "<group>"; };
+		87846D8929D4D2FA0071CDAC /* ~VCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "~VCore"; path = ../../..; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				870B88A3285F127E00B0D0AD /* VCore in Frameworks */,
+				87846D8B29D4D2FF0071CDAC /* VCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +81,7 @@
 			isa = PBXGroup;
 			children = (
 				870B88A0285F126E00B0D0AD /* ~VCore */,
+				87846D8929D4D2FA0071CDAC /* ~VCore */,
 			);
 			name = Packages;
 			sourceTree = "<group>";
@@ -246,7 +248,7 @@
 			);
 			name = UIKitViperArchitectureDemo;
 			packageProductDependencies = (
-				870B88A2285F127E00B0D0AD /* VCore */,
+				87846D8A29D4D2FF0071CDAC /* VCore */,
 			);
 			productName = UIKitViperArchitectureDemo;
 			productReference = 876FD42F285C786600EC24FD /* UIKitViperArchitectureDemo.app */;
@@ -535,7 +537,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		870B88A2285F127E00B0D0AD /* VCore */ = {
+		87846D8A29D4D2FF0071CDAC /* VCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = VCore;
 		};

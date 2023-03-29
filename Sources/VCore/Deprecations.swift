@@ -109,6 +109,26 @@ extension ProgressViewParameters {
     }
 }
 
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
+extension ProgressViewParameters {
+    @available(*, deprecated, renamed: "isInteractionEnabled")
+    public var isInteractionDisabled: Bool {
+        get { !isInteractionEnabled }
+        set { isInteractionEnabled = !newValue }
+    }
+    
+    @available(*, deprecated, message: "Use `init` with `isInteractionEnabled` instead")
+    public init(
+        scalingFactor: CGFloat? = nil,
+        color: Color? = nil,
+        isInteractionDisabled: Bool
+    ) {
+        self.scalingFactor = scalingFactor
+        self.color = color
+        self.isInteractionEnabled = !isInteractionDisabled
+    }
+}
+
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension AlertButton {
     @available(*, deprecated, message: "Use `init` with different parameter order")
