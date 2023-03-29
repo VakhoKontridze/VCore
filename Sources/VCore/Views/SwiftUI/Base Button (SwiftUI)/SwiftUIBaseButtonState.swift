@@ -2,38 +2,11 @@
 //  SwiftUIBaseButtonState.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 12/26/21.
+//  Created by Vakhtang Kontridze on 29.03.23.
 //
 
-import Foundation
+import SwiftUI
 
 // MARK: - Swift UI Base Button State
-/// Enum that describes state, such as `enabled` or `disabled`.
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
-public enum SwiftUIBaseButtonState: Int, CaseIterable {
-    // MARK: Cases
-    /// Enabled.
-    case enabled
-    
-    /// Disabled.
-    case disabled
-    
-    // MARK: Properties
-    /// Indicates if state is enabled.
-    public var isEnabled: Bool {
-        switch self {
-        case .enabled: return true
-        case .disabled: return false
-        }
-    }
-    
-    // MARK: Initializers
-    /// Initializes `SwiftUIBaseButtonState` with flag.
-    public init(isEnabled: Bool) {
-        switch isEnabled {
-        case false: self = .disabled
-        case true: self = .enabled
-        }
-    }
-}
+/// Enum that represents state, such as `enabled`, `pressed`, or `disabled`.
+public typealias SwiftUIBaseButtonState = GenericState_EnabledPressedDisabled

@@ -10,6 +10,7 @@ Views
 
 - `SwiftUIBaseButton` now supports `macOS`
 - `SwiftUIBaseButton` is renamed to `SwiftUIGestureBaseButton`
+- Completely new, `Button`-backed `SwiftUIBaseButton` is added
 - `FetchDelegatingAsyncImage` is added that allows you to write custom fetch function
 - `possible` is added to `BaseButtonGestureState`, and some `case`s are renamed
 - `HOrVStack` is renamed to `HVStack`
