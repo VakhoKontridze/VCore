@@ -2,19 +2,16 @@
 //  SwiftUIBaseButton.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 12/26/21.
+//  Created by Vakhtang Kontridze on 29.03.23.
 //
 
 import SwiftUI
 
-// MARK: - Swift UI Base Button
+// MARK: - SwiftUI Base Button
 /// `SwiftUI` `View` that can be used as a base for all interactive views and buttons.
 ///
-/// `Bool` can also be passed as state.
-///
-/// One implementation of `SwiftUIBaseButton` is using it as a base for another button.
-/// In this case, `SwiftUIBaseButton` would handle state and clicks on it's own,
-/// allowing a custom button to focus on UI and API.
+/// `SwiftUIBaseButton` can be used as a basis for all interactive UI components.
+/// It can handle gestures and actions on it's own, allowing you to focus on UI and API.
 ///
 /// Model:
 ///
@@ -40,13 +37,7 @@ import SwiftUI
 ///
 ///     struct SomeButton: View {
 ///         private let uiModel: SomeButtonUIModel
-///
-///         @Environment(\.isEnabled) private var isEnabled: Bool
-///         @State private var isPressed: Bool = false
-///         private var internalState: SomeButtonInternalState { .init(isEnabled: isEnabled, isPressed: isPressed) }
-///
 ///         private let action: () -> Void
-///
 ///         private let title: String
 ///
 ///         init(
@@ -61,18 +52,12 @@ import SwiftUI
 ///
 ///         var body: some View {
 ///             SwiftUIBaseButton(
-///                 onStateChange: stateChangeHandler,
-///                 label: {
+///                 action: action,
+///                 label: { buttonState in
 ///                     Text(title)
-///                         .foregroundColor(uiModel.colors.title.value(for: internalState))
+///                         .foregroundColor(uiModel.colors.title.value(for: buttonState))
 ///                 }
 ///             )
-///                 .disabled(!internalState.isEnabled)
-///         }
-///
-///         private func stateChangeHandler(gestureState: BaseButtonGestureState) {
-///             isPressed = gestureState.isPressed
-///             if gestureState.isClicked { action() }
 ///         }
 ///     }
 ///
@@ -83,63 +68,55 @@ import SwiftUI
 ///         )
 ///     }
 ///
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
 public struct SwiftUIBaseButton<Label>: View where Label: View {
     // MARK: Properties
-    @Environment(\.isEnabled) private var isEnabled: Bool
-    
-    private var stateChangeHandler: (BaseButtonGestureState) -> Void
-    
-    private let label: () -> Label
+    private let uiModel: SwiftUIBaseButtonUIModel
+    private let action: () -> Void
+    private let label: (SwiftUIBaseButtonState) -> Label
     
     // MARK: Initializers
-    /// Initializes `SwiftUIBaseButton` with state change handler and label.
+    /// Initializes `SwiftUIBaseButtonUIModel` with action and label.
     public init(
-        onStateChange stateChangeHandler: @escaping (BaseButtonGestureState) -> Void,
-        @ViewBuilder label: @escaping () -> Label
+        uiModel: SwiftUIBaseButtonUIModel = .init(),
+        action: @escaping () -> Void,
+        @ViewBuilder label: @escaping (SwiftUIBaseButtonState) -> Label
     ) {
-        self.stateChangeHandler = stateChangeHandler
+        self.uiModel = uiModel
+        self.action = action
         self.label = label
     }
     
-    /// Initializes `SwiftUIBaseButton` with action and label.
-    public init(
-        action: @escaping () -> Void,
-        @ViewBuilder label: @escaping () -> Label
-    ) {
-        self.stateChangeHandler = { gestureState in
-            if gestureState.isClicked { action() }
-        }
-        self.label = label
-    }
-
     // MARK: Body
     public var body: some View {
-#if os(iOS)
-        label()
-            .overlay(SwiftUIBaseButtonUIViewRepresentable(
-                isEnabled: isEnabled,
-                onStateChange: stateChangeHandler
-            ))
-#elseif canImport(AppKit)
-        label()
-            .overlay(SwiftUIBaseButtonNSViewRepresentable(
-                isEnabled: isEnabled,
-                onStateChange: stateChangeHandler
-            ))
-#endif
+        Button(
+            action: {
+                withAnimation(uiModel.animations.stateChange, {
+                    action()
+                })
+            },
+            label: EmptyView.init
+        )
+            .buttonStyle(SwiftUIBaseButtonStyle(label: label))
     }
 }
 
 // MARK: - Preview
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
 struct SwiftUIBaseButton_Previews: PreviewProvider {
+    private static var colors: GenericStateModel_EnabledPressedDisabled<Color> {
+        .init(
+            enabled: .primary,
+            pressed: .secondary,
+            disabled: .primary
+        )
+    }
+    
     static var previews: some View {
         SwiftUIBaseButton(
-            onStateChange: { print($0) },
-            label: { Text("Lorem Ipsum") }
+            action: { print("Pressed") },
+            label: { buttonState in
+                Text("Lorem Ipsum")
+                    .foregroundColor(colors.value(for: buttonState))
+            }
         )
     }
 }

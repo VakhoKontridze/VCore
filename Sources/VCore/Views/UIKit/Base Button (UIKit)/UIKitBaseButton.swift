@@ -12,9 +12,8 @@ import UIKit
 // MARK: - UIKit Base Button
 /// `UIKit` `UIView` that can be used as a base for all interactive views and buttons.
 ///
-/// One implementation of `UIKitBaseButton` is using it as a base for another button.
-/// In this case, `UIKitBaseButton` would handle state and clicks on it's own,
-/// allowing a custom button to focus on UI and API.
+/// `UIKitBaseButton` can be used as a basis for all interactive UI components.
+/// It can handle gestures and actions on it's own, allowing you to focus on UI and API.
 ///
 /// Model:
 ///

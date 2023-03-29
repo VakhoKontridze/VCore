@@ -1,22 +1,22 @@
 //
-//  SwiftUIBaseButtonUIViewRepresentable.swift
+//  SwiftUIGestureBaseButtonNSViewRepresentable.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 12/26/21.
+//  Created by Vakhtang Kontridze on 23.03.23.
 //
 
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(AppKit)
 
 import SwiftUI
 
-// MARK: - Swift UI Base Button UI View Representable
+// MARK: - SwiftUI Gesture Base Button NS View Representable
 @available(tvOS, unavailable)
-struct SwiftUIBaseButtonUIViewRepresentable: UIViewRepresentable {
+struct SwiftUIGestureBaseButtonNSViewRepresentable: NSViewRepresentable {
     // MARK: Properties
     private let isEnabled: Bool
     private let stateChangeHandler: (BaseButtonGestureState) -> Void
     
-    @State private var gestureRecognizer: UIKitBaseButtonGestureRecognizer?
+    @State private var gestureRecognizer: AppKitBaseButtonGestureRecognizer?
     
     // MARK: Initializers
     init(
@@ -28,20 +28,22 @@ struct SwiftUIBaseButtonUIViewRepresentable: UIViewRepresentable {
     }
 
     // MARK: Representable
-    func makeUIView(context: Context) -> UIView {
-        let view: UIView = .init(frame: .zero)
-        
+    func makeNSView(context: Context) -> NSView {
+        let view: NSView = .init(frame: .zero)
+
         DispatchQueue.main.async(execute: {
-            let gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
+            let gestureRecognizer: AppKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
             self.gestureRecognizer = gestureRecognizer
             
             view.addGestureRecognizer(gestureRecognizer)
         })
-        
+
+        //setBindedValues(view, context: context)
+
         return view
     }
-
-    func updateUIView(_ uiView: UIView, context: Context) {
+    
+    func updateNSView(_ nsView: NSView, context: Context) {
         setBindedValues()
     }
     

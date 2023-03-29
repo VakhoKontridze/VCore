@@ -170,13 +170,35 @@ extension UIKitBaseButton {
     }
 }
 
-extension SwiftUIBaseButton {
+extension SwiftUIGestureBaseButton {
     @available(*, deprecated, message: "Use `init` with `onStateChange` parameter")
     public init(
         gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) {
         self.init(onStateChange: gestureHandler, label: label)
+    }
+}
+
+#endif
+
+#if os(iOS) || os(macOS)
+
+extension SwiftUIBaseButton {
+    @available(*, unavailable, message: "This `init` is now defined under `SwiftUIGestureBaseButton`")
+    public init(
+        onStateChange stateChangeHandler: @escaping (BaseButtonGestureState) -> Void,
+        @ViewBuilder label: @escaping () -> Label
+    ) {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "This `init` is now defined under `SwiftUIGestureBaseButton`")
+    public init(
+        action: @escaping () -> Void,
+        @ViewBuilder label: @escaping () -> Label
+    ) {
+        fatalError()
     }
 }
 
@@ -272,7 +294,7 @@ extension Array where Element == Optional<String> {
     }
 }
 
-// MARK: - Extensions UI Kit
+// MARK: - Extensions UIKit
 #if canImport(UIKit)
 
 import UIKit
@@ -365,7 +387,7 @@ extension UIApplication {
 
 #endif
 
-// MARK: - Extensions - Swift UI
+// MARK: - Extensions - SwiftUI
 extension View {
     @available(*, deprecated, message: "Use method without flag argument name")
     public func onFirstAppear(
