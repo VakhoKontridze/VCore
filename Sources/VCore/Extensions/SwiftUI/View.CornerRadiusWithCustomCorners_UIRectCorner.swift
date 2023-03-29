@@ -44,7 +44,7 @@ private struct CornerRadiusShape: Shape {
         .init(UIBezierPath(
             roundedRect: rect,
             byRoundingCorners: corners,
-            cornerRadii: .init(width: radius, height: radius)
+            cornerRadii: CGSize(dimension: radius)
         ).cgPath)
     }
 }

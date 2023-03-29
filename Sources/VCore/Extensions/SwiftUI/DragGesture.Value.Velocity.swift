@@ -45,7 +45,7 @@ extension DragGesture.Value {
         
         let duration: CGFloat = time.timeIntervalSince(oldValue.time)
         
-        return .init(
+        return CGSize(
             width: (translation.width - oldValue.translation.width) / duration,
             height: (translation.height - oldValue.translation.height) / duration
         )

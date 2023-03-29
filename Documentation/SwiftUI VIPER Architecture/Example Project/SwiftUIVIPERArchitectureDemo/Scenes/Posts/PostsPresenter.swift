@@ -49,20 +49,20 @@ import VCore
     // MARK: Requests
     private func fetchPosts() {
         postParameters = []
-        progressViewParameters = .init()
+        progressViewParameters = progressViewParameters()
         
         fetchPostsTask?.cancel()
-        fetchPostsTask = .init(operation: {
+        fetchPostsTask = Task(operation: {
             do {
                 let postsEntity: PostsEntity = try await interactor.fetchPosts()
                 progressViewParameters = nil
                 guard !Task.isCancelled else { return }
                 
-                postParameters = postsEntity.posts?.compactMap { $0 }.compactMap { .init(post: $0) } ?? []
+                postParameters = postsEntity.posts?.compactMap { $0 }.compactMap { PostRowViewParameters(post: $0) } ?? []
             
             } catch {
                 progressViewParameters = nil
-                alertParameters = .init(error: error, completion: nil)
+                alertParameters = AlertParameters(error: error, completion: nil)
             }
         })
     }

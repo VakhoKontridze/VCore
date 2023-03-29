@@ -13,7 +13,7 @@ import Foundation
 /// Can be used to customize queries:
 ///
 ///     let configuration: KeychainServiceConfiguration = .init(
-///         getQuery: .init(query: [
+///         getQuery: GetQuery(query: [
 ///             kSecClass as String: kSecClassGenericPassword,
 ///             kSecAttrSynchronizable as String: kCFBooleanTrue as Any,
 ///             kSecReturnData as String: kCFBooleanTrue as Any,

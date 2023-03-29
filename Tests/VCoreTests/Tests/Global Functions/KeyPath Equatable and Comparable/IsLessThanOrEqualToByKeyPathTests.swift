@@ -23,7 +23,7 @@ final class IsLessThanOrEqualToByKeyPathTests: XCTestCase {
         
         XCTAssertTrue(VCore.isLessThanOrEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a
         ))
         
@@ -43,7 +43,7 @@ final class IsLessThanOrEqualToByKeyPathTests: XCTestCase {
         
         XCTAssertTrue(VCore.isLessThanOrEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b
         ))
         
@@ -63,7 +63,7 @@ final class IsLessThanOrEqualToByKeyPathTests: XCTestCase {
         
         XCTAssertTrue(VCore.isLessThanOrEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c
         ))
         
@@ -83,7 +83,7 @@ final class IsLessThanOrEqualToByKeyPathTests: XCTestCase {
         
         XCTAssertTrue(VCore.isLessThanOrEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d
         ))
         
@@ -103,7 +103,7 @@ final class IsLessThanOrEqualToByKeyPathTests: XCTestCase {
         
         XCTAssertTrue(VCore.isLessThanOrEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e
         ))
         
@@ -123,7 +123,7 @@ final class IsLessThanOrEqualToByKeyPathTests: XCTestCase {
         
         XCTAssertTrue(VCore.isLessThanOrEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f
         ))
         
@@ -143,7 +143,7 @@ final class IsLessThanOrEqualToByKeyPathTests: XCTestCase {
         
         XCTAssertTrue(VCore.isLessThanOrEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
         ))
         
@@ -163,7 +163,7 @@ final class IsLessThanOrEqualToByKeyPathTests: XCTestCase {
         
         XCTAssertTrue(VCore.isLessThanOrEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
         ))
         
@@ -183,7 +183,7 @@ final class IsLessThanOrEqualToByKeyPathTests: XCTestCase {
         
         XCTAssertTrue(VCore.isLessThanOrEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
         ))
         
@@ -203,7 +203,7 @@ final class IsLessThanOrEqualToByKeyPathTests: XCTestCase {
         
         XCTAssertTrue(VCore.isLessThanOrEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
         ))
         

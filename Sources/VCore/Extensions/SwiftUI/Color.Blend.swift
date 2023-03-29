@@ -21,17 +21,17 @@ extension Color {
         ratio2: CGFloat = 0.5
     ) -> Color {
 #if canImport(UIKit)
-        return .init(uiColor: UIColor.blend(
-            .init(color1),
+        return Color(uiColor: UIColor.blend(
+            UIColor(color1),
             ratio1: ratio1,
-            with: .init(color2),
+            with: UIColor(color2),
             ratio2: ratio2
         ))
 #elseif canImport(AppKit)
-        return .init(nsColor: NSColor.blend(
-            .init(color1).calibrated,
+        return Color(nsColor: NSColor.blend(
+            UIColor(color1).calibrated,
             ratio1: ratio1,
-            with: .init(color2).calibrated,
+            with: UIColor(color2).calibrated,
             ratio2: ratio2
         ))
 #endif
@@ -45,9 +45,9 @@ extension Color {
     ///
     public func lighten(by value: CGFloat) -> Color {
 #if canImport(UIKit)
-        return .init(uiColor: UIColor(self).lighten(by: value))
+        return Color(uiColor: UIColor(self).lighten(by: value))
 #elseif canImport(AppKit)
-        return .init(nsColor: NSColor(self).calibrated.lighten(by: value))
+        return Color(nsColor: NSColor(self).calibrated.lighten(by: value))
 #endif
     }
     
@@ -59,9 +59,9 @@ extension Color {
     ///
     public func darken(by value: CGFloat) -> Color {
 #if canImport(UIKit)
-        return .init(uiColor: UIColor(self).darken(by: value))
+        return Color(uiColor: UIColor(self).darken(by: value))
 #elseif canImport(AppKit)
-        return .init(nsColor: NSColor(self).calibrated.darken(by: value))
+        return Color(nsColor: NSColor(self).calibrated.darken(by: value))
 #endif
     }
 }

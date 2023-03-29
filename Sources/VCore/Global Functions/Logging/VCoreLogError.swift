@@ -32,7 +32,7 @@ public func VCoreLogError(
                 return string
             
             default:
-                return .init(describing: item)
+                return String(describing: item)
             }
         }
         

@@ -281,7 +281,7 @@ struct HomeView<Presenter>: View
     init(
         presenter: @escaping @autoclosure () -> Presenter
     ) {
-        self._presenter = .init(wrappedValue: presenter())
+        self._presenter = StateObject(wrappedValue: presenter())
     }
 
     // MARK: Body
@@ -447,9 +447,9 @@ struct HomeUIModel {
     // MARK: Colors
     struct Colors {
         // MARK: Properties
-        static var background: UIColor { .init(.systemBackground) }
+        static var background: Color { .init(.systemBackground) }
         
-        static var titleLabel: UIColor { .init(.label) }
+        static var titleLabel: Color { .init(.label) }
         
         // MARK: Initializers
         private init() {}

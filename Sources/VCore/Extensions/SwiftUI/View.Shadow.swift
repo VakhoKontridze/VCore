@@ -15,7 +15,7 @@ extension View {
     ///         .shadow(
     ///             color: .black.opacity(0.3),
     ///             radius: 10,
-    ///             offset: .init(x: 0, y: 10)
+    ///             offset: CGPoint(x: 0, y: 10)
     ///         )
     ///
     public func shadow(

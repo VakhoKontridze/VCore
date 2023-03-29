@@ -18,7 +18,7 @@ final class UIImageInitWithColorTests: XCTestCase {
         
         let image: UIImage = .init(size: .init(dimension: dimension), color: color)! // Force-unwrap
 
-        XCTAssertEqual(image.size, .init(dimension: dimension))
+        XCTAssertEqual(image.size, CGSize(dimension: dimension))
         
 #if !os(watchOS)
         XCTAssertEqualColor(image.averageColor!, color) // Force-unwrap

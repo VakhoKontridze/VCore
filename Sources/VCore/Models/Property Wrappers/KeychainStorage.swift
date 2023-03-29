@@ -29,7 +29,7 @@ import Combine
     // MARK: Properties
     private let keychainService: KeychainService
     
-    @ObservedObject private var storage: ObservableContainer<Value>
+    @ObservedObject private var storage: ObservableContainer<Value> // No need for `StateObject`
     private let valueSetter: (Value) -> Void
     
     /// The underlying value referenced by the state variable.
@@ -58,7 +58,7 @@ import Combine
         valueSetter: @escaping (Value) -> Void
     ) {
         self.keychainService = keychainService
-        self.storage = .init(value: initialValue)
+        self.storage = ObservableContainer(value: initialValue)
         self.valueSetter = valueSetter
     }
     
@@ -108,7 +108,7 @@ extension KeychainStorage where Value: Codable {
         self.init(
             wrappedValue: defaultValue,
             key,
-            keychainService: .init(configuration: configuration)
+            keychainService: KeychainService(configuration: configuration)
         )
     }
 }

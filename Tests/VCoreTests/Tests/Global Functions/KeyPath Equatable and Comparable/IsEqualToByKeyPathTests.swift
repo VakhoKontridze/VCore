@@ -28,13 +28,13 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     func test1() {
         XCTAssertTrue(VCore.isEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a
         ))
         
         XCTAssertFalse(VCore.isEqual(
             SomeObject(),
-            to: .init(a: 1),
+            to: SomeObject(a: 1),
             by: \.a
         ))
     }
@@ -42,13 +42,13 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     func test2() {
         XCTAssertTrue(VCore.isEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b
         ))
         
         XCTAssertFalse(VCore.isEqual(
             SomeObject(),
-            to: .init(b: 1),
+            to: SomeObject(b: 1),
             by: \.a, \.b
         ))
     }
@@ -56,13 +56,13 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     func test3() {
         XCTAssertTrue(VCore.isEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c
         ))
         
         XCTAssertFalse(VCore.isEqual(
             SomeObject(),
-            to: .init(c: 1),
+            to: SomeObject(c: 1),
             by: \.a, \.b, \.c
         ))
     }
@@ -70,13 +70,13 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     func test4() {
         XCTAssertTrue(VCore.isEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d
         ))
         
         XCTAssertFalse(VCore.isEqual(
             SomeObject(),
-            to: .init(d: 1),
+            to: SomeObject(d: 1),
             by: \.a, \.b, \.c, \.d
         ))
     }
@@ -84,13 +84,13 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     func test5() {
         XCTAssertTrue(VCore.isEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e
         ))
         
         XCTAssertFalse(VCore.isEqual(
             SomeObject(),
-            to: .init(e: 1),
+            to: SomeObject(e: 1),
             by: \.a, \.b, \.c, \.d, \.e
         ))
     }
@@ -98,13 +98,13 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     func test6() {
         XCTAssertTrue(VCore.isEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f
         ))
         
         XCTAssertFalse(VCore.isEqual(
             SomeObject(),
-            to: .init(f: 1),
+            to: SomeObject(f: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f
         ))
     }
@@ -112,13 +112,13 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     func test7() {
         XCTAssertTrue(VCore.isEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
         ))
         
         XCTAssertFalse(VCore.isEqual(
             SomeObject(),
-            to: .init(g: 1),
+            to: SomeObject(g: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
         ))
     }
@@ -126,13 +126,13 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     func test8() {
         XCTAssertTrue(VCore.isEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
         ))
         
         XCTAssertFalse(VCore.isEqual(
             SomeObject(),
-            to: .init(h: 1),
+            to: SomeObject(h: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
         ))
     }
@@ -140,13 +140,13 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     func test9() {
         XCTAssertTrue(VCore.isEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
         ))
         
         XCTAssertFalse(VCore.isEqual(
             SomeObject(),
-            to: .init(i: 1),
+            to: SomeObject(i: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
         ))
     }
@@ -154,13 +154,13 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     func test10() {
         XCTAssertTrue(VCore.isEqual(
             SomeObject(),
-            to: .init(),
+            to: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
         ))
         
         XCTAssertFalse(VCore.isEqual(
             SomeObject(),
-            to: .init(j: 1),
+            to: SomeObject(j: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
         ))
     }

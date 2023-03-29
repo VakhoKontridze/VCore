@@ -13,7 +13,7 @@ import UIKit
 /// `UICollectionView` that handles infinite scrolling.
 ///
 /// Contains property `paginationState`, controls pagination state.
-/// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
+/// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `loading` and delegate method is called.
 /// Network call or persistent storage fetch request can be made.
 /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
 ///
@@ -130,7 +130,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     open weak var infiniteScrollingDelegate: (any InfiniteScrollingUICollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
     
     /// Controls pagination state.
-    /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
+    /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `loading` and delegate method is called.
     /// Network call or persistent storage fetch request can be made.
     /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
     open var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }
@@ -174,14 +174,14 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         register(
             UICollectionReusableView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter,
-            withReuseIdentifier: .init(describing: UICollectionReusableView.self)
+            withReuseIdentifier: String(describing: UICollectionReusableView.self)
         )
         
         assert(
             (collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection == .vertical,
             "`scrollDirection` must be set to `vertical`"
         )
-        (collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize = .init(
+        (collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize = CGSize(
             width: bounds.width,
             height: ActivityIndicatorModel.Layout.height
         )
@@ -209,19 +209,19 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             "`numberOfSections` must be set to `1`"
         )
         
-        guard kind == UICollectionView.elementKindSectionFooter else { return .init() }
+        guard kind == UICollectionView.elementKindSectionFooter else { return UICollectionReusableView() }
         
         let footer: UICollectionReusableView = dequeueReusableSupplementaryView(
             ofKind: kind,
-            withReuseIdentifier: .init(describing: UICollectionReusableView.self),
+            withReuseIdentifier: String(describing: UICollectionReusableView.self),
             for: indexPath
         )
         
         footer.addSubview(activityIndicator)
         
-        activityIndicator.frame = .init(
+        activityIndicator.frame = CGRect(
             origin: .zero,
-            size: .init(
+            size: CGSize(
                 width: frame.size.width,
                 height: ActivityIndicatorModel.Layout.height
             )

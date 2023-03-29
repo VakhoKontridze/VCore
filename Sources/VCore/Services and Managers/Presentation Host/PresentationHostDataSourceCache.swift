@@ -26,7 +26,7 @@ import SwiftUI
 ///             return self
 ///                 .presentationHost(
 ///                     id: id,
-///                     isPresented: .init(
+///                     isPresented: Binding(
 ///                         get: { isPresented.wrappedValue && data != nil },
 ///                         set: { if !$0 { isPresented.wrappedValue = false } }
 ///                     ),

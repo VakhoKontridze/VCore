@@ -14,18 +14,24 @@ extension UIImage {
     /// Returns `UIImage` rotated by angle.
     ///
     ///     let image: UIImage = .init(named: "SomeImage")!
-    ///     let rotatedImage: UIImage? = image.rotated(by: .init(value: 90, unit: .degrees))
+    ///     let rotatedImage: UIImage? = image.rotated(by: Measurement(value: 90, unit: .degrees))
     ///
     public func rotated(by angle: Measurement<UnitAngle>) -> UIImage? {
         let radians: CGFloat = .init(angle.converted(to: .radians).value)
         
-        var newRect: CGRect = .init(origin: .zero, size: size).applying(.init(rotationAngle: radians))
-        newRect = .init(
-            x: newRect.origin.x.rounded(),
-            y: newRect.origin.y.rounded(),
-            width: newRect.width.rounded(),
-            height: newRect.height.rounded()
-        )
+        let newRect: CGRect = {
+            var newRect: CGRect = .init(origin: .zero, size: size)
+                .applying(CGAffineTransform(rotationAngle: radians))
+            
+            newRect = CGRect(
+                x: newRect.origin.x.rounded(),
+                y: newRect.origin.y.rounded(),
+                width: newRect.width.rounded(),
+                height: newRect.height.rounded()
+            )
+            
+            return newRect
+        }()
         
         UIGraphicsBeginImageContextWithOptions(newRect.size, false, scale)
         defer { UIGraphicsEndImageContext() }
@@ -35,7 +41,7 @@ extension UIImage {
         cgContext.translateBy(x: newRect.width/2, y: newRect.height/2)
         cgContext.rotate(by: radians)
         
-        draw(in: .init(
+        draw(in: CGRect(
             origin: .init(
                 x: -size.width / 2,
                 y: -size.height / 2

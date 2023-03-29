@@ -59,7 +59,7 @@ struct PresentationHostViewControllerRepresentable<Content>: UIViewControllerRep
 
         let content: AnyView = .init(
             content()
-                .presentationHostPresentationMode(.init(
+                .presentationHostPresentationMode(PresentationHostPresentationMode(
                     id: id,
                     dismiss: dismissHandler,
                     isExternallyDismissed: isExternallyDismissed,

@@ -20,7 +20,7 @@ final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     ) {
         guard let windowScene: UIWindowScene = scene as? UIWindowScene else { return }
         
-        window = .init(windowScene: windowScene)
+        window = UIWindow(windowScene: windowScene)
         window?.rootViewController = UINavigationController(rootViewController: PostsFactory.default())
         window?.makeKeyAndVisible()
     }

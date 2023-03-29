@@ -55,7 +55,7 @@ import UIKit
 ///
 ///         var isEnabled: Bool {
 ///             get { internalState.isEnabled }
-///             set { configure(state: .init(isEnabled: newValue)) }
+///             set { configure(state: SomeButtonState(isEnabled: newValue)) }
 ///         }
 ///         var state: SomeButtonState { .init(isEnabled: internalState.isEnabled) }
 ///         private var internalState: SomeButtonInternalState = .enabled
@@ -103,7 +103,7 @@ import UIKit
 ///         }
 ///
 ///         func configure(state: SomeButtonState) {
-///             internalState = .init(isEnabled: state.isEnabled, isPressed: baseButton.internalButtonState == .pressed)
+///             internalState = SomeButtonInternalState(isEnabled: state.isEnabled, isPressed: baseButton.internalButtonState == .pressed)
 ///
 ///             configureFromStateUIModelChange()
 ///         }
@@ -112,7 +112,7 @@ import UIKit
 ///             baseButton.stateChangeHandler = { [weak self] gestureState in
 ///                 guard let self else { return }
 ///
-///                 self.internalState = .init(isEnabled: self.state.isEnabled, isPressed: gestureState.isPressed)
+///                 self.internalState = SomeButtonInternalState(isEnabled: self.state.isEnabled, isPressed: gestureState.isPressed)
 ///
 ///                 self.configureFromStateUIModelChange()
 ///                 if gestureState.isClicked { action() }
@@ -150,7 +150,7 @@ open class UIKitBaseButton: UIView {
             internalButtonState.isEnabled
         }
         set {
-            internalButtonState = .init(isEnabled: newValue)
+            internalButtonState = UIKitBaseButtonInternalState(isEnabled: newValue)
             gestureRecognizer.isEnabled = internalButtonState.isEnabled
         }
     }
@@ -205,7 +205,7 @@ open class UIKitBaseButton: UIView {
     // MARK: Configuration - State
     /// Configures `UIKitBaseButton` with state.
     open func configure(state: UIKitBaseButtonState) {
-        internalButtonState = .init(isEnabled: state.isEnabled, isPressed: internalButtonState == .pressed)
+        internalButtonState = UIKitBaseButtonInternalState(isEnabled: state.isEnabled, isPressed: internalButtonState == .pressed)
         gestureRecognizer.isEnabled = internalButtonState.isEnabled
     }
 }

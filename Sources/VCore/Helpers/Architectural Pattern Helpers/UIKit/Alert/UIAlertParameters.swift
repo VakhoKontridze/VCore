@@ -17,7 +17,7 @@ import UIKit
 ///
 /// For usage example, refer to `UIAlertViewable`.
 ///
-///     presentAlert(parameters: .init(
+///     presentAlert(parameters: UIAlertParameters(
 ///         title: "Lorem Ipsum",
 ///         message: "Lorem ipsum dolor sit amet",
 ///         actions: {

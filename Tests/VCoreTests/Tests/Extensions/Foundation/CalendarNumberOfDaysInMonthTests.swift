@@ -31,7 +31,7 @@ final class CalendarNumberOfDaysInMonthTests: XCTestCase {
         for i in 1...12 {
             let numberOfDaysInMonth1: Int? = Calendar
                 .current
-                .date(from: .init(year: year, month: i))
+                .date(from: DateComponents(year: year, month: i))
                 .flatMap { Calendar.current.numberOfDaysInMonth(date: $0) }
             
             let numberOfDaysInMonth2: Int? = Calendar

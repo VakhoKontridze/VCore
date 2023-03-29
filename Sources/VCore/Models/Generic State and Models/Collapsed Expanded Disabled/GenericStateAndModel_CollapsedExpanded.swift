@@ -43,7 +43,7 @@ extension Binding where Value == GenericState_CollapsedExpanded {
     /// Initializes `GenericState_CollapsedExpanded` with `Bool`.
     public init(isExpanded: Binding<Bool>) {
         self.init(
-            get: { .init(isExpanded: isExpanded.wrappedValue) },
+            get: { GenericState_CollapsedExpanded(isExpanded: isExpanded.wrappedValue) },
             set: { isExpanded.wrappedValue = $0 == .expanded }
         )
     }

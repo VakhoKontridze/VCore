@@ -47,9 +47,9 @@ extension UIColor {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
         return (
-            red: .init(values.red * 255),
-            green: .init(values.green * 255),
-            blue: .init(values.blue * 255),
+            red: Int(values.red * 255),
+            green: Int(values.green * 255),
+            blue: Int(values.blue * 255),
             alpha: values.alpha
         )
     }

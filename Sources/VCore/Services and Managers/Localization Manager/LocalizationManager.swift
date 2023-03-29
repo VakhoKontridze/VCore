@@ -200,13 +200,13 @@ public final class LocalizationManager {
     // UserDefaults.standard.value(forKey: "...")   ["en-US", "ka-US", "es-US"]     ["en"]
     
     private let bundleLocales: [Locale] = Bundle.main.localizations
-        .map { .init(identifier: $0) }
+        .map { Locale(identifier: $0) }
     
     private let preferredLocale: Locale? = Bundle.main.preferredLocalizations.first
-        .map { .init(identifier: $0) }
+        .map { Locale(identifier: $0) }
 
     private var currentAppLocale: Locale? {
-        (UserDefaults.standard.value(forKey: Self.appleLanguagesUserDefaultsKey) as? [String])?.first.map { .init(identifier: $0) }
+        (UserDefaults.standard.value(forKey: Self.appleLanguagesUserDefaultsKey) as? [String])?.first.map { Locale(identifier: $0) }
     }
 
     private func getCurrentAppLocale() -> Locale {

@@ -136,7 +136,7 @@ final class NetworkRequestTests: XCTestCase {
             request.addBody(data: "\"]".data(using: .utf8)!) // Force-unwrap
 
             XCTAssertEqual(
-                .init(data: request.body, encoding: .utf8)!, // Force-unwrap
+                String(data: request.body, encoding: .utf8)!, // Force-unwrap
                 """
                 ["{"key1":"value1"},{"key2":"value2"}"]
                 """

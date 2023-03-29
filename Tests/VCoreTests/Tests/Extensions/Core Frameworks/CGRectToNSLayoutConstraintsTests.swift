@@ -13,14 +13,14 @@ import XCTest
 // MARK: - Tests
 final class CGRectToNSLayoutConstraintsTests: XCTestCase {
     // MARK: Test Data
-    private let superview: UIView = .init(frame: .init(
+    private let superview: UIView = .init(frame: CGRect(
         origin: .zero,
-        size: .init(width: 300, height: 400)
+        size: CGSize(width: 300, height: 400)
     ))
     
     private let viewRect: CGRect = .init(
-        origin: .init(x: 100, y: 100),
-        size: .init(width: 150, height: 200)
+        origin: CGPoint(x: 100, y: 100),
+        size: CGSize(width: 150, height: 200)
     )
     
     // MARK: Tests
@@ -55,7 +55,7 @@ final class CGRectToNSLayoutConstraintsTests: XCTestCase {
     func testCenter() {
         XCTAssertEqual(
             viewRect.center,
-            .init(x: 175, y: 200)
+            CGPoint(x: 175, y: 200)
         )
     }
     

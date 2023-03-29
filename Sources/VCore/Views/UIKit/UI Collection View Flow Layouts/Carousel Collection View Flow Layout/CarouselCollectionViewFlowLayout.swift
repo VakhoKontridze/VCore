@@ -21,7 +21,7 @@ import UIKit
 ///
 ///     lazy var collectionView: UICollectionView = {
 ///         let layout: CarouselCollectionViewFlowLayout = .init(
-///             itemSize: .init(inset: 40, height: nil),
+///             itemSize: CarouselCollectionViewFlowLayoutItemSize(inset: 40, height: nil),
 ///             spacing: 20
 ///         )
 ///
@@ -38,7 +38,7 @@ import UIKit
 ///         collectionView.delegate = self
 ///         collectionView.dataSource = self
 ///
-///         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: .init(describing: UICollectionViewCell.self))
+///         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self))
 ///
 ///         return collectionView
 ///     }()
@@ -117,7 +117,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 return (collectionView.bounds.size.width - itemSize.width) / 2
             }
         }()
-        sectionInset = .init(top: 0, left: inset, bottom: 0, right: inset)
+        sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         
         collectionView.decelerationRate = .fast
     }
@@ -155,7 +155,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 abs($1.center.x - proposedContentOffsetCenterOrigin)
             }
             .first ??
-            .init()
+            UICollectionViewLayoutAttributes()
         
         let targetContentOffset: CGPoint = .init(
             x: floor(closest.center.x - midSide),
@@ -180,7 +180,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let offset: CGFloat = scrollView.contentOffset.x
         let itemWidth: CGFloat = itemSize.width
         
-        return .init(floor((offset - itemWidth / 2) / itemWidth) + 1)
+        return Int(floor((offset - itemWidth / 2) / itemWidth) + 1)
     }
     
     // MARK: Helpers

@@ -19,7 +19,7 @@ extension UIImage {
     public func scaled(
         toWidth newWidth: CGFloat
     ) -> UIImage? {
-        scaled(toSize: .init(
+        scaled(toSize: CGSize(
             width: newWidth,
             height: size.height * (newWidth / size.width)
         ))
@@ -33,7 +33,7 @@ extension UIImage {
     public func scaled(
         toHeight newHeight: CGFloat
     ) -> UIImage? {
-        scaled(toSize: .init(
+        scaled(toSize: CGSize(
             width: size.width * (newHeight / size.height),
             height: newHeight
         ))
@@ -45,7 +45,7 @@ extension UIImage {
         UIGraphicsBeginImageContextWithOptions(newSize, false, 1)
         defer { UIGraphicsEndImageContext() }
         
-        draw(in: .init(origin: .zero, size: newSize))
+        draw(in: CGRect(origin: .zero, size: newSize))
         return UIGraphicsGetImageFromCurrentImageContext()
     }
 }

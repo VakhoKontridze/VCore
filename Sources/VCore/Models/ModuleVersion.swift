@@ -32,7 +32,7 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
     
     private static var allowedCharacters: CharacterSet {
         .decimalDigits
-        .union(.init(charactersIn: "."))
+        .union(CharacterSet(charactersIn: "."))
     }
     
     // MARK: Initializers

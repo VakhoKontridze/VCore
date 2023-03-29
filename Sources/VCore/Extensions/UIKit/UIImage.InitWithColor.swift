@@ -14,7 +14,7 @@ extension UIImage {
     /// Initializes `UIImage` with color and size.
     ///
     ///     let image: UIImage = .init(
-    ///         size: .init(dimension: 100),
+    ///         size: CGSize(dimension: 100),
     ///         color: .black
     ///     )!
     ///
@@ -26,7 +26,7 @@ extension UIImage {
         defer { UIGraphicsEndImageContext() }
         
         color.setFill()
-        UIRectFill(.init(origin: .zero, size: size))
+        UIRectFill(CGRect(origin: .zero, size: size))
         
         guard let cgImage: CGImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else { return nil }
         self.init(cgImage: cgImage)

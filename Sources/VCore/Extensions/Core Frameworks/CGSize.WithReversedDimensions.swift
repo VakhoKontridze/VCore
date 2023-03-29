@@ -28,7 +28,7 @@ extension CGSize {
     ///
     public func withReversedDimensions(if condition: Bool) -> Self {
         if condition {
-            return .init(width: height, height: width)
+            return CGSize(width: height, height: width)
         } else {
             return self
         }

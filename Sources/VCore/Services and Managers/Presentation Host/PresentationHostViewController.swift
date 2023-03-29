@@ -38,7 +38,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     
     // MARK: Presentation
     func presentHostedView(_ content: some View) {
-        hostingController = .init(rootView: .init(content))
+        hostingController = UIHostingController(rootView: AnyView(content))
         guard let hostingController = hostingController else { fatalError() }
         
         hostingController.modalPresentationStyle = .overFullScreen
@@ -53,7 +53,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     }
     
     func updateHostedView(with content: some View) {
-        hostingController?.rootView = .init(content)
+        hostingController?.rootView = AnyView(content)
     }
     
     func dismissHostedView() {

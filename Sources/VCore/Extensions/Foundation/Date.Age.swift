@@ -14,6 +14,6 @@ extension Date {
     ///     let age: Int? = birthDate.age
     ///
     public func age(inCalendar calendar: Calendar = .current) -> Int? {
-        calendar.dateComponents([.year], from: self, to: .init()).year
+        calendar.dateComponents([.year], from: self, to: Date()).year
     }
 }

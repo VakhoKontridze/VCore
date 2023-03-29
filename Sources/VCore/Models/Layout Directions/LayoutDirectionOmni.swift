@@ -84,13 +84,13 @@ public enum LayoutDirectionOmni: CaseIterable {
         spacing: CGFloat? = nil
     ) -> AnyLayout {
         if isHorizontal {
-            return .init(HStackLayout(
+            return AnyLayout(HStackLayout(
                 alignment: alignmentVer,
                 spacing: spacing
             ))
             
         } else {
-            return .init(VStackLayout(
+            return AnyLayout(VStackLayout(
                 alignment: alignmentHor,
                 spacing: spacing
             ))

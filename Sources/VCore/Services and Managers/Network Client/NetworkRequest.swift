@@ -228,7 +228,7 @@ extension URLComponents {
         guard !newQueryItems.isEmpty else { return }
 
         switch queryItems {
-        case nil: queryItems = newQueryItems.compactMap { .init($0) }
+        case nil: queryItems = newQueryItems.compactMap { URLQueryItem($0) }
         case _?: newQueryItems.compactMap { URLQueryItem($0) }.forEach { queryItems?.append($0) }
         }
     }

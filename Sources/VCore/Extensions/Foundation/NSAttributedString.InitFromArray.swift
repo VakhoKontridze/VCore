@@ -13,15 +13,15 @@ extension NSAttributedString {
     ///
     ///     let label: UILabel = .init()
     ///
-    ///     label.attributedText = .init(attributedStrings: [
-    ///         .init(
+    ///     label.attributedText = NSAttributedString(attributedStrings: [
+    ///         NSAttributedString(
     ///             string: "Hello, ",
     ///             attributes: [
     ///                 NSAttributedString.Key.foregroundColor: UIColor.label as Any,
     ///                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13) as Any
     ///             ]
     ///         ),
-    ///         .init(
+    ///         NSAttributedString(
     ///             string: "World",
     ///             attributes: [
     ///                 NSAttributedString.Key.foregroundColor: UIColor.label as Any,

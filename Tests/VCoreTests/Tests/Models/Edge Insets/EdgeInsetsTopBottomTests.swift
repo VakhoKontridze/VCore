@@ -62,11 +62,11 @@ final class EdgeInsetsTopBottomTests: XCTestCase {
         let input2Bottom: CGFloat = 6
         
         let result: EdgeInsets_TopBottom =
-            .init(
+            EdgeInsets_TopBottom(
                 top: input1Top,
                 bottom: input1Bottom
             ) +
-            .init(
+            EdgeInsets_TopBottom(
                 top: input2Top,
                 bottom: input2Bottom
             )
@@ -86,7 +86,7 @@ final class EdgeInsetsTopBottomTests: XCTestCase {
             top: input1Top,
             bottom: input1Bottom
         )
-        result += .init(
+        result += EdgeInsets_TopBottom(
             top: input2Top,
             bottom: input2Bottom
         )
@@ -103,11 +103,11 @@ final class EdgeInsetsTopBottomTests: XCTestCase {
         let input2Bottom: CGFloat = 6
         
         let result: EdgeInsets_TopBottom =
-            .init(
+            EdgeInsets_TopBottom(
                 top: input1Top,
                 bottom: input1Bottom
             ) -
-            .init(
+            EdgeInsets_TopBottom(
                 top: input2Top,
                 bottom: input2Bottom
             )
@@ -127,7 +127,7 @@ final class EdgeInsetsTopBottomTests: XCTestCase {
             top: input1Top,
             bottom: input1Bottom
         )
-        result -= .init(
+        result -= EdgeInsets_TopBottom(
             top: input2Top,
             bottom: input2Bottom
         )

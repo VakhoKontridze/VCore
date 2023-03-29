@@ -43,7 +43,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         VStack(content: {
-    ///             Button("Present", action: { presentedSheet = .init(isOn: isOn) })
+    ///             Button("Present", action: { presentedSheet = Sheet(isOn: isOn) })
     ///
     ///             Toggle("Lorem Ipsum", isOn: $isOn)
     ///         })

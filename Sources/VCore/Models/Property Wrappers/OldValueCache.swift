@@ -48,6 +48,6 @@ import SwiftUI
     // MARK: Initializers
     /// Initializes `OldValueCache`.
     public init(wrappedValue: Value) {
-        self._fieldValue = .init(initialValue: wrappedValue)
+        self._fieldValue = State(initialValue: wrappedValue)
     }
 }

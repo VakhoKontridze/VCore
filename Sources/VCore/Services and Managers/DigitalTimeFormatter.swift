@@ -61,25 +61,25 @@ public struct DigitalTimeFormatter {
         
         let formattedComponents: [String]? = {
             if d > 0 {
-                return [.init(d), h.padded, m.padded, s.padded]
+                return [String(d), h.padded, m.padded, s.padded]
                 
             } else if h > 0 {
                 switch (emptyComponentsShowAsZeroes, hourComponentHasTwoDigits) {
-                case (false, false): return [.init(h), m.padded, s.padded]
+                case (false, false): return [String(h), m.padded, s.padded]
                 case (false, true): return [h.padded, m.padded, s.padded]
                 case (true, _): return ["0", h.padded, m.padded, s.padded]
                 }
                 
             } else if m > 0 {
                 switch (emptyComponentsShowAsZeroes, minuteComponentHasTwoDigits) {
-                case (false, false): return [.init(m), s.padded]
+                case (false, false): return [String(m), s.padded]
                 case (false, true): return [m.padded, s.padded]
                 case (true, _): return ["0", "00", m.padded, s.padded]
                 }
                 
             } else if s >= 0 {
                 switch (emptyComponentsShowAsZeroes, minuteComponentShowsIfSecondComponentShows, minuteComponentHasTwoDigits, secondComponentHasTwoDigits) {
-                case (false, false, _, false): return [.init(s)]
+                case (false, false, _, false): return [String(s)]
                 case (false, false, _, true): return [s.padded]
                 case (false, true, false, _): return ["0", s.padded]
                 case (false, true, true, _): return ["00", s.padded]
@@ -101,34 +101,34 @@ public struct DigitalTimeFormatter {
         var d: Int = {
             let remainder: Double = seconds
             
-            return .init(remainder / TimeComponent.day.seconds)
+            return Int(remainder / TimeComponent.day.seconds)
         }()
         
         var h: Int = {
-            let sInDay: Double = .init(d) * TimeComponent.day.seconds
+            let sInDay: Double = Double(d) * TimeComponent.day.seconds
             
             let remainder: Double = seconds - sInDay
             
-            return .init(remainder / TimeComponent.hour.seconds)
+            return Int(remainder / TimeComponent.hour.seconds)
         }()
         
         var m: Int = {
-            let sInDay: Double = .init(d) * TimeComponent.day.seconds
-            let sInHour: Double = .init(h) * TimeComponent.hour.seconds
+            let sInDay: Double = Double(d) * TimeComponent.day.seconds
+            let sInHour: Double = Double(h) * TimeComponent.hour.seconds
             
             let remainder: Double = seconds - sInDay - sInHour
             
-            return .init(remainder / TimeComponent.minute.seconds)
+            return Int(remainder / TimeComponent.minute.seconds)
         }()
         
         var s: Int = {
-            let sInDay: Double = .init(d) * TimeComponent.day.seconds
-            let sInHour: Double = .init(h) * TimeComponent.hour.seconds
-            let sInMinute: Double = .init(m) * TimeComponent.minute.seconds
+            let sInDay: Double = Double(d) * TimeComponent.day.seconds
+            let sInHour: Double = Double(h) * TimeComponent.hour.seconds
+            let sInMinute: Double = Double(m) * TimeComponent.minute.seconds
             
             let remainder: Double = seconds - sInDay - sInHour - sInMinute
             
-            return .init(remainder.rounded(.toNearestOrAwayFromZero))
+            return Int(remainder.rounded(.toNearestOrAwayFromZero))
         }()
 
         if s == TimeComponent.second.max { s = 0; m += 1 }

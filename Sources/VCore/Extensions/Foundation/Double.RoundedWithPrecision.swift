@@ -18,7 +18,7 @@ extension Double {
     public func rounded(fractions: Int) -> Double {
         assert(fractions >= 0)
         
-        let power: Double = pow(10, .init(fractions))
+        let power: Double = pow(10, Double(fractions))
         return (self * power).rounded() / power
     }
     

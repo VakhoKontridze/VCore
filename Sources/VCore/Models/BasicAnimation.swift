@@ -21,7 +21,7 @@ import SwiftUI
 ///     )
 ///
 ///     withBasicAnimation(
-///         .init(curve: .easeIn, duration: 1),
+///         BasicAnimation(curve: .easeIn, duration: 1),
 ///         body: { ... },
 ///         completion: { ... }
 ///     )
@@ -82,10 +82,10 @@ extension BasicAnimation {
     /// Casts `BasicAnimation` to `CAMediaTimingFunction`.
     public var toCAMediaTimingFunction: CAMediaTimingFunction {
         switch curve {
-        case .linear: return .init(name: .linear)
-        case .easeIn: return .init(name: .easeIn)
-        case .easeOut: return .init(name: .easeOut)
-        case .easeInOut: return .init(name: .easeInEaseOut)
+        case .linear: return CAMediaTimingFunction(name: .linear)
+        case .easeIn: return CAMediaTimingFunction(name: .easeIn)
+        case .easeOut: return CAMediaTimingFunction(name: .easeOut)
+        case .easeInOut: return CAMediaTimingFunction(name: .easeInEaseOut)
         }
     }
 }
@@ -118,7 +118,7 @@ extension BasicAnimation {
 /// scheduling with a deadline of `.now()` `+` animation duration.
 ///
 ///     withBasicAnimation(
-///         .init(curve: .easeIn, duration: 1),
+///         BasicAnimation(curve: .easeIn, duration: 1),
 ///         body: { ... },
 ///         completion: { ... }
 ///     )

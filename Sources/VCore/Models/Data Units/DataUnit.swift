@@ -53,7 +53,7 @@ public protocol DataUnit {
 
 extension DataUnit {
     public var bytes: Double {
-        pow(.init(Self.base), .init(magnitude))
+        pow(Double(Self.base), Double(magnitude))
     }
     
     public static func convert<T>(
@@ -62,8 +62,8 @@ extension DataUnit {
     ) -> Double
         where T: DataUnit
     {
-        let bytes1: Double = pow(.init(Self.base), .init(unit.magnitude))
-        let bytes2: Double = pow(.init(T.base), .init(newUnit.magnitude))
+        let bytes1: Double = pow(Double(Self.base), Double(unit.magnitude))
+        let bytes2: Double = pow(Double(T.base), Double(newUnit.magnitude))
         
         return size * (bytes1 / bytes2)
     }
@@ -73,7 +73,7 @@ extension DataUnit {
         to newUnit: Self
     ) -> Double {
         let base: Double = .init(Self.base)
-        let magnitude: Double = .init(unit.magnitude) - .init(newUnit.magnitude)
+        let magnitude: Double = Double(unit.magnitude) - Double(newUnit.magnitude)
         
         return size * pow(base, magnitude)
     }

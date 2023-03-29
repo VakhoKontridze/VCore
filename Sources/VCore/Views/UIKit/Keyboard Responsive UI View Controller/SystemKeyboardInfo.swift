@@ -42,7 +42,7 @@ public struct SystemKeyboardInfo {
             Self.defaultAnimationDuration
         
         self.animationOptions =
-            (notification.userInfo?.uInt(key: UIResponder.keyboardAnimationCurveUserInfoKey)).map { .init(rawValue: $0) } ??
+            (notification.userInfo?.uInt(key: UIResponder.keyboardAnimationCurveUserInfoKey)).map { UIView.AnimationOptions(rawValue: $0) } ??
             Self.defaultAnimationOptions
     }
     
@@ -51,11 +51,15 @@ public struct SystemKeyboardInfo {
     public static var defaultEstimatedKeyboardFrame: CGRect {
         let estimatedKeyboardHeight: CGFloat = 400
         
-        return .init(
-            x: 0,
-            y: UIScreen.main.bounds.height - estimatedKeyboardHeight,
-            width: UIScreen.main.bounds.width,
-            height: estimatedKeyboardHeight
+        return CGRect(
+            origin: CGPoint(
+                x: 0,
+                y: UIScreen.main.bounds.height - estimatedKeyboardHeight
+            ),
+            size: CGSize(
+                width: UIScreen.main.bounds.width,
+                height: estimatedKeyboardHeight
+            )
         )
     }
     

@@ -268,10 +268,10 @@ private func fetchImage(url: URL) async throws -> Image {
 
         cache.setObject(uiImage, forKey: key)
 
-        return .init(uiImage: uiImage)
+        return Image(uiImage: uiImage)
 
     case let uiImage?:
-        return .init(uiImage: uiImage)
+        return Image(uiImage: uiImage)
     }
 }
 ```

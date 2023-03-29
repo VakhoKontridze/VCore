@@ -17,7 +17,7 @@ final class SequenceKeyPathSortTests: XCTestCase {
         init(_ name: String) { self.name = name }
     }
     
-    private let input: [City] = ["London", "Paris", "New York"].map { .init($0) }
+    private let input: [City] = ["London", "Paris", "New York"].map { City($0) }
     private var output: [City] { input.sorted(by: { $0.name < $1.name }) }
     
     // MARK: Tests

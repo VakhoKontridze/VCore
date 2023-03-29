@@ -15,8 +15,10 @@ final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRec
     override var state: NSGestureRecognizer.State {
         get { super.state }
         set {
+            guard newValue != .changed else { return } // Not supported
+            
             super.state = newValue
-            stateChangedHandler(.init(state: newValue))
+            stateChangedHandler(BaseButtonGestureState(state: newValue))
         }
     }
     private var stateChangedHandler: (BaseButtonGestureState) -> Void
@@ -35,7 +37,7 @@ final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRec
         super.init(target: nil, action: nil)
         
         delegate = self
-        stateChangedHandler(.init(state: state)) // Setter isn't called from initializer
+        stateChangedHandler(BaseButtonGestureState(state: state)) // Setter isn't called from initializer
     }
     
     required init?(coder: NSCoder) {

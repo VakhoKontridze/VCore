@@ -37,7 +37,7 @@ import Foundation
 ///         {
 ///             self.data = Array(T.allCases)
 ///             self.content = content
-///             self._selectedIndex = .init(
+///             self._selectedIndex = Binding(
 ///                 get: { Array(T.allCases).firstIndex(of: selection.wrappedValue)! },
 ///                 set: { selection.wrappedValue = Array(T.allCases)[$0] }
 ///             )

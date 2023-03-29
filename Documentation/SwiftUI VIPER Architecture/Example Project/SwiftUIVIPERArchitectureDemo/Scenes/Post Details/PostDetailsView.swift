@@ -21,7 +21,7 @@ struct PostDetailsView<Presenter>: View
     init(
         presenter: @escaping @autoclosure () -> Presenter
     ) {
-        self._presenter = .init(wrappedValue: presenter())
+        self._presenter = StateObject(wrappedValue: presenter())
     }
 
     // MARK: Body
@@ -52,7 +52,7 @@ struct PostDetailsView<Presenter>: View
 struct PostDetailsView_Previews: PreviewProvider {
     static var previews: some View {
         CoordinatingNavigationStack(
-            path: .init([PostDetailsParameters.mock]),
+            path: NavigationPath([PostDetailsParameters.mock]),
             root: { PostsFactory.mock() }
         )
     }

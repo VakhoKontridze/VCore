@@ -31,7 +31,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .frame(size: .init(dimension: 100))
+    ///             .frame(size: CGSize(dimension: 100))
     ///     }
     ///
     public func frame(
@@ -50,10 +50,10 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .frame(size: .init(
+    ///             .frame(size: MinIdealMaxSizes(
     ///                 min: .zero,
-    ///                 ideal: .init(dimension: 100),
-    ///                 max: .init(dimension: .infinity)
+    ///                 ideal: CGSize(dimension: 100),
+    ///                 max: CGSize(dimension: .infinity)
     ///             ))
     ///     }
     ///

@@ -13,40 +13,40 @@ final class MultipartFormDataFileTests: XCTestCase {
     func testInit() {
         let file1: _MultipartFormDataFile = .init(
             name: "file",
-            file: .init(
+            file: MultipartFormDataFile(
                 filename: nil,
                 mimeType: "image/jpeg",
-                data: .init()
+                data: Data()
             )
         )
         XCTAssertEqual(file1.filename, "file.jpeg")
         
         let file2: _MultipartFormDataFile = .init(
             name: "file",
-            file: .init(
+            file: MultipartFormDataFile(
                 filename: "small-image.jpg",
                 mimeType: "image/jpeg",
-                data: .init()
+                data: Data()
             )
         )
         XCTAssertEqual(file2.filename, "small-image.jpg")
             
         let file3: _MultipartFormDataFile = .init(
             name: "file",
-            file: .init(
+            file: MultipartFormDataFile(
                 filename: nil,
                 mimeType: "",
-                data: .init()
+                data: Data()
             )
         )
         XCTAssertEqual(file3.filename, "file")
         
         let file4: _MultipartFormDataFile = .init(
             name: "file",
-            file:  .init(
+            file:  MultipartFormDataFile(
                 filename: "small-image.jpg",
                 mimeType: "image/jpeg",
-                data: .init()
+                data: Data()
             )
         )
         XCTAssertEqual(file4.filename, "small-image.jpg")

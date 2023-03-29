@@ -17,7 +17,7 @@ extension UIFont {
     ///     let boldSystemFont: UIFont? = systemFont.withBoldStyling
     ///
     public var withBoldStyling: UIFont? {
-        fontDescriptor.withSymbolicTraits(.traitBold).map { .init(descriptor: $0, size: 0) }
+        fontDescriptor.withSymbolicTraits(.traitBold).map { UIFont(descriptor: $0, size: 0) }
     }
     
     /// Returns `UIFont` with italic styling.
@@ -26,7 +26,7 @@ extension UIFont {
     ///     let italicSystemFont: UIFont? = systemFont.withItalicStyling
     ///
     public var withItalicStyling: UIFont? {
-        fontDescriptor.withSymbolicTraits(.traitItalic).map { .init(descriptor: $0, size: 0) }
+        fontDescriptor.withSymbolicTraits(.traitItalic).map { UIFont(descriptor: $0, size: 0) }
     }
 }
 

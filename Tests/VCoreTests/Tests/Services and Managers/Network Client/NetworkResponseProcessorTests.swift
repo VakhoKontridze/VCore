@@ -19,7 +19,7 @@ final class NetworkResponseProcessorTests: XCTestCase {
         let message: String = "Something has gone wrong"
         
         let urlResponse: HTTPURLResponse = .init(
-            url: .init(string: "https://www.apple.com")!, // Force-unwrap
+            url: URL(string: "https://www.apple.com")!, // Force-unwrap
             statusCode: code,
             httpVersion: nil,
             headerFields: nil

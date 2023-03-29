@@ -14,7 +14,7 @@ import Foundation
 /// Can also be used for passing a reference type in environment, without a dedicated wrapper.
 ///
 ///     struct ContentView: Void {
-///         @ObservedObject private var viewModel: ObservableContainer<Int> = .init(value: 0)
+///         @StateObject private var viewModel: ObservableContainer<Int> = .init(value: 0)
 ///
 ///         var body: some View {
 ///             ...

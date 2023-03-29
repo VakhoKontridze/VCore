@@ -25,7 +25,7 @@ import UIKit
 ///         }
 ///
 ///         func present() {
-///             view.presentActionSheet(parameters: .init(
+///             view.presentActionSheet(parameters: UIAlertParameters(
 ///                 title: "Lorem Ipsum",
 ///                 message: "Lorem ipsum dolor sit amet",
 ///                 actions: {

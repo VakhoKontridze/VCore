@@ -58,9 +58,9 @@ extension Color {
     ///
     public func isRGBAEqual(to otherColor: Color) -> Bool {
 #if canImport(UIKit)
-        return UIColor(self).isRGBAEqual(to: .init(otherColor))
+        return UIColor(self).isRGBAEqual(to: UIColor(otherColor))
 #elseif canImport(AppKit)
-        return NSColor(self).calibrated.isRGBAEqual(to: .init(otherColor).calibrated)
+        return NSColor(self).calibrated.isRGBAEqual(to: NSColor(otherColor).calibrated)
 #endif
     }
 }

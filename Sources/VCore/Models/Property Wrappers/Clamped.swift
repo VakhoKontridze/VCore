@@ -43,7 +43,7 @@ import SwiftUI
         wrappedValue: Value,
         transformation: @escaping (Value) -> Value
     ) {
-        self._fieldValue = .init(initialValue: transformation(wrappedValue))
+        self._fieldValue = State(initialValue: transformation(wrappedValue))
         self.transformation = transformation
     }
 }

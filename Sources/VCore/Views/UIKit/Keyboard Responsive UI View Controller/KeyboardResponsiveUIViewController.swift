@@ -116,7 +116,7 @@ open class KeyboardResponsiveUIViewController: UIViewController {
             guard viewIsVisible else { return }
         }
         
-        keyboardWillShow(.init(notification: notification))
+        keyboardWillShow(SystemKeyboardInfo(notification: notification))
     }
     
     /// Posted immediately prior to the dismissal of the keyboard.
@@ -132,7 +132,7 @@ open class KeyboardResponsiveUIViewController: UIViewController {
             guard viewIsVisible else { return }
         }
         
-        keyboardWillHide(.init(notification: notification))
+        keyboardWillHide(SystemKeyboardInfo(notification: notification))
     }
     
     // MARK: Helpers

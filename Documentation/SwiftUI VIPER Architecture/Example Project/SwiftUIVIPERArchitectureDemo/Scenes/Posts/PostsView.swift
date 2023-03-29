@@ -24,7 +24,7 @@ struct PostsView<Presenter>: View
     init(
         presenter: @escaping @autoclosure () -> Presenter
     ) {
-        self._presenter = .init(wrappedValue: presenter())
+        self._presenter = StateObject(wrappedValue: presenter())
     }
 
     // MARK: Body
@@ -50,7 +50,7 @@ struct PostsView<Presenter>: View
         List(content: {
             ForEach(presenter.postParameters, content: { parameters in
                 PostRowView(parameters: parameters)
-                    .listRowInsets(.init())
+                    .listRowInsets(EdgeInsets())
                     .onTapGesture(perform: { presenter.didTapPost(parameters: parameters) })
             })
         })

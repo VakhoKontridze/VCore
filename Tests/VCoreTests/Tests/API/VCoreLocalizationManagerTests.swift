@@ -51,7 +51,7 @@ final class VCoreLocalizationManagerTests: XCTestCase {
     // MARK: Tests
     func testNetworkErrorDescription() async {
         do {
-            try await NetworkClient.default.noData(from: .init(url: ""))
+            try await NetworkClient.default.noData(from: NetworkRequest(url: ""))
             fatalError()
             
         } catch {
@@ -69,7 +69,7 @@ final class VCoreLocalizationManagerTests: XCTestCase {
     
     func testJSONDecoderErrorDescription() {
         XCTAssertThrowsError(
-            try JSONDecoderService().json(data: .init()),
+            try JSONDecoderService().json(data: Data()),
             "",
             { error in XCTAssertEqual(error.localizedDescription, "C") }
         )

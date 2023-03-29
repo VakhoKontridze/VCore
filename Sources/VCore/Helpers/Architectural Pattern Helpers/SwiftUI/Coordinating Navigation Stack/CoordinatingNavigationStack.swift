@@ -74,7 +74,7 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         path navigationPath: @escaping @autoclosure () -> NavigationPath,
         @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
     ) {
-        self._navigationStackCoordinator = .init(wrappedValue: .init(path: navigationPath()))
+        self._navigationStackCoordinator = StateObject(wrappedValue: NavigationStackCoordinator(path: navigationPath()))
         self.root = root
     }
     
@@ -82,7 +82,7 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     public init(
         @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
     ) {
-        self._navigationStackCoordinator = .init(wrappedValue: .init(path: .init()))
+        self._navigationStackCoordinator = StateObject(wrappedValue: NavigationStackCoordinator(path: NavigationPath()))
         self.root = root
     }
     
@@ -91,7 +91,7 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         path navigationPath: @escaping @autoclosure () -> NavigationPath,
         @ViewBuilder root: @escaping () -> Root
     ) {
-        self._navigationStackCoordinator = .init(wrappedValue: .init(path: navigationPath()))
+        self._navigationStackCoordinator = StateObject(wrappedValue: NavigationStackCoordinator(path: navigationPath()))
         self.root = { _ in root() }
     }
     
@@ -99,7 +99,7 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     public init(
         @ViewBuilder root: @escaping () -> Root
     ) {
-        self._navigationStackCoordinator = .init(wrappedValue: .init(path: .init()))
+        self._navigationStackCoordinator = StateObject(wrappedValue: NavigationStackCoordinator(path: NavigationPath()))
         self.root = { _ in root() }
     }
 

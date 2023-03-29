@@ -107,7 +107,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
             labelView
             
             DisclosureGroup(
-                isExpanded: .init(
+                isExpanded: Binding(
                     get: { isExpanded.wrappedValue },
                     set: expandCollapseFromInternalAction
                 ),

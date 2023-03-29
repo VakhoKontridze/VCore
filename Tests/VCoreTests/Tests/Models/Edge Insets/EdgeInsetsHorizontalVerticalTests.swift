@@ -62,11 +62,11 @@ final class EdgeInsetsHorizontalVerticalTests: XCTestCase {
         let input2Vertical: CGFloat = 6
         
         let result: EdgeInsets_HorizontalVertical =
-            .init(
+            EdgeInsets_HorizontalVertical(
                 horizontal: input1Horizontal,
                 vertical: input1Vertical
             ) +
-            .init(
+            EdgeInsets_HorizontalVertical(
                 horizontal: input2Horizontal,
                 vertical: input2Vertical
             )
@@ -86,7 +86,7 @@ final class EdgeInsetsHorizontalVerticalTests: XCTestCase {
             horizontal: input1Horizontal,
             vertical: input1Vertical
         )
-        result += .init(
+        result += EdgeInsets_HorizontalVertical(
             horizontal: input2Horizontal,
             vertical: input2Vertical
         )
@@ -103,11 +103,11 @@ final class EdgeInsetsHorizontalVerticalTests: XCTestCase {
         let input2Vertical: CGFloat = 6
         
         let result: EdgeInsets_HorizontalVertical =
-            .init(
+            EdgeInsets_HorizontalVertical(
                 horizontal: input1Horizontal,
                 vertical: input1Vertical
             ) -
-            .init(
+            EdgeInsets_HorizontalVertical(
                 horizontal: input2Horizontal,
                 vertical: input2Vertical
             )
@@ -127,7 +127,7 @@ final class EdgeInsetsHorizontalVerticalTests: XCTestCase {
             horizontal: input1Horizontal,
             vertical: input1Vertical
         )
-        result -= .init(
+        result -= EdgeInsets_HorizontalVertical(
             horizontal: input2Horizontal,
             vertical: input2Vertical
         )

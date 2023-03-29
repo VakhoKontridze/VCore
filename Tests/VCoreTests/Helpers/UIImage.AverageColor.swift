@@ -40,12 +40,12 @@ extension UIImage {
             outputImage,
             toBitmap: &bitmap,
             rowBytes: 4,
-            bounds: .init(origin: .zero, size: .init(dimension: 1)),
+            bounds: CGRect(origin: .zero, size: CGSize(dimension: 1)),
             format: .RGBA8,
             colorSpace: nil
         )
 
-        return .init(
+        return UIColor(
             red: CGFloat(bitmap[0]) / 255,
             green: CGFloat(bitmap[1]) / 255,
             blue: CGFloat(bitmap[2]) / 255,

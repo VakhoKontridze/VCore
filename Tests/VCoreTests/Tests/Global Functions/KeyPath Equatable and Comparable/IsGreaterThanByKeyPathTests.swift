@@ -17,13 +17,13 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
     func test1() {
         XCTAssertTrue(VCore.isGreater(
             SomeObject(),
-            than: .init(a: -1),
+            than: SomeObject(a: -1),
             by: \.a
         ))
         
         XCTAssertFalse(VCore.isGreater(
             SomeObject(),
-            than: .init(),
+            than: SomeObject(),
             by: \.a
         ))
     }
@@ -31,13 +31,13 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
     func test2() {
         XCTAssertTrue(VCore.isGreater(
             SomeObject(),
-            than: .init(b: -1),
+            than: SomeObject(b: -1),
             by: \.a, \.b
         ))
         
         XCTAssertFalse(VCore.isGreater(
             SomeObject(),
-            than: .init(),
+            than: SomeObject(),
             by: \.a, \.b
         ))
     }
@@ -45,13 +45,13 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
     func test3() {
         XCTAssertTrue(VCore.isGreater(
             SomeObject(),
-            than: .init(c: -1),
+            than: SomeObject(c: -1),
             by: \.a, \.b, \.c
         ))
         
         XCTAssertFalse(VCore.isGreater(
             SomeObject(),
-            than: .init(),
+            than: SomeObject(),
             by: \.a, \.b, \.c
         ))
     }
@@ -59,13 +59,13 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
     func test4() {
         XCTAssertTrue(VCore.isGreater(
             SomeObject(),
-            than: .init(d: -1),
+            than: SomeObject(d: -1),
             by: \.a, \.b, \.c, \.d
         ))
         
         XCTAssertFalse(VCore.isGreater(
             SomeObject(),
-            than: .init(),
+            than: SomeObject(),
             by: \.a, \.b, \.c, \.d
         ))
     }
@@ -73,13 +73,13 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
     func test5() {
         XCTAssertTrue(VCore.isGreater(
             SomeObject(),
-            than: .init(e: -1),
+            than: SomeObject(e: -1),
             by: \.a, \.b, \.c, \.d, \.e
         ))
         
         XCTAssertFalse(VCore.isGreater(
             SomeObject(),
-            than: .init(),
+            than: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e
         ))
     }
@@ -87,13 +87,13 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
     func test6() {
         XCTAssertTrue(VCore.isGreater(
             SomeObject(),
-            than: .init(f: -1),
+            than: SomeObject(f: -1),
             by: \.a, \.b, \.c, \.d, \.e, \.f
         ))
         
         XCTAssertFalse(VCore.isGreater(
             SomeObject(),
-            than: .init(),
+            than: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f
         ))
     }
@@ -101,13 +101,13 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
     func test7() {
         XCTAssertTrue(VCore.isGreater(
             SomeObject(),
-            than: .init(g: -1),
+            than: SomeObject(g: -1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
         ))
         
         XCTAssertFalse(VCore.isGreater(
             SomeObject(),
-            than: .init(),
+            than: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
         ))
     }
@@ -115,13 +115,13 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
     func test8() {
         XCTAssertTrue(VCore.isGreater(
             SomeObject(),
-            than: .init(h: -1),
+            than: SomeObject(h: -1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
         ))
         
         XCTAssertFalse(VCore.isGreater(
             SomeObject(),
-            than: .init(),
+            than: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
         ))
     }
@@ -129,13 +129,13 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
     func test9() {
         XCTAssertTrue(VCore.isGreater(
             SomeObject(),
-            than: .init(i: -1),
+            than: SomeObject(i: -1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
         ))
         
         XCTAssertFalse(VCore.isGreater(
             SomeObject(),
-            than: .init(),
+            than: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
         ))
     }
@@ -143,13 +143,13 @@ final class IsGreaterThanByKeyPathTests: XCTestCase {
     func test10() {
         XCTAssertTrue(VCore.isGreater(
             SomeObject(),
-            than: .init(j: -1),
+            than: SomeObject(j: -1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
         ))
         
         XCTAssertFalse(VCore.isGreater(
             SomeObject(),
-            than: .init(),
+            than: SomeObject(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
         ))
     }

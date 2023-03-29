@@ -57,7 +57,7 @@ extension View {
     ///
     ///         private func animateIn() {
     ///             withBasicAnimation(
-    ///                 .init(curve: .easeInOut, duration: 0.3),
+    ///                 BasicAnimation(curve: .easeInOut, duration: 0.3),
     ///                 body: { isInternallyPresented = true },
     ///                 completion: nil
     ///             )
@@ -65,7 +65,7 @@ extension View {
     ///
     ///         private func animateOut() {
     ///             withBasicAnimation(
-    ///                 .init(curve: .easeInOut, duration: 0.3),
+    ///                 BasicAnimation(curve: .easeInOut, duration: 0.3),
     ///                 body: { isInternallyPresented = false },
     ///                 completion: presentationMode.dismiss
     ///             )
@@ -73,7 +73,7 @@ extension View {
     ///
     ///         private func animateOutFromExternalDismiss() {
     ///             withBasicAnimation(
-    ///                 .init(curve: .easeInOut, duration: 0.3),
+    ///                 BasicAnimation(curve: .easeInOut, duration: 0.3),
     ///                 body: { isInternallyPresented = false },
     ///                 completion: presentationMode.externalDismissCompletion
     ///             )
@@ -115,7 +115,7 @@ extension View {
             .presentationHost(
                 id: id,
                 allowsHitTests: allowsHitTests,
-                isPresented: .init(
+                isPresented: Binding(
                     get: { item.wrappedValue != nil },
                     set: { if !$0 { item.wrappedValue = nil } }
                 ),
@@ -139,7 +139,7 @@ extension View {
             .presentationHost(
                 id: id,
                 allowsHitTests: allowsHitTests,
-                isPresented: .init(
+                isPresented: Binding(
                     get: { isPresented.wrappedValue && data != nil },
                     set: { if !$0 { isPresented.wrappedValue = false } }
                 ),
@@ -163,7 +163,7 @@ extension View {
             .presentationHost(
                 id: id,
                 allowsHitTests: allowsHitTests,
-                isPresented: .init(
+                isPresented: Binding(
                     get: { isPresented.wrappedValue && error != nil },
                     set: { if !$0 { isPresented.wrappedValue = false } }
                 ),

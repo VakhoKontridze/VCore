@@ -51,7 +51,7 @@ extension NSLayoutConstraint {
     ///     ])
     ///
     public func withPriority(_ value: CGFloat) -> NSLayoutConstraint {
-        self.priority = .init(.init(value))
+        self.priority = UILayoutPriority(Float(value))
         return self
     }
 }

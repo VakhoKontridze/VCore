@@ -16,7 +16,7 @@ extension UIViewController {
     ///     let tabBarController: UITabBarController = .init()
     ///
     ///     tabBarController.viewControllers = [
-    ///         HomeViewController().withTabBarItem(.init(title: "Home", image: nil, tag: 1))
+    ///         HomeViewController().withTabBarItem(UITabBarItem(title: "Home", image: nil, tag: 1))
     ///     ]
     ///     
     public func withTabBarItem(_ tabBarItem: UITabBarItem) -> UIViewController {

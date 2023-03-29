@@ -117,7 +117,7 @@ public struct AlignedGridView: Layout {
 
         let height: CGFloat = rects.last?.maxY ?? 0
 
-        return .init(width: width, height: height)
+        return CGSize(width: width, height: height)
     }
 
     public func placeSubviews(
@@ -135,7 +135,7 @@ public struct AlignedGridView: Layout {
         for (i, rect) in rects.enumerated() {
             subviews[i].place(
                 at: rect.origin,
-                proposal: .init(rect.size)
+                proposal: ProposedViewSize(rect.size)
             )
         }
     }
@@ -156,7 +156,7 @@ public struct AlignedGridView: Layout {
         
         let remainingRowSpacings: [CGFloat] = sameRowRects.map { group in
             let subviewWidths: CGFloat = group.map { $0.width }.reduce(0, +)
-            let spacingWidths: CGFloat = .init(group.count-1) * spacingHor
+            let spacingWidths: CGFloat = CGFloat(group.count-1) * spacingHor
             return boundWidth - subviewWidths - spacingWidths
         }
         
@@ -194,7 +194,7 @@ public struct AlignedGridView: Layout {
                 origin.y += size.height + spacingVer
             }
 
-            rects.append(.init(origin: origin, size: size))
+            rects.append(CGRect(origin: origin, size: size))
             
             origin.x += spacingHor + size.width
         }

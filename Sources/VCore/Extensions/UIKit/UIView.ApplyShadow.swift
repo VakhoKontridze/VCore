@@ -16,7 +16,7 @@ extension UIView {
     ///     view.applyShadow(
     ///         color: .black.withAlphaComponent(0.16),
     ///         radius: 5,
-    ///         offset: .init(width: 0, height: 5)
+    ///         offset: CGSize(width: 0, height: 5)
     ///     )
     ///
     public func applyShadow(
@@ -36,7 +36,7 @@ extension UIView {
     ///         cornerRadius: 10,
     ///         color: .black.withAlphaComponent(0.16),
     ///         radius: 5,
-    ///         offset: .init(width: 0, height: 5)
+    ///         offset: CGSize(width: 0, height: 5)
     ///     )
     ///
     public func roundCornersAndApplyShadow(

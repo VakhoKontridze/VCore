@@ -30,11 +30,11 @@ final class MultipartFormDataBuilderTests: XCTestCase {
         
 #if canImport(UIKit)
         
-        let profileImage: UIImage? = .init(size: .init(dimension: 100), color: .red)
+        let profileImage: UIImage? = .init(size: CGSize(dimension: 100), color: .red)
         
         let galleryImages: [UIImage?]? = [
-            .init(size: .init(dimension: 100), color: .green),
-            .init(size: .init(dimension: 100), color: .blue)
+            .init(size: CGSize(dimension: 100), color: .green),
+            .init(size: CGSize(dimension: 100), color: .blue)
         ]
         
 #endif

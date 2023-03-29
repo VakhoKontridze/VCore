@@ -29,7 +29,7 @@ final class SequenceConditionalGroupingTests: XCTestCase {
     }
     
     func testGroupingKeyPath() {
-        let input: [Student] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].map { .init($0) }
+        let input: [Student] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].map { Student($0) }
         let output: [[Student]] = [[.init("Kofi"), .init("Kweku")], [.init("Abena"), .init("Akosua")], [.init("Efua")]]
 
         let result: [[Student]] = input.grouped(by: \.firstChar)

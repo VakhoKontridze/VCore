@@ -81,7 +81,7 @@ struct SecurableTextField_Previews: PreviewProvider {
             VStack(content: {
                 SecurableTextField(
                     isSecure: isSecure,
-                    placeholder: .init("Lorem ipsum"),
+                    placeholder: Text("Lorem ipsum"),
                     text: $text
                 )
                 

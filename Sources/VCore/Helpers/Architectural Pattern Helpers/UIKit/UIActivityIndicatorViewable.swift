@@ -106,7 +106,7 @@ extension UIView {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .medium
         activityIndicator.center = center
-        if let scalingFactor { activityIndicator.transform = .init(scaleX: scalingFactor, y: scalingFactor) }
+        if let scalingFactor { activityIndicator.transform = CGAffineTransform(scaleX: scalingFactor, y: scalingFactor) }
         if let color { activityIndicator.color = color }
         
         return activityIndicator

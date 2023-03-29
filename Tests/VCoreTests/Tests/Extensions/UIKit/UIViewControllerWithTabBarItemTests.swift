@@ -15,7 +15,7 @@ final class UIViewControllerWithTabBarItemTests: XCTestCase {
     func test() {
         let tabBarItem: UITabBarItem = .init(
             title: "Lorem Ipsum",
-            image: .init(size: .init(dimension: 24), color: .red),
+            image: .init(size: CGSize(dimension: 24), color: .red),
             tag: 0
         )
         

@@ -23,7 +23,7 @@ extension UIAlertButtonProtocol {
 // MARK: - UI Alert Button
 /// `UIAlertController` button.
 ///
-///     presentAlert(parameters: .init(
+///     presentAlert(parameters: UIAlertParameters(
 ///         title: "Lorem Ipsum",
 ///         message: "Lorem ipsum dolor sit amet",
 ///         actions: {

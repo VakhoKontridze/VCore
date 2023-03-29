@@ -90,10 +90,14 @@ open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         rhs: UICollectionViewLayoutAttributes
     ) -> Bool {
         let rowRect: CGRect = .init(
-            x: sectionInset.left,
-            y: lhs.frame.origin.y,
-            width: collectionView.frame.size.width - sectionInset.left - sectionInset.right,
-            height: lhs.frame.size.height
+            origin: CGPoint(
+                x: sectionInset.left,
+                y: lhs.frame.origin.y
+            ),
+            size: CGSize(
+                width: collectionView.frame.size.width - sectionInset.left - sectionInset.right,
+                height: lhs.frame.size.height
+            )
         )
         
         return rowRect.intersects(rhs.frame)

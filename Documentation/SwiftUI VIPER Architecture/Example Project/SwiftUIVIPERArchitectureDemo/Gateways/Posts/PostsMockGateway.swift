@@ -11,7 +11,7 @@ import Foundation
 struct PostsMockGateway: PostsGateway {
     func fetch() async throws -> PostsEntity {
         .init(posts: (0..<20).map { i in
-            .init(
+            Post(
                 id: i,
                 userID: .random(in: 1...10),
                 title: "Lorem Ipsum",

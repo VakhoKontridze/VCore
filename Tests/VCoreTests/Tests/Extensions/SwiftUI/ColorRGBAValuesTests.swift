@@ -42,7 +42,7 @@ final class ColorRGBAValuesTests: XCTestCase {
         let inputB: Int = 30
         let inputA: CGFloat = 0.4
         
-        let color: Color = .init(red: .init(inputR)/255, green: .init(inputG)/255, blue: .init(inputB)/255).opacity(inputA)
+        let color: Color = .init(red: CGFloat(inputR)/255, green: CGFloat(inputG)/255, blue: CGFloat(inputB)/255).opacity(inputA)
         
         let result = color.rgbaComponents
         

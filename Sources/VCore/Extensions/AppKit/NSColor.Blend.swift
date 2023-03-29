@@ -30,7 +30,7 @@ extension NSColor {
         let values1: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = color1.rgbaValues
         let values2: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = color2.rgbaValues
         
-        return .init(
+        return NSColor(
             red: weight1 * values1.red + weight2 * values2.red,
             green: weight1 * values1.green + weight2 * values2.green,
             blue: weight1 * values1.blue + weight2 * values2.blue,
@@ -47,7 +47,7 @@ extension NSColor {
     public func lighten(by value: CGFloat) -> NSColor {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
-        return .init(
+        return NSColor(
             red: (values.red + value).clamped(to: 0...1),
             green: (values.green + value).clamped(to: 0...1),
             blue: (values.blue + value).clamped(to: 0...1),
@@ -64,7 +64,7 @@ extension NSColor {
     public func darken(by value: CGFloat) -> NSColor {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
-        return .init(
+        return NSColor(
             red: (values.red - value).clamped(to: 0...1),
             green: (values.green - value).clamped(to: 0...1),
             blue: (values.blue - value).clamped(to: 0...1),

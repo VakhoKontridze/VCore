@@ -22,8 +22,8 @@ extension UIImage {
         UIGraphicsBeginImageContext(newSize)
         defer { UIGraphicsEndImageContext() }
         
-        lhs.draw(in: .init(origin: .zero, size: newSize))
-        rhs.draw(in: .init(origin: .init(x: lhs.size.width, y: 0), size: newSize))
+        lhs.draw(in: CGRect(origin: .zero, size: newSize))
+        rhs.draw(in: CGRect(origin: CGPoint(x: lhs.size.width, y: 0), size: newSize))
         let mergedImage: UIImage? = UIGraphicsGetImageFromCurrentImageContext()
         
         return mergedImage

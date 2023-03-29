@@ -42,6 +42,6 @@ extension OptionSet where RawValue: FixedWidthInteger {
             })
         })
         
-        return .init(elements)
+        return Array(elements)
     }
 }

@@ -35,7 +35,7 @@ final class NSColorRGBAValuesTests: XCTestCase {
         let inputB: Int = 30
         let inputA: CGFloat = 0.4
         
-        let color: NSColor = .init(red: .init(inputR)/255, green: .init(inputG)/255, blue: .init(inputB)/255, alpha: inputA)
+        let color: NSColor = .init(red: CGFloat(inputR)/255, green: CGFloat(inputG)/255, blue: CGFloat(inputB)/255, alpha: inputA)
         
         let result = color.rgbaComponents
         

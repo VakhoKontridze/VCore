@@ -169,13 +169,13 @@ final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
         let input2Bottom: CGFloat = 8
         
         let result: EdgeInsets_LeadingTrailingTopBottom =
-            .init(
+            EdgeInsets_LeadingTrailingTopBottom(
                 leading: input1Leading,
                 trailing: input1Trailing,
                 top: input1Top,
                 bottom: input1Bottom
             ) +
-            .init(
+            EdgeInsets_LeadingTrailingTopBottom(
                 leading: input2Leading,
                 trailing: input2Trailing,
                 top: input2Top,
@@ -205,7 +205,7 @@ final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
             top: input1Top,
             bottom: input1Bottom
         )
-        result += .init(
+        result += EdgeInsets_LeadingTrailingTopBottom(
             leading: input2Leading,
             trailing: input2Trailing,
             top: input2Top,
@@ -230,13 +230,13 @@ final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
         let input2Bottom: CGFloat = 8
         
         let result: EdgeInsets_LeadingTrailingTopBottom =
-            .init(
+            EdgeInsets_LeadingTrailingTopBottom(
                 leading: input1Leading,
                 trailing: input1Trailing,
                 top: input1Top,
                 bottom: input1Bottom
             ) -
-            .init(
+            EdgeInsets_LeadingTrailingTopBottom(
                 leading: input2Leading,
                 trailing: input2Trailing,
                 top: input2Top,
@@ -266,7 +266,7 @@ final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
             top: input1Top,
             bottom: input1Bottom
         )
-        result -= .init(
+        result -= EdgeInsets_LeadingTrailingTopBottom(
             leading: input2Leading,
             trailing: input2Trailing,
             top: input2Top,

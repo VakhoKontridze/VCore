@@ -15,9 +15,9 @@ extension UIImage {
     ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///
-    ///     let croppedImage: UIImage? = image.cropped(to: .init(
-    ///         origin: .init(x: 10, y: 10),
-    ///         size: .init(width: 500, height: 500)
+    ///     let croppedImage: UIImage? = image.cropped(to: CGRect(
+    ///         origin: CGPoint(x: 10, y: 10),
+    ///         size: CGSize(width: 500, height: 500)
     ///     ))
     ///
     public func cropped(to newRect: CGRect) -> UIImage {
@@ -25,7 +25,7 @@ extension UIImage {
             newRect.size.width <= size.width,
             newRect.size.height <= size.height,
             
-            let croppedImage: CGImage = cgImage?.cropping(to: newRect.applying(.init(
+            let croppedImage: CGImage = cgImage?.cropping(to: newRect.applying(CGAffineTransform(
                 scaleX: scale,
                 y: scale
             )))
@@ -33,7 +33,7 @@ extension UIImage {
             return self
         }
         
-        return .init(
+        return UIImage(
             cgImage: croppedImage,
             scale: scale,
             orientation: imageOrientation
@@ -44,13 +44,13 @@ extension UIImage {
     ///
     ///     let image: UIImage = .init(named: "SomeImage")!
     ///
-    ///     let croppedImage: UIImage? = image.cropped(to: .init(
+    ///     let croppedImage: UIImage? = image.cropped(to: CGSize(
     ///         width: 500,
     ///         height: 500
     ///     ))
     ///
     public func cropped(to newSize: CGSize) -> UIImage {
-        cropped(to: .init(origin: .zero, size: newSize))
+        cropped(to: CGRect(origin: .zero, size: newSize))
     }
 }
 

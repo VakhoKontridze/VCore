@@ -51,7 +51,7 @@ extension Sequence {
     ///         var firstChar: Character { name.first! }
     ///     }
     ///
-    ///     let students: [Student] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].map { .init(name: $0) }
+    ///     let students: [Student] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].map { Student(name: $0) }
     ///     let studentsByLetter: [[Student]] = students.grouped(by: \.firstChar)
     ///
     ///     // [[Student(name: "Kofi"), Student(name: "Kweku")], [Student(name: "Abena"), Student(name: "Akosua")], [Student(name: "Efua")]]

@@ -47,7 +47,7 @@ extension Binding where Value == GenericState_OffOnIndeterminate {
     /// Initializes `GenericState_OOI` with `Bool`.
     public init(isOn: Binding<Bool>) {
         self.init(
-            get: { .init(isOn: isOn.wrappedValue) },
+            get: { GenericState_OffOnIndeterminate(isOn: isOn.wrappedValue) },
             set: { isOn.wrappedValue = $0 == .on }
         )
     }

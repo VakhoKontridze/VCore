@@ -65,6 +65,6 @@ public struct AutoPrecisionNumberFormatter {
         numberFormatter.minimumFractionDigits = minFractions
         numberFormatter.maximumFractionDigits = maxFractions
         
-        return numberFormatter.string(from: .init(value: number))
+        return numberFormatter.string(from: NSNumber(value: number))
     }
 }

@@ -13,7 +13,7 @@ import UIKit
 /// `UITableView` that handles infinite scrolling.
 ///
 /// Contains property `paginationState`, controls pagination state.
-/// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
+/// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `loading` and delegate method is called.
 /// Network call or persistent storage fetch request can be made.
 /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
 ///
@@ -42,7 +42,7 @@ import UIKit
 ///             return tableView
 ///         }()
 ///
-///         private static var dataChunk: [String] { (1...5).map { .init($0) } }
+///         private static var dataChunk: [String] { (1...5).map { String($0) } }
 ///         private var data: [String] = ViewController.dataChunk
 ///
 ///         override func viewDidLoad() {
@@ -72,7 +72,7 @@ import UIKit
 ///         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 ///             self.tableView.detectPaginationFromTableViewCellForRow()
 ///
-///             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return .init() }
+///             guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return UITableViewCell() }
 ///
 ///             cell.textLabel?.text = data[indexPath.row]
 ///
@@ -97,7 +97,7 @@ open class InfiniteScrollingUITableView: UITableView {
     open weak var infiniteScrollingDelegate: (any InfiniteScrollingUITableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?
     
     /// Controls pagination state.
-    /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `.loading` and delegate method is called.
+    /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `loading` and delegate method is called.
     /// Network call or persistent storage fetch request can be made.
     /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
     open var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }

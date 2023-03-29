@@ -52,10 +52,10 @@ import SwiftUI
 ///
 ///             cache.setObject(uiImage, forKey: key)
 ///
-///             return .init(uiImage: uiImage)
+///             return Image(uiImage: uiImage)
 ///
 ///         case let uiImage?:
-///             return .init(uiImage: uiImage)
+///             return Image(uiImage: uiImage)
 ///         }
 ///     }
 ///
@@ -221,7 +221,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
         
         startData(resource)
         
-        task = .init(operation: {
+        task = Task(operation: {
             do {
                 let image: Image = try await fetchHandler(resource)
                 guard !Task.isCancelled else { zeroData(); return }

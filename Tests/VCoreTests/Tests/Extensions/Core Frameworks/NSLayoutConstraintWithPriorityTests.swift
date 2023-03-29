@@ -40,7 +40,7 @@ final class NSLayoutConstraintWithPriorityTests: XCTestCase {
         ])
         
         XCTAssertEqual(
-            (constraint?.priority.rawValue).map { .init($0) },
+            (constraint?.priority.rawValue).map { CGFloat($0) },
             priority
         )
     }

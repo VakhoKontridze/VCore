@@ -19,7 +19,7 @@ final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureReco
             guard newValue != .changed else { return } // Not supported
             
             super.state = newValue
-            stateChangedHandler(.init(state: newValue))
+            stateChangedHandler(BaseButtonGestureState(state: newValue))
         }
     }
     private var stateChangedHandler: (BaseButtonGestureState) -> Void
@@ -38,7 +38,7 @@ final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureReco
         super.init(target: nil, action: nil)
         
         delegate = self
-        stateChangedHandler(.init(state: state)) // Setter isn't called from initializer
+        stateChangedHandler(BaseButtonGestureState(state: state)) // Setter isn't called from initializer
     }
     
     // MARK: Configuration

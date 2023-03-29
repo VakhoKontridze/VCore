@@ -47,7 +47,7 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     func tableViewDidSelectRow(section: Int, row: Int) {
         let postCellViewModel: PostCellViewParameters = tableViewCellParameters[row]
         
-        router.toPostDetails(parameters: .init(
+        router.toPostDetails(parameters: PostDetailsParameters(
             title: postCellViewModel.title,
             body: postCellViewModel.body
         ))
@@ -79,12 +79,12 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
             
             switch result {
             case .success(let postsEntity):
-                self.tableViewCellParameters = postsEntity.posts?.compactMap { $0 }.compactMap { .init(post: $0) } ?? []
+                self.tableViewCellParameters = postsEntity.posts?.compactMap { $0 }.compactMap { PostCellViewParameters(post: $0) } ?? []
                 
                 self.view.reloadPosts()
                 
             case .failure(let error):
-                self.view.presentAlert(parameters: .init(error: error, completion: nil))
+                self.view.presentAlert(parameters: UIAlertParameters(error: error, completion: nil))
             }
         })
     }
