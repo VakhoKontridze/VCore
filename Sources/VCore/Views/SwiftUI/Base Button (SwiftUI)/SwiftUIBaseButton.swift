@@ -92,14 +92,13 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
     // MARK: Body
     public var body: some View {
         Button(
-            action: {
-                withAnimation(uiModel.animations.stateChange, {
-                    action()
-                })
-            },
+            action: action,
             label: EmptyView.init
         )
-            .buttonStyle(SwiftUIBaseButtonStyle(label: label))
+            .buttonStyle(SwiftUIBaseButtonStyle(
+                uiModel: uiModel,
+                label: label
+            ))
     }
 }
 
