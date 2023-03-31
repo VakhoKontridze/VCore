@@ -149,7 +149,7 @@ extension NetworkClient {
                         processedResponse = try self.responseProcessor.response(data, response)
                         
                     } else {
-                        processedResponse = try self.responseProcessor.response(data ?? .init(), response)
+                        processedResponse = try self.responseProcessor.response(data ?? Data(), response)
                     }
                     
                 } catch {
@@ -172,8 +172,8 @@ extension NetworkClient {
                     return
                 }
                 
-                guard Entity.self != Void.self else {
-                    completion(.success(Void() as! Entity)) // Force-unwrap
+                if let entity = Void() as? Entity {
+                    completion(.success(entity))
                     return
                 }
                 

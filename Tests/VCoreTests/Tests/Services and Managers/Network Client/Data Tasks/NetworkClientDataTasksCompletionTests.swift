@@ -33,7 +33,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         }
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
-        defer { waitForExpectations(timeout: 10) }
+        defer { waitForExpectations(timeout: 60) }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -65,7 +65,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         }
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
-        defer { waitForExpectations(timeout: 10) }
+        defer { waitForExpectations(timeout: 60) }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -98,7 +98,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         }
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
-        defer { waitForExpectations(timeout: 10) }
+        defer { waitForExpectations(timeout: 60) }
         
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
@@ -130,7 +130,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         }
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
-        defer { waitForExpectations(timeout: 10) }
+        defer { waitForExpectations(timeout: 60) }
         
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
@@ -161,7 +161,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         }
         
         let expectation: XCTestExpectation = expectation(description: "NetworkClientCompletion")
-        defer { waitForExpectations(timeout: 10) }
+        defer { waitForExpectations(timeout: 60) }
         
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
