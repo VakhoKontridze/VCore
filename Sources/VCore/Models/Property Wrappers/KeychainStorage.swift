@@ -155,8 +155,7 @@ extension KeychainStorage {
             
         } catch let _error {
             let error: KeychainServiceError = .init(.failedToGet)
-            VCoreLogError(error, _error)
-            
+            VCoreLogError(error, _error)            
             return defaultValue
         }
     }
