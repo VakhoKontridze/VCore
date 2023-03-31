@@ -14,14 +14,14 @@ import SwiftUI
 struct SwiftUIGestureBaseButtonNSViewRepresentable: NSViewRepresentable {
     // MARK: Properties
     private let isEnabled: Bool
-    private let stateChangeHandler: (BaseButtonGestureState) -> Void
+    private let stateChangeHandler: (GestureBaseButtonGestureState) -> Void
     
     @State private var gestureRecognizer: AppKitBaseButtonGestureRecognizer?
     
     // MARK: Initializers
     init(
         isEnabled: Bool,
-        onStateChange stateChangeHandler: @escaping (BaseButtonGestureState) -> Void
+        onStateChange stateChangeHandler: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
         self.isEnabled = isEnabled
         self.stateChangeHandler = stateChangeHandler

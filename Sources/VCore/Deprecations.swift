@@ -162,9 +162,14 @@ extension ConfirmationDialogButton {
 }
 
 // MARK: - Base Button
+@available(*, deprecated, message: "GestureBaseButtonGestureState")
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
+public typealias BaseButtonGestureState = GestureBaseButtonGestureState
+
 #if os(iOS)
 
-extension BaseButtonGestureState {
+extension GestureBaseButtonGestureState {
     @available(*, deprecated, renamed: "cancelled")
     public static var `none`: Self { .cancelled }
     
@@ -177,14 +182,14 @@ extension BaseButtonGestureState {
 
 extension UIKitBaseButton {
     @available(*, deprecated, renamed: "stateChangeHandler")
-    public var gestureHandler: (BaseButtonGestureState) -> Void {
+    public var gestureHandler: (GestureBaseButtonGestureState) -> Void {
         get { stateChangeHandler }
         set { stateChangeHandler = newValue }
     }
     
     @available(*, deprecated, message: "Use `init` with `onStateChange` parameter")
     public convenience init(
-        gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void
+        gesture gestureHandler: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
         self.init(onStateChange: gestureHandler)
     }
@@ -193,7 +198,7 @@ extension UIKitBaseButton {
 extension SwiftUIGestureBaseButton {
     @available(*, deprecated, message: "Use `init` with `onStateChange` parameter")
     public init(
-        gesture gestureHandler: @escaping (BaseButtonGestureState) -> Void,
+        gesture gestureHandler: @escaping (GestureBaseButtonGestureState) -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) {
         self.init(onStateChange: gestureHandler, label: label)
@@ -207,7 +212,7 @@ extension SwiftUIGestureBaseButton {
 extension SwiftUIBaseButton {
     @available(*, unavailable, message: "This `init` is now defined under `SwiftUIGestureBaseButton`")
     public init(
-        onStateChange stateChangeHandler: @escaping (BaseButtonGestureState) -> Void,
+        onStateChange stateChangeHandler: @escaping (GestureBaseButtonGestureState) -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) {
         fatalError()

@@ -67,7 +67,7 @@ import SwiftUI
 ///                 .disabled(!internalState.isEnabled)
 ///         }
 ///
-///         private func stateChangeHandler(gestureState: BaseButtonGestureState) {
+///         private func stateChangeHandler(gestureState: GestureBaseButtonGestureState) {
 ///             isPressed = gestureState.isPressed
 ///             if gestureState.isClicked { action() }
 ///         }
@@ -86,14 +86,14 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
     // MARK: Properties
     @Environment(\.isEnabled) private var isEnabled: Bool
     
-    private var stateChangeHandler: (BaseButtonGestureState) -> Void
+    private var stateChangeHandler: (GestureBaseButtonGestureState) -> Void
     
     private let label: () -> Label
     
     // MARK: Initializers
     /// Initializes `SwiftUIGestureBaseButton` with state change handler and label.
     public init(
-        onStateChange stateChangeHandler: @escaping (BaseButtonGestureState) -> Void,
+        onStateChange stateChangeHandler: @escaping (GestureBaseButtonGestureState) -> Void,
         @ViewBuilder label: @escaping () -> Label
     ) {
         self.stateChangeHandler = stateChangeHandler

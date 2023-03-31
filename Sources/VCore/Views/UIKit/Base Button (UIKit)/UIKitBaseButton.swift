@@ -162,12 +162,12 @@ open class UIKitBaseButton: UIView {
     private(set) open var internalButtonState: UIKitBaseButtonInternalState = .default
     
     /// State change handler.
-    open var stateChangeHandler: (BaseButtonGestureState) -> Void
+    open var stateChangeHandler: (GestureBaseButtonGestureState) -> Void
     
     // MARK: Initializers
     /// Initializes `UIKitBaseButton` with state change handler.
     public init(
-        onStateChange stateChangeHandler: @escaping (BaseButtonGestureState) -> Void
+        onStateChange stateChangeHandler: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
         self.stateChangeHandler = stateChangeHandler
         super.init(frame: .zero)

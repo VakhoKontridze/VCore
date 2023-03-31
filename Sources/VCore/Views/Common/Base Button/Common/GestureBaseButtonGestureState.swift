@@ -1,5 +1,5 @@
 //
-//  BaseButtonGestureState.swift
+//  GestureBaseButtonGestureState.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 12/26/21.
@@ -11,11 +11,11 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - Base Button Gesture State
+// MARK: - Gesture Base Button Gesture State
 /// Enum that describes state, such as `possible`, `began`, `ended`, or `cancelled`.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-public enum BaseButtonGestureState: Int, CaseIterable {
+public enum GestureBaseButtonGestureState: Int, CaseIterable {
     /// Indicates that interaction is possible. This is a default state.
     case possible
     

@@ -19,31 +19,31 @@ final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureReco
             guard newValue != .changed else { return } // Not supported
             
             super.state = newValue
-            stateChangedHandler(BaseButtonGestureState(state: newValue))
+            stateChangedHandler(GestureBaseButtonGestureState(state: newValue))
         }
     }
-    private var stateChangedHandler: (BaseButtonGestureState) -> Void
+    private var stateChangedHandler: (GestureBaseButtonGestureState) -> Void
     
-    private lazy var model: BaseButtonModel = .init(stateSetter: { [weak self] state in
+    private lazy var model: GestureBaseButtonModel = .init(stateSetter: { [weak self] state in
         guard let self else { return }
         self.state = state
     })
     
     // MARK: Initializers
     init(
-        onStateChange stateChangedHandler: @escaping (BaseButtonGestureState) -> Void
+        onStateChange stateChangedHandler: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
         self.stateChangedHandler = stateChangedHandler
         
         super.init(target: nil, action: nil)
         
         delegate = self
-        stateChangedHandler(BaseButtonGestureState(state: state)) // Setter isn't called from initializer
+        stateChangedHandler(GestureBaseButtonGestureState(state: state)) // Setter isn't called from initializer
     }
     
     // MARK: Configuration
     func setStateChangeHandler(
-        to stateChangedHandler: @escaping (BaseButtonGestureState) -> Void
+        to stateChangedHandler: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
         self.stateChangedHandler = stateChangedHandler
     }

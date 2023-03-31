@@ -1,5 +1,5 @@
 //
-//  BaseButtonModel.swift
+//  GestureBaseButtonModel.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 23.03.23.
@@ -13,8 +13,8 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - Base Button Model
-final class BaseButtonModel {
+// MARK: - Gesture Base Button Model
+final class GestureBaseButtonModel {
     // MARK: Properties
     private let outOfBoundsMaxOffsetToRegisterGesture: CGFloat = 10
     
