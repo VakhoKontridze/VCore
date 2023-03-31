@@ -147,14 +147,7 @@ extension KeychainStorage {
     ) -> T
         where T: Codable
     {
-        let encodeDefaultValue: () -> Void = {
-            (try? JSONEncoder().encode(defaultValue)).map { keychainService[key] = $0 }
-        }
-        
-        guard let data: Data = keychainService[key] else {
-            encodeDefaultValue()
-            return defaultValue
-        }
+        guard let data: Data = keychainService[key] else { return defaultValue }
         
         do {
             let value: T = try JSONDecoder().decode(T.self, from: data)
@@ -164,7 +157,6 @@ extension KeychainStorage {
             let error: KeychainServiceError = .init(.failedToSet)
             VCoreLogError(error, _error)
             
-            encodeDefaultValue()
             return defaultValue
         }
     }

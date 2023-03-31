@@ -63,7 +63,7 @@ public final class KeychainService {
             try delete(key: key) // Logged internally
 
         case let data?:
-            try? delete(key: key)
+            try? delete(key: key, logsError: false)
             
             let query: [String: Any] = configuration.setQuery.build(key: key, data: data)
 
@@ -80,13 +80,20 @@ public final class KeychainService {
     // MARK: Delete
     /// Deletes `Data` with key.
     public func delete(key: String) throws {
+        try delete(key: key, logsError: true)
+    }
+    
+    private func delete(
+        key: String,
+        logsError: Bool
+    ) throws {
         let query: [String: Any] = configuration.deleteQuery.build(key: key)
 
         let status: OSStatus = SecItemDelete(query as CFDictionary)
         
         guard status == noErr else {
             let error: KeychainServiceError = .init(.failedToDelete)
-            VCoreLogError(error, "Security framework error with status code \(status)")
+            if logsError { VCoreLogError(error, "Security framework error with status code \(status)") }
             throw error
         }
     }
