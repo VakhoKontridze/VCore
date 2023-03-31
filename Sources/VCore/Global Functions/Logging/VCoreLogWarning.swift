@@ -7,17 +7,18 @@
 
 import Foundation
 
+// MARK: - V Core Log Warning
 /// Logs a warning message to the Apple System Log facility.
 ///
-///     VCoreLogError(error)
+///     VCoreLogWarning(error)
 ///
 public func VCoreLogWarning(
-    _ description: String,
+    _ message: String,
     file: String = #file,
     line: Int = #line,
     function: String = #function
 ) {
     let file: String = file.components(separatedBy: "/").last ?? file
     
-    NSLog("[VCore] Warning in \(function) in \(file)(\(line)): \(description)")
+    NSLog("[VCore] Warning in \(function) in \(file)(\(line)): \(message)")
 }
