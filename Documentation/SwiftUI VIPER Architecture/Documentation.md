@@ -48,7 +48,7 @@ To avoid writing boilerplate for every scene, project includes XCode templates.
 
 ```swift
 // MARK: - Home Factory
-@MainActor struct HomeFactory {
+struct HomeFactory {
     // MARK: Initializers
     private init() {}
     
@@ -115,7 +115,7 @@ struct PostDetailsFactory {
 @MainActor final class PostDetailsPresenter: PostsPresentable {
     private let parameters: PostDetailsParameters
     
-    init(
+    nonisolated init(
         ...,
         parameters: PostDetailsParameters
     ) {

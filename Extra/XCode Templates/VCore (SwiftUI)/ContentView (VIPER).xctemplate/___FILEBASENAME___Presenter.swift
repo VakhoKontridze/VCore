@@ -12,7 +12,7 @@ import VCore
     private let parameters: ___VARIABLE_productName___Parameters
     
     // MARK: Initializers
-    init(
+    nonisolated init(
         interactor: Interactor,
         parameters: ___VARIABLE_productName___Parameters
     ) {

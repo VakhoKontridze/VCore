@@ -4,7 +4,7 @@ import SwiftUI
 import VCore
 
 // MARK: - ___VARIABLE_productName___ Factory
-@MainActor struct ___VARIABLE_productName___Factory {
+struct ___VARIABLE_productName___Factory {
     // MARK: Initializers
     private init() {}
     

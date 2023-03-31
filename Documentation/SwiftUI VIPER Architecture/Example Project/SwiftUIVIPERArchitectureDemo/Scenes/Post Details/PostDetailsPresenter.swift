@@ -11,14 +11,14 @@ import VCore
 // MARK: - Post Details Presenter
 @MainActor final class PostDetailsPresenter: PostDetailsPresentable {
     // MARK: Properties
-    private let parameters: PostDetailsParameters
+    nonisolated private let parameters: PostDetailsParameters
     
     // MARK: Initializers
-    init(parameters: PostDetailsParameters) {
+    nonisolated init(parameters: PostDetailsParameters) {
         self.parameters = parameters
         
-        self.title = parameters.title
-        self.body = parameters.body
+        self._title = .init(initialValue: parameters.title)
+        self._body = .init(initialValue: parameters.body)
     }
 
     // MARK: Presentable

@@ -9,7 +9,7 @@ import SwiftUI
 import VCore
 
 // MARK: - Posts Factory
-@MainActor struct PostsFactory {
+struct PostsFactory {
     // MARK: Initializers
     private init() {}
     

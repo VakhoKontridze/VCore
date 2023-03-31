@@ -82,7 +82,7 @@ This allows a presenter to perform a fetch request:
 {
     private let interactor: Interactor
     
-    init(
+    nonisolated init(
         interactor: Interactor
     ) {
         self.interactor = interactor
