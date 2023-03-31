@@ -82,7 +82,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
-        fetch fetchHandler: @escaping (Resource) async throws -> Image
+        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image
     )
         where
             Content == Never,
@@ -98,7 +98,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
-        fetch fetchHandler: @escaping (Resource) async throws -> Image,
+        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content
     )
         where
@@ -116,7 +116,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
-        fetch fetchHandler: @escaping (Resource) async throws -> Image,
+        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content,
         @ViewBuilder placeholder placeholderContent: @escaping () -> PlaceholderContent
     ) {
@@ -134,7 +134,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         from resource: Resource?,
-        fetch fetchHandler: @escaping (Resource) async throws -> Image,
+        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
     )
         where PlaceholderContent == Never
