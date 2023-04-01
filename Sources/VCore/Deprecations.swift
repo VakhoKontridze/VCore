@@ -162,7 +162,7 @@ extension ConfirmationDialogButton {
 }
 
 // MARK: - Base Button
-@available(*, deprecated, message: "GestureBaseButtonGestureState")
+@available(*, deprecated, renamed: "GestureBaseButtonGestureState")
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public typealias BaseButtonGestureState = GestureBaseButtonGestureState
