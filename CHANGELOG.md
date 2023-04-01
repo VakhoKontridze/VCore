@@ -17,6 +17,7 @@ Views
 
 Models
 
+- `GenericStateAndModel_DeselectedSelectedPressedDisabled` and it's sub-groups are added
 - `KeychainStorage` now behaves similar to native `AppStore`, in that it doesn't persist a value unless read to. Thus, reducing data corruption from key reuse in two different instances.
 - `RectCorner` is added as a multi-platform alternative to `UIRectCorner`
 - `KeychainStorage` property wrapper no longer requires enclosing `class` to conform to `ObservableObject`
