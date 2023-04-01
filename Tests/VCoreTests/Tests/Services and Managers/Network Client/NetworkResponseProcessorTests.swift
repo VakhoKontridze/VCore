@@ -29,7 +29,7 @@ final class NetworkResponseProcessorTests: XCTestCase {
             "success": false,
             "code": code,
             "message": message
-        ])
+        ] as [String: Any])
         
         XCTAssertThrowsError(
             try TestNetworkResponseProcessor().response(data, urlResponse),
