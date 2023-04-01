@@ -112,9 +112,9 @@ import UIKit
 ///             baseButton.stateChangeHandler = { [weak self] gestureState in
 ///                 guard let self else { return }
 ///
-///                 self.internalState = SomeButtonInternalState(isEnabled: self.state.isEnabled, isPressed: gestureState.isPressed)
+///                 internalState = SomeButtonInternalState(isEnabled: state.isEnabled, isPressed: gestureState.isPressed)
 ///
-///                 self.configureFromStateUIModelChange()
+///                 configureFromStateUIModelChange()
 ///                 if gestureState.isClicked { action() }
 ///             }
 ///         }
@@ -140,8 +140,8 @@ open class UIKitBaseButton: UIView {
     private lazy var gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: { [weak self] gestureState in
         guard let self else { return }
         
-        self.internalButtonState = .init(isEnabled: self.buttonState.isEnabled, isPressed: gestureState.isPressed)
-        self.stateChangeHandler(gestureState)
+        internalButtonState = .init(isEnabled: buttonState.isEnabled, isPressed: gestureState.isPressed)
+        stateChangeHandler(gestureState)
     })
     
     /// Indicates if interaction is enabled.

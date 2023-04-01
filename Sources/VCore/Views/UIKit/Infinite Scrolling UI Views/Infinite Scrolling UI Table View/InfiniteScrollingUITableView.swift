@@ -81,12 +81,12 @@ import UIKit
 ///
 ///         func tableViewDidScrollToBottom(sender infiniteScrollingUITableView: InfiniteScrollingUITableView) {
 ///             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [weak self] in
-///                 guard let self = self else { return }
+///                 guard let self else { return }
 ///
-///                 self.data.append(contentsOf: Self.dataChunk)
+///                 data.append(contentsOf: Self.dataChunk)
 ///
-///                 self.tableView.paginationState = .canPaginate
-///                 self.tableView.reloadData()
+///                 tableView.paginationState = .canPaginate
+///                 tableView.reloadData()
 ///             })
 ///         }
 ///     }

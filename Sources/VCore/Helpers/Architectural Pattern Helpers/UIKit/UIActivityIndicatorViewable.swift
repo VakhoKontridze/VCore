@@ -31,7 +31,7 @@ import UIKit
 ///         URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
 ///             guard let self else { return }
 ///
-///             self.stopActivityIndicatorAnimationAndEnableInteraction()
+///             stopActivityIndicatorAnimationAndEnableInteraction()
 ///
 ///             ...
 ///         })

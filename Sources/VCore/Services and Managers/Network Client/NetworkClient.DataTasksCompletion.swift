@@ -23,10 +23,10 @@ extension NetworkClient {
                 
                 switch result {
                 case .success:
-                    self.completionQueue.async(execute: { completion(.success) })
+                    completionQueue.async(execute: { completion(.success) })
                     
                 case .failure(let error): // Logged internally
-                    self.completionQueue.async(execute: { completion(.failure(error)) })
+                    completionQueue.async(execute: { completion(.failure(error)) })
                 }
             }
         )

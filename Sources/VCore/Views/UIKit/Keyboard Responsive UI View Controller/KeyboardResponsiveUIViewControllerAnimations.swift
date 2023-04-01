@@ -37,8 +37,8 @@ extension UIView {
     ///                 animations: { [weak self] in
     ///                     guard let self else { return }
     ///
-    ///                     self.view.superview?.layoutIfNeeded()
-    ///                     self.view.bounds.origin.y = -systemKeyboardInfo.frame.size.height
+    ///                     view.superview?.layoutIfNeeded()
+    ///                     view.bounds.origin.y = -systemKeyboardInfo.frame.size.height
     ///                 }
     ///             )
     ///         }
@@ -51,8 +51,8 @@ extension UIView {
     ///                 animations: { [weak self] in
     ///                     guard let self else { return }
     ///
-    ///                     self.view.superview?.layoutIfNeeded()
-    ///                     self.view.bounds.origin.y = 0
+    ///                     view.superview?.layoutIfNeeded()
+    ///                     view.bounds.origin.y = 0
     ///                 }
     ///             )
     ///         }

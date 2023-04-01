@@ -75,16 +75,16 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
         interactor.fetchPosts(completion: { [weak self] result in
             guard let self else { return }
             
-            self.view.stopActivityIndicatorAnimation()
+            view.stopActivityIndicatorAnimation()
             
             switch result {
             case .success(let postsEntity):
-                self.tableViewCellParameters = postsEntity.posts?.compactMap { $0 }.compactMap { PostCellViewParameters(post: $0) } ?? []
+                tableViewCellParameters = postsEntity.posts?.compactMap { $0 }.compactMap { PostCellViewParameters(post: $0) } ?? []
                 
-                self.view.reloadPosts()
+                view.reloadPosts()
                 
             case .failure(let error):
-                self.view.presentAlert(parameters: UIAlertParameters(error: error, completion: nil))
+                view.presentAlert(parameters: UIAlertParameters(error: error, completion: nil))
             }
         })
     }

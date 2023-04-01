@@ -113,10 +113,10 @@ import UIKit
 ///             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [weak self] in
 ///                 guard let self else { return }
 ///
-///                 self.data.append(contentsOf: Self.dataChunk)
+///                 data.append(contentsOf: Self.dataChunk)
 ///
-///                 self.collectionView.paginationState = .canPaginate
-///                 self.collectionView.reloadData()
+///                 collectionView.paginationState = .canPaginate
+///                 collectionView.reloadData()
 ///             })
 ///         }
 ///     }
