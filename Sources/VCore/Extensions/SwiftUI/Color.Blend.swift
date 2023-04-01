@@ -29,9 +29,9 @@ extension Color {
         ))
 #elseif canImport(AppKit)
         return Color(nsColor: NSColor.blend(
-            UIColor(color1).calibrated,
+            NSColor(color1).calibrated,
             ratio1: ratio1,
-            with: UIColor(color2).calibrated,
+            with: NSColor(color2).calibrated,
             ratio2: ratio2
         ))
 #endif
