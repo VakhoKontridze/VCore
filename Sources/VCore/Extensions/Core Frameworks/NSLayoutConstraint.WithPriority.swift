@@ -51,7 +51,12 @@ extension NSLayoutConstraint {
     ///     ])
     ///
     public func withPriority(_ value: CGFloat) -> NSLayoutConstraint {
+#if canImport(UIKit)
+        self.priority = UILayoutPriority(Float(value))
+#elseif canImport(AppKit)
         self.priority = Priority(Float(value))
+#endif
+        
         return self
     }
 }
