@@ -27,4 +27,13 @@ public enum LayoutDirectionHorizontal: CaseIterable {
         case .rightToLeft: return true
         }
     }
+    
+    // MARK: SwiftUI
+    /// Alignment.
+    public var alignment: Alignment {
+        switch self {
+        case .leftToRight: return .leading
+        case .rightToLeft: return .trailing
+        }
+    }
 }

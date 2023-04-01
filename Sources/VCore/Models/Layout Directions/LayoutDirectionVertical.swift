@@ -27,4 +27,13 @@ public enum LayoutDirectionVertical: CaseIterable {
         case .bottomToTop: return true
         }
     }
+    
+    // MARK: SwiftUI
+    /// Alignment.
+    public var alignment: Alignment {
+        switch self {
+        case .topToBottom: return .top
+        case .bottomToTop: return .bottom
+        }
+    }
 }

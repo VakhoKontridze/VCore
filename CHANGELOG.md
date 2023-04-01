@@ -23,6 +23,8 @@ Models
 - `KeychainStorage` property wrapper no longer requires enclosing `class` to conform to `ObservableObject`
 - `projectedValue` is added to `Clamped` property wrapper
 - `projectedValue` is added to `OldValueCache` property wrapper
+- `alignment` is added to layout directions
+- `axis` is added to `LayoutDirectionOmni`
 
 Extensions
 

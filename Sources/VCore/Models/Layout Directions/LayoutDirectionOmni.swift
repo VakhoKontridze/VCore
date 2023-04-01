@@ -26,16 +26,6 @@ public enum LayoutDirectionOmni: CaseIterable {
     case bottomToTop
     
     // MARK: Properties
-    /// Axis.
-    public var axis: Axis {
-        switch self {
-        case .leftToRight: return .horizontal
-        case .rightToLeft: return .horizontal
-        case .topToBottom: return .vertical
-        case .bottomToTop: return .vertical
-        }
-    }
-    
     /// Indicates if layout direction is horizontal.
     public var isHorizontal: Bool {
         switch self {
@@ -61,7 +51,27 @@ public enum LayoutDirectionOmni: CaseIterable {
         }
     }
     
-    // MARK: SwiftUI Content
+    // MARK: SwiftUI
+    /// Axis.
+    public var axis: Axis {
+        switch self {
+        case .leftToRight: return .horizontal
+        case .rightToLeft: return .horizontal
+        case .topToBottom: return .vertical
+        case .bottomToTop: return .vertical
+        }
+    }
+    
+    /// Alignment.
+    public var alignment: Alignment {
+        switch self {
+        case .leftToRight: return .leading
+        case .rightToLeft: return .trailing
+        case .topToBottom: return .top
+        case .bottomToTop: return .bottom
+        }
+    }
+    
     /// Creates `View` with `HStack` or `VStack`.
     ///
     /// For `leftToRight` or `rightToLeft`, `HStack` will be used.
