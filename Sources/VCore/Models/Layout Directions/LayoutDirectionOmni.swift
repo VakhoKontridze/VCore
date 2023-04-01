@@ -26,6 +26,16 @@ public enum LayoutDirectionOmni: CaseIterable {
     case bottomToTop
     
     // MARK: Properties
+    /// Axis.
+    public var axis: Axis {
+        switch self {
+        case .leftToRight: return .horizontal
+        case .rightToLeft: return .horizontal
+        case .topToBottom: return .vertical
+        case .bottomToTop: return .vertical
+        }
+    }
+    
     /// Indicates if layout direction is horizontal.
     public var isHorizontal: Bool {
         switch self {
