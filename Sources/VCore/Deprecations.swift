@@ -217,14 +217,6 @@ extension SwiftUIBaseButton {
     ) {
         fatalError()
     }
-
-    @available(*, unavailable, message: "This `init` is now defined under `SwiftUIGestureBaseButton`")
-    public init(
-        action: @escaping () -> Void,
-        @ViewBuilder label: @escaping () -> Label
-    ) {
-        fatalError()
-    }
 }
 
 #endif
