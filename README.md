@@ -334,12 +334,57 @@ Versions with different majors are not directly compatible. When a new major is 
 
 #### History
 
-| Ver | Release Date | SDK                                                    | Comment                                 |
-| :-- | :--          | :--                                                    | :--                                     |
-| 4.0 | 2022 09 14   | iOS 13.0<br/>macOS 10.15<br/>tvOS 13.0<br/>watchOS 6.0 | API changes.                            | 
-| 3.0 | 2022 05 17   | iOS 13.0<br/>macOS 10.15<br/>tvOS 13.0<br/>watchOS 6.0 | Multiplatform support.<br/>SPM support. |
-| 2.0 | 2021 12 28   | iOS 13.0                                               | iOS 13.0 support                        |
-| 1.0 | 2021 10 07   | iOS 14.0   
+<table>
+
+  <tr>
+    <th align="left">Ver</th>
+    <th align="left">Release Date</th> 
+    <th align="left">SDK</th>
+    <th align="left">Comment</th>
+  </tr>
+  
+  <tr>
+    <td>4.0</td>
+    <td>2022 09 14</td>
+    <td>
+        iOS 13.0<br/>
+        macOS 10.15<br/>
+        tvOS 13.0<br/>
+        watchOS 6.0
+    </td>
+    <td>API changes.</td>
+  </tr>
+  
+  <tr>
+    <td>3.0</td>
+    <td>2022 05 17</td>
+    <td>
+        iOS 13.0<br/>
+        macOS 10.15<br/>
+        tvOS 13.0<br/>
+        watchOS 6.0
+    </td>
+    <td>
+        Multiplatform support.<br/>
+        SPM support.
+    </td>
+  </tr>
+  
+  <tr>
+    <td>2.0</td>
+    <td>2021 12 28</td>
+    <td>iOS 13.0</td>
+    <td>iOS 13.0 support</td>
+  </tr>
+  
+  <tr>
+    <td>1.0</td>
+    <td>2021 10 07</td>
+    <td>iOS 14.0</td>
+    <td>-</td>
+  </tr>
+
+</table>
 
 ## Contact
 
