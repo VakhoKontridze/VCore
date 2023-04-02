@@ -23,6 +23,7 @@ Models
 - `KeychainStorage` property wrapper no longer requires enclosing `class` to conform to `ObservableObject`
 - `projectedValue` is added to `Clamped` property wrapper
 - `projectedValue` is added to `OldValueCache` property wrapper
+- `reversed()` method is added to layout directions that returns reversed dimension
 - `alignment` and `edge` are added to layout directions
 - `axis` is added to `LayoutDirectionOmni`
 

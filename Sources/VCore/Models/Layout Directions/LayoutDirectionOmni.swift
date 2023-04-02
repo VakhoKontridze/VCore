@@ -26,6 +26,16 @@ public enum LayoutDirectionOmni: CaseIterable {
     case bottomToTop
     
     // MARK: Properties
+    /// Returns reversed dimension.
+    public func reversed() -> Self {
+        switch self {
+        case .leftToRight: return .rightToLeft
+        case .rightToLeft: return .leftToRight
+        case .topToBottom: return .bottomToTop
+        case .bottomToTop: return .topToBottom
+        }
+    }
+    
     /// Indicates if layout direction is horizontal.
     public var isHorizontal: Bool {
         switch self {
