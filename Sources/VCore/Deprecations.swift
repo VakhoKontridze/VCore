@@ -319,6 +319,14 @@ extension Array where Element == Optional<String> {
     }
 }
 
+// MARK: - Extensions Core Frameworks
+extension CGSize {
+    @available(*, deprecated, renamed: "withReversedDimensions(_:)")
+    public func withReversedDimensions(if condition: Bool) -> Self {
+        withReversedDimensions(condition)
+    }
+}
+
 // MARK: - Extensions UIKit
 #if canImport(UIKit)
 

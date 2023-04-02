@@ -28,7 +28,7 @@ final class CGSizeWithReversedDimensionsTests: XCTestCase {
     
     func testConditionalFalse() {
         let result: CGSize = .init(width: inputW, height: inputH)
-            .withReversedDimensions(if: false)
+            .withReversedDimensions(false)
         
         XCTAssertNotEqual(result.width, outputW)
         XCTAssertNotEqual(result.height, outputH)
@@ -36,7 +36,7 @@ final class CGSizeWithReversedDimensionsTests: XCTestCase {
     
     func testConditionalTrue() {
         let result: CGSize = .init(width: inputW, height: inputH)
-            .withReversedDimensions(if: true)
+            .withReversedDimensions(true)
         
         XCTAssertEqual(result.width, outputW)
         XCTAssertEqual(result.height, outputH)

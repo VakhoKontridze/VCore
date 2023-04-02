@@ -9,24 +9,14 @@ import CoreGraphics
 
 // MARK: - Size with Reversed Dimensions
 extension CGSize {
-    /// Returns `CGSize` with reversed `width` and `height`.
+    /// Returns `CGSize` with reversed `width` and `height` if condition is met..
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
     ///         .withReversedDimensions() // (width: 4, height: 3)
     ///
-    public func withReversedDimensions() -> Self {
-        withReversedDimensions(if: true)
-    }
-}
-
-// MARK: - Size with Reversed Dimensions on Condition
-extension CGSize {
-    /// Returns `CGSize` with reversed `width` and `height` if condition is met.
-    ///
-    ///     let size: CGSize = .init(width: 3, height: 4)
-    ///         .withReversedDimensions(if: reversesDimensions)
-    ///
-    public func withReversedDimensions(if condition: Bool) -> Self {
+    public func withReversedDimensions(
+        _ condition: Bool = true
+    ) -> Self {
         if condition {
             return CGSize(width: height, height: width)
         } else {
