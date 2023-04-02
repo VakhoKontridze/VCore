@@ -38,6 +38,7 @@ Extensions
 Other
 
 - Demo app is removed as it served no purpose
+- `UILabel.lineBreakStrategy` is now placed under `tvOS` `14` API availability check
 
 ### [4.6.1(73)](https://github.com/VakhoKontridze/VCore/releases/tag/4.6.1) — *2023 03 09*
 

@@ -44,7 +44,7 @@ extension UILabel {
             
             label.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation
             
-            if #available(iOS 14.0, *) {
+            if #available(iOS 14.0, tvOS 14.0, *) {
                 label.lineBreakStrategy = lineBreakStrategy
             }
             
@@ -114,7 +114,7 @@ extension UILabel {
             
             label.allowsDefaultTighteningForTruncation = allowsDefaultTighteningForTruncation
             
-            if #available(iOS 14.0, *) {
+            if #available(iOS 14.0, tvOS 14.0, *) {
                 label.lineBreakStrategy = lineBreakStrategy
             }
             
