@@ -72,6 +72,16 @@ public enum LayoutDirectionOmni: CaseIterable {
         }
     }
     
+    /// Edge.
+    public var edge: Edge {
+        switch self {
+        case .leftToRight: return .leading
+        case .rightToLeft: return .trailing
+        case .topToBottom: return .top
+        case .bottomToTop: return .bottom
+        }
+    }
+    
     /// Creates `View` with `HStack` or `VStack`.
     ///
     /// For `leftToRight` or `rightToLeft`, `HStack` will be used.

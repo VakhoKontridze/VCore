@@ -36,4 +36,12 @@ public enum LayoutDirectionHorizontal: CaseIterable {
         case .rightToLeft: return .trailing
         }
     }
+    
+    /// Edge.
+    public var edge: Edge {
+        switch self {
+        case .leftToRight: return .leading
+        case .rightToLeft: return .trailing
+        }
+    }
 }
