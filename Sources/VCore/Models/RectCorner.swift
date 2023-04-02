@@ -56,4 +56,32 @@ public struct RectCorner: OptionSet {
     public init(rawValue: Int) {
         self.rawValue = rawValue
     }
+    
+    // MARK: Reversing Left and Right Corners
+    /// Returns `RectCorner` with reversed left and right corners if condition is met.
+    ///
+    /// Cane be used when supporting RTL languages.
+    public func withReversedLeftAndRightCorners(
+        _ condition: Bool = true
+    ) -> Self {
+        guard condition else { return self }
+        
+        var result: Self = .init()
+        
+        switch (contains(.topLeft), contains(.topRight)) {
+        case (false, false): break
+        case (false, true): result.insert(.topLeft)
+        case (true, false): result.insert(.topRight)
+        case (true, true): result.insert(.topCorners)
+        }
+        
+        switch (contains(.bottomRight), contains(.bottomLeft)) {
+        case (false, false): break
+        case (false, true): result.insert(.bottomRight)
+        case (true, false): result.insert(.bottomLeft)
+        case (true, true): result.insert(.bottomCorners)
+        }
+        
+        return result
+    }
 }
