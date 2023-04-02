@@ -44,4 +44,12 @@ public enum LayoutDirectionVertical: CaseIterable {
         case .bottomToTop: return .bottom
         }
     }
+    
+    /// Edge.Set.
+    public var edgeSet: Edge {
+        switch self {
+        case .topToBottom: return .top
+        case .bottomToTop: return .bottom
+        }
+    }
 }
