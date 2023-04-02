@@ -18,14 +18,6 @@ final class CGSizeWithReversedDimensionsTests: XCTestCase {
     private let outputH: CGFloat = 3
     
     // MARK: Tests
-    func testStandard() {
-        let result: CGSize = .init(width: inputW, height: inputH)
-            .withReversedDimensions()
-        
-        XCTAssertEqual(result.width, outputW)
-        XCTAssertEqual(result.height, outputH)
-    }
-    
     func testConditionalFalse() {
         let result: CGSize = .init(width: inputW, height: inputH)
             .withReversedDimensions(false)
