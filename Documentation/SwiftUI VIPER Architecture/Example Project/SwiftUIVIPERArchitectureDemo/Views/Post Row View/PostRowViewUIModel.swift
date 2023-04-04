@@ -40,8 +40,8 @@ struct PostRowViewUIModel {
     // MARK: Fonts
     struct Fonts {
         // MARK: Properties
-        static var titleText: Font { .system(size: 16, weight: .semibold) }
-        static var bodyText: Font { .system(size: 14) }
+        static var titleText: Font { .callout.weight(.semibold) }
+        static var bodyText: Font { .subheadline }
         
         // MARK: Initializers
         private init() {}

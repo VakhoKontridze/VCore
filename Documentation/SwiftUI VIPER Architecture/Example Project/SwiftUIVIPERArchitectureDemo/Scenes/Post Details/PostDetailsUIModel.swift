@@ -36,7 +36,7 @@ struct PostDetailsUIModel {
     // MARK: Fonts
     struct Fonts {
         // MARK: Properties
-        static var bodyText: Font { .system(size: 14) }
+        static var bodyText: Font { .subheadline }
         
         // MARK: Initializers
         private init() {}
