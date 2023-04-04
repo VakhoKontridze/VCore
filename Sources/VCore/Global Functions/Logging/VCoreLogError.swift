@@ -14,6 +14,7 @@ import Foundation
 ///
 public func VCoreLogError(
     _ items: Any...,
+    module: String = "VCore",
     file: String = #file,
     line: Int = #line,
     function: String = #function
@@ -46,19 +47,21 @@ public func VCoreLogError(
     
     let file: String = file.components(separatedBy: "/").last ?? file
     
-    NSLog("[VCore] Error in \(function) in \(file)(\(line)): \(description)")
+    NSLog("[\(module)] Error in \(function) in \(file)(\(line)): \(description)")
 }
 
+// MARK: - V Core Fatal Error
 /// Logs an error message to the Apple System Log facility and stops execution.
 ///
 ///     VCoreFatalError(error)
 ///
 public func VCoreFatalError(
     _ items: Any...,
+    module: String = "VCore",
     file: String = #file,
     line: Int = #line,
     function: String = #function
 ) -> Never {
-    VCoreLogError(items, file: file, line: line, function: function)
+    VCoreLogError(items, module: module, file: file, line: line, function: function)
     fatalError()
 }

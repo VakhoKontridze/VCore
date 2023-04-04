@@ -14,11 +14,12 @@ import Foundation
 ///
 public func VCoreLogWarning(
     _ message: String,
+    module: String = "VCore",
     file: String = #file,
     line: Int = #line,
     function: String = #function
 ) {
     let file: String = file.components(separatedBy: "/").last ?? file
     
-    NSLog("[VCore] Warning in \(function) in \(file)(\(line)): \(message)")
+    NSLog("[\(module)] Warning in \(function) in \(file)(\(line)): \(message)")
 }
