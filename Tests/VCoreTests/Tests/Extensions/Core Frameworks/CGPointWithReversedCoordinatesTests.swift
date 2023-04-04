@@ -22,8 +22,8 @@ final class CGPointWithReversedCoordinatesTests: XCTestCase {
         let result: CGPoint = .init(x: inputX, y: inputY)
             .withReversedCoordinates(false)
         
-        XCTAssertEqual(result.x, outputX)
-        XCTAssertEqual(result.y, outputY)
+        XCTAssertNotEqual(result.x, outputX)
+        XCTAssertNotEqual(result.y, outputY)
     }
     
     func testConditionalTrue() {
