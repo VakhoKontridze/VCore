@@ -187,7 +187,7 @@ final class ViewController: KeyboardResponsiveUIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        view.addSubview(textField)
+        view.addsupview(textField)
 
         NSLayoutConstraint.activate([
             ...
@@ -337,15 +337,22 @@ Versions with different majors are not directly compatible. When a new major is 
 <table>
 
   <tr>
-    <th align="left">Ver</th>
+    <th align="left">Version</th>
     <th align="left">Release Date</th> 
+    <th align="left">Swift</th>
     <th align="left">SDK</th>
     <th align="left">Comment</th>
   </tr>
   
   <tr>
-    <td>4.0</td>
+    <td>
+        4.0<br/><i><sup>(4.0.0 - 4.x.x)</sup></i>
+    </td>
     <td>2022 09 14</td>
+    <td>
+        5.8<br/><i><sup>(4.7.0 - 4.x.x)</sup></i><br/>
+        5.7<br/><i><sup>(4.0.0 - 4.6.1)</sup></i>
+    </td>
     <td>
         iOS 13.0<br/>
         macOS 10.15<br/>
@@ -356,8 +363,11 @@ Versions with different majors are not directly compatible. When a new major is 
   </tr>
   
   <tr>
-    <td>3.0</td>
+    <td>
+        3.0<br/><i><sup>(3.0.0 - 3.20.2)</sup></i>
+    </td>
     <td>2022 05 17</td>
+    <td>5.6</td>
     <td>
         iOS 13.0<br/>
         macOS 10.15<br/>
@@ -371,15 +381,21 @@ Versions with different majors are not directly compatible. When a new major is 
   </tr>
   
   <tr>
-    <td>2.0</td>
+    <td>
+        2.0<br/><i><sup>(2.0.0 - 2.3.0)</sup></i>
+    </td>
     <td>2021 12 28</td>
+    <td>5.3</td>
     <td>iOS 13.0</td>
     <td>iOS 13.0 support</td>
   </tr>
   
   <tr>
-    <td>1.0</td>
+    <td>
+        1.0<br/><i><sup>(1.0.0 - 1.4.0)</sup></i>
+    </td>
     <td>2021 10 07</td>
+    <td>5.3</td>
     <td>iOS 14.0</td>
     <td>-</td>
   </tr>
