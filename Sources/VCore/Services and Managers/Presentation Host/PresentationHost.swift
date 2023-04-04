@@ -12,13 +12,13 @@ import SwiftUI
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 extension View {
-    /// Injects an `UIHostingController` in view hierarchy that can be used to present modals in `UIKit` style.
+    /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
-    /// For additional info, refer to [VComponents](https://github.com/VakhoKontridze/VComponents).
+    /// For `allowHitTests`=`false` to have an effect, underlying `SwiftUI` `View` shouldn't have gestures.
     ///
     ///     extension View {
     ///         func someModal(
-    ///             id: String,
+    ///             id: id,
     ///             isPresented: Binding<Bool>,
     ///             @ViewBuilder content: @escaping () -> some View
     ///         ) -> some View {
@@ -34,10 +34,12 @@ extension View {
     ///     }
     ///
     ///     struct SomeModal<Content>: View where Content: View {
-    ///         @Environment(\.presentationHostPresentationMode) private var presentationMode
+    ///         @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode
+    ///
     ///         private let content: () -> Content
     ///
-    ///         @State private var isInternallyPresented: Bool = false // Can be used for animations
+    ///         // Can be used for internal state management and animations
+    ///         @State private var isInternallyPresented: Bool = false
     ///
     ///         init(
     ///             @ViewBuilder content: @escaping () -> Content
@@ -46,9 +48,15 @@ extension View {
     ///         }
     ///
     ///         var body: some View {
-    ///             content() // UI, customization, and animations go here...
+    ///             ZStack(content: {
+    ///                 Color.black.opacity(0.16)
+    ///                     .edgesIgnoringSafeArea(.all)
+    ///                     .onTapGesture(perform: animateOut)
+    ///
+    ///                 content()
+    ///                     .offset(y: isInternallyPresented ? 0 : UIScreen.main.bounds.size.height)
+    ///             })
     ///                 .onAppear(perform: animateIn)
-    ///                 .onTapGesture(perform: animateOut)
     ///                 .onChange(
     ///                     of: presentationMode.isExternallyDismissed,
     ///                     perform: { if $0 && isInternallyPresented { animateOutFromExternalDismiss() } }
@@ -60,8 +68,8 @@ extension View {
     ///                 BasicAnimation(curve: .easeInOut, duration: 0.3),
     ///                 body: { isInternallyPresented = true },
     ///                 completion: nil
-    ///             )
-    ///         }
+    ///            )
+    ///        }
     ///
     ///         private func animateOut() {
     ///             withBasicAnimation(
@@ -100,7 +108,7 @@ extension View {
 #endif
     }
     
-    /// Injects an `UIHostingController` in view hierarchy that can be used to present modals in `UIKit` style.
+    /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
     /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
     public func presentationHost<Item ,Content>(
@@ -123,7 +131,7 @@ extension View {
             )
     }
     
-    /// Injects an `UIHostingController` in view hierarchy that can be used to present modals in `UIKit` style.
+    /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
     /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
     public func presentationHost<T ,Content>(
@@ -147,7 +155,7 @@ extension View {
             )
     }
     
-    /// Injects an `UIHostingController` in view hierarchy that can be used to present modals in `UIKit` style.
+    /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
     /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
     public func presentationHost<E ,Content>(

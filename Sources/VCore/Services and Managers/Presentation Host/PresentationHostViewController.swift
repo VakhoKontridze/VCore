@@ -73,9 +73,11 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
             {
                 rootViewController.dismiss(animated: false, completion: nil)
             }
+            
         } else {
-            dismiss(animated: true, completion: nil)
+            dismiss(animated: false, completion: nil)
         }
+        
         hostingController = nil
         _ = PresentationHostViewControllerStorage.shared.storage.removeValue(forKey: id)
         

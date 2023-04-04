@@ -26,13 +26,11 @@ import SwiftUI
 ///             return self
 ///                 .presentationHost(
 ///                     id: id,
-///                     isPresented: Binding(
-///                         get: { isPresented.wrappedValue && data != nil },
-///                         set: { if !$0 { isPresented.wrappedValue = false } }
-///                     ),
+///                     isPresented: isPresented,
+///                     presenting: data,
 ///                     content: {
 ///                         SomeModal(content: {
-///                             if let data = data ?? PresentationHostDataSourceCache.shared.get(key: id) as? T {
+///                             if let data = data ?? (PresentationHostDataSourceCache.shared.get(key: id) as? T) {
 ///                                 content(data)
 ///                             }
 ///                         })

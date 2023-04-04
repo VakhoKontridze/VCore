@@ -25,7 +25,7 @@ extension View {
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 extension EnvironmentValues {
-    /// `PresentationHost` presentation mode of the view associated with the environment.
+    /// Presentation Host's presentation mode of the view associated with the environment.
     public var presentationHostPresentationMode: PresentationHostPresentationMode {
         get { self[PresentationHostPresentationModeEnvironmentKey.self] }
         set { self[PresentationHostPresentationModeEnvironmentKey.self] = newValue }

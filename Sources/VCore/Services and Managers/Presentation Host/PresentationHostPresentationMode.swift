@@ -10,26 +10,31 @@ import SwiftUI
 // MARK: - Presentation Host Presentation Mode
 /// Object embedded in environment of modals presented via Presentation Host.
 ///
-/// Contains `dismiss` handler that can be called after frame-based dismissal to remove content from view hierarchy.
+/// Contains `dismiss` handler that can be called after internal dismissal to remove content from view hierarchy.
 ///
-/// Also contains `isExternallyDismissed` that indicates if dismiss has been triggered via code,
-/// i.e., setting `isPresented` to `false`. When this change is triggered, frame-based dismiss animation can occur.
+/// Also contains `isExternallyDismissed` that indicates if dismiss has been triggered via externally via code,
+/// i.e., setting `isPresented` to `false`. When this change is triggered, internal dismiss animation can occur.
 /// After which `externalDismissCompletion` handler must be called to remove content from view hierarchy.
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct PresentationHostPresentationMode {
     // MARK: Properties
+    /// Indicates if `PresentationHostPresentationMode` is embedded via environment.
+    ///
+    /// Can be used to support both Presentation Host and `DismissAction` APIs.
+    public let isValidConfiguration: Bool
+    
     /// Instance ID of modal.
     public let id: String?
     
-    /// Dismisses modal.
+    /// Completion handler that dismisses modal.
     public let dismiss: () -> Void
     
-    /// Indicates if external dismiss has been triggered via code.
+    /// Indicates if external dismiss has been triggered externally.
     public let isExternallyDismissed: Bool
     
-    /// Completion handler that removes content from view hierarchy.
+    /// Completion handler that dismisses modal after external trigger.
     ///
     /// Must be called after modal has been animated out.
     public let externalDismissCompletion: () -> Void
@@ -41,6 +46,7 @@ public struct PresentationHostPresentationMode {
         isExternallyDismissed: Bool,
         externalDismissCompletion: @escaping () -> Void
     ) {
+        self.isValidConfiguration = true
         self.id = id
         self.dismiss = dismiss
         self.isExternallyDismissed = isExternallyDismissed
@@ -48,6 +54,7 @@ public struct PresentationHostPresentationMode {
     }
     
     init() {
+        self.isValidConfiguration = false
         self.id = nil
         self.dismiss = {}
         self.isExternallyDismissed = false
