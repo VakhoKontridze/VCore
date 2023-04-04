@@ -48,3 +48,17 @@ public func VCoreLogError(
     
     NSLog("[VCore] Error in \(function) in \(file)(\(line)): \(description)")
 }
+
+/// Logs an error message to the Apple System Log facility and stops execution.
+///
+///     VCoreFatalError(error)
+///
+public func VCoreFatalError(
+    _ items: Any...,
+    file: String = #file,
+    line: Int = #line,
+    function: String = #function
+) -> Never {
+    VCoreLogError(items, file: file, line: line, function: function)
+    fatalError()
+}

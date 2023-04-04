@@ -75,7 +75,7 @@ public struct NetworkRequest {
             
             guard let description: String = .init(unwrappedDescribing: value) else {
                 let error: NetworkClientError = .init(.invalidQueryParameters)
-                VCoreLogError(error, "\(value) cannot be encoded as a query parameter")
+                VCoreLogError(error, "`\(value)` cannot be encoded as a query parameter")
                 throw error
             }
             
@@ -111,7 +111,7 @@ public struct NetworkRequest {
             
             guard let description: String = .init(unwrappedDescribing: value) else {
                 let error: NetworkClientError = .init(.invalidHeaders)
-                VCoreLogError(error, "\(value) cannot be encoded as a header parameter")
+                VCoreLogError(error, "`\(value)` cannot be encoded as a header parameter")
                 throw error
             }
             

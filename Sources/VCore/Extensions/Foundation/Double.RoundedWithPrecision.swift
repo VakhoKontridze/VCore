@@ -16,7 +16,9 @@ extension Double {
     ///     let rounded2: Double = 3.1415.rounded(fractions: 3) // 3.142
     ///
     public func rounded(fractions: Int) -> Double {
-        assert(fractions >= 0)
+        guard fractions >= 0 else {
+            VCoreFatalError("`fractions` must be greater than or equal to `0`")
+        }
         
         let power: Double = pow(10, Double(fractions))
         return (self * power).rounded() / power

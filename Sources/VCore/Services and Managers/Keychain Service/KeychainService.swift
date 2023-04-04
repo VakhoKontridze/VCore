@@ -71,7 +71,7 @@ public final class KeychainService {
             
             guard status == noErr else {
                 let error: KeychainServiceError = .init(.failedToSet)
-                VCoreLogError(error, "Security framework error with status code \(status)")
+                VCoreLogError(error, "Security framework error with status code `\(status)`")
                 throw error
             }
         }
@@ -93,7 +93,7 @@ public final class KeychainService {
         
         guard status == noErr else {
             let error: KeychainServiceError = .init(.failedToDelete)
-            if logsError { VCoreLogError(error, "Security framework error with status code \(status)") }
+            if logsError { VCoreLogError(error, "Security framework error with status code `\(status)`") }
             throw error
         }
     }

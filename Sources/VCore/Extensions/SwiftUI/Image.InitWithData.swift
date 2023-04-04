@@ -23,11 +23,23 @@ extension Image {
     ///
     public init(data: Data) {
 #if canImport(UIKit)
-        guard let uiImage: UIImage = .init(data: data) else { fatalError() }
+        guard
+            let uiImage: UIImage = .init(data: data)
+        else {
+            VCoreFatalError("Could not initialize `UIImage` from the specified data.")
+        }
+        
         self.init(uiImage: uiImage)
+
 #elseif canImport(AppKit)
-        guard let nsImage: NSImage = .init(data: data) else { fatalError() }
+        guard
+            let nsImage: NSImage = .init(data: data)
+        else {
+            VCoreFatalError("Could not initialize `NSImage` from the specified data.")
+        }
+        
         self.init(nsImage: nsImage)
+
 #endif
     }
 }

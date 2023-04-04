@@ -15,8 +15,7 @@ extension StringProtocol {
     ///     let firstChar: Character = string[0] // "L"
     ///
     public subscript(_ i: Int) -> Element {
-        assert(i >= 0 && i < count, "Index Out of Range")
-        return self[index(startIndex, offsetBy: i)]
+        self[index(startIndex, offsetBy: i)]
     }
 }
 
@@ -28,8 +27,7 @@ extension StringProtocol {
     ///     let replacedString: String = string.replaced(at: 0, with: "l") // "lorem ipsum"
     ///
     public func replaced(at i: Int, with element: Element) -> Self {
-        assert(i >= 0 && i < count, "Index Out of Range")
-        return "\(prefix(i))\(element)\(dropFirst(i+1))"
+        "\(prefix(i))\(element)\(dropFirst(i+1))"
     }
     
     /// Replaces an element at index.

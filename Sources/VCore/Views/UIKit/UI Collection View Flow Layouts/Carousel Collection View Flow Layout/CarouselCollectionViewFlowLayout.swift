@@ -89,17 +89,21 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
     private func checkPreconditions(
         collectionView: UICollectionView
     ) {
-        assert(scrollDirection == .horizontal, "`scrollDirection` must be set to `horizontal")
+        guard scrollDirection == .horizontal else {
+            VCoreFatalError("`scrollDirection` must be set to `horizontal")
+        }
         
 #if !os(tvOS)
-        assert(!collectionView.isPagingEnabled, "`isPagingEnabled` must be set to `false`")
+        guard !collectionView.isPagingEnabled else {
+            VCoreFatalError("`isPagingEnabled` must be set to `false`")
+        }
 #endif
         
         if
             let flowDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout,
             delegateSupportsSizeForItem(collectionView: collectionView, flowDelegate: flowDelegate)
         {
-            fatalError("`collectionView(_:layout:sizeForItemAt:)` should not be implemented")
+            VCoreFatalError("`collectionView(_:layout:sizeForItemAt:)` should not be implemented")
         }
     }
     
