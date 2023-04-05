@@ -67,6 +67,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
 {
     // MARK: Properties
     private let uiModel: FetchDelegatingAsyncImageUIModel
+    private let removesImageOnDisappear: Bool
     
     private let resource: Resource?
     private let fetchHandler: (Resource) async throws -> Image
@@ -81,6 +82,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     /// Initializes `FetchDelegatingAsyncImage` with resource and fetch method.
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        removesImageOnDisappear: Bool = false,
         from resource: Resource?,
         fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image
     )
@@ -89,6 +91,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
             PlaceholderContent == Never
     {
         self.uiModel = uiModel
+        self.removesImageOnDisappear = removesImageOnDisappear
         self.resource = resource
         self.fetchHandler = fetchHandler
         self.content = .empty
@@ -97,6 +100,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     /// Initializes `FetchDelegatingAsyncImage` with resource, fetch method, and content.
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        removesImageOnDisappear: Bool = false,
         from resource: Resource?,
         fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content
@@ -105,6 +109,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
             PlaceholderContent == Never
     {
         self.uiModel = uiModel
+        self.removesImageOnDisappear = removesImageOnDisappear
         self.resource = resource
         self.fetchHandler = fetchHandler
         self.content = .content(
@@ -115,12 +120,14 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     /// Initializes `FetchDelegatingAsyncImage` with resource, fetch method, content, and placeholder content.
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        removesImageOnDisappear: Bool = false,
         from resource: Resource?,
         fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content,
         @ViewBuilder placeholder placeholderContent: @escaping () -> PlaceholderContent
     ) {
         self.uiModel = uiModel
+        self.removesImageOnDisappear = removesImageOnDisappear
         self.resource = resource
         self.fetchHandler = fetchHandler
         self.content = .contentPlaceholder(
@@ -133,6 +140,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        removesImageOnDisappear: Bool = false,
         from resource: Resource?,
         fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
@@ -140,6 +148,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
         where PlaceholderContent == Never
     {
         self.uiModel = uiModel
+        self.removesImageOnDisappear = removesImageOnDisappear
         self.resource = resource
         self.fetchHandler = fetchHandler
         self.content = .contentWithPhase(
@@ -166,6 +175,9 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
                 bodyContentBodyWithPhase(content)
             }
         })
+            .onDisappear(perform: {
+                if removesImageOnDisappear { zeroData() }
+            })
     }
     
     @ViewBuilder private func bodyEmpty() -> some View {
