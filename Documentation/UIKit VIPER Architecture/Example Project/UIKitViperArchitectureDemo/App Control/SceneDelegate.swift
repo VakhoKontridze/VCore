@@ -11,7 +11,7 @@ import UIKit
 final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     // MARK: Properties
     var window: UIWindow?
-
+    
     // MARK: Window Scene Delegate
     func scene(
         _ scene: UIScene,

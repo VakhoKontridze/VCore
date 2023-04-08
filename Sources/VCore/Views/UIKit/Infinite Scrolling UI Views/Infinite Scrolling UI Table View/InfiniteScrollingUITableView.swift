@@ -106,7 +106,7 @@ open class InfiniteScrollingUITableView: UITableView {
     open var paginationOffset: CGFloat = 20
     
     private var isFirstLayoutSubviews: Bool = false
-
+    
     // MARK: Lifecycle
     open override func layoutSubviews() {
         super.layoutSubviews()
@@ -119,12 +119,12 @@ open class InfiniteScrollingUITableView: UITableView {
             }
         }
     }
-
+    
     // MARK: Detection
     /// Detects pagination on scroll.
     open func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView.didScrollToBottom(offset: paginationOffset) else { return }
-
+        
         paginate()
     }
     
@@ -134,7 +134,7 @@ open class InfiniteScrollingUITableView: UITableView {
         
         paginate()
     }
-
+    
     // MARK: Pagination
     private func paginate() {
         guard paginationState == .canPaginate else { return }
@@ -142,14 +142,14 @@ open class InfiniteScrollingUITableView: UITableView {
         paginationState = .loading
         infiniteScrollingDelegate?.tableViewDidScrollToBottom(sender: self)
     }
-
+    
     // MARK: Activity Indicator
     private func setActivityIndicatorState() {
         switch paginationState {
         case .loading:
             guard frame.size.width != 0 else { return }
             tableFooterView = InfiniteScrollingUITableViewActivityIndicatorView(in: self)
-        
+            
         case .canPaginate, .cannotPaginate:
             tableFooterView = nil
             reloadData()

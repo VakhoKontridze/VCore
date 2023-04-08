@@ -21,13 +21,13 @@ final class UIViewApplyShadowTests: XCTestCase {
     // MARK: Tests
     func testShadow() {
         let view: UIView = .init()
-
+        
         view.applyShadow(
             color: color,
             radius: radius,
             offset: offset
         )
-
+        
         XCTAssertEqual(view.layer.shadowColor, color.cgColor)
         XCTAssertEqual(view.layer.shadowOpacity, 1)
         XCTAssertEqual(view.layer.shadowRadius, radius)
@@ -36,14 +36,14 @@ final class UIViewApplyShadowTests: XCTestCase {
     
     func roundCornersAndApplyShadow() {
         let view: UIView = .init()
-
+        
         view.roundCornersAndApplyShadow(
             cornerRadius: cornerRadius,
             color: color,
             radius: radius,
             offset: offset
         )
-
+        
         XCTAssertEqual(view.layer.cornerRadius, cornerRadius)
         XCTAssertEqual(view.layer.shadowColor, color.cgColor)
         XCTAssertEqual(view.layer.shadowOpacity, 1)

@@ -37,7 +37,7 @@ import SwiftUI
     }
     
     private let transformation: (Value) -> Value
-     
+    
     // MARK: Initializers
     fileprivate init(
         wrappedValue: Value,

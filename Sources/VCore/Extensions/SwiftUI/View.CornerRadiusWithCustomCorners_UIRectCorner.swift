@@ -38,7 +38,7 @@ private struct CornerRadiusShape: Shape {
         self.radius = radius
         self.corners = corners
     }
-
+    
     // MARK: Shape
     func path(in rect: CGRect) -> Path {
         .init(UIBezierPath(

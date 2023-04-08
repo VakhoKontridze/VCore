@@ -23,7 +23,7 @@ final class IsEqualToByKeyPathTests: XCTestCase {
         var i: Int = 0
         var j: Int = 0
     }
-
+    
     // MARK: Tests
     func test1() {
         XCTAssertTrue(VCore.isEqual(

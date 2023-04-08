@@ -40,7 +40,7 @@ public enum ResultNoSuccess<Failure> where Failure: Error {
         case .failure(let failure): return .failure(transform(failure))
         }
     }
-
+    
     /// Returns a new result, mapping any failure value using the given
     /// transformation and unwrapping the produced result.
     public func flatMapError<NewFailure>(

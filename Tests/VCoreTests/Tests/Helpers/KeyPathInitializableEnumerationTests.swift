@@ -14,7 +14,7 @@ final class KeyPathInitializableEnumerationTests: XCTestCase {
     private enum SomeEnum: KeyPathInitializableEnumeration {
         case first
         case second
-
+        
         var someProperty: Int {
             switch self {
             case .first: return 1
@@ -22,7 +22,7 @@ final class KeyPathInitializableEnumerationTests: XCTestCase {
             }
         }
     }
-
+    
     // MARK: Tests
     func test() {
         XCTAssertNil(SomeEnum.aCase(key: \.someProperty, value: 0))

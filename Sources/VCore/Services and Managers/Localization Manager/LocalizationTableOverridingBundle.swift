@@ -40,7 +40,7 @@ final class LocalizationTableOverridingBundle: Bundle {
         else {
             return
         }
-
+        
         _ = object_setClass(bundle, Self.self)
         tablePaths[bundleIdentifier] = path
     }

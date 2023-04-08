@@ -10,18 +10,18 @@ final class ___VARIABLE_productName___ViewController:
 {
     // MARK: Subviews
     lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
-
+    
     // MARK: Properties
     var presenter: (any ___VARIABLE_productName___Presentable)!
     
     private typealias UIModel = ___VARIABLE_productName___UIModel
-
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
     }
-
+    
     // MARK: Setup
     private func setUp() {
         setUpView()
@@ -33,11 +33,11 @@ final class ___VARIABLE_productName___ViewController:
     private func setUpView() {
         view.backgroundColor = UIModel.Colors.background
     }
-
+    
     private func addSubviews() {
         view.addSubview(activityIndicator)
     }
-
+    
     private func setUpLayout() {
         NSLayoutConstraint.activate([
             
@@ -47,16 +47,16 @@ final class ___VARIABLE_productName___ViewController:
     private func setUpNavigationBar() {
         navigationItem.title = "___VARIABLE_productName___"
     }
-
+    
     // MARK: Viewable
-
+    
     // MARK: Navigable
-
+    
     // MARK: Table View Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.tableViewDidSelectRow(section: indexPath.section, row: indexPath.row)
     }
-
+    
     // MARK: Table View DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         presenter.tableViewNumberOfSections

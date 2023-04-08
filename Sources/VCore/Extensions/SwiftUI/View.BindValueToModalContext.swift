@@ -25,10 +25,10 @@ extension View {
     ///
     ///             Toggle("Lorem Ipsum", isOn: $isOn)
     ///         })
-    ///             .padding()
-    ///             .sheet(isPresented: $isPresented, content: {
-    ///                 Text(String(isOn)) // Displays "false"
-    ///             })
+    ///         .padding()
+    ///         .sheet(isPresented: $isPresented, content: {
+    ///             Text(String(isOn)) // Displays "false"
+    ///         })
     ///     }
     ///
     /// One solution lies in using `.sheet(item:content:)` to bind value to modal:
@@ -47,10 +47,10 @@ extension View {
     ///
     ///             Toggle("Lorem Ipsum", isOn: $isOn)
     ///         })
-    ///             .padding()
-    ///             .sheet(item: $presentedSheet, content: { sheet in
-    ///                 Text(String(sheet.isOn)) // Displays "true"
-    ///             })
+    ///         .padding()
+    ///         .sheet(item: $presentedSheet, content: { sheet in
+    ///             Text(String(sheet.isOn)) // Displays "true"
+    ///         })
     ///     }
     ///
     /// Non-`Binding` modal can still be bound using this method:
@@ -64,12 +64,13 @@ extension View {
     ///
     ///             Toggle("Lorem Ipsum", isOn: $isOn)
     ///         })
-    ///             .padding()
-    ///             .bindToModalContext(isOn)
-    ///             .sheet(isPresented: $isPresented, content: {
-    ///                 Text(String(isOn)) // Displays "true"
-    ///             })
+    ///         .padding()
+    ///         .bindToModalContext(isOn)
+    ///         .sheet(isPresented: $isPresented, content: {
+    ///             Text(String(isOn)) // Displays "true"
+    ///         })
     ///     }
+    ///
     public func bindToModalContext(_ value: some Equatable) -> some View {
         self
             .onChange(of: value, perform: { _ in })

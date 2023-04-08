@@ -343,7 +343,7 @@ extension UIApplication {
                 .compactMap { $0 as? UIWindowScene }
                 .compactMap { $0.keyWindow ?? $0.windows.first }
                 .first
-        
+            
         } else {
             return connectedScenes
                 .filter { $0.activationState == .foregroundActive }
@@ -396,11 +396,11 @@ extension UIApplication {
         else {
             return nil
         }
-
+        
         while let presentedViewController = topMostViewController.presentedViewController {
             topMostViewController = presentedViewController
         }
-
+        
         return topMostViewController
     }
     

@@ -20,7 +20,7 @@ struct PostsFactory {
                 interactor: PostsInteractor()
             )
         )
-            .modifier(PostsRouter())
+        .modifier(PostsRouter())
     }
     
     static func mock() -> some View {
@@ -29,6 +29,6 @@ struct PostsFactory {
                 interactor: PostsMockInteractor()
             )
         )
-            .modifier(PostsRouter())
+        .modifier(PostsRouter())
     }
 }

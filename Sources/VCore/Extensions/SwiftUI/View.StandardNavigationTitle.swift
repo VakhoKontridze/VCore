@@ -25,7 +25,7 @@ extension View {
             self
                 .navigationTitle(title)
                 .navigationBarTitleDisplayMode(.inline)
-        
+            
         } else {
             self
                 .navigationBarTitle(title)

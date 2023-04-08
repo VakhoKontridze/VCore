@@ -9,7 +9,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, ConfigurableUI
     
     // MARK: Properties
     private typealias UIModel = ___VARIABLE_productName___CellUIModel
-
+    
     // MARK: Initializers
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -19,7 +19,7 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, ConfigurableUI
     required init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     // MARK: Setup
     private func setUp() {
         setUpView()
@@ -37,10 +37,10 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, ConfigurableUI
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-        
+            
         ])
     }
-
+    
     // MARK: Configurable Collection View Cell
     func configure(parameter: some UICollectionViewCellParameter) {
         guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }

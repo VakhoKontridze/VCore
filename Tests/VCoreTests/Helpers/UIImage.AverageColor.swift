@@ -20,7 +20,7 @@ extension UIImage {
             z: inputImage.extent.size.width,
             w: inputImage.extent.size.height
         )
-
+        
         guard
             let filter: CIFilter = .init(
                 name: "CIAreaAverage",
@@ -33,7 +33,7 @@ extension UIImage {
         else {
             return nil
         }
-
+        
         var bitmap: [UInt8] = .init(repeating: 0, count: 4)
         let context: CIContext = .init(options: [.workingColorSpace: kCFNull as Any])
         context.render(
@@ -44,7 +44,7 @@ extension UIImage {
             format: .RGBA8,
             colorSpace: nil
         )
-
+        
         return UIColor(
             red: CGFloat(bitmap[0]) / 255,
             green: CGFloat(bitmap[1]) / 255,

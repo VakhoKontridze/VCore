@@ -15,7 +15,7 @@ import SwiftUI
 @available(watchOS, unavailable)
 public struct PlainDisclosureGroupUIModel {
     // MARK: Properties
-    /// Model that contains layout properties. 
+    /// Model that contains layout properties.
     public var layout: Layout = .init()
     
     /// Model that contains color properties.
@@ -43,7 +43,7 @@ public struct PlainDisclosureGroupUIModel {
         /// Initializes UI model with default values.
         public init() {}
     }
-
+    
     // MARK: Colors
     /// Model that contains color properties.
     public struct Colors {

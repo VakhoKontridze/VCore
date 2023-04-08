@@ -21,7 +21,7 @@ import SwiftUI
 ///                 "Lorem ipsum",
 ///                 action: { presenter.didTapButton() }
 ///             )
-///                 .alert(parameters: $presenter.alertParameters)
+///             .alert(parameters: $presenter.alertParameters)
 ///         }
 ///     }
 ///

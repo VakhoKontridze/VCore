@@ -22,7 +22,7 @@ public struct JSONDecoderService {
     // MARK: Initializers
     /// Initializes `JSONDecoderService`.
     public init() {}
-
+    
     // MARK: Decoding
     /// Decodes `Data` to `JSON`.
     public func json(
@@ -68,7 +68,7 @@ public struct JSONDecoderService {
             VCoreLogError(error)
             throw error
         }
-
+        
         return jsonArray
     }
     

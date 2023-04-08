@@ -26,7 +26,7 @@ extension UIDevice {
     public static var safeAreaInsetLeft: CGFloat {
         safeAreaInsets?.left ?? 0
     }
-
+    
     /// Right safe area inset in `UIApplication.shared.firstWindowInSingleSceneApp`.
     ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetRight
@@ -34,7 +34,7 @@ extension UIDevice {
     public static var safeAreaInsetRight: CGFloat {
         safeAreaInsets?.right ?? 0
     }
-
+    
     /// Top safe area inset in `UIApplication.shared.firstWindowInSingleSceneApp`.
     ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetTop
@@ -42,7 +42,7 @@ extension UIDevice {
     public static var safeAreaInsetTop: CGFloat {
         safeAreaInsets?.top ?? 0
     }
-
+    
     /// Bottom safe area inset in `UIApplication.shared.firstWindowInSingleSceneApp`.
     ///
     ///     let inset: CGFloat = UIDevice.safeAreaInsetBottom

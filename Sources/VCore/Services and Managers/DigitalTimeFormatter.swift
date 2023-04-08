@@ -51,12 +51,12 @@ public struct DigitalTimeFormatter {
     // MARK: Initializers
     /// Initializes `DigitalTimeFormatter`.
     public init() {}
-
+    
     // MARK: Formatting
     /// Returns `String` from seconds with specified format.
     public func string(from seconds: Double) -> String? {
         guard seconds >= 0 else { return nil }
-
+        
         let (d, h, m, s) = extractTimeComponents(from: seconds)
         
         let formattedComponents: [String]? = {
@@ -85,7 +85,7 @@ public struct DigitalTimeFormatter {
                 case (false, true, true, _): return ["00", s.padded]
                 case (true, _, _, _): return ["0", "00", "00", s.padded]
                 }
-
+                
             } else {
                 return nil
             }
@@ -95,7 +95,7 @@ public struct DigitalTimeFormatter {
         
         return formattedTime
     }
-
+    
     // MARK: Time Components
     private func extractTimeComponents(from seconds: Double) -> (d: Int, h: Int, m: Int, s: Int) {
         var d: Int = {
@@ -130,11 +130,11 @@ public struct DigitalTimeFormatter {
             
             return Int(remainder.rounded(.toNearestOrAwayFromZero))
         }()
-
+        
         if s == TimeComponent.second.max { s = 0; m += 1 }
         if m == TimeComponent.minute.max { m = 0; h += 1 }
         if h == TimeComponent.hour.max { h = 0; d += 1 }
-
+        
         return (d, h, m, s)
     }
     

@@ -52,16 +52,16 @@ public struct SecurableTextField: View {
                 prompt: placeholder,
                 label: EmptyView.init
             )
-                .focused($isTextFieldFocused)
-                .opacity(isSecure ? 0 : 1)
+            .focused($isTextFieldFocused)
+            .opacity(isSecure ? 0 : 1)
             
             SecureField(
                 text: $text,
                 prompt: placeholder,
                 label: EmptyView.init
             )
-                .focused($isSecureFieldFocused)
-                .opacity(isSecure ? 1 : 0)
+            .focused($isSecureFieldFocused)
+            .opacity(isSecure ? 1 : 0)
         })
     }
 }
@@ -87,7 +87,7 @@ struct SecurableTextField_Previews: PreviewProvider {
                 
                 Button("Toggle", action: { isSecure.toggle() })
             })
-                .padding()
+            .padding()
         }
     }
 }

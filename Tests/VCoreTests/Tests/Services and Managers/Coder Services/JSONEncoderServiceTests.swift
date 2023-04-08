@@ -24,7 +24,7 @@ final class JSONEncoderServiceTests: XCTestCase {
             
             let json2: [String: Any?] = try! JSONDecoderService().json(data: data) // Force-unwrap
             XCTAssertEqual(json2["key"]?.toString, "value")
-        
+            
         } catch {
             fatalError(error.localizedDescription)
         }

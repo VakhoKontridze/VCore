@@ -78,7 +78,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Lifecycle
     override open func prepare() {
         super.prepare()
-
+        
         guard let collectionView else { return }
         
         checkPreconditions(collectionView: collectionView)
@@ -148,7 +148,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 forProposedContentOffset: proposedContentOffset
             )
         }
-
+        
         let midSide: CGFloat = collectionView.bounds.size.width / 2
         
         let proposedContentOffsetCenterOrigin: CGFloat = (proposedContentOffset.x + (proposedContentOffset.x * velocity.x)) + midSide
@@ -156,7 +156,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let closest: UICollectionViewLayoutAttributes = layoutAttributes
             .sorted {
                 abs($0.center.x - proposedContentOffsetCenterOrigin) <
-                abs($1.center.x - proposedContentOffsetCenterOrigin)
+                    abs($1.center.x - proposedContentOffsetCenterOrigin)
             }
             .first ??
             UICollectionViewLayoutAttributes()

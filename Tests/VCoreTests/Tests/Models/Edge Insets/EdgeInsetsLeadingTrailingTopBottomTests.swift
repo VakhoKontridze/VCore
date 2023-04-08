@@ -30,7 +30,7 @@ final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
         XCTAssertEqual(insets.horizontalAverage, (leading + trailing)/2)
         XCTAssertEqual(insets.verticalAverage, (top + bottom)/2)
     }
-
+    
     // MARK: Insets
     func testInsetInset() {
         let inputLeading: CGFloat = 1
@@ -38,7 +38,7 @@ final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
         let inputTop: CGFloat = 3
         let inputBottom: CGFloat = 4
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_LeadingTrailingTopBottom = .init(
             leading: inputLeading,
             trailing: inputTrailing,
@@ -82,7 +82,7 @@ final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
         let inputTop: CGFloat = 3
         let inputBottom: CGFloat = 4
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_LeadingTrailingTopBottom = .init(
             leading: inputLeading,
             trailing: inputTrailing,
@@ -102,7 +102,7 @@ final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
         let inputTop: CGFloat = 3
         let inputBottom: CGFloat = 4
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_LeadingTrailingTopBottom = .init(
             leading: inputLeading,
             trailing: inputTrailing,
@@ -122,7 +122,7 @@ final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
         let inputTop: CGFloat = 3
         let inputBottom: CGFloat = 4
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_LeadingTrailingTopBottom = .init(
             leading: inputLeading,
             trailing: inputTrailing,
@@ -142,7 +142,7 @@ final class EdgeInsetsLeadingTrailingTopBottomTests: XCTestCase {
         let inputTop: CGFloat = 3
         let inputBottom: CGFloat = 4
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_LeadingTrailingTopBottom = .init(
             leading: inputLeading,
             trailing: inputTrailing,

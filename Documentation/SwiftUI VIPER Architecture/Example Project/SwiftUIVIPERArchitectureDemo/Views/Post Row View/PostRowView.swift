@@ -32,9 +32,9 @@ struct PostRowView: View {
                 .foregroundColor(UIModel.Colors.bodyText)
                 .font(UIModel.Fonts.bodyText)
         })
-            .frame(maxWidth: .infinity, alignment: .leading)
-            .padding(UIModel.Layout.padding)
-            .background(content: { UIModel.Colors.background.ignoresSafeArea() })
+        .frame(maxWidth: .infinity, alignment: .leading)
+        .padding(UIModel.Layout.padding)
+        .background(content: { UIModel.Colors.background.ignoresSafeArea() })
     }
 }
 

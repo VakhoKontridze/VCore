@@ -72,7 +72,7 @@ public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
                 role: role,
                 action: { animateOut(/*completion: */action) }
             )
-                .disabled(!isEnabled)
+            .disabled(!isEnabled)
         )
     }
     

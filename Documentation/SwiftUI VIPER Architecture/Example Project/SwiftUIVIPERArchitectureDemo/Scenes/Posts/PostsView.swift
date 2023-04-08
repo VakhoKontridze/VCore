@@ -26,20 +26,20 @@ struct PostsView<Presenter>: View
     ) {
         self._presenter = StateObject(wrappedValue: presenter())
     }
-
+    
     // MARK: Body
     var body: some View {
         ZStack(content: {
             canvas
             contentView
         })
-            .onFirstAppear($didAppearForTheFirstTime, perform: {
-                presenter.navigationStackCoordinator = navigationStackCoordinator
-                presenter.didLoad()
-            })
-            .inlineNavigationTitle("Posts")
-            .alert(parameters: $presenter.alertParameters)
-            .progressView(parameters: presenter.progressViewParameters)
+        .onFirstAppear($didAppearForTheFirstTime, perform: {
+            presenter.navigationStackCoordinator = navigationStackCoordinator
+            presenter.didLoad()
+        })
+        .inlineNavigationTitle("Posts")
+        .alert(parameters: $presenter.alertParameters)
+        .progressView(parameters: presenter.progressViewParameters)
     }
     
     private var canvas: some View {
@@ -54,8 +54,8 @@ struct PostsView<Presenter>: View
                     .onTapGesture(perform: { presenter.didTapPost(parameters: parameters) })
             })
         })
-            .listStyle(.plain)
-            .refreshable(action: { presenter.didPullToRefresh() })
+        .listStyle(.plain)
+        .refreshable(action: { presenter.didPullToRefresh() })
     }
 }
 

@@ -32,10 +32,10 @@ extension MultipartFormDataBuilder {
                 switch value {
                 case let array as [Any?]:
                     try appendArray(key: key, array: array, to: &data)
-                
+                    
                 case let json as [String: Any?]:
                     try appendJSON(key: key, json: json, to: &data)
-                
+                    
                 default:
                     try appendElement(key: key, element: value, to: &data)
                 }
@@ -67,10 +67,10 @@ extension MultipartFormDataBuilder {
                 switch element.value {
                 case let array as [Any?]:
                     try appendArray(key: elementKey, array: array, to: &data)
-                
+                    
                 case let json as [String: Any?]:
                     try appendJSON(key: elementKey, json: json, to: &data)
-                
+                    
                 default:
                     try appendElement(key: elementKey, element: element.value, to: &data)
                 }
@@ -88,10 +88,10 @@ extension MultipartFormDataBuilder {
                 switch element {
                 case let array as [[String: Any?]]:
                     try appendArray(key: elementKey, array: array, to: &data)
-                
+                    
                 case let json as [String: Any?]:
                     try appendJSON(key: elementKey, json: json, to: &data)
-                
+                    
                 default:
                     try appendElement(key: elementKey, element: element, to: &data)
                 }

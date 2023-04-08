@@ -23,7 +23,7 @@ struct PostsNetworkGateway: PostsGateway {
                     case .success(let posts):
                         let entity: PostsEntity = .init(posts: posts)
                         completion(.success(entity))
-
+                        
                     case .failure(let error):
                         completion(.failure(error))
                     }

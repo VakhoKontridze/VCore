@@ -15,7 +15,7 @@ final class PostDetailsPresenter<View>: PostDetailsPresentable
     // MARK: Properties
     private unowned let view: View
     private let parameters: PostDetailsParameters
-
+    
     // MARK: Initializers
     init(
         view: View,
@@ -24,7 +24,7 @@ final class PostDetailsPresenter<View>: PostDetailsPresentable
         self.view = view
         self.parameters = parameters
     }
-
+    
     // MARK: Presentable
     func viewDidLoad() {
         view.setTitle(to: parameters.title)

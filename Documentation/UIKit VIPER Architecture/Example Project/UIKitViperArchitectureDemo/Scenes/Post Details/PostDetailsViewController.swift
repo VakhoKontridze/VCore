@@ -31,14 +31,14 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     private var bodyLabelHeightConstraint: NSLayoutConstraint?
     
     private typealias UIModel = PostDetailsUIModel
-
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         presenter.viewDidLoad()
     }
-
+    
     // MARK: Setup
     private func setUp() {
         setUpView()
@@ -50,12 +50,12 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     private func setUpView() {
         view.backgroundColor = UIModel.Colors.background
     }
-
+    
     private func addSubviews() {
         view.addSubview(scrollableUIView)
         scrollableUIView.contentView.addSubview(bodyLabel)
     }
-
+    
     private func setUpLayout() {
         NSLayoutConstraint.activate([
             scrollableUIView.constraintLeading(to: view),
@@ -75,7 +75,7 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     private func setUpNavigationBar() {
         navigationItem.title = "Post Details"
     }
-
+    
     // MARK: Viewable
     func setTitle(to title: String) {
         navigationItem.title = title

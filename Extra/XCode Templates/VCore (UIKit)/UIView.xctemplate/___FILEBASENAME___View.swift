@@ -24,7 +24,7 @@ final class ___VARIABLE_productName___View: UIView {
     required init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     // MARK: Setup
     private func setUp() {
         setUpView()
@@ -42,10 +42,10 @@ final class ___VARIABLE_productName___View: UIView {
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-        
+            
         ])
     }
-
+    
     // MARK: Configuration
     func configure(parameters: ___VARIABLE_productName___ViewParameters) {
         

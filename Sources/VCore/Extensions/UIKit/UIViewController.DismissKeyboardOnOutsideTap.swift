@@ -25,7 +25,7 @@ extension UIViewController {
             return gesture
         }())
     }
-
+    
     @objc private func endEditingFromOutsideTap() {
         view.endEditing(true)
     }

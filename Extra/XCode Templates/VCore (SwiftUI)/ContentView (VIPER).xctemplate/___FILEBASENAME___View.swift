@@ -21,17 +21,17 @@ struct ___VARIABLE_productName___View<Presenter>: View
     ) {
         self._presenter = StateObject(wrappedValue: presenter())
     }
-
+    
     // MARK: Body
     var body: some View {
         ZStack(content: {
             canvas
             contentView
         })
-            .onFirstAppear($didAppearForTheFirstTime, perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
-            .inlineNavigationTitle("___VARIABLE_productName___")
-            .alert(parameters: $presenter.alertParameters)
-            .progressView(parameters: presenter.progressViewParameters)
+        .onFirstAppear($didAppearForTheFirstTime, perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
+        .inlineNavigationTitle("___VARIABLE_productName___")
+        .alert(parameters: $presenter.alertParameters)
+        .progressView(parameters: presenter.progressViewParameters)
     }
     
     private var canvas: some View {

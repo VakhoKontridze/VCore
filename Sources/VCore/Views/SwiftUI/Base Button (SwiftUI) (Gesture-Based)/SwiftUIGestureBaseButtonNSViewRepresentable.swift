@@ -26,20 +26,20 @@ struct SwiftUIGestureBaseButtonNSViewRepresentable: NSViewRepresentable {
         self.isEnabled = isEnabled
         self.stateChangeHandler = stateChangeHandler
     }
-
+    
     // MARK: Representable
     func makeNSView(context: Context) -> NSView {
         let view: NSView = .init(frame: .zero)
-
+        
         DispatchQueue.main.async(execute: {
             let gestureRecognizer: AppKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
             self.gestureRecognizer = gestureRecognizer
             
             view.addGestureRecognizer(gestureRecognizer)
         })
-
+        
         //setBindedValues(view, context: context)
-
+        
         return view
     }
     

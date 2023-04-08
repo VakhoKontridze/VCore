@@ -49,7 +49,7 @@ import Foundation
 ///                     content(data[i])
 ///                 })
 ///             })
-///                 .pickerStyle(.segmented)
+///             .pickerStyle(.segmented)
 ///         }
 ///     }
 ///

@@ -21,7 +21,7 @@ import VCore
     nonisolated init(interactor: Interactor) {
         self.interactor = interactor
     }
-
+    
     // MARK: Presentable
     @Published var didAppearForTheFirstTime: Bool = false
     
@@ -59,7 +59,7 @@ import VCore
                 guard !Task.isCancelled else { return }
                 
                 postParameters = postsEntity.posts?.compactMap { $0 }.compactMap { PostRowViewParameters(post: $0) } ?? []
-            
+                
             } catch {
                 progressViewParameters = nil
                 alertParameters = AlertParameters(error: error, completion: nil)

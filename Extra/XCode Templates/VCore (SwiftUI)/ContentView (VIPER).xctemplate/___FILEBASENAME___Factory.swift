@@ -16,7 +16,7 @@ struct ___VARIABLE_productName___Factory {
                 parameters: parameters
             )
         )
-            .modifier(___VARIABLE_productName___Router())
+        .modifier(___VARIABLE_productName___Router())
     }
     
     static func mock() -> some View {
@@ -26,6 +26,6 @@ struct ___VARIABLE_productName___Factory {
                 parameters: .mock
             )
         )
-            .modifier(___VARIABLE_productName___Router())
+        .modifier(___VARIABLE_productName___Router())
     }
 }

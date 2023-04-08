@@ -39,7 +39,7 @@ extension UIViewController {
     ///
     public var isNonRootViewController: Bool? {
         guard let navigationController else { return nil }
-
+        
         return navigationController.viewControllers.first != self
     }
 }

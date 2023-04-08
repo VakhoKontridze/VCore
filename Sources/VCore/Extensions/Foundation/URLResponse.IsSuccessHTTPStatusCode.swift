@@ -24,7 +24,7 @@ extension URLResponse {
         else {
             return false
         }
-
+        
         return true
     }
 }

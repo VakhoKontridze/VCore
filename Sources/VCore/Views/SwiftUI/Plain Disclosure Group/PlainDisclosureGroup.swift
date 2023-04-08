@@ -33,7 +33,7 @@ import SwiftUI
 ///                 })
 ///             }
 ///         )
-///             .padding()
+///         .padding()
 ///     }
 ///
 @available(iOS 14.0, *)
@@ -114,8 +114,8 @@ public struct PlainDisclosureGroup<Label, Content>: View
                 content: content,
                 label: { Color.clear.frame(height: max(0, labelHeight - uiModel.layout.defaultDisclosureGroupPadding)) }
             )
-                .animation(.default, value: isExpanded.wrappedValue)
-                .buttonStyle(.plain).accentColor(.clear) // Hides chevron button
+            .animation(.default, value: isExpanded.wrappedValue)
+            .buttonStyle(.plain).accentColor(.clear) // Hides chevron button
         })
     }
     
@@ -178,7 +178,7 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
                     })
                 }
             )
-                .padding()
+            .padding()
         }
     }
 }

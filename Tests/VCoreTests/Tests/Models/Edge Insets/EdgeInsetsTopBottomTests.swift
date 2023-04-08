@@ -15,7 +15,7 @@ final class EdgeInsetsTopBottomTests: XCTestCase {
         let inputTop: CGFloat = 1
         let inputBottom: CGFloat = 2
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_TopBottom = .init(
             top: inputTop,
             bottom: inputBottom
@@ -24,12 +24,12 @@ final class EdgeInsetsTopBottomTests: XCTestCase {
         XCTAssertEqual(result.top, inputTop + inset)
         XCTAssertEqual(result.bottom, inputBottom + inset)
     }
-
+    
     func testInsetTop() {
         let inputTop: CGFloat = 1
         let inputBottom: CGFloat = 2
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_TopBottom = .init(
             top: inputTop,
             bottom: inputBottom
@@ -43,7 +43,7 @@ final class EdgeInsetsTopBottomTests: XCTestCase {
         let inputTop: CGFloat = 1
         let inputBottom: CGFloat = 2
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_TopBottom = .init(
             top: inputTop,
             bottom: inputBottom
@@ -103,14 +103,14 @@ final class EdgeInsetsTopBottomTests: XCTestCase {
         let input2Bottom: CGFloat = 6
         
         let result: EdgeInsets_TopBottom =
-            EdgeInsets_TopBottom(
-                top: input1Top,
-                bottom: input1Bottom
-            ) -
-            EdgeInsets_TopBottom(
-                top: input2Top,
-                bottom: input2Bottom
-            )
+        EdgeInsets_TopBottom(
+            top: input1Top,
+            bottom: input1Bottom
+        ) -
+        EdgeInsets_TopBottom(
+            top: input2Top,
+            bottom: input2Bottom
+        )
         
         XCTAssertEqual(result.top, input1Top - input2Top)
         XCTAssertEqual(result.bottom, input1Bottom - input2Bottom)

@@ -23,7 +23,7 @@ final class NSColorBlendTests: XCTestCase {
         let input2G: CGFloat = 2/3
         let input2B: CGFloat = 2/3
         let input2A: CGFloat = 1
-
+        
         let outputR: CGFloat = (input1R + input2R) / 2
         let outputG: CGFloat = (input1G + input2G) / 2
         let outputB: CGFloat = (input1B + input2B) / 2
@@ -52,7 +52,7 @@ final class NSColorBlendTests: XCTestCase {
         let input2B: CGFloat = 2/3
         let input2A: CGFloat = 1
         let ratio2: CGFloat = 0.6
-
+        
         let outputR: CGFloat = input1R * ratio1 + input2R * ratio2
         let outputG: CGFloat = input1G * ratio1 + input2G * ratio2
         let outputB: CGFloat = input1B * ratio1 + input2B * ratio2
@@ -75,7 +75,7 @@ final class NSColorBlendTests: XCTestCase {
         let inputB: CGFloat = 0.5
         let inputA: CGFloat = 1
         let value: CGFloat = 0.1
-
+        
         let outputR: CGFloat = inputR + value
         let outputG: CGFloat = inputG + value
         let outputB: CGFloat = inputB + value
@@ -97,7 +97,7 @@ final class NSColorBlendTests: XCTestCase {
         let inputB: CGFloat = 0.5
         let inputA: CGFloat = 1
         let value: CGFloat = 0.1
-
+        
         let outputR: CGFloat = inputR - value
         let outputG: CGFloat = inputG - value
         let outputB: CGFloat = inputB - value

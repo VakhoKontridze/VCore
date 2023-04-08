@@ -11,7 +11,7 @@ import XCTest
 // MARK: - Tests
 final class VCoreLocalizationManagerTests: XCTestCase {
     // MARK: Test Data
-    private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {        
+    private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {
         func networkClientErrorDescription(_ networkClientError: NetworkClientError.Code) -> String {
             "A"
         }
@@ -58,7 +58,7 @@ final class VCoreLocalizationManagerTests: XCTestCase {
             XCTAssertEqual(error.localizedDescription, "A")
         }
     }
-
+    
     func testJSONEncoderErrorDescription() {
         XCTAssertThrowsError(
             try JSONEncoderService().data(any: nil),

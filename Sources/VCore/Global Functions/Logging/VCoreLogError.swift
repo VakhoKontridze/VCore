@@ -28,10 +28,10 @@ public func VCoreLogError(
                 } else {
                     return (error as NSError).debugDescription
                 }
-            
+                
             case let string as String:
                 return string
-            
+                
             default:
                 return String(describing: item)
             }

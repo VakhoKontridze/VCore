@@ -24,10 +24,10 @@ import SwiftUI
 ///                     "Lorem ipsum",
 ///                     action: { presenter.didTapButton() }
 ///                 )
-///                     .modifier(HomeRouter())
-///                     .onFirstAppear($didAppearForTheFirstTime, perform: {
-///                         presenter.navigationStackCoordinator = navigationStackCoordinator
-///                     })
+///                 .modifier(HomeRouter())
+///                 .onFirstAppear($didAppearForTheFirstTime, perform: {
+///                     presenter.navigationStackCoordinator = navigationStackCoordinator
+///                 })
 ///             })
 ///         }
 ///     }
@@ -67,32 +67,33 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     // MARK: Properties
     @StateObject private var navigationStackCoordinator: NavigationStackCoordinator
     private let root: (NavigationStackCoordinator) -> Root
-
+    
+    // MARK: Initializers - NavigationPath
+    /// Initializes `CoordinatingNavigationStack`.
+    public init(
+        path navigationPath: @escaping @autoclosure () -> NavigationPath,
+        @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
+    ) {
+        self._navigationStackCoordinator = StateObject(wrappedValue: NavigationStackCoordinator(path: navigationPath()))
+        self.root = root
+    }
+    
+    /// Initializes `CoordinatingNavigationStack`.
+    public init(
+        path navigationPath: @escaping @autoclosure () -> NavigationPath,
+        @ViewBuilder root: @escaping () -> Root
+    ) {
+        self._navigationStackCoordinator = StateObject(wrappedValue: NavigationStackCoordinator(path: navigationPath()))
+        self.root = { _ in root() }
+    }
+    
     // MARK: Initializers
     /// Initializes `CoordinatingNavigationStack`.
     public init(
-        path navigationPath: @escaping @autoclosure () -> NavigationPath,
-        @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
-    ) {
-        self._navigationStackCoordinator = StateObject(wrappedValue: NavigationStackCoordinator(path: navigationPath()))
-        self.root = root
-    }
-    
-    /// Initializes `CoordinatingNavigationStack`.
-    public init(
         @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
     ) {
         self._navigationStackCoordinator = StateObject(wrappedValue: NavigationStackCoordinator(path: NavigationPath()))
         self.root = root
-    }
-    
-    /// Initializes `CoordinatingNavigationStack`.
-    public init(
-        path navigationPath: @escaping @autoclosure () -> NavigationPath,
-        @ViewBuilder root: @escaping () -> Root
-    ) {
-        self._navigationStackCoordinator = StateObject(wrappedValue: NavigationStackCoordinator(path: navigationPath()))
-        self.root = { _ in root() }
     }
     
     /// Initializes `CoordinatingNavigationStack`.
@@ -102,13 +103,13 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         self._navigationStackCoordinator = StateObject(wrappedValue: NavigationStackCoordinator(path: NavigationPath()))
         self.root = { _ in root() }
     }
-
+    
     // MARK: Body
     public var body: some View {
         NavigationStack(
             path: $navigationStackCoordinator.path,
             root: { root(navigationStackCoordinator) }
         )
-            .navigationStackCoordinator(navigationStackCoordinator)
+        .navigationStackCoordinator(navigationStackCoordinator)
     }
 }

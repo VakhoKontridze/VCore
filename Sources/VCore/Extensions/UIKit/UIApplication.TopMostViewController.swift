@@ -20,11 +20,11 @@ extension UIApplication {
         else {
             return nil
         }
-
+        
         while let presentedViewController = topMostViewController.presentedViewController {
             topMostViewController = presentedViewController
         }
-
+        
         return topMostViewController
     }
 }

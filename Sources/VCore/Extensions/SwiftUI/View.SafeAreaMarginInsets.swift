@@ -24,9 +24,9 @@ extension View {
     ///                 .padding(padding)
     ///                 .safeAreaMarginInsets(edges: edges)
     ///         })
-    ///             .frame(size: size)
-    ///             .ignoresSafeArea()
-    ///             .offset(isPresented ? offset : initialOffset)
+    ///         .frame(size: size)
+    ///         .ignoresSafeArea()
+    ///         .offset(isPresented ? offset : initialOffset)
     ///     }
     ///
     @ViewBuilder public func safeAreaMarginInsets(edges: Edge.Set = .all) -> some View {

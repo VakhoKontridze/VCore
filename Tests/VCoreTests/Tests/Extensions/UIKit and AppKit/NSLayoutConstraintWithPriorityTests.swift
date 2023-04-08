@@ -16,7 +16,7 @@ final class NSLayoutConstraintWithPriorityTests: XCTestCase {
         let priority: UILayoutPriority = .required
         
         let view: UIView = .init()
-
+        
         var constraint: NSLayoutConstraint? = nil
         NSLayoutConstraint.activate([
             view.widthAnchor.constraint(equalToConstant: 100)

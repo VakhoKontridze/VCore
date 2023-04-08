@@ -8,13 +8,13 @@ final class ___VARIABLE_productName___Router<Navigator>: ___VARIABLE_productName
 {
     // MARK: Properties
     private unowned let navigator: Navigator
-
+    
     // MARK: Initializers
     init(
         navigator: Navigator
     ) {
         self.navigator = navigator
     }
-
+    
     // MARK: Routable
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct PostsUIModel {
     // MARK: Initializers
     private init() {}
-
+    
     // MARK: Colors
     struct Colors {
         // MARK: Properties

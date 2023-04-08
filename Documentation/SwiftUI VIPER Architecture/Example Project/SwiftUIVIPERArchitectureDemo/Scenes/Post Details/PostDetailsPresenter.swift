@@ -20,7 +20,7 @@ import VCore
         self._title = .init(initialValue: parameters.title)
         self._body = .init(initialValue: parameters.body)
     }
-
+    
     // MARK: Presentable
     @Published var title: String
     @Published var body: String

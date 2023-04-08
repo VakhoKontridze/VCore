@@ -50,7 +50,7 @@ public struct AlertParameters {
         self.message = message
         self.buttons = buttons
     }
-
+    
     /// Initializes `AlertParameters` with "ok" action.
     public init(
         title: String,
@@ -69,7 +69,7 @@ public struct AlertParameters {
             }
         )
     }
-
+    
     /// Initializes `AlertParameters` with error and "ok" action.
     public init(
         error: some Error,

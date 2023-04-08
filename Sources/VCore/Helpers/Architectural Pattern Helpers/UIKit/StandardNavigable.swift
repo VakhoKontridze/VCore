@@ -141,10 +141,10 @@ extension StandardNavigable where Self: UIViewController {
     
     public func pop(count: Int, animated: Bool) {
         guard let navigationController else { return }
-
+        
         let viewControllers: [UIViewController] = navigationController.viewControllers
         guard viewControllers.count >= (count + 1) else { return }
-
+        
         navigationController.popToViewController(viewControllers[(viewControllers.count-1) - count], animated: animated)
     }
     

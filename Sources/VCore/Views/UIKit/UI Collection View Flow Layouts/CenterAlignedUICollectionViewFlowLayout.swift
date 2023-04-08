@@ -16,14 +16,14 @@ import UIKit
 open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Properties
     private var itemLayoutAttributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
-
+    
     // MARK: Lifecycle
     public override func prepare() {
         super.prepare()
         
         itemLayoutAttributes = [:]
     }
-
+    
     // MARK: Item Attributes
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let collectionView else { return nil }
@@ -33,7 +33,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         for i in 0..<collectionView.numberOfSections {
             for j in 0..<collectionView.numberOfItems(inSection: i) {
                 let indexPath: IndexPath = .init(row: j, section: i)
-
+                
                 layoutAttributesForItem(at: indexPath).map {
                     guard $0.frame.intersects(rect) else { return }
                     updatedItemLayoutAttributes.append($0)
@@ -51,7 +51,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         return updatedItemLayoutAttributes
     }
-
+    
     // MARK: Item Attribute
     open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard
@@ -67,20 +67,20 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             collectionView.bounds.width -
             collectionView.contentInset.left -
             collectionView.contentInset.right
-
+        
         let sameRowItemAttributes: [UICollectionViewLayoutAttributes] = findSameRowItemAttributes(
             collectionView: collectionView,
             indexPath: indexPath,
             availableWidthForCells: availableWidthForCells
         )
-
+        
         let interitemSpacing: CGFloat = calculateRowItemInterimSpacing( // Minimum spacing between items in a row
             collectionView: collectionView,
             flowDelegate: flowDelegate,
             indexPath: indexPath,
             sameRowItemAttributes: sameRowItemAttributes
         )
-
+        
         let centerAlignmentXOffset: CGFloat = calculateXOffset(
             availableWidthForCells: availableWidthForCells,
             interitemSpacing: interitemSpacing,
@@ -104,14 +104,14 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
                     
                     return centeredItemFrame
                 }()
-
+                
                 itemAttributes.frame = centeredItemFrame
                 
                 previousFrame = centeredItemFrame
                 itemLayoutAttributes[itemAttributes.indexPath] = itemAttributes
             }
         }
-
+        
         return itemLayoutAttributes[indexPath]
     }
     
@@ -129,14 +129,14 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             defaultRowFrame.size.width = availableWidthForCells
             return defaultRowFrame
         }()
-
+        
         let indexOfFirstItemInRow: Int = { // Stop at 0, or when it reach previous row
             var index: Int = indexPath.row
             
             while true {
                 let previousIndex = index - 1
                 guard previousIndex >= 0 else { break }
-
+                
                 let previousIndexPath: IndexPath = .init(row: previousIndex, section: indexPath.section)
                 let previousFrame: CGRect = super.layoutAttributesForItem(at: previousIndexPath)?.frame ?? .zero
                 
@@ -152,7 +152,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             var currentIndex = indexOfFirstItemInRow
             while true {
                 guard currentIndex <= collectionView.numberOfItems(inSection: indexPath.section) - 1 else { break }
-
+                
                 let currentIndexPath: IndexPath = .init(row: currentIndex, section: indexPath.section)
                 guard
                     let currentAttributes: UICollectionViewLayoutAttributes = super.layoutAttributesForItem(at: currentIndexPath),
@@ -185,7 +185,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         else {
             return minimumInteritemSpacing
         }
-
+        
         return flowDelegate.collectionView?(
             collectionView,
             layout: self,

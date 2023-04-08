@@ -21,7 +21,7 @@ final class ResultNoSuccessNoFailureTests: XCTestCase {
         XCTAssertFalse(resultS == resultF)
         XCTAssertTrue(resultS == resultS)
     }
-
+    
     func testNotEqualOperator() {
         XCTAssertFalse(resultF != resultF)
         XCTAssertTrue(resultF != resultS)

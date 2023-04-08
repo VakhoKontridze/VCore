@@ -15,7 +15,7 @@ final class EdgeInsetsHorizontalVerticalTests: XCTestCase {
         let inputHorizontal: CGFloat = 1
         let inputVertical: CGFloat = 2
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_HorizontalVertical = .init(
             horizontal: inputHorizontal,
             vertical: inputVertical
@@ -24,12 +24,12 @@ final class EdgeInsetsHorizontalVerticalTests: XCTestCase {
         XCTAssertEqual(result.horizontal, inputHorizontal + inset)
         XCTAssertEqual(result.vertical, inputVertical + inset)
     }
-
+    
     func testInsetHorizontal() {
         let inputHorizontal: CGFloat = 1
         let inputVertical: CGFloat = 2
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_HorizontalVertical = .init(
             horizontal: inputHorizontal,
             vertical: inputVertical
@@ -43,7 +43,7 @@ final class EdgeInsetsHorizontalVerticalTests: XCTestCase {
         let inputHorizontal: CGFloat = 1
         let inputVertical: CGFloat = 2
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_HorizontalVertical = .init(
             horizontal: inputHorizontal,
             vertical: inputVertical

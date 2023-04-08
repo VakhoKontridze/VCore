@@ -26,7 +26,7 @@ struct PostCellUIModel {
         // MARK: Initializers
         private init() {}
     }
-
+    
     // MARK: Colors
     struct Colors {
         // MARK: Properties
@@ -38,7 +38,7 @@ struct PostCellUIModel {
         // MARK: Initializers
         private init() {}
     }
-
+    
     // MARK: Fonts
     struct Fonts {
         // MARK: Properties

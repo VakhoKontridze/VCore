@@ -14,12 +14,12 @@ struct ___VARIABLE_productName___ViewUIModel {
     // MARK: Layout
     struct Layout {
     }
-
+    
     // MARK: Colors
     struct Colors {
         var background: Color = .init(.systemBackground)
     }
-
+    
     // MARK: Fonts
     struct Fonts {
         
@@ -27,11 +27,11 @@ struct ___VARIABLE_productName___ViewUIModel {
     
     // MARK: Animations
     struct Animations {
-
+        
     }
-
+    
     // MARK: Misc
     struct Misc {
-
+        
     }
 }

@@ -32,7 +32,7 @@ import SwiftUI
 ///                 }
 ///             }
 ///         )
-///             .frame(dimension: 200)
+///         .frame(dimension: 200)
 ///     }
 ///
 ///     ...
@@ -60,10 +60,10 @@ import SwiftUI
 ///     }
 ///
 public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
-    where
-        Resource: Equatable,
-        Content: View,
-        PlaceholderContent: View
+where
+Resource: Equatable,
+Content: View,
+PlaceholderContent: View
 {
     // MARK: Properties
     private let uiModel: FetchDelegatingAsyncImageUIModel
@@ -86,9 +86,9 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
         from resource: Resource?,
         fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image
     )
-        where
-            Content == Never,
-            PlaceholderContent == Never
+    where
+    Content == Never,
+    PlaceholderContent == Never
     {
         self.uiModel = uiModel
         self.removesImageOnDisappear = removesImageOnDisappear
@@ -105,8 +105,8 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
         fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content
     )
-        where
-            PlaceholderContent == Never
+    where
+    PlaceholderContent == Never
     {
         self.uiModel = uiModel
         self.removesImageOnDisappear = removesImageOnDisappear
@@ -135,7 +135,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
             placeholder: placeholderContent
         )
     }
-
+    
     /// Initializes `FetchDelegatingAsyncImage` with resource, fetch method, and phase-dependent content.
     @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
     public init(
@@ -145,7 +145,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
         fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
     )
-        where PlaceholderContent == Never
+    where PlaceholderContent == Never
     {
         self.uiModel = uiModel
         self.removesImageOnDisappear = removesImageOnDisappear
@@ -164,20 +164,20 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
             switch content {
             case .empty:
                 bodyEmpty()
-            
+                
             case .content(let content):
                 bodyContent(content)
-            
+                
             case .contentPlaceholder(let content, let placeholderContent):
                 bodyContentPlaceholder(content, placeholderContent)
-            
+                
             case .contentWithPhase(let content):
                 bodyContentBodyWithPhase(content)
             }
         })
-            .onDisappear(perform: {
-                if removesImageOnDisappear { zeroData() }
-            })
+        .onDisappear(perform: {
+            if removesImageOnDisappear { zeroData() }
+        })
     }
     
     @ViewBuilder private func bodyEmpty() -> some View {

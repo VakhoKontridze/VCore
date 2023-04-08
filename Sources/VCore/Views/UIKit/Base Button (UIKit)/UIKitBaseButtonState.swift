@@ -88,7 +88,7 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
         case (true, true): self = .pressed
         }
     }
-
+    
     /// Default value for `UIKitBaseButtonInternalState`.
     public static var `default`: Self { .enabled }
 }

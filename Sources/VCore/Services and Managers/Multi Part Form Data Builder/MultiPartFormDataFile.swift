@@ -55,7 +55,7 @@ extension Optional: AnyMultipartFormDataFile where Wrapped == AnyMultipartFormDa
 extension Array: AnyMultipartFormDataFile where Element == Optional<AnyMultipartFormDataFile> {}
 
 extension Dictionary: AnyMultipartFormDataFile where Key == String, Value == Optional<AnyMultipartFormDataFile> {}
- 
+
 // MARK: - Multipart Form Data File
 /// Building block of objects conforming to `AnyMultipartFormDataFile`.
 ///

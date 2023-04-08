@@ -32,7 +32,7 @@ final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
     required init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     // MARK: Setup
     private func setUp() {
         addSubviews()

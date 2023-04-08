@@ -56,7 +56,7 @@ extension UIStackView {
         spacing: CGFloat = 0
     ) {
         self.init(arrangedSubviews: arrangedSubviews)
-
+        
         configure(
             axis: axis,
             distribution: distribution,

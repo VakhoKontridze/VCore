@@ -64,7 +64,7 @@ import SwiftUI
 ///                         .foregroundColor(uiModel.colors.title.value(for: internalState))
 ///                 }
 ///             )
-///                 .disabled(!internalState.isEnabled)
+///             .disabled(!internalState.isEnabled)
 ///         }
 ///
 ///         private func stateChangeHandler(gestureState: GestureBaseButtonGestureState) {
@@ -110,7 +110,7 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
         }
         self.label = label
     }
-
+    
     // MARK: Body
     public var body: some View {
 #if os(iOS)

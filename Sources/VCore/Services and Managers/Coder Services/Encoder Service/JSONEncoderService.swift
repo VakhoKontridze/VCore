@@ -27,7 +27,7 @@ public struct JSONEncoderService {
     // MARK: Initializers
     /// Initializes `JSONEncoderService`.
     public init() {}
-
+    
     // MARK: Encoding
     /// Encodes `Any` to `Data`.
     public func data(

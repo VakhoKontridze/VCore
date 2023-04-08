@@ -26,7 +26,7 @@ struct SwiftUIGestureBaseButtonUIViewRepresentable: UIViewRepresentable {
         self.isEnabled = isEnabled
         self.stateChangeHandler = stateChangeHandler
     }
-
+    
     // MARK: Representable
     func makeUIView(context: Context) -> UIView {
         let view: UIView = .init(frame: .zero)
@@ -40,7 +40,7 @@ struct SwiftUIGestureBaseButtonUIViewRepresentable: UIViewRepresentable {
         
         return view
     }
-
+    
     func updateUIView(_ uiView: UIView, context: Context) {
         setBindedValues()
     }

@@ -18,7 +18,7 @@ open class LeftAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         else {
             return nil
         }
-
+        
         var leftMargin: CGFloat = sectionInset.left
         var maxY: CGFloat = -1
         
@@ -27,11 +27,11 @@ open class LeftAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             
             if layoutAttribute.frame.origin.y >= maxY { leftMargin = sectionInset.left }
             layoutAttribute.frame.origin.x = leftMargin
-
+            
             leftMargin += layoutAttribute.frame.size.width + minimumInteritemSpacing
             maxY = max(layoutAttribute.frame.maxY, maxY)
         }
-
+        
         return layoutAttributes
     }
 }

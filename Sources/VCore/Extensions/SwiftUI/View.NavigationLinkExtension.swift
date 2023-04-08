@@ -23,9 +23,9 @@ extension View {
     ///                     title: "Lorem Ipsum"
     ///                 )
     ///             })
-    ///                 .navigationTitle("Home")
-    ///                 .navigationBarTitleDisplayMode(.inline)
-    ///                 .navigationLink(isActive: $isActive, destination: { destination })
+    ///             .navigationTitle("Home")
+    ///             .navigationBarTitleDisplayMode(.inline)
+    ///             .navigationLink(isActive: $isActive, destination: { destination })
     ///         })
     ///     }
     ///
@@ -45,8 +45,8 @@ extension View {
                     destination: destination,
                     label: { EmptyView() }
                 )
-                    .allowsHitTesting(false)
-                    .opacity(0)
+                .allowsHitTesting(false)
+                .opacity(0)
             )
     }
 }

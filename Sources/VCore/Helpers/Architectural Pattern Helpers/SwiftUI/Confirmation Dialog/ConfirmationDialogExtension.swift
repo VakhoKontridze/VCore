@@ -32,7 +32,7 @@ extension View {
         switch parameters.wrappedValue {
         case nil:
             self
-
+            
         case let _parameters?:
             self.confirmationDialog(
                 _parameters.title ?? "",

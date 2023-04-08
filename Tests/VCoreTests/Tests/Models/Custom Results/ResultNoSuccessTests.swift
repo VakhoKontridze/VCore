@@ -34,22 +34,22 @@ final class ResultNoSuccessTests: XCTestCase {
         XCTAssertEqual(resultF.flatMapError { _ in .success }, resultS)
         XCTAssertEqual(resultF.flatMapError { _ in .failure(.b) }, resultFModified)
     }
-
+    
     func testEqualOperator() {
         XCTAssertTrue(resultF == resultF)
         XCTAssertFalse(resultF == resultS)
         XCTAssertFalse(resultS == resultF)
         XCTAssertTrue(resultS == resultS)
-
+        
         XCTAssertFalse(resultF == resultFModified)
     }
-
+    
     func testNotEqualOperator() {
         XCTAssertFalse(resultF != resultF)
         XCTAssertTrue(resultF != resultS)
         XCTAssertTrue(resultS != resultF)
         XCTAssertFalse(resultS != resultS)
-
+        
         XCTAssertTrue(resultF != resultFModified)
     }
 }

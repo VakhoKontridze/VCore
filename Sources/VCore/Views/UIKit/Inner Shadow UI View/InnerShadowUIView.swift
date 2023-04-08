@@ -22,7 +22,7 @@ open class InnerShadowUIView: UIView {
     
     // MARK: Properties
     private var uiModel: InnerShadowUIViewUIModel
-
+    
     // MARK: Initializers
     /// Initializes `InnerShadowUIView`.
     public init(uiModel: InnerShadowUIViewUIModel = .init()) {
@@ -35,11 +35,11 @@ open class InnerShadowUIView: UIView {
     required public init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     // MARK: Lifecycle
     open override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         shapeLayer.path = {
             let inset: CGFloat = -shapeLayer.shadowRadius * 2
             

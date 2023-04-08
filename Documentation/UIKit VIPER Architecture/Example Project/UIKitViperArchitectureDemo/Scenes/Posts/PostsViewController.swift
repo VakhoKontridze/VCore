@@ -30,19 +30,19 @@ final class PostsViewController:
     }()
     
     lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
-
+    
     // MARK: Properties
     var presenter: (any PostsPresentable)!
     
     private typealias UIModel = PostsUIModel
-
+    
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUp()
         presenter.viewDidLoad()
     }
-
+    
     // MARK: Setup
     private func setUp() {
         setUpView()
@@ -54,12 +54,12 @@ final class PostsViewController:
     private func setUpView() {
         view.backgroundColor = UIModel.Colors.background
     }
-
+    
     private func addSubviews() {
         view.addSubview(tableView)
         view.addSubview(activityIndicator)
     }
-
+    
     private func setUpLayout() {
         NSLayoutConstraint.activate([
             tableView.constraintLeading(to: view),
@@ -72,7 +72,7 @@ final class PostsViewController:
     private func setUpNavigationBar() {
         navigationItem.title = "Posts"
     }
-
+    
     // MARK: Viewable
     func reloadPosts() {
         tableView.reloadData()
@@ -85,12 +85,12 @@ final class PostsViewController:
             tableRefreshControl.endRefreshing()
         }
     }
-
+    
     // MARK: Table View Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         presenter.tableViewDidSelectRow(section: indexPath.section, row: indexPath.row)
     }
-
+    
     // MARK: Table View DataSource
     func numberOfSections(in tableView: UITableView) -> Int {
         presenter.tableViewNumberOfSections

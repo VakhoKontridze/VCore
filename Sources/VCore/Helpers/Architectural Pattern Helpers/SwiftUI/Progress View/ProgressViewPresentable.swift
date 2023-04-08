@@ -21,7 +21,7 @@ import SwiftUI
 ///                 "Lorem ipsum",
 ///                 action: { presenter.didTapButton() }
 ///             )
-///                 .progressView(parameters: presenter.progressViewParameters)
+///             .progressView(parameters: presenter.progressViewParameters)
 ///         }
 ///     }
 ///

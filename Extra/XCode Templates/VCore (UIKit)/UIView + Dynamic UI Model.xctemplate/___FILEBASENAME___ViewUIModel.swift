@@ -15,24 +15,24 @@ struct ___VARIABLE_productName___ViewUIModel {
     struct Layout {
         
     }
-
+    
     // MARK: Colors
     struct Colors {
         var background: UIColor = .systemBackground
     }
-
+    
     // MARK: Fonts
     struct Fonts {
         
     }
-
+    
     // MARK: Animations
     struct Animations {
-
+        
     }
-
+    
     // MARK: Misc
     struct Misc {
-
+        
     }
 }

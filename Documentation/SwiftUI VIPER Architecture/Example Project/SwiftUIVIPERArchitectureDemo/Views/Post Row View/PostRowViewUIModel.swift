@@ -24,7 +24,7 @@ struct PostRowViewUIModel {
         // MARK: Initializers
         private init() {}
     }
-
+    
     // MARK: Colors
     struct Colors {
         // MARK: Properties
@@ -36,7 +36,7 @@ struct PostRowViewUIModel {
         // MARK: Initializers
         private init() {}
     }
-
+    
     // MARK: Fonts
     struct Fonts {
         // MARK: Properties

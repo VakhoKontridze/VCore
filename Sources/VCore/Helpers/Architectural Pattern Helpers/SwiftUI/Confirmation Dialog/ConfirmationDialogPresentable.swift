@@ -21,7 +21,7 @@ import SwiftUI
 ///                 "Lorem ipsum",
 ///                 action: { presenter.didTapButton() }
 ///             )
-///                 .confirmationDialog(parameters: $presenter.confirmationDialogParameters)
+///             .confirmationDialog(parameters: $presenter.confirmationDialogParameters)
 ///         }
 ///     }
 ///

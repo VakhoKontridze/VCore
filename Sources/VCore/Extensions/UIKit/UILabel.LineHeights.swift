@@ -54,7 +54,7 @@ extension UILabel {
         label.sizeToFit()
         return label.intrinsicContentSize.height
     }
-
+    
     /// Calculates and returns multi-line natural height constant.
     ///
     /// Used for ensuring that view doesn't flicker when new text is added to empty `UILabel`.

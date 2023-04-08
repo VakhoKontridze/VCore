@@ -23,7 +23,7 @@ import SwiftUI
 ///                     .background(content: { Color.accentColor.opacity(0.5) })
 ///             })
 ///         })
-///             .padding()
+///         .padding()
 ///     }
 ///
 /// `AlignedGridView` also supports `VStack`/`HStack`.
@@ -114,12 +114,12 @@ public struct AlignedGridView: Layout {
             boundWidth: width,
             subviews: subviews
         )
-
+        
         let height: CGFloat = rects.last?.maxY ?? 0
-
+        
         return CGSize(width: width, height: height)
     }
-
+    
     public func placeSubviews(
         in bounds: CGRect,
         proposal: ProposedViewSize,
@@ -131,7 +131,7 @@ public struct AlignedGridView: Layout {
             boundWidth: bounds.size.width,
             subviews: subviews
         )
-
+        
         for (i, rect) in rects.enumerated() {
             subviews[i].place(
                 at: rect.origin,
@@ -139,7 +139,7 @@ public struct AlignedGridView: Layout {
             )
         }
     }
-
+    
     // MARK: Helpers
     private func calculateRects(
         boundOrigin: CGPoint,
@@ -172,7 +172,7 @@ public struct AlignedGridView: Layout {
                 }()
             }
         }
-
+        
         return sameRowRects.flatMap { $0 }
     }
     
@@ -184,21 +184,21 @@ public struct AlignedGridView: Layout {
         var rects: [CGRect] = []
         
         var origin: CGPoint = boundOrigin
-
+        
         for subview in subviews {
             let size: CGSize = subview.sizeThatFits(.unspecified)
-
+            
             let clips: Bool = origin.x + spacingHor + size.width > boundOrigin.x + boundWidth
             if clips {
                 origin.x = boundOrigin.x
                 origin.y += size.height + spacingVer
             }
-
+            
             rects.append(CGRect(origin: origin, size: size))
             
             origin.x += spacingHor + size.width
         }
-
+        
         return rects
     }
 }
@@ -222,7 +222,7 @@ struct AlignedGridView_Previews: PreviewProvider {
             Divider()
             gridView(.trailing)
         })
-            .padding()
+        .padding()
     }
     
     @ViewBuilder private static func gridView(
@@ -234,6 +234,6 @@ struct AlignedGridView_Previews: PreviewProvider {
                     .background(content: { Color.accentColor.opacity(0.5) })
             })
         })
-            .padding()
+        .padding()
     }
 }

@@ -31,7 +31,7 @@ extension NetworkClient {
             }
         )
     }
-
+    
     /// Makes network request and calls completion handler with a result of `Data`or `Error`.
     public func data(
         from request: NetworkRequest,
@@ -43,7 +43,7 @@ extension NetworkClient {
             completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) } // Logged internally
         )
     }
-
+    
     /// Makes network request and calls completion handler with a result of `JSON`or `Error`.
     public func json(
         from request: NetworkRequest,
@@ -56,7 +56,7 @@ extension NetworkClient {
             completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) } // Logged internally
         )
     }
-
+    
     /// Makes network request and calls completion handler with a result of `JSON` `Array`or `Error`.
     public func jsonArray(
         from request: NetworkRequest,
@@ -69,7 +69,7 @@ extension NetworkClient {
             completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) } // Logged internally
         )
     }
-
+    
     /// Makes network request and calls completion handler with a result of `Decodable` or `Error`.
     public func decodable<T>(
         _ type: T.Type,

@@ -78,16 +78,16 @@ extension UIActivityIndicatorViewable where Self: UIViewController {
     public func startActivityIndicatorAnimation() {
         activityIndicator.startAnimating()
     }
-
+    
     public func stopActivityIndicatorAnimation() {
         activityIndicator.stopAnimating()
     }
-
+    
     public func startActivityIndicatorAnimationAndDisableInteraction() {
         startActivityIndicatorAnimation()
         view.isUserInteractionEnabled = false
     }
-
+    
     public func stopActivityIndicatorAnimationAndEnableInteraction() {
         stopActivityIndicatorAnimation()
         view.isUserInteractionEnabled = true

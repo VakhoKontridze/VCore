@@ -23,7 +23,7 @@ extension SceneDelegate {
         else {
             return
         }
-
+        
         sceneDelegate.window?.rootViewController = viewController
     }
 }

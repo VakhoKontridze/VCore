@@ -38,10 +38,10 @@ public final class KeychainService {
     /// Returns `Data` from key.
     public func get(key: String) throws -> Data {
         let query: [String: Any] = configuration.getQuery.build(key: key)
-
+        
         var valueObject: AnyObject?
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &valueObject)
-
+        
         guard status == noErr else {
             throw KeychainServiceError(.failedToGet) // No logging should occur if data simply isn't there
         }
@@ -61,12 +61,12 @@ public final class KeychainService {
         switch data {
         case nil:
             try delete(key: key) // Logged internally
-
+            
         case let data?:
             try? delete(key: key, logsError: false)
             
             let query: [String: Any] = configuration.setQuery.build(key: key, data: data)
-
+            
             let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
             
             guard status == noErr else {
@@ -88,7 +88,7 @@ public final class KeychainService {
         logsError: Bool
     ) throws {
         let query: [String: Any] = configuration.deleteQuery.build(key: key)
-
+        
         let status: OSStatus = SecItemDelete(query as CFDictionary)
         
         guard status == noErr else {

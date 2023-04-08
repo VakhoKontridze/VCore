@@ -30,7 +30,7 @@ extension View {
                         .preference(key: SizePreferenceKey.self, value: proxy.frame(in: .local).size)
                 })
             )
-                .onPreferenceChange(SizePreferenceKey.self, perform: action)
+            .onPreferenceChange(SizePreferenceKey.self, perform: action)
     }
 }
 

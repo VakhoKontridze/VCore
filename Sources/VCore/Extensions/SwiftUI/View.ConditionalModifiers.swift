@@ -28,7 +28,7 @@ extension View {
             self
         }
     }
-
+    
     /// Applies modifier and transforms view if condition is met, or applies alternate modifier.
     ///
     ///     private let isError: Bool = true

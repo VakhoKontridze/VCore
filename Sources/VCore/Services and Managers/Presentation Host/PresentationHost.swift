@@ -56,11 +56,11 @@ extension View {
     ///                 content()
     ///                     .offset(y: isInternallyPresented ? 0 : UIScreen.main.bounds.size.height)
     ///             })
-    ///                 .onAppear(perform: animateIn)
-    ///                 .onChange(
-    ///                     of: presentationMode.isExternallyDismissed,
-    ///                     perform: { if $0 && isInternallyPresented { animateOutFromExternalDismiss() } }
-    ///                 )
+    ///             .onAppear(perform: animateIn)
+    ///             .onChange(
+    ///                 of: presentationMode.isExternallyDismissed,
+    ///                 perform: { if $0 && isInternallyPresented { animateOutFromExternalDismiss() } }
+    ///             )
     ///         }
     ///
     ///         private func animateIn() {

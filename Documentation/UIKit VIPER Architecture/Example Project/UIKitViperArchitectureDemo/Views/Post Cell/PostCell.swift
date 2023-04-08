@@ -26,7 +26,7 @@ final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
     
     // MARK: Properties
     private typealias UIModel = PostCellUIModel
-
+    
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -36,7 +36,7 @@ final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
     required init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     // MARK: Setup
     private func setUp() {
         setUpView()
@@ -66,7 +66,7 @@ final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
             bodyLabel.constraintBottom(to: contentView, constant: -UIModel.Layout.bodyLabelMarginBottom)
         ])
     }
-
+    
     // MARK: Configurable Table View Cell
     func configure(parameter: some UITableViewCellParameter) {
         guard let parameters = parameter as? PostCellViewParameters else { return }

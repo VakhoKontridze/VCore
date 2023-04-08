@@ -9,7 +9,7 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, ConfigurableUITable
     
     // MARK: Properties
     private typealias UIModel = ___VARIABLE_productName___CellUIModel
-
+    
     // MARK: Initializers
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -19,7 +19,7 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, ConfigurableUITable
     required init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     // MARK: Setup
     private func setUp() {
         setUpView()
@@ -38,10 +38,10 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, ConfigurableUITable
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-        
+            
         ])
     }
-
+    
     // MARK: Configurable Table View Cell
     func configure(parameter: some UITableViewCellParameter) {
         guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }

@@ -49,7 +49,7 @@ public struct NetworkRequest {
     public init(url: URL) {
         self.init(url: url.absoluteString)
     }
-
+    
     // MARK: Path Parameters
     /// Adds `String` to path parameters.
     mutating public func addPathParameters(
@@ -82,7 +82,7 @@ public struct NetworkRequest {
             queryParameters[key] = description
         }
     }
-
+    
     /// Adds `Encodable` to query parameters.
     mutating public func addQueryParameters(
         encodable: some Encodable,
@@ -100,7 +100,7 @@ public struct NetworkRequest {
         
         try addQueryParameters(json: json)
     }
-
+    
     // MARK: Headers
     /// Adds `JSON` to headers.
     mutating public func addHeaders(
@@ -118,7 +118,7 @@ public struct NetworkRequest {
             headers[key] = description
         }
     }
-
+    
     /// Adds `Encodable` to headers.
     mutating public func addHeaders(
         encodable: some Encodable,
@@ -144,7 +144,7 @@ public struct NetworkRequest {
     ) {
         body.append(data)
     }
-
+    
     /// Adds `JSON` to headers.
     mutating public func addBody(
         json: [String: Any?],
@@ -159,14 +159,14 @@ public struct NetworkRequest {
             throw error
         }
     }
-
+    
     /// Adds `Encodable` to headers.
     mutating public func addBody(
         encodable: some Encodable
     ) throws {
         do {
             try body.append(JSONEncoderService().data(encodable: encodable))
-
+            
         } catch /*let _error*/ { // Logged internally
             let error: NetworkClientError = .init(.invalidBody)
             VCoreLogError(error)
@@ -226,7 +226,7 @@ extension URL {
 extension URLComponents {
     fileprivate mutating func addQueryItems(_ newQueryItems: [String: String?]) {
         guard !newQueryItems.isEmpty else { return }
-
+        
         switch queryItems {
         case nil: queryItems = newQueryItems.compactMap { URLQueryItem($0) }
         case _?: newQueryItems.compactMap { URLQueryItem($0) }.forEach { queryItems?.append($0) }

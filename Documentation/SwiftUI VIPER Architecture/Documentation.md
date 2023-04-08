@@ -60,7 +60,7 @@ struct HomeFactory {
                 parameters: parameters
             )
         )
-            .modifier(HomeRouter())
+        .modifier(HomeRouter())
     }
     
     static func mock() -> some View {
@@ -70,7 +70,7 @@ struct HomeFactory {
                 parameters: .mock
             )
         )
-            .modifier(HomeRouter())
+        .modifier(HomeRouter())
     }
 }
 ```
@@ -290,10 +290,10 @@ struct HomeView<Presenter>: View
             canvas
             contentView
         })
-            .onFirstAppear($didAppearForTheFirstTime, perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
-            .inlineNavigationTitle("Home")
-            .alert(parameters: $presenter.alertParameters)
-            .progressView(parameters: presenter.progressViewParameters)
+        .onFirstAppear($didAppearForTheFirstTime, perform: { presenter.navigationStackCoordinator = navigationStackCoordinator })
+        .inlineNavigationTitle("Home")
+        .alert(parameters: $presenter.alertParameters)
+        .progressView(parameters: presenter.progressViewParameters)
     }
     
     private var canvas: some View {

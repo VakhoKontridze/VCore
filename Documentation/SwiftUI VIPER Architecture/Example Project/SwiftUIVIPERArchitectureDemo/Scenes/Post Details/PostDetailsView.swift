@@ -23,14 +23,14 @@ struct PostDetailsView<Presenter>: View
     ) {
         self._presenter = StateObject(wrappedValue: presenter())
     }
-
+    
     // MARK: Body
     var body: some View {
         ZStack(content: {
             canvas
             contentView
         })
-            .inlineNavigationTitle(presenter.title)
+        .inlineNavigationTitle(presenter.title)
     }
     
     private var canvas: some View {
@@ -44,7 +44,7 @@ struct PostDetailsView<Presenter>: View
                 .foregroundColor(UIModel.Colors.bodyText)
                 .font(UIModel.Fonts.bodyText)
         })
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }
 }
 

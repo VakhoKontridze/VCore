@@ -14,7 +14,7 @@ struct ___VARIABLE_productName___CellUIModel {
         // MARK: Initializers
         private init() {}
     }
-
+    
     // MARK: Colors
     struct Colors {
         // MARK: Properties
@@ -23,7 +23,7 @@ struct ___VARIABLE_productName___CellUIModel {
         // MARK: Initializers
         private init() {}
     }
-
+    
     // MARK: Fonts
     struct Fonts {
         // MARK: Properties
@@ -31,7 +31,7 @@ struct ___VARIABLE_productName___CellUIModel {
         // MARK: Initializers
         private init() {}
     }
-
+    
     // MARK: Animations
     struct Animations {
         // MARK: Properties
@@ -39,7 +39,7 @@ struct ___VARIABLE_productName___CellUIModel {
         // MARK: Initializers
         private init() {}
     }
-
+    
     // MARK: Misc
     struct Misc {
         // MARK: Properties

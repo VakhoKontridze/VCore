@@ -50,7 +50,7 @@ extension CGRect {
     public var center: CGPoint {
         .init(x: centerX, y: centerY)
     }
-
+    
     /// Converts rect to constant usable for creating center `x` constraint.
     ///
     ///     let constant: CGFloat = rect.centerX
@@ -58,7 +58,7 @@ extension CGRect {
     public var centerX: CGFloat {
         origin.x + width / 2
     }
-
+    
     /// Converts rect to constant usable for creating center `y` constraint.
     ///
     ///     let constant: CGFloat = rect.centerY

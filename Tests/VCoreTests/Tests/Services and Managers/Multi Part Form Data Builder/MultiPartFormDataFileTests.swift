@@ -30,7 +30,7 @@ final class MultipartFormDataFileTests: XCTestCase {
             )
         )
         XCTAssertEqual(file2.filename, "small-image.jpg")
-            
+        
         let file3: _MultipartFormDataFile = .init(
             name: "file",
             file: MultipartFormDataFile(

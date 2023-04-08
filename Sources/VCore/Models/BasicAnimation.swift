@@ -43,7 +43,7 @@ public struct BasicAnimation {
         self.curve = curve
         self.duration = duration
     }
-
+    
     // MARK: Animation Curve
     /// Enumeration that represents animation curve, such as `linear`, `easeIn`, `easeOut`, or `easeInOut`.
     public enum AnimationCurve: Hashable, Equatable {

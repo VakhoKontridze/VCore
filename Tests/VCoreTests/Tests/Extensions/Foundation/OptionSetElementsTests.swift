@@ -15,9 +15,9 @@ final class OptionSetElementsTests: XCTestCase {
         static let first: Self = .init(rawValue: 1 << 0)
         static let second: Self = .init(rawValue: 1 << 1)
         static let third: Self = .init(rawValue: 1 << 2)
-
+        
         static var all: Self { [.first, .second, .third] }
-
+        
         let rawValue: Int
     }
     

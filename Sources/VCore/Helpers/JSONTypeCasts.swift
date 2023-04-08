@@ -23,7 +23,7 @@ extension Optional where Wrapped == Any {
         default: return nil
         }
     }
-
+    
     /// Casts `Optional` `Any` to `Float`.
     ///
     /// If type is `Bool`, `1` is returned if `true`, and `0` if `false`.
@@ -38,7 +38,7 @@ extension Optional where Wrapped == Any {
         default: return nil
         }
     }
-
+    
     /// Casts `Optional` `Any` to `Double`.
     ///
     /// If type is `Bool`, `1` is returned if `true`, and `0` if `false`.
@@ -53,7 +53,7 @@ extension Optional where Wrapped == Any {
         default: return nil
         }
     }
-
+    
     /// Casts `Optional` `Any` to `Bool`.
     ///
     /// If type is `Int`, `Float`, or `Double`, `true` is returned if value is non-zero.
@@ -72,7 +72,7 @@ extension Optional where Wrapped == Any {
         default: return nil
         }
     }
-
+    
     /// Casts `Optional` `Any` to `Character`.
     ///
     /// If type is `Int`, and value is not a single-digit, crashes would occur.
@@ -115,7 +115,7 @@ extension Optional where Wrapped == Any {
     public var toJSON: [String: Any?]? {
         self as? [String: Any?]
     }
-
+    
     /// Casts `Optional` `Any` to `JSON` `Array`.
     public var toJSONArray: [[String: Any?]]? {
         self as? [[String: Any?]]
@@ -128,7 +128,7 @@ extension Optional where Wrapped == Any {
     public var toUnwrappedJSON: [String: Any?] {
         toJSON ?? [:]
     }
-
+    
     /// Casts `Optional` `Any` to wrapped `JSON` `Array`.
     public var toUnwrappedJSONArray: [[String: Any?]] {
         toJSONArray ?? []

@@ -15,7 +15,7 @@ final class EdgeInsetsLeadingTrailingTests: XCTestCase {
         let inputLeading: CGFloat = 1
         let inputTrailing: CGFloat = 2
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_LeadingTrailing = .init(
             leading: inputLeading,
             trailing: inputTrailing
@@ -24,12 +24,12 @@ final class EdgeInsetsLeadingTrailingTests: XCTestCase {
         XCTAssertEqual(result.leading, inputLeading + inset)
         XCTAssertEqual(result.trailing, inputTrailing + inset)
     }
-
+    
     func testInsetLeading() {
         let inputLeading: CGFloat = 1
         let inputTrailing: CGFloat = 2
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_LeadingTrailing = .init(
             leading: inputLeading,
             trailing: inputTrailing
@@ -43,7 +43,7 @@ final class EdgeInsetsLeadingTrailingTests: XCTestCase {
         let inputLeading: CGFloat = 1
         let inputTrailing: CGFloat = 2
         let inset: CGFloat = 10
-
+        
         let result: EdgeInsets_LeadingTrailing = .init(
             leading: inputLeading,
             trailing: inputTrailing

@@ -12,7 +12,7 @@ import XCTest
 final class NetworkResponseProcessorTests: XCTestCase {
     // MARK: Test Data
     private let networkClient: NetworkClient = .init(responseProcessor: TestNetworkResponseProcessor())
-
+    
     // MARK: Tests
     func testResponse() {
         let code: Int = 404
@@ -68,20 +68,20 @@ final class NetworkResponseProcessorTests: XCTestCase {
 private struct TestNetworkResponseProcessor: NetworkResponseProcessor {
     func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
         if response.isSuccessHTTPStatusCode { return response }
-
+        
         guard let json: [String: Any?] = try? JSONDecoderService().json(data: data) else { return response }
         if json["success"]?.toBool == true { return response }
-
+        
         guard
             let code: Int = json["code"]?.toInt,
             let description: String = json["message"]?.toString
         else {
             throw TestNetworkError(code: 99, description: "Unknown Error")
         }
-
+        
         throw TestNetworkError(code: code, description: description)
     }
-
+    
     func data(_ data: Data, _ response: URLResponse) throws -> Data {
         guard
             let json: [String: Any?] = try? JSONDecoderService().json(data: data),
@@ -90,7 +90,7 @@ private struct TestNetworkResponseProcessor: NetworkResponseProcessor {
         else {
             throw TestNetworkError(code: 1, description: "Incomplete Data")
         }
-
+        
         return dataData
     }
 }

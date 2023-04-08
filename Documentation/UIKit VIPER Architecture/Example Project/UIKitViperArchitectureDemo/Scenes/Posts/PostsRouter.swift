@@ -13,14 +13,14 @@ final class PostsRouter<Navigator>: PostsRoutable
 {
     // MARK: Properties
     private unowned let navigator: Navigator
-
+    
     // MARK: Initializers
     init(
         navigator: Navigator
     ) {
         self.navigator = navigator
     }
-
+    
     // MARK: Routable
     func toPostDetails(parameters: PostDetailsParameters) {
         navigator.push(PostDetailsFactory.default(parameters: parameters))

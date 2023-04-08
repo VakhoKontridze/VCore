@@ -50,7 +50,7 @@ import Combine
             set: { wrappedValue = $0 }
         )
     }
-
+    
     // MARK: Initializers
     fileprivate init(
         keychainService: KeychainService,
@@ -155,11 +155,11 @@ extension KeychainStorage {
             
         } catch let _error {
             let error: KeychainServiceError = .init(.failedToGet)
-            VCoreLogError(error, _error)            
+            VCoreLogError(error, _error)
             return defaultValue
         }
     }
-
+    
     fileprivate static func setValue<T>(
         _ value: T,
         key: String,
@@ -169,7 +169,7 @@ extension KeychainStorage {
     {
         do {
             keychainService[key] = try JSONEncoder().encode(value)
-
+            
         } catch let _error {
             let error: KeychainServiceError = .init(.failedToSet)
             VCoreLogError(error, _error)

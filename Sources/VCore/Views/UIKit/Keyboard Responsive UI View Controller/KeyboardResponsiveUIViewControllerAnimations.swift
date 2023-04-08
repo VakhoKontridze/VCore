@@ -160,7 +160,7 @@ extension UIView {
                     return 0
                 }
             }()
-
+            
             UIView.animateKeyboardResponsiveness(
                 systemKeyboardInfo: systemKeyboardInfo,
                 animations: {

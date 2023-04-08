@@ -63,7 +63,7 @@ public final class LocalizationManager {
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
     public static let shared: LocalizationManager = .init()
-
+    
     // MARK: Properties - Locales
     /// Current `Locale`.
     ///
@@ -73,14 +73,14 @@ public final class LocalizationManager {
     ///
     /// To set property, refer to `setCurrentLocale(to:replaceLocalizationTableInBundles:)` method.
     private(set) public lazy var currentLocale: Locale = getCurrentAppLocale()
-
+    
     /// `Locales` that are added to the `LocalizationManager`.
     ///
     /// To set property, refer to `addLocale(_:)` or `addLocales(_:)` methods.
     private(set) public var locales: [Locale] = []
     
     private var _defaultLocale: Locale!
-
+    
     /// Default `Locale` that will be retrieved in the absence of current value.
     ///
     /// To set property, refer to `setDefaultLocale(to:)` method.
@@ -97,23 +97,23 @@ public final class LocalizationManager {
         {
             return preferredLocale
         }
-
+        
         return _defaultLocale
     }
-
+    
     // MARK: Properties - Misc
     /// Indicates if default `Locale` is first retrieved from user's preferred `Locale`s,
     /// before referring to `Locale` pass to `setDefaultLocale(to:)`.
     public var retrievesDefaultLocaleFromPreferences: Bool = true
-
+    
     /// Notification that indicates that the user’s locale changed.
     public static var currentLocaleDidChangeNotification: Notification.Name { NSLocale.currentLocaleDidChangeNotification }
-
+    
     private static var appleLanguagesUserDefaultsKey: String { "AppleLanguages" }
-
+    
     // MARK: Initializers
     private init() {}
-
+    
     // MARK: Configuration - Current Locale
     /// Sets current `Locale`.
     ///
@@ -135,13 +135,13 @@ public final class LocalizationManager {
         if !currentLocale.isEquivalent(to: locale) {
             currentLocale = locale
             setCurrentAppLocale(locale)
-
+            
             bundles?.forEach { LocalizationTableOverridingBundle.overrideTable(toLocale: locale, inBundle: $0) }
             
             NotificationCenter.default.post(name: Self.currentLocaleDidChangeNotification, object: self, userInfo: nil)
         }
     }
-
+    
     // MARK: Configuration - Locales
     /// Adds `Locale` to `LocalizationManager`.
     ///
@@ -149,7 +149,7 @@ public final class LocalizationManager {
     public func addLocale(_ locale: Locale) {
         addLocales([locale])
     }
-
+    
     /// Adds `Array` of `Locale`s to `LocalizationManager`.
     ///
     /// If `Locale`s are not already added to `Bundle.main`, app will crash.
@@ -157,7 +157,7 @@ public final class LocalizationManager {
         for locale in locales {
             assertIsAddedToBundle(locale)
             guard !validateIsAdded(locale) else { continue }
-
+            
             self.locales.append(locale)
         }
         
@@ -170,7 +170,7 @@ public final class LocalizationManager {
             }
         }
     }
-
+    
     // MARK: Configuration - Default Locale
     /// Sets default `Locale`.
     ///
@@ -184,10 +184,10 @@ public final class LocalizationManager {
     public func setDefaultLocale(to locale: Locale) {
         assertIsAddedToBundle(locale)
         assertIsAdded(locale)
-
+        
         _defaultLocale = locale
     }
-
+    
     // MARK: Bundle, Preferred, Current, and App Locales
     // COMMAND                                      PHYSICAL DEVICE                 SIMULATOR
     //
@@ -204,11 +204,11 @@ public final class LocalizationManager {
     
     private let preferredLocale: Locale? = Bundle.main.preferredLocalizations.first
         .map { Locale(identifier: $0) }
-
+    
     private var currentAppLocale: Locale? {
         (UserDefaults.standard.value(forKey: Self.appleLanguagesUserDefaultsKey) as? [String])?.first.map { Locale(identifier: $0) }
     }
-
+    
     private func getCurrentAppLocale() -> Locale {
         guard
             let currentAppLocale,
@@ -217,14 +217,14 @@ public final class LocalizationManager {
             setCurrentAppLocale(defaultLocale)
             return defaultLocale
         }
-
+        
         return currentAppLocale
     }
-
+    
     private func setCurrentAppLocale(_ locale: Locale) {
         UserDefaults.standard.set([locale.identifier], forKey: Self.appleLanguagesUserDefaultsKey)
     }
-
+    
     // MARK: Validation and Assertion
     private func assertIsAddedToBundle(_ locale: Locale) {
         guard bundleLocales.contains(where: { $0.isEquivalent(to: locale) }) else {

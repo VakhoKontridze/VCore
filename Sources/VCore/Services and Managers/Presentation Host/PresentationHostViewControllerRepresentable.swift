@@ -40,7 +40,7 @@ struct PresentationHostViewControllerRepresentable<Content>: UIViewControllerRep
             allowsHitTests: allowsHitTests
         )
     }
-
+    
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         guard let uiViewController = uiViewController as? PresentationHostViewController else { fatalError() }
         
@@ -48,15 +48,15 @@ struct PresentationHostViewControllerRepresentable<Content>: UIViewControllerRep
             uiViewController.isPresentingView &&
             !isPresented.wrappedValue &&
             !wasInternallyDismissed
-
+        
         let dismissHandler: () -> Void = {
             wasInternallyDismissed = true
             defer { DispatchQueue.main.async(execute: { wasInternallyDismissed = false }) }
-
+            
             isPresented.wrappedValue = false
             uiViewController.dismissHostedView()
         }
-
+        
         let content: AnyView = .init(
             content()
                 .presentationHostPresentationMode(PresentationHostPresentationMode(
@@ -66,14 +66,14 @@ struct PresentationHostViewControllerRepresentable<Content>: UIViewControllerRep
                     externalDismissCompletion: uiViewController.dismissHostedView
                 ))
         )
-
+        
         if
             isPresented.wrappedValue,
             !uiViewController.isPresentingView
         {
             uiViewController.presentHostedView(content)
         }
-
+        
         uiViewController.updateHostedView(with: content)
     }
 }

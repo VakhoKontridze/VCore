@@ -57,7 +57,7 @@ extension EmptyView: UIActionSheetButtonConvertible {
     public static func buildEither(first component: Component) -> Result {
         component.toButtons()
     }
-
+    
     public static func buildEither(second component: Component) -> Result {
         component.toButtons()
     }
@@ -69,7 +69,7 @@ extension EmptyView: UIActionSheetButtonConvertible {
     public static func buildLimitedAvailability(_ component: Component) -> Result {
         component.toButtons()
     }
-
+    
     public static func buildFinalResult(_ component: Component) -> Result {
         component.toButtons()
     }

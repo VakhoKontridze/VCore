@@ -22,7 +22,7 @@ struct PostDetailsUIModel {
         // MARK: Initializers
         private init() {}
     }
-
+    
     // MARK: Colors
     struct Colors {
         // MARK: Properties

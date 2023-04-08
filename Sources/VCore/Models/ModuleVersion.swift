@@ -18,10 +18,10 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
     // MARK: Properties
     /// Major version according to the semantic versioning standard.
     public let major: Int
-
+    
     /// Minor version according to the semantic versioning standard.
     public let minor: Int
-
+    
     /// Patch version according to the semantic versioning standard.
     public let patch: Int?
     

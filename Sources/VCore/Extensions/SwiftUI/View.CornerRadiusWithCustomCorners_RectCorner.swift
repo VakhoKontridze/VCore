@@ -29,17 +29,17 @@ private struct CornerRadiusShape: Shape {
     // MARK: Properties
     private let radius: CGFloat
     private let corners: RectCorner
-
+    
     // MARK: Initializers
     init(radius: CGFloat, corners: RectCorner) {
         self.radius = radius
         self.corners = corners
     }
-
+    
     // MARK: Shape
     func path(in rect: CGRect) -> Path {
         var path: Path = .init()
-
+        
         path.move(to: CGPoint(
             x: rect.minX,
             y: corners.contains(.topLeft) ? rect.minY + radius : rect.minY
@@ -109,7 +109,7 @@ private struct CornerRadiusShape: Shape {
         )
         
         path.closeSubpath()
-
+        
         return path
     }
 }

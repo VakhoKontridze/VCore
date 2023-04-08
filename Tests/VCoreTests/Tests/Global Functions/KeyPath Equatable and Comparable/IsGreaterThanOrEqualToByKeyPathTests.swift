@@ -12,7 +12,7 @@ import XCTest
 final class IsGreaterThanOrEqualToByKeyPathTests: XCTestCase {
     // MARK: Test Data
     private typealias SomeObject = IsEqualToByKeyPathTests.SomeObject
-
+    
     // MARK: Tests
     func test1() {
         XCTAssertTrue(VCore.isGreaterThanOrEqual(

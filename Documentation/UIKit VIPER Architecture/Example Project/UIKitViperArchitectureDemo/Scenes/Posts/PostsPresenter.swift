@@ -21,7 +21,7 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     private let interactor: Interactor
     
     private var tableViewCellParameters: [PostCellViewParameters] = []
-
+    
     // MARK: Initializers
     init(
         view: View,
@@ -32,7 +32,7 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
         self.router = router
         self.interactor = interactor
     }
-
+    
     // MARK: Presentable
     func viewDidLoad() {
         fetchPosts()
@@ -42,7 +42,7 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
         view.setPullToRefreshVisibility(to: false)
         fetchPosts()
     }
-
+    
     // MARK: Table View Delegable
     func tableViewDidSelectRow(section: Int, row: Int) {
         let postCellViewModel: PostCellViewParameters = tableViewCellParameters[row]
@@ -52,7 +52,7 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
             body: postCellViewModel.body
         ))
     }
-
+    
     // MARK: Table View DataSourceable
     var tableViewNumberOfSections: Int {
         1

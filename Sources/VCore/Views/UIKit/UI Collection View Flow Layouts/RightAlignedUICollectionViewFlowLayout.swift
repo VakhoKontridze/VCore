@@ -27,7 +27,7 @@ open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
                 layoutAttribute.frame = $0.frame
             }
         }
-
+        
         return layoutAttributes
     }
     
@@ -65,7 +65,7 @@ open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         return layoutAttributes
     }
-
+    
     // MARK: Helpers
     private func isLastElementInRow(
         collectionView: UICollectionView,

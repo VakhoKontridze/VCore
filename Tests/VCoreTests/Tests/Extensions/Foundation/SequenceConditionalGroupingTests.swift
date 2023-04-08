@@ -24,14 +24,14 @@ final class SequenceConditionalGroupingTests: XCTestCase {
         let output: [[String]] = [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
         
         let result: [[String]] = input.grouped(by: { $0.first == $1.first })
-
+        
         XCTAssertEqual(result, output)
     }
     
     func testGroupingKeyPath() {
         let input: [Student] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].map { Student($0) }
         let output: [[Student]] = [[.init("Kofi"), .init("Kweku")], [.init("Abena"), .init("Akosua")], [.init("Efua")]]
-
+        
         let result: [[Student]] = input.grouped(by: \.firstChar)
         
         XCTAssertEqual(result, output)

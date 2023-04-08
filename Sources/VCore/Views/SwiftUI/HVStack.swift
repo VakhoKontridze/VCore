@@ -97,6 +97,6 @@ struct HVStack_Previews: PreviewProvider {
                 }
             )
         })
-            .padding()
+        .padding()
     }
 }

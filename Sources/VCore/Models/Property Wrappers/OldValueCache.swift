@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
- 
+
 // MARK: - Old Value Cache
 /// Property wrapper type that caches and stores old value.
 ///
@@ -44,7 +44,7 @@ import SwiftUI
     }
     
     @State private(set) public var wrappedValueOld: Value?
-
+    
     // MARK: Initializers
     /// Initializes `OldValueCache`.
     public init(wrappedValue: Value) {

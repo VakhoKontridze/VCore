@@ -47,7 +47,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
                     XCTAssertTrue(true)
                     
                     expectation.fulfill()
-                
+                    
                 case .failure(let error):
                     fatalError(error.localizedDescription)
                 }
@@ -57,7 +57,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
             fatalError(error.localizedDescription)
         }
     }
-
+    
     func testDataTaskDataCompletion() {
         guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
             print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
@@ -80,7 +80,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
                     XCTAssertEqual(json["json"]?.toUnwrappedJSON["key"]?.toString, "value")
                     
                     expectation.fulfill()
-                
+                    
                 case .failure(let error):
                     fatalError(error.localizedDescription)
                 }
@@ -90,7 +90,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
             fatalError(error.localizedDescription)
         }
     }
-
+    
     func testDataTaskJSONCompletion() {
         guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
             print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
@@ -105,24 +105,24 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
             request.method = .POST
             try request.addHeaders(encodable: JSONRequestHeaders())
             try request.addBody(json: ["key": "value"])
-
+            
             NetworkClient.default.json(from: request, completion: { result in
                 switch result {
                 case .success(let json):
                     XCTAssertEqual(json["json"]?.toUnwrappedJSON["key"]?.toString, "value")
                     
                     expectation.fulfill()
-                
+                    
                 case .failure(let error):
                     fatalError(error.localizedDescription)
                 }
             })
-
+            
         } catch {
             fatalError(error.localizedDescription)
         }
     }
-
+    
     func testDataTaskJSONArrayCompletion() {
         guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
             print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
@@ -136,24 +136,24 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
             request.method = .GET
             try request.addHeaders(encodable: JSONRequestHeaders())
-
+            
             NetworkClient.default.jsonArray(from: request, completion: { result in
                 switch result {
                 case .success(let jsonArray):
                     XCTAssertEqual(jsonArray.first?["id"]?.toInt, 1)
                     
                     expectation.fulfill()
-                
+                    
                 case .failure(let error):
                     fatalError(error.localizedDescription)
                 }
             })
-
+            
         } catch {
             fatalError(error.localizedDescription)
         }
     }
-
+    
     func testDataTaskDecodableCompletion() {
         guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
             print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
@@ -167,19 +167,19 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
             request.method = .GET
             try request.addHeaders(encodable: JSONRequestHeaders())
-
+            
             NetworkClient.default.decodable([Post].self, from: request, completion: { result in
                 switch result {
                 case .success(let posts):
                     XCTAssertEqual(posts.first?.id, 1)
                     
                     expectation.fulfill()
-                
+                    
                 case .failure(let error):
                     fatalError(error.localizedDescription)
                 }
             })
-
+            
         } catch {
             fatalError(error.localizedDescription)
         }

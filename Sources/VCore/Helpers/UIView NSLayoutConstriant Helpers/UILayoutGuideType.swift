@@ -54,13 +54,13 @@ public enum UILayoutGuideType {
         switch self {
         case .margins:
             return view.layoutMarginsGuide
-        
+            
         case .readableContent:
             return view.readableContentGuide
-        
+            
         case .safeArea:
             return view.safeAreaLayoutGuide
-        
+            
 #if os(iOS)
         case .keyboard:
             guard #available(iOS 15.0, *) else { fatalError() }

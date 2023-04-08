@@ -72,7 +72,7 @@ public struct AlertButton: AlertButtonProtocol {
                 role: role,
                 action: { animateOut(/*completion: */action) }
             )
-                .disabled(!isEnabled)
+            .disabled(!isEnabled)
         )
     }
     

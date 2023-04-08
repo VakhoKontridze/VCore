@@ -24,10 +24,10 @@ import SwiftUI
 ///                     "Lorem ipsum",
 ///                     action: { presenter.didTapButton() }
 ///                 )
-///                     .modifier(HomeRouter())
-///                     .onFirstAppear($didAppearForTheFirstTime, perform: {
-///                         presenter.navigationStackCoordinator = navigationStackCoordinator
-///                     })
+///                 .modifier(HomeRouter())
+///                 .onFirstAppear($didAppearForTheFirstTime, perform: {
+///                     presenter.navigationStackCoordinator = navigationStackCoordinator
+///                 })
 ///             })
 ///         }
 ///     }

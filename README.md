@@ -248,7 +248,7 @@ var body: some View {
             }
         }
     )
-        .frame(dimension: 200)
+    .frame(dimension: 200)
 }
 
 ...

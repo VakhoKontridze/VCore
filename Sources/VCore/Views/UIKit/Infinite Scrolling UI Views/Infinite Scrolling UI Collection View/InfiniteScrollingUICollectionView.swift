@@ -151,7 +151,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     public required init?(coder: NSCoder) {
         fatalError()
     }
-
+    
     // MARK: Lifecycle
     open override func layoutSubviews() {
         super.layoutSubviews()
@@ -188,12 +188,12 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             height: ActivityIndicatorModel.Layout.height
         )
     }
-
+    
     // MARK: Detection
     /// Detects pagination on scroll.
     open func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
         guard scrollView.didScrollToBottom(offset: paginationOffset) else { return }
-
+        
         paginate()
     }
     
@@ -230,7 +230,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         
         return footer
     }
-
+    
     // MARK: Pagination
     private func paginate() {
         guard paginationState == .canPaginate else { return }
@@ -238,14 +238,14 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         paginationState = .loading
         infiniteScrollingDelegate?.collectionViewDidScrollToBottom(sender: self)
     }
-
+    
     // MARK: Activity Indicator
     private func setActivityIndicatorState() {
         switch paginationState {
         case .loading:
             guard frame.size.width != 0 else { return }
             activityIndicator.startAnimating()
-        
+            
         case .canPaginate, .cannotPaginate:
             activityIndicator.stopAnimating()
             reloadData()
