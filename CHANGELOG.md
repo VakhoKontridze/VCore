@@ -31,6 +31,7 @@ Models
 Extensions
 
 - `Image.init(data:)` initializer is added
+- `View.shadow(parameters:)` method is added
 - `CGPoint.withReversedCoordinates(_:)` method is added
 - `View.cornerRadius(_,corners:)` method is added for `RectCorner` model
 - `View.modifier(_:)` method is added that applies a block modifier to a `View`
