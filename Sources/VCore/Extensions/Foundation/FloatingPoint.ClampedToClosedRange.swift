@@ -1,5 +1,5 @@
 //
-//  FloatingPoint.ClampedToRange.swift
+//  FloatingPoint.ClampedToClosedRange.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 12/9/21.
