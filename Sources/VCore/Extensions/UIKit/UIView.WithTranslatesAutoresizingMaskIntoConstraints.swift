@@ -1,7 +1,7 @@
 //
 //  UIView.WithTranslatesAutoresizingMaskIntoConstraints.swift
 //  
-//
+//  VCore
 //  Created by Vakhtang Kontridze on 10.06.22.
 //
 

@@ -1,7 +1,7 @@
 //
 //  View.ShadowWithParameters.swift
 //  
-//
+//  VCore
 //  Created by Vakhtang Kontridze on 08.04.23.
 //
 
