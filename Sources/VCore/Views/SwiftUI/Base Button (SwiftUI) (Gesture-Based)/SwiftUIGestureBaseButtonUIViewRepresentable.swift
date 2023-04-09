@@ -42,12 +42,10 @@ struct SwiftUIGestureBaseButtonUIViewRepresentable: UIViewRepresentable {
     }
     
     func updateUIView(_ uiView: UIView, context: Context) {
-        setBindedValues()
-    }
-    
-    private func setBindedValues() {
-        gestureRecognizer?.setStateChangeHandler(to: stateChangeHandler)
-        gestureRecognizer?.isEnabled = isEnabled
+        guard let gestureRecognizer else { return }
+        
+        gestureRecognizer.setStateChangeHandler(to: stateChangeHandler)
+        gestureRecognizer.isEnabled = isEnabled
     }
 }
 
