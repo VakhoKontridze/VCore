@@ -27,7 +27,7 @@ Models
 - `reversed()` method is added to layout directions that returns reversed dimension
 - `alignment` and `edge` are added to layout directions
 - `axis` is added to `LayoutDirectionOmni`
-- `testReversedLeftAndRightCorners(_:)` method is added to `RectCorner` that reversed left and right corners if condition is met
+- `withReversedLeftAndRightCorners(_:)` method is added to `RectCorner` that reversed left and right corners if condition is met
 
 Extensions
 
