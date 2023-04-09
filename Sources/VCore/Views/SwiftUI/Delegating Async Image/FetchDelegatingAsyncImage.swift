@@ -60,10 +60,10 @@ import SwiftUI
 ///     }
 ///
 public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
-where
-Resource: Equatable,
-Content: View,
-PlaceholderContent: View
+    where
+        Resource: Equatable,
+        Content: View,
+        PlaceholderContent: View
 {
     // MARK: Properties
     private let uiModel: FetchDelegatingAsyncImageUIModel
@@ -86,9 +86,9 @@ PlaceholderContent: View
         from resource: Resource?,
         fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image
     )
-    where
-    Content == Never,
-    PlaceholderContent == Never
+        where
+            Content == Never,
+            PlaceholderContent == Never
     {
         self.uiModel = uiModel
         self.removesImageOnDisappear = removesImageOnDisappear
@@ -105,8 +105,8 @@ PlaceholderContent: View
         fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content
     )
-    where
-    PlaceholderContent == Never
+        where
+            PlaceholderContent == Never
     {
         self.uiModel = uiModel
         self.removesImageOnDisappear = removesImageOnDisappear
@@ -145,7 +145,7 @@ PlaceholderContent: View
         fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
     )
-    where PlaceholderContent == Never
+        where PlaceholderContent == Never
     {
         self.uiModel = uiModel
         self.removesImageOnDisappear = removesImageOnDisappear
