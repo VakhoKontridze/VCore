@@ -1,6 +1,6 @@
 # Change Log
 
-### 4.7.0(74)
+### [4.7.0(74)](https://github.com/VakhoKontridze/VCore/releases/tag/4.7.0) — *2023 04 09*
 
 Services and managers
 
