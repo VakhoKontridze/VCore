@@ -9,15 +9,11 @@ import SwiftUI
 
 // MARK: - Plain Disclosure Group UI Model
 /// Model that describes UI.
-@available(iOS 14.0, *)
-@available(macOS, unavailable)
+@available(iOS 14.0, macOS 11.0, *)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct PlainDisclosureGroupUIModel {
     // MARK: Properties
-    /// Model that contains layout properties.
-    public var layout: Layout = .init()
-    
     /// Model that contains color properties.
     public var colors: Colors = .init()
     
@@ -28,22 +24,6 @@ public struct PlainDisclosureGroupUIModel {
     /// Initializes UI model with default values.
     public init() {}
     
-    // MARK: Layout
-    /// Model that contains layout properties.
-    public struct Layout {
-        // MARK: Properties
-        /// Default padding in native disclosure group. Set to `8`.
-        ///
-        /// Value is used during the frame calculations, and must be provided.
-        ///
-        /// In future releases of `iOS`/`macOS`, this value may change.
-        public var defaultDisclosureGroupPadding: CGFloat = 8
-        
-        // MARK: Initializers
-        /// Initializes UI model with default values.
-        public init() {}
-    }
-    
     // MARK: Colors
     /// Model that contains color properties.
     public struct Colors {
@@ -53,7 +33,9 @@ public struct PlainDisclosureGroupUIModel {
         /// Needed for setting background color to the label.
         public var background: Color = {
 #if os(iOS)
-            return .init(.systemBackground)
+            return Color(UIColor.systemBackground)
+#elseif os(macOS)
+            return Color(NSColor.windowBackgroundColor)
 #else
             fatalError() // Not supported
 #endif

@@ -12,6 +12,7 @@ Views
 - `SwiftUIGestureBaseButton` now supports `macOS`
 - Completely new, `Button`-backed `SwiftUIBaseButton` is added
 - `FetchDelegatingAsyncImage` is added that allows you to write custom fetch function
+- `PlainDisclosureGroup` now supports `macOS`
 - `possible` is added to `GestureBaseButtonGestureState`, and some `case`s are renamed
 - `HOrVStack` is renamed to `HVStack`
 

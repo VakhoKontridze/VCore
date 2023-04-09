@@ -36,8 +36,7 @@ import SwiftUI
 ///         .padding()
 ///     }
 ///
-@available(iOS 14.0, *)
-@available(macOS 11.0, *)@available(macOS, unavailable)
+@available(iOS 14.0, macOS 11.0, *)
 @available(tvOS 16.0, *)@available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct PlainDisclosureGroup<Label, Content>: View
@@ -104,19 +103,19 @@ public struct PlainDisclosureGroup<Label, Content>: View
     // MARK: Body
     public var body: some View {
         ZStack(alignment: .top, content: {
-            labelView
-            
             DisclosureGroup(
                 isExpanded: Binding(
                     get: { isExpanded.wrappedValue },
                     set: expandCollapseFromInternalAction
                 ),
                 content: content,
-                label: { Color.clear.frame(height: max(0, labelHeight - uiModel.layout.defaultDisclosureGroupPadding)) }
+                label: EmptyView.init
             )
             .animation(.default, value: isExpanded.wrappedValue)
-            .buttonStyle(.plain).accentColor(.clear) // Hides chevron button
+            
+            labelView
         })
+            .background(uiModel.colors.background)
     }
     
     private var labelView: some View {
@@ -147,8 +146,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
 }
 
 // MARK: - Preview
-@available(iOS 14.0, *)
-@available(macOS 11.0, *)@available(macOS, unavailable)
+@available(iOS 14.0, macOS 11.0, *)
 @available(tvOS 14.0, *)@available(tvOS, unavailable)
 @available(watchOS 7.0, *)@available(watchOS, unavailable)
 struct PlainDisclosureGroup_Previews: PreviewProvider {
@@ -178,6 +176,13 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
                     })
                 }
             )
+            .modifier({
+#if os(macOS)
+                $0.frame(dimension: 640)
+#else
+                $0
+#endif
+            })
             .padding()
         }
     }

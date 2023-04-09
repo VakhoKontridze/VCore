@@ -221,6 +221,22 @@ extension SwiftUIBaseButton {
 
 #endif
 
+// MARK: - Plain Disclosure Group
+@available(iOS 14.0, macOS 11.0, *)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
+extension PlainDisclosureGroupUIModel {
+    @available(*, deprecated, message: "Layout UI model is no longer used")
+    public struct Layout {
+        public var defaultDisclosureGroupPadding: CGFloat {
+            get { 8 }
+            set {}
+        }
+        
+        public init() {}
+    }
+}
+
 // MARK: - Global Functions
 @available(*, deprecated, renamed: "VCoreLogError")
 public func VCoreLog(
