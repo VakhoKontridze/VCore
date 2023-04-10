@@ -70,8 +70,6 @@ public struct PlainDisclosureGroup<Label, Content>: View
     private let label: () -> Label
     private let content: () -> Content
     
-    @State private var labelHeight: CGFloat = 0
-    
     // MARK: Initializers
     /// Initializes `PlainDisclosureGroup` with label and content.
     public init(
@@ -121,7 +119,6 @@ public struct PlainDisclosureGroup<Label, Content>: View
     private var labelView: some View {
         label()
             .frame(maxWidth: .infinity)
-            .onSizeChange(perform: { labelHeight = $0.height })
             .background(
                 uiModel.colors.background
                     .contentShape(Rectangle())
@@ -165,15 +162,8 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
                         .allowsHitTesting(false)
                 },
                 content: {
-                    ScrollView(content: {
-                        LazyVStack(content: {
-                            ForEach(0..<10, content: { num in
-                                Text(String(num))
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .padding(.vertical, 5)
-                            })
-                        })
-                    })
+                    Color.accentColor
+                        .frame(height: 300)
                 }
             )
             .modifier({
