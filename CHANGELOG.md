@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.8.0(75)
+
+Models
+
+- `EdgeInsets_LeadingTrailingTopBottom` can now be initialized with `EdgeInsets` and `UIEdgeInsets`
+
 ### [4.7.0(74)](https://github.com/VakhoKontridze/VCore/releases/tag/4.7.0) — *2023 04 09*
 
 Services and managers

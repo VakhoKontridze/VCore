@@ -78,6 +78,14 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Hashable, Equatable {
         self.bottom = 0
     }
     
+    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `EdgeInsets`.
+    public init(edgeInsets: EdgeInsets) {
+        self.leading = edgeInsets.leading
+        self.trailing = edgeInsets.trailing
+        self.top = edgeInsets.top
+        self.bottom = edgeInsets.bottom
+    }
+    
     /// Initializes `EdgeInsets_LTTB` with zero values.
     public static var zero: Self { .init() }
     
@@ -179,6 +187,23 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Hashable, Equatable {
         lhs.bottom -= rhs.bottom
     }
 }
+
+// MARK: Initializers
+#if canImport(UIKit)
+
+import UIKit
+
+extension EdgeInsets_LeadingTrailingTopBottom {
+    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `UIEdgeInsets`.
+    public init(uiEdgeInsets: UIEdgeInsets) {
+        self.leading = uiEdgeInsets.left
+        self.trailing = uiEdgeInsets.right
+        self.top = uiEdgeInsets.top
+        self.bottom = uiEdgeInsets.bottom
+    }
+}
+
+#endif
 
 // MARK: - Padding
 extension View {
