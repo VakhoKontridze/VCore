@@ -6,6 +6,10 @@ Models
 
 - `EdgeInsets_LeadingTrailingTopBottom` can now be initialized with `EdgeInsets` and `UIEdgeInsets`
 
+Extensions
+
+- `View.onSimultaneousTapGesture(count:perform:)` method is added
+
 ### [4.7.0(74)](https://github.com/VakhoKontridze/VCore/releases/tag/4.7.0) — *2023 04 09*
 
 Services and managers
