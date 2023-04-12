@@ -37,8 +37,8 @@ extension UIView {
     ///                 animations: { [weak self] in
     ///                     guard let self else { return }
     ///
+    ///                     view.bounds.origin.y = systemKeyboardInfo.frame.size.height
     ///                     view.superview?.layoutIfNeeded()
-    ///                     view.bounds.origin.y = -systemKeyboardInfo.frame.size.height
     ///                 }
     ///             )
     ///         }
@@ -51,8 +51,8 @@ extension UIView {
     ///                 animations: { [weak self] in
     ///                     guard let self else { return }
     ///
-    ///                     view.superview?.layoutIfNeeded()
     ///                     view.bounds.origin.y = 0
+    ///                     view.superview?.layoutIfNeeded()
     ///                 }
     ///             )
     ///         }
@@ -136,10 +136,10 @@ extension UIView {
             UIView.animateKeyboardResponsiveness(
                 systemKeyboardInfo: systemKeyboardInfo,
                 animations: {
+                    containerView.bounds.origin.y = 0
+                    
                     firstResponderView.superview?.layoutIfNeeded()
                     containerView.superview?.layoutIfNeeded()
-                    
-                    containerView.bounds.origin.y = 0
                 },
                 completion: completion
             )
@@ -164,10 +164,10 @@ extension UIView {
             UIView.animateKeyboardResponsiveness(
                 systemKeyboardInfo: systemKeyboardInfo,
                 animations: {
+                    containerView.bounds.origin.y = offset
+                    
                     firstResponderView.superview?.layoutIfNeeded()
                     containerView.superview?.layoutIfNeeded()
-                    
-                    containerView.bounds.origin.y = offset
                 },
                 completion: completion
             )

@@ -36,8 +36,8 @@ import UIKit
 ///                 animations: { [weak self] in
 ///                     guard let self else { return }
 ///
+///                     view.bounds.origin.y = systemKeyboardInfo.frame.size.height
 ///                     view.superview?.layoutIfNeeded()
-///                     view.bounds.origin.y = -systemKeyboardInfo.frame.size.height
 ///                 }
 ///             )
 ///         }
@@ -50,8 +50,8 @@ import UIKit
 ///                 animations: { [weak self] in
 ///                     guard let self else { return }
 ///
-///                     view.superview?.layoutIfNeeded()
 ///                     view.bounds.origin.y = 0
+///                     view.superview?.layoutIfNeeded()
 ///                 }
 ///             )
 ///         }
