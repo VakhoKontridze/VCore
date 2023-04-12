@@ -52,20 +52,18 @@ Project includes folder `Documentation`, which contains:
 `NetworkClient` with customizable requests, responses, and return types:
 
 ```swift
-func fetchData() async {
-    do {
-        var request: NetworkRequest = .init(url: "https://httpbin.org/post")
-        request.method = .POST
-        try request.addHeaders(encodable: JSONRequestHeaders())
-        try request.addBody(json: ["key": "value"])
+do {
+    var request: NetworkRequest = .init(url: "https://httpbin.org/post")
+    request.method = .POST
+    try request.addHeaders(encodable: JSONRequestHeaders())
+    try request.addBody(json: ["key": "value"])
 
-        let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+    let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 
-        print(result)
+    print(result)
 
-    } catch {
-        print(error.localizedDescription)
-    }
+} catch {
+    print(error.localizedDescription)
 }
 ```
 
@@ -137,7 +135,7 @@ LocalizationManager.shared.setCurrentLocale(to: .english)
 
 #### Keychain Service:
 
-`KeychainService` that supports custom queries, and has a dedicated property wrapper':
+`KeychainService` that supports custom queries, and has a dedicated property wrapper:
 
 ```swift
 KeychainService.default.get(key: "SomeKey")
@@ -202,8 +200,8 @@ final class ViewController: KeyboardResponsiveUIViewController {
             animations: { [weak self] in
                 guard let self else { return }
 
-                view.superview?.layoutIfNeeded()
                 view.bounds.origin.y = -systemKeyboardInfo.frame.size.height
+                view.superview?.layoutIfNeeded()
             }
         )
     }
@@ -216,8 +214,8 @@ final class ViewController: KeyboardResponsiveUIViewController {
             animations: { [weak self] in
                 guard let self else { return }
 
-                view.superview?.layoutIfNeeded()
                 view.bounds.origin.y = 0
+                view.superview?.layoutIfNeeded()
             }
         )
     }
