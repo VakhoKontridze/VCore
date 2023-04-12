@@ -139,7 +139,7 @@ let rhs: Locale = .init(identifier: "en-US")
 
 lhs == rhs // false
 
-lhs.isEquivalent(to: rhs) // `true`, if `Locale.current.regionCode` is "US"
+lhs.isEquivalent(to: rhs) // true, if `Locale.current.regionCode` is "US"
 ```
 
 #### Keychain Service:

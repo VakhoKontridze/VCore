@@ -23,7 +23,7 @@ extension Locale {
     ///
     ///     lhs == rhs // false
     ///
-    ///     lhs.isEquivalent(to: rhs) // `true`, if `Locale.current.regionCode` is "US"
+    ///     lhs.isEquivalent(to: rhs) // true, if `Locale.current.regionCode` is "US"
     ///
     public func isEquivalent(to other: Locale) -> Bool {
         guard languageCode == other.languageCode else { return false }
