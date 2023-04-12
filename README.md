@@ -133,6 +133,15 @@ LocalizationManager.shared.setDefaultLocale(to: .english)
 LocalizationManager.shared.setCurrentLocale(to: .english)
 ```
 
+```swift
+let lhs: Locale = .init(identifier: "en")
+let rhs: Locale = .init(identifier: "en-US")
+
+lhs == rhs // false
+
+lhs.isEquivalent(to: rhs) // `true`, if `Locale.current.regionCode` is "US"
+```
+
 #### Keychain Service:
 
 `KeychainService` that supports custom queries, and has a dedicated property wrapper:
