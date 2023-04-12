@@ -12,20 +12,18 @@ import Foundation
 ///
 /// Object contains default instance `default`, that can be used to make requests.
 ///
-///     func fetchData() async {
-///         do {
-///             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
-///             request.method = .POST
-///             try request.addHeaders(encodable: JSONRequestHeaders())
-///             try request.addBody(json: ["key": "value"])
+///     do {
+///         var request: NetworkRequest = .init(url: "https://httpbin.org/post")
+///         request.method = .POST
+///         try request.addHeaders(encodable: JSONRequestHeaders())
+///         try request.addBody(json: ["key": "value"])
 ///
-///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+///         let result: [String: Any?] = try await NetworkClient.default.json(from: request)
 ///
-///             print(result)
+///         print(result)
 ///
-///         } catch {
-///             print(error.localizedDescription)
-///         }
+///     } catch {
+///         print(error.localizedDescription)
 ///     }
 ///
 public final class NetworkClient {
