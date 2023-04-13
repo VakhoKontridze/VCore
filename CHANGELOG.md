@@ -2,6 +2,10 @@
 
 ### 4.8.0(75)
 
+General
+
+- Package now compiles on Mac Catalyst
+
 Models
 
 - `EdgeInsets_LeadingTrailingTopBottom` can now be initialized with `EdgeInsets` and `UIEdgeInsets`

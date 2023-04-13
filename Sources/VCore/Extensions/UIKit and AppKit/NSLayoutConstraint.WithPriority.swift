@@ -29,7 +29,7 @@ extension NSLayoutConstraint {
     }
 #endif
     
-#if canImport(AppKit)
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
     /// Modifies and returns constraint with a given priority.
     ///
     ///     NSLayoutConstraint.activate([

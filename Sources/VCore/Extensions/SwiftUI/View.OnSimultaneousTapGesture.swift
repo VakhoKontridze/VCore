@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - View
+@available(tvOS 16.0, *)
 extension View {
     /// Adds an action to perform when this view recognizes a simultaneous tap gesture
     /// with gestures defined by the `View`.

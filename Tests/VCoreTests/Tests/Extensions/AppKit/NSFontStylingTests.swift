@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 04.07.22.
 //
 
-#if canImport(AppKit)
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
 import XCTest
 import AppKit
