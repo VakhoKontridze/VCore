@@ -13,7 +13,7 @@ import Foundation
 @available(tvOS, unavailable)
 final class PresentationHostViewControllerStorage {
     // MARK: Properties
-    var storage: [String: PresentationHostViewController] = [:]
+    var storage: [String: _PresentationHostViewController] = [:]
     
     static let shared: PresentationHostViewControllerStorage = .init()
     

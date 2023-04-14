@@ -1,5 +1,5 @@
 //
-//  PresentationHostViewControllerRepresentable.swift
+//  PresentationHostView.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 4/14/22.
@@ -9,9 +9,9 @@
 
 import SwiftUI
 
-// MARK: - Presentation Host View Controller Representable
+// MARK: - Presentation Host View
 @available(tvOS, unavailable)
-struct PresentationHostViewControllerRepresentable<Content>: UIViewControllerRepresentable where Content: View {
+struct PresentationHostView<Content>: UIViewControllerRepresentable where Content: View {
     // MARK: Properties
     private let id: String
     private let allowsHitTests: Bool
@@ -35,14 +35,14 @@ struct PresentationHostViewControllerRepresentable<Content>: UIViewControllerRep
     
     // MARK: Representable
     func makeUIViewController(context: Context) -> UIViewController {
-        PresentationHostViewController(
+        _PresentationHostViewController(
             id: id,
             allowsHitTests: allowsHitTests
         )
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        guard let uiViewController = uiViewController as? PresentationHostViewController else { fatalError() }
+        guard let uiViewController = uiViewController as? _PresentationHostViewController else { fatalError() }
         
         let isExternallyDismissed: Bool =
             uiViewController.isPresentingView &&

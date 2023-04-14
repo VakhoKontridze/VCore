@@ -1,5 +1,5 @@
 //
-//  PresentationHost.swift
+//  View.PresentationHost.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 06.03.23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Presentation Host Extension
+// MARK: - View Presentation Host
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
@@ -98,8 +98,8 @@ extension View {
     {
 #if os(iOS)
         self
-            .onDisappear(perform: { PresentationHostViewController.forceDismiss(id: id) })
-            .background(PresentationHostViewControllerRepresentable(
+            .onDisappear(perform: { _PresentationHostViewController.forceDismiss(id: id) })
+            .background(PresentationHostView(
                 id: id,
                 allowsHitTests: allowsHitTests,
                 isPresented: isPresented,

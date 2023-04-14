@@ -1,5 +1,5 @@
 //
-//  PresentationHostViewController.swift
+//  _PresentationHostViewController.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 4/14/22.
@@ -9,9 +9,9 @@
 
 import SwiftUI
 
-// MARK: - Presentation Host View Controller
+// MARK: - _ Presentation Host View Controller
 @available(tvOS, unavailable)
-final class PresentationHostViewController: UIViewController, UIViewControllerTransitioningDelegate {
+final class _PresentationHostViewController: UIViewController, UIViewControllerTransitioningDelegate {
     // MARK: Properties
     private let id: String
     private let allowsHitTests: Bool

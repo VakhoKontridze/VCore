@@ -115,13 +115,13 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
     public var body: some View {
 #if os(iOS)
         label()
-            .overlay(SwiftUIGestureBaseButtonUIViewRepresentable(
+            .overlay(SwiftUIGestureBaseButton_UIKit(
                 isEnabled: isEnabled,
                 onStateChange: stateChangeHandler
             ))
 #elseif canImport(AppKit)
         label()
-            .overlay(SwiftUIGestureBaseButtonNSViewRepresentable(
+            .overlay(SwiftUIGestureBaseButton_AppKit(
                 isEnabled: isEnabled,
                 onStateChange: stateChangeHandler
             ))

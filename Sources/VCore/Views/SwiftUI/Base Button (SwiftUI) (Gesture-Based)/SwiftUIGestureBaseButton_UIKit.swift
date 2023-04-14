@@ -1,22 +1,22 @@
 //
-//  SwiftUIGestureBaseButtonNSViewRepresentable.swift
+//  SwiftUIGestureBaseButton_UIKit.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 23.03.23.
+//  Created by Vakhtang Kontridze on 12/26/21.
 //
 
-#if canImport(AppKit) && !targetEnvironment(macCatalyst)
+#if canImport(UIKit) && !os(watchOS)
 
 import SwiftUI
 
-// MARK: - SwiftUI Gesture Base Button NS View Representable
+// MARK: - SwiftUI Gesture Base Button (UIKit)
 @available(tvOS, unavailable)
-struct SwiftUIGestureBaseButtonNSViewRepresentable: NSViewRepresentable {
+struct SwiftUIGestureBaseButton_UIKit: UIViewRepresentable {
     // MARK: Properties
     private let isEnabled: Bool
     private let stateChangeHandler: (GestureBaseButtonGestureState) -> Void
     
-    @State private var gestureRecognizer: AppKitBaseButtonGestureRecognizer?
+    @State private var gestureRecognizer: UIKitBaseButtonGestureRecognizer?
     
     // MARK: Initializers
     init(
@@ -28,11 +28,11 @@ struct SwiftUIGestureBaseButtonNSViewRepresentable: NSViewRepresentable {
     }
     
     // MARK: Representable
-    func makeNSView(context: Context) -> NSView {
-        let view: NSView = .init(frame: .zero)
+    func makeUIView(context: Context) -> UIView {
+        let view: UIView = .init(frame: .zero)
         
         DispatchQueue.main.async(execute: {
-            let gestureRecognizer: AppKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
+            let gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
             self.gestureRecognizer = gestureRecognizer
             
             view.addGestureRecognizer(gestureRecognizer)
@@ -41,7 +41,7 @@ struct SwiftUIGestureBaseButtonNSViewRepresentable: NSViewRepresentable {
         return view
     }
     
-    func updateNSView(_ nsView: NSView, context: Context) {
+    func updateUIView(_ uiView: UIView, context: Context) {
         guard let gestureRecognizer else { return }
         
         gestureRecognizer.setStateChangeHandler(to: stateChangeHandler)
