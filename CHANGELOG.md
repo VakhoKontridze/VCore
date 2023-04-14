@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.8.1(76)
+
+Services and managers
+
+- Issue of `PresentationHost` breaking modals when used from `UIHostingController` is fixed
+
 ### [4.8.0(75)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.0) — *2023 04 13*
 
 General
