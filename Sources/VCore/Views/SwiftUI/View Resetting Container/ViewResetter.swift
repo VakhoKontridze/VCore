@@ -26,7 +26,7 @@ public final class ViewResetter: ObservableObject {
         value += 1
     }
     
-    // MARK: Callable
+    // MARK: Callable Object
     /// Triggers reset inside `ViewResettingContainer`.
     public func callAsFunction() {
         trigger()
