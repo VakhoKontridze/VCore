@@ -1,6 +1,6 @@
 # Change Log
 
-### 4.9.0(76)
+### 4.9.0(77)
 
 Views
 
@@ -11,6 +11,12 @@ Extensions
 - `View.decorateModal(_:)` method is added that extracts modal's superview and `UITransitionView` for customization
 - `View.customDismissAction(_:)` method is added that allows injection of custom dismiss action
 - `Image.init?(systemName:weight:)` initializer is added
+
+### [4.8.1(76)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.1) — *2023 04 15*
+
+Services and managers
+
+- Issue of `PresentationHost` breaking modal frames when presented from `UIHostingController` is fixed
 
 ### [4.8.0(75)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.0) — *2023 04 13*
 
