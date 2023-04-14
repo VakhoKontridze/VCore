@@ -8,6 +8,8 @@
 import SwiftUI
 
 // MARK: - Image System Image with Weight
+#if canImport(UIKit)
+
 extension Image {
     /// Creates a system symbol image with weight.
     ///
@@ -28,3 +30,5 @@ extension Image {
         self.init(uiImage: uiImage)
     }
 }
+
+#endif
