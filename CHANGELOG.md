@@ -1,10 +1,14 @@
 # Change Log
 
-### 4.9.0
+### 4.9.0(76)
 
 Views
 
 - `ViewResetter` is now a callable objects
+
+Extensions
+
+- `View.decorateModal(_:)` method is added that extracts modal's superview and `UITransitionView` for customization
 
 ### [4.8.0(75)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.0) — *2023 04 13*
 
