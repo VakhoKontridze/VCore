@@ -44,7 +44,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         hostingController.modalPresentationStyle = .overFullScreen
         hostingController.modalTransitionStyle = .crossDissolve
         hostingController.transitioningDelegate = self
-        hostingController.view.translatesAutoresizingMaskIntoConstraints = false
+        
         hostingController.view.backgroundColor = .clear
         
         present(hostingController, animated: true, completion: nil)
