@@ -10,6 +10,7 @@ Extensions
 
 - `View.decorateModal(_:)` method is added that extracts modal's superview and `UITransitionView` for customization
 - `View.customDismissAction(_:)` method is added that allows injection of custom dismiss action
+- `Image.init?(systemName:weight:)` initializer is added
 
 ### [4.8.0(75)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.0) — *2023 04 13*
 
