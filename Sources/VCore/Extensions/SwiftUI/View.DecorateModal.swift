@@ -11,7 +11,7 @@ import SwiftUI
 
 // MARK: - View Decorate Modal
 extension View {
-    /// Retrieves modal's superview and `UITransitionView` for customization.
+    /// Retrieves modal's top-most superview and `UITransitionView` for customization.
     ///
     ///     @State private var isPresented: Bool = false
     ///
