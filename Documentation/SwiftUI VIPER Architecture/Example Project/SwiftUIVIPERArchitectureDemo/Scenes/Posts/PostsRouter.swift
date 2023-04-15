@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import VCore
 
 // MARK: - Posts Router
 struct PostsRouter: PostsRoutable {
