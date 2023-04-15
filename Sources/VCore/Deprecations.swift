@@ -73,7 +73,7 @@ import SwiftUI
 extension ProgressViewParameters {
     @available(*, deprecated, message: "Use init without default value for `isInteractionDisabled`")
     public init(
-        isInteractionDisabled: Bool = false,
+        isInteractionDisabled: Bool,
         scalingFactor: CGFloat?
     ) {
         self.init(
@@ -85,7 +85,7 @@ extension ProgressViewParameters {
     
     @available(*, deprecated, message: "Use init without default value for `isInteractionDisabled`")
     public init(
-        isInteractionDisabled: Bool = false,
+        isInteractionDisabled: Bool,
         color: Color?
     ) {
         self.init(
@@ -97,7 +97,7 @@ extension ProgressViewParameters {
     
     @available(*, deprecated, message: "Use init without default value for `isInteractionDisabled`")
     public init(
-        isInteractionDisabled: Bool = false,
+        isInteractionDisabled: Bool,
         scalingFactor: CGFloat?,
         color: Color?
     ) {
