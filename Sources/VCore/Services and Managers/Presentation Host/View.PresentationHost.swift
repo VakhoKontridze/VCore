@@ -18,7 +18,7 @@ extension View {
     ///
     ///     extension View {
     ///         func someModal(
-    ///             id: id,
+    ///             id: String,
     ///             isPresented: Binding<Bool>,
     ///             @ViewBuilder content: @escaping () -> some View
     ///         ) -> some View {

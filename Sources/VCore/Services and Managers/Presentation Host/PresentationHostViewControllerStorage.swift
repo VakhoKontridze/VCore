@@ -11,7 +11,7 @@ import Foundation
 
 // MARK: - Presentation Host View Controller Storage
 @available(tvOS, unavailable)
-final class PresentationHostViewControllerStorage {
+@MainActor final class PresentationHostViewControllerStorage {
     // MARK: Properties
     var storage: [String: _PresentationHostViewController] = [:]
     
