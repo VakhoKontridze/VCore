@@ -70,6 +70,8 @@ public struct PlainDisclosureGroup<Label, Content>: View
     private let label: () -> Label
     private let content: () -> Content
     
+    @State private var labelHeight: CGFloat = 0
+    
     // MARK: Initializers
     /// Initializes `PlainDisclosureGroup` with label and content.
     public init(
@@ -107,7 +109,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
                     set: expandCollapseFromInternalAction
                 ),
                 content: content,
-                label: EmptyView.init
+                label: { Spacer().frame(height: max(0, labelHeight - uiModel.layout.defaultDisclosureGroupPadding)) }
             )
             .animation(.default, value: isExpanded.wrappedValue)
             
@@ -119,6 +121,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
     private var labelView: some View {
         label()
             .frame(maxWidth: .infinity)
+            .onSizeChange(perform: { labelHeight = $0.height })
             .background(
                 uiModel.colors.background
                     .contentShape(Rectangle())
@@ -158,8 +161,11 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
             PlainDisclosureGroup(
                 isExpanded: $isExpanded,
                 label: {
-                    Text("Lorem Ipsum")
-                        .allowsHitTesting(false)
+                    ZStack(content: {
+                        Color.red.frame(height: 300)
+                        Text("Lorem Ipsum")
+                    })
+                    .allowsHitTesting(false)
                 },
                 content: {
                     Color.accentColor
@@ -174,6 +180,33 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
 #endif
             })
             .padding()
+        }
+    }
+}
+
+@available(iOS 16.0, *)
+struct MyDisclosureStyle: DisclosureGroupStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        VStack {
+            Button {
+                withAnimation {
+                    configuration.isExpanded.toggle()
+                }
+            } label: {
+                HStack(alignment: .firstTextBaseline) {
+                    configuration.label
+                    Spacer()
+                    Text(configuration.isExpanded ? "hide" : "show")
+                        .foregroundColor(.accentColor)
+                        .font(.caption.lowercaseSmallCaps())
+                        .animation(nil, value: configuration.isExpanded)
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+            if configuration.isExpanded {
+                configuration.content
+            }
         }
     }
 }
