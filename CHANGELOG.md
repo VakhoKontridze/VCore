@@ -1,6 +1,6 @@
 # Change Log
 
-### 4.8.2(77)
+### [4.8.2(77)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.2) — *2023 04 17*
 
 Views
 
