@@ -13,6 +13,9 @@ import SwiftUI
 extension View {
     /// Retrieves modal's top-most superview and `UITransitionView` for customization.
     ///
+    /// This method assumes implementation details about presentation API,
+    /// and could break in future OS releases.
+    ///
     ///     @State private var isPresented: Bool = false
     ///
     ///     var body: some View {
