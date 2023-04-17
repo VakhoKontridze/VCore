@@ -14,6 +14,9 @@ import SwiftUI
 @available(watchOS, unavailable)
 public struct PlainDisclosureGroupUIModel {
     // MARK: Properties
+    /// Model that contains layout properties.
+    public var layout: Layout = .init()
+
     /// Model that contains color properties.
     public var colors: Colors = .init()
     
@@ -23,6 +26,22 @@ public struct PlainDisclosureGroupUIModel {
     // MARK: Initializers
     /// Initializes UI model with default values.
     public init() {}
+
+    // MARK: Layout
+    /// Model that contains layout properties.
+    public struct Layout {
+        // MARK: Properties
+        /// Default padding in native disclosure group. Set to `8`.
+        ///
+        /// Value is used during the frame calculations, and must be provided.
+        ///
+        /// In future releases of `iOS`/`macOS`, this value may change.
+        public var defaultDisclosureGroupPadding: CGFloat = 8
+
+        // MARK: Initializers
+        /// Initializes UI model with default values.
+        public init() {}
+    }
     
     // MARK: Colors
     /// Model that contains color properties.

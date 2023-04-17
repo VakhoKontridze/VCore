@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.8.2(77)
+
+Views
+
+- Issue with large header labels overlapping over content in `PlainDisclosureGroup` is fixed
+
 ### [4.8.1(76)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.1) — *2023 04 15*
 
 Services and managers
