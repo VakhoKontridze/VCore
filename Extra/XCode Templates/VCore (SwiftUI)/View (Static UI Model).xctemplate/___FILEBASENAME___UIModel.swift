@@ -1,9 +1,9 @@
 //  ___FILEHEADER___
 
-import UIKit
+import SwiftUI
 
-// MARK: - ___VARIABLE_productName___ View UI Model
-struct ___VARIABLE_productName___ViewUIModel {
+// MARK: - ___VARIABLE_productName___ UI Model
+struct ___VARIABLE_productName___UIModel {
     // MARK: Initializers
     private init() {}
     
@@ -18,7 +18,7 @@ struct ___VARIABLE_productName___ViewUIModel {
     // MARK: Colors
     struct Colors {
         // MARK: Properties
-        static var background: UIColor { .systemBackground }
+        static var background: Color { .init(.systemBackground) }
         
         // MARK: Initializers
         private init() {}

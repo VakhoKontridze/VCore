@@ -5,10 +5,6 @@
 <dict>
 	<key>Kind</key>
 	<string>Xcode.IDEKit.TextSubstitutionFileTemplateKind</string>
-	<key>Platforms</key>
-	<array>
-		<string>com.apple.platform.iphoneos</string>
-	</array>
 	<key>Options</key>
 	<array>
 		<dict>
@@ -16,10 +12,10 @@
 				<string>productName</string>
 			<key>Required</key>
 				<true/>
-			<key>Name</key>
-				<string>Title:</string>
 			<key>Type</key>
 				<string>text</string>
+			<key>Name</key>
+				<string>Title (eg "ContentView"):</string>
 		</dict>
 	</array>
 </dict>

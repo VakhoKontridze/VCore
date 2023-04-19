@@ -12,6 +12,10 @@ Extensions
 - `View.customDismissAction(_:)` method is added that allows injection of custom dismiss action
 - `Image.init?(systemName:weight:)` initializer is added
 
+Extra - XCode Templates
+
+- XCode templates have been revised to allow for better naming
+
 ### [4.8.2(77)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.2) — *2023 04 17*
 
 Views

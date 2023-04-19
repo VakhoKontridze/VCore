@@ -3,17 +3,22 @@
 import UIKit
 import VCore
 
-// MARK: - ___VARIABLE_productName___ Cell
-final class ___VARIABLE_productName___Cell: UITableViewCell, ConfigurableUITableViewCell {
+// MARK: - ___VARIABLE_productName___
+final class ___VARIABLE_productName___: UIView {
     // MARK: Subviews
     
     // MARK: Properties
-    private typealias UIModel = ___VARIABLE_productName___CellUIModel
+    private typealias UIModel = ___VARIABLE_productName___UIModel
     
     // MARK: Initializers
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
+    init() {
+        super.init(frame: .zero)
         setUp()
+    }
+    
+    convenience init(parameters: ___VARIABLE_productName___Parameters) {
+        self.init()
+        configure(parameters: parameters)
     }
     
     required init?(coder: NSCoder) {
@@ -29,7 +34,6 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, ConfigurableUITable
     
     private func setUpView() {
         backgroundColor = UIModel.Colors.background
-        selectionStyle = .none
     }
     
     private func addSubviews() {
@@ -42,8 +46,8 @@ final class ___VARIABLE_productName___Cell: UITableViewCell, ConfigurableUITable
         ])
     }
     
-    // MARK: Configurable Table View Cell
-    func configure(parameter: some UITableViewCellParameter) {
-        guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }
+    // MARK: Configuration
+    func configure(parameters: ___VARIABLE_productName___Parameters) {
+        
     }
 }

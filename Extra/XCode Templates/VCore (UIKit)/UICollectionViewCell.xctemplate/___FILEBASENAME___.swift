@@ -3,12 +3,12 @@
 import UIKit
 import VCore
 
-// MARK: - ___VARIABLE_productName___ Cell
-final class ___VARIABLE_productName___Cell: UICollectionViewCell, ConfigurableUICollectionViewCell {
+// MARK: - ___VARIABLE_productName___
+final class ___VARIABLE_productName___: UICollectionViewCell, ConfigurableUICollectionViewCell {
     // MARK: Subviews
     
     // MARK: Properties
-    private typealias UIModel = ___VARIABLE_productName___CellUIModel
+    private typealias UIModel = ___VARIABLE_productName___UIModel
     
     // MARK: Initializers
     override init(frame: CGRect) {
@@ -43,6 +43,6 @@ final class ___VARIABLE_productName___Cell: UICollectionViewCell, ConfigurableUI
     
     // MARK: Configurable Collection View Cell
     func configure(parameter: some UICollectionViewCellParameter) {
-        guard let parameters = parameter as? ___VARIABLE_productName___CellParameters else { return }
+        guard let parameters = parameter as? ___VARIABLE_productName___Parameters else { return }
     }
 }
