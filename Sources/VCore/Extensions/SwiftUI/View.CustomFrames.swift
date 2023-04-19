@@ -17,7 +17,7 @@ extension View {
     ///     }
     ///
     public func frame(
-        dimension: CGFloat,
+        dimension: CGFloat?,
         alignment: Alignment = .center
     ) -> some View {
         self
@@ -35,13 +35,13 @@ extension View {
     ///     }
     ///
     public func frame(
-        size: CGSize,
+        size: CGSize?,
         alignment: Alignment = .center
     ) -> some View {
         self
             .frame(
-                width: size.width,
-                height: size.height,
+                width: size?.width,
+                height: size?.height,
                 alignment: alignment
             )
     }
