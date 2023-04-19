@@ -17,13 +17,19 @@ import Combine
 ///
 /// Alternately, a `KeychainServiceConfiguration` can be passed to customize queries.
 ///
-///     static let configuration: KeychainServiceConfiguration = { ... }()
-///     @KeychainStorage("AccessToken", configuration: .default) var accessToken: String?
+///     extension KeychainServiceConfiguration {
+///         static let someCustom: Self = { ... }()
+///     }
+///
+///     @KeychainStorage("AccessToken", configuration: .someCustom) var accessToken: String?
 ///
 /// Or, a reference to an instance of `KeychainService` can be used.
 ///
-///     static let keychainService: KeychainService = { ... }()
-///     @KeychainStorage("AccessToken", keychainService: keychainService) var accessToken: String?
+///     extension KeychainService {
+///         static let someCustom: KeychainService = { ... }()
+///     }
+///
+///     @KeychainStorage("AccessToken", keychainService: .someCustom) var accessToken: String?
 ///
 @propertyWrapper public struct KeychainStorage<Value>: DynamicProperty {
     // MARK: Properties
@@ -90,7 +96,7 @@ extension KeychainStorage where Value: Codable {
     public init(
         wrappedValue defaultValue: Value,
         _ key: String,
-        keychainService: KeychainService
+        keychainService: KeychainService = .default
     ) {
         self.init(
             keychainService: keychainService,
@@ -103,7 +109,7 @@ extension KeychainStorage where Value: Codable {
     public init(
         wrappedValue defaultValue: Value,
         _ key: String,
-        configuration: KeychainServiceConfiguration = .default
+        configuration: KeychainServiceConfiguration
     ) {
         self.init(
             wrappedValue: defaultValue,
@@ -117,7 +123,7 @@ extension KeychainStorage where Value: Codable, Value: ExpressibleByNilLiteral {
     /// Initializes `KeychainStorage` from `Optional` `Codable`.
     public init(
         _ key: String,
-        keychainService: KeychainService
+        keychainService: KeychainService = .default
     ) {
         self.init(
             wrappedValue: nil,
@@ -129,7 +135,7 @@ extension KeychainStorage where Value: Codable, Value: ExpressibleByNilLiteral {
     /// Initializes `KeychainStorage` from `Optional` `Codable`.
     public init(
         _ key: String,
-        configuration: KeychainServiceConfiguration = .default
+        configuration: KeychainServiceConfiguration
     ) {
         self.init(
             wrappedValue: nil,
