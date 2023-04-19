@@ -18,15 +18,12 @@ extension View {
     ///
     ///     var body: some View {
     ///         ZStack(content: {
-    ///             sheetBackground
+    ///             Color.gray
     ///
-    ///             content
-    ///                 .padding(padding)
-    ///                 .safeAreaMarginInsets(edges: edges)
+    ///             Color.accentColor
+    ///                 .safeAreaMarginInsets(edges: .all)
     ///         })
-    ///         .frame(size: size)
     ///         .ignoresSafeArea()
-    ///         .offset(isPresented ? offset : initialOffset)
     ///     }
     ///
     @ViewBuilder public func safeAreaMarginInsets(edges: Edge.Set = .all) -> some View {
