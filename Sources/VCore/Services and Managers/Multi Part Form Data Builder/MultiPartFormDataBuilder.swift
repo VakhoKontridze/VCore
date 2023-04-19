@@ -64,12 +64,14 @@ public struct MultipartFormDataBuilder {
     /// Initializes `MultipartFormDataBuilder` with boundary.
     ///
     /// By default, an `UUID` will be used as a boundary.
-    public init(boundary: String = UUID().uuidString) {
+    public init(
+        boundary: String = UUID().uuidString
+    ) {
         self.boundary = boundary
     }
     
     // MARK: Building
-    /// Builds and returns boundary `String` and `Data` that can be sent using network request.
+    /// Builds and returns boundary `String` and `Data` that can be sent over network.
     public func build(
         json: [String: Any?],
         files: [String: (some AnyMultipartFormDataFile)?]
@@ -82,7 +84,7 @@ public struct MultipartFormDataBuilder {
         return (boundary, data)
     }
     
-    /// Builds and returns boundary `String` and `Data` that can be sent using network request.
+    /// Builds and returns boundary `String` and `Data` that can be sent over network.
     public func build(
         data: Data,
         files: [String: (some AnyMultipartFormDataFile)?],
@@ -96,7 +98,7 @@ public struct MultipartFormDataBuilder {
         return try build(json: json, files: files)
     }
     
-    /// Builds and returns boundary `String` and `Data` that can be sent using network request.
+    /// Builds and returns boundary `String` and `Data` that can be sent over network.
     public func build(
         encodable: some Encodable,
         files: [String: (some AnyMultipartFormDataFile)?],
