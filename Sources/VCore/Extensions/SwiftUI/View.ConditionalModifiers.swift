@@ -9,9 +9,9 @@ import SwiftUI
 
 // MARK: - Conditional View Modifiers
 extension View {
-    /// Applies modifier and transforms view if condition is met.
+    /// Applies modifier and transforms `View` if condition is met.
     ///
-    /// This method should be used with caution, since it doesn't preserve view identity.
+    /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
     ///     private let isRed: Bool = true
     ///
@@ -31,9 +31,9 @@ extension View {
         }
     }
     
-    /// Applies modifier and transforms view if condition is met, or applies alternate modifier.
+    /// Applies modifier and transforms `View` if condition is met, or applies alternate modifier.
     ///
-    /// This method should be used with caution, since it doesn't preserve view identity.
+    /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
     ///     private let isError: Bool = true
     ///
@@ -58,9 +58,9 @@ extension View {
         }
     }
     
-    /// Applies modifier and transforms view if value is non-`nil`.
+    /// Applies modifier and transforms `View` if value is non-`nil`.
     ///
-    /// This method should be used with caution, since it doesn't preserve view identity.
+    /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
     ///     private let color: Color? = .accentColor
     ///
@@ -80,9 +80,9 @@ extension View {
         }
     }
     
-    /// Applies modifier and transforms view if value is non-`nil`, or applies alternate modifier.
+    /// Applies modifier and transforms `View` if value is non-`nil`, or applies alternate modifier.
     ///
-    /// This method should be used with caution, since it doesn't preserve view identity.
+    /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
     ///     private let color: Color? = .accentColor
     ///

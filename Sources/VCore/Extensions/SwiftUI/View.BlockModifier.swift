@@ -11,7 +11,7 @@ import SwiftUI
 extension View {
     /// Applies a block modifier to a `View` and returns a new `View`.
     ///
-    /// This method should be used with caution, since it doesn't preserve view identity.
+    /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
     ///     struct ContentView: View {
     ///         var body: some View {
