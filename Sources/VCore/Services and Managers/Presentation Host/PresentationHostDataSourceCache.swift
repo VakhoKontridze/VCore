@@ -42,7 +42,7 @@ import SwiftUI
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-@MainActor public final class PresentationHostDataSourceCache {
+public final class PresentationHostDataSourceCache {
     // MARK: Properties
     /// Shared instance of `PresentationHostDataSourceCache`.
     public static let shared: PresentationHostDataSourceCache = .init()
