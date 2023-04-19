@@ -32,46 +32,30 @@ extension View {
     @ViewBuilder public func safeAreaMarginInsets(edges: Edge.Set = .all) -> some View {
 #if os(iOS) || os(tvOS)
         self
-            .if(edges.contains(.leading), transform: {
-                $0.safeAreaMarginInset(edge: .leading, width: UIDevice.safeAreaInsetLeft)
-            })
-            .if(edges.contains(.trailing), transform: {
-                $0.safeAreaMarginInset(edge: .trailing, width: UIDevice.safeAreaInsetRight)
-            })
-            .if(edges.contains(.top), transform: {
-                $0.safeAreaMarginInset(edge: .top, height: UIDevice.safeAreaInsetTop)
-            })
-            .if(edges.contains(.bottom), transform: {
-                $0.safeAreaMarginInset(edge: .bottom, height: UIDevice.safeAreaInsetBottom)
-            })
+            .safeAreaMarginInset(edge: .leading, width: edges.contains(.leading) ? UIDevice.safeAreaInsetLeft : 0)
+            .safeAreaMarginInset(edge: .trailing, width: edges.contains(.trailing) ? UIDevice.safeAreaInsetRight : 0)
+            .safeAreaMarginInset(edge: .top, height: edges.contains(.top) ? UIDevice.safeAreaInsetTop : 0)
+            .safeAreaMarginInset(edge: .bottom, height: edges.contains(.bottom) ? UIDevice.safeAreaInsetBottom : 0)
 #endif
     }
     
     @ViewBuilder private func safeAreaMarginInset(edge: HorizontalEdge, width: CGFloat) -> some View {
 #if os(iOS) || os(tvOS)
-        if width == 0 {
-            self
-        } else {
-            self
-                .safeAreaInset(edge: edge, content: {
-                    Spacer()
-                        .frame(width: width)
-                })
-        }
+        self
+            .safeAreaInset(edge: edge, content: {
+                Spacer()
+                    .frame(width: width)
+            })
 #endif
     }
     
     @ViewBuilder private func safeAreaMarginInset(edge: VerticalEdge, height: CGFloat) -> some View {
 #if os(iOS) || os(tvOS)
-        if height == 0 {
-            self
-        } else {
-            self
-                .safeAreaInset(edge: edge, content: {
-                    Spacer()
-                        .frame(height: height)
-                })
-        }
+        self
+            .safeAreaInset(edge: edge, content: {
+                Spacer()
+                    .frame(height: height)
+            })
 #endif
     }
 }

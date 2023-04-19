@@ -172,14 +172,15 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
                         .frame(height: 300)
                 }
             )
-            .modifier({
+            .frame(dimension: dimension)
+        }
+
+        private var dimension: CGFloat? {
 #if os(macOS)
-                $0.frame(dimension: 640)
+                return 640
 #else
-                $0
+                return nil
 #endif
-            })
-            .padding()
         }
     }
 }

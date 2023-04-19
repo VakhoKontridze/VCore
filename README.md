@@ -308,17 +308,6 @@ var body: some View {
 }
 ```
 
-Conditional `ViewModifier`s:
-
-```swift
-private let isRed: Bool = true
-
-var body: some View {
-    Text("Lorem Ipsum")
-        .if(isRed, transform: { $0.foregroundColor(.red) })
-}
-```
-
 ## Installation
 
 #### Swift Package Manager

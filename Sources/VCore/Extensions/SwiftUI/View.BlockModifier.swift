@@ -11,10 +11,12 @@ import SwiftUI
 extension View {
     /// Applies a block modifier to a `View` and returns a new `View`.
     ///
+    /// This method should be used with caution, since it doesn't preserve view identity.
+    ///
     ///     struct ContentView: View {
     ///         var body: some View {
     ///             SomeView()
-    ///                 .modifier({
+    ///                 .applyModifier({
     ///     #if os(iOS) || os(macOS)
     ///                     $0.listRowSeparator(.hidden)
     ///     #else
@@ -24,7 +26,7 @@ extension View {
     ///         }
     ///     }
     ///
-    public func modifier<Content>(
+    public func applyModifier<Content>(
         @ViewBuilder _ block: (Self) -> Content
     ) -> some View
         where Content: View

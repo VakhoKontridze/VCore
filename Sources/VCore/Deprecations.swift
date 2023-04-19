@@ -466,6 +466,69 @@ extension View {
 //
 //#endif
 
+extension View {
+    @available(*, deprecated, renamed: "applyIf")
+    @ViewBuilder public func `if`(
+        _ condition: Bool,
+        transform: (Self) -> some View
+    ) -> some View {
+        if condition {
+            transform(self)
+        } else {
+            self
+        }
+    }
+
+    @available(*, deprecated, renamed: "applyIf")
+    @ViewBuilder public func `if`(
+        _ condition: Bool,
+        ifTransform: (Self) -> some View,
+        elseTransform: (Self) -> some View
+    ) -> some View {
+        if condition {
+            ifTransform(self)
+        } else {
+            elseTransform(self)
+        }
+    }
+
+    @available(*, deprecated, renamed: "applyIfLet")
+    @ViewBuilder public func ifLet<Value>(
+        _ value: Value?,
+        transform: (Self, Value) -> some View
+    ) -> some View {
+        if let value {
+            transform(self, value)
+        } else {
+            self
+        }
+    }
+
+    @available(*, deprecated, renamed: "applyIfLet")
+    @ViewBuilder public func `ifLet`<Value>(
+        _ value: Value?,
+        ifTransform: (Self, Value) -> some View,
+        elseTransform: (Self) -> some View
+    ) -> some View {
+        if let value {
+            ifTransform(self, value)
+        } else {
+            elseTransform(self)
+        }
+    }
+}
+
+extension View {
+    @available(*, deprecated, renamed: "applyModifier")
+    public func modifier<Content>(
+        @ViewBuilder _ block: (Self) -> Content
+    ) -> some View
+        where Content: View
+    {
+        block(self)
+    }
+}
+
 // MARK: - V Core Localization Manager
 @available(*, deprecated, renamed: "VCoreLocalizationManager")
 public typealias VCoreLocalizationService = VCoreLocalizationManager
