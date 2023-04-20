@@ -183,30 +183,3 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
         }
     }
 }
-
-@available(iOS 16.0, *)
-struct MyDisclosureStyle: DisclosureGroupStyle {
-    func makeBody(configuration: Configuration) -> some View {
-        VStack {
-            Button {
-                withAnimation {
-                    configuration.isExpanded.toggle()
-                }
-            } label: {
-                HStack(alignment: .firstTextBaseline) {
-                    configuration.label
-                    Spacer()
-                    Text(configuration.isExpanded ? "hide" : "show")
-                        .foregroundColor(.accentColor)
-                        .font(.caption.lowercaseSmallCaps())
-                        .animation(nil, value: configuration.isExpanded)
-                }
-                .contentShape(Rectangle())
-            }
-            .buttonStyle(.plain)
-            if configuration.isExpanded {
-                configuration.content
-            }
-        }
-    }
-}

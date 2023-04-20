@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.8.3
+
+Other
+
+- Platform-specific compilation errors are fixed
+
 ### [4.8.2(77)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.2) — *2023 04 17*
 
 Views
