@@ -1,6 +1,6 @@
 # Change Log
 
-### 4.9.0(78)
+### 4.9.0(79)
 
 Views
 
@@ -15,6 +15,12 @@ Extensions
 Extra - XCode Templates
 
 - XCode templates have been revised to allow for better naming
+
+### [4.8.3(78)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.3) — *2023 04 20*
+
+Other
+
+- Platform-specific compilation errors are fixed
 
 ### [4.8.2(77)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.2) — *2023 04 17*
 
