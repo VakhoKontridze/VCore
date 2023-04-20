@@ -44,12 +44,6 @@ public struct ProgressViewParameters: Hashable, Identifiable {
         self.isInteractionEnabled = isInteractionEnabled
     }
     
-    // MARK: Hashable
-    public func hash(into hasher: inout Hasher) {
-        hasher.combine(scalingFactor)
-        hasher.combine(color)
-    }
-    
     // MARK: Identifiable
     public var id: Int { hashValue }
 }
