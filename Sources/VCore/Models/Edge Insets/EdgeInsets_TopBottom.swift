@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Edge Insets (Top, Bottom)
 /// Edge insets containing `top` and `bottom` values.
-public struct EdgeInsets_TopBottom: Hashable, Equatable {
+public struct EdgeInsets_TopBottom: Equatable, Hashable {
     // MARK: Properties
     /// Top inset value.
     public var top: CGFloat

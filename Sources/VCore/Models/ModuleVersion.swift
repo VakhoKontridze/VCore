@@ -14,7 +14,7 @@ import Foundation
 ///
 ///     ModuleVersion(string: Bundle.main.version)?.description // 1.0
 ///
-public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
+public struct ModuleVersion: Equatable, Hashable, Identifiable, Comparable {
     // MARK: Properties
     /// Major version according to the semantic versioning standard.
     public let major: Int
@@ -81,14 +81,14 @@ public struct ModuleVersion: Hashable, Identifiable, Equatable, Comparable {
             return "\(major).\(minor)"
         }
     }
-    
-    // MARK: Identifiable
-    public var id: String { description }
-    
+
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
         isEqual(lhs, to: rhs, by: \.major, \.minor, \.patchUnwrapped)
     }
+    
+    // MARK: Identifiable
+    public var id: String { description }
     
     // MARK: Comparable
     public static func < (lhs: Self, rhs: Self) -> Bool {

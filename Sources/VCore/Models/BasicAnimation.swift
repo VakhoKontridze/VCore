@@ -46,7 +46,7 @@ public struct BasicAnimation {
     
     // MARK: Animation Curve
     /// Enumeration that represents animation curve, such as `linear`, `easeIn`, `easeOut`, or `easeInOut`.
-    public enum AnimationCurve: Hashable, Equatable {
+    public enum AnimationCurve: Equatable, Hashable {
         // MARK: Cases
         /// Linear.
         case linear

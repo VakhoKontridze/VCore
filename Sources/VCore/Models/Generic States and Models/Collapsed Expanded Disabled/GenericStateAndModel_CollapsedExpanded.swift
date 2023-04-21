@@ -126,10 +126,10 @@ extension GenericStateModel_CollapsedExpanded {
     }
 }
 
-// MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_CollapsedExpanded: Hashable where Value: Hashable {}
-
+// MARK: Equatable, Hashable, Comparable
 extension GenericStateModel_CollapsedExpanded: Equatable where Value: Equatable {}
+
+extension GenericStateModel_CollapsedExpanded: Hashable where Value: Hashable {}
 
 extension GenericStateModel_CollapsedExpanded: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {

@@ -96,10 +96,10 @@ extension GenericStateModel_EnabledFocused {
 
 #endif
 
-// MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_EnabledFocused: Hashable where Value: Hashable {}
-
+// MARK: Equatable, Hashable, Comparable
 extension GenericStateModel_EnabledFocused: Equatable where Value: Equatable {}
+
+extension GenericStateModel_EnabledFocused: Hashable where Value: Hashable {}
 
 extension GenericStateModel_EnabledFocused: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {

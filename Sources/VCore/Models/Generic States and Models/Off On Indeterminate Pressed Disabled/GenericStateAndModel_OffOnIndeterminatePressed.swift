@@ -175,10 +175,10 @@ extension GenericStateModel_OffOnIndeterminatePressed {
     }
 }
 
-// MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_OffOnIndeterminatePressed: Hashable where Value: Hashable {}
-
+// MARK: Equatable, Hashable, Comparable
 extension GenericStateModel_OffOnIndeterminatePressed: Equatable where Value: Equatable {}
+
+extension GenericStateModel_OffOnIndeterminatePressed: Hashable where Value: Hashable {}
 
 extension GenericStateModel_OffOnIndeterminatePressed: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {

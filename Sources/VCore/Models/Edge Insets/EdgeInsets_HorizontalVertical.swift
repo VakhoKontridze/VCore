@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Edge Insets (Horizontal, Vertical)
 /// Edge insets containing `horizontal` and `vertical` values.
-public struct EdgeInsets_HorizontalVertical: Hashable, Equatable {
+public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
     // MARK: Properties
     /// Horizontal inset value.
     public var horizontal: CGFloat

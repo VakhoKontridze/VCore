@@ -161,10 +161,10 @@ extension GenericStateModel_OffOnPressedDisabled {
 
 #endif
 
-// MARK: Hashable, Equatable, Comparable
-extension GenericStateModel_OffOnPressedDisabled: Hashable where Value: Hashable {}
-
+// MARK: Equatable, Hashable, Comparable
 extension GenericStateModel_OffOnPressedDisabled: Equatable where Value: Equatable {}
+
+extension GenericStateModel_OffOnPressedDisabled: Hashable where Value: Hashable {}
 
 extension GenericStateModel_OffOnPressedDisabled: Comparable where Value: Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {

@@ -703,7 +703,7 @@ Services and Managers
 Helpers
 
 - `EdgeInsets`s now conform to `Hashable`
-- `GenericStateModel` now conform to `Hashable`, `Equatable`, and `Comparable`
+- `GenericStateModel` now conform to `Equatable, `Hashable`, and `Comparable`
 
 Extensions
 
