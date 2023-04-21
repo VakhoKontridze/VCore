@@ -529,6 +529,13 @@ extension View {
     }
 }
 
+// MARK: - Hashable Enumeration
+@available(*, deprecated, message: "Use \"Hashable & CaseIterable\" instead")
+public protocol HashableEnumeration: Hashable, CaseIterable {}
+
+@available(*, deprecated, message: "Use \"Hashable & CaseIterable & StringRepresentable\" instead")
+public protocol StringRepresentableHashableEnumeration: Hashable, CaseIterable, StringRepresentable {}
+
 // MARK: - V Core Localization Manager
 @available(*, deprecated, renamed: "VCoreLocalizationManager")
 public typealias VCoreLocalizationService = VCoreLocalizationManager
