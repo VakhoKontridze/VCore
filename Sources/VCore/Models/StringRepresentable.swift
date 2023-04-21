@@ -13,13 +13,8 @@ import Foundation
 ///     enum RGBColor: Int, Hashable, Identifiable, CaseIterable, StringRepresentable {
 ///         case red, green, blue
 ///
-///         var id: Int {
-///             rawValue
-///         }
-///
-///         var stringRepresentation: String {
-///             String(describing: self)
-///         }
+///         var id: Int { rawValue }
+///         var stringRepresentation: String { .init(describing: self).capitalized }
 ///     }
 ///
 ///     struct SomeCustomPicker<SelectionValue, ID, Content>: View
@@ -28,12 +23,10 @@ import Foundation
 ///             ID: Hashable,
 ///             Content: View
 ///     {
+///         @Binding private var selection: SelectionValue
 ///         private let data: [SelectionValue]
 ///         private let id: KeyPath<SelectionValue, ID>
-///
 ///         private let content: (SelectionValue) -> Content
-///
-///         @Binding private var selection: SelectionValue
 ///
 ///         init(
 ///             selection: Binding<SelectionValue>,
@@ -41,10 +34,10 @@ import Foundation
 ///             id: KeyPath<SelectionValue, ID>,
 ///             @ViewBuilder content: @escaping (SelectionValue) -> Content
 ///         ) {
+///             self._selection = selection
 ///             self.data = data
 ///             self.id = id
 ///             self.content = content
-///             self._selection = selection
 ///         }
 ///
 ///         init(
@@ -56,10 +49,10 @@ import Foundation
 ///                 SelectionValue: Identifiable,
 ///                 ID == SelectionValue.ID
 ///         {
+///             self._selection = selection
 ///             self.data = data
 ///             self.id = \.id
 ///             self.content = content
-///             self._selection = selection
 ///         }
 ///
 ///         init(
@@ -70,10 +63,10 @@ import Foundation
 ///                 ID == SelectionValue.ID,
 ///                 Content == Text
 ///         {
+///             self._selection = selection
 ///             self.data = Array(SelectionValue.allCases)
 ///             self.id = \.id
 ///             self.content = { Text($0.stringRepresentation) }
-///             self._selection = selection
 ///         }
 ///
 ///         var body: some View {
@@ -101,13 +94,13 @@ import Foundation
 ///                     selection: $selection,
 ///                     data: [.red, .green, .blue],
 ///                     id: \.rawValue,
-///                     content: { Text(String(describing: $0)) }
+///                     content: { Text(String(describing: $0).capitalized) }
 ///                 )
 ///
 ///                 SomeCustomPicker(
 ///                     selection: $selection,
 ///                     data: [.red, .green, .blue],
-///                     content: { Text(String(describing: $0)) }
+///                     content: { Text(String(describing: $0).capitalized) }
 ///                 )
 ///
 ///                 SomeCustomPicker(
