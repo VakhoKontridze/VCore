@@ -2,6 +2,10 @@
 
 ### 4.9.0(79)
 
+Services and Managers
+
+- `PresentationHost` now queues simultaneous presentations, and presents them once current modal is dismissed
+
 Views
 
 - `ViewResetter` is now a callable objects
