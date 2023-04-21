@@ -38,8 +38,8 @@ final class _PresentationHostViewController: UIViewController, UIViewControllerT
     
     // MARK: Presentation
     func presentHostedView(_ content: some View) {
-        hostingController = UIHostingController(rootView: AnyView(content))
-        guard let hostingController = hostingController else { fatalError() }
+        let hostingController: UIHostingController = .init(rootView: AnyView(content))
+        self.hostingController = hostingController
         
         hostingController.modalPresentationStyle = .overFullScreen
         hostingController.modalTransitionStyle = .crossDissolve
