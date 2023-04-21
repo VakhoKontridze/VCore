@@ -13,22 +13,12 @@ extension Collection {
     ///
     /// Element can be used as id in `ForEach` without use of an explicit identifier.
     ///
-    ///     struct EnumeratedArrayView<Data, Content>: View
-    ///         where
-    ///             Data: RandomAccessCollection,
-    ///             Data.Index == Int,
-    ///             Content: View
-    ///     {
-    ///         let data: Data
-    ///         let rowContent: (Data.Element) -> Content
-    ///
-    ///         var body: some View {
-    ///             ForEach(
-    ///                 data.enumeratedArray(),
-    ///                 id: \.offset,
-    ///                 content: { (i, element) in rowContent(element) }
-    ///             )
-    ///         }
+    ///     var body: some View {
+    ///         ForEach(
+    ///             data.enumeratedArray(),
+    ///             id: \.element,
+    ///             content: { (i, element) in rowContent(element) }
+    ///         )
     ///     }
     ///
     public func enumeratedArray() -> Array<(offset: Int, element: Element)> {
