@@ -17,54 +17,56 @@ import Foundation
 ///         var stringRepresentation: String { .init(describing: self).capitalized }
 ///     }
 ///
-///     struct SomeCustomPicker<SelectionValue, ID, Content>: View
+///     struct SomeCustomPicker<Data, ID, Content>: View
 ///         where
-///             SelectionValue: Hashable,
+///             Data: RandomAccessCollection,
+///             Data.Element: Hashable,
 ///             ID: Hashable,
 ///             Content: View
 ///     {
-///         @Binding private var selection: SelectionValue
-///         private let data: [SelectionValue]
-///         private let id: KeyPath<SelectionValue, ID>
-///         private let content: (SelectionValue) -> Content
+///         @Binding private var selection: Data.Element
+///         private let data: [Data.Element]
+///         private let id: KeyPath<Data.Element, ID>
+///         private let content: (Data.Element) -> Content
 ///
 ///         init(
-///             selection: Binding<SelectionValue>,
-///             data: [SelectionValue],
-///             id: KeyPath<SelectionValue, ID>,
-///             @ViewBuilder content: @escaping (SelectionValue) -> Content
+///             selection: Binding<Data.Element>,
+///             data: Data,
+///             id: KeyPath<Data.Element, ID>,
+///             @ViewBuilder content: @escaping (Data.Element) -> Content
 ///         ) {
 ///             self._selection = selection
-///             self.data = data
+///             self.data = Array(data)
 ///             self.id = id
 ///             self.content = content
 ///         }
 ///
 ///         init(
-///             selection: Binding<SelectionValue>,
-///             data: [SelectionValue],
-///             @ViewBuilder content: @escaping (SelectionValue) -> Content
+///             selection: Binding<Data.Element>,
+///             data: Data,
+///             @ViewBuilder content: @escaping (Data.Element) -> Content
 ///         )
 ///             where
-///                 SelectionValue: Identifiable,
-///                 ID == SelectionValue.ID
+///                 Data.Element: Identifiable,
+///                 ID == Data.Element.ID
 ///         {
 ///             self._selection = selection
-///             self.data = data
+///             self.data = Array(data)
 ///             self.id = \.id
 ///             self.content = content
 ///         }
 ///
-///         init(
-///             selection: Binding<SelectionValue>
+///         init<T>(
+///             selection: Binding<T>
 ///         )
 ///             where
-///                 SelectionValue: Identifiable & CaseIterable & StringRepresentable,
-///                 ID == SelectionValue.ID,
+///                 Data == Array<T>,
+///                 T: Identifiable & CaseIterable & StringRepresentable,
+///                 ID == T.ID,
 ///                 Content == Text
 ///         {
 ///             self._selection = selection
-///             self.data = Array(SelectionValue.allCases)
+///             self.data = Array(T.allCases)
 ///             self.id = \.id
 ///             self.content = { Text($0.stringRepresentation) }
 ///         }
