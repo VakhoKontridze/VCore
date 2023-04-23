@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - View Resetting Container
 /// `View` that resets content on demand.
 ///
-/// Cane be used to trigger reload on an app level.
+/// Can be used to trigger reload on an app level.
 /// `SwiftUI`'s equivalent of replacing `rootViewController` in `UIKit`
 ///
 /// In the following example, you can scroll down, trigger a reset,

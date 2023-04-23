@@ -60,7 +60,7 @@ public struct RectCorner: OptionSet {
     // MARK: Reversing Left and Right Corners
     /// Returns `RectCorner` with reversed left and right corners if condition is met.
     ///
-    /// Cane be used when supporting RTL languages.
+    /// Can be used when supporting RTL languages.
     public func withReversedLeftAndRightCorners(
         _ condition: Bool = true
     ) -> Self {
