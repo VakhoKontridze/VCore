@@ -66,7 +66,7 @@ public struct RectCorner: OptionSet {
     ) -> Self {
         guard condition else { return self }
         
-        var result: Self = .init()
+        var result: Self = []
         
         switch (contains(.topLeft), contains(.topRight)) {
         case (false, false): break
