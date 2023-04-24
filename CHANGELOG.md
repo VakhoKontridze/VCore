@@ -1,6 +1,6 @@
 # Change Log
 
-### 4.9.0(79)
+### 4.9.0(80)
 
 Services and Managers
 
@@ -19,6 +19,12 @@ Extensions
 Extra - XCode Templates
 
 - XCode templates have been revised to allow for better naming
+
+### [4.8.4(79)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.4) — *2023 04 24*
+
+Views
+
+- Crash when using `UIKit`/`AppKit` base buttons with some configurations is fixed
 
 ### [4.8.3(78)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.3) — *2023 04 20*
 
