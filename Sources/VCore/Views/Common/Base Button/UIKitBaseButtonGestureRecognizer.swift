@@ -38,7 +38,6 @@ final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureReco
         super.init(target: nil, action: nil)
         
         delegate = self
-        stateChangedHandler(GestureBaseButtonGestureState(state: state)) // Setter isn't called from initializer
     }
     
     // MARK: Configuration
