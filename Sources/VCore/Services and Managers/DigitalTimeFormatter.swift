@@ -8,9 +8,9 @@
 import Foundation
 
 // MARK: - Digital Time Formatter
-/// Digital time formatter.
+/// Digital time formatter that formats seconds to day, hour, minute, and second format.
 ///
-/// You can configure to object by setting flags to change behavior, such as component visibility
+/// You can configure to formatter by setting flags to change behavior, such as component visibility
 /// or delimiter.
 ///
 ///     let formatter: DigitalTimeFormatter = .init()
@@ -27,152 +27,117 @@ import Foundation
 ///     formatter.string(from: 8553600) // "99:00:00:00"
 ///
 public struct DigitalTimeFormatter {
-    // MARK: Properties
-    /// Indicates if empty components still show up as zeroes in format. Set to `false`.
-    public var emptyComponentsShowAsZeroes: Bool = false
-    
-    /// Indicates if hour component in `HH:MM:SS` format shows two digits. Set to `false`.
+    // MARK: Properties - Delimiter
+    /// Component delimiter. Set to `:`.
+    public var delimiter: String = ":"
+
+    // MARK: Properties - Digits
+    /// Indicates if hour component in `HH:MM:SS` format has two digits. Set to `false`.
     public var hourComponentHasTwoDigits: Bool = false
     
-    /// Indicates if minute component in `MM:SS` format shows two digits. Set to `false`.
+    /// Indicates if minute component in `MM:SS` format has two digits. Set to `false`.
     public var minuteComponentHasTwoDigits: Bool = false
     
-    /// Indicates if second component in `SS` format shows two digits. Set to `true`.
+    /// Indicates if second component in `SS` format has two digits. Set to `true`.
     ///
     /// `minuteComponentShowsIfSecondComponentShows` must be set to false.
     public var secondComponentHasTwoDigits: Bool = true
+
+    // MARK: Properties - Misc
+    /// Indicates if empty significant components are included. Set to `false`.
+    ///
+    /// For instance, if hour, minute, and second components are used, and hour is 0, "MM:SS" will be used instead of "00:MM:SS".
+    public var emptySignificantComponentsAreIncluded: Bool = false
     
     /// Indicates if minute component is visible if only second component exists. Set to `true`.
-    public var minuteComponentShowsIfSecondComponentShows: Bool = true
-    
-    /// Component delimiter. Set to `:`.
-    public var delimiter: String = ":"
-    
+    public var minuteComponentIsIncludedIfOnlySecondComponentIsIncluded: Bool = true
+
     // MARK: Initializers
     /// Initializes `DigitalTimeFormatter`.
     public init() {}
     
     // MARK: Formatting
     /// Returns `String` from seconds with specified format.
-    public func string(from seconds: Double) -> String? {
+    public func string(from seconds: Int) -> String? {
         guard seconds >= 0 else { return nil }
-        
+
         let (d, h, m, s) = extractTimeComponents(from: seconds)
-        
-        let formattedComponents: [String]? = {
-            if d > 0 {
-                return [String(d), h.padded, m.padded, s.padded]
-                
-            } else if h > 0 {
-                switch (emptyComponentsShowAsZeroes, hourComponentHasTwoDigits) {
-                case (false, false): return [String(h), m.padded, s.padded]
-                case (false, true): return [h.padded, m.padded, s.padded]
-                case (true, _): return ["0", h.padded, m.padded, s.padded]
-                }
-                
-            } else if m > 0 {
-                switch (emptyComponentsShowAsZeroes, minuteComponentHasTwoDigits) {
-                case (false, false): return [String(m), s.padded]
-                case (false, true): return [m.padded, s.padded]
-                case (true, _): return ["0", "00", m.padded, s.padded]
-                }
-                
-            } else if s >= 0 {
-                switch (emptyComponentsShowAsZeroes, minuteComponentShowsIfSecondComponentShows, minuteComponentHasTwoDigits, secondComponentHasTwoDigits) {
-                case (false, false, _, false): return [String(s)]
-                case (false, false, _, true): return [s.padded]
-                case (false, true, false, _): return ["0", s.padded]
-                case (false, true, true, _): return ["00", s.padded]
-                case (true, _, _, _): return ["0", "00", "00", s.padded]
-                }
-                
-            } else {
-                return nil
+
+        if d > 0 {
+            return String(format: "%d\(delimiter)%02d\(delimiter)%02d\(delimiter)%02d", d, h, m, s)
+        }
+
+        if h > 0 {
+            if emptySignificantComponentsAreIncluded {
+                return String(format: "0\(delimiter)%02d\(delimiter)%02d\(delimiter)%02d", h, m, s)
             }
-        }()
-        
-        let formattedTime: String? = formattedComponents.map { $0.joined(separator: delimiter) }
-        
-        return formattedTime
+
+            if hourComponentHasTwoDigits {
+                return String(format: "%02d\(delimiter)%02d\(delimiter)%02d", h, m, s)
+            } else {
+                return String(format: "%d\(delimiter)%02d\(delimiter)%02d", h, m, s)
+            }
+        }
+
+        if m > 0 {
+            if emptySignificantComponentsAreIncluded {
+                return String(format: "0\(delimiter)00\(delimiter)%02d\(delimiter)%02d", m, s)
+            }
+
+            if minuteComponentHasTwoDigits {
+                return String(format: "%02d\(delimiter)%02d", m, s)
+            } else {
+                return String(format: "%d\(delimiter)%02d", m, s)
+            }
+        }
+
+        if s >= 0 {
+            if emptySignificantComponentsAreIncluded {
+                return String(format: "0\(delimiter)00\(delimiter)00\(delimiter)%02d", s)
+            }
+
+            switch (minuteComponentIsIncludedIfOnlySecondComponentIsIncluded, minuteComponentHasTwoDigits, secondComponentHasTwoDigits) {
+            case (false, _, false): return String(format: "%d", s)
+            case (false, _, true): return String(format: "%02d", s)
+            case (true, false, _): return String(format: "0\(delimiter)%02d", s)
+            case (true, true, _): return String(format: "00\(delimiter)%02d", s)
+            }
+        }
+
+        return nil
+    }
+
+    /// Returns `String` from seconds with specified format.
+    public func string(from seconds: Double) -> String? {
+        let seconds: Int = .init(seconds.rounded(.toNearestOrAwayFromZero))
+
+        return string(from: seconds)
     }
     
     // MARK: Time Components
-    private func extractTimeComponents(from seconds: Double) -> (d: Int, h: Int, m: Int, s: Int) {
-        var d: Int = {
-            let remainder: Double = seconds
-            
-            return Int(remainder / TimeComponent.day.seconds)
-        }()
+    private func extractTimeComponents(
+        from seconds: Int
+    ) -> (d: Int, h: Int, m: Int, s: Int) {
+        var seconds = seconds
         
-        var h: Int = {
-            let sInDay: Double = Double(d) * TimeComponent.day.seconds
-            
-            let remainder: Double = seconds - sInDay
-            
-            return Int(remainder / TimeComponent.hour.seconds)
-        }()
-        
-        var m: Int = {
-            let sInDay: Double = Double(d) * TimeComponent.day.seconds
-            let sInHour: Double = Double(h) * TimeComponent.hour.seconds
-            
-            let remainder: Double = seconds - sInDay - sInHour
-            
-            return Int(remainder / TimeComponent.minute.seconds)
-        }()
-        
-        var s: Int = {
-            let sInDay: Double = Double(d) * TimeComponent.day.seconds
-            let sInHour: Double = Double(h) * TimeComponent.hour.seconds
-            let sInMinute: Double = Double(m) * TimeComponent.minute.seconds
-            
-            let remainder: Double = seconds - sInDay - sInHour - sInMinute
-            
-            return Int(remainder.rounded(.toNearestOrAwayFromZero))
-        }()
-        
-        if s == TimeComponent.second.max { s = 0; m += 1 }
-        if m == TimeComponent.minute.max { m = 0; h += 1 }
-        if h == TimeComponent.hour.max { h = 0; d += 1 }
-        
-        return (d, h, m, s)
-    }
-    
-    private enum TimeComponent {
-        case day
-        case hour
-        case minute
-        case second
-        
-        var seconds: Double {
-            switch self {
-            case .day: return 86_400
-            case .hour: return 3_600
-            case .minute: return 60
-            case .second: return 1
-            }
-        }
-        
-        var max: Int? {
-            switch self {
-            case .day: return nil
-            case .hour: return 24
-            case .minute: return 60
-            case .second: return 60
-            }
-        }
-    }
-}
+        let result1 = seconds.quotientAndRemainder(dividingBy: 86_400)
+        var d: Int = result1.quotient
+        seconds = result1.remainder
 
-// MARK: - Helpers
-extension Int {
-    fileprivate var padded: String {
-        let str: String = .init(self)
-        
-        switch str.count {
-        case 1: return "0\(str)"
-        case 2: return str
-        default: fatalError()
-        }
+        let result2 = seconds.quotientAndRemainder(dividingBy: 3_600)
+        var h: Int = result2.quotient
+        seconds = result2.remainder
+
+        let result3 = seconds.quotientAndRemainder(dividingBy: 60)
+        var m: Int = result3.quotient
+        seconds = result3.remainder
+
+        var s: Int = seconds
+
+        if s == 60 { s = 0; m += 1 }
+        if m == 60 { m = 0; h += 1 }
+        if h == 24 { h = 0; d += 1 }
+
+        return (d, h, m, s)
     }
 }

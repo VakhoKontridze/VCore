@@ -62,6 +62,21 @@ extension KeychainService {
     }
 }
 
+// MARK: - Digital Time Formatter
+extension DigitalTimeFormatter {
+    @available(*, deprecated, renamed: "emptySignificantComponentsAreIncluded")
+    public var emptyComponentsShowAsZeroes: Bool {
+        get { emptySignificantComponentsAreIncluded }
+        set { emptySignificantComponentsAreIncluded = newValue }
+    }
+
+    @available(*, deprecated, renamed: "minuteComponentIsIncludedIfOnlySecondComponentIsIncluded")
+    public var minuteComponentShowsIfSecondComponentShows: Bool {
+        get { minuteComponentIsIncludedIfOnlySecondComponentIsIncluded }
+        set { minuteComponentIsIncludedIfOnlySecondComponentIsIncluded = newValue }
+    }
+}
+
 // MARK: - H Or VStack
 @available(*, deprecated, renamed: "HVStack")
 public typealias HOrVStack = HVStack

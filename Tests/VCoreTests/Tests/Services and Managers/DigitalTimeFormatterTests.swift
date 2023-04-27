@@ -25,9 +25,9 @@ final class DigitalTimeFormatterTests: XCTestCase {
         XCTAssertEqual(formatter.string(from: 8553600), "99:00:00:00")
     }
     
-    func testEmptyComponentsShowsAsZeroes() {
+    func testEmptySignificantComponentsAreIncluded() {
         var formatter: DigitalTimeFormatter = .init()
-        formatter.emptyComponentsShowAsZeroes = true
+        formatter.emptySignificantComponentsAreIncluded = true
         
         XCTAssertEqual(formatter.string(from: 0), "0:00:00:00")
     }
@@ -76,7 +76,7 @@ final class DigitalTimeFormatterTests: XCTestCase {
         do {
             var formatter: DigitalTimeFormatter = .init()
             formatter.secondComponentHasTwoDigits = false
-            formatter.minuteComponentShowsIfSecondComponentShows = false
+            formatter.minuteComponentIsIncludedIfOnlySecondComponentIsIncluded = false
             
             XCTAssertEqual(formatter.string(from: 0), "0")
             XCTAssertEqual(formatter.string(from: 1), "1")
@@ -84,9 +84,9 @@ final class DigitalTimeFormatterTests: XCTestCase {
         }
     }
     
-    func testMinuteComponentShowsIfSecondComponentShows() {
+    func testMinuteComponentIsIncludedIfOnlySecondComponentIsIncluded() {
         var formatter: DigitalTimeFormatter = .init()
-        formatter.minuteComponentShowsIfSecondComponentShows = false
+        formatter.minuteComponentIsIncludedIfOnlySecondComponentIsIncluded = false
         
         XCTAssertEqual(formatter.string(from: 0), "00") // second has two digits
         XCTAssertEqual(formatter.string(from: 1), "01") // second has two digits
