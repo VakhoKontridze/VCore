@@ -32,21 +32,21 @@ public struct DigitalTimeFormatter {
     public var delimiter: String = ":"
 
     // MARK: Properties - Digits
-    /// Indicates if hour component in `HH:MM:SS` format has two digits. Set to `false`.
+    /// Indicates if hour component in has two digits, assuming that day component is absent. Set to `false`.
     public var hourComponentHasTwoDigits: Bool = false
     
-    /// Indicates if minute component in `MM:SS` format has two digits. Set to `false`.
+    /// Indicates if minute component has two digits, assuming that minute component is absent. Set to `false`.
     public var minuteComponentHasTwoDigits: Bool = false
     
-    /// Indicates if second component in `SS` format has two digits. Set to `true`.
+    /// Indicates if second component has two digits, assuming that second component is absent. Set to `true`.
     ///
-    /// `minuteComponentShowsIfSecondComponentShows` must be set to false.
+    /// `minuteComponentIsIncludedIfOnlySecondComponentIsIncluded` must be set to false.
     public var secondComponentHasTwoDigits: Bool = true
 
     // MARK: Properties - Misc
     /// Indicates if empty significant components are included. Set to `false`.
     ///
-    /// For instance, if hour, minute, and second components are used, and hour is 0, "MM:SS" will be used instead of "00:MM:SS".
+    /// For instance, if hour, minute, and second components are present, and hour is 0, "MM:SS" will be used instead of "00:MM:SS" if set to `false`.
     public var emptySignificantComponentsAreIncluded: Bool = false
     
     /// Indicates if minute component is visible if only second component exists. Set to `true`.
@@ -96,11 +96,18 @@ public struct DigitalTimeFormatter {
                 return String(format: "0\(delimiter)00\(delimiter)00\(delimiter)%02d", s)
             }
 
-            switch (minuteComponentIsIncludedIfOnlySecondComponentIsIncluded, minuteComponentHasTwoDigits, secondComponentHasTwoDigits) {
-            case (false, _, false): return String(format: "%d", s)
-            case (false, _, true): return String(format: "%02d", s)
-            case (true, false, _): return String(format: "0\(delimiter)%02d", s)
-            case (true, true, _): return String(format: "00\(delimiter)%02d", s)
+            if minuteComponentIsIncludedIfOnlySecondComponentIsIncluded {
+                if minuteComponentHasTwoDigits {
+                    return String(format: "00\(delimiter)%02d", s)
+                } else {
+                    return String(format: "0\(delimiter)%02d", s)
+                }
+            }
+
+            if secondComponentHasTwoDigits {
+                return String(format: "%02d", s)
+            } else {
+                return String(format: "%d", s)
             }
         }
 
