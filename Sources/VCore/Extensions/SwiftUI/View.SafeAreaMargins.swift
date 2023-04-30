@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Safe Area Margins
 extension View {
-    /// Inserts `Spacer`s with width or height of safe are inset as margins for specified edges.
+    /// Adds padding equal to safe area insets to specific edges of the `View`.
     ///
     /// Can be used to reverse effects of `ignoresSafeArea(_:edges:)` in nested view.
     ///
