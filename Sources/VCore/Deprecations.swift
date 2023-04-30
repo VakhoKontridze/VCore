@@ -465,6 +465,8 @@ extension View {
     }
 }
 
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
 extension View {
     @available(*, deprecated, renamed: "safeAreaMargins")
     public func safeAreaMarginInsets(edges: Edge.Set = .all) -> some View {

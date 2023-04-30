@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.9.2(82)
+
+Other
+
+- Platform-specific compilation errors are fixed
+
 ### [4.9.1(81)](https://github.com/VakhoKontridze/VCore/releases/tag/4.9.1) — *2023 05 01*
 
 Extensions

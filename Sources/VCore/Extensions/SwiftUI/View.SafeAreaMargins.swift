@@ -8,6 +8,8 @@
 import SwiftUI
 
 // MARK: - Safe Area Margins
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
 extension View {
     /// Adds padding equal to safe area insets to specific edges of the `View`.
     ///
@@ -23,11 +25,13 @@ extension View {
     ///         .ignoresSafeArea()
     ///     }
     ///
-    public func safeAreaMargins(edges: Edge.Set = .all) -> some View {
+    @ViewBuilder public func safeAreaMargins(edges: Edge.Set = .all) -> some View {
+#if os(iOS) || os(tvOS)
         self
             .padding(.leading, edges.contains(.leading) ? UIDevice.safeAreaInsetLeft : 0)
             .padding(.trailing, edges.contains(.trailing) ? UIDevice.safeAreaInsetRight : 0)
             .padding(.top, edges.contains(.top) ? UIDevice.safeAreaInsetTop : 0)
             .padding(.bottom, edges.contains(.bottom) ? UIDevice.safeAreaInsetBottom : 0)
+#endif
     }
 }
