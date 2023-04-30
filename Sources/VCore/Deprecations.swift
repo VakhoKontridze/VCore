@@ -244,6 +244,19 @@ extension SwiftUIBaseButton {
 
 #endif
 
+// MARK: - Edge Insets
+
+#if canImport(UIKit)
+
+extension EdgeInsets_LeadingTrailingTopBottom {
+    @available(*, deprecated, renamed: "init(_:)")
+    public init(uiEdgeInsets: UIEdgeInsets) {
+        self.init(uiEdgeInsets)
+    }
+}
+
+#endif
+
 // MARK: - Global Functions
 @available(*, deprecated, renamed: "VCoreLogError")
 public func VCoreLog(
