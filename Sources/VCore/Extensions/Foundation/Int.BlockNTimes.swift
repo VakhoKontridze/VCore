@@ -13,17 +13,23 @@ extension Int {
     ///
     ///     5.times { print("Hello, World!") }
     ///
-    public func times(_ block: () -> Void) {
-        times { _ in block() }
+    public func times(
+        _ block: () throws -> Void
+    ) rethrows {
+        guard self > 0 else { return }
+
+        for _ in 0..<self { try block() }
     }
     
     /// Runs block by specified times, and passes index as parameters.
     ///
     ///     5.times { i in print("Hello, World \(i)!") }
     ///
-    public func times(_ block: (Int) -> Void) {
+    public func times(
+        _ block: (Int) throws -> Void
+    ) rethrows {
         guard self > 0 else { return }
         
-        for i in 0..<self { block(i) }
+        for i in 0..<self { try block(i) }
     }
 }
