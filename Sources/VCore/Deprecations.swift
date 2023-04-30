@@ -7,6 +7,14 @@
 
 import Foundation
 
+// MARK: - Network Client
+extension NetworkClient {
+    @available(*, unavailable, message: "Pass parameter to methods insteead")
+    public var completionQueue: DispatchQueue {
+        fatalError()
+    }
+}
+
 // MARK: - Multipart Form Data Builder
 extension MultipartFormDataBuilder {
     @available(*, unavailable, message: "Use empty init with new `build` method")

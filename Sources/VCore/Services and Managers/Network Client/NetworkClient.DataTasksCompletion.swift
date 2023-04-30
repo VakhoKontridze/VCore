@@ -13,20 +13,19 @@ extension NetworkClient {
     /// Makes network calls completion handler with a result of success or `Error`.
     public func noData(
         from request: NetworkRequest,
+        queue: DispatchQueue = .main,
         completion: @escaping (ResultNoSuccess<any Error>) -> Void
     ) {
         makeRequest(
             request: request,
             decode: { _ in Void() },
-            completion: { [weak self] result in
-                guard let self = self else { return }
-                
+            completion: { result in
                 switch result {
                 case .success:
-                    completionQueue.async(execute: { completion(.success) })
+                    queue.async(execute: { completion(.success) })
                     
                 case .failure(let error): // Logged internally
-                    completionQueue.async(execute: { completion(.failure(error)) })
+                    queue.async(execute: { completion(.failure(error)) })
                 }
             }
         )
@@ -35,38 +34,41 @@ extension NetworkClient {
     /// Makes network request and calls completion handler with a result of `Data`or `Error`.
     public func data(
         from request: NetworkRequest,
+        queue: DispatchQueue = .main,
         completion: @escaping (Result<Data, any Error>) -> Void
     ) {
         makeRequest(
             request: request,
             decode: { $0 },
-            completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) } // Logged internally
+            completion: { result in queue.async(execute: { completion(result) }) } // Logged internally
         )
     }
     
     /// Makes network request and calls completion handler with a result of `JSON`or `Error`.
     public func json(
         from request: NetworkRequest,
+        queue: DispatchQueue = .main,
         decodingOptions: JSONSerialization.ReadingOptions = [],
         completion: @escaping ( Result<[String: Any?], any Error>) -> Void
     ) {
         makeRequest(
             request: request,
             decode: { try JSONDecoderService().json(data: $0, options: decodingOptions) },
-            completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) } // Logged internally
+            completion: { result in queue.async(execute: { completion(result) }) } // Logged internally
         )
     }
     
     /// Makes network request and calls completion handler with a result of `JSON` `Array`or `Error`.
     public func jsonArray(
         from request: NetworkRequest,
+        queue: DispatchQueue = .main,
         decodingOptions: JSONSerialization.ReadingOptions = [],
         completion: @escaping (Result<[[String: Any?]], any Error>) -> Void
     ) {
         makeRequest(
             request: request,
             decode: { try JSONDecoderService().jsonArray(data: $0, options: decodingOptions) },
-            completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) } // Logged internally
+            completion: { result in queue.async(execute: { completion(result) }) } // Logged internally
         )
     }
     
@@ -74,6 +76,7 @@ extension NetworkClient {
     public func decodable<T>(
         _ type: T.Type,
         from request: NetworkRequest,
+        queue: DispatchQueue = .main,
         completion: @escaping (Result<T, any Error>) -> Void
     )
         where T: Decodable
@@ -81,7 +84,7 @@ extension NetworkClient {
         makeRequest(
             request: request,
             decode: { try JSONDecoderService().decodable(data: $0) },
-            completion: { [weak self] result in self?.completionQueue.async(execute: { completion(result) }) } // Logged internally
+            completion: { result in queue.async(execute: { completion(result) }) } // Logged internally
         )
     }
     
