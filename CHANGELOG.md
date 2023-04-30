@@ -15,6 +15,7 @@ Extensions
 - `View.decorateModal(_:)` method is added that extracts modal's superview and `UITransitionView` for customization
 - `View.customDismissAction(_:)` method is added that allows injection of custom dismiss action
 - `Image.init?(systemName:weight:)` initializer is added
+- `Collection.randomElements(_:)` method is added that returns random elements up to specified count.
 
 Extra - XCode Templates
 
