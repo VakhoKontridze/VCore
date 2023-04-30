@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.9.1(81)
+
+Extensions
+
+- Issue with `View.safeAreaMargins(edges:)` method messing with `View` identity is fixed
+
 ### [4.9.0(80)](https://github.com/VakhoKontridze/VCore/releases/tag/4.9.0) — *2023 05 01*
 
 Services and Managers

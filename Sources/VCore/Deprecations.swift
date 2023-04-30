@@ -465,6 +465,13 @@ extension View {
     }
 }
 
+extension View {
+    @available(*, deprecated, renamed: "safeAreaMargins")
+    public func safeAreaMarginInsets(edges: Edge.Set = .all) -> some View {
+        safeAreaMargins(edges: edges)
+    }
+}
+
 #if os(iOS)
 
 extension View {
