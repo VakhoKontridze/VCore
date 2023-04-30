@@ -529,7 +529,7 @@ struct HomeUIModel {
     struct Layout {
         // MARK: Properties
         static var imageViewDimension: CGFloat { 50 }
-        static var titleTextSpacing: CGFloat { 10 }
+        static var stackViewSpacing: CGFloat { 10 }
         static var primaryButtonMarginHor: CGFloat { 20 }
         
         // MARK: Initializers

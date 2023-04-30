@@ -436,8 +436,8 @@ struct HomeUIModel {
     // MARK: Layout
     struct Layout {
         // MARK: Properties
-        static var imageViewDimension: CGFloat { 50 }
-        static var titleLabelSpacing: CGFloat { 10 }
+        static var imageDimension: CGFloat { 50 }
+        static var stackSpacing: CGFloat { 10 }
         static var primaryButtonMarginHor: CGFloat { 20 }
         
         // MARK: Initializers
