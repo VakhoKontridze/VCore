@@ -1,6 +1,6 @@
 # Change Log
 
-### 4.9.2(82)
+### [4.9.2(82)](https://github.com/VakhoKontridze/VCore/releases/tag/4.9.2) — *2023 05 01*
 
 Other
 
