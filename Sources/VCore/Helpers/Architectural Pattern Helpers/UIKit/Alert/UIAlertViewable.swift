@@ -15,7 +15,9 @@ import UIKit
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `View/Controller`.
 /// In `MVVM` architecture, this protocol is conformed to by a `View/Controller`.
 ///
-///     final class ViewController: UIViewController, UIAlertViewable {}
+///     final class ViewController: UIViewController, UIAlertViewable {
+///         var presenter: Presenter!
+///     }
 ///
 ///     final class Presenter {
 ///         unowned let view: ViewController

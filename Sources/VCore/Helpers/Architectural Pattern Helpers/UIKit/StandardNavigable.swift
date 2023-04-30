@@ -17,6 +17,10 @@ import UIKit
 ///
 ///     final class ViewController: UIViewController, StandardNavigable {
 ///         var presenter: Presenter!
+///
+///         func didTapButton() {
+///             presenter.didTapButton()
+///         }
 ///     }
 ///
 ///     final class Presenter {
@@ -30,7 +34,7 @@ import UIKit
 ///             ...
 ///         }
 ///
-///         func navigate() {
+///         func didTapButton() {
 ///             router.toDestination()
 ///         }
 ///     }
