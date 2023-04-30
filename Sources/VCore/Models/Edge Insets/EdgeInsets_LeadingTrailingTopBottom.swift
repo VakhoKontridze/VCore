@@ -206,10 +206,18 @@ extension EdgeInsets_LeadingTrailingTopBottom {
 #elseif canImport(AppKit)
 
 extension EdgeInsets_LeadingTrailingTopBottom {
-    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `NSDirectionalEdgeInsets`.
-    public init(_ nsEdgeInsets: NSDirectionalEdgeInsets) {
+    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `NSEdgeInsets`.
+    public init(_ nsEdgeInsets: NSEdgeInsets) {
         self.leading = nsEdgeInsets.left
         self.trailing = nsEdgeInsets.right
+        self.top = nsEdgeInsets.top
+        self.bottom = nsEdgeInsets.bottom
+    }
+
+    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `NSDirectionalEdgeInsets`.
+    public init(_ nsEdgeInsets: NSDirectionalEdgeInsets) {
+        self.leading = nsEdgeInsets.leading
+        self.trailing = nsEdgeInsets.trailing
         self.top = nsEdgeInsets.top
         self.bottom = nsEdgeInsets.bottom
     }
