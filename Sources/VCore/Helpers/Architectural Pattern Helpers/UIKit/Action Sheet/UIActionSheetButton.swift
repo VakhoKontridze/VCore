@@ -77,7 +77,7 @@ extension UIAlertAction {
         isEnabled: Bool,
         title: String?,
         style: UIAlertAction.Style,
-        handler: ((UIAlertAction) -> Void)? = nil
+        handler: ((UIAlertAction) -> Void)?
     ) {
         self.init(
             title: title,
