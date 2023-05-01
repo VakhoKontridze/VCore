@@ -16,11 +16,6 @@ public protocol ConfirmationDialogButtonConvertible {
 }
 
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-extension ConfirmationDialogButton: ConfirmationDialogButtonConvertible {
-    public func toButtons() -> [any ConfirmationDialogButtonProtocol] { [self] }
-}
-
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension Array: ConfirmationDialogButtonConvertible where Element == any ConfirmationDialogButtonProtocol {
     public func toButtons() -> [any ConfirmationDialogButtonProtocol] { self }
 }

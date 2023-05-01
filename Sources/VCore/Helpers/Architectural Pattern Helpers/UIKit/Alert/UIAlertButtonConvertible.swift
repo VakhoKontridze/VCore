@@ -16,10 +16,6 @@ public protocol UIAlertButtonConvertible {
     func toButtons() -> [any UIAlertButtonProtocol]
 }
 
-extension UIAlertButton: UIAlertButtonConvertible {
-    public func toButtons() -> [any UIAlertButtonProtocol] { [self] }
-}
-
 extension Array: UIAlertButtonConvertible where Element == any UIAlertButtonProtocol {
     public func toButtons() -> [any UIAlertButtonProtocol] { self }
 }

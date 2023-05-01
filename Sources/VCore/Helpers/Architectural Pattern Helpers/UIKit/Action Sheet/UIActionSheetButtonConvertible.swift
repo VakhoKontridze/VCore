@@ -16,10 +16,6 @@ public protocol UIActionSheetButtonConvertible {
     func toButtons() -> [any UIActionSheetButtonProtocol]
 }
 
-extension UIActionSheetButton: UIActionSheetButtonConvertible {
-    public func toButtons() -> [any UIActionSheetButtonProtocol] { [self] }
-}
-
 extension Array: UIActionSheetButtonConvertible where Element == any UIActionSheetButtonProtocol {
     public func toButtons() -> [any UIActionSheetButtonProtocol] { self }
 }

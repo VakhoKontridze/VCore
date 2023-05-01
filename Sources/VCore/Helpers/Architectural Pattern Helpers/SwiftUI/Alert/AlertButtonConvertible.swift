@@ -16,11 +16,6 @@ public protocol AlertButtonConvertible {
 }
 
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-extension AlertButton: AlertButtonConvertible {
-    public func toButtons() -> [any AlertButtonProtocol] { [self] }
-}
-
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension Array: AlertButtonConvertible where Element == any AlertButtonProtocol {
     public func toButtons() -> [any AlertButtonProtocol] { self }
 }
