@@ -7,18 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import SwiftUI
-
-// MARK: - UI Action Sheet Button Convertible
-/// Type that allows for conversion to `UIActionSheetButtonProtocol`.
-public protocol UIActionSheetButtonConvertible {
-    /// Converts `UIActionSheetButtonConvertible` to `UIActionSheetButtonProtocol` `Array`.
-    func toButtons() -> [any UIActionSheetButtonProtocol]
-}
-
-extension Array: UIActionSheetButtonConvertible where Element == UIActionSheetButtonProtocol {
-    public func toButtons() -> [any UIActionSheetButtonProtocol] { self }
-}
+import Foundation
 
 // MARK: - UI Action Sheet Button Builder
 /// Custom parameter attribute that constructs views from closures.
@@ -35,7 +24,7 @@ extension Array: UIActionSheetButtonConvertible where Element == UIActionSheetBu
 @resultBuilder public struct UIActionSheetButtonBuilder {
     // MARK: Properties
     public typealias Component = any UIActionSheetButtonConvertible
-    public typealias Result = [any UIActionSheetButtonProtocol]
+    public typealias Result = [UIActionSheetButton]
     
     // MARK: Build Blocks
     public static func buildBlock() -> Result {

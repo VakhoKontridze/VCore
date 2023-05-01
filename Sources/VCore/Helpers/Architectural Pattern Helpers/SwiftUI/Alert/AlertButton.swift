@@ -7,24 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Alert Button Protocol
-/// `Alert` button protocol.
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-public protocol AlertButtonProtocol: AlertButtonConvertible {
-    /// Body type.
-    typealias Body = AnyView
-    
-    /// Creates a `View` that represents the body of a button.
-    func makeBody(
-        animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
-    ) -> Body
-}
-
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-extension AlertButtonProtocol {
-    public func toButtons() -> [any AlertButtonProtocol] { [self] }
-}
-
 // MARK: - Alert Button
 /// `Alert` button.
 ///
@@ -43,7 +25,7 @@ extension AlertButtonProtocol {
 ///     }
 ///
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-public struct AlertButton: AlertButtonProtocol {
+public struct AlertButton {
     // MARK: Properties
     private var isEnabled: Bool = true
     private let role: ButtonRole?
@@ -63,7 +45,7 @@ public struct AlertButton: AlertButtonProtocol {
     }
     
     // MARK: Body
-    public func makeBody(
+    func makeBody(
         animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> AnyView {
         .init(

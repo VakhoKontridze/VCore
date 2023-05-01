@@ -35,14 +35,14 @@ public struct UIActionSheetParameters {
     public var message: String?
     
     /// Buttons.
-    public var buttons: () -> [any UIActionSheetButtonProtocol]
+    public var buttons: () -> [UIActionSheetButton]
     
     // MARK: Initializers
     /// Initializes `UIActionSheetParameters`.
     public init(
         title: String?,
         message: String?,
-        @UIActionSheetButtonBuilder actions buttons: @escaping () -> [any UIActionSheetButtonProtocol]
+        @UIActionSheetButtonBuilder actions buttons: @escaping () -> [UIActionSheetButton]
     ) {
         self.title = title
         self.message = message
@@ -60,7 +60,7 @@ extension UIAlertController {
             preferredStyle: .actionSheet
         )
         
-        parameters.buttons().forEach { addAction($0.toUIAlertAction) }
+        parameters.buttons().forEach { addAction($0.makeBody()) }
     }
 }
 

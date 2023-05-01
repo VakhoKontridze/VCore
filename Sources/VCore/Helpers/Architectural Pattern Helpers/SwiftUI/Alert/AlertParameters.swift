@@ -37,14 +37,14 @@ public struct AlertParameters {
     public var message: String?
     
     /// Buttons.
-    public var buttons: () -> [any AlertButtonProtocol]
+    public var buttons: () -> [AlertButton]
     
     // MARK: Parameters
     /// Initializes `AlertParameters`.
     public init(
         title: String,
         message: String?,
-        @AlertButtonBuilder actions buttons: @escaping () -> [any AlertButtonProtocol]
+        @AlertButtonBuilder actions buttons: @escaping () -> [AlertButton]
     ) {
         self.title = title
         self.message = message

@@ -9,17 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Action Sheet Button Protocol
-/// `UIActionSheetController` button protocol.
-public protocol UIActionSheetButtonProtocol: UIActionSheetButtonConvertible {
-    /// Converts `UIActionSheetButtonProtocol` to `UIAlertAction`.
-    var toUIAlertAction: UIAlertAction { get }
-}
-
-extension UIActionSheetButtonProtocol {
-    public func toButtons() -> [any UIActionSheetButtonProtocol] { [self] }
-}
-
 // MARK: - UI Action Sheet Button
 /// `UIActionSheetController` button.
 ///
@@ -32,7 +21,7 @@ extension UIActionSheetButtonProtocol {
 ///         }
 ///     ))
 ///
-public struct UIActionSheetButton: UIActionSheetButtonProtocol {
+public struct UIActionSheetButton {
     // MARK: Properties
     /// Indicates if button is enabled.
     public var isEnabled: Bool
@@ -61,31 +50,15 @@ public struct UIActionSheetButton: UIActionSheetButtonProtocol {
     }
     
     // MARK: Body
-    public var toUIAlertAction: UIAlertAction {
-        .init(
-            isEnabled: isEnabled,
+    func makeBody() -> UIAlertAction {
+        let alertAction: UIAlertAction = .init(
             title: title,
             style: style,
             handler: { _ in action?() }
         )
-    }
-}
+        alertAction.isEnabled = isEnabled
 
-// MARK: - Helpers
-extension UIAlertAction {
-    fileprivate convenience init(
-        isEnabled: Bool,
-        title: String?,
-        style: UIAlertAction.Style,
-        handler: ((UIAlertAction) -> Void)?
-    ) {
-        self.init(
-            title: title,
-            style: style,
-            handler: handler
-        )
-        
-        self.isEnabled = isEnabled
+        return alertAction
     }
 }
 

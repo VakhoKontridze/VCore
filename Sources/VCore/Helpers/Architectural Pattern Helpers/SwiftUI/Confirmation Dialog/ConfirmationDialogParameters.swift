@@ -38,14 +38,14 @@ public struct ConfirmationDialogParameters {
     public var message: String?
     
     /// Buttons.
-    public var buttons: () -> [any ConfirmationDialogButtonProtocol]
+    public var buttons: () -> [ConfirmationDialogButton]
     
     // MARK: Initializers
     /// Initializes `ConfirmationDialogParameters`.
     public init(
         title: String?,
         message: String?,
-        @ConfirmationDialogButtonBuilder actions buttons: @escaping () -> [any ConfirmationDialogButtonProtocol]
+        @ConfirmationDialogButtonBuilder actions buttons: @escaping () -> [ConfirmationDialogButton]
     ) {
         self.title = title
         self.message = message

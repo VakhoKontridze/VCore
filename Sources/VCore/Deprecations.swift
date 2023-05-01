@@ -581,6 +581,69 @@ public protocol HashableEnumeration: Hashable, CaseIterable {}
 @available(*, deprecated, message: "Use \"Hashable & CaseIterable & StringRepresentable\" instead")
 public protocol StringRepresentableHashableEnumeration: Hashable, CaseIterable, StringRepresentable {}
 
+// MARK: - Architectural Pattern Helpers
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+@available(*, deprecated)
+public protocol UIAlertButtonProtocol: UIAlertButtonConvertible {
+    var toUIAlertAction: UIAlertAction { get }
+}
+
+@available(*, deprecated)
+extension UIAlertButtonProtocol {
+    public func toButtons() -> [any UIAlertButtonProtocol] { [self] }
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+@available(*, deprecated)
+public protocol UIActionSheetButtonProtocol: UIActionSheetButtonConvertible {
+    var toUIAlertAction: UIAlertAction { get }
+}
+
+@available(*, deprecated)
+extension UIActionSheetButtonProtocol {
+    public func toButtons() -> [any UIActionSheetButtonProtocol] { [self] }
+}
+
+#endif
+
+@available(*, deprecated)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+public protocol AlertButtonProtocol: AlertButtonConvertible {
+    typealias Body = AnyView
+
+    func makeBody(
+        animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
+    ) -> Body
+}
+
+@available(*, deprecated)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+extension AlertButtonProtocol {
+    public func toButtons() -> [any AlertButtonProtocol] { [self] }
+}
+
+@available(*, deprecated)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+public protocol ConfirmationDialogButtonProtocol: ConfirmationDialogButtonConvertible {
+    typealias Body = AnyView
+
+    func makeBody(
+        animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
+    ) -> Body
+}
+
+@available(*, deprecated)
+@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+extension ConfirmationDialogButtonProtocol {
+    public func toButtons() -> [any ConfirmationDialogButtonProtocol] { [self] }
+}
+
 // MARK: - V Core Localization Manager
 @available(*, deprecated, renamed: "VCoreLocalizationManager")
 public typealias VCoreLocalizationService = VCoreLocalizationManager
