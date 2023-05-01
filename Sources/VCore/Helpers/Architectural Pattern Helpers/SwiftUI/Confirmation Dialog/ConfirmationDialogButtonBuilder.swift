@@ -5,25 +5,28 @@
 //  Created by Vakhtang Kontridze on 10.08.22.
 //
 
-import SwiftUI
+import Foundation
 
 // MARK: - Confirmation Dialog Button Builder
 /// Custom parameter attribute that constructs views from closures.
 ///
-///
-///     @State private var parameters: ConfirmationDialogParameters? = .init(
-///         title: "Lorem Ipsum",
-///         message: "Lorem ipsum dolor sit amet",
-///         actions: {
-///             ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
-///             ConfirmationDialogButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
-///         }
-///     )
+///     @State private var parameters: ConfirmationDialogParameters?
 ///
 ///     var body: some View {
-///         content
-///             .confirmationDialog(parameters: $parameters)
-///     }
+///         Button(
+///             "Present",
+///             action: {
+///                 parameters = ConfirmationDialogParameters(
+///                     title: "Lorem Ipsum",
+///                     message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+///                     actions: {
+///                         ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
+///                         ConfirmationDialogButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
+///                     }
+///                 )
+///             }
+///         )
+///         .confirmationDialog(parameters: $parameters)
 ///
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 @resultBuilder public struct ConfirmationDialogButtonBuilder {

@@ -12,18 +12,23 @@ import SwiftUI
 extension View {
     /// Presents `Alert` when `AlertParameters` is non-`nil`.
     ///
-    ///     @State private var parameters: AlertParameters? = .init(
-    ///         title: "Lorem Ipsum",
-    ///         message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    ///         actions: {
-    ///             AlertButton(action: { print("Confirmed") }, title: "Confirm")
-    ///             AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
-    ///         }
-    ///     )
+    ///     @State private var parameters: AlertParameters?
     ///
     ///     var body: some View {
-    ///         content
-    ///             .alert(parameters: $parameters)
+    ///         Button(
+    ///             "Present",
+    ///             action: {
+    ///                 parameters = (
+    ///                     title: "Lorem Ipsum",
+    ///                     message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    ///                     actions: {
+    ///                         AlertButton(action: { print("Confirmed") }, title: "Confirm")
+    ///                         AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
+    ///                     }
+    ///                 )
+    ///             }
+    ///         )
+    ///         .alert(parameters: $parameters)
     ///     }
     ///
     @ViewBuilder public func alert(

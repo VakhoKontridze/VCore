@@ -10,18 +10,23 @@ import SwiftUI
 // MARK: - Alert Button
 /// `Alert` button.
 ///
-///     @State private var parameters: AlertParameters? = .init(
-///         title: "Lorem Ipsum",
-///         message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-///         actions: {
-///             AlertButton(action: { print("Confirmed") }, title: "Confirm")
-///             AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
-///         }
-///     )
+///     @State private var parameters: AlertParameters?
 ///
 ///     var body: some View {
-///         content
-///             .alert(parameters: $parameters)
+///         Button(
+///             "Present",
+///             action: {
+///                 parameters = AlertParameters(
+///                     title: "Lorem Ipsum",
+///                     message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+///                     actions: {
+///                         AlertButton(action: { print("Confirmed") }, title: "Confirm")
+///                         AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
+///                     }
+///                 )
+///             }
+///         )
+///         .alert(parameters: $parameters)
 ///     }
 ///
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)

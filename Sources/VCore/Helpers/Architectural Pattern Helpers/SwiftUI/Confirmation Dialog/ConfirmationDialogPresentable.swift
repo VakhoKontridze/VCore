@@ -25,7 +25,7 @@ import SwiftUI
 ///         }
 ///     }
 ///
-///     final class Presenter: ObservableObject, ConfirmationDialogPresentable {
+///     @MainActor final class Presenter: ObservableObject, ConfirmationDialogPresentable {
 ///         @Published var confirmationDialogParameters: ConfirmationDialogParameters?
 ///
 ///         func didTapButton() {

@@ -25,7 +25,7 @@ import SwiftUI
 ///         }
 ///     }
 ///
-///     final class Presenter: ObservableObject, AlertPresentable {
+///     @MainActor final class Presenter: ObservableObject, AlertPresentable {
 ///         @Published var alertParameters: AlertParameters?
 ///
 ///         func didTapButton() {

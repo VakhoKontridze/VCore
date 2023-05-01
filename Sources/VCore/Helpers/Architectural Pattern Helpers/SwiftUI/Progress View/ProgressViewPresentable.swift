@@ -25,7 +25,7 @@ import SwiftUI
 ///         }
 ///     }
 ///
-///     final class Presenter: ObservableObject, ProgressViewPresentable {
+///     @MainActor final class Presenter: ObservableObject, ProgressViewPresentable {
 ///         @Published var progressViewParameters: ProgressViewParameters?
 ///
 ///         func didTapButton() {
