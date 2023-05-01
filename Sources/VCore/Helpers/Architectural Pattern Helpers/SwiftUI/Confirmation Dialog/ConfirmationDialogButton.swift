@@ -49,7 +49,7 @@ public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
         self.action = action
     }
     
-    // MARK: Body
+    // MARK: Button Protocol
     public func makeBody(
         animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> AnyView {

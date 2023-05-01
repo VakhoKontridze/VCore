@@ -49,7 +49,7 @@ public struct UIActionSheetButton: UIActionSheetButtonProtocol {
         self.action = action
     }
     
-    // MARK: Body
+    // MARK: Button Protocol
     public func makeBody() -> UIAlertAction {
         let alertAction: UIAlertAction = .init(
             title: title,
