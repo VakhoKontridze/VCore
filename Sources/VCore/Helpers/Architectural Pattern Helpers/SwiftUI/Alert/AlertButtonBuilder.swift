@@ -33,7 +33,7 @@ import Foundation
 @resultBuilder public struct AlertButtonBuilder {
     // MARK: Properties
     public typealias Component = any AlertButtonConvertible
-    public typealias Result = [AlertButton]
+    public typealias Result = [any AlertButtonProtocol]
     
     // MARK: Build Blocks
     public static func buildBlock() -> Result {

@@ -24,7 +24,7 @@ import Foundation
 @resultBuilder public struct UIAlertButtonBuilder {
     // MARK: Properties
     public typealias Component = any UIAlertButtonConvertible
-    public typealias Result = [UIAlertButton]
+    public typealias Result = [any UIAlertButtonProtocol]
     
     // MARK: Build Blocks
     public static func buildBlock() -> Result {

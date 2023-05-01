@@ -8,24 +8,24 @@
 import SwiftUI
 
 // MARK: - Confirmation Dialog Button Convertible
-/// Type that allows for conversion to `ConfirmationDialogButton`.
+/// Type that allows for conversion to `ConfirmationDialogButtonProtocol`.
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public protocol ConfirmationDialogButtonConvertible {
-    /// Converts self to `ConfirmationDialogButton` `Array`.
-    func toButtons() -> [ConfirmationDialogButton]
+    /// Converts self to `ConfirmationDialogButtonProtocol` `Array`.
+    func toButtons() -> [any ConfirmationDialogButtonProtocol]
 }
 
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension ConfirmationDialogButton: ConfirmationDialogButtonConvertible {
-    public func toButtons() -> [ConfirmationDialogButton] { [self] }
+    public func toButtons() -> [any ConfirmationDialogButtonProtocol] { [self] }
 }
 
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-extension Array: ConfirmationDialogButtonConvertible where Element == ConfirmationDialogButton {
-    public func toButtons() -> [ConfirmationDialogButton] { self }
+extension Array: ConfirmationDialogButtonConvertible where Element == any ConfirmationDialogButtonProtocol {
+    public func toButtons() -> [any ConfirmationDialogButtonProtocol] { self }
 }
 
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension EmptyView: ConfirmationDialogButtonConvertible {
-    public func toButtons() -> [ConfirmationDialogButton] { [] }
+    public func toButtons() -> [any ConfirmationDialogButtonProtocol] { [] }
 }

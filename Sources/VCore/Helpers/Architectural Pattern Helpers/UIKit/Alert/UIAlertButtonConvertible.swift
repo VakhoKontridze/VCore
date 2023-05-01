@@ -10,18 +10,18 @@
 import UIKit
 
 // MARK: - UI Alert Button Convertible
-/// Type that allows for conversion to `UIAlertButton`.
+/// Type that allows for conversion to `UIAlertButtonProtocol`.
 public protocol UIAlertButtonConvertible {
-    /// Converts self to `UIAlertButton` `Array`.
-    func toButtons() -> [UIAlertButton]
+    /// Converts self to `UIAlertButtonProtocol` `Array`.
+    func toButtons() -> [any UIAlertButtonProtocol]
 }
 
 extension UIAlertButton: UIAlertButtonConvertible {
-    public func toButtons() -> [UIAlertButton] { [self] }
+    public func toButtons() -> [any UIAlertButtonProtocol] { [self] }
 }
 
-extension Array: UIAlertButtonConvertible where Element == UIAlertButton {
-    public func toButtons() -> [UIAlertButton] { self }
+extension Array: UIAlertButtonConvertible where Element == any UIAlertButtonProtocol {
+    public func toButtons() -> [any UIAlertButtonProtocol] { self }
 }
 
 #endif

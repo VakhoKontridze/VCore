@@ -32,7 +32,7 @@ import Foundation
 @resultBuilder public struct ConfirmationDialogButtonBuilder {
     // MARK: Properties
     public typealias Component = any ConfirmationDialogButtonConvertible
-    public typealias Result = [ConfirmationDialogButton]
+    public typealias Result = [any ConfirmationDialogButtonProtocol]
     
     // MARK: Build Blocks
     public static func buildBlock() -> Result {

@@ -35,14 +35,14 @@ public struct UIAlertParameters {
     public var message: String
     
     /// Buttons.
-    public var buttons: () -> [UIAlertButton]
+    public var buttons: () -> [any UIAlertButtonProtocol]
     
     // MARK: Initializers
     /// Initializes `UIAlertParameters`.
     public init(
         title: String?,
         message: String,
-        @UIAlertButtonBuilder actions buttons: @escaping () -> [UIAlertButton]
+        @UIAlertButtonBuilder actions buttons: @escaping () -> [any UIAlertButtonProtocol]
     ) {
         self.title = title
         self.message = message

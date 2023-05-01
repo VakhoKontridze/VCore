@@ -21,7 +21,7 @@ import UIKit
 ///         }
 ///     ))
 ///     
-public struct UIAlertButton {
+public struct UIAlertButton: UIAlertButtonProtocol {
     // MARK: Properties
     /// Indicates if button is enabled.
     public var isEnabled: Bool
@@ -50,7 +50,7 @@ public struct UIAlertButton {
     }
     
     // MARK: Body
-    func makeBody() -> UIAlertAction {
+    public func makeBody() -> UIAlertAction {
         let alertAction: UIAlertAction = .init(
             title: title,
             style: style,

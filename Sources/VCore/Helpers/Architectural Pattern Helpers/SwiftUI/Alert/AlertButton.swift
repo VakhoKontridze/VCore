@@ -30,7 +30,7 @@ import SwiftUI
 ///     }
 ///
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-public struct AlertButton {
+public struct AlertButton: AlertButtonProtocol {
     // MARK: Properties
     private var isEnabled: Bool = true
     private let role: ButtonRole?
@@ -50,7 +50,7 @@ public struct AlertButton {
     }
     
     // MARK: Body
-    func makeBody(
+    public func makeBody(
         animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> AnyView {
         .init(

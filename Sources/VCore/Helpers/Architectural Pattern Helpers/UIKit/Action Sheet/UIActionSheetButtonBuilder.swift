@@ -24,7 +24,7 @@ import Foundation
 @resultBuilder public struct UIActionSheetButtonBuilder {
     // MARK: Properties
     public typealias Component = any UIActionSheetButtonConvertible
-    public typealias Result = [UIActionSheetButton]
+    public typealias Result = [any UIActionSheetButtonProtocol]
     
     // MARK: Build Blocks
     public static func buildBlock() -> Result {

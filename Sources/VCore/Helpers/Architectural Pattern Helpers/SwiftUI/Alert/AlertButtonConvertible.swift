@@ -8,24 +8,24 @@
 import SwiftUI
 
 // MARK: - Alert Button Convertible
-/// Type that allows for conversion to `AlertButton`.
+/// Type that allows for conversion to `AlertButtonProtocol`.
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public protocol AlertButtonConvertible {
-    /// Converts self to `AlertButton` `Array`.
-    func toButtons() -> [AlertButton]
+    /// Converts self to `AlertButtonProtocol` `Array`.
+    func toButtons() -> [any AlertButtonProtocol]
 }
 
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension AlertButton: AlertButtonConvertible {
-    public func toButtons() -> [AlertButton] { [self] }
+    public func toButtons() -> [any AlertButtonProtocol] { [self] }
 }
 
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
-extension Array: AlertButtonConvertible where Element == AlertButton {
-    public func toButtons() -> [AlertButton] { self }
+extension Array: AlertButtonConvertible where Element == any AlertButtonProtocol {
+    public func toButtons() -> [any AlertButtonProtocol] { self }
 }
 
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension EmptyView: AlertButtonConvertible {
-    public func toButtons() -> [AlertButton] { [] }
+    public func toButtons() -> [any AlertButtonProtocol] { [] }
 }
