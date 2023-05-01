@@ -20,10 +20,6 @@ extension Array: UIAlertButtonConvertible where Element == UIAlertButtonProtocol
     public func toButtons() -> [any UIAlertButtonProtocol] { self }
 }
 
-extension EmptyView: UIAlertButtonConvertible {
-    public func toButtons() -> [any UIAlertButtonProtocol] { [] }
-}
-
 // MARK: - UI Alert Button Builder
 /// Custom parameter attribute that constructs views from closures.
 ///

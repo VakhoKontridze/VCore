@@ -20,10 +20,6 @@ extension Array: UIActionSheetButtonConvertible where Element == UIActionSheetBu
     public func toButtons() -> [any UIActionSheetButtonProtocol] { self }
 }
 
-extension EmptyView: UIActionSheetButtonConvertible {
-    public func toButtons() -> [any UIActionSheetButtonProtocol] { [] }
-}
-
 // MARK: - UI Action Sheet Button Builder
 /// Custom parameter attribute that constructs views from closures.
 ///
