@@ -11,16 +11,6 @@ import Foundation
 
 // MARK: - UI Action Sheet Button Builder
 /// Custom parameter attribute that constructs views from closures.
-///
-///     presentActionSheet(parameters: .init(
-///         title: "Lorem Ipsum",
-///         message: "Lorem ipsum dolor sit amet",
-///         actions: {
-///             UIActionSheetButton(title: "Confirm", action: { print("Confirmed") })
-///             UIActionSheetButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
-///         }
-///     ))
-///
 @resultBuilder public struct UIActionSheetButtonBuilder {
     // MARK: Properties
     public typealias Component = any UIActionSheetButtonConvertible

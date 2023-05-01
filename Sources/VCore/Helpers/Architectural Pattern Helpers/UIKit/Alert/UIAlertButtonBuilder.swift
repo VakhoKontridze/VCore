@@ -11,16 +11,6 @@ import Foundation
 
 // MARK: - UI Alert Button Builder
 /// Custom parameter attribute that constructs views from closures.
-///
-///     presentAlert(parameters: UIAlertParameters(
-///         title: "Lorem Ipsum",
-///         message: "Lorem ipsum dolor sit amet",
-///         actions: {
-///             UIAlertButton(title: "Confirm", action: { print("Confirmed") })
-///             UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
-///         }
-///     ))
-///
 @resultBuilder public struct UIAlertButtonBuilder {
     // MARK: Properties
     public typealias Component = any UIAlertButtonConvertible
