@@ -68,7 +68,7 @@ public struct KeychainServiceConfiguration {
     public struct GetQuery {
         // MARK: Properties
         /// Query.
-        public let query: [String: Any]
+        public var query: [String: Any]
         
         // MARK: Initializers
         /// Initializes `GetQuery` with query.
@@ -105,7 +105,7 @@ public struct KeychainServiceConfiguration {
     public struct SetQuery {
         // MARK: Properties
         /// Query.
-        public let query: [String: Any]
+        public var query: [String: Any]
         
         // MARK: Initializers
         /// Initializes `SetQuery` with query.
@@ -141,7 +141,7 @@ public struct KeychainServiceConfiguration {
     public struct DeleteQuery {
         // MARK: Properties
         /// Query.
-        public let query: [String: Any]
+        public var query: [String: Any]
         
         // MARK: Initializers
         /// Initializes `DeleteQuery` with query.

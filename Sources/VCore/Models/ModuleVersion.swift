@@ -14,16 +14,16 @@ import Foundation
 ///
 ///     ModuleVersion(string: Bundle.main.version)?.description // 1.0
 ///
-public struct ModuleVersion: Equatable, Hashable, Identifiable, Comparable {
+public struct ModuleVersion: Equatable, Hashable, Identifiable, Comparable, CustomStringConvertible {
     // MARK: Properties
     /// Major version according to the semantic versioning standard.
-    public let major: Int
+    public var major: Int
     
     /// Minor version according to the semantic versioning standard.
-    public let minor: Int
+    public var minor: Int
     
     /// Patch version according to the semantic versioning standard.
-    public let patch: Int?
+    public var patch: Int?
     
     /// Unwrapped patch version according to the semantic versioning standard.
     ///
@@ -37,7 +37,11 @@ public struct ModuleVersion: Equatable, Hashable, Identifiable, Comparable {
     
     // MARK: Initializers
     /// Initializes `ModuleVersion` with versions.
-    public init(_ major: Int, _ minor: Int, _ patch: Int? = nil) {
+    public init(
+        _ major: Int,
+        _ minor: Int,
+        _ patch: Int? = nil
+    ) {
         self.major = major
         self.minor = minor
         self.patch = patch
@@ -94,10 +98,8 @@ public struct ModuleVersion: Equatable, Hashable, Identifiable, Comparable {
     public static func < (lhs: Self, rhs: Self) -> Bool {
         isLess(lhs, than: rhs, by: \.major, \.minor, \.patchUnwrapped)
     }
-}
 
-// MARK: Custom String Convertible
-extension ModuleVersion: CustomStringConvertible {
+    // MARK: Custom String Convertible
     public var description: String {
         description()
     }

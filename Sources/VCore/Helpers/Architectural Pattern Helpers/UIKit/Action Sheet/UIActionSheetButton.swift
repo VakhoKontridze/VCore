@@ -38,7 +38,7 @@ public struct UIActionSheetButton: UIActionSheetButtonProtocol {
     public var isEnabled: Bool
     
     /// Style.
-    public let style: UIAlertAction.Style
+    public var style: UIAlertAction.Style
     
     /// Title.
     public var title: String

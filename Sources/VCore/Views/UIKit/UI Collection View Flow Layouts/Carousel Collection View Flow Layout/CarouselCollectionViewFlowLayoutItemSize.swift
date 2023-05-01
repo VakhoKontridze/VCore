@@ -18,10 +18,10 @@ import UIKit
 public struct CarouselCollectionViewFlowLayoutItemSize {
     // MARK: Properties
     /// Horizontal inset from the bounds of `UICollectionView`.
-    public let inset: CGFloat
+    public var inset: CGFloat
     
     /// Height.
-    public let height: CGFloat?
+    public var height: CGFloat?
     
     // MARK: Initializers
     /// Initializes `CarouselCollectionViewFlowLayoutItemSize` with inset and height.
