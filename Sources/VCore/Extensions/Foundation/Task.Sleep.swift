@@ -20,4 +20,18 @@ extension Task where Success == Never, Failure == Never {
     public static func sleep(seconds duration: UInt64) async throws {
         try await sleep(nanoseconds: duration * 1_000_000_000)
     }
+
+    /// Suspends the current task for at least the given duration in seconds.
+    ///
+    /// If the task is canceled before the time ends, this function throws `CancellationError`.
+    ///
+    /// This function doesn't block the underlying thread.
+    ///
+    ///     try Task.sleep(seconds: 0.1)
+    ///
+    public static func sleep(seconds duration: TimeInterval) async throws {
+        guard duration >= 0 else { VCoreFatalError("`duration` must be greater than or equal to `0`") }
+
+        try await sleep(nanoseconds: UInt64(duration * 1_000_000_000))
+    }
 }

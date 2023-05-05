@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.10.0(83)
+
+Extensions
+
+- Another `Task.sleep(seconds:)` method is added that takes `TimeInterval` as a parameter
+
 ### [4.9.2(82)](https://github.com/VakhoKontridze/VCore/releases/tag/4.9.2) — *2023 05 01*
 
 Other
