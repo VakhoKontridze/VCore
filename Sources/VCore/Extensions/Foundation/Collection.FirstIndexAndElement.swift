@@ -13,8 +13,8 @@ extension Collection {
     ///
     /// Used for avoiding accessing both index and element with built-in methods.
     ///
-    ///     let nums: [Int] = [1, 3, 5]
-    ///     guard let (index, num): (Int, Int) = nums.firstIndexAndElement(where: { $0 * $0 >= 10 }) else { return }
+    ///     let numbers: [Int] = [1, 3, 5]
+    ///     guard let (index, num): (Int, Int) = numbers.firstIndexAndElement(where: { $0 * $0 >= 10 }) else { return }
     ///
     public func firstIndexAndElement(
         where predicate: (Element) throws -> Bool

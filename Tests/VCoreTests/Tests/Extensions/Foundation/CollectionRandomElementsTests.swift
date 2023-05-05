@@ -11,20 +11,20 @@ import XCTest
 // MARK: - Tests
 final class CollectionRandomElementsTests: XCTestCase {
     // MARK: Test Data
-    private let nums: [Int] = [1, 3, 5, 7, 9]
+    private let numbers: [Int] = [1, 3, 5, 7, 9]
 
     // MARK: Tests
     func testValid() throws {
         try 10.times {
-            let randomNums: [Int] = try XCTUnwrap(nums.randomElements(Int.random(in: 0...nums.count)))
+            let randomNumbers: [Int] = try XCTUnwrap(numbers.randomElements(Int.random(in: 0...numbers.count)))
 
-            XCTAssertTrue(randomNums.isUnique == true)
-            XCTAssertLessThanOrEqual(randomNums.count, nums.count)
+            XCTAssertTrue(randomNumbers.isUnique == true)
+            XCTAssertLessThanOrEqual(randomNumbers.count, numbers.count)
         }
     }
 
     func testOutOfBounds() {
-        XCTAssertNil(nums.randomElements(-1))
-        XCTAssertNil(nums.randomElements(nums.count+1))
+        XCTAssertNil(numbers.randomElements(-1))
+        XCTAssertNil(numbers.randomElements(numbers.count+1))
     }
 }

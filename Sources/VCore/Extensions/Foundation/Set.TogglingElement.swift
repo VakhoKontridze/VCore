@@ -11,9 +11,9 @@ import Foundation
 extension Set {
     /// Returns set with element toggled, i.e., removed if it's present, and inserted if not.
     ///
-    ///     let nums1: Set<Int> = [1, 3, 5]
-    ///     let nums2: Set<Int> = nums1.toggling(1) // [3, 5]
-    ///     let nums3: Set<Int> = nums2.toggling(1) // [1, 3, 5]
+    ///     let numbers1: Set<Int> = [1, 3, 5]
+    ///     let numbers2: Set<Int> = numbers1.toggling(1) // [3, 5]
+    ///     let numbers3: Set<Int> = numbers2.toggling(1) // [1, 3, 5]
     ///
     public func toggling(
         _ element: Element
@@ -25,9 +25,9 @@ extension Set {
     
     /// Removes element from a set if it's present, and inserts if not.
     ///
-    ///     var nums: Set<Int> = [1, 3, 5]
-    ///     nums.toggle(1) // [3, 5]
-    ///     nums.toggle(1) // [1, 3, 5]
+    ///     var numbers: Set<Int> = [1, 3, 5]
+    ///     numbers.toggle(1) // [3, 5]
+    ///     numbers.toggle(1) // [1, 3, 5]
     ///
     mutating public func toggle(
         _ element: Element

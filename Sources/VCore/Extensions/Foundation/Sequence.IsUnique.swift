@@ -11,8 +11,8 @@ import Foundation
 extension Sequence where Element: Hashable {
     /// Indicates if sequence doesn't contain duplicate elements.
     ///
-    ///     let nums: [Int] = [1, 3, 5]
-    ///     let isUnique: Bool = nums.isUnique // true
+    ///     let numbers: [Int] = [1, 3, 5]
+    ///     let isUnique: Bool = numbers.isUnique // true
     ///
     public var isUnique: Bool {
         var encountered: Set<Element> = []
@@ -21,8 +21,8 @@ extension Sequence where Element: Hashable {
     
     /// Indicates if sequence contains duplicate elements.
     ///
-    ///     let nums: [Int] = [1, 1, 3, 5, 5]
-    ///     let containsDuplicates: Bool = nums.containsDuplicates // true
+    ///     let numbers: [Int] = [1, 1, 3, 5, 5]
+    ///     let containsDuplicates: Bool = numbers.containsDuplicates // true
     ///
     public var containsDuplicates: Bool {
         var encountered: Set<Element> = []

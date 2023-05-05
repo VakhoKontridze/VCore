@@ -11,20 +11,20 @@ import XCTest
 // MARK: - Tests
 final class ArraySafeSubscriptTests: XCTestCase {
     // MARK: Test Data
-    private let nums: [Int] = [1, 3, 5]
+    private let numbers: [Int] = [1, 3, 5]
     
     // MARK: Tests
     func testLowerOutOfBoundsSubscript() {
-        XCTAssertNil(nums[safe: -1])
+        XCTAssertNil(numbers[safe: -1])
     }
     
     func testValidSubscript() {
-        for i in nums.indices {
-            XCTAssertEqual(nums[safe: i], nums[i])
+        for i in numbers.indices {
+            XCTAssertEqual(numbers[safe: i], numbers[i])
         }
     }
     
     func testUpperOutOfBoundsSubscript() {
-        XCTAssertNil(nums[safe: 3])
+        XCTAssertNil(numbers[safe: 3])
     }
 }

@@ -11,10 +11,10 @@ import Foundation
 extension Array {
     /// Accesses the element at the specified position, but returns `nil` if out of bounds.
     ///
-    ///     let nums: [Int] = [1, 3, 5]
+    ///     let numbers: [Int] = [1, 3, 5]
     ///
-    ///     let firstNum: Int? = nums[safe: 0] // 1
-    ///     let fourthNum: Int? = nums[safe: 4] // nil
+    ///     let firstNum: Int? = numbers[safe: 0] // 1
+    ///     let fourthNum: Int? = numbers[safe: 4] // nil
     ///
     public subscript(safe index: Int) -> Element? {
         guard index >= 0, index < count else { return nil }
