@@ -20,7 +20,7 @@ extension Sequence {
     ///     // [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
     ///
     public func grouped(
-        by comparison: @escaping (Element, Element) throws -> Bool
+        by areEqual: @escaping (Element, Element) throws -> Bool
     ) rethrows -> [[Element]] {
         var result: [[Element]] = []
         
@@ -29,7 +29,7 @@ extension Sequence {
                 !result.isEmpty,
                 let index: Int = try result.firstIndex(where: { group in
                     guard let firstGroupElement: Element = group.first else { return false }
-                    return try comparison(firstGroupElement, element)
+                    return try areEqual(firstGroupElement, element)
                 })
             {
                 result[index].append(element)
