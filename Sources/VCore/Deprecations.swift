@@ -466,6 +466,8 @@ extension CGRect {
     }
 }
 
+#endif
+
 // MARK: - Extensions - SwiftUI
 extension View {
     @available(*, deprecated, message: "Use method without flag argument name")
