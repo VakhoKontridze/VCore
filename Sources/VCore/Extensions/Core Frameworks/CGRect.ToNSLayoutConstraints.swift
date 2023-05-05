@@ -11,19 +11,19 @@ import CoreGraphics
 
 // MARK: - CGRect to NSLayoutConstraints
 extension CGRect {
-    /// Converts rect to constant usable for creating leading constraint.
+    /// Converts rect to constant usable for creating left constraint.
     ///
-    ///     let constant: CGFloat = rect.leadingConstraintConstant
+    ///     let constant: CGFloat = rect.leftConstraintConstant
     ///
-    public var leadingConstraintConstant: CGFloat {
+    public var leftConstraintConstant: CGFloat {
         origin.x
     }
     
-    /// Converts rect to constant usable for creating trailing constraint.
+    /// Converts rect to constant usable for creating right constraint.
     ///
-    ///     let constant: CGFloat = rect.trailingConstraintConstant(in: view.frame.size.width)
+    ///     let constant: CGFloat = rect.rightConstraintConstant(in: view.frame.size.width)
     ///
-    public func trailingConstraintConstant(in width: CGFloat) -> CGFloat {
+    public func rightConstraintConstant(in width: CGFloat) -> CGFloat {
         width - size.width - origin.x
     }
     

@@ -448,6 +448,24 @@ extension UIApplication {
 
 #endif
 
+// MARK: - Extensions - Core Framework
+#if canImport(CoreGraphics)
+
+import CoreGraphics
+
+// MARK: - CGRect to NSLayoutConstraints
+extension CGRect {
+    @available(*, deprecated, renamed: "leftConstraintConstant")
+    public var leadingConstraintConstant: CGFloat {
+        leftConstraintConstant
+    }
+
+    @available(*, deprecated, renamed: "rightConstraintConstant")
+    public func trailingConstraintConstant(in width: CGFloat) -> CGFloat {
+        rightConstraintConstant(in: width)
+    }
+}
+
 // MARK: - Extensions - SwiftUI
 extension View {
     @available(*, deprecated, message: "Use method without flag argument name")
