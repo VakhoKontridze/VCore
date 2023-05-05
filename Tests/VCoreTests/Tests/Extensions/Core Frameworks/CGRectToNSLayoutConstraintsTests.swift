@@ -24,16 +24,16 @@ final class CGRectToNSLayoutConstraintsTests: XCTestCase {
     )
     
     // MARK: Tests
-    func testLeadingConstraint() {
+    func testLeftConstraint() {
         XCTAssertEqual(
-            viewRect.leadingConstraintConstant,
+            viewRect.leftConstraintConstant,
             100
         )
     }
     
-    func testTrailingConstraint() {
+    func testRightConstraint() {
         XCTAssertEqual(
-            viewRect.trailingConstraintConstant(in: superview.frame.width),
+            viewRect.rightConstraintConstant(in: superview.frame.width),
             50
         )
     }
