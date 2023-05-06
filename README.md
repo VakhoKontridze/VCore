@@ -142,7 +142,7 @@ lhs == rhs // false
 lhs.isEquivalent(to: rhs) // true, if `Locale.current.regionCode` is "US"
 ```
 
-#### Keychain Service:
+#### Keychain Service
 
 `KeychainService` that supports custom queries, and has a dedicated property wrapper:
 
@@ -285,7 +285,7 @@ private func fetchImage(url: URL) async throws -> Image {
 
 #### Various Extensions and Global Functions
 
-`Optional` Comparison:
+`Optional` comparison:
 
 ```swift
 let a: Int? = 10
@@ -295,7 +295,7 @@ a.isOptionalLess(than: b, order: .nilIsLess) // false
 a.isOptionalLess(than: b, order: .nilIsGreater) // true
 ```
 
-Detecting changes in `View` Size:
+Detecting changes in `View` size:
 
 ```swift
 @State private var size: CGSize = .zero
