@@ -26,7 +26,7 @@ extension Array {
     ///     }
     ///
     public func firstInstanceOfType<T>(_ type: T.Type) -> T? {
-        first { $0 is T } as? T
+        first(where: { $0 is T }) as? T
     }
     
     /// Returns the last element of the sequence that is a type `T`.
