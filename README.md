@@ -316,6 +316,8 @@ Add `https://github.com/VakhoKontridze/VCore` as a Swift Package in Xcode and fo
 
 ## Compatibility
 
+#### Platform and Version Support
+
 Package provides limited `macOS`, `tvOS`, and `watchOS` support.
 
 Versions with different majors are not directly compatible. When a new major is released, deprecated symbols are removed.
@@ -397,6 +399,8 @@ Versions with different majors are not directly compatible. When a new major is 
   </tr>
 
 </table>
+
+For additional info, refer to the [CHANGELOG](https://github.com/VakhoKontridze/VCore/blob/main/CHANGELOG.md).
 
 ## Contact
 
