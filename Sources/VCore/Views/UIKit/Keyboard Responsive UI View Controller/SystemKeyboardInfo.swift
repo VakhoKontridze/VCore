@@ -25,7 +25,11 @@ public struct SystemKeyboardInfo {
     
     // MARK: Initializers
     /// Initializes `SystemKeyboardInfo` with parameters.
-    public init(frame: CGRect, animationDuration: TimeInterval, animationOptions: UIView.AnimationOptions) {
+    public init(
+        frame: CGRect,
+        animationDuration: TimeInterval,
+        animationOptions: UIView.AnimationOptions
+    ) {
         self.frame = frame
         self.animationDuration = animationDuration
         self.animationOptions = animationOptions
