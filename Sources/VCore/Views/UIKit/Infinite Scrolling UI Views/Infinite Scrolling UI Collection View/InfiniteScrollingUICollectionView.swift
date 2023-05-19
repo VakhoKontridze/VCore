@@ -248,7 +248,6 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             
         case .canPaginate, .cannotPaginate:
             activityIndicator.stopAnimating()
-            reloadData()
         }
     }
 }

@@ -152,7 +152,6 @@ open class InfiniteScrollingUITableView: UITableView {
             
         case .canPaginate, .cannotPaginate:
             tableFooterView = nil
-            reloadData()
         }
     }
 }
