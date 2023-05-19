@@ -24,7 +24,7 @@ extension Array {
         guard !isEmpty else { return self }
 
         var result = self
-        try await result.quickSort(low: 0, high: count-1, by: areInIncreasingOrder)
+        try await result.quickSort(by: areInIncreasingOrder, 0, count-1)
         return result
     }
 
@@ -42,25 +42,25 @@ extension Array {
     ) async rethrows {
         guard !isEmpty else { return }
 
-        try await quickSort(low: 0, high: count-1, by: areInIncreasingOrder)
+        try await quickSort(by: areInIncreasingOrder, 0, count-1)
     }
 
     private mutating func quickSort(
-        low: Int,
-        high: Int,
-        by areInIncreasingOrder: (Element, Element) async throws -> Bool
+        by areInIncreasingOrder: (Element, Element) async throws -> Bool,
+        _ low: Int,
+        _ high: Int
     ) async rethrows {
         guard low < high else { return }
 
-        let pivotIndex: Int = try await partition(low: low, high: high, by: areInIncreasingOrder)
-        try await quickSort(low: low, high: pivotIndex-1, by: areInIncreasingOrder)
-        try await quickSort(low: pivotIndex+1, high: high, by: areInIncreasingOrder)
+        let pivotIndex: Int = try await partition(by: areInIncreasingOrder, low, high)
+        try await quickSort(by: areInIncreasingOrder, low, pivotIndex-1)
+        try await quickSort(by: areInIncreasingOrder, pivotIndex+1, high)
     }
 
     private mutating func partition(
-        low: Int,
-        high: Int,
-        by areInIncreasingOrder: (Element, Element) async throws -> Bool
+        by areInIncreasingOrder: (Element, Element) async throws -> Bool,
+        _ low: Int,
+        _ high: Int
     ) async rethrows -> Int {
         let pivot: Element = self[high]
         var i: Int = low-1
