@@ -15,7 +15,7 @@ final class ArrayRemovingDuplicatesTests: XCTestCase {
     private let output: [Int] = [1, 3, 5]
     
     // MARK: Tests
-    func ArrayRemovingDuplicatesTests() {
+    func testRemoving() {
         XCTAssertEqual(input.removingDuplicates(), output)
     }
     
