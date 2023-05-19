@@ -24,7 +24,7 @@ extension Array {
         guard !isEmpty else { return self }
 
         var result = self
-        try await result.asyncSort(by: areInIncreasingOrder)
+        try await result.quickSort(low: 0, high: count-1, by: areInIncreasingOrder)
         return result
     }
 
