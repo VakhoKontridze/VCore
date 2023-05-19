@@ -326,7 +326,7 @@ Versions with different majors are not directly compatible. When a new major is 
 
 ***Major***. Major changes, such as big overhauls
 
-***Minor***. Minor changes, such as new objects, function, and extensions
+***Minor***. Minor changes, such as new objects, functions, and extensions
 
 ***Patch***. Bug fixes and improvements
 
