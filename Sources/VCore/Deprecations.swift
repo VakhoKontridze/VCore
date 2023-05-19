@@ -448,6 +448,55 @@ extension UIApplication {
 
 #endif
 
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+// MARK: - Label Configuration
+extension UILabel {
+    @available(*, deprecated, message: "method will be removed in 5.0.0")
+    public func configure(
+        alignment: NSTextAlignment = .natural,
+        lineBreakMode: NSLineBreakMode = .byTruncatingTail,
+        numberOfLines: Int = 1,
+        minimumScaleFactor: CGFloat = 0,
+        color: UIColor?,
+        font: UIFont?
+    ) {
+        self.textAlignment = alignment
+        self.lineBreakMode = lineBreakMode
+        self.numberOfLines = numberOfLines
+        self.adjustsFontSizeToFitWidth = minimumScaleFactor != 0 // `0` is a default value
+        self.minimumScaleFactor = minimumScaleFactor
+        self.textColor = color
+        self.font = font
+    }
+
+    @available(*, deprecated, message: "init will be removed in 5.0.0")
+    public convenience init(
+        alignment: NSTextAlignment = .natural,
+        lineBreakMode: NSLineBreakMode = .byTruncatingTail,
+        numberOfLines: Int = 1,
+        minimumScaleFactor: CGFloat = 0,
+        color: UIColor?,
+        font: UIFont?
+    ) {
+        self.init()
+
+        configure(
+            alignment: alignment,
+            lineBreakMode: lineBreakMode,
+            numberOfLines: numberOfLines,
+            minimumScaleFactor: minimumScaleFactor,
+            color: color,
+            font: font
+        )
+    }
+}
+
+#endif
+
+
 // MARK: - Extensions - Core Framework
 #if canImport(CoreGraphics)
 
