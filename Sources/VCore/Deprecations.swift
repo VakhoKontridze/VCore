@@ -274,6 +274,18 @@ public func VCoreLog(
 }
 
 // MARK: - Extensions - Foundation
+extension Array {
+    @available(*, deprecated, renamed: "firstElement(ofType:)")
+    public func firstInstanceOfType<T>(_ type: T.Type) -> T? {
+        first(where: { $0 is T }) as? T
+    }
+
+    @available(*, deprecated, renamed: "lastElement(ofType:)")
+    public func lastInstanceOfType<T>(_ type: T.Type) -> T? {
+        last(where: { $0 is T }) as? T
+    }
+}
+
 extension FloatingPoint {
     @available(*, unavailable, message: "Half-open ranges are only available for `BinaryInteger`s")
     public func clamped(

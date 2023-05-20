@@ -5,6 +5,9 @@
 Extensions
 
 - `Array.asyncSorted(by:)` and `Array.asyncSort(by:)` methods are added that asynchronously sorts an `Array`
+- `Collection.firstElement(ofType:where:)` and `Collection.lastElement(ofType:where:)` methods are added
+- `Collection.firstIndex(ofType:where:)` and `Collection.lastIndex(ofType:where:)` methods are added
+- `Collection.lastIndex(ofType:where:)` and `Collection.lastIndex(ofType:where:)` methods are added
 - `BidirectionalCollection.lastIndexAndElement(where:)` method is added that complements similar method that seeks first index and element
 - Another `Task.sleep(seconds:)` method is added that takes `TimeInterval` as a parameter
 

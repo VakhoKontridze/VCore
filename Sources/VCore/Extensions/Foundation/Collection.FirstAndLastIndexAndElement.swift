@@ -27,7 +27,7 @@ extension Collection {
     }
 }
 
-// MARK: - Collection Last Index and Element
+// MARK: - Bidirectional Collection Last Index and Element
 extension BidirectionalCollection {
     /// Returns first last and element of `BidirectionalCollection` that satisfies the given predicate.
     ///
