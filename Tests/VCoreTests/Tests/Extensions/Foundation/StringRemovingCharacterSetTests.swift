@@ -20,7 +20,8 @@ final class StringRemovingCharacterSetTests: XCTestCase {
     }
     
     func testRemove() {
-        var result: String = input; result.remove(.symbols)
+        var result: String = input
+        result.remove(.symbols)
         
         XCTAssertEqual(result, output)
     }
@@ -37,7 +38,8 @@ final class StringRemovingCharacterSetsTests: XCTestCase {
     }
     
     func testRemove() {
-        var result: String = input; result.remove([.symbols, .letters])
+        var result: String = input
+        result.remove([.symbols, .letters])
         
         XCTAssertEqual(result, output)
     }

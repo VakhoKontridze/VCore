@@ -20,7 +20,8 @@ final class ArrayRemovingDuplicatesTests: XCTestCase {
     }
     
     func testRemove() {
-        var result: [Int] = input; result.removeDuplicates()
+        var result: [Int] = input
+        result.removeDuplicates()
         
         XCTAssertEqual(result, output)
     }

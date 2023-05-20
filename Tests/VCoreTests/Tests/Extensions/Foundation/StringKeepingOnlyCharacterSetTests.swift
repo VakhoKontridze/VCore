@@ -20,7 +20,8 @@ final class StringKeepingCharacterSetTests: XCTestCase {
     }
     
     func testKeep() {
-        var result: String = input; result.keep(only: .decimalDigits)
+        var result: String = input
+        result.keep(only: .decimalDigits)
         
         XCTAssertEqual(result, output)
     }
@@ -38,7 +39,8 @@ final class StringKeepingCharacterSetsTests: XCTestCase {
     }
     
     func testKeep() {
-        var result: String = input; result.keep(only: [.decimalDigits, .symbols])
+        var result: String = input
+        result.keep(only: [.decimalDigits, .symbols])
         
         XCTAssertEqual(result, output)
     }

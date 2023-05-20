@@ -31,22 +31,28 @@ final class DoubleRoundedWithPrecisionTests: XCTestCase {
     }
     
     func testRound() {
-        var result1: Double = input; result1.round(fractions: 0)
+        var result1: Double = input
+        result1.round(fractions: 0)
         XCTAssertEqual(result1, output1)
         
-        var result2: Double = input; result2.round(fractions: 1)
+        var result2: Double = input
+        result2.round(fractions: 1)
         XCTAssertEqual(result2, output2)
         
-        var result3: Double = input; result3.round(fractions: 2)
+        var result3: Double = input
+        result3.round(fractions: 2)
         XCTAssertEqual(result3, output3)
         
-        var result4: Double = input; result4.round(fractions: 3)
+        var result4: Double = input
+        result4.round(fractions: 3)
         XCTAssertEqual(result4, output4)
         
-        var result5: Double = input; result5.round(fractions: 4)
+        var result5: Double = input
+        result5.round(fractions: 4)
         XCTAssertEqual(result5, output5)
         
-        var result6: Double = input; result6.round(fractions: 5)
+        var result6: Double = input
+        result6.round(fractions: 5)
         XCTAssertEqual(result6, output6)
     }
 }

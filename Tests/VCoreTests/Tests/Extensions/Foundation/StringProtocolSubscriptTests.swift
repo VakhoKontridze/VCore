@@ -23,8 +23,9 @@ final class StringProtocolSubscriptTests: XCTestCase {
         XCTAssertEqual(input.replaced(at: 0, with: "l"), output)
     }
     
-    func testSetReplaceing() {
-        var result: String = input; result.replacing(at: 0, with: "l")
+    func testSetReplacing() {
+        var result: String = input
+        result.replacing(at: 0, with: "l")
         
         XCTAssertEqual(result, output)
     }

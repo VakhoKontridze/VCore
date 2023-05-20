@@ -22,7 +22,8 @@ final class SequenceKeyPathSortTests: XCTestCase {
     
     // MARK: Tests
     func testSort() {
-        var result: [City] = input; result.sort(by: \.name)
+        var result: [City] = input
+        result.sort(by: \.name)
         
         XCTAssertEqual(result, output)
     }
