@@ -44,7 +44,7 @@ extension Sequence {
     /// Groups elements of a `Sequence` by a given `KeyPath` value.
     ///
     /// Works similar to `Dictionary(grouping:by:)`, but without generating keys.
-    /// In addition to similar behaviour, allows for a custom logic to be written, as generating a specific key is not required.
+    /// In addition to similar behavior, allows for a custom logic to be written, as generating a specific key is not required.
     ///
     ///     struct Student {
     ///         let name: String
