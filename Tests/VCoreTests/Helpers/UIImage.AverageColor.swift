@@ -50,7 +50,7 @@ extension UIImage {
         let blue: CGFloat = CGFloat(bitmap[2]) / 255
         let alpha: CGFloat = CGFloat(bitmap[3]) / 255
 
-        return (red, green, blue, alpha)
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
     }
 }
 

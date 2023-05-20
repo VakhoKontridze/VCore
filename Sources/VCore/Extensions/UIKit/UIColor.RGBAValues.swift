@@ -49,7 +49,7 @@ extension UIColor {
         let red: Int = .init(values.red * 255)
         let green: Int = .init(values.green * 255)
         let blue: Int = .init(values.blue * 255)
-        let alpha: Int = values.alpha
+        let alpha: CGFloat = values.alpha
 
         return (red, green, blue, alpha)
     }
