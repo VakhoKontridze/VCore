@@ -44,13 +44,13 @@ extension UIImage {
             format: .RGBA8,
             colorSpace: nil
         )
-        
-        return UIColor(
-            red: CGFloat(bitmap[0]) / 255,
-            green: CGFloat(bitmap[1]) / 255,
-            blue: CGFloat(bitmap[2]) / 255,
-            alpha: CGFloat(bitmap[3]) / 255
-        )
+
+        let red: CGFloat = CGFloat(bitmap[0]) / 255
+        let green: CGFloat = CGFloat(bitmap[1]) / 255
+        let blue: CGFloat = CGFloat(bitmap[2]) / 255
+        let alpha: CGFloat = CGFloat(bitmap[3]) / 255
+
+        return (red, green, blue, alpha)
     }
 }
 

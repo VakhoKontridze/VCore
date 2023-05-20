@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - RGBA Values
+// MARK: - Color RGBA Values
 extension UIColor {
     /// Returns RGBA values of `UIColor`.
     ///
@@ -46,12 +46,12 @@ extension UIColor {
     public var rgbaComponents: (red: Int, green: Int, blue: Int, alpha: CGFloat) {
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
-        return (
-            red: Int(values.red * 255),
-            green: Int(values.green * 255),
-            blue: Int(values.blue * 255),
-            alpha: values.alpha
-        )
+        let red: Int = .init(values.red * 255)
+        let green: Int = .init(values.green * 255)
+        let blue: Int = .init(values.blue * 255)
+        let alpha: Int = values.alpha
+
+        return (red, green, blue, alpha)
     }
     
     /// Indicates if two `UIColor`s are RGBA equivalent.
