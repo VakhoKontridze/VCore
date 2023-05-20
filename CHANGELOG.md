@@ -4,6 +4,7 @@
 
 Extensions
 
+- `Array.binaryAppend(_:by:)` method is added that inserts elements in appropriate place
 - `Array.asyncSorted(by:)` and `Array.asyncSort(by:)` methods are added that asynchronously sorts an `Array`
 - `Collection.firstElement(ofType:where:)` and `Collection.lastElement(ofType:where:)` methods are added
 - `Collection.firstIndex(ofType:where:)` and `Collection.lastIndex(ofType:where:)` methods are added
