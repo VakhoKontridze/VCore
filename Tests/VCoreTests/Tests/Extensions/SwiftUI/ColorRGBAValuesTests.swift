@@ -5,9 +5,9 @@
 //  Created by Vakhtang Kontridze on 09.05.22.
 //
 
+import SwiftUI
 import XCTest
 @testable import VCore
-import SwiftUI
 
 // MARK: - Tests
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)

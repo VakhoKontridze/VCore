@@ -5,8 +5,9 @@
 //  Created by Vakhtang Kontridze on 10.05.22.
 //
 
-import Foundation
+import SwiftUI
 import XCTest
+import VCore
 
 // MARK: - XCTest Assert Equal Color
 
@@ -50,22 +51,33 @@ extension XCTest {
     }
 }
 
-extension NSColor {
-    fileprivate var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-        var red: CGFloat = 0
-        var green: CGFloat = 0
-        var blue: CGFloat = 0
-        var alpha: CGFloat = 0
-        
-        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        
-        return (
-            red: red,
-            green: green,
-            blue: blue,
-            alpha: alpha
+#endif
+
+extension XCTest {
+    @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
+    func XCTAssertEqualColor(
+        _ expression1: @autoclosure () throws -> Color,
+        _ expression2: @autoclosure () throws -> Color,
+        _ message: @autoclosure () -> String = "",
+        file: StaticString = #filePath,
+        line: UInt = #line
+    ) {
+#if canImport(UIKit)
+        return XCTAssertEqualColor(
+            UIColor(try! expression1()), // Force-unwrap
+            UIColor(try! expression2()), // Force-unwrap
+            message(),
+            file: file,
+            line: line
         )
+#elseif canImport(AppKit)
+        return XCTAssertEqualColor(
+            NSColor(try! expression1()), // Force-unwrap
+            NSColor(try! expression2()), // Force-unwrap
+            message(),
+            file: file,
+            line: line
+        )
+#endif
     }
 }
-
-#endif

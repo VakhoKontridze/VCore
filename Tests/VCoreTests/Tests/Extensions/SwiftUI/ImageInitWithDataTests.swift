@@ -5,9 +5,9 @@
 //  Created by Vakhtang Kontridze on 10.03.23.
 //
 
+import SwiftUI
 import XCTest
 @testable import VCore
-import SwiftUI
 
 // MARK: - Tests
 final class ImageInitWithDataTests: XCTestCase {
