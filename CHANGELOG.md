@@ -5,6 +5,7 @@
 Extensions
 
 - `Array.asyncSorted(by:)` and `Array.asyncSort(by:)` methods are added that asynchronously sorts an `Array`
+- `BidirectionalCollection.lastIndexAndElement(where:)` method is added that complements similar method that seeks first index and element
 - Another `Task.sleep(seconds:)` method is added that takes `TimeInterval` as a parameter
 
 ### [4.9.2(82)](https://github.com/VakhoKontridze/VCore/releases/tag/4.9.2) — *2023 05 01*

@@ -1,5 +1,5 @@
 //
-//  Array.FirstAndLastInstances.swift
+//  Array.FirstAndLastInstance.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 29.11.22.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Array First and Last Instances
+// MARK: - Array First Instance
 extension Array {
     /// Returns the first element of the sequence that is a type `T`.
     ///
@@ -28,7 +28,10 @@ extension Array {
     public func firstInstanceOfType<T>(_ type: T.Type) -> T? {
         first(where: { $0 is T }) as? T
     }
-    
+}
+
+// MARK: - Array Last Instance
+extension Array {
     /// Returns the last element of the sequence that is a type `T`.
     ///
     /// In the following example, `p1` and `p2` are equivalent.
