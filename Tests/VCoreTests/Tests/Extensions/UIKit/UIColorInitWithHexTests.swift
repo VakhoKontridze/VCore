@@ -66,6 +66,19 @@ final class UIColorInitWithHexTests: XCTestCase {
         XCTAssertEqualColor(result, output)
     }
 
+    func testUInt64() throws {
+        let inputHex: UInt64 = 0x313AE0
+        let inputR: CGFloat = 49/255
+        let inputG: CGFloat = 58/255
+        let inputB: CGFloat = 224/255
+
+        let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
+
+        let result: UIColor = try XCTUnwrap(UIColor(hex: inputHex))
+
+        XCTAssertEqualColor(result, output)
+    }
+
     func testHashSymbol() throws {
         let inputHex: String = "#313AE0"
         let inputR: CGFloat = 49/255

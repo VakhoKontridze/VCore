@@ -11,8 +11,8 @@ Extensions
 - `Collection.lastIndex(ofType:where:)` and `Collection.lastIndex(ofType:where:)` methods are added
 - `BidirectionalCollection.lastIndexAndElement(where:)` method is added that complements similar method that seeks first index and element
 - Another `Task.sleep(seconds:)` method is added that takes `TimeInterval` as a parameter
-- `Color.init?(hex:)` method is added that creates `Color` from a hex `String`
-- `UIColor.init?(hex:)` and `UIColor.init?(displayP3Hex:)` methods is added that creates `UIColor` from a hex `String`
+- `Color.init?(hex:)` method is added that creates `Color` from a hex `UInt64` or `String`
+- `UIColor.init?(hex:)` and `UIColor.init?(displayP3Hex:)` methods is added that creates `UIColor` from a hex `UInt64` or `String`
 
 ### [4.9.2(82)](https://github.com/VakhoKontridze/VCore/releases/tag/4.9.2) — *2023 05 01*
 
