@@ -60,8 +60,10 @@ public struct KeychainServiceConfiguration {
             deleteQuery: .default
         )
     }
+}
     
-    // MARK: Get Query
+// MARK: - Get Query
+extension KeychainServiceConfiguration {
     /// Get query.
     ///
     /// Declared query shouldn't contain `kSecAttrAccount`, since it is passed in `build(key:)` method.
@@ -77,7 +79,7 @@ public struct KeychainServiceConfiguration {
         }
         
         /// Default instance of `GetQuery`, that uses `defaultQuery`.
-        public static var `default`: Self { .init(query: Self.defaultQuery) }
+        public static var `default`: Self { .init(query: defaultQuery) }
         
         /// Default query.
         public static var defaultQuery: [String: Any] {
@@ -97,8 +99,10 @@ public struct KeychainServiceConfiguration {
             return query
         }
     }
+}
     
-    // MARK: Set Query
+// MARK: - Set Query
+extension KeychainServiceConfiguration {
     /// Set query.
     ///
     /// Declared query shouldn't contain `kSecAttrAccount` and `kSecValueData`, since they are passed in `build(key:data:)` method.
@@ -114,7 +118,7 @@ public struct KeychainServiceConfiguration {
         }
         
         /// Default instance of `SetQuery`, that uses `defaultQuery`.
-        public static var `default`: Self { .init(query: Self.defaultQuery) }
+        public static var `default`: Self { .init(query: defaultQuery) }
         
         /// Default query.
         public static var defaultQuery: [String: Any] {
@@ -133,8 +137,10 @@ public struct KeychainServiceConfiguration {
             return query
         }
     }
-    
-    // MARK: Delete Query
+}
+
+// MARK: - Delete Query
+extension KeychainServiceConfiguration {
     /// Delete query.
     ///
     /// Declared query shouldn't contain `kSecAttrAccount`, since it is passed in `build(key:)` method.
@@ -150,7 +156,7 @@ public struct KeychainServiceConfiguration {
         }
         
         /// Default instance of `DeleteQuery`, that uses `defaultQuery`.
-        public static var `default`: Self { .init(query: Self.defaultQuery) }
+        public static var `default`: Self { .init(query: defaultQuery) }
         
         /// Default query.
         public static var defaultQuery: [String: Any] {
