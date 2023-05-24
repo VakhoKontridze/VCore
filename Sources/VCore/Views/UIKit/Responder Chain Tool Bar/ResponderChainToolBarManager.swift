@@ -32,9 +32,8 @@ extension UITextView: InputResponderView {}
 /// Object that manages focus navigation the in responder chain.
 ///
 ///     final class ViewController: UIViewController {
-///         private let textField1: UITextField = { ... }()
-///
-///         private let textField2: UITextField = { ... }()
+///         private let textField: UITextField = { ... }()
+///         private let textView: UITextView = { ... }()
 ///
 ///         private let responderChainToolBarManager: ResponderChainToolBarManager = .init()
 ///
@@ -43,14 +42,14 @@ extension UITextView: InputResponderView {}
 ///
 ///             view.backgroundColor = .white
 ///
-///             view.addSubview(textField1)
-///             view.addSubview(textField2)
+///             view.addSubview(textField)
+///             view.addSubview(textView)
 ///
 ///             NSLayoutConstraint.activate(...)
 ///
 ///             responderChainToolBarManager.setResponders([
-///                 textField1,
-///                 textField2
+///                 textField,
+///                 textView
 ///             ])
 ///         }
 ///     }

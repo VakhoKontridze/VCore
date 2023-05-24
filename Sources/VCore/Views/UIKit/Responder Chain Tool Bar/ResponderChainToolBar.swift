@@ -13,16 +13,15 @@ import UIKit
 /// Toolbar that handles focus navigation in the responder chain.
 ///
 ///     final class ViewController: UIViewController {
-///         private let textField1: UITextField = { ... }()
-///
-///         private let textField2: UITextField = { ... }()
+///         private let textField: UITextField = { ... }()
+///         private let textView: UITextView = { ... }()
 ///
 ///         override func viewDidLoad() {
 ///             super.viewDidLoad()
 ///
 ///             view.backgroundColor = .white
 ///
-///             textField1.inputAccessoryView = {
+///             textField.inputAccessoryView = {
 ///                 let toolbar: ResponderChainToolBar = .init(
 ///                     arrowUpButtonAction: nil,
 ///                     arrowDownButtonAction: { [weak self] in _ = self?.textField2.becomeFirstResponder() },
@@ -32,7 +31,7 @@ import UIKit
 ///                 return toolbar
 ///             }()
 ///
-///             textField2.inputAccessoryView = {
+///             textView.inputAccessoryView = {
 ///                 let toolbar: ResponderChainToolBar = .init(
 ///                     arrowUpButtonAction: { [weak self] in _ = self?.textField1.becomeFirstResponder() },
 ///                     arrowDownButtonAction: nil,
@@ -42,8 +41,8 @@ import UIKit
 ///                 return toolbar
 ///             }()
 ///
-///             view.addSubview(textField1)
-///             view.addSubview(textField2)
+///             view.addSubview(textField)
+///             view.addSubview(textView)
 ///
 ///             NSLayoutConstraint.activate(...)
 ///         }
