@@ -20,6 +20,7 @@ Extensions
 - `Collection.firstIndex(ofType:where:)` and `Collection.lastIndex(ofType:where:)` methods are added
 - `Collection.lastIndex(ofType:where:)` and `Collection.lastIndex(ofType:where:)` methods are added
 - `BidirectionalCollection.lastIndexAndElement(where:)` method is added that complements similar method that seeks first index and element
+- `CaseIterable.aCase(offseteBy:)` method is added that returns a `case` with specified distance from the current `case`. `CaseIterable.previousCase` and `CaseIterable.nextCase` properties are also added.
 - Another `Task.sleep(seconds:)` method is added that takes `TimeInterval` as a parameter
 - `Color.init?(hex:)` method is added that creates `Color` from a hex `UInt64` or `String`
 - `UIColor.init?(hex:)` and `UIColor.init?(displayP3Hex:)` methods is added that creates `UIColor` from a hex `UInt64` or `String`
