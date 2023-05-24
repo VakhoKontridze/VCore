@@ -2,6 +2,10 @@
 
 ### 4.10.0(83)
 
+General
+
+- Several APIs are now exposed to `mac` `Catalyst`
+
 Extensions
 
 - `Array.binaryAppend(_:by:)` method is added that inserts elements in appropriate place

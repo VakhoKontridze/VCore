@@ -26,7 +26,7 @@ extension View {
     ///     }
     ///
     @ViewBuilder public func safeAreaMargins(edges: Edge.Set = .all) -> some View {
-#if os(iOS) || os(tvOS)
+#if canImport(UIKit) && !os(watchOS)
         self
             .padding(.leading, edges.contains(.leading) ? UIDevice.safeAreaInsetLeft : 0)
             .padding(.trailing, edges.contains(.trailing) ? UIDevice.safeAreaInsetRight : 0)

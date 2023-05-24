@@ -54,7 +54,7 @@ open class ScrollableUIView: UIView {
         
         view.translatesAutoresizingMaskIntoConstraints = false
         
-#if os(iOS)
+#if os(iOS) || targetEnvironment(macCatalyst)
         view.backgroundColor = .systemBackground
 #endif
         

@@ -10,7 +10,6 @@ import SwiftUI
 // MARK: - View Inline Navigation Title
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
-@available(watchOS, unavailable)
 extension View {
     /// Configures the view’s title for purposes of navigation, using a `String` in a inline display mode.
     ///
@@ -20,8 +19,8 @@ extension View {
     ///     }
     ///
     @ViewBuilder public func inlineNavigationTitle(_ title: String) -> some View {
-#if os(iOS)
-        if #available(iOS 14.0, *) {
+#if os(iOS) || os(watchOS) || targetEnvironment(macCatalyst)
+        if #available(iOS 14.0, watchOS 8.0, *) {
             self
                 .navigationTitle(title)
                 .navigationBarTitleDisplayMode(.inline)

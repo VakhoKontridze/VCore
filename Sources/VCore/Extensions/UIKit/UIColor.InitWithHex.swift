@@ -77,6 +77,12 @@ extension UIColor {
 
 #endif
 
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
 // MARK: - Helpers
 extension UInt64 {
     /*fileprivate*/ func hexColorRGBAValues() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {

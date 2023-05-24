@@ -113,7 +113,7 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
     
     // MARK: Body
     public var body: some View {
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
         label()
             .overlay(SwiftUIGestureBaseButton_UIKit(
                 isEnabled: isEnabled,

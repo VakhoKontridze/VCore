@@ -96,7 +96,7 @@ extension View {
     ) -> some View
         where Content: View
     {
-#if os(iOS)
+#if canImport(UIKit) && !os(watchOS)
         self
             .onDisappear(perform: { _PresentationHostViewController.forceDismiss(id: id) })
             .background(PresentationHostView(

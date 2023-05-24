@@ -61,7 +61,7 @@ public enum UILayoutGuideType {
         case .safeArea:
             return view.safeAreaLayoutGuide
             
-#if os(iOS)
+#if os(iOS) || targetEnvironment(macCatalyst)
         case .keyboard:
             guard #available(iOS 15.0, *) else { fatalError() }
             return view.keyboardLayoutGuide
