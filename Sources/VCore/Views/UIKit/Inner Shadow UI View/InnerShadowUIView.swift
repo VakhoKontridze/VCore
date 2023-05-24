@@ -13,7 +13,8 @@ import UIKit
 /// `UIView` that casts an inner shadow.
 open class InnerShadowUIView: UIView {
     // MARK: Subviews
-    private let shapeLayer: CAShapeLayer = {
+    /// Shape layer.
+    open var shapeLayer: CAShapeLayer = {
         let shapeLayer: CAShapeLayer = .init()
         shapeLayer.shadowOpacity = 1
         shapeLayer.fillRule = .evenOdd
@@ -21,11 +22,16 @@ open class InnerShadowUIView: UIView {
     }()
     
     // MARK: Properties
-    private var uiModel: InnerShadowUIViewUIModel
+    /// Model that describes UI.
+    ///
+    /// To change current UI model, use `configure(uiModel)` method.
+    private(set) var uiModel: InnerShadowUIViewUIModel
     
     // MARK: Initializers
     /// Initializes `InnerShadowUIView`.
-    public init(uiModel: InnerShadowUIViewUIModel = .init()) {
+    public init(
+        uiModel: InnerShadowUIViewUIModel = .init()
+    ) {
         self.uiModel = uiModel
         super.init(frame: .zero)
         setUp()
@@ -53,7 +59,8 @@ open class InnerShadowUIView: UIView {
     }
     
     // MARK: Setup
-    private func setUp() {
+    /// Sets up `InnerShadowUIView`.
+    open func setUp() {
         layer.masksToBounds = true
         layer.addSublayer(shapeLayer)
     }
