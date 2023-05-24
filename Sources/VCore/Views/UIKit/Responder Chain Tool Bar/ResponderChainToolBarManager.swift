@@ -29,7 +29,7 @@ extension UITextField: InputResponderView {}
 extension UITextView: InputResponderView {}
 
 // MARK: - Responder Chain Tool Bar Manager
-/// Object that manages focus navigation the in responder chain.
+/// Object that manages focus navigation in the responder chain.
 ///
 ///     final class ViewController: UIViewController {
 ///         private let textField: UITextField = { ... }()

@@ -8,7 +8,8 @@ General
 
 Views
 
-- `ResponderChainToolBar`, alongside with `ResponderChainToolBarManager` is added, that handles focus navigation the in responder chain.
+- `ResponderChainToolBar`, alongside with `ResponderChainToolBarManager` is added, that handles focus navigation in the responder chain
+- `View.responderChainToolBar(focus:_)` method is added that manages focus navigation in the responder chain
 - Several `InnerShadowUIView` members now have `public`/`open` access level
 
 Extensions
