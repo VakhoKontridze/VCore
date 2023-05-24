@@ -6,6 +6,10 @@ General
 
 - Several APIs are now exposed to `mac` `Catalyst`
 
+Views
+
+- `ResponderChainToolBar`, alongside with `ResponderChainToolBarManager` is added, that handles focus navigation the in responder chain.
+
 Extensions
 
 - `Array.binaryAppend(_:by:)` method is added that inserts elements in appropriate place

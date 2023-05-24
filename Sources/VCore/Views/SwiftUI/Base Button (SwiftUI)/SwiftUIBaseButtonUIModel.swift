@@ -22,7 +22,7 @@ public struct SwiftUIBaseButtonUIModel {
     /// Model that contains animation properties.
     public struct Animations {
         // MARK: Properties
-        /// Indicates if button animates state change. Defaults to `true`.
+        /// Indicates if button animates state change. Set to `true`.
         ///
         /// Changing this property conditionally will cause view state to be reset.
         public var animatesStateChange: Bool = true
