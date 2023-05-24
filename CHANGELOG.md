@@ -22,6 +22,7 @@ Extensions
 - Another `Task.sleep(seconds:)` method is added that takes `TimeInterval` as a parameter
 - `Color.init?(hex:)` method is added that creates `Color` from a hex `UInt64` or `String`
 - `UIColor.init?(hex:)` and `UIColor.init?(displayP3Hex:)` methods is added that creates `UIColor` from a hex `UInt64` or `String`
+- `Array.subscript(safe:)` now supports `Collection`
 
 ### [4.9.2(82)](https://github.com/VakhoKontridze/VCore/releases/tag/4.9.2) — *2023 05 01*
 

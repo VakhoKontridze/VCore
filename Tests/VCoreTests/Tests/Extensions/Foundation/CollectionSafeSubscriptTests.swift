@@ -1,5 +1,5 @@
 //
-//  ArraySafeSubscriptTests.swift
+//  CollectionSafeSubscriptTests.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 05.05.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class ArraySafeSubscriptTests: XCTestCase {
+final class CollectionSafeSubscriptTests: XCTestCase {
     // MARK: Test Data
     private let numbers: [Int] = [1, 3, 5]
     
