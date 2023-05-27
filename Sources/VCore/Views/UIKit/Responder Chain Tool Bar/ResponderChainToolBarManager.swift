@@ -9,11 +9,11 @@
 
 import UIKit
 
-// MARK: - Input Responder View
-/// Object that supports input and can become a first responder.
+// MARK: - Responder Chain Tool Bar Responder
+/// `Object` that supports input and can become a first responder.
 ///
 /// `UITextField` and `UITextView` automatically conform to this `protocol`.
-public protocol InputResponderView: AnyObject {
+public protocol ResponderChainToolBarResponder: AnyObject {
     /// Custom input accessory `UIView` to display when the responder becomes the first responder.
     var inputAccessoryView: UIView? { get set }
 
@@ -24,9 +24,9 @@ public protocol InputResponderView: AnyObject {
     func resignFirstResponder() -> Bool
 }
 
-extension UITextField: InputResponderView {}
+extension UITextField: ResponderChainToolBarResponder {}
 
-extension UITextView: InputResponderView {}
+extension UITextView: ResponderChainToolBarResponder {}
 
 // MARK: - Responder Chain Tool Bar Manager
 /// Object that manages focus navigation in the responder chain.
@@ -40,7 +40,7 @@ extension UITextView: InputResponderView {}
 ///         override func viewDidLoad() {
 ///             super.viewDidLoad()
 ///
-///             view.backgroundColor = .white
+///             view.backgroundColor = .systemBackground
 ///
 ///             view.addSubview(textField)
 ///             view.addSubview(textView)
@@ -62,7 +62,7 @@ open class ResponderChainToolBarManager {
     private(set) public var uiModel: ResponderChainToolBarUIModel
 
     /// List of responders managed by `ResponderChainToolBarManager`.
-    private(set) open var responders: [any InputResponderView] = []
+    private(set) open var responders: [any ResponderChainToolBarResponder] = []
 
     // MARK: Initializers
     /// Initializes `ResponderChainToolBarManager`.
@@ -75,7 +75,7 @@ open class ResponderChainToolBarManager {
     /// Initializes `ResponderChainToolBarManager` with responders.
     public convenience init(
         uiModel: ResponderChainToolBarUIModel = .init(),
-        responders: [any InputResponderView]
+        responders: [any ResponderChainToolBarResponder]
     ) {
         self.init(uiModel: uiModel)
 
@@ -92,7 +92,7 @@ open class ResponderChainToolBarManager {
 
     // MARK: Configuration - Responders
     /// Sets and configures responders.
-    open func setResponders(_ responders: [any InputResponderView]) {
+    open func setResponders(_ responders: [any ResponderChainToolBarResponder]) {
         self.responders = responders
 
         reloadData()
@@ -101,8 +101,8 @@ open class ResponderChainToolBarManager {
     // MARK: Configuration - Reload Data
     private func reloadData() {
         for (i, responder) in responders.enumerated() {
-            let previousResponder: (any InputResponderView)? = responders[safe: i-1]
-            let nextResponder: (any InputResponderView)? = responders[safe: i+1]
+            let previousResponder: (any ResponderChainToolBarResponder)? = responders[safe: i-1]
+            let nextResponder: (any ResponderChainToolBarResponder)? = responders[safe: i+1]
 
             let toolbar: ResponderChainToolBar = .init(
                 uiModel: uiModel,
