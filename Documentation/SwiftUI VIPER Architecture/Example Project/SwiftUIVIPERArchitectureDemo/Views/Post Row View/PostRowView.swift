@@ -41,6 +41,7 @@ struct PostRowView: View {
 // MARK: - Preview
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PostsView_Previews.previews
+        PostRowView(parameters: .mock)
+            .previewLayout(.sizeThatFits)
     }
 }
