@@ -156,6 +156,15 @@ KeychainService.default.delete(key: "SomeKey")
 @KeychainStorage("AccessToken") var accessToken: String?
 ```
 
+#### Various Helpful Services and Managers
+
+`DigitalTimeFormatter` with various configurations:
+
+```swift
+let formatter: DigitalTimeFormatter = .init()
+formatter.string(from: 905048) // "10:11:24:08"
+```
+
 #### Various Helpful Declarations
 
 `KeyPathInitializableEnumeration` that allows for initialization of an `enum` with a `KeyPath`:
@@ -174,13 +183,6 @@ enum SomeEnum: KeyPathInitializableEnumeration {
 }
 
 let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
-```
-
-`DigitalTimeFormatter` with various configurations:
-
-```swift
-let formatter: DigitalTimeFormatter = .init()
-formatter.string(from: 905048) // "10:11:24:08"
 ```
 
 #### Various UIKit Views/ViewControllers
