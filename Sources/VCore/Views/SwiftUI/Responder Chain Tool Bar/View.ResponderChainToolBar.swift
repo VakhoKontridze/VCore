@@ -8,6 +8,9 @@
 import SwiftUI
 
 // MARK: - View Responder Chain Tool Bar
+@available(iOS 15.0, macOS 12.0, *)
+@available(tvOS 14.0, *)@available(tvOS, unavailable)
+@available(watchOS 7.0, *)@available(watchOS, unavailable)
 extension View {
     /// Inserts toolbar that managed focus navigation in responder chain.
     ///
@@ -48,9 +51,6 @@ extension View {
     ///     }
     ///
     /// Alternately, use second method that takes `CaseIterable` as a parameter and omits `inResponderChain` argument.
-    @available(iOS 15.0, macOS 12.0, *)
-    @available(tvOS, unavailable)
-    @available(watchOS, unavailable)
     public func responderChainToolBar<Value>(
         uiModel: SwiftUIResponderChainToolBarUIModel = .init(),
         focus binding: FocusState<Value?>.Binding,
@@ -155,9 +155,6 @@ extension View {
     ///         }
     ///     }
     ///
-    @available(iOS 15.0, macOS 12.0, *)
-    @available(tvOS, unavailable)
-    @available(watchOS, unavailable)
     public func responderChainToolBar<Value>(
         uiModel: SwiftUIResponderChainToolBarUIModel = .init(),
         focus binding: FocusState<Value?>.Binding,

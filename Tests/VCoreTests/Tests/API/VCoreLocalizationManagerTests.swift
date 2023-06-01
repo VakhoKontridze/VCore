@@ -136,10 +136,12 @@ final class VCoreLocalizationManagerTests: XCTestCase {
         )
     }
 
+#if os(iOS) || targetEnvironment(macCatalyst)
     func testResponderChainToolBarDoneButtonTitle() {
         XCTAssertEqual(
             ResponderChainToolBar().doneButton.title,
             TestVCoreLocalizationProvider().responderChainToolBarDoneButtonTitle
         )
     }
+#endif
 }
