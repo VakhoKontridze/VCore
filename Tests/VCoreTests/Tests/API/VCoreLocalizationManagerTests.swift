@@ -39,6 +39,10 @@ final class VCoreLocalizationManagerTests: XCTestCase {
         var resultNoFailureErrorDescription: String {
             "G"
         }
+
+        var responderChainToolBarDoneButtonTitle: String {
+            "H"
+        }
     }
     
     // MARK: Setup
@@ -55,7 +59,10 @@ final class VCoreLocalizationManagerTests: XCTestCase {
             fatalError()
             
         } catch {
-            XCTAssertEqual(error.localizedDescription, "A")
+            XCTAssertEqual(
+                error.localizedDescription,
+                TestVCoreLocalizationProvider().networkClientErrorDescription(.invalidBody) // Code doesn't matter
+            )
         }
     }
     
@@ -63,7 +70,12 @@ final class VCoreLocalizationManagerTests: XCTestCase {
         XCTAssertThrowsError(
             try JSONEncoderService().data(any: nil),
             "",
-            { error in XCTAssertEqual(error.localizedDescription, "B") }
+            { error in
+                XCTAssertEqual(
+                    error.localizedDescription,
+                    TestVCoreLocalizationProvider().jsonEncoderErrorDescription(.failedToEncode) // Code doesn't matter
+                )
+            }
         )
     }
     
@@ -71,7 +83,12 @@ final class VCoreLocalizationManagerTests: XCTestCase {
         XCTAssertThrowsError(
             try JSONDecoderService().json(data: Data()),
             "",
-            { error in XCTAssertEqual(error.localizedDescription, "C") }
+            { error in
+                XCTAssertEqual(
+                    error.localizedDescription,
+                    TestVCoreLocalizationProvider().jsonDecoderErrorDescription(.failedToDecode) // Code doesn't matter
+                )
+            }
         )
     }
     
@@ -79,7 +96,12 @@ final class VCoreLocalizationManagerTests: XCTestCase {
         XCTAssertThrowsError(
             try KeychainService.default.get(key: "N/A"),
             "",
-            { error in XCTAssertEqual(error.localizedDescription, "D") }
+            { error in
+                XCTAssertEqual(
+                    error.localizedDescription,
+                    TestVCoreLocalizationProvider().keychainServiceErrorDescription(.failedToGet) // Code doesn't matter
+                )
+            }
         )
     }
     
@@ -87,7 +109,7 @@ final class VCoreLocalizationManagerTests: XCTestCase {
     func testAlertErrorTitle() {
         XCTAssertEqual(
             UIAlertParameters(error: NetworkClientError.notConnectedToNetwork, completion: nil).title,
-            "E"
+            TestVCoreLocalizationProvider().alertErrorTitle
         )
     }
 #endif
@@ -96,7 +118,7 @@ final class VCoreLocalizationManagerTests: XCTestCase {
     func testAlertOkButtonTitle() {
         XCTAssertEqual(
             (UIAlertParameters(title: "T", message: "M", completion: nil).buttons().first! as! UIAlertButton).title,
-            "F"
+            TestVCoreLocalizationProvider().alertOKButtonTitle
         )
     }
 #endif
@@ -105,7 +127,19 @@ final class VCoreLocalizationManagerTests: XCTestCase {
         XCTAssertThrowsError(
             try ResultNoFailure<Any>.failure.get(),
             "",
-            { error in XCTAssertEqual(error.localizedDescription, "G") }
+            { error in
+                XCTAssertEqual(
+                    error.localizedDescription,
+                    TestVCoreLocalizationProvider().resultNoFailureErrorDescription
+                )
+            }
+        )
+    }
+
+    func testResponderChainToolBarDoneButtonTitle() {
+        XCTAssertEqual(
+            ResponderChainToolBar().doneButton.title,
+            TestVCoreLocalizationProvider().responderChainToolBarDoneButtonTitle
         )
     }
 }
