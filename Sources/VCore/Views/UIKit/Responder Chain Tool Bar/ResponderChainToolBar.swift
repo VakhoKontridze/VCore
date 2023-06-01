@@ -146,7 +146,11 @@ open class ResponderChainToolBar: UIToolbar {
 
         barStyle = uiModel.colors.style
         isTranslucent = uiModel.colors.isTranslucent
-        barTintColor = uiModel.colors.tintColor
+        barTintColor = uiModel.colors.toolbar
+
+        for button in [arrowUpButton, arrowDownButton, doneButton] {
+            button.tintColor = uiModel.colors.button
+        }
 
         items = {
             var items: [UIBarButtonItem] = []
