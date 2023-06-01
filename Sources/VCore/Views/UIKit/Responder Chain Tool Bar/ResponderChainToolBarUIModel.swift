@@ -35,9 +35,6 @@ public struct ResponderChainToolBarUIModel {
 
         var hasButtons: Bool { hasNavigationButtons || hasDoneButton }
 
-        /// Done button title. Set to `"Done"`
-        public var doneButtonTitle: String = "Done"
-
         // MARK: Initializers
         /// Initializes UI model with default values.
         public init() {}

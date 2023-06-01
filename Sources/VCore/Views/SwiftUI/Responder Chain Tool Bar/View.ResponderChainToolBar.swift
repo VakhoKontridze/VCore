@@ -113,7 +113,7 @@ extension View {
 
                             if uiModel.layout.hasDoneButton {
                                 Button(
-                                    uiModel.layout.doneButtonTitle,
+                                    VCoreLocalizationManager.shared.localizationProvider.responderChainToolBarDoneButtonTitle,
                                     action: { binding.wrappedValue = nil }
                                 )
                                 .foregroundColor(uiModel.colors.button.enabled)

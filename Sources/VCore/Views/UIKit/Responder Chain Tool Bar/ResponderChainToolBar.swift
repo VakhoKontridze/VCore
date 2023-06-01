@@ -75,7 +75,7 @@ open class ResponderChainToolBar: UIToolbar {
 
     /// Button that dismisses focus.
     open lazy var doneButton: UIBarButtonItem = .init(
-        title: uiModel.layout.doneButtonTitle,
+        title: VCoreLocalizationManager.shared.localizationProvider.responderChainToolBarDoneButtonTitle,
         style: .done,
         target: self,
         action: #selector(didTapDoneButton)

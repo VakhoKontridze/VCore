@@ -56,6 +56,9 @@ public protocol VCoreLocalizationProvider {
     
     /// Localized value for error description thrown by `get` method in `ResultNoFailure`.
     var resultNoFailureErrorDescription: String { get }
+
+    /// Localized value for `done` button in `ResponderChainToolBar` and `View.responderChainToolBar(...)`.
+    var responderChainToolBarDoneButtonTitle: String { get }
 }
 
 // MARK: - V Core Human-Readable Localization Provider
@@ -143,5 +146,9 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
     
     public var resultNoFailureErrorDescription: String {
         "No data"
+    }
+
+    public var responderChainToolBarDoneButtonTitle: String {
+        "Done"
     }
 }
