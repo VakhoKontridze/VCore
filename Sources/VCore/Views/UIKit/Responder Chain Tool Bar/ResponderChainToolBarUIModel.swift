@@ -51,9 +51,13 @@ public struct ResponderChainToolBarUIModel {
         public var isTranslucent: Bool = true
 
         /// Toolbar tint color. Set to `nil`.
+        ///
+        /// When value is `nil`, default color will be used.
         public var toolbar: UIColor?
 
         /// Button tint color. Set to `nil`.
+        ///
+        /// When value is `nil`, default color will be used.
         public var button: UIColor?
 
         // MARK: Initializers
