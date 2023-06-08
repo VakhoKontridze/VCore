@@ -65,9 +65,9 @@ open class ScrollableUIView: UIView {
     private var scrollDirection: ScrollDirection
     
     // MARK: Initializers
-    /// Initializes `ScrollableUIView` with `ScrollDirection`.
+    /// Initializes `ScrollableUIView`.
     public init(
-        direction scrollDirection: ScrollDirection
+        direction scrollDirection: ScrollDirection = .vertical
     ) {
         self.scrollDirection = scrollDirection
         super.init(frame: .zero)
