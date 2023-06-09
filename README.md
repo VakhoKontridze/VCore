@@ -346,17 +346,17 @@ Versions with different majors are not directly compatible. When a new major is 
   
   <tr>
     <td>
-        4.0<br/><i><sup>(4.0.0 - 4.x.x)</sup></i>
+        4.0<br><i><sup>(4.0.0 - 4.x.x)</sup></i>
     </td>
     <td>2022 09 14</td>
     <td>
-        5.8<br/><i><sup>(4.7.0 - 4.x.x)</sup></i><br/>
-        5.7<br/><i><sup>(4.0.0 - 4.6.1)</sup></i>
+        5.8<br><i><sup>(4.7.0 - 4.x.x)</sup></i><br>
+        5.7<br><i><sup>(4.0.0 - 4.6.1)</sup></i>
     </td>
     <td>
-        iOS 13.0<br/>
-        macOS 10.15<br/>
-        tvOS 13.0<br/>
+        iOS 13.0<br>
+        macOS 10.15<br>
+        tvOS 13.0<br>
         watchOS 6.0
     </td>
     <td>API changes.</td>
@@ -364,25 +364,25 @@ Versions with different majors are not directly compatible. When a new major is 
   
   <tr>
     <td>
-        3.0<br/><i><sup>(3.0.0 - 3.20.2)</sup></i>
+        3.0<br><i><sup>(3.0.0 - 3.20.2)</sup></i>
     </td>
     <td>2022 05 17</td>
     <td>5.6</td>
     <td>
-        iOS 13.0<br/>
-        macOS 10.15<br/>
-        tvOS 13.0<br/>
+        iOS 13.0<br>
+        macOS 10.15<br>
+        tvOS 13.0<br>
         watchOS 6.0
     </td>
     <td>
-        Multiplatform support.<br/>
+        Multiplatform support.<br>
         SPM support.
     </td>
   </tr>
   
   <tr>
     <td>
-        2.0<br/><i><sup>(2.0.0 - 2.3.0)</sup></i>
+        2.0<br><i><sup>(2.0.0 - 2.3.0)</sup></i>
     </td>
     <td>2021 12 28</td>
     <td>5.3</td>
@@ -392,7 +392,7 @@ Versions with different majors are not directly compatible. When a new major is 
   
   <tr>
     <td>
-        1.0<br/><i><sup>(1.0.0 - 1.4.0)</sup></i>
+        1.0<br><i><sup>(1.0.0 - 1.4.0)</sup></i>
     </td>
     <td>2021 10 07</td>
     <td>5.3</td>
