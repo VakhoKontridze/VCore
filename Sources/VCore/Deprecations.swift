@@ -526,6 +526,42 @@ extension UIApplication {
 
 import UIKit
 
+extension UIView {
+    @available(*, deprecated)
+    public func addSubviews(_ views: [UIView]) {
+        views.forEach { addSubview($0) }
+    }
+
+    @available(*, deprecated)
+    public func addSubviews(_ views: UIView...) {
+        views.forEach { addSubview($0) }
+    }
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+extension UIStackView {
+    @available(*, deprecated)
+    public func addArrangedSubviews(_ views: [UIView]) {
+        views.forEach { addArrangedSubview($0) }
+    }
+
+    @available(*, deprecated)
+    public func addArrangedSubviews(_ views: UIView...) {
+        views.forEach { addArrangedSubview($0) }
+    }
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
 // MARK: - Label Configuration
 extension UILabel {
     @available(*, deprecated, message: "method will be removed in 5.0.0")
