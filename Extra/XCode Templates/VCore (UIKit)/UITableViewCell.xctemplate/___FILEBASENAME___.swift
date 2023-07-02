@@ -28,7 +28,7 @@ final class ___VARIABLE_productName___: UITableViewCell, ConfigurableUITableView
     }
     
     private func setUpView() {
-        backgroundColor = UIModel.Colors.background
+        backgroundColor = UIModel.backgroundColor
         selectionStyle = .none
     }
     

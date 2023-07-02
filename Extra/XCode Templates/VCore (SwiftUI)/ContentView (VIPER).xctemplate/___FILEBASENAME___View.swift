@@ -35,7 +35,7 @@ struct ___VARIABLE_productName___View<Presenter>: View
     }
     
     private var canvas: some View {
-        UIModel.Colors.background.ignoresSafeArea()
+        UIModel.backgroundColor.ignoresSafeArea()
     }
     
     private var contentView: some View {

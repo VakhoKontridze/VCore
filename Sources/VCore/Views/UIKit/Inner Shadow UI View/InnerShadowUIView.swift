@@ -70,9 +70,9 @@ open class InnerShadowUIView: UIView {
     open func configure(uiModel: InnerShadowUIViewUIModel) {
         self.uiModel = uiModel
         
-        shapeLayer.shadowColor = uiModel.colors.shadowColor.cgColor
-        shapeLayer.shadowRadius = uiModel.colors.shadowRadius
-        shapeLayer.shadowOffset = uiModel.colors.shadowOffset
+        shapeLayer.shadowColor = uiModel.shadowColor.cgColor
+        shapeLayer.shadowRadius = uiModel.shadowRadius
+        shapeLayer.shadowOffset = uiModel.shadowOffset
     }
 }
 

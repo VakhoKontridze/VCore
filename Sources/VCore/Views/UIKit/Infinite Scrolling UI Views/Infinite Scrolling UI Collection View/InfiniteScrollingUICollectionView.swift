@@ -140,7 +140,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     
     private var isFirstLayoutSubviews: Bool = false
     
-    private typealias ActivityIndicatorModel = InfiniteScrollingUICollectionViewActivityIndicatorViewUIModel
+    private typealias ActivityIndicatorUIModel = InfiniteScrollingUICollectionViewActivityIndicatorViewUIModel
     
     // MARK: Initializers
     public override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
@@ -185,7 +185,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         
         (collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize = CGSize(
             width: bounds.width,
-            height: ActivityIndicatorModel.Layout.height
+            height: ActivityIndicatorUIModel.height
         )
     }
     
@@ -224,7 +224,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             origin: .zero,
             size: CGSize(
                 width: frame.size.width,
-                height: ActivityIndicatorModel.Layout.height
+                height: ActivityIndicatorUIModel.height
             )
         )
         

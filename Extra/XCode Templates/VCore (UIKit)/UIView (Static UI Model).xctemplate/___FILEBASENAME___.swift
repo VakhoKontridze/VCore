@@ -33,7 +33,7 @@ final class ___VARIABLE_productName___: UIView {
     }
     
     private func setUpView() {
-        backgroundColor = UIModel.Colors.background
+        backgroundColor = UIModel.backgroundColor
     }
     
     private func addSubviews() {

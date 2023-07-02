@@ -16,17 +16,13 @@ import SwiftUI
 /// Model:
 ///
 ///     struct SomeButtonUIModel {
-///         var colors: Colors = .init()
+///         var titleColors: StateColors = .init(
+///             enabled: .black,
+///             pressed: .gray,
+///             disabled: .gray
+///         )
 ///
-///         struct Colors {
-///             var title: StateColors = .init(
-///                 enabled: .black,
-///                 pressed: .gray,
-///                 disabled: .gray
-///             )
-///
-///             typealias StateColors = GenericStateModel_EnabledPressedDisabled<Color>
-///         }
+///         typealias StateColors = GenericStateModel_EnabledPressedDisabled<Color>
 ///     }
 ///
 /// State:
@@ -58,7 +54,7 @@ import SwiftUI
 ///                     let internalState: SomeButtonInternalState = internalState(baseButtonState)
 ///
 ///                     Text(title)
-///                         .foregroundColor(uiModel.colors.title.value(for: internalState))
+///                         .foregroundColor(uiModel.titleColors.value(for: internalState))
 ///                 }
 ///             )
 ///         }

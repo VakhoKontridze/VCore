@@ -28,7 +28,7 @@ final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIA
     }
     
     private func setUpView() {
-        view.backgroundColor = UIModel.Colors.background
+        view.backgroundColor = UIModel.backgroundColor
     }
     
     private func addSubviews() {

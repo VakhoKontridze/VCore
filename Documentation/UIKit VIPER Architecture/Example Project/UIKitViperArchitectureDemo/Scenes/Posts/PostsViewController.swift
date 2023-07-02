@@ -52,7 +52,7 @@ final class PostsViewController:
     }
     
     private func setUpView() {
-        view.backgroundColor = UIModel.Colors.background
+        view.backgroundColor = UIModel.backgroundColor
     }
     
     private func addSubviews() {

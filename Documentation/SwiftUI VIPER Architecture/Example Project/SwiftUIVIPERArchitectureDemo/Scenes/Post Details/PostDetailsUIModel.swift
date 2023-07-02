@@ -10,35 +10,13 @@ import VCore
 
 // MARK: - Post Details UI Model
 struct PostDetailsUIModel {
+    // MARK: Properties
+    static var backgroundColor: Color { .white }
+
+    static var bodyTextColor: Color { .primary }
+    static var bodyTextFont: Font { .subheadline }
+    static var bodyTextPadding: EdgeInsets_LeadingTrailingTopBottom { .init(leading: 20, trailing: 20, top: 10, bottom: 20) }
+
     // MARK: Initializers
     private init() {}
-    
-    // MARK: Layout
-    struct Layout {
-        // MARK: Properties
-        static var bodyTextPadding: EdgeInsets_LeadingTrailingTopBottom { .init(leading: 20, trailing: 20, top: 10, bottom: 20) }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-    
-    // MARK: Colors
-    struct Colors {
-        // MARK: Properties
-        static var background: Color { .white }
-        
-        static var bodyText: Color { .primary }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-    
-    // MARK: Fonts
-    struct Fonts {
-        // MARK: Properties
-        static var bodyText: Font { .subheadline }
-        
-        // MARK: Initializers
-        private init() {}
-    }
 }

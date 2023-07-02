@@ -34,15 +34,15 @@ struct PostDetailsView<Presenter>: View
     }
     
     private var canvas: some View {
-        UIModel.Colors.background.ignoresSafeArea()
+        UIModel.backgroundColor.ignoresSafeArea()
     }
     
     private var contentView: some View {
         ScrollView(content: {
             Text(presenter.body)
-                .padding(UIModel.Layout.bodyTextPadding)
-                .foregroundColor(UIModel.Colors.bodyText)
-                .font(UIModel.Fonts.bodyText)
+                .padding(UIModel.bodyTextPadding)
+                .foregroundColor(UIModel.bodyTextColor)
+                .font(UIModel.bodyTextFont)
         })
         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     }

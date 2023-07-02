@@ -64,7 +64,7 @@ extension View {
                 ToolbarItemGroup(placement: .keyboard, content: {
                     if
                         binding.wrappedValue == value,
-                        uiModel.layout.hasButtons
+                        uiModel.hasButtons
                     {
                         let previousValue: Value? = {
                             guard
@@ -93,31 +93,31 @@ extension View {
                         let downButtonIsEnabled: Bool = nextValue != nil
 
                         Group(content: {
-                            if uiModel.layout.hasNavigationButtons {
+                            if uiModel.hasNavigationButtons {
                                 Button(
                                     action: { binding.wrappedValue = previousValue },
                                     label: { Image(systemName: "chevron.up") }
                                 )
                                 .disabled(!upButtonIsEnabled)
-                                .foregroundColor(uiModel.colors.button.value(for: GenericState_EnabledDisabled(isEnabled: upButtonIsEnabled)))
+                                .foregroundColor(uiModel.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: upButtonIsEnabled)))
 
                                 Button(
                                     action: { binding.wrappedValue = nextValue },
                                     label: { Image(systemName: "chevron.down") }
                                 )
                                 .disabled(!downButtonIsEnabled)
-                                .foregroundColor(uiModel.colors.button.value(for: GenericState_EnabledDisabled(isEnabled: downButtonIsEnabled)))
+                                .foregroundColor(uiModel.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: downButtonIsEnabled)))
                             }
 
                             Spacer()
 
-                            if uiModel.layout.hasDoneButton {
+                            if uiModel.hasDoneButton {
                                 Button(
                                     VCoreLocalizationManager.shared.localizationProvider.responderChainToolBarDoneButtonTitle,
                                     action: { binding.wrappedValue = nil }
                                 )
-                                .foregroundColor(uiModel.colors.button.enabled)
-                                .font(uiModel.fonts.doneButton)
+                                .foregroundColor(uiModel.buttonColors.enabled)
+                                .font(uiModel.doneButtonFont)
                             }
                         })
                     }

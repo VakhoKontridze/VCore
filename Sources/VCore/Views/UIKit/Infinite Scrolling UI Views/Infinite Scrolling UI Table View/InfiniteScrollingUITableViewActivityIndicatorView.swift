@@ -23,7 +23,7 @@ final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
             origin: .zero,
             size: CGSize(
                 width: tableView.frame.size.width,
-                height: UIModel.Layout.height
+                height: UIModel.height
             )
         ))
         setUp()

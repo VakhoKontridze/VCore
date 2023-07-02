@@ -12,15 +12,15 @@ import VCore
 final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
     // MARK: Subviews
     private let titleLabel: UILabel = .init(
-        color: UIModel.Colors.titleLabel,
-        font: UIModel.Fonts.titleLabel
+        color: UIModel.titleLabelColor,
+        font: UIModel.titleLabelFont
     )
         .withTranslatesAutoresizingMaskIntoConstraints(false)
     
     private let bodyLabel: UILabel = .init(
-        numberOfLines: UIModel.Layout.bodyLabelNumberOfLines,
-        color: UIModel.Colors.bodyLabel,
-        font: UIModel.Fonts.bodyLabel
+        numberOfLines: UIModel.bodyLabelNumberOfLines,
+        color: UIModel.bodyLabelColor,
+        font: UIModel.bodyLabelFont
     )
         .withTranslatesAutoresizingMaskIntoConstraints(false)
     
@@ -45,7 +45,7 @@ final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
     }
     
     private func setUpView() {
-        backgroundColor = UIModel.Colors.background
+        backgroundColor = UIModel.backgroundColor
         selectionStyle = .none
     }
     
@@ -56,14 +56,14 @@ final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            titleLabel.constraintLeading(to: contentView, constant: UIModel.Layout.titleLabelMarginHor),
-            titleLabel.constraintTrailing(to: contentView, constant: -UIModel.Layout.titleLabelMarginHor),
-            titleLabel.constraintTop(to: contentView, constant: UIModel.Layout.titleLabelMarginTop),
+            titleLabel.constraintLeading(to: contentView, constant: UIModel.titleLabelMarginHor),
+            titleLabel.constraintTrailing(to: contentView, constant: -UIModel.titleLabelMarginHor),
+            titleLabel.constraintTop(to: contentView, constant: UIModel.titleLabelMarginTop),
             
-            bodyLabel.constraintLeading(to: contentView, constant: UIModel.Layout.bodyLabelMarginHor),
-            bodyLabel.constraintTrailing(to: contentView, constant: -UIModel.Layout.bodyLabelMarginHor),
-            bodyLabel.constraintTop(to: titleLabel, attribute: .bottom, constant: UIModel.Layout.bodyLabelMarginTop),
-            bodyLabel.constraintBottom(to: contentView, constant: -UIModel.Layout.bodyLabelMarginBottom)
+            bodyLabel.constraintLeading(to: contentView, constant: UIModel.bodyLabelMarginHor),
+            bodyLabel.constraintTrailing(to: contentView, constant: -UIModel.bodyLabelMarginHor),
+            bodyLabel.constraintTop(to: titleLabel, attribute: .bottom, constant: UIModel.bodyLabelMarginTop),
+            bodyLabel.constraintBottom(to: contentView, constant: -UIModel.bodyLabelMarginBottom)
         ])
     }
     

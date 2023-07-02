@@ -144,19 +144,19 @@ open class ResponderChainToolBar: UIToolbar {
     open func configure(uiModel: ResponderChainToolBarUIModel) {
         self.uiModel = uiModel
 
-        barStyle = uiModel.colors.style
-        isTranslucent = uiModel.colors.isTranslucent
-        barTintColor = uiModel.colors.toolbar
+        barStyle = uiModel.style
+        isTranslucent = uiModel.isTranslucent
+        barTintColor = uiModel.toolbarColor
 
         for button in [arrowUpButton, arrowDownButton, doneButton] {
-            button.tintColor = uiModel.colors.button
+            button.tintColor = uiModel.buttonColor
         }
 
         items = {
             var items: [UIBarButtonItem] = []
 
-            if uiModel.layout.hasButtons {
-                if uiModel.layout.hasNavigationButtons {
+            if uiModel.hasButtons {
+                if uiModel.hasNavigationButtons {
                     items.append(contentsOf: [
                         arrowUpButton,
                         arrowDownButton,
@@ -165,7 +165,7 @@ open class ResponderChainToolBar: UIToolbar {
 
                 items.append(spacer)
 
-                if uiModel.layout.hasDoneButton {
+                if uiModel.hasDoneButton {
                     items.append(doneButton)
                 }
             }

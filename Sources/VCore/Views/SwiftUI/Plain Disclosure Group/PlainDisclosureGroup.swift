@@ -111,13 +111,13 @@ public struct PlainDisclosureGroup<Label, Content>: View
                     set: expandCollapseFromInternalAction
                 ),
                 content: content,
-                label: { Spacer().frame(height: max(0, labelHeight - uiModel.layout.defaultDisclosureGroupPadding)) }
+                label: { Spacer().frame(height: max(0, labelHeight - uiModel.defaultDisclosureGroupPadding)) }
             )
             .animation(.default, value: isExpanded.wrappedValue)
             
             labelView
         })
-            .background(uiModel.colors.background)
+            .background(uiModel.backgroundColor)
     }
     
     private var labelView: some View {
@@ -125,7 +125,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
             .frame(maxWidth: .infinity)
             .onSizeChange(perform: { labelHeight = $0.height })
             .background(
-                uiModel.colors.background
+                uiModel.backgroundColor
                     .contentShape(Rectangle())
                     .onTapGesture(perform: expandCollapseFromLabelTap)
             )
@@ -133,11 +133,11 @@ public struct PlainDisclosureGroup<Label, Content>: View
     
     // MARK: Actions
     private func expandCollapseFromInternalAction(newValue: Bool) {
-        withAnimation(uiModel.animations.expandCollapse, { isExpanded.wrappedValue = newValue })
+        withAnimation(uiModel.expandCollapseAnimation, { isExpanded.wrappedValue = newValue })
     }
     
     private func expandCollapseFromLabelTap() {
-        withAnimation(uiModel.animations.expandCollapse, { isExpanded.wrappedValue.toggle() })
+        withAnimation(uiModel.expandCollapseAnimation, { isExpanded.wrappedValue.toggle() })
     }
     
     // MARK: State Management

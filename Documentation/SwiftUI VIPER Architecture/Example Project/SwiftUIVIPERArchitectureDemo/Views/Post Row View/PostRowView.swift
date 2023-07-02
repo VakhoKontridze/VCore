@@ -21,20 +21,20 @@ struct PostRowView: View {
     
     // MARK: Body
     var body: some View {
-        VStack(alignment: .leading, spacing: UIModel.Layout.spacing, content: {
+        VStack(alignment: .leading, spacing: UIModel.spacing, content: {
             Text(parameters.title)
                 .lineLimit(1)
-                .foregroundColor(UIModel.Colors.titleText)
-                .font(UIModel.Fonts.titleText)
+                .foregroundColor(UIModel.titleTextColor)
+                .font(UIModel.titleTextFont)
             
             Text(parameters.body)
-                .lineLimit(UIModel.Layout.bodyTextLineLimit)
-                .foregroundColor(UIModel.Colors.bodyText)
-                .font(UIModel.Fonts.bodyText)
+                .lineLimit(UIModel.bodyTextLineLimit)
+                .foregroundColor(UIModel.bodyTextColor)
+                .font(UIModel.bodyTextFont)
         })
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(UIModel.Layout.padding)
-        .background(content: { UIModel.Colors.background.ignoresSafeArea() })
+        .padding(UIModel.padding)
+        .background(content: { UIModel.backgroundColor.ignoresSafeArea() })
     }
 }
 

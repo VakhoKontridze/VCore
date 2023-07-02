@@ -244,6 +244,68 @@ extension SwiftUIBaseButton {
 
 #endif
 
+// MARK: - SwiftUI Base Button UI Model
+extension SwiftUIBaseButtonUIModel {
+    @available(*, unavailable, message: "Use flattened properties from `SwiftUIBaseButtonUIModel` itself")
+    public struct Animations {}
+}
+
+// MARK: - Plain Disclosure Group
+@available(iOS 14.0, macOS 11.0, *)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
+extension PlainDisclosureGroupUIModel {
+    @available(*, unavailable, message: "Use flattened properties from `PlainDisclosureGroupUIModel` itself")
+    public struct Layout {}
+
+    @available(*, unavailable, message: "Use flattened properties from `PlainDisclosureGroupUIModel` itself")
+    public struct Colors {}
+
+    @available(*, unavailable, message: "Use flattened properties from `PlainDisclosureGroupUIModel` itself")
+    public struct Animations {}
+}
+
+// MARK: - Inner Shadow UI View UI Model
+#if canImport(UIKit) && !os(watchOS)
+
+extension InnerShadowUIViewUIModel {
+    @available(*, unavailable, message: "Use flattened properties from `InnerShadowUIViewUIModel` itself")
+    public struct Colors {}
+}
+
+#endif
+
+// MARK: - Responder Chain Tool Bar UI Model (SwiftUI)
+#if os(iOS) || targetEnvironment(macCatalyst)
+
+extension ResponderChainToolBarUIModel {
+    @available(*, unavailable, message: "Use flattened properties from `ResponderChainToolBarUIModel` itself")
+    public struct Layout {}
+
+    @available(*, unavailable, message: "Use flattened properties from `ResponderChainToolBarUIModel` itself")
+    public struct Colors {}
+}
+
+#endif
+
+// MARK: - Responder Chain Tool Bar UI Model (SwiftUI)
+extension SwiftUIResponderChainToolBarUIModel {
+    @available(*, unavailable, message: "Use flattened properties from `SwiftUIResponderChainToolBarUIModel` itself")
+    public struct Layout {}
+
+    @available(*, unavailable, message: "Use flattened properties from `SwiftUIResponderChainToolBarUIModel` itself")
+    public struct Colors {}
+
+    @available(*, unavailable, message: "Use flattened properties from `SwiftUIResponderChainToolBarUIModel` itself")
+    public struct Animations {}
+}
+
+// MARK: - Fetch Delegating Async Image UI Model
+extension FetchDelegatingAsyncImageUIModel {
+    @available(*, unavailable, message: "Use flattened properties from `FetchDelegatingAsyncImageUIModel` itself")
+    public struct Colors {}
+}
+
 // MARK: - Edge Insets
 
 #if canImport(UIKit)

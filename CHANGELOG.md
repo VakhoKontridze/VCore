@@ -1,5 +1,11 @@
 # Change Log
 
+4.11.0(84)
+
+General
+
+- UIModels are re-structured and no longer depend on sub UI models
+
 ### [4.10.0(83)](https://github.com/VakhoKontridze/VCore/releases/tag/4.10.0) — *2023 06 01*
 
 General

@@ -43,7 +43,7 @@ struct PostsView<Presenter>: View
     }
     
     private var canvas: some View {
-        Model.Colors.background.ignoresSafeArea()
+        Model.backgroundColor.ignoresSafeArea()
     }
     
     private var contentView: some View {

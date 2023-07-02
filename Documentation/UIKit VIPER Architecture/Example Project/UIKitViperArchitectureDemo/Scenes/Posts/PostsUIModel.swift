@@ -9,15 +9,9 @@ import UIKit
 
 // MARK: - Posts UI Model
 struct PostsUIModel {
+    // MARK: Properties
+    static var backgroundColor: UIColor? { .systemBackground }
+
     // MARK: Initializers
     private init() {}
-    
-    // MARK: Colors
-    struct Colors {
-        // MARK: Properties
-        static var background: UIColor? { .systemBackground }
-        
-        // MARK: Initializers
-        private init() {}
-    }
 }

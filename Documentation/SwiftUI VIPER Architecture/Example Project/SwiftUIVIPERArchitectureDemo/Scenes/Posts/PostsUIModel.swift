@@ -9,15 +9,9 @@ import SwiftUI
 
 // MARK: - Posts UI Model
 struct PostsUIModel {
+    // MARK: Properties
+    static var backgroundColor: Color { .init(.systemBackground) }
+
     // MARK: Initializers
     private init() {}
-    
-    // MARK: Colors
-    struct Colors {
-        // MARK: Properties
-        static var background: Color { .init(.systemBackground) }
-        
-        // MARK: Initializers
-        private init() {}
-    }
 }

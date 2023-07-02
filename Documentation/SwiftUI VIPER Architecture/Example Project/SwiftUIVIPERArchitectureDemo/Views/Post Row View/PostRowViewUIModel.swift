@@ -10,40 +10,20 @@ import VCore
 
 // MARK: - Post Row View UI Model
 struct PostRowViewUIModel {
+    // MARK: Properties
+    static var backgroundColor: Color { .init(.systemBackground) }
+
+    static var padding: EdgeInsets_HorizontalVertical { .init(horizontal: 20, vertical: 5) }
+
+    static var spacing: CGFloat { 2 }
+
+    static var titleTextColor: Color { .primary }
+    static var titleTextFont: Font { .callout.weight(.semibold) }
+
+    static var bodyTextLineLimit: Int { 2 }
+    static var bodyTextColor: Color { .secondary }
+    static var bodyTextFont: Font { .subheadline }
+
     // MARK: Initializers
     private init() {}
-    
-    // MARK: Layout
-    struct Layout {
-        // MARK: Properties
-        static var padding: EdgeInsets_HorizontalVertical { .init(horizontal: 20, vertical: 5) }
-        static var spacing: CGFloat { 2 }
-        
-        static var bodyTextLineLimit: Int { 2 }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-    
-    // MARK: Colors
-    struct Colors {
-        // MARK: Properties
-        static var background: Color { .init(.systemBackground) }
-        
-        static var titleText: Color { .primary }
-        static var bodyText: Color? { .secondary }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-    
-    // MARK: Fonts
-    struct Fonts {
-        // MARK: Properties
-        static var titleText: Font { .callout.weight(.semibold) }
-        static var bodyText: Font { .subheadline }
-        
-        // MARK: Initializers
-        private init() {}
-    }
 }

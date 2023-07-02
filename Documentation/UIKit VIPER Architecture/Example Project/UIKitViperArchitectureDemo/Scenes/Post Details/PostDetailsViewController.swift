@@ -20,8 +20,8 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     
     private let bodyLabel: UILabel = .init(
         numberOfLines: 0,
-        color: UIModel.Colors.bodyLabel,
-        font: UIModel.Fonts.bodyLabel
+        color: UIModel.bodyLabelColor,
+        font: UIModel.bodyLabelFont
     )
         .withTranslatesAutoresizingMaskIntoConstraints(false)
     
@@ -48,7 +48,7 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     }
     
     private func setUpView() {
-        view.backgroundColor = UIModel.Colors.background
+        view.backgroundColor = UIModel.backgroundColor
     }
     
     private func addSubviews() {
@@ -65,10 +65,10 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
             
             bodyLabel.constraintHeight(to: nil, constant: 0)
                 .storing(in: &bodyLabelHeightConstraint),
-            bodyLabel.constraintLeading(to: scrollableUIView.contentView, constant: UIModel.Layout.bodyLabelMarginHor),
-            bodyLabel.constraintTrailing(to: scrollableUIView.contentView, constant: -UIModel.Layout.bodyLabelMarginHor),
-            bodyLabel.constraintTop(to: scrollableUIView.contentView, layoutGuide: .safeArea, constant: UIModel.Layout.bodyLabelMarginTop),
-            bodyLabel.constraintBottom(to: scrollableUIView.contentView, layoutGuide: .safeArea, constant: -UIModel.Layout.bodyLabelMarginBottom)
+            bodyLabel.constraintLeading(to: scrollableUIView.contentView, constant: UIModel.bodyLabelMarginHor),
+            bodyLabel.constraintTrailing(to: scrollableUIView.contentView, constant: -UIModel.bodyLabelMarginHor),
+            bodyLabel.constraintTop(to: scrollableUIView.contentView, layoutGuide: .safeArea, constant: UIModel.bodyLabelMarginTop),
+            bodyLabel.constraintBottom(to: scrollableUIView.contentView, layoutGuide: .safeArea, constant: -UIModel.bodyLabelMarginBottom)
         ])
     }
     
@@ -84,6 +84,6 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     func setBody(to body: String) {
         bodyLabel.text = body
         bodyLabelHeightConstraint?.constant = bodyLabel
-            .multiLineHeight(width: view.frame.width - 2*UIModel.Layout.bodyLabelMarginHor)
+            .multiLineHeight(width: view.frame.width - 2*UIModel.bodyLabelMarginHor)
     }
 }

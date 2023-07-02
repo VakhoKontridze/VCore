@@ -522,58 +522,19 @@ struct HomeInteractor: HomeInteractive {
 ```swift
 // MARK: - Home UI Model
 struct HomeUIModel {
+    // MARK: Properties
+    static var backgroundColor: UIColor { .systemBackground }
+    
+    static var stackSpacing: CGFloat { 10 }
+    
+    static var imageDimension: CGFloat { 50 }
+    
+    static var titleLabelColor: UIColor { .label }
+    static var titleLabelFont: UIFont { .systemFont(ofSize: 14) }
+    
+    static var primaryButtonMarginHor: CGFloat { 20 }
+
     // MARK: Initializers
     private init() {}
-    
-    // MARK: Layout
-    struct Layout {
-        // MARK: Properties
-        static var imageViewDimension: CGFloat { 50 }
-        static var stackViewSpacing: CGFloat { 10 }
-        static var primaryButtonMarginHor: CGFloat { 20 }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-
-    // MARK: Colors
-    struct Colors {
-        // MARK: Properties
-        static var background: UIColor { .systemBackground }
-        
-        static var titleText: UIColor { .label }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-
-    // MARK: Fonts
-    struct Fonts {
-        // MARK: Properties
-        static var titleText: UIFont { .systemFont(ofSize: 14) }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-
-    // MARK: Animations
-    struct Animations {
-        // MARK: Properties
-        static var appearDuration: TimeInterval { 0.25 }
-        static var appearDelay: TimeInterval { 0 }
-        static var appearOptions: UIView.AnimationOptions { .curveEaseInEaseOut }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-
-    // MARK: Misc
-    struct Misc {
-        // MARK: Properties
-        static var returnKeyType: UIReturnKeyType { .done }
-        
-        // MARK: Initializers
-        private init() {}
-    }
 }
 ```

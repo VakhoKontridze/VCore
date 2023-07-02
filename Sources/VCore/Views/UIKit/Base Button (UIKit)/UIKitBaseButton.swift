@@ -18,17 +18,13 @@ import UIKit
 /// Model:
 ///
 ///     struct SomeButtonUIModel {
-///         var colors: Colors = .init()
+///         var titleColors: StateColors = .init(
+///             enabled: .black,
+///             pressed: .gray,
+///             disabled: .gray
+///         )
 ///
-///         struct Colors {
-///             var title: StateColors = .init(
-///                 enabled: .black,
-///                 pressed: .gray,
-///                 disabled: .gray
-///             )
-///
-///             typealias StateColors = GenericStateModel_EnabledPressedDisabled<UIColor>
-///         }
+///         typealias StateColors = GenericStateModel_EnabledPressedDisabled<UIColor>
 ///     }
 ///
 /// State:
@@ -124,7 +120,7 @@ import UIKit
 ///         }
 ///
 ///         private func configureFromStateUIModelChange() {
-///             titleLabel.textColor = uiModel.colors.title.value(for: internalState)
+///             titleLabel.textColor = uiModel.titleColors.value(for: internalState)
 ///         }
 ///     }
 ///

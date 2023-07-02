@@ -222,7 +222,7 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     }
     
     private var defaultPlaceholder: some View {
-        uiModel.colors.placeholder
+        uiModel.placeholderColor
     }
     
     // MARK: Fetch

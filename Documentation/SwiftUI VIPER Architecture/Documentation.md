@@ -297,7 +297,7 @@ struct HomeView<Presenter>: View
     }
     
     private var canvas: some View {
-        UIModel.Colors.background.ignoresSafeArea()
+        UIModel.backgroundColor.ignoresSafeArea()
     }
     
     private var contentView: some View {
@@ -430,56 +430,19 @@ struct HomeInteractor: HomeInteractive {
 ```swift
 // MARK: - Home UI Model
 struct HomeUIModel {
+    // MARK: Properties
+    static var backgroundColor: Color { .init(.systemBackground) }
+    
+    static var stackSpacing: CGFloat { 10 }
+    
+    static var imageDimension: CGFloat { 50 }
+    
+    static var titleLabelColor: Color { .init(.label) }
+    static var titleLabelFont: Font { Font.system(size: 14) }
+    
+    static var primaryButtonMarginHor: CGFloat { 20 }
+
     // MARK: Initializers
     private init() {}
-    
-    // MARK: Layout
-    struct Layout {
-        // MARK: Properties
-        static var imageDimension: CGFloat { 50 }
-        static var stackSpacing: CGFloat { 10 }
-        static var primaryButtonMarginHor: CGFloat { 20 }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-
-    // MARK: Colors
-    struct Colors {
-        // MARK: Properties
-        static var background: Color { .init(.systemBackground) }
-        
-        static var titleLabel: Color { .init(.label) }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-
-    // MARK: Fonts
-    struct Fonts {
-        // MARK: Properties
-        static var titleLabel: Font { Font.system(size: 14) }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-
-    // MARK: Animations
-    struct Animations {
-        // MARK: Properties
-        static var appear: Animation { .easeInOut(duration: 0.25) }
-        
-        // MARK: Initializers
-        private init() {}
-    }
-
-    // MARK: Misc
-    struct Misc {
-        // MARK: Properties
-        static var submitLabel: SubmitLabel { .done }
-        
-        // MARK: Initializers
-        private init() {}
-    }
 }
 ```
