@@ -162,7 +162,7 @@ public struct GenericStateModel_OffOnIndeterminatePressedDisabled<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializes
+// MARK: Platform-Specific Initializers
 #if canImport(UIKit)
 
 import UIKit

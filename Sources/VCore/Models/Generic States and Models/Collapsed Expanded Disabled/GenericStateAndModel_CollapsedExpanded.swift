@@ -90,7 +90,7 @@ public struct GenericStateModel_CollapsedExpanded<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializes
+// MARK: Platform-Specific Initializers
 #if canImport(UIKit)
 
 import UIKit

@@ -136,7 +136,7 @@ public struct GenericStateModel_DeselectedSelectedPressedDisabled<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializes
+// MARK: Platform-Specific Initializers
 #if canImport(UIKit)
 
 import UIKit

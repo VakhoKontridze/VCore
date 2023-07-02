@@ -89,7 +89,7 @@ public struct GenericStateModel_EnabledPressedLoading<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializes
+// MARK: Platform-Specific Initializers
 #if canImport(UIKit)
 
 import UIKit
