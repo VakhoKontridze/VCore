@@ -6,6 +6,10 @@ General
 
 - UIModels are re-structured and no longer depend on sub UI models
 
+Services and Managers
+
+- `LocalizationKeyProvider` is added, that allows for convenient localization by providing a localization key
+
 Views
 
 - `GradientLayerUIView` is added, that automatically resizes `CAGradientLayer` to it's `bounds`.
