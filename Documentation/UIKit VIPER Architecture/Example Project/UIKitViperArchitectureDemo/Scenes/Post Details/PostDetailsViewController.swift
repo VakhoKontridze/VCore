@@ -17,13 +17,15 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
         scrollableUIView.scrollView.bounces = false
         return scrollableUIView
     }()
-    
-    private let bodyLabel: UILabel = .init(
-        numberOfLines: 0,
-        color: UIModel.bodyLabelColor,
-        font: UIModel.bodyLabelFont
-    )
-        .withTranslatesAutoresizingMaskIntoConstraints(false)
+
+    private let bodyLabel: UILabel = {
+        let label: UILabel = .init()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
+        label.textColor = UIModel.bodyLabelColor
+        label.font = UIModel.bodyLabelFont
+        return label
+    }()
     
     // MARK: Properties
     var presenter: (any PostDetailsPresentable)!

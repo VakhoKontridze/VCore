@@ -11,18 +11,22 @@ import VCore
 // MARK: - Post Cell
 final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
     // MARK: Subviews
-    private let titleLabel: UILabel = .init(
-        color: UIModel.titleLabelColor,
-        font: UIModel.titleLabelFont
-    )
-        .withTranslatesAutoresizingMaskIntoConstraints(false)
+    private let titleLabel: UILabel = {
+        let label: UILabel = .init()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textColor = UIModel.titleLabelColor
+        label.font = UIModel.titleLabelFont
+        return label
+    }()
     
-    private let bodyLabel: UILabel = .init(
-        numberOfLines: UIModel.bodyLabelNumberOfLines,
-        color: UIModel.bodyLabelColor,
-        font: UIModel.bodyLabelFont
-    )
-        .withTranslatesAutoresizingMaskIntoConstraints(false)
+    private let bodyLabel: UILabel = {
+        let label: UILabel = .init()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = UIModel.bodyLabelNumberOfLines
+        label.textColor = UIModel.bodyLabelColor
+        label.font = UIModel.bodyLabelFont
+        return label
+    }()
     
     // MARK: Properties
     private typealias UIModel = PostCellUIModel
