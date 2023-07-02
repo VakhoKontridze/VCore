@@ -33,7 +33,7 @@ import Foundation
 /// `Localizable.strings`.
 ///
 ///     ...
-///     "screens.hone.hello_world" = "Hello, World!"
+///     "screens.home.hello_world" = "Hello, World!"
 ///     ...
 ///
 /// Once system is implemented, localization objects can be defined for individual scopes.
