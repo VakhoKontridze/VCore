@@ -6,6 +6,10 @@ General
 
 - UIModels are re-structured and no longer depend on sub UI models
 
+Extensions
+
+- `UIDevice.safeAreaInsets` no longer returns an `Optional`
+
 ### [4.10.0(83)](https://github.com/VakhoKontridze/VCore/releases/tag/4.10.0) — *2023 06 01*
 
 General
