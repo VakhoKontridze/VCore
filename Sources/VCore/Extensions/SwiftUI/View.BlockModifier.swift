@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - View Block Modifier
+// MARK: - View Apply Modifier
 extension View {
     /// Applies a block modifier to a `View` and returns a new `View`.
     ///
