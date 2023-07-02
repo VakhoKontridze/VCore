@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		876FD433285C786600EC24FD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD432285C786600EC24FD /* AppDelegate.swift */; };
 		876FD435285C786600EC24FD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD434285C786600EC24FD /* SceneDelegate.swift */; };
-		876FD43C285C786700EC24FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 876FD43B285C786700EC24FD /* Assets.xcassets */; };
+		876FD43C285C786700EC24FD /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 876FD43B285C786700EC24FD /* Images.xcassets */; };
 		876FD43F285C786700EC24FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 876FD43D285C786700EC24FD /* LaunchScreen.storyboard */; };
 		876FD453285C7BBF00EC24FD /* PostsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD44B285C7BBF00EC24FD /* PostsFactory.swift */; };
 		876FD454285C7BBF00EC24FD /* PostsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD44C285C7BBF00EC24FD /* PostsPresenter.swift */; };
@@ -39,7 +39,7 @@
 		876FD42F285C786600EC24FD /* UIKitViperArchitectureDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIKitViperArchitectureDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		876FD432285C786600EC24FD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		876FD434285C786600EC24FD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		876FD43B285C786700EC24FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		876FD43B285C786700EC24FD /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		876FD43E285C786700EC24FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		876FD440285C786700EC24FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		876FD44B285C7BBF00EC24FD /* PostsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFactory.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 		876FD449285C788F00EC24FD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				876FD43B285C786700EC24FD /* Assets.xcassets */,
+				876FD43B285C786700EC24FD /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -293,7 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				876FD43F285C786700EC24FD /* LaunchScreen.storyboard in Resources */,
-				876FD43C285C786700EC24FD /* Assets.xcassets in Resources */,
+				876FD43C285C786700EC24FD /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

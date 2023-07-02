@@ -21,8 +21,7 @@
 		872EE7A12860BF8D00845B5C /* PostsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872EE7A02860BF8D00845B5C /* PostsParameters.swift */; };
 		8733FF5E285F681E00DA02AB /* PostsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8733FF5D285F681E00DA02AB /* PostsRouter.swift */; };
 		8780A057285F0DA0002E8F66 /* SwiftUIVIPArchitectureDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A056285F0DA0002E8F66 /* SwiftUIVIPArchitectureDemoApp.swift */; };
-		8780A05B285F0DA1002E8F66 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8780A05A285F0DA1002E8F66 /* Assets.xcassets */; };
-		8780A05E285F0DA1002E8F66 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8780A05D285F0DA1002E8F66 /* Preview Assets.xcassets */; };
+		8780A05B285F0DA1002E8F66 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8780A05A285F0DA1002E8F66 /* Images.xcassets */; };
 		8780A06E285F0DF6002E8F66 /* PostsFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A067285F0DF6002E8F66 /* PostsFactory.swift */; };
 		8780A06F285F0DF6002E8F66 /* PostsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A068285F0DF6002E8F66 /* PostsPresenter.swift */; };
 		8780A070285F0DF6002E8F66 /* PostsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A069285F0DF6002E8F66 /* PostsInteractor.swift */; };
@@ -51,8 +50,7 @@
 		8733FF5D285F681E00DA02AB /* PostsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsRouter.swift; sourceTree = "<group>"; };
 		8780A053285F0DA0002E8F66 /* SwiftUI VIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI VIP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8780A056285F0DA0002E8F66 /* SwiftUIVIPArchitectureDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIVIPArchitectureDemoApp.swift; sourceTree = "<group>"; };
-		8780A05A285F0DA1002E8F66 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8780A05D285F0DA1002E8F66 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		8780A05A285F0DA1002E8F66 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8780A067285F0DF6002E8F66 /* PostsFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsFactory.swift; sourceTree = "<group>"; };
 		8780A068285F0DF6002E8F66 /* PostsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsPresenter.swift; sourceTree = "<group>"; };
 		8780A069285F0DF6002E8F66 /* PostsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsInteractor.swift; sourceTree = "<group>"; };
@@ -135,23 +133,14 @@
 				870B88A7285F147000B0D0AD /* Views */,
 				8780A07E285F0FCE002E8F66 /* Gateways */,
 				8780A064285F0DC0002E8F66 /* Resources */,
-				8780A05C285F0DA1002E8F66 /* Preview Content */,
 			);
 			path = SwiftUIVIPERArchitectureDemo;
-			sourceTree = "<group>";
-		};
-		8780A05C285F0DA1002E8F66 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				8780A05D285F0DA1002E8F66 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 		8780A064285F0DC0002E8F66 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				8780A05A285F0DA1002E8F66 /* Assets.xcassets */,
+				8780A05A285F0DA1002E8F66 /* Images.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -285,8 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8780A05E285F0DA1002E8F66 /* Preview Assets.xcassets in Resources */,
-				8780A05B285F0DA1002E8F66 /* Assets.xcassets in Resources */,
+				8780A05B285F0DA1002E8F66 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
