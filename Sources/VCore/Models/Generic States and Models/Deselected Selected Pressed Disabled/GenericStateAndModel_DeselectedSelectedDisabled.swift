@@ -54,7 +54,7 @@ public enum GenericState_DeselectedSelectedDisabled: Int, CaseIterable {
 }
 
 // MARK: - Generic State Model (Deselected, Selected, Disabled)
-/// Color group containing `deselected`, `selected`, and `disabled`.
+/// Value group containing `deselected`, `selected`, and `disabled`.
 ///
 /// Used for mapping `GenericState_DeselectedSelectedDisabled` to model, via `value(for:)` method.
 public struct GenericStateModel_DeselectedSelectedDisabled<Value> {

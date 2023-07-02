@@ -50,7 +50,7 @@ extension Binding where Value == GenericState_OffOn {
 }
 
 // MARK: - Generic State Model (Off, On)
-/// Color group containing `off` and `on`.
+/// Value group containing `off` and `on`.
 ///
 /// Used for mapping `GenericState_OffOn` to model, via `value(for:)` method.
 public struct GenericStateModel_OffOn<Value> {

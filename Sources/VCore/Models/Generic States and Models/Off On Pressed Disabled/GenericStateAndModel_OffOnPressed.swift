@@ -47,7 +47,7 @@ public enum GenericState_OffOnPressed: Int, CaseIterable {
 }
 
 // MARK: - Generic State Model (Off, On, Pressed)
-/// Color group containing `off`, `on`, `pressed` (`off`), and `pressed` (`on`).
+/// Value group containing `off`, `on`, `pressed` (`off`), and `pressed` (`on`).
 ///
 /// Used for mapping `GenericState_OffOnPressed` to model, via `value(for:)` method.
 public struct GenericStateModel_OffOnPressed<Value> {

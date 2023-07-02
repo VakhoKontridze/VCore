@@ -54,7 +54,7 @@ extension Binding where Value == GenericState_OffOnIndeterminate {
 }
 
 // MARK: - Generic State Model (Off, On, Indeterminate)
-/// Color group containing `off`, `on`, and `indeterminate`.
+/// Value group containing `off`, `on`, and `indeterminate`.
 ///
 /// Used for mapping `GenericState_OffOnIndeterminate` to model, via `value(for:)` method.
 public struct GenericStateModel_OffOnIndeterminate<Value> {

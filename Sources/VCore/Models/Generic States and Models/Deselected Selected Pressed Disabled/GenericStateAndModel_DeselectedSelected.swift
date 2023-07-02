@@ -50,7 +50,7 @@ extension Binding where Value == GenericState_DeselectedSelected {
 }
 
 // MARK: - Generic State Model (Deselected, Selected)
-/// Color group containing `deselected` and `selected`.
+/// Value group containing `deselected` and `selected`.
 ///
 /// Used for mapping `GenericState_DeselectedSelected` to model, via `value(for:)` method.
 public struct GenericStateModel_DeselectedSelected<Value> {

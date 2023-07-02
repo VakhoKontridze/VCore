@@ -60,7 +60,7 @@ public enum GenericState_OffOnIndeterminateDisabled: Int, CaseIterable {
 }
 
 // MARK: - Generic State Model (Off, On, Indeterminate, Disabled)
-/// Color group containing `off`, `on`, `indeterminate`, and `disabled`.
+/// Value group containing `off`, `on`, `indeterminate`, and `disabled`.
 ///
 /// Used for mapping `GenericState_OffOnIndeterminateDisabled` to model, via `value(for:)` method.
 public struct GenericStateModel_OffOnIndeterminateDisabled<Value> {
