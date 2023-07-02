@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - Scrollable UI View
-/// View that allows the scrolling and zooming of its contained views.
+/// `UIView` that allows the scrolling and zooming of its contained views.
 ///
 /// `ScrollableUIView` is a wrapper that handles subviews and constraints between `UIScrollView` and content `UIView`.
 /// To modify `UIScrollView` properties, access `scrollView` members.

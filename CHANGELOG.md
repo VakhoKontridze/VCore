@@ -6,6 +6,10 @@ General
 
 - UIModels are re-structured and no longer depend on sub UI models
 
+Views
+
+- `GradientLayerUIView` is added, that automatically resizes `CAGradientLayer` to it's `bounds`.
+
 Extensions
 
 - `UIDevice.safeAreaInsets` no longer returns an `Optional`
