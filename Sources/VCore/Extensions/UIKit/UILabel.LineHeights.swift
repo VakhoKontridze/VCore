@@ -47,6 +47,12 @@ extension UILabel {
             if #available(iOS 14.0, tvOS 14.0, *) {
                 label.lineBreakStrategy = lineBreakStrategy
             }
+
+            if #available(iOS 15.0, tvOS 15.0, *) {
+                label.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory
+                label.minimumContentSizeCategory = minimumContentSizeCategory
+                label.maximumContentSizeCategory = maximumContentSizeCategory
+            }
             
             return label
         }()
@@ -116,6 +122,12 @@ extension UILabel {
             
             if #available(iOS 14.0, tvOS 14.0, *) {
                 label.lineBreakStrategy = lineBreakStrategy
+            }
+
+            if #available(iOS 15.0, tvOS 15.0, *) {
+                label.adjustsFontForContentSizeCategory = adjustsFontForContentSizeCategory
+                label.minimumContentSizeCategory = minimumContentSizeCategory
+                label.maximumContentSizeCategory = maximumContentSizeCategory
             }
             
             label.preferredMaxLayoutWidth = width ?? preferredMaxLayoutWidth
