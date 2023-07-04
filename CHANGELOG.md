@@ -18,6 +18,7 @@ Extensions
 
 - `Range.init(lower:upper:)` and `ClosedRange.init(lower:upper:)` initializers are added
 - `Collection.containsAnyItem(fromCollection:)` method is added, that indicates if `Collection` contains any item from other `Collection`
+- `Array.prepend(_:)` and `Array.prepend(contentsOf:)` methods are added, that prepend element of sequence of elements at the beginning of the `Array`
 - `UIDevice.safeAreaInsets` no longer returns an `Optional`
 
 ### [4.10.0(83)](https://github.com/VakhoKontridze/VCore/releases/tag/4.10.0) — *2023 06 01*
