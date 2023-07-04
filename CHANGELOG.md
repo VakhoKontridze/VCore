@@ -14,6 +14,10 @@ Views
 
 - `GradientLayerUIView` is added, that automatically resizes `CAGradientLayer` to it's `bounds`.
 
+Models
+
+- `class`-based `LockedAtomicInteger` is added
+
 Extensions
 
 - `Range.init(lower:upper:)` and `ClosedRange.init(lower:upper:)` initializers are added
