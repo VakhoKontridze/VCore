@@ -4,15 +4,15 @@ import UIKit
 import VCore
 
 // MARK: - ___VARIABLE_productName___
-final class ___VARIABLE_productName____: UIView {
+final class ___VARIABLE_productName___: UIView {
     // MARK: Subviews
     
     // MARK: Properties
-    private var uiModel: ___VARIABLE_productName____UIModel
+    private var uiModel: ___VARIABLE_productName___UIModel
     
     // MARK: Initializers
     init(
-        uiModel: ___VARIABLE_productName____UIModel = .init()
+        uiModel: ___VARIABLE_productName___UIModel = .init()
     ) {
         self.uiModel = uiModel
         super.init(frame: .zero)
@@ -21,8 +21,8 @@ final class ___VARIABLE_productName____: UIView {
     }
     
     convenience init(
-        uiModel: ___VARIABLE_productName____UIModel = .init(),
-        parameters: ___VARIABLE_productName____Parameters
+        uiModel: ___VARIABLE_productName___UIModel = .init(),
+        parameters: ___VARIABLE_productName___Parameters
     ) {
         self.init(uiModel: uiModel)
         configure(parameters: parameters)
@@ -54,12 +54,12 @@ final class ___VARIABLE_productName____: UIView {
     }
     
     // MARK: Configuration - UI Model
-    func configure(uiModel: ___VARIABLE_productName____UIModel) {
+    func configure(uiModel: ___VARIABLE_productName___UIModel) {
         self.uiModel = uiModel
     }
     
     // MARK: Configuration - Parameters
-    func configure(parameters: ___VARIABLE_productName____Parameters) {
+    func configure(parameters: ___VARIABLE_productName___Parameters) {
         
     }
 }
