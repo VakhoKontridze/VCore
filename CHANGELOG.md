@@ -12,7 +12,8 @@ Services and Managers
 
 Views
 
-- `GradientLayerUIView` is added, that automatically resizes `CAGradientLayer` to it's `bounds`.
+- `GradientLayerUIView` is added, that automatically resizes `CAGradientLayer` to it's `bounds`
+- `FetchDelegatingCompletionImage` is added, as a completion-based equivalent of `FetchDelegatingAsyncImage`
 
 Models
 
