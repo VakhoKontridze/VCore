@@ -275,6 +275,63 @@ extension InnerShadowUIViewUIModel {
 
 #endif
 
+// MARK: - Fetch Delegating Async Image
+extension FetchDelegatingAsyncImage {
+    @available(*, unavailable, message: "Use `init` without `removesImageOnDisappear`. The parameter has been moved to UI model.")
+    public init(
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        removesImageOnDisappear: Bool,
+        from resource: Resource?,
+        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image
+    )
+        where
+            Content == Never,
+            PlaceholderContent == Never
+    {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "Use `init` without `removesImageOnDisappear`. The parameter has been moved to UI model.")
+    public init(
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        removesImageOnDisappear: Bool,
+        from resource: Resource?,
+        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
+        @ViewBuilder content: @escaping (Image) -> Content
+    )
+        where
+            PlaceholderContent == Never
+    {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "Use `init` without `removesImageOnDisappear`. The parameter has been moved to UI model.")
+    public init(
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        removesImageOnDisappear: Bool,
+        from resource: Resource?,
+        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
+        @ViewBuilder content: @escaping (Image) -> Content,
+        @ViewBuilder placeholder placeholderContent: @escaping () -> PlaceholderContent
+    ) {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "Use `init` without `removesImageOnDisappear`. The parameter has been moved to UI model.")
+    @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
+    public init(
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        removesImageOnDisappear: Bool,
+        from resource: Resource?,
+        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
+        @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
+    )
+        where PlaceholderContent == Never
+    {
+        fatalError()
+    }
+}
+
 // MARK: - Responder Chain Tool Bar UI Model (SwiftUI)
 #if os(iOS) || targetEnvironment(macCatalyst)
 
