@@ -281,8 +281,8 @@ extension FetchDelegatingAsyncImage {
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         removesImageOnDisappear: Bool,
-        from resource: Resource?,
-        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image
+        from resource: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image
     )
         where
             Content == Never,
@@ -295,8 +295,8 @@ extension FetchDelegatingAsyncImage {
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         removesImageOnDisappear: Bool,
-        from resource: Resource?,
-        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
+        from resource: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content
     )
         where
@@ -309,8 +309,8 @@ extension FetchDelegatingAsyncImage {
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         removesImageOnDisappear: Bool,
-        from resource: Resource?,
-        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
+        from resource: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content,
         @ViewBuilder placeholder placeholderContent: @escaping () -> PlaceholderContent
     ) {
@@ -322,8 +322,8 @@ extension FetchDelegatingAsyncImage {
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
         removesImageOnDisappear: Bool,
-        from resource: Resource?,
-        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
+        from resource: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image,
         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
     )
         where PlaceholderContent == Never

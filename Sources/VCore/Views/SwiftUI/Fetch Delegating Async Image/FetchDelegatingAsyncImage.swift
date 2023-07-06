@@ -59,69 +59,69 @@ import SwiftUI
 ///         }
 ///     }
 ///
-public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: View
+public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>: View
     where
-        Resource: Equatable,
+        Parameter: Equatable,
         Content: View,
         PlaceholderContent: View
 {
     // MARK: Properties
     private let uiModel: FetchDelegatingAsyncImageUIModel
 
-    private let resource: Resource?
-    private let fetchHandler: (Resource) async throws -> Image
+    private let parameter: Parameter?
+    private let fetchHandler: (Parameter) async throws -> Image
     
     private let content: FetchDelegatingAsyncImageContent<Content, PlaceholderContent>
     
-    @State private var resourceFetched: Resource? // Needed for avoiding fetching an-already fetched image
-    @State private var task: Task<Void, Never>? // Needed for canceling task, if resource changes during fetch
-    @State private var result: Result<Image, Error>?
+    @State private var parameterFetched: Parameter? // Needed for avoiding fetching an-already fetched image
+    @State private var task: Task<Void, Never>? // Needed for canceling task, if parameter changes during fetch
+    @State private var result: Result<Image, any Error>?
     
     // MARK: Initializers
-    /// Initializes `FetchDelegatingAsyncImage` with resource and fetch method.
+    /// Initializes `FetchDelegatingAsyncImage` with parameter and fetch method.
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
-        from resource: Resource?,
-        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image
     )
         where
             Content == Never,
             PlaceholderContent == Never
     {
         self.uiModel = uiModel
-        self.resource = resource
+        self.parameter = parameter
         self.fetchHandler = fetchHandler
         self.content = .empty
     }
     
-    /// Initializes `FetchDelegatingAsyncImage` with resource, fetch method, and content.
+    /// Initializes `FetchDelegatingAsyncImage` with parameter, fetch method, and content.
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
-        from resource: Resource?,
-        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content
     )
         where
             PlaceholderContent == Never
     {
         self.uiModel = uiModel
-        self.resource = resource
+        self.parameter = parameter
         self.fetchHandler = fetchHandler
         self.content = .content(
             content: content
         )
     }
     
-    /// Initializes `FetchDelegatingAsyncImage` with resource, fetch method, content, and placeholder content.
+    /// Initializes `FetchDelegatingAsyncImage` with parameter, fetch method, content, and placeholder content.
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
-        from resource: Resource?,
-        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image,
         @ViewBuilder content: @escaping (Image) -> Content,
         @ViewBuilder placeholder placeholderContent: @escaping () -> PlaceholderContent
     ) {
         self.uiModel = uiModel
-        self.resource = resource
+        self.parameter = parameter
         self.fetchHandler = fetchHandler
         self.content = .contentPlaceholder(
             content: content,
@@ -129,18 +129,18 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
         )
     }
     
-    /// Initializes `FetchDelegatingAsyncImage` with resource, fetch method, and phase-dependent content.
+    /// Initializes `FetchDelegatingAsyncImage` with parameter, fetch method, and phase-dependent content.
     @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
     public init(
         uiModel: FetchDelegatingAsyncImageUIModel = .init(),
-        from resource: Resource?,
-        fetch fetchHandler: @escaping @Sendable (Resource) async throws -> Image,
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image,
         @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
     )
         where PlaceholderContent == Never
     {
         self.uiModel = uiModel
-        self.resource = resource
+        self.parameter = parameter
         self.fetchHandler = fetchHandler
         self.content = .contentWithPhase(
             content: { content($0.toAsyncImagePhase) }
@@ -195,15 +195,15 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     
     // MARK: Fetch
     private func fetch() {
-        guard let resource else { zeroData(); return }
+        guard let parameter else { zeroData(); return }
         
-        guard resource != resourceFetched else { return }
+        guard parameter != parameterFetched else { return }
         
-        startData(resource)
+        startData(parameter)
         
         task = Task(operation: {
             do {
-                let image: Image = try await fetchHandler(resource)
+                let image: Image = try await fetchHandler(parameter)
                 guard !Task.isCancelled else { zeroData(); return }
                 
                 finalizeData(.success(image))
@@ -217,18 +217,18 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
     }
     
     private func zeroData() {
-        resourceFetched = nil
+        parameterFetched = nil
         task?.cancel(); task = nil
         result = nil
     }
     
-    private func startData(_ resource: Resource) {
-        resourceFetched = resource
+    private func startData(_ parameter: Parameter) {
+        parameterFetched = parameter
         task?.cancel(); task = nil
         result = nil
     }
     
-    private func finalizeData(_ data: Result<Image, Error>) {
+    private func finalizeData(_ data: Result<Image, any Error>) {
         task = nil
         result = data
     }
