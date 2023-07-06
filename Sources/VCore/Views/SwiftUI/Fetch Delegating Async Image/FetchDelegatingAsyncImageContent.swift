@@ -8,6 +8,7 @@
 import SwiftUI
 
 // MARK: - Fetch Delegating Async Image Content
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 enum FetchDelegatingAsyncImageContent<Content, PlaceholderContent>
     where
         Content: View,
@@ -30,6 +31,7 @@ enum FetchDelegatingAsyncImageContent<Content, PlaceholderContent>
 }
 
 // MARK: - Async Image Phase Backwards-Compatible
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 enum AsyncImagePhaseBackwardsCompatible { // Needed, because enum cannot have associated value that has availability check
     // MARK: Cases
     case empty

@@ -276,6 +276,7 @@ extension InnerShadowUIViewUIModel {
 #endif
 
 // MARK: - Fetch Delegating Async Image
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 extension FetchDelegatingAsyncImage {
     @available(*, unavailable, message: "Use `init` without `removesImageOnDisappear`. The parameter has been moved to UI model.")
     public init(
@@ -358,6 +359,7 @@ extension SwiftUIResponderChainToolBarUIModel {
 }
 
 // MARK: - Fetch Delegating Async Image UI Model
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 extension FetchDelegatingAsyncImageUIModel {
     @available(*, unavailable, message: "Use flattened properties from `FetchDelegatingAsyncImageUIModel` itself")
     public struct Colors {}

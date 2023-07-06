@@ -64,6 +64,7 @@ import SwiftUI
 ///         }
 ///     }
 ///
+@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderContent>: View
     where
         Parameter: Equatable,
@@ -153,9 +154,7 @@ public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderCont
 
     // MARK: Body
     public var body: some View {
-        DispatchQueue.main.async(execute: fetch)
-
-        return Group(content: {
+        VStack(content: {
             switch content {
             case .empty:
                 if case .success(let image) = result {
@@ -188,6 +187,13 @@ public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderCont
                 }())
             }
         })
+        .onAppear(perform: {
+            fetch(from: parameter)
+        })
+        .onChange(of: parameter, perform: { newParameter in
+            zeroData()
+            fetch(from: newParameter)
+        })
         .onDisappear(perform: {
             if uiModel.removesImageOnDisappear { zeroData() }
         })
@@ -198,7 +204,9 @@ public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderCont
     }
 
     // MARK: Fetch
-    private func fetch() {
+    private func fetch(
+        from parameter: Parameter?
+    ) {
         guard let parameter else { zeroData(); return }
 
         guard parameter != parameterFetched else { return }
