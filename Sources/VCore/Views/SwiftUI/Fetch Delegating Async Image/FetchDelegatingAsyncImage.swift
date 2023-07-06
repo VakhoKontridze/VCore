@@ -154,62 +154,39 @@ public struct FetchDelegatingAsyncImage<Resource, Content, PlaceholderContent>: 
         return Group(content: {
             switch content {
             case .empty:
-                bodyEmpty()
+                if case .success(let image) = result {
+                    image
+                } else {
+                    defaultPlaceholder
+                }
                 
             case .content(let content):
-                bodyContent(content)
+                if case .success(let image) = result {
+                    content(image)
+                } else {
+                    defaultPlaceholder
+                }
                 
             case .contentPlaceholder(let content, let placeholderContent):
-                bodyContentPlaceholder(content, placeholderContent)
+                if case .success(let image) = result {
+                    content(image)
+                } else {
+                    placeholderContent()
+                }
                 
             case .contentWithPhase(let content):
-                bodyContentBodyWithPhase(content)
+                content({
+                    switch result {
+                    case nil: return .empty
+                    case .success(let image): return .success(image)
+                    case .failure(let error): return .failure(error)
+                    }
+                }())
             }
         })
         .onDisappear(perform: {
             if uiModel.removesImageOnDisappear { zeroData() }
         })
-    }
-    
-    @ViewBuilder private func bodyEmpty() -> some View {
-        if case .success(let image) = result {
-            image
-        } else {
-            defaultPlaceholder
-        }
-    }
-    
-    @ViewBuilder private func bodyContent(
-        @ViewBuilder _ content: (Image) -> Content
-    ) -> some View {
-        if case .success(let image) = result {
-            content(image)
-        } else {
-            defaultPlaceholder
-        }
-    }
-    
-    @ViewBuilder private func bodyContentPlaceholder(
-        @ViewBuilder _ content: (Image) -> Content,
-        @ViewBuilder _ placeholderContent: () -> PlaceholderContent
-    ) -> some View {
-        if case .success(let image) = result {
-            content(image)
-        } else {
-            placeholderContent()
-        }
-    }
-    
-    private func bodyContentBodyWithPhase(
-        @ViewBuilder _ content: (AsyncImagePhaseBackwardsCompatible) -> Content
-    ) -> some View {
-        content({
-            switch result {
-            case nil: return .empty
-            case .success(let image): return .success(image)
-            case .failure(let error): return .failure(error)
-            }
-        }())
     }
     
     private var defaultPlaceholder: some View {
