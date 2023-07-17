@@ -1,6 +1,6 @@
 # Change Log
 
-4.11.0(84)
+### [4.11.0(84)](https://github.com/VakhoKontridze/VCore/releases/tag/4.11.0) — *2023 07 17*
 
 General
 
