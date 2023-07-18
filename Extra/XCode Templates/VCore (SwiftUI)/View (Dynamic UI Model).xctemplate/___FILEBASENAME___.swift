@@ -5,7 +5,7 @@ import SwiftUI
 // MARK: - ___VARIABLE_productName___
 struct ___VARIABLE_productName___: View {
     // MARK: Properties
-    private var uiModel: ___VARIABLE_productName___UIModel
+    private let uiModel: ___VARIABLE_productName___UIModel
     
     private let parameters: ___VARIABLE_productName___Parameters
     

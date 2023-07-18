@@ -8,7 +8,7 @@ final class ___VARIABLE_productName___: UIView {
     // MARK: Subviews
     
     // MARK: Properties
-    private var uiModel: ___VARIABLE_productName___UIModel
+    private let uiModel: ___VARIABLE_productName___UIModel
     
     // MARK: Initializers
     init(
