@@ -17,13 +17,3 @@ extension Range {
         self = lower..<upper
     }
 }
-
-extension ClosedRange {
-    /// Initializes `ClosedRange` with lower and upper bounds.
-    ///
-    ///     let range: ClosedRange<Int> = .init(lower: 1, upper: 10)
-    ///
-    public init(lower: Bound, upper: Bound) {
-        self = lower...upper
-    }
-}

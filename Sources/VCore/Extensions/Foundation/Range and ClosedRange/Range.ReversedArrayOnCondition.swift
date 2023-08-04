@@ -14,11 +14,3 @@ extension Range where Bound: FixedWidthInteger {
         Array(self).reversed(if: condition)
     }
 }
-
-// MARK: - Closed Range Reversed Array on Condition
-extension ClosedRange where Bound: FixedWidthInteger {
-    /// Returns reversed `Array` from `ClosedRange` if condition is met.
-    public func reversedArray(if condition: Bool) -> [Bound] {
-        Array(self).reversed(if: condition)
-    }
-}

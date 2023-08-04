@@ -27,23 +27,3 @@ final class RangeReversedArrayOnConditionTests: XCTestCase {
         XCTAssertEqual(result, output)
     }
 }
-
-// MARK: - Tests
-final class ClosedRangeReversedArrayOnConditionTests: XCTestCase {
-    // MARK: Test Data
-    private let input: ClosedRange<Int> = 1...3
-    private let output: [Int] = [3, 2, 1]
-    
-    // MARK: Tests
-    func testFalse() {
-        let result: [Int] = input.reversedArray(if: false)
-        
-        XCTAssertNotEqual(result, output)
-    }
-    
-    func testTrue() {
-        let result: [Int] = input.reversedArray(if: true)
-        
-        XCTAssertEqual(result, output)
-    }
-}
