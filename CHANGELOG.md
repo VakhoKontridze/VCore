@@ -6,6 +6,10 @@ Models
 
 - `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
 
+Extensions
+
+- Several `String` extensions are now exposed to `StringProtocol`
+
 ### [4.11.0(84)](https://github.com/VakhoKontridze/VCore/releases/tag/4.11.0) — *2023 07 17*
 
 General

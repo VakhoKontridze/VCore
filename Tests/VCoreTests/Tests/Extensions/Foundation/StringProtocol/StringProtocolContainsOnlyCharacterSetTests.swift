@@ -1,5 +1,5 @@
 //
-//  StringContainsOnlyCharacterSetTests.swift
+//  StringProtocolContainsOnlyCharacterSetTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 17.06.22.
@@ -8,7 +8,7 @@
 import XCTest
 @testable import VCore
 
-// MARK: - String Contains Only Character Set Tests
+// MARK: - String Protocol Contains Only Character Set Tests
 final class StringContainsOnlyCharacterSetTests: XCTestCase {
     func test() {
         XCTAssertTrue("0123456789".contains(only: .decimalDigits))
@@ -16,7 +16,7 @@ final class StringContainsOnlyCharacterSetTests: XCTestCase {
     }
 }
 
-// MARK: - String Contains Only Character Sets Tests
+// MARK: - String Protocol Contains Only Character Sets Tests
 final class StringContainsOnlyCharacterSetsTests: XCTestCase {
     func test() {
         XCTAssertTrue("0123456789A".contains(only: [.decimalDigits, .letters]))

@@ -1,5 +1,5 @@
 //
-//  String.DiacriticInsensitiveString.swift
+//  StringProtocol.DiacriticInsensitiveString.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 13.07.22.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - String Diacritic Insensitive String
-extension String {
+// MARK: - String Protocol Diacritic Insensitive String
+extension StringProtocol {
     /// Returns a diacritic-insensitive `String`.
     ///
     ///     let string: String = "À".diacriticInsensitiveString() // "A"
