@@ -32,7 +32,7 @@ public final class LockedAtomicInteger {
         self.value = value
     }
 
-    // MARK: Get and Set
+    // MARK: Accessors
     /// Gets current value.
     public func get() -> Int {
         dispatchSemaphore.wait()
@@ -41,7 +41,8 @@ public final class LockedAtomicInteger {
         return value
     }
 
-    /// Sets current value to given value.
+    // MARK: Mutators
+    /// Sets current value to a given value.
     public func set(_ newValue: Int) {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
@@ -49,33 +50,39 @@ public final class LockedAtomicInteger {
         value = newValue
     }
 
-    // MARK: Get and Operation
-    /// Returns current value, and adds given value.
-    public func getAndAdd(_ valueToAdd: Int) -> Int {
+    /// Adds a given value to current value
+    public func add(_ valueToAdd: Int) {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
 
-        let currentValue = value
         value += valueToAdd
-        return currentValue
     }
 
-    /// Returns current value, and adds `1`.
-    public func getAndIncrement() -> Int {
-        getAndAdd(1)
+    /// Adds `1` to current value.
+    public func increment() {
+        add(1)
     }
 
-    /// Returns current value, and adds `-1`.
-    public func getAndDecrement() -> Int {
-        getAndAdd(-1)
+    /// Adds `-1` to current value.
+    public func decrement() {
+        add(-1)
     }
 
-    // MARK: Operation and Get
-    /// Adds given value to current value, and returns it.
+    // MARK: Get and Pre-Mutators
+    /// Sets current value to a given value, and returns it.
+    public func setAndGet(_ newValue: Int) -> Int {
+        dispatchSemaphore.wait()
+        defer { dispatchSemaphore.signal() }
+
+        value = newValue
+        return newValue
+    }
+
+    /// Adds a given value to current value, and returns it.
     public func addAndGet(_ valueToAdd: Int) -> Int {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
-        
+
         value += valueToAdd
         return value
     }
@@ -88,5 +95,36 @@ public final class LockedAtomicInteger {
     /// Adds `-1` to current value, and returns it.
     public func decrementAndGet() -> Int {
         addAndGet(-1)
+    }
+
+    // MARK: Get and Post-Mutators
+    /// Returns current value, and sets it to a given value.
+    public func getAndSet(_ newValue: Int) -> Int {
+        dispatchSemaphore.wait()
+        defer { dispatchSemaphore.signal() }
+
+        let currentValue = value
+        value = newValue
+        return currentValue
+    }
+
+    /// Returns current value, and adds a given value to it.
+    public func getAndAdd(_ valueToAdd: Int) -> Int {
+        dispatchSemaphore.wait()
+        defer { dispatchSemaphore.signal() }
+
+        let currentValue = value
+        value += valueToAdd
+        return currentValue
+    }
+
+    /// Returns current value, and adds `1` to it.
+    public func getAndIncrement() -> Int {
+        getAndAdd(1)
+    }
+
+    /// Returns current value, and adds `-1` to it.
+    public func getAndDecrement() -> Int {
+        getAndAdd(-1)
     }
 }
