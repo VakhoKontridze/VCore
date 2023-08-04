@@ -1,5 +1,11 @@
 # Change Log
 
+### 4.12.0(85)
+
+Models
+
+- `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
+
 ### [4.11.0(84)](https://github.com/VakhoKontridze/VCore/releases/tag/4.11.0) — *2023 07 17*
 
 General

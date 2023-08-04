@@ -1,5 +1,5 @@
 //
-//  LockedAtomicInteger.swift
+//  LockedAtomicNumber.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 04.07.23.
@@ -7,34 +7,30 @@
 
 import Foundation
 
-// MARK: - Atomic Integer (Locked)
-/// Thread-safe, automatically incremented `Int`.
+// MARK: - Atomic Number (Locked)
+/// Thread-safe, automatically incremented `Number`.
 ///
-///     let idGenerator: LockedAtomicInteger = .init()
+///     let idGenerator: LockedAtomicNumber<Int> = .init()
 ///
 ///     func generateID() -> Int {
 ///         idGenerator.getAndIncrement()
 ///     }
 ///
-/// For shared instance, refer to `shared`.
-public final class LockedAtomicInteger {
+public final class LockedAtomicNumber<Number> where Number: Numeric {
     // MARK: Properties
     private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
 
-    private var value: Int
-
-    /// Shared instance of `AtomicInteger`.
-    public static let shared: LockedAtomicInteger = .init()
+    private var value: Number
 
     // MARK: Initializers
-    /// Initializes `AtomicInteger` with an initial value.
-    public init(value: Int = 0) {
+    /// Initializes `LockedAtomicNumber` with an initial value.
+    public init(value: Number = .zero) { // `zero` used instead of `0` to avoid automatically inferring `Int`
         self.value = value
     }
 
     // MARK: Accessors
     /// Gets current value.
-    public func get() -> Int {
+    public func get() -> Number {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
 
@@ -43,7 +39,7 @@ public final class LockedAtomicInteger {
 
     // MARK: Mutators
     /// Sets current value to a given value.
-    public func set(_ newValue: Int) {
+    public func set(_ newValue: Number) {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
 
@@ -51,7 +47,7 @@ public final class LockedAtomicInteger {
     }
 
     /// Adds a given value to current value
-    public func add(_ valueToAdd: Int) {
+    public func add(_ valueToAdd: Number) {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
 
@@ -70,7 +66,7 @@ public final class LockedAtomicInteger {
 
     // MARK: Get and Pre-Mutators
     /// Sets current value to a given value, and returns it.
-    public func setAndGet(_ newValue: Int) -> Int {
+    public func setAndGet(_ newValue: Number) -> Number {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
 
@@ -79,7 +75,7 @@ public final class LockedAtomicInteger {
     }
 
     /// Adds a given value to current value, and returns it.
-    public func addAndGet(_ valueToAdd: Int) -> Int {
+    public func addAndGet(_ valueToAdd: Number) -> Number {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
 
@@ -88,18 +84,18 @@ public final class LockedAtomicInteger {
     }
 
     /// Adds `1` to current value, and returns it.
-    public func incrementAndGet() -> Int {
+    public func incrementAndGet() -> Number {
         addAndGet(1)
     }
 
     /// Adds `-1` to current value, and returns it.
-    public func decrementAndGet() -> Int {
+    public func decrementAndGet() -> Number {
         addAndGet(-1)
     }
 
     // MARK: Get and Post-Mutators
     /// Returns current value, and sets it to a given value.
-    public func getAndSet(_ newValue: Int) -> Int {
+    public func getAndSet(_ newValue: Number) -> Number {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
 
@@ -109,7 +105,7 @@ public final class LockedAtomicInteger {
     }
 
     /// Returns current value, and adds a given value to it.
-    public func getAndAdd(_ valueToAdd: Int) -> Int {
+    public func getAndAdd(_ valueToAdd: Number) -> Number {
         dispatchSemaphore.wait()
         defer { dispatchSemaphore.signal() }
 
@@ -119,12 +115,29 @@ public final class LockedAtomicInteger {
     }
 
     /// Returns current value, and adds `1` to it.
-    public func getAndIncrement() -> Int {
+    public func getAndIncrement() -> Number {
         getAndAdd(1)
     }
 
     /// Returns current value, and adds `-1` to it.
-    public func getAndDecrement() -> Int {
+    public func getAndDecrement() -> Number {
         getAndAdd(-1)
     }
+}
+
+// MARK: - Atomic Integer (Locked)
+/// Thread-safe, automatically incremented `Int`.
+///
+///     let idGenerator: LockedAtomicInteger = .init()
+///
+///     func generateID() -> Int {
+///         idGenerator.getAndIncrement()
+///     }
+///
+/// For shared instance, refer to `shared`.
+public typealias LockedAtomicInteger = LockedAtomicNumber<Int>
+
+extension LockedAtomicInteger {
+    /// Shared instance of `LockedAtomicNumber`.
+    public static let shared: LockedAtomicNumber = .init()
 }
