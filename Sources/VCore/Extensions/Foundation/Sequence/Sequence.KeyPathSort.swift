@@ -24,7 +24,9 @@ extension Sequence {
     ///     let sortedCities: [City] = cities.sorted(by: \.name)
     ///     // [City(name: "London"), City(name: "New York"), City(name: "Paris")]
     ///
-    public func sorted(by keyPath: KeyPath<Element, some Comparable>) -> [Element] {
+    public func sorted(
+        by keyPath: KeyPath<Element, some Comparable>
+    ) -> [Element] {
         sorted { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
 }
@@ -41,7 +43,9 @@ extension Array {
     ///     cities.sort(by: \.name)
     ///     // [City(name: "London"), City(name: "New York"), City(name: "Paris")]
     ///
-    mutating public func sort(by keyPath: KeyPath<Element, some Comparable> ) {
+    mutating public func sort(
+        by keyPath: KeyPath<Element, some Comparable>
+    ) {
         sort { $0[keyPath: keyPath] < $1[keyPath: keyPath] }
     }
 }
