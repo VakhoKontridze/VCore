@@ -2,6 +2,10 @@
 
 ### 4.12.0(85)
 
+Services and Managers
+
+- `DeviceOrientationObserver` is added that observes changes in device orientation
+
 Models
 
 - `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
