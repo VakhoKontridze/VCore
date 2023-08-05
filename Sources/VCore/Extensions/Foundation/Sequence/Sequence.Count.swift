@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Sequence Count
 extension Sequence {
-    /// Returns the number of element of the sequence that satisfies the given predicate.
+    /// Returns the number of element of `Sequence` that satisfies the given predicate.
     ///
     ///     let numbers: [Int] = [3, 7, 4, -2, 9, -6, 10, 1]
     ///     let positiveCount: Int = numbers.count { $0 > 0 } // 6
