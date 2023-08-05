@@ -9,6 +9,8 @@ final class ___VARIABLE_productName___ViewController:
     UITableViewDelegate, UITableViewDataSource
 {
     // MARK: Subviews
+    // ...
+
     lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
     
     // MARK: Properties
@@ -35,12 +37,14 @@ final class ___VARIABLE_productName___ViewController:
     }
     
     private func addSubviews() {
+        // ...
+
         view.addSubview(activityIndicator)
     }
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            
+            // ...
         ])
     }
     
@@ -49,8 +53,10 @@ final class ___VARIABLE_productName___ViewController:
     }
     
     // MARK: Viewable
+    // ...
     
     // MARK: Navigable
+    // ...
     
     // MARK: Table View Delegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

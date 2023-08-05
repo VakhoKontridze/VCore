@@ -6,7 +6,8 @@ import VCore
 // MARK: - ___VARIABLE_productName___
 final class ___VARIABLE_productName___: UICollectionViewCell, ConfigurableUICollectionViewCell {
     // MARK: Subviews
-    
+    // ...
+
     // MARK: Properties
     private typealias UIModel = ___VARIABLE_productName___UIModel
     
@@ -32,17 +33,19 @@ final class ___VARIABLE_productName___: UICollectionViewCell, ConfigurableUIColl
     }
     
     private func addSubviews() {
-        
+        // ...
     }
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            
+            // ...
         ])
     }
     
     // MARK: Configurable Collection View Cell
     func configure(parameter: some UICollectionViewCellParameter) {
         guard let parameters = parameter as? ___VARIABLE_productName___Parameters else { return }
+
+        // ...
     }
 }

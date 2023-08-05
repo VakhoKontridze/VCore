@@ -30,6 +30,7 @@ final class ___VARIABLE_productName___Presenter<View, Router, Interactor>: ___VA
     }
 
     // MARK: Presentable
+    // ...
 
     // MARK: Table View Delegable
     func tableViewDidSelectRow(section: Int, row: Int) {

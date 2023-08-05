@@ -6,6 +6,7 @@ import VCore
 // MARK: - ___VARIABLE_productName___
 final class ___VARIABLE_productName___: UIView {
     // MARK: Subviews
+    // ...
     
     // MARK: Properties
     private let uiModel: ___VARIABLE_productName___UIModel
@@ -44,22 +45,24 @@ final class ___VARIABLE_productName___: UIView {
     }
     
     private func addSubviews() {
-        
+        // ...
     }
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            
+            // ...
         ])
     }
     
     // MARK: Configuration - UI Model
     func configure(uiModel: ___VARIABLE_productName___UIModel) {
         self.uiModel = uiModel
+
+        // ...
     }
     
     // MARK: Configuration - Parameters
     func configure(parameters: ___VARIABLE_productName___Parameters) {
-        
+        // ...
     }
 }

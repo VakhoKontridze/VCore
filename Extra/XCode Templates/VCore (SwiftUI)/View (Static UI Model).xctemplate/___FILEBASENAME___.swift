@@ -6,7 +6,6 @@ import SwiftUI
 struct ___VARIABLE_productName___: View {
     // MARK: Properties
     private typealias UIModel = ___VARIABLE_productName___UIModel
-    
     private let parameters: ___VARIABLE_productName___Parameters
     
     // MARK: Initializers

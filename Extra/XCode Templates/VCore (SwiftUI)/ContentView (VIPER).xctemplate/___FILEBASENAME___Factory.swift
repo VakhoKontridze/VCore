@@ -1,7 +1,6 @@
 //  ___FILEHEADER___
 
 import SwiftUI
-import VCore
 
 // MARK: - ___VARIABLE_productName___ Factory
 struct ___VARIABLE_productName___Factory {

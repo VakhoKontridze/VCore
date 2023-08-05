@@ -30,5 +30,5 @@ final class ___VARIABLE_productName___Presenter<View, Router, Interactor>: ___VA
     }
 
     // MARK: Presentable
-    
+    // ...
 }

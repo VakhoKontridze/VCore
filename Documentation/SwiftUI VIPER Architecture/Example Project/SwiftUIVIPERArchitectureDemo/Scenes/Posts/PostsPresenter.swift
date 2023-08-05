@@ -25,10 +25,6 @@ import VCore
     // MARK: Presentable
     @Published var didAppearForTheFirstTime: Bool = false
     
-    var navigationStackCoordinator: NavigationStackCoordinator?
-    @Published var alertParameters: AlertParameters?
-    @Published var progressViewParameters: ProgressViewParameters?
-    
     @Published var postParameters: [PostRowViewParameters] = []
     
     func didLoad() {
@@ -45,6 +41,15 @@ import VCore
             body: parameters.body
         ))
     }
+
+    // MARK: Navigation Stack Coordinable
+    var navigationStackCoordinator: NavigationStackCoordinator?
+
+    // MARK: Alert Presentable
+    @Published var alertParameters: AlertParameters?
+
+    // MARK: Progress View Presentable
+    @Published var progressViewParameters: ProgressViewParameters?
     
     // MARK: Requests
     private func fetchPosts() {

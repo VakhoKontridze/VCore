@@ -6,6 +6,8 @@ import VCore
 // MARK: - ___VARIABLE_productName___ View Controller
 final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIABLE_productName___Viewable, ___VARIABLE_productName___Navigable {
     // MARK: Subviews
+    // ...
+
     lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
     
     // MARK: Properties
@@ -29,15 +31,19 @@ final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIA
     
     private func setUpView() {
         view.backgroundColor = UIModel.backgroundColor
+
+        // ...
     }
     
     private func addSubviews() {
+        // ...
+
         view.addSubview(activityIndicator)
     }
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            
+            // ...
         ])
     }
     
@@ -46,7 +52,8 @@ final class ___VARIABLE_productName___ViewController: UIViewController, ___VARIA
     }
     
     // MARK: Viewable
+    // ...
     
     // MARK: Navigable
-    
+    // ...
 }

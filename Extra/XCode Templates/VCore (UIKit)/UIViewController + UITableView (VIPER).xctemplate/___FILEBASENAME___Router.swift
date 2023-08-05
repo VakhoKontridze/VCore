@@ -17,4 +17,5 @@ final class ___VARIABLE_productName___Router<Navigator>: ___VARIABLE_productName
     }
     
     // MARK: Routable
+    // ...
 }
