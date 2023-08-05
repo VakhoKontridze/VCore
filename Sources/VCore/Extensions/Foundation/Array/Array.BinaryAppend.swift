@@ -17,15 +17,15 @@ extension Array {
     ///
     @discardableResult public mutating func binaryAppend(
         _ item: Element,
-        by areInIncreasingOrder: (Element, Element) -> Bool
-    ) -> Int {
+        by areInIncreasingOrder: (Element, Element) throws -> Bool
+    ) rethrows -> Int {
         var start: Int = 0
         var end: Int = count - 1
 
         while start <= end {
             let mid: Int = (start + end) / 2
 
-            if areInIncreasingOrder(self[mid], item) {
+            if try areInIncreasingOrder(self[mid], item) {
                 start += 1
             } else {
                 end -= 1

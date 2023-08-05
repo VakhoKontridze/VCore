@@ -52,9 +52,9 @@ extension UIApplication {
     /// Returns first `UIWindow` from all connected scenes, that satisfies predicate.
     public func firstWindow(
         activationStates: [UIScene.ActivationState] = [.foregroundActive],
-        where predicate: (UIWindow) -> Bool
-    ) -> UIWindow? {
-        connectedScenes
+        where predicate: (UIWindow) throws -> Bool
+    ) rethrows -> UIWindow? {
+        try connectedScenes
             .filter { activationStates.contains($0.activationState) }
             .compactMap { $0 as? UIWindowScene }
             .flatMap { $0.windows }
