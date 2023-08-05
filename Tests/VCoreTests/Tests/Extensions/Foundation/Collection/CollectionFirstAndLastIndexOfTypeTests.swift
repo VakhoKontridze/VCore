@@ -1,5 +1,5 @@
 //
-//  CollectionFirstAndLastIndexTests.swift
+//  CollectionFirstAndLastIndexOfTypeTests.swift
 //  Vore
 //
 //  Created by Vakhtang Kontridze on 20.05.23.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class CollectionFirstAndLastIndexTests: XCTestCase {
+final class CollectionFirstAndLastIndexOfTypeTests: XCTestCase {
     // MARK: Test Data
     private let array: [any P] = [
         S1(value: 1),

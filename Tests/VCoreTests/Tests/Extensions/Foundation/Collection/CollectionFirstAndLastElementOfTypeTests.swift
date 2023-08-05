@@ -1,5 +1,5 @@
 //
-//  CollectionFirstAndLastElementTests.swift
+//  CollectionFirstAndLastElementOfTypeTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 29.11.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class CollectionFirstAndLastElementTests: XCTestCase {
+final class CollectionFirstAndLastElementOfTypeTests: XCTestCase {
     // MARK: Test Data
     private let array: [any P] = [
         S1(value: 1),

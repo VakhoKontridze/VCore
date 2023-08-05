@@ -13,7 +13,7 @@ final class CollectionFirstAndLastIndexAndElementTest: XCTestCase {
     // MARK: Test Data
     private let numbers: [Int] = [1, 3, 5, 7]
     
-    // MARK: Tests
+    // MARK: Tests - First
     func testFirstInvalidElement() {
         XCTAssertNil(numbers.firstIndexAndElement(where: { $0 == 0 }))
     }
@@ -25,6 +25,7 @@ final class CollectionFirstAndLastIndexAndElementTest: XCTestCase {
         XCTAssertEqual(result?.element, 5)
     }
 
+    // MARK: Tests - Last
     func testLastInvalidElement() {
         XCTAssertNil(numbers.lastIndexAndElement(where: { $0 == 0 }))
     }
