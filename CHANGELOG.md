@@ -8,6 +8,7 @@ Services and Managers
 
 Models
 
+- `EnvironmentValues.safeAreaInsets` are added that retrieve safe areas from `UIApplication.shared.firstWindowInSingleSceneApp`
 - `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
 
 Extensions
