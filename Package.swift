@@ -23,7 +23,11 @@ let package: Package = .init(
     targets: [
         .target(
             name: "VCore",
-            dependencies: []
+            dependencies: [],
+            exclude: [
+                "../../Documentation",
+                "../../Extra"
+            ]
         ),
         .testTarget(
             name: "VCoreTests",
