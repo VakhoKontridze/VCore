@@ -725,12 +725,20 @@ extension View {
 #endif
 
 extension View {
-    @available(*, deprecated, renamed: "onSizeChange(perform:)")
+    @available(*, deprecated, renamed: "getSize(_:)")
     public func readSize(
         onChange completion: @escaping (CGSize) -> Void
     ) -> some View {
         self
-            .onSizeChange(perform: completion)
+            .getSize(completion)
+    }
+
+    @available(*, deprecated, renamed: "getSize(_:)")
+    public func onSizeChange(
+        perform completion: @escaping (CGSize) -> Void
+    ) -> some View {
+        self
+            .getSize(completion)
     }
 }
 

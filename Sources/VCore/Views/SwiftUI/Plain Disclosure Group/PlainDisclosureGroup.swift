@@ -123,7 +123,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
     private var labelView: some View {
         label()
             .frame(maxWidth: .infinity)
-            .onSizeChange(perform: { labelHeight = $0.height })
+            .getSize({ labelHeight = $0.height })
             .background(
                 uiModel.backgroundColor
                     .contentShape(Rectangle())

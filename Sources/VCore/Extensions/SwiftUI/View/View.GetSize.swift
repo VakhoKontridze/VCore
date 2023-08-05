@@ -1,5 +1,5 @@
 //
-//  View.OnSizeChange.swift
+//  View.GetSize.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10/28/21.
@@ -7,21 +7,21 @@
 
 import SwiftUI
 
-// MARK: - View on Size Change
+// MARK: - View Get Size
 extension View {
-    /// Reads `View` size and calls an on-change block.
+    /// Retrieves `CGSize` from `View`.
     ///
     ///     @State private var size: CGSize = .zero
     ///
     ///     var body: some View {
     ///         VStack(content: {
     ///             Color.accentColor
-    ///                 .onSizeChange(perform: { size = $0 })
+    ///                 .getSize({ size = $0 })
     ///         })
     ///     }
     ///
-    public func onSizeChange(
-        perform action: @escaping (CGSize) -> Void
+    public func getSize(
+        _ action: @escaping (CGSize) -> Void
     ) -> some View {
         self
             .background(
