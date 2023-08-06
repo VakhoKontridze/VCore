@@ -14,10 +14,8 @@ extension View {
     ///     @State private var safeAreaInsets: EdgeInsets = .init()
     ///
     ///     var body: some View {
-    ///         VStack(content: {
-    ///             Color.accentColor
-    ///                 .getSafeAreaInsets({ safeAreaInsets = $0 })
-    ///         })
+    ///         Color.accentColor
+    ///             .getSafeAreaInsets({ safeAreaInsets = $0 })
     ///     }
     ///
     public func getSafeAreaInsets(

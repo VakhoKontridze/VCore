@@ -14,10 +14,8 @@ extension View {
     ///     @State private var size: CGSize = .zero
     ///
     ///     var body: some View {
-    ///         VStack(content: {
-    ///             Color.accentColor
-    ///                 .getSize({ size = $0 })
-    ///         })
+    ///         Color.accentColor
+    ///             .getSize({ size = $0 })
     ///     }
     ///
     public func getSize(
