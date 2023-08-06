@@ -90,6 +90,7 @@ extension DigitalTimeFormatter {
 
 import UIKit
 
+@available(tvOS, unavailable)
 extension SystemKeyboardInfo {
     @available(*, unavailable)
     public static var defaultEstimatedKeyboardFrame: CGRect {
