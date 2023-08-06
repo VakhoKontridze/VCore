@@ -488,6 +488,13 @@ extension Array {
     }
 }
 
+extension ClosedRange where Bound: AdditiveArithmetic {
+    @available(*, deprecated, renamed: "boundRange")
+    public var range: Bound {
+        upperBound - lowerBound
+    }
+}
+
 extension FloatingPoint {
     @available(*, unavailable, message: "Half-open ranges are only available for `BinaryInteger`s")
     public func clamped(
