@@ -15,7 +15,7 @@ import UIKit
 public struct SystemKeyboardInfo {
     // MARK: Properties
     /// Keyboard’s frame at the end of its animation.
-    public var frame: CGRect
+    public var frame: CGRect?
     
     /// Duration of the keyboard animation in seconds.
     public var animationDuration: TimeInterval
@@ -38,35 +38,18 @@ public struct SystemKeyboardInfo {
     /// Initializes `SystemKeyboardInfo` with `Notification`.
     public init(notification: Notification) {
         self.frame =
-            notification.userInfo?.rect(key: UIResponder.keyboardFrameEndUserInfoKey) ??
-            Self.defaultEstimatedKeyboardFrame
+            notification.userInfo?.rect(key: UIResponder.keyboardFrameEndUserInfoKey)
         
         self.animationDuration =
             notification.userInfo?.double(key: UIResponder.keyboardAnimationDurationUserInfoKey) ??
             Self.defaultAnimationDuration
         
         self.animationOptions =
-            (notification.userInfo?.uInt(key: UIResponder.keyboardAnimationCurveUserInfoKey)).map { UIView.AnimationOptions(rawValue: $0) } ??
+            (notification.userInfo?.uInt(key: UIResponder.keyboardAnimationCurveUserInfoKey)).map({ UIView.AnimationOptions(rawValue: $0) }) ??
             Self.defaultAnimationOptions
     }
     
     // MARK: Default Values
-    /// Default estimated keyboard frame. Set to screen width times `400` points positioned on the bottom.
-    public static var defaultEstimatedKeyboardFrame: CGRect {
-        let estimatedKeyboardHeight: CGFloat = 400
-        
-        return CGRect(
-            origin: CGPoint(
-                x: 0,
-                y: UIScreen.main.bounds.height - estimatedKeyboardHeight
-            ),
-            size: CGSize(
-                width: UIScreen.main.bounds.width,
-                height: estimatedKeyboardHeight
-            )
-        )
-    }
-    
     /// Default animation duration. Set to `0.25`
     ///
     /// If keyboard is already shown, but first responder changes, animation duration returned by the `Notification` will be `0`.

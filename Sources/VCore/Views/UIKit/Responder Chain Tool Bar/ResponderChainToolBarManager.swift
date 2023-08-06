@@ -9,8 +9,34 @@
 
 import UIKit
 
+// MARK: - Responder Chain Tool Bar Responder Parameters
+/// Parameter object that wraps `ResponderChainToolBarResponder` and it's UI customization.
+public struct ResponderChainToolBarResponderParameters {
+    // MARK: Properties
+    /// `ResponderChainToolBarResponder`.
+    public var responder: any ResponderChainToolBarResponder
+
+    /// Toolbar ui model.
+    public var toolBarUIModel: ResponderChainToolBarUIModel
+
+    /// Toolbar size.
+    public var toolBarSize: CGSize
+
+    // MARK: Initializers
+    /// Initializes `ResponderChainToolBarResponderParameters` with `ResponderChainToolBarResponder` and it's UI customization.
+    public init(
+        responder: ResponderChainToolBarResponder,
+        toolBarUIModel: ResponderChainToolBarUIModel = .init(),
+        toolBarSize: CGSize
+    ) {
+        self.responder = responder
+        self.toolBarUIModel = toolBarUIModel
+        self.toolBarSize = toolBarSize
+    }
+}
+
 // MARK: - Responder Chain Tool Bar Responder
-/// `Object` that supports input and can become a first responder.
+/// Object that supports input and can represent a responder in `ResponderChainToolBarManager`.
 ///
 /// `UITextField` and `UITextView` automatically conform to this `protocol`.
 public protocol ResponderChainToolBarResponder: AnyObject {
@@ -48,72 +74,61 @@ extension UITextView: ResponderChainToolBarResponder {}
 ///             NSLayoutConstraint.activate(...)
 ///
 ///             responderChainToolBarManager.setResponders([
-///                 textField,
-///                 textView
+///                 ResponderChainToolBarResponderParameters(
+///                     responder: textField,
+///                     toolBarSize: CGSize(width: view.bounds.size.width, height: 0)
+///                 ),
+///                 ResponderChainToolBarResponderParameters(
+///                     responder: textView,
+///                     toolBarSize: CGSize(width: view.bounds.size.width, height: 0)
+///                 )
 ///             ])
 ///         }
 ///     }
 ///
 open class ResponderChainToolBarManager {
     // MARK: Properties
-    /// Model that describes UI.
-    ///
-    /// To change current UI model, use `configure(uiModel)` method.
-    private(set) public var uiModel: ResponderChainToolBarUIModel
-
-    /// List of responders managed by `ResponderChainToolBarManager`.
-    private(set) open var responders: [any ResponderChainToolBarResponder] = []
+    /// Managed `ResponderChainToolBarResponderParameters`s.
+    private(set) open var responderParameters: [ResponderChainToolBarResponderParameters] = []
 
     // MARK: Initializers
     /// Initializes `ResponderChainToolBarManager`.
-    public init(
-        uiModel: ResponderChainToolBarUIModel = .init()
-    ) {
-        self.uiModel = uiModel
-    }
+    public init() {}
 
     /// Initializes `ResponderChainToolBarManager` with responders.
     public convenience init(
-        uiModel: ResponderChainToolBarUIModel = .init(),
-        responders: [any ResponderChainToolBarResponder]
+        responders responderParameters: [ResponderChainToolBarResponderParameters]
     ) {
-        self.init(uiModel: uiModel)
+        self.init()
 
-        setResponders(responders)
+        setResponders(responderParameters)
     }
 
-    // MARK: Configuration - UI Model
-    /// Configures `ResponderChainToolBarManager` with `ResponderChainToolBarUIModel`.
-    open func configure(uiModel: ResponderChainToolBarUIModel) {
-        self.uiModel = uiModel
-
-        reloadData()
-    }
-
-    // MARK: Configuration - Responders
+    // MARK: Configuration
     /// Sets and configures responders.
-    open func setResponders(_ responders: [any ResponderChainToolBarResponder]) {
-        self.responders = responders
+    open func setResponders(_ responderParameters: [ResponderChainToolBarResponderParameters]) {
+        self.responderParameters = responderParameters
 
         reloadData()
     }
 
     // MARK: Configuration - Reload Data
     private func reloadData() {
-        for (i, responder) in responders.enumerated() {
-            let previousResponder: (any ResponderChainToolBarResponder)? = responders[safe: i-1]
-            let nextResponder: (any ResponderChainToolBarResponder)? = responders[safe: i+1]
+        for (i, parameters) in responderParameters.enumerated() {
+            let previousParameters: ResponderChainToolBarResponderParameters? = responderParameters[safe: i-1]
+            let nextParameters: ResponderChainToolBarResponderParameters? = responderParameters[safe: i+1]
 
             let toolbar: ResponderChainToolBar = .init(
-                uiModel: uiModel,
-                arrowUpButtonAction: { [weak previousResponder] in _ = previousResponder?.becomeFirstResponder() },
-                arrowDownButtonAction: { [weak nextResponder] in _ = nextResponder?.becomeFirstResponder() },
-                doneButtonAction: { [weak responder] in _ = responder?.resignFirstResponder() }
+                uiModel: parameters.toolBarUIModel,
+                size: parameters.toolBarSize,
+                arrowUpButtonAction: { _ = previousParameters?.responder.becomeFirstResponder() },
+                arrowDownButtonAction: { _ = nextParameters?.responder.becomeFirstResponder() },
+                doneButtonAction: { _ = parameters.responder.resignFirstResponder() }
             )
-            toolbar.arrowUpButton.isEnabled = previousResponder != nil
-            toolbar.arrowDownButton.isEnabled = nextResponder != nil
+            toolbar.arrowUpButton.isEnabled = previousParameters != nil
+            toolbar.arrowDownButton.isEnabled = nextParameters != nil
 
-            responder.inputAccessoryView = toolbar
+            parameters.responder.inputAccessoryView = toolbar
         }
     }
 }

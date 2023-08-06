@@ -32,7 +32,7 @@ import SwiftUI
 ///         var body: some View {
 ///             ScrollView(content: {
 ///                 Color.red
-///                     .frame(height: UIScreen.main.bounds.height)
+///                     .frame(height: UIScreen.main.bounds.size.height)
 ///
 ///                 Button(
 ///                     "Reset",

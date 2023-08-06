@@ -85,6 +85,20 @@ extension DigitalTimeFormatter {
     }
 }
 
+// MARK: - System Keyboard Info
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+extension SystemKeyboardInfo {
+    @available(*, unavailable)
+    public static var defaultEstimatedKeyboardFrame: CGRect {
+        fatalError()
+    }
+}
+
+#endif
+
 // MARK: - H Or VStack
 @available(*, deprecated, renamed: "HVStack")
 public typealias HOrVStack = HVStack
@@ -332,6 +346,72 @@ extension FetchDelegatingAsyncImage {
         fatalError()
     }
 }
+
+// MARK: - Responder Chain Tool Bar
+#if os(iOS) || targetEnvironment(macCatalyst)
+
+extension ResponderChainToolBar {
+    @available(*, deprecated, message: "Use `init` with `size` instead")
+    public convenience init(
+        uiModel: ResponderChainToolBarUIModel = .init()
+    ) {
+        self.init(
+            uiModel: uiModel,
+            size: CGSize(
+                width: UIScreen.main.bounds.width,
+                height: 0
+            )
+        )
+    }
+
+    @available(*, deprecated, message: "Use `init` with `size` instead")
+    public convenience init(
+        uiModel: ResponderChainToolBarUIModel = .init(),
+        arrowUpButtonAction: (() -> Void)?,
+        arrowDownButtonAction: (() -> Void)?,
+        doneButtonAction: (() -> Void)?
+    ) {
+        self.init(uiModel: uiModel)
+
+        self.arrowUpButtonAction = arrowUpButtonAction
+        self.arrowDownButtonAction = arrowDownButtonAction
+        self.doneButtonAction = doneButtonAction
+    }
+}
+
+extension ResponderChainToolBarManager {
+    @available(*, unavailable, message: "Pass UI model to individual responders instead")
+    public var uiModel: ResponderChainToolBarUIModel {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "Use `init` without `ResponderChainToolBarUIModel` instead")
+    public convenience init(
+        uiModel: ResponderChainToolBarUIModel
+    ) {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "Use `init` with `ResponderChainToolBarResponderModel` instead")
+    public convenience init(
+        uiModel: ResponderChainToolBarUIModel = .init(),
+        responders: [any ResponderChainToolBarResponder]
+    ) {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "Use method with `ResponderChainToolBarResponderModel` instead")
+    public func setResponders(_ responders: [any ResponderChainToolBarResponder]) {
+        fatalError()
+    }
+
+    @available(*, unavailable, message: "Pass UI model to individual responders instead")
+    func configure(uiModel: ResponderChainToolBarUIModel) {
+        fatalError()
+    }
+}
+
+#endif
 
 // MARK: - Responder Chain Tool Bar UI Model (SwiftUI)
 #if os(iOS) || targetEnvironment(macCatalyst)
@@ -665,6 +745,23 @@ extension UILabel {
 
 #endif
 
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+extension UIApplication {
+    @available(*, deprecated, renamed: "firstKeyWindowInSingleSceneApp")
+    public var keyWindowInSingleSceneApp: UIWindow? {
+        firstKeyWindowInSingleSceneApp
+    }
+
+    @available(*, deprecated, renamed: "firstKeyActiveWindowInSingleSceneApp")
+    public var keyActiveWindowInSingleSceneApp: UIWindow? {
+        firstKeyActiveWindowInSingleSceneApp
+    }
+}
+
+#endif
 
 // MARK: - Extensions - Core Framework
 #if canImport(CoreGraphics)

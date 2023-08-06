@@ -64,7 +64,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         if let attributes: UICollectionViewLayoutAttributes = itemLayoutAttributes[indexPath] { return attributes }
         
         let availableWidthForCells: CGFloat = // Available width left where cells can be centered
-            collectionView.bounds.width -
+            collectionView.bounds.size.width -
             collectionView.contentInset.left -
             collectionView.contentInset.right
         

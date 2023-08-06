@@ -6,6 +6,11 @@ Services and Managers
 
 - `DeviceOrientationObserver` is added that observes changes in device orientation
 
+Views
+
+- `ResponderChainToolBar` can now be initialized with custom `CGSize`
+- Responders in `ResponderChainToolBarManager` can now be initialized with custom `CGSize` and `ResponderChainToolBarUIModel`s
+
 Models
 
 - `EnvironmentValues.safeAreaInsets` are added that retrieve safe areas from `UIApplication.shared.firstWindowInSingleSceneApp`

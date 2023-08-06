@@ -13,6 +13,8 @@ import SwiftUI
 extension View {
     /// Adds padding equal to safe area insets to specific edges of the `View`.
     ///
+    /// Safe area insets are retrieved from `UIDevice.safeAreaInsets`.
+    ///
     /// Can be used to reverse effects of `ignoresSafeArea(_:edges:)` in nested view.
     ///
     ///     var body: some View {

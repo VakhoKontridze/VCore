@@ -184,7 +184,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         }
         
         (collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize = CGSize(
-            width: bounds.width,
+            width: bounds.size.width,
             height: ActivityIndicatorUIModel.height
         )
     }

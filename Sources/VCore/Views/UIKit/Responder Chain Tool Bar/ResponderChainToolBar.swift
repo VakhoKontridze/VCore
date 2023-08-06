@@ -23,9 +23,10 @@ import UIKit
 ///
 ///             textField.inputAccessoryView = {
 ///                 let toolbar: ResponderChainToolBar = .init(
+///                     size: CGSize(width: view.bounds.size.width, height: 0),
 ///                     arrowUpButtonAction: nil,
-///                     arrowDownButtonAction: { [weak self] in _ = self?.textField2.becomeFirstResponder() },
-///                     doneButtonAction: { [weak self] in _ = self?.textField1.resignFirstResponder() }
+///                     arrowDownButtonAction: { [weak self] in _ = self?.textView.becomeFirstResponder() },
+///                     doneButtonAction: { [weak self] in _ = self?.textField.resignFirstResponder() }
 ///                 )
 ///                 toolbar.arrowUpButton.isEnabled = false
 ///                 return toolbar
@@ -33,9 +34,10 @@ import UIKit
 ///
 ///             textView.inputAccessoryView = {
 ///                 let toolbar: ResponderChainToolBar = .init(
-///                     arrowUpButtonAction: { [weak self] in _ = self?.textField1.becomeFirstResponder() },
+///                     size: CGSize(width: view.bounds.size.width, height: 0),
+///                     arrowUpButtonAction: { [weak self] in _ = self?.textField.becomeFirstResponder() },
 ///                     arrowDownButtonAction: nil,
-///                     doneButtonAction: { [weak self] in _ = self?.textField2.resignFirstResponder() }
+///                     doneButtonAction: { [weak self] in _ = self?.textView.resignFirstResponder() }
 ///                 )
 ///                 toolbar.arrowDownButton.isEnabled = false
 ///                 return toolbar
@@ -99,16 +101,14 @@ open class ResponderChainToolBar: UIToolbar {
     // MARK: Initializers
     /// Initializes `ResponderChainToolBar.
     public init(
-        uiModel: ResponderChainToolBarUIModel = .init()
+        uiModel: ResponderChainToolBarUIModel = .init(),
+        size: CGSize
     ) {
         self.uiModel = uiModel
 
         super.init(frame: CGRect(
             origin: .zero,
-            size: CGSize( // Automatically handles landscape
-                width: UIScreen.main.bounds.width,
-                height: 50
-            )
+            size: size
         ))
 
         setUp()
@@ -118,11 +118,15 @@ open class ResponderChainToolBar: UIToolbar {
     /// Initializes `ResponderChainToolBar` with actions.
     public convenience init(
         uiModel: ResponderChainToolBarUIModel = .init(),
+        size: CGSize,
         arrowUpButtonAction: (() -> Void)?,
         arrowDownButtonAction: (() -> Void)?,
         doneButtonAction: (() -> Void)?
     ) {
-        self.init(uiModel: uiModel)
+        self.init(
+            uiModel: uiModel,
+            size: size
+        )
 
         self.arrowUpButtonAction = arrowUpButtonAction
         self.arrowDownButtonAction = arrowDownButtonAction
