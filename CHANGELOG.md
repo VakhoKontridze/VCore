@@ -14,6 +14,7 @@ Views
 Models
 
 - `EnvironmentValues.safeAreaInsets` are added that retrieve safe areas from `UIApplication.shared.firstWindowInSingleSceneApp`
+- `PointPixelMeasurement` is added that represents points or pixels
 - `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
 
 Extensions
