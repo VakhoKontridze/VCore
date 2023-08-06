@@ -20,8 +20,9 @@ Models
 Extensions
 
 - `Collection.firstIndexAndElement(ofType:where:)` and `Collection.lastIndexAndElement(ofType:where:)` methods are added, that return first or last index and element of `Collection` of the given type
-- `View.getSafeAreaInsets(_:)` method is added that retrieves `EdgeInsets` from `View`
 - `View.getWindow(_:)` method is added that retrieves `UIWindow` from `View`
+- `View.getSafeAreaInsets(_:)` method is added that retrieves `EdgeInsets` from `View`
+- `View.getInterfaceOrientation(_:)` method is added that retrieves `UIInterfaceOrientation` from `View`
 - Several `String` extensions are now exposed to `StringProtocol`
 
 ### [4.11.0(84)](https://github.com/VakhoKontridze/VCore/releases/tag/4.11.0) — *2023 07 17*
