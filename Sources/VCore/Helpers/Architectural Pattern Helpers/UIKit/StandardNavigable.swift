@@ -164,11 +164,11 @@ extension StandardNavigable where Self: UIViewController {
     }
     
     public func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
-        navigationController?.present(viewController, animated: animated, completion: completion)
+        present(viewController, animated: animated, completion: completion)
     }
     
     public func dismiss(animated: Bool, completion: (() -> Void)?) {
-        navigationController?.dismiss(animated: animated, completion: completion)
+        dismiss(animated: animated, completion: completion)
     }
 }
 
