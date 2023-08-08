@@ -8,11 +8,29 @@
 import UIKit
 import VCore
 
-// MARK: - Standard Navigable Bridge
+// MARK: - Standard Navigable
 extension StandardNavigable where Self: UIViewController {
     func setRoot(to viewController: UIViewController) {
-        guard let window: UIWindow = view.window else { return }
+        SceneDelegate.setRoot(to: viewController)
+    }
+}
 
-        window.rootViewController = viewController
+extension SceneDelegate {
+    fileprivate static func setRoot(to viewController: UIViewController) {
+        shared?.window?.rootViewController = viewController
+    }
+
+    private static var shared: SceneDelegate? {
+        for scene in UIApplication.shared.connectedScenes {
+            if
+                let windowScene = scene as? UIWindowScene,
+                let delegate: UISceneDelegate = windowScene.delegate,
+                let sceneDelegate = delegate as? SceneDelegate
+            {
+                return sceneDelegate
+            }
+        }
+
+        return nil
     }
 }
