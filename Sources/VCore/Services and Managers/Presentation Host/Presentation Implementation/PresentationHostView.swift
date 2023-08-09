@@ -58,23 +58,26 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
         }
         
         let content: AnyView = .init(
-            PresentationHostGeometryReader(content: content)
-                .applyModifier({
-                    if #available(iOS 14.0, *) {
-                        $0
-                            .ignoresSafeArea(.container, edges: uiModel._ignoredContainerSafeAreaEdgesByHost)
-                            .ignoresSafeArea(.keyboard, edges: uiModel._ignoredKeyboardSafeAreaEdgesByHost)
-                    } else {
-                        $0
-                            .edgesIgnoringSafeArea(uiModel.ignoredKeyboardSafeAreaEdges)
-                    }
-                })
-                .presentationHostPresentationMode(PresentationHostPresentationMode(
-                    id: id,
-                    dismiss: dismissHandler,
-                    isExternallyDismissed: isExternallyDismissed,
-                    externalDismissCompletion: uiViewController.dismissHostedView
-                ))
+            PresentationHostGeometryReader(
+                window: { [weak uiViewController] in uiViewController?.view.window },
+                content: content
+            )
+            .applyModifier({
+                if #available(iOS 14.0, *) {
+                    $0
+                        .ignoresSafeArea(.container, edges: uiModel._ignoredContainerSafeAreaEdgesByHost)
+                        .ignoresSafeArea(.keyboard, edges: uiModel._ignoredKeyboardSafeAreaEdgesByHost)
+                } else {
+                    $0
+                        .edgesIgnoringSafeArea(uiModel.ignoredKeyboardSafeAreaEdges)
+                }
+            })
+            .presentationHostPresentationMode(PresentationHostPresentationMode(
+                id: id,
+                dismiss: dismissHandler,
+                isExternallyDismissed: isExternallyDismissed,
+                externalDismissCompletion: uiViewController.dismissHostedView
+            ))
         )
         
         if

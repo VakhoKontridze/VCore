@@ -13,12 +13,17 @@ import SwiftUI
 @available(watchOS, unavailable)
 struct PresentationHostGeometryReader<Content>: View where Content: View {
     // MARK: Properties
+    // `proxy.safeAreaInsets` no longer works, because safe areas are being ignored
+    private let window: () -> UIWindow?
+
     private let content: () -> Content
     
     // MARK: Initializers
     init(
+        window: @escaping () -> UIWindow?,
         content: @escaping () -> Content
     ) {
+        self.window = window
         self.content = content
     }
     
@@ -27,7 +32,19 @@ struct PresentationHostGeometryReader<Content>: View where Content: View {
         GeometryReader(content: { proxy in
             content()
                 .presentationHostGeometryReaderSize(proxy.size)
-                .presentationHostGeometryReaderSafeAreaInsets(proxy.safeAreaInsets)
+                .presentationHostGeometryReaderSafeAreaInsets(window()?.safeAreaInsets.toEdgeInsets ?? EdgeInsets())
         })
+    }
+}
+
+// MARK: - Helpers
+extension UIEdgeInsets {
+    fileprivate var toEdgeInsets: EdgeInsets {
+        .init(
+            top: top,
+            leading: left,
+            bottom: bottom,
+            trailing: right
+        )
     }
 }
