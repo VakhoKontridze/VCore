@@ -19,7 +19,7 @@ extension Array {
     ///     })
     ///
     public func asyncSorted(
-        by areInIncreasingOrder: (Element, Element) async throws -> Bool
+        by areInIncreasingOrder: @Sendable (Element, Element) async throws -> Bool
     ) async rethrows -> [Element] {
         guard !isEmpty else { return self }
 
@@ -38,7 +38,7 @@ extension Array {
     ///     })
     ///
     public mutating func asyncSort(
-        by areInIncreasingOrder: (Element, Element) async throws -> Bool
+        by areInIncreasingOrder: @Sendable (Element, Element) async throws -> Bool
     ) async rethrows {
         guard !isEmpty else { return }
 
@@ -46,7 +46,7 @@ extension Array {
     }
 
     private mutating func quickSort(
-        by areInIncreasingOrder: (Element, Element) async throws -> Bool,
+        by areInIncreasingOrder: @Sendable (Element, Element) async throws -> Bool,
         _ low: Int,
         _ high: Int
     ) async rethrows {
@@ -58,7 +58,7 @@ extension Array {
     }
 
     private mutating func partition(
-        by areInIncreasingOrder: (Element, Element) async throws -> Bool,
+        by areInIncreasingOrder: @Sendable (Element, Element) async throws -> Bool,
         _ low: Int,
         _ high: Int
     ) async rethrows -> Int {
