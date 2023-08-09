@@ -70,6 +70,114 @@ extension KeychainService {
     }
 }
 
+// MARK: - Presentation Host
+@available(macOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
+extension View {
+    @available(*, deprecated, message: "Use method with UI model")
+    @ViewBuilder public func presentationHost<Content>(
+        id: String,
+        allowsHitTests: Bool,
+        isPresented: Binding<Bool>,
+        content: @escaping () -> Content
+    ) -> some View
+        where Content: View
+    {
+#if canImport(UIKit) && !os(watchOS)
+        self
+            .onDisappear(perform: { PresentationHostViewController.forceDismiss(id: id) })
+            .background(PresentationHostView(
+                id: id,
+                uiModel: {
+                    var uiModel: PresentationHostUIModel = .init()
+                    uiModel.allowsHitTests = allowsHitTests
+                    return uiModel
+                }(),
+                isPresented: isPresented,
+                content: content
+            ))
+#endif
+    }
+
+    @available(*, deprecated, message: "Use method with UI model")
+    public func presentationHost<Item ,Content>(
+        id: String,
+        allowsHitTests: Bool,
+        item: Binding<Item?>,
+        content: @escaping () -> Content
+    ) -> some View
+        where Content: View
+    {
+        self
+            .presentationHost(
+                id: id,
+                uiModel: {
+                    var uiModel: PresentationHostUIModel = .init()
+                    uiModel.allowsHitTests = allowsHitTests
+                    return uiModel
+                }(),
+                isPresented: Binding(
+                    get: { item.wrappedValue != nil },
+                    set: { if !$0 { item.wrappedValue = nil } }
+                ),
+                content: content
+            )
+    }
+
+    @available(*, deprecated, message: "Use method with UI model")
+    public func presentationHost<T ,Content>(
+        id: String,
+        allowsHitTests: Bool,
+        isPresented: Binding<Bool>,
+        presenting data: T?,
+        content: @escaping () -> Content
+    ) -> some View
+        where Content: View
+    {
+        self
+            .presentationHost(
+                id: id,
+                uiModel: {
+                    var uiModel: PresentationHostUIModel = .init()
+                    uiModel.allowsHitTests = allowsHitTests
+                    return uiModel
+                }(),
+                isPresented: Binding(
+                    get: { isPresented.wrappedValue && data != nil },
+                    set: { if !$0 { isPresented.wrappedValue = false } }
+                ),
+                content: content
+            )
+    }
+
+    @available(*, deprecated, message: "Use method with UI model")
+    public func presentationHost<E ,Content>(
+        id: String,
+        allowsHitTests: Bool,
+        isPresented: Binding<Bool>,
+        error: E?,
+        content: @escaping () -> Content
+    ) -> some View
+        where Content: View
+    {
+        self
+            .presentationHost(
+                id: id,
+                uiModel: {
+                    var uiModel: PresentationHostUIModel = .init()
+                    uiModel.allowsHitTests = allowsHitTests
+                    return uiModel
+                }(),
+                isPresented: Binding(
+                    get: { isPresented.wrappedValue && error != nil },
+                    set: { if !$0 { isPresented.wrappedValue = false } }
+                ),
+                content: content
+            )
+    }
+}
+
 // MARK: - Digital Time Formatter
 extension DigitalTimeFormatter {
     @available(*, deprecated, renamed: "emptySignificantComponentsAreIncluded")

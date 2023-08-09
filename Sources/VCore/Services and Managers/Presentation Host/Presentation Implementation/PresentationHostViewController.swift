@@ -1,5 +1,5 @@
 //
-//  _PresentationHostViewController.swift
+//  PresentationHostViewController.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 4/14/22.
@@ -9,20 +9,18 @@
 
 import SwiftUI
 
-// MARK: - _ Presentation Host View Controller
+// MARK: - Presentation Host View Controller
 @available(tvOS, unavailable)
-final class _PresentationHostViewController: UIViewController, UIViewControllerTransitioningDelegate {
+final class PresentationHostViewController: UIViewController, UIViewControllerTransitioningDelegate {
     // MARK: Properties
     private let id: String
     private let allowsHitTests: Bool
 
-    typealias HostingViewControllerType = UIHostingController<AnyView>
-    private var hostingController: HostingViewControllerType?
-    
-    var isPresentingView: Bool { hostingController != nil }
+    private var hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController?
+    var isPresentingView: Bool { hostingControllerContainer != nil }
 
     private var failedToPresentDueToAlreadyPresentingViewController: Bool = false
-    private var dismissNotificationName: Notification.Name { .init(rawValue: "_PresentationHostViewController.DidDismissViewController") }
+    private var dismissNotificationName: Notification.Name { .init(rawValue: "PresentationHostViewController.DidDismissViewController") }
     
     // MARK: Initializers
     init(
@@ -67,23 +65,26 @@ final class _PresentationHostViewController: UIViewController, UIViewControllerT
     // MARK: Presentation API - Present
     func presentHostedView(_ content: some View) {
         let hostingController: UIHostingController = .init(rootView: AnyView(content))
-        self.hostingController = hostingController
-        
-        hostingController.modalPresentationStyle = .overFullScreen
-        hostingController.modalTransitionStyle = .crossDissolve
-        hostingController.transitioningDelegate = self
-        
         hostingController.view.backgroundColor = .clear
 
-        _present(hostingController: hostingController)
+        let hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController = .init(
+            hostingController: hostingController
+        )
+        self.hostingControllerContainer = hostingControllerContainer
+        
+        hostingControllerContainer.modalPresentationStyle = .overFullScreen
+        hostingControllerContainer.modalTransitionStyle = .crossDissolve
+        hostingControllerContainer.transitioningDelegate = self
+        
+        hostingControllerContainer.view.backgroundColor = .clear
+
+        _present(hostingControllerContainer)
     }
 
     @discardableResult
-    private func _present(
-        hostingController: HostingViewControllerType
-    ) -> Bool {
+    private func _present(_ viewController: UIViewController) -> Bool {
         if presentedViewController == nil {
-            present(hostingController, animated: true, completion: nil)
+            present(viewController, animated: true, completion: nil)
 
             PresentationHostViewControllerStorage.shared.storage[id] = self
 
@@ -98,7 +99,7 @@ final class _PresentationHostViewController: UIViewController, UIViewControllerT
 
     // MARK: Presentation API - Update
     func updateHostedView(with content: some View) {
-        hostingController?.rootView = AnyView(content)
+        hostingControllerContainer?.hostingController.rootView = AnyView(content)
     }
 
     // MARK: Presentation API - Dismiss
@@ -114,7 +115,7 @@ final class _PresentationHostViewController: UIViewController, UIViewControllerT
         if force {
             if
                 let rootViewController: UIViewController = UIApplication.shared.firstWindow(where: { window in
-                    window.rootViewController?.presentedViewController == hostingController
+                    window.rootViewController?.presentedViewController == hostingControllerContainer
                 })?.rootViewController
             {
                 rootViewController.dismiss(animated: false, completion: nil)
@@ -124,7 +125,7 @@ final class _PresentationHostViewController: UIViewController, UIViewControllerT
             dismiss(animated: false, completion: nil)
         }
         
-        hostingController = nil
+        hostingControllerContainer = nil
         _ = PresentationHostViewControllerStorage.shared.storage.removeValue(forKey: id)
         
         PresentationHostDataSourceCache.shared.remove(key: id)
@@ -143,12 +144,12 @@ final class _PresentationHostViewController: UIViewController, UIViewControllerT
                     return
                 }
 
-                guard let hostingController else {
+                guard let hostingControllerContainer else {
                     failedToPresentDueToAlreadyPresentingViewController = false
                     return
                 }
 
-                let flag: Bool = _present(hostingController: hostingController)
+                let flag: Bool = _present(hostingControllerContainer)
                 if flag { failedToPresentDueToAlreadyPresentingViewController = false }
             }
         )

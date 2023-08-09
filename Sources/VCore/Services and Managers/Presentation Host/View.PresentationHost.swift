@@ -91,7 +91,7 @@ extension View {
     ///
     @ViewBuilder public func presentationHost<Content>(
         id: String,
-        allowsHitTests: Bool = true,
+        uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
         content: @escaping () -> Content
     ) -> some View
@@ -99,10 +99,10 @@ extension View {
     {
 #if canImport(UIKit) && !os(watchOS)
         self
-            .onDisappear(perform: { _PresentationHostViewController.forceDismiss(id: id) })
+            .onDisappear(perform: { PresentationHostViewController.forceDismiss(id: id) })
             .background(PresentationHostView(
                 id: id,
-                allowsHitTests: allowsHitTests,
+                uiModel: uiModel,
                 isPresented: isPresented,
                 content: content
             ))
@@ -114,7 +114,7 @@ extension View {
     /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
     public func presentationHost<Item ,Content>(
         id: String,
-        allowsHitTests: Bool = true,
+        uiModel: PresentationHostUIModel = .init(),
         item: Binding<Item?>,
         content: @escaping () -> Content
     ) -> some View
@@ -123,7 +123,7 @@ extension View {
         self
             .presentationHost(
                 id: id,
-                allowsHitTests: allowsHitTests,
+                uiModel: uiModel,
                 isPresented: Binding(
                     get: { item.wrappedValue != nil },
                     set: { if !$0 { item.wrappedValue = nil } }
@@ -137,7 +137,7 @@ extension View {
     /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
     public func presentationHost<T ,Content>(
         id: String,
-        allowsHitTests: Bool = true,
+        uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
         presenting data: T?,
         content: @escaping () -> Content
@@ -147,7 +147,7 @@ extension View {
         self
             .presentationHost(
                 id: id,
-                allowsHitTests: allowsHitTests,
+                uiModel: uiModel,
                 isPresented: Binding(
                     get: { isPresented.wrappedValue && data != nil },
                     set: { if !$0 { isPresented.wrappedValue = false } }
@@ -161,7 +161,7 @@ extension View {
     /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
     public func presentationHost<E ,Content>(
         id: String,
-        allowsHitTests: Bool = true,
+        uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
         error: E?,
         content: @escaping () -> Content
@@ -171,7 +171,7 @@ extension View {
         self
             .presentationHost(
                 id: id,
-                allowsHitTests: allowsHitTests,
+                uiModel: uiModel,
                 isPresented: Binding(
                     get: { isPresented.wrappedValue && error != nil },
                     set: { if !$0 { isPresented.wrappedValue = false } }

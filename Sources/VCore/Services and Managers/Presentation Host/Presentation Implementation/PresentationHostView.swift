@@ -14,7 +14,7 @@ import SwiftUI
 struct PresentationHostView<Content>: UIViewControllerRepresentable where Content: View {
     // MARK: Properties
     private let id: String
-    private let allowsHitTests: Bool
+    private let uiModel: PresentationHostUIModel
     private let isPresented: Binding<Bool>
     private let content: () -> Content
     
@@ -23,26 +23,26 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
     // MARK: Initializers
     init(
         id: String,
-        allowsHitTests: Bool = true,
+        uiModel: PresentationHostUIModel,
         isPresented: Binding<Bool>,
         content: @escaping () -> Content
     ) {
         self.id = id
-        self.allowsHitTests = allowsHitTests
+        self.uiModel = uiModel
         self.isPresented = isPresented
         self.content = content
     }
     
     // MARK: Representable
     func makeUIViewController(context: Context) -> UIViewController {
-        _PresentationHostViewController(
+        PresentationHostViewController(
             id: id,
-            allowsHitTests: allowsHitTests
+            allowsHitTests: uiModel.allowsHitTests
         )
     }
     
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        guard let uiViewController = uiViewController as? _PresentationHostViewController else { fatalError() }
+        guard let uiViewController = uiViewController as? PresentationHostViewController else { fatalError() }
         
         let isExternallyDismissed: Bool =
             uiViewController.isPresentingView &&
@@ -59,6 +59,15 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
         
         let content: AnyView = .init(
             PresentationHostGeometryReader(content: content)
+                .applyModifier({
+                    if #available(iOS 14.0, *) {
+                        $0
+                            .ignoresSafeArea(.container, edges: uiModel._ignoredContainerSafeAreaEdgesByHost)
+                            .ignoresSafeArea(.keyboard, edges: uiModel._ignoredKeyboardSafeAreaEdgesByHost)
+                    } else {
+                        $0
+                    }
+                })
                 .presentationHostPresentationMode(PresentationHostPresentationMode(
                     id: id,
                     dismiss: dismissHandler,

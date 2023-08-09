@@ -17,7 +17,7 @@ struct PresentationHostGeometryReader<Content>: View where Content: View {
     
     // MARK: Initializers
     init(
-        /*@ViewBuilder*/ content: @escaping () -> Content
+        content: @escaping () -> Content
     ) {
         self.content = content
     }
