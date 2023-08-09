@@ -5,6 +5,7 @@
 Services and Managers
 
 - `DeviceOrientationObserver` is added that observes changes in device orientation
+- `presentationHostGeometryReaderSize` and `presentationHostGeometryReaderSafeAreaInsets` values have been added to Presentation Host's environment for accurately reading modal's size and safe area insets without `UIScreen.main`
 
 Views
 

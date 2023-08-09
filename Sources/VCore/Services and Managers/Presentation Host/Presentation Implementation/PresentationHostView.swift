@@ -58,7 +58,7 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
         }
         
         let content: AnyView = .init(
-            content()
+            PresentationHostGeometryReader(content: content)
                 .presentationHostPresentationMode(PresentationHostPresentationMode(
                     id: id,
                     dismiss: dismissHandler,

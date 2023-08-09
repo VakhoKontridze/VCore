@@ -34,12 +34,13 @@ extension View {
     ///     }
     ///
     ///     struct SomeModal<Content>: View where Content: View {
+    ///         @Environment(\.presentationHostGeometryReaderSize) private var screenSize: CGSize
+    ///         @Environment(\.presentationHostGeometryReaderSafeAreaInsets) private var safeAreaInsets: EdgeInsets
+    ///
     ///         @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode
+    ///         @State private var isInternallyPresented: Bool = false
     ///
     ///         private let content: () -> Content
-    ///
-    ///         // Can be used for internal state management and animations
-    ///         @State private var isInternallyPresented: Bool = false
     ///
     ///         init(
     ///             @ViewBuilder content: @escaping () -> Content
@@ -54,7 +55,7 @@ extension View {
     ///                     .onTapGesture(perform: animateOut)
     ///
     ///                 content()
-    ///                     .offset(y: isInternallyPresented ? 0 : UIScreen.main.bounds.size.height)
+    ///                     .offset(y: isInternallyPresented ? 0 : screenSize.height)
     ///             })
     ///             .onAppear(perform: animateIn)
     ///             .onChange(
