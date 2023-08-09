@@ -66,6 +66,7 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
                             .ignoresSafeArea(.keyboard, edges: uiModel._ignoredKeyboardSafeAreaEdgesByHost)
                     } else {
                         $0
+                            .edgesIgnoringSafeArea(uiModel.ignoredKeyboardSafeAreaEdges)
                     }
                 })
                 .presentationHostPresentationMode(PresentationHostPresentationMode(

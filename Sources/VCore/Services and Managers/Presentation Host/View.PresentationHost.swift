@@ -51,7 +51,6 @@ extension View {
     ///         var body: some View {
     ///             ZStack(content: {
     ///                 Color.black.opacity(0.16)
-    ///                     .edgesIgnoringSafeArea(.all)
     ///                     .onTapGesture(perform: animateOut)
     ///
     ///                 content()
