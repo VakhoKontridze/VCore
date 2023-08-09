@@ -145,33 +145,22 @@ extension UIView {
             )
             
         case true:
-            guard
-                let window: UIWindow = firstResponderView.window,
-                let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height
-            else {
-                return // Will never fail
-            }
-
+            guard let window: UIWindow = firstResponderView.window else { return } // Will never fail
             let windowHeight: CGFloat = window.frame.size.height
-            
-            let viewGlobalBounds: CGRect = firstResponderView.convert(firstResponderView.bounds, to: firstResponderView.window)
-            let viewGlobalBoundsMaxY: CGFloat = viewGlobalBounds.maxY
-            let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalBoundsMaxY - containerView.bounds.origin.y
-            
-            let obscuredHeight: CGFloat = systemKeyboardHeight + marginBottom - viewDistanceToBottom
-            
-            let offset: CGFloat = {
-                if obscuredHeight > 0 {
-                    return obscuredHeight
-                } else {
-                    return 0
-                }
-            }()
+
+            let viewGlobalBoundsMaxY: CGFloat = firstResponderView.convert(firstResponderView.bounds, to: firstResponderView.window).maxY
+
+            let containerViewY: CGFloat = containerView.bounds.origin.y
+
+            guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return } // Will never fail
+
+            let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalBoundsMaxY - containerViewY
+            let obscuredHeight: CGFloat = max(0, systemKeyboardHeight + marginBottom - viewDistanceToBottom)
             
             UIView.animateKeyboardResponsiveness(
                 systemKeyboardInfo: systemKeyboardInfo,
                 animations: {
-                    containerView.bounds.origin.y = offset
+                    containerView.bounds.origin.y = obscuredHeight
                     
                     firstResponderView.superview?.layoutIfNeeded()
                     containerView.superview?.layoutIfNeeded()
