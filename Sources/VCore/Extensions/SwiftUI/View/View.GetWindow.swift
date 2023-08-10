@@ -71,7 +71,7 @@ private final class _WindowReaderView: UIView {
     override func didMoveToWindow() {
         super.didMoveToWindow()
 
-        notify()
+        DispatchQueue.main.async(execute: notify)
     }
 
     // MARK: Notification
