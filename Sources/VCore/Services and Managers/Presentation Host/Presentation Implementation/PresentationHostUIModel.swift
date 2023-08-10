@@ -20,46 +20,46 @@ public struct PresentationHostUIModel {
     public var allowsHitTests: Bool = true
 
     // MARK: Properties - Safe Area
-    /// Indicates if keyboard responsiveness is handled internally. Set to `true`.
+    /// Indicates if Presentation Host handles keyboard responsiveness. Set to `true`.
     ///
     /// Changing this property after modal is presented may cause unintended behaviors.
     ///
     /// When `true`, all `Edge.Set` properties must be set to `all`.
-    public var keyboardResponsivenessIsHandledInternally: Bool = true
+    public var handlesKeyboardResponsiveness: Bool = true
 
     /// Keyboard safe area inset on focused view. Set to `20`.
     public var focusedViewKeyboardSafeAreInset: CGFloat = 20
 
-    /// Container safe area edges ignored by host. Set to `all`.
+    /// Container safe area edges ignored by the Presentation Host. Set to `all`.
     ///
     /// For `iOS` `13.x` and lower, use `ignoresSafeArea`.
     ///
-    /// Property can conflict with `keyboardResponsivenessIsHandledInternally`.
+    /// Property can conflict with `handlesKeyboardResponsiveness`.
     @available(iOS 14.0, *)
-    public var ignoredContainerSafeAreaEdgesByHost: Edge.Set {
-        get { _ignoredContainerSafeAreaEdgesByHost }
-        set { _ignoredContainerSafeAreaEdgesByHost = newValue }
+    public var ignoredContainerSafeAreaEdges: Edge.Set {
+        get { _ignoredContainerSafeAreaEdges }
+        set { _ignoredContainerSafeAreaEdges = newValue }
     }
-    var _ignoredContainerSafeAreaEdgesByHost: Edge.Set = .all
+    var _ignoredContainerSafeAreaEdges: Edge.Set = .all
 
-    /// Keyboard safe area edges ignored by host. Set to `all`.
+    /// Keyboard safe area edges ignored by the Presentation Host. Set to `all`.
     ///
     /// For `iOS` `13.x` and lower, use `ignoresSafeArea`.
     ///
-    /// Property can conflict with `keyboardResponsivenessIsHandledInternally`.
+    /// Property can conflict with `handlesKeyboardResponsiveness`.
     @available(iOS 14.0, *)
-    public var ignoredKeyboardSafeAreaEdgesByHost: Edge.Set {
-        get { _ignoredKeyboardSafeAreaEdgesByHost }
-        set { _ignoredKeyboardSafeAreaEdgesByHost = newValue }
+    public var ignoredKeyboardSafeAreaEdges: Edge.Set {
+        get { _ignoredKeyboardSafeAreaEdges }
+        set { _ignoredKeyboardSafeAreaEdges = newValue }
     }
-    var _ignoredKeyboardSafeAreaEdgesByHost: Edge.Set = .all
+    var _ignoredKeyboardSafeAreaEdges: Edge.Set = .all
 
-    /// Safe area edges ignored by host. Set to `all`.
+    /// Safe area edges ignored by the Presentation Host. Set to `all`.
     ///
-    /// For `iOS` `14.0` and up, use `ignoredContainerSafeAreaEdgesByHost` and `ignoredKeyboardSafeAreaEdgesByHost`.
+    /// For `iOS` `14.0` and up, use `ignoredContainerSafeAreaEdges` and `ignoredKeyboardSafeAreaEdges`.
     ///
-    /// Property can conflict with `keyboardResponsivenessIsHandledInternally`.
-    public var ignoredKeyboardSafeAreaEdges: Edge.Set = .all
+    /// Property can conflict with `handlesKeyboardResponsiveness`.
+    public var ignoredSafeAreaEdges: Edge.Set = .all
 
     // MARK: Initializers
     /// Initializes UI model with default values.

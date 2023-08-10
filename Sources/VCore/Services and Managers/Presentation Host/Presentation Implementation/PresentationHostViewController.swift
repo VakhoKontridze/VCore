@@ -79,8 +79,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         hostingController.view.backgroundColor = .clear
 
         let hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController = .init(
-            isKeyboardResponsive: uiModel.keyboardResponsivenessIsHandledInternally,
-            marginBottomToKeyboard: uiModel.focusedViewKeyboardSafeAreInset,
+            uiModel: uiModel,
             hostingController: hostingController
         )
         self.hostingControllerContainer = hostingControllerContainer
