@@ -12,11 +12,13 @@ import SwiftUI
 // MARK: - Presentation Host View Controller
 @available(tvOS, unavailable)
 final class PresentationHostViewController: UIViewController, UIViewControllerTransitioningDelegate {
+    // MARK: Subviews
+    private var hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController?
+
     // MARK: Properties
     private let id: String
-    private let allowsHitTests: Bool
+    private let uiModel: PresentationHostUIModel
 
-    private var hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController?
     var isPresentingView: Bool { hostingControllerContainer != nil }
 
     private var failedToPresentDueToAlreadyPresentingViewController: Bool = false
@@ -25,10 +27,10 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     // MARK: Initializers
     init(
         id: String,
-        allowsHitTests: Bool
+        uiModel: PresentationHostUIModel
     ) {
         self.id = id
-        self.allowsHitTests = allowsHitTests
+        self.uiModel = uiModel
         
         super.init(nibName: nil, bundle: nil)
 
@@ -37,6 +39,13 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     
     required init?(coder: NSCoder) {
         fatalError()
+    }
+
+    // MARK: Lifecycle
+    override func didMove(toParent parent: UIViewController?) {
+        super.didMove(toParent: parent)
+
+        presentQueuedViewController() // Just in case `isPresented` was set to `true` during `@State` initialization
     }
 
     // MARK: Setup
@@ -59,7 +68,9 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         presenting: UIViewController,
         source: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
-        PresentationHostAnimatedTransitioner(allowsHitTests: allowsHitTests)
+        PresentationHostAnimatedTransitioner(
+            allowsHitTests: uiModel.allowsHitTests
+        )
     }
     
     // MARK: Presentation API - Present
@@ -68,6 +79,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         hostingController.view.backgroundColor = .clear
 
         let hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController = .init(
+            isKeyboardResponsive: uiModel.isKeyboardResponsivenessHandledInternally,
             hostingController: hostingController
         )
         self.hostingControllerContainer = hostingControllerContainer
@@ -83,18 +95,20 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
 
     @discardableResult
     private func _present(_ viewController: UIViewController) -> Bool {
-        if presentedViewController == nil {
-            present(viewController, animated: true, completion: nil)
-
-            PresentationHostViewControllerStorage.shared.storage[id] = self
-
-            return true
-
-        } else {
+        guard
+            view.window != nil,
+            presentedViewController == nil
+        else {
             failedToPresentDueToAlreadyPresentingViewController = true
 
             return false
         }
+
+        present(viewController, animated: true, completion: nil)
+
+        PresentationHostViewControllerStorage.shared.storage[id] = self
+
+        return true
     }
 
     // MARK: Presentation API - Update
@@ -132,26 +146,26 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     }
 
     // MARK: Queueing
+    private func presentQueuedViewController() {
+        guard failedToPresentDueToAlreadyPresentingViewController else {
+            return
+        }
+
+        guard let hostingControllerContainer else {
+            failedToPresentDueToAlreadyPresentingViewController = false
+            return
+        }
+
+        let flag: Bool = _present(hostingControllerContainer)
+        if flag { failedToPresentDueToAlreadyPresentingViewController = false }
+    }
+
     private func addObserversForQueueing() {
         NotificationCenter.default.addObserver(
             forName: dismissNotificationName,
             object: nil,
             queue: .main,
-            using: { [weak self] _ in
-                guard let self else { return }
-
-                guard failedToPresentDueToAlreadyPresentingViewController else {
-                    return
-                }
-
-                guard let hostingControllerContainer else {
-                    failedToPresentDueToAlreadyPresentingViewController = false
-                    return
-                }
-
-                let flag: Bool = _present(hostingControllerContainer)
-                if flag { failedToPresentDueToAlreadyPresentingViewController = false }
-            }
+            using: { [weak self] _ in self?.presentQueuedViewController() }
         )
     }
 

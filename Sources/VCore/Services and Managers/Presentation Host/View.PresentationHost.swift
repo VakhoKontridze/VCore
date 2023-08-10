@@ -14,8 +14,6 @@ import SwiftUI
 extension View {
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
-    /// For `allowHitTests`=`false` to have an effect, underlying `SwiftUI` `View` shouldn't have gestures.
-    ///
     ///     extension View {
     ///         func someModal(
     ///             id: String,

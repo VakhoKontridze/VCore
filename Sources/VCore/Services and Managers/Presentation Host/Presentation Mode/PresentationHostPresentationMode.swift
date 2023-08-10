@@ -25,7 +25,7 @@ public struct PresentationHostPresentationMode {
     /// Can be used to support both Presentation Host and `DismissAction` APIs.
     public let isValidConfiguration: Bool
     
-    /// Instance ID of modal.
+    /// Instance identifier of modal.
     public let id: String?
     
     /// Completion handler that dismisses modal.

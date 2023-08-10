@@ -37,7 +37,7 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
     func makeUIViewController(context: Context) -> UIViewController {
         PresentationHostViewController(
             id: id,
-            allowsHitTests: uiModel.allowsHitTests
+            uiModel: uiModel
         )
     }
     
