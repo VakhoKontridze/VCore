@@ -25,16 +25,16 @@ public struct PresentationHostUIModel {
     /// Changing this property after modal is presented may cause unintended behaviors.
     ///
     /// When `true`, all `Edge.Set` properties must be set to `all`.
-    public var isKeyboardResponsivenessHandledInternally: Bool = true
+    public var keyboardResponsivenessIsHandledInternally: Bool = true
 
-    /// Bottom margin from focused view to keyboard. Set to `20`.
-    public var focusedViewMarginBottomToKeyboard: CGFloat = 20
+    /// Keyboard safe area inset on focused view. Set to `20`.
+    public var focusedViewKeyboardSafeAreInset: CGFloat = 20
 
     /// Container safe area edges ignored by host. Set to `all`.
     ///
     /// For `iOS` `13.x` and lower, use `ignoresSafeArea`.
     ///
-    /// Property can conflict with `isKeyboardResponsivenessHandledInternally`.
+    /// Property can conflict with `keyboardResponsivenessIsHandledInternally`.
     @available(iOS 14.0, *)
     public var ignoredContainerSafeAreaEdgesByHost: Edge.Set {
         get { _ignoredContainerSafeAreaEdgesByHost }
@@ -46,7 +46,7 @@ public struct PresentationHostUIModel {
     ///
     /// For `iOS` `13.x` and lower, use `ignoresSafeArea`.
     ///
-    /// Property can conflict with `isKeyboardResponsivenessHandledInternally`.
+    /// Property can conflict with `keyboardResponsivenessIsHandledInternally`.
     @available(iOS 14.0, *)
     public var ignoredKeyboardSafeAreaEdgesByHost: Edge.Set {
         get { _ignoredKeyboardSafeAreaEdgesByHost }
@@ -58,7 +58,7 @@ public struct PresentationHostUIModel {
     ///
     /// For `iOS` `14.0` and up, use `ignoredContainerSafeAreaEdgesByHost` and `ignoredKeyboardSafeAreaEdgesByHost`.
     ///
-    /// Property can conflict with `isKeyboardResponsivenessHandledInternally`.
+    /// Property can conflict with `keyboardResponsivenessIsHandledInternally`.
     public var ignoredKeyboardSafeAreaEdges: Edge.Set = .all
 
     // MARK: Initializers
