@@ -62,22 +62,39 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
                 window: { [weak uiViewController] in uiViewController?.view.window },
                 content: content
             )
-            .applyModifier({
-                if #available(iOS 14.0, *) {
-                    $0
-                        .ignoresSafeArea(.container, edges: uiModel._ignoredContainerSafeAreaEdgesByHost)
-                        .ignoresSafeArea(.keyboard, edges: uiModel._ignoredKeyboardSafeAreaEdgesByHost)
-                } else {
-                    $0
-                        .edgesIgnoringSafeArea(uiModel.ignoredKeyboardSafeAreaEdges)
-                }
-            })
             .presentationHostPresentationMode(PresentationHostPresentationMode(
                 id: id,
                 dismiss: dismissHandler,
                 isExternallyDismissed: isExternallyDismissed,
                 externalDismissCompletion: uiViewController.dismissHostedView
             ))
+            .applyModifier({
+                if #available(iOS 14.0, *) {
+                    $0
+                        .ignoresSafeArea(.container, edges: uiModel._ignoredContainerSafeAreaEdgesByHost)
+                        .ignoresSafeArea(.keyboard, edges: uiModel._ignoredKeyboardSafeAreaEdgesByHost)
+
+                        // There's a bug in SwiftUI, where ignoring bottom safe area on `all` regions
+                        // doesn't have the same effect as ignoring it separately on all regions.
+                        // So, this solution is required until it's fixed.
+                        .ignoresSafeArea(
+                            .all,
+                            edges: {
+                                guard
+                                    uiModel._ignoredContainerSafeAreaEdgesByHost.contains(.bottom) &&
+                                    uiModel._ignoredKeyboardSafeAreaEdgesByHost.contains(.bottom)
+                                else {
+                                    return []
+                                }
+
+                                return .bottom
+                            }()
+                        )
+                } else {
+                    $0
+                        .edgesIgnoringSafeArea(uiModel.ignoredKeyboardSafeAreaEdges)
+                }
+            })
         )
         
         if

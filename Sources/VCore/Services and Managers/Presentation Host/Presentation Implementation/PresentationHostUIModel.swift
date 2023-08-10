@@ -19,7 +19,7 @@ public struct PresentationHostUIModel {
     /// For `false` to have an effect, underlying `SwiftUI` `View` shouldn't have gestures.
     public var allowsHitTests: Bool = true
 
-    // MARK: Properties - Keyboard
+    // MARK: Properties - Safe Area
     /// Indicates if keyboard responsiveness is handled internally. Set to `true`.
     ///
     /// Changing this property after modal is presented may cause unintended behaviors.
@@ -30,7 +30,6 @@ public struct PresentationHostUIModel {
     /// Bottom margin from focused view to keyboard. Set to `20`.
     public var focusedViewMarginBottomToKeyboard: CGFloat = 20
 
-    // MARK: Properties - Safe Area
     /// Container safe area edges ignored by host. Set to `all`.
     ///
     /// For `iOS` `13.x` and lower, use `ignoresSafeArea`.
