@@ -16,10 +16,13 @@ open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubvie
     // MARK: Properties
     /// `UIView` on which offset animations will be applied. Set to `view`.
     ///
-    /// In case of `UITableView`, `UITableView` itself can be passed.
+    /// In case of `UITableView`, `UITableView` itself can be used.
     ///
-    /// In case of `ScrollableUIView`, `contentView` can be passed.
-    open lazy var keyboardResponsivenessContainerView: UIView = view
+    /// In case of `UIScrollView`, content view can be used.
+    open var keyboardResponsivenessContainerView: UIView { view }
+
+    /// Bottom margin from first responder view to keyboard. Set to `20`.
+    open var keyboardResponsivenessFirstResponderViewMarginBottomToKeyboard: CGFloat { 20 }
     
     // MARK: Keyboard Responsiveness
     open override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
@@ -31,7 +34,8 @@ open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubvie
             keyboardWillShow: true,
             firstResponderView: firstResponderSubview,
             containerView: keyboardResponsivenessContainerView,
-            systemKeyboardInfo: systemKeyboardInfo
+            systemKeyboardInfo: systemKeyboardInfo,
+            marginBottom: keyboardResponsivenessFirstResponderViewMarginBottomToKeyboard
         )
     }
     
@@ -44,7 +48,8 @@ open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubvie
             keyboardWillShow: false,
             firstResponderView: firstResponderSubview,
             containerView: keyboardResponsivenessContainerView,
-            systemKeyboardInfo: systemKeyboardInfo
+            systemKeyboardInfo: systemKeyboardInfo,
+            marginBottom: keyboardResponsivenessFirstResponderViewMarginBottomToKeyboard
         )
     }
 }

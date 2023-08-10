@@ -27,6 +27,9 @@ public struct PresentationHostUIModel {
     /// When `true`, all `Edge.Set` properties must be set to `all`.
     public var isKeyboardResponsivenessHandledInternally: Bool = true
 
+    /// Bottom margin from focused view to keyboard. Set to `20`.
+    public var focusedViewMarginBottomToKeyboard: CGFloat = 20
+
     // MARK: Properties - Safe Area
     /// Container safe area edges ignored by host. Set to `all`.
     ///

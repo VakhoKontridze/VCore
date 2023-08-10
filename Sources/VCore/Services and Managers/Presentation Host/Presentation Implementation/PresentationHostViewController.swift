@@ -80,6 +80,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
 
         let hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController = .init(
             isKeyboardResponsive: uiModel.isKeyboardResponsivenessHandledInternally,
+            marginBottomToKeyboard: uiModel.focusedViewMarginBottomToKeyboard,
             hostingController: hostingController
         )
         self.hostingControllerContainer = hostingControllerContainer

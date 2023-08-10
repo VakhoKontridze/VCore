@@ -18,13 +18,16 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
     typealias HostingViewControllerType = UIHostingController<AnyView>
 
     private let isKeyboardResponsive: Bool
+    private let marginBottomToKeyboard: CGFloat
 
     // MARK: Initializers
     init(
         isKeyboardResponsive: Bool,
+        marginBottomToKeyboard: CGFloat,
         hostingController: HostingViewControllerType
     ) {
         self.isKeyboardResponsive = isKeyboardResponsive
+        self.marginBottomToKeyboard = marginBottomToKeyboard
         self.hostingController = hostingController
 
         super.init(nibName: nil, bundle: nil)
@@ -53,6 +56,8 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
     }
 
     // MARK: Keyboard Responsiveness
+    override var keyboardResponsivenessFirstResponderViewMarginBottomToKeyboard: CGFloat { marginBottomToKeyboard }
+
     override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
         guard isKeyboardResponsive else { return }
 

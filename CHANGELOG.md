@@ -13,6 +13,7 @@ Views
 
 - `ResponderChainToolBar` can now be initialized with custom `CGSize`
 - Responders in `ResponderChainToolBarManager` can now be initialized with custom `CGSize` and `ResponderChainToolBarUIModel`s
+- `keyboardResponsivenessFirstResponderViewMarginBottomToKeyboard` is added to `KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight`
 
 Models
 
