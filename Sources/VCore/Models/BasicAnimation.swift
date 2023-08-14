@@ -33,15 +33,20 @@ public struct BasicAnimation {
     
     /// Animation duration.
     public var duration: TimeInterval
+
+    /// Animation delay.
+    public var delay: TimeInterval
     
     // MARK: Initializers
     /// Initializes `BasicAnimation` with curve and duration.
     public init(
         curve: AnimationCurve,
-        duration: TimeInterval
+        duration: TimeInterval,
+        delay: TimeInterval = 0
     ) {
         self.curve = curve
         self.duration = duration
+        self.delay = delay
     }
     
     // MARK: Animation Curve
@@ -64,10 +69,10 @@ public struct BasicAnimation {
     /// Casts `BasicAnimation` to `SwiftUI.Animation`.
     public var toSwiftUIAnimation: Animation {
         switch curve {
-        case .linear: return .linear(duration: duration)
-        case .easeIn: return .easeIn(duration: duration)
-        case .easeOut: return .easeOut(duration: duration)
-        case .easeInOut: return .easeInOut(duration: duration)
+        case .linear: return .linear(duration: duration).delay(delay)
+        case .easeIn: return .easeIn(duration: duration).delay(delay)
+        case .easeOut: return .easeOut(duration: duration).delay(delay)
+        case .easeInOut: return .easeInOut(duration: duration).delay(delay)
         }
     }
 }
@@ -130,7 +135,7 @@ public func withBasicAnimation<Result>(
     let result: Result = try withAnimation(animation?.toSwiftUIAnimation, body)
     
     DispatchQueue.main.asyncAfter(
-        deadline: .now() + (animation?.duration ?? 0),
+        deadline: .now() + (animation?.delay ?? 0) + (animation?.duration ?? 0),
         execute: { completion?() }
     )
     
