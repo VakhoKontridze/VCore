@@ -53,7 +53,7 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
     }
 
     // MARK: Keyboard Responsiveness
-    override var keyboardResponsivenessFirstResponderViewMarginBottomToKeyboard: CGFloat { uiModel.focusedViewKeyboardSafeAreInset }
+    override var keyboardResponsivenessFirstResponderViewMarginBottomToKeyboard: CGFloat { uiModel.focusedViewKeyboardSafeAreaInset }
 
     override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
         guard uiModel.handlesKeyboardResponsiveness else { return }

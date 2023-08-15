@@ -28,7 +28,7 @@ public struct PresentationHostUIModel {
     public var handlesKeyboardResponsiveness: Bool = true
 
     /// Keyboard safe area inset on focused view. Set to `20`.
-    public var focusedViewKeyboardSafeAreInset: CGFloat = 20
+    public var focusedViewKeyboardSafeAreaInset: CGFloat = 20
 
     /// Container safe area edges ignored by the Presentation Host. Set to `all`.
     ///
