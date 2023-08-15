@@ -22,18 +22,32 @@ extension View {
     ///             Color.gray
     ///
     ///             Color.accentColor
-    ///                 .safeAreaMargins(edges: .all)
+    ///                 .safeAreaMargins(edges: .all, insets: EdgeInsets(UIDevice.safeAreaInsets))
     ///         })
     ///         .ignoresSafeArea()
     ///     }
     ///
-    @ViewBuilder public func safeAreaMargins(edges: Edge.Set = .all) -> some View {
+    ///     extension EdgeInsets {
+    ///         fileprivate init(_ uiEdgeInsets: UIEdgeInsets) {
+    ///             self.init(
+    ///                 top: uiEdgeInsets.top,
+    ///                 leading: uiEdgeInsets.left,
+    ///                 bottom: uiEdgeInsets.bottom,
+    ///                 trailing: uiEdgeInsets.right
+    ///             )
+    ///         }
+    ///     }
+    ///
+    @ViewBuilder public func safeAreaMargins(
+        edges: Edge.Set,
+        insets: EdgeInsets
+    ) -> some View {
 #if canImport(UIKit) && !os(watchOS)
         self
-            .padding(.leading, edges.contains(.leading) ? UIDevice.safeAreaInsets.left : 0)
-            .padding(.trailing, edges.contains(.trailing) ? UIDevice.safeAreaInsets.right : 0)
-            .padding(.top, edges.contains(.top) ? UIDevice.safeAreaInsets.top : 0)
-            .padding(.bottom, edges.contains(.bottom) ? UIDevice.safeAreaInsets.bottom : 0)
+            .padding(.leading, edges.contains(.leading) ? insets.leading : 0)
+            .padding(.trailing, edges.contains(.trailing) ? insets.trailing : 0)
+            .padding(.top, edges.contains(.top) ? insets.top : 0)
+            .padding(.bottom, edges.contains(.bottom) ? insets.bottom : 0)
 #endif
     }
 }

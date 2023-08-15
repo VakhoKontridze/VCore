@@ -954,6 +954,23 @@ extension View {
     }
 }
 
+// MARK: - Safe Area Margins
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
+extension View {
+    @available(*, deprecated, message: "Use method with `EdgeInsets` instead")
+    @ViewBuilder public func safeAreaMargins(edges: Edge.Set = .all) -> some View {
+#if canImport(UIKit) && !os(watchOS)
+        self
+            .padding(.leading, edges.contains(.leading) ? UIDevice.safeAreaInsets.left : 0)
+            .padding(.trailing, edges.contains(.trailing) ? UIDevice.safeAreaInsets.right : 0)
+            .padding(.top, edges.contains(.top) ? UIDevice.safeAreaInsets.top : 0)
+            .padding(.bottom, edges.contains(.bottom) ? UIDevice.safeAreaInsets.bottom : 0)
+#endif
+    }
+}
+
+
 #if os(iOS)
 
 extension View {
