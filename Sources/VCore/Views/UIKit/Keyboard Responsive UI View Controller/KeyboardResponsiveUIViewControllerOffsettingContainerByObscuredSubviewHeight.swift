@@ -28,7 +28,7 @@ open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubvie
     open override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
         super.keyboardWillShow(systemKeyboardInfo)
         
-        guard let firstResponderSubview = view.childFirstResponderView else { return }
+        guard let firstResponderSubview: UIView = view.childFirstResponderView else { return }
         
         UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
             keyboardWillShow: true,
@@ -42,7 +42,7 @@ open class KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubvie
     open override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
         super.keyboardWillHide(systemKeyboardInfo)
         
-        guard let firstResponderSubview = view.childFirstResponderView else { return }
+        guard let firstResponderSubview: UIView = view.childFirstResponderView else { return }
         
         UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
             keyboardWillShow: false,

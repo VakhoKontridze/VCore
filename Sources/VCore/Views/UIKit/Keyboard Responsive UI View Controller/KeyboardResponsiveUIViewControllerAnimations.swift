@@ -37,7 +37,9 @@ extension UIView {
     ///                 animations: { [weak self] in
     ///                     guard let self else { return }
     ///
-    ///                     view.bounds.origin.y = systemKeyboardInfo.frame.size.height
+    ///                     guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return }
+    ///
+    ///                     view.bounds.origin.y = systemKeyboardHeight
     ///                     view.superview?.layoutIfNeeded()
     ///                 }
     ///             )
