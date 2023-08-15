@@ -817,7 +817,36 @@ extension UIStackView {
 
 import UIKit
 
+// MARK: - Device Safe Areas
+extension UIDevice {
+    @available(*, deprecated, message: "Use `UIDevice.safeAreaInsets.left`")
+    public static var safeAreaInsetLeft: CGFloat {
+        safeAreaInsets.left
+    }
+
+    @available(*, deprecated, message: "Use `UIDevice.safeAreaInsets.right`")
+    public static var safeAreaInsetRight: CGFloat {
+        safeAreaInsets.right
+    }
+
+    @available(*, deprecated, message: "Use `UIDevice.safeAreaInsets.top`")
+    public static var safeAreaInsetTop: CGFloat {
+        safeAreaInsets.top
+    }
+
+    @available(*, deprecated, message: "Use `UIDevice.safeAreaInsets.bottom`")
+    public static var safeAreaInsetBottom: CGFloat {
+        safeAreaInsets.bottom
+    }
+}
+
+#endif
+
 // MARK: - Label Configuration
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
 extension UILabel {
     @available(*, deprecated, message: "method will be removed in 5.0.0")
     public func configure(
