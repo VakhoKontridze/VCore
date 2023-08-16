@@ -11,7 +11,7 @@ import VCore
 // MARK: - Post Details UI Model
 struct PostDetailsUIModel {
     // MARK: Properties
-    static var backgroundColor: Color { .white }
+    static var backgroundColor: Color { .init(uiColor: .systemBackground) }
 
     static var bodyTextColor: Color { .primary }
     static var bodyTextFont: Font { .subheadline }

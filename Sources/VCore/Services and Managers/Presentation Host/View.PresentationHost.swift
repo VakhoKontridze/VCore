@@ -14,6 +14,30 @@ import SwiftUI
 extension View {
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
+    ///     @State private var isPresented: Bool = false
+    ///     @State private var text: String = ""
+    ///
+    ///     var body: some View {
+    ///         VStack(content: {
+    ///             Button("Present", action: { isPresented = true })
+    ///         })
+    ///         // For `VStack` and `Button`
+    ///         .frame(maxWidth: .infinity, maxHeight: .infinity)
+    ///         .ignoresSafeArea(.keyboard)
+    ///
+    ///         .someModal(id: "some_modal", isPresented: $isPresented, content: {
+    ///             ScrollView(content: {
+    ///                 VStack(spacing: 20, content: {
+    ///                     ForEach(0..<20, id: \.self, content: { _ in
+    ///                         TextField("", text: $text)
+    ///                             .textFieldStyle(.roundedBorder)
+    ///                     })
+    ///                 })
+    ///                 .padding(30)
+    ///             })
+    ///         })
+    ///     }
+    ///
     ///     extension View {
     ///         func someModal(
     ///             id: String,
@@ -43,7 +67,7 @@ extension View {
     ///         init(
     ///             @ViewBuilder content: @escaping () -> Content
     ///         ) {
-    ///             self.content = content
+    ///            self.content = content
     ///         }
     ///
     ///         var body: some View {
@@ -51,13 +75,28 @@ extension View {
     ///                 Color.black.opacity(0.16)
     ///                     .onTapGesture(perform: animateOut)
     ///
-    ///                 content()
-    ///                     .offset(y: isInternallyPresented ? 0 : screenSize.height)
+    ///                 ZStack(content: {
+    ///                     Color(uiColor: .systemBackground)
+    ///
+    ///                     content()
+    ///                 })
+    ///                 .clipped() // Prevents keyboard content from overflowing
+    ///
+    ///                 .safeAreaMargins(edges: .all, insets: safeAreaInsets)
+    ///                 .padding(.horizontal, 40)
+    ///                 .padding(.vertical, 20)
+    ///
+    ///                 .offset(y: isInternallyPresented ? 0 : screenSize.height)
     ///             })
     ///             .onAppear(perform: animateIn)
     ///             .onChange(
     ///                 of: presentationMode.isExternallyDismissed,
     ///                 perform: { if $0 && isInternallyPresented { animateOutFromExternalDismiss() } }
+    ///             )
+    ///
+    ///             .onReceive( // For ensuring proper stating when changing device/interface orientation
+    ///                 NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification),
+    ///                 perform: { _ in UIApplication.shared.sendResignFirstResponderAction() }
     ///             )
     ///         }
     ///

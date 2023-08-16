@@ -8,6 +8,7 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import UIKit
+import SwiftUI
 
 // MARK: - Keyboard Animation - Custom
 @available(tvOS, unavailable)
@@ -75,12 +76,12 @@ extension UIView {
     }
 }
 
-// MARK: - Keyboard Animation - Container Offset by Obscured Subview Height
+// MARK: - Keyboard Animation - Un-Obscuring First Responder View
 @available(tvOS, unavailable)
 extension UIView {
-    /// Animates changes to `UIView` using `SystemKeyboardInfo`, by offsetting container `y` origin by obscured subview height.
+    /// Animates changes to `UIView` using `SystemKeyboardInfo` to un-obscure first responder view, if needed.
     ///
-    /// Alternately, check out `KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight`.
+    /// Alternately, check out `FirstResponderViewUnObscuringUIViewController`.
     ///
     /// In order to use this method on `UITableView`/`UITableViewCell`s, pass `tableView.childFirstResponderView`
     /// as parameter in `firstResponderView`.
@@ -105,7 +106,7 @@ extension UIView {
     ///         override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
     ///             super.keyboardWillShow(systemKeyboardInfo)
     ///
-    ///             UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
+    ///             UIView.animateKeyboardResponsivenessByUnObscuringFirstResponderView(
     ///                 keyboardWillShow: true,
     ///                 firstResponderView: textField,
     ///                 containerView: view,
@@ -116,7 +117,7 @@ extension UIView {
     ///         override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
     ///             super.keyboardWillHide(systemKeyboardInfo)
     ///
-    ///             UIView.animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
+    ///             UIView.animateKeyboardResponsivenessByUnObscuringFirstResponderView(
     ///                 keyboardWillShow: false,
     ///                 firstResponderView: textField,
     ///                 containerView: view,
@@ -125,12 +126,12 @@ extension UIView {
     ///         }
     ///     }
     ///
-    public class func animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
+    public class func animateKeyboardResponsivenessByUnObscuringFirstResponderView(
         keyboardWillShow: Bool,
         firstResponderView: UIView,
         containerView: UIView,
         systemKeyboardInfo: SystemKeyboardInfo,
-        marginBottom: CGFloat = 20,
+        keyboardSafeAreMargin: CGFloat = 20,
         completion: ((Bool) -> Void)? = nil
     ) {
         switch keyboardWillShow {
@@ -157,7 +158,7 @@ extension UIView {
             guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return } // Will never fail
 
             let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalBoundsMaxY - containerViewY
-            let obscuredHeight: CGFloat = max(0, systemKeyboardHeight + marginBottom - viewDistanceToBottom)
+            let obscuredHeight: CGFloat = max(0, systemKeyboardHeight + keyboardSafeAreMargin - viewDistanceToBottom)
             
             UIView.animateKeyboardResponsiveness(
                 systemKeyboardInfo: systemKeyboardInfo,

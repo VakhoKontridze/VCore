@@ -22,7 +22,7 @@ extension ScrollableUIView {
         
         // MARK: Options Initializers
         /// Horizontal and vertical scroll directions.
-        public static var all: Self { [.horizontal, .vertical] }
+        public static var allRegions: Self { [.horizontal, .vertical] }
         
         // MARK: Properties
         public let rawValue: Int

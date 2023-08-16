@@ -17,9 +17,9 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
     private let uiModel: PresentationHostUIModel
     private let isPresented: Binding<Bool>
     private let content: () -> Content
-    
+
     @State private var wasInternallyDismissed: Bool = false
-    
+
     // MARK: Initializers
     init(
         id: String,
@@ -32,7 +32,7 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
         self.isPresented = isPresented
         self.content = content
     }
-    
+
     // MARK: Representable
     func makeUIViewController(context: Context) -> UIViewController {
         PresentationHostViewController(
@@ -40,23 +40,23 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
             uiModel: uiModel
         )
     }
-    
+
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         guard let uiViewController = uiViewController as? PresentationHostViewController else { fatalError() }
-        
+
         let isExternallyDismissed: Bool =
             uiViewController.isPresentingView &&
             !isPresented.wrappedValue &&
             !wasInternallyDismissed
-        
+
         let dismissHandler: () -> Void = {
             wasInternallyDismissed = true
             defer { DispatchQueue.main.async(execute: { wasInternallyDismissed = false }) }
-            
+
             isPresented.wrappedValue = false
             uiViewController.dismissHostedView()
         }
-        
+
         let content: AnyView = .init(
             PresentationHostGeometryReader(
                 window: { [weak uiViewController] in uiViewController?.view.window },
@@ -68,30 +68,16 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
                 isExternallyDismissed: isExternallyDismissed,
                 externalDismissCompletion: uiViewController.dismissHostedView
             ))
-            .applyModifier({
-                if #available(iOS 14.0, *) {
-                    $0
-                        .ignoresSafeArea(.container, edges: uiModel._ignoredContainerSafeAreaEdges)
-                        .ignoresSafeArea(.keyboard, edges: uiModel._ignoredKeyboardSafeAreaEdges)
-
-                        // There's a bug in SwiftUI, where ignoring bottom safe area on `all` regions
-                        // doesn't have the same effect as ignoring it separately on all regions.
-                        // So, this solution is required until it's fixed.
-                        .ignoresSafeArea(.all, edges: uiModel._ignoredContainerSafeAreaEdges.intersection(uiModel._ignoredKeyboardSafeAreaEdges))
-                } else {
-                    $0
-                        .edgesIgnoringSafeArea(uiModel.ignoredSafeAreaEdges)
-                }
-            })
+            .edgesIgnoringSafeArea(.all) // Additional logic is written in `UIHostingController`
         )
-        
+
         if
             isPresented.wrappedValue,
             !uiViewController.isPresentingView
         {
             uiViewController.presentHostedView(content)
         }
-        
+
         uiViewController.updateHostedView(with: content)
     }
 }

@@ -210,8 +210,10 @@ final class ViewController: KeyboardResponsiveUIViewController {
             systemKeyboardInfo: systemKeyboardInfo,
             animations: { [weak self] in
                 guard let self else { return }
+                
+                guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return }
 
-                view.bounds.origin.y = -systemKeyboardInfo.frame.size.height
+                view.bounds.origin.y = systemKeyboardHeight
                 view.superview?.layoutIfNeeded()
             }
         )

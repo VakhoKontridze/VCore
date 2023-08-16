@@ -65,8 +65,8 @@ public struct BasicAnimation {
         case easeInOut
     }
     
-    // MARK: Casting
-    /// Casts `BasicAnimation` to `SwiftUI.Animation`.
+    // MARK: Converting
+    /// Converts `BasicAnimation` to `SwiftUI.Animation`.
     public var toSwiftUIAnimation: Animation {
         switch curve {
         case .linear: return .linear(duration: duration).delay(delay)
@@ -83,7 +83,7 @@ public struct BasicAnimation {
 import QuartzCore
 
 extension BasicAnimation {
-    /// Casts `BasicAnimation` to `CAMediaTimingFunction`.
+    /// Converts `BasicAnimation` to `CAMediaTimingFunction`.
     public var toCAMediaTimingFunction: CAMediaTimingFunction {
         switch curve {
         case .linear: return CAMediaTimingFunction(name: .linear)
@@ -101,7 +101,7 @@ extension BasicAnimation {
 import UIKit
 
 extension BasicAnimation {
-    /// Casts `BasicAnimation` to `UIView.AnimationOptions`.
+    /// Converts `BasicAnimation` to `UIView.AnimationOptions`.
     public var toUIViewAnimationOptions: UIView.AnimationOptions {
         switch curve {
         case .linear: return .curveLinear

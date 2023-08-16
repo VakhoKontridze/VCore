@@ -57,8 +57,8 @@ public struct SystemKeyboardInfo {
     /// Alternately, consider checking out `nonZeroAnimationDuration`.
     public static var defaultAnimationDuration: TimeInterval { 0.25 }
     
-    /// Default animation options. Set to `curveLinear`.
-    public static var defaultAnimationOptions: UIView.AnimationOptions { .curveLinear }
+    /// Default animation options. Set to `curveEaseInOut`.
+    public static var defaultAnimationOptions: UIView.AnimationOptions { .curveEaseInOut }
     
     // MARK: Other Values
     /// Non-zero animation duration.

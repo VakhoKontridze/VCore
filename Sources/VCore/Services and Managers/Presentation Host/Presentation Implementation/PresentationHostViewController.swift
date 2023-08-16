@@ -50,6 +50,8 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
 
     // MARK: Setup
     private func setUp() {
+        view.backgroundColor = nil
+
         addObserversForQueueing()
     }
 
@@ -74,21 +76,16 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     }
     
     // MARK: Presentation API - Present
-    func presentHostedView(_ content: some View) {
-        let hostingController: UIHostingController = .init(rootView: AnyView(content))
-        hostingController.view.backgroundColor = .clear
-
+    func presentHostedView(_ content: AnyView) {
         let hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController = .init(
             uiModel: uiModel,
-            hostingController: hostingController
+            content: content
         )
         self.hostingControllerContainer = hostingControllerContainer
-        
+
         hostingControllerContainer.modalPresentationStyle = .overFullScreen
         hostingControllerContainer.modalTransitionStyle = .crossDissolve
         hostingControllerContainer.transitioningDelegate = self
-        
-        hostingControllerContainer.view.backgroundColor = .clear
 
         _present(hostingControllerContainer)
     }
@@ -112,8 +109,8 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     }
 
     // MARK: Presentation API - Update
-    func updateHostedView(with content: some View) {
-        hostingControllerContainer?.hostingController.rootView = AnyView(content)
+    func updateHostedView(with content: AnyView) {
+        hostingControllerContainer?.hostingController.rootView = content
     }
 
     // MARK: Presentation API - Dismiss

@@ -13,55 +13,76 @@ import SwiftUI
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct PresentationHostUIModel {
-    // MARK: Properties - Hit Tests
+    // MARK: Properties
     /// Indicates if modal allows hit tests. Set to `true`.
     ///
     /// For `false` to have an effect, underlying `SwiftUI` `View` shouldn't have gestures.
     public var allowsHitTests: Bool = true
 
-    // MARK: Properties - Safe Area
-    /// Indicates if Presentation Host handles keyboard responsiveness. Set to `true`.
+    /// Keyboard responsiveness strategy. Set to `default`.
     ///
     /// Changing this property after modal is presented may cause unintended behaviors.
-    ///
-    /// When `true`, all `Edge.Set` properties must be set to `all`.
-    public var handlesKeyboardResponsiveness: Bool = true
-
-    /// Keyboard safe area inset on focused view. Set to `20`.
-    public var focusedViewKeyboardSafeAreaInset: CGFloat = 20
-
-    /// Container safe area edges ignored by the Presentation Host. Set to `all`.
-    ///
-    /// For `iOS` `13.x` and lower, use `ignoresSafeArea`.
-    ///
-    /// Property can conflict with `handlesKeyboardResponsiveness`.
-    @available(iOS 14.0, *)
-    public var ignoredContainerSafeAreaEdges: Edge.Set {
-        get { _ignoredContainerSafeAreaEdges }
-        set { _ignoredContainerSafeAreaEdges = newValue }
-    }
-    var _ignoredContainerSafeAreaEdges: Edge.Set = .all
-
-    /// Keyboard safe area edges ignored by the Presentation Host. Set to `all`.
-    ///
-    /// For `iOS` `13.x` and lower, use `ignoresSafeArea`.
-    ///
-    /// Property can conflict with `handlesKeyboardResponsiveness`.
-    @available(iOS 14.0, *)
-    public var ignoredKeyboardSafeAreaEdges: Edge.Set {
-        get { _ignoredKeyboardSafeAreaEdges }
-        set { _ignoredKeyboardSafeAreaEdges = newValue }
-    }
-    var _ignoredKeyboardSafeAreaEdges: Edge.Set = .all
-
-    /// Safe area edges ignored by the Presentation Host. Set to `all`.
-    ///
-    /// For `iOS` `14.0` and up, use `ignoredContainerSafeAreaEdges` and `ignoredKeyboardSafeAreaEdges`.
-    ///
-    /// Property can conflict with `handlesKeyboardResponsiveness`.
-    public var ignoredSafeAreaEdges: Edge.Set = .all
+    public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy? = .default
 
     // MARK: Initializers
     /// Initializes UI model with default values.
     public init() {}
+
+    // MARK: Keyboard Responsiveness Strategy
+    /// Keyboard responsiveness strategy.
+    public struct KeyboardResponsivenessStrategy {
+        // MARK: Properties
+        let _keyboardResponsivenessStrategy: _KeyboardResponsivenessStrategy
+
+        // MARK: Initializers
+        init(
+            keyboardResponsivenessStrategy: _KeyboardResponsivenessStrategy
+        ) {
+            self._keyboardResponsivenessStrategy = keyboardResponsivenessStrategy
+        }
+
+        // MARK: Initializers
+        /// Offsets container by the specified value.
+        public static func offset(
+            _ offset: CGFloat
+        ) -> Self {
+            .init(keyboardResponsivenessStrategy: .offset(
+                offset: offset
+            ))
+        }
+
+        /// Offsets container by the keyboard height, plus the specified value.
+        ///
+        /// Using a positive value (keyboard height + value > keyboard height),
+        /// may cause visuals gaps between bottom of the modal and the keyboard.
+        /// If dimming view is used, this may cause problems.
+        public static func offsetByKeyboardHeight(
+            additionalOffset: CGFloat = 0
+        ) -> Self {
+            .init(keyboardResponsivenessStrategy: .offsetByKeyboardHeight(
+                additionalOffset: additionalOffset
+            ))
+        }
+
+        /// Offsets container to un-obscure first responder view, if needed, plus the specified safe area inset.
+        public static func offsetByObscuredSubviewHeight(
+            safeAreaInset: CGFloat = 20
+        ) -> Self {
+            .init(keyboardResponsivenessStrategy: .offsetByObscuredSubviewHeight(
+                safeAreaInset: safeAreaInset
+            ))
+        }
+
+        /// Default instance. Set to `offsetByObscuredSubviewHeight`.
+        public static var `default`: Self {
+            .offsetByObscuredSubviewHeight()
+        }
+    }
+
+    // MARK: _ Keyboard Responsiveness Strategy
+    enum _KeyboardResponsivenessStrategy {
+        case offset(offset: CGFloat)
+        case offsetByKeyboardHeight(additionalOffset: CGFloat)
+        case offsetByObscuredSubviewHeight(safeAreaInset: CGFloat)
+    }
 }

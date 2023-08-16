@@ -5,7 +5,7 @@
 Services and Managers
 
 - `DeviceOrientationObserver` is added that observes changes in device orientation
-- Presentation Host now handles keyboard responsiveness
+- Presentation Host now handles keyboard responsiveness by offering `KeyboardResponsivenessStrategy`
 - Presentation Host can now present modals, if `isPresented` is set to `true` during the `@State` initialization
 - `presentationHostGeometryReaderSize` and `presentationHostGeometryReaderSafeAreaInsets` values have been added to Presentation Host's environment for accurately reading modal's size and safe area insets without `UIScreen.main`
 
@@ -13,7 +13,7 @@ Views
 
 - `ResponderChainToolBar` can now be initialized with custom `CGSize`
 - Responders in `ResponderChainToolBarManager` can now be initialized with custom `CGSize` and `ResponderChainToolBarUIModel`s
-- `keyboardResponsivenessFirstResponderViewMarginBottomToKeyboard` is added to `KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight`
+- `keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin` is added to `FirstResponderViewUnObscuringUIViewController`
 
 Models
 
@@ -28,6 +28,7 @@ Extensions
 - `View.getWindow(_:)` method is added that retrieves `UIWindow` from `View`
 - `View.getSafeAreaInsets(_:)` method is added that retrieves `EdgeInsets` from `View`
 - `View.getInterfaceOrientation(_:)` method is added that retrieves `UIInterfaceOrientation` from `View`
+- `UIApplication.sendResignFirstResponderAction` method is added
 - Several `String` extensions are now exposed to `StringProtocol`
 
 ### [4.11.0(84)](https://github.com/VakhoKontridze/VCore/releases/tag/4.11.0) — *2023 07 17*

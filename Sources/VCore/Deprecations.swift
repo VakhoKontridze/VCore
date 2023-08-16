@@ -206,6 +206,32 @@ extension SystemKeyboardInfo {
     }
 }
 
+@available(tvOS, unavailable)
+@available(*, deprecated, renamed: "FirstResponderViewUnObscuringUIViewController")
+public typealias KeyboardResponsiveUIViewControllerOffsettingContainerByObscuredSubviewHeight = FirstResponderViewUnObscuringUIViewController
+
+@available(tvOS, unavailable)
+extension UIView {
+    @available(*, deprecated, message: "Use method with `keyboardSafeAreMargin` instead of `marginBottom`")
+    public class func animateKeyboardResponsivenessByOffsettingContainerByObscuredSubviewHeight(
+        keyboardWillShow: Bool,
+        firstResponderView: UIView,
+        containerView: UIView,
+        systemKeyboardInfo: SystemKeyboardInfo,
+        marginBottom: CGFloat,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        animateKeyboardResponsivenessByUnObscuringFirstResponderView(
+            keyboardWillShow: keyboardWillShow,
+            firstResponderView: firstResponderView,
+            containerView: containerView,
+            systemKeyboardInfo: systemKeyboardInfo,
+            keyboardSafeAreMargin: marginBottom,
+            completion: completion
+        )
+    }
+}
+
 #endif
 
 // MARK: - H Or VStack

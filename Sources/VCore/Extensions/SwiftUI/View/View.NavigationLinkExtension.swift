@@ -30,8 +30,9 @@ extension View {
     ///     }
     ///
     ///     private var destination: some View {
-    ///         Color.white.ignoresSafeArea()
-    ///            .inlineNavigationTitle("Destination")
+    ///         Color(uiColor: .systemBackground)
+    ///             .ignoresSafeArea()
+    ///             .inlineNavigationTitle("Destination")
     ///     }
     ///
     public func navigationLink(
