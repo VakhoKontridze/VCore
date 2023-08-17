@@ -206,32 +206,102 @@ public struct AlignedGridView: Layout {
 // MARK: - Preview
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 struct AlignedGridView_Previews: PreviewProvider {
+    // Previews
+    static var previews: some View {
+        Group(content: {
+            VStackPreview().previewDisplayName("Vertical")
+            HStackPreview().previewDisplayName("Horizontal")
+            VScrollViewAndVStackPreview().previewDisplayName("Vertical Scroll + Vertical")
+            VScrollViewAndHStackPreview().previewDisplayName("Vertical Scroll + Horizontal")
+            HScrollViewAndHStackPreview().previewDisplayName("Horizontal Scroll + Horizontal")
+        })
+    }
+
+    // Data
     private static var strings: [String] {
         [
-            "Monday", "Tuesday", "Wednesday",
-            "Thursday", "Friday", "Saturday",
-            "Sunday"
+            "January", "February", "March",
+            "April", "May", "June",
+            "July", "August", "September",
+            "October", "November", "December"
         ]
     }
-    
-    static var previews: some View {
-        VStack(content: {
-            gridView(.leading)
-            Divider()
-            gridView(.center)
-            Divider()
-            gridView(.trailing)
-        })
-        .padding()
+
+    // Previews (Scenes)
+    private struct VStackPreview: View {
+        var body: some View {
+            VStack(content: {
+                gridView(.leading)
+                Divider()
+                gridView(.center)
+                Divider()
+                gridView(.trailing)
+            })
+        }
     }
-    
+
+    private struct HStackPreview: View {
+        var body: some View {
+            HStack(content: {
+                gridView(.leading)
+                Divider()
+                gridView(.trailing)
+            })
+        }
+    }
+
+    private struct VScrollViewAndVStackPreview: View {
+        var body: some View {
+            ScrollView(content: {
+                VStack(content: {
+                    gridView(.leading)
+                    Divider()
+                    gridView(.center)
+                    Divider()
+                    gridView(.trailing)
+                })
+            })
+        }
+    }
+
+    private struct VScrollViewAndHStackPreview: View {
+        var body: some View {
+            ScrollView(content: {
+                ScrollView(content: {
+                    HStack(content: {
+                        gridView(.leading)
+                        Divider()
+                        gridView(.trailing)
+                    })
+                })
+            })
+        }
+    }
+
+    private struct HScrollViewAndHStackPreview: View {
+        var body: some View {
+            ScrollView(.horizontal, content: {
+                HStack(content: {
+                    gridView(.leading).frame(width: 300)
+                    Divider()
+                    gridView(.center).frame(width: 300)
+                    Divider()
+                    gridView(.trailing).frame(width: 300)
+                })
+            })
+        }
+    }
+
+    // Previews (Helpers)
     @ViewBuilder private static func gridView(
         _ alignment: HorizontalAlignment
     ) -> some View {
         AlignedGridView(alignment: alignment, spacing: 5).callAsFunction({
             ForEach(strings, id: \.self, content: { string in
                 Text(string)
+                    .padding(3)
                     .background(content: { Color.accentColor.opacity(0.5) })
+                    .cornerRadius(5)
             })
         })
         .padding()

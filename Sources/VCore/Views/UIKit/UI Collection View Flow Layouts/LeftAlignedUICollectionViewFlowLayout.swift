@@ -37,3 +37,26 @@ open class LeftAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 }
 
 #endif
+
+// MARK: - Preview
+#if canImport(UIKit) && !os(watchOS)
+
+import SwiftUI
+
+struct LeftAlignedUICollectionViewFlowLayout_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewControllerRepresentable()
+    }
+
+    private struct ViewControllerRepresentable: UIViewControllerRepresentable {
+        func makeUIViewController(context: Context) -> some UIViewController {
+            CenterAlignedUICollectionViewFlowLayout_Previews.BaseViewController(
+                layout: LeftAlignedUICollectionViewFlowLayout()
+            )
+        }
+
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    }
+}
+
+#endif

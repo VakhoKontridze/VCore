@@ -105,3 +105,26 @@ open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 }
 
 #endif
+
+// MARK: - Preview
+#if canImport(UIKit) && !os(watchOS)
+
+import SwiftUI
+
+struct RightAlignedUICollectionViewFlowLayout_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewControllerRepresentable()
+    }
+
+    private struct ViewControllerRepresentable: UIViewControllerRepresentable {
+        func makeUIViewController(context: Context) -> some UIViewController {
+            CenterAlignedUICollectionViewFlowLayout_Previews.BaseViewController(
+                layout: RightAlignedUICollectionViewFlowLayout()
+            )
+        }
+
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    }
+}
+
+#endif

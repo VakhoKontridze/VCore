@@ -156,7 +156,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
         let closest: UICollectionViewLayoutAttributes = layoutAttributes
             .sorted {
                 abs($0.center.x - proposedContentOffsetCenterOrigin) <
-                    abs($1.center.x - proposedContentOffsetCenterOrigin)
+                abs($1.center.x - proposedContentOffsetCenterOrigin)
             }
             .first ??
             UICollectionViewLayoutAttributes()
@@ -193,6 +193,94 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
         flowDelegate: UICollectionViewDelegateFlowLayout
     ) -> Bool {
         flowDelegate.responds(to: #selector(UICollectionViewDelegateFlowLayout.collectionView(_:layout:sizeForItemAt:)))
+    }
+}
+
+#endif
+
+// MARK: - Preview
+#if canImport(UIKit) && !os(watchOS)
+
+import SwiftUI
+
+struct CarouselCollectionViewFlowLayout_Previews: PreviewProvider {
+    static var previews: some View {
+        ViewControllerRepresentable()
+    }
+
+    private struct ViewControllerRepresentable: UIViewControllerRepresentable {
+        func makeUIViewController(context: Context) -> some UIViewController {
+            ViewController()
+        }
+
+        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    }
+
+    private final class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+        private lazy var collectionView: UICollectionView = {
+            let layout: CarouselCollectionViewFlowLayout = .init(
+                itemSize: .init(inset: inset, height: nil),
+                spacing: spacing
+            )
+
+            let collectionView: UICollectionView = .init(
+                frame: .zero,
+                collectionViewLayout: layout
+            )
+
+            collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+            collectionView.showsHorizontalScrollIndicator = false
+            collectionView.isPagingEnabled = false
+
+            collectionView.delegate = self
+            collectionView.dataSource = self
+
+            collectionView.register(
+                UICollectionViewCell.self,
+                forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self)
+            )
+
+            return collectionView
+        }()
+
+        private let spacing: CGFloat = 20
+        private let inset: CGFloat = 40
+
+        private var data: [UIColor] = Array(repeating: [.red, .green, .blue], count: 3).flatMap { $0 }
+
+        override func viewDidLoad() {
+            super.viewDidLoad()
+
+            view.backgroundColor = .systemBackground
+
+            view.addSubview(collectionView)
+
+            NSLayoutConstraint.activate([
+                collectionView.constraintHeight(to: nil, constant: 100),
+                collectionView.constraintLeading(to: view),
+                collectionView.constraintTrailing(to: view),
+                collectionView.constraintCenterY(to: view)
+            ])
+
+            collectionView.reloadData()
+        }
+
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            data.count
+        }
+
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .init(describing: UICollectionViewCell.self), for: indexPath)
+            cell.contentView.backgroundColor = data[indexPath.row]
+            return cell
+        }
+
+        func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            if let carouselFlowLayout = collectionView.collectionViewLayout as? CarouselCollectionViewFlowLayout {
+                print(carouselFlowLayout.indexOfCenterItem(inDeceleratedEndedScrollView: scrollView))
+            }
+        }
     }
 }
 
