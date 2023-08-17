@@ -21,21 +21,25 @@ extension View {
     ///         VStack(content: {
     ///             Button("Present", action: { isPresented = true })
     ///         })
-    ///         // For `VStack` and `Button`
+    ///         // For `VStack` and `Button` to ignore keyboard
     ///         .frame(maxWidth: .infinity, maxHeight: .infinity)
     ///         .ignoresSafeArea(.keyboard)
     ///
-    ///         .someModal(id: "some_modal", isPresented: $isPresented, content: {
-    ///             ScrollView(content: {
-    ///                 VStack(spacing: 20, content: {
-    ///                     ForEach(0..<20, id: \.self, content: { _ in
-    ///                         TextField("", text: $text)
-    ///                             .textFieldStyle(.roundedBorder)
+    ///         .someModal(
+    ///             id: "some_modal",
+    ///             isPresented: $isPresented,
+    ///             content: {
+    ///                 ScrollView(content: {
+    ///                     VStack(spacing: 20, content: {
+    ///                         ForEach(0..<10, id: \.self, content: { _ in
+    ///                             TextField("", text: $text)
+    ///                                  .textFieldStyle(.roundedBorder)
+    ///                         })
     ///                     })
+    ///                     .padding(30)
     ///                 })
-    ///                 .padding(30)
-    ///             })
-    ///         })
+    ///             }
+    ///         )
     ///     }
     ///
     ///     extension View {
@@ -56,7 +60,7 @@ extension View {
     ///     }
     ///
     ///     struct SomeModal<Content>: View where Content: View {
-    ///         @Environment(\.presentationHostGeometryReaderSize) private var screenSize: CGSize
+    ///         @Environment(\.presentationHostGeometryReaderSize) private var containerSize: CGSize
     ///         @Environment(\.presentationHostGeometryReaderSafeAreaInsets) private var safeAreaInsets: EdgeInsets
     ///
     ///         @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode
@@ -82,11 +86,12 @@ extension View {
     ///                 })
     ///                 .clipped() // Prevents keyboard content from overflowing
     ///
-    ///                 .safeAreaMargins(edges: .all, insets: safeAreaInsets)
-    ///                 .padding(.horizontal, 40)
-    ///                 .padding(.vertical, 20)
+    ///                 .frame(
+    ///                     width: containerSize.width * 0.9,
+    ///                     height: containerSize.height * 0.6
+    ///                 )
     ///
-    ///                 .offset(y: isInternallyPresented ? 0 : screenSize.height)
+    ///                 .offset(y: isInternallyPresented ? 0 : containerSize.height)
     ///             })
     ///             .onAppear(perform: animateIn)
     ///             .onChange(
