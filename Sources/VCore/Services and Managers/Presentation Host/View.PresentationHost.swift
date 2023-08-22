@@ -77,6 +77,7 @@ extension View {
     ///         var body: some View {
     ///             ZStack(content: {
     ///                 Color.black.opacity(0.16)
+    ///                     .contentShape(Rectangle())
     ///                     .onTapGesture(perform: animateOut)
     ///
     ///                 ZStack(content: {
