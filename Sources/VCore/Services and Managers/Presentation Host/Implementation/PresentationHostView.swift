@@ -68,7 +68,6 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
                 isExternallyDismissed: isExternallyDismissed,
                 externalDismissCompletion: uiViewController.dismissHostedView
             ))
-            .edgesIgnoringSafeArea(.all) // Additional logic is written in `UIHostingController`
         )
 
         if

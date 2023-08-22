@@ -52,9 +52,7 @@ extension View {
     ///                 .presentationHost(
     ///                     id: id,
     ///                     isPresented: isPresented,
-    ///                     content: {
-    ///                         SomeModal(content: content)
-    ///                     }
+    ///                     content: { SomeModal(content: content) }
     ///                 )
     ///         }
     ///     }

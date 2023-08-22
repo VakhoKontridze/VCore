@@ -34,6 +34,7 @@ struct PresentationHostGeometryReader<Content>: View where Content: View {
                 .presentationHostGeometryReaderSize(proxy.size)
                 .presentationHostGeometryReaderSafeAreaInsets(window()?.safeAreaInsets.toEdgeInsets ?? EdgeInsets())
         })
+        .edgesIgnoringSafeArea(.all) // Additional logic is written in `PresentationHostHostingViewControllerContainerViewController`
     }
 }
 
