@@ -12,7 +12,7 @@ import SwiftUI
 ///
 /// Can be used to ensure that last content is visible instead of blank screen, when data is set to `nil` and modal is being dismissed.
 ///
-/// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
+/// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
 ///
 ///     extension View {
 ///         func someModal<T>(

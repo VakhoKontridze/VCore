@@ -13,8 +13,7 @@ import SwiftUI
 /// Can be used to trigger reload on an app level.
 /// `SwiftUI`'s equivalent of replacing `rootViewController` in `UIKit`
 ///
-/// In the following example, you can scroll down, trigger a reset,
-/// and see that app's content is completely reset:
+/// In the following example, scrolling down and triggering reset causes app's content to be reset.
 ///
 ///     @main struct SomeApp: App {
 ///         var body: some Scene {

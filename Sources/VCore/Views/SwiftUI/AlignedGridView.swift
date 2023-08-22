@@ -28,7 +28,7 @@ import SwiftUI
 ///
 /// `AlignedGridView` also supports `VStack`/`HStack`.
 /// `AlignedGridView` wraps content, so they can be placed in any stacked layout.
-/// If we move content declared above in a method `gridView(alignment:)` we can stack them like this:
+/// If content declared above is moved to `gridView(alignment:)` method, then they can be stacked.
 ///
 ///     var body: some View {
 ///         VStack(content: {

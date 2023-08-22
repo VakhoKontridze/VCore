@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Digital Time Formatter
 /// Digital time formatter that formats seconds to day, hour, minute, and second format.
 ///
-/// You can configure to formatter by setting flags to change behavior, such as component visibility
+/// Formatter can be customized by setting flags to change behavior, such as component visibility
 /// or delimiter.
 ///
 ///     let formatter: DigitalTimeFormatter = .init()

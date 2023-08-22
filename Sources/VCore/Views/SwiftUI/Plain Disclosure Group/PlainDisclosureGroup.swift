@@ -10,8 +10,6 @@ import SwiftUI
 // MARK: - Plain Disclosure Group
 /// Plain expandable container component that draws a background, and hosts content.
 ///
-/// UI Model can be passed as parameter.
-///
 ///     @State private var isExpanded: Bool = true
 ///
 ///     var body: some View {

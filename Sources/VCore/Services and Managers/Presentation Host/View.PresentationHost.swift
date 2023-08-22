@@ -129,6 +129,7 @@ extension View {
     ///         }
     ///     }
     ///
+    /// Due to a presented modal context, content loses its intrinsic safe area properties, and requires custom handling and implementation.
     @ViewBuilder public func presentationHost<Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
@@ -151,7 +152,7 @@ extension View {
     
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
-    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
+    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
     public func presentationHost<Item ,Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
@@ -174,7 +175,7 @@ extension View {
     
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
-    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
+    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
     public func presentationHost<T ,Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
@@ -198,7 +199,7 @@ extension View {
     
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
-    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content).`
+    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
     public func presentationHost<E ,Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),

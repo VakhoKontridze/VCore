@@ -25,8 +25,8 @@ import Foundation
 ///
 ///     LocalizationManager.shared.setCurrentLocale(to: .english)
 ///
-/// It's recommended that you do not enumerate localizations just to be able to use switch statement.
-/// Enumerating will force you to declare an identifier or a `RawValue`.
+/// It's recommended that localizations are not enumerated just to use switch statement.
+/// Enumerating will force the declaration of an identifier or a `RawValue`.
 /// But `LocalizationManager` works on equivalence principle, where "en" and "en-US" are equivalent, if `Locale.current.regionCode` is "US".
 /// Use the following approach instead of switch statement:
 ///
@@ -41,11 +41,11 @@ import Foundation
 ///     }
 ///
 /// Major challenge with localization on iOS is reading values from correct localization table.
-/// `NSLocalizedString(...)` will not read values from localization table you have switched to.
+/// `NSLocalizedString(...)` will not read values from localization table application has switched to.
 /// There are two solutions here.
 ///
 /// First option, is to use `LocalizationManager.shared.localized(...)` method that finds correct table path
-/// within the `Bundle` and reads values from it. Alternately, you can use `String.localizedWithManager(...)`.
+/// within the `Bundle` and reads values from it. Alternately, `String.localizedWithManager(...)` can be used.
 ///
 /// Second option, is to replace the `Bundle` `class` with a sub-`class` that overrides table path internally.
 /// Advantage of this approach is that `NSLocalizedString(...)` will return correct values.
@@ -58,7 +58,7 @@ import Foundation
 ///
 /// However, replacing localization tables doesn't re-launch app, like changing a language does from `iOS` settings.
 /// To achieve this behavior in `UIKit`, replace `rootViewController` inside `AppDelegate`/`SceneDelegate`.
-/// In `SwiftUI`, use `ViewResettingContainer` and trigger `View` resets when you change localization.
+/// In `SwiftUI`, use `ViewResettingContainer` and trigger `View` resets when localization changes.
 public final class LocalizationManager {
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
@@ -88,7 +88,7 @@ public final class LocalizationManager {
     /// `Locale` passed to `setDefaultLocale(to:)` will not be first-choice default value.
     /// Instead, user's preferred `Locale` will be retrieved.
     /// If absent, specified default `Locale` will be used.
-    /// To bypass this behavior, set `retrievesDefaultLocaleFromPreferences` to `false.`
+    /// To bypass this behavior, set `retrievesDefaultLocaleFromPreferences` to `false`.
     public var defaultLocale: Locale! {
         if
             retrievesDefaultLocaleFromPreferences,
@@ -117,7 +117,7 @@ public final class LocalizationManager {
     // MARK: Configuration - Current Locale
     /// Sets current `Locale`.
     ///
-    /// Optionally, you can pass `Bundle` `Array` in `replaceLocalizationTableInBundles` argument
+    /// Optionally, `Bundle` `Array` can be passed in `replaceLocalizationTableInBundles` argument
     /// to replace `Bundle` `class` with a sub-`class` that overrides table path internally,
     /// that reads values form correct localization table.
     /// For additional info, refer to `LocalizationManager`.

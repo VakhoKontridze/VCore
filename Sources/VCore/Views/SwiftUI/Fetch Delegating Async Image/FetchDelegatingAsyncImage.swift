@@ -10,9 +10,7 @@ import SwiftUI
 // MARK: - Fetch Delegating Async Image
 /// `View` that asynchronously loads and displays an `Image` with a delegated fetch handler.
 ///
-/// You can customize request with access token and headers, implement custom caching, and more.
-///
-/// UI model can be passed as a parameter.
+/// Request can be customized with access token and headers, implement custom caching, and more.
 ///
 ///     var body: some View {
 ///         FetchDelegatingAsyncImage(

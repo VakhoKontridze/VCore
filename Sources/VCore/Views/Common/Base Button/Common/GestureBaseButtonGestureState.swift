@@ -12,7 +12,7 @@ import AppKit
 #endif
 
 // MARK: - Gesture Base Button Gesture State
-/// Enum that describes state, such as `possible`, `began`, `ended`, or `cancelled`.
+/// Enum Enumeration that represents state, such as `possible`, `began`, `ended`, or `cancelled`.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public enum GestureBaseButtonGestureState: Int, CaseIterable {

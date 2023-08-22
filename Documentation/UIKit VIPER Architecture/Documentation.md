@@ -471,7 +471,7 @@ final class HomeRouter<Navigator>: HomeRoutable
 }
 ```
 
-`Router` has access to `ViewController` via `Navigable` `protocol`. By default, `Navigable` `protocol` inherits `StandardNavigable` `protocol`, which allows it to access the common methods of `UINavigationController`, without exposing the type.` StandardNavigable` has a default implementation for `UIViewController`, and thus, no additional implementation is required. This is why, most of the time, `Routable` `protocol` has no body.
+`Router` has access to `ViewController` via `Navigable` `protocol`. By default, `Navigable` `protocol` inherits `StandardNavigable` `protocol`, which allows it to access the common methods of `UINavigationController`, without exposing the type. `StandardNavigable` has a default implementation for `UIViewController`, and thus, no additional implementation is required. This is why, most of the time, `Routable` `protocol` has no body.
 
 ```swift
 protocol StandardNavigable {

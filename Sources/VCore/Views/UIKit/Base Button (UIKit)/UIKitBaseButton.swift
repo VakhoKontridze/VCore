@@ -13,7 +13,6 @@ import UIKit
 /// `UIKit` `UIView` that can be used as a base for all interactive views and buttons.
 ///
 /// `UIKitBaseButton` can be used as a basis for all interactive UI components.
-/// It can handle gestures and actions on it's own, allowing you to focus on UI and API.
 ///
 /// Model:
 ///

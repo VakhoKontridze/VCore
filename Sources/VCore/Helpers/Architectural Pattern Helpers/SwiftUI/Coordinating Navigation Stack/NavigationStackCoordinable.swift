@@ -11,7 +11,7 @@ import SwiftUI
 /// Protocol for managing `NavigationPath` within `NavigationStackCoordinator`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `Presenter`.
-/// in `MVVM` architecture, this protocol is conformed to by a `ViewModel.`
+/// in `MVVM` architecture, this protocol is conformed to by a `ViewModel`.
 ///
 ///     struct HomeView: View {
 ///         @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator?
