@@ -10,6 +10,7 @@
 import SwiftUI
 
 // MARK: - Presentation Host Hosting View Controller Container View Controller
+@available(tvOS, unavailable)
 final class PresentationHostHostingViewControllerContainerViewController: KeyboardResponsiveUIViewController {
     // MARK: Subviews
     let hostingController: HostingViewControllerType

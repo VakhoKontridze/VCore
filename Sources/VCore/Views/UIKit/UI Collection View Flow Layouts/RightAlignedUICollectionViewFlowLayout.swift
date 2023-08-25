@@ -107,7 +107,7 @@ open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 #endif
 
 // MARK: - Preview
-#if canImport(UIKit) && !os(watchOS)
+#if os(iOS)
 
 import SwiftUI
 

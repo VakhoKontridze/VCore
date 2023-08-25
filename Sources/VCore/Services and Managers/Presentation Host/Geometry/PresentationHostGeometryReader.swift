@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 09.08.23.
 //
 
+#if canImport(UIKit) && !os(watchOS)
+
 import SwiftUI
 
 // MARK: - Presentation Host Geometry Reader
@@ -49,3 +51,5 @@ extension UIEdgeInsets {
         )
     }
 }
+
+#endif
