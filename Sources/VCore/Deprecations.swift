@@ -582,6 +582,16 @@ extension FetchDelegatingAsyncImageUIModel {
 
 // MARK: - Edge Insets
 
+extension EdgeInsets_LeadingTrailingTopBottom {
+    @available(*, deprecated, renamed: "init(_:)")
+    public init(edgeInsets: EdgeInsets) {
+        self.leading = edgeInsets.leading
+        self.trailing = edgeInsets.trailing
+        self.top = edgeInsets.top
+        self.bottom = edgeInsets.bottom
+    }
+}
+
 #if canImport(UIKit)
 
 extension EdgeInsets_LeadingTrailingTopBottom {

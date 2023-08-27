@@ -7,6 +7,12 @@
 
 import SwiftUI
 
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
+
 // MARK: - Edge Insets (Leading, Trailing, Top, Bottom)
 /// Edge insets containing `leading`, `trailing`, `top` and `bottom` values.
 public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
@@ -79,15 +85,92 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
     }
     
     /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `EdgeInsets`.
-    public init(edgeInsets: EdgeInsets) {
+    public init(_ edgeInsets: EdgeInsets) {
         self.leading = edgeInsets.leading
         self.trailing = edgeInsets.trailing
         self.top = edgeInsets.top
         self.bottom = edgeInsets.bottom
     }
+
+    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `NSDirectionalEdgeInsets`.
+    public init(_ nsEdgeInsets: NSDirectionalEdgeInsets) {
+        self.leading = nsEdgeInsets.leading
+        self.trailing = nsEdgeInsets.trailing
+        self.top = nsEdgeInsets.top
+        self.bottom = nsEdgeInsets.bottom
+    }
+
+#if canImport(UIKit)
+
+    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `UIEdgeInsets`.
+    public init(_ uiEdgeInsets: UIEdgeInsets) {
+        self.leading = uiEdgeInsets.left
+        self.trailing = uiEdgeInsets.right
+        self.top = uiEdgeInsets.top
+        self.bottom = uiEdgeInsets.bottom
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `NSEdgeInsets`.
+    public init(_ nsEdgeInsets: NSEdgeInsets) {
+        self.leading = nsEdgeInsets.left
+        self.trailing = nsEdgeInsets.right
+        self.top = nsEdgeInsets.top
+        self.bottom = nsEdgeInsets.bottom
+    }
+
+#endif
     
     /// Initializes `EdgeInsets_LTTB` with zero values.
     public static var zero: Self { .init() }
+
+    // MARK: Conversion
+    /// Converts `EdgeInsets_TopBottom` to `EdgeInsets`.
+    var toEdgeInsets: EdgeInsets {
+        .init(
+            top: top,
+            leading: leading,
+            bottom: bottom,
+            trailing: trailing
+        )
+    }
+
+    /// Converts `EdgeInsets_TopBottom` to `NSDirectionalEdgeInsets`.
+    var toNSDirectionalEdgeInsets: NSDirectionalEdgeInsets {
+        .init(
+            top: top,
+            leading: leading,
+            bottom: bottom,
+            trailing: trailing
+        )
+    }
+
+#if canImport(UIKit)
+
+    /// Converts `EdgeInsets_TopBottom` to `UIEdgeInsets`.
+    var toUIEdgeInsets: UIEdgeInsets {
+        .init(
+            top: top,
+            left: leading,
+            bottom: bottom,
+            right: trailing
+        )
+    }
+
+#elseif canImport(AppKit)
+
+    /// Converts `EdgeInsets_TopBottom` to `NSEdgeInsets`.
+    var toNSEdgeInsets: NSEdgeInsets {
+        .init(
+            top: top,
+            leading: leading,
+            bottom: bottom,
+            trailing: trailing
+        )
+    }
+
+#endif
     
     // MARK: Insetting
     /// Insets `EdgeInsets` by a given value.
@@ -187,43 +270,6 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
         lhs.bottom -= rhs.bottom
     }
 }
-
-// MARK: Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension EdgeInsets_LeadingTrailingTopBottom {
-    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `UIEdgeInsets`.
-    public init(_ uiEdgeInsets: UIEdgeInsets) {
-        self.leading = uiEdgeInsets.left
-        self.trailing = uiEdgeInsets.right
-        self.top = uiEdgeInsets.top
-        self.bottom = uiEdgeInsets.bottom
-    }
-}
-
-#elseif canImport(AppKit)
-
-extension EdgeInsets_LeadingTrailingTopBottom {
-    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `NSEdgeInsets`.
-    public init(_ nsEdgeInsets: NSEdgeInsets) {
-        self.leading = nsEdgeInsets.left
-        self.trailing = nsEdgeInsets.right
-        self.top = nsEdgeInsets.top
-        self.bottom = nsEdgeInsets.bottom
-    }
-
-    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with `NSDirectionalEdgeInsets`.
-    public init(_ nsEdgeInsets: NSDirectionalEdgeInsets) {
-        self.leading = nsEdgeInsets.leading
-        self.trailing = nsEdgeInsets.trailing
-        self.top = nsEdgeInsets.top
-        self.bottom = nsEdgeInsets.bottom
-    }
-}
-
-#endif
 
 // MARK: - Padding
 extension View {
