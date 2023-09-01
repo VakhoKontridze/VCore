@@ -164,9 +164,9 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
     var toNSEdgeInsets: NSEdgeInsets {
         .init(
             top: top,
-            leading: leading,
+            left: leading,
             bottom: bottom,
-            trailing: trailing
+            right: trailing
         )
     }
 
