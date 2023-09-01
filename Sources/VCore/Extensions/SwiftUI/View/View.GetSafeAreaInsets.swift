@@ -25,14 +25,17 @@ extension View {
             .background(
                 GeometryReader(content: { proxy in
                     Color.clear
-                        .preference(key: SafeAreaInsetsPreferenceKey.self, value: proxy.safeAreaInsets)
+                        .preference(
+                            key: SafeAreaInsetsPreferenceKey.self,
+                            value: proxy.safeAreaInsets
+                        )
+                        .onPreferenceChange(SafeAreaInsetsPreferenceKey.self, perform: action)
                 })
             )
-            .onPreferenceChange(SafeAreaInsetsPreferenceKey.self, perform: action)
     }
 }
 
-// MARK: - SafeAreaInsets Preference Key
+// MARK: - Safe Area Insets Preference Key
 private struct SafeAreaInsetsPreferenceKey: PreferenceKey {
     static var defaultValue: EdgeInsets = .init()
 
