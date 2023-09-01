@@ -10,7 +10,7 @@
 import Foundation
 
 // MARK: - UIKit Base Button State
-/// Enum Enumeration that represents state, such as `enabled` or `disabled`.
+/// Enumeration that represents state, such as `enabled` or `disabled`.
 @available(tvOS, unavailable)
 public enum UIKitBaseButtonState: Int, CaseIterable {
     // MARK: Cases
@@ -48,7 +48,7 @@ public enum UIKitBaseButtonState: Int, CaseIterable {
 }
 
 // MARK: - UIKit Base Button Internal State
-/// Enum Enumeration that represents state, such as `enabled`, `pressed`, or `disabled`.
+/// Enumeration that represents state, such as `enabled`, `pressed`, or `disabled`.
 @available(tvOS, unavailable)
 public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     // MARK: Cases

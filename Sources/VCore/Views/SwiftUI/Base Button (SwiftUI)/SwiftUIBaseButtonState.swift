@@ -8,5 +8,5 @@
 import SwiftUI
 
 // MARK: - Swift UI Base Button State
-/// Enum Enumeration that represents state, such as `enabled`, `pressed`, or `disabled`.
+/// Enumeration that represents state, such as `enabled`, `pressed`, or `disabled`.
 public typealias SwiftUIBaseButtonState = GenericState_EnabledPressedDisabled
