@@ -26,6 +26,7 @@ Extensions
 
 - `Collection.firstIndexAndElement(ofType:where:)` and `Collection.lastIndexAndElement(ofType:where:)` methods are added, that return first or last index and element of `Collection` of the given type
 - `View.getWindow(_:)` method is added that retrieves `UIWindow` from `View`
+- `View.getFrame(in:_:)` method is added that retrieves `CGRect` from `View`
 - `View.getSafeAreaInsets(_:)` method is added that retrieves `EdgeInsets` from `View`
 - `View.getInterfaceOrientation(_:)` method is added that retrieves `UIInterfaceOrientation` from `View`
 - `UIApplication.sendResignFirstResponderAction` method is added
