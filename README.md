@@ -348,7 +348,24 @@ Versions with different majors are not directly compatible. When a new major is 
   
   <tr>
     <td>
-        4.0<br><i><sup>(4.0.0 - 4.x.x)</sup></i>
+        5.0<br><i><sup>(5.0.0 - 5.x.x)</sup></i>
+    </td>
+    <td>2022 09 14</td>
+    <td>
+        5.8
+    </td>
+    <td>
+        iOS 13.0<br>
+        macOS 10.15<br>
+        tvOS 13.0<br>
+        watchOS 6.0
+    </td>
+    <td>API changes.</td>
+  </tr>
+  
+  <tr>
+    <td>
+        4.0<br><i><sup>(4.0.0 - 4.11.0)</sup></i>
     </td>
     <td>2022 09 14</td>
     <td>
