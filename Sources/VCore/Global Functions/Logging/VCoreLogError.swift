@@ -19,6 +19,7 @@ public func VCoreLogError(
     line: Int = #line,
     function: String = #function
 ) {
+#if DEBUG
     let description: String = {
         let descriptions: [String] = items.map { item in
             switch item {
@@ -48,6 +49,7 @@ public func VCoreLogError(
     let file: String = file.components(separatedBy: "/").last ?? file
     
     NSLog("[\(module)] Error in \(function) in \(file)(\(line)): \(description)")
+#endif
 }
 
 // MARK: - V Core Fatal Error
