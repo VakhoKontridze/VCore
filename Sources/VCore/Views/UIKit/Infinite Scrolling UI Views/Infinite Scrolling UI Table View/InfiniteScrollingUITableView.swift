@@ -48,7 +48,7 @@ import UIKit
 ///         override func viewDidLoad() {
 ///             super.viewDidLoad()
 ///
-///             view.backgroundColor = .systemBackground
+///             view.backgroundColor = UIColor.systemBackground
 ///
 ///             view.addSubview(tableView)
 ///             NSLayoutConstraint.activate([
@@ -202,7 +202,7 @@ struct InfiniteScrollingUITableView_Previews: PreviewProvider {
         override func viewDidLoad() {
             super.viewDidLoad()
 
-            view.backgroundColor = .systemBackground
+            view.backgroundColor = UIColor.systemBackground
 
             view.addSubview(tableView)
 

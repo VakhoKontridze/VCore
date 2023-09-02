@@ -19,7 +19,7 @@ import UIKit
 ///         override func viewDidLoad() {
 ///             super.viewDidLoad()
 ///
-///             view.backgroundColor = .systemBackground
+///             view.backgroundColor = UIColor.systemBackground
 ///
 ///             textField.inputAccessoryView = {
 ///                 let toolbar: ResponderChainToolBar = .init(

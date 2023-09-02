@@ -16,7 +16,7 @@ import UIKit
 ///         override func viewDidLoad() {
 ///             super.viewDidLoad()
 ///
-///             view.backgroundColor = .systemBackground
+///             view.backgroundColor = UIColor.systemBackground
 ///
 ///             let gradientView: GradientLayerUIView = .init()
 ///             gradientView.translatesAutoresizingMaskIntoConstraints = false

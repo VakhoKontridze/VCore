@@ -66,7 +66,7 @@ extension UITextView: ResponderChainToolBarResponder {}
 ///         override func viewDidLoad() {
 ///             super.viewDidLoad()
 ///
-///             view.backgroundColor = .systemBackground
+///             view.backgroundColor = UIColor.systemBackground
 ///
 ///             view.addSubview(textField)
 ///             view.addSubview(textView)

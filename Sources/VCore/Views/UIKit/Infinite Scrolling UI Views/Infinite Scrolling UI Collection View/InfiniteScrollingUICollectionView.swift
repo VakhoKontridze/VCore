@@ -54,7 +54,7 @@ import UIKit
 ///         override func viewDidLoad() {
 ///             super.viewDidLoad()
 ///
-///             view.backgroundColor = .systemBackground
+///             view.backgroundColor = UIColor.systemBackground
 ///
 ///             view.addSubview(collectionView)
 ///             NSLayoutConstraint.activate([
@@ -307,7 +307,7 @@ struct InfiniteScrollingUICollectionView_Previews: PreviewProvider {
         override func viewDidLoad() {
             super.viewDidLoad()
 
-            view.backgroundColor = .systemBackground
+            view.backgroundColor = UIColor.systemBackground
 
             view.addSubview(collectionView)
 
