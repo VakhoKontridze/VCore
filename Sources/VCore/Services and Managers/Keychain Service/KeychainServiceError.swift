@@ -15,7 +15,14 @@ public struct KeychainServiceError: VCoreError, Equatable {
     
     // MARK: VCore Error
     public var code: Int { _code.rawValue }
-    public var description: String { VCoreLocalizationManager.shared.localizationProvider.keychainServiceErrorDescription(_code) }
+    public var description: String {
+        switch _code {
+        case .failedToGet: return "Data cannot be retrieved"
+        case .failedToSet: return "Data cannot be set"
+        case .failedToDelete: return "Data cannot be deleted"
+        case .failedToCast: return "Data cannot be retrieved"
+        }
+    }
     
     // MARK: Initializers
     init(_ code: Code) {

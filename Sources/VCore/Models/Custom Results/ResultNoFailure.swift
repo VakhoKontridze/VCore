@@ -54,7 +54,7 @@ public enum ResultNoFailure<Success> {
     public func get() throws -> Success {
         switch self {
         case .success(let success): return success
-        case .failure: throw ResultNoFailureError()
+        case .failure: throw CastingError(from: "ResultNoFailure", to: String(describing: Success.self))
         }
     }
 }
@@ -69,11 +69,4 @@ extension ResultNoFailure: Equatable where Success: Equatable {
         case (.success(let lhs), .success(let rhs)): return lhs == rhs
         }
     }
-}
-
-// MARK: - Result No Failure Error
-private struct ResultNoFailureError: VCoreError {
-    // MARK: VCore Error
-    var code: Int { 1000 }
-    var description: String { VCoreLocalizationManager.shared.localizationProvider.resultNoFailureErrorDescription }
 }

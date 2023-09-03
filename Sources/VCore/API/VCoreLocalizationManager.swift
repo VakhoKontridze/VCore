@@ -36,35 +36,14 @@ public final class VCoreLocalizationManager {
 /// Alternately, consider using `VCoreHumanReadableLocalizationProvider`
 /// that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable `String`s.
 public protocol VCoreLocalizationProvider {
-    /// Localized value for `KeychainServiceError`'s description.
-    func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.Code) -> String
-    
     /// Localized value for error title in alerts.
     var alertErrorTitle: String { get }
     
     /// Localized value for `ok` button in alerts.
     var alertOKButtonTitle: String { get }
-    
-    /// Localized value for error description thrown by `get` method in `ResultNoFailure`.
-    var resultNoFailureErrorDescription: String { get }
 
     /// Localized value for `done` button in `ResponderChainToolBar` and `View.responderChainToolBar(...)`.
     var responderChainToolBarDoneButtonTitle: String { get }
-}
-
-// MARK: - V Core Human-Readable Localization Provider
-/// Localization provider in package that automatically localized errors from `DefaultLocalizationProvider`,
-/// and only exposes human-readable `String`s.
-public protocol VCoreHumanReadableLocalizationProvider: VCoreLocalizationProvider {}
-
-extension VCoreHumanReadableLocalizationProvider {
-    public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.Code) -> String {
-        DefaultVCoreLocalizationProvider().keychainServiceErrorDescription(keychainServiceError)
-    }
-    
-    public var resultNoFailureErrorDescription: String {
-        DefaultVCoreLocalizationProvider().resultNoFailureErrorDescription
-    }
 }
 
 // MARK: - Default VCore Localization Provider
@@ -75,25 +54,12 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
     public init() {}
     
     // MARK: VCore Localization Provider
-    public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.Code) -> String {
-        switch keychainServiceError {
-        case .failedToGet: return "Data cannot be retrieved"
-        case .failedToSet: return "Data cannot be set"
-        case .failedToDelete: return "Data cannot be deleted"
-        case .failedToCast: return "Data cannot be retrieved"
-        }
-    }
-    
     public var alertErrorTitle: String {
         "Something Went Wrong"
     }
     
     public var alertOKButtonTitle: String {
         "Ok"
-    }
-    
-    public var resultNoFailureErrorDescription: String {
-        "No data"
     }
 
     public var responderChainToolBarDoneButtonTitle: String {

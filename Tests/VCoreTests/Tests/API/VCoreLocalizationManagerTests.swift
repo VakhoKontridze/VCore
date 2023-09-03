@@ -12,24 +12,16 @@ import XCTest
 final class VCoreLocalizationManagerTests: XCTestCase {
     // MARK: Test Data
     private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {
-        func keychainServiceErrorDescription(_ keychainServiceError: VCore.KeychainServiceError.Code) -> String {
+        var alertErrorTitle: String {
             "A"
         }
         
-        var alertErrorTitle: String {
-            "B"
-        }
-        
         var alertOKButtonTitle: String {
-            "C"
-        }
-        
-        var resultNoFailureErrorDescription: String {
-            "D"
+            "B"
         }
 
         var responderChainToolBarDoneButtonTitle: String {
-            "E"
+            "C"
         }
     }
     
@@ -40,20 +32,7 @@ final class VCoreLocalizationManagerTests: XCTestCase {
         VCoreLocalizationManager.shared.localizationProvider = TestVCoreLocalizationProvider()
     }
     
-    // MARK: Tests
-    func testKeychainServiceErrorDescription() {
-        XCTAssertThrowsError(
-            try KeychainService.default.get(key: "N/A"),
-            "",
-            { error in
-                XCTAssertEqual(
-                    error.localizedDescription,
-                    TestVCoreLocalizationProvider().keychainServiceErrorDescription(.failedToGet) // Code doesn't matter
-                )
-            }
-        )
-    }
-    
+    // MARK: Tests    
 #if canImport(UIKit) && !os(watchOS)
     func testAlertErrorTitle() {
         XCTAssertEqual(
@@ -71,19 +50,6 @@ final class VCoreLocalizationManagerTests: XCTestCase {
         )
     }
 #endif
-    
-    func testResultNoFailureErrorDescription() {
-        XCTAssertThrowsError(
-            try ResultNoFailure<Any>.failure.get(),
-            "",
-            { error in
-                XCTAssertEqual(
-                    error.localizedDescription,
-                    TestVCoreLocalizationProvider().resultNoFailureErrorDescription
-                )
-            }
-        )
-    }
 
 #if os(iOS) || targetEnvironment(macCatalyst)
     func testResponderChainToolBarDoneButtonTitle() {

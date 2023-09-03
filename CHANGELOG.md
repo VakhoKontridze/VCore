@@ -61,6 +61,10 @@ Extensions
 - `URLRequest.addHTTPHeaderFields(_:)`, `URLRequest.addHTTPHeaderFields(json:)`, and `URLRequest.addHTTPHeaderFields(object:)` methods are added, that add values to header fields
 - `URL.init(string:pathParameters:queryParameters:)` method is added, that initializes `URL` with `String`, path parameters, and query parameters
 
+API
+
+- `VCoreLocalizationProvider` is overhauled, and VCoreHumanReadableLocalizationProvider` is removed
+
 ### [4.11.0(84)](https://github.com/VakhoKontridze/VCore/releases/tag/4.11.0) — *2023 07 17*
 
 General
