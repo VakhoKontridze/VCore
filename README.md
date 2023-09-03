@@ -248,9 +248,7 @@ private func fetchImage(url: URL) async throws -> Image {
 
     switch cache.object(forKey: key) {
     case nil:
-        var request: URLRequest = ...
-        let data: Data = ...
-        
+        let data: Data = try await URLSession.shared.data(from: url).0
         guard let uiImage: UIImage = .init(data: data) else { throw URLError(.badServerResponse) }
 
         cache.setObject(uiImage, forKey: key)
