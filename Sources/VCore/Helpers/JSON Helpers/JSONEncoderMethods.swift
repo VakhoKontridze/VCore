@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - JSON Encoder Methods
 extension JSONEncoder {
-    /// Encodes top-level `Any?` value to `Data`.
+    /// Encodes top-level `Any?` to `Data`.
     ///
     ///     let any: Any? = ...
     ///     let data: Data = try JSONEncoder().encodeAnyToData(any)
@@ -36,7 +36,7 @@ extension JSONEncoder {
         return data
     }
 
-    /// Encodes top-level `Encodable` value to `JSON`.
+    /// Encodes top-level `Encodable` to `JSON`.
     ///
     ///     let object: SomeObject = ...
     ///     let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON(object)
@@ -69,7 +69,7 @@ extension JSONEncoder {
         return json
     }
 
-    /// Encodes top-level `Encodable` value to `JSON` `Array`.
+    /// Encodes top-level `Encodable` to `JSON` `Array`.
     ///
     ///     let objects: [SomeObject] = ...
     ///     let jsonArray: [[String: Any?]] = try JSONEncoder().encodeObjectToJSONArray(objects)
