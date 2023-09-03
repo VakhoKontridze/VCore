@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - JSON Decoder Methods
 extension JSONDecoder {
-    /// Decodes top-level `JSON` from `Data`.
+    /// Decodes `JSON` from `Data`.
     ///
     ///     let data: Data = ...
     ///     let json: [String: Any?] = JSONDecoder.decodeJSONFromData(data)
@@ -36,7 +36,7 @@ extension JSONDecoder {
         return json
     }
 
-    /// Decodes top-level `JSON` `Array` from `Data`.
+    /// Decodes `JSON` `Array` from `Data`.
     ///
     ///     let data: Data = ...
     ///     let jsonArray: [[String: Any?]] = JSONDecoder.decodeJSONArrayFromData(data)
@@ -63,7 +63,7 @@ extension JSONDecoder {
         return jsonArray
     }
 
-    /// Decodes top-level `JSON` from `Decodable`.
+    /// Decodes `Decodable` from `JSON`.
     ///
     ///     let json: [String: Any?] = ...
     ///     let object: SomeObject = JSONDecoder().decodeObjectFromJSON(json)
@@ -94,7 +94,7 @@ extension JSONDecoder {
 
         return object
     }
-    /// Decodes top-level `JSON` `Array` from `Decodable`.
+    /// Decodes `Decodable` from `JSON` `Array`.
     ///
     ///     let jsonArray: [[String: Any?]] = ...
     ///     let object: SomeObject = JSONDecoder().decodeObjectFromJSONArray(jsonArray)
