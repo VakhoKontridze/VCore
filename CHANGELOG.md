@@ -5,6 +5,9 @@
 Services and Managers
 
 - `DeviceOrientationObserver` is added that observes changes in device orientation
+
+Services and Managers - Presentation Host
+
 - Presentation Host now handles keyboard responsiveness by offering `KeyboardResponsivenessStrategy`
 - Presentation Host can now present modals, if `isPresented` is set to `true` during the `@State` initialization
 - `presentationHostGeometryReaderSize` and `presentationHostGeometryReaderSafeAreaInsets` values have been added to Presentation Host's environment for accurately reading modal's size and safe area insets without `UIScreen.main`
@@ -30,6 +33,7 @@ Extensions
 - `View.getSafeAreaInsets(_:)` method is added that retrieves `EdgeInsets` from `View`
 - `View.getInterfaceOrientation(_:)` method is added that retrieves `UIInterfaceOrientation` from `View`
 - `UIApplication.sendResignFirstResponderAction` method is added
+- `Bool.toggled()` method is added that returns `Bool` with a toggled value
 - Several `String` extensions are now exposed to `StringProtocol`
 
 ### [4.11.0(84)](https://github.com/VakhoKontridze/VCore/releases/tag/4.11.0) — *2023 07 17*
