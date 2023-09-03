@@ -10,10 +10,10 @@ import Foundation
 // MARK: - Multipart Form Data Authorized Request Headers
 /// JSON request headers that pass `application/json` as `accept`, `multipart/form-data; boundary=\(boundary)` as `contentType`, and `authorization` as `Bearer \(token)`.
 ///
-/// Can be used in `NetworkClient` with `MultipartFormDataBuilder`.
+/// Can be used in `URLRequest` with `MultipartFormDataBuilder`.
 ///
-///     var request: NetworkRequest = .init(url: ...)
-///     try request.addHeaders(object: MultipartFormDataAuthorizedRequestHeaders(
+///     var request: URLRequest = ...
+///     try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaders(
 ///         boundary: boundary,
 ///         token: "token"
 ///     ))

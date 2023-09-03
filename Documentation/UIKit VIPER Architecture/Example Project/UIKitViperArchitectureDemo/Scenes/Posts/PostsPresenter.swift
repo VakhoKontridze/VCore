@@ -68,6 +68,11 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     
     // MARK: Requests
     private func fetchPosts() {
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            view.presentAlert(parameters: UIAlertParameters(error: URLError(.notConnectedToInternet), completion: nil))
+            return
+        }
+
         tableViewCellParameters = []
         view.reloadPosts()
         
@@ -79,7 +84,10 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
             
             switch result {
             case .success(let postsEntity):
-                tableViewCellParameters = postsEntity.posts?.compactMap { $0 }.compactMap { PostCellViewParameters(post: $0) } ?? []
+                tableViewCellParameters = postsEntity.posts?
+                    .compactMap { $0 }
+                    .compactMap { PostCellViewParameters(post: $0) }
+                    ?? []
                 
                 view.reloadPosts()
                 

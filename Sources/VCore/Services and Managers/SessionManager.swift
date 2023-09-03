@@ -18,12 +18,12 @@ import Foundation
 ///         do {
 ///             let sessionID: Int = await sessionManager.newSessionID
 ///
-///             let request: NetworkRequest = .init(url: "https://httpbin.org/get")
-///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+///             let request: URLRequest = ...
+///             let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
 ///
 ///             guard await sessionManager.sessionIsValid(id: sessionID) else { return }
 ///
-///             print(result)
+///             ...
 ///
 ///         } catch {
 ///             print(error.localizedDescription)
@@ -65,12 +65,12 @@ public actor SessionManager {
 ///         do {
 ///             let sessionID: Int = await GlobalSessionManager.shared.newSessionID
 ///
-///             let request: NetworkRequest = .init(url: "https://httpbin.org/get")
-///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+///             let request: URLRequest = ...
+///             let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
 ///
 ///             guard await GlobalSessionManager.shared.sessionIsValid(id: sessionID) else { return }
 ///
-///             print(result)
+///             ...
 ///
 ///         } catch {
 ///             print(error.localizedDescription)

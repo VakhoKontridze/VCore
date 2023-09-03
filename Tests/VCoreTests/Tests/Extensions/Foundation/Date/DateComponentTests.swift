@@ -12,7 +12,7 @@ import XCTest
 final class DateComponentTests: XCTestCase {
     func testComponent() {
         let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)
-        guard let date: Date = Calendar.current.date(from: dateComponents) else { fatalError() }
+        guard let date: Date = Calendar.current.date(from: dateComponents) else { XCTFail(); return }
         
         XCTAssertEqual(date.component(.year), dateComponents.year)
         XCTAssertEqual(date.component(.month), dateComponents.month)
@@ -21,7 +21,7 @@ final class DateComponentTests: XCTestCase {
     
     func testComponents() {
         let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)
-        guard let date: Date = Calendar.current.date(from: dateComponents) else { fatalError() }
+        guard let date: Date = Calendar.current.date(from: dateComponents) else { XCTFail(); return }
         
         XCTAssertEqual(
             date.components([.year, .month, .day]),

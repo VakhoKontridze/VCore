@@ -10,46 +10,43 @@ import Foundation
 // MARK: - Multipart Form Data Builder
 /// Builder that generates boundary `String` and generated `Data` for network requests.
 ///
-///     do {
-///         let json: [String: Any?] = [
-///             "key": "value"
-///         ]
+///     let json: [String: Any?] = [
+///         "key": "value"
+///     ]
 ///
-///         let files: [String: (some AnyMultipartFormDataFile)?] = [
-///             "profile": MultipartFormDataFile(
+///     let files: [String: (some AnyMultipartFormDataFile)?] = [
+///         "profile": MultipartFormDataFile(
+///             mimeType: "image/jpeg",
+///             data: profileImage?.jpegData(compressionQuality: 0.25)
+///         ),
+///
+///         "gallery": galleryImages?.enumerated().compactMap { (index, image) in
+///             MultipartFormDataFile(
+///                 filename: "IMG_\(index).jpg",
 ///                 mimeType: "image/jpeg",
-///                 data: profileImage?.jpegData(compressionQuality: 0.25)
-///             ),
+///                 data: image?.jpegData(compressionQuality: 0.25)
+///             )
+///         }
+///     ]
 ///
-///             "gallery": galleryImages?.enumerated().compactMap { (index, image) in
-///                 MultipartFormDataFile(
-///                     filename: "IMG_\(index).jpg",
-///                     mimeType: "image/jpeg",
-///                     data: image?.jpegData(compressionQuality: 0.25)
-///                 )
-///             }
-///         ]
+///     let (boundary, httpData): (String, Data) = try MultipartFormDataBuilder().build(
+///         json: json,
+///         files: files
+///     )
 ///
-///         let (boundary, data): (String, Data) = try MultipartFormDataBuilder().build(
-///             json: json,
-///             files: files
-///         )
+///     guard let url: URL = .init(string: "https://somewebsite.com/api/some_endpoint") else { throw URLError(.badURL) }
 ///
-///         var request: NetworkRequest = .init(url: "https://somewebsite.com/api/some_endpoint")
-///         request.method = .POST
-///         try request.addHeaders(object: MultipartFormDataAuthorizedRequestHeaders(
-///             boundary: boundary,
-///             token: "token"
-///         ))
-///         request.addBody(data: data)
+///     var request: URLRequest = .init(url: url)
+///     request.httpMethod = "POST"
+///     try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaders(
+///         boundary: boundary,
+///         token: "token"
+///     ))
+///     request.httpBody = httpData.nonEmpty
 ///
-///         let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+///     let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
 ///
-///         print(result)
-///
-///     } catch {
-///         print(error.localizedDescription)
-///     }
+///     ...
 ///
 public struct MultipartFormDataBuilder {
     // MARK: Properties

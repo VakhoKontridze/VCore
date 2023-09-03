@@ -17,7 +17,7 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 
 Package files are grouped as:
 
-- ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `NetworkClient`.
+- ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `MultiPartFormDataBuilder`.
 
 - ***Views***. Reusable non-scene `View`s, `UIView`s, and `UIViewController`s. For instance `BaseButton`s.
 
@@ -47,71 +47,48 @@ Project includes folder `Documentation`, which contains:
 
 ## Showcase
 
-#### Network Client
-
-`NetworkClient` with customizable requests, responses, and return types:
-
-```swift
-do {
-    var request: NetworkRequest = .init(url: "https://httpbin.org/post")
-    request.method = .POST
-    try request.addHeaders(object: JSONRequestHeaders())
-    try request.addBody(json: ["key": "value"])
-
-    let result: [String: Any?] = try await NetworkClient.default.json(from: request)
-
-    print(result)
-
-} catch {
-    print(error.localizedDescription)
-}
-```
-
 #### Multipart/Form-Data Builder
 
 `MultipartFormDataBuilder` with a `Dictionary`-based file API:
 
 ```swift
-do {
-    let json: [String: Any?] = [
-        "key": "value"
-    ]
+let json: [String: Any?] = [
+    "key": "value"
+]
 
-    let files: [String: (some AnyMultipartFormDataFile)?] = [
-        "profile": MultipartFormDataFile(
+let files: [String: (some AnyMultipartFormDataFile)?] = [
+    "profile": MultipartFormDataFile(
+        mimeType: "image/jpeg",
+        data: profileImage?.jpegData(compressionQuality: 0.25)
+    ),
+
+    "gallery": galleryImages?.enumerated().compactMap { (index, image) in
+        MultipartFormDataFile(
+            filename: "IMG_\(index).jpg",
             mimeType: "image/jpeg",
-            data: profileImage?.jpegData(compressionQuality: 0.25)
-        ),
+            data: image?.jpegData(compressionQuality: 0.25)
+        )
+    }
+]
 
-        "gallery": galleryImages?.enumerated().compactMap { (index, image) in
-            MultipartFormDataFile(
-                filename: "IMG_\(index).jpg",
-                mimeType: "image/jpeg",
-                data: image?.jpegData(compressionQuality: 0.25)
-            )
-        }
-    ]
+let (boundary, httpData): (String, Data) = try MultipartFormDataBuilder().build(
+    json: json,
+    files: files
+)
 
-    let (boundary, data): (String, Data) = try MultipartFormDataBuilder().build(
-        json: json,
-        files: files
-    )
+guard let url: URL = .init(string: "https://somewebsite.com/api/some_endpoint") else { throw URLError(.badURL) }
 
-    var request: NetworkRequest = .init(url: "https://somewebsite.com/api/some_endpoint")
-    request.method = .POST
-    try request.addHeaders(object: MultipartFormDataAuthorizedRequestHeaders(
-        boundary: boundary,
-        token: "token"
-    ))
-    request.addBody(data: data)
+var request: URLRequest = .init(url: url)
+request.httpMethod = "POST"
+try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaders(
+    boundary: boundary,
+    token: "token"
+))
+request.httpBody = httpData.nonEmpty
 
-    let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
 
-    print(result)
-
-} catch {
-    print(error.localizedDescription)
-}
+...
 ```
 
 #### Localization Manager
@@ -271,11 +248,10 @@ private func fetchImage(url: URL) async throws -> Image {
 
     switch cache.object(forKey: key) {
     case nil:
-        var request: NetworkRequest = .init(url: url)
-        try request.addHeaders(object: JSONAuthorizedRequestHeaders(token: "token"))
-
-        let data: Data = try await NetworkClient.default.data(from: request)
-        guard let uiImage: UIImage = .init(data: data) else { throw NetworkClientError.invalidData }
+        var request: URLRequest = ...
+        let data: Data = ...
+        
+        guard let uiImage: UIImage = .init(data: data) else { throw URLError(.badServerResponse) }
 
         cache.setObject(uiImage, forKey: key)
 

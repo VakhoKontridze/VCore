@@ -53,6 +53,11 @@ import VCore
     
     // MARK: Requests
     private func fetchPosts() {
+        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+            alertParameters = AlertParameters(error: URLError(.notConnectedToInternet), completion: nil)
+            return
+        }
+
         postParameters = []
         progressViewParameters = ProgressViewParameters(isInteractionEnabled: false)
         
@@ -63,7 +68,10 @@ import VCore
                 progressViewParameters = nil
                 guard !Task.isCancelled else { return }
                 
-                postParameters = postsEntity.posts?.compactMap { $0 }.compactMap { PostRowViewParameters(post: $0) } ?? []
+                postParameters = postsEntity.posts?
+                    .compactMap { $0 }
+                    .compactMap { PostRowViewParameters(post: $0) }
+                    ?? []
                 
             } catch {
                 progressViewParameters = nil

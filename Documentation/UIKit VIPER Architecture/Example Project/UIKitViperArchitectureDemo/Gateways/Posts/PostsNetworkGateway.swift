@@ -11,24 +11,52 @@ import VCore
 // MARK: - Posts Network Gateway
 struct PostsNetworkGateway: PostsGateway {
     func fetch(completion: @escaping (Result<PostsEntity, any Error>) -> Void) {
-        var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
-        request.method = .GET
-        
-        NetworkClient.default.object(
-            [PostsEntity.Post].self,
-            from: request,
-            completion: { result in
+        let urlString: String = "https://jsonplaceholder.typicode.com/posts"
+        guard let url: URL = .init(string: urlString) else { completion(.failure(URLError(.badURL))); return }
+
+        var request: URLRequest = .init(url: url)
+        request.httpMethod = "GET"
+        do {
+            try request.addHTTPHeaderFields(object: JSONRequestHeaders())
+        } catch {
+            completion(.failure(error))
+            return
+        }
+
+        let dataTask: URLSessionDataTask = URLSession.shared.dataTask(
+            with: request,
+            completionHandler: { (data, response, error) in
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                    switch result {
-                    case .success(let posts):
-                        let entity: PostsEntity = .init(posts: posts)
-                        completion(.success(entity))
-                        
-                    case .failure(let error):
+                    if let error {
                         completion(.failure(error))
+                        return
                     }
+
+                    guard
+                        let data,
+
+                        let response,
+                        response.isSuccessHTTPStatusCode
+                    else {
+                        completion(.failure(URLError(.badServerResponse)))
+                        return
+                    }
+
+                    let posts: [PostsEntity.Post]
+                    do {
+                        posts = try JSONDecoder().decode([PostsEntity.Post].self, from: data)
+                    } catch {
+                        completion(.failure(error))
+                        return
+                    }
+
+                    let entity: PostsEntity = .init(posts: posts)
+
+                    completion(.success(entity))
                 })
             }
         )
+
+        dataTask.resume()
     }
 }

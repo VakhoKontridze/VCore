@@ -42,11 +42,10 @@ import SwiftUI
 ///
 ///         switch cache.object(forKey: key) {
 ///         case nil:
-///             var request: NetworkRequest = .init(url: url)
-///             try request.addHeaders(object: JSONAuthorizedRequestHeaders(token: "token"))
+///             var request: URLRequest = ...
+///             let data: Data = ...
 ///
-///             let data: Data = try await NetworkClient.default.data(from: request)
-///             guard let uiImage: UIImage = .init(data: data) else { throw NetworkClientError.invalidData }
+///             guard let uiImage: UIImage = .init(data: data) else { throw URLError(.badServerResponse) }
 ///
 ///             cache.setObject(uiImage, forKey: key)
 ///

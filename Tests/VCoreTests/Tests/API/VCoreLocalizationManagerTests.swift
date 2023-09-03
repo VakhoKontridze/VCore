@@ -12,28 +12,24 @@ import XCTest
 final class VCoreLocalizationManagerTests: XCTestCase {
     // MARK: Test Data
     private struct TestVCoreLocalizationProvider: VCoreLocalizationProvider {
-        func networkClientErrorDescription(_ networkClientError: NetworkClientError.Code) -> String {
+        func keychainServiceErrorDescription(_ keychainServiceError: VCore.KeychainServiceError.Code) -> String {
             "A"
         }
         
-        func keychainServiceErrorDescription(_ keychainServiceError: VCore.KeychainServiceError.Code) -> String {
+        var alertErrorTitle: String {
             "B"
         }
         
-        var alertErrorTitle: String {
+        var alertOKButtonTitle: String {
             "C"
         }
         
-        var alertOKButtonTitle: String {
-            "D"
-        }
-        
         var resultNoFailureErrorDescription: String {
-            "E"
+            "D"
         }
 
         var responderChainToolBarDoneButtonTitle: String {
-            "F"
+            "E"
         }
     }
     
@@ -45,19 +41,6 @@ final class VCoreLocalizationManagerTests: XCTestCase {
     }
     
     // MARK: Tests
-    func testNetworkErrorDescription() async {
-        do {
-            try await NetworkClient.default.noData(from: NetworkRequest(url: ""))
-            fatalError()
-            
-        } catch {
-            XCTAssertEqual(
-                error.localizedDescription,
-                TestVCoreLocalizationProvider().networkClientErrorDescription(.invalidBody) // Code doesn't matter
-            )
-        }
-    }
-    
     func testKeychainServiceErrorDescription() {
         XCTAssertThrowsError(
             try KeychainService.default.get(key: "N/A"),
@@ -74,7 +57,7 @@ final class VCoreLocalizationManagerTests: XCTestCase {
 #if canImport(UIKit) && !os(watchOS)
     func testAlertErrorTitle() {
         XCTAssertEqual(
-            UIAlertParameters(error: NetworkClientError.notConnectedToNetwork, completion: nil).title,
+            UIAlertParameters(error: URLError(.notConnectedToInternet), completion: nil).title,
             TestVCoreLocalizationProvider().alertErrorTitle
         )
     }

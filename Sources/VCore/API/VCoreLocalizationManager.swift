@@ -36,9 +36,6 @@ public final class VCoreLocalizationManager {
 /// Alternately, consider using `VCoreHumanReadableLocalizationProvider`
 /// that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable `String`s.
 public protocol VCoreLocalizationProvider {
-    /// Localized value for `NetworkClientError`'s description.
-    func networkClientErrorDescription(_ networkClientError: NetworkClientError.Code) -> String
-    
     /// Localized value for `KeychainServiceError`'s description.
     func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.Code) -> String
     
@@ -61,10 +58,6 @@ public protocol VCoreLocalizationProvider {
 public protocol VCoreHumanReadableLocalizationProvider: VCoreLocalizationProvider {}
 
 extension VCoreHumanReadableLocalizationProvider {
-    public func networkClientErrorDescription(_ networkClientError: NetworkClientError.Code) -> String {
-        DefaultVCoreLocalizationProvider().networkClientErrorDescription(networkClientError)
-    }
-    
     public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.Code) -> String {
         DefaultVCoreLocalizationProvider().keychainServiceErrorDescription(keychainServiceError)
     }
@@ -82,21 +75,6 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
     public init() {}
     
     // MARK: VCore Localization Provider
-    public func networkClientErrorDescription(_ networkClientError: NetworkClientError.Code) -> String {
-        switch networkClientError {
-        case .notConnectedToNetwork: return "Not connected to network"
-        case .invalidEndpoint: return "Cannot connect to the server. An incorrect handler is being used."
-        case .invalidPathParameters: return "Data cannot be encoded or is incomplete"
-        case .invalidQueryParameters: return "Data cannot be encoded or is incomplete"
-        case .invalidHeaders: return "Data cannot be encoded or is incomplete"
-        case .invalidBody: return "Data cannot be encoded or is incomplete"
-        case .requestTimedOut: return "Request has timed out"
-        case .returnedWithError: return "Server has encountered an error"
-        case .invalidResponse: return "Server has returned an invalid response"
-        case .invalidData: return "Data cannot be decoded or is incomplete"
-        }
-    }
-    
     public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.Code) -> String {
         switch keychainServiceError {
         case .failedToGet: return "Data cannot be retrieved"

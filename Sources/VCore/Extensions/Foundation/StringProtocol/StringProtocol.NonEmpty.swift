@@ -32,7 +32,7 @@ extension StringProtocol {
 }
 
 extension StringProtocol {
-    /// Returns non-empty version of `String`, or `nil`.
+    /// Returns non-empty `String`, or `nil`.
     ///
     ///     let value1: String? = "".nonEmpty // nil
     ///     let value2: String? = "Lorem Ipsum".nonEmpty // "Lorem Ipsum"
@@ -42,7 +42,7 @@ extension StringProtocol {
         return self
     }
     
-    /// Returns non-empty and non-whitespace version of `String`, or `nil`.
+    /// Returns non-empty and non-whitespace `String`, or `nil`.
     ///
     ///     let value1: String? = "".nonEmptyOrWhiteSpace // nil
     ///     let value2: String? = " ".nonEmptyOrWhiteSpace // nil
@@ -53,7 +53,7 @@ extension StringProtocol {
         return self
     }
     
-    /// Returns non-empty, non-whitespace, and non-newline version of `String`, or `nil`.
+    /// Returns non-empty, non-whitespace, and non-newline `String`, or `nil`.
     ///
     ///     let value1: String? = "".nonEmptyWhiteSpaceOrNewLines // nil
     ///     let value2: String? = " ".nonEmptyWhiteSpaceOrNewLines // nil

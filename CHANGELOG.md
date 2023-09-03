@@ -6,6 +6,10 @@ Services and Managers
 
 - `DeviceOrientationObserver` is added that observes changes in device orientation
 
+Services and Managers - Network Client
+
+- `NetworkClient` is removed
+
 Services and Managers - Presentation Host
 
 - Presentation Host now handles keyboard responsiveness by offering `KeyboardResponsivenessStrategy`
@@ -53,6 +57,9 @@ Extensions
 - `UIApplication.sendResignFirstResponderAction` method is added
 - `Bool.toggled()` method is added that returns `Bool` with a toggled value
 - Several `String` extensions are now exposed to `StringProtocol`
+- `Data.nonEmpty` property is added, that returns non-empty `Data`, or `nil`
+- `URLRequest.addHTTPHeaderFields(_:)`, `URLRequest.addHTTPHeaderFields(json:)`, and `URLRequest.addHTTPHeaderFields(object:)` methods are added, that add values to header fields
+- `URL.init(string:pathParameters:queryParameters:)` method is added, that initializes `URL` with `String`, path parameters, and query parameters
 
 ### [4.11.0(84)](https://github.com/VakhoKontridze/VCore/releases/tag/4.11.0) — *2023 07 17*
 

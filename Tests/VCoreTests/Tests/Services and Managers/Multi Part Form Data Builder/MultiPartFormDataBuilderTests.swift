@@ -29,14 +29,12 @@ final class MultipartFormDataBuilderTests: XCTestCase {
         }
         
 #if canImport(UIKit)
-        
         let profileImage: UIImage? = .init(size: CGSize(dimension: 100), color: .red)
         
         let galleryImages: [UIImage?]? = [
             .init(size: CGSize(dimension: 100), color: .green),
             .init(size: CGSize(dimension: 100), color: .blue)
         ]
-        
 #endif
         
         do {
@@ -45,7 +43,6 @@ final class MultipartFormDataBuilderTests: XCTestCase {
             )
             
 #if canImport(UIKit)
-            
             let files: [String: (some AnyMultipartFormDataFile)?] = [
                 "profile": MultipartFormDataFile(
                     mimeType: "image/jpeg",
@@ -60,27 +57,28 @@ final class MultipartFormDataBuilderTests: XCTestCase {
                     )
                 }
             ]
-            
 #else
-            
             let files: [String: (any AnyMultipartFormDataFile)?] = [:]
-            
 #endif
             
-            let (boundary, data): (String, Data) = try MultipartFormDataBuilder().build(
+            let (boundary, httpData): (String, Data) = try MultipartFormDataBuilder().build(
                 object: jsonObject,
                 files: files
             )
-            
-            var request: NetworkRequest = .init(url: "https://httpbin.org/post")
-            request.method = .POST
-            try request.addHeaders(object: MultipartFormDataAuthorizedRequestHeaders(
+
+            let url: URL = .init(string: "https://httpbin.org/post")! // Force-unwrap
+
+            var request: URLRequest = .init(url: url)
+            request.httpMethod = "POST"
+            try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaders(
                 boundary: boundary,
                 token: "token"
             ))
-            request.addBody(data: data)
-            
-            let result: [String: Any?] = try await NetworkClient.default.json(from: request)
+            request.httpBody = httpData.nonEmpty
+
+            let data: Data = try await URLSession.shared.data(for: request).0
+
+            let result: [String: Any?] = try JSONDecoder().decodeJSONFromData(data)
             
             XCTAssertEqual(
                 result["form"]?.toUnwrappedJSON["key"]?.toString,
@@ -88,7 +86,6 @@ final class MultipartFormDataBuilderTests: XCTestCase {
             )
             
 #if canImport(UIKit)
-            
             XCTAssertEqual(
                 result["files"]?.toUnwrappedJSON["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
                 profileImage?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
@@ -103,7 +100,6 @@ final class MultipartFormDataBuilderTests: XCTestCase {
                 result["files"]?.toUnwrappedJSON["gallery[1]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
                 galleryImages?[1]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
             )
-            
 #endif
             
         } catch {
