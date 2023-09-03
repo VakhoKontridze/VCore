@@ -159,9 +159,8 @@ extension KeychainStorage {
             let value: T = try JSONDecoder().decode(T.self, from: data)
             return value
             
-        } catch let _error {
-            let error: KeychainServiceError = .init(.failedToGet)
-            VCoreLogError(error, _error)
+        } catch let error {
+            VCoreLogError(error)
             return defaultValue
         }
     }
@@ -176,9 +175,8 @@ extension KeychainStorage {
         do {
             keychainService[key] = try JSONEncoder().encode(value)
             
-        } catch let _error {
-            let error: KeychainServiceError = .init(.failedToSet)
-            VCoreLogError(error, _error)
+        } catch let error {
+            VCoreLogError(error)
         }
     }
 }

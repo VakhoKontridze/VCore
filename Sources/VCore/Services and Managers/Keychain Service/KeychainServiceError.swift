@@ -17,10 +17,9 @@ public struct KeychainServiceError: VCoreError, Equatable {
     public var code: Int { _code.rawValue }
     public var description: String {
         switch _code {
-        case .failedToGet: return "Data cannot be retrieved"
-        case .failedToSet: return "Data cannot be set"
-        case .failedToDelete: return "Data cannot be deleted"
-        case .failedToCast: return "Data cannot be retrieved"
+        case .failedToGet: return "Data cannot be retrieved from Security framework"
+        case .failedToSet: return "Data cannot be set from Security framework"
+        case .failedToDelete: return "Data cannot be deleted from Security framework"
         }
     }
     
@@ -49,9 +48,6 @@ public struct KeychainServiceError: VCoreError, Equatable {
         
         /// Indicates that delete operation has failed.
         case failedToDelete
-        
-        /// Indicates that type cannot be casted to another type.
-        case failedToCast
     }
     
     // MARK: Equatable
