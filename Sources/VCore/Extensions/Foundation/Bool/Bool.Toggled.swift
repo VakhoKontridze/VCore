@@ -9,9 +9,16 @@ import Foundation
 
 // MARK: - Bool Toggled
 extension Bool {
-    /// Returns `Boolean` with toggled value.
+    /// Returns `Boolean` with a toggled value.
     ///
     ///     let value: Bool = true.toggled() // false
+    ///
+    /// Can be useful when dealing with `Optional` values.
+    ///
+    ///     let value: Bool? = ...
+    ///
+    ///     let value1: Bool? = value.map { !$0 }
+    ///     let value2: Bool? = value?.toggled()
     ///
     public func toggled() -> Bool {
         !self
