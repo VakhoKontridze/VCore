@@ -19,7 +19,7 @@ final class NetworkRequestMethodTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts/1")
             request.method = .GET
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             
             let json: [String: Any?] = try await NetworkClient.default.json(from: request)
             
@@ -39,7 +39,7 @@ final class NetworkRequestMethodTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
             request.method = .POST
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             try request.addBody(json: ["key": "value"])
             
             let json: [String: Any?] = try await NetworkClient.default.json(from: request)
@@ -60,7 +60,7 @@ final class NetworkRequestMethodTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/put")
             request.method = .PUT
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             try request.addBody(json: ["key": "value"])
             
             let json: [String: Any?] = try await NetworkClient.default.json(from: request)
@@ -81,7 +81,7 @@ final class NetworkRequestMethodTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/patch")
             request.method = .PATCH
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             try request.addBody(json: ["key": "value"])
             
             let json: [String: Any?] = try await NetworkClient.default.json(from: request)
@@ -102,7 +102,7 @@ final class NetworkRequestMethodTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/delete")
             request.method = .DELETE
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             try request.addBody(json: ["key": "value"])
             
             let json: [String: Any?] = try await NetworkClient.default.json(from: request)

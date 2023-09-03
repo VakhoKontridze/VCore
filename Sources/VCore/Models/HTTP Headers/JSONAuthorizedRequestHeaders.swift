@@ -13,7 +13,7 @@ import Foundation
 /// Can be used in `NetworkClient`.
 ///
 ///     var request: NetworkRequest = .init(url: ...)
-///     try request.addHeaders(encodable: JSONAuthorizedRequestHeaders(
+///     try request.addHeaders(object: JSONAuthorizedRequestHeaders(
 ///         token: "token"
 ///     ))
 ///

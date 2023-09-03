@@ -16,32 +16,24 @@ final class VCoreLocalizationManagerTests: XCTestCase {
             "A"
         }
         
-        func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError.Code) -> String {
+        func keychainServiceErrorDescription(_ keychainServiceError: VCore.KeychainServiceError.Code) -> String {
             "B"
         }
         
-        func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError.Code) -> String {
+        var alertErrorTitle: String {
             "C"
         }
         
-        func keychainServiceErrorDescription(_ keychainServiceError: VCore.KeychainServiceError.Code) -> String {
+        var alertOKButtonTitle: String {
             "D"
         }
         
-        var alertErrorTitle: String {
-            "E"
-        }
-        
-        var alertOKButtonTitle: String {
-            "F"
-        }
-        
         var resultNoFailureErrorDescription: String {
-            "G"
+            "E"
         }
 
         var responderChainToolBarDoneButtonTitle: String {
-            "H"
+            "F"
         }
     }
     
@@ -64,32 +56,6 @@ final class VCoreLocalizationManagerTests: XCTestCase {
                 TestVCoreLocalizationProvider().networkClientErrorDescription(.invalidBody) // Code doesn't matter
             )
         }
-    }
-    
-    func testJSONEncoderErrorDescription() {
-        XCTAssertThrowsError(
-            try JSONEncoderService().data(any: nil),
-            "",
-            { error in
-                XCTAssertEqual(
-                    error.localizedDescription,
-                    TestVCoreLocalizationProvider().jsonEncoderErrorDescription(.failedToEncode) // Code doesn't matter
-                )
-            }
-        )
-    }
-    
-    func testJSONDecoderErrorDescription() {
-        XCTAssertThrowsError(
-            try JSONDecoderService().json(data: Data()),
-            "",
-            { error in
-                XCTAssertEqual(
-                    error.localizedDescription,
-                    TestVCoreLocalizationProvider().jsonDecoderErrorDescription(.failedToDecode) // Code doesn't matter
-                )
-            }
-        )
     }
     
     func testKeychainServiceErrorDescription() {

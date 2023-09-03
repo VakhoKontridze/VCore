@@ -33,34 +33,44 @@ extension NetworkClient {
     /// Makes network request and returns `JSON`.
     public func json(
         from request: NetworkRequest,
-        decodingOptions: JSONSerialization.ReadingOptions = []
+        optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) async throws -> [String: Any?] {
         try await makeRequest( // Logged internally
             request: request,
-            decode: { try JSONDecoderService().json(data: $0, options: decodingOptions) }
+            decode: {
+                try JSONDecoder().decodeJSONFromData(
+                    $0,
+                    optionsDataToJSONObject: optionsDataToJSONObject
+                )
+            }
         )
     }
     
     /// Makes network request and returns `JSON` `Array`.
     public func jsonArray(
         from request: NetworkRequest,
-        decodingOptions: JSONSerialization.ReadingOptions = []
+        optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) async throws -> [[String: Any?]] {
         try await makeRequest( // Logged internally
             request: request,
-            decode: { try JSONDecoderService().jsonArray(data: $0, options: decodingOptions) }
+            decode: {
+                try JSONDecoder().decodeJSONArrayFromData(
+                    $0,
+                    optionsDataToJSONObject: optionsDataToJSONObject
+                )
+            }
         )
     }
     
     /// Makes network request and returns `Decodable`.
-    public func decodable<T>(
+    public func object<T>(
         from request: NetworkRequest
     ) async throws -> T
         where T: Decodable
     {
         try await makeRequest( // Logged internally
             request: request,
-            decode: { try JSONDecoderService().decodable(data: $0) }
+            decode: { try JSONDecoder().decode(T.self, from: $0) }
         )
     }
     

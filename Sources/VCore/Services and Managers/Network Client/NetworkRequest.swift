@@ -14,7 +14,7 @@ import Foundation
 ///         do {
 ///             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
 ///             request.method = .POST
-///             try request.addHeaders(encodable: JSONRequestHeaders())
+///             try request.addHeaders(object: JSONRequestHeaders())
 ///             try request.addBody(json: ["key": "value"])
 ///
 ///             let result: [String: Any?] = try await NetworkClient.default.json(from: request)
@@ -85,12 +85,17 @@ public struct NetworkRequest {
     
     /// Adds `Encodable` to query parameters.
     mutating public func addQueryParameters(
-        encodable: some Encodable,
-        optionsDataToJSON: JSONSerialization.ReadingOptions = []
+        object: some Encodable,
+        optionsDataToJSONObject: JSONSerialization.ReadingOptions = [],
+        decoderDataToJSON: JSONDecoder = .init()
     ) throws {
         let json: [String: Any?]
         do {
-            json = try JSONEncoderService().json(encodable: encodable, optionsDataToJSON: optionsDataToJSON)
+            json = try JSONEncoder().encodeObjectToJSON(
+                object,
+                optionsDataToJSONObject: optionsDataToJSONObject,
+                decoderDataToJSON: decoderDataToJSON
+            )
             
         } catch /*let _error*/ { // Logged internally
             let error: NetworkClientError = .init(.invalidQueryParameters)
@@ -121,12 +126,17 @@ public struct NetworkRequest {
     
     /// Adds `Encodable` to headers.
     mutating public func addHeaders(
-        encodable: some Encodable,
-        optionsDataToJSON: JSONSerialization.ReadingOptions = []
+        object: some Encodable,
+        optionsDataToJSONObject: JSONSerialization.ReadingOptions = [],
+        decoderDataToJSON: JSONDecoder = .init()
     ) throws {
         let json: [String: Any?]
         do {
-            json = try JSONEncoderService().json(encodable: encodable, optionsDataToJSON: optionsDataToJSON)
+            json = try JSONEncoder().encodeObjectToJSON(
+                object,
+                optionsDataToJSONObject: optionsDataToJSONObject,
+                decoderDataToJSON: decoderDataToJSON
+            )
             
         } catch /*let _error*/ { // Logged internally
             let error: NetworkClientError = .init(.invalidHeaders)
@@ -148,10 +158,13 @@ public struct NetworkRequest {
     /// Adds `JSON` to headers.
     mutating public func addBody(
         json: [String: Any?],
-        options: JSONSerialization.WritingOptions = []
+        optionsAnyToData: JSONSerialization.WritingOptions = []
     ) throws {
         do {
-            try body.append(JSONEncoderService().data(any: json, options: options))
+            try body.append(JSONEncoder().encodeAnyToData(
+                json,
+                optionsAnyToData: optionsAnyToData
+            ))
             
         } catch /*let _error*/ { // Logged internally
             let error: NetworkClientError = .init(.invalidBody)
@@ -162,14 +175,14 @@ public struct NetworkRequest {
     
     /// Adds `Encodable` to headers.
     mutating public func addBody(
-        encodable: some Encodable
+        object: some Encodable
     ) throws {
         do {
-            try body.append(JSONEncoderService().data(encodable: encodable))
+            try body.append(JSONEncoder().encode(object))
             
-        } catch /*let _error*/ { // Logged internally
+        } catch let _error {
             let error: NetworkClientError = .init(.invalidBody)
-            VCoreLogError(error)
+            VCoreLogError(error, _error)
             throw error
         }
     }

@@ -14,7 +14,7 @@ struct PostsNetworkGateway: PostsGateway {
         var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
         request.method = .GET
         
-        NetworkClient.default.decodable(
+        NetworkClient.default.object(
             [PostsEntity.Post].self,
             from: request,
             completion: { result in

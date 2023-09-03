@@ -38,7 +38,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
             request.method = .POST
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             try request.addBody(json: ["key": "value"])
             
             NetworkClient.default.noData(from: request, completion: { result in
@@ -70,13 +70,13 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
             request.method = .POST
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             try request.addBody(json: ["key": "value"])
             
             NetworkClient.default.data(from: request, completion: { result in
                 switch result {
                 case .success(let data):
-                    let json: [String: Any?] = try! JSONDecoderService().json(data: data) // Force-unwrap
+                    let json: [String: Any?] = try! JSONDecoder().decodeJSONFromData(data) // Force-unwrap
                     XCTAssertEqual(json["json"]?.toUnwrappedJSON["key"]?.toString, "value")
                     
                     expectation.fulfill()
@@ -103,7 +103,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
             request.method = .POST
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             try request.addBody(json: ["key": "value"])
             
             NetworkClient.default.json(from: request, completion: { result in
@@ -135,7 +135,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
             request.method = .GET
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             
             NetworkClient.default.jsonArray(from: request, completion: { result in
                 switch result {
@@ -154,7 +154,7 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         }
     }
     
-    func testDataTaskDecodableCompletion() {
+    func testDataTaskObjectCompletion() {
         guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
             print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
             return
@@ -166,9 +166,9 @@ final class NetworkClientDataTasksCompletionTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://jsonplaceholder.typicode.com/posts")
             request.method = .GET
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             
-            NetworkClient.default.decodable([Post].self, from: request, completion: { result in
+            NetworkClient.default.object([Post].self, from: request, completion: { result in
                 switch result {
                 case .success(let posts):
                     XCTAssertEqual(posts.first?.id, 1)

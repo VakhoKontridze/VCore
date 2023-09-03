@@ -40,7 +40,7 @@ final class MultipartFormDataBuilderTests: XCTestCase {
 #endif
         
         do {
-            let json: JSONPart = .init(
+            let jsonObject: JSONPart = .init(
                 key: "value"
             )
             
@@ -68,13 +68,13 @@ final class MultipartFormDataBuilderTests: XCTestCase {
 #endif
             
             let (boundary, data): (String, Data) = try MultipartFormDataBuilder().build(
-                encodable: json,
+                object: jsonObject,
                 files: files
             )
             
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
             request.method = .POST
-            try request.addHeaders(encodable: MultipartFormDataAuthorizedRequestHeaders(
+            try request.addHeaders(object: MultipartFormDataAuthorizedRequestHeaders(
                 boundary: boundary,
                 token: "token"
             ))

@@ -43,7 +43,7 @@ import SwiftUI
 ///         switch cache.object(forKey: key) {
 ///         case nil:
 ///             var request: NetworkRequest = .init(url: url)
-///             try request.addHeaders(encodable: JSONAuthorizedRequestHeaders(token: "token"))
+///             try request.addHeaders(object: JSONAuthorizedRequestHeaders(token: "token"))
 ///
 ///             let data: Data = try await NetworkClient.default.data(from: request)
 ///             guard let uiImage: UIImage = .init(data: data) else { throw NetworkClientError.invalidData }

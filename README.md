@@ -55,7 +55,7 @@ Project includes folder `Documentation`, which contains:
 do {
     var request: NetworkRequest = .init(url: "https://httpbin.org/post")
     request.method = .POST
-    try request.addHeaders(encodable: JSONRequestHeaders())
+    try request.addHeaders(object: JSONRequestHeaders())
     try request.addBody(json: ["key": "value"])
 
     let result: [String: Any?] = try await NetworkClient.default.json(from: request)
@@ -99,7 +99,7 @@ do {
 
     var request: NetworkRequest = .init(url: "https://somewebsite.com/api/some_endpoint")
     request.method = .POST
-    try request.addHeaders(encodable: MultipartFormDataAuthorizedRequestHeaders(
+    try request.addHeaders(object: MultipartFormDataAuthorizedRequestHeaders(
         boundary: boundary,
         token: "token"
     ))
@@ -272,7 +272,7 @@ private func fetchImage(url: URL) async throws -> Image {
     switch cache.object(forKey: key) {
     case nil:
         var request: NetworkRequest = .init(url: url)
-        try request.addHeaders(encodable: JSONAuthorizedRequestHeaders(token: "token"))
+        try request.addHeaders(object: JSONAuthorizedRequestHeaders(token: "token"))
 
         let data: Data = try await NetworkClient.default.data(from: request)
         guard let uiImage: UIImage = .init(data: data) else { throw NetworkClientError.invalidData }

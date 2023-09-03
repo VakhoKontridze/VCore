@@ -15,7 +15,7 @@ import Foundation
 ///     do {
 ///         var request: NetworkRequest = .init(url: "https://httpbin.org/post")
 ///         request.method = .POST
-///         try request.addHeaders(encodable: JSONRequestHeaders())
+///         try request.addHeaders(object: JSONRequestHeaders())
 ///         try request.addBody(json: ["key": "value"])
 ///
 ///         let result: [String: Any?] = try await NetworkClient.default.json(from: request)

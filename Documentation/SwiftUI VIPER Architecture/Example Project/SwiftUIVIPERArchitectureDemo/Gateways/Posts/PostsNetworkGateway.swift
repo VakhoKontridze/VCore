@@ -16,7 +16,7 @@ struct PostsNetworkGateway: PostsGateway {
         
         try? await Task.sleep(seconds: 1)
         
-        let posts: [PostsEntity.Post] = try await NetworkClient.default.decodable(from: request)
+        let posts: [PostsEntity.Post] = try await NetworkClient.default.object(from: request)
         let entity: PostsEntity = .init(posts: posts)
         
         return entity

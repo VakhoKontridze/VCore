@@ -39,13 +39,7 @@ public protocol VCoreLocalizationProvider {
     /// Localized value for `NetworkClientError`'s description.
     func networkClientErrorDescription(_ networkClientError: NetworkClientError.Code) -> String
     
-    /// Localized value for `JSONEncoderError`'s description.
-    func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError.Code) -> String
-    
-    /// Localized value for `JSONDecoderError`'s description.
-    func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError.Code) -> String
-    
-    /// Localized value for `JSONDecoderError`'s description.
+    /// Localized value for `KeychainServiceError`'s description.
     func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.Code) -> String
     
     /// Localized value for error title in alerts.
@@ -69,14 +63,6 @@ public protocol VCoreHumanReadableLocalizationProvider: VCoreLocalizationProvide
 extension VCoreHumanReadableLocalizationProvider {
     public func networkClientErrorDescription(_ networkClientError: NetworkClientError.Code) -> String {
         DefaultVCoreLocalizationProvider().networkClientErrorDescription(networkClientError)
-    }
-    
-    public func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError.Code) -> String {
-        DefaultVCoreLocalizationProvider().jsonEncoderErrorDescription(jsonEncoderError)
-    }
-    
-    public func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError.Code) -> String {
-        DefaultVCoreLocalizationProvider().jsonDecoderErrorDescription(jsonDecoderError)
     }
     
     public func keychainServiceErrorDescription(_ keychainServiceError: KeychainServiceError.Code) -> String {
@@ -108,22 +94,6 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
         case .returnedWithError: return "Server has encountered an error"
         case .invalidResponse: return "Server has returned an invalid response"
         case .invalidData: return "Data cannot be decoded or is incomplete"
-        }
-    }
-    
-    public func jsonEncoderErrorDescription(_ jsonEncoderError: JSONEncoderError.Code) -> String {
-        switch jsonEncoderError {
-        case .failedToEncode: return "Data cannot be encoded or is incomplete"
-        case .failedToDecode: return "Data cannot be decoded or is incomplete"
-        case .failedToCast: return "Data cannot be encoded or is incomplete"
-        }
-    }
-    
-    public func jsonDecoderErrorDescription(_ jsonDecoderError: JSONDecoderError.Code) -> String {
-        switch jsonDecoderError {
-        case .failedToDecode: return "Data cannot be decoded or is incomplete"
-        case .failedToEncode: return "Data cannot be encoded or is incomplete"
-        case .failedToCast: return "Data cannot be decoded or is incomplete"
         }
     }
     

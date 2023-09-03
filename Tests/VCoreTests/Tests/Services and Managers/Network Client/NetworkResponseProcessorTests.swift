@@ -25,7 +25,7 @@ final class NetworkResponseProcessorTests: XCTestCase {
             headerFields: nil
         )!
         
-        let data: Data = try! JSONEncoderService().data(any: [ // Force-unwrap
+        let data: Data = try! JSONEncoder().encodeAnyToData([ // Force-unwrap
             "success": false,
             "code": code,
             "message": message
@@ -52,7 +52,7 @@ final class NetworkResponseProcessorTests: XCTestCase {
         do {
             var request: NetworkRequest = .init(url: "https://httpbin.org/post")
             request.method = .POST
-            try request.addHeaders(encodable: JSONRequestHeaders())
+            try request.addHeaders(object: JSONRequestHeaders())
             try request.addBody(json: ["key": "value"])
             
             let json: [String: Any?] = try await networkClient.json(from: request)
@@ -69,7 +69,7 @@ private struct TestNetworkResponseProcessor: NetworkResponseProcessor {
     func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
         if response.isSuccessHTTPStatusCode { return response }
         
-        guard let json: [String: Any?] = try? JSONDecoderService().json(data: data) else { return response }
+        guard let json: [String: Any?] = try? JSONDecoder().decodeJSONFromData(data) else { return response }
         if json["success"]?.toBool == true { return response }
         
         guard
@@ -84,9 +84,9 @@ private struct TestNetworkResponseProcessor: NetworkResponseProcessor {
     
     func data(_ data: Data, _ response: URLResponse) throws -> Data {
         guard
-            let json: [String: Any?] = try? JSONDecoderService().json(data: data),
+            let json: [String: Any?] = try? JSONDecoder().decodeJSONFromData(data),
             let dataJSON: [String: Any?] = json["json"]?.toJSON,
-            let dataData: Data = try? JSONEncoderService().data(any: dataJSON)
+            let dataData: Data = try? JSONEncoder().encodeAnyToData(dataJSON)
         else {
             throw TestNetworkError(code: 1, description: "Incomplete Data")
         }

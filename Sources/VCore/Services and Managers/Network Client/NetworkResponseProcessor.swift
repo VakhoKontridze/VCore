@@ -48,7 +48,7 @@ import Foundation
 ///         func response(_ data: Data, _ response: URLResponse) throws -> URLResponse {
 ///             if response.isSuccessHTTPStatusCode { return response }
 ///
-///             guard let json: [String: Any?] = try? JSONDecoderService().json(data: data) else { return response }
+///             guard let json: [String: Any?] = try? JSONDecoder().decodeJSONFromData(data) else { return response }
 ///             if json["success"]?.toBool == true { return response }
 ///
 ///             guard
@@ -63,9 +63,9 @@ import Foundation
 ///
 ///         func data(_ data: Data, _ response: URLResponse) throws -> Data {
 ///             guard
-///                 let json: [String: Any?] = try? JSONDecoderService().json(data: data),
+///                 let json: [String: Any?] = try? JSONDecoder().decodeJSONFromData(data),
 ///                 let dataJSON: [String: Any?] = json["data"]?.toJSON,
-///                 let dataData: Data = try? JSONEncoderService().data(encodable: dataJSON)
+///                 let dataData: Data = try? JSONEncoder().encodeAnyToData(dataJSON)
 ///             else {
 ///                 throw NetworkClientError.invalidData
 ///             }

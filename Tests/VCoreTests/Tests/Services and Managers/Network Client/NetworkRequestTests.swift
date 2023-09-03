@@ -87,7 +87,7 @@ final class NetworkRequestTests: XCTestCase {
     func testQueryParametersEncodable() {
         do {
             var request: NetworkRequest = .init(url: url)
-            try request.addQueryParameters(encodable: QueryParameters(key: "value"))
+            try request.addQueryParameters(object: QueryParameters(key: "value"))
             
             XCTAssertEqual(request.queryParameters["key"], "value")
             
@@ -116,7 +116,7 @@ final class NetworkRequestTests: XCTestCase {
     func testHeadersEncodable() {
         do {
             var request: NetworkRequest = .init(url: url)
-            try request.addHeaders(encodable: Headers(key: "value"))
+            try request.addHeaders(object: Headers(key: "value"))
             
             XCTAssertEqual(request.headers["key"], "value")
             
@@ -162,7 +162,7 @@ final class NetworkRequestTests: XCTestCase {
             try request.addBody(json: ["key": "value"])
             
             XCTAssertEqual(
-                try JSONDecoderService().json(data: request.body)["key"]?.toString,
+                try JSONDecoder().decodeJSONFromData(request.body)["key"]?.toString,
                 "value"
             )
             
@@ -174,9 +174,9 @@ final class NetworkRequestTests: XCTestCase {
     func testBodyEncodable() {
         do {
             var request: NetworkRequest = .init(url: url)
-            try request.addBody(encodable: Body(key: "value"))
+            try request.addBody(object: Body(key: "value"))
             
-            let body: Body = try JSONDecoderService().decodable(data: request.body)
+            let body: Body = try JSONDecoder().decode(Body.self, from: request.body)
             XCTAssertEqual(
                 body.key,
                 "value"

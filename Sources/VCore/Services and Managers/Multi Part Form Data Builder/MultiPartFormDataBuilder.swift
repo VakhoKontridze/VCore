@@ -37,7 +37,7 @@ import Foundation
 ///
 ///         var request: NetworkRequest = .init(url: "https://somewebsite.com/api/some_endpoint")
 ///         request.method = .POST
-///         try request.addHeaders(encodable: MultipartFormDataAuthorizedRequestHeaders(
+///         try request.addHeaders(object: MultipartFormDataAuthorizedRequestHeaders(
 ///             boundary: boundary,
 ///             token: "token"
 ///         ))
@@ -88,28 +88,30 @@ public struct MultipartFormDataBuilder {
     public func build(
         data: Data,
         files: [String: (some AnyMultipartFormDataFile)?],
-        optionsDataToJSON: JSONSerialization.ReadingOptions = []
+        optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
-        let json: [String: Any?] = try JSONDecoderService().json( // Logged internally
-            data: data,
-            options: optionsDataToJSON
+        let json: [String: Any?] = try JSONDecoder().decodeJSONFromData( // Logged internally
+            data,
+            optionsDataToJSONObject: optionsDataToJSONObject
         )
         
-        return try build(json: json, files: files)
+        return try build(json: json, files: files) // Logged internally
     }
     
     /// Builds and returns boundary `String` and `Data` that can be sent over network.
     public func build(
-        encodable: some Encodable,
+        object: some Encodable,
         files: [String: (some AnyMultipartFormDataFile)?],
-        optionsDataToJSON: JSONSerialization.ReadingOptions = []
+        optionsDataToJSONObject: JSONSerialization.ReadingOptions = [],
+        decoderDataToJSON: JSONDecoder = .init()
     ) throws -> (boundary: String, data: Data) {
-        let json: [String: Any?] = try JSONEncoderService().json( // Logged internally
-            encodable: encodable,
-            optionsDataToJSON: optionsDataToJSON
+        let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON( // Logged internally
+            object,
+            optionsDataToJSONObject: optionsDataToJSONObject,
+            decoderDataToJSON: decoderDataToJSON
         )
         
-        return try build(json: json, files: files)
+        return try build(json: json, files: files) // Logged internally
     }
 }
 
@@ -117,8 +119,8 @@ public struct MultipartFormDataBuilder {
 extension Data {
     mutating func appendString(_ string: String) throws {
         guard let data: Data = string.data(using: .utf8) else {
-            let error: JSONEncoderError = .init(.failedToEncode)
-            VCoreLogError(error, "Failed to encode `String` \"\(string)\" as `Data`")
+            let error: CastingError = .init(from: "String", to: "Data")
+            VCoreLogError(error)
             throw error
         }
         

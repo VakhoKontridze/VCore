@@ -48,12 +48,17 @@ extension NetworkClient {
     public func json(
         from request: NetworkRequest,
         queue: DispatchQueue = .main,
-        decodingOptions: JSONSerialization.ReadingOptions = [],
+        optionsDataToJSONObject: JSONSerialization.ReadingOptions = [],
         completion: @escaping ( Result<[String: Any?], any Error>) -> Void
     ) {
         makeRequest(
             request: request,
-            decode: { try JSONDecoderService().json(data: $0, options: decodingOptions) },
+            decode: {
+                try JSONDecoder().decodeJSONFromData(
+                    $0,
+                    optionsDataToJSONObject: optionsDataToJSONObject
+                )
+            },
             completion: { result in queue.async(execute: { completion(result) }) } // Logged internally
         )
     }
@@ -62,18 +67,23 @@ extension NetworkClient {
     public func jsonArray(
         from request: NetworkRequest,
         queue: DispatchQueue = .main,
-        decodingOptions: JSONSerialization.ReadingOptions = [],
+        optionsDataToJSONObject: JSONSerialization.ReadingOptions = [],
         completion: @escaping (Result<[[String: Any?]], any Error>) -> Void
     ) {
         makeRequest(
             request: request,
-            decode: { try JSONDecoderService().jsonArray(data: $0, options: decodingOptions) },
+            decode: {
+                try JSONDecoder().decodeJSONArrayFromData(
+                    $0,
+                    optionsDataToJSONObject: optionsDataToJSONObject
+                )
+            },
             completion: { result in queue.async(execute: { completion(result) }) } // Logged internally
         )
     }
     
     /// Makes network request and calls completion handler with a result of `Decodable` or `Error`.
-    public func decodable<T>(
+    public func object<T>(
         _ type: T.Type,
         from request: NetworkRequest,
         queue: DispatchQueue = .main,
@@ -83,7 +93,7 @@ extension NetworkClient {
     {
         makeRequest(
             request: request,
-            decode: { try JSONDecoderService().decodable(data: $0) },
+            decode: { try JSONDecoder().decode(T.self, from: $0) },
             completion: { result in queue.async(execute: { completion(result) }) } // Logged internally
         )
     }

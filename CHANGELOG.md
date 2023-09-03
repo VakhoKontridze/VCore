@@ -12,6 +12,23 @@ Services and Managers - Presentation Host
 - Presentation Host can now present modals, if `isPresented` is set to `true` during the `@State` initialization
 - `presentationHostGeometryReaderSize` and `presentationHostGeometryReaderSafeAreaInsets` values have been added to Presentation Host's environment for accurately reading modal's size and safe area insets without `UIScreen.main`
 
+Services and Managers - JSON Encoder Service
+
+- `JSONEncoderService` is removed, and is replaced with extensions methods for `JSONEncoder`
+- `JSONDecoderService.data(any:options:)` is replaced with `JSONEncoder.encodeAnyToData(_:optionsAnyToData:)`
+- `JSONDecoderService.data(data:encodable:)` is removed
+- `JSONDecoderService.json(encodable:optionsDataToJSON:)` is replaced with `JSONEncoder.encodeObjectToJSON(_:optionsDataToJSONObject:decoderDataToJSON:)`
+- `JSONDecoderService.jsonArray(encodable:optionsDataToJSON:)` is replaced with `JSONEncoder.encodeObjectToJSONArray(_:optionsDataToJSONObject:decoderDataToJSONArray:)`
+
+Services and Managers - JSON Decoder Service
+
+- `JSONDecoderService` is removed, and is replaced with extensions methods for `JSONDecoder`
+- `JSONDecoderService.json(data:options:)` is replaced with `JSONDecoder.decodeJSONFromData(_:optionsDataToJSONObject:)`
+- `JSONDecoderService.jsonArray(data:options:)` is replaced with `JSONDecoder.decodeJSONArrayFromData(_:optionsDataToJSONObject:)`
+- `JSONDecoderService.decodable(data)` is removed
+- `JSONDecoderService.decodable(json:options:)` is replaced with `JSONDecoder.decodeObjectFromJSON(_:optionsJSONToData:)`
+- `JSONDecoderService.decodable(jsonArray:options:)` is replaced with `JSONDecoder.decodeObjectFromJSONArray(_:optionsJSONArrayToData:)`
+
 Views
 
 - `ResponderChainToolBar` can now be initialized with custom `CGSize`
@@ -20,6 +37,7 @@ Views
 
 Models
 
+- `CastingError` is added to represents failed casting
 - `EnvironmentValues.safeAreaInsets` are added that retrieve safe areas from `UIApplication.shared.firstWindowInSingleSceneApp`
 - `PointPixelMeasurement` is added that represents points or pixels
 - `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`

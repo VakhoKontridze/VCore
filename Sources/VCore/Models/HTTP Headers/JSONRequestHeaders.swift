@@ -13,7 +13,7 @@ import Foundation
 /// Can be used in `NetworkClient`.
 ///
 ///     var request: NetworkRequest = .init(url: ...)
-///     try request.addHeaders(encodable: JSONRequestHeaders())
+///     try request.addHeaders(object: JSONRequestHeaders())
 ///
 public struct JSONRequestHeaders: Encodable {
     // MARK: Properties

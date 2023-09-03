@@ -13,7 +13,7 @@ import Foundation
 /// Can be used in `NetworkClient` with `MultipartFormDataBuilder`.
 ///
 ///     var request: NetworkRequest = .init(url: ...)
-///     try request.addHeaders(encodable: MultipartFormDataAuthorizedRequestHeaders(
+///     try request.addHeaders(object: MultipartFormDataAuthorizedRequestHeaders(
 ///         boundary: boundary,
 ///         token: "token"
 ///     ))
