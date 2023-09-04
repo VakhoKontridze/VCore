@@ -28,7 +28,7 @@ final class URLInitWithPathAndQueryParametersTests: XCTestCase {
 
         XCTAssertEqual(
             url.absoluteString,
-            valuesFrom: [
+            oneOf: [
                 "https://example.com/path/to/resource?key2=value2&key1=value1",
                 "https://example.com/path/to/resource?key1=value1&key2=value2"
             ]
@@ -36,7 +36,7 @@ final class URLInitWithPathAndQueryParametersTests: XCTestCase {
         XCTAssertEqual(url.scheme, "https")
         XCTAssertEqual(url.host, "example.com")
         XCTAssertEqual(url.path, "/path/to/resource")
-        XCTAssertEqual(url.query, valuesFrom: ["key1=value1&key2=value2", "key2=value2&key1=value1"])
+        XCTAssertEqual(url.query, oneOf: ["key1=value1&key2=value2", "key2=value2&key1=value1"])
     }
 
     func testInitURLWithEmptyString() {

@@ -1,5 +1,5 @@
 //
-//  XCTest.XCTAssertEqualColor.swift
+//  XCTAssertEqualColor.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10.05.22.
