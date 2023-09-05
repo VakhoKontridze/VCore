@@ -33,7 +33,7 @@ extension View {
     ///                     VStack(spacing: 20, content: {
     ///                         ForEach(0..<10, id: \.self, content: { _ in
     ///                             TextField("", text: $text)
-    ///                                  .textFieldStyle(.roundedBorder)
+    ///                                 .textFieldStyle(.roundedBorder)
     ///                         })
     ///                     })
     ///                     .padding(30)
