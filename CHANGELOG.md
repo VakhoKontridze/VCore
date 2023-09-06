@@ -62,6 +62,7 @@ Extensions
 - `URL.init(string:pathParameters:queryParameters:)` method is added, that initializes `URL` with `String`, path parameters, and query parameters
 - `CGSize.scaledUp(withConstant:)`, `CGSize.scaledDown(withConstant:)`, `CGSize.scaledUp(withMultiplier:)`, and `CGSize.scaledDown(withMultiplier:)` methods, alongside their mutator counterparts, are added for scaling `CGSize`
 -  `CGPoint.movedLeft(withValue:)`, `CGPoint.movedRight(withValue:)`, `CGPoint.movedUp(withValue:)`, and `CGPoint.movedDown(withValue:)` methods, alongside their mutator counterparts, are added for scaling `CGSize`
+- `CGSize.minDimension` and `CGSize.maxDimension` methods are added that return minimum or maximum of width and height
 
 API
 
