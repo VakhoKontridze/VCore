@@ -43,7 +43,7 @@ import SwiftUI
 ///         switch cache.object(forKey: key) {
 ///         case nil:
 ///             let data: Data = try await URLSession.shared.data(from: url).0
-///             guard let uiImage: UIImage = .init(data: data) else { throw URLError(.badServerResponse) }
+///             guard let uiImage: UIImage = .init(data: data) else { throw URLError(.cannotDecodeContentData) }
 ///
 ///             cache.setObject(uiImage, forKey: key)
 ///

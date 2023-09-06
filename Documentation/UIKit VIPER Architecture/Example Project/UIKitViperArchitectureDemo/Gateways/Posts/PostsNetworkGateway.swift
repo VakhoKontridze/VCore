@@ -33,12 +33,15 @@ struct PostsNetworkGateway: PostsGateway {
                     }
 
                     guard
-                        let data,
-
                         let response,
                         response.isSuccessHTTPStatusCode
                     else {
                         completion(.failure(URLError(.badServerResponse)))
+                        return
+                    }
+
+                    guard let data else {
+                        completion(.failure(URLError(.cannotDecodeContentData)))
                         return
                     }
 

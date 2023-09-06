@@ -13,9 +13,8 @@ extension URLResponse {
     ///
     /// Compares status code against `200...299`.
     ///
-    ///     URLSession.shared.dataTask(with: someUrl, completionHandler: { (data, response, url) in
-    ///         let isSuccess: Bool = response?.isSuccessHTTPStatusCode ?? false
-    ///     })
+    ///     let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
+    ///     let isSuccess: Bool = response.isSuccessHTTPStatusCode
     ///
     public var isSuccessHTTPStatusCode: Bool {
         guard
