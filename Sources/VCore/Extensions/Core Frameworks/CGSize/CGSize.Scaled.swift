@@ -31,7 +31,8 @@ extension CGSize {
     mutating public func scaleUp(
         withConstant value: CGFloat
     ) {
-        self = scaledUp(withConstant: value)
+        width += value
+        height += value
     }
 }
 
@@ -59,7 +60,8 @@ extension CGSize {
     mutating public func scaleDown(
         withConstant value: CGFloat
     ) {
-        self = scaledDown(withConstant: value)
+        width -= value
+        height -= value
     }
 }
 
@@ -87,13 +89,14 @@ extension CGSize {
     mutating public func scaleUp(
         withMultiplier value: CGFloat
     ) {
-        self = scaledUp(withMultiplier: value)
+        width *= value
+        height *= value
     }
 }
 
 // MARK: - Size Scaled Down with Multiplier
 extension CGSize {
-    /// Returns `CGSize` scaled down with a given multiplied.
+    /// Returns `CGSize` scaled down with a given multiplier.
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
     ///         .scaledDown(withMultiplier: 2) // 1.5x2
@@ -115,6 +118,7 @@ extension CGSize {
     mutating public func scaleDown(
         withMultiplier value: CGFloat
     ) {
-        self = scaledDown(withMultiplier: value)
+        width /= value
+        height /= value
     }
 }

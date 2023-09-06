@@ -162,14 +162,14 @@ public struct AlignedGridView: Layout {
         
         for i in sameRowRects.indices {
             for j in sameRowRects[i].indices {
-                sameRowRects[i][j].origin.x += {
+                sameRowRects[i][j].origin.moveRight(withValue: {
                     switch alignment {
                     case .leading: return 0
                     case .center: return remainingRowSpacings[i]/2
                     case .trailing: return remainingRowSpacings[i]
                     default: fatalError()
                     }
-                }()
+                }())
             }
         }
         
@@ -191,12 +191,12 @@ public struct AlignedGridView: Layout {
             let clips: Bool = origin.x + spacingHor + size.width > boundOrigin.x + boundWidth
             if clips {
                 origin.x = boundOrigin.x
-                origin.y += size.height + spacingVer
+                origin.moveDown(withValue: size.height + spacingVer)
             }
             
             rects.append(CGRect(origin: origin, size: size))
             
-            origin.x += spacingHor + size.width
+            origin.moveRight(withValue: spacingHor + size.width)
         }
         
         return rects
