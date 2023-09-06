@@ -276,7 +276,7 @@ struct FetchImageNetworkGateway: FetchImageGateway {
             let progress: Double = .init(current) / .init(totalBytes)
 
             if
-                abs(progressPrevious - progress) > 0.01 ||
+                progress - progressPrevious > 0.01 ||
                 progress == 1
             {
                 progressHandler(progress)
