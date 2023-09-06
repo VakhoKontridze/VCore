@@ -7,65 +7,114 @@
 
 import CoreGraphics
 
-// MARK: - Size Scaled with Constant
+// MARK: - Size Scaled Up with Constant
 extension CGSize {
-    /// Scales up and returns `CGSize` with a given constant.
+    /// Returns `CGSize` scaled up with a given constant.
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
-    ///     let scaledSize: CGSize = size.scaledUp(withConstant: 1) // 4x5
+    ///         .scaledUp(withConstant: 1) // 4x5
     ///
     public func scaledUp(
         withConstant value: CGFloat
     ) -> CGSize {
-        CGSize(
+        .init(
             width: width + value,
             height: height + value
         )
     }
 
-    /// Scales down and returns `CGSize` with a given constant.
+    /// Scales up `CGSize` with a given constant.
+    ///
+    ///     var size: CGSize = .init(width: 3, height: 4)
+    ///     size.scaleUp(withConstant: 1) // 4x5
+    ///
+    mutating public func scaleUp(
+        withConstant value: CGFloat
+    ) {
+        self = scaledUp(withConstant: value)
+    }
+}
+
+// MARK: - Size Scaled Down with Constant
+extension CGSize {
+    /// Returns `CGSize` scaled down with a given constant.
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
-    ///     let scaledSize: CGSize = size.scaledDown(withConstant: 1) // 2x3
+    ///         .scaledDown(withConstant: 1) // 2x3
     ///
     public func scaledDown(
         withConstant value: CGFloat
     ) -> CGSize {
-        CGSize(
+        .init(
             width: width - value,
             height: height - value
         )
     }
+
+    /// Scales up `CGSize` with a given constant.
+    ///
+    ///     var size: CGSize = .init(width: 3, height: 4)
+    ///     size.scaleDown(withConstant: 1) // 2x3
+    ///
+    mutating public func scaleDown(
+        withConstant value: CGFloat
+    ) {
+        self = scaledDown(withConstant: value)
+    }
 }
 
-
-// MARK: - Size Scaled with Multiplier
+// MARK: - Size Scaled Up with Multiplier
 extension CGSize {
-    /// Scales up and returns `CGSize` with a given multiplier.
+    /// Returns `CGSize` scaled up with a given multiplier.
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
-    ///     let scaledSize: CGSize = size.scaledUp(withMultiplier: 2) // 6x8
+    ///         .scaledUp(withMultiplier: 2) // 6x8
     ///
     public func scaledUp(
         withMultiplier value: CGFloat
     ) -> CGSize {
-        CGSize(
+        .init(
             width: width * value,
             height: height * value
         )
     }
 
-    /// Scales down and returns `CGSize` with a given multiplier.
+    /// Scales up `CGSize` with a given multiplier.
+    ///
+    ///     var size: CGSize = .init(width: 3, height: 4)
+    ///     size.scaleUp(withMultiplier: 2) // 6x8
+    ///
+    mutating public func scaleUp(
+        withMultiplier value: CGFloat
+    ) {
+        self = scaledUp(withMultiplier: value)
+    }
+}
+
+// MARK: - Size Scaled Down with Multiplier
+extension CGSize {
+    /// Returns `CGSize` scaled down with a given multiplied.
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
-    ///     let scaledSize: CGSize = size.scaledDown(withMultiplier: 2) // 1.5x2
+    ///         .scaledDown(withMultiplier: 2) // 1.5x2
     ///
     public func scaledDown(
         withMultiplier value: CGFloat
     ) -> CGSize {
-        CGSize(
+        .init(
             width: width / value,
             height: height / value
         )
+    }
+
+    /// Scales down `CGSize` with a given multiplier.
+    ///
+    ///     var size: CGSize = .init(width: 3, height: 4)
+    ///     size.scaleDown(withMultiplier: 2) /// 1.5x2
+    ///
+    mutating public func scaleDown(
+        withMultiplier value: CGFloat
+    ) {
+        self = scaledDown(withMultiplier: value)
     }
 }

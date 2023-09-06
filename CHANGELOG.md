@@ -60,7 +60,7 @@ Extensions
 - `Data.nonEmpty` property is added, that returns non-empty `Data`, or `nil`
 - `URLRequest.addHTTPHeaderFields(_:)`, `URLRequest.addHTTPHeaderFields(json:)`, and `URLRequest.addHTTPHeaderFields(object:)` methods are added, that add values to header fields
 - `URL.init(string:pathParameters:queryParameters:)` method is added, that initializes `URL` with `String`, path parameters, and query parameters
-- `CGSize.scaledUp(withConstant:)`, `CGSize.scaledDown(withConstant:)`, `CGSize.scaledUp(withMultiplier:)`, and `CGSize.scaledDown(withMultiplier:)` methods are added that scale `CGSize`
+- `CGSize.scaledUp(withConstant:)`, `CGSize.scaledDown(withConstant:)`, `CGSize.scaledUp(withMultiplier:)`, and `CGSize.scaledDown(withMultiplier:)` methods, alongside their mutator counterparts, are added for scaling `CGSize`
 
 API
 
