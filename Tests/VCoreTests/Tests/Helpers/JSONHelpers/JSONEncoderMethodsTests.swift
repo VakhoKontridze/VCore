@@ -20,9 +20,9 @@ final class JSONEncoderMethodsTests: XCTestCase {
         let json: [String: Any?] = ["key": "value"]
         
         do {
-            let data: Data = try JSONEncoder().encodeAnyToData(json)
+            let data: Data = try JSONEncoder.encodeAnyToData(json)
             
-            let json2: [String: Any?] = try! JSONDecoder().decodeJSONFromData(data) // Force-unwrap
+            let json2: [String: Any?] = try! JSONDecoder.decodeJSONFromData(data) // Force-unwrap
             XCTAssertEqual(json2["key"]?.toString, "value")
             
         } catch {

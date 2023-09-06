@@ -78,7 +78,7 @@ final class MultipartFormDataBuilderTests: XCTestCase {
 
             let data: Data = try await URLSession.shared.data(for: request).0
 
-            let result: [String: Any?] = try JSONDecoder().decodeJSONFromData(data)
+            let result: [String: Any?] = try JSONDecoder.decodeJSONFromData(data)
             
             XCTAssertEqual(
                 result["form"]?.toUnwrappedJSON["key"]?.toString,

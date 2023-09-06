@@ -18,10 +18,10 @@ final class JSONDecoderMethodsTests: XCTestCase {
     // MARK: Tests
     func testDataToJSON() {
         let json: [String: Any?] = ["key": "value"]
-        let jsonData: Data = try! JSONEncoder().encodeAnyToData(json) // Force-unwrap
+        let jsonData: Data = try! JSONEncoder.encodeAnyToData(json) // Force-unwrap
         
         do {
-            let json2: [String: Any?] = try JSONDecoder().decodeJSONFromData(jsonData)
+            let json2: [String: Any?] = try JSONDecoder.decodeJSONFromData(jsonData)
             
             XCTAssertEqual(
                 json2["key"]?.toString,
@@ -36,10 +36,10 @@ final class JSONDecoderMethodsTests: XCTestCase {
     func testDataToJSONArray() {
         let json: [String: Any?] = ["key": "value"]
         let jsonArray: [[String: Any?]] = [json]
-        let jsonArrayData = try! JSONEncoder().encodeAnyToData(jsonArray) // Force-unwrap
+        let jsonArrayData = try! JSONEncoder.encodeAnyToData(jsonArray) // Force-unwrap
         
         do {
-            let jsonArray2: [[String: Any?]] = try JSONDecoder().decodeJSONArrayFromData(jsonArrayData)
+            let jsonArray2: [[String: Any?]] = try JSONDecoder.decodeJSONArrayFromData(jsonArrayData)
             XCTAssertEqual(
                 jsonArray2[0]["key"]?.toString,
                 jsonArray[0]["key"]?.toString
