@@ -13,7 +13,7 @@ This document provides examples of network requests made using `URLSession` foll
 
 ## Simple Request
 
-Following gateway initiates a straightforward request to retrieve a `GetPostEntity` object with an identifier specified by `GetPostGatewayParameters.id`.
+Following gateway initiates a straightforward request to retrieve a `GetPostEntity` object with an identifier specified by `GetPostGatewayParameters.id`:
 
 ```swift
 protocol GetPostGateway {
@@ -58,7 +58,7 @@ struct GetPostNetworkGateway: GetPostGateway {
 }
 ```
 
-Request is initiated to retrieve a post with an ID of `1`. 
+Request is initiated to retrieve a post with an ID of `1`:
 
 ```
 Task(operation: {
@@ -79,7 +79,7 @@ Task(operation: {
 
 #### Problem
 
-Frequently, databases return their data or response objects in the form of nested JSON representations.
+Frequently, databases return their data or response objects in the form of nested JSON representations:
 
 ```swift
 {
@@ -102,7 +102,7 @@ For the illustration, `httpbin` API is used.
 
 #### Custom Error
 
-Custom error can be introduced to perform mapping.
+Custom error can be introduced to perform mapping:
 
 ```swift
 struct SomeInternalError: LocalizedError {
@@ -117,7 +117,7 @@ The following method attempts to extract an internal error and convert it into a
 
 If the `URLResponse` falls within the range of `200` to `299` status codes, the processing is skipped.
 
-However, if it doesn't, corresponding status code and message are retrieved and thrown as an error.
+However, if it doesn't, corresponding status code and message are retrieved and thrown as an error:
 
 ```swift
 func processURLSessionResponse(
@@ -145,7 +145,7 @@ func processURLSessionResponse(
 
 #### Data Processing
 
-The following method aims to extract a nested JSON representation and map it back to `Data` as if no nesting ever took place.
+The following method aims to extract a nested JSON representation and map it back to `Data` as if no nesting ever took place:
 
 ```swift
 func processURLSessionData(
@@ -214,7 +214,7 @@ struct EchoNetworkGateway: EchoGateway {
 
 #### Usage Example
 
-Request is initiated to echo a `String` "test".
+Request is initiated to echo a `String` "test":
 
 ```swift
 Task(operation: {
@@ -233,7 +233,7 @@ Task(operation: {
 
 ## Request with Progress Observation
 
-Following gateway initiates a request to retrieve an `UIImage` with from an url, and communicate the download progress.
+Following gateway initiates a request to retrieve an `UIImage` with from an url, and communicate the download progress:
 
 ```swift
 protocol FetchImageGateway {
@@ -292,7 +292,7 @@ struct FetchImageNetworkGateway: FetchImageGateway {
 }
 ```swift
 
-Request is initiated to retrieve an `UIImage` and print the download progress.
+Request is initiated to retrieve an `UIImage` and print the download progress:
 
 ```swift
 Task(operation: {
