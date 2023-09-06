@@ -14,7 +14,7 @@ extension JSONDecoder {
     ///     let data: Data = ...
     ///     let json: [String: Any?] = JSONDecoder.decodeJSONFromData(data)
     ///
-    public func decodeJSONFromData(
+    public static func decodeJSONFromData(
         _ data: Data,
         optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
     ) throws -> [String: Any?] {
@@ -41,7 +41,7 @@ extension JSONDecoder {
     ///     let data: Data = ...
     ///     let jsonArray: [[String: Any?]] = JSONDecoder.decodeJSONArrayFromData(data)
     ///
-    public func decodeJSONArrayFromData(
+    public static func decodeJSONArrayFromData(
         _ data: Data,
         optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
     ) throws -> [[String: Any?]] {

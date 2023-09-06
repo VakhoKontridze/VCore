@@ -87,7 +87,7 @@ public struct MultipartFormDataBuilder {
         files: [String: (some AnyMultipartFormDataFile)?],
         optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
-        let json: [String: Any?] = try JSONDecoder().decodeJSONFromData( // Logged internally
+        let json: [String: Any?] = try JSONDecoder.decodeJSONFromData( // Logged internally
             data,
             optionsDataToJSONObject: optionsDataToJSONObject
         )
@@ -99,13 +99,11 @@ public struct MultipartFormDataBuilder {
     public func build(
         object: some Encodable,
         files: [String: (some AnyMultipartFormDataFile)?],
-        optionsDataToJSONObject: JSONSerialization.ReadingOptions = [],
-        decoderDataToJSON: JSONDecoder = .init()
+        optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
         let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON( // Logged internally
             object,
-            optionsDataToJSONObject: optionsDataToJSONObject,
-            decoderDataToJSON: decoderDataToJSON
+            optionsDataToJSONObject: optionsDataToJSONObject
         )
         
         return try build(json: json, files: files) // Logged internally

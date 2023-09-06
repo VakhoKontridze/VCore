@@ -12,9 +12,9 @@ extension JSONEncoder {
     /// Encodes `Any?` to `Data`.
     ///
     ///     let any: Any? = ...
-    ///     let data: Data = try JSONEncoder().encodeAnyToData(any)
+    ///     let data: Data = try JSONEncoder.encodeAnyToData(any)
     ///
-    public func encodeAnyToData(
+    public static func encodeAnyToData(
         _ any: Any?,
         optionsAnyToData options: JSONSerialization.WritingOptions = []
     ) throws -> Data {
@@ -43,8 +43,7 @@ extension JSONEncoder {
     ///
     public func encodeObjectToJSON(
         _ object: some Encodable,
-        optionsDataToJSONObject options: JSONSerialization.ReadingOptions = [],
-        decoderDataToJSON decoder: JSONDecoder = .init()
+        optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
     ) throws -> [String: Any?] {
         let data: Data
         do {
@@ -57,7 +56,7 @@ extension JSONEncoder {
 
         let json: [String: Any?]
         do {
-            json = try decoder.decodeJSONFromData(
+            json = try JSONDecoder.decodeJSONFromData(
                 data,
                 optionsDataToJSONObject: options
             )
@@ -76,8 +75,7 @@ extension JSONEncoder {
     ///
     public func encodeObjectToJSONArray(
         _ objects: some Encodable,
-        optionsDataToJSONObject options: JSONSerialization.ReadingOptions = [],
-        decoderDataToJSONArray decoder: JSONDecoder = .init()
+        optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
     ) throws -> [[String: Any?]] {
         let data: Data
         do {
@@ -90,7 +88,7 @@ extension JSONEncoder {
 
         let jsonArray: [[String: Any?]]
         do {
-            jsonArray = try decoder.decodeJSONArrayFromData(
+            jsonArray = try JSONDecoder.decodeJSONArrayFromData(
                 data,
                 optionsDataToJSONObject: options
             )
