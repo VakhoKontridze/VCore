@@ -12,7 +12,7 @@ extension CGSize {
     /// Returns `CGSize` with reversed `width` and `height` if condition is met..
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
-    ///         .withReversedDimensions() // (width: 4, height: 3)
+    ///         .withReversedDimensions() // 4x3
     ///
     public func withReversedDimensions(
         _ condition: Bool = true

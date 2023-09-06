@@ -12,7 +12,7 @@ extension CGPoint {
     /// Returns `CGPoint` with reversed `x` and `y`.
     ///
     ///     let coordinates: CGPoint = .init(x: 100, y: 200)
-    ///         .withReversedCoordinates() // (x: 200, y: 100)
+    ///         .withReversedCoordinates() // 200x100
     ///
     public func withReversedCoordinates(
         _ condition: Bool = true
