@@ -4,7 +4,7 @@
 
 - [Intro](#intro)
 - [Simple Request](#simple-request)
-- [Request with Data/Response Processing](#request-with-data-response-processing)
+- [Request with Data and Response Processing](#request-with-data-and-response-processing)
 - [Request with Progress Observation](#request-with-progress-observation)
 
 ## Intro
@@ -75,7 +75,7 @@ Task(operation: {
 })
 ```
 
-## Request with Data/Response Processing
+## Request with Data and Response Processing
 
 #### Problem
 
