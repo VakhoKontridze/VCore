@@ -86,8 +86,8 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
             case .success(let postsEntity):
                 tableViewCellParameters = postsEntity.posts?
                     .compactMap { $0 }
-                    .compactMap { PostCellViewParameters(post: $0) }
-                    ?? []
+                    .compactMap { PostCellViewParameters(post: $0) } ??
+                    []
                 
                 view.reloadPosts()
                 

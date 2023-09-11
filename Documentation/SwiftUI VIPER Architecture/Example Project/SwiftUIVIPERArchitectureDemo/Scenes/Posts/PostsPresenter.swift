@@ -70,8 +70,8 @@ import VCore
                 
                 postParameters = postsEntity.posts?
                     .compactMap { $0 }
-                    .compactMap { PostRowViewParameters(post: $0) }
-                    ?? []
+                    .compactMap { PostRowViewParameters(post: $0) } ??
+                    []
                 
             } catch {
                 progressViewParameters = nil

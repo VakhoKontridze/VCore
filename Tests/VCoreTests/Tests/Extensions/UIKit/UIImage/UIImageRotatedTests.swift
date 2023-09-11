@@ -21,10 +21,12 @@ final class UIImageRotatedTests: XCTestCase { // Not testing helper methods
         
         let rotatedImage: UIImage = mergedImage.rotated(by: Measurement(value: 90, unit: .degrees))! // Force-unwrap
         
-        let croppedImage: UIImage = rotatedImage.cropped(to: .init(
-            origin: .zero,
-            size: CGSize(dimension: 100)
-        ))
+        let croppedImage: UIImage = rotatedImage.cropped(
+            to: CGRect(
+                origin: .zero,
+                size: CGSize(dimension: 100)
+            )
+        )
         
         XCTAssertEqualColor(croppedImage.averageColor!, .red) // Force-unwrap
     }
