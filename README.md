@@ -80,7 +80,7 @@ guard let url: URL = .init(string: "https://somewebsite.com/api/some_endpoint") 
 
 var request: URLRequest = .init(url: url)
 request.httpMethod = "POST"
-try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaders(
+try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaderFields(
     boundary: boundary,
     token: "token"
 ))

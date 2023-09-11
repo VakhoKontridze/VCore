@@ -1,5 +1,5 @@
 //
-//  JSONAuthorizedRequestHeaders.swift
+//  JSONAuthorizedRequestHeaderFields.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 28.04.22.
@@ -7,17 +7,17 @@
 
 import Foundation
 
-// MARK: - JSON Authorized Request Headers
-/// Authorized JSON request headers that pass `application/json` as `accept`, `application/json` as `contentType`, and `authorization` as `Bearer \(token)`.
+// MARK: - JSON Authorized Request Header Fields
+/// Authorized JSON request header fields that pass `application/json` as `accept`, `application/json` as `contentType`, and `authorization` as `Bearer \(token)`.
 ///
 /// Can be used in `URLRequest`.
 ///
 ///     var request: URLRequest = ...
-///     try request.addHTTPHeaderFields(object: JSONAuthorizedRequestHeaders(
+///     try request.addHTTPHeaderFields(object: JSONAuthorizedRequestHeaderFields(
 ///         token: "token"
 ///     ))
 ///
-public struct JSONAuthorizedRequestHeaders: Encodable {
+public struct JSONAuthorizedRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
     public let accept: String = "application/json"
@@ -29,7 +29,7 @@ public struct JSONAuthorizedRequestHeaders: Encodable {
     public let authorization: String
     
     // MARK: Initializers
-    /// Initializes `JSONAuthorizedRequestHeaders` with token.
+    /// Initializes `JSONAuthorizedRequestHeaderFields` with token.
     public init(token: String) {
         self.authorization = "Bearer \(token)"
     }

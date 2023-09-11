@@ -70,7 +70,7 @@ final class MultipartFormDataBuilderTests: XCTestCase {
 
             var request: URLRequest = .init(url: url)
             request.httpMethod = "POST"
-            try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaders(
+            try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaderFields(
                 boundary: boundary,
                 token: "token"
             ))

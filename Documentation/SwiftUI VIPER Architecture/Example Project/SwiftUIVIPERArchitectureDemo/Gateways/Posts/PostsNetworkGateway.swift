@@ -16,7 +16,7 @@ struct PostsNetworkGateway: PostsGateway {
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = "GET"
-        try request.addHTTPHeaderFields(object: JSONRequestHeaders())
+        try request.addHTTPHeaderFields(object: JSONRequestHeaderFields())
 
         try? await Task.sleep(seconds: 1)
 

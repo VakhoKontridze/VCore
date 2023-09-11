@@ -47,7 +47,7 @@ extension URLRequest {
     /// Adds `Encodable` value to the header fields.
     ///
     ///     var request: URLRequest = ...
-    ///     try request.addHTTPHeaderFields(object: JSONRequestHeaders())
+    ///     try request.addHTTPHeaderFields(object: JSONRequestHeaderFields())
     ///
     public mutating func addHTTPHeaderFields(
         object: some Encodable

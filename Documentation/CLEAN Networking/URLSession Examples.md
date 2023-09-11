@@ -45,7 +45,7 @@ struct GetPostNetworkGateway: GetPostGateway {
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = "GET"
-        try request.addHTTPHeaderFields(object: JSONRequestHeaders())
+        try request.addHTTPHeaderFields(object: JSONRequestHeaderFields())
 
         let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
 
@@ -197,7 +197,7 @@ struct EchoNetworkGateway: EchoGateway {
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = "POST"
-        try request.addHTTPHeaderFields(object: JSONRequestHeaders())
+        try request.addHTTPHeaderFields(object: JSONRequestHeaderFields())
         request.httpBody = try JSONEncoder().encode(parameters).nonEmpty
 
         let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
@@ -260,7 +260,7 @@ struct FetchImageNetworkGateway: FetchImageGateway {
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = "GET"
-        try request.addHTTPHeaderFields(object: JSONRequestHeaders())
+        try request.addHTTPHeaderFields(object: JSONRequestHeaderFields())
 
         let (asyncBytes, response) = try await URLSession.shared.bytes(for: request)
 

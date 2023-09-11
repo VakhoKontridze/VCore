@@ -1,5 +1,5 @@
 //
-//  MultipartFormDataAuthorizedRequestHeaders.swift
+//  MultipartFormDataAuthorizedRequestHeaderFields.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 28.04.22.
@@ -7,18 +7,18 @@
 
 import Foundation
 
-// MARK: - Multipart Form Data Authorized Request Headers
-/// JSON request headers that pass `application/json` as `accept`, `multipart/form-data; boundary=\(boundary)` as `contentType`, and `authorization` as `Bearer \(token)`.
+// MARK: - Multipart Form Data Authorized Request Header Fields
+/// JSON request header fields that pass `application/json` as `accept`, `multipart/form-data; boundary=\(boundary)` as `contentType`, and `authorization` as `Bearer \(token)`.
 ///
 /// Can be used in `URLRequest` with `MultipartFormDataBuilder`.
 ///
 ///     var request: URLRequest = ...
-///     try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaders(
+///     try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaderFields(
 ///         boundary: boundary,
 ///         token: "token"
 ///     ))
 ///
-public struct MultipartFormDataAuthorizedRequestHeaders: Encodable {
+public struct MultipartFormDataAuthorizedRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
     public let accept: String = "application/json"
@@ -30,7 +30,7 @@ public struct MultipartFormDataAuthorizedRequestHeaders: Encodable {
     public let authorization: String
     
     // MARK: Initializers
-    /// Initializes `MultipartFormDataRequestHeaders` with boundary and token.
+    /// Initializes `MultipartFormDataRequestHeaderFields` with boundary and token.
     public init(boundary: String, token: String) {
         self.contentType = "multipart/form-data; boundary=\(boundary)"
         self.authorization = "Bearer \(token)"
