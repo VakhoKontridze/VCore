@@ -17,7 +17,7 @@ extension Double {
     ///
     public func rounded(fractions: Int) -> Double {
         guard fractions >= 0 else {
-            VCoreFatalError("`fractions` must be greater than or equal to `0`")
+            VCoreFatalError("'fractions' must be greater than or equal to '0'")
         }
         
         let power: Double = pow(10, Double(fractions))

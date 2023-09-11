@@ -46,7 +46,7 @@ public struct DigitalTimeFormatter {
     // MARK: Properties - Misc
     /// Indicates if empty significant components are included. Set to `false`.
     ///
-    /// For instance, if hour, minute, and second components are present, and hour is 0, "MM:SS" will be used instead of "00:MM:SS" if set to `false`.
+    /// For instance, if hour, minute, and second components are present, and hour is `0`, `"MM:SS"` will be used instead of `"00:MM:SS"` if set to `false`.
     public var emptySignificantComponentsAreIncluded: Bool = false
     
     /// Indicates if minute component is visible if only second component exists. Set to `true`.

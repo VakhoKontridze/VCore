@@ -45,7 +45,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
 
-        presentQueuedViewController() // Just in case `isPresented` was set to `true` during `@State` initialization
+        presentQueuedViewController() // Just in case `isPresented` was set to `true` during `State` initialization
     }
 
     // MARK: Setup

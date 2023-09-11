@@ -26,7 +26,7 @@ public struct CastingError: VCoreError, Equatable {
 
     // MARK: VCore Error
     public let code: Int = 0
-    public var description: String { "Failed to cast `\(fromType)` to `\(toType)`" }
+    public var description: String { "Failed to cast '\(fromType)' to '\(toType)'" }
 
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {

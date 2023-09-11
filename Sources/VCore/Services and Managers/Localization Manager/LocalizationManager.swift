@@ -27,7 +27,7 @@ import Foundation
 ///
 /// It's recommended that localizations are not enumerated just to use switch statement.
 /// Enumerating will force the declaration of an identifier or a `RawValue`.
-/// But `LocalizationManager` works on equivalence principle, where "en" and "en-US" are equivalent, if `Locale.current.regionCode` is "US".
+/// But `LocalizationManager` works on equivalence principle, where `"en"` and `"en-US"` are equivalent, if `Locale.current.regionCode` is `"US"`.
 /// Use the following approach instead of switch statement:
 ///
 ///     if LocalizationManager.shared.currentLocale.isEquivalent(to: .english) {
@@ -166,7 +166,7 @@ public final class LocalizationManager {
                 !validateIsAdded(bundleLocale) &&
                 bundleLocale.identifier.lowercased() != "base"
             {
-                VCoreLogWarning("Localization `\(bundleLocale.identifier)` is not added to `LocalizationManager`")
+                VCoreLogWarning("Localization '\(bundleLocale.identifier)' is not added to 'LocalizationManager'")
             }
         }
     }
@@ -228,7 +228,7 @@ public final class LocalizationManager {
     // MARK: Validation and Assertion
     private func assertIsAddedToBundle(_ locale: Locale) {
         guard bundleLocales.contains(where: { $0.isEquivalent(to: locale) }) else {
-            VCoreFatalError("Localization `\(locale.identifier)` is not added to the `Bundle.main` or no files are localized")
+            VCoreFatalError("Localization '\(locale.identifier)' is not added to the 'Bundle.main' or no files are localized")
         }
     }
     
@@ -238,7 +238,7 @@ public final class LocalizationManager {
     
     private func assertIsAdded(_ locale: Locale) {
         guard validateIsAdded(locale) else {
-            VCoreFatalError("Localization `\(locale.identifier)` is not added to `LocalizationManager`")
+            VCoreFatalError("Localization '\(locale.identifier)' is not added to 'LocalizationManager'")
         }
     }
 }

@@ -22,6 +22,6 @@ public func VCoreLogWarning(
 #if DEBUG
     let file: String = file.components(separatedBy: "/").last ?? file
     
-    NSLog("[\(module)] Warning in \(function) in \(file)(\(line)): \(message)")
+    NSLog("[\(module)] Warning in '\(function)' in '\(file)(\(line))': \(message)")
 #endif
 }

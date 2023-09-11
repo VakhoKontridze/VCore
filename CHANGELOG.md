@@ -13,7 +13,7 @@ Services and Managers - Network Client
 Services and Managers - Presentation Host
 
 - Presentation Host now handles keyboard responsiveness by offering `KeyboardResponsivenessStrategy`
-- Presentation Host can now present modals, if `isPresented` is set to `true` during the `@State` initialization
+- Presentation Host can now present modals, if `isPresented` is set to `true` during the `State` initialization
 - `presentationHostGeometryReaderSize` and `presentationHostGeometryReaderSafeAreaInsets` values have been added to Presentation Host's environment for accurately reading modal's size and safe area insets without `UIScreen.main`
 
 Services and Managers - JSON Encoder Service
