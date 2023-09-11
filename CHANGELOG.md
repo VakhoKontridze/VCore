@@ -47,6 +47,7 @@ Models
 - `PointPixelMeasurement` is added that represents points or pixels
 - `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
 - `delay` is added to `BasicAnimation`
+- JSON request headers are renamed to JSON request header fields
 
 Extensions
 
