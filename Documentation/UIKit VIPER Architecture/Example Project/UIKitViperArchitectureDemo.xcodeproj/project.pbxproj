@@ -32,6 +32,7 @@
 		876FD48B285C978E00EC24FD /* PostDetailsUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD483285C978E00EC24FD /* PostDetailsUIModel.swift */; };
 		876FD48C285C978E00EC24FD /* PostDetailsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD484285C978E00EC24FD /* PostDetailsParameters.swift */; };
 		87846D8B29D4D2FF0071CDAC /* VCore in Frameworks */ = {isa = PBXBuildFile; productRef = 87846D8A29D4D2FF0071CDAC /* VCore */; };
+		87C80B6B2AAF986D00346987 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87C80B6A2AAF986D00346987 /* Post.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		876FD483285C978E00EC24FD /* PostDetailsUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsUIModel.swift; sourceTree = "<group>"; };
 		876FD484285C978E00EC24FD /* PostDetailsParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsParameters.swift; sourceTree = "<group>"; };
 		87846D8929D4D2FA0071CDAC /* ~VCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "~VCore"; path = ../../..; sourceTree = "<group>"; };
+		87C80B6A2AAF986D00346987 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +120,7 @@
 				876FD446285C787600EC24FD /* App Control */,
 				876FD447285C788000EC24FD /* Scenes */,
 				876FD46D285C847200EC24FD /* Views */,
+				87C80B692AAF984F00346987 /* Model */,
 				876FD463285C7C4200EC24FD /* Gateways */,
 				876FD460285C7C1B00EC24FD /* Helpers */,
 				876FD449285C788F00EC24FD /* Resources */,
@@ -185,19 +188,19 @@
 		876FD463285C7C4200EC24FD /* Gateways */ = {
 			isa = PBXGroup;
 			children = (
-				876FD46C285C7C5500EC24FD /* Posts */,
+				876FD46C285C7C5500EC24FD /* Posts Gateway */,
 			);
 			path = Gateways;
 			sourceTree = "<group>";
 		};
-		876FD46C285C7C5500EC24FD /* Posts */ = {
+		876FD46C285C7C5500EC24FD /* Posts Gateway */ = {
 			isa = PBXGroup;
 			children = (
 				876FD467285C7C5100EC24FD /* PostsGateway.swift */,
 				876FD466285C7C5100EC24FD /* PostsEntity.swift */,
 				876FD464285C7C5100EC24FD /* PostsNetworkGateway.swift */,
 			);
-			path = Posts;
+			path = "Posts Gateway";
 			sourceTree = "<group>";
 		};
 		876FD46D285C847200EC24FD /* Views */ = {
@@ -229,6 +232,14 @@
 				876FD483285C978E00EC24FD /* PostDetailsUIModel.swift */,
 			);
 			path = "Post Details";
+			sourceTree = "<group>";
+		};
+		87C80B692AAF984F00346987 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				87C80B6A2AAF986D00346987 /* Post.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -316,6 +327,7 @@
 				876FD456285C7BBF00EC24FD /* PostsInterface.swift in Sources */,
 				876FD488285C978E00EC24FD /* PostDetailsInterface.swift in Sources */,
 				876FD486285C978E00EC24FD /* PostDetailsPresenter.swift in Sources */,
+				87C80B6B2AAF986D00346987 /* Post.swift in Sources */,
 				876FD48C285C978E00EC24FD /* PostDetailsParameters.swift in Sources */,
 				876FD457285C7BBF00EC24FD /* PostsViewController.swift in Sources */,
 				876FD453285C7BBF00EC24FD /* PostsFactory.swift in Sources */,

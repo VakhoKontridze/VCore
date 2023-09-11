@@ -16,7 +16,7 @@ struct PostsView<Presenter>: View
     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator?
     @StateObject private var presenter: Presenter
     
-    private typealias Model = PostsUIModel
+    private typealias UIModel = PostsUIModel
     
     @State private var didAppearForTheFirstTime: Bool = false
     
@@ -37,21 +37,24 @@ struct PostsView<Presenter>: View
             presenter.navigationStackCoordinator = navigationStackCoordinator
             presenter.didLoad()
         })
+
         .inlineNavigationTitle("Posts")
+
         .alert(parameters: $presenter.alertParameters)
         .progressView(parameters: presenter.progressViewParameters)
     }
     
     private var canvas: some View {
-        Model.backgroundColor.ignoresSafeArea()
+        UIModel.backgroundColor.ignoresSafeArea()
     }
     
     private var contentView: some View {
         List(content: {
-            ForEach(presenter.postParameters, content: { parameters in
-                PostRowView(parameters: parameters)
+            ForEach(presenter.posts, content: { post in
+                PostRowView(post: post)
+                    .padding(UIModel.rowPadding)
                     .listRowInsets(EdgeInsets())
-                    .onTapGesture(perform: { presenter.didTapPost(parameters: parameters) })
+                    .onTapGesture(perform: { presenter.didTapPost(post) })
             })
         })
         .listStyle(.plain)

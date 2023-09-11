@@ -6,14 +6,11 @@
 //
 
 import SwiftUI
-import VCore
 
 // MARK: - Post Row View UI Model
 struct PostRowViewUIModel {
     // MARK: Properties
     static var backgroundColor: Color { .init(.systemBackground) }
-
-    static var padding: EdgeInsets_HorizontalVertical { .init(horizontal: 20, vertical: 5) }
 
     static var spacing: CGFloat { 2 }
 

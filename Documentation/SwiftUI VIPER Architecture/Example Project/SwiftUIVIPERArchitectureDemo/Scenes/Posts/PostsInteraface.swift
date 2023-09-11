@@ -10,12 +10,12 @@ import VCore
 
 // MARK: - Posts Presentable
 @MainActor protocol PostsPresentable: ObservableObject, NavigationStackCoordinable, AlertPresentable, ProgressViewPresentable {
-    var postParameters: [PostRowViewParameters] { get }
+    var posts: [Post] { get }
     
     func didLoad()
     
     func didPullToRefresh()
-    func didTapPost(parameters: PostRowViewParameters)
+    func didTapPost(_ post: Post)
 }
 
 // MARK: - Posts Routable

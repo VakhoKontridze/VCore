@@ -27,7 +27,7 @@ final class PostDetailsPresenter<View>: PostDetailsPresentable
     
     // MARK: Presentable
     func viewDidLoad() {
-        view.setTitle(to: parameters.title)
-        view.setBody(to: parameters.body)
+        view.setTitle(to: parameters.post.title)
+        view.setBody(to: parameters.post.body)
     }
 }

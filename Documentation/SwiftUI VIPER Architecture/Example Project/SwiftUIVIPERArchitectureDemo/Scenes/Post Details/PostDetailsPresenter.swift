@@ -17,8 +17,8 @@ import VCore
     nonisolated init(parameters: PostDetailsParameters) {
         self.parameters = parameters
         
-        self._title = .init(initialValue: parameters.title)
-        self._body = .init(initialValue: parameters.body)
+        self._title = .init(initialValue: parameters.post.title)
+        self._body = .init(initialValue: parameters.post.body)
     }
     
     // MARK: Presentable

@@ -12,36 +12,41 @@ struct PostRowView: View {
     // MARK: Properties
     private typealias UIModel = PostRowViewUIModel
     
-    private let parameters: PostRowViewParameters
+    private let post: Post
     
     // MARK: Initializers
-    init(parameters: PostRowViewParameters) {
-        self.parameters = parameters
+    init(post: Post) {
+        self.post = post
     }
     
     // MARK: Body
     var body: some View {
-        VStack(alignment: .leading, spacing: UIModel.spacing, content: {
-            Text(parameters.title)
-                .lineLimit(1)
-                .foregroundColor(UIModel.titleTextColor)
-                .font(UIModel.titleTextFont)
-            
-            Text(parameters.body)
-                .lineLimit(UIModel.bodyTextLineLimit)
-                .foregroundColor(UIModel.bodyTextColor)
-                .font(UIModel.bodyTextFont)
-        })
+        VStack(
+            alignment: .leading,
+            spacing: UIModel.spacing,
+            content: {
+                Text(post.title)
+                    .lineLimit(1)
+                    .foregroundColor(UIModel.titleTextColor)
+                    .font(UIModel.titleTextFont)
+
+                Text(post.body)
+                    .lineLimit(UIModel.bodyTextLineLimit)
+                    .foregroundColor(UIModel.bodyTextColor)
+                    .font(UIModel.bodyTextFont)
+            }
+        )
         .frame(maxWidth: .infinity, alignment: .leading)
-        .padding(UIModel.padding)
-        .background(content: { UIModel.backgroundColor.ignoresSafeArea() })
+        .background(content: { UIModel.backgroundColor })
     }
 }
 
 // MARK: - Preview
 struct PostRowView_Previews: PreviewProvider {
     static var previews: some View {
-        PostRowView(parameters: .mock)
+        PostRowView(post: .mock)
+            .padding(.horizontal, 20)
+            .padding(.vertical, 5)
             .previewLayout(.sizeThatFits)
     }
 }

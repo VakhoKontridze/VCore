@@ -20,7 +20,7 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     private let router: Router
     private let interactor: Interactor
     
-    private var tableViewCellParameters: [PostCellViewParameters] = []
+    private var tableViewCellParameters: [PostCellParameters] = []
     
     // MARK: Initializers
     init(
@@ -45,11 +45,10 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     
     // MARK: Table View Delegable
     func tableViewDidSelectRow(section: Int, row: Int) {
-        let postCellViewModel: PostCellViewParameters = tableViewCellParameters[row]
-        
+        let postCellParameters: PostCellParameters = tableViewCellParameters[row]
+
         router.toPostDetails(parameters: PostDetailsParameters(
-            title: postCellViewModel.title,
-            body: postCellViewModel.body
+            post: postCellParameters.post
         ))
     }
     
@@ -86,7 +85,7 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
             case .success(let postsEntity):
                 tableViewCellParameters = postsEntity.posts?
                     .compactMap { $0 }
-                    .compactMap { PostCellViewParameters(post: $0) } ??
+                    .compactMap { PostCellParameters(post: $0) } ??
                     []
                 
                 view.reloadPosts()
@@ -95,5 +94,24 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
                 view.presentAlert(parameters: UIAlertParameters(error: error, completion: nil))
             }
         })
+    }
+}
+
+// MARK: - Mapping
+extension PostCellParameters {
+    fileprivate init?(post: PostsEntity.Post) {
+        guard
+            let title: String = post.title,
+            let body: String = post.body
+        else {
+            return nil
+        }
+
+        let post: Post = .init(
+            title: title,
+            body: body
+        )
+
+        self.init(post: post)
     }
 }

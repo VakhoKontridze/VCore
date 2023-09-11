@@ -25,7 +25,7 @@ import VCore
     // MARK: Presentable
     @Published var didAppearForTheFirstTime: Bool = false
     
-    @Published var postParameters: [PostRowViewParameters] = []
+    @Published var posts: [Post] = []
     
     func didLoad() {
         fetchPosts()
@@ -35,11 +35,8 @@ import VCore
         fetchPosts()
     }
     
-    func didTapPost(parameters: PostRowViewParameters) {
-        navigationStackCoordinator?.path.append(PostDetailsParameters(
-            title: parameters.title,
-            body: parameters.body
-        ))
+    func didTapPost(_ post: Post) {
+        navigationStackCoordinator?.path.append(PostDetailsParameters(post: post))
     }
 
     // MARK: Navigation Stack Coordinable
@@ -58,7 +55,7 @@ import VCore
             return
         }
 
-        postParameters = []
+        posts = []
         progressViewParameters = ProgressViewParameters(isInteractionEnabled: false)
         
         fetchPostsTask?.cancel()
@@ -68,9 +65,9 @@ import VCore
                 progressViewParameters = nil
                 guard !Task.isCancelled else { return }
                 
-                postParameters = postsEntity.posts?
+                posts = postsEntity.posts?
                     .compactMap { $0 }
-                    .compactMap { PostRowViewParameters(post: $0) } ??
+                    .compactMap { Post(entity: $0) } ??
                     []
                 
             } catch {
@@ -78,5 +75,24 @@ import VCore
                 alertParameters = AlertParameters(error: error, completion: nil)
             }
         })
+    }
+}
+
+// MARK: - Mapping
+extension Post {
+    fileprivate init?(entity: PostsEntity.Post) {
+        guard
+            let id: Int = entity.id,
+            let title: String = entity.title,
+            let body: String = entity.body
+        else {
+            return nil
+        }
+
+        self.init(
+            id: id,
+            title: title.capitalized,
+            body: body
+        )
     }
 }

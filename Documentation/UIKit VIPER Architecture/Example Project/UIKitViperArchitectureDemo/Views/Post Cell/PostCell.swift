@@ -73,9 +73,9 @@ final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
     
     // MARK: Configurable Table View Cell
     func configure(parameter: some UITableViewCellParameter) {
-        guard let parameters = parameter as? PostCellViewParameters else { return }
+        guard let parameters = parameter as? PostCellParameters else { return }
         
-        titleLabel.text = parameters.title
-        bodyLabel.text = parameters.body
+        titleLabel.text = parameters.post.title
+        bodyLabel.text = parameters.post.body
     }
 }
