@@ -38,6 +38,7 @@ Views
 - `ResponderChainToolBar` can now be initialized with custom `CGSize`
 - Responders in `ResponderChainToolBarManager` can now be initialized with custom `CGSize` and `ResponderChainToolBarUIModel`s
 - `keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin` is added to `FirstResponderViewUnObscuringUIViewController`
+- `CarouselCollectionViewFlowLayout` is renamed to `CarouselUICollectionViewFlowLayout`
 
 Models
 

@@ -1,5 +1,5 @@
 //
-//  CarouselCollectionViewFlowLayout.swift
+//  CarouselUICollectionViewFlowLayout.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 18.08.22.
@@ -9,19 +9,19 @@
 
 import UIKit
 
-// MARK: - Carousel Collection View Flow Layout
+// MARK: - Carousel UI Collection View Flow Layout
 /// Layout object that organizes items into a grid with a flowing carousel alignment.
 ///
 /// Item size should be set via property `itemSize` property.
-/// Alternately, `CarouselCollectionViewFlowLayoutItemSize` can be passed as parameter init init,
+/// Alternately, `CarouselUICollectionViewFlowLayoutItemSize` can be passed as parameter init init,
 /// which only takes item `height`, and horizontal `inset`, and dynamically resizes the `UICollectionViewCell`.
 ///
 /// Spacing can be set via `minimumLineSpacing` property.
 /// Alternately, `spacing` can be passed as a parameter init init.
 ///
 ///     lazy var collectionView: UICollectionView = {
-///         let layout: CarouselCollectionViewFlowLayout = .init(
-///             itemSize: CarouselCollectionViewFlowLayoutItemSize(inset: 40, height: nil),
+///         let layout: CarouselUICollectionViewFlowLayout = .init(
+///             itemSize: CarouselUICollectionViewFlowLayoutItemSize(inset: 40, height: nil),
 ///             spacing: 20
 ///         )
 ///
@@ -52,15 +52,15 @@ import UIKit
 ///         collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
 ///     ])
 ///
-open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
+open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Properties
-    private let carouselItemSize: CarouselCollectionViewFlowLayoutItemSize?
+    private let carouselItemSize: CarouselUICollectionViewFlowLayoutItemSize?
     private let spacing: CGFloat?
     
     // MARK: Initializers
-    /// Initializes `CarouselCollectionViewFlowLayout`.
+    /// Initializes `CarouselUICollectionViewFlowLayout`.
     public init(
-        itemSize carouselItemSize: CarouselCollectionViewFlowLayoutItemSize? = nil,
+        itemSize carouselItemSize: CarouselUICollectionViewFlowLayoutItemSize? = nil,
         spacing: CGFloat? = nil
     ) {
         self.carouselItemSize = carouselItemSize
@@ -173,7 +173,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
     /// Calculates index of center item when `UICollectionView` finishes deceleration.
     ///
     ///     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-    ///         if let carouselFlowLayout = collectionView.collectionViewLayout as? CarouselCollectionViewFlowLayout {
+    ///         if let carouselFlowLayout = collectionView.collectionViewLayout as? CarouselUICollectionViewFlowLayout {
     ///             print(carouselFlowLayout.indexOfCenterItem(inDeceleratedEndedScrollView: scrollView))
     ///         }
     ///     }
@@ -203,7 +203,7 @@ open class CarouselCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
 import SwiftUI
 
-struct CarouselCollectionViewFlowLayout_Previews: PreviewProvider {
+struct CarouselUICollectionViewFlowLayout_Previews: PreviewProvider {
     static var previews: some View {
         ViewControllerRepresentable()
     }
@@ -218,7 +218,7 @@ struct CarouselCollectionViewFlowLayout_Previews: PreviewProvider {
 
     private final class ViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
         private lazy var collectionView: UICollectionView = {
-            let layout: CarouselCollectionViewFlowLayout = .init(
+            let layout: CarouselUICollectionViewFlowLayout = .init(
                 itemSize: .init(inset: inset, height: nil),
                 spacing: spacing
             )
@@ -277,7 +277,7 @@ struct CarouselCollectionViewFlowLayout_Previews: PreviewProvider {
         }
 
         func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-            if let carouselFlowLayout = collectionView.collectionViewLayout as? CarouselCollectionViewFlowLayout {
+            if let carouselFlowLayout = collectionView.collectionViewLayout as? CarouselUICollectionViewFlowLayout {
                 print(carouselFlowLayout.indexOfCenterItem(inDeceleratedEndedScrollView: scrollView))
             }
         }

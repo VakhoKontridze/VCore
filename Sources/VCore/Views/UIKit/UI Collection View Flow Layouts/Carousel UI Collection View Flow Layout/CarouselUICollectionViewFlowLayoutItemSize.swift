@@ -1,5 +1,5 @@
 //
-//  CarouselCollectionViewFlowLayoutItemSize.swift
+//  CarouselUICollectionViewFlowLayoutItemSize.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 18.08.22.
@@ -9,13 +9,13 @@
 
 import UIKit
 
-// MARK: - Carousel Collection View Flow Layout Item Size
-/// Size of item in `CarouselCollectionViewFlowLayout`.
+// MARK: - Carousel UI Collection View Flow Layout Item Size
+/// Size of item in `CarouselUICollectionViewFlowLayout`.
 ///
 /// Alternate API to `itemSize`.
 ///
 /// If `height` is `nil`, it will be calculated from `UICollectionView`.
-public struct CarouselCollectionViewFlowLayoutItemSize {
+public struct CarouselUICollectionViewFlowLayoutItemSize {
     // MARK: Properties
     /// Horizontal inset from the bounds of `UICollectionView`.
     public var inset: CGFloat
@@ -24,7 +24,7 @@ public struct CarouselCollectionViewFlowLayoutItemSize {
     public var height: CGFloat?
     
     // MARK: Initializers
-    /// Initializes `CarouselCollectionViewFlowLayoutItemSize` with inset and height.
+    /// Initializes `CarouselUICollectionViewFlowLayoutItemSize` with inset and height.
     public init(
         inset: CGFloat,
         height: CGFloat?
