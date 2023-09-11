@@ -19,38 +19,27 @@ extension View {
     ///             .progressView(parameters: parameters)
     ///     }
     ///
-    @ViewBuilder public func progressView(
+    public func progressView(
         parameters: ProgressViewParameters?
     ) -> some View {
-        switch parameters {
-        case nil:
-            self
-            
-        case let parameters?:
-            self
-                .blocksHitTesting(!parameters.isInteractionEnabled)
-                .overlay(
+        self
+            .blocksHitTesting(parameters?.isInteractionEnabled == false)
+            .overlay(Group(content: {
+                if let parameters {
                     ProgressView()
-                        .scaleEffect(parameters: parameters)
-                        .progressViewStyle(parameters: parameters)
-                )
-        }
+                        .progressViewStyle(progressViewStyle(parameters: parameters))
+                        .scaleEffect(parameters.scalingFactor ?? 1)
+                }
+            }))
     }
 }
 
 @available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 extension View {
-    @ViewBuilder fileprivate func progressViewStyle(parameters: ProgressViewParameters) -> some View {
+    fileprivate func progressViewStyle(parameters: ProgressViewParameters) -> some ProgressViewStyle {
         switch parameters.color {
-        case nil: self.progressViewStyle(CircularProgressViewStyle())
-        case let color?: self.progressViewStyle(CircularProgressViewStyle(tint: color))
-        }
-    }
-    
-    @ViewBuilder fileprivate func scaleEffect(parameters: ProgressViewParameters) -> some View {
-        switch parameters.scalingFactor {
-        case nil: self
-        case let scalingFactor?: self.scaleEffect(x: scalingFactor, y: scalingFactor, anchor: .center)
+        case nil: return CircularProgressViewStyle()
+        case let color?: return CircularProgressViewStyle(tint: color) // TODO: Refactor when support for `iOS` `16.0` is added
         }
     }
 }

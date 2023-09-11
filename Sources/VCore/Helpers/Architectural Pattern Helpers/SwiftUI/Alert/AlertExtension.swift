@@ -31,31 +31,34 @@ extension View {
     ///         .alert(parameters: $parameters)
     ///     }
     ///
-    @ViewBuilder public func alert(
+    public func alert(
         parameters: Binding<AlertParameters?>
     ) -> some View {
-        switch parameters.wrappedValue {
-        case nil:
-            self
-            
-        case let _parameters?:
-            self.alert(
-                _parameters.title,
-                isPresented: .constant(true),
-                actions: {
-                    ForEach(_parameters.buttons().enumeratedArray(), id: \.offset, content: { (_, button) in
-                        button.makeBody(animateOut: { completion in
-                            parameters.wrappedValue = nil
-                            completion?()
-                        })
-                    })
-                },
-                message: {
-                    if let message: String = _parameters.message {
-                        Text(message)
-                    }
+        self.alert(
+            parameters.wrappedValue?.title ?? "",
+            isPresented: Binding(
+                get: { parameters.wrappedValue != nil },
+                set: { if $0 { parameters.wrappedValue = nil } }
+            ),
+            actions: {
+                if let buttons: [any AlertButtonProtocol] = parameters.wrappedValue?.buttons() {
+                    ForEach(
+                        buttons.enumeratedArray(),
+                        id: \.offset,
+                        content: { (_, button) in
+                            button.makeBody(animateOut: { completion in
+                                parameters.wrappedValue = nil
+                                completion?()
+                            })
+                        }
+                    )
                 }
-            )
-        }
+            },
+            message: {
+                if let message: String = parameters.wrappedValue?.message {
+                    Text(message)
+                }
+            }
+        )
     }
 }

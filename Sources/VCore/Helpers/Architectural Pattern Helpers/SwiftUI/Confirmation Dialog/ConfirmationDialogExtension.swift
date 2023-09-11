@@ -30,40 +30,49 @@ extension View {
     ///         )
     ///         .confirmationDialog(parameters: $parameters)
     ///  
-    @ViewBuilder public func confirmationDialog(
+    public func confirmationDialog(
         parameters: Binding<ConfirmationDialogParameters?>
     ) -> some View {
-        switch parameters.wrappedValue {
-        case nil:
-            self
-            
-        case let _parameters?:
-            self.confirmationDialog(
-                _parameters.title ?? "",
-                isPresented: .constant(true),
-                titleVisibility: .confirmationDialog(title: _parameters.title, message: _parameters.message),
-                actions: {
-                    ForEach(_parameters.buttons().enumeratedArray(), id: \.offset, content: { (_, button) in
-                        button.makeBody(animateOut: { completion in
-                            parameters.wrappedValue = nil
-                            completion?()
-                        })
-                    })
-                },
-                message: {
-                    if let message: String = _parameters.message {
-                        Text(message)
-                    }
+        self.confirmationDialog(
+            parameters.wrappedValue?.title ?? "",
+            isPresented: Binding(
+                get: { parameters.wrappedValue != nil },
+                set: { if $0 { parameters.wrappedValue = nil } }
+            ),
+            titleVisibility: Visibility.confirmationDialog(
+                title: parameters.wrappedValue?.title,
+                message: parameters.wrappedValue?.message
+            ),
+            actions: {
+                if let buttons: [any ConfirmationDialogButtonProtocol] = parameters.wrappedValue?.buttons() {
+                    ForEach(
+                        buttons.enumeratedArray(),
+                        id: \.offset,
+                        content: { (_, button) in
+                            button.makeBody(animateOut: { completion in
+                                parameters.wrappedValue = nil
+                                completion?()
+                            })
+                        }
+                    )
                 }
-            )
-        }
+            },
+            message: {
+                if let message: String = parameters.wrappedValue?.message {
+                    Text(message)
+                }
+            }
+        )
     }
 }
 
 // MARK: - Helpers
 @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension Visibility {
-    fileprivate static func confirmationDialog(title: String?, message: String?) -> Self {
+    fileprivate static func confirmationDialog(
+        title: String?,
+        message: String?
+    ) -> Self {
         switch (title, message) {
         case (nil, nil): return .hidden
         case (nil, _?): return .visible
