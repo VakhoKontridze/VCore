@@ -82,7 +82,7 @@ import Combine
             
             if
                 let instance = instance as? any ObservableObject,
-                let observableObjectPublisher = instance.objectWillChange as any Publisher as? ObservableObjectPublisher
+                let observableObjectPublisher = (instance.objectWillChange as any Publisher) as? ObservableObjectPublisher
             {
                 observableObjectPublisher.send()
             }

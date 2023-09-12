@@ -10,9 +10,6 @@ import SwiftUI
 // MARK: - ConfirmationDialog Parameters
 /// Parameters for presenting a `ConfirmationDialog`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in`Presenter`.
-/// in `MVVM` architecture, parameters are stored in `ViewModel`.
-///
 ///     @State private var parameters: ConfirmationDialogParameters?
 ///
 ///     var body: some View {

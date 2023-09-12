@@ -28,7 +28,7 @@ extension JSONDecoder {
         }
 
         guard let json = jsonObject as? [String: Any?] else {
-            let error: CastingError = .init(from: "Data", to: "[String: Any?]")
+            let error: CastingError = .init(from: "Any", to: "[String: Any?]")
             VCoreLogError(error)
             throw error
         }
@@ -55,7 +55,7 @@ extension JSONDecoder {
         }
 
         guard let jsonArray = jsonObject as? [[String: Any?]] else {
-            let error: CastingError = .init(from: "Data", to: "[[String: Any?]]")
+            let error: CastingError = .init(from: "Any", to: "[[String: Any?]]")
             VCoreLogError(error)
             throw error
         }

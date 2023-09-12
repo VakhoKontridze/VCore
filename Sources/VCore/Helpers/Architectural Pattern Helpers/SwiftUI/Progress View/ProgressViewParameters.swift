@@ -10,9 +10,6 @@ import SwiftUI
 // MARK: - Progress View Parameters
 /// Parameters for presenting an `ProgressView`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` architectures, parameters are stored in `Presenter`.
-/// in `MVVM` architecture, parameters are stored in`ViewModel`.
-///
 ///     @State private var parameters: ProgressViewParameters = .init()
 ///
 ///     var body: some View {

@@ -49,6 +49,13 @@ Models
 - `delay` is added to `BasicAnimation`
 - JSON request headers are renamed to JSON request header fields
 
+Helpers - Architectural Pattern Helpers
+
+- `VAlertPresentable` is removed
+- `ConfirmationDialogPresentable` is removed
+- `ProgressViewPresentable` is removed
+- `NavigationStackCoordinable` is removed
+
 Extensions
 
 - `Collection.firstIndexAndElement(ofType:where:)` and `Collection.lastIndexAndElement(ofType:where:)` methods are added, that return first or last index and element of `Collection` of the given type

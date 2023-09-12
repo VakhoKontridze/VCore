@@ -38,7 +38,6 @@ import UIKit
 ///         }
 ///     }
 ///
-///     
 public protocol UIAlertViewable {
     /// Presents `UIAlert` with parameters
     func presentAlert(parameters: UIAlertParameters)
