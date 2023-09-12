@@ -103,7 +103,7 @@ private final class _ModalDecoratorView: UIView {
     // MARK: Setup
     private func setUp() {
         let transitionViewChild: UIView? = Self.findSuperview(
-            on: self,
+            ofView: self,
             where: { $0.superview?.isTransitionView ?? false }
         )
         
@@ -115,13 +115,13 @@ private final class _ModalDecoratorView: UIView {
     
     // MARK: Finding Superview
     private static func findSuperview(
-        on view: UIView,
+        ofView view: UIView,
         where predicate: (UIView) -> Bool
     ) -> UIView? {
         if predicate(view) {
             return view
         } else if let superview: UIView = view.superview {
-            return findSuperview(on: superview, where: predicate)
+            return findSuperview(ofView: superview, where: predicate)
         } else {
             return nil
         }
