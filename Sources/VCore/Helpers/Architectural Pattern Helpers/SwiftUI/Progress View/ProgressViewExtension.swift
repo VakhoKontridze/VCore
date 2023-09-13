@@ -26,18 +26,10 @@ extension View {
             .overlay(content: {
                 if let parameters {
                     ProgressView()
-                        .progressViewStyle(progressViewStyle(parameters: parameters))
+                        .progressViewStyle(.circular)
                         .scaleEffect(parameters.scalingFactor ?? 1)
+                        .tint(parameters.color)
                 }
             })
-    }
-}
-
-extension View {
-    fileprivate func progressViewStyle(parameters: ProgressViewParameters) -> some ProgressViewStyle {
-        switch parameters.color {
-        case nil: return CircularProgressViewStyle()
-        case let color?: return CircularProgressViewStyle(tint: color) // TODO: iOS 16.0 - Refactor with `tint(_:)`
-        }
     }
 }
