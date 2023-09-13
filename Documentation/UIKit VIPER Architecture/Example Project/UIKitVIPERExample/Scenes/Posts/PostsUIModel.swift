@@ -10,7 +10,7 @@ import UIKit
 // MARK: - Posts UI Model
 struct PostsUIModel {
     // MARK: Properties
-    static var backgroundColor: UIColor? { .systemBackground }
+    static var backgroundColor: UIColor { .systemBackground }
 
     // MARK: Initializers
     private init() {}

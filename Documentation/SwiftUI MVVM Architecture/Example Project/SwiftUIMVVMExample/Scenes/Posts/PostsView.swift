@@ -27,7 +27,7 @@ struct PostsView: View {
     // MARK: Body
     var body: some View {
         ZStack(content: {
-            canvas
+            backgroundView
             contentView
         })
         .onFirstAppear($didAppearForTheFirstTime, perform: {
@@ -42,7 +42,7 @@ struct PostsView: View {
         .progressView(parameters: viewModel.progressViewParameters)
     }
     
-    private var canvas: some View {
+    private var backgroundView: some View {
         UIModel.backgroundColor.ignoresSafeArea()
     }
     

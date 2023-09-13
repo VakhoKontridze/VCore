@@ -22,7 +22,7 @@ struct ___VARIABLE_productName___View: View {
     // MARK: Body
     var body: some View {
         ZStack(content: {
-            canvas
+            backgroundView
             contentView
         })
         .onFirstAppear($didAppearForTheFirstTime, perform: {
@@ -35,7 +35,7 @@ struct ___VARIABLE_productName___View: View {
         .progressView(parameters: viewModel.progressViewParameters)
     }
     
-    private var canvas: some View {
+    private var backgroundView: some View {
         UIModel.backgroundColor.ignoresSafeArea()
     }
     

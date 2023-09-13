@@ -23,13 +23,13 @@ struct PostDetailsView: View {
     // MARK: Body
     var body: some View {
         ZStack(content: {
-            canvas
+            backgroundView
             contentView
         })
         .inlineNavigationTitle(viewModel.title)
     }
     
-    private var canvas: some View {
+    private var backgroundView: some View {
         UIModel.backgroundColor.ignoresSafeArea()
     }
     
