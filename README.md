@@ -334,7 +334,10 @@ Versions with different majors are not directly compatible. When a new major is 
         tvOS 15.0<br>
         watchOS 8.0
     </td>
-    <td>API changes.</td>
+    <td>
+        New SDK.<br>
+        API changes.
+    </td>
   </tr>
   
   <tr>
