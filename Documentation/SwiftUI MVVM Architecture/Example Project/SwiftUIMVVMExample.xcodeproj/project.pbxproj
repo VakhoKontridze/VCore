@@ -16,7 +16,7 @@
 		870B88BC285F1CF100B0D0AD /* PostDetailsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B88B5285F1CF100B0D0AD /* PostDetailsParameters.swift */; };
 		870B88BE285F1FF900B0D0AD /* PostsMockGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B88BD285F1FF900B0D0AD /* PostsMockGateway.swift */; };
 		872EE7A12860BF8D00845B5C /* PostsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872EE7A02860BF8D00845B5C /* PostsParameters.swift */; };
-		8780A057285F0DA0002E8F66 /* SwiftUIMVVMExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A056285F0DA0002E8F66 /* SwiftUIMVVMExample.swift */; };
+		8780A057285F0DA0002E8F66 /* SwiftUIMVVMExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A056285F0DA0002E8F66 /* SwiftUIMVVMExampleApp.swift */; };
 		8780A05B285F0DA1002E8F66 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8780A05A285F0DA1002E8F66 /* Images.xcassets */; };
 		8780A06F285F0DF6002E8F66 /* PostsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A068285F0DF6002E8F66 /* PostsViewModel.swift */; };
 		8780A071285F0DF6002E8F66 /* PostsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A06A285F0DF6002E8F66 /* PostsView.swift */; };
@@ -40,7 +40,7 @@
 		870B88BD285F1FF900B0D0AD /* PostsMockGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsMockGateway.swift; sourceTree = "<group>"; };
 		872EE7A02860BF8D00845B5C /* PostsParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsParameters.swift; sourceTree = "<group>"; };
 		8780A053285F0DA0002E8F66 /* SwiftUI VIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI VIP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		8780A056285F0DA0002E8F66 /* SwiftUIMVVMExample.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIMVVMExample.swift; sourceTree = "<group>"; };
+		8780A056285F0DA0002E8F66 /* SwiftUIMVVMExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIMVVMExampleApp.swift; sourceTree = "<group>"; };
 		8780A05A285F0DA1002E8F66 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8780A068285F0DF6002E8F66 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
 		8780A06A285F0DF6002E8F66 /* PostsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsView.swift; sourceTree = "<group>"; };
@@ -138,7 +138,7 @@
 		8780A065285F0DD9002E8F66 /* App Control */ = {
 			isa = PBXGroup;
 			children = (
-				8780A056285F0DA0002E8F66 /* SwiftUIMVVMExample.swift */,
+				8780A056285F0DA0002E8F66 /* SwiftUIMVVMExampleApp.swift */,
 			);
 			path = "App Control";
 			sourceTree = "<group>";
@@ -299,7 +299,7 @@
 				870B88B7285F1CF100B0D0AD /* PostDetailsViewModel.swift in Sources */,
 				872EE7A12860BF8D00845B5C /* PostsParameters.swift in Sources */,
 				8780A086285F0FEF002E8F66 /* PostsEntity.swift in Sources */,
-				8780A057285F0DA0002E8F66 /* SwiftUIMVVMExample.swift in Sources */,
+				8780A057285F0DA0002E8F66 /* SwiftUIMVVMExampleApp.swift in Sources */,
 				8780A084285F0FEF002E8F66 /* PostsNetworkGateway.swift in Sources */,
 				8780A072285F0DF6002E8F66 /* PostsUIModel.swift in Sources */,
 				870B88BC285F1CF100B0D0AD /* PostDetailsParameters.swift in Sources */,

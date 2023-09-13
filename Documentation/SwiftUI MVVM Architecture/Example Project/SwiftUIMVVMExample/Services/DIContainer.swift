@@ -10,16 +10,11 @@ import Foundation
 // MARK: - DI Container
 final class DIContainer {
     // MARK: Properties - Gateways
-    var postsGateway: (any PostsGateway)!
+    lazy var postsGateway: any PostsGateway = PostsNetworkGateway()
 
     // MARK: Properties - Singleton
     static let current: DIContainer = .init()
 
     // MARK: Initializers
     private init() {}
-
-    // MARK: Injection
-    func injectDefault() {
-        postsGateway = PostsNetworkGateway()
-    }
 }
