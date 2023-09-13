@@ -10,7 +10,7 @@ struct ___VARIABLE_productName___View: View {
 
     private typealias UIModel = ___VARIABLE_productName___UIModel
 
-    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator?
+    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
     
     @State private var didAppearForTheFirstTime: Bool = false
     

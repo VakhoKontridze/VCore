@@ -23,7 +23,7 @@ extension View {
 extension EnvironmentValues {
     /// `NavigationStackCoordinator` of the view associated with the environment.
     ///
-    ///     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator?
+    ///     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
     ///
     ///     var body: some View {
     ///         CoordinatingNavigationStack(root: {

@@ -15,7 +15,7 @@ struct PostsView: View {
 
     private typealias UIModel = PostsUIModel
 
-    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator?
+    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
     
     @State private var didAppearForTheFirstTime: Bool = false
 
