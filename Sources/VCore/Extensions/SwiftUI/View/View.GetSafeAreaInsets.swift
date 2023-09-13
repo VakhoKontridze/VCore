@@ -22,7 +22,7 @@ extension View {
         _ action: @escaping (EdgeInsets) -> Void
     ) -> some View {
         self
-            .background(
+            .background(content: {
                 GeometryReader(content: { proxy in
                     Color.clear
                         .preference(
@@ -31,7 +31,7 @@ extension View {
                         )
                         .onPreferenceChange(SafeAreaInsetsPreferenceKey.self, perform: action)
                 })
-            )
+            })
     }
 }
 

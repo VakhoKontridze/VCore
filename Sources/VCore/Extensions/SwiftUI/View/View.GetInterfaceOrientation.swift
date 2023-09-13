@@ -25,7 +25,7 @@ extension View {
         _ action: @escaping (UIInterfaceOrientation) -> Void
     ) -> some View {
         self
-            .background(InterfaceOrientationReaderView(completion: action))
+            .background(content: { InterfaceOrientationReaderView(completion: action) })
     }
 }
 

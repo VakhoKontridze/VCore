@@ -29,7 +29,7 @@ struct SwiftUIBaseButtonStyle<Label>: ButtonStyle where Label: View {
     // MARK: Body
     func makeBody(configuration: Configuration) -> some View {
         label(state(isPressed: configuration.isPressed))
-            .background(configuration.label)
+            .background(content: { configuration.label })
             .applyIf(!uiModel.animatesStateChange, transform: {
                 $0
                     .animation(nil, value: isEnabled)

@@ -110,16 +110,20 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
     public var body: some View {
 #if canImport(UIKit) && !os(watchOS)
         label()
-            .overlay(SwiftUIGestureBaseButton_UIKit(
-                isEnabled: isEnabled,
-                onStateChange: stateChangeHandler
-            ))
+            .overlay(content: {
+                SwiftUIGestureBaseButton_UIKit(
+                    isEnabled: isEnabled,
+                    onStateChange: stateChangeHandler
+                )
+            })
 #elseif canImport(AppKit)
         label()
-            .overlay(SwiftUIGestureBaseButton_AppKit(
-                isEnabled: isEnabled,
-                onStateChange: stateChangeHandler
-            ))
+            .overlay(content: {
+                SwiftUIGestureBaseButton_AppKit(
+                    isEnabled: isEnabled,
+                    onStateChange: stateChangeHandler
+                )
+            })
 #endif
     }
 }

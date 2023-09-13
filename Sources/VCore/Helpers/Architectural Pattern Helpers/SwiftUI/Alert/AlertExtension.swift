@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - Alert Extension
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension View {
     /// Presents `Alert` when `AlertParameters` is non-`nil`.
     ///

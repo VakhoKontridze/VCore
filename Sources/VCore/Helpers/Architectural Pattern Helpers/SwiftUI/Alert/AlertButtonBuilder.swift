@@ -9,7 +9,6 @@ import Foundation
 
 // MARK: - Alert Button Builder
 /// Custom parameter attribute that constructs views from closures.
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 @resultBuilder public struct AlertButtonBuilder {
     // MARK: Properties
     public typealias Component = any AlertButtonConvertible

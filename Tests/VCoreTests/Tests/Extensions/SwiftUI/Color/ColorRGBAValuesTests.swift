@@ -10,7 +10,6 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 final class ColorRGBAValuesTests: XCTestCase {
     func testValues() {
         let inputR: CGFloat = 0.1

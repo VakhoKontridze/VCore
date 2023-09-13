@@ -34,7 +34,6 @@ import SwiftUI
 ///         .padding()
 ///     }
 ///
-@available(iOS 14.0, macOS 11.0, *)
 @available(tvOS 16.0, *)@available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct PlainDisclosureGroup<Label, Content>: View
@@ -115,18 +114,18 @@ public struct PlainDisclosureGroup<Label, Content>: View
             
             labelView
         })
-            .background(uiModel.backgroundColor)
+        .background(content: { uiModel.backgroundColor })
     }
     
     private var labelView: some View {
         label()
             .frame(maxWidth: .infinity)
             .getSize({ labelHeight = $0.height })
-            .background(
+            .background(content: {
                 uiModel.backgroundColor
                     .contentShape(Rectangle())
                     .onTapGesture(perform: expandCollapseFromLabelTap)
-            )
+            })
     }
     
     // MARK: Actions
@@ -146,9 +145,8 @@ public struct PlainDisclosureGroup<Label, Content>: View
 }
 
 // MARK: - Preview
-@available(iOS 14.0, macOS 11.0, *)
-@available(tvOS 14.0, *)@available(tvOS, unavailable)
-@available(watchOS 7.0, *)@available(watchOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 struct PlainDisclosureGroup_Previews: PreviewProvider {
     static var previews: some View {
         Preview()

@@ -62,7 +62,6 @@ import SwiftUI
 ///         }
 ///     }
 ///
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderContent>: View
     where
         Parameter: Equatable,
@@ -133,7 +132,6 @@ public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderCont
     }
 
     /// Initializes `FetchDelegatingCompletionImage` with parameter, fetch method, and phase-dependent content.
-    @available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
     public init(
         uiModel: FetchDelegatingCompletionImageUIModel = .init(),
         from parameter: Parameter?,
@@ -146,7 +144,7 @@ public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderCont
         self.parameter = parameter
         self.fetchHandler = fetchHandler
         self.content = .contentWithPhase(
-            content: { content($0.toAsyncImagePhase) }
+            content: content
         )
     }
 

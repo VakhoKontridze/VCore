@@ -20,15 +20,9 @@ extension View {
     ///
     @ViewBuilder public func inlineNavigationTitle(_ title: String) -> some View {
 #if os(iOS) || os(watchOS) || targetEnvironment(macCatalyst)
-        if #available(iOS 14.0, watchOS 8.0, *) {
-            self
-                .navigationTitle(title)
-                .navigationBarTitleDisplayMode(.inline)
-            
-        } else {
-            self
-                .navigationBarTitle(title)
-        }
+        self
+            .navigationTitle(title)
+            .navigationBarTitleDisplayMode(.inline)
 #endif
     }
 }

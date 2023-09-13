@@ -9,7 +9,6 @@ import SwiftUI
 
 // MARK: - Confirmation Dialog Button
 /// `ConfirmationDialog` button.
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
     // MARK: Properties
     private var isEnabled: Bool = true

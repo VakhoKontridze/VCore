@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - Binding Unwrapped Binding
-@available(iOS 14.0, *)
 extension Binding {
     /// Returns `Binding` wrapper for an `Optional` `Binding` with a default value for getter.
     ///

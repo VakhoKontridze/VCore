@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - View Bind Value to Modal Context
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 extension View {
     /// Binds value to modal context by applying an empty `onChange` modifier to the value.
     ///

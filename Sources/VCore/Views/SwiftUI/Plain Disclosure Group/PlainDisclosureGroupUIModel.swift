@@ -9,7 +9,6 @@ import SwiftUI
 
 // MARK: - Plain Disclosure Group UI Model
 /// Model that describes UI.
-@available(iOS 14.0, macOS 11.0, *)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct PlainDisclosureGroupUIModel {
@@ -27,9 +26,9 @@ public struct PlainDisclosureGroupUIModel {
     /// Needed for setting background color to the label.
     public var backgroundColor: Color = {
 #if os(iOS) || targetEnvironment(macCatalyst)
-        return Color(UIColor.systemBackground)
+        return Color(uiColor: UIColor.systemBackground)
 #elseif os(macOS)
-        return Color(NSColor.windowBackgroundColor)
+        return Color(nsColor: NSColor.windowBackgroundColor)
 #else
         fatalError() // Not supported
 #endif

@@ -262,7 +262,7 @@ import SwiftUI
 struct InfiniteScrollingUICollectionView_Previews: PreviewProvider {
     static var previews: some View {
         ViewControllerRepresentable()
-            .edgesIgnoringSafeArea(.all) // Internal handling
+            .ignoresSafeArea() // Internal handling
     }
 
     private struct ViewControllerRepresentable: UIViewControllerRepresentable {

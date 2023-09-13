@@ -25,7 +25,7 @@ extension View {
         _ action: @escaping (UIWindow) -> Void
     ) -> some View {
         self
-            .background(WindowReaderView(completion: action))
+            .background(content: { WindowReaderView(completion: action) })
     }
 }
 

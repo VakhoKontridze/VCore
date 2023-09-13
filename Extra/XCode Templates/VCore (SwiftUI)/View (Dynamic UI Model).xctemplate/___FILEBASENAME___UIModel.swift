@@ -4,5 +4,5 @@ import SwiftUI
 
 // MARK: - ___VARIABLE_productName___ UI Model
 struct ___VARIABLE_productName___UIModel {
-    var backgroundColor: Color = .init(.systemBackground)
+    var backgroundColor: Color = .init(uiColor: .systemBackground)
 }

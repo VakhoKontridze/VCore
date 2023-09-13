@@ -40,7 +40,7 @@ extension View {
         @ViewBuilder destination: @escaping () -> some View
     ) -> some View {
         self
-            .background(
+            .background(content: {
                 NavigationLink(
                     isActive: isActive,
                     destination: destination,
@@ -48,6 +48,6 @@ extension View {
                 )
                 .allowsHitTesting(false)
                 .opacity(0)
-            )
+            })
     }
 }

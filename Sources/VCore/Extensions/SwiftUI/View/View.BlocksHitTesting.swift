@@ -20,12 +20,10 @@ extension View {
         _ flag: Bool = true
     ) -> some View {
         self
-            .overlay(
-                Group(content: {
-                    if flag {
-                        Color.clear.contentShape(Rectangle())
-                    }
-                })
-            )
+            .overlay(content: {
+                if flag {
+                    Color.clear.contentShape(Rectangle())
+                }
+            })
     }
 }

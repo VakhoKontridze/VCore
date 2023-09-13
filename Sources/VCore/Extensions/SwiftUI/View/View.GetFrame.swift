@@ -23,7 +23,7 @@ extension View {
         _ action: @escaping (CGRect) -> Void
     ) -> some View {
         self
-            .background(
+            .background(content: {
                 GeometryReader(content: { proxy in
                     Color.clear
                         .preference(
@@ -32,7 +32,7 @@ extension View {
                         )
                         .onPreferenceChange(FramePreferenceKey.self, perform: action)
                 })
-            )
+            })
     }
 }
 

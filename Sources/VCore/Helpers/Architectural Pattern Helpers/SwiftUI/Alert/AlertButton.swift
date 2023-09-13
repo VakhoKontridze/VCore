@@ -9,7 +9,6 @@ import SwiftUI
 
 // MARK: - Alert Button
 /// `Alert` button.
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public struct AlertButton: AlertButtonProtocol {
     // MARK: Properties
     private var isEnabled: Bool = true

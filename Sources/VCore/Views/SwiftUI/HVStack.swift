@@ -73,7 +73,6 @@ public struct HVStack<Content>: View where Content: View {
 }
 
 // MARK: - Preview
-@available(macOS 11.0, *)
 struct HVStack_Previews: PreviewProvider {
     static var previews: some View {
         VStack(spacing: 20, content: {

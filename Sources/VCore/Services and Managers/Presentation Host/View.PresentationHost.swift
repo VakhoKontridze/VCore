@@ -141,12 +141,14 @@ extension View {
 #if canImport(UIKit) && !os(watchOS)
         self
             .onDisappear(perform: { PresentationHostViewController.forceDismiss(id: id) })
-            .background(PresentationHostView(
-                id: id,
-                uiModel: uiModel,
-                isPresented: isPresented,
-                content: content
-            ))
+            .background(content: {
+                PresentationHostView(
+                    id: id,
+                    uiModel: uiModel,
+                    isPresented: isPresented,
+                    content: content
+                )
+            })
 #endif
     }
     

@@ -8,9 +8,8 @@
 import SwiftUI
 
 // MARK: - View Responder Chain Tool Bar
-@available(iOS 15.0, macOS 12.0, *)
-@available(tvOS 14.0, *)@available(tvOS, unavailable)
-@available(watchOS 7.0, *)@available(watchOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 extension View {
     /// Inserts toolbar that managed focus navigation in responder chain.
     ///

@@ -9,7 +9,6 @@ import SwiftUI
 
 // MARK: - Alert Button Protocol
 /// `Alert` button protocol.
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 public protocol AlertButtonProtocol: AlertButtonConvertible {
     /// Body type.
     typealias Body = AnyView
@@ -20,7 +19,6 @@ public protocol AlertButtonProtocol: AlertButtonConvertible {
     ) -> Body
 }
 
-@available(iOS 15.0, macOS 12.0, tvOS 15.0, watchOS 8.0, *)
 extension AlertButtonProtocol {
     public func toButtons() -> [any AlertButtonProtocol] { [self] }
 }

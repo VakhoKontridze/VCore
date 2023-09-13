@@ -23,7 +23,6 @@ public enum UILayoutGuideType {
     case safeArea
     
     /// Layout guide that tracks the keyboard’s position in your app’s layout.
-    @available(iOS 15.0, *)
     @available(tvOS, unavailable)
     case keyboard
     
@@ -63,7 +62,6 @@ public enum UILayoutGuideType {
             
 #if os(iOS) || targetEnvironment(macCatalyst)
         case .keyboard:
-            guard #available(iOS 15.0, *) else { fatalError() }
             return view.keyboardLayoutGuide
 #endif
             

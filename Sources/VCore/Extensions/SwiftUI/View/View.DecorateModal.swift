@@ -46,9 +46,11 @@ extension View {
         _ decorate: @escaping (UIView?, UIView?) -> Void
     ) -> some View {
         self
-            .background(ModalDecoratorView(
-                decorate: decorate
-            ))
+            .background(content: {
+                ModalDecoratorView(
+                    decorate: decorate
+                )
+            })
     }
 }
 

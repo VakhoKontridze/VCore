@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - Progress View Extension
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 extension View {
     /// Presents `ProgressView` when `ProgressViewParameters` is non-`nil`.
     ///
@@ -24,22 +23,21 @@ extension View {
     ) -> some View {
         self
             .blocksHitTesting(parameters?.isInteractionEnabled == false)
-            .overlay(Group(content: {
+            .overlay(content: {
                 if let parameters {
                     ProgressView()
                         .progressViewStyle(progressViewStyle(parameters: parameters))
                         .scaleEffect(parameters.scalingFactor ?? 1)
                 }
-            }))
+            })
     }
 }
 
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 extension View {
     fileprivate func progressViewStyle(parameters: ProgressViewParameters) -> some ProgressViewStyle {
         switch parameters.color {
         case nil: return CircularProgressViewStyle()
-        case let color?: return CircularProgressViewStyle(tint: color) // TODO: Refactor when support for `iOS` `16.0` is added
+        case let color?: return CircularProgressViewStyle(tint: color) // TODO: iOS 16.0 - Refactor with `tint(_:)`
         }
     }
 }

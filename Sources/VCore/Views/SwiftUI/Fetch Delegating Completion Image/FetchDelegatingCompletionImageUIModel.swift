@@ -9,7 +9,6 @@ import SwiftUI
 
 // MARK: - Fetch Delegating Completion Image UI Model
 /// Model that describes UI.
-@available(iOS 14.0, macOS 11.0, tvOS 14.0, watchOS 7.0, *)
 public struct FetchDelegatingCompletionImageUIModel {
     // MARK: Properties
     /// Placeholder color.
