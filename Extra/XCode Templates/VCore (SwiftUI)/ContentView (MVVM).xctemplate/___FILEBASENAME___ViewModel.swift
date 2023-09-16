@@ -10,7 +10,7 @@ import VCore
 
     var navigationStackCoordinator: NavigationStackCoordinator!
     @Published var alertParameters: AlertParameters?
-    @Published var progressViewParameters: ProgressViewParameters?
+    @Published private(set) var progressViewParameters: ProgressViewParameters?
     
     // MARK: Initializers
     init(parameters: ___VARIABLE_productName___Parameters) {

@@ -11,11 +11,11 @@ import VCore
 // MARK: - Posts View Model
 @MainActor final class PostsViewModel: ObservableObject {
     // MARK: Properties
+    @Published private(set) var posts: [Post] = []
+
     var navigationStackCoordinator: NavigationStackCoordinator!
     @Published var alertParameters: AlertParameters?
-    @Published var progressViewParameters: ProgressViewParameters?
-
-    @Published var posts: [Post] = []
+    @Published private(set) var progressViewParameters: ProgressViewParameters?
 
     private var fetchPostsTask: Task<Void, Never>?
     
