@@ -10,7 +10,7 @@
 import SwiftUI
 import UIKit
 
-// MARK: - Corner Radius with Custom Corners
+// MARK: - View Corner Radius with Custom Corners
 extension View {
     /// Clips this `View` to its bounding frame, with the specified corners and corner radius.
     ///

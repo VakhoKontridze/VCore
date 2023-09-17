@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Safe Area Margins
+// MARK: - View Safe Area Margins
 @available(macOS, unavailable)
 @available(watchOS, unavailable)
 extension View {

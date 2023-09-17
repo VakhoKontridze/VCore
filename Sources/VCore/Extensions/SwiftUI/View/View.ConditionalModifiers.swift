@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Conditional View Modifiers
+// MARK: - View Conditional Modifiers
 extension View {
     /// Applies modifier and transforms `View` if condition is met.
     ///
