@@ -10,12 +10,11 @@ import SwiftUI
 // MARK: - View Simultaneous Tap Gesture
 @available(tvOS 16.0, *)
 extension View {
-    /// Adds an action to perform when this view recognizes a simultaneous tap gesture
-    /// with gestures defined by the `View`.
+    /// Attaches a gesture to the `View` to process simultaneously with tap gesture defined by the `View`.
     ///
     ///     var body: some View {
     ///         SomeViewWithExistingGestures()
-    ///             .onSimultaneousTapGesture(perform: doSomethingElseAsWell)
+    ///             .onSimultaneousTapGesture(perform: { ... })
     ///     }
     ///
     public func onSimultaneousTapGesture(
@@ -23,6 +22,9 @@ extension View {
         perform action: @escaping () -> Void
     ) -> some View {
         self
-            .simultaneousGesture(TapGesture(count: count).onEnded(action))
+            .simultaneousGesture(
+                TapGesture(count: count)
+                    .onEnded(action)
+            )
     }
 }

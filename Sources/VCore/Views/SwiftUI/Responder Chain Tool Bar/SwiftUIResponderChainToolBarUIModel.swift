@@ -35,6 +35,6 @@ public struct SwiftUIResponderChainToolBarUIModel {
     public init() {}
 
     // MARK: Button State Colors
-    /// Model that contains colors for button states.
+    /// Model that contains colors for button component states.
     public typealias ButtonStateColors = GenericStateModel_EnabledDisabled<Color>
 }
