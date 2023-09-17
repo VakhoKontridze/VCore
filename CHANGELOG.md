@@ -35,6 +35,7 @@ Services and Managers - JSON Decoder Service
 
 Views
 
+- `TouchSensitiveContainer` is added that detects and reacts to touch down and touch up interactions
 - `ResponderChainToolBar` can now be initialized with custom `CGSize`
 - Responders in `ResponderChainToolBarManager` can now be initialized with custom `CGSize` and `ResponderChainToolBarUIModel`s
 - `keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin` is added to `FirstResponderViewUnObscuringUIViewController`
