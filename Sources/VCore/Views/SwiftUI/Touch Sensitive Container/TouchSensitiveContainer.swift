@@ -104,18 +104,15 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     private var backgroundView: some View {
         uiModel.backgroundColors.value(for: internalState)
             .contentShape(Rectangle())
-            .onTouchInteraction(perform: didPerformInteraction)
+            .onTapGesture(perform: didPerformInteraction)
     }
 
     // MARK: Actions
-    private func didPerformInteraction(_ isActive: Bool) {
-        if isActive {
-            withAnimation(uiModel.touchDownAnimation, { isPressed = true })
+    private func didPerformInteraction() {
+        isPressed = true
+        withAnimation(uiModel.animation, { isPressed = false })
 
-        } else {
-            withAnimation(uiModel.touchUpAnimation, { isPressed = false })
-            action?()
-        }
+        action?()
     }
 }
 

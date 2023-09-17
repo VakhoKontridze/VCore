@@ -14,36 +14,46 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text("Lorem ipsum")
-    ///             .onTouchInteraction(perform: { isActive in
+    ///             .onTouchInteraction(minimumDistance: 0, perform: { isActive in
     ///                 ...
     ///             })
     ///     }
     ///
     public func onTouchInteraction(
+        minimumDistance: CGFloat = 10,
         perform action: @escaping ((Bool) -> Void)
     ) -> some View {
         self
-            .modifier(TouchDownTouchUpInteractionRecognizerViewModifier(completion: action))
+            .modifier(TouchDownTouchUpInteractionRecognizerViewModifier(
+                minimumDistance: minimumDistance,
+                completion: action
+            ))
     }
 }
 
 // MARK: - Touch Down & Touch Up Interaction Recognizer View Modifiable
 @available(tvOS, unavailable)
 private struct TouchDownTouchUpInteractionRecognizerViewModifier: ViewModifier {
-    @State private var isDragged: Bool = false
-
+    // MARK: Properties
+    private let minimumDistance: CGFloat
     private let completion: (Bool) -> Void
 
+    @State private var isDragged: Bool = false
+
+    // MARK: Initializers
     init(
+        minimumDistance: CGFloat,
         completion: @escaping (Bool) -> Void
     ) {
+        self.minimumDistance = minimumDistance
         self.completion = completion
     }
 
+    // MARK: Body
     func body(content: Content) -> some View {
         content
             .gesture(
-                DragGesture(minimumDistance: 0)
+                DragGesture(minimumDistance: minimumDistance)
                     .onChanged({ _ in
                         if !isDragged {
                             isDragged = true

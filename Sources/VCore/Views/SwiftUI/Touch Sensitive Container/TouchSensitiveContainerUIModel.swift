@@ -34,11 +34,8 @@ public struct TouchSensitiveContainerUIModel {
     public var contentOpacities: StateOpacities = .init(1)
 
     // MARK: Properties - Transition
-    /// Touch down animation. Set to `nil`.
-    public var touchDownAnimation: Animation? = nil
-
-    /// Touch up animation. Set to `easeOut` with duration `0.15`.
-    public var touchUpAnimation: Animation? = .easeOut(duration: 0.15)
+    /// Animation. Set to `easeOut` with duration `0.15`.
+    public var animation: Animation? = .easeOut(duration: 0.25)
 
     // MARK: Initializers
     /// Initializes UI model with default values.
