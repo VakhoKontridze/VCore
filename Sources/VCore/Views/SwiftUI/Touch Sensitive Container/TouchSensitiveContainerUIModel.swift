@@ -9,13 +9,24 @@ import SwiftUI
 
 // MARK: - Touch Sensitive Container UI Model
 /// Model that describes UI.
+@available(tvOS, unavailable)
 public struct TouchSensitiveContainerUIModel {
     // MARK: Properties - Background
     /// Background colors.
     public var backgroundColors: StateColors = .init(
-        enabled: Color(uiColor: .systemBackground),
-        pressed: Color(uiColor: .systemFill),
-        disabled: Color(uiColor: .systemBackground)
+        enabled: .clear,
+        pressed: {
+#if os(iOS) || targetEnvironment(macCatalyst)
+            return Color(uiColor: .systemFill)
+#elseif os(macOS)
+            return Color(nsColor: NSColor.windowBackgroundColor)
+#elseif os(watchOS)
+            return Color.gray.opacity(0.3)
+#else
+            fatalError() // Not supported
+#endif
+        }(),
+        disabled: .clear
     )
 
     // MARK: Properties - Content

@@ -28,7 +28,7 @@ public struct PlainDisclosureGroupUIModel {
 #if os(iOS) || targetEnvironment(macCatalyst)
         return Color(uiColor: UIColor.systemBackground)
 #elseif os(macOS)
-        return Color(nsColor: NSColor.windowBackgroundColor)
+        return Color(nsColor: NSColor.controlColor)
 #else
         fatalError() // Not supported
 #endif

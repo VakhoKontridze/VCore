@@ -40,6 +40,7 @@ import SwiftUI
 ///         )
 ///     }
 ///
+@available(tvOS, unavailable)
 public struct TouchSensitiveContainer<Content>: View where Content: View {
     // MARK: Properties - UI Model
     private let uiModel: TouchSensitiveContainerUIModel
@@ -102,6 +103,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
 
     private var backgroundView: some View {
         uiModel.backgroundColors.value(for: internalState)
+            .contentShape(Rectangle())
             .onTouchInteraction(perform: didDetectInteraction)
     }
 
@@ -118,11 +120,13 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+@available(tvOS, unavailable)
 struct TouchSensitiveContainer_Preview: PreviewProvider {
     static var previews: some View {
         TouchSensitiveContainer(content: {
             Text("Lorem ipsum")
                 .padding()
         })
+        .previewLayout(.sizeThatFits)
     }
 }
