@@ -26,7 +26,7 @@ import SwiftUI
 ///     }
 ///
 ///     struct ContentView: View {
-///         @EnvironmentObject private var viewResetter: ViewResetter
+///         @Environment(\.viewResetter) private var viewResetter: ViewResetter!
 ///
 ///         var body: some View {
 ///             ScrollView(content: {

@@ -49,6 +49,7 @@ Models
 - `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
 - `delay` is added to `BasicAnimation`
 - JSON request headers are renamed to JSON request header fields
+- `EnvironmentValues.viewResetter` is added
 
 Helpers - Architectural Pattern Helpers
 

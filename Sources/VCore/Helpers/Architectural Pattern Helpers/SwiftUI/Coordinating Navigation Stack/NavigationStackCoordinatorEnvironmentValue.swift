@@ -21,13 +21,15 @@ extension View {
 // MARK: - Navigation Stack Coordinator Environment Value
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 extension EnvironmentValues {
-    /// `NavigationStackCoordinator` of the view associated with the environment.
+    /// `NavigationStackCoordinator` of the `View` associated with the environment.
+    ///
+    /// Since `NavigationStackCoordinator` is a reference type, `View` updates won't be triggered.
     ///
     ///     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
     ///
     ///     var body: some View {
     ///         CoordinatingNavigationStack(root: {
-    ///             content
+    ///             ...
     ///         })
     ///     }
     ///
