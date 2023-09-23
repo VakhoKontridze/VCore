@@ -39,7 +39,7 @@
 		870B88B5285F1CF100B0D0AD /* PostDetailsParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsParameters.swift; sourceTree = "<group>"; };
 		870B88BD285F1FF900B0D0AD /* PostsMockGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsMockGateway.swift; sourceTree = "<group>"; };
 		872EE7A02860BF8D00845B5C /* PostsParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsParameters.swift; sourceTree = "<group>"; };
-		8780A053285F0DA0002E8F66 /* SwiftUI VIP.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI VIP.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		8780A053285F0DA0002E8F66 /* SwiftUI MVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI MVVM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8780A056285F0DA0002E8F66 /* SwiftUIMVVMExampleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIMVVMExampleApp.swift; sourceTree = "<group>"; };
 		8780A05A285F0DA1002E8F66 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8780A068285F0DF6002E8F66 /* PostsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewModel.swift; sourceTree = "<group>"; };
@@ -107,7 +107,7 @@
 		8780A054285F0DA0002E8F66 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				8780A053285F0DA0002E8F66 /* SwiftUI VIP.app */,
+				8780A053285F0DA0002E8F66 /* SwiftUI MVVM.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -234,7 +234,7 @@
 				87846D8729D4D2AF0071CDAC /* VCore */,
 			);
 			productName = SwiftUIMVVMExample;
-			productReference = 8780A053285F0DA0002E8F66 /* SwiftUI VIP.app */;
+			productReference = 8780A053285F0DA0002E8F66 /* SwiftUI MVVM.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -447,7 +447,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vakhtang-kontridze.SwiftUIMVVMExample";
-				PRODUCT_NAME = "SwiftUI VIP";
+				PRODUCT_NAME = "SwiftUI MVVM";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -477,7 +477,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.vakhtang-kontridze.SwiftUIMVVMExample";
-				PRODUCT_NAME = "SwiftUI VIP";
+				PRODUCT_NAME = "SwiftUI MVVM";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

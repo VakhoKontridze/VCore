@@ -1,6 +1,6 @@
 //  
 //  PostsRouter.swift
-//  UIKitViperArchitectureDemo
+//  UIKitVIPERExample
 //
 //  Created by Vakhtang Kontridze on 17.06.22.
 //

@@ -1,6 +1,6 @@
 //
 //  Post.swift
-//  UIKitViperArchitectureDemo
+//  UIKitVIPERExample
 //
 //  Created by Vakhtang Kontridze on 11.09.23.
 //
