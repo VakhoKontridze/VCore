@@ -301,7 +301,7 @@ struct AlignedGridView_Previews: PreviewProvider {
                 Text(string)
                     .padding(3)
                     .background(content: { Color.accentColor.opacity(0.5) })
-                    .cornerRadius(5)
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
             })
         })
         .padding()

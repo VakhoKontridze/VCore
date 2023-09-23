@@ -18,7 +18,7 @@ extension View {
     ///         .frame(dimension: 100)
     ///         .cornerRadius(10, corners: .allCorners)
     ///
-    public func cornerRadius(
+    public func cornerRadius( // TODO: iOS 16 - Remove. Obsoleted with `clipShape(.rect(...))` and `UnevenRoundedRectangle`.
         _ radius: CGFloat,
         uiCorners corners: UIRectCorner
     ) -> some View {
