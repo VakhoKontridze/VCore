@@ -105,25 +105,24 @@ extension View {
     ///         }
     ///
     ///         private func animateIn() {
-    ///             withBasicAnimation(
-    ///                 BasicAnimation(curve: .easeInOut, duration: 0.3),
-    ///                 body: { isInternallyPresented = true },
-    ///                 completion: nil
+    ///             withAnimation(
+    ///                 .easeInOut(duration: 0.3),
+    ///                 { isInternallyPresented = true }
     ///            )
     ///        }
     ///
     ///         private func animateOut() {
-    ///             withBasicAnimation(
-    ///                 BasicAnimation(curve: .easeInOut, duration: 0.3),
-    ///                 body: { isInternallyPresented = false },
+    ///             withAnimation(
+    ///                 .easeInOut(duration: 0.3),
+    ///                 { isInternallyPresented = false },
     ///                 completion: presentationMode.dismiss
     ///             )
     ///         }
     ///
     ///         private func animateOutFromExternalDismiss() {
-    ///             withBasicAnimation(
-    ///                 BasicAnimation(curve: .easeInOut, duration: 0.3),
-    ///                 body: { isInternallyPresented = false },
+    ///             withAnimation(
+    ///                 .easeInOut(duration: 0.3),
+    ///                 { isInternallyPresented = false },
     ///                 completion: presentationMode.externalDismissCompletion
     ///             )
     ///         }

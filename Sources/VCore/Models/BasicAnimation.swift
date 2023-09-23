@@ -26,7 +26,7 @@ import SwiftUI
 ///         completion: { ... }
 ///     )
 ///
-public struct BasicAnimation {
+public struct BasicAnimation { // TODO: iOS 17 - Remove. Obsoleted by `withAnimation(_:completionCriteria:_:completion:)`.
     // MARK: Properties
     /// Animation curve.
     public var curve: AnimationCurve
