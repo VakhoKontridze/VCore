@@ -27,12 +27,12 @@ struct PostRowView: View {
             content: {
                 Text(post.title)
                     .lineLimit(1)
-                    .foregroundColor(UIModel.titleTextColor)
+                    .foregroundStyle(UIModel.titleTextColor)
                     .font(UIModel.titleTextFont)
 
                 Text(post.body)
                     .lineLimit(UIModel.bodyTextLineLimit)
-                    .foregroundColor(UIModel.bodyTextColor)
+                    .foregroundStyle(UIModel.bodyTextColor)
                     .font(UIModel.bodyTextFont)
             }
         )

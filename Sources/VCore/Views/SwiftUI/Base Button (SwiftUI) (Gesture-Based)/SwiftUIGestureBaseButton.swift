@@ -56,7 +56,7 @@ import SwiftUI
 ///                 onStateChange: stateChangeHandler,
 ///                 label: {
 ///                     Text(title)
-///                         .foregroundColor(uiModel.titleColors.value(for: internalState))
+///                         .foregroundStyle(uiModel.titleColors.value(for: internalState))
 ///                 }
 ///             )
 ///             .disabled(!internalState.isEnabled)

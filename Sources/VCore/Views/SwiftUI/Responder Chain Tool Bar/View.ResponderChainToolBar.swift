@@ -98,14 +98,14 @@ extension View {
                                     label: { Image(systemName: "chevron.up") }
                                 )
                                 .disabled(!upButtonIsEnabled)
-                                .foregroundColor(uiModel.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: upButtonIsEnabled)))
+                                .foregroundStyle(uiModel.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: upButtonIsEnabled)))
 
                                 Button(
                                     action: { binding.wrappedValue = nextValue },
                                     label: { Image(systemName: "chevron.down") }
                                 )
                                 .disabled(!downButtonIsEnabled)
-                                .foregroundColor(uiModel.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: downButtonIsEnabled)))
+                                .foregroundStyle(uiModel.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: downButtonIsEnabled)))
                             }
 
                             Spacer()
@@ -115,7 +115,7 @@ extension View {
                                     VCoreLocalizationManager.shared.localizationProvider.responderChainToolBarDoneButtonTitle,
                                     action: { binding.wrappedValue = nil }
                                 )
-                                .foregroundColor(uiModel.buttonColors.enabled)
+                                .foregroundStyle(uiModel.buttonColors.enabled)
                                 .font(uiModel.doneButtonFont)
                             }
                         })

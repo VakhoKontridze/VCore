@@ -53,7 +53,7 @@ import SwiftUI
 ///                     let internalState: SomeButtonInternalState = internalState(baseButtonState)
 ///
 ///                     Text(title)
-///                         .foregroundColor(uiModel.titleColors.value(for: internalState))
+///                         .foregroundStyle(uiModel.titleColors.value(for: internalState))
 ///                 }
 ///             )
 ///         }
@@ -112,7 +112,7 @@ struct SwiftUIBaseButton_Previews: PreviewProvider {
             action: { print("Pressed") },
             label: { baseButtonState in
                 Text("Lorem Ipsum")
-                    .foregroundColor(colors.value(for: baseButtonState))
+                    .foregroundStyle(colors.value(for: baseButtonState))
             }
         )
     }

@@ -17,7 +17,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
-    ///             .applyIf(isRed, transform: { $0.foregroundColor(.red) })
+    ///             .applyIf(isRed, transform: { $0.foregroundStyle(.red) })
     ///     }
     ///
     @ViewBuilder public func applyIf(
@@ -41,7 +41,7 @@ extension View {
     ///         Text("Lorem Ipsum")
     ///             .applyIf(
     ///                 isError,
-    ///                 ifTransform: { $0.foregroundColor(.red) },
+    ///                 ifTransform: { $0.foregroundStyle(.red) },
     ///                 elseTransform: { $0.fontWeight(.bold) }
     ///             )
     ///     }
@@ -66,7 +66,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
-    ///             .applyIfLet(color, transform: { $0.foregroundColor($1) })
+    ///             .applyIfLet(color, transform: { $0.foregroundStyle($1) })
     ///     }
     ///
     @ViewBuilder public func applyIfLet<Value>(
@@ -90,7 +90,7 @@ extension View {
     ///         Text("Lorem Ipsum")
     ///             .applyIfLet(
     ///                 color,
-    ///                 ifTransform: { $0.foregroundColor($1) },
+    ///                 ifTransform: { $0.foregroundStyle($1) },
     ///                 elseTransform: { $0.fontWeight(.bold) }
     ///             )
     ///     }

@@ -17,14 +17,14 @@ extension NSAttributedString {
     ///         NSAttributedString(
     ///             string: "Hello, ",
     ///             attributes: [
-    ///                 NSAttributedString.Key.foregroundColor: UIColor.label as Any,
+    ///                 NSAttributedString.Key.foregroundStyle: UIColor.label as Any,
     ///                 NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13) as Any
     ///             ]
     ///         ),
     ///         NSAttributedString(
     ///             string: "World",
     ///             attributes: [
-    ///                 NSAttributedString.Key.foregroundColor: UIColor.label as Any,
+    ///                 NSAttributedString.Key.foregroundStyle: UIColor.label as Any,
     ///                 NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 13) as Any
     ///             ]
     ///         )

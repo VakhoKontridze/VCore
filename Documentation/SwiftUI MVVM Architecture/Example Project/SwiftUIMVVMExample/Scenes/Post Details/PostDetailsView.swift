@@ -36,7 +36,7 @@ struct PostDetailsView: View {
     private var contentView: some View {
         ScrollView(content: {
             Text(viewModel.body)
-                .foregroundColor(UIModel.bodyTextColor)
+                .foregroundStyle(UIModel.bodyTextColor)
                 .font(UIModel.bodyTextFont)
                 .multilineTextAlignment(.leading)
                 .frame(maxWidth: .infinity, alignment: .leading)
