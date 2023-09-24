@@ -33,7 +33,7 @@ import Foundation
 /// `Localizable.strings`.
 ///
 ///     ...
-///     "screens.home.hello_world" = "Hello, World!"
+///     "scenes.home.hello_world" = "Hello, World!"
 ///     ...
 ///
 /// Once system is implemented, localization objects can be defined for individual scopes.
@@ -41,7 +41,7 @@ import Foundation
 ///     enum HomeLocalizedStrings: String, LocalizationKeyProvider {
 ///         case hello_world
 ///
-///         var key: String { "screens.home.\(rawValue)" }
+///         var key: String { "scenes.home.\(rawValue)" }
 ///     }
 ///
 ///     final class HomeViewController: UIViewController {
@@ -73,7 +73,7 @@ import Foundation
 ///     enum HomeLocalizedStrings: String, LocalizationKeyProvider {
 ///         case hello_world
 ///
-///         var key: String { "screens.home.\(rawValue)" }
+///         var key: String { "scenes.home.\(rawValue)" }
 ///         var tableName: String? { "Localizable2.strings" }
 ///     }
 ///
