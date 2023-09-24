@@ -17,9 +17,9 @@ public struct KeychainServiceError: VCoreError, Equatable {
     public var code: Int { _code.rawValue }
     public var description: String {
         switch _code {
-        case .failedToGet: return "Data cannot be retrieved from Security framework"
-        case .failedToSet: return "Data cannot be set from Security framework"
-        case .failedToDelete: return "Data cannot be deleted from Security framework"
+        case .failedToGet: "Data cannot be retrieved from Security framework"
+        case .failedToSet: "Data cannot be set from Security framework"
+        case .failedToDelete: "Data cannot be deleted from Security framework"
         }
     }
     

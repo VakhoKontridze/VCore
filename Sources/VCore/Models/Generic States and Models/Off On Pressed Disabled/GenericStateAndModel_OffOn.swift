@@ -158,8 +158,8 @@ extension GenericStateModel_OffOn {
     /// Maps `GenericState_OffOn` to `GenericStateModel_OffOn`.
     public func value(for state: GenericState_OffOn) -> Value {
         switch state {
-        case .off: return off
-        case .on: return on
+        case .off: off
+        case .on: on
         }
     }
 }

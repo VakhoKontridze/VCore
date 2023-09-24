@@ -158,8 +158,8 @@ extension GenericStateModel_DeselectedSelected {
     /// Maps `GenericState_DeselectedSelected` to `GenericStateModel_DeselectedSelected`.
     public func value(for state: GenericState_DeselectedSelected) -> Value {
         switch state {
-        case .deselected: return deselected
-        case .selected: return selected
+        case .deselected: deselected
+        case .selected: selected
         }
     }
 }

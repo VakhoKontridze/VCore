@@ -34,8 +34,8 @@ public enum ResultNoFailure<Success> {
         _ transform: (Success) -> NewSuccess
     ) -> ResultNoFailure<NewSuccess> {
         switch self {
-        case .success(let success): return .success(transform(success))
-        case .failure: return .failure
+        case .success(let success): .success(transform(success))
+        case .failure: .failure
         }
     }
     
@@ -45,15 +45,15 @@ public enum ResultNoFailure<Success> {
         _ transform: (Success) -> ResultNoFailure<NewSuccess>
     ) -> ResultNoFailure<NewSuccess> {
         switch self {
-        case .success(let success): return transform(success)
-        case .failure: return .failure
+        case .success(let success): transform(success)
+        case .failure: .failure
         }
     }
     
     /// Returns the success value as a throwing expression.
     public func get() throws -> Success {
         switch self {
-        case .success(let success): return success
+        case .success(let success): success
         case .failure: throw CastingError(from: "ResultNoFailure", to: String(describing: Success.self))
         }
     }
@@ -63,10 +63,10 @@ public enum ResultNoFailure<Success> {
 extension ResultNoFailure: Equatable where Success: Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
-        case (.failure, .failure): return true
-        case (.failure, .success): return false
-        case (.success, .failure): return false
-        case (.success(let lhs), .success(let rhs)): return lhs == rhs
+        case (.failure, .failure): true
+        case (.failure, .success): false
+        case (.success, .failure): false
+        case (.success(let lhs), .success(let rhs)): lhs == rhs
         }
     }
 }

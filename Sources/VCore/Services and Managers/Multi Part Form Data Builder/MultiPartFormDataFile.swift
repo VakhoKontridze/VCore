@@ -122,14 +122,14 @@ struct _MultipartFormDataFile {
         self.name = name
         self.filename = {
             if let fileName: String = file.filename {
-                return fileName
+                fileName
             } else if
                 let fileExtension: String = file.mimeType.components(separatedBy: "/").last,
                 !fileExtension.isEmpty
             {
-                return "\(name).\(fileExtension)"
+                "\(name).\(fileExtension)"
             } else {
-                return name
+                name
             }
         }()
         self.mimeType = file.mimeType

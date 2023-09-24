@@ -23,16 +23,16 @@ public enum LayoutDirectionHorizontal: CaseIterable {
     /// Returns reversed dimension.
     public func reversed() -> Self {
         switch self {
-        case .leftToRight: return .rightToLeft
-        case .rightToLeft: return .leftToRight
+        case .leftToRight: .rightToLeft
+        case .rightToLeft: .leftToRight
         }
     }
     
     /// Indicates if layout direction is reversed, such as `rightToLeft`.
     public var isReversed: Bool {
         switch self {
-        case .leftToRight: return false
-        case .rightToLeft: return true
+        case .leftToRight: false
+        case .rightToLeft: true
         }
     }
     
@@ -40,24 +40,24 @@ public enum LayoutDirectionHorizontal: CaseIterable {
     /// Alignment.
     public var alignment: Alignment {
         switch self {
-        case .leftToRight: return .leading
-        case .rightToLeft: return .trailing
+        case .leftToRight: .leading
+        case .rightToLeft: .trailing
         }
     }
     
     /// Edge.
     public var edge: Edge {
         switch self {
-        case .leftToRight: return .leading
-        case .rightToLeft: return .trailing
+        case .leftToRight: .leading
+        case .rightToLeft: .trailing
         }
     }
     
     /// Edge.Set.
     public var edgeSet: Edge.Set {
         switch self {
-        case .leftToRight: return .leading
-        case .rightToLeft: return .trailing
+        case .leftToRight: .leading
+        case .rightToLeft: .trailing
         }
     }
 }

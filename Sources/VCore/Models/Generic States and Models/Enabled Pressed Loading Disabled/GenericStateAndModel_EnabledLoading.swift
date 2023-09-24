@@ -112,8 +112,8 @@ extension GenericStateModel_EnabledLoading {
     /// Maps `GenericState_EnabledLoading` to `GenericStateModel_EnabledLoading`.
     public func value(for state: GenericState_EnabledLoading) -> Value {
         switch state {
-        case .enabled: return enabled
-        case .loading: return loading
+        case .enabled: enabled
+        case .loading: loading
         }
     }
 }

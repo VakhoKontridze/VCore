@@ -18,9 +18,9 @@ extension CGPoint {
         _ condition: Bool = true
     ) -> Self {
         if condition {
-            return CGPoint(x: y, y: x)
+            CGPoint(x: y, y: x)
         } else {
-            return self
+            self
         }
     }
 }

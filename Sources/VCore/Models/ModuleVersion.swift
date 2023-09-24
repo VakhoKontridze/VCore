@@ -78,11 +78,11 @@ public struct ModuleVersion: Equatable, Hashable, Identifiable, Comparable, Cust
     /// Textual representation.
     public func description(showsEmptyPatchVersionAsZero: Bool = false) -> String {
         if showsEmptyPatchVersionAsZero {
-            return "\(major).\(minor).\(patchUnwrapped)"
+            "\(major).\(minor).\(patchUnwrapped)"
         } else if let patch = patch {
-            return "\(major).\(minor).\(patch)"
+            "\(major).\(minor).\(patch)"
         } else {
-            return "\(major).\(minor)"
+            "\(major).\(minor)"
         }
     }
 

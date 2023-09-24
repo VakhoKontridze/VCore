@@ -96,10 +96,10 @@ public final class NetworkReachabilityService {
 extension NWPath.Status {
     fileprivate var isConnected: Bool? {
         switch self {
-        case .satisfied: return true
-        case .unsatisfied: return false
-        case .requiresConnection: return false
-        @unknown default: return nil
+        case .satisfied: true
+        case .unsatisfied: false
+        case .requiresConnection: false
+        @unknown default: nil
         }
     }
 }

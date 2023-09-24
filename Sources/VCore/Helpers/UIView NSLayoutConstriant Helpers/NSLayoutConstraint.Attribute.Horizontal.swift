@@ -33,11 +33,11 @@ extension NSLayoutConstraint.Attribute {
         /// Converts `HorizontalAttribute` to `NSLayoutConstraint.Attribute`.
         public var toAttribute: NSLayoutConstraint.Attribute {
             switch self {
-            case .leading: return .leading
-            case .centerX: return .centerX
-            case .trailing: return .trailing
-            case .left: return .left
-            case .right: return .right
+            case .leading: .leading
+            case .centerX: .centerX
+            case .trailing: .trailing
+            case .left: .left
+            case .right: .right
             }
         }
     }

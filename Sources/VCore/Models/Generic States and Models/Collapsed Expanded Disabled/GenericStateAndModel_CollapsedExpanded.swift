@@ -142,8 +142,8 @@ extension GenericStateModel_CollapsedExpanded {
     /// Maps `GenericState_CollapsedExpanded` to `GenericStateModel_CollapsedExpanded`.
     public func value(for state: GenericState_CollapsedExpanded) -> Value {
         switch state {
-        case .collapsed: return collapsed
-        case .expanded: return expanded
+        case .collapsed: collapsed
+        case .expanded: expanded
         }
     }
 }

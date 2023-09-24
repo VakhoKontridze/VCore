@@ -115,10 +115,10 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         spacing.map { minimumLineSpacing = $0 }
         
         let inset: CGFloat = {
-            if let carouselItemSize = carouselItemSize {
-                return carouselItemSize.inset
+            if let carouselItemSize {
+                carouselItemSize.inset
             } else {
-                return (collectionView.bounds.size.width - itemSize.width) / 2
+                (collectionView.bounds.size.width - itemSize.width) / 2
             }
         }()
         sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)

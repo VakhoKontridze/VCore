@@ -57,7 +57,7 @@ func XCTAssertEqualColor(
     line: UInt = #line
 ) {
 #if canImport(UIKit)
-    return XCTAssertEqualColor(
+    XCTAssertEqualColor(
         UIColor(try! expression1()), // Force-unwrap
         UIColor(try! expression2()), // Force-unwrap
         message(),
@@ -65,7 +65,7 @@ func XCTAssertEqualColor(
         line: line
     )
 #elseif canImport(AppKit)
-    return XCTAssertEqualColor(
+    XCTAssertEqualColor(
         NSColor(try! expression1()), // Force-unwrap
         NSColor(try! expression2()), // Force-unwrap
         message(),

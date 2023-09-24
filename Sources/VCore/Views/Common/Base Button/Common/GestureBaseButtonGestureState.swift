@@ -48,11 +48,11 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
     init(state: UIGestureRecognizer.State) {
         self = {
             switch state {
-            case .possible: return .possible
-            case .began: return .began
+            case .possible: .possible
+            case .began: .began
             case .changed: fatalError() // Never used
-            case .ended: return .ended
-            case .cancelled: return .cancelled
+            case .ended: .ended
+            case .cancelled: .cancelled
             case .failed: fatalError() // Never used
             @unknown default: fatalError()
             }
@@ -62,11 +62,11 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
     init(state: NSGestureRecognizer.State) {
         self = {
             switch state {
-            case .possible: return .possible
-            case .began: return .began
+            case .possible: .possible
+            case .began: .began
             case .changed: fatalError() // Never used
-            case .ended: return .ended
-            case .cancelled: return .cancelled
+            case .ended: .ended
+            case .cancelled: .cancelled
             case .failed: fatalError() // Never used
             @unknown default: fatalError()
             }

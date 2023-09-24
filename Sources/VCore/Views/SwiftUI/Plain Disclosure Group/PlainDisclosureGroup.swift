@@ -51,8 +51,8 @@ public struct PlainDisclosureGroup<Label, Content>: View
         .init(
             get: {
                 switch stateManagement {
-                case .internal: return _isExpanded_internal
-                case .external: return _isExpanded_external
+                case .internal: _isExpanded_internal
+                case .external: _isExpanded_external
                 }
             },
             set: { value in

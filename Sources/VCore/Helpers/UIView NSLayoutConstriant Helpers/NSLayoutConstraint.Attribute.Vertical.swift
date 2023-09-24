@@ -33,11 +33,11 @@ extension NSLayoutConstraint.Attribute {
         /// Converts `VerticalAttribute` to `NSLayoutConstraint.Attribute`.
         public var toAttribute: NSLayoutConstraint.Attribute {
             switch self {
-            case .top: return .top
-            case .centerY: return .centerY
-            case .bottom: return .bottom
-            case .firstBaseline: return .firstBaseline
-            case .lastBaseline: return .lastBaseline
+            case .top: .top
+            case .centerY: .centerY
+            case .bottom: .bottom
+            case .firstBaseline: .firstBaseline
+            case .lastBaseline: .lastBaseline
             }
         }
     }

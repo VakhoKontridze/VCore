@@ -46,8 +46,8 @@ public struct HVStack<Content>: View where Content: View {
         self.spacing = spacing
         self.isHorizontal = {
             switch axis {
-            case .horizontal: return true
-            case .vertical: return false
+            case .horizontal: true
+            case .vertical: false
             }
         }()
         self.content = content

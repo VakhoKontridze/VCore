@@ -17,8 +17,8 @@ final class KeyPathInitializableEnumerationTests: XCTestCase {
         
         var someProperty: Int {
             switch self {
-            case .first: return 1
-            case .second: return 2
+            case .first: 1
+            case .second: 2
             }
         }
     }

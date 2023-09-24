@@ -21,12 +21,12 @@ extension Optional where Wrapped: Comparable {
         order: OptionalComparisonNilOrder
     ) -> Bool {
         switch (self, other, order) {
-        case (nil, nil, _): return false
-        case (nil, _?, .nilIsLess): return true
-        case (nil, _?, .nilIsGreater): return false
-        case (_?, nil, .nilIsLess): return false
-        case (_?, nil, .nilIsGreater): return true
-        case (let lhs?, let rhs?, _): return lhs < rhs
+        case (nil, nil, _): false
+        case (nil, _?, .nilIsLess): true
+        case (nil, _?, .nilIsGreater): false
+        case (_?, nil, .nilIsLess): false
+        case (_?, nil, .nilIsGreater): true
+        case (let lhs?, let rhs?, _): lhs < rhs
         }
     }
     

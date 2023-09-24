@@ -72,10 +72,10 @@ extension Visibility {
         message: String?
     ) -> Self {
         switch (title, message) {
-        case (nil, nil): return .hidden
-        case (nil, _?): return .visible
-        case (_?, nil): return .visible
-        case (_?, _?): return .visible
+        case (nil, nil): .hidden
+        case (nil, _?): .visible
+        case (_?, nil): .visible
+        case (_?, _?): .visible
         }
     }
 }

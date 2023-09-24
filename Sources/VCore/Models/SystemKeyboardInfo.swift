@@ -67,9 +67,9 @@ public struct SystemKeyboardInfo {
     /// In that case, this value can be used to perform additional animation.
     public var nonZeroAnimationDuration: CGFloat {
         if animationDuration != 0 {
-            return animationDuration
+            animationDuration
         } else {
-            return Self.defaultAnimationDuration
+            Self.defaultAnimationDuration
         }
     }
 }

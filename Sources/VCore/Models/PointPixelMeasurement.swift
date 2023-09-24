@@ -21,16 +21,16 @@ public enum PointPixelMeasurement: Equatable, Hashable {
     /// Converts value to points based on scale.
     public func toPoints(scale: CGFloat) -> CGFloat {
         switch self {
-        case .points(let value): return value
-        case .pixels(let value): return CGFloat(value) / scale
+        case .points(let value): value
+        case .pixels(let value): CGFloat(value) / scale
         }
     }
 
     /// Converts value to pixels based on scale.
     public func toPixels(scale: CGFloat) -> Int {
         switch self {
-        case .points(let value): return Int((value * scale).rounded())
-        case .pixels(let value): return value
+        case .points(let value): Int((value * scale).rounded())
+        case .pixels(let value): value
         }
     }
 }

@@ -29,20 +29,20 @@ public enum LayoutDirectionOmni: CaseIterable {
     /// Returns reversed dimension.
     public func reversed() -> Self {
         switch self {
-        case .leftToRight: return .rightToLeft
-        case .rightToLeft: return .leftToRight
-        case .topToBottom: return .bottomToTop
-        case .bottomToTop: return .topToBottom
+        case .leftToRight: .rightToLeft
+        case .rightToLeft: .leftToRight
+        case .topToBottom: .bottomToTop
+        case .bottomToTop: .topToBottom
         }
     }
     
     /// Indicates if layout direction is horizontal.
     public var isHorizontal: Bool {
         switch self {
-        case .leftToRight: return true
-        case .rightToLeft: return true
-        case .topToBottom: return false
-        case .bottomToTop: return false
+        case .leftToRight: true
+        case .rightToLeft: true
+        case .topToBottom: false
+        case .bottomToTop: false
         }
     }
     
@@ -54,10 +54,10 @@ public enum LayoutDirectionOmni: CaseIterable {
     /// Indicates if layout direction is reversed, such as `rightToLeft` or `bottomToTop`.
     public var isReversed: Bool {
         switch self {
-        case .leftToRight: return false
-        case .rightToLeft: return true
-        case .topToBottom: return false
-        case .bottomToTop: return true
+        case .leftToRight: false
+        case .rightToLeft: true
+        case .topToBottom: false
+        case .bottomToTop: true
         }
     }
     
@@ -65,40 +65,40 @@ public enum LayoutDirectionOmni: CaseIterable {
     /// Axis.
     public var axis: Axis {
         switch self {
-        case .leftToRight: return .horizontal
-        case .rightToLeft: return .horizontal
-        case .topToBottom: return .vertical
-        case .bottomToTop: return .vertical
+        case .leftToRight: .horizontal
+        case .rightToLeft: .horizontal
+        case .topToBottom: .vertical
+        case .bottomToTop: .vertical
         }
     }
     
     /// Alignment.
     public var alignment: Alignment {
         switch self {
-        case .leftToRight: return .leading
-        case .rightToLeft: return .trailing
-        case .topToBottom: return .top
-        case .bottomToTop: return .bottom
+        case .leftToRight: .leading
+        case .rightToLeft: .trailing
+        case .topToBottom: .top
+        case .bottomToTop: .bottom
         }
     }
     
     /// Edge.
     public var edge: Edge {
         switch self {
-        case .leftToRight: return .leading
-        case .rightToLeft: return .trailing
-        case .topToBottom: return .top
-        case .bottomToTop: return .bottom
+        case .leftToRight: .leading
+        case .rightToLeft: .trailing
+        case .topToBottom: .top
+        case .bottomToTop: .bottom
         }
     }
     
     /// Edge.Set.
     public var edgeSet: Edge.Set {
         switch self {
-        case .leftToRight: return .leading
-        case .rightToLeft: return .trailing
-        case .topToBottom: return .top
-        case .bottomToTop: return .bottom
+        case .leftToRight: .leading
+        case .rightToLeft: .trailing
+        case .topToBottom: .top
+        case .bottomToTop: .bottom
         }
     }
     
@@ -134,13 +134,13 @@ public enum LayoutDirectionOmni: CaseIterable {
         spacing: CGFloat? = nil
     ) -> AnyLayout {
         if isHorizontal {
-            return AnyLayout(HStackLayout(
+            AnyLayout(HStackLayout(
                 alignment: alignmentVer,
                 spacing: spacing
             ))
             
         } else {
-            return AnyLayout(VStackLayout(
+            AnyLayout(VStackLayout(
                 alignment: alignmentHor,
                 spacing: spacing
             ))

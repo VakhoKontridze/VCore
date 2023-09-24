@@ -190,12 +190,12 @@ extension GenericStateModel_OffOnIndeterminatePressed: Comparable where Value: C
 extension GenericStateModel_OffOnIndeterminatePressed {
     public func value(for state: GenericState_OffOnIndeterminatePressed) -> Value {
         switch state {
-        case .off: return off
-        case .on: return on
-        case .indeterminate: return indeterminate
-        case .pressedOff: return pressedOff
-        case .pressedOn: return pressedOn
-        case .pressedIndeterminate: return pressedIndeterminate
+        case .off: off
+        case .on: on
+        case .indeterminate: indeterminate
+        case .pressedOff: pressedOff
+        case .pressedOn: pressedOn
+        case .pressedIndeterminate: pressedIndeterminate
         }
     }
 }

@@ -29,10 +29,10 @@ public enum GenericState_OffOnIndeterminateDisabled: Int, CaseIterable {
     /// Indicates if interaction is enabled.
     public var isEnabled: Bool {
         switch self {
-        case .off: return true
-        case .on: return true
-        case .indeterminate: return true
-        case .disabled: return false
+        case .off: true
+        case .on: true
+        case .indeterminate: true
+        case .disabled: false
         }
     }
     
@@ -165,10 +165,10 @@ extension GenericStateModel_OffOnIndeterminateDisabled: Comparable where Value: 
 extension GenericStateModel_OffOnIndeterminateDisabled {
     public func value(for state: GenericState_OffOnIndeterminateDisabled) -> Value {
         switch state {
-        case .off: return off
-        case .on: return on
-        case .indeterminate: return indeterminate
-        case .disabled: return disabled
+        case .off: off
+        case .on: on
+        case .indeterminate: indeterminate
+        case .disabled: disabled
         }
     }
 }

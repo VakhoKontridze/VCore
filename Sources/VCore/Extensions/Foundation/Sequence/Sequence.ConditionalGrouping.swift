@@ -33,6 +33,7 @@ extension Sequence {
                 })
             {
                 result[index].append(element)
+
             } else {
                 result.append([element])
             }

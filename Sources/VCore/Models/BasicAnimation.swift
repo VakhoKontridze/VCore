@@ -26,7 +26,7 @@ import SwiftUI
 ///         completion: { ... }
 ///     )
 ///
-public struct BasicAnimation { // TODO: iOS 17 - Remove. Obsoleted by `withAnimation(_:completionCriteria:_:completion:)`.
+public struct BasicAnimation {
     // MARK: Properties
     /// Animation curve.
     public var curve: AnimationCurve
@@ -69,10 +69,10 @@ public struct BasicAnimation { // TODO: iOS 17 - Remove. Obsoleted by `withAnima
     /// Converts `BasicAnimation` to `SwiftUI.Animation`.
     public var toSwiftUIAnimation: Animation {
         switch curve {
-        case .linear: return .linear(duration: duration).delay(delay)
-        case .easeIn: return .easeIn(duration: duration).delay(delay)
-        case .easeOut: return .easeOut(duration: duration).delay(delay)
-        case .easeInOut: return .easeInOut(duration: duration).delay(delay)
+        case .linear: .linear(duration: duration).delay(delay)
+        case .easeIn: .easeIn(duration: duration).delay(delay)
+        case .easeOut: .easeOut(duration: duration).delay(delay)
+        case .easeInOut: .easeInOut(duration: duration).delay(delay)
         }
     }
 }
@@ -86,10 +86,10 @@ extension BasicAnimation {
     /// Converts `BasicAnimation` to `CAMediaTimingFunction`.
     public var toCAMediaTimingFunction: CAMediaTimingFunction {
         switch curve {
-        case .linear: return CAMediaTimingFunction(name: .linear)
-        case .easeIn: return CAMediaTimingFunction(name: .easeIn)
-        case .easeOut: return CAMediaTimingFunction(name: .easeOut)
-        case .easeInOut: return CAMediaTimingFunction(name: .easeInEaseOut)
+        case .linear: CAMediaTimingFunction(name: .linear)
+        case .easeIn: CAMediaTimingFunction(name: .easeIn)
+        case .easeOut: CAMediaTimingFunction(name: .easeOut)
+        case .easeInOut: CAMediaTimingFunction(name: .easeInEaseOut)
         }
     }
 }
@@ -104,10 +104,10 @@ extension BasicAnimation {
     /// Converts `BasicAnimation` to `UIView.AnimationOptions`.
     public var toUIViewAnimationOptions: UIView.AnimationOptions {
         switch curve {
-        case .linear: return .curveLinear
-        case .easeIn: return .curveEaseIn
-        case .easeOut: return .curveEaseOut
-        case .easeInOut: return .curveEaseInOut
+        case .linear: .curveLinear
+        case .easeIn: .curveEaseIn
+        case .easeOut: .curveEaseOut
+        case .easeInOut: .curveEaseInOut
         }
     }
 }
@@ -127,7 +127,7 @@ extension BasicAnimation {
 ///         completion: { ... }
 ///     )
 ///
-public func withBasicAnimation<Result>(
+public func withBasicAnimation<Result>( // TODO: iOS 17 - Remove. Obsoleted by `withAnimation(_:completionCriteria:_:completion:)`.
     _ animation: BasicAnimation?,
     body: () throws -> Result,
     completion: (() -> Void)?

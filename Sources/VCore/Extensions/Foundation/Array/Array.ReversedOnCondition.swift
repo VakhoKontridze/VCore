@@ -16,9 +16,9 @@ extension Array {
     ///
     public func reversed(if condition: Bool) -> Self {
         if condition {
-            return self.reversed()
+            self.reversed()
         } else {
-            return self
+            self
         }
     }
 }

@@ -85,9 +85,9 @@ extension UIImage {
         toDimension newDimension: CGFloat
     ) -> UIImage? {
         if size.width > size.height {
-            return scaledDown(toHeight: newDimension)
+            scaledDown(toHeight: newDimension)
         } else {
-            return scaledDown(toWidth: newDimension)
+            scaledDown(toWidth: newDimension)
         }
     }
 }

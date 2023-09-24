@@ -26,9 +26,9 @@ public enum GenericState_DeselectedSelectedDisabled: Int, CaseIterable {
     /// Indicates if interaction is enabled.
     public var isEnabled: Bool {
         switch self {
-        case .deselected: return true
-        case .selected: return true
-        case .disabled: return false
+        case .deselected: true
+        case .selected: true
+        case .disabled: false
         }
     }
     
@@ -153,9 +153,9 @@ extension GenericStateModel_DeselectedSelectedDisabled {
     /// Maps `GenericState_DeselectedSelectedDisabled` to `GenericStateModel_DeselectedSelectedDisabled`.
     public func value(for state: GenericState_DeselectedSelectedDisabled) -> Value {
         switch state {
-        case .deselected: return deselected
-        case .selected: return selected
-        case .disabled: return disabled
+        case .deselected: deselected
+        case .selected: selected
+        case .disabled: disabled
         }
     }
 }

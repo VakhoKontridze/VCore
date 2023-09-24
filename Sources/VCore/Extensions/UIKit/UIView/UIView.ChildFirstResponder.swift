@@ -40,11 +40,11 @@ extension UIView {
 extension UIResponder {
     fileprivate func toView() -> UIView? {
         if let viewController = self as? UIViewController {
-            return viewController.view
+            viewController.view
         } else if let view = self as? UIView {
-            return view
+            view
         } else {
-            return nil
+            nil
         }
     }
 }

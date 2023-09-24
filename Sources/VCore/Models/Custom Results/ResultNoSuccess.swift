@@ -36,8 +36,8 @@ public enum ResultNoSuccess<Failure> where Failure: Error {
         where NewFailure: Error
     {
         switch self {
-        case .success: return .success
-        case .failure(let failure): return .failure(transform(failure))
+        case .success: .success
+        case .failure(let failure): .failure(transform(failure))
         }
     }
     
@@ -49,8 +49,8 @@ public enum ResultNoSuccess<Failure> where Failure: Error {
         where NewFailure: Error
     {
         switch self {
-        case .success: return .success
-        case .failure(let failure): return transform(failure)
+        case .success: .success
+        case .failure(let failure): transform(failure)
         }
     }
 }
@@ -59,10 +59,10 @@ public enum ResultNoSuccess<Failure> where Failure: Error {
 extension ResultNoSuccess: Equatable where Failure: Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
-        case (.failure(let lhs), .failure(let rhs)): return lhs == rhs
-        case (.failure, .success): return false
-        case (.success, .failure): return false
-        case (.success, .success): return true
+        case (.failure(let lhs), .failure(let rhs)): lhs == rhs
+        case (.failure, .success): false
+        case (.success, .failure): false
+        case (.success, .success): true
         }
     }
 }

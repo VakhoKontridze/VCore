@@ -29,10 +29,10 @@ public enum GenericState_EnabledPressedFocusedDisabled: Int, CaseIterable {
     /// Indicates if interaction is enabled.
     public var isEnabled: Bool {
         switch self {
-        case .enabled: return true
-        case .pressed: return true
-        case .focused: return true
-        case .disabled: return false
+        case .enabled: true
+        case .pressed: true
+        case .focused: true
+        case .disabled: false
         }
     }
     
@@ -142,10 +142,10 @@ extension GenericStateModel_EnabledPressedFocusedDisabled {
     /// Maps `GenericState_EnabledPressedFocusedDisabled` to `GenericStateModel_EnabledPressedFocusedDisabled`.
     public func value(for state: GenericState_EnabledPressedFocusedDisabled) -> Value {
         switch state {
-        case .enabled: return enabled
-        case .pressed: return pressed
-        case .focused: return focused
-        case .disabled: return disabled
+        case .enabled: enabled
+        case .pressed: pressed
+        case .focused: focused
+        case .disabled: disabled
         }
     }
 }

@@ -19,9 +19,9 @@ extension UIDevice {
     ///
     public static var isSimulator: Bool {
 #if targetEnvironment(simulator)
-        return true
+        true
 #else
-        return false
+        false
 #endif
     }
 }
@@ -37,9 +37,9 @@ extension WKInterfaceDevice {
     ///
     public static var isSimulator: Bool {
 #if targetEnvironment(simulator)
-        return true
+        true
 #else
-        return false
+        false
 #endif
     }
 }

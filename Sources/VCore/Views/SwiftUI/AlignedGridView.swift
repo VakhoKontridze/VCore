@@ -164,9 +164,9 @@ public struct AlignedGridView: Layout {
             for j in sameRowRects[i].indices {
                 sameRowRects[i][j].origin.moveRight(withValue: {
                     switch alignment {
-                    case .leading: return 0
-                    case .center: return remainingRowSpacings[i]/2
-                    case .trailing: return remainingRowSpacings[i]
+                    case .leading: 0
+                    case .center: remainingRowSpacings[i]/2
+                    case .trailing: remainingRowSpacings[i]
                     default: fatalError()
                     }
                 }())

@@ -24,8 +24,8 @@ extension NSLayoutConstraint.Attribute {
         /// Converts `DimensionAttribute` to `NSLayoutConstraint.Attribute`.
         public var toAttribute: NSLayoutConstraint.Attribute {
             switch self {
-            case .width: return .width
-            case .height: return .height
+            case .width: .width
+            case .height: .height
             }
         }
     }

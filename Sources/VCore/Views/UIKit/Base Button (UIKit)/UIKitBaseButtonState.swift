@@ -24,8 +24,8 @@ public enum UIKitBaseButtonState: Int, CaseIterable {
     /// Indicates if UIKitBaseButtonState is enabled.
     public var isEnabled: Bool {
         switch self {
-        case .enabled: return true
-        case .disabled: return false
+        case .enabled: true
+        case .disabled: false
         }
     }
     
@@ -65,9 +65,9 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     /// Indicates if interaction is enabled.
     public var isEnabled: Bool {
         switch self {
-        case .enabled: return true
-        case .pressed: return true
-        case .disabled: return false
+        case .enabled: true
+        case .pressed: true
+        case .disabled: false
         }
     }
     
@@ -99,9 +99,9 @@ extension GenericStateModel_EnabledPressedDisabled {
     /// Maps `UIKitBaseButtonInternalState` to `GenericStateModel_EnabledPressedDisabled`.
     public func value(for state: UIKitBaseButtonInternalState) -> Value {
         switch state {
-        case .enabled: return enabled
-        case .pressed: return pressed
-        case .disabled: return disabled
+        case .enabled: enabled
+        case .pressed: pressed
+        case .disabled: disabled
         }
     }
 }

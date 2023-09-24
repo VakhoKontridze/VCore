@@ -165,10 +165,10 @@ extension GenericStateModel_OffOnPressed {
     /// Maps `GenericState_OffOnPressed` to `GenericStateModel_OffOnPressed`.
     public func value(for state: GenericState_OffOnPressed) -> Value {
         switch state {
-        case .off: return off
-        case .on: return on
-        case .pressedOff: return pressedOff
-        case .pressedOn: return pressedOn
+        case .off: off
+        case .on: on
+        case .pressedOff: pressedOff
+        case .pressedOn: pressedOn
         }
     }
 }

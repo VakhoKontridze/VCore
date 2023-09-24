@@ -16,22 +16,16 @@ public struct TextLineType {
     /// `TextAlignment`.
     public var textAlignment: TextAlignment? {
         switch _textLineType {
-        case .singleLine:
-            return nil
-            
-        case .multiLine(let alignment, _):
-            return alignment
+        case .singleLine: nil
+        case .multiLine(let alignment, _): alignment
         }
     }
     
     /// `TextLineLimitType`.
     public var textLineLimitType: TextLineLimitType {
         switch _textLineType {
-        case .singleLine:
-            return .fixed(lineLimit: 1)
-            
-        case .multiLine(_, let textLineLimitType):
-            return textLineLimitType
+        case .singleLine: .fixed(lineLimit: 1)
+        case .multiLine(_, let textLineLimitType): textLineLimitType
         }
     }
     

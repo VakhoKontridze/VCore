@@ -112,8 +112,8 @@ extension GenericStateModel_EnabledFocused {
     /// Maps `GenericState_EnabledFocused` to `GenericStateModel_EnabledFocused`.
     public func value(for state: GenericState_EnabledFocused) -> Value {
         switch state {
-        case .enabled: return enabled
-        case .focused: return focused
+        case .enabled: enabled
+        case .focused: focused
         }
     }
 }

@@ -97,8 +97,8 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
                     
                     centeredItemFrame.origin.x = {
                         switch previousFrame {
-                        case .zero: return centerAlignmentXOffset
-                        default: return previousFrame.maxX + interitemSpacing
+                        case .zero: centerAlignmentXOffset
+                        default: previousFrame.maxX + interitemSpacing
                         }
                     }()
                     

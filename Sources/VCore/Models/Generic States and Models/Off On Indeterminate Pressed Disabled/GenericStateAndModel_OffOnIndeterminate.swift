@@ -170,9 +170,9 @@ extension GenericStateModel_OffOnIndeterminate: Comparable where Value: Comparab
 extension GenericStateModel_OffOnIndeterminate {
     public func value(for state: GenericState_OffOnIndeterminate) -> Value {
         switch state {
-        case .off: return off
-        case .on: return on
-        case .indeterminate: return indeterminate
+        case .off: off
+        case .on: on
+        case .indeterminate: indeterminate
         }
     }
 }

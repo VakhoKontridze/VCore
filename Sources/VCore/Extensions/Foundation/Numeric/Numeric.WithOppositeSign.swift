@@ -28,9 +28,9 @@ extension Numeric {
     ///
     public func withOppositeSign(if condition: Bool) -> Self {
         if condition {
-            return self * -1
+            self * -1
         } else {
-            return self
+            self
         }
     }
 }

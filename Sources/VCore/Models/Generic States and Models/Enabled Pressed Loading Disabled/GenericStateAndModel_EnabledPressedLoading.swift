@@ -25,9 +25,9 @@ public enum GenericState_EnabledPressedLoading: Int, CaseIterable {
     /// Indicates if interaction is enabled.
     public var isEnabled: Bool {
         switch self {
-        case .enabled: return true
-        case .pressed: return true
-        case .loading: return false
+        case .enabled: true
+        case .pressed: true
+        case .loading: false
         }
     }
     
@@ -142,9 +142,9 @@ extension GenericStateModel_EnabledPressedLoading {
     /// Maps `GenericState_EnabledPressedLoading` to `GenericStateModel_EnabledPressedLoading`.
     public func value(for state: GenericState_EnabledPressedLoading) -> Value {
         switch state {
-        case .enabled: return enabled
-        case .pressed: return pressed
-        case .loading: return loading
+        case .enabled: enabled
+        case .pressed: pressed
+        case .loading: loading
         }
     }
 }

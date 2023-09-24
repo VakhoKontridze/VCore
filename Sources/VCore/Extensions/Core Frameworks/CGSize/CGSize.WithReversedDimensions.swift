@@ -18,9 +18,9 @@ extension CGSize {
         _ condition: Bool = true
     ) -> Self {
         if condition {
-            return CGSize(width: height, height: width)
+            CGSize(width: height, height: width)
         } else {
-            return self
+            self
         }
     }
 }

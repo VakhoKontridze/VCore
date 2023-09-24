@@ -121,11 +121,11 @@ private final class _ModalDecoratorView: UIView {
         where predicate: (UIView) -> Bool
     ) -> UIView? {
         if predicate(view) {
-            return view
+            view
         } else if let superview: UIView = view.superview {
-            return findSuperview(ofView: superview, where: predicate)
+            findSuperview(ofView: superview, where: predicate)
         } else {
-            return nil
+            nil
         }
     }
 }

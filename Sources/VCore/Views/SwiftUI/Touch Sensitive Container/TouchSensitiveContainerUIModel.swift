@@ -17,11 +17,11 @@ public struct TouchSensitiveContainerUIModel {
         enabled: .clear,
         pressed: {
 #if os(iOS) || targetEnvironment(macCatalyst)
-            return Color(uiColor: .systemFill)
+            Color(uiColor: .systemFill)
 #elseif os(macOS)
-            return Color(nsColor: NSColor.windowBackgroundColor)
+            Color(nsColor: NSColor.windowBackgroundColor)
 #elseif os(watchOS)
-            return Color.gray.opacity(0.3)
+            Color.gray.opacity(0.3)
 #else
             fatalError() // Not supported
 #endif

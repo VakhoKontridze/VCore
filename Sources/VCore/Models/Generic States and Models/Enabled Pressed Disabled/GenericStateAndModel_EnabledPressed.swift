@@ -111,8 +111,8 @@ extension GenericStateModel_EnabledPressed {
     /// Maps `GenericState_EnabledPressed` to `GenericStateModel_EnabledPressed`.
     public func value(for state: GenericState_EnabledPressed) -> Value {
         switch state {
-        case .enabled: return enabled
-        case .pressed: return pressed
+        case .enabled: enabled
+        case .pressed: pressed
         }
     }
 }

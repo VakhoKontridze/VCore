@@ -26,9 +26,9 @@ public enum GenericState_CollapsedExpandedDisabled: Int, CaseIterable {
     /// Indicates if interaction is enabled.
     public var isEnabled: Bool {
         switch self {
-        case .collapsed: return true
-        case .expanded: return true
-        case .disabled: return false
+        case .collapsed: true
+        case .expanded: true
+        case .disabled: false
         }
     }
     
@@ -141,9 +141,9 @@ extension GenericStateModel_CollapsedExpandedDisabled {
     /// Maps `GenericState_CollapsedExpandedDisabled` to `GenericStateModel_CollapsedExpandedDisabled`.
     public func value(for state: GenericState_CollapsedExpandedDisabled) -> Value {
         switch state {
-        case .collapsed: return collapsed
-        case .expanded: return expanded
-        case .disabled: return disabled
+        case .collapsed: collapsed
+        case .expanded: expanded
+        case .disabled: disabled
         }
     }
 }

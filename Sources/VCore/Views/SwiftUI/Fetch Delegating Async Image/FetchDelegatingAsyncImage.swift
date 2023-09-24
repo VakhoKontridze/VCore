@@ -169,9 +169,9 @@ public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>:
             case .contentWithPhase(let content):
                 content({
                     switch result {
-                    case nil: return .empty
-                    case .success(let image): return .success(image)
-                    case .failure(let error): return .failure(error)
+                    case nil: AsyncImagePhase.empty
+                    case .success(let image): AsyncImagePhase.success(image)
+                    case .failure(let error): AsyncImagePhase.failure(error)
                     }
                 }())
             }
