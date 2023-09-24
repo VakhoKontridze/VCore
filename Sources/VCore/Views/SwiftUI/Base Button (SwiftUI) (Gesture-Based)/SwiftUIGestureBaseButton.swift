@@ -63,7 +63,7 @@ import SwiftUI
 ///         }
 ///
 ///         private func stateChangeHandler(gestureState: GestureBaseButtonGestureState) {
-///             isPressed = gestureState.didRecognizeClick
+///             isPressed = gestureState.didRecognizePress
 ///             if gestureState.didRecognizeClick { action() }
 ///         }
 ///     }
