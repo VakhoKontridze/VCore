@@ -89,13 +89,14 @@ extension View {
     ///                     width: containerSize.width * 0.9,
     ///                     height: containerSize.height * 0.6
     ///                 )
+    ///                 //.safeAreaPaddings(edges: .all, insets: safeAreaInsets) // Can be used to introduce safe areas
     ///
     ///                 .offset(y: isInternallyPresented ? 0 : containerSize.height)
     ///             })
     ///             .onAppear(perform: animateIn)
     ///             .onChange(
     ///                 of: presentationMode.isExternallyDismissed,
-    ///                 perform: { if $0 && isInternallyPresented { animateOutFromExternalDismiss() } }
+    ///                 { (_, newValue) in if newValue && isInternallyPresented { animateOutFromExternalDismiss() } }
     ///             )
     ///
     ///             .onReceive( // For ensuring proper stating when changing device/interface orientation
@@ -109,7 +110,7 @@ extension View {
     ///                 .easeInOut(duration: 0.3),
     ///                 { isInternallyPresented = true }
     ///            )
-    ///        }
+    ///         }
     ///
     ///         private func animateOut() {
     ///             withAnimation(

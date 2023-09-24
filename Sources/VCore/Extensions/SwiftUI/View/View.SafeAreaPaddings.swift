@@ -1,16 +1,15 @@
 //
-//  View.SafeAreaMargins.swift
+//  View.SafeAreaPaddings.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 27.06.22.
+//  Created by Vakhtang Kontridze on 24.09.23.
 //
 
 import SwiftUI
 
-// MARK: - View Safe Area Margins
-@available(macOS, unavailable)
-@available(watchOS, unavailable)
-extension View { // TODO: iOS 17 - Remove. Obsoleted by `safeAreaPadding(...)`.
+// MARK: - View Safe Area Paddings
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+extension View {
     /// Adds padding equal to safe area insets to specific edges of the `View`.
     ///
     /// Can be used to reverse effects of `ignoresSafeArea(_:edges:)` in nested view.
@@ -20,7 +19,7 @@ extension View { // TODO: iOS 17 - Remove. Obsoleted by `safeAreaPadding(...)`.
     ///             Color.gray
     ///
     ///             Color.accentColor
-    ///                 .safeAreaMargins(edges: .all, insets: EdgeInsets(UIDevice.safeAreaInsets))
+    ///                 .safeAreaPaddings(edges: .all, insets: EdgeInsets(UIDevice.safeAreaInsets))
     ///         })
     ///         .ignoresSafeArea()
     ///     }
@@ -36,16 +35,14 @@ extension View { // TODO: iOS 17 - Remove. Obsoleted by `safeAreaPadding(...)`.
     ///         }
     ///     }
     ///
-    @ViewBuilder public func safeAreaMargins(
+    public func safeAreaPaddings(
         edges: Edge.Set,
         insets: EdgeInsets
     ) -> some View {
-#if canImport(UIKit) && !os(watchOS)
         self
-            .padding(.leading, edges.contains(.leading) ? insets.leading : 0)
-            .padding(.trailing, edges.contains(.trailing) ? insets.trailing : 0)
-            .padding(.top, edges.contains(.top) ? insets.top : 0)
-            .padding(.bottom, edges.contains(.bottom) ? insets.bottom : 0)
-#endif
+            .safeAreaPadding(.leading, edges.contains(.leading) ? insets.leading : 0)
+            .safeAreaPadding(.trailing, edges.contains(.trailing) ? insets.trailing : 0)
+            .safeAreaPadding(.top, edges.contains(.top) ? insets.top : 0)
+            .safeAreaPadding(.bottom, edges.contains(.bottom) ? insets.bottom : 0)
     }
 }

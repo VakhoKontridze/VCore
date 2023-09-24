@@ -79,6 +79,7 @@ Extensions
 - `View.onTouchInteraction(perform:)` method is added that performs action when `View` detects touch down or touch up interactions
 - `DragGesture.Value.velocity(inRelationTo:)` method is removed, as it's obsoleted by native `velocity` property
 - `Array.reverse(_:)` is added to complement `Array.reversed(_:)`
+- `View.safeAreaPaddings(edges:insets:)` method is added, that adds safe area padding to `View`
 
 API
 
