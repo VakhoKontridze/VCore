@@ -63,8 +63,8 @@ import SwiftUI
 ///         }
 ///
 ///         private func stateChangeHandler(gestureState: GestureBaseButtonGestureState) {
-///             isPressed = gestureState.isPressed
-///             if gestureState.isClicked { action() }
+///             isPressed = gestureState.didRecognizeClick
+///             if gestureState.didRecognizeClick { action() }
 ///         }
 ///     }
 ///
@@ -101,7 +101,7 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
         @ViewBuilder label: @escaping () -> Label
     ) {
         self.stateChangeHandler = { gestureState in
-            if gestureState.isClicked { action() }
+            if gestureState.didRecognizeClick { action() }
         }
         self.label = label
     }

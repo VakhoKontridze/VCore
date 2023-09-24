@@ -20,14 +20,6 @@ public enum LayoutDirectionVertical: CaseIterable {
     case bottomToTop
     
     // MARK: Properties
-    /// Returns reversed dimension.
-    public func reversed() -> Self {
-        switch self {
-        case .topToBottom: .bottomToTop
-        case .bottomToTop: .topToBottom
-        }
-    }
-    
     /// Indicates if layout direction is reversed, such as `bottomToTop`.
     public var isReversed: Bool {
         switch self {
@@ -35,26 +27,35 @@ public enum LayoutDirectionVertical: CaseIterable {
         case .bottomToTop: true
         }
     }
-    
-    // MARK: SwiftUI
-    /// Alignment.
-    public var alignment: Alignment {
+
+    // MARK: Reversing
+    /// Returns reversed dimension.
+    public func reversed() -> Self {
+        switch self {
+        case .topToBottom: .bottomToTop
+        case .bottomToTop: .topToBottom
+        }
+    }
+
+    // MARK: Mapping
+    /// Converts `LayoutDirectionVertical` to `Alignment`.
+    public var toAlignment: Alignment {
         switch self {
         case .topToBottom: .top
         case .bottomToTop: .bottom
         }
     }
     
-    /// Edge.
-    public var edge: Edge {
+    /// Converts `LayoutDirectionVertical` to `Edge`.
+    public var toEdge: Edge {
         switch self {
         case .topToBottom: .top
         case .bottomToTop: .bottom
         }
     }
     
-    /// Edge.Set.
-    public var edgeSet: Edge {
+    /// Converts `LayoutDirectionVertical` to `Edge.Set`.
+    public var toEdgeSet: Edge {
         switch self {
         case .topToBottom: .top
         case .bottomToTop: .bottom

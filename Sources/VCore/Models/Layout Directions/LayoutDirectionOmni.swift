@@ -26,16 +26,6 @@ public enum LayoutDirectionOmni: CaseIterable {
     case bottomToTop
     
     // MARK: Properties
-    /// Returns reversed dimension.
-    public func reversed() -> Self {
-        switch self {
-        case .leftToRight: .rightToLeft
-        case .rightToLeft: .leftToRight
-        case .topToBottom: .bottomToTop
-        case .bottomToTop: .topToBottom
-        }
-    }
-    
     /// Indicates if layout direction is horizontal.
     public var isHorizontal: Bool {
         switch self {
@@ -60,10 +50,21 @@ public enum LayoutDirectionOmni: CaseIterable {
         case .bottomToTop: true
         }
     }
-    
-    // MARK: SwiftUI
-    /// Axis.
-    public var axis: Axis {
+
+    // MARK: Reversing
+    /// Returns reversed dimension.
+    public func reversed() -> Self {
+        switch self {
+        case .leftToRight: .rightToLeft
+        case .rightToLeft: .leftToRight
+        case .topToBottom: .bottomToTop
+        case .bottomToTop: .topToBottom
+        }
+    }
+
+    // MARK: Mapping
+    /// Converts `LayoutDirectionOmni` to `Axis`.
+    public var toAxis: Axis {
         switch self {
         case .leftToRight: .horizontal
         case .rightToLeft: .horizontal
@@ -72,8 +73,8 @@ public enum LayoutDirectionOmni: CaseIterable {
         }
     }
     
-    /// Alignment.
-    public var alignment: Alignment {
+    /// Converts `LayoutDirectionOmni` to `Alignment`.
+    public var toAlignment: Alignment {
         switch self {
         case .leftToRight: .leading
         case .rightToLeft: .trailing
@@ -82,8 +83,8 @@ public enum LayoutDirectionOmni: CaseIterable {
         }
     }
     
-    /// Edge.
-    public var edge: Edge {
+    /// Converts `LayoutDirectionOmni` to `Edge`.
+    public var toEdge: Edge {
         switch self {
         case .leftToRight: .leading
         case .rightToLeft: .trailing
@@ -92,8 +93,8 @@ public enum LayoutDirectionOmni: CaseIterable {
         }
     }
     
-    /// Edge.Set.
-    public var edgeSet: Edge.Set {
+    /// Converts `LayoutDirectionOmni` to `Edge.Set`.
+    public var toEdgeSet: Edge.Set {
         switch self {
         case .leftToRight: .leading
         case .rightToLeft: .trailing
@@ -102,6 +103,7 @@ public enum LayoutDirectionOmni: CaseIterable {
         }
     }
     
+    // MARK: Stacks
     /// Creates `View` with `HStack` or `VStack`.
     ///
     /// For `leftToRight` or `rightToLeft`, `HStack` will be used.

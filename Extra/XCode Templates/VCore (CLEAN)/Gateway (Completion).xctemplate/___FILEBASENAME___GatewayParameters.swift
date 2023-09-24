@@ -9,6 +9,6 @@ struct ___VARIABLE_productName___GatewayParameters: Encodable {
     
     // MARK: Coding Keys
     private enum CodingKeys: String, CodingKey {
-        
+        // ...
     }
 }

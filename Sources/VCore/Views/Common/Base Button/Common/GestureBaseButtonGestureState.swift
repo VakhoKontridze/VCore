@@ -33,13 +33,13 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
     case cancelled
     
     // MARK: Properties
-    /// Indicates if button is being pressed.
-    public var isPressed: Bool {
+    /// Indicates if button recognized a successful press.
+    public var didRecognizePress: Bool {
         self == .began
     }
     
     /// Indicates if button recognized a successful click.
-    public var isClicked: Bool {
+    public var didRecognizeClick: Bool {
         self == .ended
     }
     

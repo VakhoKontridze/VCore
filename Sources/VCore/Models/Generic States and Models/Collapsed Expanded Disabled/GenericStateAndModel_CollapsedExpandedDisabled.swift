@@ -23,8 +23,8 @@ public enum GenericState_CollapsedExpandedDisabled: Int, CaseIterable {
     case disabled
     
     // MARK: Properties
-    /// Indicates if interaction is enabled.
-    public var isEnabled: Bool {
+    /// Indicates if gesture is enabled.
+    public var isGestureEnabled: Bool {
         switch self {
         case .collapsed: true
         case .expanded: true

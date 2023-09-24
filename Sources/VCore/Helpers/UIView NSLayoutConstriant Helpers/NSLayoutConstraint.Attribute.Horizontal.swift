@@ -29,9 +29,9 @@ extension NSLayoutConstraint.Attribute {
         /// Right side of the object’s alignment rectangle.
         case right
         
-        // MARK: Properties
+        // MARK: Mapping
         /// Converts `HorizontalAttribute` to `NSLayoutConstraint.Attribute`.
-        public var toAttribute: NSLayoutConstraint.Attribute {
+        public var toNSLayoutConstraintAttribute: NSLayoutConstraint.Attribute {
             switch self {
             case .leading: .leading
             case .centerX: .centerX
@@ -80,7 +80,7 @@ extension UIView {
             attribute: .leading,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority
@@ -122,7 +122,7 @@ extension UIView {
             attribute: .centerX,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority
@@ -164,7 +164,7 @@ extension UIView {
             attribute: .trailing,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority
@@ -206,7 +206,7 @@ extension UIView {
             attribute: .left,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority
@@ -248,7 +248,7 @@ extension UIView {
             attribute: .right,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority

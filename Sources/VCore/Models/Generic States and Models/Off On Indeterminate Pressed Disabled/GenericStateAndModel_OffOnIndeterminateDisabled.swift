@@ -26,8 +26,8 @@ public enum GenericState_OffOnIndeterminateDisabled: Int, CaseIterable {
     case disabled
     
     // MARK: Properties
-    /// Indicates if interaction is enabled.
-    public var isEnabled: Bool {
+    /// Indicates if gesture is enabled.
+    public var isGestureEnabled: Bool {
         switch self {
         case .off: true
         case .on: true

@@ -29,9 +29,9 @@ extension NSLayoutConstraint.Attribute {
         /// Object’s baseline. For objects with more than one line of text, this is the baseline for the bottommost line of text.
         case lastBaseline
         
-        // MARK: Properties
+        // MARK: Mapping
         /// Converts `VerticalAttribute` to `NSLayoutConstraint.Attribute`.
-        public var toAttribute: NSLayoutConstraint.Attribute {
+        public var toNSLayoutConstraintAttribute: NSLayoutConstraint.Attribute {
             switch self {
             case .top: .top
             case .centerY: .centerY
@@ -80,7 +80,7 @@ extension UIView {
             attribute: .top,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority
@@ -122,7 +122,7 @@ extension UIView {
             attribute: .centerY,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority
@@ -164,7 +164,7 @@ extension UIView {
             attribute: .bottom,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority
@@ -206,7 +206,7 @@ extension UIView {
             attribute: .firstBaseline,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority
@@ -248,7 +248,7 @@ extension UIView {
             attribute: .lastBaseline,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority

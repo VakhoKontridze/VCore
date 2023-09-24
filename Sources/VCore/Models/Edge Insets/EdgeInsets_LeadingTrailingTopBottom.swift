@@ -125,7 +125,7 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
     /// Initializes `EdgeInsets_LTTB` with zero values.
     public static var zero: Self { .init() }
 
-    // MARK: Conversion
+    // MARK: Mapping
     /// Converts `EdgeInsets_TopBottom` to `EdgeInsets`.
     var toEdgeInsets: EdgeInsets {
         .init(

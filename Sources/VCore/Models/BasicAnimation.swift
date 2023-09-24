@@ -65,7 +65,7 @@ public struct BasicAnimation {
         case easeInOut
     }
     
-    // MARK: Converting
+    // MARK: Mapping
     /// Converts `BasicAnimation` to `SwiftUI.Animation`.
     public var toSwiftUIAnimation: Animation {
         switch curve {

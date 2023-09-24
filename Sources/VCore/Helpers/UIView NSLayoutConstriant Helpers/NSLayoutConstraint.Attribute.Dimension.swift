@@ -20,9 +20,9 @@ extension NSLayoutConstraint.Attribute {
         /// Height of the object’s alignment rectangle.
         case height
         
-        // MARK: Properties
+        // MARK: Mapping
         /// Converts `DimensionAttribute` to `NSLayoutConstraint.Attribute`.
-        public var toAttribute: NSLayoutConstraint.Attribute {
+        public var toNSLayoutConstraintAttribute: NSLayoutConstraint.Attribute {
             switch self {
             case .width: .width
             case .height: .height
@@ -68,7 +68,7 @@ extension UIView {
             attribute: .width,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority
@@ -110,7 +110,7 @@ extension UIView {
             attribute: .height,
             relatedBy: relation,
             toItem: view.flatMap { layoutGuide?.toLayoutGuide(in: $0) } ?? view,
-            attribute: attribute.toAttribute,
+            attribute: attribute.toNSLayoutConstraintAttribute,
             multiplier: multiplier,
             constant: constant,
             priority: priority

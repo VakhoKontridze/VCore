@@ -22,7 +22,7 @@ public enum UIKitBaseButtonState: Int, CaseIterable {
     
     // MARK: Properties
     /// Indicates if UIKitBaseButtonState is enabled.
-    public var isEnabled: Bool {
+    public var isGestureEnabled: Bool {
         switch self {
         case .enabled: true
         case .disabled: false
@@ -63,7 +63,7 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     
     // MARK: Properties
     /// Indicates if interaction is enabled.
-    public var isEnabled: Bool {
+    public var isGestureEnabled: Bool {
         switch self {
         case .enabled: true
         case .pressed: true

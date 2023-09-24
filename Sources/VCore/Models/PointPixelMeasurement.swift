@@ -17,7 +17,7 @@ public enum PointPixelMeasurement: Equatable, Hashable {
     /// Pixel measurement.
     case pixels(Int)
 
-    // MARK: Conversion
+    // MARK: Mapping
     /// Converts value to points based on scale.
     public func toPoints(scale: CGFloat) -> CGFloat {
         switch self {

@@ -9,6 +9,6 @@ struct ___VARIABLE_productName___Entity: Decodable {
     
     // MARK: Coding Keys
     private enum CodingKeys: String, CodingKey {
-        
+        // ...
     }
 }
