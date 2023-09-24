@@ -10,7 +10,13 @@ import Foundation
 // MARK: - Range Reversed Array on Condition
 extension Range where Bound: FixedWidthInteger {
     /// Returns reversed `Array` from `Range` if condition is met.
-    public func reversedArray(if condition: Bool) -> [Bound] {
-        Array(self).reversed(if: condition)
+    ///
+    ///     let number: [Int] = 1..<3   // [2, 1]
+    ///         .reversedArray()
+    ///
+    public func reversedArray(
+        _ condition: Bool
+    ) -> [Bound] {
+        Array(self).reversed(condition)
     }
 }

@@ -16,13 +16,13 @@ final class ClosedRangeReversedArrayOnConditionTests: XCTestCase {
 
     // MARK: Tests
     func testFalse() {
-        let result: [Int] = input.reversedArray(if: false)
+        let result: [Int] = input.reversedArray(false)
 
         XCTAssertNotEqual(result, output)
     }
 
     func testTrue() {
-        let result: [Int] = input.reversedArray(if: true)
+        let result: [Int] = input.reversedArray(true)
 
         XCTAssertEqual(result, output)
     }

@@ -9,24 +9,14 @@ import Foundation
 
 // MARK: - Numeric with Opposite Sign
 extension Numeric {
-    /// Returns `Numeric` value with opposite sign.
+    /// Returns `Numeric` value with opposite sign if condition is met.
     ///
     ///     let number: Int = 10    // -10
     ///         .withOppositeSign()
     ///
-    public func withOppositeSign() -> Self {
-        withOppositeSign(if: true)
-    }
-}
-
-// MARK: - Numeric with Opposite Sign on Condition
-extension Numeric {
-    /// Returns `Numeric` value with opposite sign if condition is met.
-    ///
-    ///     let number: Int = 10
-    ///         .withOppositeSign(if: reversesSign)
-    ///
-    public func withOppositeSign(if condition: Bool) -> Self {
+    public func withOppositeSign(
+        _ condition: Bool = true
+    ) -> Self {
         if condition {
             self * -1
         } else {

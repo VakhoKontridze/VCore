@@ -14,16 +14,29 @@ final class ArrayReversedOnConditionTests: XCTestCase {
     private let input: [Int] = [1, 2, 3]
     private let output: [Int] = [3, 2, 1]
     
-    // MARK: Tests
-    func testFalse() {
-        let result: [Int] = input.reversed(if: false)
+    // MARK: Tests - Reversed
+    func testReversedFalse() {
+        let result: [Int] = input.reversed(false)
         
         XCTAssertNotEqual(result, output)
     }
     
-    func testTrue() {
-        let result: [Int] = input.reversed(if: true)
+    func testReversedTrue() {
+        let result: [Int] = input.reversed(true)
         
+        XCTAssertEqual(result, output)
+    }
+
+    // MARK: Tests - Reverse
+    func testReverseFalse() {
+        var result = input; result.reverse(false)
+
+        XCTAssertNotEqual(result, output)
+    }
+
+    func testReverseTrue() {
+        var result = input; result.reverse(true)
+
         XCTAssertEqual(result, output)
     }
 }

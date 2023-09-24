@@ -16,20 +16,14 @@ final class NumericWithOppositeSignTests: XCTestCase {
     private let output: Int = -10
     
     // MARK: Tests
-    func testStandard() {
-        let result: Int = input.withOppositeSign()
-        
-        XCTAssertEqual(result, output)
-    }
-    
     func testConditionalFalse() {
-        let result: Int = input.withOppositeSign(if: false)
+        let result: Int = input.withOppositeSign(false)
         
         XCTAssertNotEqual(result, output)
     }
     
     func testConditionalTrue() {
-        let result: Int = input.withOppositeSign(if: true)
+        let result: Int = input.withOppositeSign(true)
         
         XCTAssertEqual(result, output)
     }
