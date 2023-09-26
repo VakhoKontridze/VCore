@@ -1,25 +1,25 @@
 //
-//  NavigationStackCoordinator.swift
+//  NavigationStackCoordinatorOO.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 25.09.23.
+//  Created by Vakhtang Kontridze on 07.08.22.
 //
 
 import SwiftUI
 
-// MARK: - Navigation Stack Coordinator
-/// Object that stores `NavigationPath` for coordinating with `CoordinatingNavigationStack`.
+// MARK: - Navigation Stack Coordinator (Observable Object)
+/// Object that stores `NavigationPath` for coordinating with `CoordinatingNavigationStackOO`.
 ///
 /// Can be used to push or pop `View`s programmatically.
 ///
 ///     var body: some View {
-///         CoordinatingNavigationStack(root: {
+///         CoordinatingNavigationStackOO(root: {
 ///             HomeView()
 ///         })
 ///     }
 ///
 ///     struct HomeView: View {
-///         @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
+///         @Environment(\.navigationStackCoordinatorOO) private var navigationStackCoordinator: NavigationStackCoordinatorOO!
 ///
 ///         var body: some View {
 ///             Button(
@@ -33,14 +33,14 @@ import SwiftUI
 ///         }
 ///     }
 ///
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-@Observable public final class NavigationStackCoordinator {
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+public final class NavigationStackCoordinatorOO: ObservableObject {
     // MARK: Properties
     /// `NavigationPath`.
-    public var path: NavigationPath
-
+    @Published public var path: NavigationPath
+    
     // MARK: Initializers
-    /// Initializes `NavigationStackCoordinator`.
+    /// Initializes `NavigationStackCoordinatorOO`.
     public init(path: NavigationPath) {
         self.path = path
     }

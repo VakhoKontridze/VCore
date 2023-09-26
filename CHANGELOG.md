@@ -4,7 +4,7 @@
 
 Services and Managers
 
-- `DeviceOrientationObserver` is added that observes changes in device orientation
+- `DeviceOrientationObserver` and `DeviceOrientationObserverOO` are added that observe changes in device orientation
 
 Services and Managers - Network Client
 
@@ -40,6 +40,8 @@ Views
 - Responders in `ResponderChainToolBarManager` can now be initialized with custom `CGSize` and `ResponderChainToolBarUIModel`s
 - `keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin` is added to `FirstResponderViewUnObscuringUIViewController`
 - `CarouselCollectionViewFlowLayout` is renamed to `CarouselUICollectionViewFlowLayout`
+- `CoordinatingNavigationStack` is converted to `Observable`, and `ObservableObject`-based version is renamed to `CoordinatingNavigationStackOO`
+- `ViewResettingContainer` is converted to `Observable`, and `ObservableObject`-based version is renamed to `ViewResettingContainerOO`
 
 Models
 
@@ -50,6 +52,7 @@ Models
 - `delay` is added to `BasicAnimation`
 - JSON request headers are renamed to JSON request header fields
 - `EnvironmentValues.viewResetter` is added
+- `ObservableContainer` is renamed to `ObservableContainerOO`, to reflect it's `ObservableObject` implementation
 
 Helpers - Architectural Pattern Helpers
 
@@ -83,7 +86,7 @@ Extensions
 
 API
 
-- `VCoreLocalizationProvider` is overhauled, and VCoreHumanReadableLocalizationProvider` is removed
+- `VCoreLocalizationProvider` is overhauled, and `VCoreHumanReadableLocalizationProvider` is removed
 
 ### [4.11.0(84)](https://github.com/VakhoKontridze/VCore/releases/tag/4.11.0) — *2023 07 17*
 

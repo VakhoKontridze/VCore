@@ -1,13 +1,13 @@
 //
-//  ViewResettingContainer.swift
+//  ViewResettingContainerOO.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 26.09.23.
+//  Created by Vakhtang Kontridze on 02.02.23.
 //
 
 import SwiftUI
 
-// MARK: - View Resetting Container
+// MARK: - View Resetting Container (Observable Object)
 /// `View` that resets content on demand.
 ///
 /// Can be used to trigger reload on an app level.
@@ -18,7 +18,7 @@ import SwiftUI
 ///     @main struct SomeApp: App {
 ///         var body: some Scene {
 ///             WindowGroup(content: {
-///                 ViewResettingContainer(content: {
+///                 ViewResettingContainerOO(content: {
 ///                     ContentView()
 ///                 })
 ///             })
@@ -26,7 +26,7 @@ import SwiftUI
 ///     }
 ///
 ///     struct ContentView: View {
-///         @Environment(\.viewResetter) private var viewResetter: ViewResetter!
+///         @Environment(\.viewResetterOO) private var viewResetter: ViewResetterOO!
 ///
 ///         var body: some View {
 ///             ScrollView(content: {
@@ -41,27 +41,26 @@ import SwiftUI
 ///         }
 ///     }
 ///
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public struct ViewResettingContainer<Content>: View where Content: View {
+public struct ViewResettingContainerOO<Content>: View where Content: View {
     // MARK: Properties
-    @State private var viewResetter: ViewResetter = .init()
-    private let content: (ViewResetter) -> Content
-
+    @StateObject private var viewResetter: ViewResetterOO = .init()
+    private let content: (ViewResetterOO) -> Content
+    
     // MARK: Initializers
-    /// Initializers `ViewResettingContainer` with content.
+    /// Initializers `ViewResettingContainerOO` with content.
     public init(
-        @ViewBuilder content: @escaping (ViewResetter) -> Content
+        @ViewBuilder content: @escaping (ViewResetterOO) -> Content
     ) {
         self.content = content
     }
-
-    /// Initializers `ViewResettingContainer` with content.
+    
+    /// Initializers `ViewResettingContainerOO` with content.
     public init(
         @ViewBuilder content: @escaping () -> Content
     ) {
         self.content = { _ in content() }
     }
-
+    
     // MARK: Body
     public var body: some View {
         Group(content: {
@@ -71,6 +70,6 @@ public struct ViewResettingContainer<Content>: View where Content: View {
                 content(viewResetter)
             }
         })
-        .viewResetter(viewResetter)
+        .viewResetterOO(viewResetter)
     }
 }

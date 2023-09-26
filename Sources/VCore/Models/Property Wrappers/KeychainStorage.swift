@@ -11,8 +11,6 @@ import Combine
 // MARK: - Keychain Storage
 /// Property wrapper type that reflects a value from key chain and invalidates a view on a change in value in that key chain.
 ///
-/// Unlike `SwiftUI`'s `AppStorage`, a `class` containing `KeychainStorage` must conform to `ObservableObject`.
-///
 ///     @KeychainStorage("AccessToken") var accessToken: String?
 ///
 /// Alternately, a `KeychainServiceConfiguration` can be passed to customize queries.
@@ -31,11 +29,11 @@ import Combine
 ///
 ///     @KeychainStorage("AccessToken", keychainService: .someCustom) var accessToken: String?
 ///
-@propertyWrapper public struct KeychainStorage<Value>: DynamicProperty {
+@propertyWrapper public struct KeychainStorage<Value>: DynamicProperty { // TODO: Add `Observable`-based counterpart when support is added
     // MARK: Properties
     private let keychainService: KeychainService
     
-    @ObservedObject private var storage: ObservableContainer<Value> // No need for `StateObject`
+    @ObservedObject private var storage: ObservableContainerOO<Value> // No need for `StateObject`
     private let valueSetter: (Value) -> Void
     
     /// The underlying value referenced by the state variable.
@@ -64,11 +62,11 @@ import Combine
         valueSetter: @escaping (Value) -> Void
     ) {
         self.keychainService = keychainService
-        self.storage = ObservableContainer(value: initialValue)
+        self.storage = ObservableContainerOO(value: initialValue)
         self.valueSetter = valueSetter
     }
     
-    // MARK: Observable Support
+    // MARK: Observable Object Support
     public static subscript<T>(
         _enclosingInstance instance: T,
         wrapped wrappedKeyPath: ReferenceWritableKeyPath<T, Value>,

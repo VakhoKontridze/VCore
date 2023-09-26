@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "8780A052285F0DA0002E8F66"
-               BuildableName = "SwiftUI VIP.app"
+               BuildableName = "SwiftUI MVVM.app"
                BlueprintName = "SwiftUIMVVMExample"
                ReferencedContainer = "container:SwiftUIMVVMExample.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8780A052285F0DA0002E8F66"
-            BuildableName = "SwiftUI VIP.app"
+            BuildableName = "SwiftUI MVVM.app"
             BlueprintName = "SwiftUIMVVMExample"
             ReferencedContainer = "container:SwiftUIMVVMExample.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "8780A052285F0DA0002E8F66"
-            BuildableName = "SwiftUI VIP.app"
+            BuildableName = "SwiftUI MVVM.app"
             BlueprintName = "SwiftUIMVVMExample"
             ReferencedContainer = "container:SwiftUIMVVMExample.xcodeproj">
          </BuildableReference>
