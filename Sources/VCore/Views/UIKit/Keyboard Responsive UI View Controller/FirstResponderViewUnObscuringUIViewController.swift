@@ -19,11 +19,11 @@ open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIVi
     /// In case of `UITableView`, `UITableView` itself can be used.
     ///
     /// In case of `UIScrollView`, content view can be used.
-    open var keyboardResponsivenessContainerView: UIView { view }
+    open lazy var keyboardResponsivenessContainerView: UIView = view // Doesn't cause retain cycle
 
     /// Keyboard safe area margin from first responder view to keyboard. Set to `20`.
-    open var keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin: CGFloat { 20 }
-    
+    open var keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin: CGFloat = 20
+
     // MARK: Keyboard Responsiveness
     open override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
         super.keyboardWillShow(systemKeyboardInfo)
