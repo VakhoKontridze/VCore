@@ -129,27 +129,11 @@ extension UInt64 {
 
 extension String {
     /*fileprivate*/ func hexColorRGBAValues() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
-        let string: String = {
-            var string: String = trimmingCharacters(in: .whitespacesAndNewlines)
+        var string: String = trimmingCharacters(in: .whitespacesAndNewlines)
+        if string.hasPrefix("#") { _ = string.removeFirst() }
 
-            if string.hasPrefix("#") {
-                _ = string.removeFirst()
-            }
-
-            return string
-        }()
-
-        let color: UInt64 = string.scanHexColorStringToInt()
+        guard let color: UInt64 = .init(string, radix: 16) else { return nil }
 
         return color.hexColorRGBAValues()
-    }
-
-    private func scanHexColorStringToInt() -> UInt64 {
-        let scanner: Scanner = .init(string: self)
-
-        var color: UInt64 = 0
-        scanner.scanHexInt64(&color)
-
-        return color
     }
 }

@@ -13,7 +13,7 @@ import XCTest
 // MARK: - Tests
 final class UIColorInitWithHexTests: XCTestCase {
     func test2Char() throws {
-        let inputHex: String = "10"
+        let inputHex: UInt64 = 0x10
         let inputR: CGFloat = 16/255
         let inputG: CGFloat = 16/255
         let inputB: CGFloat = 16/255
@@ -26,7 +26,7 @@ final class UIColorInitWithHexTests: XCTestCase {
     }
 
     func test4Char() throws {
-        let inputHex: String = "1010"
+        let inputHex: UInt64 = 0x1010
         let inputR: CGFloat = 16/255
         let inputG: CGFloat = 16/255
         let inputB: CGFloat = 16/255
@@ -40,7 +40,7 @@ final class UIColorInitWithHexTests: XCTestCase {
     }
 
     func test6Char() throws {
-        let inputHex: String = "313AE0"
+        let inputHex: UInt64 = 0x313AE0
         let inputR: CGFloat = 49/255
         let inputG: CGFloat = 58/255
         let inputB: CGFloat = 224/255
@@ -53,7 +53,7 @@ final class UIColorInitWithHexTests: XCTestCase {
     }
 
     func test8Char() throws {
-        let inputHex: String = "313AE010"
+        let inputHex: UInt64 = 0x313AE010
         let inputR: CGFloat = 49/255
         let inputG: CGFloat = 58/255
         let inputB: CGFloat = 224/255
@@ -66,8 +66,8 @@ final class UIColorInitWithHexTests: XCTestCase {
         XCTAssertEqualColor(result, output)
     }
 
-    func testUInt64() throws {
-        let inputHex: UInt64 = 0x313AE0
+    func testString() throws {
+        let inputHex: String = "313AE0"
         let inputR: CGFloat = 49/255
         let inputG: CGFloat = 58/255
         let inputB: CGFloat = 224/255
@@ -93,7 +93,7 @@ final class UIColorInitWithHexTests: XCTestCase {
     }
 
     func testInvalidLength() {
-        XCTAssertNil(UIColor(hex: "123456789"))
+        XCTAssertNil(UIColor(hex: 0x123456789))
     }
 }
 
