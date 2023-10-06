@@ -59,7 +59,7 @@ import SwiftUI
 ///                         .foregroundStyle(uiModel.titleColors.value(for: internalState))
 ///                 }
 ///             )
-///             .disabled(!internalState.isEnabled)
+///             .disabled(internalState == .disabled)
 ///         }
 ///
 ///         private func stateChangeHandler(gestureState: GestureBaseButtonGestureState) {

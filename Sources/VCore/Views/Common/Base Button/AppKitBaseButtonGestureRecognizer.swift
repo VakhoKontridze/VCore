@@ -18,10 +18,10 @@ final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRec
             guard newValue != .changed else { return } // Not supported
             
             super.state = newValue
-            stateChangedHandler(GestureBaseButtonGestureState(state: newValue))
+            stateChangeHandler(GestureBaseButtonGestureState(state: newValue))
         }
     }
-    private var stateChangedHandler: (GestureBaseButtonGestureState) -> Void
+    private var stateChangeHandler: (GestureBaseButtonGestureState) -> Void
     
     private lazy var model: GestureBaseButtonModel = .init(stateSetter: { [weak self] state in
         guard let self else { return }
@@ -30,9 +30,9 @@ final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRec
     
     // MARK: Initializers
     init(
-        onStateChange stateChangedHandler: @escaping (GestureBaseButtonGestureState) -> Void
+        onStateChange stateChangeHandler: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
-        self.stateChangedHandler = stateChangedHandler
+        self.stateChangeHandler = stateChangeHandler
         
         super.init(target: nil, action: nil)
         
@@ -45,9 +45,9 @@ final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRec
     
     // MARK: Configuration
     func setStateChangeHandler(
-        to stateChangedHandler: @escaping (GestureBaseButtonGestureState) -> Void
+        to stateChangeHandler: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
-        self.stateChangedHandler = stateChangedHandler
+        self.stateChangeHandler = stateChangeHandler
     }
     
     // MARK: Touches

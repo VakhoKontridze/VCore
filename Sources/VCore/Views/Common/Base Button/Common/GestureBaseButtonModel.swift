@@ -52,7 +52,7 @@ final class GestureBaseButtonModel {
         guard
             let location,
             location.isOn(viewSize, offset: outOfBoundsMaxOffsetToRegisterGesture) &&
-                gestureViewLocationIsUnchanged(centerLocationOnSuperView) == true
+            gestureViewLocationIsUnchanged(centerLocationOnSuperView) == true
         else {
             defer { zeroData() }
             
