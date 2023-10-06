@@ -143,7 +143,7 @@ public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>:
     
     // MARK: Body
     public var body: some View {
-        VStack(content: {
+        ZStack(content: { // `ZSack` is used as a container
             switch content {
             case .empty:
                 if case .success(let image) = result {
