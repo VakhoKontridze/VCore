@@ -40,7 +40,7 @@ import SwiftUI
 ///         )
 ///     }
 ///
-@available(tvOS, unavailable)
+@available(tvOS 16.0, *)@available(tvOS, unavailable)
 public struct TouchSensitiveContainer<Content>: View where Content: View {
     // MARK: Properties - UI Model
     private let uiModel: TouchSensitiveContainerUIModel
