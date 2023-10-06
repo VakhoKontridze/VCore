@@ -22,11 +22,12 @@ import VCore
     // MARK: Initializers
     init() {}
     
-    // MARK: Methods
+    // MARK: Lifecycle
     func didLoad() {
         fetchPosts()
     }
     
+    // MARK: Actions
     func didPullToRefresh() {
         fetchPosts()
     }
