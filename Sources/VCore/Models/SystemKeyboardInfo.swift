@@ -58,8 +58,8 @@ public struct SystemKeyboardInfo {
     public static var defaultAnimationDuration: TimeInterval { 0.25 }
     
     /// Default animation options. Set to `curveEaseInOut`.
-    public static var defaultAnimationOptions: UIView.AnimationOptions { .curveEaseInOut }
-    
+    public static var defaultAnimationOptions: UIView.AnimationOptions { .init(rawValue: 7) }
+
     // MARK: Other Values
     /// Non-zero animation duration.
     ///
