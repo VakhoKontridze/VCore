@@ -43,6 +43,8 @@ Views
 - `CarouselCollectionViewFlowLayout` is renamed to `CarouselUICollectionViewFlowLayout`
 - `CoordinatingNavigationStack` is converted to `Observable`, and `ObservableObject`-based version is renamed to `CoordinatingNavigationStackOO`
 - `ViewResettingContainer` is converted to `Observable`, and `ObservableObject`-based version is renamed to `ViewResettingContainerOO`
+- `AlignedGridView` is renamed to `AlignedGridLayout`
+- `AlignedGridLayout` now takes `VerticalAlignment` as a parameter
 
 Models
 
