@@ -86,6 +86,7 @@ Extensions
 - `DragGesture.Value.velocity(inRelationTo:)` method is removed, as it's obsoleted by native `velocity` property
 - `Array.reverse(_:)` is added to complement `Array.reversed(_:)`
 - `View.safeAreaPaddings(edges:insets:)` method is added, that adds safe area padding to `View`
+- `Sequence.min(by:)` and `Sequence.max(by:)` methods are added that return minimum and maximum elements of the `Sequence` using a `KeyPath`
 
 API
 

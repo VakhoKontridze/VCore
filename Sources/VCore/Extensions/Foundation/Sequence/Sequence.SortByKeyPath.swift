@@ -1,5 +1,5 @@
 //
-//  Sequence.KeyPathSort.swift
+//  Sequence.SortByKeyPath.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/13/21.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-// MARK: - KeyPath Sort
+// MARK: - Sequence Sort by KeyPath
 extension Sequence {
-    /// Returns the elements of a sequence, sorted using the given `KeyPath` as the comparison between elements.
+    /// Returns the elements of a `Sequence`, sorted using the given `KeyPath` as the comparison between elements.
     ///
     ///     struct City {
     ///         let name: String
