@@ -532,7 +532,7 @@ struct HomeUIModel {
     static var titleLabelColor: UIColor { .label }
     static var titleLabelFont: UIFont { .systemFont(ofSize: 14) }
     
-    static var primaryButtonMarginHor: CGFloat { 20 }
+    static var primaryButtonMarginHorizontal: CGFloat { 20 }
 
     // MARK: Initializers
     private init() {}

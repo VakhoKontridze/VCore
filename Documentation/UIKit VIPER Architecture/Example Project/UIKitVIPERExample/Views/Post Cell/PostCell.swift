@@ -64,8 +64,8 @@ final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
             titleLabel.constraintTrailing(to: contentView, constant: -UIModel.titleLabelMarginHor),
             titleLabel.constraintTop(to: contentView, constant: UIModel.titleLabelMarginTop),
             
-            bodyLabel.constraintLeading(to: contentView, constant: UIModel.bodyLabelMarginHor),
-            bodyLabel.constraintTrailing(to: contentView, constant: -UIModel.bodyLabelMarginHor),
+            bodyLabel.constraintLeading(to: contentView, constant: UIModel.bodyLabelMarginHorizontal),
+            bodyLabel.constraintTrailing(to: contentView, constant: -UIModel.bodyLabelMarginHorizontal),
             bodyLabel.constraintTop(to: titleLabel, attribute: .bottom, constant: UIModel.bodyLabelMarginTop),
             bodyLabel.constraintBottom(to: contentView, constant: -UIModel.bodyLabelMarginBottom)
         ])

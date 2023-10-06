@@ -74,19 +74,19 @@ import SwiftUI
 public struct AlignedGridView: Layout {
     // MARK: Properties
     private let alignment: HorizontalAlignment
-    private let spacingHor: CGFloat
-    private let spacingVer: CGFloat
+    private let spacingHorizontal: CGFloat
+    private let spacingVertical: CGFloat
     
     // MARK: Initializers
     /// Initializes `AlignedGridView` with alignment and spacings.
     public init(
         alignment: HorizontalAlignment,
-        spacingHor: CGFloat,
-        spacingVer: CGFloat
+        spacingHorizontal: CGFloat,
+        spacingVertical: CGFloat
     ) {
         self.alignment = alignment
-        self.spacingHor = spacingHor
-        self.spacingVer = spacingVer
+        self.spacingHorizontal = spacingHorizontal
+        self.spacingVertical = spacingVertical
     }
     
     /// Initializes `AlignedGridView` with alignment and spacing.
@@ -96,8 +96,8 @@ public struct AlignedGridView: Layout {
     ) {
         self.init(
             alignment: alignment,
-            spacingHor: spacing,
-            spacingVer: spacing
+            spacingHorizontal: spacing,
+            spacingVertical: spacing
         )
     }
     
@@ -156,7 +156,7 @@ public struct AlignedGridView: Layout {
         
         let remainingRowSpacings: [CGFloat] = sameRowRects.map { group in
             let subviewWidths: CGFloat = group.map { $0.width }.reduce(0, +)
-            let spacingWidths: CGFloat = CGFloat(group.count-1) * spacingHor
+            let spacingWidths: CGFloat = CGFloat(group.count-1) * spacingHorizontal
             return boundWidth - subviewWidths - spacingWidths
         }
         
@@ -188,15 +188,15 @@ public struct AlignedGridView: Layout {
         for subview in subviews {
             let size: CGSize = subview.sizeThatFits(.unspecified)
             
-            let clips: Bool = origin.x + spacingHor + size.width > boundOrigin.x + boundWidth
+            let clips: Bool = origin.x + spacingHorizontal + size.width > boundOrigin.x + boundWidth
             if clips {
                 origin.x = boundOrigin.x
-                origin.moveDown(withValue: size.height + spacingVer)
+                origin.moveDown(withValue: size.height + spacingVertical)
             }
             
             rects.append(CGRect(origin: origin, size: size))
             
-            origin.moveRight(withValue: spacingHor + size.width)
+            origin.moveRight(withValue: spacingHorizontal + size.width)
         }
         
         return rects

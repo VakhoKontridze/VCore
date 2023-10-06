@@ -67,8 +67,8 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
             
             bodyLabel.constraintHeight(to: nil, constant: 0)
                 .storing(in: &bodyLabelHeightConstraint),
-            bodyLabel.constraintLeading(to: scrollableUIView.contentView, constant: UIModel.bodyLabelMarginHor),
-            bodyLabel.constraintTrailing(to: scrollableUIView.contentView, constant: -UIModel.bodyLabelMarginHor),
+            bodyLabel.constraintLeading(to: scrollableUIView.contentView, constant: UIModel.bodyLabelMarginHorizontal),
+            bodyLabel.constraintTrailing(to: scrollableUIView.contentView, constant: -UIModel.bodyLabelMarginHorizontal),
             bodyLabel.constraintTop(to: scrollableUIView.contentView, layoutGuide: .safeArea, constant: UIModel.bodyLabelMarginTop),
             bodyLabel.constraintBottom(to: scrollableUIView.contentView, layoutGuide: .safeArea, constant: -UIModel.bodyLabelMarginBottom)
         ])
@@ -86,6 +86,6 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
     func setBody(to body: String) {
         bodyLabel.text = body
         bodyLabelHeightConstraint?.constant = bodyLabel
-            .multiLineHeight(width: view.frame.width - 2*UIModel.bodyLabelMarginHor)
+            .multiLineHeight(width: view.frame.width - 2*UIModel.bodyLabelMarginHorizontal)
     }
 }

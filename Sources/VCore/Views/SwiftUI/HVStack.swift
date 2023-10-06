@@ -11,8 +11,8 @@ import SwiftUI
 /// `View` that arranges its subviews in a horizontal or vertical line.
 public struct HVStack<Content>: View where Content: View {
     // MARK: Properties
-    private let alignmentHor: HorizontalAlignment
-    private let alignmentVer: VerticalAlignment
+    private let alignmentHorizontal: HorizontalAlignment
+    private let alignmentVertical: VerticalAlignment
     private let spacing: CGFloat?
     private let isHorizontal: Bool
     private let content: () -> Content
@@ -20,14 +20,14 @@ public struct HVStack<Content>: View where Content: View {
     // MARK: Initializers
     /// Initializes `HVStack` with `Bool` and content.
     public init(
-        alignmentHor: HorizontalAlignment = .center,
-        alignmentVer: VerticalAlignment = .center,
+        alignmentHorizontal: HorizontalAlignment = .center,
+        alignmentVertical: VerticalAlignment = .center,
         spacing: CGFloat? = nil,
         isHorizontal: Bool,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.alignmentHor = alignmentHor
-        self.alignmentVer = alignmentVer
+        self.alignmentHorizontal = alignmentHorizontal
+        self.alignmentVertical = alignmentVertical
         self.spacing = spacing
         self.isHorizontal = isHorizontal
         self.content = content
@@ -35,14 +35,14 @@ public struct HVStack<Content>: View where Content: View {
     
     /// Initializes `HVStack` with `Axis` and content.
     public init(
-        alignmentHor: HorizontalAlignment = .center,
-        alignmentVer: VerticalAlignment = .center,
+        alignmentHorizontal: HorizontalAlignment = .center,
+        alignmentVertical: VerticalAlignment = .center,
         spacing: CGFloat? = nil,
         axis: Axis,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.alignmentHor = alignmentHor
-        self.alignmentVer = alignmentVer
+        self.alignmentHorizontal = alignmentHorizontal
+        self.alignmentVertical = alignmentVertical
         self.spacing = spacing
         self.isHorizontal = {
             switch axis {
@@ -57,14 +57,14 @@ public struct HVStack<Content>: View where Content: View {
     public var body: some View {
         if isHorizontal {
             HStack(
-                alignment: alignmentVer,
+                alignment: alignmentVertical,
                 spacing: spacing,
                 content: content
             )
             
         } else {
             VStack(
-                alignment: alignmentHor,
+                alignment: alignmentHorizontal,
                 spacing: spacing,
                 content: content
             )

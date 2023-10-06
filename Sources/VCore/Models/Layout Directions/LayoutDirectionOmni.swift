@@ -109,16 +109,16 @@ public enum LayoutDirectionOmni: CaseIterable {
     /// For `leftToRight` or `rightToLeft`, `HStack` will be used.
     /// For `topToBottom` or `bottomToTop`, `VStack` will be used.
     public func stackView<Content>(
-        alignmentHor: HorizontalAlignment = .center,
-        alignmentVer: VerticalAlignment = .center,
+        alignmentHorizontal: HorizontalAlignment = .center,
+        alignmentVertical: VerticalAlignment = .center,
         spacing: CGFloat? = nil,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View
         where Content: View
     {
         HVStack(
-            alignmentHor: alignmentHor,
-            alignmentVer: alignmentVer,
+            alignmentHorizontal: alignmentHorizontal,
+            alignmentVertical: alignmentVertical,
             spacing: spacing,
             isHorizontal: isHorizontal,
             content: content
@@ -131,19 +131,19 @@ public enum LayoutDirectionOmni: CaseIterable {
     /// For `topToBottom` or `bottomToTop`, `VStackLayout` will be used.
     @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public func stackLayout(
-        alignmentHor: HorizontalAlignment = .center,
-        alignmentVer: VerticalAlignment = .center,
+        alignmentHorizontal: HorizontalAlignment = .center,
+        alignmentVertical: VerticalAlignment = .center,
         spacing: CGFloat? = nil
     ) -> AnyLayout {
         if isHorizontal {
             AnyLayout(HStackLayout(
-                alignment: alignmentVer,
+                alignment: alignmentVertical,
                 spacing: spacing
             ))
             
         } else {
             AnyLayout(VStackLayout(
-                alignment: alignmentHor,
+                alignment: alignmentHorizontal,
                 spacing: spacing
             ))
         }
