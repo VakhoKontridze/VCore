@@ -4,6 +4,7 @@
 
 Services and Managers
 
+- `KeychainService` is now `open`
 - `DeviceOrientationObserver` and `DeviceOrientationObserverOO` are added that observe changes in device orientation
 
 Services and Managers - Network Client

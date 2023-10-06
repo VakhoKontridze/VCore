@@ -27,7 +27,7 @@ import Network
 ///         using: { _ in self?.dismissNoNetworkConnectionScreen() }
 ///     )
 ///
-public final class NetworkReachabilityService {
+public final class NetworkReachabilityService { // TODO: iOS 17 - Convert to `Observable`
     // MARK: Properties - Singleton
     /// Shared instance of `NetworkReachabilityService`.
     public static let shared: NetworkReachabilityService = .init()

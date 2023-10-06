@@ -18,10 +18,10 @@ import Foundation
 ///     KeychainService.default.set(key: "SomeKey", data: data)
 ///     KeychainService.default.delete(key: "SomeKey")
 ///
-public final class KeychainService {
+open class KeychainService {
     // MARK: Properties
     /// Configuration.
-    public var configuration: KeychainServiceConfiguration
+    open var configuration: KeychainServiceConfiguration
     
     /// Default instance of KeychainService.
     ///
@@ -36,7 +36,7 @@ public final class KeychainService {
     
     // MARK: Get
     /// Returns `Data` from key.
-    public func get(key: String) throws -> Data {
+    open func get(key: String) throws -> Data {
         let query: [String: Any] = configuration.getQuery.build(key: key)
         
         var valueObject: AnyObject?
@@ -57,14 +57,14 @@ public final class KeychainService {
     
     // MARK: Set
     /// Sets `Data` with key.
-    public func set(key: String, data: Data?) throws {
+    open func set(key: String, data: Data?) throws {
         switch data {
         case nil:
             try delete(key: key) // Logged internally
             
         case let data?:
             try? delete(key: key, logsError: false)
-            
+
             let query: [String: Any] = configuration.setQuery.build(key: key, data: data)
             
             let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
@@ -79,13 +79,9 @@ public final class KeychainService {
     
     // MARK: Delete
     /// Deletes `Data` with key.
-    public func delete(key: String) throws {
-        try delete(key: key, logsError: true)
-    }
-    
-    private func delete(
+    open func delete(
         key: String,
-        logsError: Bool
+        logsError: Bool = true
     ) throws {
         let query: [String: Any] = configuration.deleteQuery.build(key: key)
         
@@ -99,7 +95,7 @@ public final class KeychainService {
     }
     
     // MARK: Subscript
-    public subscript(_ key: String) -> Data? {
+    open subscript(_ key: String) -> Data? {
         get { try? get(key: key) } // Logged internally
         set { try? set(key: key, data: newValue) } // Logged internally
     }
