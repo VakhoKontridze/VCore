@@ -39,11 +39,9 @@ Project includes folder `Documentation`, which contains:
 
 - Swift style guide
 
-- Documentation and an example app of UIKit VIPER architecture
+- Documentation and example apps of various SwiftUI/UIKit architectures
 
-- Documentation and an example app of SwiftUI VIPER architecture
-
-- Documentation of CLEAN Interactors and Gateways
+- Documentation of CLEAN networking
 
 ## Showcase
 
@@ -324,7 +322,7 @@ Versions with different majors are not directly compatible. When a new major is 
     <td>
         5.0<br><i><sup>(5.0.0 - 5.x.x)</sup></i>
     </td>
-    <td>2023 XX XX</td>
+    <td>2023 10 08</td>
     <td>
         5.9
     </td>
