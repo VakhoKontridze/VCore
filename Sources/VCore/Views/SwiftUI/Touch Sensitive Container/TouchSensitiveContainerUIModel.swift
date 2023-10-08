@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Touch Sensitive Container UI Model
 /// Model that describes UI.
-@available(tvOS, unavailable)
+@available(tvOS 16.0, *)
 public struct TouchSensitiveContainerUIModel {
     // MARK: Properties - Background
     /// Background colors.

@@ -1,5 +1,11 @@
 # Change Log
 
+### 5.0.1(86)
+
+Views
+
+- `TouchSensitiveContainer` now supports `tvOS`
+
 ### [5.0.0(85)](https://github.com/VakhoKontridze/VCore/releases/tag/5.0.0) — *2023 10 08*
 
 Services and Managers

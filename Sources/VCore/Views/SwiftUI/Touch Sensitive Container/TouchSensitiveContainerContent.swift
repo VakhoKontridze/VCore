@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - Touch Sensitive Container Content
-@available(tvOS, unavailable)
+@available(tvOS 16.0, *)
 enum TouchSensitiveContainerContent<Content> where Content: View {
     case content(() -> Content)
     case contentWithState((TouchSensitiveContainerInternalState) -> Content)

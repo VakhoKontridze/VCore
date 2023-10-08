@@ -9,5 +9,5 @@ import Foundation
 
 // MARK: - Touch Sensitive Container Internal State
 /// Enumeration that represents state, such as `enabled`, `pressed`, or `disabled`.
-@available(tvOS, unavailable)
+@available(tvOS 16.0, *)
 public typealias TouchSensitiveContainerInternalState = GenericState_EnabledPressedDisabled
