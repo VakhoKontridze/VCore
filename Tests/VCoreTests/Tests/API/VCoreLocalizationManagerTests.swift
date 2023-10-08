@@ -51,7 +51,7 @@ final class VCoreLocalizationManagerTests: XCTestCase {
     }
 #endif
 
-#if os(iOS) || targetEnvironment(macCatalyst)
+#if canImport(UIKit) && !(os(tvOS) || os(watchOS))
     func testResponderChainToolBarDoneButtonTitle() {
         XCTAssertEqual(
             ResponderChainToolBar(size: CGSize.zero).doneButton.title,

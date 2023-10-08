@@ -17,7 +17,7 @@ extension View {
     ///         var body: some View {
     ///             SomeView()
     ///                 .applyModifier({
-    ///     #if os(iOS) || os(macOS)
+    ///     #if !(os(tvOS) || os(watchOS))
     ///                     $0.listRowSeparator(.hidden)
     ///     #else
     ///                     $0

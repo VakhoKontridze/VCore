@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 24.05.23.
 //
 
-#if os(iOS) || targetEnvironment(macCatalyst)
+#if canImport(UIKit) && !(os(tvOS) || os(watchOS))
 
 import UIKit
 

@@ -60,7 +60,7 @@ public enum UILayoutGuideType {
         case .safeArea:
             return view.safeAreaLayoutGuide
             
-#if os(iOS) || targetEnvironment(macCatalyst)
+#if !os(tvOS)
         case .keyboard:
             return view.keyboardLayoutGuide
 #endif

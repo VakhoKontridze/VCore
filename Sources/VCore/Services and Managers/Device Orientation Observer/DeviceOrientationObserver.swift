@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 05.08.23.
 //
 
-#if os(iOS) || targetEnvironment(macCatalyst)
+#if canImport(UIKit) && !(os(tvOS) || os(watchOS))
 
 import SwiftUI
 import Combine
