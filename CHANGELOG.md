@@ -1,10 +1,14 @@
 # Change Log
 
-### 5.0.1(86)
+### 5.1.0(86)
 
 Views
 
 - `TouchSensitiveContainer` now supports `tvOS`
+
+Extensions
+
+- `View.getNestedSize(_:)` method is added, that returns `CGSize` of the nested `View`
 
 ### [5.0.0(85)](https://github.com/VakhoKontridze/VCore/releases/tag/5.0.0) — *2023 10 08*
 
