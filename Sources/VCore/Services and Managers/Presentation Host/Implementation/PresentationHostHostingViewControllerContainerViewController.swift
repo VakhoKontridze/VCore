@@ -31,7 +31,7 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
             let hostingController: UIHostingController = .init(rootView: content)
             hostingController.view.translatesAutoresizingMaskIntoConstraints = false
             hostingController.view.backgroundColor = nil
-            hostingController.overrideBehaviors([.disableSafeAreaInsets, .disableKeyboardAvoidance])
+            hostingController.overrideBehaviors([.disablesSafeAreaInsets, .disablesKeyboardAvoidance])
             return hostingController
         }()
 
