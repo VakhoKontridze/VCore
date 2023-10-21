@@ -176,12 +176,23 @@ public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>:
                 }())
             }
         })
-        .onAppear(perform: {
-            fetch(from: parameter)
-        })
-        .onChange(of: parameter, perform: { newParameter in
-            zeroData()
-            fetch(from: newParameter)
+        .applyModifier({
+            if #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) {
+                $0
+                    .onChange(of: parameter, initial: true, { (_, newValue) in
+                        zeroData()
+                        fetch(from: newValue)
+                    })
+            } else {
+                $0
+                    .onAppear(perform: {
+                        fetch(from: parameter)
+                    })
+                    .onChange(of: parameter, perform: { newValue in
+                        zeroData()
+                        fetch(from: newValue)
+                    })
+            }
         })
         .onDisappear(perform: {
             if uiModel.removesImageOnDisappear { zeroData() }

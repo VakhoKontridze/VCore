@@ -41,7 +41,7 @@ extension DIContainer {
 
 // MARK: - Process Info Is SwiftUI Preview
 extension ProcessInfo {
-    var isSwiftUIPreview: Bool {
+    fileprivate var isSwiftUIPreview: Bool {
         environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     }
 }
