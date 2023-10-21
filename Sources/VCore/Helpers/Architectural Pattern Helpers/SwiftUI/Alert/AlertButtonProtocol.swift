@@ -10,6 +10,9 @@ import SwiftUI
 // MARK: - Alert Button Protocol
 /// `Alert` button protocol.
 public protocol AlertButtonProtocol: AlertButtonConvertible {
+    /// The stable identity of the entity associated with this instance.
+    var id: Int { get }
+
     /// Body type.
     typealias Body = AnyView
 

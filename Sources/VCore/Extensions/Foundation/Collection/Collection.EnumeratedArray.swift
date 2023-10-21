@@ -17,7 +17,7 @@ extension Collection {
     ///         ForEach(
     ///             data.enumeratedArray(),
     ///             id: \.element,
-    ///             content: { (i, element) in rowContent(element) }
+    ///             content: { (i, element) in ... }
     ///         )
     ///     }
     ///

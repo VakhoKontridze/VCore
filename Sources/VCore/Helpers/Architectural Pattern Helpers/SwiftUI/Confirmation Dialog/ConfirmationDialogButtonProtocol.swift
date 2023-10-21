@@ -10,6 +10,9 @@ import SwiftUI
 // MARK: - Confirmation Dialog Button Protocol
 /// `ConfirmationDialog` button protocol.
 public protocol ConfirmationDialogButtonProtocol: ConfirmationDialogButtonConvertible {
+    /// The stable identity of the entity associated with this instance.
+    var id: Int { get }
+
     /// Body type.
     typealias Body = AnyView
 

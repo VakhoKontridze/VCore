@@ -42,9 +42,9 @@ extension View {
             actions: {
                 if let buttons: [any AlertButtonProtocol] = parameters.wrappedValue?.buttons() {
                     ForEach(
-                        buttons.enumeratedArray(),
-                        id: \.offset,
-                        content: { (_, button) in
+                        buttons,
+                        id: \.id, // Despite identification, native `View.alert(...)` doesn't react to changes
+                        content: { button in
                             button.makeBody(animateOut: { completion in
                                 parameters.wrappedValue = nil
                                 completion?()

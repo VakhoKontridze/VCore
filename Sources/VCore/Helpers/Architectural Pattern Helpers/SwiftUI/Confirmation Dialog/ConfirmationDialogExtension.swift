@@ -45,9 +45,9 @@ extension View {
             actions: {
                 if let buttons: [any ConfirmationDialogButtonProtocol] = parameters.wrappedValue?.buttons() {
                     ForEach(
-                        buttons.enumeratedArray(),
-                        id: \.offset,
-                        content: { (_, button) in
+                        buttons,
+                        id: \.id, // Despite identification, native `View.confirmationDialog(...)` doesn't react to changes
+                        content: { button in
                             button.makeBody(animateOut: { completion in
                                 parameters.wrappedValue = nil
                                 completion?()
