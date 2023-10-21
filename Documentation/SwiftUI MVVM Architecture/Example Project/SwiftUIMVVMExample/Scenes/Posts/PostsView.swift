@@ -15,7 +15,7 @@ struct PostsView: View {
 
     private typealias UIModel = PostsUIModel
 
-    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
+    @Environment(\.navigationStackCoordinatorOO) private var navigationStackCoordinator: NavigationStackCoordinatorOO!
     
     @State private var didAppearForTheFirstTime: Bool = false
 
@@ -65,7 +65,7 @@ struct PostsView_Previews: PreviewProvider {
     static var previews: some View {
         DIContainer.current.postsGateway = PostsMockGateway()
 
-        return CoordinatingNavigationStack(root: {
+        return CoordinatingNavigationStackOO(root: {
             PostsView()
         })
     }

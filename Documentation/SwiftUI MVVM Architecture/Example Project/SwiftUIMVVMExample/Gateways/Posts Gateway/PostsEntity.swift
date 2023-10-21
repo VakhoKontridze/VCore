@@ -9,17 +9,16 @@ import Foundation
 
 // MARK: - Posts Entity
 struct PostsEntity {
-    let posts: [Post?]?
-}
+    // MARK: Posts
+    let posts: [Post]
 
-// MARK: - Post
-extension PostsEntity {
-    struct Post: Decodable {
+    // MARK: Post
+    struct Post: Hashable, Identifiable, Decodable {
         // MARK: Properties
-        let id: Int?
-        let userID: Int?
-        let title: String?
-        let body: String?
+        let id: Int
+        let userID: Int
+        let title: String
+        let body: String
         
         // MARK: Coding Keys
         private enum CodingKeys: String, CodingKey {

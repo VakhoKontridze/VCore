@@ -11,9 +11,9 @@ import VCore
 // MARK: - Posts View Model
 @MainActor final class PostsViewModel: ObservableObject {
     // MARK: Properties
-    @Published private(set) var posts: [Post] = []
+    @Published private(set) var posts: [PostsEntity.Post] = []
 
-    var navigationStackCoordinator: NavigationStackCoordinator!
+    var navigationStackCoordinator: NavigationStackCoordinatorOO!
     @Published var alertParameters: AlertParameters?
     @Published private(set) var progressViewParameters: ProgressViewParameters?
 
@@ -32,7 +32,7 @@ import VCore
         fetchPosts()
     }
     
-    func didTapPost(_ post: Post) {
+    func didTapPost(_ post: PostsEntity.Post) {
         navigationStackCoordinator.path.append(PostDetailsParameters(post: post))
     }
     
@@ -50,10 +50,7 @@ import VCore
 
                 progressViewParameters = nil
                 
-                posts = postsEntity.posts?
-                    .compactMap { $0 }
-                    .compactMap { Post(entity: $0) } ??
-                    []
+                posts = postsEntity.posts
                 
             } catch {
                 guard !Task.isCancelled else { return }

@@ -20,7 +20,7 @@ struct PostCellUIModel {
     static var bodyLabelNumberOfLines: Int { 2 }
     static var bodyLabelColor: UIColor { UIColor.secondaryLabel }
     static var bodyLabelFont: UIFont { .systemFont(ofSize: 14) }
-    static var bodyLabelMarginHorizontal: CGFloat { titleLabelMarginHor }
+    static var bodyLabelMarginHorizontal: CGFloat { titleLabelMarginHorizontal }
     static var bodyLabelMarginTop: CGFloat { 2 }
     static var bodyLabelMarginBottom: CGFloat { titleLabelMarginTop }
 

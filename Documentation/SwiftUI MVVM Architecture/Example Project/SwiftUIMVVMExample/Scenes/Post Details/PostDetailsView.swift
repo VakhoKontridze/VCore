@@ -48,7 +48,7 @@ struct PostDetailsView: View {
 // MARK: - Preview
 struct PostDetailsView_Previews: PreviewProvider {
     static var previews: some View {
-        CoordinatingNavigationStack(root: {
+        CoordinatingNavigationStackOO(root: {
             PostDetailsView(parameters: .mock)
         })
     }

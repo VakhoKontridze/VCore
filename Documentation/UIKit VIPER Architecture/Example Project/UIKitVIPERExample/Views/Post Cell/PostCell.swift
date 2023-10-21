@@ -60,8 +60,8 @@ final class PostCell: UITableViewCell, ConfigurableUITableViewCell {
     
     private func setUpLayout() {
         NSLayoutConstraint.activate([
-            titleLabel.constraintLeading(to: contentView, constant: UIModel.titleLabelMarginHor),
-            titleLabel.constraintTrailing(to: contentView, constant: -UIModel.titleLabelMarginHor),
+            titleLabel.constraintLeading(to: contentView, constant: UIModel.titleLabelMarginHorizontal),
+            titleLabel.constraintTrailing(to: contentView, constant: -UIModel.titleLabelMarginHorizontal),
             titleLabel.constraintTop(to: contentView, constant: UIModel.titleLabelMarginTop),
             
             bodyLabel.constraintLeading(to: contentView, constant: UIModel.bodyLabelMarginHorizontal),

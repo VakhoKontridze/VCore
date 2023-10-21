@@ -12,7 +12,7 @@ import VCore
 @main struct SwiftUIMVVMExampleApp: App {
     var body: some Scene {
         WindowGroup(content: {
-            CoordinatingNavigationStack(root: {
+            CoordinatingNavigationStackOO(root: {
                 PostsView()
             })
         })

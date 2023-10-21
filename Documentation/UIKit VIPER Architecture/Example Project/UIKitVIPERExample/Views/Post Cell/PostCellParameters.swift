@@ -11,7 +11,7 @@ import VCore
 // MARK: - Post Cell Parameters
 struct PostCellParameters: UITableViewCellParameter {
     // MARK: Properties
-    let post: Post
+    let post: PostsEntity.Post
     
     // MARK: Table View Cell Parameter
     var reuseID: String { PostCell.reuseID }

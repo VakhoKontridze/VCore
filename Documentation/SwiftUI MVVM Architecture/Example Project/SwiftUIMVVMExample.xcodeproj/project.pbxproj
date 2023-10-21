@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		870B88A6285F138200B0D0AD /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B88A5285F138200B0D0AD /* Post.swift */; };
 		870B88A9285F147E00B0D0AD /* PostRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B88A8285F147E00B0D0AD /* PostRowView.swift */; };
 		870B88AC285F149700B0D0AD /* PostRowViewUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B88AB285F149700B0D0AD /* PostRowViewUIModel.swift */; };
 		870B88B7285F1CF100B0D0AD /* PostDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B88B0285F1CF100B0D0AD /* PostDetailsViewModel.swift */; };
@@ -30,7 +29,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		870B88A5285F138200B0D0AD /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		870B88A8285F147E00B0D0AD /* PostRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowView.swift; sourceTree = "<group>"; };
 		870B88AB285F149700B0D0AD /* PostRowViewUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRowViewUIModel.swift; sourceTree = "<group>"; };
 		870B88B0285F1CF100B0D0AD /* PostDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				8780A066285F0DE1002E8F66 /* Scenes */,
 				870B88A7285F147000B0D0AD /* Views */,
 				87C80B722AB0836100346987 /* Services */,
-				87C80B682AAF964A00346987 /* Models */,
 				8780A07E285F0FCE002E8F66 /* Gateways */,
 				8780A064285F0DC0002E8F66 /* Resources */,
 			);
@@ -196,14 +193,6 @@
 				870B88BD285F1FF900B0D0AD /* PostsMockGateway.swift */,
 			);
 			path = "Posts Gateway";
-			sourceTree = "<group>";
-		};
-		87C80B682AAF964A00346987 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				870B88A5285F138200B0D0AD /* Post.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		87C80B722AB0836100346987 /* Services */ = {
@@ -291,7 +280,6 @@
 				870B88BE285F1FF900B0D0AD /* PostsMockGateway.swift in Sources */,
 				870B88A9285F147E00B0D0AD /* PostRowView.swift in Sources */,
 				8780A06F285F0DF6002E8F66 /* PostsViewModel.swift in Sources */,
-				870B88A6285F138200B0D0AD /* Post.swift in Sources */,
 				87C80B742AB0836B00346987 /* DIContainer.swift in Sources */,
 				8780A085285F0FEF002E8F66 /* PostsGateway.swift in Sources */,
 				8780A071285F0DF6002E8F66 /* PostsView.swift in Sources */,
@@ -360,7 +348,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -414,7 +402,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
