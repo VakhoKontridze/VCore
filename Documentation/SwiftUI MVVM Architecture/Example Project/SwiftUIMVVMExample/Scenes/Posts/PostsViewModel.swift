@@ -45,7 +45,7 @@ import VCore
         fetchPostsTask?.cancel()
         fetchPostsTask = Task(operation: {
             do {
-                let postsEntity: PostsEntity = try await DIContainer.current.postsGateway.fetch()
+                let postsEntity: PostsEntity = try await DIContainer.current.gateways.posts.fetch()
                 guard !Task.isCancelled else { return }
 
                 progressViewParameters = nil

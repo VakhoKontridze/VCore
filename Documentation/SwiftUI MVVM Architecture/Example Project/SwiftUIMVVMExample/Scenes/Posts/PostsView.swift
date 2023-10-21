@@ -63,9 +63,7 @@ struct PostsView: View {
 // MARK: - Preview
 struct PostsView_Previews: PreviewProvider {
     static var previews: some View {
-        DIContainer.current.postsGateway = PostsMockGateway()
-
-        return CoordinatingNavigationStackOO(root: {
+        CoordinatingNavigationStackOO(root: {
             PostsView()
         })
     }
