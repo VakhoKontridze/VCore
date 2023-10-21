@@ -31,7 +31,7 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
             let hostingController: UIHostingController = .init(rootView: content)
             hostingController.view.translatesAutoresizingMaskIntoConstraints = false
             hostingController.view.backgroundColor = nil
-            hostingController._disableSafeAreas()
+            hostingController.overrideBehaviors([.disableSafeAreaInsets, .disableKeyboardAvoidance])
             return hostingController
         }()
 
@@ -157,39 +157,6 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
                 systemKeyboardInfo: systemKeyboardInfo,
                 keyboardSafeAreMargin: safeAreaInset
             )
-        }
-    }
-}
-
-// MARK: - Helpers
-extension UIHostingController {
-    // https://github.com/scenee/FloatingPanel/issues/454
-    // https://defagos.github.io/swiftui_collection_part3
-    fileprivate func _disableSafeAreas() {
-        guard let viewClass: AnyClass = object_getClass(view) else { return }
-
-        let viewSubclassName: String = String(cString: class_getName(viewClass)).appending("_IgnoreSafeArea")
-
-        if let viewSubclass: AnyClass = NSClassFromString(viewSubclassName) {
-            object_setClass(view, viewSubclass)
-
-        } else if
-            let viewClassNameUtf8: UnsafePointer<CChar> = (viewSubclassName as NSString).utf8String,
-            let viewSubclass: AnyClass = objc_allocateClassPair(viewClass, viewClassNameUtf8, 0)
-        {
-            if let method: Method = class_getInstanceMethod(UIView.self, #selector(getter: UIView.safeAreaInsets)) {
-                let safeAreaInsets: @convention(block) (AnyObject) -> UIEdgeInsets = { _ in .zero }
-
-                class_addMethod(
-                    viewSubclass,
-                    #selector(getter: UIView.safeAreaInsets),
-                    imp_implementationWithBlock(safeAreaInsets),
-                    method_getTypeEncoding(method)
-                )
-            }
-
-            objc_registerClassPair(viewSubclass)
-            object_setClass(view, viewSubclass)
         }
     }
 }
