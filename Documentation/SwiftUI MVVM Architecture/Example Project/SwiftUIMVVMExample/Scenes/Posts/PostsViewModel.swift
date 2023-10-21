@@ -21,7 +21,11 @@ import VCore
     
     // MARK: Initializers
     init() {}
-    
+
+    deinit {
+        fetchPostsTask?.cancel()
+    }
+
     // MARK: Lifecycle
     func didLoad() {
         fetchPosts()
