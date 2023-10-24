@@ -61,6 +61,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
             guard let self else { return }
 
             postDidDismissNotificationForQueueing()
+            completion?()
         })
     }
 
@@ -114,32 +115,42 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     }
 
     // MARK: Presentation API - Dismiss
-    func dismissHostedView() {
-        _dismissHostedView(force: false)
+    func dismissHostedView(completion: (() -> Void)? = nil) {
+        _dismissHostedView(force: false, completion: completion)
     }
     
     static func forceDismiss(id: String) {
-        PresentationHostViewControllerStorage.shared.storage[id]?._dismissHostedView(force: true)
+        PresentationHostViewControllerStorage.shared.storage[id]?._dismissHostedView(force: true, completion: nil)
     }
     
-    private func _dismissHostedView(force: Bool) {
+    private func _dismissHostedView(force: Bool, completion: (() -> Void)?) {
+        let tearDown: () -> Void = { [weak self] in
+            guard let self else { return }
+
+            hostingControllerContainer = nil
+            _ = PresentationHostViewControllerStorage.shared.storage.removeValue(forKey: id)
+
+            PresentationHostDataSourceCache.shared.remove(key: id)
+        }
+
         if force {
             if
                 let rootViewController: UIViewController = UIApplication.shared.firstWindow(where: { window in
                     window.rootViewController?.presentedViewController == hostingControllerContainer
                 })?.rootViewController
             {
-                rootViewController.dismiss(animated: false, completion: nil)
+                rootViewController.dismiss(animated: false, completion: {
+                    tearDown()
+                    completion?()
+                })
             }
             
         } else {
-            dismiss(animated: false, completion: nil)
+            dismiss(animated: false, completion: {
+                tearDown()
+                completion?()
+            })
         }
-        
-        hostingControllerContainer = nil
-        _ = PresentationHostViewControllerStorage.shared.storage.removeValue(forKey: id)
-        
-        PresentationHostDataSourceCache.shared.remove(key: id)
     }
 
     // MARK: Queueing

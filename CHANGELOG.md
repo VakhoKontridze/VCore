@@ -2,6 +2,10 @@
 
 ### 5.1.0(86)
 
+Services and Managers - Presentation Host
+
+- Issue with XCode previews is fixed
+
 Views
 
 - `TouchSensitiveContainer` now supports `tvOS`

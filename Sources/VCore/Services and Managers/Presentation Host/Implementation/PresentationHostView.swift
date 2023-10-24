@@ -18,7 +18,7 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
     private let isPresented: Binding<Bool>
     private let content: () -> Content
 
-    @State private var wasInternallyDismissed: Bool = false
+    @State private var isBeingInternallyDismissed: Bool = false
 
     // MARK: Initializers
     init(
@@ -47,14 +47,12 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
         let isExternallyDismissed: Bool =
             uiViewController.isPresentingView &&
             !isPresented.wrappedValue &&
-            !wasInternallyDismissed
+            !isBeingInternallyDismissed
 
         let dismissHandler: () -> Void = {
-            wasInternallyDismissed = true
-            defer { DispatchQueue.main.async(execute: { wasInternallyDismissed = false }) }
-
+            isBeingInternallyDismissed = true
             isPresented.wrappedValue = false
-            uiViewController.dismissHostedView()
+            uiViewController.dismissHostedView(completion: { isBeingInternallyDismissed = false })
         }
 
         let content: AnyView = .init(
@@ -66,13 +64,14 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
                 id: id,
                 dismiss: dismissHandler,
                 isExternallyDismissed: isExternallyDismissed,
-                externalDismissCompletion: uiViewController.dismissHostedView
+                externalDismissCompletion: { uiViewController.dismissHostedView() }
             ))
         )
 
         if
             isPresented.wrappedValue,
-            !uiViewController.isPresentingView
+            !uiViewController.isPresentingView,
+            !isBeingInternallyDismissed
         {
             uiViewController.presentHostedView(content)
         }

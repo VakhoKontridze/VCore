@@ -130,7 +130,7 @@ extension View {
     ///     }
     ///
     /// Due to a presented modal context, content loses its intrinsic safe area properties, and requires custom handling and implementation.
-    @ViewBuilder public func presentationHost<Content>(
+    public func presentationHost<Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
@@ -138,20 +138,15 @@ extension View {
     ) -> some View
         where Content: View
     {
-#if canImport(UIKit) && !os(watchOS)
         self
-            .onDisappear(perform: { PresentationHostViewController.forceDismiss(id: id) })
-            .background(content: {
-                PresentationHostView(
-                    id: id,
-                    uiModel: uiModel,
-                    isPresented: isPresented,
-                    content: content
-                )
-            })
-#endif
+            ._presentationHost(
+                id: id,
+                uiModel: uiModel,
+                isPresented: isPresented,
+                content: content
+            )
     }
-    
+
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
     /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
@@ -164,7 +159,7 @@ extension View {
         where Content: View
     {
         self
-            .presentationHost(
+            ._presentationHost(
                 id: id,
                 uiModel: uiModel,
                 isPresented: Binding(
@@ -188,7 +183,7 @@ extension View {
         where Content: View
     {
         self
-            .presentationHost(
+            ._presentationHost(
                 id: id,
                 uiModel: uiModel,
                 isPresented: Binding(
@@ -212,7 +207,7 @@ extension View {
         where Content: View
     {
         self
-            .presentationHost(
+            ._presentationHost(
                 id: id,
                 uiModel: uiModel,
                 isPresented: Binding(
@@ -221,5 +216,27 @@ extension View {
                 ),
                 content: content
             )
+    }
+
+    @ViewBuilder private func _presentationHost<Content>(
+        id: String,
+        uiModel: PresentationHostUIModel = .init(),
+        isPresented: Binding<Bool>,
+        content: @escaping () -> Content
+    ) -> some View
+        where Content: View
+    {
+#if canImport(UIKit) && !os(watchOS)
+        self
+            .onDisappear(perform: { PresentationHostViewController.forceDismiss(id: id) })
+            .background(content: {
+                PresentationHostView(
+                    id: id,
+                    uiModel: uiModel,
+                    isPresented: isPresented,
+                    content: content
+                )
+            })
+#endif
     }
 }
