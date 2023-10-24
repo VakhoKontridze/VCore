@@ -48,7 +48,7 @@ extension View {
                         buttons,
                         id: \.id, // Despite identification, native `View.confirmationDialog(...)` doesn't react to changes
                         content: { button in
-                            button.makeBody(animateOut: { completion in
+                            button.makeBody(animateOutHandler: { completion in
                                 parameters.wrappedValue = nil
                                 completion?()
                             })

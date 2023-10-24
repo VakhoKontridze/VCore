@@ -18,7 +18,7 @@ public protocol ConfirmationDialogButtonProtocol: ConfirmationDialogButtonConver
 
     /// Creates a `View` that represents the body of a button.
     func makeBody(
-        animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
+        animateOutHandler: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> Body
 }
 
