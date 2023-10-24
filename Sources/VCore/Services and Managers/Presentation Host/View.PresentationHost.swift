@@ -155,7 +155,7 @@ extension View {
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
     /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
-    public func presentationHost<Item ,Content>(
+    public func presentationHost<Item, Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         item: Binding<Item?>,
@@ -178,7 +178,7 @@ extension View {
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
     /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
-    public func presentationHost<T ,Content>(
+    public func presentationHost<T, Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
@@ -202,7 +202,7 @@ extension View {
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
     /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
-    public func presentationHost<E ,Content>(
+    public func presentationHost<E, Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
