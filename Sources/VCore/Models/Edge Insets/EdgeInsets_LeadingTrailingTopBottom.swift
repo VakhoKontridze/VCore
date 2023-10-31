@@ -122,7 +122,7 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
 
 #endif
     
-    /// Initializes `EdgeInsets_LTTB` with zero values.
+    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with zero values.
     public static var zero: Self { .init() }
 
     // MARK: Mapping
