@@ -23,7 +23,10 @@ final class DIContainer {
 extension DIContainer {
     final class Gateways {
         // MARK: Properties
-        lazy var posts: any PostsGateway = make(PostsNetworkGateway(), preview: PostsMockGateway())
+        lazy var posts: any PostsGateway = make(
+            PostsNetworkGateway(),
+            preview: PostsMockGateway()
+        )
 
         // MARK: Helpers
         private func make<T>(
