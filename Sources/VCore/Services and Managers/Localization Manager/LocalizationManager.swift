@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 
 // MARK: - Localization Manager
 /// Object that manages localization without interfacing to identifiers and `UserDefaults`.
@@ -106,8 +107,8 @@ public final class LocalizationManager {
     /// before referring to `Locale` pass to `setDefaultLocale(to:)`.
     public var retrievesDefaultLocaleFromPreferences: Bool = true
     
-    /// Notification that indicates that the user’s locale changed.
-    public static var currentLocaleDidChangeNotification: Notification.Name { NSLocale.currentLocaleDidChangeNotification }
+    /// `Publisher` that emits when current `Locale` changes.
+    public let currentLocaleChangePublisher: PassthroughSubject<Locale, Never> = .init()
     
     private static var appleLanguagesUserDefaultsKey: String { "AppleLanguages" }
     
@@ -137,8 +138,8 @@ public final class LocalizationManager {
             setCurrentAppLocale(locale)
             
             bundles?.forEach { LocalizationTableOverridingBundle.overrideTable(toLocale: locale, inBundle: $0) }
-            
-            NotificationCenter.default.post(name: Self.currentLocaleDidChangeNotification, object: self, userInfo: nil)
+
+            currentLocaleChangePublisher.send(locale)
         }
     }
     

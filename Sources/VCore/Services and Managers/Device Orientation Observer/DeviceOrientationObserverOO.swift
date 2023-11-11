@@ -34,7 +34,7 @@ public final class DeviceOrientationObserverOO: ObservableObject {
         subscription = NotificationCenter.default
             .publisher(for: UIDevice.orientationDidChangeNotification)
             .compactMap { _ in Self.getDeviceOrientation() }
-            .assign(to: \.deviceOrientation, on: self)
+            .assignWeak(to: \.deviceOrientation, on: self)
     }
 
     private static func getDeviceOrientation() -> UIDeviceOrientation {

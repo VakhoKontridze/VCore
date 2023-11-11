@@ -6,6 +6,11 @@ Services and Managers - Presentation Host
 
 - Issue with XCode previews is fixed
 
+Servies and Managers
+
+- `LocalizationManager` now emits notifications using `Combine`
+- `NetworkReachabilityService` now emits notifications using `Combine`
+
 Views
 
 - `TouchSensitiveContainer` now supports `tvOS`

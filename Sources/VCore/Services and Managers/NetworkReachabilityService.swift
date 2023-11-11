@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Combine
 import Network
 
 // MARK: - Network Reachability Service
@@ -13,19 +14,15 @@ import Network
 ///
 ///     NetworkReachabilityService.shared.configure()
 ///
-///     NotificationCenter.default.addObserver(
-///         forName: NetworkReachabilityService.connectedNotification,
-///         object: nil,
-///         queue: .main,
-///         using: { _ in self?.presentNoNetworkConnectionScreen() }
-///     )
+///     NetworkReachabilityService.shared
+///         .connectedPublisher
+///         .sink(receiveValue: { [weak self] in self?.presentNoNetworkConnectionScreen() })
+///         .store(in: &subscriptions)
 ///
-///     NotificationCenter.default.addObserver(
-///         forName: NetworkReachabilityService.disconnectedNotification,
-///         object: nil,
-///         queue: .main,
-///         using: { _ in self?.dismissNoNetworkConnectionScreen() }
-///     )
+///     NetworkReachabilityService.shared
+///         .disconnectedPublisher
+///         .sink(receiveValue: { [weak self] in self?.dismissNoNetworkConnectionScreen() })
+///         .store(in: &subscriptions)
 ///
 public final class NetworkReachabilityService { // TODO: iOS 17 - Convert to `Observable`
     // MARK: Properties - Singleton
@@ -41,14 +38,7 @@ public final class NetworkReachabilityService { // TODO: iOS 17 - Convert to `Ob
     /// On app launch, `nil` is returned.
     public var isConnectedToNetwork: Bool? { status?.isConnected }
     
-    // MARK: Properties - Notifications
-    /// Name of notification that will be posted when reachability status changes.
-    public static var connectedNotification: Notification.Name { .init("NetworkReachabilityService.Connected") }
-    
-    /// Name of notification that will be posted when reachability status changes.
-    public static var disconnectedNotification: Notification.Name { .init("NetworkReachabilityService.Disconnected") }
-    
-    // MARK: Properties - Monitor
+    // MARK: Properties - Status Monitor
     private lazy var statusMonitor: NWPathMonitor = {
         let monitor: NWPathMonitor = .init()
         monitor.pathUpdateHandler = statusChanged
@@ -58,7 +48,14 @@ public final class NetworkReachabilityService { // TODO: iOS 17 - Convert to `Ob
     private let statusQueue: DispatchQueue = .init(label: "NetworkReachabilityService.StatusQueue")
     
     private var didCheckStatusForTheFirstTime: Bool = false
-    
+
+    // MARK: Properties - Publishers
+    /// `Publisher` that emits when device connects to the network.
+    public let connectedPublisher: PassthroughSubject<Void, Never> = .init()
+
+    /// `Publisher` that emits when device disconnects from the network.
+    public let disconnectedPublisher: PassthroughSubject<Void, Never> = .init()
+
     // MARK: Initializers
     private init() {
         statusMonitor.start(queue: statusQueue)
@@ -79,14 +76,9 @@ public final class NetworkReachabilityService { // TODO: iOS 17 - Convert to `Ob
             didCheckStatusForTheFirstTime = true
             
             switch isConnectedToNetwork {
-            case nil:
-                break
-                
-            case false?:
-                NotificationCenter.default.post(name: Self.disconnectedNotification, object: self, userInfo: nil)
-                
-            case true?:
-                NotificationCenter.default.post(name: Self.connectedNotification, object: self, userInfo: nil)
+            case nil: break
+            case false?: disconnectedPublisher.send()
+            case true?: connectedPublisher.send()
             }
         }
     }
