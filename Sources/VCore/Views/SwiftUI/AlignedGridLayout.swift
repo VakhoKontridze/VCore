@@ -380,7 +380,7 @@ struct AlignedGridLayout_Previews: PreviewProvider {
 
                             .background(content: { Color.accentColor.opacity(0.5) })
 
-                            .clipShape(RoundedRectangle(cornerRadius: 5))
+                            .clipShape(.rect(cornerRadius: 5))
                     }
                 )
             })

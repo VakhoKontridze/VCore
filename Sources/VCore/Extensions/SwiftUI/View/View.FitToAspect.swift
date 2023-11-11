@@ -25,6 +25,6 @@ extension View {
             .scaledToFill()
             .aspectRatio(aspectRatio, contentMode: .fit)
             .overlay(content: { self.aspectRatio(nil, contentMode: contentMode) })
-            .clipShape(Rectangle())
+            .clipShape(.rect)
     }
 }
