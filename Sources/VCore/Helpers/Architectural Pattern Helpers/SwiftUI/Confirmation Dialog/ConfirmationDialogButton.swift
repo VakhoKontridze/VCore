@@ -35,14 +35,13 @@ public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
     public func makeBody(
         animateOutHandler: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> AnyView {
-        .init(
-            Button(
-                title,
-                role: role,
-                action: { animateOutHandler(/*completion: */action) }
-            )
-            .disabled(!isEnabled)
+        Button(
+            title,
+            role: role,
+            action: { animateOutHandler(/*completion: */action) }
         )
+        .disabled(!isEnabled)
+        .eraseToAnyView()
     }
     
     // MARK: Modifiers

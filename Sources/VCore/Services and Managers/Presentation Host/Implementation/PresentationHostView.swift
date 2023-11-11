@@ -55,18 +55,17 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
             uiViewController.dismissHostedView(completion: { isBeingInternallyDismissed = false })
         }
 
-        let content: AnyView = .init(
-            PresentationHostGeometryReader(
-                window: { [weak uiViewController] in uiViewController?.view.window },
-                content: content
-            )
-            .presentationHostPresentationMode(PresentationHostPresentationMode(
-                id: id,
-                dismiss: dismissHandler,
-                isExternallyDismissed: isExternallyDismissed,
-                externalDismissCompletion: { uiViewController.dismissHostedView() }
-            ))
+        let content: AnyView = PresentationHostGeometryReader(
+            window: { [weak uiViewController] in uiViewController?.view.window },
+            content: content
         )
+        .presentationHostPresentationMode(PresentationHostPresentationMode(
+            id: id,
+            dismiss: dismissHandler,
+            isExternallyDismissed: isExternallyDismissed,
+            externalDismissCompletion: { uiViewController.dismissHostedView() }
+        ))
+        .eraseToAnyView()
 
         if
             isPresented.wrappedValue,
