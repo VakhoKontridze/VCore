@@ -29,7 +29,7 @@ public struct ProgressViewParameters {
     public var isInteractionEnabled: Bool
 
     /// Attributes.
-    public var attributes: [String: Any] = [:]
+    public var attributes: [String: Any]
 
     // MARK: Initializers
     /// Initializes `ProgressViewParameters`.

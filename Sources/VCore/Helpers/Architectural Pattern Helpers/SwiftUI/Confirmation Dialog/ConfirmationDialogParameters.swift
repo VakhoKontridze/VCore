@@ -40,7 +40,7 @@ public struct ConfirmationDialogParameters {
     public var buttons: () -> [any ConfirmationDialogButtonProtocol]
 
     /// Attributes.
-    public var attributes: [String: Any] = [:]
+    public var attributes: [String: Any]
 
     // MARK: Initializers
     /// Initializes `ConfirmationDialogParameters`.
