@@ -32,31 +32,37 @@ import SwiftUI
 public struct AlertParameters {
     // MARK: Properties
     /// Title.
-    public var title: String
-    
+    public var title: String?
+
     /// Message.
     public var message: String?
-    
+
     /// Buttons.
     public var buttons: () -> [any AlertButtonProtocol]
-    
+
+    /// Attributes.
+    public var attributes: [String: Any] = [:]
+
     // MARK: Parameters
     /// Initializes `AlertParameters`.
     public init(
-        title: String,
+        title: String?,
         message: String?,
-        @AlertButtonBuilder actions buttons: @escaping () -> [any AlertButtonProtocol]
+        @AlertButtonBuilder actions buttons: @escaping () -> [any AlertButtonProtocol],
+        attributes: [String: Any] = [:]
     ) {
         self.title = title
         self.message = message
         self.buttons = buttons
+        self.attributes = attributes
     }
     
     /// Initializes `AlertParameters` with "ok" action.
     public init(
-        title: String,
+        title: String?,
         message: String?,
-        completion: (() -> Void)?
+        completion: (() -> Void)?,
+        attributes: [String: Any] = [:]
     ) {
         self.init(
             title: title,
@@ -67,14 +73,16 @@ public struct AlertParameters {
                     action: completion,
                     title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle
                 )
-            }
+            },
+            attributes: attributes
         )
     }
     
     /// Initializes `AlertParameters` with error and "ok" action.
     public init(
-        error: some Error,
-        completion: (() -> Void)?
+        error: any Error,
+        completion: (() -> Void)?,
+        attributes: [String: Any] = [:]
     ) {
         self.init(
             title: VCoreLocalizationManager.shared.localizationProvider.alertErrorTitle,
@@ -85,7 +93,8 @@ public struct AlertParameters {
                     action: completion,
                     title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle
                 )
-            }
+            },
+            attributes: attributes
         )
     }
 }

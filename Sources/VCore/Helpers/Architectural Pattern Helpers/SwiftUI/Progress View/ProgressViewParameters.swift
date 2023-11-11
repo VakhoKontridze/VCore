@@ -17,7 +17,7 @@ import SwiftUI
 ///             .progressView(parameters: parameters)
 ///     }
 ///
-public struct ProgressViewParameters: Hashable, Identifiable {
+public struct ProgressViewParameters {
     // MARK: Properties
     /// Scaling factor.
     public var scalingFactor: CGFloat?
@@ -27,19 +27,21 @@ public struct ProgressViewParameters: Hashable, Identifiable {
     
     /// Indicates if interaction is enabled.
     public var isInteractionEnabled: Bool
-    
+
+    /// Attributes.
+    public var attributes: [String: Any] = [:]
+
     // MARK: Initializers
     /// Initializes `ProgressViewParameters`.
     public init(
         scalingFactor: CGFloat? = nil,
         color: Color? = nil,
-        isInteractionEnabled: Bool = true
+        isInteractionEnabled: Bool = true,
+        attributes: [String: Any] = [:]
     ) {
         self.scalingFactor = scalingFactor
         self.color = color
         self.isInteractionEnabled = isInteractionEnabled
+        self.attributes = attributes
     }
-    
-    // MARK: Identifiable
-    public var id: Int { hashValue }
 }

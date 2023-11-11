@@ -10,6 +10,12 @@ Views
 
 - `TouchSensitiveContainer` now supports `tvOS`
 
+Helpers - Architectural Pattern Helpers
+
+- `attributes` are added to `AlertParameters` for additional customization
+- `attributes` are added to `ConfirmationDialogParameters` for additional customization
+- `attributes` are added to `ProgressViewParameters` for additional customization
+
 Extensions
 
 - `View.getNestedSize(_:)` method is added, that returns `CGSize` of the nested `View`

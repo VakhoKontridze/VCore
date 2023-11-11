@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Alert Extension
 extension View {
-    /// Presents `Alert` when `AlertParameters` is non-`nil`.
+    /// Presents `Alert` when `parameters` is non-`nil`.
     ///
     ///     @State private var parameters: AlertParameters?
     ///

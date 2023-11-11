@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Progress View Extension
 extension View {
-    /// Presents `ProgressView` when `ProgressViewParameters` is non-`nil`.
+    /// Presents `ProgressView` when `parameters` is non-`nil`.
     ///
     ///     @State private var parameters: ProgressViewParameters = .init()
     ///
