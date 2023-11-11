@@ -151,7 +151,7 @@ General
 Views
 
 - `ResponderChainToolBar`, alongside with `ResponderChainToolBarManager` is added, that handles focus navigation in the responder chain
-- `View.responderChainToolBar(focus:_)` method is added that manages focus navigation in the responder chain
+- `View.responderChainToolBar(focus:)` method is added that manages focus navigation in the responder chain
 - Several `InnerShadowUIView` members now have `public`/`open` access level
 
 Extensions
@@ -713,7 +713,7 @@ Views
 
 Extensions
 
-- `UIView.addSubviews(:_)` and `UIView.removeSubviews()` methods are added
+- `UIView.addSubviews(_:)` and `UIView.removeSubviews()` methods are added
 - Issue with `UIStackView.addArrangedSubviews(_:)` is fixed
 - `UIStackView.addArrangedSubviews(_:)` method is added that takes variadic `UIView`s
 
