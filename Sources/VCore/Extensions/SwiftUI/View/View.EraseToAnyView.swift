@@ -13,7 +13,7 @@ extension View {
     ///
     ///     Color.accentColor.eraseToAnyView()
     ///
-    func eraseToAnyView() -> AnyView {
+    public func eraseToAnyView() -> AnyView {
         .init(self)
     }
 
@@ -21,7 +21,7 @@ extension View {
     ///
     ///     Color.accentColor.eraseToAnyView()
     ///
-    func eraseToAnyViewErasing() -> AnyView {
+    public func eraseToAnyViewErasing() -> AnyView {
         .init(erasing: self)
     }
 }
