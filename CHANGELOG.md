@@ -1,6 +1,6 @@
 # Change Log
 
-### 5.1.0(86)
+### 5.1.0(86)(https://github.com/VakhoKontridze/VCore/releases/tag/5.1.0) — *2023 11 11*
 
 Services and Managers - Presentation Host
 
@@ -17,9 +17,9 @@ Views
 
 Helpers - Architectural Pattern Helpers
 
-- `attributes` are added to `AlertParameters` for additional customization
-- `attributes` are added to `ConfirmationDialogParameters` for additional customization
-- `attributes` are added to `ProgressViewParameters` for additional customization
+- `attributes` is added to `AlertParameters` for additional customization
+- `attributes` is added to `ConfirmationDialogParameters` for additional customization
+- `attributes` is added to `ProgressViewParameters` for additional customization
 
 Extensions
 
