@@ -18,9 +18,11 @@ Helpers - Architectural Pattern Helpers
 
 Extensions
 
+- `Array.appending(_:)` and `Array.appending(contentsOf:)` method are added, that return `Array` with elements appended at the end
+- `Array.prepending(_:)` and `Array.prepending(contentsOf:)` method are added, that return `Array` with elements appended at the beginning
 - `View.getNestedSize(_:)` method is added, that returns `CGSize` of the nested `View`
-- `UIHostingController.overrideBehaviors(_:)` method is added, that overrides select behaviors
 - `View.eraseToAnyView()` method is added, that erases `View` type
+- `UIHostingController.overrideBehaviors(_:)` method is added, that overrides select behaviors
 
 ### [5.0.0(85)](https://github.com/VakhoKontridze/VCore/releases/tag/5.0.0) — *2023 10 08*
 
