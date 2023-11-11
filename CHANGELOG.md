@@ -23,6 +23,7 @@ Extensions
 - `View.getNestedSize(_:)` method is added, that returns `CGSize` of the nested `View`
 - `View.eraseToAnyView()` method is added, that erases `View` type
 - `UIHostingController.overrideBehaviors(_:)` method is added, that overrides select behaviors
+- `Publisher.assignWeak(to:on:)` method is added, that assigns each element from a `Publisher` to a property of an object with a weak retain cycle
 
 ### [5.0.0(85)](https://github.com/VakhoKontridze/VCore/releases/tag/5.0.0) — *2023 10 08*
 
