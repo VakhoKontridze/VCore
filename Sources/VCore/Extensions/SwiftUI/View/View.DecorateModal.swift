@@ -29,7 +29,7 @@ extension View {
     ///                         .decorateModal({ (modalSuperView, transitionView) in
     ///                             if
     ///                                 let modalSuperView,
-    ///                                 let displayCornerRadius: CGFloat = UIScreen.main.displayCornerRadius
+    ///                                 let displayCornerRadius: CGFloat = modalSuperView.window?.screen.displayCornerRadius
     ///                             {
     ///                                 modalSuperView.roundCorners(.layerMinYCorners, by: displayCornerRadius)
     ///                             }
