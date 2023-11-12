@@ -6,9 +6,10 @@ import VCore
 // MARK: - ___VARIABLE_productName___ View
 struct ___VARIABLE_productName___View: View {
     // MARK: Properties
-    @StateObject private var viewModel: ___VARIABLE_productName___ViewModel
+    @State private var viewModel: ___VARIABLE_productName___ViewModel
 
     private typealias UIModel = ___VARIABLE_productName___UIModel
+    private typealias LocStrings = ___VARIABLE_productName___LocalizedStrings
 
     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
     
@@ -16,7 +17,7 @@ struct ___VARIABLE_productName___View: View {
     
     // MARK: Initializers
     init(parameters: ___VARIABLE_productName___Parameters) {
-        self._viewModel = StateObject(wrappedValue: ___VARIABLE_productName___ViewModel(parameters: parameters))
+        self._viewModel = State(wrappedValue: ___VARIABLE_productName___ViewModel(parameters: parameters))
     }
     
     // MARK: Body
@@ -29,7 +30,7 @@ struct ___VARIABLE_productName___View: View {
             viewModel.navigationStackCoordinator = navigationStackCoordinator
         })
 
-        .inlineNavigationTitle("___VARIABLE_productName___")
+        .inlineNavigationTitle(LocStrings.title.localized)
 
         .alert(parameters: $viewModel.alertParameters)
         .progressView(parameters: viewModel.progressViewParameters)
@@ -45,10 +46,8 @@ struct ___VARIABLE_productName___View: View {
 }
 
 // MARK: - Preview
-struct ___VARIABLE_productName___View_Previews: PreviewProvider {
-    static var previews: some View {
-        CoordinatingNavigationStack(root: {
-            ___VARIABLE_productName___View(parameters: .mock)
-        })
-    }
-}
+#Preview(body: {
+    CoordinatingNavigationStack(root: {
+        ___VARIABLE_productName___View(parameters: .mock)
+    })
+})

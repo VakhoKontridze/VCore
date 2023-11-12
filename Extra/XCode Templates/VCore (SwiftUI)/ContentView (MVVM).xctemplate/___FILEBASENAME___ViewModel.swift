@@ -4,13 +4,13 @@ import Foundation
 import VCore
 
 // MARK: - ___VARIABLE_productName___ View Model
-@MainActor final class ___VARIABLE_productName___ViewModel: ObservableObject {
+@Observable final class ___VARIABLE_productName___ViewModel {
     // MARK: Properties
-    private let parameters: ___VARIABLE_productName___Parameters
+    @ObservationIgnored private let parameters: ___VARIABLE_productName___Parameters
 
-    var navigationStackCoordinator: NavigationStackCoordinator!
-    @Published var alertParameters: AlertParameters?
-    @Published private(set) var progressViewParameters: ProgressViewParameters?
+    @ObservationIgnored var navigationStackCoordinator: NavigationStackCoordinator!
+    var alertParameters: AlertParameters?
+    private(set) var progressViewParameters: ProgressViewParameters?
     
     // MARK: Initializers
     init(parameters: ___VARIABLE_productName___Parameters) {

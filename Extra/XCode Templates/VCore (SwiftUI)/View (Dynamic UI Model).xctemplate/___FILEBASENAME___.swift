@@ -25,9 +25,9 @@ struct ___VARIABLE_productName___: View {
 }
 
 // MARK: - Preview
-struct ___VARIABLE_productName____Previews: PreviewProvider {
-    static var previews: some View {
+#Preview(
+    traits: .sizeThatFitsLayout,
+    body: {
         ___VARIABLE_productName___(parameters: .mock)
-            .previewLayout(.sizeThatFits)
     }
-}
+)

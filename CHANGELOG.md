@@ -1,5 +1,11 @@
 # Change Log
 
+### 5.2.0(87)
+
+Extra - XCode Templates
+
+- `SwiftUI` XCode templates are updated for `iOS` `17.0`
+
 ### 5.1.0(86)(https://github.com/VakhoKontridze/VCore/releases/tag/5.1.0) — *2023 11 11*
 
 Services and Managers - Presentation Host
