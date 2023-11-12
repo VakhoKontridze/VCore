@@ -36,7 +36,7 @@ struct PostsView: View {
         })
 
         .inlineNavigationTitle("Posts")
-        .navigationDestination(for: PostDetailsParameters.self, destination: { PostDetailsView(parameters: $0) })
+        .navigationDestination(for: PostDetailsParameters.self, destination: PostDetailsView.init)
 
         .alert(parameters: $viewModel.alertParameters)
         .progressView(parameters: viewModel.progressViewParameters)
