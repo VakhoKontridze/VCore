@@ -28,7 +28,6 @@ import SwiftUI
 ///     }
 ///
 /// `TouchSensitiveContainer` optionally takes `action` parameters.
-/// Unlike `TapGesture`, it can be triggered after prolonged touch-down event.
 ///
 ///     var body: some View {
 ///         TouchSensitiveContainer(
