@@ -135,9 +135,12 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
 
         if force {
             if
-                let rootViewController: UIViewController = UIApplication.shared.firstWindow(where: { window in
-                    window.rootViewController?.presentedViewController == hostingControllerContainer
-                })?.rootViewController
+                let rootViewController: UIViewController = UIApplication.shared
+                    .firstWindow(
+                        activationStates: [.foregroundActive],
+                        where: { $0.rootViewController?.presentedViewController == hostingControllerContainer }
+                    )?
+                    .rootViewController
             {
                 rootViewController.dismiss(animated: false, completion: {
                     tearDown()

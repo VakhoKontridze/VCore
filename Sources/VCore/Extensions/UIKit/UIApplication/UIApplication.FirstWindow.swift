@@ -13,7 +13,7 @@ import UIKit
 extension UIApplication {
     /// Returns first `UIWindow` from all connected scenes that satisfies predicate.
     public func firstWindow(
-        activationStates: [UIScene.ActivationState] = [.foregroundActive],
+        activationStates: [UIScene.ActivationState],
         where predicate: (UIWindow) throws -> Bool
     ) rethrows -> UIWindow? {
         try connectedScenes
