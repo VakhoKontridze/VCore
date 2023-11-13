@@ -179,10 +179,14 @@ public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>:
         .applyModifier({
             if #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) {
                 $0
-                    .onChange(of: parameter, initial: true, { (_, newValue) in
-                        zeroData()
-                        fetch(from: newValue)
-                    })
+                    .onChange(
+                        of: parameter,
+                        initial: true,
+                        { (_, newValue) in
+                            zeroData()
+                            fetch(from: newValue)
+                        }
+                    )
             } else {
                 $0
                     .onAppear(perform: {
