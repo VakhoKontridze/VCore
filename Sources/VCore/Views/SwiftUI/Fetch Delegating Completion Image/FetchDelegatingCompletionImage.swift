@@ -189,24 +189,16 @@ public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderCont
                     .onChange(
                         of: parameter,
                         initial: true,
-                        { (_, newValue) in
-                            zeroData()
-                            fetch(from: newValue)
-                        }
+                        { (_, newValue) in  fetch(from: newValue) }
                     )
             } else {
                 $0
-                    .onAppear(perform: {
-                        fetch(from: parameter)
-                    })
-                    .onChange(of: parameter, perform: { newValue in
-                        zeroData()
-                        fetch(from: newValue)
-                    })
+                    .onAppear(perform: { fetch(from: parameter) })
+                    .onChange(of: parameter, perform: { fetch(from: $0) })
             }
         })
         .onDisappear(perform: {
-            if uiModel.removesImageOnDisappear { zeroData() }
+            if uiModel.removesImageOnDisappear { reset() }
         })
     }
 
@@ -218,15 +210,17 @@ public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderCont
     private func fetch(
         from parameter: Parameter?
     ) {
-        guard let parameter else { zeroData(); return }
+        guard let parameter else {
+            zeroData()
+            return
+        }
 
         guard parameter != parameterFetched else { return }
 
-        startData(parameter)
+        parameterFetched = parameter
+        if uiModel.removesImageOnParameterChange { result = nil }
 
-        fetchHandler(parameter, { result in
-            finalizeData(result)
-        })
+        fetchHandler(parameter, { result = $0 })
     }
 
     private func zeroData() {
@@ -234,12 +228,7 @@ public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderCont
         result = nil
     }
 
-    private func startData(_ parameter: Parameter) {
-        parameterFetched = parameter
-        result = nil
-    }
-
-    private func finalizeData(_ data: Result<Image, any Error>) {
-        result = data
+    private func reset() {
+        zeroData()
     }
 }

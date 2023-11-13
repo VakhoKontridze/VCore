@@ -2,6 +2,10 @@
 
 ### 5.2.0(87)
 
+Views
+
+- Add `removesImageOnParameterChange` to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`
+
 Extra - XCode Templates
 
 - `SwiftUI` XCode templates are updated for `iOS` `17.0`

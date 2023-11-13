@@ -69,9 +69,10 @@ public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>:
     private let content: FetchDelegatingAsyncImageContent<Content, PlaceholderContent>
     
     @State private var parameterFetched: Parameter? // Needed for avoiding fetching an-already fetched image
-    @State private var task: Task<Void, Never>? // Needed for canceling task, if parameter changes during fetch
     @State private var result: Result<Image, any Error>?
-    
+
+    @State private var task: Task<Void, Never>? // Needed for canceling task, if parameter changes during fetch
+
     // MARK: Initializers
     /// Initializes `FetchDelegatingAsyncImage` with parameter and fetch method.
     public init(
@@ -182,70 +183,62 @@ public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>:
                     .onChange(
                         of: parameter,
                         initial: true,
-                        { (_, newValue) in
-                            zeroData()
-                            fetch(from: newValue)
-                        }
+                        { (_, newValue) in fetch(from: newValue) }
                     )
             } else {
                 $0
-                    .onAppear(perform: {
-                        fetch(from: parameter)
-                    })
-                    .onChange(of: parameter, perform: { newValue in
-                        zeroData()
-                        fetch(from: newValue)
-                    })
+                    .onAppear(perform: { fetch(from: parameter) })
+                    .onChange(of: parameter, perform: { fetch(from: $0) })
             }
         })
         .onDisappear(perform: {
-            if uiModel.removesImageOnDisappear { zeroData() }
+            if uiModel.removesImageOnDisappear { reset() }
         })
     }
     
     private var defaultPlaceholder: some View {
         uiModel.placeholderColor
     }
-    
+
     // MARK: Fetch
     private func fetch(
         from parameter: Parameter?
     ) {
-        guard let parameter else { zeroData(); return }
-        
+        guard let parameter else {
+            zeroData()
+            return
+        }
+
         guard parameter != parameterFetched else { return }
         
-        startData(parameter)
-        
+        parameterFetched = parameter
+        if uiModel.removesImageOnParameterChange { result = nil }
+
+        task?.cancel()
         task = Task(operation: {
             do {
                 let image: Image = try await fetchHandler(parameter)
-                guard !Task.isCancelled else { zeroData(); return }
+                guard !Task.isCancelled else { return }
                 
-                finalizeData(.success(image))
-                
+                result = .success(image)
+
             } catch {
-                guard !Task.isCancelled else { zeroData(); return }
+                guard !Task.isCancelled else { return }
                 
-                finalizeData(.failure(error))
+                result = .failure(error)
             }
         })
     }
     
     private func zeroData() {
         parameterFetched = nil
-        task?.cancel(); task = nil
         result = nil
     }
-    
-    private func startData(_ parameter: Parameter) {
-        parameterFetched = parameter
-        task?.cancel(); task = nil
-        result = nil
-    }
-    
-    private func finalizeData(_ data: Result<Image, any Error>) {
+
+    private func reset() {
+        zeroData()
+
+        task?.cancel()
         task = nil
-        result = data
     }
 }
