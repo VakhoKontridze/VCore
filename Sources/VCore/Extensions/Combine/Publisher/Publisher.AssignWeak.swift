@@ -27,7 +27,7 @@ extension Publisher where Failure == Never {
     ///     }
     ///
     public func assignWeak<Root>(
-        to keyPath: ReferenceWritableKeyPath<Root, Self.Output>,
+        to keyPath: ReferenceWritableKeyPath<Root, Output>,
         on object: Root
     ) -> AnyCancellable 
         where Root: AnyObject
