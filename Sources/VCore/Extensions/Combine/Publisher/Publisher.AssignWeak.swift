@@ -33,7 +33,9 @@ extension Publisher where Failure == Never {
         where Root: AnyObject
     {
         sink(receiveValue: { [weak object] value in
-            object?[keyPath: keyPath] = value
+            guard let object else { return }
+
+            object[keyPath: keyPath] = value
         })
     }
 }
