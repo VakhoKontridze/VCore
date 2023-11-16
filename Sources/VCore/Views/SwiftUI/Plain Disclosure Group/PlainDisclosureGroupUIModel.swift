@@ -12,7 +12,7 @@ import SwiftUI
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public struct PlainDisclosureGroupUIModel {
-    // MARK: Properties - Global Layout
+    // MARK: Properties - Global
     /// Default padding in native disclosure group. Set to `8`.
     ///
     /// Value is used during the frame calculations, and must be provided.
