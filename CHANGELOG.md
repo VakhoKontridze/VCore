@@ -6,6 +6,10 @@ Views
 
 - Add `removesImageOnParameterChange` to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`
 
+Extensions
+
+- `withContinuousObservationTracking(of:on:execute:)` method is added, that tracks access to properties in a `class`-type continuously
+
 Extra - XCode Templates
 
 - `SwiftUI` XCode templates are updated for `iOS` `17.0`
