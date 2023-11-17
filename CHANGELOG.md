@@ -4,7 +4,7 @@
 
 Views
 
-- Add `removesImageOnParameterChange` to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`
+- `removesImageOnParameterChange` is added to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`
 
 Extensions
 
