@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 06.09.23.
 //
 
-import Foundation
+import CoreGraphics
 
 // MARK: - Size Min/Max Dimensions
 extension CGSize {

@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 01.05.22.
 //
 
-#if canImport(CoreGraphics)
-
 import CoreGraphics
 
 // MARK: - CGRect to NSLayoutConstraints
@@ -67,5 +65,3 @@ extension CGRect {
         origin.y + height / 2
     }
 }
-
-#endif
