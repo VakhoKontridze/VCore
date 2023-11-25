@@ -25,4 +25,19 @@ extension View {
             .navigationBarTitleDisplayMode(.inline)
 #endif
     }
+
+    /// Configures the view’s title for purposes of navigation, using a `LocalizedStringKey` in a inline display mode.
+    ///
+    ///     var body: some View {
+    ///         Text("Lorem Ipsum")
+    ///             .inlineNavigationTitle("Home")
+    ///     }
+    ///
+    @ViewBuilder public func inlineNavigationTitle(_ titleKey: LocalizedStringKey) -> some View {
+#if !(os(macOS) || os(tvOS))
+        self
+            .navigationTitle(titleKey)
+            .navigationBarTitleDisplayMode(.inline)
+#endif
+    }
 }
