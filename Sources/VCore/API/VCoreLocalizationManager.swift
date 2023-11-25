@@ -54,15 +54,9 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
     public init() {}
     
     // MARK: VCore Localization Provider
-    public var alertErrorTitle: String {
-        "Something Went Wrong"
-    }
-    
-    public var alertOKButtonTitle: String {
-        "Ok"
-    }
+    public var alertErrorTitle: String { "Something Went Wrong" }
 
-    public var responderChainToolBarDoneButtonTitle: String {
-        "Done"
-    }
+    public var alertOKButtonTitle: String { "Ok" }
+
+    public var responderChainToolBarDoneButtonTitle: String { "Done" }
 }
