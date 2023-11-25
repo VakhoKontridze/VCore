@@ -38,16 +38,20 @@ extension View {
                 get: { parameters.wrappedValue != nil },
                 set: { if $0 { parameters.wrappedValue = nil } }
             ),
-            titleVisibility: Visibility.confirmationDialog(
-                title: parameters.wrappedValue?.title,
-                message: parameters.wrappedValue?.message
-            ),
+            titleVisibility: {
+                switch (parameters.wrappedValue?.title, parameters.wrappedValue?.message) {
+                case (nil, nil): .hidden
+                case (nil, _?): .visible
+                case (_?, nil): .visible
+                case (_?, _?): .visible
+                }
+            }(),
             actions: {
                 if let buttons: [any ConfirmationDialogButtonProtocol] = parameters.wrappedValue?.buttons() {
                     ForEach(
-                        buttons,
-                        id: \.id, // Despite identification, native `View.confirmationDialog(...)` doesn't react to changes
-                        content: { button in
+                        buttons.enumeratedArray(),
+                        id: \.offset, // Native `View.confirmationDialog(...)` doesn't react to changes
+                        content: { (_, button) in
                             button.makeBody(animateOutHandler: { completion in
                                 parameters.wrappedValue = nil
                                 completion?()
@@ -62,20 +66,5 @@ extension View {
                 }
             }
         )
-    }
-}
-
-// MARK: - Helpers
-extension Visibility {
-    fileprivate static func confirmationDialog(
-        title: String?,
-        message: String?
-    ) -> Self {
-        switch (title, message) {
-        case (nil, nil): .hidden
-        case (nil, _?): .visible
-        case (_?, nil): .visible
-        case (_?, _?): .visible
-        }
     }
 }

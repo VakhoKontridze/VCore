@@ -28,9 +28,6 @@ public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
         self.action = action
     }
 
-    // MARK: Identifiable
-    public var id: Int { title.hashValue }
-
     // MARK: Button Protocol
     public func makeBody(
         animateOutHandler: @escaping (/*completion*/ (() -> Void)?) -> Void
