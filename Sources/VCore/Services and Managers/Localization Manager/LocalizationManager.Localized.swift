@@ -17,13 +17,13 @@ extension LocalizationManager {
         _ key: String,
         tableName: String? = nil,
         bundle: Bundle = .main,
-        value: String = ""
+        value: String? = nil
     ) -> String {
         guard
             let path: String = Self.findLocalizationTableBundle(bundle: bundle, locale: currentLocale),
             let currentLocaleBundle: Bundle = .init(path: path)
         else {
-            return value
+            return value ?? ""
         }
         
         return currentLocaleBundle.localizedString(
@@ -57,7 +57,7 @@ extension String {
     public func localizedWithManager(
         tableName: String? = nil,
         bundle: Bundle = .main,
-        value: String = ""
+        value: String? = nil
     ) -> String {
         LocalizationManager.shared.localized(
             self,
