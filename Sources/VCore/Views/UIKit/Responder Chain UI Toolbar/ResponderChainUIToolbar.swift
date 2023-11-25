@@ -1,5 +1,5 @@
 //
-//  ResponderChainToolBar.swift
+//  ResponderChainUIToolbar.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 24.05.23.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Responder Chain Tool Bar
+// MARK: - Responder Chain UI Toolbar
 /// Toolbar that handles focus navigation in the responder chain.
 ///
 ///     final class ViewController: UIViewController {
@@ -22,7 +22,7 @@ import UIKit
 ///             view.backgroundColor = UIColor.systemBackground
 ///
 ///             textField.inputAccessoryView = {
-///                 let toolbar: ResponderChainToolBar = .init(
+///                 let toolbar: ResponderChainUIToolbar = .init(
 ///                     size: CGSize(width: view.bounds.size.width, height: 0),
 ///                     arrowUpButtonAction: nil,
 ///                     arrowDownButtonAction: { [weak self] in _ = self?.textView.becomeFirstResponder() },
@@ -33,7 +33,7 @@ import UIKit
 ///             }()
 ///
 ///             textView.inputAccessoryView = {
-///                 let toolbar: ResponderChainToolBar = .init(
+///                 let toolbar: ResponderChainUIToolbar = .init(
 ///                     size: CGSize(width: view.bounds.size.width, height: 0),
 ///                     arrowUpButtonAction: { [weak self] in _ = self?.textField.becomeFirstResponder() },
 ///                     arrowDownButtonAction: nil,
@@ -50,8 +50,8 @@ import UIKit
 ///         }
 ///     }
 ///
-/// Alternately, consider using `ResponderChainToolBarManager`
-open class ResponderChainToolBar: UIToolbar {
+/// Alternately, consider using `ResponderChainUIToolbarManager`
+open class ResponderChainUIToolbar: UIToolbar {
     // MARK: Subviews
     /// Button that focuses responder that's up in responder chain.
     open lazy var arrowUpButton: UIBarButtonItem = .init(
@@ -77,7 +77,7 @@ open class ResponderChainToolBar: UIToolbar {
 
     /// Button that dismisses focus.
     open lazy var doneButton: UIBarButtonItem = .init(
-        title: VCoreLocalizationManager.shared.localizationProvider.responderChainToolBarDoneButtonTitle,
+        title: VCoreLocalizationManager.shared.localizationProvider.responderChainToolbarDoneButtonTitle,
         style: .done,
         target: self,
         action: #selector(didTapDoneButton)
@@ -87,7 +87,7 @@ open class ResponderChainToolBar: UIToolbar {
     /// Model that describes UI.
     ///
     /// To change current UI model, use `configure(uiModel)` method.
-    private(set) public var uiModel: ResponderChainToolBarUIModel
+    private(set) public var uiModel: ResponderChainUIToolbarUIModel
 
     /// Action that runs when arrow up button is tapped.
     open var arrowUpButtonAction: (() -> Void)?
@@ -99,9 +99,9 @@ open class ResponderChainToolBar: UIToolbar {
     open var doneButtonAction: (() -> Void)?
 
     // MARK: Initializers
-    /// Initializes `ResponderChainToolBar.
+    /// Initializes `ResponderChainUIToolbar.
     public init(
-        uiModel: ResponderChainToolBarUIModel = .init(),
+        uiModel: ResponderChainUIToolbarUIModel = .init(),
         size: CGSize
     ) {
         self.uiModel = uiModel
@@ -115,9 +115,9 @@ open class ResponderChainToolBar: UIToolbar {
         configure(uiModel: uiModel)
     }
 
-    /// Initializes `ResponderChainToolBar` with actions.
+    /// Initializes `ResponderChainUIToolbar` with actions.
     public convenience init(
-        uiModel: ResponderChainToolBarUIModel = .init(),
+        uiModel: ResponderChainUIToolbarUIModel = .init(),
         size: CGSize,
         arrowUpButtonAction: (() -> Void)?,
         arrowDownButtonAction: (() -> Void)?,
@@ -138,14 +138,14 @@ open class ResponderChainToolBar: UIToolbar {
     }
 
     // MARK: Setup
-    /// Sets up `ResponderChainToolBar`.
+    /// Sets up `ResponderChainUIToolbar`.
     open func setUp() {
         sizeToFit()
     }
 
     // MARK: Configuration
-    /// Configures `ResponderChainToolBar` with `ResponderChainToolBarUIModel`.
-    open func configure(uiModel: ResponderChainToolBarUIModel) {
+    /// Configures `ResponderChainUIToolbar` with `ResponderChainUIToolbarUIModel`.
+    open func configure(uiModel: ResponderChainUIToolbarUIModel) {
         self.uiModel = uiModel
 
         barStyle = uiModel.style

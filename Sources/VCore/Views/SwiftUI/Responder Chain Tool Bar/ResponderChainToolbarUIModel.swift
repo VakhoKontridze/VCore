@@ -1,5 +1,5 @@
 //
-//  SwiftUIResponderChainToolBarUIModel.swift
+//  ResponderChainToolbarUIModel.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 24.05.23.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-// MARK: - Responder Chain Tool Bar UI Model (SwiftUI)
+// MARK: - Responder Chain Toolbar UI Model
 /// Model that describes UI.
-public struct SwiftUIResponderChainToolBarUIModel {
+public struct ResponderChainToolbarUIModel {
     // MARK: Properties - Buttons
     var hasButtons: Bool { hasNavigationButtons || hasDoneButton }
 

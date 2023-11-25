@@ -42,8 +42,8 @@ public protocol VCoreLocalizationProvider {
     /// Localized value for `ok` button in alerts.
     var alertOKButtonTitle: String { get }
 
-    /// Localized value for `done` button in `ResponderChainToolBar` and `View.responderChainToolBar(...)`.
-    var responderChainToolBarDoneButtonTitle: String { get }
+    /// Localized value for `done` button in `ResponderChainUIToolbar` and `View.responderChainToolbar(...)`.
+    var responderChainToolbarDoneButtonTitle: String { get }
 }
 
 // MARK: - Default VCore Localization Provider
@@ -58,5 +58,5 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
 
     public var alertOKButtonTitle: String { "Ok" }
 
-    public var responderChainToolBarDoneButtonTitle: String { "Done" }
+    public var responderChainToolbarDoneButtonTitle: String { "Done" }
 }

@@ -1,5 +1,5 @@
 //
-//  ResponderChainToolBarUIModel.swift
+//  ResponderChainUIToolbarUIModel.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 24.05.23.
@@ -9,9 +9,9 @@
 
 import UIKit
 
-// MARK: - Responder Chain Tool Bar UI Model
+// MARK: - Responder Chain UI Toolbar UI Model
 /// Model that describes UI.
-public struct ResponderChainToolBarUIModel {
+public struct ResponderChainUIToolbarUIModel {
     // MARK: Properties - Toolbar
     /// Toolbar style. Set to `default`.
     public var style: UIBarStyle = .default

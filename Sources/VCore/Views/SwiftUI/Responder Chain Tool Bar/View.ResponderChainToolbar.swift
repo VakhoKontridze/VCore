@@ -1,5 +1,5 @@
 //
-//  View.ResponderChainToolBar.swift
+//  View.ResponderChainToolbar.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 24.05.23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - View Responder Chain Tool Bar
+// MARK: - View Responder Chain Toolbar
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 extension View {
@@ -23,7 +23,7 @@ extension View {
     ///             VStack(content: {
     ///                 TextField("First name", text: $firstName)
     ///                     .focused($focusedInput, equals: .firstName)
-    ///                     .responderChainToolBar(
+    ///                     .responderChainToolbar(
     ///                         focus: $focusedInput,
     ///                         equals: .firstName,
     ///                         inResponderChain: [.firstName, .lastName]
@@ -31,7 +31,7 @@ extension View {
     ///
     ///                 TextField("Last name", text: $lastName)
     ///                     .focused($focusedInput, equals: .lastName)
-    ///                     .responderChainToolBar(
+    ///                     .responderChainToolbar(
     ///                         focus: $focusedInput,
     ///                         equals: .lastName,
     ///                         inResponderChain: [.firstName, .lastName]
@@ -50,8 +50,8 @@ extension View {
     ///     }
     ///
     /// Alternately, use second method that takes `CaseIterable` as a parameter and omits `inResponderChain` argument.
-    public func responderChainToolBar<Value>(
-        uiModel: SwiftUIResponderChainToolBarUIModel = .init(),
+    public func responderChainToolbar<Value>(
+        uiModel: ResponderChainToolbarUIModel = .init(),
         focus binding: FocusState<Value?>.Binding,
         equals value: Value,
         inResponderChain responderChain: [Value]
@@ -112,7 +112,7 @@ extension View {
 
                             if uiModel.hasDoneButton {
                                 Button(
-                                    VCoreLocalizationManager.shared.localizationProvider.responderChainToolBarDoneButtonTitle,
+                                    VCoreLocalizationManager.shared.localizationProvider.responderChainToolbarDoneButtonTitle,
                                     action: { binding.wrappedValue = nil }
                                 )
                                 .foregroundStyle(uiModel.buttonColors.enabled)
@@ -141,11 +141,11 @@ extension View {
     ///             VStack(content: {
     ///                 TextField("First name", text: $firstName)
     ///                     .focused($focusedInput, equals: .firstName)
-    ///                     .responderChainToolBar(focus: $focusedInput, equals: .firstName)
+    ///                     .responderChainToolbar(focus: $focusedInput, equals: .firstName)
     ///
     ///                 TextField("Last name", text: $lastName)
     ///                     .focused($focusedInput, equals: .lastName)
-    ///                     .responderChainToolBar(focus: $focusedInput, equals: .lastName)
+    ///                     .responderChainToolbar(focus: $focusedInput, equals: .lastName)
     ///
     ///                 Spacer()
     ///             })
@@ -154,15 +154,15 @@ extension View {
     ///         }
     ///     }
     ///
-    public func responderChainToolBar<Value>(
-        uiModel: SwiftUIResponderChainToolBarUIModel = .init(),
+    public func responderChainToolbar<Value>(
+        uiModel: ResponderChainToolbarUIModel = .init(),
         focus binding: FocusState<Value?>.Binding,
         equals value: Value
     ) -> some View
         where Value: Hashable & CaseIterable
     {
         self
-            .responderChainToolBar(
+            .responderChainToolbar(
                 uiModel: uiModel,
                 focus: binding,
                 equals: value,
