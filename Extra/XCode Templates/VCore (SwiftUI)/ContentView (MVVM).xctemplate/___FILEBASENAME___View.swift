@@ -9,7 +9,6 @@ struct ___VARIABLE_productName___View: View {
     @State private var viewModel: ___VARIABLE_productName___ViewModel
 
     private typealias UIModel = ___VARIABLE_productName___UIModel
-    private typealias LocStrings = ___VARIABLE_productName___LocalizedStrings
 
     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
     
@@ -30,7 +29,7 @@ struct ___VARIABLE_productName___View: View {
             viewModel.navigationStackCoordinator = navigationStackCoordinator
         })
 
-        .inlineNavigationTitle(LocStrings.title.localized)
+        .inlineNavigationTitle("___VARIABLE_productName___".localized)
 
         .alert(parameters: $viewModel.alertParameters)
         .progressView(parameters: viewModel.progressViewParameters)
