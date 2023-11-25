@@ -117,12 +117,3 @@ public protocol StringRepresentable {
     /// `String` representation.
     var stringRepresentation: String { get }
 }
-
-// MARK: - Localized String Representable
-/// Represents a titled type that can be used to abstract a selection in UI components.
-///
-/// For additional info, refer to `StringRepresentable`.
-public protocol LocalizedStringRepresentable {
-    /// `LocalizedStringKey` representation.
-    var localizedStringRepresentation: LocalizedStringKey { get }
-}

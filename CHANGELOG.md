@@ -6,10 +6,6 @@ Views
 
 - `removesImageOnParameterChange` is added to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`
 
-Models
-
-- `LocalizedStringRepresentable` is added, as `LocalizedStringKey` alternative to `StringRepresentable`
-
 Extensions
 
 - `Collection.nonEmpty` property is added, that returns non-empty `Collection`, or `nil`.
