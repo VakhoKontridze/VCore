@@ -22,7 +22,7 @@ import Observation
 ///             withContinuousObservationTracking(
 ///                 of: \.value,
 ///                 on: self,
-///                 execute: { [weak self] in print($0) }
+///                 execute: { print($0) }
 ///             )
 ///         }
 ///     }
