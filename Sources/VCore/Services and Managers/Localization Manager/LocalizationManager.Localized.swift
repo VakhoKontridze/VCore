@@ -50,18 +50,14 @@ extension LocalizationManager {
     /// Returns localized `String` from the given table and bundle.
     @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public func localizedInStringCatalog(
-        _ key: StaticString,
-        defaultValue: String.LocalizationValue,
-        options: String.LocalizationOptions,
+        _ key: String,
         table: String? = nil,
         bundle: Bundle? = nil,
         locale: Locale = .current,
         comment: StaticString? = nil
     ) -> String {
         .init(
-            localized: key,
-            defaultValue: defaultValue,
-            options: options,
+            localized: String.LocalizationValue(key),
             table: table,
             bundle: bundle,
             locale: locale,
