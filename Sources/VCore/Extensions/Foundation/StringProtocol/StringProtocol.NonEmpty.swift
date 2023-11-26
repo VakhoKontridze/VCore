@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Non Empty String
+// MARK: - String Protocol Non-Empty String
 extension StringProtocol {
     /// Indicates whether a `String` has no `Character`s or whitespaces.
     ///
