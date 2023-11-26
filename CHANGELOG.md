@@ -12,6 +12,7 @@ Views
 
 Extensions
 
+- `Array.removeIfPresent(_:)` and `Array.removeIfPresent(contentsOf:)` methods are added, that remove elements if they are present
 - `Collection.nonEmpty` property is added, that returns non-empty `Collection`, or `nil`.
 - `withContinuousObservationTracking(of:on:execute:)` method is added, that tracks access to properties in a `class`-type continuously
 - `View.inlineNavigationTitle(_:)` method is added with `LocalizedStringKey`
