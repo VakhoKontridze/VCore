@@ -116,6 +116,10 @@ public final class LocalizationManager {
 
     /// Sets current `Locale`.
     ///
+    /// If `Locale` is not already added to `Bundle.main`, app will crash.
+    ///
+    /// If `Locale` is not already added to `LocalizationManager`, app will crash.
+    ///
     /// Optionally, `Bundle` `Array` can be passed in `replaceLocalizationTableInBundles` argument
     /// to replace `Bundle` `class` with a sub-`class` that overrides table path internally,
     /// that reads values form correct localization table.
@@ -139,10 +143,6 @@ public final class LocalizationManager {
     /// However, replacing localization tables doesn't re-launch app, like changing a language does from `iOS` settings.
     /// To achieve this behavior in `UIKit`, replace `rootViewController` inside `AppDelegate`/`SceneDelegate`.
     /// In `SwiftUI`, use `ViewResettingContainer` and trigger `View` resets when localization changes.
-    ///
-    /// If `Locale` is not already added to `Bundle.main`, app will crash.
-    ///
-    /// If `Locale` is not already added to `LocalizationManager`, app will crash.
     public func setCurrentLocale(
         to locale: Locale,
         replaceLocalizationTableInBundles bundles: [Bundle]?
