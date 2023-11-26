@@ -26,7 +26,7 @@ import Foundation
 ///
 ///     extension LocalizationKeyProvider {
 ///         var localized: String {
-///             LocalizationManager.shared.localized(key, bundle: .current)
+///             LocalizationManager.shared.localizedInStringCatalog(key, bundle: .current)
 ///         }
 ///     }
 ///
@@ -57,14 +57,14 @@ import Foundation
 /// The system can also be support multiple tables, by either defining multiple localizer methods, or by passing a table name.
 ///
 ///     extension LocalizationKeyProvider {
-///         var tableName: String? { nil }
+///         var table: String? { nil }
 ///     }
 ///
 ///     extension LocalizationKeyProvider {
 ///         var localized: String {
-///             LocalizationManager.shared.localized(
+///             LocalizationManager.shared.localizedInStringCatalog(
 ///                 key,
-///                 tableName: tableName,
+///                 table: table,
 ///                 bundle: .current
 ///             )
 ///         }
@@ -74,7 +74,7 @@ import Foundation
 ///         case hello_world
 ///
 ///         var key: String { "scenes.home.\(rawValue)" }
-///         var tableName: String? { "Localizable2.strings" }
+///         var table: String? { "Localizable2" }
 ///     }
 ///
 public protocol LocalizationKeyProvider {

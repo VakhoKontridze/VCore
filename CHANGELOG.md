@@ -2,6 +2,10 @@
 
 ### 5.2.0(87)
 
+Services and Managers
+
+- `LocalizationManager.localizedInStringCatalog(...)` method is added to support String catalog API
+
 Views
 
 - `removesImageOnParameterChange` is added to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`

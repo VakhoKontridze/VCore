@@ -7,23 +7,23 @@
 
 import Foundation
 
-// MARK: - Localization Manager Localized
+// MARK: - Localization Manager Localized in Strings File
 extension LocalizationManager {
     /// Returns localized `String` from the given table and bundle.
     ///
     /// This methods finds correct table path within the `Bundle`, once localization has changed.
     /// For additional info, refer to `LocalizationManager`.
-    public func localized(
+    public func localizedInStringsFile(
         _ key: String,
         tableName: String? = nil,
         bundle: Bundle = .main,
-        value: String? = nil
+        value: String = ""
     ) -> String {
         guard
             let path: String = Self.findLocalizationTableBundle(bundle: bundle, locale: currentLocale),
             let currentLocaleBundle: Bundle = .init(path: path)
         else {
-            return value ?? ""
+            return value
         }
         
         return currentLocaleBundle.localizedString(
@@ -45,25 +45,27 @@ extension LocalizationManager {
     }
 }
 
-// MARK: - String Localized with Manager
-extension String {
+// MARK: - Localization Manager Localized in String Catalog
+extension LocalizationManager {
     /// Returns localized `String` from the given table and bundle.
-    ///
-    /// This methods finds correct table path within the `Bundle`, once localization has changed.
-    /// For additional info, refer to `LocalizationManager`.
-    ///
-    ///     "message".localizedWithManager()
-    ///
-    public func localizedWithManager(
-        tableName: String? = nil,
-        bundle: Bundle = .main,
-        value: String? = nil
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+    public func localizedInStringCatalog(
+        _ key: StaticString,
+        defaultValue: String.LocalizationValue,
+        options: String.LocalizationOptions,
+        table: String? = nil,
+        bundle: Bundle? = nil,
+        locale: Locale = .current,
+        comment: StaticString? = nil
     ) -> String {
-        LocalizationManager.shared.localized(
-            self,
-            tableName: tableName,
+        .init(
+            localized: key,
+            defaultValue: defaultValue,
+            options: options,
+            table: table,
             bundle: bundle,
-            value: value
+            locale: locale,
+            comment: comment
         )
     }
 }

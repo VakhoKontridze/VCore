@@ -41,25 +41,6 @@ import Combine
 ///         fatalError()
 ///     }
 ///
-/// Major challenge with localization on iOS is reading values from correct localization table.
-/// `NSLocalizedString(...)` will not read values from localization table application has switched to.
-/// There are two solutions here.
-///
-/// First option, is to use `LocalizationManager.shared.localized(...)` method that finds correct table path
-/// within the `Bundle` and reads values from it. Alternately, `String.localizedWithManager(...)` can be used.
-///
-/// Second option, is to replace the `Bundle` `class` with a sub-`class` that overrides table path internally.
-/// Advantage of this approach is that `NSLocalizedString(...)` will return correct values.
-/// To override a `class`, use `replaceLocalizationTableInBundles` parameter when changing a localization.
-///
-///     LocalizationManager.shared.setCurrentLocale(
-///         to: .english,
-///         replaceLocalizationTableInBundles: [.main]
-///     )
-///
-/// However, replacing localization tables doesn't re-launch app, like changing a language does from `iOS` settings.
-/// To achieve this behavior in `UIKit`, replace `rootViewController` inside `AppDelegate`/`SceneDelegate`.
-/// In `SwiftUI`, use `ViewResettingContainer` and trigger `View` resets when localization changes.
 public final class LocalizationManager {
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
@@ -69,10 +50,10 @@ public final class LocalizationManager {
     /// Current `Locale`.
     ///
     /// It's important to differentiate `LocalizationManager.shared.currentLocale` and `Locale.current`.
-    /// `LocalizationManager.shared.currentLocale` is `Locale` associated with the language either set through this object,or picker from `iOS` settings.
+    /// `LocalizationManager.shared.currentLocale` is `Locale` associated with the language either set through this object, or picker from `iOS` settings.
     /// While `Locale.current` is `Locale` region from user's settings.
     ///
-    /// To set property, refer to `setCurrentLocale(to:replaceLocalizationTableInBundles:)` method.
+    /// To set property, refer to `setCurrentLocale(to:)` method.
     private(set) public lazy var currentLocale: Locale = getCurrentAppLocale()
     
     /// `Locales` that are added to the `LocalizationManager`.
@@ -118,17 +99,53 @@ public final class LocalizationManager {
     // MARK: Configuration - Current Locale
     /// Sets current `Locale`.
     ///
+    /// If `Locale` is not already added to `Bundle.main`, app will crash.
+    ///
+    /// If `Locale` is not already added to `LocalizationManager`, app will crash.
+    public func setCurrentLocale(to locale: Locale) {
+        assertIsAddedToBundle(locale)
+        assertIsAdded(locale)
+
+        if !currentLocale.isEquivalent(to: locale) {
+            currentLocale = locale
+            setCurrentAppLocale(locale)
+
+            currentLocaleChangePublisher.send(locale)
+        }
+    }
+
+    /// Sets current `Locale`.
+    ///
     /// Optionally, `Bundle` `Array` can be passed in `replaceLocalizationTableInBundles` argument
     /// to replace `Bundle` `class` with a sub-`class` that overrides table path internally,
     /// that reads values form correct localization table.
-    /// For additional info, refer to `LocalizationManager`.
+    ///
+    /// Major challenge with localization on iOS is reading values from correct localization table.
+    /// `NSLocalizedString(...)` will not read values from localization table application has switched to.
+    /// There are two solutions here.
+    ///
+    /// First option, is to use `LocalizationManager.shared.localizedInStringsFile(...)` method that finds correct table path
+    /// within the `Bundle` and reads values from it.
+    ///
+    /// Second option, is to replace the `Bundle` `class` with a sub-`class` that overrides table path internally.
+    /// Advantage of this approach is that `NSLocalizedString(...)` will return correct values.
+    /// To override a `class`, use `replaceLocalizationTableInBundles` parameter when changing a localization.
+    ///
+    ///     LocalizationManager.shared.setCurrentLocale(
+    ///         to: .english,
+    ///         replaceLocalizationTableInBundles: [.main]
+    ///     )
+    ///
+    /// However, replacing localization tables doesn't re-launch app, like changing a language does from `iOS` settings.
+    /// To achieve this behavior in `UIKit`, replace `rootViewController` inside `AppDelegate`/`SceneDelegate`.
+    /// In `SwiftUI`, use `ViewResettingContainer` and trigger `View` resets when localization changes.
     ///
     /// If `Locale` is not already added to `Bundle.main`, app will crash.
     ///
     /// If `Locale` is not already added to `LocalizationManager`, app will crash.
     public func setCurrentLocale(
         to locale: Locale,
-        replaceLocalizationTableInBundles bundles: [Bundle]? = nil
+        replaceLocalizationTableInBundles bundles: [Bundle]?
     ) {
         assertIsAddedToBundle(locale)
         assertIsAdded(locale)

@@ -13,6 +13,57 @@ extension LocalizationManager {
     public static var currentLocaleDidChangeNotification: Notification.Name { fatalError() }
 }
 
+extension LocalizationManager {
+    @available(*, deprecated, renamed: "localizedInStringsFile")
+    public func localized(
+        _ key: String,
+        tableName: String? = nil,
+        bundle: Bundle = .main,
+        value: String = ""
+    ) -> String {
+        localizedInStringsFile(
+            key,
+            tableName: tableName,
+            bundle: bundle,
+            value: value
+        )
+    }
+}
+
+extension String {
+    @available(*, deprecated, message: "Use `LocalizationManager.localized` method instead")
+    public func localizedWithManager(
+        tableName: String? = nil,
+        bundle: Bundle = .main,
+        value: String = ""
+    ) -> String {
+        LocalizationManager.shared.localizedInStringsFile(
+            self,
+            tableName: tableName,
+            bundle: bundle,
+            value: value
+        )
+    }
+}
+
+extension String {
+    @available(*, deprecated, message: "Use new `String` catalog API instead")
+    public func localized(
+        tableName: String? = nil,
+        bundle: Bundle = .main,
+        value: String = "",
+        comment: String = ""
+    ) -> String {
+        NSLocalizedString(
+            self,
+            tableName: tableName,
+            bundle: bundle,
+            value: value,
+            comment: comment
+        )
+    }
+}
+
 // MARK: - Network Reachability Service
 extension NetworkReachabilityService {
     @available(*, unavailable, message: "Use `connectedPublisher` instead")
