@@ -49,34 +49,54 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable {
     
     /// Initializes `EdgeInsets_LT` with zero values.
     public static var zero: Self { .init() }
-    
-    // MARK: Insetting
-    /// Insets `EdgeInsets` by a given value.
-    public func insetBy(inset: CGFloat) -> EdgeInsets_LeadingTrailing {
+
+    // MARK: Map
+    /// Returns `EdgeInsets_LeadingTrailing`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (CGFloat) throws -> CGFloat
+    ) rethrows -> Self {
+        .init(
+            leading: try transform(leading),
+            trailing: try transform(trailing)
+        )
+    }
+
+    // MARK: Inset
+    /// Insets `EdgeInsets_LeadingTrailing` by a given value.
+    public func insetBy(
+        inset: CGFloat
+    ) -> EdgeInsets_LeadingTrailing {
         .init(
             leading: leading + inset,
             trailing: trailing + inset
         )
     }
     
-    /// Insets `EdgeInsets` by a given leading and trailing values.
-    public func insetBy(leading leadingInset: CGFloat, trailing trailingInset: CGFloat) -> EdgeInsets_LeadingTrailing {
+    /// Insets `EdgeInsets_LeadingTrailing` by a given leading and trailing values.
+    public func insetBy(
+        leading leadingInset: CGFloat,
+        trailing trailingInset: CGFloat
+    ) -> EdgeInsets_LeadingTrailing {
         .init(
             leading: leading + leadingInset,
             trailing: trailing + leadingInset
         )
     }
     
-    /// Insets `EdgeInsets` by a given leading value.
-    public func insetBy(leading leadingInset: CGFloat) -> EdgeInsets_LeadingTrailing {
+    /// Insets `EdgeInsets_LeadingTrailing` by a given leading value.
+    public func insetBy(
+        leading leadingInset: CGFloat
+    ) -> EdgeInsets_LeadingTrailing {
         .init(
             leading: leading + leadingInset,
             trailing: trailing
         )
     }
     
-    /// Insets `EdgeInsets` by a given trailing value.
-    public func insetBy(trailing trailingInset: CGFloat) -> EdgeInsets_LeadingTrailing {
+    /// Insets `EdgeInsets_LeadingTrailing` by a given trailing value.
+    public func insetBy(
+        trailing trailingInset: CGFloat
+    ) -> EdgeInsets_LeadingTrailing {
         .init(
             leading: leading,
             trailing: trailing + trailingInset
@@ -84,7 +104,7 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable {
     }
     
     // MARK: Operators
-    /// Adds two `EdgeInsets` by adding up individual edge insets.
+    /// Adds two `EdgeInsets_LeadingTrailing` by adding up individual edge insets.
     public static func + (lhs: Self, rhs: Self) -> Self {
         .init(
             leading: lhs.leading + rhs.leading,
@@ -92,13 +112,13 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable {
         )
     }
     
-    /// Adds right `EdgeInsets` to the left one by adding individual edge insets.
+    /// Adds right `EdgeInsets_LeadingTrailing` to the left one by adding individual edge insets.
     public static func += (lhs: inout Self, rhs: Self) {
         lhs.leading += rhs.leading
         lhs.trailing += rhs.trailing
     }
     
-    /// Subtracts two `EdgeInsets` by subtracting up individual edge insets.
+    /// Subtracts two `EdgeInsets_LeadingTrailing` by subtracting up individual edge insets.
     public static func - (lhs: Self, rhs: Self) -> Self {
         .init(
             leading: lhs.leading - rhs.leading,
@@ -106,7 +126,7 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable {
         )
     }
     
-    /// Subtracts right `EdgeInsets` to the left one by subtracting individual edge insets.
+    /// Subtracts right `EdgeInsets_LeadingTrailing` to the left one by subtracting individual edge insets.
     public static func -= (lhs: inout Self, rhs: Self) {
         lhs.leading -= rhs.leading
         lhs.trailing -= rhs.trailing

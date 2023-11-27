@@ -53,36 +53,56 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
         self.vertical = 0
     }
     
-    /// Initializes `EdgeInsets_HV` with zero values.
+    /// Initializes `EdgeInsets_HorizontalVertical` with zero values.
     public static var zero: Self { .init() }
-    
-    // MARK: Insetting
-    /// Insets `EdgeInsets` by a given value.
-    public func insetBy(inset: CGFloat) -> EdgeInsets_HorizontalVertical {
+
+    // MARK: Map
+    /// Returns `EdgeInsets_HorizontalVertical`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (CGFloat) throws -> CGFloat
+    ) rethrows -> Self {
+        .init(
+            horizontal: try transform(horizontal),
+            vertical: try transform(vertical)
+        )
+    }
+
+    // MARK: Inset
+    /// Insets `EdgeInsets_HorizontalVertical` by a given value.
+    public func insetBy(
+        inset: CGFloat
+    ) -> EdgeInsets_HorizontalVertical {
         .init(
             horizontal: horizontal + inset,
             vertical: vertical + inset
         )
     }
     
-    /// Insets `EdgeInsets` by a given horizontal and vertical values.
-    public func insetBy(horizontal horizontalInset: CGFloat, vertical verticalInset: CGFloat) -> EdgeInsets_HorizontalVertical {
+    /// Insets `EdgeInsets_HorizontalVertical` by a given horizontal and vertical values.
+    public func insetBy(
+        horizontal horizontalInset: CGFloat,
+        vertical verticalInset: CGFloat
+    ) -> EdgeInsets_HorizontalVertical {
         .init(
             horizontal: horizontal + horizontalInset,
             vertical: vertical + horizontalInset
         )
     }
     
-    /// Insets `EdgeInsets` by a given horizontal value.
-    public func insetBy(horizontal horizontalInset: CGFloat) -> EdgeInsets_HorizontalVertical {
+    /// Insets `EdgeInsets_HorizontalVertical` by a given horizontal value.
+    public func insetBy(
+        horizontal horizontalInset: CGFloat
+    ) -> EdgeInsets_HorizontalVertical {
         .init(
             horizontal: horizontal + horizontalInset,
             vertical: vertical
         )
     }
     
-    /// Insets `EdgeInsets` by a given vertical value.
-    public func insetBy(vertical verticalInset: CGFloat) -> EdgeInsets_HorizontalVertical {
+    /// Insets `EdgeInsets_HorizontalVertical` by a given vertical value.
+    public func insetBy(
+        vertical verticalInset: CGFloat
+    ) -> EdgeInsets_HorizontalVertical {
         .init(
             horizontal: horizontal,
             vertical: vertical + verticalInset
@@ -90,7 +110,7 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
     }
     
     // MARK: Operators
-    /// Adds two `EdgeInsets` by adding up individual edge insets.
+    /// Adds two `EdgeInsets_HorizontalVertical` by adding up individual edge insets.
     public static func + (lhs: Self, rhs: Self) -> Self {
         .init(
             horizontal: lhs.horizontal + rhs.horizontal,
@@ -98,13 +118,13 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
         )
     }
     
-    /// Adds right `EdgeInsets` to the left one by adding individual edge insets.
+    /// Adds right `EdgeInsets_HorizontalVertical` to the left one by adding individual edge insets.
     public static func += (lhs: inout Self, rhs: Self) {
         lhs.horizontal += rhs.horizontal
         lhs.vertical += rhs.vertical
     }
     
-    /// Subtracts two `EdgeInsets` by subtracting up individual edge insets.
+    /// Subtracts two `EdgeInsets_HorizontalVertical` by subtracting up individual edge insets.
     public static func - (lhs: Self, rhs: Self) -> EdgeInsets_HorizontalVertical {
         .init(
             horizontal: lhs.horizontal - rhs.horizontal,
@@ -112,7 +132,7 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
         )
     }
     
-    /// Subtracts right `EdgeInsets` to the left one by subtracting individual edge insets.
+    /// Subtracts right `EdgeInsets_HorizontalVertical` to the left one by subtracting individual edge insets.
     public static func -= (lhs: inout Self, rhs: Self) {
         lhs.horizontal -= rhs.horizontal
         lhs.vertical -= rhs.vertical

@@ -49,34 +49,54 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable {
     
     /// Initializes `EdgeInsets_TB` with zero values.
     public static var zero: Self { .init() }
-    
-    // MARK: Insetting
-    /// Insets `EdgeInsets` by a given value.
-    public func insetBy(inset: CGFloat) -> EdgeInsets_TopBottom {
+
+    // MARK: Map
+    /// Returns `EdgeInsets_TopBottom`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (CGFloat) throws -> CGFloat
+    ) rethrows -> Self {
+        .init(
+            top: try transform(top),
+            bottom: try transform(bottom)
+        )
+    }
+
+    // MARK: Inset
+    /// Insets `EdgeInsets_TopBottom` by a given value.
+    public func insetBy(
+        inset: CGFloat
+    ) -> EdgeInsets_TopBottom {
         .init(
             top: top + inset,
             bottom: bottom + inset
         )
     }
     
-    /// Insets `EdgeInsets` by a given top and bottom values.
-    public func insetBy(top topInset: CGFloat, bottom bottomInset: CGFloat) -> EdgeInsets_TopBottom {
+    /// Insets `EdgeInsets_TopBottom` by a given top and bottom values.
+    public func insetBy(
+        top topInset: CGFloat,
+        bottom bottomInset: CGFloat
+    ) -> EdgeInsets_TopBottom {
         .init(
             top: top + topInset,
             bottom: bottom + topInset
         )
     }
     
-    /// Insets `EdgeInsets` by a given top value.
-    public func insetBy(top topInset: CGFloat) -> EdgeInsets_TopBottom {
+    /// Insets `EdgeInsets_TopBottom` by a given top value.
+    public func insetBy(
+        top topInset: CGFloat
+    ) -> EdgeInsets_TopBottom {
         .init(
             top: top + topInset,
             bottom: bottom
         )
     }
     
-    /// Insets `EdgeInsets` by a given bottom value.
-    public func insetBy(bottom bottomInset: CGFloat) -> EdgeInsets_TopBottom {
+    /// Insets `EdgeInsets_TopBottom` by a given bottom value.
+    public func insetBy(
+        bottom bottomInset: CGFloat
+    ) -> EdgeInsets_TopBottom {
         .init(
             top: top,
             bottom: bottom + bottomInset
@@ -84,7 +104,7 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable {
     }
     
     // MARK: Operators
-    /// Adds two `EdgeInsets` by adding up individual edge insets.
+    /// Adds two `EdgeInsets_TopBottom` by adding up individual edge insets.
     public static func + (lhs: Self, rhs: Self) -> Self {
         .init(
             top: lhs.top + rhs.top,
@@ -92,13 +112,13 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable {
         )
     }
     
-    /// Adds right `EdgeInsets` to the left one by adding individual edge insets.
+    /// Adds right `EdgeInsets_TopBottom` to the left one by adding individual edge insets.
     public static func += (lhs: inout Self, rhs: Self) {
         lhs.top += rhs.top
         lhs.bottom += rhs.bottom
     }
     
-    /// Subtracts two `EdgeInsets` by subtracting up individual edge insets.
+    /// Subtracts two `EdgeInsets_TopBottom` by subtracting up individual edge insets.
     public static func - (lhs: Self, rhs: Self) -> Self {
         .init(
             top: lhs.top - rhs.top,
@@ -106,7 +126,7 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable {
         )
     }
     
-    /// Subtracts right `EdgeInsets` to the left one by subtracting individual edge insets.
+    /// Subtracts right `EdgeInsets_TopBottom` to the left one by subtracting individual edge insets.
     public static func -= (lhs: inout Self, rhs: Self) {
         lhs.top -= rhs.top
         lhs.bottom -= rhs.bottom
