@@ -98,6 +98,18 @@ public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
     public static var clearColors: GenericStateModel_CollapsedExpandedDisabled<Color> {
         .init(.clear)
     }
+
+    // MARK: Map
+    /// Returns `GenericStateModel_CollapsedExpandedDisabled`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (Value) throws -> Value
+    ) rethrows -> Self {
+        .init(
+            collapsed: try transform(collapsed),
+            expanded: try transform(expanded),
+            disabled: try transform(disabled)
+        )
+    }
 }
 
 // MARK: Platform-Specific Initializers
@@ -136,7 +148,7 @@ extension GenericStateModel_CollapsedExpandedDisabled: Comparable where Value: C
     }
 }
 
-// MARK: - Mapping
+// MARK: - State-Model Mapping
 extension GenericStateModel_CollapsedExpandedDisabled {
     /// Maps `GenericState_CollapsedExpandedDisabled` to `GenericStateModel_CollapsedExpandedDisabled`.
     public func value(for state: GenericState_CollapsedExpandedDisabled) -> Value {

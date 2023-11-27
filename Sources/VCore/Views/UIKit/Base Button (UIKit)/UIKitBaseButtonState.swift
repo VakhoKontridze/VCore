@@ -93,7 +93,7 @@ public enum UIKitBaseButtonInternalState: Int, CaseIterable {
     public static var `default`: Self { .enabled }
 }
 
-// MARK: - Mapping
+// MARK: - State-Model Mapping
 @available(tvOS, unavailable)
 extension GenericStateModel_EnabledPressedDisabled {
     /// Maps `UIKitBaseButtonInternalState` to `GenericStateModel_EnabledPressedDisabled`.

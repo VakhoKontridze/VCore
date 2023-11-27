@@ -98,6 +98,18 @@ public struct GenericStateModel_DeselectedSelectedDisabled<Value> {
     public static var clearColors: GenericStateModel_DeselectedSelectedDisabled<Color> {
         .init(.clear)
     }
+
+    // MARK: Map
+    /// Returns `GenericStateModel_DeselectedSelectedDisabled`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (Value) throws -> Value
+    ) rethrows -> Self {
+        .init(
+            deselected: try transform(deselected),
+            selected: try transform(selected),
+            disabled: try transform(disabled)
+        )
+    }
 }
 
 // MARK: Platform-Specific Initializers
@@ -148,7 +160,7 @@ extension GenericStateModel_DeselectedSelectedDisabled: Comparable where Value: 
     }
 }
 
-// MARK: - Mapping
+// MARK: - State-Model Mapping
 extension GenericStateModel_DeselectedSelectedDisabled {
     /// Maps `GenericState_DeselectedSelectedDisabled` to `GenericStateModel_DeselectedSelectedDisabled`.
     public func value(for state: GenericState_DeselectedSelectedDisabled) -> Value {

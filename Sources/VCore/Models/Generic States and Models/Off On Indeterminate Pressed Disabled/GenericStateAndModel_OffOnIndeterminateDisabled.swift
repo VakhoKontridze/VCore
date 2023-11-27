@@ -110,6 +110,19 @@ public struct GenericStateModel_OffOnIndeterminateDisabled<Value> {
     public static var clearColors: GenericStateModel_OffOnIndeterminateDisabled<Color> {
         .init(.clear)
     }
+
+    // MARK: Map
+    /// Returns `GenericStateModel_OffOnIndeterminateDisabled`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (Value) throws -> Value
+    ) rethrows -> Self {
+        .init(
+            off: try transform(off),
+            on: try transform(on),
+            indeterminate: try transform(indeterminate),
+            disabled: try transform(disabled)
+        )
+    }
 }
 
 // MARK: Platform-Specific Initializers
@@ -161,7 +174,7 @@ extension GenericStateModel_OffOnIndeterminateDisabled: Comparable where Value: 
     }
 }
 
-// MARK: - Mapping
+// MARK: - State-Model Mapping
 extension GenericStateModel_OffOnIndeterminateDisabled {
     public func value(for state: GenericState_OffOnIndeterminateDisabled) -> Value {
         switch state {

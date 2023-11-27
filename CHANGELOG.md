@@ -10,6 +10,10 @@ Views
 
 - `removesImageOnParameterChange` is added to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`
 
+Models
+
+- `map(_:)` method is added to `GenericStateModels`, that returns itself containing the results of mapping the given closure over the values.
+
 Extensions
 
 - `Array.removeIfPresent(_:)` and `Array.removeIfPresent(contentsOf:)` methods are added, that remove elements if they are present

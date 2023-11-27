@@ -88,6 +88,18 @@ public struct GenericStateModel_EnabledFocusedDisabled<Value> {
     public static var clearColors: GenericStateModel_EnabledFocusedDisabled<Color> {
         .init(.clear)
     }
+
+    // MARK: Map
+    /// Returns `GenericStateModel_EnabledFocusedDisabled`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (Value) throws -> Value
+    ) rethrows -> Self {
+        .init(
+            enabled: try transform(enabled),
+            focused: try transform(focused),
+            disabled: try transform(disabled)
+        )
+    }
 }
 
 // MARK: Platform-Specific Initializers
@@ -138,7 +150,7 @@ extension GenericStateModel_EnabledFocusedDisabled: Comparable where Value: Comp
     }
 }
 
-// MARK: - Mapping
+// MARK: - State-Model Mapping
 extension GenericStateModel_EnabledFocusedDisabled {
     /// Maps `GenericState_EnabledFocusedDisabled` to `GenericStateModel_EnabledFocusedDisabled`.
     public func value(for state: GenericState_EnabledFocusedDisabled) -> Value {

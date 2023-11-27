@@ -68,6 +68,17 @@ public struct GenericStateModel_EnabledLoading<Value> {
     public static var clearColors: GenericStateModel_EnabledLoading<Color> {
         .init(.clear)
     }
+
+    // MARK: Map
+    /// Returns `GenericStateModel_EnabledPressedLoading`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (Value) throws -> Value
+    ) rethrows -> Self {
+        .init(
+            enabled: try transform(enabled),
+            loading: try transform(loading)
+        )
+    }
 }
 
 // MARK: Platform-Specific Initializers
@@ -106,7 +117,7 @@ extension GenericStateModel_EnabledLoading: Comparable where Value: Comparable {
     }
 }
 
-// MARK: - Mapping
+// MARK: - State-Model Mapping
 extension GenericStateModel_EnabledLoading {
     /// Maps `GenericState_EnabledLoading` to `GenericStateModel_EnabledLoading`.
     public func value(for state: GenericState_EnabledLoading) -> Value {

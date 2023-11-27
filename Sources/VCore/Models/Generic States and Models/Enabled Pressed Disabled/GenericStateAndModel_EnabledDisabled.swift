@@ -77,6 +77,17 @@ public struct GenericStateModel_EnabledDisabled<Value> {
     public static var clearColors: GenericStateModel_EnabledDisabled<Color> {
         .init(.clear)
     }
+
+    // MARK: Map
+    /// Returns `GenericStateModel_EnabledDisabled`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (Value) throws -> Value
+    ) rethrows -> Self {
+        .init(
+            enabled: try transform(enabled),
+            disabled: try transform(disabled)
+        )
+    }
 }
 
 // MARK: Platform-Specific Initializers
@@ -150,7 +161,7 @@ extension GenericStateModel_EnabledDisabled: Comparable where Value: Comparable 
     }
 }
 
-// MARK: - Mapping
+// MARK: - State-Model Mapping
 extension GenericStateModel_EnabledDisabled {
     /// Maps `GenericState_EnabledDisabled` to `GenericStateModel_EnabledDisabled`.
     public func value(for state: GenericState_EnabledDisabled) -> Value {

@@ -78,6 +78,18 @@ public struct GenericStateModel_EnabledPressedFocused<Value> {
     public static var clearColors: GenericStateModel_EnabledPressedFocused<Color> {
         .init(.clear)
     }
+
+    // MARK: Map
+    /// Returns `GenericStateModel_EnabledPressedFocused`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (Value) throws -> Value
+    ) rethrows -> Self {
+        .init(
+            enabled: try transform(enabled),
+            pressed: try transform(pressed),
+            focused: try transform(focused)
+        )
+    }
 }
 
 // MARK: Platform-Specific Initializers
@@ -128,7 +140,7 @@ extension GenericStateModel_EnabledPressedFocused: Comparable where Value: Compa
     }
 }
 
-// MARK: - Mapping
+// MARK: - State-Model Mapping
 extension GenericStateModel_EnabledPressedFocused {
     /// Maps `GenericState_EnabledPressedFocused` to `GenericStateModel_EnabledPressedFocused`.
     public func value(for state: GenericState_EnabledPressedFocused) -> Value {

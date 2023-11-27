@@ -120,6 +120,20 @@ public struct GenericStateModel_OffOnPressedDisabled<Value> {
     public static var clearColors: GenericStateModel_OffOnPressedDisabled<Color> {
         .init(.clear)
     }
+
+    // MARK: Map
+    /// Returns `GenericStateModel_OffOnPressedDisabled`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (Value) throws -> Value
+    ) rethrows -> Self {
+        .init(
+            off: try transform(off),
+            on: try transform(on),
+            pressedOff: try transform(pressedOff),
+            pressedOn: try transform(pressedOn),
+            disabled: try transform(disabled)
+        )
+    }
 }
 
 // MARK: Platform-Specific Initializers
@@ -158,7 +172,7 @@ extension GenericStateModel_OffOnPressedDisabled: Comparable where Value: Compar
     }
 }
 
-// MARK: - Mapping
+// MARK: - State-Model Mapping
 extension GenericStateModel_OffOnPressedDisabled {
     /// Maps `GenericState_OffOnPressedDisabled` to `GenericStateModel_OffOnPressedDisabled`.
     public func value(for state: GenericState_OffOnPressedDisabled) -> Value {
