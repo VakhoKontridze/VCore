@@ -117,20 +117,19 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
 
         action?()
     }
-}
 
-// MARK: - Helpers
-private func executeWithDelay(
-    _ delay: TimeInterval,
-    block: @escaping () -> Void
-) {
-    if let delay = delay.nonZero {
-        DispatchQueue.main.asyncAfter(
-            deadline: .now() + delay,
-            execute: block
-        )
-    } else {
-        block()
+    private func executeWithDelay(
+        _ delay: TimeInterval,
+        block: @escaping () -> Void
+    ) {
+        if let delay = delay.nonZero {
+            DispatchQueue.main.asyncAfter(
+                deadline: .now() + delay,
+                execute: block
+            )
+        } else {
+            block()
+        }
     }
 }
 
