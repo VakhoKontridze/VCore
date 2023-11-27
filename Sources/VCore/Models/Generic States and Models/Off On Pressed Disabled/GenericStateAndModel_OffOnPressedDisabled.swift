@@ -100,20 +100,6 @@ public struct GenericStateModel_OffOnPressedDisabled<Value> {
         self.disabled = disabled
     }
     
-    /// Initializes `GenericStateModel_OffOnPressedDisabled` with values.
-    public init(
-        off: Value,
-        on: Value,
-        pressed: Value,
-        disabled: Value
-    ) {
-        self.off = off
-        self.on = on
-        self.pressedOff = pressed
-        self.pressedOn = pressed
-        self.disabled = disabled
-    }
-    
     /// Initializes `GenericStateModel_OffOnPressedDisabled` with value.
     public init(
         _ value: Value

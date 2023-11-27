@@ -159,6 +159,102 @@ extension GenericStateModel_EnabledLoading {
     }
 }
 
+extension GenericStateModel_DeselectedSelectedPressed {
+    @available(*, deprecated, message: "Use init with two pressed parameters")
+    public init(
+        deselected: Value,
+        selected: Value,
+        pressed: Value
+    ) {
+        self.deselected = deselected
+        self.selected = selected
+        self.pressedDeselected = pressed
+        self.pressedSelected = pressed
+    }
+}
+
+extension GenericStateModel_DeselectedSelectedPressedDisabled {
+    @available(*, deprecated, message: "Use init with two pressed parameters")
+    public init(
+        deselected: Value,
+        selected: Value,
+        pressed: Value,
+        disabled: Value
+    ) {
+        self.deselected = deselected
+        self.selected = selected
+        self.pressedDeselected = pressed
+        self.pressedSelected = pressed
+        self.disabled = disabled
+    }
+}
+
+extension GenericStateModel_OffOnIndeterminatePressed {
+    @available(*, deprecated, message: "Use init with two pressed parameters")
+    public init(
+        off: Value,
+        on: Value,
+        indeterminate: Value,
+        pressed: Value
+    ) {
+        self.off = off
+        self.on = on
+        self.indeterminate = indeterminate
+        self.pressedOff = pressed
+        self.pressedOn = pressed
+        self.pressedIndeterminate = pressed
+    }
+}
+
+extension GenericStateModel_OffOnIndeterminatePressedDisabled {
+    @available(*, deprecated, message: "Use init with two pressed parameters")
+    public init(
+        off: Value,
+        on: Value,
+        indeterminate: Value,
+        pressed: Value,
+        disabled: Value
+    ) {
+        self.off = off
+        self.on = on
+        self.indeterminate = indeterminate
+        self.pressedOff = pressed
+        self.pressedOn = pressed
+        self.pressedIndeterminate = pressed
+        self.disabled = disabled
+    }
+}
+
+extension GenericStateModel_OffOnPressed {
+    @available(*, deprecated, message: "Use init with two pressed parameters")
+    public init(
+        off: Value,
+        on: Value,
+        pressed: Value
+    ) {
+        self.off = off
+        self.on = on
+        self.pressedOff = pressed
+        self.pressedOn = pressed
+    }
+}
+
+extension GenericStateModel_OffOnPressedDisabled {
+    @available(*, deprecated, message: "Use init with two pressed parameters")
+    public init(
+        off: Value,
+        on: Value,
+        pressed: Value,
+        disabled: Value
+    ) {
+        self.off = off
+        self.on = on
+        self.pressedOff = pressed
+        self.pressedOn = pressed
+        self.disabled = disabled
+    }
+}
+
 // MARK: - Extensions - UIKit
 #if canImport(UIKit) && !os(watchOS)
 

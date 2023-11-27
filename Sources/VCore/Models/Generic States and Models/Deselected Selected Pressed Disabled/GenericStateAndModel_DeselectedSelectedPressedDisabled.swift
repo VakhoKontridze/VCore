@@ -99,21 +99,7 @@ public struct GenericStateModel_DeselectedSelectedPressedDisabled<Value> {
         self.pressedSelected = pressedSelected
         self.disabled = disabled
     }
-    
-    /// Initializes `GenericStateModel_DeselectedSelectedPressedDisabled` with values.
-    public init(
-        deselected: Value,
-        selected: Value,
-        pressed: Value,
-        disabled: Value
-    ) {
-        self.deselected = deselected
-        self.selected = selected
-        self.pressedDeselected = pressed
-        self.pressedSelected = pressed
-        self.disabled = disabled
-    }
-    
+
     /// Initializes `GenericStateModel_DeselectedSelectedPressedDisabled` with value.
     public init(
         _ value: Value

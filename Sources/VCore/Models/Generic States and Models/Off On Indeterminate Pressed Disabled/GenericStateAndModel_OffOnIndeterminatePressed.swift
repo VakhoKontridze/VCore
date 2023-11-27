@@ -97,21 +97,6 @@ public struct GenericStateModel_OffOnIndeterminatePressed<Value> {
         self.pressedIndeterminate = pressedIndeterminate
     }
     
-    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with values.
-    public init(
-        off: Value,
-        on: Value,
-        indeterminate: Value,
-        pressed: Value
-    ) {
-        self.off = off
-        self.on = on
-        self.indeterminate = indeterminate
-        self.pressedOff = pressed
-        self.pressedOn = pressed
-        self.pressedIndeterminate = pressed
-    }
-    
     /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with value.
     public init(
         _ value: Value
