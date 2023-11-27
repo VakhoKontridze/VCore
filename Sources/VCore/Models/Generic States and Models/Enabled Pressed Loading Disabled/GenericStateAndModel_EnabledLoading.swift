@@ -45,7 +45,6 @@ public struct GenericStateModel_EnabledLoading<Value> {
     /// Initializes `GenericStateModel_EnabledLoading` with values.
     public init(
         enabled: Value,
-        pressed: Value,
         loading: Value
     ) {
         self.enabled = enabled

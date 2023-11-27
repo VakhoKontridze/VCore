@@ -45,7 +45,6 @@ public struct GenericStateModel_EnabledFocused<Value> {
     /// Initializes `GenericStateModel_EnabledFocused` with values.
     public init(
         enabled: Value,
-        pressed: Value,
         focused: Value
     ) {
         self.enabled = enabled

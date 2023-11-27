@@ -136,6 +136,29 @@ extension View {
     }
 }
 
+// MARK: - Models - Generic States and Models
+extension GenericStateModel_EnabledFocused {
+    @available(*, unavailable, message: "Use init without `pressed` value")
+    public init(
+        enabled: Value,
+        pressed: Value,
+        focused: Value
+    ) {
+        fatalError()
+    }
+}
+
+extension GenericStateModel_EnabledLoading {
+    @available(*, unavailable, message: "Use init without `pressed` value")
+    public init(
+        enabled: Value,
+        pressed: Value,
+        loading: Value
+    ) {
+        fatalError()
+    }
+}
+
 // MARK: - Extensions - UIKit
 #if canImport(UIKit) && !os(watchOS)
 
