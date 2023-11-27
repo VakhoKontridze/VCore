@@ -14,7 +14,13 @@ public struct TouchSensitiveContainerUIModel {
     // MARK: Properties - Background
     /// Background colors.
     public var backgroundColors: StateColors = .init(
-        enabled: .clear,
+        enabled: {
+#if os(iOS)
+            Color(uiColor: .systemBackground)
+#else
+            Color.clear
+#endif
+        }(),
         pressed: {
 #if os(iOS)
             Color(uiColor: .systemFill)
@@ -28,7 +34,13 @@ public struct TouchSensitiveContainerUIModel {
             fatalError() // Not supported
 #endif
         }(),
-        disabled: .clear
+        disabled: {
+#if os(iOS)
+            Color(uiColor: .systemBackground)
+#else
+            Color.clear
+#endif
+        }()
     )
 
     // MARK: Properties - Content
