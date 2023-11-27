@@ -7,8 +7,8 @@
 
 import Foundation
 
-// MARK: - Localization Table Overriding Bundle
-final class LocalizationTableOverridingBundle: Bundle {
+// MARK: - Localization Strings File Overriding Bundle
+final class LocalizationStringsFileOverridingBundle: Bundle {
     // MARK: Properties
     static var tablePaths: [String: String] = [:]
     
@@ -20,7 +20,7 @@ final class LocalizationTableOverridingBundle: Bundle {
     ) -> String {
         guard
             let bundleIdentifier,
-            let path: String = LocalizationTableOverridingBundle.tablePaths[bundleIdentifier],
+            let path: String = LocalizationStringsFileOverridingBundle.tablePaths[bundleIdentifier],
             let bundle: Bundle = .init(path: path)
         else {
             return super.localizedString(forKey: key, value: value, table: tableName)
@@ -36,7 +36,7 @@ final class LocalizationTableOverridingBundle: Bundle {
     ) {
         guard
             let bundleIdentifier: String = bundle.bundleIdentifier,
-            let path: String = LocalizationManager.findLocalizationTableBundle(bundle: bundle, locale: locale)
+            let path: String = LocalizationManager.findStringsFileBundle(bundle: bundle, locale: locale)
         else {
             return
         }

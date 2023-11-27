@@ -154,7 +154,7 @@ public final class LocalizationManager {
             currentLocale = locale
             setCurrentAppLocale(locale)
             
-            bundles?.forEach { LocalizationTableOverridingBundle.overrideTable(toLocale: locale, inBundle: $0) }
+            bundles?.forEach { LocalizationStringsFileOverridingBundle.overrideTable(toLocale: locale, inBundle: $0) }
 
             currentLocaleChangePublisher.send(locale)
         }
@@ -205,8 +205,63 @@ public final class LocalizationManager {
         
         _defaultLocale = locale
     }
-    
-    // MARK: Bundle, Preferred, Current, and App Locales
+
+    // MARK: Localized - Strings File
+    /// Returns localized `String` from the given table and bundle.
+    ///
+    /// This methods finds correct table path within the `Bundle`, once localization has changed.
+    /// For additional info, refer to `LocalizationManager`.
+    public func localizedInStringsFile(
+        _ key: String,
+        tableName: String? = nil,
+        bundle: Bundle = .main,
+        value: String = ""
+    ) -> String {
+        guard
+            let path: String = Self.findStringsFileBundle(bundle: bundle, locale: currentLocale),
+            let currentLocaleBundle: Bundle = .init(path: path)
+        else {
+            return value
+        }
+
+        return currentLocaleBundle.localizedString(
+            forKey: key,
+            value: value,
+            table: tableName
+        )
+    }
+
+    /*private*/ static func findStringsFileBundle(
+        bundle: Bundle,
+        locale: Locale
+    ) -> String? {
+        let fileType: String = "lproj"
+
+        return
+            bundle.path(forResource: locale.identifier, ofType: fileType) ??
+            bundle.path(forResource: locale.languageCode, ofType: fileType)  // Just in case "en_US" is passed, but file is called "en"
+    }
+
+    // MARK: Localized - String Catalog
+    /// Returns localized `String` from the given table and bundle.
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+    public func localizedInStringCatalog(
+        _ key: String,
+        table: String? = nil,
+        bundle: Bundle? = nil,
+        locale: Locale = .current,
+        comment: StaticString? = nil
+    ) -> String {
+        .init(
+            localized: String.LocalizationValue(key),
+            table: table,
+            bundle: bundle,
+            locale: locale,
+            comment: comment
+        )
+    }
+
+    // MARK: Bundle, Preferred Locale, Current Locale, and App Locales
     // COMMAND                                      PHYSICAL DEVICE                 SIMULATOR
     //
     // Bundle.main.localizations                    ["en", "es", "en-GB"]           ["en", "en-GB", "es"]
@@ -258,12 +313,5 @@ public final class LocalizationManager {
         guard validateIsAdded(locale) else {
             VCoreFatalError("Localization '\(locale.identifier)' is not added to 'LocalizationManager'")
         }
-    }
-}
-
-// MARK: - Helpers
-extension Array where Element == String {
-    fileprivate func removingBaseLocalization() -> [String] {
-        filter { $0.lowercased() != "base" }
     }
 }
