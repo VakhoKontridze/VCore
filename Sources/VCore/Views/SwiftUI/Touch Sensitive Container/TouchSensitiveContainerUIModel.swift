@@ -13,15 +13,22 @@ import SwiftUI
 public struct TouchSensitiveContainerUIModel {
     // MARK: Properties - Background
     /// Background colors.
-    public var backgroundColors: StateColors = .init(
-        enabled: {
+    public var backgroundColors: StateColors = {
+        let color: Color = {
 #if os(iOS)
             Color(uiColor: .systemBackground)
-#else
+#elseif os(macOS)
+            Color.clear // No other color is available
+#elseif targetEnvironment(macCatalyst)
+            Color(uiColor: .systemBackground)
+#elseif os(watchOS)
             Color.clear
+#else
+            fatalError() // Not supported
 #endif
-        }(),
-        pressed: {
+        }()
+
+        let pressedColor: Color = {
 #if os(iOS)
             Color(uiColor: .systemFill)
 #elseif os(macOS)
@@ -33,21 +40,25 @@ public struct TouchSensitiveContainerUIModel {
 #else
             fatalError() // Not supported
 #endif
-        }(),
-        disabled: {
-#if os(iOS)
-            Color(uiColor: .systemBackground)
-#else
-            Color.clear
-#endif
         }()
-    )
+
+        return StateColors(
+            enabled: color,
+            pressed: pressedColor,
+            disabled: color
+        )
+    }()
 
     // MARK: Properties - Content
     /// Content opacities. Set to `1`s.
     public var contentOpacities: StateOpacities = .init(1)
 
     // MARK: Properties - Transition
+    /// Animation delay. Set to `0.05`.
+    ///
+    /// Can be useful when using `List`s.
+    public var animationDelay: TimeInterval = 0.01
+
     /// Animation. Set to `easeOut` with duration `0.15`.
     public var animation: Animation? = .easeOut(duration: 0.25)
 

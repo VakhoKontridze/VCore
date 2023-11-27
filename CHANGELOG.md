@@ -9,6 +9,7 @@ Services and Managers
 Views
 
 - `removesImageOnParameterChange` is added to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`
+- Issue with `TouchSensitiveContainer` when embedded inside `List` is fixed
 
 Models
 

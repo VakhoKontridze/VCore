@@ -107,14 +107,30 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     }
 
     // MARK: Actions
-    // Despite the fact that `isPressed` is immediately set to `false`, it will still work properly.
-    // Internal state-handling will function as expected.
-    // Likewise, callback with `init` with `content` that passes `TouchSensitiveContainerInternalState` will also function as expected.
     private func didPerformInteraction() {
         isPressed = true
-        withAnimation(uiModel.animation, { isPressed = false })
+
+        executeWithDelay(
+            uiModel.animationDelay,
+            block: { withAnimation(uiModel.animation, { isPressed = false }) }
+        )
 
         action?()
+    }
+}
+
+// MARK: - Helpers
+private func executeWithDelay(
+    _ delay: TimeInterval,
+    block: @escaping () -> Void
+) {
+    if let delay = delay.nonZero {
+        DispatchQueue.main.asyncAfter(
+            deadline: .now() + delay,
+            execute: block
+        )
+    } else {
+        block()
     }
 }
 
