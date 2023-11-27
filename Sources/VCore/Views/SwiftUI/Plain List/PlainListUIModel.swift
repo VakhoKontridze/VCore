@@ -9,6 +9,9 @@ import SwiftUI
 
 // MARK: - Plain List UI Model
 /// Model that describes UI.
+@available(macOS 13.0, *)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public struct PlainListUIModel {
     // MARK: Properties
     /// Row background color.

@@ -8,6 +8,9 @@
 import SwiftUI
 
 // MARK: - List Decoration
+@available(macOS 13.0, *)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 extension View {
     /// Removes `List` decoration for `PlainList`.
     public func removingListDecoration() -> some View {
@@ -18,7 +21,7 @@ extension View {
     /// Removes `List` content decoration for `PlainList`.
     public func removingListContentDecoration() -> some View {
         self
-            .listRowSeparator(.hidden)
             .listRowInsets(EdgeInsets())
+            .listRowSeparator(.hidden)
     }
 }

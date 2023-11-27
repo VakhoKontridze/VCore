@@ -19,6 +19,9 @@ import SwiftUI
 ///         })
 ///     })
 ///
+@available(macOS 13.0, *)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public struct PlainList<Content>: View where Content: View {
     // MARK: Properties
     private let uiModel: PlainListUIModel
@@ -47,6 +50,9 @@ public struct PlainList<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+@available(macOS 13.0, *)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 struct PlainList_Previews: PreviewProvider {
     static var previews: some View {
         PlainList(content: {
