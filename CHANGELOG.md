@@ -8,6 +8,7 @@ Services and Managers
 
 Views
 
+- `PlainList` is added, that wraps `List` and removed all decoration
 - `removesImageOnParameterChange` is added to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`
 - Issue with `TouchSensitiveContainer` when embedded inside `List` is fixed
 
