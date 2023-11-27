@@ -85,7 +85,7 @@ public final class LocalizationManager {
     
     // MARK: Properties - Misc
     /// Indicates if default `Locale` is first retrieved from user's preferred `Locale`s,
-    /// before referring to `Locale` pass to `setDefaultLocale(to:)`.
+    /// before referring to `Locale` passed to `setDefaultLocale(to:)`.
     public var retrievesDefaultLocaleFromPreferences: Bool = true
     
     /// `Publisher` that emits when current `Locale` changes.
