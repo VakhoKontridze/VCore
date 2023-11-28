@@ -13,9 +13,9 @@
 
 import SwiftUI
 
-// MARK: - Overriden UI Hosting Controller Behavior
+// MARK: - Overridable UI Hosting Controller Behavior
 /// `UIHostingController` behavior overriding option.
-public struct OverridenUIHostingControllerBehavior: OptionSet {
+public struct OverridableUIHostingControllerBehavior: OptionSet {
     // MARK: Options
     /// Disables safe area insets.
     public static let disablesSafeAreaInsets: Self = .init(rawValue: 1 << 0)
@@ -34,13 +34,13 @@ public struct OverridenUIHostingControllerBehavior: OptionSet {
 
 // MARK: - Hosting Controller Override Behavior
 extension UIHostingController {
-    /// Overrides default `UIHostingController` behaviors, indicated by `OverridenUIHostingControllerBehavior`.
+    /// Overrides default `UIHostingController` behaviors, indicated by `OverridableUIHostingControllerBehavior`.
     ///
     ///     let hostingController: UIHostingController = ...
     ///     hostingController.overrideBehaviors([.disablesSafeAreaInsets, .disablesKeyboardAvoidance])
     ///
     @discardableResult public func overrideBehaviors(
-        _ behaviors: OverridenUIHostingControllerBehavior
+        _ behaviors: OverridableUIHostingControllerBehavior
     ) -> Bool {
         guard !behaviors.isEmpty else { return false }
 

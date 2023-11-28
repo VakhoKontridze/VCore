@@ -255,6 +255,16 @@ extension GenericStateModel_OffOnPressedDisabled {
     }
 }
 
+// MARK: - Extensions - SwiftUI
+#if canImport(UIKit) && !os(watchOS)
+
+import SwiftUI
+
+@available(*, deprecated, renamed: "OverridableUIHostingControllerBehavior")
+public typealias OverridenUIHostingControllerBehavior = OverridableUIHostingControllerBehavior
+
+#endif
+
 // MARK: - Extensions - UIKit
 #if canImport(UIKit) && !os(watchOS)
 
