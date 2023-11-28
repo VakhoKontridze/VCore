@@ -21,6 +21,7 @@ Extensions
 
 - `Array.removeIfPresent(_:)` and `Array.removeIfPresent(contentsOf:)` methods are added, that remove elements if they are present
 - `Collection.nonEmpty` property is added, that returns non-empty `Collection`, or `nil`.
+- `ProcessInfo.isPreview` property is added, that indicates if process is running for previews
 - `Numeric.nonZero` property is added, that return non-zero sized `Numeric`, or `nil`.
 - `withContinuousObservationTracking(of:on:execute:)` method is added, that tracks access to properties in a `class`-type continuously
 - `View.inlineNavigationTitle(_:)` method is added with `LocalizedStringKey`
