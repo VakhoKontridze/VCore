@@ -24,6 +24,7 @@ Extensions
 - `Numeric.nonZero` property is added, that return non-zero sized `Numeric`, or `nil`.
 - `withContinuousObservationTracking(of:on:execute:)` method is added, that tracks access to properties in a `class`-type continuously
 - `View.inlineNavigationTitle(_:)` method is added with `LocalizedStringKey`
+- `View.rotationEffectWithFrame(angle:)` method is added, that rotates `View`'s rendered output around the specified point, while adjusting the frame
 
 Extra - XCode Templates
 
