@@ -28,6 +28,7 @@ Extensions
 - `View.rotationEffectWithFrame(angle:)` method is added, that rotates `View`'s rendered output around the specified point, while adjusting the frame
 - `UIImage.averageColor` method is added, that returns average `UIColor`
 - `NSImage.init(size:color)` initializer is added, that initializes `NSImage` with `CGSize` and `NSColor`
+- `NSImage.byPreparingThumbnail(ofSize:)` method is added, that returns a thumbnail
 
 Extra - XCode Templates
 
