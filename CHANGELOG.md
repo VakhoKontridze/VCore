@@ -26,6 +26,7 @@ Extensions
 - `withContinuousObservationTracking(of:on:execute:)` method is added, that tracks access to properties in a `class`-type continuously
 - `View.inlineNavigationTitle(_:)` method is added with `LocalizedStringKey`
 - `View.rotationEffectWithFrame(angle:)` method is added, that rotates `View`'s rendered output around the specified point, while adjusting the frame
+- `NSImage.init(size:color)` initializer is added, that initializes `NSImage` with `CGSize` and `NSColor`
 
 Extra - XCode Templates
 

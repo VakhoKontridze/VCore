@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Image Init with Color
 extension UIImage {
-    /// Initializes `UIImage` with color and size.
+    /// Initializes `UIImage` with `CGSize` and `UIColor`.
     ///
     ///     let image: UIImage = .init(
     ///         size: CGSize(dimension: 100),
