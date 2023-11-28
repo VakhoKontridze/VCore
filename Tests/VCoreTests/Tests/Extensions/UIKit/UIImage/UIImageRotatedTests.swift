@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 10.05.22.
 //
 
-#if canImport(UIKit) && !os(watchOS)// averageColor doesn't work on watchOS
+#if canImport(UIKit) && !os(watchOS)// `UIImage.averageColor` doesn't work on watchOS
 
 import XCTest
 @testable import VCore
