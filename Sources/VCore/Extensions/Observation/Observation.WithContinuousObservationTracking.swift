@@ -31,6 +31,26 @@ import Observation
 public func withContinuousObservationTracking<Object, T>(
     of keyPath: KeyPath<Object, T>,
     on object: Object,
+    initial: Bool = false,
+    execute block: @escaping @Sendable (T) -> Void
+)
+    where Object: AnyObject
+{
+    if initial {
+        block(object[keyPath: keyPath])
+    }
+
+    _withContinuousObservationTracking(
+        of: keyPath,
+        on: object,
+        execute: block
+    )
+}
+
+@available(iOS 17.0, macOS 14.0, watchOS 10.0, tvOS 17.0, *)
+private func _withContinuousObservationTracking<Object, T>(
+    of keyPath: KeyPath<Object, T>,
+    on object: Object,
     execute block: @escaping @Sendable (T) -> Void
 )
     where Object: AnyObject
@@ -43,7 +63,7 @@ public func withContinuousObservationTracking<Object, T>(
             DispatchQueue.main.async(execute: {
                 block(object[keyPath: keyPath])
 
-                withContinuousObservationTracking(
+                _withContinuousObservationTracking(
                     of: keyPath,
                     on: object,
                     execute: block
