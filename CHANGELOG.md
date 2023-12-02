@@ -10,6 +10,7 @@ Views
 
 - `PlainList` is added, that wraps `List` and removed all decoration
 - `removesImageOnParameterChange` is added to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`
+- `tapCount` is added to `TouchSensitiveContainer`
 - Issue with `TouchSensitiveContainer` when embedded inside `List` is fixed
 
 Models

@@ -103,7 +103,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     private var backgroundView: some View {
         uiModel.backgroundColors.value(for: internalState)
             .contentShape(Rectangle())
-            .onTapGesture(perform: didPerformInteraction)
+            .onTapGesture(count: uiModel.tapCount, perform: didPerformInteraction)
     }
 
     // MARK: Actions

@@ -11,6 +11,10 @@ import SwiftUI
 /// Model that describes UI.
 @available(tvOS 16.0, *)
 public struct TouchSensitiveContainerUIModel {
+    // MARK: Properties - Body
+    /// Number of taps required to trigger the action. Set to `1`.
+    public var tapCount: Int = 1
+
     // MARK: Properties - Background
     /// Background colors.
     public var backgroundColors: StateColors = {
