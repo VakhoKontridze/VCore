@@ -5,11 +5,11 @@
 //  Created by Vakhtang Kontridze on 14.04.23.
 //
 
+#if canImport(UIKit)
+
 import SwiftUI
 
 // MARK: - Image System Image with Weight
-#if canImport(UIKit)
-
 extension Image {
     /// Creates a system symbol image with weight.
     ///
@@ -17,7 +17,10 @@ extension Image {
     ///         Image(systemName: "shuffle", weight: .bold)!
     ///     }
     ///
-    public init?(systemName: String, weight: UIImage.SymbolWeight) {
+    public init?(
+        systemName: String,
+        weight: UIImage.SymbolWeight
+    ) {
         guard
             let uiImage: UIImage = .init(
                 systemName: systemName,
