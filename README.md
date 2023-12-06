@@ -140,24 +140,26 @@ let formatter: DigitalTimeFormatter = .init()
 formatter.string(from: 905048) // "10:11:24:08"
 ```
 
-#### Various Declarations
+#### Various SwiftUI Views
 
-`KeyPathInitializableEnumeration` that allows for initialization of an `enum` with a `KeyPath`:
+`AlignedGridLayout` that justifies collection of views with an alignment:
 
 ```swift
-enum SomeEnum: KeyPathInitializableEnumeration {
-    case first
-    case second
+private let strings: [String] = [
+    "Monday", "Tuesday", "Wednesday",
+    "Thursday", "Friday", "Saturday",
+    "Sunday"
+]
 
-    var someProperty: Int {
-        switch self {
-        case .first: 1
-        case .second: 2
-        }
-    }
+var body: some View {
+    AlignedGridLayout(alignment: .center, spacing: 5).callAsFunction({
+        ForEach(strings, id: \.self, content: { string in
+            Text(string)
+                .background(content: { Color.accentColor.opacity(0.5) })
+        })
+    })
+    .padding()
 }
-
-let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
 ```
 
 #### Various UIKit Views/ViewControllers
@@ -210,26 +212,24 @@ final class ViewController: KeyboardResponsiveUIViewController {
 }
 ```
 
-#### Various SwiftUI Views
+#### Various Declarations
 
-`AlignedGridLayout` that justifies collection of views with an alignment.
+`KeyPathInitializableEnumeration` that allows for initialization of an `enum` with a `KeyPath`:
 
 ```swift
-private let strings: [String] = [
-    "Monday", "Tuesday", "Wednesday",
-    "Thursday", "Friday", "Saturday",
-    "Sunday"
-]
+enum SomeEnum: KeyPathInitializableEnumeration {
+    case first
+    case second
 
-var body: some View {
-    AlignedGridLayout(alignment: .center, spacing: 5).callAsFunction({
-        ForEach(strings, id: \.self, content: { string in
-            Text(string)
-                .background(content: { Color.accentColor.opacity(0.5) })
-        })
-    })
-    .padding()
+    var someProperty: Int {
+        switch self {
+        case .first: 1
+        case .second: 2
+        }
+    }
 }
+
+let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
 ```
 
 #### Various Extensions and Global Functions
