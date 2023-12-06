@@ -156,28 +156,31 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
         @State private var isExpanded: Bool = true
         
         var body: some View {
-            PlainDisclosureGroup(
-                isExpanded: $isExpanded,
-                label: {
-                    ZStack(content: {
-                        Color.red.frame(height: 300)
+            ZStack(content: {
+                Color.gray.opacity(0.16)
+                    .ignoresSafeArea()
+
+                PlainDisclosureGroup(
+                    isExpanded: $isExpanded,
+                    label: {
                         Text("Lorem Ipsum")
-                    })
-                    .allowsHitTesting(false)
-                },
-                content: {
-                    Color.accentColor
-                        .frame(height: 300)
-                }
-            )
-            .applyModifier({
+                            .frame(maxWidth: .infinity)
+                            .padding()
+                    },
+                    content: {
+                        Color.accentColor
+                            .frame(height: 300)
+                    }
+                )
+                .applyModifier({
 #if os(macOS)
-                $0.frame(dimension: 640)
+                    $0.frame(dimension: 640)
 #else
-                $0
+                    $0
 #endif
+                })
+                .padding()
             })
-            .padding()
         }
     }
 }
