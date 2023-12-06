@@ -73,6 +73,28 @@ extension NetworkReachabilityService {
     public static var disconnectedNotification: Notification.Name { fatalError() }
 }
 
+// MARK: - Fetch Delegating Async Image
+@available(*, unavailable, message: "Use `VFetchingAsyncImage` from `VComponents")
+public struct FetchDelegatingAsyncImage: View {
+    public var body: some View {
+        Color.clear
+    }
+}
+
+@available(*, unavailable, message: "Use `VFetchingAsyncImage` from `VComponents")
+public struct FetchDelegatingAsyncImageUIModel {}
+
+// MARK: - Fetch Delegating Completion Image
+@available(*, unavailable, message: "FetchDelegatingCompletionImage` is removed. Use `VFetchingAsyncImage` from `VComponents instead.")
+public struct FetchDelegatingCompletionImage: View {
+    public var body: some View {
+        Color.clear
+    }
+}
+
+@available(*, unavailable, message: "FetchDelegatingCompletionImage` is removed. Use `VFetchingAsyncImage` from `VComponents instead.")
+public struct FetchDelegatingCompletionImageUIModel {}
+
 // MARK: - Responder Chain UI Toolbar
 #if canImport(UIKit) && !(os(tvOS) || os(watchOS))
 

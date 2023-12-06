@@ -12,6 +12,8 @@ Views
 - `removesImageOnParameterChange` is added to `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage`
 - `tapCount` is added to `TouchSensitiveContainer`
 - Issue with `TouchSensitiveContainer` when embedded inside `List` is fixed
+- `FetchDelegatingAsyncImage` is moved to [VComponents](https://github.com/VakhoKontridze/VComponents) as `VFetchingAsyncImage`
+- `FetchDelegatingCompletionImage` is removed
 
 Models
 
