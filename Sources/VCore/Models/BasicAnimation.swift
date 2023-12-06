@@ -69,10 +69,10 @@ public struct BasicAnimation {
     /// Converts `BasicAnimation` to `SwiftUI.Animation`.
     public var toSwiftUIAnimation: Animation {
         switch curve {
-        case .linear: .linear(duration: duration).delay(delay)
-        case .easeIn: .easeIn(duration: duration).delay(delay)
-        case .easeOut: .easeOut(duration: duration).delay(delay)
-        case .easeInOut: .easeInOut(duration: duration).delay(delay)
+        case .linear: Animation.linear(duration: duration).delay(delay)
+        case .easeIn: Animation.easeIn(duration: duration).delay(delay)
+        case .easeOut: Animation.easeOut(duration: duration).delay(delay)
+        case .easeInOut: Animation.easeInOut(duration: duration).delay(delay)
         }
     }
 }
