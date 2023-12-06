@@ -133,9 +133,22 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
 @available(watchOS, unavailable)
 struct SwiftUIGestureBaseButton_Previews: PreviewProvider {
     static var previews: some View {
-        SwiftUIGestureBaseButton(
-            onStateChange: { print($0) },
-            label: { Text("Lorem Ipsum") }
-        )
+        Preview()
+    }
+
+    private struct Preview: View {
+        @State private var isPressed: Bool = false
+
+        var body: some View {
+            SwiftUIGestureBaseButton(
+                onStateChange: { state in
+                    isPressed = state.didRecognizePress
+                },
+                label: {
+                    Text("Lorem Ipsum")
+                        .opacity(isPressed ? 0.3 : 1)
+                }
+            )
+        }
     }
 }
