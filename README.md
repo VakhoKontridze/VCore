@@ -212,50 +212,23 @@ final class ViewController: KeyboardResponsiveUIViewController {
 
 #### Various SwiftUI Views
 
-`FetchDelegatingAsyncImage` that asynchronously loads and displays an `Image` with a delegated fetch handler.
-You can customize request with access token and headers, implement custom caching, and more.
+`AlignedGridLayout` that justifies collection of views with an alignment.
 
 ```swift
+private let strings: [String] = [
+    "Monday", "Tuesday", "Wednesday",
+    "Thursday", "Friday", "Saturday",
+    "Sunday"
+]
+
 var body: some View {
-    FetchDelegatingAsyncImage(
-        from: URL(string: "https://somewebsite.com/content/image.jpg")!,
-        fetch: fetchImage,
-        content: { phase in
-            if let image = phase.image {
-                image
-                    .resizable()
-                    .fitToAspect(1, contentMode: .fill)
-
-            } else if phase.error != nil {
-                ErrorView()
-
-            } else {
-                ProgressView()
-            }
-        }
-    )
-    .frame(dimension: 200)
-}
-
-...
-
-private var cache: NSCache<NSString, UIImage> = .init()
-
-private func fetchImage(url: URL) async throws -> Image {
-    let key: NSString = .init(string: url.absoluteString)
-
-    switch cache.object(forKey: key) {
-    case nil:
-        let data: Data = try await URLSession.shared.data(from: url).0
-        guard let uiImage: UIImage = .init(data: data) else { throw URLError(.cannotDecodeContentData) }
-
-        cache.setObject(uiImage, forKey: key)
-
-        return Image(uiImage: uiImage)
-
-    case let uiImage?:
-        return Image(uiImage: uiImage)
-    }
+    AlignedGridLayout(alignment: .center, spacing: 5).callAsFunction({
+        ForEach(strings, id: \.self, content: { string in
+            Text(string)
+                .background(content: { Color.accentColor.opacity(0.5) })
+        })
+    })
+    .padding()
 }
 ```
 
