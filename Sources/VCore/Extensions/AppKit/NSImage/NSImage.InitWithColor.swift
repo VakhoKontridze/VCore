@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 28.11.23.
 //
 
-#if canImport(AppKit)
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
 import AppKit
 
