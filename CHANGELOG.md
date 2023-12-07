@@ -1,6 +1,6 @@
 # Change Log
 
-### 5.2.0(87)
+### [5.2.0(87)](https://github.com/VakhoKontridze/VCore/releases/tag/5.2.0) — *2023 12 07*
 
 Services and Managers
 
