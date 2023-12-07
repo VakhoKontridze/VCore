@@ -75,8 +75,56 @@ extension NetworkReachabilityService {
 
 // MARK: - Fetch Delegating Async Image
 @available(*, unavailable, message: "Use `VFetchingAsyncImage` from `VComponents")
-public struct FetchDelegatingAsyncImage: View {
-    public init() {}
+public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>: View
+    where
+        Parameter: Equatable,
+        Content: View,
+        PlaceholderContent: View
+{
+    public init(
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image
+    )
+        where
+            Content == Never,
+            PlaceholderContent == Never
+    {
+        fatalError()
+    }
+
+    public init(
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image,
+        @ViewBuilder content: @escaping (Image) -> Content
+    )
+        where
+            PlaceholderContent == Never
+    {
+        fatalError()
+    }
+
+    public init(
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image,
+        @ViewBuilder content: @escaping (Image) -> Content,
+        @ViewBuilder placeholder placeholderContent: @escaping () -> PlaceholderContent
+    ) {
+        fatalError()
+    }
+
+    public init(
+        uiModel: FetchDelegatingAsyncImageUIModel = .init(),
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping @Sendable (Parameter) async throws -> Image,
+        @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
+    )
+        where PlaceholderContent == Never
+    {
+        fatalError()
+    }
 
     public var body: some View {
         Color.clear
@@ -90,8 +138,56 @@ public struct FetchDelegatingAsyncImageUIModel {
 
 // MARK: - Fetch Delegating Completion Image
 @available(*, unavailable, message: "FetchDelegatingCompletionImage` is removed. Use `VFetchingAsyncImage` from `VComponents instead.")
-public struct FetchDelegatingCompletionImage: View {
-    public init() {}
+public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderContent>: View
+    where
+        Parameter: Equatable,
+        Content: View,
+        PlaceholderContent: View
+{
+    public init(
+        uiModel: FetchDelegatingCompletionImageUIModel = .init(),
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping (Parameter, @escaping (Result<Image, any Error>) -> Void) -> Void
+    )
+        where
+            Content == Never,
+            PlaceholderContent == Never
+    {
+        fatalError()
+    }
+
+    public init(
+        uiModel: FetchDelegatingCompletionImageUIModel = .init(),
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping (Parameter, @escaping (Result<Image, any Error>) -> Void) -> Void,
+        @ViewBuilder content: @escaping (Image) -> Content
+    )
+        where
+            PlaceholderContent == Never
+    {
+        fatalError()
+    }
+
+    public init(
+        uiModel: FetchDelegatingCompletionImageUIModel = .init(),
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping (Parameter, @escaping (Result<Image, any Error>) -> Void) -> Void,
+        @ViewBuilder content: @escaping (Image) -> Content,
+        @ViewBuilder placeholder placeholderContent: @escaping () -> PlaceholderContent
+    ) {
+        fatalError()
+    }
+
+    public init(
+        uiModel: FetchDelegatingCompletionImageUIModel = .init(),
+        from parameter: Parameter?,
+        fetch fetchHandler: @escaping (Parameter, @escaping (Result<Image, any Error>) -> Void) -> Void,
+        @ViewBuilder content: @escaping (AsyncImagePhase) -> Content
+    )
+        where PlaceholderContent == Never
+    {
+        fatalError()
+    }
 
     public var body: some View {
         Color.clear
