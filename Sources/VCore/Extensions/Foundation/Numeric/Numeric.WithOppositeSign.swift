@@ -11,7 +11,7 @@ import Foundation
 extension Numeric {
     /// Returns `Numeric` value with opposite sign if condition is met.
     ///
-    ///     let number: Int = 10    // -10
+    ///     let number: Int = 10 // -10
     ///         .withOppositeSign()
     ///
     public func withOppositeSign(

@@ -9,16 +9,16 @@ import Foundation
 import Observation
 
 // MARK: - Observation with Continuous Observation Tracking
-/// Tracks access to properties in a `class`-type continuously.
+/// Tracks access to properties in a `class` type continuously.
 ///
 ///     @Observable final class SomeObject {
-///         var value: Int = 0
+///         private var value: Int = 0
 ///
 ///         init() {
 ///             addSubscriptions()
 ///         }
 ///
-///         func addSubscriptions() {
+///         private func addSubscriptions() {
 ///             withContinuousObservationTracking(
 ///                 of: \.value,
 ///                 on: self,
