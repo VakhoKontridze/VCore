@@ -373,4 +373,4 @@ For additional info, refer to the [CHANGELOG](https://github.com/VakhoKontridze/
 
 ## Contact
 
-e-mail: vakho.kontridze@gmail.com
+e-mail: vakhtang.kontridze@gmail.com
