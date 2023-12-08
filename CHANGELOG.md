@@ -1,5 +1,11 @@
 # Change Log
 
+### 5.2.1(88)
+
+Other
+
+- Deprecations messages for `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage` are fixed
+
 ### [5.2.0(87)](https://github.com/VakhoKontridze/VCore/releases/tag/5.2.0) — *2023 12 07*
 
 Services and Managers
