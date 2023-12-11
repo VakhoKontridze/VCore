@@ -19,14 +19,10 @@ final class StringProtocolSubscriptTests: XCTestCase {
         XCTAssertEqual("Lorem Ipsum"[0], "L")
     }
     
-    func testSetReplaced() {
-        XCTAssertEqual(input.replaced(at: 0, with: "l"), output)
-    }
-    
-    func testSetReplacing() {
+    func testSet() {
         var result: String = input
-        result.replacing(at: 0, with: "l")
-        
+        result[0] = "l"
+
         XCTAssertEqual(result, output)
     }
 }
