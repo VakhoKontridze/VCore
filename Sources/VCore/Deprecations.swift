@@ -73,6 +73,24 @@ extension NetworkReachabilityService {
     public static var disconnectedNotification: Notification.Name { fatalError() }
 }
 
+// MARK: - Session Manager
+extension SessionManager {
+    @available(*, deprecated, renamed: "currentID")
+    public var currentSessionID: Int {
+        currentID
+    }
+
+    @available(*, deprecated, renamed: "generateNewID")
+    public var newSessionID: Int {
+        generateNewID()
+    }
+
+    @available(*, deprecated, renamed: "isValidID")
+    public func sessionIsValid(id: Int) -> Bool {
+        isValidID(id)
+    }
+}
+
 // MARK: - Fetch Delegating Async Image
 @available(*, unavailable, message: "Use `VFetchingAsyncImage` from `VComponents")
 public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>: View

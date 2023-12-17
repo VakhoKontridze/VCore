@@ -16,12 +16,12 @@ import Foundation
 ///
 ///     Task(operation: {
 ///         do {
-///             let sessionID: Int = await sessionManager.newSessionID
+///             let sessionID: Int = await sessionManager.generateNewID()
 ///
 ///             let request: URLRequest = ...
 ///             let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
 ///
-///             guard await sessionManager.sessionIsValid(id: sessionID) else { return }
+///             guard await sessionManager.isValidID(sessionID) else { return }
 ///
 ///             ...
 ///
@@ -32,29 +32,31 @@ import Foundation
 ///
 public actor SessionManager {
     // MARK: Properties
-    private var value: Int
-    
+    private var id: Int
+
     // MARK: Initializers
     /// Initializes `SessionManager` with an initial ID.
-    public init(initialID: Int = 0) {
-        self.value = initialID
+    public init(
+        initialID id: Int = 0
+    ) {
+        self.id = id
     }
     
     // MARK: Management
-    /// Current session ID.
-    public var currentSessionID: Int {
-        value
+    /// Current ID.
+    public var currentID: Int {
+        id
     }
     
-    /// Increments and returns current session ID.
-    public var newSessionID: Int {
-        value += 1
-        return value
+    /// Increments and returns new ID.
+    public func generateNewID() -> Int {
+        id += 1
+        return id
     }
     
-    /// Validates session identifier against latest generated identifier.
-    public func sessionIsValid(id sessionID: Int) -> Bool {
-        value == sessionID
+    /// Validates ID against latest generated ID.
+    public func isValidID(_ id: Int) -> Bool {
+        self.id == id
     }
 }
 
@@ -63,12 +65,12 @@ public actor SessionManager {
 ///
 ///     Task(operation: {
 ///         do {
-///             let sessionID: Int = await GlobalSessionManager.shared.newSessionID
+///             let sessionID: Int = await GlobalSessionManager.shared.generateNewID()
 ///
 ///             let request: URLRequest = ...
 ///             let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
 ///
-///             guard await GlobalSessionManager.shared.sessionIsValid(id: sessionID) else { return }
+///             guard await GlobalSessionManager.shared.isValidID(sessionID) else { return }
 ///
 ///             ...
 ///
