@@ -36,8 +36,6 @@ extension View {
     ///                         equals: .lastName,
     ///                         inResponderChain: [.firstName, .lastName]
     ///                     )
-    ///
-    ///                 Spacer()
     ///             })
     ///             .padding()
     ///             .textFieldStyle(.roundedBorder)
@@ -146,8 +144,6 @@ extension View {
     ///                 TextField("Last name", text: $lastName)
     ///                     .focused($focusedInput, equals: .lastName)
     ///                     .responderChainToolbar(focus: $focusedInput, equals: .lastName)
-    ///
-    ///                 Spacer()
     ///             })
     ///             .padding()
     ///             .textFieldStyle(.roundedBorder)

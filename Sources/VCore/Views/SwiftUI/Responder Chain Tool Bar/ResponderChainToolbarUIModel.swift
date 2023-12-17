@@ -15,8 +15,8 @@ public struct ResponderChainToolbarUIModel {
 
     /// Button colors.
     public var buttonColors: ButtonStateColors = .init(
-        enabled: .accentColor,
-        disabled: Color(red: 60/255, green: 60/255, blue: 67/255, opacity: 0.3)
+        enabled: Color.accentColor,
+        disabled: Color.gray.opacity(0.3)
     )
 
     // MARK: Properties - Buttons - Navigation
