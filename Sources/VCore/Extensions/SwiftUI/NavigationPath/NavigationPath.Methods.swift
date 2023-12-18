@@ -15,7 +15,9 @@ extension NavigationPath {
     ///     var path: NavigationPath = .init()
     ///     path.append(contentsOf: ["Destination1", "Destionation2"])
     ///
-    mutating public func append(contentsOf newElements: any Sequence<any Hashable>) {
+    mutating public func append(
+        contentsOf newElements: some Sequence<some Hashable>
+    ) {
         newElements.forEach { append($0) }
     }
     

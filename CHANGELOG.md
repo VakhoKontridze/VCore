@@ -4,6 +4,7 @@
 
 Extensions
 
+- `Set.insert(contentsOf:)` method is added, that inserts `Sequence` in the `Set`
 - Setter is added to `StringProtocol.subscript(_:)`
 
 ### [5.2.1(88)](https://github.com/VakhoKontridze/VCore/releases/tag/5.2.1) — *2023 12 08*
