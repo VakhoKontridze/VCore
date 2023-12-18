@@ -15,7 +15,7 @@ extension Data {
     ///     let data2: Data? = .init("data".data(using: .utf8)!).nonEmpty // ...
     ///
     public var nonEmpty: Data? {
-        guard count != 0 else { return nil }
+        guard !isEmpty else { return nil }
         return self
     }
 }
