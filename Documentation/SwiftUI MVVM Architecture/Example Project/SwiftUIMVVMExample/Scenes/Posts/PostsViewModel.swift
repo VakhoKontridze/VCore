@@ -43,23 +43,21 @@ import VCore
     // MARK: Requests
     private func fetchPosts() {
         posts = []
-
-        progressViewParameters = ProgressViewParameters()
         
         fetchPostsTask?.cancel()
         fetchPostsTask = Task(operation: {
+            progressViewParameters = ProgressViewParameters()
+            defer { progressViewParameters = nil }
+
             do {
                 let postsEntity: PostsEntity = try await DIContainer.current.gateways.posts.fetch()
                 guard !Task.isCancelled else { return }
-
-                progressViewParameters = nil
                 
                 posts = postsEntity.posts
                 
             } catch {
                 guard !Task.isCancelled else { return }
 
-                progressViewParameters = nil
                 alertParameters = AlertParameters(error: error, completion: nil)
             }
         })
