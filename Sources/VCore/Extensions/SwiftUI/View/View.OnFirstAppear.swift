@@ -11,23 +11,41 @@ import SwiftUI
 extension View {
     /// Adds an action to perform before this `View` appears for the first time.
     ///
-    ///     @State private var didAppearForTheFirstTime: Bool = false
-    ///
     ///     var body: some View {
-    ///         content
-    ///             .onFirstAppear($didAppearForTheFirstTime, perform: { ... })
+    ///         Color.accentColor
+    ///             .onFirstAppear(perform: { ... })
     ///     }
     ///
     public func onFirstAppear(
-        _ didAppearForTheFirstTime: Binding<Bool>,
         perform action: (() -> Void)? = nil
     ) -> some View {
         self
+            .modifier(OnFirstAppearModifier(action: action))
+    }
+}
+
+// MARK: - On First Appear Modifier
+private struct OnFirstAppearModifier: ViewModifier {
+    // MARK: Properties
+    private let action: (() -> Void)?
+
+    @State private var didAppearForTheFirstTime: Bool = false
+
+    // MARK: Initializers
+    init(
+        action: (() -> Void)?
+    ) {
+        self.action = action
+    }
+
+    // MARK: Body
+    func body(content: Content) -> some View {
+        content
             .onAppear(perform: {
-                guard !didAppearForTheFirstTime.wrappedValue else { return }
-                
-                didAppearForTheFirstTime.wrappedValue = true
-                action?()
+                if !didAppearForTheFirstTime {
+                    didAppearForTheFirstTime = true
+                    action?()
+                }
             })
     }
 }

@@ -409,6 +409,22 @@ public typealias OverridenUIHostingControllerBehavior = OverridableUIHostingCont
 
 #endif
 
+extension View {
+    @available(*, deprecated, message: "Use method without `Bool` parameter")
+    public func onFirstAppear(
+        _ didAppearForTheFirstTime: Binding<Bool>,
+        perform action: (() -> Void)? = nil
+    ) -> some View {
+        self
+            .onAppear(perform: {
+                guard !didAppearForTheFirstTime.wrappedValue else { return }
+
+                didAppearForTheFirstTime.wrappedValue = true
+                action?()
+            })
+    }
+}
+
 // MARK: - Extensions - UIKit
 #if canImport(UIKit) && !os(watchOS)
 
