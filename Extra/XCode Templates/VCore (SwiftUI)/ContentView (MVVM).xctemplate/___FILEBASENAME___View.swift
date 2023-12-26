@@ -12,8 +12,6 @@ struct ___VARIABLE_productName___View: View {
 
     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
     
-    @State private var didAppearForTheFirstTime: Bool = false
-    
     // MARK: Initializers
     init(parameters: ___VARIABLE_productName___Parameters) {
         self._viewModel = State(wrappedValue: ___VARIABLE_productName___ViewModel(parameters: parameters))
@@ -25,7 +23,7 @@ struct ___VARIABLE_productName___View: View {
             backgroundView
             contentView
         })
-        .onFirstAppear($didAppearForTheFirstTime, perform: {
+        .onFirstAppear(perform: {
             viewModel.navigationStackCoordinator = navigationStackCoordinator
         })
 

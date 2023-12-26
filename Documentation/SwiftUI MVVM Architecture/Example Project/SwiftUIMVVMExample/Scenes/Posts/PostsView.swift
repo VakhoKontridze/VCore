@@ -16,8 +16,6 @@ struct PostsView: View {
     private typealias UIModel = PostsUIModel
 
     @Environment(\.navigationStackCoordinatorOO) private var navigationStackCoordinator: NavigationStackCoordinatorOO!
-    
-    @State private var didAppearForTheFirstTime: Bool = false
 
     // MARK: Initializers
     init() {
@@ -30,7 +28,7 @@ struct PostsView: View {
             backgroundView
             contentView
         })
-        .onFirstAppear($didAppearForTheFirstTime, perform: {
+        .onFirstAppear(perform: {
             viewModel.navigationStackCoordinator = navigationStackCoordinator
             viewModel.didLoad()
         })
