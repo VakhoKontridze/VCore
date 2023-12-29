@@ -21,11 +21,11 @@ Package files are grouped as:
 
 - ***Views***. Reusable non-scene `View`s, `UIView`s, and `UIViewController`s. For instance `BaseButton`s.
 
-- ***Models***. Reusable models. For instance, `EdgeInsets`s.
+- ***Models***. Reusable models. For instance, `GenericState`s and `GenericStateModel`s.
 
 - ***Helpers***. Non-service, non-extension objects and methods. For instance, architectural pattern helpers.
 
-- ***Extensions***. Global extensions. Methods and properties are grouped by frameworks of origin—`Core Frameworks`, `Foundation`, `SwiftUI`, `UIKit`, and `AppKit` (only for supporting underlying `SwiftUI` types).
+- ***Extensions***. Global extensions.
 
 - ***Global Functions***. Global functions. For instance, `TODO`.
 
