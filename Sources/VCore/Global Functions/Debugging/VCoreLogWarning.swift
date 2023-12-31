@@ -30,6 +30,8 @@ public func VCoreLogWarning(
         function: function
     )
 
-    NSLog("[\(module)] Warning in '\(callSite)': \(message)")
+    let string: String = "[\(module)] Warning in '\(callSite)': \(message)"
+
+    NSLog(string)
 #endif
 }

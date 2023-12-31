@@ -17,7 +17,7 @@ func XCTAssertEqualColor(
     _ expression1: @autoclosure () throws -> UIColor,
     _ expression2: @autoclosure () throws -> UIColor,
     _ message: @autoclosure () -> String = "",
-    file: String = #filePath,
+    file: StaticString = #filePath,
     line: UInt = #line
 ) {
     let lhs = try! expression1().rgbaValues // Force-unwrap
@@ -35,7 +35,7 @@ func XCTAssertEqualColor(
     _ expression1: @autoclosure () throws -> NSColor,
     _ expression2: @autoclosure () throws -> NSColor,
     _ message: @autoclosure () -> String = "",
-    file: String = #filePath,
+    file: StaticString = #filePath,
     line: UInt = #line
 ) {
     let lhs = try! expression1().rgbaValues // Force-unwrap
@@ -53,7 +53,7 @@ func XCTAssertEqualColor(
     _ expression1: @autoclosure () throws -> Color,
     _ expression2: @autoclosure () throws -> Color,
     _ message: @autoclosure () -> String = "",
-    file: String = #filePath,
+    file: StaticString = #filePath,
     line: UInt = #line
 ) {
 #if canImport(UIKit)

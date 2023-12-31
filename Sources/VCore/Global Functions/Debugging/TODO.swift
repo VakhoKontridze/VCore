@@ -32,9 +32,15 @@ public func TODO(
         function: function
     )
 
-    var string: String = ""
-    string += "[\(module)] TODO not implemented in '\(callSite)'"
-    message.map { string += ": \($0)" }
+    let string: String = {
+        var string: String = ""
+        
+        string += "[\(module)] TODO not implemented in '\(callSite)'"
+
+        message.map { string += ": \($0)" }
+
+        return string
+    }()
 
     NSLog(string)
 #endif

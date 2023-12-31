@@ -58,6 +58,8 @@ public func VCoreLogError(
         return message
     }()
 
-    NSLog("[\(module)] Error in '\(callSite)': \(message)")
+    let string: String = "[\(module)] Error in '\(callSite)': \(message)"
+
+    NSLog(string)
 #endif
 }
