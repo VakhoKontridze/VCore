@@ -445,7 +445,7 @@ extension UIApplication {
 #endif
 
 // MARK: - Debugging
-@available(*, unavailable, message: "Use method without `module` parameters")
+@available(*, unavailable, message: "Use method without `module` parameter")
 public func VCoreLogWarning(
     _ message: String,
     module: String,
@@ -454,7 +454,7 @@ public func VCoreLogWarning(
     function: String = #function
 ) {}
 
-@available(*, unavailable, message: "Use method without `module` parameters")
+@available(*, unavailable, message: "Use method without `module` parameter")
 public func VCoreLogError(
     _ items: Any...,
     module: String,
