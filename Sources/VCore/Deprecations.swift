@@ -448,7 +448,7 @@ extension UIApplication {
 @available(*, unavailable, message: "Use method without `module` parameters")
 public func VCoreLogWarning(
     _ message: String,
-    module: String = "VCore",
+    module: String,
     file: String = #file,
     line: UInt = #line,
     function: String = #function
@@ -457,7 +457,7 @@ public func VCoreLogWarning(
 @available(*, unavailable, message: "Use method without `module` parameters")
 public func VCoreLogError(
     _ items: Any...,
-    module: String = "VCore",
+    module: String,
     file: String = #file,
     line: UInt = #line,
     function: String = #function
