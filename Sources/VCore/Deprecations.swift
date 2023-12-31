@@ -443,3 +443,22 @@ extension UIApplication {
 }
 
 #endif
+
+// MARK: - Debugging
+@available(*, unavailable, message: "Use method without `module` parameters")
+public func VCoreLogWarning(
+    _ message: String,
+    module: String = "VCore",
+    file: String = #file,
+    line: UInt = #line,
+    function: String = #function
+) {}
+
+@available(*, unavailable, message: "Use method without `module` parameters")
+public func VCoreLogError(
+    _ items: Any...,
+    module: String = "VCore",
+    file: String = #file,
+    line: UInt = #line,
+    function: String = #function
+) {}

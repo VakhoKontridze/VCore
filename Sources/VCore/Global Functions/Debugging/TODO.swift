@@ -16,10 +16,16 @@ import Foundation
 ///
 public func TODO(
     _ message: String? = nil,
+    dsohandle: UnsafeRawPointer = #dsohandle,
     file: String = #file,
-    line: Int = #line,
+    line: UInt = #line,
     function: String = #function
 ) -> Never {
+#if DEBUG
+    let module: String = moduleDescription(
+        dsohandle: dsohandle
+    )
+
     let callSite: String = callSiteDescription(
         file: file,
         line: line,
@@ -27,8 +33,11 @@ public func TODO(
     )
 
     var string: String = ""
-    string += "TODO: Feature not implemented in '\(callSite)'"
+    string += "[\(module)] TODO not implemented in '\(callSite)'"
     message.map { string += ": \($0)" }
 
-    fatalError(string)
+    NSLog(string)
+#endif
+
+    fatalError()
 }

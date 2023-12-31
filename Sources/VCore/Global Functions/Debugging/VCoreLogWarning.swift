@@ -14,12 +14,16 @@ import Foundation
 ///
 public func VCoreLogWarning(
     _ message: String,
-    module: String = "VCore",
+    dsohandle: UnsafeRawPointer = #dsohandle,
     file: String = #file,
-    line: Int = #line,
+    line: UInt = #line,
     function: String = #function
 ) {
 #if DEBUG
+    let module: String = moduleDescription(
+        dsohandle: dsohandle
+    )
+
     let callSite: String = callSiteDescription(
         file: file,
         line: line,

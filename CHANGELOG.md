@@ -9,7 +9,7 @@ Extensions
 
 Global Functions
 
-- `FIXME(_:file:line:function:)` method is added
+- `FIXME(_:dsohandle:file:line:function:)` method is added
 
 ### [5.2.1(88)](https://github.com/VakhoKontridze/VCore/releases/tag/5.2.1) — *2023 12 08*
 

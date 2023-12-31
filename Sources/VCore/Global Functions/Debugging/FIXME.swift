@@ -16,10 +16,16 @@ import Foundation
 ///
 public func FIXME(
     _ message: String? = nil,
+    dsohandle: UnsafeRawPointer = #dsohandle,
     file: String = #file,
-    line: Int = #line,
+    line: UInt = #line,
     function: String = #function
 ) -> Never {
+#if DEBUG
+    let module: String = moduleDescription(
+        dsohandle: dsohandle
+    )
+
     let callSite: String = callSiteDescription(
         file: file,
         line: line,
@@ -27,8 +33,11 @@ public func FIXME(
     )
 
     var string: String = ""
-    string += "FIXME: Feature not implemented in '\(callSite)'"
+    string += "[\(module)] FIXME not implemented in '\(callSite)'"
     message.map { string += ": \($0)" }
 
-    fatalError(string)
+    NSLog(string)
+#endif
+
+    fatalError()
 }

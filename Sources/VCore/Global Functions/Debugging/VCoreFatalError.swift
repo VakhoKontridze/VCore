@@ -14,11 +14,11 @@ import Foundation
 ///
 public func VCoreFatalError(
     _ items: Any...,
-    module: String = "VCore",
+    dsohandle: UnsafeRawPointer = #dsohandle,
     file: String = #file,
-    line: Int = #line,
+    line: UInt = #line,
     function: String = #function
 ) -> Never {
-    VCoreLogError(items, module: module, file: file, line: line, function: function)
+    VCoreLogError(items, dsohandle: dsohandle, file: file, line: line, function: function)
     fatalError()
 }

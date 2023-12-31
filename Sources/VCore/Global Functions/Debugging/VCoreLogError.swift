@@ -14,14 +14,24 @@ import Foundation
 ///
 public func VCoreLogError(
     _ items: Any...,
-    module: String = "VCore",
+    dsohandle: UnsafeRawPointer = #dsohandle,
     file: String = #file,
-    line: Int = #line,
+    line: UInt = #line,
     function: String = #function
 ) {
 #if DEBUG
-    let description: String = {
-        let descriptions: [String] = items.map { item in
+    let module: String = moduleDescription(
+        dsohandle: dsohandle
+    )
+
+    let callSite: String = callSiteDescription(
+        file: file,
+        line: line,
+        function: function
+    )
+
+    let message: String = {
+        let messages: [String] = items.map { item in
             switch item {
             case let error as Error:
                 if let error = error as? VCoreError {
@@ -38,20 +48,16 @@ public func VCoreLogError(
             }
         }
         
-        var description: String = descriptions.joined(separator: ". ")
+        var message: String = messages.joined(separator: ". ")
         
-        if description.last != "." { description.append(".") }
-        description = description.replacingOccurrences(of: ".. ", with: ". ")
-        
-        return description
-    }()
-    
-    let callSite: String = callSiteDescription(
-        file: file,
-        line: line,
-        function: function
-    )
+        if messages.count > 1 {
+            if message.last != "." { message.append(".") }
+            message = message.replacingOccurrences(of: ".. ", with: ". ")
+        }
 
-    NSLog("[\(module)] Error in '\(callSite)': \(description)")
+        return message
+    }()
+
+    NSLog("[\(module)] Error in '\(callSite)': \(message)")
 #endif
 }
