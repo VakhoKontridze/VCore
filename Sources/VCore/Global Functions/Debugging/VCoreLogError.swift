@@ -46,8 +46,12 @@ public func VCoreLogError(
         return description
     }()
     
-    let file: String = file.components(separatedBy: "/").last ?? file
-    
-    NSLog("[\(module)] Error in '\(function)' in '\(file)(\(line))': \(description)")
+    let callSite: String = callSiteDescription(
+        file: file,
+        line: line,
+        function: function
+    )
+
+    NSLog("[\(module)] Error in '\(callSite)': \(description)")
 #endif
 }

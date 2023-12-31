@@ -27,7 +27,7 @@ Package files are grouped as:
 
 - ***Extensions***. Global extensions.
 
-- ***Global Functions***. Global functions. For instance, `TODO`.
+- ***Global Functions***. Global functions. For instance, `FIXME` and `TODO`.
 
 - ***API***. Objects used for interfacing from you app/package to `VCore`. For instance, `VCoreLocalizationManager`.
 

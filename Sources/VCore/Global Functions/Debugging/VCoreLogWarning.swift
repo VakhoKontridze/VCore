@@ -20,8 +20,12 @@ public func VCoreLogWarning(
     function: String = #function
 ) {
 #if DEBUG
-    let file: String = file.components(separatedBy: "/").last ?? file
-    
-    NSLog("[\(module)] Warning in '\(function)' in '\(file)(\(line))': \(message)")
+    let callSite: String = callSiteDescription(
+        file: file,
+        line: line,
+        function: function
+    )
+
+    NSLog("[\(module)] Warning in '\(callSite)': \(message)")
 #endif
 }
