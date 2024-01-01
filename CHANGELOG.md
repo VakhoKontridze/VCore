@@ -6,6 +6,7 @@ Extensions
 
 - `Set.insert(contentsOf:)` method is added, that inserts `Sequence` in the `Set`
 - Setter is added to `StringProtocol.subscript(_:)`
+- `Bundle.name` property is added that returns the `Bundle` name
 
 Global Functions
 

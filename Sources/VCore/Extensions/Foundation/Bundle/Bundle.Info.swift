@@ -11,12 +11,20 @@ import Foundation
 extension Bundle {
     /// App display name.
     ///
+    ///     let name: String? = Bundle.main.name
+    ///
+    public var name: String? {
+        object(forInfoDictionaryKey: "CFBundleName") as? String
+    }
+
+    /// App display name.
+    ///
     ///     let displayName: String? = Bundle.main.displayName
     ///
     public var displayName: String? {
         object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
     }
-    
+
     /// App version.
     ///
     ///     let version: String? = Bundle.main.version
