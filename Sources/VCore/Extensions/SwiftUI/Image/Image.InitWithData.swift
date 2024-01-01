@@ -26,7 +26,8 @@ extension Image {
         guard
             let uiImage: UIImage = .init(data: data)
         else {
-            VCoreFatalError("Could not initialize 'UIImage' from the specified data.")
+            VCoreLogError("Could not initialize 'UIImage' from the specified data.")
+            fatalError()
         }
         
         self.init(uiImage: uiImage)
@@ -35,7 +36,8 @@ extension Image {
         guard
             let nsImage: NSImage = .init(data: data)
         else {
-            VCoreFatalError("Could not initialize 'NSImage' from the specified data.")
+            VCoreLogError("Could not initialize 'NSImage' from the specified data.")
+            fatalError()
         }
         
         self.init(nsImage: nsImage)

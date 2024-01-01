@@ -130,7 +130,8 @@ extension UITableView {
         guard
             let cell = dequeueReusableCell(withIdentifier: parameter.reuseID) as? any ConfigurableUITableViewCell
         else {
-            VCoreFatalError("Unable to dequeue a cell with identifier '\(parameter.reuseID)'")
+            VCoreLogError("Unable to dequeue a cell with identifier '\(parameter.reuseID)'")
+            fatalError()
         }
         
         cell.configure(parameter: parameter)

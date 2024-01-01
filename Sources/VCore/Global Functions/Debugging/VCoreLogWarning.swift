@@ -13,15 +13,15 @@ import Foundation
 ///     VCoreLogWarning(error)
 ///
 public func VCoreLogWarning(
-    _ message: String,
-    dsohandle: UnsafeRawPointer = #dsohandle,
+    _ items: Any...,
+    fileID: String = #fileID,
     file: String = #file,
     line: UInt = #line,
     function: String = #function
 ) {
 #if DEBUG
     let module: String = moduleDescription(
-        dsohandle: dsohandle
+        fileID: fileID
     )
 
     let callSite: String = callSiteDescription(
@@ -29,6 +29,8 @@ public func VCoreLogWarning(
         line: line,
         function: function
     )
+
+    let message: String = .combiningDebugItems(items)
 
     let string: String = "[\(module)] Warning in '\(callSite)': \(message)"
 

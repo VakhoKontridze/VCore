@@ -301,7 +301,8 @@ public final class LocalizationManager {
     // MARK: Validation and Assertion
     private func assertIsAddedToBundle(_ locale: Locale) {
         guard bundleLocales.contains(where: { $0.isEquivalent(to: locale) }) else {
-            VCoreFatalError("Localization '\(locale.identifier)' is not added to the 'Bundle.main' or no files are localized")
+            VCoreLogError("Localization '\(locale.identifier)' is not added to the 'Bundle.main' or no files are localized")
+            fatalError()
         }
     }
     
@@ -311,7 +312,8 @@ public final class LocalizationManager {
     
     private func assertIsAdded(_ locale: Locale) {
         guard validateIsAdded(locale) else {
-            VCoreFatalError("Localization '\(locale.identifier)' is not added to 'LocalizationManager'")
+            VCoreLogError("Localization '\(locale.identifier)' is not added to 'LocalizationManager'")
+            fatalError()
         }
     }
 }

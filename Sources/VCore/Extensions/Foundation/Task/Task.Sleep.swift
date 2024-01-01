@@ -18,7 +18,10 @@ extension Task where Success == Never, Failure == Never {
     ///     try Task.sleep(seconds: 1)
     ///
     public static func sleep(seconds duration: TimeInterval) async throws {
-        guard duration >= 0 else { VCoreFatalError("'duration' must be greater than or equal to '0'") }
+        guard duration >= 0 else {
+            VCoreLogError("'duration' must be greater than or equal to '0'")
+            fatalError()
+        }
 
         try await sleep(nanoseconds: UInt64(duration * 1_000_000_000))
     }

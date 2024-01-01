@@ -15,15 +15,15 @@ import Foundation
 ///     }
 ///
 public func FIXME(
-    _ message: String? = nil,
-    dsohandle: UnsafeRawPointer = #dsohandle,
+    _ message: @autoclosure () -> String? = nil,
+    fileID: String = #fileID,
     file: String = #file,
     line: UInt = #line,
     function: String = #function
 ) -> Never {
 #if DEBUG
     let module: String = moduleDescription(
-        dsohandle: dsohandle
+        fileID: fileID
     )
 
     let callSite: String = callSiteDescription(
@@ -32,15 +32,8 @@ public func FIXME(
         function: function
     )
 
-    let string: String = {
-        var string: String = ""
-        
-        string += "[\(module)] FIXME not implemented in '\(callSite)'"
-
-        message.map { string += ": \($0)" }
-
-        return string
-    }()
+    var string: String = "[\(module)] FIXME not implemented in '\(callSite)'"
+    message().map { string += ": \($0)" }
 
     NSLog(string)
 #endif

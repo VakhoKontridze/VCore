@@ -462,3 +462,15 @@ public func VCoreLogError(
     line: UInt = #line,
     function: String = #function
 ) {}
+
+@available(*, deprecated, message: "Use logging methods with `fatalError`")
+public func VCoreFatalError(
+    _ items: Any...,
+    fileID: String = #fileID,
+    file: String = #file,
+    line: UInt = #line,
+    function: String = #function
+) -> Never {
+    VCoreLogError(items, fileID: fileID, file: file, line: line, function: function)
+    fatalError()
+}

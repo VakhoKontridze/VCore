@@ -90,12 +90,14 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         collectionView: UICollectionView
     ) {
         guard scrollDirection == .horizontal else {
-            VCoreFatalError("'scrollDirection' must be set to 'horizontal'")
+            VCoreLogError("'scrollDirection' must be set to 'horizontal'")
+            fatalError()
         }
         
 #if !os(tvOS)
         guard !collectionView.isPagingEnabled else {
-            VCoreFatalError("'isPagingEnabled' must be set to 'false'")
+            VCoreLogError("'isPagingEnabled' must be set to 'false'")
+            fatalError()
         }
 #endif
         
@@ -103,7 +105,8 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             let flowDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout,
             delegateSupportsSizeForItem(collectionView: collectionView, flowDelegate: flowDelegate)
         {
-            VCoreFatalError("'collectionView(_:layout:sizeForItemAt:)' should not be implemented")
+            VCoreLogError("'collectionView(_:layout:sizeForItemAt:)' should not be implemented")
+            fatalError()
         }
     }
     
