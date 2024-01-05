@@ -35,8 +35,8 @@ Views
 
 Models
 
-- `map(_:)` method is added to `EdgeInsets`, that returns itself containing the results of mapping the given closure over the values.
-- `map(_:)` method is added to `GenericStateModels`, that returns itself containing the results of mapping the given closure over the values.
+- `map(_:)` method is added to `EdgeInsets`s, that returns itself containing the results of mapping the given closure over the values
+- `map(_:)` method is added to `GenericStateModel`s, that returns itself containing the results of mapping the given closure over the values
 
 Extensions
 
