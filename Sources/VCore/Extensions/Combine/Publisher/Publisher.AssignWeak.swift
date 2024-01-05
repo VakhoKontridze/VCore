@@ -15,11 +15,14 @@ extension Publisher where Failure == Never {
     ///     final class SomeClass {
     ///         var value: Int = 0
     ///
-    ///         let publisher: PassthroughSubject<Int, Never> = .init()
+    ///         private let publisher: PassthroughSubject<Int, Never> = .init()
+    ///         private var subscriptions: Set<AnyCancellable> = []
     ///
-    ///         var subscriptions: Set<AnyCancellable> = []
+    ///         init() {
+    ///             addSubscriptions()
+    ///         }
     ///
-    ///         func addSubscriptions() {
+    ///         private func addSubscriptions() {
     ///             publisher
     ///                 .assignWeak(to: \.value, on: self)
     ///                 .store(in: &subscriptions)
