@@ -1,5 +1,5 @@
 //
-//  View.BlockModifier.swift
+//  View.ApplyModifier.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 23.03.23.
