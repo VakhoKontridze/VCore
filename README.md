@@ -15,9 +15,7 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 
 ## Structure
 
-Package files are grouped as main source files under `VCore`, and macros under `VCoreMacros`.
-
-`VCore` contains:
+Package files are grouped as:
 
 - ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `MultiPartFormDataBuilder`.
 
@@ -31,11 +29,9 @@ Package files are grouped as main source files under `VCore`, and macros under `
 
 - ***Global Functions***. Global functions. For instance, `FIXME` and `TODO`.
 
-- ***API***. Objects used for interfacing from you app/package to `VCore`. For instance, `VCoreLocalizationManager`.
-
-`VCoreMacros` contains:
-
 - ***Macros***. Macros. For instance, `URL(_:)`.
+
+- ***API***. Objects used for interfacing from you app/package to `VCore`. For instance, `VCoreLocalizationManager`.
 
 Package incudes folder `Extra`, which contains:
 
