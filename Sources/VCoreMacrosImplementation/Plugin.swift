@@ -12,6 +12,7 @@ import SwiftSyntaxMacros
 // MARK: - Plugin
 @main struct Plugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
+        CaseDetectionMacro.self,
         URLMacro.self
     ]
 }
