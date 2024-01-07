@@ -16,16 +16,24 @@ struct CaseDetectionMacro: MemberMacro {
         providingMembersOf declaration: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        try declaration.memberBlock.members
+        guard
+            let enumName: String = declaration.as(EnumDeclSyntax.self)?.name.text
+        else {
+            throw CaseDetectionMacroError.cannotRetrieveName
+        }
+
+        let accessLevelModifier: String = declaration.accessLevelModifier.map { "\($0) " } ?? ""
+
+        return try declaration.memberBlock.members
             .compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
             .map { enumCase in
                 guard
-                    let name: TokenSyntax = enumCase.elements.first?.name
+                    let enumCaseName: TokenSyntax = enumCase.elements.first?.name
                 else {
                     throw CaseDetectionMacroError.cannotRetrieveMemberName
                 }
 
-                return name
+                return enumCaseName
             }
             .map { name in
                 let firstCharUppercasedName: String = {
@@ -39,7 +47,8 @@ struct CaseDetectionMacro: MemberMacro {
                 }()
 
                 return """
-                var is\(raw: firstCharUppercasedName): Bool {
+                /// Indicates if `\(raw: enumName)` is `\(raw: name)`.
+                \(raw: accessLevelModifier)var is\(raw: firstCharUppercasedName): Bool {
                     if case .\(raw: name) = self {
                         true
                     } else {
@@ -63,5 +72,6 @@ struct CaseDetectionMacroError: Error, CustomStringConvertible {
         self.description = description
     }
 
+    static var cannotRetrieveName: Self { .init("Cannot retrieve name") } // Cannot be tested
     static var cannotRetrieveMemberName: Self { .init("Cannot retrieve member name") } // Cannot be tested
 }
