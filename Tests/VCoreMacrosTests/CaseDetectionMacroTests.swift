@@ -25,26 +25,26 @@ final class CaseDetectionMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CaseDetection
-            enum Gender {
-                case male
-                case female
+            enum PixelPointMeasurement {
+                case pixel
+                case point(displayScale: CGFloat)
             }
             """,
             expandedSource: """
-                enum Gender {
-                    case male
-                    case female
+                enum PixelPointMeasurement {
+                    case pixel
+                    case point(displayScale: CGFloat)
 
-                    var isMale: Bool {
-                        if case .male = self {
+                    var isPixel: Bool {
+                        if case .pixel = self {
                             true
                         } else {
                             false
                         }
                     }
 
-                    var isFemale: Bool {
-                        if case .female = self {
+                    var isPoint: Bool {
+                        if case .point = self {
                             true
                         } else {
                             false
