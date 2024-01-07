@@ -24,26 +24,28 @@ final class CaseDetectionMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CaseDetection
-            enum PixelPointMeasurement {
-                case pixel
-                case point(displayScale: CGFloat)
+            public enum PointPixelMeasurement {
+                case points(displayScale: CGFloat)
+                case pixels
             }
             """,
             expandedSource: """
-                enum PixelPointMeasurement {
-                    case pixel
-                    case point(displayScale: CGFloat)
+                public enum PointPixelMeasurement {
+                    case points(displayScale: CGFloat)
+                    case pixels
 
-                    var isPixel: Bool {
-                        if case .pixel = self {
+                    /// Indicates if `PointPixelMeasurement` is `points`.
+                    public var isPoints: Bool {
+                        if case .points = self {
                             true
                         } else {
                             false
                         }
                     }
 
-                    var isPoint: Bool {
-                        if case .point = self {
+                    /// Indicates if `PointPixelMeasurement` is `pixels`.
+                    public var isPixels: Bool {
+                        if case .pixels = self {
                             true
                         } else {
                             false

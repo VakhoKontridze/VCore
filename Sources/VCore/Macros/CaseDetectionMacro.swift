@@ -11,13 +11,13 @@ import Foundation
 /// Adds computed properties to `enum` to represent each `case`.
 ///
 ///     @CaseDetection
-///     enum PixelPointMeasurement {
-///         case pixel
-///         case point(displayScale: CGFloat)
+///     enum PointPixelMeasurement {
+///         case points(displayScale: CGFloat)
+///         case pixels
 ///     }
 ///
-///     let measurement: PixelPointMeasurement = ...
-///     measurement.isPoint // true
+///     let measurement: PointPixelMeasurement = ...
+///     measurement.isPoints // true
 ///
 @attached(member, names: arbitrary)
 public macro CaseDetection() = #externalMacro(
