@@ -37,7 +37,7 @@ struct CaseDetectionMacro: MemberMacro {
             }
             .map { name in
                 let firstCharUppercasedName: String = {
-                    let string: String = name.text
+                    let string: String = name.text.removingReservedKeywordBackticks()
 
                     if let initial = string.first {
                         return "\(initial.uppercased())\(string.dropFirst())"
