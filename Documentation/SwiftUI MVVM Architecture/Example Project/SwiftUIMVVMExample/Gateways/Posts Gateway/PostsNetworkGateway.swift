@@ -7,7 +7,6 @@
 
 import Foundation
 import VCore
-import VCoreMacros
 
 // MARK: - Posts Network Gateway
 struct PostsNetworkGateway: PostsGateway {

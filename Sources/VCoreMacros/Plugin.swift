@@ -1,6 +1,6 @@
 //
 //  Plugin.swift
-//  VCoreMacrosImplementation
+//  VCoreMacros
 //
 //  Created by Vakhtang Kontridze on 07.01.24.
 //

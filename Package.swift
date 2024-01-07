@@ -18,52 +18,38 @@ let package: Package = .init(
         .library(
             name: "VCore",
             targets: [
-                "VCore",
-                "VCoreMacros"
+                "VCore"
             ]
         )
     ],
 
     dependencies: [
-        .package(url: "https://github.com/apple/swift-syntax.git", from: "509.0.0")
+        .package(url: "https://github.com/apple/swift-syntax.git", from: "509.0.2")
     ],
 
     targets: [
         .target(
             name: "VCore",
+            dependencies: [
+                "VCoreMacros"
+            ],
             exclude: [
                 "../../Documentation",
                 "../../Extra"
             ]
         ),
+        .macro(
+            name: "VCoreMacros",
+            dependencies: [
+                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+                .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
+            ]
+        ),
         .testTarget(
             name: "VCoreTests",
             dependencies: [
-                "VCore",
-                "VCoreMacros",
-                "VCoreMacrosImplementation"
-            ]
-        ),
-
-        .macro(
-            name: "VCoreMacrosImplementation",
-            dependencies: [
-                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-                .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
-                "VCore"
-            ]
-        ),
-        .target(
-            name: "VCoreMacros",
-            dependencies: [
-                "VCore",
-                "VCoreMacrosImplementation"
-            ]
-        ),
-        .testTarget(
-            name: "VCoreMacrosTests",
-            dependencies: [
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
+                "VCore",
                 "VCoreMacros"
             ]
         )

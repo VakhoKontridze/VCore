@@ -16,6 +16,6 @@ import Foundation
 public macro URL(
     _ stringLiteral: String
 ) -> URL = #externalMacro(
-    module: "VCoreMacrosImplementation",
+    module: "VCoreMacros",
     type: "URLMacro"
 )

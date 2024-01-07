@@ -7,7 +7,6 @@
 
 import XCTest
 @testable import VCore
-@testable import VCoreMacros
 
 // MARK: - Tests
 final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
