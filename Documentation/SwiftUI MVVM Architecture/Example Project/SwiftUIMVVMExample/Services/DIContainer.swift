@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import VCore
 
 // MARK: - DI Container
 final class DIContainer {
@@ -33,18 +34,11 @@ extension DIContainer {
             _ object: @autoclosure () -> T,
             preview previewObject: @autoclosure () -> T
         ) -> T {
-            if ProcessInfo.processInfo.isSwiftUIPreview {
+            if ProcessInfo.processInfo.isPreview {
                 return previewObject()
             } else {
                 return object()
             }
         }
-    }
-}
-
-// MARK: - Process Info Is SwiftUI Preview
-extension ProcessInfo {
-    fileprivate var isSwiftUIPreview: Bool {
-        environment["XCODE_RUNNING_FOR_PREVIEWS"] == "1"
     }
 }
