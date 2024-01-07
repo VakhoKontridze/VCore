@@ -68,7 +68,10 @@ final class PostsPresenter<View, Router, Interactor>: PostsPresentable
     // MARK: Requests
     private func fetchPosts() {
         guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
-            view.presentAlert(parameters: UIAlertParameters(error: URLError(.notConnectedToInternet), completion: nil))
+            view.presentAlert(parameters: UIAlertParameters(
+                error: URLError(.notConnectedToInternet),
+                completion: nil
+            ))
             return
         }
 

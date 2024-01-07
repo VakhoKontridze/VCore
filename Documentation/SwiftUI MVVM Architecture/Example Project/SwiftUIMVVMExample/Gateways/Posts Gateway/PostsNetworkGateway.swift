@@ -7,12 +7,12 @@
 
 import Foundation
 import VCore
+import VCoreMacros
 
 // MARK: - Posts Network Gateway
 struct PostsNetworkGateway: PostsGateway {
     func fetch() async throws -> PostsEntity {
-        let urlString: String = "https://jsonplaceholder.typicode.com/posts"
-        guard let url: URL = .init(string: urlString) else { throw URLError(.badURL) }
+        let url: URL = #URL("https://jsonplaceholder.typicode.com/posts")
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = "GET"

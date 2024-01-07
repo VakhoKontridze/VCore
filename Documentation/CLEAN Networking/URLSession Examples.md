@@ -192,8 +192,7 @@ struct EchoEntity: Decodable {
 
 struct EchoNetworkGateway: EchoGateway {
     func fetch(with parameters: EchoGatewayParameters) async throws -> EchoEntity {
-        let urlString: String = "https://httpbin.org/post"
-        guard let url: URL = .init(string: urlString) else { throw URLError(.badURL) }
+        let url: URL = #URL("https://httpbin.org/post")
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = "POST"

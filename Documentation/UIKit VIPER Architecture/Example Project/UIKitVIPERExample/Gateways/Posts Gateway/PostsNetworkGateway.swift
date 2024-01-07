@@ -11,8 +11,7 @@ import VCore
 // MARK: - Posts Network Gateway
 struct PostsNetworkGateway: PostsGateway {
     func fetch(completion: @escaping (Result<PostsEntity, any Error>) -> Void) {
-        let urlString: String = "https://jsonplaceholder.typicode.com/posts"
-        guard let url: URL = .init(string: urlString) else { completion(.failure(URLError(.badURL))); return }
+        let url: URL = #URL("https://jsonplaceholder.typicode.com/posts")
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = "GET"

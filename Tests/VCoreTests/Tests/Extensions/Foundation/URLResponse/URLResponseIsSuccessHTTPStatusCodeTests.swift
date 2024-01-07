@@ -7,12 +7,13 @@
 
 import XCTest
 @testable import VCore
+@testable import VCoreMacros
 
 // MARK: - Tests
 final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
     func testSuccess() {
         let urlResponse: HTTPURLResponse = .init(
-            url: URL(string: "https://www.apple.com")!, // Force-unwrap
+            url: #URL("https://www.apple.com"),
             statusCode: (200...299).randomElement()!, // Force-unwrap
             httpVersion: nil,
             headerFields: nil
@@ -25,7 +26,7 @@ final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
     
     func testFailure() {
         let urlResponse: HTTPURLResponse = .init(
-            url: URL(string: "https://www.apple.com")!, // Force-unwrap
+            url: #URL("https://www.apple.com"),
             statusCode: 404,
             httpVersion: nil,
             headerFields: nil

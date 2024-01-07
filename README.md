@@ -80,7 +80,7 @@ let (boundary, httpData): (String, Data) = try MultipartFormDataBuilder().build(
     files: files
 )
 
-guard let url: URL = .init(string: "https://somewebsite.com/api/some_endpoint") else { throw URLError(.badURL) }
+let url: URL = #URL("https://somewebsite.com/api/some_endpoint")
 
 var request: URLRequest = .init(url: url)
 request.httpMethod = "POST"
