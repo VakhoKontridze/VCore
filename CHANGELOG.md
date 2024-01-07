@@ -7,7 +7,6 @@ Extensions
 - `Set.insert(contentsOf:)` method is added, that inserts `Sequence` in the `Set`
 - Setter is added to `StringProtocol.subscript(_:)`
 - `Bundle.name` property is added that returns the `Bundle` name
-- `DeclGroupSyntax.accessLevelModifier` is added, that returns access level modifier as `String`
 
 Global Functions
 
