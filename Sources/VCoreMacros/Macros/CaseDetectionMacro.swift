@@ -16,16 +16,17 @@ struct CaseDetectionMacro: MemberMacro {
         providingMembersOf declaration: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        // Parameter - accessLevelModifier
+        // `accessLevelModifier` parameter
         let accessLevelModifier: String = try {
             guard
-                let argument: LabeledExprSyntax? = node.arguments?.toArgumentListGetAssociatedValue()?.first
+                let argument: LabeledExprSyntax? = node.arguments?.toArgumentListGetAssociatedValue()?
+                    .first(where: { $0.label?.text == "accessLevelModifier" })
             else {
-                return "internal" // Macro has a default value
+                return "internal" // Default value
             }
 
             guard
-                let value: String = argument?.toStringValue
+                let value: String = argument?.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue
             else {
                 throw CaseDetectionMacroError.invalidAccessLevelModifierParameter
             }
@@ -33,30 +34,24 @@ struct CaseDetectionMacro: MemberMacro {
             return value
         }()
 
-        // Enum name
+        // Limits declaration to enums
         guard
-            let enumDeclaration: EnumDeclSyntax = declaration.as(EnumDeclSyntax.self)
+            declaration.is(EnumDeclSyntax.self)
         else {
             throw CaseDetectionMacroError.canOnlyBeAppliedToEnums
         }
 
-        let enumName: String = enumDeclaration.name.text
+        // Enum cases
+        let enumCases: [EnumCaseElementSyntax] = declaration.memberBlock.members
+            .compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
+            .flatMap { $0.elements } // Retrieves all cases from the same line
 
-        // Enum case names
-        let enumCaseNames: [String] = try declaration.memberBlock.members
-            .compactMap { $0.decl.as(EnumCaseDeclSyntax.self) } // Omits non-case members
-            .map { enumCase in
-                guard
-                    let enumCaseNameToken: TokenSyntax = enumCase.elements.first?.name
-                else {
-                    throw CaseDetectionMacroError.invalidCaseName
-                }
+        // Result
+        var result: [DeclSyntax] = []
 
-                return enumCaseNameToken.text.removingReservedKeywordBackticks()
-            }
+        for enumCase in enumCases {
+            let enumCaseName: String = enumCase.name.text.removingReservedKeywordBackticks()
 
-        // Expression
-        return enumCaseNames.map { enumCaseName in
             let firstCharUppercasedName: String = {
                 if let firstChar: Character = enumCaseName.first {
                     return "\(firstChar.uppercased())\(enumCaseName.dropFirst())"
@@ -65,7 +60,7 @@ struct CaseDetectionMacro: MemberMacro {
                 }
             }()
 
-            return 
+            result.append(
                 """
                 \(raw: accessLevelModifier) var is\(raw: firstCharUppercasedName): Bool {
                     if case .\(raw: enumCaseName) = self {
@@ -75,7 +70,10 @@ struct CaseDetectionMacro: MemberMacro {
                     }
                 }
                 """
+            )
         }
+
+        return result
     }
 }
 
@@ -93,5 +91,4 @@ struct CaseDetectionMacroError: Error, CustomStringConvertible {
 
     static var invalidAccessLevelModifierParameter: Self { .init("Invalid access level modifier parameter") }
     static var canOnlyBeAppliedToEnums: Self { .init("'CaseDetection' macro can only be applied to an 'enum'") }
-    static var invalidCaseName: Self { .init("Invalid case name") }
 }

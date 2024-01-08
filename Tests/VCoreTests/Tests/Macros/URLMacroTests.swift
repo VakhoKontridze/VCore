@@ -20,6 +20,20 @@ final class URLMacroTests: XCTestCase {
     private let macros: [String: Macro.Type] = ["URL": URLMacro.self]
 
     // MARK: Tests
+    func testValid() {
+        assertMacroExpansion(
+            """
+            let url: URL = #URL("https://example.com")
+            """,
+            expandedSource:
+                """
+                let url: URL = URL(string: "https://example.com")!
+                """
+            ,
+            macros: macros
+        )
+    }
+
     func testStringLiteralRequired() {
         assertMacroExpansion(
             """
@@ -52,20 +66,6 @@ final class URLMacroTests: XCTestCase {
             diagnostics: [
                 DiagnosticSpec(message: URLMacroError.malformedURL.description, line: 1, column: 16)
             ],
-            macros: macros
-        )
-    }
-
-    func testValid() {
-        assertMacroExpansion(
-            """
-            let url: URL = #URL("https://example.com")
-            """,
-            expandedSource: 
-                """
-                let url: URL = URL(string: "https://example.com")!
-                """
-            ,
             macros: macros
         )
     }

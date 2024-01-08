@@ -12,7 +12,7 @@ import Foundation
 ///
 ///     @CaseDetection
 ///     enum PointPixelMeasurement {
-///         case points(displayScale: CGFloat)
+///         case points(displayScale: Int)
 ///         case pixels
 ///     }
 ///

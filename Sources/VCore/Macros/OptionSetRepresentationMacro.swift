@@ -10,7 +10,7 @@ import Foundation
 // MARK: - Option Set Representation Macro
 /// Generates an `OptionSet` from a `struct` that contains a nested `Options` `enum`.
 ///
-///     @OptionSetRepresentation<UInt8>
+///     @OptionSetRepresentation<Int>
 ///     struct Gender {
 ///         private enum Options: Int {
 ///             case male

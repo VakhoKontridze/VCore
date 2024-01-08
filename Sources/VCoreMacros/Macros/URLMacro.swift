@@ -15,27 +15,27 @@ struct URLMacro: ExpressionMacro {
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
-        // Parameter - urlString
-        let (urlStringArgument, urlString): (LabeledExprSyntax, String) = try {
+        // `urlString` parameter
+        let (urlString, urlStringExpression): (String, ExprSyntax) = try {
             guard
-                let argument: LabeledExprSyntax = node.argumentList.first,
-                let value: String = argument.toStringValue
+                let argument: LabeledExprSyntax = node.argumentList.first, // Only one argument, with no name
+                let value: String = argument.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue
             else {
                 throw URLMacroError.invalidURLStringParameter
             }
 
-            return (argument, value)
+            return (value, argument.expression)
         }()
 
-        // Check
+        // Checks compilation
         guard
             let _: URL = .init(string: urlString)
         else {
             throw URLMacroError.malformedURL
         }
 
-        // Expression
-        return "URL(string: \(urlStringArgument.expression))!" // Force-unwrap
+        // Result
+        return "URL(string: \(urlStringExpression))!" // Force-unwrap
     }
 }
 

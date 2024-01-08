@@ -16,7 +16,7 @@ extension String {
     ///
     public func removing(_ characterSet: CharacterSet) -> String {
         filter { char in
-            guard let unicodeScalar = char.unicodeScalars.first else { return false }
+            guard let unicodeScalar: Unicode.Scalar = char.unicodeScalars.first else { return false }
             return !characterSet.contains(unicodeScalar)
         }
     }

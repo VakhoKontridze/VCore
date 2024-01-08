@@ -19,49 +19,41 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         providingMembersOf decl: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        // Decodes expansion
+        // Expansion data
         let expansionData: ExpansionData = try decodeExpansion(
             attribute: attribute,
             declaration: decl,
             context: context
         )
 
-        // Retrieves option `enum` `case`s
+        // `Option` enum cases
         let optionEnumCases: [EnumCaseElementSyntax] = expansionData
             .optionsEnumDeclaration
             .memberBlock
             .members
-            .flatMap { member -> [EnumCaseElementSyntax] in
-                guard
-                    let caseDeclaration: EnumCaseDeclSyntax = member.decl.as(EnumCaseDeclSyntax.self)
-                else {
-                    return []
-                }
+            .compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
+            .flatMap { $0.elements } // Retrieves all cases from the same line
 
-                return Array(caseDeclaration.elements)
-            }
+        // Result
+        var result: [DeclSyntax] = []
 
-        // Expression
-        var expression: [DeclSyntax] = []
+        result.append("\(raw: expansionData.accessLevelModifier) typealias RawValue = \(expansionData.rawType)")
 
-        expression.append("\(raw: expansionData.accessLevelModifier) typealias RawValue = \(expansionData.rawType)")
+        result.append("\(raw: expansionData.accessLevelModifier) let rawValue: RawValue")
 
-        expression.append("\(raw: expansionData.accessLevelModifier) let rawValue: RawValue")
+        result.append("\(raw: expansionData.accessLevelModifier) init() { self.rawValue = 0 }") // Will be expanded
 
-        expression.append("\(raw: expansionData.accessLevelModifier) init() { self.rawValue = 0 }") // Will be expanded
-
-        expression.append("\(raw: expansionData.accessLevelModifier) init(rawValue: RawValue) { self.rawValue = rawValue }") // Will be expanded
+        result.append("\(raw: expansionData.accessLevelModifier) init(rawValue: RawValue) { self.rawValue = rawValue }") // Will be expanded
 
         for optionEnumCase in optionEnumCases {
-            // No comments are attached
-            expression.append(
+            result.append(
                 """
                 \(raw: expansionData.accessLevelModifier) static let \(optionEnumCase.name): Self = .init(rawValue: 1 << \(raw: expansionData.optionsEnumDeclaration.name).\(optionEnumCase.name).rawValue)
                 """
             )
         }
 
-        return expression
+        return result
     }
 
     // MARK: Extension Macro
@@ -72,7 +64,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [ExtensionDeclSyntax] {
-        // Decodes expansion
+        // Expansion data
         guard
             let expansionData: ExpansionData = try? decodeExpansion(
                 attribute: node,
@@ -83,7 +75,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             return [] // Errors are thrown from `MemberMacro`
         }
 
-        // Expression.
+        // Result.
         // Skips conformance, if it already exits.
         if
             let inheritedTypes: InheritedTypeListSyntax = expansionData.structDeclaration.inheritanceClause?.inheritedTypes,
@@ -115,13 +107,14 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         // Parameter - accessLevelModifier
         let accessLevelModifier: String = try {
             guard
-                let argument: LabeledExprSyntax? = attribute.arguments?.toArgumentListGetAssociatedValue()?.first
+                let argument: LabeledExprSyntax? = attribute.arguments?.toArgumentListGetAssociatedValue()?
+                    .first(where: { $0.label?.text == "accessLevelModifier" })
             else {
-                return "internal" // Macro has a default value
+                return "internal" // Default value
             }
 
             guard
-                let value: String = argument?.toStringValue
+                let value: String = argument?.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue
             else {
                 throw OptionSetRepresentationMacroError.invalidAccessLevelModifierParameter
             }
@@ -129,18 +122,16 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             return value
         }()
 
-        // Limits declaration to `struct`s
+        // Limits declaration to structs
         guard
             let structDeclaration: StructDeclSyntax = declaration.as(StructDeclSyntax.self)
         else {
             throw OptionSetRepresentationMacroError.canOnlyBeAppliedToStructs
         }
 
-        // Retrieves options `enum` within the `struct`
+        // `Option` enum within the struct
         guard
-            let optionsEnumDeclaration: EnumDeclSyntax = declaration
-                .memberBlock
-                .members
+            let optionsEnumDeclaration: EnumDeclSyntax = declaration.memberBlock.members
                 .first(where: { member in
                     guard
                         let enumDeclaration: EnumDeclSyntax = member.decl.as(EnumDeclSyntax.self),
@@ -151,16 +142,16 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
                     return true
                 })?
-                .decl
-                .as(EnumDeclSyntax.self)
+                .decl.as(EnumDeclSyntax.self)
         else {
             throw OptionSetRepresentationMacroError.optionsEnumNotFound
         }
 
-        // Retrieves raw type from options `enum`
-        guard 
-            let geneticArgument: GenericArgumentClauseSyntax = attribute.attributeName.as(IdentifierTypeSyntax.self)?.genericArgumentClause,
-            let rawType: TypeSyntax = geneticArgument.arguments.first?.argument
+        // Raw type from `Option` enum
+        guard
+            let geneticArgument: GenericArgumentClauseSyntax = attribute.attributeName.as(IdentifierTypeSyntax.self)?
+                .genericArgumentClause,
+            let rawType: TypeSyntax = geneticArgument.arguments.first?.argument // Only one raw type
         else {
             throw OptionSetRepresentationMacroError.optionsEnumRawTypeNotDeclared
         }

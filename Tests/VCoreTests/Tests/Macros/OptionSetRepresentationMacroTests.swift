@@ -23,7 +23,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
     func testSimpleStruct() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<UInt8>
+            @OptionSetRepresentation<Int>
             struct Gender {
                 private enum Options: Int {
                     case male
@@ -43,7 +43,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
 
                     static let all: Self = [.male, .female]
 
-                    internal typealias RawValue = UInt8
+                    internal typealias RawValue = Int
 
                     internal let rawValue: RawValue
 
@@ -71,7 +71,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
     func testNonStruct() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<UInt8>
+            @OptionSetRepresentation<Int>
             enum Gender {
                 case male
                 case female
@@ -95,7 +95,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
     func testAccessLevelModifier() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<UInt8>(accessLevelModifier: "public")
+            @OptionSetRepresentation<Int>(accessLevelModifier: "public")
             public struct Gender {
                 private enum Options: Int {
                     case male
@@ -111,7 +111,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                         case female
                     }
 
-                    public typealias RawValue = UInt8
+                    public typealias RawValue = Int
 
                     public let rawValue: RawValue
 
@@ -139,7 +139,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
     func testEmptyStruct() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<UInt8>
+            @OptionSetRepresentation<Int>
             struct Gender {}
             """,
             expandedSource: 
@@ -186,7 +186,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
     func testAlreadyConformsToOptionSet() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<UInt8>
+            @OptionSetRepresentation<Int>
             struct Gender: OptionSet {
                 private enum Options: Int {
                     case male
@@ -202,7 +202,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                         case female
                     }
 
-                    internal typealias RawValue = UInt8
+                    internal typealias RawValue = Int
 
                     internal let rawValue: RawValue
 
@@ -217,6 +217,48 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                     internal static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
 
                     internal static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
+                }
+                """
+            ,
+            macros: macros
+        )
+    }
+
+    func testSameLineCases() {
+        assertMacroExpansion(
+            """
+            @OptionSetRepresentation<Int>
+            struct Gender {
+                private enum Options: Int {
+                    case male, female
+                }
+            }
+            """,
+            expandedSource:
+                """
+                struct Gender {
+                    private enum Options: Int {
+                        case male, female
+                    }
+
+                    internal typealias RawValue = Int
+
+                    internal let rawValue: RawValue
+
+                    internal init() {
+                        self.rawValue = 0
+                    }
+
+                    internal init(rawValue: RawValue) {
+                        self.rawValue = rawValue
+                    }
+
+                    internal static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
+
+                    internal static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
+                }
+
+                extension Gender: OptionSet {
                 }
                 """
             ,

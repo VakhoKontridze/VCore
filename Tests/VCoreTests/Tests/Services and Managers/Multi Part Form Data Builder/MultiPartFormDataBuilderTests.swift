@@ -20,7 +20,7 @@ final class MultipartFormDataBuilderTests: XCTestCase {
     
     // MARK: Tests
     func test() async {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork != false else {
+        guard NetworkReachabilityService.shared.isConnectedToNetwork == true else {
             print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
             return
         }

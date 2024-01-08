@@ -24,17 +24,27 @@ final class CaseDetectionMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CaseDetection
-            enum SomeEnum {
-                case first
+            enum Gender {
+                case male
+                case female
             }
             """,
             expandedSource: 
                 """
-                enum SomeEnum {
-                    case first
+                enum Gender {
+                    case male
+                    case female
 
-                    internal var isFirst: Bool {
-                        if case .first = self {
+                    internal var isMale: Bool {
+                        if case .male = self {
+                            true
+                        } else {
+                            false
+                        }
+                    }
+
+                    internal var isFemale: Bool {
+                        if case .female = self {
                             true
                         } else {
                             false
@@ -51,11 +61,11 @@ final class CaseDetectionMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CaseDetection
-            enum SomeEnum {}
+            enum Gender {}
             """,
             expandedSource: 
                 """
-                enum SomeEnum {}
+                enum Gender {}
                 """
             ,
             macros: macros
@@ -84,17 +94,27 @@ final class CaseDetectionMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CaseDetection(accessLevelModifier: "fileprivate")
-            enum SomeEnum {
-                case first
+            enum Gender {
+                case male
+                case female
             }
             """,
             expandedSource: 
                 """
-                enum SomeEnum {
-                    case first
+                enum Gender {
+                    case male
+                    case female
 
-                    fileprivate var isFirst: Bool {
-                        if case .first = self {
+                    fileprivate var isMale: Bool {
+                        if case .male = self {
+                            true
+                        } else {
+                            false
+                        }
+                    }
+
+                    fileprivate var isFemale: Bool {
+                        if case .female = self {
                             true
                         } else {
                             false
@@ -111,13 +131,13 @@ final class CaseDetectionMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CaseDetection
-            enum SomeEnum {
+            enum Result {
                 case `false`
             }
             """,
             expandedSource: 
                 """
-                enum SomeEnum {
+                enum Result {
                     case `false`
 
                     internal var isFalse: Bool {
@@ -139,14 +159,14 @@ final class CaseDetectionMacroTests: XCTestCase {
             """
             @CaseDetection
             enum PointPixelMeasurement {
-                case points(displayScale: CGFloat)
+                case points(displayScale: Int)
                 case pixels
             }
             """,
             expandedSource: 
                 """
                 enum PointPixelMeasurement {
-                    case points(displayScale: CGFloat)
+                    case points(displayScale: Int)
                     case pixels
 
                     internal var isPoints: Bool {
@@ -188,6 +208,41 @@ final class CaseDetectionMacroTests: XCTestCase {
 
                     internal var isFirst: Bool {
                         if case .first = self {
+                            true
+                        } else {
+                            false
+                        }
+                    }
+                }
+                """
+            ,
+            macros: macros
+        )
+    }
+
+    func testSameLineCases() {
+        assertMacroExpansion(
+            """
+            @CaseDetection
+            enum Gender {
+                case male, female
+            }
+            """,
+            expandedSource:
+                """
+                enum Gender {
+                    case male, female
+
+                    internal var isMale: Bool {
+                        if case .male = self {
+                            true
+                        } else {
+                            false
+                        }
+                    }
+
+                    internal var isFemale: Bool {
+                        if case .female = self {
                             true
                         } else {
                             false

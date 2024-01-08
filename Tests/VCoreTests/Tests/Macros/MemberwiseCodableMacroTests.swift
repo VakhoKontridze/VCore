@@ -78,19 +78,19 @@ final class MemberwiseCodableMacroTests: XCTestCase {
             """
             @MemberwiseCodable(accessLevelModifier: "private")
             struct SomeStruct {
-                let name: String
-                let age: Int
+                let one: Int
+                let two: String
             }
             """,
             expandedSource: 
                 """
                 struct SomeStruct {
-                    let name: String
-                    let age: Int
+                    let one: Int
+                    let two: String
 
                     private enum CodingKeys: String, CodingKey {
-                        case name
-                        case age
+                        case one
+                        case two
                     }
                 }
                 """
@@ -104,8 +104,8 @@ final class MemberwiseCodableMacroTests: XCTestCase {
             """
             @MemberwiseCodable
             struct SomeStruct {
-                let name: String
-                let age: Int
+                let one: Int
+                let two: String
 
                 func foo() {}
             }
@@ -113,18 +113,40 @@ final class MemberwiseCodableMacroTests: XCTestCase {
             expandedSource: 
                 """
                 struct SomeStruct {
-                    let name: String
-                    let age: Int
+                    let one: Int
+                    let two: String
 
                     func foo() {}
 
                     internal enum CodingKeys: String, CodingKey {
-                        case name
-                        case age
+                        case one
+                        case two
                     }
                 }
                 """
             ,
+            macros: macros
+        )
+    }
+
+    func testSameLineProperties() {
+        assertMacroExpansion(
+            """
+            @MemberwiseCodable
+            struct SomeStruct {
+                let one, two: Int
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    let one, two: Int
+                }
+                """
+            ,
+            diagnostics: [
+                DiagnosticSpec(message: MemberwiseCodableMacroError.onePropertyAllowedPerLine.description, line: 1, column: 1)
+            ],
             macros: macros
         )
     }

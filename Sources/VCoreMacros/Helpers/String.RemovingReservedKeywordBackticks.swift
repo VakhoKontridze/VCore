@@ -10,7 +10,7 @@ import Foundation
 // MARK: - String Removing Reserved Keyword Backticks
 extension String {
     func removingReservedKeywordBackticks() -> String {
-        self.removing(CharacterSet(arrayLiteral: "`"))
+        removing(CharacterSet(arrayLiteral: "`"))
     }
 }
 
@@ -19,7 +19,7 @@ extension String {
     // From `VCore`
     fileprivate func removing(_ characterSet: CharacterSet) -> String {
         filter { char in
-            guard let unicodeScalar = char.unicodeScalars.first else { return false }
+            guard let unicodeScalar: Unicode.Scalar = char.unicodeScalars.first else { return false }
             return !characterSet.contains(unicodeScalar)
         }
     }

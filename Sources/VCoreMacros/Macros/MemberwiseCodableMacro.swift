@@ -16,16 +16,17 @@ struct MemberwiseCodableMacro: MemberMacro {
         providingMembersOf declaration: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        // Parameter - accessLevelModifier
+        // `accessLevelModifier` parameter
         let accessLevelModifier: String = try {
             guard
-                let argument: LabeledExprSyntax? = node.arguments?.toArgumentListGetAssociatedValue()?.first
+                let argument: LabeledExprSyntax? = node.arguments?.toArgumentListGetAssociatedValue()?
+                    .first(where: { $0.label?.text == "accessLevelModifier" })
             else {
-                return "internal" // Macro has a default value
+                return "internal" // Default value
             }
 
             guard
-                let value: String = argument?.toStringValue
+                let value: String = argument?.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue
             else {
                 throw MemberwiseCodableMacroError.invalidAccessLevelModifierParameter
             }
@@ -33,20 +34,28 @@ struct MemberwiseCodableMacro: MemberMacro {
             return value
         }()
 
-        // Expression lines
-        let expressionLines: [String] = try declaration.memberBlock.members
+        // Coding key lines
+        let codingKeyLines: [String] = try declaration.memberBlock.members
             .compactMap { member in
                 guard
-                    let propertyName: String = member
-                        .decl
-                        .as(VariableDeclSyntax.self)?
+                    let property: VariableDeclSyntax = member.decl.as(VariableDeclSyntax.self)
+                else {
+                    return nil // Limits declaration to variables
+                }
+
+                if property.bindings.count > 1 {
+                    throw MemberwiseCodableMacroError.onePropertyAllowedPerLine
+                }
+
+                guard
+                    let propertyName: String = property
                         .bindings
-                        .first?
+                        .first? // Only one member allowed per line
                         .pattern.as(IdentifierPatternSyntax.self)?
                         .identifier
                         .text
                 else {
-                    return nil  // Omits non-property members
+                    throw MemberwiseCodableMacroError.invalidPropertyName
                 }
 
                 guard
@@ -62,11 +71,9 @@ struct MemberwiseCodableMacro: MemberMacro {
                 }
 
                 guard
-                    let customKeyValue: ExprSyntax = keyMacro
-                        .as(AttributeSyntax.self)?
-                        .arguments?
-                        .as(LabeledExprListSyntax.self)?
-                        .first?
+                    let customKeyValue: ExprSyntax = keyMacro.as(AttributeSyntax.self)?
+                        .arguments?.as(LabeledExprListSyntax.self)?
+                        .first? // Only one argument, with no name
                         .expression
                 else {
                     throw MemberwiseCodableMacroError.invalidKeyName
@@ -75,18 +82,18 @@ struct MemberwiseCodableMacro: MemberMacro {
                 return "case \(propertyName) = \(customKeyValue)"
             }
 
-        // Expression
-        var expressions: [DeclSyntax] = []
+        // Result
+        var result: [DeclSyntax] = []
 
-        expressions.append(
+        result.append(
             """
             \(raw: accessLevelModifier) enum CodingKeys: String, CodingKey {
-                \(raw: expressionLines.joined(separator: "\n"))
+                \(raw: codingKeyLines.joined(separator: "\n"))
             }
             """
         )
 
-        return expressions
+        return result
     }
 }
 
@@ -114,5 +121,7 @@ struct MemberwiseCodableMacroError: Error, CustomStringConvertible {
     }
 
     static var invalidAccessLevelModifierParameter: Self { .init("Invalid access level modifier parameter") }
+    static var onePropertyAllowedPerLine: Self { .init("Only one property declaration is allowed per line to synthesize coding keys") }
+    static var invalidPropertyName: Self { .init("Invalid property name") }
     static var invalidKeyName: Self { .init("Invalid key name") }
 }
