@@ -17,30 +17,25 @@ import Foundation
 ///         token: "token"
 ///     ))
 ///
+@MemberwiseCodable
 public struct JSONAuthorizedRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    public let accept: String = "application/json"
-    
+    @MWCKey("Accept") public let accept: String = "application/json"
+
     /// Content type. Set to `application/json`.
-    public let contentType: String = "application/json"
-    
+    @MWCKey("Content-Type") public let contentType: String = "application/json"
+
     /// Authorization
-    public let authorization: String
-    
+    @MWCKey("Authorization") public let authorization: String
+
     // MARK: Initializers
     /// Initializes `JSONAuthorizedRequestHeaderFields` with token.
     public init(token: String) {
         self.authorization = "Bearer \(token)"
     }
     
-    // MARK: Coding Keys
-    private enum CodingKeys: String, CodingKey {
-        case accept = "Accept"
-        case contentType = "Content-Type"
-        case authorization = "Authorization"
-    }
-    
+    // MARK: Encodable
     public func encode(to encoder: Encoder) throws {
         var container: KeyedEncodingContainer<CodingKeys> = encoder.container(keyedBy: CodingKeys.self)
         

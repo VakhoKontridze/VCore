@@ -15,21 +15,16 @@ import Foundation
 ///     var request: URLRequest = ...
 ///     try request.addHTTPHeaderFields(object: JSONRequestHeaderFields())
 ///
+@MemberwiseCodable
 public struct JSONRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    public let accept: String = "application/json"
-    
+    @MWCKey("Accept") public let accept: String = "application/json"
+
     /// Content type. Set to `application/json`.
-    public let contentType: String = "application/json"
-    
+    @MWCKey("Content-Type") public let contentType: String = "application/json"
+
     // MARK: Initializers
     /// initializes `JSONRequestHeaderFields`.
     public init() {}
-    
-    // MARK: Coding Keys
-    private enum CodingKeys: String, CodingKey {
-        case accept = "Accept"
-        case contentType = "Content-Type"
-    }
 }

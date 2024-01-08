@@ -17,26 +17,22 @@ import Foundation
 ///         boundary: boundary
 ///     ))
 ///
+@MemberwiseCodable
 public struct MultipartFormDataRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    public let accept: String = "application/json"
-    
+    @MWCKey("Accept") public let accept: String = "application/json"
+
     /// Content type.
-    public let contentType: String
-    
+    @MWCKey("Content-Type") public let contentType: String
+
     // MARK: Initializers
     /// Initializes `MultipartFormDataRequestHeaderFields` with boundary.
     public init(boundary: String) {
         self.contentType = "multipart/form-data; boundary=\(boundary)"
     }
     
-    // MARK: Coding Keys
-    private enum CodingKeys: String, CodingKey {
-        case accept = "Accept"
-        case contentType = "Content-Type"
-    }
-    
+    // MARK: Codable
     public func encode(to encoder: Encoder) throws {
         var container: KeyedEncodingContainer<CodingKeys> = encoder.container(keyedBy: CodingKeys.self)
         
