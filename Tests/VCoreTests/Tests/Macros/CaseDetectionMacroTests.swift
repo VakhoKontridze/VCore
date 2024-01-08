@@ -23,7 +23,7 @@ final class CaseDetectionMacroTests: XCTestCase {
     func testSimpleEnumeration() {
         assertMacroExpansion(
             """
-            @CaseDetection(accessLevelModifier: "internal")
+            @CaseDetection
             enum SomeEnum {
                 case first
             }
@@ -50,7 +50,7 @@ final class CaseDetectionMacroTests: XCTestCase {
     func testEmptyEnumeration() {
         assertMacroExpansion(
             """
-            @CaseDetection(accessLevelModifier: "internal")
+            @CaseDetection
             enum SomeEnum {}
             """,
             expandedSource: """
@@ -64,7 +64,7 @@ final class CaseDetectionMacroTests: XCTestCase {
     func testNonEnumeration() {
         assertMacroExpansion(
             """
-            @CaseDetection(accessLevelModifier: "internal")
+            @CaseDetection
             struct SomeStruct {}
             """,
             expandedSource: """
@@ -78,10 +78,10 @@ final class CaseDetectionMacroTests: XCTestCase {
         )
     }
 
-    func testDefaultParameterAccessLevelModifier() {
+    func testAccessLevelModifier() {
         assertMacroExpansion(
             """
-            @CaseDetection()
+            @CaseDetection(accessLevelModifier: "fileprivate")
             enum SomeEnum {
                 case first
             }
@@ -91,7 +91,7 @@ final class CaseDetectionMacroTests: XCTestCase {
                     case first
 
                     /// Indicates if `SomeEnum` is `first`.
-                    internal var isFirst: Bool {
+                    fileprivate var isFirst: Bool {
                         if case .first = self {
                             true
                         } else {
@@ -108,7 +108,7 @@ final class CaseDetectionMacroTests: XCTestCase {
     func testCaseNamesWithBackticks() {
         assertMacroExpansion(
             """
-            @CaseDetection()
+            @CaseDetection
             enum SomeEnum {
                 case `false`
             }
@@ -158,6 +158,35 @@ final class CaseDetectionMacroTests: XCTestCase {
                     /// Indicates if `PointPixelMeasurement` is `pixels`.
                     internal var isPixels: Bool {
                         if case .pixels = self {
+                            true
+                        } else {
+                            false
+                        }
+                    }
+                }
+                """
+            ,
+            macros: macros
+        )
+    }
+
+    func testOtherMembers() {
+        assertMacroExpansion(
+            """
+            @CaseDetection
+            enum SomeEnum {
+                case first
+                var second: Self { first }
+            }
+            """,
+            expandedSource: """
+                enum SomeEnum {
+                    case first
+                    var second: Self { first }
+
+                    /// Indicates if `SomeEnum` is `first`.
+                    internal var isFirst: Bool {
+                        if case .first = self {
                             true
                         } else {
                             false

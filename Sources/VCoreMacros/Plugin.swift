@@ -13,6 +13,7 @@ import SwiftSyntaxMacros
 @main struct Plugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         CaseDetectionMacro.self,
+        MemberwiseCodableMacro.self, MWCKeyMacro.self,
         URLMacro.self
     ]
 }

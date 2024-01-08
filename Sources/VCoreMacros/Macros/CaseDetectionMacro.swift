@@ -45,7 +45,7 @@ struct CaseDetectionMacro: MemberMacro {
 
         // Enum case names
         let enumCaseNames: [String] = try declaration.memberBlock.members
-            .compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
+            .compactMap { $0.decl.as(EnumCaseDeclSyntax.self) } // Omits non-case members
             .map { enumCase in
                 guard
                     let enumCaseNameToken: TokenSyntax = enumCase.elements.first?.name

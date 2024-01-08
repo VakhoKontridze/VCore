@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Case Detection Macro
-/// Adds computed properties to `enum` to represent each `case`.
+/// Adds computed properties to an `enum` to represent each `case`.
 ///
 ///     @CaseDetection
 ///     enum PointPixelMeasurement {

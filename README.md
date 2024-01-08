@@ -261,8 +261,25 @@ var body: some View {
 
 #### Various Macros
 
+Macro that adds `CodingKeys` to a declaration to memberwise code each property.
+
 ```swift
-let url: URL = #URL("https://example.com")
+@MemberwiseCodable
+struct GetPostEntity: Decodable {
+    @MWCKey("id") let id: Int?
+    @MWCKey("userId") let userID: Int?
+    @MWCKey("title") let title: String?
+    @MWCKey("body") let body: String?
+}
+
+
+// Generates
+internal enum CodingKeys: String, CodingKey {
+    case id = "id"
+    case userID = "userId"
+    case title = "title"
+    case body = "body"
+}
 ```
 
 ## Installation

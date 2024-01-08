@@ -16,6 +16,7 @@ Macros
 
 - Macros are added to `VCore`
 - `CaseDetection` macro is added, that adds computed properties to `enum` to represent each `case`
+- `MemberwiseCodable` and `MWCKey` macros are added, that add `CodingKeys` to a declaration to memberwise code each property.
 - `URL(_:)` macro is added, that creates a non-optional `URL` from a `String` literal
 
 ### [5.2.1(88)](https://github.com/VakhoKontridze/VCore/releases/tag/5.2.1) — *2023 12 08*
