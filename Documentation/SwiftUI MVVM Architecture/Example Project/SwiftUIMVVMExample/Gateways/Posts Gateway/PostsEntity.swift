@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import VCore
 
 // MARK: - Posts Entity
 struct PostsEntity {
@@ -14,11 +15,11 @@ struct PostsEntity {
 
     // MARK: Post
     @MemberwiseCodable
-    struct GetPostEntity: Hashable, Identifiable, Decodable {
-        @MWCKey("id") let id: Int?
-        @MWCKey("userId") let userID: Int?
-        @MWCKey("title") let title: String?
-        @MWCKey("body") let body: String?
+    struct Post: Hashable, Identifiable, Decodable {
+        @MWCKey("id") let id: Int
+        @MWCKey("userId") let userID: Int
+        @MWCKey("title") let title: String
+        @MWCKey("body") let body: String
     }
 
     // MARK: Mock

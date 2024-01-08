@@ -266,10 +266,10 @@ Macro that adds `CodingKeys` to a declaration to memberwise code each property.
 ```swift
 @MemberwiseCodable
 struct GetPostEntity: Decodable {
-    @MWCKey("id") let id: Int?
-    @MWCKey("userId") let userID: Int?
-    @MWCKey("title") let title: String?
-    @MWCKey("body") let body: String?
+    @MWCKey("id") let id: Int
+    @MWCKey("userId") let userID: Int
+    @MWCKey("title") let title: String
+    @MWCKey("body") let body: String
 }
 
 
