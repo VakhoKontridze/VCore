@@ -9,13 +9,15 @@ import Foundation
 import VCore
 
 // MARK: - DI Container
-@NonInitializable
 final class DIContainer {
     // MARK: Properties
     private(set) lazy var gateways: Gateways = .init()
 
     // MARK: Properties - Singleton
     static let current: DIContainer = .init()
+
+    // MARK: Initializers
+    private init() {}
 }
 
 // MARK: - Gateways

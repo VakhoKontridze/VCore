@@ -10,6 +10,8 @@ import Foundation
 // MARK: - Non Initializable Macro
 /// Adds `private` initializer to declaration, preventing object creation.
 ///
+/// Can be used to simplify declarations of simple objects containing various constants.
+///
 ///     @NonInitializable
 ///     struct AppConstants {
 ///         static let apiKey: String = "..."
