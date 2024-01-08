@@ -10,10 +10,10 @@ import Foundation
 // MARK: - URL Macro
 /// Creates a non-optional `URL` from a `String` literal, checked during the compile time.
 ///
-///     let url: URL = #URL("https://example.com")
+///     let url: URL = #url("https://example.com")
 ///
 @freestanding(expression)
-public macro URL(
+public macro url(
     _ urlString: String
 ) -> URL = #externalMacro(
     module: "VCoreMacros",

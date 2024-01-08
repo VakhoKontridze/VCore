@@ -23,7 +23,7 @@ final class URLMacroTests: XCTestCase {
     func testValid() {
         assertMacroExpansion(
             """
-            let url: URL = #URL("https://example.com")
+            let url: URL = #url("https://example.com")
             """,
             expandedSource:
                 """
@@ -38,12 +38,12 @@ final class URLMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             let urlString: String = "https://example.com"
-            let url: URL = #URL(urlString)
+            let url: URL = #url(urlString)
             """,
             expandedSource: 
                 """
                 let urlString: String = "https://example.com"
-                let url: URL = #URL(urlString)
+                let url: URL = #url(urlString)
                 """
             ,
             diagnostics: [
@@ -56,11 +56,11 @@ final class URLMacroTests: XCTestCase {
     func testMalformedURL() {
         assertMacroExpansion(
             """
-            let url: URL = #URL("https://example .com")
+            let url: URL = #url("https://example .com")
             """,
             expandedSource: 
                 """
-                let url: URL = #URL("https://example .com")
+                let url: URL = #url("https://example .com")
                 """
             ,
             diagnostics: [

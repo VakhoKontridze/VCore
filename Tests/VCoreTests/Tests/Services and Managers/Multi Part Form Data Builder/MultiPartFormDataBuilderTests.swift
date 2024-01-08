@@ -63,7 +63,7 @@ final class MultipartFormDataBuilderTests: XCTestCase {
                 files: files
             )
 
-            let url: URL = #URL("https://httpbin.org/post")
+            let url: URL = #url("https://httpbin.org/post")
 
             var request: URLRequest = .init(url: url)
             request.httpMethod = "POST"

@@ -34,7 +34,7 @@ import Foundation
 ///         files: files
 ///     )
 ///
-///     let url: URL = #URL("https://somewebsite.com/api/some_endpoint")
+///     let url: URL = #url("https://somewebsite.com/api/some_endpoint")
 ///
 ///     var request: URLRequest = .init(url: url)
 ///     request.httpMethod = "POST"
