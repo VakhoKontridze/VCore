@@ -23,8 +23,15 @@ extension CaseIterable where Self: Hashable {
     ///
     public func aCase(offsetBy distance: Int) -> Self? {
         guard
-            let currentIndex: AllCases.Index = Self.allCases.firstIndex(of: self),
-            let targetCase: Self = Self.allCases[safe: Self.allCases.index(currentIndex, offsetBy: distance)]
+            let currentIndex: AllCases.Index = Self.allCases.firstIndex(of: self)
+        else {
+            return nil
+        }
+
+        let targetIndex: AllCases.Index = Self.allCases.index(currentIndex, offsetBy: distance)
+
+        guard
+            let targetCase: Self = Self.allCases[safe: targetIndex]
         else {
             return nil
         }
