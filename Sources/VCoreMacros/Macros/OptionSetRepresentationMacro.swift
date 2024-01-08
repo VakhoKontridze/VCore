@@ -41,9 +41,21 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
         result.append("\(raw: expansionData.accessLevelModifier) let rawValue: RawValue")
 
-        result.append("\(raw: expansionData.accessLevelModifier) init() { self.rawValue = 0 }") // Will be expanded
+        result.append(
+            """
+            \(raw: expansionData.accessLevelModifier) init() { 
+                self.rawValue = 0
+            }
+            """
+        )
 
-        result.append("\(raw: expansionData.accessLevelModifier) init(rawValue: RawValue) { self.rawValue = rawValue }") // Will be expanded
+        result.append(
+            """
+            \(raw: expansionData.accessLevelModifier) init(rawValue: RawValue) {
+                self.rawValue = rawValue
+            }
+            """
+        )
 
         for optionEnumCase in optionEnumCases {
             result.append(

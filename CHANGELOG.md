@@ -14,10 +14,11 @@ Global Functions
 
 Macros
 
-- `@CaseDetection` macro is added, that adds computed properties to `enum` to represent each `case`
-- `@MemberwiseCodable` and `MWCKey` macros are added, that add `CodingKeys` to a declaration to memberwise code each property
-- `@OptionSetRepresentation` macro is added, that generates an `OptionSet` from a `struct` that contains a nested `Options` `enum`
-- `#url(_:)` macro is added, that creates a non-optional `URL` from a `String` literal
+- `CaseDetection` macro is added, that adds computed properties to `enum` to represent each `case`
+- `MemberwiseCodable` and `MWCKey` macros are added, that add `CodingKeys` to a declaration to memberwise code each property
+- `NonInitializable` macro is added, that adds `private` initializer to declaration, preventing object creation
+- `OptionSetRepresentation` macro is added, that adds an `OptionSet` from a `struct` that contains a nested `Options` `enum`
+- `url(_:)` macro is added, that creates a non-optional `URL` from a `String`
 
 ### [5.2.1(88)](https://github.com/VakhoKontridze/VCore/releases/tag/5.2.1) — *2023 12 08*
 
@@ -1274,7 +1275,7 @@ Helpers - Architectural Pattern Helpers
 
 Models - Custom Results
 
-- `Result` enums are now marked as `@frozen`
+- `Result` enums are now marked as `frozen`
 
 ### [1.0.0(1)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.0) — *2021 10 07*
 

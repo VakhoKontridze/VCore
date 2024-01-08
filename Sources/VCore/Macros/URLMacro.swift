@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - URL Macro
-/// Creates a non-optional `URL` from a `String` literal, checked during the compile time.
+/// Returns non-optional `URL` from a `String`, checked during the compile time.
 ///
 ///     let url: URL = #url("https://example.com")
 ///

@@ -37,7 +37,7 @@ public macro MemberwiseCodable(
 // MARK: - Memberwise Codable Key Macro
 /// Attaches custom `Codable` key to a property.
 ///
-/// For more information, refer to `@MemberwiseCodable`.
+/// For more information, refer to `MemberwiseCodable`.
 @attached(peer)
 public macro MWCKey(
     _ key: String
