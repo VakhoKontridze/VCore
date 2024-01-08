@@ -15,20 +15,11 @@ import SwiftUI
 
 // MARK: - Overridable UI Hosting Controller Behavior
 /// `UIHostingController` behavior overriding option.
-public struct OverridableUIHostingControllerBehavior: OptionSet {
-    // MARK: Options
-    /// Disables safe area insets.
-    public static let disablesSafeAreaInsets: Self = .init(rawValue: 1 << 0)
-
-    /// Disables keyboard responsiveness.
-    public static let disablesKeyboardAvoidance: Self = .init(rawValue: 1 << 1)
-
-    // MARK: Properties
-    public let rawValue: Int
-
-    // MARK: Initializers
-    public init(rawValue: Int) {
-        self.rawValue = rawValue
+@OptionSetRepresentation<UInt64>(accessLevelModifier: "public")
+public struct OverridableUIHostingControllerBehavior {
+    private enum Options: Int {
+        case disablesSafeAreaInsets
+        case disablesKeyboardAvoidance
     }
 }
 

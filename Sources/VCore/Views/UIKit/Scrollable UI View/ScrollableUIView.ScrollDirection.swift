@@ -12,25 +12,17 @@ import Foundation
 // MARK: - Scrollable UI View Scroll Direction
 extension ScrollableUIView {
     /// Scroll Direction.
-    public struct ScrollDirection: OptionSet {
+    @OptionSetRepresentation<UInt64>(accessLevelModifier: "public")
+    public struct ScrollDirection {
         // MARK: Options
-        /// Horizontal scroll direction.
-        public static let horizontal: Self = .init(rawValue: 1 << 0)
-        
-        /// Vertical scroll direction.
-        public static let vertical: Self = .init(rawValue: 1 << 1)
-        
+        private enum Options: Int {
+            case horizontal
+            case vertical
+        }
+
         // MARK: Options Initializers
         /// Horizontal and vertical scroll directions.
         public static var allRegions: Self { [.horizontal, .vertical] }
-        
-        // MARK: Properties
-        public let rawValue: Int
-        
-        // MARK: Initializers
-        public init(rawValue: Int) {
-            self.rawValue = rawValue
-        }
     }
 }
 

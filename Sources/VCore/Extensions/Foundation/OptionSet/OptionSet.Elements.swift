@@ -11,17 +11,17 @@ import Foundation
 extension OptionSet where RawValue: FixedWidthInteger {
     /// Returns all elements in `OptionSet`.
     ///
-    ///     struct SomeOptionSet: OptionSet {
-    ///         static let first: Self = .init(rawValue: 1 << 0)
-    ///         static let second: Self = .init(rawValue: 1 << 1)
-    ///         static let third: Self = .init(rawValue: 1 << 2)
+    ///     struct RGBColor: OptionSet {
+    ///         static let red: Self = .init(rawValue: 1 << 0)
+    ///         static let green: Self = .init(rawValue: 1 << 1)
+    ///         static let blue: Self = .init(rawValue: 1 << 2)
     ///
-    ///         static var all: Self { [.first, .second, .third] }
+    ///         static var all: Self { [.red, .green, .blue] }
     ///
     ///         let rawValue: Int
     ///     }
     ///
-    ///     let options: [SomeOptionSet] = SomeOptionSet.all.elements // [.first, .second, .third]
+    ///     let colors: [RGBColor] = RGBColor.all.elements // [.red, .green, .blue]
     ///
     public var elements: [Self] {
         var remainingBits: RawValue = rawValue
