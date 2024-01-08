@@ -50,11 +50,8 @@ To avoid writing boilerplate for every scene, project includes XCode templates.
 
 ```swift
 // MARK: - Home Factory
+@NonInitializable
 struct HomeFactory {
-    // MARK: Initializers
-    private init() {}
-    
-    // MARK: Factory
     static func `default`(parameters: HomeParameters) -> UIViewController {
         let viewController: HomeViewController = .init()
         
@@ -521,8 +518,8 @@ struct HomeInteractor: HomeInteractive {
 
 ```swift
 // MARK: - Home UI Model
+@NonInitializable
 struct HomeUIModel {
-    // MARK: Properties
     static var backgroundColor: UIColor { .systemBackground }
     
     static var stackSpacing: CGFloat { 10 }
@@ -533,8 +530,5 @@ struct HomeUIModel {
     static var titleLabelFont: UIFont { .systemFont(ofSize: 14) }
     
     static var primaryButtonMarginHorizontal: CGFloat { 20 }
-
-    // MARK: Initializers
-    private init() {}
 }
 ```

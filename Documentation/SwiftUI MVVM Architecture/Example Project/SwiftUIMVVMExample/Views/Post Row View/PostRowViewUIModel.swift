@@ -6,10 +6,11 @@
 //
 
 import SwiftUI
+import VCore
 
 // MARK: - Post Row View UI Model
+@NonInitializable
 struct PostRowViewUIModel {
-    // MARK: Properties
     static var backgroundColor: Color { .init(uiColor: .systemBackground) }
 
     static var spacing: CGFloat { 2 }
@@ -20,7 +21,4 @@ struct PostRowViewUIModel {
     static var bodyTextLineLimit: Int { 2 }
     static var bodyTextColor: Color { .secondary }
     static var bodyTextFont: Font { .subheadline }
-
-    // MARK: Initializers
-    private init() {}
 }

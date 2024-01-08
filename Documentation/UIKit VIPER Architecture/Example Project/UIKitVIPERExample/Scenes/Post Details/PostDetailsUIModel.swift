@@ -9,8 +9,8 @@ import UIKit
 import VCore
 
 // MARK: - Post Details UI Model
+@NonInitializable
 struct PostDetailsUIModel {
-    // MARK: Properties
     static var backgroundColor: UIColor { .systemBackground }
 
     static var bodyLabelColor: UIColor { .label }
@@ -18,7 +18,4 @@ struct PostDetailsUIModel {
     static var bodyLabelMarginHorizontal: CGFloat { 20 }
     static var bodyLabelMarginTop: CGFloat { 10 }
     static var bodyLabelMarginBottom: CGFloat { 20 }
-
-    // MARK: Initializers
-    private init() {}
 }

@@ -10,12 +10,9 @@
 import UIKit
 
 // MARK: - Infinite Scrolling UI Table View Activity Indicator View UI Model
+@NonInitializable
 struct InfiniteScrollingUITableViewActivityIndicatorViewUIModel {
-    // MARK: Properties
     static var height: CGFloat { 100 }
-
-    // MARK: Initializers
-    private init() {}
 }
 
 #endif

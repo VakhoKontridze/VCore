@@ -6,13 +6,11 @@
 //
 
 import UIKit
+import VCore
 
 // MARK: - Posts Factory
+@NonInitializable
 struct PostsFactory {
-    // MARK: Initializers
-    private init() {}
-    
-    // MARK: Factory
     static func `default`() -> UIViewController {
         let viewController: PostsViewController = .init()
         

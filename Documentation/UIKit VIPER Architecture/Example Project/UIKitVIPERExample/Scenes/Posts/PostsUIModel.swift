@@ -6,12 +6,10 @@
 //
 
 import UIKit
+import VCore
 
 // MARK: - Posts UI Model
+@NonInitializable
 struct PostsUIModel {
-    // MARK: Properties
     static var backgroundColor: UIColor { .systemBackground }
-
-    // MARK: Initializers
-    private init() {}
 }

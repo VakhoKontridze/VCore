@@ -1,13 +1,11 @@
 //  ___FILEHEADER___
 
 import UIKit
+import VCore
 
 // MARK: - ___VARIABLE_productName___ Factory
+@NonInitializable
 struct ___VARIABLE_productName___Factory {
-    // MARK: Initializers
-    private init() {}
-    
-    // MARK: Factory
     static func `default`(parameters: ___VARIABLE_productName___Parameters) -> UIViewController {
         let viewController: ___VARIABLE_productName___ViewController = .init()
         

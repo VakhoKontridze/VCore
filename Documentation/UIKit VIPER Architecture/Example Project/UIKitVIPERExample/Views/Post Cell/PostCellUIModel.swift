@@ -6,10 +6,11 @@
 //
 
 import UIKit
+import VCore
 
 // MARK: - Post Cell UI Model
+@NonInitializable
 struct PostCellUIModel {
-    // MARK: Properties
     static var backgroundColor: UIColor { .systemBackground }
 
     static var titleLabelColor: UIColor { UIColor.label }
@@ -23,7 +24,4 @@ struct PostCellUIModel {
     static var bodyLabelMarginHorizontal: CGFloat { titleLabelMarginHorizontal }
     static var bodyLabelMarginTop: CGFloat { 2 }
     static var bodyLabelMarginBottom: CGFloat { titleLabelMarginTop }
-
-    // MARK: Initializers
-    private init() {}
 }
