@@ -17,22 +17,21 @@ struct CaseDetectionMacro: MemberMacro {
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         // Parameter - accessLevelModifier
-        let accessLevelModifier: String
-
-        let accessLevelModifierArgument: LabeledExprSyntax? = node.arguments?.argumentListAssociatedValue?.first
-
-        if let accessLevelModifierArgument {
+        let accessLevelModifier: String = try {
             guard
-                let accessLevelModifierValue: String = accessLevelModifierArgument.toStringValue
+                let argument: LabeledExprSyntax? = node.arguments?.toArgumentListGetAssociatedValue()?.first
+            else {
+                return "internal" // Macro has a default value
+            }
+
+            guard
+                let value: String = argument?.toStringValue
             else {
                 throw CaseDetectionMacroError.invalidAccessLevelModifierParameter
             }
 
-            accessLevelModifier = accessLevelModifierValue
-
-        } else {
-            accessLevelModifier = "internal"
-        }
+            return value
+        }()
 
         // Enum name
         guard
@@ -93,6 +92,6 @@ struct CaseDetectionMacroError: Error, CustomStringConvertible {
     }
 
     static var invalidAccessLevelModifierParameter: Self { .init("Invalid access level modifier parameter") }
-    static var canOnlyBeAppliedToEnums: Self { .init("'CaseDetection' can only be applied to 'enum's") }
+    static var canOnlyBeAppliedToEnums: Self { .init("'CaseDetection' macro can only be applied to an 'enum'") }
     static var invalidCaseName: Self { .init("Invalid case name") }
 }

@@ -10,7 +10,7 @@ import SwiftSyntax
 
 // MARK: - String Literal Segment List Syntax Type Casts
 extension StringLiteralSegmentListSyntax.Element {
-    var stringSegmentAssociatedValue: StringSegmentSyntax? {
+    func toStringSegmentGetAssociatedValue() -> StringSegmentSyntax? {
         if case .stringSegment(let stringSegmentSyntax) = self {
             stringSegmentSyntax
         } else {

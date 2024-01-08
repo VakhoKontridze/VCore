@@ -13,23 +13,23 @@ extension LabeledExprSyntax {
     var toIntegerValue: Int? {
         guard
             let integerLiteral: IntegerLiteralExprSyntax = expression.as(IntegerLiteralExprSyntax.self),
-            let value: Int = .init(integerLiteral.literal.text)
+            let integer: Int = .init(integerLiteral.literal.text)
         else {
             return nil
         }
 
-        return value
+        return integer
     }
 
     var toStringValue: String? {
         guard
             let stringLiteral: StringLiteralExprSyntax = expression.as(StringLiteralExprSyntax.self),
             stringLiteral.segments.count == 1,
-            let value: String = stringLiteral.segments.first?.stringSegmentAssociatedValue?.content.text
+            let string: String = stringLiteral.segments.first?.toStringSegmentGetAssociatedValue()?.content.text
         else {
             return nil
         }
 
-        return value
+        return string
     }
 }

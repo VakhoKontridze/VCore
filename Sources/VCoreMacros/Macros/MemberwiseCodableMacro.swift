@@ -17,22 +17,21 @@ struct MemberwiseCodableMacro: MemberMacro {
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         // Parameter - accessLevelModifier
-        let accessLevelModifier: String
-
-        let accessLevelModifierArgument: LabeledExprSyntax? = node.arguments?.argumentListAssociatedValue?.first
-
-        if let accessLevelModifierArgument {
+        let accessLevelModifier: String = try {
             guard
-                let accessLevelModifierValue: String = accessLevelModifierArgument.toStringValue
+                let argument: LabeledExprSyntax? = node.arguments?.toArgumentListGetAssociatedValue()?.first
             else {
-                throw CaseDetectionMacroError.invalidAccessLevelModifierParameter
+                return "internal" // Macro has a default value
             }
 
-            accessLevelModifier = accessLevelModifierValue
+            guard
+                let value: String = argument?.toStringValue
+            else {
+                throw MemberwiseCodableMacroError.invalidAccessLevelModifierParameter
+            }
 
-        } else {
-            accessLevelModifier = "internal"
-        }
+            return value
+        }()
 
         // Expression lines
         let expressionLines: [String] = try declaration.memberBlock.members
@@ -77,13 +76,16 @@ struct MemberwiseCodableMacro: MemberMacro {
             }
 
         // Expression
-        let expression: DeclSyntax = """
+        var expressions: [DeclSyntax] = []
+
+        expressions.append("""
             \(raw: accessLevelModifier) enum CodingKeys: String, CodingKey {
                 \(raw: expressionLines.joined(separator: "\n"))
             }
             """
+        )
 
-        return [expression]
+        return expressions
     }
 }
 
@@ -110,5 +112,6 @@ struct MemberwiseCodableMacroError: Error, CustomStringConvertible {
         self.description = description
     }
 
+    static var invalidAccessLevelModifierParameter: Self { .init("Invalid access level modifier parameter") }
     static var invalidKeyName: Self { .init("Invalid key name") }
 }

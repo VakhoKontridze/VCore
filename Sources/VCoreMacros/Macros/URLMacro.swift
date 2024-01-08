@@ -16,16 +16,16 @@ struct URLMacro: ExpressionMacro {
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
         // Parameter - urlString
-        let urlString: String
+        let (urlStringArgument, urlString): (LabeledExprSyntax, String) = try {
+            guard
+                let argument: LabeledExprSyntax = node.argumentList.first,
+                let value: String = argument.toStringValue
+            else {
+                throw URLMacroError.invalidURLStringParameter
+            }
 
-        guard
-            let urlStringArgument: LabeledExprSyntax = node.argumentList.first,
-            let urlStringValue: String = urlStringArgument.toStringValue
-        else {
-            throw URLMacroError.invalidURLStringParameter
-        }
-
-        urlString = urlStringValue
+            return (argument, value)
+        }()
 
         // Check
         guard
@@ -51,6 +51,6 @@ struct URLMacroError: Error, CustomStringConvertible {
         self.description = description
     }
 
-    static var invalidURLStringParameter: Self { .init("Invalid 'URL' 'String' parameters") }
+    static var invalidURLStringParameter: Self { .init("Invalid 'URL' 'String' parameter") }
     static var malformedURL: Self { .init("Malformed 'URL'") }
 }

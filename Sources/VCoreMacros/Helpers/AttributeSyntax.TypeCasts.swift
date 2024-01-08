@@ -10,7 +10,7 @@ import SwiftSyntax
 
 // MARK: - Attribute Syntax Type Casts
 extension AttributeSyntax.Arguments {
-    var argumentListAssociatedValue: LabeledExprListSyntax? {
+    func toArgumentListGetAssociatedValue() -> LabeledExprListSyntax? {
         if case .argumentList(let labeledExprListSyntax) = self {
             labeledExprListSyntax
         } else {
