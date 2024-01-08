@@ -14,7 +14,7 @@ import Foundation
 ///
 @freestanding(expression)
 public macro URL(
-    _ stringLiteral: String
+    _ urlString: String
 ) -> URL = #externalMacro(
     module: "VCoreMacros",
     type: "URLMacro"

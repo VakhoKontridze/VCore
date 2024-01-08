@@ -32,7 +32,7 @@ final class URLMacroTests: XCTestCase {
                 """#
             ,
             diagnostics: [
-                DiagnosticSpec(message: URLMacroError.stringLiteralRequired.description, line: 2, column: 16)
+                DiagnosticSpec(message: URLMacroError.invalidURLStringParameter.description, line: 2, column: 16)
             ],
             macros: macros
         )

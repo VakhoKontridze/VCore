@@ -16,39 +16,59 @@ struct CaseDetectionMacro: MemberMacro {
         providingMembersOf declaration: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        guard
-            let enumName: String = declaration.as(EnumDeclSyntax.self)?.name.text
-        else {
-            throw CaseDetectionMacroError.cannotRetrieveName
+        // Parameter - accessLevelModifier
+        let accessLevelModifier: String
+
+        let accessLevelModifierArgument: LabeledExprSyntax? = node.arguments?.argumentListAssociatedValue?.first
+
+        if let accessLevelModifierArgument {
+            guard
+                let accessLevelModifierValue: String = accessLevelModifierArgument.toStringValue
+            else {
+                throw CaseDetectionMacroError.invalidAccessLevelModifierParameter
+            }
+
+            accessLevelModifier = accessLevelModifierValue
+
+        } else {
+            accessLevelModifier = "internal"
         }
 
-        let accessLevelModifier: String = declaration.accessLevelModifier.map { "\($0) " } ?? ""
+        // Enum name
+        guard
+            let enumDeclaration: EnumDeclSyntax = declaration.as(EnumDeclSyntax.self)
+        else {
+            throw CaseDetectionMacroError.canOnlyBeAppliedToEnums
+        }
 
-        return try declaration.memberBlock.members
+        let enumName: String = enumDeclaration.name.text
+
+        // Enum case names
+        let enumCaseNames: [String] = try declaration.memberBlock.members
             .compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
             .map { enumCase in
                 guard
-                    let enumCaseName: TokenSyntax = enumCase.elements.first?.name
+                    let enumCaseNameToken: TokenSyntax = enumCase.elements.first?.name
                 else {
-                    throw CaseDetectionMacroError.cannotRetrieveMemberName
+                    throw CaseDetectionMacroError.invalidCaseName
                 }
 
-                return enumCaseName
+                return enumCaseNameToken.text.removingReservedKeywordBackticks()
             }
-            .map { name in
-                let firstCharUppercasedName: String = {
-                    let string: String = name.text.removingReservedKeywordBackticks()
 
-                    if let initial = string.first {
-                        return "\(initial.uppercased())\(string.dropFirst())"
-                    } else {
-                        return string
-                    }
-                }()
+        // Expression
+        return enumCaseNames.map { name in
+            let firstCharUppercasedName: String = {
+                if let firstChar: Character = name.first {
+                    return "\(firstChar.uppercased())\(name.dropFirst())"
+                } else {
+                    return name
+                }
+            }()
 
-                return """
+            return """
                 /// Indicates if `\(raw: enumName)` is `\(raw: name)`.
-                \(raw: accessLevelModifier)var is\(raw: firstCharUppercasedName): Bool {
+                \(raw: accessLevelModifier) var is\(raw: firstCharUppercasedName): Bool {
                     if case .\(raw: name) = self {
                         true
                     } else {
@@ -56,7 +76,7 @@ struct CaseDetectionMacro: MemberMacro {
                     }
                 }
                 """
-            }
+        }
     }
 }
 
@@ -72,6 +92,7 @@ struct CaseDetectionMacroError: Error, CustomStringConvertible {
         self.description = description
     }
 
-    static var cannotRetrieveName: Self { .init("Cannot retrieve name") } // Cannot be tested
-    static var cannotRetrieveMemberName: Self { .init("Cannot retrieve member name") } // Cannot be tested
+    static var invalidAccessLevelModifierParameter: Self { .init("Invalid access level modifier parameter") }
+    static var canOnlyBeAppliedToEnums: Self { .init("'CaseDetection' can only be applied to 'enum's") }
+    static var invalidCaseName: Self { .init("Invalid case name") }
 }

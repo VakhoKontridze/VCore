@@ -20,7 +20,9 @@ import Foundation
 ///     measurement.isPoints // true
 ///
 @attached(member, names: arbitrary)
-public macro CaseDetection() = #externalMacro(
+public macro CaseDetection(
+    accessLevelModifier: String = "internal"
+) = #externalMacro(
     module: "VCoreMacros",
     type: "CaseDetectionMacro"
 )

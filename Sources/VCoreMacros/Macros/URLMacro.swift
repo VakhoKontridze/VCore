@@ -15,22 +15,27 @@ struct URLMacro: ExpressionMacro {
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
+        // Parameter - urlString
+        let urlString: String
+
         guard
-            let argument: ExprSyntax = node.argumentList.first?.expression,
-            let segments: StringLiteralSegmentListSyntax = argument.as(StringLiteralExprSyntax.self)?.segments,
-            segments.count == 1,
-            case .stringSegment(let literalSegment)? = segments.first
+            let urlStringArgument: LabeledExprSyntax = node.argumentList.first,
+            let urlStringValue: String = urlStringArgument.toStringValue
         else {
-            throw URLMacroError.stringLiteralRequired
+            throw URLMacroError.invalidURLStringParameter
         }
 
-        guard 
-            let _: URL = .init(string: literalSegment.content.text)
+        urlString = urlStringValue
+
+        // Check
+        guard
+            let _: URL = .init(string: urlString)
         else {
             throw URLMacroError.malformedURL
         }
 
-        return "URL(string: \(argument))!" // Force-unwrap
+        // Expression
+        return "URL(string: \(urlStringArgument.expression))!" // Force-unwrap
     }
 }
 
@@ -46,6 +51,6 @@ struct URLMacroError: Error, CustomStringConvertible {
         self.description = description
     }
 
-    static var stringLiteralRequired: Self { .init("'String' literal is required to create an 'URL'") }
+    static var invalidURLStringParameter: Self { .init("Invalid 'URL' 'String' parameters") }
     static var malformedURL: Self { .init("Malformed 'URL'") }
 }
