@@ -13,7 +13,9 @@ extension Date {
     ///
     ///     let age: Int? = birthDate.age
     ///
-    public func age(inCalendar calendar: Calendar = .current) -> Int? {
+    public func age(
+        inCalendar calendar: Calendar = .current
+    ) -> Int? {
         let now: Date = .init()
 
         guard now >= self else { return nil }

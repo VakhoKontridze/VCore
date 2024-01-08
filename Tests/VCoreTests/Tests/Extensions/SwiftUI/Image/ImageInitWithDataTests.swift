@@ -15,7 +15,7 @@ final class ImageInitWithDataTests: XCTestCase {
 #if canImport(UIKit) && !os(watchOS)
         let uiImage: UIImage = .init(
             size: CGSize(dimension: 100),
-            color: .systemBlue
+            color: UIColor.systemBlue
         )! // Force-unwrap
         
         let data: Data = uiImage.jpegData(compressionQuality: 1)! // Force-unwrap

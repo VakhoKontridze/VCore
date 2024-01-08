@@ -15,7 +15,7 @@ extension NSImage {
     ///
     ///     let image: UIImage = .init(
     ///         size: CGSize(dimension: 100),
-    ///         color: .systemBlue
+    ///         color: NSColor.systemBlue
     ///     )!
     ///
     public convenience init?(
