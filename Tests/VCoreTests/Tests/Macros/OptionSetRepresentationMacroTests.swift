@@ -33,7 +33,8 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                 static let all: Self = [.male, .female]
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 struct Gender {
                     private enum Options: Int {
                         case male
@@ -76,7 +77,8 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                 case female
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 enum Gender {
                     case male
                     case female
@@ -101,7 +103,8 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                 }
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 public struct Gender {
                     private enum Options: Int {
                         case male
@@ -139,7 +142,8 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
             @OptionSetRepresentation<UInt8>
             struct Gender {}
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 struct Gender {}
                 """
             ,
@@ -162,7 +166,8 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
             }
             """
             ,
-            expandedSource: """
+            expandedSource:
+                """
                 struct Gender {
                     private enum Options: Int {
                         case male
@@ -189,7 +194,8 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                 }
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 struct Gender: OptionSet {
                     private enum Options: Int {
                         case male

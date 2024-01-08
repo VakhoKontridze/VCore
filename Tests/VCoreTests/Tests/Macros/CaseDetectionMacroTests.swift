@@ -28,11 +28,11 @@ final class CaseDetectionMacroTests: XCTestCase {
                 case first
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 enum SomeEnum {
                     case first
 
-                    /// Indicates if `SomeEnum` is `first`.
                     internal var isFirst: Bool {
                         if case .first = self {
                             true
@@ -53,7 +53,8 @@ final class CaseDetectionMacroTests: XCTestCase {
             @CaseDetection
             enum SomeEnum {}
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 enum SomeEnum {}
                 """
             ,
@@ -67,7 +68,8 @@ final class CaseDetectionMacroTests: XCTestCase {
             @CaseDetection
             struct SomeStruct {}
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 struct SomeStruct {}
                 """
             ,
@@ -86,11 +88,11 @@ final class CaseDetectionMacroTests: XCTestCase {
                 case first
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 enum SomeEnum {
                     case first
 
-                    /// Indicates if `SomeEnum` is `first`.
                     fileprivate var isFirst: Bool {
                         if case .first = self {
                             true
@@ -113,11 +115,11 @@ final class CaseDetectionMacroTests: XCTestCase {
                 case `false`
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 enum SomeEnum {
                     case `false`
 
-                    /// Indicates if `SomeEnum` is `false`.
                     internal var isFalse: Bool {
                         if case .false = self {
                             true
@@ -141,12 +143,12 @@ final class CaseDetectionMacroTests: XCTestCase {
                 case pixels
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 enum PointPixelMeasurement {
                     case points(displayScale: CGFloat)
                     case pixels
 
-                    /// Indicates if `PointPixelMeasurement` is `points`.
                     internal var isPoints: Bool {
                         if case .points = self {
                             true
@@ -155,7 +157,6 @@ final class CaseDetectionMacroTests: XCTestCase {
                         }
                     }
 
-                    /// Indicates if `PointPixelMeasurement` is `pixels`.
                     internal var isPixels: Bool {
                         if case .pixels = self {
                             true
@@ -179,12 +180,12 @@ final class CaseDetectionMacroTests: XCTestCase {
                 var second: Self { first }
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 enum SomeEnum {
                     case first
                     var second: Self { first }
 
-                    /// Indicates if `SomeEnum` is `first`.
                     internal var isFirst: Bool {
                         if case .first = self {
                             true

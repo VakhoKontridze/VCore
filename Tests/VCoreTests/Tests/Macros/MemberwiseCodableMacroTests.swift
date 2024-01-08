@@ -29,7 +29,8 @@ final class MemberwiseCodableMacroTests: XCTestCase {
                 @MWCKey("key_two") let two: String
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 struct SomeStruct {
                     @MWCKey("key_one") let one: Int
                     @MWCKey("key_two") let two: String
@@ -55,7 +56,8 @@ final class MemberwiseCodableMacroTests: XCTestCase {
                 @MWCKey("key_two") let two: String
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 struct SomeStruct {
                     let one: Int
                     @MWCKey("key_two") let two: String
@@ -80,7 +82,8 @@ final class MemberwiseCodableMacroTests: XCTestCase {
                 let age: Int
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 struct SomeStruct {
                     let name: String
                     let age: Int
@@ -107,7 +110,8 @@ final class MemberwiseCodableMacroTests: XCTestCase {
                 func foo() {}
             }
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 struct SomeStruct {
                     let name: String
                     let age: Int

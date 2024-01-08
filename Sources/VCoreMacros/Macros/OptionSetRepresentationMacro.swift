@@ -54,7 +54,8 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
         for optionEnumCase in optionEnumCases {
             // No comments are attached
-            expression.append("""
+            expression.append(
+                """
                 \(raw: expansionData.accessLevelModifier) static let \(optionEnumCase.name): Self = .init(rawValue: 1 << \(raw: expansionData.optionsEnumDeclaration.name).\(optionEnumCase.name).rawValue)
                 """
             )

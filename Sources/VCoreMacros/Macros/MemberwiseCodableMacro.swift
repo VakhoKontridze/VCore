@@ -78,7 +78,8 @@ struct MemberwiseCodableMacro: MemberMacro {
         // Expression
         var expressions: [DeclSyntax] = []
 
-        expressions.append("""
+        expressions.append(
+            """
             \(raw: accessLevelModifier) enum CodingKeys: String, CodingKey {
                 \(raw: expressionLines.joined(separator: "\n"))
             }

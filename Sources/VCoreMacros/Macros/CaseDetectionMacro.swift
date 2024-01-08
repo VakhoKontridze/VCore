@@ -65,7 +65,8 @@ struct CaseDetectionMacro: MemberMacro {
                 }
             }()
 
-            return """
+            return 
+                """
                 \(raw: accessLevelModifier) var is\(raw: firstCharUppercasedName): Bool {
                     if case .\(raw: enumCaseName) = self {
                         true

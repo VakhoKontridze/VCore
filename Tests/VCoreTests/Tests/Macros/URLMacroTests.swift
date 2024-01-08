@@ -26,7 +26,8 @@ final class URLMacroTests: XCTestCase {
             let urlString: String = "https://example.com"
             let url: URL = #URL(urlString)
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 let urlString: String = "https://example.com"
                 let url: URL = #URL(urlString)
                 """
@@ -43,7 +44,8 @@ final class URLMacroTests: XCTestCase {
             """
             let url: URL = #URL("https://example .com")
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 let url: URL = #URL("https://example .com")
                 """
             ,
@@ -59,7 +61,8 @@ final class URLMacroTests: XCTestCase {
             """
             let url: URL = #URL("https://example.com")
             """,
-            expandedSource: """
+            expandedSource: 
+                """
                 let url: URL = URL(string: "https://example.com")!
                 """
             ,
