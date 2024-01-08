@@ -56,19 +56,18 @@ struct CaseDetectionMacro: MemberMacro {
             }
 
         // Expression
-        return enumCaseNames.map { name in
+        return enumCaseNames.map { enumCaseName in
             let firstCharUppercasedName: String = {
-                if let firstChar: Character = name.first {
-                    return "\(firstChar.uppercased())\(name.dropFirst())"
+                if let firstChar: Character = enumCaseName.first {
+                    return "\(firstChar.uppercased())\(enumCaseName.dropFirst())"
                 } else {
-                    return name
+                    return enumCaseName
                 }
             }()
 
             return """
-                /// Indicates if `\(raw: enumName)` is `\(raw: name)`.
                 \(raw: accessLevelModifier) var is\(raw: firstCharUppercasedName): Bool {
-                    if case .\(raw: name) = self {
+                    if case .\(raw: enumCaseName) = self {
                         true
                     } else {
                         false
