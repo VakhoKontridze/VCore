@@ -29,8 +29,22 @@ let package: Package = .init(
 
     targets: [
         .target(
+            name: "VCoreShared"
+        ),
+
+        .macro(
+            name: "VCoreMacros",
+            dependencies: [
+                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
+                .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
+                "VCoreShared"
+            ]
+        ),
+
+        .target(
             name: "VCore",
             dependencies: [
+                "VCoreShared",
                 "VCoreMacros"
             ],
             exclude: [
@@ -38,18 +52,12 @@ let package: Package = .init(
                 "../../Extra"
             ]
         ),
-        .macro(
-            name: "VCoreMacros",
-            dependencies: [
-                .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
-                .product(name: "SwiftCompilerPlugin", package: "swift-syntax")
-            ]
-        ),
         .testTarget(
             name: "VCoreTests",
             dependencies: [
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
                 "VCore",
+                "VCoreShared",
                 "VCoreMacros"
             ]
         )

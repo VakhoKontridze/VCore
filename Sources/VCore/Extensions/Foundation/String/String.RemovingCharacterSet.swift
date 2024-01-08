@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import VCoreShared
 
 // MARK: - String Removing Character Set
 extension String {
@@ -15,10 +16,7 @@ extension String {
     ///     let phoneNumber2: String = phoneNumber.removing(.symbols) // "0123456789"
     ///
     public func removing(_ characterSet: CharacterSet) -> String {
-        filter { char in
-            guard let unicodeScalar: Unicode.Scalar = char.unicodeScalars.first else { return false }
-            return !characterSet.contains(unicodeScalar)
-        }
+        _removing(characterSet)
     }
     
     /// Filters out `CharacterSet` that don't match the criteria.
