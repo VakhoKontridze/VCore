@@ -15,7 +15,7 @@ import SwiftUI
 
 // MARK: - Overridable UI Hosting Controller Behavior
 /// `UIHostingController` behavior overriding option.
-@OptionSetRepresentation<UInt64>(accessLevelModifier: "public")
+@OptionSetRepresentation<Int>(accessLevelModifier: "public")
 public struct OverridableUIHostingControllerBehavior {
     private enum Options: Int {
         case disablesSafeAreaInsets
