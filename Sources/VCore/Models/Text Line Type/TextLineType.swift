@@ -11,11 +11,11 @@ import SwiftUI
 /// Model that represents text line, such as `singleLine` or `multiLine`.
 public struct TextLineType {
     // MARK: Properties
-    private let _textLineType: _TextLineType
+    private let storage: Storage
     
     /// `TextAlignment`.
     public var textAlignment: TextAlignment? {
-        switch _textLineType {
+        switch storage {
         case .singleLine: nil
         case .multiLine(let alignment, _): alignment
         }
@@ -23,7 +23,7 @@ public struct TextLineType {
     
     /// `TextLineLimitType`.
     public var textLineLimitType: TextLineLimitType {
-        switch _textLineType {
+        switch storage {
         case .singleLine: .fixed(lineLimit: 1)
         case .multiLine(_, let textLineLimitType): textLineLimitType
         }
@@ -31,14 +31,14 @@ public struct TextLineType {
     
     // MARK: Initializers
     private init(
-        textLineType: _TextLineType
+        _ storage: Storage
     ) {
-        self._textLineType = textLineType
+        self.storage = storage
     }
     
     /// Single-line.
     public static var singleLine: Self {
-        .init(textLineType: .singleLine)
+        .init(.singleLine)
     }
     
     /// Multi-line.
@@ -46,7 +46,7 @@ public struct TextLineType {
         alignment: TextAlignment,
         lineLimit: Int?
     ) -> Self {
-        .init(textLineType: .multiLine(
+        .init(.multiLine(
             alignment: alignment,
             textLineLimitType: .fixed(lineLimit: lineLimit)
         ))
@@ -59,7 +59,7 @@ public struct TextLineType {
         lineLimit: Int,
         reservesSpace: Bool
     ) -> Self {
-        .init(textLineType: .multiLine(
+        .init(.multiLine(
             alignment: alignment,
             textLineLimitType: .spaceReserved(lineLimit: lineLimit, reservesSpace: reservesSpace)
         ))
@@ -71,7 +71,7 @@ public struct TextLineType {
         alignment: TextAlignment,
         lineLimit: PartialRangeFrom<Int>
     ) -> Self {
-        .init(textLineType: .multiLine(
+        .init(.multiLine(
             alignment: alignment,
             textLineLimitType: .partialRangeFrom(lineLimit: lineLimit)
         ))
@@ -83,7 +83,7 @@ public struct TextLineType {
         alignment: TextAlignment,
         lineLimit: PartialRangeThrough<Int>
     ) -> Self {
-        .init(textLineType: .multiLine(
+        .init(.multiLine(
             alignment: alignment,
             textLineLimitType: .partialRangeThrough(lineLimit: lineLimit)
         ))
@@ -95,15 +95,15 @@ public struct TextLineType {
         alignment: TextAlignment,
         lineLimit: ClosedRange<Int>
     ) -> Self {
-        .init(textLineType: .multiLine(
+        .init(.multiLine(
             alignment: alignment,
             textLineLimitType: .closedRange(lineLimit: lineLimit)
         ))
     }
-}
 
-// MARK: - _ V Text Type
-enum _TextLineType {
-    case singleLine
-    case multiLine(alignment: TextAlignment, textLineLimitType: TextLineLimitType)
+    // MARK: Storage
+    enum Storage {
+        case singleLine
+        case multiLine(alignment: TextAlignment, textLineLimitType: TextLineLimitType)
+    }
 }

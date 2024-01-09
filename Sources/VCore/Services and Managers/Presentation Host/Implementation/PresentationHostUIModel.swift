@@ -32,13 +32,13 @@ public struct PresentationHostUIModel {
     /// Keyboard responsiveness strategy.
     public struct KeyboardResponsivenessStrategy {
         // MARK: Properties
-        let _keyboardResponsivenessStrategy: _KeyboardResponsivenessStrategy
+        let storage: Storage
 
         // MARK: Initializers
         init(
-            keyboardResponsivenessStrategy: _KeyboardResponsivenessStrategy
+            _ storage: Storage
         ) {
-            self._keyboardResponsivenessStrategy = keyboardResponsivenessStrategy
+            self.storage = storage
         }
 
         // MARK: Initializers
@@ -46,7 +46,7 @@ public struct PresentationHostUIModel {
         public static func offset(
             _ offset: CGFloat
         ) -> Self {
-            .init(keyboardResponsivenessStrategy: .offset(
+            .init(.offset(
                 offset: offset
             ))
         }
@@ -59,7 +59,7 @@ public struct PresentationHostUIModel {
         public static func offsetByKeyboardHeight(
             additionalOffset: CGFloat = 0
         ) -> Self {
-            .init(keyboardResponsivenessStrategy: .offsetByKeyboardHeight(
+            .init(.offsetByKeyboardHeight(
                 additionalOffset: additionalOffset
             ))
         }
@@ -68,7 +68,7 @@ public struct PresentationHostUIModel {
         public static func offsetByObscuredSubviewHeight(
             safeAreaInset: CGFloat = 20
         ) -> Self {
-            .init(keyboardResponsivenessStrategy: .offsetByObscuredSubviewHeight(
+            .init(.offsetByObscuredSubviewHeight(
                 safeAreaInset: safeAreaInset
             ))
         }
@@ -77,12 +77,12 @@ public struct PresentationHostUIModel {
         public static var `default`: Self {
             .offsetByObscuredSubviewHeight()
         }
-    }
 
-    // MARK: _ Keyboard Responsiveness Strategy
-    enum _KeyboardResponsivenessStrategy {
-        case offset(offset: CGFloat)
-        case offsetByKeyboardHeight(additionalOffset: CGFloat)
-        case offsetByObscuredSubviewHeight(safeAreaInset: CGFloat)
+        // MARK: Storage
+        enum Storage {
+            case offset(offset: CGFloat)
+            case offsetByKeyboardHeight(additionalOffset: CGFloat)
+            case offsetByObscuredSubviewHeight(safeAreaInset: CGFloat)
+        }
     }
 }

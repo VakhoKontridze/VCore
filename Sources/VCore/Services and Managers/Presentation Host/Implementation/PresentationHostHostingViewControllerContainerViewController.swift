@@ -77,7 +77,7 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
     override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
         super.keyboardWillShow(systemKeyboardInfo)
 
-        switch uiModel.keyboardResponsivenessStrategy?._keyboardResponsivenessStrategy {
+        switch uiModel.keyboardResponsivenessStrategy?.storage {
         case nil:
             break
 
@@ -121,7 +121,7 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
     override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
         super.keyboardWillHide(systemKeyboardInfo)
 
-        switch uiModel.keyboardResponsivenessStrategy?._keyboardResponsivenessStrategy {
+        switch uiModel.keyboardResponsivenessStrategy?.storage {
         case nil:
             break
 
