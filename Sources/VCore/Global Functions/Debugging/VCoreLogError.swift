@@ -26,13 +26,12 @@ public func VCoreLogError(
 
     let callSite: String = callSiteDescription(
         file: file,
-        line: line,
-        function: function
+        line: line
     )
 
     let message: String = .combiningDebugItems(items)
 
-    let string: String = "[\(module)] Error in '\(callSite)': \(message)"
+    let string: String = "[\(module)] Error in '\(function)' at '\(callSite)': \(message)"
 
     NSLog(string)
 #endif

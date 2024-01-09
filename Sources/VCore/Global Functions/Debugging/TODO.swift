@@ -28,11 +28,10 @@ public func TODO(
 
     let callSite: String = callSiteDescription(
         file: file,
-        line: line,
-        function: function
+        line: line
     )
 
-    var string: String = "[\(module)] TODO not implemented in '\(callSite)'"
+    var string: String = "[\(module)] TODO not implemented in '\(function)' at '\(callSite)'"
     message().map { string += ": \($0)" }
 
     NSLog(string)

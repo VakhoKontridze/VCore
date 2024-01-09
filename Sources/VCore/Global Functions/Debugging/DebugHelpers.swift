@@ -19,12 +19,11 @@ func moduleDescription(
 // MARK: - Call Site Description
 func callSiteDescription(
     file: String,
-    line: UInt,
-    function: String
+    line: UInt
 ) -> String {
     let file: String = file.components(separatedBy: "/").last ?? file
 
-    return "\(file):\(line):\(function)"
+    return "\(file):\(line)"
 }
 
 // MARK: - String Combining Debug Items

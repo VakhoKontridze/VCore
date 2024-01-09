@@ -28,11 +28,10 @@ public func FIXME(
 
     let callSite: String = callSiteDescription(
         file: file,
-        line: line,
-        function: function
+        line: line
     )
 
-    var string: String = "[\(module)] FIXME not implemented in '\(callSite)'"
+    var string: String = "[\(module)] FIXME not implemented in '\(function)' at '\(callSite)'"
     message().map { string += ": \($0)" }
 
     NSLog(string)

@@ -26,13 +26,12 @@ public func VCoreLogWarning(
 
     let callSite: String = callSiteDescription(
         file: file,
-        line: line,
-        function: function
+        line: line
     )
 
     let message: String = .combiningDebugItems(items)
 
-    let string: String = "[\(module)] Warning in '\(callSite)': \(message)"
+    let string: String = "[\(module)] Warning in '\(function)' at '\(callSite)': \(message)"
 
     NSLog(string)
 #endif
