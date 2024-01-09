@@ -56,7 +56,7 @@ extension UIColor {
     /// Initializes `UIColor` with a hex `UInt`.
     ///
     /// `hex` parameter must have at least `6` digits.
-    /// Everything before the first `6` will be dropped.
+    /// All digits before the last `6` will be dropped.
     ///
     ///     let color: UIColor? = .init(hex: 0x007AFF)
     ///
