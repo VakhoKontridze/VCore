@@ -43,7 +43,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
                     .replacingOccurrences(of: "0x", with: ""),
                 let value: UInt = .init(valueString, radix: 16)
             else {
-                throw ColorMacroError_InitWithHexString.invalidHexParameter
+                throw ColorMacroError_InitWithHexUInt.invalidHexParameter
             }
 
             return value
@@ -61,7 +61,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
                 let valueString: String = argument.expression.as(FloatLiteralExprSyntax.self)?.literal.text,
                 let value: CGFloat = Double(valueString).map({ CGFloat($0) })
             else {
-                throw ColorMacroError_InitWithHexString.invalidColorSpaceParameter
+                throw ColorMacroError_InitWithHexUInt.invalidColorSpaceParameter
             }
 
             return value
@@ -71,7 +71,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         guard
             let rgbValues = hex._hexColorRGBValues()
         else {
-            throw ColorMacroError_InitWithHexString.invalidHexParameter
+            throw ColorMacroError_InitWithHexUInt.invalidHexParameter
         }
 
         // Result
