@@ -14,7 +14,7 @@ final class StringUnwrappedDescribingTests: XCTestCase {
         let num: Int? = 5
         
         XCTAssertEqual(
-            String(unwrappedDescribing: num)!, // Force-unwrap
+            String(unwrappedDescribing: num),
             "5"
         )
     }

@@ -12,6 +12,12 @@ import XCTest
 final class DataNonEmptyTests: XCTestCase {
     func test() {
         XCTAssertNil(Data().nonEmpty)
-        XCTAssertNotNil("data".data(using: .utf8)!.nonEmpty) // Force-unwrap
+
+        guard let data: Data = "data".data(using: .utf8) else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
+        XCTAssertNotNil(data.nonEmpty)
     }
 }

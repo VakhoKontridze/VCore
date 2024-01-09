@@ -12,13 +12,26 @@ import XCTest
 
 // MARK: - Tests
 final class UIImageCompressedTests: XCTestCase {
-    func testJPEG() {
-        let image: UIImage = .init(size: CGSize(dimension: 100), color: .red)! // Force-unwrap
-        let compressedImage: UIImage = image.jpegCompressed(quality: 0.75)! // Force-unwrap
-        
-        let imageData: Data = image.jpegData(compressionQuality: 1)! // Force-unwrap
-        let compressedImageData: Data = compressedImage.jpegData(compressionQuality: 1)! // Force-unwrap
-        
+    func testJPEG() throws {
+        guard
+            let image: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red),
+            let imageData: Data = image.jpegData(compressionQuality: 1)
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
+        let compressedImage: UIImage = try XCTUnwrap(
+            image.jpegCompressed(quality: 0.75)
+        )
+
+        guard
+            let compressedImageData: Data = compressedImage.jpegData(compressionQuality: 1)
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
         XCTAssertLessThan(compressedImageData.count, imageData.count)
     }
 }

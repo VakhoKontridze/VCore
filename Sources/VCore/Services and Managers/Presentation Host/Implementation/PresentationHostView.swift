@@ -42,7 +42,10 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        guard let uiViewController = uiViewController as? PresentationHostViewController else { fatalError() }
+        guard let uiViewController = uiViewController as? PresentationHostViewController else {
+            VCoreLogError("Failed to cast '\(String(describing: type(of: uiViewController)))' to 'PresentationHostViewController'")
+            fatalError()
+        }
 
         let isExternallyDismissed: Bool =
             uiViewController.isPresentingView &&

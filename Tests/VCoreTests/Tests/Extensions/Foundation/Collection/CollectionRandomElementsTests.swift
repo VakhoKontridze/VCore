@@ -16,7 +16,9 @@ final class CollectionRandomElementsTests: XCTestCase {
     // MARK: Tests
     func testValid() throws {
         try 10.times {
-            let randomNumbers: [Int] = try XCTUnwrap(numbers.randomElements(Int.random(in: 0...numbers.count)))
+            let randomNumbers: [Int] = try XCTUnwrap(
+                numbers.randomElements(Int.random(in: 0...numbers.count))
+            )
 
             XCTAssertTrue(randomNumbers.isUnique == true)
             XCTAssertLessThanOrEqual(randomNumbers.count, numbers.count)

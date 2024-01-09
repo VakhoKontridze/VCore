@@ -5,22 +5,27 @@
 //  Created by Vakhtang Kontridze on 10.05.22.
 //
 
-#if canImport(UIKit) && !os(watchOS)// `UIImage.averageColor` doesn't work on watchOS
+#if canImport(UIKit) && !os(watchOS) // `UIImage.averageColor` doesn't work on watchOS
 
 import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class UIImageRotatedTests: XCTestCase { // Not testing helper methods
-    func test() {
-        let image1: UIImage = .init(size: CGSize(dimension: 100), color: .red)! // Force-unwrap
+final class UIImageRotatedTests: XCTestCase {
+    func test() throws {
+        guard
+            let image1: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red),
+            let image2: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.green),
+            let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
         
-        let image2: UIImage = .init(size: CGSize(dimension: 100), color: .blue)! // Force-unwrap
-        
-        let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)! // Force-unwrap
-        
-        let rotatedImage: UIImage = mergedImage.rotated(by: Measurement(value: 90, unit: .degrees))! // Force-unwrap
-        
+        let rotatedImage: UIImage = try XCTUnwrap(
+            mergedImage.rotated(by: Measurement(value: 90, unit: .degrees))
+        )
+
         let croppedImage: UIImage = rotatedImage.cropped(
             to: CGRect(
                 origin: .zero,
@@ -28,7 +33,14 @@ final class UIImageRotatedTests: XCTestCase { // Not testing helper methods
             )
         )
         
-        XCTAssertEqualColor(croppedImage.averageColor!, .red) // Force-unwrap
+        guard
+            let croppedImageAverageColor: UIColor = croppedImage.averageColor
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
+        XCTAssertEqualColor(croppedImageAverageColor, UIColor.red)
     }
 }
 

@@ -13,14 +13,18 @@ import XCTest
 final class ImageInitWithDataTests: XCTestCase {
     func test() {
 #if canImport(UIKit) && !os(watchOS)
-        let uiImage: UIImage = .init(
-            size: CGSize(dimension: 100),
-            color: UIColor.systemBlue
-        )! // Force-unwrap
+        guard
+            let uiImage: UIImage = .init(
+                size: CGSize(dimension: 100),
+                color: UIColor.systemBlue
+            ),
+            let data: Data = uiImage.jpegData(compressionQuality: 1)
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
         
-        let data: Data = uiImage.jpegData(compressionQuality: 1)! // Force-unwrap
-        
-        let _: Image = .init(data: data)
+        let _: Image = .init(data: data) // Check that no crashes occur
 #endif
     }
 }

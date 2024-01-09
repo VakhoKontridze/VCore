@@ -13,8 +13,8 @@ final class SequenceConditionalGroupingTests: XCTestCase {
     // MARK: Test Data
     private struct Student: Equatable {
         let name: String
-        var firstChar: Character { name.first! } // Force-unwrap
-        
+        var firstChar: Character? { name.first }
+
         init(_ name: String) { self.name = name }
     }
     

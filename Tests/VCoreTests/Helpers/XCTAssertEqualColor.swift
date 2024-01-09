@@ -14,14 +14,14 @@ import VCore
 #if canImport(UIKit)
 
 func XCTAssertEqualColor(
-    _ expression1: @autoclosure () throws -> UIColor,
-    _ expression2: @autoclosure () throws -> UIColor,
+    _ expression1: @autoclosure () -> UIColor,
+    _ expression2: @autoclosure () -> UIColor,
     _ message: @autoclosure () -> String = "",
     file: StaticString = #filePath,
     line: UInt = #line
 ) {
-    let lhs = try! expression1().rgbaValues // Force-unwrap
-    let rhs = try! expression2().rgbaValues // Force-unwrap
+    let lhs = expression1().rgbaValues
+    let rhs = expression2().rgbaValues
 
     XCTAssertEqual(lhs.red, rhs.red, message(), file: file, line: line)
     XCTAssertEqual(lhs.green, rhs.green, message(), file: file, line: line)
@@ -32,14 +32,14 @@ func XCTAssertEqualColor(
 #elseif canImport(AppKit)
 
 func XCTAssertEqualColor(
-    _ expression1: @autoclosure () throws -> NSColor,
-    _ expression2: @autoclosure () throws -> NSColor,
+    _ expression1: @autoclosure () -> NSColor,
+    _ expression2: @autoclosure () -> NSColor,
     _ message: @autoclosure () -> String = "",
     file: StaticString = #filePath,
     line: UInt = #line
 ) {
-    let lhs = try! expression1().rgbaValues // Force-unwrap
-    let rhs = try! expression2().rgbaValues // Force-unwrap
+    let lhs = expression1().rgbaValues
+    let rhs = expression2().rgbaValues
 
     XCTAssertEqual(lhs.red, rhs.red, message(), file: file, line: line)
     XCTAssertEqual(lhs.green, rhs.green, message(), file: file, line: line)
@@ -50,24 +50,24 @@ func XCTAssertEqualColor(
 #endif
 
 func XCTAssertEqualColor(
-    _ expression1: @autoclosure () throws -> Color,
-    _ expression2: @autoclosure () throws -> Color,
+    _ expression1: @autoclosure () -> Color,
+    _ expression2: @autoclosure () -> Color,
     _ message: @autoclosure () -> String = "",
     file: StaticString = #filePath,
     line: UInt = #line
 ) {
 #if canImport(UIKit)
     XCTAssertEqualColor(
-        UIColor(try! expression1()), // Force-unwrap
-        UIColor(try! expression2()), // Force-unwrap
+        UIColor(expression1()),
+        UIColor(expression2()),
         message(),
         file: file,
         line: line
     )
 #elseif canImport(AppKit)
     XCTAssertEqualColor(
-        NSColor(try! expression1()), // Force-unwrap
-        NSColor(try! expression2()), // Force-unwrap
+        NSColor(expression1()),
+        NSColor(expression2()),
         message(),
         file: file,
         line: line

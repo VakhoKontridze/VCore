@@ -13,7 +13,12 @@ import XCTest
 // MARK: - Tests
 final class UIImageCroppedTests: XCTestCase {
     func testSingleColorCroppedToRect() {
-        let image: UIImage = .init(size: CGSize(dimension: 100), color: .red)! // Force-unwrap
+        guard
+            let image: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red)
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
         
         let croppedImage: UIImage = image.cropped(
             to: CGRect(
@@ -21,24 +26,46 @@ final class UIImageCroppedTests: XCTestCase {
                 size: CGSize(dimension: 50)
             )
         )
-        
-        XCTAssertEqualColor(croppedImage.averageColor!, .red) // Force-unwrap
+
+        guard
+            let croppedImageAverageColor: UIColor = croppedImage.averageColor
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
+        XCTAssertEqualColor(croppedImageAverageColor, UIColor.red)
     }
     
     func testSingleColorCroppedToSize() {
-        let image: UIImage = .init(size: CGSize(dimension: 100), color: .red)! // Force-unwrap
-        
+        guard
+            let image: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red)
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
         let croppedImage: UIImage = image.cropped(to: CGSize(dimension: 50))
-        
-        XCTAssertEqualColor(croppedImage.averageColor!, .red) // Force-unwrap
+
+        guard
+            let croppedImageAverageColor: UIColor = croppedImage.averageColor
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
+        XCTAssertEqualColor(croppedImageAverageColor, UIColor.red)
     }
     
     func testMultiColorCroppedToRect() {
-        let image1: UIImage = .init(size: CGSize(dimension: 100), color: .red)! // Force-unwrap
-        
-        let image2: UIImage = .init(size: CGSize(dimension: 100), color: .blue)! // Force-unwrap
-        
-        let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)!
+        guard
+            let image1: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red),
+            let image2: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.green),
+            let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
         
         let croppedImage: UIImage = mergedImage.cropped(
             to: CGRect(
@@ -46,8 +73,15 @@ final class UIImageCroppedTests: XCTestCase {
                 size: CGSize(dimension: 100)
             )
         )
-        
-        XCTAssertEqualColor(croppedImage.averageColor!, .red) // Force-unwrap
+
+        guard
+            let croppedImageAverageColor: UIColor = croppedImage.averageColor
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
+        XCTAssertEqualColor(croppedImageAverageColor, UIColor.red)
     }
 }
 

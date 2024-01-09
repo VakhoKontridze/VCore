@@ -50,10 +50,10 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
             switch state {
             case .possible: .possible
             case .began: .began
-            case .changed: fatalError() // Never used
+            case .changed: fatalError() // Not used
             case .ended: .ended
             case .cancelled: .cancelled
-            case .failed: fatalError() // Never used
+            case .failed: fatalError() // Not used
             @unknown default: fatalError()
             }
         }()
@@ -64,10 +64,10 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
             switch state {
             case .possible: .possible
             case .began: .began
-            case .changed: fatalError() // Never used
+            case .changed: fatalError() // Not used
             case .ended: .ended
             case .cancelled: .cancelled
-            case .failed: fatalError() // Never used
+            case .failed: fatalError() // Not used
             @unknown default: fatalError()
             }
         }()

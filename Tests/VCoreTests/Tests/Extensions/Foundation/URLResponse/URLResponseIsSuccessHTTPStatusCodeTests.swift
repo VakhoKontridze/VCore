@@ -13,7 +13,7 @@ final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
     func testSuccess() {
         let urlResponse: HTTPURLResponse = .init(
             url: #url("https://www.apple.com"),
-            statusCode: (200...299).randomElement()!, // Force-unwrap
+            statusCode: 200,
             httpVersion: nil,
             headerFields: nil
         )!

@@ -20,7 +20,9 @@ final class UIColorInitWithHexTests: XCTestCase {
 
         let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
 
-        let result: UIColor = try XCTUnwrap(UIColor(hex: inputHex))
+        let result: UIColor = try XCTUnwrap(
+            UIColor(hex: inputHex)
+        )
 
         XCTAssertEqualColor(result, output)
     }
@@ -34,7 +36,9 @@ final class UIColorInitWithHexTests: XCTestCase {
 
         let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: inputA)
 
-        let result: UIColor = try XCTUnwrap(UIColor(hex: inputHex))
+        let result: UIColor = try XCTUnwrap(
+            UIColor(hex: inputHex)
+        )
 
         XCTAssertEqualColor(result, output)
     }
@@ -47,7 +51,9 @@ final class UIColorInitWithHexTests: XCTestCase {
 
         let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
 
-        let result: UIColor = try XCTUnwrap(UIColor(hex: inputHex))
+        let result: UIColor = try XCTUnwrap(
+            UIColor(hex: inputHex)
+        )
 
         XCTAssertEqualColor(result, output)
     }
@@ -61,7 +67,9 @@ final class UIColorInitWithHexTests: XCTestCase {
 
         let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: inputA)
 
-        let result: UIColor = try XCTUnwrap(UIColor(hex: inputHex))
+        let result: UIColor = try XCTUnwrap(
+            UIColor(hex: inputHex)
+        )
 
         XCTAssertEqualColor(result, output)
     }
@@ -78,7 +86,9 @@ final class UIColorInitWithHexTests: XCTestCase {
 
         let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
 
-        let result: UIColor = try XCTUnwrap(UIColor(hex: inputHex))
+        let result: UIColor = try XCTUnwrap(
+            UIColor(hex: inputHex)
+        )
 
         XCTAssertEqualColor(result, output)
     }
@@ -91,7 +101,9 @@ final class UIColorInitWithHexTests: XCTestCase {
 
         let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
 
-        let result: UIColor = try XCTUnwrap(UIColor(hex: inputHex))
+        let result: UIColor = try XCTUnwrap(
+            UIColor(hex: inputHex)
+        )
 
         XCTAssertEqualColor(result, output)
     }
@@ -104,7 +116,9 @@ final class UIColorInitWithHexTests: XCTestCase {
 
         let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
 
-        let result: UIColor = try XCTUnwrap(UIColor(hex: inputHex))
+        let result: UIColor = try XCTUnwrap(
+            UIColor(hex: inputHex)
+        )
 
         XCTAssertEqualColor(result, output)
     }

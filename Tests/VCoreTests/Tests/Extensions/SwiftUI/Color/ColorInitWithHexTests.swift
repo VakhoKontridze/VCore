@@ -21,7 +21,9 @@ final class ColorInitWithHexTests: XCTestCase {
 
         let output: Color = .init(red: inputR, green: inputG, blue: inputB, opacity: 1)
 
-        let result: Color = try XCTUnwrap(Color(hex: inputHex))
+        let result: Color = try XCTUnwrap(
+            Color(hex: inputHex)
+        )
 
         XCTAssertEqualColor(result, output)
     }
