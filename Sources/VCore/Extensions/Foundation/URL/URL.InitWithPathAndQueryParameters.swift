@@ -60,7 +60,7 @@ extension URLComponents {
         if queryItems == nil {
             queryItems = newURLQueryItems
         } else {
-            queryItems!.append(contentsOf: newURLQueryItems) // Force-unwrap
+            queryItems?.append(contentsOf: newURLQueryItems)
         }
     }
 }

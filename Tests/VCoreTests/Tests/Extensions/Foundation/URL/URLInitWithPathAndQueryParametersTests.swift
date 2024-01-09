@@ -10,7 +10,7 @@ import XCTest
 
 // MARK: - Tests
 final class URLInitWithPathAndQueryParametersTests: XCTestCase {
-    func testInitURL() {
+    func testFullDeclaration() {
         let string: String = "https://example.com"
         let pathParameters: [String] = ["path", "to", "resource"]
         let queryParameters: [String: String] = ["key1": "value1", "key2": "value2"]
@@ -39,7 +39,7 @@ final class URLInitWithPathAndQueryParametersTests: XCTestCase {
         XCTAssertEqual(url.query, oneOf: ["key1=value1&key2=value2", "key2=value2&key1=value1"])
     }
 
-    func testInitURLWithEmptyString() {
+    func testEmptyString() {
         let string: String = ""
         let pathParameters: [String] = ["path", "to", "resource"]
         let queryParameters: [String: String] = ["key1": "value1", "key2": "value2"]
@@ -53,7 +53,7 @@ final class URLInitWithPathAndQueryParametersTests: XCTestCase {
         XCTAssertNil(url)
     }
 
-//    func testInitURLWithInvalidString() {
+//    func testInvalidString() {
 //        let string: String = "InvalidURL"
 //        let pathParameters: [String] = ["path", "to", "resource"]
 //        let queryParameters: [String: String] = ["key1": "value1", "key2": "value2"]
@@ -67,7 +67,7 @@ final class URLInitWithPathAndQueryParametersTests: XCTestCase {
 //        XCTAssertNil(url)
 //    }
 
-    func testInitURLWithEmptyPathParameters() {
+    func testEmptyPathParameters() {
         let string: String = "https://example.com"
         let pathParameters: [String] = []
         let queryParameters: [String: String] = ["key": "value"]
@@ -87,7 +87,7 @@ final class URLInitWithPathAndQueryParametersTests: XCTestCase {
         XCTAssertEqual(url.path, "")
     }
 
-    func testInitURLWithEmptyQueryParameters() {
+    func testEmptyQueryParameters() {
         let string: String = "https://example.com"
         let pathParameters: [String] = ["path", "to", "resource"]
         let queryParameters: [String: String] = [:]

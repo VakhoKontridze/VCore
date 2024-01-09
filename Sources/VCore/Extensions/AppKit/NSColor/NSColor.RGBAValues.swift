@@ -72,7 +72,14 @@ extension NSColor {
 // MARK: - Helpers
 extension NSColor {
     var calibrated: NSColor {
-        self.usingColorSpace(.deviceRGB)! // Force-unwrap
+        guard
+            let calibratedColor: NSColor = usingColorSpace(.deviceRGB)
+        else {
+            VCoreLogError("Failed to calibrate 'NSColor' '\(rgbaComponents)' with 'NSColorSpace.deviceRGB'")
+            fatalError()
+        }
+
+        return calibratedColor
     }
 }
 
