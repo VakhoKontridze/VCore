@@ -8,48 +8,20 @@
 #if canImport(UIKit)
 
 import UIKit
-
-// MARK: - Color Init with Hex (UInt64)
-extension UIColor {
-    /// Initializes `UIColor` with a hex `UInt64`
-    ///
-    ///     let color: UIColor? = .init(hex: 0x007AFF)
-    ///
-    public convenience init?(hex uInt: UInt64) {
-        guard let values = uInt.hexColorRGBAValues() else { return nil }
-
-        self.init(
-            red: values.red,
-            green: values.green,
-            blue: values.blue,
-            alpha: values.alpha
-        )
-    }
-
-    /// Initializes `UIColor` with a hex string
-    ///
-    ///     let color: UIColor? = .init(displayP3Hex: 0x007AFF)
-    ///
-    public convenience init?(displayP3Hex uInt: UInt64) {
-        guard let values = uInt.hexColorRGBAValues() else { return nil }
-
-        self.init(
-            displayP3Red: values.red,
-            green: values.green,
-            blue: values.blue,
-            alpha: values.alpha
-        )
-    }
-}
+import VCoreShared
 
 // MARK: - Color Init with Hex (String)
 extension UIColor {
-    /// Initializes `UIColor` with a hex `String`
+    /// Initializes `UIColor` with a hex `String`.
+    ///
+    /// `hex` parameter must have `2`, `4`, `6`, or `8`-digits.
     ///
     ///     let color: UIColor? = .init(hex: "#007AFF")
     ///
-    public convenience init?(hex string: String) {
-        guard let values = string.hexColorRGBAValues() else { return nil }
+    public convenience init?(
+        hex string: String
+    ) {
+        guard let values = string._hexColorRGBAValues() else { return nil }
 
         self.init(
             red: values.red,
@@ -59,12 +31,16 @@ extension UIColor {
         )
     }
 
-    /// Initializes `UIColor` with a hex string
+    /// Initializes `UIColor` with a hex `String`.
+    ///
+    /// `displayP3Hex` parameter must be in a `2`, `4`, `6`, or `8`-digit format.
     ///
     ///     let color: UIColor? = .init(displayP3Hex: "#007AFF")
     ///
-    public convenience init?(displayP3Hex string: String) {
-        guard let values = string.hexColorRGBAValues() else { return nil }
+    public convenience init?(
+        displayP3Hex string: String
+    ) {
+        guard let values = string._hexColorRGBAValues() else { return nil }
 
         self.init(
             displayP3Red: values.red,
@@ -75,65 +51,48 @@ extension UIColor {
     }
 }
 
-#endif
+// MARK: - Color Init with Hex (UInt)
+extension UIColor {
+    /// Initializes `UIColor` with a hex `UInt`.
+    ///
+    /// `hex` parameter must have at least `6` digits.
+    /// Everything before the first `6` will be dropped.
+    ///
+    ///     let color: UIColor? = .init(hex: 0x007AFF)
+    ///
+    public convenience init?(
+        hex uInt: UInt,
+        alpha: CGFloat = 1
+    ) {
+        guard let values = uInt._hexColorRGBValues() else { return nil }
 
-#if canImport(UIKit)
-import UIKit
-#elseif canImport(AppKit)
-import AppKit
-#endif
+        self.init(
+            red: values.red,
+            green: values.green,
+            blue: values.blue,
+            alpha: alpha
+        )
+    }
 
-// MARK: - Helpers
-extension UInt64 {
-    /*fileprivate*/ func hexColorRGBAValues() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
-        switch String(self, radix: 16).count {
-        case 2:
-            let mask: Int = 0xFF
+    /// Initializes `UIColor` with a hex `UInt`.
+    ///
+    /// `displayP3Hex` parameter must be in a `6`-digit format.
+    ///
+    ///     let color: UIColor? = .init(displayP3Hex: 0x007AFF)
+    ///
+    public convenience init?(
+        displayP3Hex uInt: UInt,
+        alpha: CGFloat = 1
+    ) {
+        guard let values = uInt._hexColorRGBValues() else { return nil }
 
-            let gray: CGFloat = CGFloat(Int(self) & mask) / 255
-
-            return (gray, gray, gray, 1)
-
-        case 4:
-            let mask: Int = 0x00FF
-
-            let gray: CGFloat = CGFloat(Int(self >> 8) & mask) / 255
-            let alpha: CGFloat = CGFloat(Int(self) & mask) / 255
-
-            return (gray, gray, gray, alpha)
-
-        case 6:
-            let mask: Int = 0x00_00FF
-
-            let red: CGFloat = CGFloat(Int(self >> 16) & mask) / 255
-            let green: CGFloat = CGFloat(Int(self >> 8) & mask) / 255
-            let blue: CGFloat = CGFloat(Int(self) & mask) / 255
-
-            return (red, green, blue, 1)
-
-        case 8:
-            let mask: Int = 0x0000_00FF
-
-            let red: CGFloat = CGFloat(Int(self >> 24) & mask) / 255
-            let green: CGFloat = CGFloat(Int(self >> 16) & mask) / 255
-            let blue: CGFloat = CGFloat(Int(self >> 8) & mask) / 255
-            let alpha: CGFloat = CGFloat(Int(self) & mask) / 255
-
-            return (red, green, blue, alpha)
-
-        default:
-            return nil
-        }
+        self.init(
+            displayP3Red: values.red,
+            green: values.green,
+            blue: values.blue,
+            alpha: alpha
+        )
     }
 }
 
-extension String {
-    /*fileprivate*/ func hexColorRGBAValues() -> (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat)? {
-        var string: String = trimmingCharacters(in: .whitespacesAndNewlines)
-        if string.hasPrefix("#") { _ = string.removeFirst() }
-
-        guard let color: UInt64 = .init(string, radix: 16) else { return nil }
-
-        return color.hexColorRGBAValues()
-    }
-}
+#endif

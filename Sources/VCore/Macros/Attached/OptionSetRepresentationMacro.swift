@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - Option Set Representation Macro
-/// Adds an `OptionSet` from a `struct` that contains a nested `Options` `enum`.
+/// Adds an `OptionSet` from `struct` that contains a nested `Options` `enum`.
 ///
 ///     @OptionSetRepresentation<Int>
 ///     struct Gender {

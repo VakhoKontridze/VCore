@@ -1,5 +1,5 @@
 //
-//  URLMacro.swift
+//  URLMacro_InitWithString.swift
 //  VCoreMacros
 //
 //  Created by Vakhtang Kontridze on 07.01.24.
@@ -9,8 +9,8 @@ import Foundation
 import SwiftSyntax
 import SwiftSyntaxMacros
 
-// MARK: - URL Macro
-struct URLMacro: ExpressionMacro {
+// MARK: - URL Macro (Init with String)
+struct URLMacro_InitWithString: ExpressionMacro {
     static func expansion(
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
@@ -21,7 +21,7 @@ struct URLMacro: ExpressionMacro {
                 let argument: LabeledExprSyntax = node.argumentList.first, // Only one argument, with no name
                 let value: String = argument.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue
             else {
-                throw URLMacroError.invalidURLStringParameter
+                throw URLMacroError_InitWithString.invalidURLStringParameter
             }
 
             return (value, argument.expression)
@@ -29,9 +29,9 @@ struct URLMacro: ExpressionMacro {
 
         // Checks compilation
         guard
-            let _: URL = .init(string: urlString)
+            URL(string: urlString) != nil
         else {
-            throw URLMacroError.malformedURL
+            throw URLMacroError_InitWithString.malformedURL
         }
 
         // Result
@@ -39,8 +39,8 @@ struct URLMacro: ExpressionMacro {
     }
 }
 
-// MARK: - URL Macro Error
-struct URLMacroError: Error, CustomStringConvertible {
+// MARK: - URL Macro Error (Init with String)
+struct URLMacroError_InitWithString: Error, CustomStringConvertible {
     // MARK: Properties
     let description: String
 

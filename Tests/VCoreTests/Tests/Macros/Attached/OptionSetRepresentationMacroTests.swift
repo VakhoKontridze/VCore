@@ -92,7 +92,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
         )
     }
 
-    func testAccessLevelModifier() {
+    func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
             @OptionSetRepresentation<Int>(accessLevelModifier: "public")

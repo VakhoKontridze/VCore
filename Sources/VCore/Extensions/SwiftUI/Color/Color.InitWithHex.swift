@@ -6,32 +6,39 @@
 //
 
 import SwiftUI
+import VCoreShared
 
-// MARK: - Color Init with Hex (UInt64)
+// MARK: - Color Init with Hex (UInt)
 extension Color {
-    /// Initializes `UIColor` with a hex `UInt64`
+    /// Initializes `UIColor` with a hex `UInt`
+    ///
+    /// `hex` parameter must have at least `6` digits.
+    /// Everything before the first `6` will be dropped.
     ///
     ///     let color: Color? = .init(hex: 0x007AFF)
     ///
     public init?(
         _ colorSpace: RGBColorSpace = .sRGB,
-        hex uInt: UInt64
+        hex uInt: UInt,
+        opacity: CGFloat = 1
     ) {
-        guard let values = uInt.hexColorRGBAValues() else { return nil }
+        guard let values = uInt._hexColorRGBValues() else { return nil }
 
         self.init(
             colorSpace,
             red: values.red,
             green: values.green,
             blue: values.blue,
-            opacity: values.alpha
+            opacity: opacity
         )
     }
 }
 
 // MARK: - Color Init with Hex (String)
 extension Color {
-    /// Initializes `UIColor` with a hex `String`
+    /// Initializes `UIColor` with a hex `String`.
+    ///
+    /// `hex` parameter must have `2`, `4`, `6`, or `8`-digits.
     ///
     ///     let color: Color? = .init(hex: "#007AFF")
     ///
@@ -39,7 +46,7 @@ extension Color {
         _ colorSpace: RGBColorSpace = .sRGB,
         hex string: String
     ) {
-        guard let values = string.hexColorRGBAValues() else { return nil }
+        guard let values = string._hexColorRGBAValues() else { return nil }
 
         self.init(
             colorSpace,

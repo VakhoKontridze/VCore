@@ -73,7 +73,7 @@ final class MemberwiseCodableMacroTests: XCTestCase {
         )
     }
 
-    func testAccessLevelModifier() {
+    func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
             @MemberwiseCodable(accessLevelModifier: "private")

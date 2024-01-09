@@ -90,7 +90,7 @@ final class CaseDetectionMacroTests: XCTestCase {
         )
     }
 
-    func testAccessLevelModifier() {
+    func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
             @CaseDetection(accessLevelModifier: "fileprivate")

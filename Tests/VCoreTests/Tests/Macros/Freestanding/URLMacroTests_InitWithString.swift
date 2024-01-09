@@ -1,5 +1,5 @@
 //
-//  URLMacroTests.swift
+//  URLMacroTests_InitWithString.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 07.01.24.
@@ -15,9 +15,9 @@ import SwiftSyntaxMacrosTestSupport
 @testable import VCoreMacros
 
 // MARK: - Tests
-final class URLMacroTests: XCTestCase {
+final class URLMacroTests_InitWithString: XCTestCase {
     // MARK: Test Data
-    private let macros: [String: Macro.Type] = ["URL": URLMacro.self]
+    private let macros: [String: Macro.Type] = ["url": URLMacro_InitWithString.self]
 
     // MARK: Tests
     func testValid() {
@@ -34,7 +34,7 @@ final class URLMacroTests: XCTestCase {
         )
     }
 
-    func testStringLiteralRequired() {
+    func testInvalidStringURLParameter() {
         assertMacroExpansion(
             """
             let urlString: String = "https://example.com"
@@ -47,7 +47,7 @@ final class URLMacroTests: XCTestCase {
                 """
             ,
             diagnostics: [
-                DiagnosticSpec(message: URLMacroError.invalidURLStringParameter.description, line: 2, column: 16)
+                DiagnosticSpec(message: URLMacroError_InitWithString.invalidURLStringParameter.description, line: 2, column: 16)
             ],
             macros: macros
         )
@@ -64,7 +64,7 @@ final class URLMacroTests: XCTestCase {
                 """
             ,
             diagnostics: [
-                DiagnosticSpec(message: URLMacroError.malformedURL.description, line: 1, column: 16)
+                DiagnosticSpec(message: URLMacroError_InitWithString.malformedURL.description, line: 1, column: 16)
             ],
             macros: macros
         )

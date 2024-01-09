@@ -4,9 +4,11 @@
 
 Extensions
 
+- `Bundle.name` property is added that returns the `Bundle` name
+- `Color(_:hex:)` initializer now takes `opacity` parameter, and no longer allows hex values that are not in `6`-digit format
 - `Set.insert(contentsOf:)` method is added, that inserts `Sequence` in the `Set`
 - Setter is added to `StringProtocol.subscript(_:)`
-- `Bundle.name` property is added that returns the `Bundle` name
+- `UIColor(hex:)` and `UIColor(displayP3Hex:)` initializers now take `opacity` parameter, and no longer allows hex values that are not in `6`-digit format
 
 Global Functions
 
@@ -15,10 +17,11 @@ Global Functions
 Macros
 
 - `CaseDetection` macro is added, that adds computed properties to `enum` to represent each `case`
+- `color(_:hex:)` macro is added, that creates a non-optional `Color` from `String` or `UInt`
 - `MemberwiseCodable` and `MWCKey` macros are added, that add `CodingKeys` to a declaration to memberwise code each property
 - `NonInitializable` macro is added, that adds `private` initializer to declaration, preventing object creation
-- `OptionSetRepresentation` macro is added, that adds an `OptionSet` from a `struct` that contains a nested `Options` `enum`
-- `url(_:)` macro is added, that creates a non-optional `URL` from a `String`
+- `OptionSetRepresentation` macro is added, that adds an `OptionSet` from `struct` that contains a nested `Options` `enum`
+- `url(_:)` macro is added, that creates a non-optional `URL` from `String`
 
 ### [5.2.1(88)](https://github.com/VakhoKontridze/VCore/releases/tag/5.2.1) — *2023 12 08*
 
@@ -91,7 +94,7 @@ Extensions
 - `View.getNestedSize(_:)` method is added, that returns `CGSize` of the nested `View`
 - `View.eraseToAnyView()` method is added, that erases `View` type
 - `UIHostingController.overrideBehaviors(_:)` method is added, that overrides select behaviors
-- `Publisher.assignWeak(to:on:)` method is added, that assigns each element from a `Publisher` to a property of an object with a weak retain cycle
+- `Publisher.assignWeak(to:on:)` method is added, that assigns each element from `Publisher` to a property of an object with a weak retain cycle
 
 ### [5.0.0(85)](https://github.com/VakhoKontridze/VCore/releases/tag/5.0.0) — *2023 10 08*
 

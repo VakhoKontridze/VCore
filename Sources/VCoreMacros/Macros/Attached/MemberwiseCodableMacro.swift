@@ -52,8 +52,7 @@ struct MemberwiseCodableMacro: MemberMacro {
                         .bindings
                         .first? // Only one member allowed per line
                         .pattern.as(IdentifierPatternSyntax.self)?
-                        .identifier
-                        .text
+                        .identifier.text
                 else {
                     throw MemberwiseCodableMacroError.invalidPropertyName
                 }
