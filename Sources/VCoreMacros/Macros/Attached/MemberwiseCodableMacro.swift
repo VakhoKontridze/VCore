@@ -119,8 +119,8 @@ struct MemberwiseCodableMacroError: Error, CustomStringConvertible {
         self.description = description
     }
 
-    static var invalidAccessLevelModifierParameter: Self { .init("Invalid access level modifier parameter") }
-    static var onePropertyAllowedPerLine: Self { .init("Only one property declaration is allowed per line to synthesize coding keys") }
+    static var invalidAccessLevelModifierParameter: Self { .init("Invalid 'accessLevelModifier' parameter") }
+    static var onePropertyAllowedPerLine: Self { .init("Only one property declaration is allowed per line") }
     static var invalidPropertyName: Self { .init("Invalid property name") }
     static var invalidKeyName: Self { .init("Invalid key name") }
 }

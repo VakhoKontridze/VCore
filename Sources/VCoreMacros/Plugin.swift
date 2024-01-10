@@ -18,7 +18,10 @@ import SwiftSyntaxMacros
         NonInitializableMacro.self,
         OptionSetRepresentationMacro.self,
 
-        // Freestanding
+        // Freestanding (Declaration)
+        // ...
+
+        // Freestanding (Expression)
         ColorMacro_InitWithHexString.self,
         ColorMacro_InitWithHexUInt.self,
         URLMacro_InitWithString.self

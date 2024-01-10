@@ -190,7 +190,7 @@ struct OptionSetRepresentationMacroError: Error, CustomStringConvertible {
         self.description = description
     }
 
-    static var invalidAccessLevelModifierParameter: Self { .init("Invalid access level modifier parameter") }
+    static var invalidAccessLevelModifierParameter: Self { .init("Invalid 'accessLevelModifier' parameter") }
     static var canOnlyBeAppliedToStructs: Self { .init("'OptionSetRepresentation' macro can only be applied to a 'struct'") }
     static var invalidOptionsEnumName: Self { .init("Invalid options 'enum' name") }
     static var optionsEnumNotFound: Self { .init("Options 'enum' not found") }
