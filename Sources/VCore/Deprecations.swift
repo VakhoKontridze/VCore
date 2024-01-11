@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Localization Manager
 extension LocalizationManager {
-    @available(*, unavailable, message: "Use `currentLocaleChangePublisher` instead")
+    @available(*, unavailable, message: "Use 'currentLocaleChangePublisher' instead")
     public static var currentLocaleDidChangeNotification: Notification.Name { fatalError() }
 }
 
@@ -31,7 +31,7 @@ extension LocalizationManager {
 }
 
 extension String {
-    @available(*, deprecated, message: "Use `LocalizationManager.localized` method instead")
+    @available(*, deprecated, message: "Use 'LocalizationManager.localized' method instead")
     public func localizedWithManager(
         tableName: String? = nil,
         bundle: Bundle = .main,
@@ -47,7 +47,7 @@ extension String {
 }
 
 extension String {
-    @available(*, deprecated, message: "Use new `String` catalog API instead")
+    @available(*, deprecated, message: "Use new 'String' catalog API instead")
     public func localized(
         tableName: String? = nil,
         bundle: Bundle = .main,
@@ -66,10 +66,10 @@ extension String {
 
 // MARK: - Network Reachability Service
 extension NetworkReachabilityService {
-    @available(*, unavailable, message: "Use `connectedPublisher` instead")
+    @available(*, unavailable, message: "Use 'connectedPublisher' instead")
     public static var connectedNotification: Notification.Name { fatalError() }
 
-    @available(*, unavailable, message: "Use `disconnectedPublisher` instead")
+    @available(*, unavailable, message: "Use 'disconnectedPublisher' instead")
     public static var disconnectedNotification: Notification.Name { fatalError() }
 }
 
@@ -92,7 +92,7 @@ extension SessionManager {
 }
 
 // MARK: - Fetch Delegating Async Image
-@available(*, unavailable, message: "Use `VFetchingAsyncImage` from `VComponents")
+@available(*, unavailable, message: "Use 'VFetchingAsyncImage' from 'VComponents")
 public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>: View
     where
         Parameter: Equatable,
@@ -149,13 +149,13 @@ public struct FetchDelegatingAsyncImage<Parameter, Content, PlaceholderContent>:
     }
 }
 
-@available(*, unavailable, message: "Use `VFetchingAsyncImage` from `VComponents")
+@available(*, unavailable, message: "Use 'VFetchingAsyncImage' from 'VComponents")
 public struct FetchDelegatingAsyncImageUIModel {
     public init() {}
 }
 
 // MARK: - Fetch Delegating Completion Image
-@available(*, unavailable, message: "FetchDelegatingCompletionImage` is removed. Use `VFetchingAsyncImage` from `VComponents instead.")
+@available(*, unavailable, message: "FetchDelegatingCompletionImage' is removed. Use 'VFetchingAsyncImage' from 'VComponents instead.")
 public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderContent>: View
     where
         Parameter: Equatable,
@@ -212,7 +212,7 @@ public struct FetchDelegatingCompletionImage<Parameter, Content, PlaceholderCont
     }
 }
 
-@available(*, unavailable, message: "FetchDelegatingCompletionImage` is removed. Use `VFetchingAsyncImage` from `VComponents instead.")
+@available(*, unavailable, message: "FetchDelegatingCompletionImage' is removed. Use 'VFetchingAsyncImage' from 'VComponents instead.")
 public struct FetchDelegatingCompletionImageUIModel {
     public init() {}
 }
@@ -282,7 +282,7 @@ extension View {
 
 // MARK: - Models - Generic States and Models
 extension GenericStateModel_EnabledFocused {
-    @available(*, unavailable, message: "Use init without `pressed` value")
+    @available(*, unavailable, message: "Use init without 'pressed' value")
     public init(
         enabled: Value,
         pressed: Value,
@@ -293,7 +293,7 @@ extension GenericStateModel_EnabledFocused {
 }
 
 extension GenericStateModel_EnabledLoading {
-    @available(*, unavailable, message: "Use init without `pressed` value")
+    @available(*, unavailable, message: "Use init without 'pressed' value")
     public init(
         enabled: Value,
         pressed: Value,
@@ -410,7 +410,7 @@ public typealias OverridenUIHostingControllerBehavior = OverridableUIHostingCont
 #endif
 
 extension View {
-    @available(*, deprecated, message: "Use method without `Bool` parameter")
+    @available(*, deprecated, message: "Use method without 'Bool' parameter")
     public func onFirstAppear(
         _ didAppearForTheFirstTime: Binding<Bool>,
         perform action: (() -> Void)? = nil
@@ -431,7 +431,7 @@ extension View {
 import UIKit
 
 extension UIApplication {
-    @available(*, deprecated, message: "Use method with `activationStates` parameter")
+    @available(*, deprecated, message: "Use method with 'activationStates' parameter")
     public func firstWindow(
         where predicate: (UIWindow) throws -> Bool
     ) rethrows -> UIWindow? {
@@ -445,7 +445,7 @@ extension UIApplication {
 #endif
 
 // MARK: - Debugging
-@available(*, unavailable, message: "Use method without `module` parameter")
+@available(*, unavailable, message: "Use method without 'module' parameter")
 public func VCoreLogWarning(
     _ message: String,
     module: String,
@@ -454,7 +454,7 @@ public func VCoreLogWarning(
     function: String = #function
 ) {}
 
-@available(*, unavailable, message: "Use method without `module` parameter")
+@available(*, unavailable, message: "Use method without 'module' parameter")
 public func VCoreLogError(
     _ items: Any...,
     module: String,
@@ -463,7 +463,7 @@ public func VCoreLogError(
     function: String = #function
 ) {}
 
-@available(*, deprecated, message: "Use logging methods with `fatalError`")
+@available(*, deprecated, message: "Use logging methods with 'fatalError'")
 public func VCoreFatalError(
     _ items: Any...,
     fileID: String = #fileID,
