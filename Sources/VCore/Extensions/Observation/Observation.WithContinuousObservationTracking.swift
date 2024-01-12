@@ -11,7 +11,8 @@ import Observation
 // MARK: - Observation with Continuous Observation Tracking
 /// Tracks access to properties in a `class` type continuously.
 ///
-///     @Observable final class SomeObject {
+///     @Observable
+//      final class SomeObject {
 ///         private var value: Int = 0
 ///
 ///         init() {

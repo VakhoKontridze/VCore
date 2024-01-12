@@ -12,7 +12,8 @@ import Foundation
 ///
 /// For additional info, refer to `ViewResettingContainer`.
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-@Observable public final class ViewResetter {
+@Observable
+public final class ViewResetter {
     // MARK: Properties
     private(set) var value: Int = 0
 

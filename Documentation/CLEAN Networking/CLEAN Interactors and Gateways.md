@@ -77,7 +77,8 @@ struct UpdateUserDataNetworkGateway: UpdateUserDataGateway {
 This allows a presenter to perform a fetch request:
 
 ```swift
-@MainActor final class HomePresenter<Interactor>: HomePresentable
+@MainActor
+final class HomePresenter<Interactor>: HomePresentable
     where Interactor: HomeInteractive
 {
     private let interactor: Interactor

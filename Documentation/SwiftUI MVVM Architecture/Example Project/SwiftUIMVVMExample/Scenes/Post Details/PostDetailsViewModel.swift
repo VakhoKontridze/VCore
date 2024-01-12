@@ -9,7 +9,8 @@ import Foundation
 import VCore
 
 // MARK: - Post Details View Model
-@MainActor final class PostDetailsViewModel: ObservableObject {
+@MainActor
+final class PostDetailsViewModel: ObservableObject {
     // MARK: Properties
     private let parameters: PostDetailsParameters
 

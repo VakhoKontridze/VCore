@@ -9,7 +9,8 @@ import Foundation
 import VCore
 
 // MARK: - Posts View Model
-@MainActor final class PostsViewModel: ObservableObject {
+@MainActor
+final class PostsViewModel: ObservableObject {
     // MARK: Properties
     @Published private(set) var posts: [PostsEntity.Post] = []
 

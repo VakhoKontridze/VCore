@@ -13,7 +13,8 @@ import Combine
 // MARK: - Device Orientation Observer
 /// Observer that detects changes in device orientation.
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-@Observable public final class DeviceOrientationObserver {
+@Observable
+public final class DeviceOrientationObserver {
     // MARK: Properties
     /// The physical orientation of the device.
     public var deviceOrientation: UIDeviceOrientation = DeviceOrientationObserver.getDeviceOrientation()
