@@ -1,6 +1,6 @@
 # Change Log
 
-### 5.3.0(89)
+### [5.3.0(89)](https://github.com/VakhoKontridze/VCore/releases/tag/5.3.0) — *2024 01 12*
 
 Extensions
 
