@@ -1,5 +1,5 @@
 //
-//  MemberwiseCodableMacroTests.swift
+//  CodingKeysGenerationMacroTests.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
@@ -15,25 +15,25 @@ import SwiftSyntaxMacrosTestSupport
 @testable import VCoreMacros
 
 // MARK: - Tests
-final class MemberwiseCodableMacroTests: XCTestCase {
+final class CodingKeysGenerationMacroTests: XCTestCase {
     // MARK: Test Data
-    private let macros: [String: Macro.Type] = ["MemberwiseCodable": MemberwiseCodableMacro.self]
+    private let macros: [String: Macro.Type] = ["CodingKeysGeneration": CodingKeysGenerationMacro.self]
 
     // MARK: Tests
     func testSimpleDeclaration() {
         assertMacroExpansion(
             """
-            @MemberwiseCodable
+            @CodingKeysGeneration
             struct SomeStruct {
-                @MWCCodingKey("key_one") let one: Int
-                @MWCCodingKey("key_two") let two: String
+                @CKGCodingKey("key_one") let one: Int
+                @CKGCodingKey("key_two") let two: String
             }
             """,
             expandedSource: 
                 """
                 struct SomeStruct {
-                    @MWCCodingKey("key_one") let one: Int
-                    @MWCCodingKey("key_two") let two: String
+                    @CKGCodingKey("key_one") let one: Int
+                    @CKGCodingKey("key_two") let two: String
 
                     internal enum CodingKeys: String, CodingKey {
                         case one = "key_one"
@@ -50,17 +50,17 @@ final class MemberwiseCodableMacroTests: XCTestCase {
     func testNoCustomCodingKey() {
         assertMacroExpansion(
             """
-            @MemberwiseCodable
+            @CodingKeysGeneration
             struct SomeStruct {
                 let one: Int
-                @MWCCodingKey("key_two") let two: String
+                @CKGCodingKey("key_two") let two: String
             }
             """,
             expandedSource: 
                 """
                 struct SomeStruct {
                     let one: Int
-                    @MWCCodingKey("key_two") let two: String
+                    @CKGCodingKey("key_two") let two: String
 
                     internal enum CodingKeys: String, CodingKey {
                         case one
@@ -76,7 +76,7 @@ final class MemberwiseCodableMacroTests: XCTestCase {
     func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
-            @MemberwiseCodable(accessLevelModifier: "private")
+            @CodingKeysGeneration(accessLevelModifier: "private")
             struct SomeStruct {
                 let one: Int
                 let two: String
@@ -102,12 +102,12 @@ final class MemberwiseCodableMacroTests: XCTestCase {
     func testOtherMembers() {
         assertMacroExpansion(
             """
-            @MemberwiseCodable
+            @CodingKeysGeneration
             struct SomeStruct {
                 let one: Int
                 let two: String
 
-                @MWCCodingKeyIgnored var attributes: [String: Any?] = [:]
+                @CKGCodingKeyIgnored var attributes: [String: Any?] = [:]
 
                 func foo() {}
             }
@@ -118,7 +118,7 @@ final class MemberwiseCodableMacroTests: XCTestCase {
                     let one: Int
                     let two: String
 
-                    @MWCCodingKeyIgnored var attributes: [String: Any?] = [:]
+                    @CKGCodingKeyIgnored var attributes: [String: Any?] = [:]
 
                     func foo() {}
 
@@ -136,7 +136,7 @@ final class MemberwiseCodableMacroTests: XCTestCase {
     func testSameLineProperties() {
         assertMacroExpansion(
             """
-            @MemberwiseCodable
+            @CodingKeysGeneration
             struct SomeStruct {
                 let one, two: Int
             }
@@ -149,7 +149,7 @@ final class MemberwiseCodableMacroTests: XCTestCase {
                 """
             ,
             diagnostics: [
-                DiagnosticSpec(message: MemberwiseCodableMacroError.onePropertyAllowedPerLine.description, line: 1, column: 1)
+                DiagnosticSpec(message: CodingKeysGenerationMacroError.onePropertyAllowedPerLine.description, line: 1, column: 1)
             ],
             macros: macros
         )

@@ -14,12 +14,12 @@ struct PostsEntity {
     let posts: [Post]
 
     // MARK: Post
-    @MemberwiseCodable
+    @CodingKeysGeneration
     struct Post: Hashable, Identifiable, Decodable {
-        @MWCCodingKey("id") let id: Int
-        @MWCCodingKey("userId") let userID: Int
-        @MWCCodingKey("title") let title: String
-        @MWCCodingKey("body") let body: String
+        @CKGCodingKey("id") let id: Int
+        @CKGCodingKey("userId") let userID: Int
+        @CKGCodingKey("title") let title: String
+        @CKGCodingKey("body") let body: String
     }
 
     // MARK: Mock

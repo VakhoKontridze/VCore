@@ -24,12 +24,12 @@ struct GetPostGatewayParameters {
     let id: Int
 }
 
-@MemberwiseCodable
+@CodingKeysGeneration
 struct GetPostEntity: Decodable {
-    @MWCCodingKey("id") let id: Int
-    @MWCCodingKey("userId") let userID: Int
-    @MWCCodingKey("title") let title: String
-    @MWCCodingKey("body") let body: String
+    @CKGCodingKey("id") let id: Int
+    @CKGCodingKey("userId") let userID: Int
+    @CKGCodingKey("title") let title: String
+    @CKGCodingKey("body") let body: String
 }
 
 struct GetPostNetworkGateway: GetPostGateway {
@@ -168,14 +168,14 @@ protocol EchoGateway {
     func fetch(with parameters: EchoGatewayParameters) async throws -> EchoEntity
 }
 
-@MemberwiseCodable
+@CodingKeysGeneration
 struct EchoGatewayParameters: Encodable {
-    @MWCCodingKey("value") let value: String
+    @CKGCodingKey("value") let value: String
 }
 
-@MemberwiseCodable
+@CodingKeysGeneration
 struct EchoEntity: Decodable {
-    @MWCCodingKey("value") let value: String
+    @CKGCodingKey("value") let value: String
 }
 
 struct EchoNetworkGateway: EchoGateway {

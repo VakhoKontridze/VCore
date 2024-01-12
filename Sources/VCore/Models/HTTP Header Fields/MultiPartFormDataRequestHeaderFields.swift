@@ -17,14 +17,14 @@ import Foundation
 ///         boundary: boundary
 ///     ))
 ///
-@MemberwiseCodable
+@CodingKeysGeneration
 public struct MultipartFormDataRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    @MWCCodingKey("Accept") public let accept: String = "application/json"
+    @CKGCodingKey("Accept") public let accept: String = "application/json"
 
     /// Content type.
-    @MWCCodingKey("Content-Type") public let contentType: String
+    @CKGCodingKey("Content-Type") public let contentType: String
 
     // MARK: Initializers
     /// Initializes `MultipartFormDataRequestHeaderFields` with boundary.

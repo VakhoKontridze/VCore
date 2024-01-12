@@ -13,9 +13,9 @@ final class MultipartFormDataBuilderTests: XCTestCase {
     // MARK: Test Data
     private let imagePrefix: String = "data:image/jpeg;base64,"
 
-    @MemberwiseCodable
+    @CodingKeysGeneration
     private struct JSONPart: Encodable {
-        @MWCCodingKey("key") let key: String
+        @CKGCodingKey("key") let key: String
     }
 
     // MARK: Tests

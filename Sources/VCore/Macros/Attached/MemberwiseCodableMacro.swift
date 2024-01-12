@@ -1,5 +1,5 @@
 //
-//  MemberwiseCodableMacro.swift
+//  CodingKeysGenerationMacro.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
@@ -7,17 +7,17 @@
 
 import Foundation
 
-// MARK: - Memberwise Codable Macro
-/// Adds `CodingKeys` to a declaration to memberwise code each property.
+// MARK: - Coding Keys Generation Macro
+/// Adds `CodingKeys` to a declaration.
 ///
-///     @MemberwiseCodable
+///     @CodingKeysGeneration
 ///     struct GetPostEntity: Decodable {
-///         @MWCCodingKey("id") let id: Int
-///         @MWCCodingKey("userId") let userID: Int
-///         @MWCCodingKey("title") let title: String
-///         @MWCCodingKey("body") let body: String
+///         @CKGCodingKey("id") let id: Int
+///         @CKGCodingKey("userId") let userID: Int
+///         @CKGCodingKey("title") let title: String
+///         @CKGCodingKey("body") let body: String
 ///
-///         @MWCCodingKeyIgnored var attributes: [String: Any?] = [:]
+///         @CKGCodingKeyIgnored var attributes: [String: Any?] = [:]
 ///     }
 ///
 ///     // Generates
@@ -28,32 +28,32 @@ import Foundation
 ///         case body = "body"
 ///     }
 ///
-@attached(member, names: named(CodingKeys), named(CodingKey), named(MWCCodingKeyIgnored))
-public macro MemberwiseCodable(
+@attached(member, names: named(CodingKeys), named(CodingKey), named(CKGCodingKeyIgnored))
+public macro CodingKeysGeneration(
     accessLevelModifier: String = "internal"
 ) = #externalMacro(
     module: "VCoreMacros",
-    type: "MemberwiseCodableMacro"
+    type: "CodingKeysGenerationMacro"
 )
 
-// MARK: - Memberwise Codable Coding Key Macro
+// MARK: - Coding Keys Generation Coding Key Macro
 /// Attaches custom `Codable` key to a property.
 ///
-/// For more information, refer to `MemberwiseCodable`.
+/// For more information, refer to `CodingKeysGeneration`.
 @attached(peer)
-public macro MWCCodingKey(
+public macro CKGCodingKey(
     _ key: String
 ) = #externalMacro(
     module: "VCoreMacros",
-    type: "MWCCodingKeyMacro"
+    type: "CKGCodingKeyMacro"
 )
 
 // MARK: - Membewise Codable Coding Key Ignored Macro
 /// Ignores generation of ucstom `Codable` key for a property.
 ///
-/// For more information, refer to `MemberwiseCodable`.
+/// For more information, refer to `CodingKeysGeneration`.
 @attached(peer)
-public macro MWCCodingKeyIgnored() = #externalMacro(
+public macro CKGCodingKeyIgnored() = #externalMacro(
     module: "VCoreMacros",
-    type: "MWCCodingKeyIgnoredMacro"
+    type: "CKGCodingKeyIgnoredMacro"
 )

@@ -14,7 +14,7 @@ import SwiftSyntaxMacros
     let providingMacros: [Macro.Type] = [
         // Attached
         CaseDetectionMacro.self,
-        MemberwiseCodableMacro.self, MWCCodingKeyMacro.self, MWCCodingKeyIgnoredMacro.self,
+        CodingKeysGenerationMacro.self, CKGCodingKeyMacro.self, CKGCodingKeyIgnoredMacro.self,
         NonInitializableMacro.self,
         OptionSetRepresentationMacro.self,
 

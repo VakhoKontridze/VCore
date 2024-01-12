@@ -261,17 +261,17 @@ var body: some View {
 
 #### Various Macros
 
-Macro that adds `CodingKeys` to a declaration to memberwise code each property:
+Macro that adds `CodingKeys` to a declaration:
 
 ```swift
-@MemberwiseCodable
+@CodingKeysGeneration
 struct GetPostEntity: Decodable {
-    @MWCCodingKey("id") let id: Int
-    @MWCCodingKey("userId") let userID: Int
-    @MWCCodingKey("title") let title: String
-    @MWCCodingKey("body") let body: String
+    @CKGCodingKey("id") let id: Int
+    @CKGCodingKey("userId") let userID: Int
+    @CKGCodingKey("title") let title: String
+    @CKGCodingKey("body") let body: String
     
-    @MWCCodingKeyIgnored var attributes: [String: Any?] = [:]
+    @CKGCodingKeyIgnored var attributes: [String: Any?] = [:]
 }
 
 // Generates

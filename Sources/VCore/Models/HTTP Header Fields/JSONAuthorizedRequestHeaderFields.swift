@@ -17,17 +17,17 @@ import Foundation
 ///         token: "token"
 ///     ))
 ///
-@MemberwiseCodable
+@CodingKeysGeneration
 public struct JSONAuthorizedRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    @MWCCodingKey("Accept") public let accept: String = "application/json"
+    @CKGCodingKey("Accept") public let accept: String = "application/json"
 
     /// Content type. Set to `application/json`.
-    @MWCCodingKey("Content-Type") public let contentType: String = "application/json"
+    @CKGCodingKey("Content-Type") public let contentType: String = "application/json"
 
     /// Authorization
-    @MWCCodingKey("Authorization") public let authorization: String
+    @CKGCodingKey("Authorization") public let authorization: String
 
     // MARK: Initializers
     /// Initializes `JSONAuthorizedRequestHeaderFields` with token.

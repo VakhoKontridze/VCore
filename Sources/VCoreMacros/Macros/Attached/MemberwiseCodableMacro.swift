@@ -1,5 +1,5 @@
 //
-//  MemberwiseCodableMacro.swift
+//  CodingKeysGenerationMacro.swift
 //  VCoreMacros
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
@@ -10,8 +10,8 @@ import SwiftSyntax
 import SwiftSyntaxMacros
 import VCoreShared
 
-// MARK: - Memberwise Codable Macro
-struct MemberwiseCodableMacro: MemberMacro {
+// MARK: - Coding Keys Generation Macro
+struct CodingKeysGenerationMacro: MemberMacro {
     static func expansion(
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclGroupSyntax,
@@ -29,7 +29,7 @@ struct MemberwiseCodableMacro: MemberMacro {
             guard
                 let value: String = argument?.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue
             else {
-                throw MemberwiseCodableMacroError.invalidAccessLevelModifierParameter
+                throw CodingKeysGenerationMacroError.invalidAccessLevelModifierParameter
             }
 
             return value
@@ -48,7 +48,7 @@ struct MemberwiseCodableMacro: MemberMacro {
                     propertyDeclaration.bindings.count == 1,
                     let propertyBinding: PatternBindingListSyntax.Element = propertyDeclaration.bindings.first
                 else {
-                    throw MemberwiseCodableMacroError.onePropertyAllowedPerLine
+                    throw CodingKeysGenerationMacroError.onePropertyAllowedPerLine
                 }
 
                 guard
@@ -60,7 +60,7 @@ struct MemberwiseCodableMacro: MemberMacro {
                 guard
                     let propertyName: String = propertyBinding.pattern.as(IdentifierPatternSyntax.self)?.identifier.text
                 else {
-                    throw MemberwiseCodableMacroError.invalidPropertyName
+                    throw CodingKeysGenerationMacroError.invalidPropertyName
                 }
 
                 if
@@ -70,11 +70,11 @@ struct MemberwiseCodableMacro: MemberMacro {
                             attribute.as(AttributeSyntax.self)?
                                 .attributeName.as(IdentifierTypeSyntax.self)?
                                 .description
-                                ._removing(.whitespaces) == "MWCCodingKeyIgnored"
+                                ._removing(.whitespaces) == "CKGCodingKeyIgnored"
                         })
                         == true
                 {
-                    return nil // Ignores `MWCCodingKeyIgnored` macro
+                    return nil // Ignores `CKGCodingKeyIgnored` macro
                 }
 
                 guard
@@ -83,7 +83,7 @@ struct MemberwiseCodableMacro: MemberMacro {
                         .first(where: { attribute in
                             attribute.as(AttributeSyntax.self)?
                                 .attributeName.as(IdentifierTypeSyntax.self)?
-                                .description == "MWCCodingKey"
+                                .description == "CKGCodingKey"
                         })
                 else {
                     return "case \(propertyName)" // Doesn't use `MWVCodingKey` macro
@@ -95,7 +95,7 @@ struct MemberwiseCodableMacro: MemberMacro {
                         .first? // Only one argument, with no name
                         .expression
                 else {
-                    throw MemberwiseCodableMacroError.invalidKeyName
+                    throw CodingKeysGenerationMacroError.invalidKeyName
                 }
 
                 return "case \(propertyName) = \(customKeyValue)"
@@ -117,7 +117,7 @@ struct MemberwiseCodableMacro: MemberMacro {
 }
 
 // MARK: - Coding Key Macro
-struct MWCCodingKeyMacro: PeerMacro {
+struct CKGCodingKeyMacro: PeerMacro {
     static func expansion(
         of node: AttributeSyntax,
         providingPeersOf declaration: some DeclSyntaxProtocol,
@@ -128,7 +128,7 @@ struct MWCCodingKeyMacro: PeerMacro {
 }
 
 // MARK: - Coding Key Ignored Macro
-struct MWCCodingKeyIgnoredMacro: PeerMacro {
+struct CKGCodingKeyIgnoredMacro: PeerMacro {
     static func expansion(
         of node: AttributeSyntax,
         providingPeersOf declaration: some DeclSyntaxProtocol,
@@ -138,8 +138,8 @@ struct MWCCodingKeyIgnoredMacro: PeerMacro {
     }
 }
 
-// MARK: - Memberwise Codable Macro Error
-struct MemberwiseCodableMacroError: Error, CustomStringConvertible {
+// MARK: - Coding Keys Generation Macro Error
+struct CodingKeysGenerationMacroError: Error, CustomStringConvertible {
     // MARK: Properties
     let description: String
 

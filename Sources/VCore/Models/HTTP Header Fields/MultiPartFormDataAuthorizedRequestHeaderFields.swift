@@ -18,17 +18,17 @@ import Foundation
 ///         token: "token"
 ///     ))
 ///
-@MemberwiseCodable
+@CodingKeysGeneration
 public struct MultipartFormDataAuthorizedRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    @MWCCodingKey("Accept") public let accept: String = "application/json"
+    @CKGCodingKey("Accept") public let accept: String = "application/json"
 
     /// Content type.
-    @MWCCodingKey("Content-Type") public let contentType: String
+    @CKGCodingKey("Content-Type") public let contentType: String
 
     /// Authorization.
-    @MWCCodingKey("Authorization") public let authorization: String
+    @CKGCodingKey("Authorization") public let authorization: String
 
     // MARK: Initializers
     /// Initializes `MultipartFormDataRequestHeaderFields` with boundary and token.
