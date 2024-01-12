@@ -65,6 +65,6 @@ public final class PresentationHostDataSourceCache {
     
     /// Deletes data with key.
     public func remove(key: String) {
-        storage[key] = nil
+        storage.removeValue(forKey: key)
     }
 }

@@ -29,7 +29,7 @@ public struct ProgressViewParameters {
     public var isInteractionEnabled: Bool
 
     /// Attributes.
-    public var attributes: [String: Any]
+    public var attributes: [String: Any?]
 
     // MARK: Initializers
     /// Initializes `ProgressViewParameters`.
@@ -37,7 +37,7 @@ public struct ProgressViewParameters {
         scalingFactor: CGFloat? = nil,
         color: Color? = nil,
         isInteractionEnabled: Bool = true,
-        attributes: [String: Any] = [:]
+        attributes: [String: Any?] = [:]
     ) {
         self.scalingFactor = scalingFactor
         self.color = color

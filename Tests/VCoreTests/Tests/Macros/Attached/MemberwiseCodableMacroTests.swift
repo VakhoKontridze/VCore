@@ -107,7 +107,7 @@ final class MemberwiseCodableMacroTests: XCTestCase {
                 let one: Int
                 let two: String
 
-                @MWCCodingKeyIgnored var attributes: [String: Any] = [:]
+                @MWCCodingKeyIgnored var attributes: [String: Any?] = [:]
 
                 func foo() {}
             }
@@ -118,7 +118,7 @@ final class MemberwiseCodableMacroTests: XCTestCase {
                     let one: Int
                     let two: String
 
-                    @MWCCodingKeyIgnored var attributes: [String: Any] = [:]
+                    @MWCCodingKeyIgnored var attributes: [String: Any?] = [:]
 
                     func foo() {}
 
