@@ -89,6 +89,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
         // Result.
         // Skips conformance, if it already exits.
+        // This is essential, if declaration has availability attributes.
         if
             let inheritedTypes: InheritedTypeListSyntax = expansionData.structDeclaration.inheritanceClause?.inheritedTypes,
             inheritedTypes.contains(where: { $0.trimmedDescription == "OptionSet" })
@@ -96,9 +97,15 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             return []
 
         } else {
-            return [
-                try ExtensionDeclSyntax("extension \(type): OptionSet {}")
-            ]
+            var result: [DeclSyntax] = []
+
+            result.append(
+                """
+                extension \(raw: type): OptionSet {}
+                """
+            )
+
+            return result.compactMap { $0.as(ExtensionDeclSyntax.self) }
         }
     }
 
