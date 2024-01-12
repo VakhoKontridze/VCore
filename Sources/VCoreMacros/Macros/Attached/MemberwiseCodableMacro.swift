@@ -8,6 +8,7 @@
 import Foundation
 import SwiftSyntax
 import SwiftSyntaxMacros
+import VCoreShared
 
 // MARK: - Memberwise Codable Macro
 struct MemberwiseCodableMacro: MemberMacro {
@@ -38,35 +39,54 @@ struct MemberwiseCodableMacro: MemberMacro {
         let codingKeyLines: [String] = try declaration.memberBlock.members
             .compactMap { member in
                 guard
-                    let property: VariableDeclSyntax = member.decl.as(VariableDeclSyntax.self)
+                    let propertyDeclaration: VariableDeclSyntax = member.decl.as(VariableDeclSyntax.self)
                 else {
                     return nil // Limits declaration to variables
                 }
 
-                if property.bindings.count > 1 {
+                guard
+                    propertyDeclaration.bindings.count == 1,
+                    let propertyBinding: PatternBindingListSyntax.Element = propertyDeclaration.bindings.first
+                else {
                     throw MemberwiseCodableMacroError.onePropertyAllowedPerLine
                 }
 
                 guard
-                    let propertyName: String = property
-                        .bindings
-                        .first? // Only one member allowed per line
-                        .pattern.as(IdentifierPatternSyntax.self)?
-                        .identifier.text
+                    propertyBinding.accessorBlock == nil
+                else {
+                    return nil // Skipping computer properties
+                }
+
+                guard
+                    let propertyName: String = propertyBinding.pattern.as(IdentifierPatternSyntax.self)?.identifier.text
                 else {
                     throw MemberwiseCodableMacroError.invalidPropertyName
                 }
 
+                if
+                    member.decl.as(VariableDeclSyntax.self)?
+                        .attributes
+                        .contains(where: { attribute in
+                            attribute.as(AttributeSyntax.self)?
+                                .attributeName.as(IdentifierTypeSyntax.self)?
+                                .description
+                                ._removing(.whitespaces) == "MWCCodingKeyIgnored"
+                        })
+                        == true
+                {
+                    return nil // Ignores `MWCCodingKeyIgnored` macro
+                }
+
                 guard
-                    let keyMacro: AttributeListSyntax.Element = member
-                        .decl
-                        .as(VariableDeclSyntax.self)?
+                    let keyMacro: AttributeListSyntax.Element = member.decl.as(VariableDeclSyntax.self)?
                         .attributes
                         .first(where: { attribute in
-                            attribute.as(AttributeSyntax.self)?.attributeName.as(IdentifierTypeSyntax.self)?.description == "MWCKey"
+                            attribute.as(AttributeSyntax.self)?
+                                .attributeName.as(IdentifierTypeSyntax.self)?
+                                .description == "MWCCodingKey"
                         })
                 else {
-                    return "case \(propertyName)" // Doesn't use `MWCKey` macro
+                    return "case \(propertyName)" // Doesn't use `MWVCodingKey` macro
                 }
 
                 guard
@@ -96,8 +116,19 @@ struct MemberwiseCodableMacro: MemberMacro {
     }
 }
 
-// MARK: - Memberwise Codable Key Macro
-struct MWCKeyMacro: PeerMacro {
+// MARK: - Coding Key Macro
+struct MWCCodingKeyMacro: PeerMacro {
+    static func expansion(
+        of node: AttributeSyntax,
+        providingPeersOf declaration: some DeclSyntaxProtocol,
+        in context: some MacroExpansionContext
+    ) throws -> [DeclSyntax] {
+        []
+    }
+}
+
+// MARK: - Coding Key Ignored Macro
+struct MWCCodingKeyIgnoredMacro: PeerMacro {
     static func expansion(
         of node: AttributeSyntax,
         providingPeersOf declaration: some DeclSyntaxProtocol,

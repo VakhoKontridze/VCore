@@ -25,15 +25,15 @@ final class MemberwiseCodableMacroTests: XCTestCase {
             """
             @MemberwiseCodable
             struct SomeStruct {
-                @MWCKey("key_one") let one: Int
-                @MWCKey("key_two") let two: String
+                @MWCCodingKey("key_one") let one: Int
+                @MWCCodingKey("key_two") let two: String
             }
             """,
             expandedSource: 
                 """
                 struct SomeStruct {
-                    @MWCKey("key_one") let one: Int
-                    @MWCKey("key_two") let two: String
+                    @MWCCodingKey("key_one") let one: Int
+                    @MWCCodingKey("key_two") let two: String
 
                     internal enum CodingKeys: String, CodingKey {
                         case one = "key_one"
@@ -47,20 +47,20 @@ final class MemberwiseCodableMacroTests: XCTestCase {
     }
 
 
-    func testDefaultValues() {
+    func testNoCustomCodingKey() {
         assertMacroExpansion(
             """
             @MemberwiseCodable
             struct SomeStruct {
                 let one: Int
-                @MWCKey("key_two") let two: String
+                @MWCCodingKey("key_two") let two: String
             }
             """,
             expandedSource: 
                 """
                 struct SomeStruct {
                     let one: Int
-                    @MWCKey("key_two") let two: String
+                    @MWCCodingKey("key_two") let two: String
 
                     internal enum CodingKeys: String, CodingKey {
                         case one
@@ -107,6 +107,8 @@ final class MemberwiseCodableMacroTests: XCTestCase {
                 let one: Int
                 let two: String
 
+                @MWCCodingKeyIgnored var attributes: [String: Any] = [:]
+
                 func foo() {}
             }
             """,
@@ -115,6 +117,8 @@ final class MemberwiseCodableMacroTests: XCTestCase {
                 struct SomeStruct {
                     let one: Int
                     let two: String
+
+                    @MWCCodingKeyIgnored var attributes: [String: Any] = [:]
 
                     func foo() {}
 

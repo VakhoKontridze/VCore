@@ -16,9 +16,9 @@ struct PostsEntity {
     // MARK: Post
     @MemberwiseCodable
     struct Post: Decodable {
-        @MWCKey("id") let id: Int
-        @MWCKey("userId") let userID: Int
-        @MWCKey("title") let title: String
-        @MWCKey("body") let body: String
+        @MWCCodingKey("id") let id: Int
+        @MWCCodingKey("userId") let userID: Int
+        @MWCCodingKey("title") let title: String
+        @MWCCodingKey("body") let body: String
     }
 }

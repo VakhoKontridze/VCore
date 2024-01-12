@@ -21,10 +21,10 @@ import Foundation
 public struct MultipartFormDataRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    @MWCKey("Accept") public let accept: String = "application/json"
+    @MWCCodingKey("Accept") public let accept: String = "application/json"
 
     /// Content type.
-    @MWCKey("Content-Type") public let contentType: String
+    @MWCCodingKey("Content-Type") public let contentType: String
 
     // MARK: Initializers
     /// Initializes `MultipartFormDataRequestHeaderFields` with boundary.

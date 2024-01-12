@@ -18,7 +18,7 @@ Macros
 
 - `CaseDetection` macro is added, that adds computed properties to `enum` to represent each `case`
 - `color(_:hex:)` macro is added, that creates a non-optional `Color` from `String` or `UInt`
-- `MemberwiseCodable` and `MWCKey` macros are added, that add `CodingKeys` to a declaration to memberwise code each property
+- `MemberwiseCodable` and `CodingKey` macros are added, that add `CodingKeys` to a declaration to memberwise code each property
 - `NonInitializable` macro is added, that adds `private` initializer to declaration, preventing object creation
 - `OptionSetRepresentation` macro is added, that adds an `OptionSet` from `struct` that contains a nested `Options` `enum`
 - `url(_:)` macro is added, that creates a non-optional `URL` from `String`

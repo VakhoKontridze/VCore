@@ -15,7 +15,7 @@ final class MultipartFormDataBuilderTests: XCTestCase {
 
     @MemberwiseCodable
     private struct JSONPart: Encodable {
-        @MWCKey("key") let key: String
+        @MWCCodingKey("key") let key: String
     }
 
     // MARK: Tests

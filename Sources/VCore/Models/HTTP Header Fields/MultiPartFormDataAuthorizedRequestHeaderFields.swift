@@ -22,13 +22,13 @@ import Foundation
 public struct MultipartFormDataAuthorizedRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    @MWCKey("Accept") public let accept: String = "application/json"
+    @MWCCodingKey("Accept") public let accept: String = "application/json"
 
     /// Content type.
-    @MWCKey("Content-Type") public let contentType: String
+    @MWCCodingKey("Content-Type") public let contentType: String
 
     /// Authorization.
-    @MWCKey("Authorization") public let authorization: String
+    @MWCCodingKey("Authorization") public let authorization: String
 
     // MARK: Initializers
     /// Initializes `MultipartFormDataRequestHeaderFields` with boundary and token.

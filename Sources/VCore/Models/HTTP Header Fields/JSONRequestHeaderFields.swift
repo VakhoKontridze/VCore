@@ -19,10 +19,10 @@ import Foundation
 public struct JSONRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    @MWCKey("Accept") public let accept: String = "application/json"
+    @MWCCodingKey("Accept") public let accept: String = "application/json"
 
     /// Content type. Set to `application/json`.
-    @MWCKey("Content-Type") public let contentType: String = "application/json"
+    @MWCCodingKey("Content-Type") public let contentType: String = "application/json"
 
     // MARK: Initializers
     /// initializes `JSONRequestHeaderFields`.

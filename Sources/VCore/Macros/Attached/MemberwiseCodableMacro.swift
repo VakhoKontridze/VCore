@@ -12,10 +12,12 @@ import Foundation
 ///
 ///     @MemberwiseCodable
 ///     struct GetPostEntity: Decodable {
-///         @MWCKey("id") let id: Int
-///         @MWCKey("userId") let userID: Int
-///         @MWCKey("title") let title: String
-///         @MWCKey("body") let body: String
+///         @MWCCodingKey("id") let id: Int
+///         @MWCCodingKey("userId") let userID: Int
+///         @MWCCodingKey("title") let title: String
+///         @MWCCodingKey("body") let body: String
+///
+///         @MWCCodingKeyIgnored var attributes: [String: Any?] = [:]
 ///     }
 ///
 ///     // Generates
@@ -26,7 +28,7 @@ import Foundation
 ///         case body = "body"
 ///     }
 ///
-@attached(member, names: named(CodingKeys), named(MWCKey))
+@attached(member, names: named(CodingKeys), named(CodingKey), named(MWCCodingKeyIgnored))
 public macro MemberwiseCodable(
     accessLevelModifier: String = "internal"
 ) = #externalMacro(
@@ -34,14 +36,24 @@ public macro MemberwiseCodable(
     type: "MemberwiseCodableMacro"
 )
 
-// MARK: - Memberwise Codable Key Macro
+// MARK: - Memberwise Codable Coding Key Macro
 /// Attaches custom `Codable` key to a property.
 ///
 /// For more information, refer to `MemberwiseCodable`.
 @attached(peer)
-public macro MWCKey(
+public macro MWCCodingKey(
     _ key: String
 ) = #externalMacro(
     module: "VCoreMacros",
-    type: "MWCKeyMacro"
+    type: "MWCCodingKeyMacro"
+)
+
+// MARK: - Membewise Codable Coding Key Ignored Macro
+/// Ignores generation of ucstom `Codable` key for a property.
+///
+/// For more information, refer to `MemberwiseCodable`.
+@attached(peer)
+public macro MWCCodingKeyIgnored() = #externalMacro(
+    module: "VCoreMacros",
+    type: "MWCCodingKeyIgnoredMacro"
 )

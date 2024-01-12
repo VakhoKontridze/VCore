@@ -21,13 +21,13 @@ import Foundation
 public struct JSONAuthorizedRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    @MWCKey("Accept") public let accept: String = "application/json"
+    @MWCCodingKey("Accept") public let accept: String = "application/json"
 
     /// Content type. Set to `application/json`.
-    @MWCKey("Content-Type") public let contentType: String = "application/json"
+    @MWCCodingKey("Content-Type") public let contentType: String = "application/json"
 
     /// Authorization
-    @MWCKey("Authorization") public let authorization: String
+    @MWCCodingKey("Authorization") public let authorization: String
 
     // MARK: Initializers
     /// Initializes `JSONAuthorizedRequestHeaderFields` with token.

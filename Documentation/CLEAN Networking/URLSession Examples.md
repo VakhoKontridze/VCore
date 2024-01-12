@@ -26,10 +26,10 @@ struct GetPostGatewayParameters {
 
 @MemberwiseCodable
 struct GetPostEntity: Decodable {
-    @MWCKey("id") let id: Int
-    @MWCKey("userId") let userID: Int
-    @MWCKey("title") let title: String
-    @MWCKey("body") let body: String
+    @MWCCodingKey("id") let id: Int
+    @MWCCodingKey("userId") let userID: Int
+    @MWCCodingKey("title") let title: String
+    @MWCCodingKey("body") let body: String
 }
 
 struct GetPostNetworkGateway: GetPostGateway {
@@ -170,12 +170,12 @@ protocol EchoGateway {
 
 @MemberwiseCodable
 struct EchoGatewayParameters: Encodable {
-    @MWCKey("value") let value: String
+    @MWCCodingKey("value") let value: String
 }
 
 @MemberwiseCodable
 struct EchoEntity: Decodable {
-    @MWCKey("value") let value: String
+    @MWCCodingKey("value") let value: String
 }
 
 struct EchoNetworkGateway: EchoGateway {
