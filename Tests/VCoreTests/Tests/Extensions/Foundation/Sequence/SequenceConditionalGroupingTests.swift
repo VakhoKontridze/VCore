@@ -19,7 +19,7 @@ final class SequenceConditionalGroupingTests: XCTestCase {
     }
     
     // MARK: Tests
-    func testGroupingComparison() {
+    func testPredicate() {
         let input: [String] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"]
         let output: [[String]] = [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
         
@@ -28,7 +28,7 @@ final class SequenceConditionalGroupingTests: XCTestCase {
         XCTAssertEqual(result, output)
     }
     
-    func testGroupingKeyPath() {
+    func testKeyPath() {
         let input: [Student] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].map { Student($0) }
         let output: [[Student]] = [[.init("Kofi"), .init("Kweku")], [.init("Abena"), .init("Akosua")], [.init("Efua")]]
         

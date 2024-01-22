@@ -27,7 +27,7 @@ final class NSLayoutConstraintWithPriorityTests: XCTestCase {
         XCTAssertEqual(constraint?.priority, priority)
     }
     
-    func testPriorityConstant() {
+    func testConstant() {
         let priority: CGFloat = 100
         
         let view: UIView = .init()

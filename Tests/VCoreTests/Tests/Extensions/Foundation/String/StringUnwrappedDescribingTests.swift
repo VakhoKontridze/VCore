@@ -19,7 +19,7 @@ final class StringUnwrappedDescribingTests: XCTestCase {
         )
     }
     
-    func testnil() {
+    func testNil() {
         let num: Int? = nil
         
         XCTAssertNil(String(unwrappedDescribing: num))

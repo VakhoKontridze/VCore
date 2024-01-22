@@ -34,7 +34,7 @@ final class UIViewApplyShadowTests: XCTestCase {
         XCTAssertEqual(view.layer.shadowOffset, offset)
     }
     
-    func roundCornersAndApplyShadow() {
+    func testRoundCornersAndApplyShadow() {
         let view: UIView = .init()
         
         view.roundCornersAndApplyShadow(

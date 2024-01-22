@@ -22,7 +22,7 @@ final class JSONTypeCastsTests: XCTestCase {
     private let jsonArray: [[String: Any?]] = [["key": "value"]]
     
     // MARK: Tests
-    func testIntCast() {
+    func testInt() {
         XCTAssertEqual((int as Any?).toInt, 10)
         XCTAssertEqual((float as Any?).toInt, 10)
         XCTAssertEqual((double as Any?).toInt, 10)
@@ -31,7 +31,7 @@ final class JSONTypeCastsTests: XCTestCase {
         XCTAssertEqual((string as Any?).toInt, 10)
     }
     
-    func testFloatCast() {
+    func testFloat() {
         XCTAssertEqual((int as Any?).toFloat, 10)
         XCTAssertEqual((float as Any?).toFloat, 10)
         XCTAssertEqual((double as Any?).toFloat, 10)
@@ -40,7 +40,7 @@ final class JSONTypeCastsTests: XCTestCase {
         XCTAssertEqual((string as Any?).toFloat, 10)
     }
     
-    func testDoubleCast() {
+    func testDouble() {
         XCTAssertEqual((int as Any?).toDouble, 10)
         XCTAssertEqual((float as Any?).toDouble, 10)
         XCTAssertEqual((double as Any?).toDouble, 10)
@@ -49,7 +49,7 @@ final class JSONTypeCastsTests: XCTestCase {
         XCTAssertEqual((string as Any?).toDouble, 10)
     }
     
-    func testBoolCast() {
+    func testBool() {
         let string: String = "true"
         
         XCTAssertEqual((int as Any?).toBool, true)
@@ -60,7 +60,7 @@ final class JSONTypeCastsTests: XCTestCase {
         XCTAssertEqual((string as Any?).toBool, true)
     }
     
-    func testCharCast() {
+    func testChar() {
         let int: Int = 1
         let float: Float = 1
         let double: Double = 1
@@ -76,7 +76,7 @@ final class JSONTypeCastsTests: XCTestCase {
         XCTAssertEqual((string as Any?).toChar, "1")
     }
     
-    func testStringCast() {
+    func testString() {
         XCTAssertEqual((int as Any?).toString, "10")
         XCTAssertEqual((float as Any?).toString, "10.0")
         XCTAssertEqual((double as Any?).toString, "10.0")
@@ -85,28 +85,28 @@ final class JSONTypeCastsTests: XCTestCase {
         XCTAssertEqual((string as Any?).toString, "10")
     }
     
-    func testJSONCast() {
+    func testJSON() {
         XCTAssertEqual(
             (json as Any?).toUnwrappedJSON["key"]?.toString,
             "value"
         )
     }
     
-    func testJSONArrayCast() {
+    func testJSONArray() {
         XCTAssertEqual(
             (jsonArray as Any?).toUnwrappedJSONArray[0]["key"]?.toString,
             "value"
         )
     }
     
-    func testUnwrappedJSONCast() {
+    func testUnwrappedJSON() {
         XCTAssertEqual(
             (json as Any?).toUnwrappedJSON["key"]?.toString,
             "value"
         )
     }
     
-    func testUnwrappedJSONArrayCast() {
+    func testUnwrappedJSONArray() {
         XCTAssertEqual(
             (jsonArray as Any?).toUnwrappedJSONArray[0]["key"]?.toString,
             "value"

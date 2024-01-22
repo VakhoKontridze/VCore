@@ -19,7 +19,7 @@ final class CaseIterableCasesTests: XCTestCase {
     }
 
     // MARK: Tests
-    func testOffsetted() {
+    func testOffset() {
         let current: CardinalDirection = .east
 
         XCTAssertEqual(current.aCase(offsetBy: -2), nil)

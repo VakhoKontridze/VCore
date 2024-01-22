@@ -16,7 +16,7 @@ final class ModuleVersionTests: XCTestCase {
     private let version3: ModuleVersion = .init(string: "1.0.0")!
     
     // MARK: Tests
-    func testStringInit() {
+    func tesInitWithString() {
         XCTAssertNil(ModuleVersion(string: nil))
         XCTAssertNil(ModuleVersion(string: ""))
         XCTAssertNil(ModuleVersion(string: "A"))

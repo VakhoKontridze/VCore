@@ -28,7 +28,7 @@ final class OptionSetElementsTests: XCTestCase {
         XCTAssertEqual(RGBColor.blue.elements, [RGBColor.blue])
     }
     
-    func testSet() {
+    func testMultiple() {
         XCTAssertEqual(
             RGBColor.all.elements,
             [.red, .green, .blue]

@@ -1,5 +1,5 @@
 //
-//  UIStackViewConfigurationTests.swift
+//  UIStackViewConfigureTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 10.05.22.
@@ -11,7 +11,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class UIStackViewConfigurationTests: XCTestCase {
+final class UIStackViewConfigureTests: XCTestCase {
     // MARK: Test Data
     private let axis: NSLayoutConstraint.Axis = .vertical
     private let distribution: UIStackView.Distribution = .equalSpacing
@@ -19,7 +19,7 @@ final class UIStackViewConfigurationTests: XCTestCase {
     private let spacing: CGFloat = 10
     
     // MARK: Tests
-    func testConfiguration() {
+    func testConfigure() {
         let stackView: UIStackView = .init()
         
         stackView.configure(

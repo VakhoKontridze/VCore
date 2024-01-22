@@ -10,7 +10,7 @@ import XCTest
 
 // MARK: - Tests
 final class AutoPrecisionNumberFormatterTests: XCTestCase {
-    func testFormatting() {
+    func testValidFormatting() {
         let formatter: AutoPrecisionNumberFormatter = .init(
             minFractions: 0,
             maxFractions: 2

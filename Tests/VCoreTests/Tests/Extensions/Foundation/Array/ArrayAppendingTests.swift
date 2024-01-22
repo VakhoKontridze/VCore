@@ -13,7 +13,7 @@ import XCTest
 // MARK: - Tests
 final class ArrayAppendingTests: XCTestCase {
     // MARK: Tests - Element
-    func testPrependingElement() {
+    func testElement() {
         let input: [Int] = [1, 2]
         let result: [Int] = [1, 2, 3]
 
@@ -23,7 +23,7 @@ final class ArrayAppendingTests: XCTestCase {
     }
 
     // MARK: Tests - Elements
-    func testPrependingElements() {
+    func testElements() {
         let input: [Int] = [1, 2]
         let result: [Int] = [1, 2, 3, 4]
 
