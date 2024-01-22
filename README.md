@@ -29,7 +29,7 @@ Package files are grouped as:
 
 - ***Global Functions***. Global functions. For instance, `FIXME` and `TODO`.
 
-- ***Macros***. Macros. For instance, `URL(_:)`.
+- ***Macros***. Macros. For instance, `url(_:)`.
 
 - ***API***. Objects used for interfacing from you app/package to `VCore`. For instance, `VCoreLocalizationManager`.
 
