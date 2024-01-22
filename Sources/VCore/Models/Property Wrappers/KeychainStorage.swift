@@ -29,7 +29,7 @@ import Combine
 ///
 ///     @KeychainStorage("AccessToken", keychainService: .someCustom) var accessToken: String?
 ///
-@propertyWrapper public struct KeychainStorage<Value>: DynamicProperty { // TODO: Add `Observable`-based counterpart when support is added
+@propertyWrapper public struct KeychainStorage<Value>: DynamicProperty {
     // MARK: Properties
     private let keychainService: KeychainService
     
