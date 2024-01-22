@@ -137,4 +137,43 @@ extension UIView {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    guard #available(tvOS 16.0, *) else { return EmptyView() }
+
+    struct ContentView: View {
+        @State private var isPresented: Bool = false
+
+        var body: some View {
+            Button("Present", action: { isPresented = true })
+                .fullScreenCover(
+                    isPresented: $isPresented,
+                    content: {
+                        Color.accentColor
+                            .ignoresSafeArea()
+                            .onTapGesture(perform: { isPresented = false })
+                            .decorateModal({ (modalSuperView, transitionView) in
+                                if
+                                    let modalSuperView,
+                                    let displayCornerRadius: CGFloat = modalSuperView.window?.screen.displayCornerRadius
+                                {
+                                    modalSuperView.roundCorners(.layerMinYCorners, by: displayCornerRadius)
+                                }
+
+                                if let transitionView {
+                                    transitionView.backgroundColor = .gray.withAlphaComponent(0.16)
+                                }
+                            })
+                    }
+                )
+        }
+    }
+
+    return ContentView()
+})
+
+#endif
+
 #endif

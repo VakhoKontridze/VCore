@@ -22,13 +22,20 @@ extension NSColor {
     ///     // (0.0, 0.4..., 1.0, 1.0)
     ///
     public var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        guard
+            let calibratedColor: NSColor = usingColorSpace(.deviceRGB)
+        else {
+            VCoreLogError("Failed to calibrate 'NSColor' '\(debugDescription)' with 'NSColorSpace.deviceRGB'")
+            fatalError()
+        }
+
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
         
-        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-        
+        calibratedColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+
         return (
             red: red,
             green: green,
@@ -66,20 +73,6 @@ extension NSColor {
     ///
     public func isRGBAEqual(to otherColor: NSColor) -> Bool {
         VCore.isEqual(rgbaValues, to: otherColor.rgbaValues, by: \.red, \.green, \.blue, \.alpha)
-    }
-}
-
-// MARK: - Helpers
-extension NSColor {
-    var calibrated: NSColor {
-        guard
-            let calibratedColor: NSColor = usingColorSpace(.deviceRGB)
-        else {
-            VCoreLogError("Failed to calibrate 'NSColor' '\(rgbaComponents)' with 'NSColorSpace.deviceRGB'")
-            fatalError()
-        }
-
-        return calibratedColor
     }
 }
 

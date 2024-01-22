@@ -247,144 +247,121 @@ public struct AlignedGridLayout: Layout {
 }
 
 // MARK: - Preview
+#if DEBUG
+
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
-struct AlignedGridLayout_Previews: PreviewProvider {
-    // Previews
-    static var previews: some View {
-        Group(content: {
-            VStackPreview().previewDisplayName("Vertical C")
-            HStackPreview().previewDisplayName("Horizontal C")
-            VerticalAlignmentsPreview().previewDisplayName("Vertical Alignments")
-            VScrollViewAndVStackPreview().previewDisplayName("Vertical Scroll + Vertical C")
-            VScrollViewAndHStackPreview().previewDisplayName("Vertical Scroll + Horizontal C")
-            HScrollViewAndHStackPreview().previewDisplayName("Horizontal Scroll + Horizontal C")
+#Preview("VStack", body: {
+    VStack(content: {
+        Preview_Section(.leading)
+        Divider()
+        Preview_Section(.center)
+        Divider()
+        Preview_Section(.trailing)
+    })
+})
+
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+#Preview("HStack", body: {
+    HStack(content: {
+        Preview_Section(.leading)
+        Divider()
+        Preview_Section(.trailing)
+    })
+})
+
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+#Preview("Vertical Alignments", body: {
+    VStack(content: {
+        Preview_Section(.center, verticalAlignment: .top, hasDifferentHeights: true)
+        Divider()
+        Preview_Section(.center, verticalAlignment: .center, hasDifferentHeights: true)
+        Divider()
+        Preview_Section(.center, verticalAlignment: .bottom, hasDifferentHeights: true)
+    })
+})
+
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+#Preview("Vertical ScrollView & VStack", body: {
+    ScrollView(content: {
+        VStack(content: {
+            Preview_Section(.leading)
+            Divider()
+            Preview_Section(.center)
+            Divider()
+            Preview_Section(.trailing)
         })
+    })
+})
+
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+#Preview("Vertical ScrollView & HStack", body: {
+    ScrollView(content: {
+        HStack(content: {
+            Preview_Section(.leading)
+            Divider()
+            Preview_Section(.trailing)
+        })
+    })
+})
+
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+#Preview("Horizontal ScrollView & HStack", body: {
+    ScrollView(.horizontal, content: {
+        HStack(content: {
+            Preview_Section(.leading).frame(width: 300)
+            Divider()
+            Preview_Section(.center).frame(width: 300)
+            Divider()
+            Preview_Section(.trailing).frame(width: 300)
+        })
+    })
+})
+
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+private struct Preview_Section: View {
+    private let alignment: HorizontalAlignment
+    private let verticalAlignment: VerticalAlignment
+    private let hasDifferentHeights: Bool
+
+    private let data: [String] = [
+        "January", "February", "March",
+        "April", "May", "June",
+        "July", "August", "September",
+        "October", "November", "December"
+    ]
+
+    init(
+        _ alignment: HorizontalAlignment,
+        verticalAlignment: VerticalAlignment = .center,
+        hasDifferentHeights: Bool = false
+    ) {
+        self.alignment = alignment
+        self.verticalAlignment = verticalAlignment
+        self.hasDifferentHeights = hasDifferentHeights
     }
 
-    // Data
-    private static var strings: [String] {
-        [
-            "January", "February", "March",
-            "April", "May", "June",
-            "July", "August", "September",
-            "October", "November", "December"
-        ]
-    }
+    var body: some View {
+        AlignedGridLayout(
+            alignment: alignment,
+            verticalAlignment: verticalAlignment,
+            spacing: 5
+        ).callAsFunction({
+            ForEach(
+                data.enumeratedArray(),
+                id: \.element,
+                content: { (i, string) in
+                    Text(string)
+                        .padding(3)
+                        .padding(.vertical, hasDifferentHeights ? CGFloat(i % 3)*3 : 0)
 
-    // Previews (Scenes)
-    private struct VStackPreview: View {
-        var body: some View {
-            VStack(content: {
-                GridView(.leading)
-                Divider()
-                GridView(.center)
-                Divider()
-                GridView(.trailing)
-            })
-        }
-    }
+                        .background(content: { Color.accentColor.opacity(0.5) })
 
-    private struct HStackPreview: View {
-        var body: some View {
-            HStack(content: {
-                GridView(.leading)
-                Divider()
-                GridView(.trailing)
-            })
-        }
-    }
-
-    private struct VerticalAlignmentsPreview: View {
-        var body: some View {
-            VStack(content: {
-                GridView(.center, verticalAlignment: .top, hasDifferentHeights: true)
-                Divider()
-                GridView(.center, verticalAlignment: .center, hasDifferentHeights: true)
-                Divider()
-                GridView(.center, verticalAlignment: .bottom, hasDifferentHeights: true)
-            })
-        }
-    }
-
-    private struct VScrollViewAndVStackPreview: View {
-        var body: some View {
-            ScrollView(content: {
-                VStack(content: {
-                    GridView(.leading)
-                    Divider()
-                    GridView(.center)
-                    Divider()
-                    GridView(.trailing)
-                })
-            })
-        }
-    }
-
-    private struct VScrollViewAndHStackPreview: View {
-        var body: some View {
-            ScrollView(content: {
-                ScrollView(content: {
-                    HStack(content: {
-                        GridView(.leading)
-                        Divider()
-                        GridView(.trailing)
-                    })
-                })
-            })
-        }
-    }
-
-    private struct HScrollViewAndHStackPreview: View {
-        var body: some View {
-            ScrollView(.horizontal, content: {
-                HStack(content: {
-                    GridView(.leading).frame(width: 300)
-                    Divider()
-                    GridView(.center).frame(width: 300)
-                    Divider()
-                    GridView(.trailing).frame(width: 300)
-                })
-            })
-        }
-    }
-
-    // Previews (Helpers)
-    private struct GridView: View {
-        private let alignment: HorizontalAlignment
-        private let verticalAlignment: VerticalAlignment
-        private let hasDifferentHeights: Bool
-
-        init(
-            _ alignment: HorizontalAlignment,
-            verticalAlignment: VerticalAlignment = .center,
-            hasDifferentHeights: Bool = false
-        ) {
-            self.alignment = alignment
-            self.verticalAlignment = verticalAlignment
-            self.hasDifferentHeights = hasDifferentHeights
-        }
-
-        var body: some View {
-            AlignedGridLayout(
-                alignment: alignment,
-                verticalAlignment: verticalAlignment,
-                spacing: 5
-            ).callAsFunction({
-                ForEach(
-                    strings.enumeratedArray(),
-                    id: \.element,
-                    content: { (i, string) in
-                        Text(string)
-                            .padding(3)
-                            .padding(.vertical, hasDifferentHeights ? CGFloat(i % 3)*3 : 0)
-
-                            .background(content: { Color.accentColor.opacity(0.5) })
-
-                            .clipShape(.rect(cornerRadius: 5))
-                    }
-                )
-            })
-            .padding()
-        }
+                        .clipShape(.rect(cornerRadius: 5))
+                }
+            )
+        })
+        .padding()
     }
 }
+
+#endif

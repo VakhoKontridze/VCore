@@ -19,7 +19,10 @@ extension View {
     ///
     ///     var body: some View {
     ///         VStack(content: {
-    ///             Button("Present", action: { isPresented = true })
+    ///             Button(
+    ///                 "Present",
+    ///                 action: { isPresented = true }
+    ///             )
     ///         })
     ///         // For `VStack` and `Button` to ignore keyboard
     ///         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -240,3 +243,118 @@ extension View {
 #endif
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#if canImport(UIKit) && !(os(tvOS) || os(watchOS))
+
+#Preview(body: {
+    guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else { return EmptyView() }
+
+    struct ContentView: View {
+        @State private var isPresented: Bool = false
+
+        var body: some View {
+            Button(
+                "Present",
+                action: { isPresented = true }
+            )
+            .someModal(
+                id: "some_modal",
+                isPresented: $isPresented,
+                content: { Color.accentColor }
+            )
+        }
+    }
+
+    return ContentView()
+})
+
+extension View {
+    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+    fileprivate func someModal(
+        id: String,
+        isPresented: Binding<Bool>,
+        @ViewBuilder content: @escaping () -> some View
+    ) -> some View {
+        self
+            .presentationHost(
+                id: id,
+                isPresented: isPresented,
+                content: { SomeModal(content: content) }
+            )
+    }
+}
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+private struct SomeModal<Content>: View where Content: View {
+    @Environment(\.presentationHostGeometryReaderSize) private var containerSize: CGSize
+    @Environment(\.presentationHostGeometryReaderSafeAreaInsets) private var safeAreaInsets: EdgeInsets
+
+    @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode
+    @State private var isInternallyPresented: Bool = false
+
+    private let content: () -> Content
+
+    init(
+        @ViewBuilder content: @escaping () -> Content
+    ) {
+       self.content = content
+    }
+
+    var body: some View {
+        ZStack(content: {
+            Color.black.opacity(0.16)
+                .contentShape(Rectangle())
+                .onTapGesture(perform: animateOut)
+
+            ZStack(content: {
+                Color(uiColor: UIColor.systemBackground)
+
+                content()
+            })
+            .clipped() // Prevents keyboard content from overflowing
+
+            .frame(
+                width: containerSize.width * 0.9,
+                height: containerSize.height * 0.6
+            )
+            //.safeAreaPaddings(edges: .all, insets: safeAreaInsets) // Can be used to introduce safe areas
+
+            .offset(y: isInternallyPresented ? 0 : containerSize.height)
+        })
+        .onAppear(perform: animateIn)
+        .onChange(
+            of: presentationMode.isExternallyDismissed,
+            { (_, newValue) in if newValue && isInternallyPresented { animateOutFromExternalDismiss() } }
+        )
+    }
+
+    private func animateIn() {
+        withAnimation(
+            .easeInOut(duration: 0.3),
+            { isInternallyPresented = true }
+       )
+    }
+
+    private func animateOut() {
+        withAnimation(
+            .easeInOut(duration: 0.3),
+            { isInternallyPresented = false },
+            completion: presentationMode.dismiss
+        )
+    }
+
+    private func animateOutFromExternalDismiss() {
+        withAnimation(
+            .easeInOut(duration: 0.3),
+            { isInternallyPresented = false },
+            completion: presentationMode.externalDismissCompletion
+        )
+    }
+}
+
+#endif
+
+#endif

@@ -145,16 +145,14 @@ public struct PlainDisclosureGroup<Label, Content>: View
 }
 
 // MARK: - Preview
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
-struct PlainDisclosureGroup_Previews: PreviewProvider {
-    static var previews: some View {
-        Preview()
-    }
-    
-    private struct Preview: View {
+#if DEBUG
+
+#if !(os(tvOS) || os(watchOS))
+
+#Preview(body: {
+    struct ContentView: View {
         @State private var isExpanded: Bool = true
-        
+
         var body: some View {
             ZStack(content: {
                 Color.gray.opacity(0.16)
@@ -183,4 +181,10 @@ struct PlainDisclosureGroup_Previews: PreviewProvider {
             })
         }
     }
-}
+
+    return ContentView()
+})
+
+#endif
+
+#endif

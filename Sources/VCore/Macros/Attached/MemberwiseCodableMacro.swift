@@ -39,7 +39,7 @@ public macro CodingKeysGeneration(
 // MARK: - Coding Keys Generation Coding Key Macro
 /// Attaches custom `Codable` key to a property.
 ///
-/// For more information, refer to `CodingKeysGeneration`.
+/// For additional info, refer to `CodingKeysGeneration`.
 @attached(peer)
 public macro CKGCodingKey(
     _ key: String
@@ -51,7 +51,7 @@ public macro CKGCodingKey(
 // MARK: - Membewise Codable Coding Key Ignored Macro
 /// Ignores generation of ucstom `Codable` key for a property.
 ///
-/// For more information, refer to `CodingKeysGeneration`.
+/// For additional info, refer to `CodingKeysGeneration`.
 @attached(peer)
 public macro CKGCodingKeyIgnored() = #externalMacro(
     module: "VCoreMacros",

@@ -8,6 +8,30 @@
 import SwiftUI
 import VCoreShared
 
+// MARK: - Color Init with Hex (String)
+extension Color {
+    /// Initializes `UIColor` with a hex `String`.
+    ///
+    /// `hex` parameter must have `2`, `4`, `6`, or `8`-digits.
+    ///
+    ///     let color: Color? = .init(hex: "#007AFF")
+    ///
+    public init?(
+        _ colorSpace: RGBColorSpace = .sRGB,
+        hex string: String
+    ) {
+        guard let values = string._hexColorRGBAValues() else { return nil }
+
+        self.init(
+            colorSpace,
+            red: values.red,
+            green: values.green,
+            blue: values.blue,
+            opacity: values.alpha
+        )
+    }
+}
+
 // MARK: - Color Init with Hex (UInt)
 extension Color {
     /// Initializes `UIColor` with a hex `UInt`
@@ -34,26 +58,14 @@ extension Color {
     }
 }
 
-// MARK: - Color Init with Hex (String)
-extension Color {
-    /// Initializes `UIColor` with a hex `String`.
-    ///
-    /// `hex` parameter must have `2`, `4`, `6`, or `8`-digits.
-    ///
-    ///     let color: Color? = .init(hex: "#007AFF")
-    ///
-    public init?(
-        _ colorSpace: RGBColorSpace = .sRGB,
-        hex string: String
-    ) {
-        guard let values = string._hexColorRGBAValues() else { return nil }
+// MARK: - Preview
+#if DEBUG
 
-        self.init(
-            colorSpace,
-            red: values.red,
-            green: values.green,
-            blue: values.blue,
-            opacity: values.alpha
-        )
-    }
-}
+#Preview(body: {
+    VStack(content: {
+        Color(hex: "#007AFF")
+        Color(hex: 0x007AFF)
+    })
+})
+
+#endif

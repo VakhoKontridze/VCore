@@ -51,3 +51,34 @@ extension View {
             })
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    NavigationView(content: {
+        Text("Home")
+            .applyModifier({
+#if !(os(macOS) || os(tvOS))
+                $0.inlineNavigationTitle("Home")
+#else
+                $0
+#endif
+            })
+            .navigationLink(
+                isActive: .constant(true),
+                destination: {
+                    Text("Destination")
+                        .applyModifier({
+#if !(os(macOS) || os(tvOS))
+                            $0.inlineNavigationTitle("Destination")
+#else
+                            $0
+#endif
+                        })
+                }
+            )
+    })
+})
+
+#endif

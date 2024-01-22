@@ -19,6 +19,7 @@ import SwiftUI
 ///             placeholder: "Lorem ipsum",
 ///             text: $text
 ///         )
+///         .textFieldStyle(.roundedBorder)
 ///     }
 ///     
 public struct SecurableTextField: View {
@@ -66,15 +67,13 @@ public struct SecurableTextField: View {
 }
 
 // MARK: - Preview
-struct SecurableTextField_Previews: PreviewProvider {
-    static var previews: some View {
-        Preview()
-    }
-    
-    private struct Preview: View {
+#if DEBUG
+
+#Preview(body: {
+    struct ContentView: View {
         @State private var isSecure: Bool = false
         @State private var text: String = "Lorem ipsum"
-        
+
         var body: some View {
             VStack(content: {
                 SecurableTextField(
@@ -82,10 +81,21 @@ struct SecurableTextField_Previews: PreviewProvider {
                     placeholder: Text("Lorem ipsum"),
                     text: $text
                 )
-                
+                .applyModifier({
+#if !(os(tvOS) || os(watchOS))
+                    $0.textFieldStyle(.roundedBorder)
+#else
+                    $0
+#endif
+                })
+
                 Button("Toggle", action: { isSecure.toggle() })
             })
             .padding()
         }
     }
-}
+
+    return ContentView()
+})
+
+#endif

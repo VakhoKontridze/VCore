@@ -28,4 +28,22 @@ struct PostsFactory {
         
         return viewController
     }
+
+    static func mock() -> UIViewController {
+        let viewController: PostsViewController = .init()
+
+        let router: PostsRouter = .init(navigator: viewController)
+
+        let interactor: PostsMockInteractor = .init()
+
+        let presenter: PostsPresenter = .init(
+            view: viewController,
+            router: router,
+            interactor: interactor
+        )
+
+        viewController.presenter = presenter
+
+        return viewController
+    }
 }

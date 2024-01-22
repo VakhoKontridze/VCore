@@ -76,4 +76,25 @@ open class InnerShadowUIView: UIView {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+#Preview(body: {
+    let view: InnerShadowUIView = .init()
+    view.translatesAutoresizingMaskIntoConstraints = false
+#if !(os(tvOS) || os(watchOS))
+    view.backgroundColor = UIColor.systemBackground
+#endif
+
+    NSLayoutConstraint.activate([
+        view.constraintWidth(to: nil, constant: 100),
+        view.constraintHeight(to: nil, constant: 100)
+    ])
+
+    return view
+})
+
+#endif
+
 #endif

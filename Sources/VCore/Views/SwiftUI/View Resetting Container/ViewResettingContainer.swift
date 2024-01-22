@@ -13,29 +13,25 @@ import SwiftUI
 /// Can be used to trigger reload on an app level.
 /// `SwiftUI`'s equivalent of replacing `rootViewController` in `UIKit`
 ///
-/// In the following example, scrolling down and triggering reset causes app's content to be reset.
+/// In the following example, scrolling down and triggering reset causes content to be reset.
 ///
-///     @main struct SomeApp: App {
-///         var body: some Scene {
-///             WindowGroup(content: {
-///                 ViewResettingContainer(content: {
-///                     ContentView()
-///                 })
-///             })
-///         }
+///     var body: some View {
+///         ViewResettingContainer(content: {
+///             ChildView()
+///         })
 ///     }
 ///
-///     struct ContentView: View {
+///     struct ChildView: View {
 ///         @Environment(\.viewResetter) private var viewResetter: ViewResetter!
 ///
 ///         var body: some View {
 ///             ScrollView(content: {
-///                 Color.red
+///                 Color.accentColor
 ///                     .frame(height: UIScreen.main.bounds.size.height)
 ///
 ///                 Button(
 ///                     "Reset",
-///                     action: { viewResetter.trigger() }
+///                     action: viewResetter.trigger
 ///                 )
 ///             })
 ///         }
@@ -74,3 +70,43 @@ public struct ViewResettingContainer<Content>: View where Content: View {
         .viewResetter(viewResetter)
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#if !os(watchOS)
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+#Preview(body: {
+    ContentView()
+})
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+private struct ContentView: View {
+    var body: some View {
+        ViewResettingContainer(content: {
+            ChildView()
+        })
+    }
+}
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+private struct ChildView: View {
+    @Environment(\.viewResetter) private var viewResetter: ViewResetter!
+
+    var body: some View {
+        ScrollView(content: {
+            Color.accentColor
+                .frame(height: UIScreen.main.bounds.size.height)
+
+            Button(
+                "Reset",
+                action: viewResetter.trigger
+            )
+        })
+    }
+}
+
+#endif
+
+#endif

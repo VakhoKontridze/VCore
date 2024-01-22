@@ -26,7 +26,8 @@ import UIKit
 ///
 ///     final class ViewController:
 ///         UIViewController,
-///         UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, UICollectionViewDataSource,
+///         UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
+///         UICollectionViewDataSource,
 ///         InfiniteScrollingUICollectionViewDelegate
 ///     {
 ///         private lazy var collectionView: InfiniteScrollingUICollectionView = {
@@ -259,117 +260,105 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
 // MARK: - Preview
 #if os(iOS)
 
-import SwiftUI
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+#Preview(body: {
+    ViewController()
+})
 
-struct InfiniteScrollingUICollectionView_Previews: PreviewProvider {
-    static var previews: some View {
-        ViewControllerRepresentable()
-            .ignoresSafeArea() // Internal handling
+private final class ViewController:
+    UIViewController,
+    UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
+    UICollectionViewDataSource,
+    InfiniteScrollingUICollectionViewDelegate
+{
+    private lazy var collectionView: InfiniteScrollingUICollectionView = {
+        let layout: UICollectionViewFlowLayout = .init()
+        layout.minimumLineSpacing = 0
+        layout.minimumInteritemSpacing = 0
+        layout.scrollDirection = .vertical
+
+        let collectionView: InfiniteScrollingUICollectionView = .init(
+            frame: .zero,
+            collectionViewLayout: layout
+        )
+
+        collectionView.translatesAutoresizingMaskIntoConstraints = false
+
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.infiniteScrollingDelegate = self
+
+        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+
+        return collectionView
+    }()
+
+    private lazy var data: [UIColor] = page
+    private var page: [UIColor] { [.red, .green, .blue, .systemPink, .yellow] }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = UIColor.systemBackground
+
+        view.addSubview(collectionView)
+
+        NSLayoutConstraint.activate([
+            collectionView.constraintLeading(to: view),
+            collectionView.constraintTrailing(to: view),
+            collectionView.constraintTop(to: view, layoutGuide: .safeArea),
+            collectionView.constraintBottom(to: view)
+        ])
+
+        collectionView.reloadData()
     }
 
-    private struct ViewControllerRepresentable: UIViewControllerRepresentable {
-        func makeUIViewController(context: Context) -> some UIViewController {
-            ViewController()
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    func collectionView(
+        _ collectionView: UICollectionView,
+        layout collectionViewLayout: UICollectionViewLayout,
+        sizeForItemAt indexPath: IndexPath
+    ) -> CGSize {
+        .init(
+            width: collectionView.frame.size.width / 3,
+            height: collectionView.frame.size.width / 3
+        )
     }
 
-    private final class ViewController:
-        UIViewController,
-        UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
-        UICollectionViewDataSource,
-        InfiniteScrollingUICollectionViewDelegate
-    {
-        private lazy var collectionView: InfiniteScrollingUICollectionView = {
-            let layout: UICollectionViewFlowLayout = .init()
-            layout.minimumLineSpacing = 0
-            layout.minimumInteritemSpacing = 0
-            layout.scrollDirection = .vertical
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        collectionView.detectPaginationFromScrollViewDidScroll(scrollView)
+    }
 
-            let collectionView: InfiniteScrollingUICollectionView = .init(
-                frame: .zero,
-                collectionViewLayout: layout
-            )
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        data.count
+    }
 
-            collectionView.translatesAutoresizingMaskIntoConstraints = false
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        self.collectionView.detectPaginationFromCollectionViewCellForItem()
 
-            collectionView.delegate = self
-            collectionView.dataSource = self
-            collectionView.infiniteScrollingDelegate = self
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
 
-            collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        cell.contentView.backgroundColor = data[indexPath.row]
 
-            return collectionView
-        }()
+        return cell
+    }
 
-        private lazy var data: [UIColor] = page
-        private var page: [UIColor] { [.red, .green, .blue, .systemPink, .yellow] }
+    func collectionViewDidScrollToBottom(sender infiniteScrollingCollectionView: InfiniteScrollingUICollectionView) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
+            guard let self else { return }
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
+            data.append(contentsOf: page)
 
-            view.backgroundColor = UIColor.systemBackground
-
-            view.addSubview(collectionView)
-
-            NSLayoutConstraint.activate([
-                collectionView.constraintLeading(to: view),
-                collectionView.constraintTrailing(to: view),
-                collectionView.constraintTop(to: view, layoutGuide: .safeArea),
-                collectionView.constraintBottom(to: view)
-            ])
-
+            collectionView.paginationState = .canPaginate
             collectionView.reloadData()
-        }
+        })
+    }
 
-        func collectionView(
-            _ collectionView: UICollectionView,
-            layout collectionViewLayout: UICollectionViewLayout,
-            sizeForItemAt indexPath: IndexPath
-        ) -> CGSize {
-            .init(
-                width: collectionView.frame.size.width / 3,
-                height: collectionView.frame.size.width / 3
-            )
-        }
-
-        func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            collectionView.detectPaginationFromScrollViewDidScroll(scrollView)
-        }
-
-        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            data.count
-        }
-
-        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-            self.collectionView.detectPaginationFromCollectionViewCellForItem()
-
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-
-            cell.contentView.backgroundColor = data[indexPath.row]
-
-            return cell
-        }
-
-        func collectionViewDidScrollToBottom(sender infiniteScrollingCollectionView: InfiniteScrollingUICollectionView) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
-                guard let self else { return }
-
-                data.append(contentsOf: page)
-
-                collectionView.paginationState = .canPaginate
-                collectionView.reloadData()
-            })
-        }
-
-        func collectionView(
-            _ collectionView: UICollectionView,
-            viewForSupplementaryElementOfKind kind: String,
-            at indexPath: IndexPath
-        ) -> UICollectionReusableView {
-            self.collectionView.viewForSupplementaryElement(kind: kind, at: indexPath)
-        }
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        self.collectionView.viewForSupplementaryElement(kind: kind, at: indexPath)
     }
 }
 

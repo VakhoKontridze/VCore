@@ -27,3 +27,13 @@ extension View {
             })
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    Button("Press", action: {})
+        .blocksHitTesting()
+})
+
+#endif

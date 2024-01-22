@@ -59,10 +59,12 @@ struct PostsView: View {
 }
 
 // MARK: - Preview
-struct PostsView_Previews: PreviewProvider {
-    static var previews: some View {
-        CoordinatingNavigationStackOO(root: {
-            PostsView()
-        })
-    }
-}
+#if DEBUG
+
+#Preview(body: {
+    CoordinatingNavigationStackOO(root: {
+        PostsView()
+    })
+})
+
+#endif

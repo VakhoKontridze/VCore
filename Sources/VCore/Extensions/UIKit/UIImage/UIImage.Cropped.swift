@@ -13,7 +13,7 @@ import UIKit
 extension UIImage {
     /// Returns `UIImage` cropped with rect.
     ///
-    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let image: UIImage = .init(named: "Image")!
     ///
     ///     let croppedImage: UIImage? = image.cropped(to: CGRect(
     ///         origin: CGPoint(x: 10, y: 10),
@@ -42,7 +42,7 @@ extension UIImage {
     
     /// Returns `UIImage`cropped with size starting at the origin.
     ///
-    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let image: UIImage = .init(named: "Image")!
     ///
     ///     let croppedImage: UIImage? = image.cropped(to: CGSize(
     ///         width: 500,
@@ -53,5 +53,37 @@ extension UIImage {
         cropped(to: CGRect(origin: .zero, size: newSize))
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+import SwiftUI
+
+#Preview(body: {
+    guard
+        let image: UIImage = .init(systemName: "swift")
+    else {
+        return EmptyView()
+    }
+
+    let croppedImage: UIImage = image.cropped(
+        to: CGRect(
+            origin: CGPoint(x: image.size.width/2, y: image.size.height/2),
+            size: image.size.scaledDown(withMultiplier: 2)
+        )
+    )
+
+    return VStack(content: {
+        Image(uiImage: image)
+            .resizable()
+            .frame(dimension: 100)
+
+        Image(uiImage: croppedImage)
+            .resizable()
+            .frame(dimension: 100)
+    })
+})
+
+#endif
 
 #endif

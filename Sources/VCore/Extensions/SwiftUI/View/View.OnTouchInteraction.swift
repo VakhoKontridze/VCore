@@ -67,3 +67,25 @@ private struct TouchDownTouchUpInteractionRecognizerViewModifier: ViewModifier {
             )
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#if !os(tvOS)
+
+#Preview(body: {
+    struct ContentView: View {
+        @State private var isPressed: Bool = false
+
+        var body: some View {
+            Text(isPressed ? "Recognized" : "Standby")
+                .onTouchInteraction(minimumDistance: 0, perform: { isPressed = $0 })
+        }
+    }
+
+    return ContentView()
+})
+
+#endif
+
+#endif

@@ -28,9 +28,9 @@ extension Color {
         ))
 #elseif canImport(AppKit)
         Color(nsColor: NSColor.blend(
-            NSColor(color1).calibrated,
+            NSColor(color1),
             ratio1: ratio1,
-            with: NSColor(color2).calibrated,
+            with: NSColor(color2),
             ratio2: ratio2
         ))
 #endif
@@ -46,7 +46,7 @@ extension Color {
 #if canImport(UIKit)
         Color(uiColor: UIColor(self).lighten(by: value))
 #elseif canImport(AppKit)
-        Color(nsColor: NSColor(self).calibrated.lighten(by: value))
+        Color(nsColor: NSColor(self).lighten(by: value))
 #endif
     }
     
@@ -60,7 +60,9 @@ extension Color {
 #if canImport(UIKit)
         Color(uiColor: UIColor(self).darken(by: value))
 #elseif canImport(AppKit)
-        Color(nsColor: NSColor(self).calibrated.darken(by: value))
+        Color(nsColor: NSColor(self).darken(by: value))
 #endif
     }
 }
+
+// Previews are covered in respective UIKit/Appkit files

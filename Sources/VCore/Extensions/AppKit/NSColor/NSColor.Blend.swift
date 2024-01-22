@@ -73,5 +73,21 @@ extension NSColor {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+import SwiftUI
+
+#Preview(body: {
+    VStack(content: {
+        Color(NSColor.blend(.red, with: .blue))
+
+        Color(NSColor.systemBlue.lighten(by: 0.1))
+
+        Color(NSColor.systemBlue.darken(by: 0.1))
+    })
+})
+
 #endif
 
+#endif

@@ -24,4 +24,23 @@ open class CapsuleUIView: UIView {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+#Preview(body: {
+    let view: CapsuleUIView = .init()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.backgroundColor = UIColor.systemBlue
+
+    NSLayoutConstraint.activate([
+        view.constraintWidth(to: nil, constant: 100),
+        view.constraintHeight(to: nil, constant: 100)
+    ])
+
+    return view
+})
+
+#endif
+
 #endif

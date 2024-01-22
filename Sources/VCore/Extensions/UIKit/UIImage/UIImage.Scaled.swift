@@ -13,7 +13,7 @@ import UIKit
 extension UIImage {
     /// Scales `UIImage` to specified width.
     ///
-    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let image: UIImage = .init(named: "Image")!
     ///     let scaledImage: UIImage? = image.scaled(toWidth: 500)
     ///
     public func scaled(
@@ -27,7 +27,7 @@ extension UIImage {
     
     /// Scales `UIImage` to specified height.
     ///
-    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let image: UIImage = .init(named: "Image")!
     ///     let scaledImage: UIImage? = image.scaled(toHeight: 500)
     ///
     public func scaled(
@@ -54,7 +54,7 @@ extension UIImage {
 extension UIImage {
     /// Returns `UIImage` scaled down to specified width, if new width is smaller.
     ///
-    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let image: UIImage = .init(named: "Image")!
     ///     let scaledDownImage: UIImage? = image.scaledDown(toWidth: 500)
     ///
     public func scaledDown(
@@ -66,7 +66,7 @@ extension UIImage {
     
     /// Returns `UIImage` scaled down to specified height, if new height is smaller.
     ///
-    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let image: UIImage = .init(named: "Image")!
     ///     let scaledDownImage: UIImage? = image.scaledDown(toHeight: 500)
     ///
     public func scaledDown(
@@ -78,7 +78,7 @@ extension UIImage {
     
     /// Returns `UIImage` scaled down, by scaling smaller side to specified dimension.
     ///
-    ///     let image: UIImage = .init(named: "SomeImage")!
+    ///     let image: UIImage = .init(named: "Image")!
     ///     let scaledDownImage: UIImage? = image.scaledDown(toDimension: 500)
     ///
     public func scaledDown(

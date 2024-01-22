@@ -52,4 +52,27 @@ private struct SafeAreaInsetsEnvironmentKey: EnvironmentKey {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    struct ContentView: View {
+        @Environment(\.safeAreaInsets) var safeAreaInsets: EdgeInsets
+
+        var body: some View {
+            ZStack(content: {
+                Color.red
+
+                Color.blue
+                    .padding(safeAreaInsets)
+            })
+            .ignoresSafeArea()
+        }
+    }
+
+    return ContentView()
+})
+
+#endif
+
 #endif

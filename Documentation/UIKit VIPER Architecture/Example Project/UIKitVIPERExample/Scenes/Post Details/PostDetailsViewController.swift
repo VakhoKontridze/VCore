@@ -89,3 +89,14 @@ final class PostDetailsViewController: UIViewController, PostDetailsViewable {
             .multiLineHeight(width: view.frame.width - 2*UIModel.bodyLabelMarginHorizontal)
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    UINavigationController(
+        rootViewController: PostDetailsFactory.mock()
+    )
+})
+
+#endif

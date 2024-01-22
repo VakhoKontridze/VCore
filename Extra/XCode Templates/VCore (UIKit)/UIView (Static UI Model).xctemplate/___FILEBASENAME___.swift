@@ -52,3 +52,12 @@ final class ___VARIABLE_productName___: UIView {
         // ...
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    ___VARIABLE_productName___()
+})
+
+#endif

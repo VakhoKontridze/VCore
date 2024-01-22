@@ -18,9 +18,9 @@ import UIKit
 ///
 ///     struct SomeButtonUIModel {
 ///         var titleColors: StateColors = .init(
-///             enabled: .black,
-///             pressed: .gray,
-///             disabled: .gray
+///             enabled: UIColor.label,
+///             pressed: UIColor.secondaryLabel,
+///             disabled: UIColor.secondaryLabel
 ///         )
 ///
 ///         typealias StateColors = GenericStateModel_EnabledPressedDisabled<UIColor>
@@ -127,7 +127,6 @@ import UIKit
 ///         action: { print("Clicked") },
 ///         title: "Lorem Ipsum"
 ///     )
-///         .withTranslatesAutoresizingMaskIntoConstraints(false)
 ///
 @available(tvOS, unavailable)
 open class UIKitBaseButton: UIView {
@@ -204,5 +203,125 @@ open class UIKitBaseButton: UIView {
         gestureRecognizer.isEnabled = internalButtonState.isGestureEnabled
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#if !os(tvOS)
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+#Preview(body: {
+    SomeButton(
+        action: {},
+        title: "Lorem Ipsum"
+    )
+})
+
+private struct SomeButtonUIModel {
+    var titleColors: StateColors = .init(
+        enabled: UIColor.label,
+        pressed: UIColor.secondaryLabel,
+        disabled: UIColor.secondaryLabel
+    )
+
+    typealias StateColors = GenericStateModel_EnabledPressedDisabled<UIColor>
+}
+
+private typealias SomeButtonState = GenericState_EnabledDisabled
+
+private typealias SomeButtonInternalState = GenericState_EnabledPressedDisabled
+
+private final class SomeButton: UIView {
+    // Action is passed during configuration
+    private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateUIModelChange() })
+        .withTranslatesAutoresizingMaskIntoConstraints(false)
+
+    private let titleLabel: UILabel = {
+        let label: UILabel = .init()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        return label
+    }()
+
+    private var uiModel: SomeButtonUIModel
+
+    var isEnabled: Bool {
+        get { internalState.isGestureEnabled }
+        set { configure(state: SomeButtonState(isEnabled: newValue)) }
+    }
+    var state: SomeButtonState { .init(isEnabled: internalState.isGestureEnabled) }
+    private var internalState: SomeButtonInternalState = .enabled
+        { didSet { baseButton.isEnabled = internalState.isGestureEnabled } }
+
+    init(
+        uiModel: SomeButtonUIModel = .init(),
+        action: @escaping () -> Void,
+        title: String
+    ) {
+        self.uiModel = uiModel
+        super.init(frame: .zero)
+        setUp()
+        configure(uiModel: uiModel)
+        configure(action: action)
+        configure(title: title)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError()
+    }
+
+    private func setUp() {
+        addSubview(baseButton)
+        addSubview(titleLabel)
+
+        NSLayoutConstraint.activate([
+            baseButton.constraintLeading(to: self),
+            baseButton.constraintTrailing(to: self),
+            baseButton.constraintTop(to: self),
+            baseButton.constraintBottom(to: self),
+
+            titleLabel.constraintHeight(to: nil, constant: titleLabel.singleLineHeight),
+            titleLabel.constraintLeading(to: self),
+            titleLabel.constraintTrailing(to: self),
+            titleLabel.constraintTop(to: self),
+            titleLabel.constraintBottom(to: self)
+        ])
+    }
+
+    func configure(uiModel: SomeButtonUIModel) {
+        self.uiModel = uiModel
+
+        configureFromStateUIModelChange()
+    }
+
+    func configure(state: SomeButtonState) {
+        internalState = SomeButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: baseButton.internalButtonState == .pressed)
+
+        configureFromStateUIModelChange()
+    }
+
+    func configure(action: @escaping () -> Void) {
+        baseButton.stateChangeHandler = { [weak self] gestureState in
+            guard let self else { return }
+
+            internalState = SomeButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: gestureState.didRecognizePress)
+
+            configureFromStateUIModelChange()
+            if gestureState.didRecognizeClick { action() }
+        }
+    }
+
+    func configure(title: String) {
+        titleLabel.text = title
+    }
+
+    private func configureFromStateUIModelChange() {
+        titleLabel.textColor = uiModel.titleColors.value(for: internalState)
+    }
+}
+
+#endif
+
+#endif
 
 #endif

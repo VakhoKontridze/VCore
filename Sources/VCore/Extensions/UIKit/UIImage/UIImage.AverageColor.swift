@@ -66,4 +66,25 @@ extension UIImage {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+import SwiftUI
+
+#Preview(body: {
+    guard
+        let image: UIImage = .init(
+            size: CGSize(dimension: 100),
+            color: UIColor.blend(.red, with: .blue)
+        ),
+        let averageColor: UIColor = image.averageColor
+    else {
+        return EmptyView()
+    }
+
+    return Color(uiColor: averageColor)
+})
+
+#endif
+
 #endif

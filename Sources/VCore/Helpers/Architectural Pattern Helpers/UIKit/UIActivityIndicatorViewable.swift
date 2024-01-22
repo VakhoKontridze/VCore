@@ -28,13 +28,16 @@ import UIKit
 ///     func fetch() {
 ///         startActivityIndicatorAnimationAndDisableInteraction()
 ///
-///         URLSession.shared.dataTask(with: request, completionHandler: { [weak self] (data, response, error) in
-///             guard let self else { return }
+///         URLSession.shared.dataTask(
+///             with: ...,
+///             completionHandler: { [weak self] (data, response, error) in
+///                 guard let self else { return }
 ///
-///             stopActivityIndicatorAnimationAndEnableInteraction()
+///                 stopActivityIndicatorAnimationAndEnableInteraction()
 ///
-///             ...
-///         })
+///                 ...
+///             }
+///         )
 ///     }
 ///
 public protocol UIActivityIndicatorViewable {
@@ -122,5 +125,26 @@ extension UIViewController {
         view.initActivityIndicator(scalingFactor: scalingFactor, color: color)
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+#Preview(body: {
+    ViewController()
+})
+
+private final class ViewController: UIViewController, UIActivityIndicatorViewable {
+    private(set) lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.addSubview(activityIndicator)
+        startActivityIndicatorAnimation()
+    }
+}
+
+#endif
 
 #endif

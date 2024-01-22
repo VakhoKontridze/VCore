@@ -16,26 +16,26 @@ import UIKit
 /// To modify `UIScrollView` properties, access `scrollView` members.
 /// To modify container `UIView` properties, access `contentView` members.
 ///
-///     view.addSubview(scrollableUIView)
-///     scrollableUIView.contentView.addSubview(someView1)
-///     scrollableUIView.contentView.addSubview(someView2)
+///     view.addSubview(scrollableView)
+///     scrollableView.contentView.addSubview(view1)
+///     scrollableView.contentView.addSubview(view2)
 ///
 ///     NSLayoutConstraint.activate([
-///         scrollableUIView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-///         scrollableUIView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-///         scrollableUIView.topAnchor.constraint(equalTo: view.topAnchor),
-///         scrollableUIView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+///         scrollableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+///         scrollableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+///         scrollableView.topAnchor.constraint(equalTo: view.topAnchor),
+///         scrollableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
 ///
-///         someView1.heightAnchor.constraint(equalToConstant: 500),
-///         someView1.leadingAnchor.constraint(equalTo: scrollableUIView.contentView.leadingAnchor),
-///         someView1.trailingAnchor.constraint(equalTo: scrollableUIView.contentView.trailingAnchor),
-///         someView1.topAnchor.constraint(equalTo: scrollableUIView.contentView.topAnchor),
+///         view1.heightAnchor.constraint(equalToConstant: 500),
+///         view1.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor),
+///         view1.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor),
+///         view1.topAnchor.constraint(equalTo: scrollableView.contentView.topAnchor),
 ///
-///         someView2.heightAnchor.constraint(equalToConstant: 500),
-///         someView2.leadingAnchor.constraint(equalTo: scrollableUIView.contentView.leadingAnchor),
-///         someView2.trailingAnchor.constraint(equalTo: scrollableUIView.contentView.trailingAnchor),
-///         someView2.topAnchor.constraint(equalTo: someView1.bottomAnchor, constant: 20),
-///         someView2.bottomAnchor.constraint(equalTo: scrollableUIView.contentView.bottomAnchor)
+///         view2.heightAnchor.constraint(equalToConstant: 500),
+///         view2.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor),
+///         view2.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor),
+///         view2.topAnchor.constraint(equalTo: view1.bottomAnchor, constant: 20),
+///         view2.bottomAnchor.constraint(equalTo: scrollableView.contentView.bottomAnchor)
 ///     ])
 ///
 open class ScrollableUIView: UIView {
@@ -107,5 +107,42 @@ open class ScrollableUIView: UIView {
         ])
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+#Preview(body: {
+    let scrollableView: ScrollableUIView = .init()
+    scrollableView.translatesAutoresizingMaskIntoConstraints = false
+
+    let view1: UIView = .init()
+    view1.translatesAutoresizingMaskIntoConstraints = false
+    view1.backgroundColor = UIColor.red
+
+    let view2: ScrollableUIView = .init()
+    view2.translatesAutoresizingMaskIntoConstraints = false
+    view2.backgroundColor = UIColor.blue
+
+    scrollableView.contentView.addSubview(view1)
+    scrollableView.contentView.addSubview(view2)
+
+    NSLayoutConstraint.activate([
+        view1.constraintHeight(to: nil, constant: 500),
+        view1.constraintLeading(to: scrollableView.contentView),
+        view1.constraintTrailing(to: scrollableView.contentView),
+        view1.constraintTop(to: scrollableView.contentView),
+
+        view2.constraintHeight(to: nil, constant: 500),
+        view2.constraintLeading(to: scrollableView.contentView),
+        view2.constraintTrailing(to: scrollableView.contentView),
+        view2.constraintTop(to: view1, attribute: .bottom, constant: 20),
+        view2.constraintBottom(to: scrollableView.contentView)
+    ])
+
+    return scrollableView
+})
+
+#endif
 
 #endif

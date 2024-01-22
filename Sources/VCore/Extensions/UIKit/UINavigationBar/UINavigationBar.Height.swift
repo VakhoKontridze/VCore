@@ -14,13 +14,14 @@ extension UINavigationBar {
     /// Navigation bar height.
     ///
     ///     let height: CGFloat = UINavigationBar.height // 44.0
-    ///     
+    ///
     public static var height: CGFloat {
-        UINavigationController(rootViewController: UIViewController(nibName: nil, bundle: nil))
-            .navigationBar
-            .frame
-            .size
-            .height
+        UINavigationController(
+            rootViewController: UIViewController(nibName: nil, bundle: nil)
+        )
+        .navigationBar
+        .frame
+        .size.height
     }
 }
 

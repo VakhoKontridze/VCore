@@ -63,4 +63,17 @@ open class GradientLayerUIView: UIView {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+#Preview(body: {
+    let view: GradientLayerUIView = .init()
+    view.gradientLayer.colors = [UIColor.red, UIColor.blue].map { $0.cgColor }
+
+    return view
+})
+
+#endif
+
 #endif

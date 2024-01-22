@@ -29,4 +29,24 @@ extension UIView {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+#Preview(body: {
+    let view: UIView = .init()
+    view.translatesAutoresizingMaskIntoConstraints = false
+    view.backgroundColor = UIColor.systemBlue
+    view.roundCorners(.layerAllCorners, by: 10)
+
+    NSLayoutConstraint.activate([
+        view.constraintWidth(to: nil, constant: 100),
+        view.constraintHeight(to: nil, constant: 100)
+    ])
+
+    return view
+})
+
+#endif
+
 #endif

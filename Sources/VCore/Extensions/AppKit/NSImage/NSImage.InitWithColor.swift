@@ -36,4 +36,25 @@ extension NSImage {
     }
 }
 
+#if DEBUG
+
+import SwiftUI
+
+// MARK: - Preview
+
+#Preview(body: {
+    guard
+        let image: NSImage = .init(
+            size: CGSize(dimension: 100),
+            color: NSColor.systemBlue
+        )
+    else {
+        return EmptyView()
+    }
+
+    return Image(nsImage: image)
+})
+
+#endif
+
 #endif

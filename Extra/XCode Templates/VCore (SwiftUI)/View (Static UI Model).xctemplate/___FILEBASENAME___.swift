@@ -21,9 +21,10 @@ struct ___VARIABLE_productName___: View {
 }
 
 // MARK: - Preview
-#Preview(
-    traits: .sizeThatFitsLayout,
-    body: {
-        ___VARIABLE_productName___(parameters: .mock)
-    }
-)
+#if DEBUG
+
+#Preview(body: {
+    ___VARIABLE_productName___(parameters: .mock)
+})
+
+#endif

@@ -50,18 +50,22 @@ public struct PlainList<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+#if DEBUG
+
+#if !(os(tvOS) || os(watchOS))
+
 @available(macOS 13.0, *)
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
-struct PlainList_Previews: PreviewProvider {
-    static var previews: some View {
-        PlainList(content: {
-            ForEach(0..<3, id: \.self, content: { i in
-                Text("Row \(i+1)")
-                    .frame(maxWidth: .infinity, alignment: .leading)
-                    .padding(.horizontal, 15)
-                    .padding(.vertical, 9)
-            })
+#Preview(body: {
+    PlainList(content: {
+        ForEach(0..<3, id: \.self, content: { i in
+            Text("Row \(i+1)")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, 15)
+                .padding(.vertical, 9)
         })
-    }
-}
+    })
+})
+
+#endif
+
+#endif

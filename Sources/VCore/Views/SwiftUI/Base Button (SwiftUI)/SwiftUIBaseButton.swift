@@ -98,22 +98,28 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
 }
 
 // MARK: - Preview
-struct SwiftUIBaseButton_Previews: PreviewProvider {
-    private static var colors: GenericStateModel_EnabledPressedDisabled<Color> {
-        .init(
+#if DEBUG
+
+#Preview(body: {
+    struct ContentView: View {
+        let colors: GenericStateModel_EnabledPressedDisabled<Color> = .init(
             enabled: .primary,
             pressed: .secondary,
             disabled: .primary
         )
+
+        var body: some View {
+            SwiftUIBaseButton(
+                action: {},
+                label: { baseButtonState in
+                    Text("Lorem Ipsum")
+                        .foregroundStyle(colors.value(for: baseButtonState))
+                }
+            )
+        }
     }
-    
-    static var previews: some View {
-        SwiftUIBaseButton(
-            action: { print("Pressed") },
-            label: { baseButtonState in
-                Text("Lorem Ipsum")
-                    .foregroundStyle(colors.value(for: baseButtonState))
-            }
-        )
-    }
-}
+
+    return ContentView()
+})
+
+#endif

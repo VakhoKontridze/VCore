@@ -14,26 +14,29 @@ extension View {
     ///     @State private var isPresented: Bool = false
     ///
     ///     var body: some View {
-    ///         Button("Present", action: { isPresented = true })
-    ///             .fullScreenCover(
-    ///                 isPresented: $isPresented,
-    ///                 content: {
-    ///                     Destination()
-    ///                         .customDismissAction(CustomDismissAction({
-    ///                             print("Do something here")
-    ///                             isPresented = false
-    ///                         }))
-    ///                 }
-    ///             )
+    ///         Button(
+    ///             "Present",
+    ///             action: { isPresented = true }
+    ///         )
+    ///         .sheet(
+    ///             isPresented: $isPresented,
+    ///             content: {
+    ///                 DestinationView()
+    ///                     .customDismissAction(CustomDismissAction({
+    ///                         print("Do something here")
+    ///                         isPresented = false
+    ///                     }))
+    ///             }
+    ///         )
     ///     }
     ///
-    ///     struct Destination: View {
+    ///     struct DestinationView: View {
     ///         @Environment(\.customDismissAction) private var customDismissAction: CustomDismissAction
     ///
     ///         var body: some View {
     ///             Color.accentColor
     ///                 .ignoresSafeArea()
-    ///                 .onTapGesture(perform: { customDismissAction.action() })
+    ///                 .onTapGesture(perform: customDismissAction.action)
     ///         }
     ///     }
     ///
@@ -58,3 +61,46 @@ extension EnvironmentValues {
 struct CustomDismissActionEnvironmentKey: EnvironmentKey {
     static let defaultValue: CustomDismissAction = .init()
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    guard #available(tvOS 16.0, *) else { return EmptyView() }
+
+    struct ContentView: View {
+        @State private var isPresented: Bool = false
+        @State private var dismissCount: Int = 0
+
+        var body: some View {
+            Button(
+                "Present \(dismissCount)",
+                action: { isPresented = true }
+            )
+            .sheet(
+                isPresented: $isPresented,
+                content: {
+                    DestinationView()
+                        .customDismissAction(CustomDismissAction({
+                            dismissCount += 1
+                            isPresented = false
+                        }))
+                }
+            )
+        }
+    }
+
+    struct DestinationView: View {
+        @Environment(\.customDismissAction) private var customDismissAction: CustomDismissAction
+
+        var body: some View {
+            Color.accentColor
+                .ignoresSafeArea()
+                .onTapGesture(perform: customDismissAction.action)
+        }
+    }
+
+    return ContentView()
+})
+
+#endif

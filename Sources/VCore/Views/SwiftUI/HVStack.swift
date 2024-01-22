@@ -71,31 +71,3 @@ public struct HVStack<Content>: View where Content: View { // TODO: iOS 16 - Rem
         }
     }
 }
-
-// MARK: - Preview
-struct HVStack_Previews: PreviewProvider {
-    static var previews: some View {
-        VStack(spacing: 20, content: {
-            HVStack(
-                spacing: 10,
-                axis: .horizontal,
-                content: {
-                    Image(systemName: "swift")
-                    Text("Lorem ipsum")
-                }
-            )
-            
-            Divider()
-            
-            HVStack(
-                spacing: 10,
-                axis: .vertical,
-                content: {
-                    Image(systemName: "swift")
-                    Text("Lorem ipsum")
-                }
-            )
-        })
-        .padding()
-    }
-}

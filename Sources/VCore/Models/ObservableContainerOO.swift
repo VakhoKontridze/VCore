@@ -20,7 +20,7 @@ import Foundation
 ///         }
 ///     }
 ///
-open class ObservableContainerOO<Value>: ObservableObject {
+open class ObservableContainerOO<Value>: ObservableObject { // TODO: iOS 17.0 - Remove, as it's obsoleted by Observation
     // MARK: Properties
     /// Wrapped value.
     @Published open var value: Value

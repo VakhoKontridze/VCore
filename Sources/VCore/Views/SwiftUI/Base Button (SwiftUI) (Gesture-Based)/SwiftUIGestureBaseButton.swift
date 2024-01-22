@@ -129,14 +129,12 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
 }
 
 // MARK: - Preview
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
-struct SwiftUIGestureBaseButton_Previews: PreviewProvider {
-    static var previews: some View {
-        Preview()
-    }
+#if DEBUG
 
-    private struct Preview: View {
+#if !(os(tvOS) || os(watchOS))
+
+#Preview(body: {
+    struct ContentView: View {
         @State private var isPressed: Bool = false
 
         var body: some View {
@@ -151,4 +149,10 @@ struct SwiftUIGestureBaseButton_Previews: PreviewProvider {
             )
         }
     }
-}
+
+    return ContentView()
+})
+
+#endif
+
+#endif

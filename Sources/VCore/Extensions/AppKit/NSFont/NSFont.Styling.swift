@@ -30,4 +30,31 @@ extension NSFont {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+import SwiftUI
+
+#Preview(body: {
+    let font: NSFont = .systemFont(ofSize: 16)
+
+    return VStack(content: {
+        Text("Lorem ipsum")
+            .font(Font(font))
+
+        if let font = font.withBoldStyling {
+            Text("Lorem ipsum")
+                .font(Font(font))
+        }
+
+        if let font = font.withItalicStyling {
+            Text("Lorem ipsum")
+                .font(Font(font))
+        }
+    })
+    .padding()
+})
+
+#endif
+
 #endif

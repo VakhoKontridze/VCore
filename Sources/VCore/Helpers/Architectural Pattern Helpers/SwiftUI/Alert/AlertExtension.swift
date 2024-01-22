@@ -17,7 +17,7 @@ extension View {
     ///         Button(
     ///             "Present",
     ///             action: {
-    ///                 parameters = (
+    ///                 parameters = AlertParameters(
     ///                     title: "Lorem Ipsum",
     ///                     message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     ///                     actions: {
@@ -61,3 +61,33 @@ extension View {
         )
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    struct ContentView: View {
+        @State private var parameters: AlertParameters?
+
+        var body: some View {
+            Button(
+                "Present",
+                action: {
+                    parameters = AlertParameters(
+                        title: "Lorem Ipsum",
+                        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                        actions: {
+                            AlertButton(action: {}, title: "Confirm")
+                            AlertButton(role: .cancel, action: {}, title: "Cancel")
+                        }
+                    )
+                }
+            )
+            .alert(parameters: $parameters)
+        }
+    }
+
+    return ContentView()
+})
+
+#endif

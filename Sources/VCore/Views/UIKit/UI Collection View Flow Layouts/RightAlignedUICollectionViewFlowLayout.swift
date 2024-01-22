@@ -104,27 +104,16 @@ open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 }
 
-#endif
-
 // MARK: - Preview
-#if os(iOS)
+#if DEBUG
 
-import SwiftUI
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+#Preview(body: {
+    Preview_AlignedUICollectionViewFlowLayoutViewController(
+        layout: RightAlignedUICollectionViewFlowLayout()
+    )
+})
 
-struct RightAlignedUICollectionViewFlowLayout_Previews: PreviewProvider {
-    static var previews: some View {
-        ViewControllerRepresentable()
-    }
-
-    private struct ViewControllerRepresentable: UIViewControllerRepresentable {
-        func makeUIViewController(context: Context) -> some UIViewController {
-            CenterAlignedUICollectionViewFlowLayout_Previews.BaseViewController(
-                layout: RightAlignedUICollectionViewFlowLayout()
-            )
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
-    }
-}
+#endif
 
 #endif

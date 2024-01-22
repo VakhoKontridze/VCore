@@ -32,6 +32,8 @@
 		876FD48B285C978E00EC24FD /* PostDetailsUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD483285C978E00EC24FD /* PostDetailsUIModel.swift */; };
 		876FD48C285C978E00EC24FD /* PostDetailsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 876FD484285C978E00EC24FD /* PostDetailsParameters.swift */; };
 		87846D8B29D4D2FF0071CDAC /* VCore in Frameworks */ = {isa = PBXBuildFile; productRef = 87846D8A29D4D2FF0071CDAC /* VCore */; };
+		87E046A02B5D34EF004D2E2F /* PostsMockInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E0469F2B5D34EF004D2E2F /* PostsMockInteractor.swift */; };
+		87E046A22B5D3506004D2E2F /* PostsMockGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87E046A12B5D3506004D2E2F /* PostsMockGateway.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +65,8 @@
 		876FD483285C978E00EC24FD /* PostDetailsUIModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsUIModel.swift; sourceTree = "<group>"; };
 		876FD484285C978E00EC24FD /* PostDetailsParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsParameters.swift; sourceTree = "<group>"; };
 		87846D8929D4D2FA0071CDAC /* ~VCore */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = "~VCore"; path = ../../..; sourceTree = "<group>"; };
+		87E0469F2B5D34EF004D2E2F /* PostsMockInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsMockInteractor.swift; sourceTree = "<group>"; };
+		87E046A12B5D3506004D2E2F /* PostsMockGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsMockGateway.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -169,6 +173,7 @@
 				876FD44C285C7BBF00EC24FD /* PostsPresenter.swift */,
 				876FD44D285C7BBF00EC24FD /* PostsRouter.swift */,
 				876FD450285C7BBF00EC24FD /* PostsInteractor.swift */,
+				87E0469F2B5D34EF004D2E2F /* PostsMockInteractor.swift */,
 				876FD451285C7BBF00EC24FD /* PostsUIModel.swift */,
 			);
 			path = Posts;
@@ -196,6 +201,7 @@
 				876FD467285C7C5100EC24FD /* PostsGateway.swift */,
 				876FD466285C7C5100EC24FD /* PostsEntity.swift */,
 				876FD464285C7C5100EC24FD /* PostsNetworkGateway.swift */,
+				87E046A12B5D3506004D2E2F /* PostsMockGateway.swift */,
 			);
 			path = "Posts Gateway";
 			sourceTree = "<group>";
@@ -318,11 +324,13 @@
 				876FD486285C978E00EC24FD /* PostDetailsPresenter.swift in Sources */,
 				876FD48C285C978E00EC24FD /* PostDetailsParameters.swift in Sources */,
 				876FD457285C7BBF00EC24FD /* PostsViewController.swift in Sources */,
+				87E046A22B5D3506004D2E2F /* PostsMockGateway.swift in Sources */,
 				876FD453285C7BBF00EC24FD /* PostsFactory.swift in Sources */,
 				876FD458285C7BBF00EC24FD /* PostsInteractor.swift in Sources */,
 				876FD485285C978E00EC24FD /* PostDetailsFactory.swift in Sources */,
 				876FD454285C7BBF00EC24FD /* PostsPresenter.swift in Sources */,
 				876FD48B285C978E00EC24FD /* PostDetailsUIModel.swift in Sources */,
+				87E046A02B5D34EF004D2E2F /* PostsMockInteractor.swift in Sources */,
 				876FD472285C848700EC24FD /* PostCellParameters.swift in Sources */,
 				876FD435285C786600EC24FD /* SceneDelegate.swift in Sources */,
 				876FD473285C848700EC24FD /* PostCell.swift in Sources */,
@@ -393,7 +401,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -447,7 +455,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -471,7 +479,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -499,7 +507,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

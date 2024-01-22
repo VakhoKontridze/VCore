@@ -24,7 +24,7 @@ import Network
 ///         .sink(receiveValue: { [weak self] in self?.dismissNoNetworkConnectionScreen() })
 ///         .store(in: &subscriptions)
 ///
-public final class NetworkReachabilityService { // TODO: iOS 17 - Convert to `Observable`
+public final class NetworkReachabilityService { // TODO: iOS 17 - Convert to `Observable` and remove `Combine`
     // MARK: Properties - Singleton
     /// Shared instance of `NetworkReachabilityService`.
     public static let shared: NetworkReachabilityService = .init()

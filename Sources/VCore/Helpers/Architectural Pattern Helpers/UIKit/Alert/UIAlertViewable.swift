@@ -27,7 +27,7 @@ import UIKit
 ///         }
 ///
 ///         func present() {
-///             view.presentActionSheet(parameters: UIAlertParameters(
+///             view.presentAlert(parameters: UIAlertParameters(
 ///                 title: "Lorem Ipsum",
 ///                 message: "Lorem ipsum dolor sit amet",
 ///                 actions: {
@@ -52,5 +52,48 @@ extension UIAlertViewable where Self: UIViewController {
         )
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+#Preview(body: {
+    ViewController()
+})
+
+private final class ViewController: UIViewController, UIAlertViewable {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        let button: UIButton = .init()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.setTitle("Present", for: .normal)
+        button.setTitleColor(UIColor.systemBlue, for: .normal)
+        button.addAction(
+            UIAction(handler: { [weak self] _ in self?.present() }),
+            for: .touchUpInside
+        )
+
+        view.addSubview(button)
+
+        NSLayoutConstraint.activate([
+            button.constraintCenterX(to: view),
+            button.constraintCenterY(to: view)
+        ])
+    }
+
+    private func present() {
+        presentAlert(parameters: UIAlertParameters(
+            title: "Lorem Ipsum",
+            message: "Lorem ipsum dolor sit amet",
+            actions: {
+                UIAlertButton(title: "Confirm", action: { print("Confirmed") })
+                UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+            }
+        ))
+    }
+}
+
+#endif
 
 #endif

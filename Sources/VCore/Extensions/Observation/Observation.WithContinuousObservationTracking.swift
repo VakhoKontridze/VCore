@@ -12,7 +12,7 @@ import Observation
 /// Tracks access to properties in a `class` type continuously.
 ///
 ///     @Observable
-//      final class SomeObject {
+///      final class SomeObject {
 ///         private var value: Int = 0
 ///
 ///         init() {
@@ -28,7 +28,7 @@ import Observation
 ///         }
 ///     }
 ///
-@available(iOS 17.0, macOS 14.0, watchOS 10.0, tvOS 17.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 public func withContinuousObservationTracking<Object, T>(
     of keyPath: KeyPath<Object, T>,
     on object: Object,
@@ -48,7 +48,7 @@ public func withContinuousObservationTracking<Object, T>(
     )
 }
 
-@available(iOS 17.0, macOS 14.0, watchOS 10.0, tvOS 17.0, *)
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 private func _withContinuousObservationTracking<Object, T>(
     of keyPath: KeyPath<Object, T>,
     on object: Object,

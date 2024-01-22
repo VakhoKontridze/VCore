@@ -28,7 +28,8 @@ extension View {
     ///             }
     ///         )
     ///         .confirmationDialog(parameters: $parameters)
-    ///  
+    ///     }
+    ///
     public func confirmationDialog(
         parameters: Binding<ConfirmationDialogParameters?>
     ) -> some View {
@@ -68,3 +69,33 @@ extension View {
         )
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    struct ContentView: View {
+        @State private var parameters: ConfirmationDialogParameters?
+
+        var body: some View {
+            Button(
+                "Present",
+                action: {
+                    parameters = ConfirmationDialogParameters(
+                        title: "Lorem Ipsum",
+                        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                        actions: {
+                            ConfirmationDialogButton(action: {}, title: "Confirm")
+                            ConfirmationDialogButton(role: .cancel, action: {}, title: "Cancel")
+                        }
+                    )
+                }
+            )
+            .confirmationDialog(parameters: $parameters)
+        }
+    }
+
+    return ContentView()
+})
+
+#endif

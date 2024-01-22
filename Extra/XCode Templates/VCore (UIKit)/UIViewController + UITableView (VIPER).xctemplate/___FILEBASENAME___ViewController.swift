@@ -78,3 +78,14 @@ final class ___VARIABLE_productName___ViewController:
         )
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    UINavigationController(
+        rootViewController: ___VARIABLE_productName___Factory.mock()
+    )
+})
+
+#endif

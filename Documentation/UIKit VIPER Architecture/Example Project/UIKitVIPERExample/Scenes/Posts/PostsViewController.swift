@@ -111,3 +111,14 @@ final class PostsViewController:
         presenter.didPullToRefresh()
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    UINavigationController(
+        rootViewController: PostsFactory.mock()
+    )
+})
+
+#endif

@@ -161,89 +161,77 @@ open class InfiniteScrollingUITableView: UITableView {
 // MARK: - Preview
 #if os(iOS)
 
-import SwiftUI
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+#Preview(body: {
+    ViewController()
+})
 
-struct InfiniteScrollingUITableView_Previews: PreviewProvider {
-    static var previews: some View {
-        ViewControllerRepresentable()
-            .ignoresSafeArea() // Internal handling
+private final class ViewController:
+    UIViewController,
+    UITableViewDelegate, UITableViewDataSource,
+    InfiniteScrollingUITableViewDelegate
+{
+    private lazy var tableView: InfiniteScrollingUITableView = {
+        let tableView: InfiniteScrollingUITableView = .init()
+
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.infiniteScrollingDelegate = self
+
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+
+        return tableView
+    }()
+
+    private lazy var data: [String] = page
+    private var page: [String] = (1...5).map { String($0) }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        view.backgroundColor = UIColor.systemBackground
+
+        view.addSubview(tableView)
+
+        NSLayoutConstraint.activate([
+            tableView.constraintLeading(to: view),
+            tableView.constraintTrailing(to: view),
+            tableView.constraintTop(to: view, layoutGuide: .safeArea),
+            tableView.constraintBottom(to: view)
+        ])
+
+        tableView.reloadData()
     }
 
-    private struct ViewControllerRepresentable: UIViewControllerRepresentable {
-        func makeUIViewController(context: Context) -> some UIViewController {
-            ViewController()
-        }
-
-        func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) {}
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        tableView.detectPaginationFromScrollViewDidScroll(scrollView)
     }
 
-    private final class ViewController:
-        UIViewController,
-        UITableViewDelegate, UITableViewDataSource,
-        InfiniteScrollingUITableViewDelegate
-    {
-        private lazy var tableView: InfiniteScrollingUITableView = {
-            let tableView: InfiniteScrollingUITableView = .init()
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        data.count
+    }
 
-            tableView.translatesAutoresizingMaskIntoConstraints = false
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        self.tableView.detectPaginationFromTableViewCellForRow()
 
-            tableView.delegate = self
-            tableView.dataSource = self
-            tableView.infiniteScrollingDelegate = self
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return .init() }
 
-            tableView.register(UITableViewCell.self, forCellReuseIdentifier: "cell")
+        cell.textLabel?.text = data[indexPath.row]
 
-            return tableView
-        }()
+        return cell
+    }
 
-        private lazy var data: [String] = page
-        private var page: [String] = (1...5).map { String($0) }
+    func tableViewDidScrollToBottom(sender infiniteScrollingUITableView: InfiniteScrollingUITableView) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
+            guard let self else { return }
 
-        override func viewDidLoad() {
-            super.viewDidLoad()
+            data.append(contentsOf: page)
 
-            view.backgroundColor = UIColor.systemBackground
-
-            view.addSubview(tableView)
-
-            NSLayoutConstraint.activate([
-                tableView.constraintLeading(to: view),
-                tableView.constraintTrailing(to: view),
-                tableView.constraintTop(to: view, layoutGuide: .safeArea),
-                tableView.constraintBottom(to: view)
-            ])
-
+            tableView.paginationState = .canPaginate
             tableView.reloadData()
-        }
-
-        func scrollViewDidScroll(_ scrollView: UIScrollView) {
-            tableView.detectPaginationFromScrollViewDidScroll(scrollView)
-        }
-
-        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-            data.count
-        }
-
-        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-            self.tableView.detectPaginationFromTableViewCellForRow()
-
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell") else { return .init() }
-
-            cell.textLabel?.text = data[indexPath.row]
-
-            return cell
-        }
-
-        func tableViewDidScrollToBottom(sender infiniteScrollingUITableView: InfiniteScrollingUITableView) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
-                guard let self else { return }
-
-                data.append(contentsOf: page)
-
-                tableView.paginationState = .canPaginate
-                tableView.reloadData()
-            })
-        }
+        })
     }
 }
 

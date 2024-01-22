@@ -1,5 +1,5 @@
 //
-//  UIStackView.Configuration.swift
+//  UIStackView.Configure.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/5/21.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Stack View Configuration
+// MARK: - Stack View Configure
 extension UIStackView {
     /// Configures`UIStackView` with axis, distribution, alignment, and spacing.
     ///

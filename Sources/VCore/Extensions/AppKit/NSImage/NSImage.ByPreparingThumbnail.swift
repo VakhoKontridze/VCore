@@ -44,4 +44,36 @@ extension NSImage {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+import SwiftUI
+
+#Preview(body: {
+    guard
+        let image: NSImage = .init(systemSymbolName: "swift", accessibilityDescription: nil)
+    else {
+        return EmptyView()
+    }
+
+    let dimension: CGFloat = 128
+
+    return VStack(content: {
+        Image(nsImage: image)
+            .resizable()
+            .scaledToFit()
+            .frame(dimension: dimension)
+
+        if let thumbnail: NSImage = image.byPreparingThumbnail(ofSize: CGSize(dimension: dimension/4)) { // To make visible
+            Image(nsImage: thumbnail)
+                .resizable()
+                .aspectRatio(1.2, contentMode: .fit)
+                .frame(dimension: dimension)
+        }
+    })
+    .padding()
+})
+
+#endif
+
 #endif

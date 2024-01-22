@@ -23,7 +23,7 @@ extension Color {
 #if canImport(UIKit)
         UIColor(self).rgbaValues
 #elseif canImport(AppKit)
-        NSColor(self).calibrated.rgbaValues
+        NSColor(self).rgbaValues
 #endif
     }
     
@@ -41,7 +41,7 @@ extension Color {
 #if canImport(UIKit)
         UIColor(self).rgbaComponents
 #elseif canImport(AppKit)
-        NSColor(self).calibrated.rgbaComponents
+        NSColor(self).rgbaComponents
 #endif
     }
     
@@ -59,7 +59,7 @@ extension Color {
 #if canImport(UIKit)
         UIColor(self).isRGBAEqual(to: UIColor(otherColor))
 #elseif canImport(AppKit)
-        NSColor(self).calibrated.isRGBAEqual(to: NSColor(otherColor).calibrated)
+        NSColor(self).isRGBAEqual(to: NSColor(otherColor))
 #endif
     }
 }

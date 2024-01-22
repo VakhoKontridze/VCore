@@ -45,7 +45,7 @@ extension View {
     ///             .getFrame(in: .global, { frame = $0 })
     ///     }
     ///
-    public func getFrame( // TODO: iOS 17.0 - Remove
+    public func getFrame( // TODO: iOS 17.0 - Remove, as it's obsoleted
         in coordinateSpace: CoordinateSpace,
         _ action: @escaping (CGRect) -> Void
     ) -> some View {

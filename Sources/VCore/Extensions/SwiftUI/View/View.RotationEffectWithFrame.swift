@@ -63,3 +63,22 @@ private struct RotationEffectWithFrameViewModifier: ViewModifier {
             .frame(size: bounds.size)
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    HStack(spacing: 0, content: {
+        Text("Lorem")
+            .border(.red)
+
+        Text("Lorem ipsum dolor")
+            .fixedSize()
+            .border(.blue)
+            .rotationEffectWithFrame(.degrees(-45))
+            .border(.green)
+    })
+    .border(.green)
+})
+
+#endif

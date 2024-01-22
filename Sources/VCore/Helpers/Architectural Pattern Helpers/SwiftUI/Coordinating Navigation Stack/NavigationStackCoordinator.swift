@@ -26,6 +26,7 @@ import SwiftUI
 ///                 "Navigate",
 ///                 action: { navigationStackCoordinator.path.append(DestinationParameters()) }
 ///             )
+///             .inlineNavigationTitle("Home")
 ///             .navigationDestination(
 ///                 for: DestinationParameters.self,
 ///                 destination: { DestinationView(parameters: $0) }

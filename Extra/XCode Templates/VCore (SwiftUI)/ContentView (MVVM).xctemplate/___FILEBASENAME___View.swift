@@ -43,8 +43,12 @@ struct ___VARIABLE_productName___View: View {
 }
 
 // MARK: - Preview
+#if DEBUG
+
 #Preview(body: {
     CoordinatingNavigationStack(root: {
         ___VARIABLE_productName___View(parameters: .mock)
     })
 })
+
+#endif

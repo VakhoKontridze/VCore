@@ -34,4 +34,16 @@ extension Image {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    VStack(spacing: 10, content: {
+        Image(systemName: "shuffle")
+        Image(systemName: "shuffle", weight: .bold)
+    })
+})
+
+#endif
+
 #endif

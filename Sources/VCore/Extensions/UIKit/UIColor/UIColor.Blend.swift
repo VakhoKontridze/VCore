@@ -73,4 +73,25 @@ extension UIColor {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+#if !os(watchOS)
+
+import SwiftUI
+
+#Preview(body: {
+    VStack(content: {
+        Color(UIColor.blend(.red, with: .blue))
+
+        Color(UIColor.systemBlue.lighten(by: 0.1))
+
+        Color(UIColor.systemBlue.darken(by: 0.1))
+    })
+})
+
+#endif
+
+#endif
+
 #endif

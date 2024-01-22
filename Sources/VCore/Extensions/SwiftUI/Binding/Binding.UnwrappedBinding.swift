@@ -15,6 +15,7 @@ extension Binding {
     ///
     ///     var body: some View{
     ///         TextField("", text: $text.unwrappedBinding(default: ""))
+    ///             .textFieldStyle(.roundedBorder)
     ///     }
     ///
     public func unwrappedBinding<T>(

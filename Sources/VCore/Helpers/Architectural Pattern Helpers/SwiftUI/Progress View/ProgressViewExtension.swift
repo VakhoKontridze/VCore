@@ -33,3 +33,21 @@ extension View {
             })
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+#Preview(body: {
+    struct ContentView: View {
+        @State private var parameters: ProgressViewParameters = .init()
+
+        var body: some View {
+            Color.clear
+                .progressView(parameters: parameters)
+        }
+    }
+
+    return ContentView()
+})
+
+#endif

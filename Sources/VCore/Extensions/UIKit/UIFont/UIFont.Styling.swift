@@ -30,4 +30,31 @@ extension UIFont {
     }
 }
 
+// MARK: - Preview
+#if DEBUG
+
+import SwiftUI
+
+#Preview(body: {
+    let font: UIFont = .systemFont(ofSize: 16)
+
+    return VStack(content: {
+        Text("Lorem ipsum")
+            .font(Font(font))
+
+        if let font = font.withBoldStyling {
+            Text("Lorem ipsum")
+                .font(Font(font))
+        }
+
+        if let font = font.withItalicStyling {
+            Text("Lorem ipsum")
+                .font(Font(font))
+        }
+    })
+    .padding()
+})
+
+#endif
+
 #endif

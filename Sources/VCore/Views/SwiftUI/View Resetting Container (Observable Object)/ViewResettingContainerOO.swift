@@ -13,16 +13,12 @@ import SwiftUI
 /// Can be used to trigger reload on an app level.
 /// `SwiftUI`'s equivalent of replacing `rootViewController` in `UIKit`
 ///
-/// In the following example, scrolling down and triggering reset causes app's content to be reset.
+/// In the following example, scrolling down and triggering reset causes content to be reset.
 ///
-///     @main struct SomeApp: App {
-///         var body: some Scene {
-///             WindowGroup(content: {
-///                 ViewResettingContainerOO(content: {
-///                     ContentView()
-///                 })
-///             })
-///         }
+///     var body: some View {
+///         ViewResettingContainerOO(content: {
+///             ContentView()
+///         })
 ///     }
 ///
 ///     struct ContentView: View {
@@ -30,18 +26,18 @@ import SwiftUI
 ///
 ///         var body: some View {
 ///             ScrollView(content: {
-///                 Color.red
+///                 Color.accentColor
 ///                     .frame(height: UIScreen.main.bounds.size.height)
 ///
 ///                 Button(
 ///                     "Reset",
-///                     action: { viewResetter.trigger() }
+///                     action: viewResetter.trigger
 ///                 )
 ///             })
 ///         }
 ///     }
 ///
-public struct ViewResettingContainerOO<Content>: View where Content: View {
+public struct ViewResettingContainerOO<Content>: View where Content: View { // TODO: iOS 17.0 - Remove, as it's obsoleted
     // MARK: Properties
     @StateObject private var viewResetter: ViewResetterOO = .init()
     private let content: (ViewResetterOO) -> Content

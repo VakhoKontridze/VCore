@@ -41,7 +41,7 @@ import Combine
 ///         fatalError()
 ///     }
 ///
-public final class LocalizationManager {
+public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observable` and remove `Combine`
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
     public static let shared: LocalizationManager = .init()

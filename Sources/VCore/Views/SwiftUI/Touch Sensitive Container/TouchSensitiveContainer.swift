@@ -134,13 +134,15 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
 }
 
 // MARK: - Preview
+#if DEBUG
+
 @available(tvOS 16.0, *)
-struct TouchSensitiveContainer_Preview: PreviewProvider {
-    static var previews: some View {
-        TouchSensitiveContainer(content: {
-            Text("Lorem ipsum")
-                .padding()
-        })
-        .previewLayout(.sizeThatFits)
-    }
-}
+#Preview(body: {
+    TouchSensitiveContainer(content: {
+        Text("Lorem ipsum")
+            .allowsHitTesting(false)
+            .padding()
+    })
+})
+
+#endif

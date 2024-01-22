@@ -23,4 +23,17 @@ struct PostDetailsFactory {
         
         return viewController
     }
+
+    static func mock() -> UIViewController {
+        let viewController: PostDetailsViewController = .init()
+
+        let presenter: PostDetailsPresenter = .init(
+            view: viewController,
+            parameters: .mock
+        )
+
+        viewController.presenter = presenter
+
+        return viewController
+    }
 }
