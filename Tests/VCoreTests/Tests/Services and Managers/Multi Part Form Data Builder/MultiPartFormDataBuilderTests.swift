@@ -8,6 +8,8 @@
 import XCTest
 @testable import VCore
 
+// No need to cover `NSImage`
+
 // MARK: - Tests
 final class MultipartFormDataBuilderTests: XCTestCase {
     // MARK: Test Data

@@ -12,18 +12,37 @@ import XCTest
 // MARK: - Tests
 final class ImageInitWithDataTests: XCTestCase {
     func test() {
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(UIKit)
         guard
             let uiImage: UIImage = .init(
                 size: CGSize(dimension: 100),
-                color: UIColor.systemBlue
+                color: {
+#if !os(watchOS)
+                UIColor.systemBlue
+#else
+                UIColor.blue
+#endif
+                }()
             ),
             let data: Data = uiImage.jpegData(compressionQuality: 1)
         else {
             VCoreLogError("Failed to generate test data")
             fatalError()
         }
-        
+
+        let _: Image = .init(data: data) // Check that no crashes occur
+#elseif canImport(AppKit)
+        guard
+            let nsImage: NSImage = .init(
+                size: CGSize(dimension: 100),
+                color: NSColor.systemBlue
+            ),
+            let data: Data = nsImage.tiffRepresentation
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
         let _: Image = .init(data: data) // Check that no crashes occur
 #endif
     }
