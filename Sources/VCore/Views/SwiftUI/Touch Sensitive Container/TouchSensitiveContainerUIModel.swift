@@ -19,12 +19,10 @@ public struct TouchSensitiveContainerUIModel {
     /// Background colors.
     public var backgroundColors: StateColors = {
         let color: Color = {
-#if os(iOS)
+#if os(iOS) || targetEnvironment(macCatalyst)
             Color(uiColor: .systemBackground)
 #elseif os(macOS)
             Color.clear // No other color is available
-#elseif targetEnvironment(macCatalyst)
-            Color(uiColor: .systemBackground)
 #elseif os(watchOS)
             Color.clear
 #else
@@ -33,12 +31,10 @@ public struct TouchSensitiveContainerUIModel {
         }()
 
         let pressedColor: Color = {
-#if os(iOS)
+#if os(iOS) || targetEnvironment(macCatalyst)
             Color(uiColor: .systemFill)
 #elseif os(macOS)
-            Color(nsColor: NSColor.windowBackgroundColor)
-#elseif targetEnvironment(macCatalyst)
-            Color(uiColor: .systemFill)
+            Color(nsColor: .windowBackgroundColor)
 #elseif os(watchOS)
             Color.gray.opacity(0.3)
 #else

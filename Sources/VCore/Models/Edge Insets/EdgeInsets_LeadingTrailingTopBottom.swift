@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-#if canImport(UIKit)
-import UIKit
-#elseif canImport(AppKit)
-import AppKit
-#endif
-
 // MARK: - Edge Insets (Leading, Trailing, Top, Bottom)
 /// Edge insets containing `leading`, `trailing`, `top` and `bottom` values.
 public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {

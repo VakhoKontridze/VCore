@@ -25,12 +25,10 @@ public struct PlainDisclosureGroupUIModel {
     ///
     /// Needed for setting background color to the label.
     public var backgroundColor: Color = {
-#if os(iOS)
+#if os(iOS) || targetEnvironment(macCatalyst)
         Color(uiColor: UIColor.systemBackground)
 #elseif os(macOS)
         Color(nsColor: NSColor.controlColor)
-#elseif targetEnvironment(macCatalyst)
-        Color(uiColor: UIColor.systemBackground)
 #else
         fatalError() // Not supported
 #endif

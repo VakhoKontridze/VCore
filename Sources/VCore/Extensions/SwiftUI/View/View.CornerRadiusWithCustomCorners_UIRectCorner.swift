@@ -8,7 +8,6 @@
 #if canImport(UIKit)
 
 import SwiftUI
-import UIKit
 
 // MARK: - View Corner Radius with Custom Corners
 extension View {

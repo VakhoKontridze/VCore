@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-#if canImport(UIKit)
-import UIKit
-#elseif canImport(AppKit)
-import AppKit
-#endif
-
 // MARK: - Image Init with Data
 extension Image {
     /// Initializes and returns the `Image` with the specified `Data`.
