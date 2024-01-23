@@ -118,6 +118,30 @@ extension BasicAnimation {
 /// Returns the result of recomputing the view's body with the provided `BasicAnimation`,
 /// and optionally calls a completion handler.
 ///
+///     withBasicAnimation(
+///         BasicAnimation(curve: .easeIn, duration: 1),
+///         { ... },
+///         completion: { ... }
+///     )
+///
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+public func withBasicAnimation<Result>(
+    _ animation: BasicAnimation?,
+    completionCriteria: AnimationCompletionCriteria = .logicallyComplete,
+    _ body: () throws -> Result,
+    completion: @escaping () -> Void
+) rethrows -> Result {
+    try withAnimation(
+        animation?.toSwiftUIAnimation,
+        completionCriteria: completionCriteria,
+        body,
+        completion: completion
+    )
+}
+
+/// Returns the result of recomputing the view's body with the provided `BasicAnimation`,
+/// and optionally calls a completion handler.
+///
 /// Completion handler is called using `asyncAfter`,
 /// scheduling with a deadline of `.now()` `+` animation duration.
 ///
@@ -127,7 +151,7 @@ extension BasicAnimation {
 ///         completion: { ... }
 ///     )
 ///
-public func withBasicAnimation<Result>( // TODO: iOS 17 - Remove. Obsoleted by `withAnimation(_:completionCriteria:_:completion:)`.
+public func withBasicAnimation<Result>( // TODO: iOS 17 - Remove
     _ animation: BasicAnimation?,
     body: () throws -> Result,
     completion: (() -> Void)?
