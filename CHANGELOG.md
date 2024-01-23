@@ -1,10 +1,16 @@
 # Change Log
 
-### 6.0.0(90)
+### 6.0.0(91)
 
 General
 
 - Package now partially supports `visionOS`
+
+### [5.3.1(90)](https://github.com/VakhoKontridze/VCore/releases/tag/5.3.1) — *2024 01 23*
+
+General
+
+- Bug fixes and improvements
 
 ### [5.3.0(89)](https://github.com/VakhoKontridze/VCore/releases/tag/5.3.0) — *2024 01 12*
 
