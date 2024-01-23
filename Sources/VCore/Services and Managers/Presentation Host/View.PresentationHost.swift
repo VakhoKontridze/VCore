@@ -271,8 +271,8 @@ extension View {
     return ContentView()
 })
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension View {
-    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
     fileprivate func someModal(
         id: String,
         isPresented: Binding<Bool>,
