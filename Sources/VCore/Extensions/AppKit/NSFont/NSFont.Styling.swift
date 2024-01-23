@@ -36,7 +36,7 @@ extension NSFont {
 import SwiftUI
 
 #Preview(body: {
-    let font: NSFont = .systemFont(ofSize: 16)
+    let font: NSFont = .systemFont(ofSize: 13)
 
     return VStack(content: {
         Text("Lorem ipsum")

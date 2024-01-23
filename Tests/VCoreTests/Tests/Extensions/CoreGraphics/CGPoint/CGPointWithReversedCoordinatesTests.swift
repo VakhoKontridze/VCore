@@ -10,27 +10,21 @@ import XCTest
 
 // MARK: - Tests
 final class CGPointWithReversedCoordinatesTests: XCTestCase {
-    // MARK: Test Data
-    private let inputX: CGFloat = 3
-    private let inputY: CGFloat = 4
-    
-    private let outputX: CGFloat = 4
-    private let outputY: CGFloat = 3
-    
-    // MARK: Tests
     func testConditionalFalse() {
-        let result: CGPoint = .init(x: inputX, y: inputY)
-            .withReversedCoordinates(false)
+        let point: CGPoint = .init(x: 3, y: 4)
+
+        let reversedPoint: CGPoint = point.withReversedCoordinates(false)
         
-        XCTAssertNotEqual(result.x, outputX)
-        XCTAssertNotEqual(result.y, outputY)
+        XCTAssertEqual(reversedPoint.x, 3)
+        XCTAssertEqual(reversedPoint.y, 4)
     }
     
     func testConditionalTrue() {
-        let result: CGPoint = .init(x: inputX, y: inputY)
-            .withReversedCoordinates(true)
+        let point: CGPoint = .init(x: 3, y: 4)
+
+        let reversedPoint: CGPoint = point.withReversedCoordinates(true)
         
-        XCTAssertEqual(result.x, outputX)
-        XCTAssertEqual(result.y, outputY)
+        XCTAssertEqual(reversedPoint.x, 4)
+        XCTAssertEqual(reversedPoint.y, 3)
     }
 }

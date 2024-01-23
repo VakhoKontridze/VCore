@@ -12,41 +12,37 @@ import XCTest
 final class ArrayPrependingTests: XCTestCase {
     // MARK: Tests - Element
     func testPrependingElement() {
-        let input: [Int] = [2, 3]
-        let result: [Int] = [1, 2, 3]
+        let array: [Int] = [2, 3]
 
-        let output: [Int] = input.prepending(1)
+        let prependedArray: [Int] = array.prepending(1)
 
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(prependedArray, [1, 2, 3])
     }
 
     func testPrependElement() {
-        let input: [Int] = [2, 3]
-        let result: [Int] = [1, 2, 3]
+        let array: [Int] = [2, 3]
 
-        var output: [Int] = input
-        output.prepend(1)
+        var prependedArray: [Int] = array
+        prependedArray.prepend(1)
 
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(prependedArray, [1, 2, 3])
     }
 
     // MARK: Tests - Elements
     func testPrependingElements() {
-        let input: [Int] = [3, 4]
-        let result: [Int] = [1, 2, 3, 4]
+        let array: [Int] = [3, 4]
 
-        let output: [Int] = input.prepending(contentsOf: [1, 2])
+        let prependedArray: [Int] = array.prepending(contentsOf: [1, 2])
 
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(prependedArray, [1, 2, 3, 4])
     }
 
     func testPrependElements() {
-        let input: [Int] = [3, 4]
-        let result: [Int] = [1, 2, 3, 4]
+        let array: [Int] = [3, 4]
 
-        var output: [Int] = input
-        output.prepend(contentsOf: [1, 2])
+        var prependedArray: [Int] = array
+        prependedArray.prepend(contentsOf: [1, 2])
 
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(prependedArray, [1, 2, 3, 4])
     }
 }

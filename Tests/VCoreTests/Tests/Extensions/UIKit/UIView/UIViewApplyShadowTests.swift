@@ -12,43 +12,36 @@ import XCTest
 
 // MARK: - Tests
 final class UIViewApplyShadowTests: XCTestCase {
-    // MARK: Test Data
-    private let cornerRadius: CGFloat = 10
-    private let color: UIColor = .black
-    private let radius: CGFloat = 5
-    private let offset: CGSize = .init(width: 0, height: 5)
-    
-    // MARK: Tests
     func testShadow() {
         let view: UIView = .init()
         
         view.applyShadow(
-            color: color,
-            radius: radius,
-            offset: offset
+            color: UIColor.black,
+            radius: 5,
+            offset: CGSize(width: 0, height: 5)
         )
         
-        XCTAssertEqual(view.layer.shadowColor, color.cgColor)
+        XCTAssertEqual(view.layer.shadowColor, UIColor.black.cgColor)
         XCTAssertEqual(view.layer.shadowOpacity, 1)
-        XCTAssertEqual(view.layer.shadowRadius, radius)
-        XCTAssertEqual(view.layer.shadowOffset, offset)
+        XCTAssertEqual(view.layer.shadowRadius, 5)
+        XCTAssertEqual(view.layer.shadowOffset, CGSize(width: 0, height: 5))
     }
     
     func testRoundCornersAndApplyShadow() {
         let view: UIView = .init()
         
         view.roundCornersAndApplyShadow(
-            cornerRadius: cornerRadius,
-            color: color,
-            radius: radius,
-            offset: offset
+            cornerRadius: 10,
+            color: UIColor.black,
+            radius: 5,
+            offset: CGSize(width: 0, height: 5)
         )
         
-        XCTAssertEqual(view.layer.cornerRadius, cornerRadius)
-        XCTAssertEqual(view.layer.shadowColor, color.cgColor)
+        XCTAssertEqual(view.layer.cornerRadius, 10)
+        XCTAssertEqual(view.layer.shadowColor, UIColor.black.cgColor)
         XCTAssertEqual(view.layer.shadowOpacity, 1)
-        XCTAssertEqual(view.layer.shadowRadius, radius)
-        XCTAssertEqual(view.layer.shadowOffset, offset)
+        XCTAssertEqual(view.layer.shadowRadius, 5)
+        XCTAssertEqual(view.layer.shadowOffset, CGSize(width: 0, height: 5))
     }
 }
 

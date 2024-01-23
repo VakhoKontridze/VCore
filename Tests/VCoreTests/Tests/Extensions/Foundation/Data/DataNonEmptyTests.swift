@@ -10,9 +10,11 @@ import XCTest
 
 // MARK: - Tests
 final class DataNonEmptyTests: XCTestCase {
-    func test() {
+    func testNil() {
         XCTAssertNil(Data().nonEmpty)
+    }
 
+    func testNotNil() {
         guard let data: Data = "data".data(using: .utf8) else {
             VCoreLogError("Failed to generate test data")
             fatalError()

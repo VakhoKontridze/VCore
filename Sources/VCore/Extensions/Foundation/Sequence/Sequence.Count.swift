@@ -12,7 +12,7 @@ extension Sequence {
     /// Returns the number of element of `Sequence` that satisfies the given predicate.
     ///
     ///     let numbers: [Int] = [3, 7, 4, -2, 9, -6, 10, 1]
-    ///     let positiveCount: Int = numbers.count { $0 > 0 } // 6
+    ///     let positiveCount: Int = numbers.count(where: { $0 > 0 }) // 6
     ///
     public func count(
         where predicate: (Element) throws -> Bool

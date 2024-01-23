@@ -76,11 +76,11 @@ final class CaseDetectionMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CaseDetection
-            struct SomeStruct {}
+            struct Struct {}
             """,
             expandedSource: 
                 """
-                struct SomeStruct {}
+                struct Struct {}
                 """
             ,
             diagnostics: [

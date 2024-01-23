@@ -13,114 +13,86 @@ import XCTest
 // MARK: - Tests
 final class UIColorInitWithHexTests: XCTestCase {
     func test2Digit_String() throws {
-        let inputHex: String = "#10"
-        let inputR: CGFloat = 16/255
-        let inputG: CGFloat = 16/255
-        let inputB: CGFloat = 16/255
-
-        let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
-
-        let result: UIColor = try XCTUnwrap(
-            UIColor(hex: inputHex)
+        let color: UIColor = try XCTUnwrap(
+            UIColor(hex: "#10")
         )
 
-        XCTAssertEqualColor(result, output)
+        XCTAssertEqualColor(
+            color,
+            UIColor(red: 16/255, green: 16/255, blue: 16/255, alpha: 1)
+        )
     }
 
     func test4Digit_String() throws {
-        let inputHex: String = "#1010"
-        let inputR: CGFloat = 16/255
-        let inputG: CGFloat = 16/255
-        let inputB: CGFloat = 16/255
-        let inputA: CGFloat = 16/255
-
-        let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: inputA)
-
-        let result: UIColor = try XCTUnwrap(
-            UIColor(hex: inputHex)
+        let color: UIColor = try XCTUnwrap(
+            UIColor(hex: "#1010")
         )
 
-        XCTAssertEqualColor(result, output)
+        XCTAssertEqualColor(
+            color,
+            UIColor(red: 16/255, green: 16/255, blue: 16/255, alpha: 16/255)
+        )
     }
 
     func test6Digit_String() throws {
-        let inputHex: String = "#007AFF"
-        let inputR: CGFloat = 0/255
-        let inputG: CGFloat = 122/255
-        let inputB: CGFloat = 255/255
-
-        let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
-
-        let result: UIColor = try XCTUnwrap(
-            UIColor(hex: inputHex)
+        let color: UIColor = try XCTUnwrap(
+            UIColor(hex: "#007AFF")
         )
 
-        XCTAssertEqualColor(result, output)
+        XCTAssertEqualColor(
+            color,
+            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+        )
     }
 
     func test8Digit_String() throws {
-        let inputHex: String = "#007AFF10"
-        let inputR: CGFloat = 0/255
-        let inputG: CGFloat = 122/255
-        let inputB: CGFloat = 255/255
-        let inputA: CGFloat = 16/255
-
-        let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: inputA)
-
-        let result: UIColor = try XCTUnwrap(
-            UIColor(hex: inputHex)
+        let color: UIColor = try XCTUnwrap(
+            UIColor(hex: "#007AFF10")
         )
 
-        XCTAssertEqualColor(result, output)
+        XCTAssertEqualColor(
+            color,
+            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 16/255)
+        )
     }
 
     func testManyDigit_String() {
-        XCTAssertNil(UIColor(hex: "#000000007AFF"))
+        let color: UIColor? = .init(hex: "#000000007AFF")
+
+        XCTAssertNil(color)
     }
 
     func testNoHashSymbol_String() throws {
-        let inputHex: String = "007AFF"
-        let inputR: CGFloat = 0/255
-        let inputG: CGFloat = 122/255
-        let inputB: CGFloat = 255/255
-
-        let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
-
-        let result: UIColor = try XCTUnwrap(
-            UIColor(hex: inputHex)
+        let color: UIColor = try XCTUnwrap(
+            UIColor(hex: "007AFF")
         )
 
-        XCTAssertEqualColor(result, output)
+        XCTAssertEqualColor(
+            color,
+            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+        )
     }
 
     func test6Digit_UInt() throws {
-        let inputHex: UInt = 0x007AFF
-        let inputR: CGFloat = 0/255
-        let inputG: CGFloat = 122/255
-        let inputB: CGFloat = 255/255
-
-        let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
-
-        let result: UIColor = try XCTUnwrap(
-            UIColor(hex: inputHex)
+        let color: UIColor = try XCTUnwrap(
+            UIColor(hex: 0x007AFF)
         )
 
-        XCTAssertEqualColor(result, output)
+        XCTAssertEqualColor(
+            color,
+            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+        )
     }
 
     func testManyDigit_UInt() throws {
-        let inputHex: UInt = 0x000000007AFF // +0(6)
-        let inputR: CGFloat = 0/255
-        let inputG: CGFloat = 122/255
-        let inputB: CGFloat = 255/255
-
-        let output: UIColor = .init(red: inputR, green: inputG, blue: inputB, alpha: 1)
-
-        let result: UIColor = try XCTUnwrap(
-            UIColor(hex: inputHex)
+        let color: UIColor = try XCTUnwrap(
+            UIColor(hex: 0x000000007AFF) // +0(6)
         )
 
-        XCTAssertEqualColor(result, output)
+        XCTAssertEqualColor(
+            color,
+            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
+        )
     }
 }
 

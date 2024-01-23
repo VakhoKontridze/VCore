@@ -11,20 +11,20 @@ import XCTest
 // MARK: - Tests
 final class CalendarNumberOfDaysInMonthTests: XCTestCase {
     func testNonLeapYearMonths() {
-        testHelper(
+        _testHelper(
             year: 1970,
             numberOfDaysInMonths: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         )
     }
     
     func testLeapYearMonths() {
-        testHelper(
+        _testHelper(
             year: 1972,
             numberOfDaysInMonths: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
         )
     }
     
-    func testHelper(
+    private func _testHelper(
         year: Int,
         numberOfDaysInMonths: [Int]
     ) {

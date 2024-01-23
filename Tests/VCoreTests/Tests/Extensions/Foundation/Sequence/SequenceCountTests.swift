@@ -12,7 +12,9 @@ import XCTest
 final class SequenceCountTests: XCTestCase {
     func test() {
         let numbers: [Int] = [3, 7, 4, -2, 9, -6, 10, 1]
-        
-        XCTAssertEqual(numbers.count { $0 > 0 }, 6)
+
+        let count: Int = numbers.count(where: { $0 > 0 })
+
+        XCTAssertEqual(count, 6)
     }
 }

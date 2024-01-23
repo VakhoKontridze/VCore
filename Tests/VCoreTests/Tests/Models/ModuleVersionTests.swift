@@ -10,30 +10,24 @@ import XCTest
 
 // MARK: - Tests
 final class ModuleVersionTests: XCTestCase {
-    // MARK: Test Data
-    private let version1: ModuleVersion = .init(string: "1")!
-    private let version2: ModuleVersion = .init(string: "1.0")!
-    private let version3: ModuleVersion = .init(string: "1.0.0")!
-    
-    // MARK: Tests
-    func tesInitWithString() {
+    func testInitWithString() {
         XCTAssertNil(ModuleVersion(string: nil))
         XCTAssertNil(ModuleVersion(string: ""))
         XCTAssertNil(ModuleVersion(string: "A"))
         XCTAssertNil(ModuleVersion(string: "1.0.A"))
         XCTAssertNil(ModuleVersion(string: "1.0.0.0"))
         
-        XCTAssertEqual(version1.major, 1)
-        XCTAssertEqual(version1.minor, 0)
-        XCTAssertEqual(version1.patch, nil)
-        
-        XCTAssertEqual(version2.major, 1)
-        XCTAssertEqual(version2.minor, 0)
-        XCTAssertEqual(version2.patch, nil)
-        
-        XCTAssertEqual(version3.major, 1)
-        XCTAssertEqual(version3.minor, 0)
-        XCTAssertEqual(version3.patch, 0)
+        XCTAssertEqual(ModuleVersion(string: "1")?.major, 1)
+        XCTAssertEqual(ModuleVersion(string: "1")?.minor, 0)
+        XCTAssertEqual(ModuleVersion(string: "1")?.patch, nil)
+
+        XCTAssertEqual(ModuleVersion(string: "1.0")?.major, 1)
+        XCTAssertEqual(ModuleVersion(string: "1.0")?.minor, 0)
+        XCTAssertEqual(ModuleVersion(string: "1.0")?.patch, nil)
+
+        XCTAssertEqual(ModuleVersion(string: "1.0.0")?.major, 1)
+        XCTAssertEqual(ModuleVersion(string: "1.0.0")?.minor, 0)
+        XCTAssertEqual(ModuleVersion(string: "1.0.0")?.patch, 0)
     }
     
     func testEquatable() {
@@ -55,8 +49,8 @@ final class ModuleVersionTests: XCTestCase {
     }
     
     func testDescription() {
-        XCTAssertEqual(version1.description, "1.0")
-        XCTAssertEqual(version2.description, "1.0")
-        XCTAssertEqual(version3.description, "1.0.0")
+        XCTAssertEqual(ModuleVersion(string: "1")?.description, "1.0")
+        XCTAssertEqual(ModuleVersion(string: "1.0")?.description, "1.0")
+        XCTAssertEqual(ModuleVersion(string: "1.0.0")?.description, "1.0.0")
     }
 }

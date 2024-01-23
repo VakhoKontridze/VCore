@@ -14,17 +14,13 @@ import XCTest
 // MARK: - Tests
 final class ColorInitWithHexTests: XCTestCase {
     func test() throws {
-        let inputHex: String = "#007AFF"
-        let inputR: CGFloat = 0/255
-        let inputG: CGFloat = 122/255
-        let inputB: CGFloat = 255/255
-
-        let output: Color = .init(red: inputR, green: inputG, blue: inputB, opacity: 1)
-
-        let result: Color = try XCTUnwrap(
-            Color(hex: inputHex)
+        let color: Color = try XCTUnwrap(
+            Color(hex: "#007AFF")
         )
 
-        XCTAssertEqualColor(result, output)
+        XCTAssertEqualColor(
+            color,
+            Color(red: 0/255, green: 122/255, blue: 255/255)
+        )
     }
 }

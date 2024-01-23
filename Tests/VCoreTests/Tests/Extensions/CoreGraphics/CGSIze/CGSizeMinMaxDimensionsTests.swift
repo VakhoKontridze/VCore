@@ -10,21 +10,19 @@ import XCTest
 
 // MARK: - Tests
 final class CGSizeMinMaxDimensionsTests: XCTestCase {
-    // MARK: Test Data
-    private let input: CGSize = .init(width: 3, height: 4)
-
-    // MARK: Tests
     func testMin() {
-        let output: CGFloat = 3
-        let result: CGFloat = input.minDimension()
+        let size: CGSize = .init(width: 3, height: 4)
 
-        XCTAssertEqual(result, output)
+        let dimension: CGFloat = size.minDimension()
+
+        XCTAssertEqual(dimension, 3)
     }
 
     func testMax() {
-        let output: CGFloat = 4
-        let result: CGFloat = input.maxDimension()
+        let size: CGSize = .init(width: 3, height: 4)
 
-        XCTAssertEqual(result, output)
+        let dimension: CGFloat = size.maxDimension()
+
+        XCTAssertEqual(dimension, 4)
     }
 }

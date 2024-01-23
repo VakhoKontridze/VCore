@@ -10,16 +10,9 @@ import XCTest
 
 // MARK: - Tests
 final class RangeInitWithBoundsTests: XCTestCase {
-    // MARK: Test Data
-    private let inputLower: Int = 1
-    private let inputUpper: Int = 10
-
-    // MARK: Tests
     func test() {
-        let output: Range<Int> = inputLower..<inputUpper
+        let range: Range<Int> = .init(lower: 1, upper: 10)
 
-        let result: Range<Int> = .init(lower: inputLower, upper: inputUpper)
-
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(range, 1..<10)
     }
 }

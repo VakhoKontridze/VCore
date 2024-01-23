@@ -10,38 +10,40 @@ import XCTest
 
 // MARK: - Tests
 final class StringKeepingCharacterSetTests: XCTestCase {
-    // MARK: Test Data
-    private let input: String = "+0123456789"
-    private let output: String = "0123456789"
-    
-    // MARK: Tests
     func testKeeping() {
-        XCTAssertEqual(input.keeping(only: .decimalDigits), output)
+        let string: String = "+0123456789"
+
+        let trimmedString: String = string.keeping(only: .decimalDigits)
+
+        XCTAssertEqual(trimmedString, "0123456789")
     }
     
     func testKeep() {
-        var result: String = input
-        result.keep(only: .decimalDigits)
-        
-        XCTAssertEqual(result, output)
+        let string: String = "+0123456789"
+
+        var trimmedString: String = string
+        trimmedString.keep(only: .decimalDigits)
+
+        XCTAssertEqual(trimmedString, "0123456789")
     }
 }
 
 // MARK: - Tests
 final class StringKeepingCharacterSetsTests: XCTestCase {
-    // MARK: Test Data
-    private let input: String = "+0123456789A"
-    private let output: String = "+0123456789"
-    
-    // MARK: Tests
     func testKeeping() {
-        XCTAssertEqual(input.keeping(only: [.decimalDigits, .symbols]), output)
+        let string: String = "+0123456789A"
+
+        let trimmedString: String = string.keeping(only: [.decimalDigits, .symbols])
+
+        XCTAssertEqual(trimmedString, "+0123456789")
     }
     
     func testKeep() {
-        var result: String = input
-        result.keep(only: [.decimalDigits, .symbols])
-        
-        XCTAssertEqual(result, output)
+        let string: String = "+0123456789A"
+
+        var trimmedString: String = string
+        trimmedString.keep(only: [.decimalDigits, .symbols])
+
+        XCTAssertEqual(trimmedString, "+0123456789")
     }
 }

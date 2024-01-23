@@ -11,11 +11,9 @@ import XCTest
 // MARK: - Tests
 final class StringIsUserDefaultsKey: XCTestCase { // Can't be properly tested
     func test() {
-        let userDefaults: UserDefaults = .mock
-        
         let key: String = "Key"
-        userDefaults.set(5, forKey: key)
-        
-        XCTAssertTrue(key.isUserDefaultsKey(in: userDefaults))
+        UserDefaults.mock.set(5, forKey: key)
+
+        XCTAssertTrue(key.isUserDefaultsKey(in: .mock))
     }
 }

@@ -16,7 +16,6 @@ final class StringProtocolContainsCharacterSetTests: XCTestCase {
     }
 }
 
-// MARK: - Tests
 final class StringProtocolContainsCharacterSetsTests: XCTestCase {
     func test() {
         XCTAssertTrue("+0123456789".contains([.decimalDigits, .letters]))

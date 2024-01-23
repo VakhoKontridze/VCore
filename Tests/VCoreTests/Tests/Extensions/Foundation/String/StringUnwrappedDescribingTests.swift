@@ -11,17 +11,18 @@ import XCTest
 // MARK: - Tests
 final class StringUnwrappedDescribingTests: XCTestCase {
     func testValue() {
-        let num: Int? = 5
-        
-        XCTAssertEqual(
-            String(unwrappedDescribing: num),
-            "5"
-        )
+        let number: Int? = 5
+
+        let string: String? = .init(unwrappedDescribing: number)
+
+        XCTAssertEqual(string, "5")
     }
     
     func testNil() {
-        let num: Int? = nil
-        
-        XCTAssertNil(String(unwrappedDescribing: num))
+        let number: Int? = nil
+
+        let string: String? = .init(unwrappedDescribing: number)
+
+        XCTAssertNil(string)
     }
 }

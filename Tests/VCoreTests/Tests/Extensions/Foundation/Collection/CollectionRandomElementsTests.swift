@@ -10,11 +10,9 @@ import XCTest
 
 // MARK: - Tests
 final class CollectionRandomElementsTests: XCTestCase {
-    // MARK: Test Data
-    private let numbers: [Int] = [1, 3, 5, 7, 9]
-
-    // MARK: Tests
     func testValid() throws {
+        let numbers: [Int] = [1, 3, 5, 7, 9]
+
         try 10.times {
             let randomNumbers: [Int] = try XCTUnwrap(
                 numbers.randomElements(Int.random(in: 0...numbers.count))
@@ -26,6 +24,8 @@ final class CollectionRandomElementsTests: XCTestCase {
     }
 
     func testOutOfBounds() {
+        let numbers: [Int] = [1, 3, 5, 7, 9]
+
         XCTAssertNil(numbers.randomElements(-1))
         XCTAssertNil(numbers.randomElements(numbers.count+1))
     }

@@ -11,22 +11,20 @@ import XCTest
 // MARK: - Tests
 final class ArrayRemoveIfPresentTests: XCTestCase {
     func testElement() {
-        let input: [Int] = [1, 2, 3]
-        let output: [Int] = [1, 2]
+        let array: [Int] = [1, 2, 3]
 
-        var resut = input
-        resut.removeIfPresent(3)
+        var filteredArray = array
+        filteredArray.removeIfPresent(3)
 
-        XCTAssertEqual(resut, output)
+        XCTAssertEqual(filteredArray, [1, 2])
     }
 
     func testElements() {
-        let input: [Int] = [1, 2, 3]
-        let output: [Int] = [1]
+        let array: [Int] = [1, 2, 3]
 
-        var resut = input
-        resut.removeIfPresent(contentsOf: [2, 3])
+        var filteredArray = array
+        filteredArray.removeIfPresent(contentsOf: [2, 3])
 
-        XCTAssertEqual(resut, output)
+        XCTAssertEqual(filteredArray, [1])
     }
 }

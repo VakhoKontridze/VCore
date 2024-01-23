@@ -11,12 +11,11 @@ import XCTest
 // MARK: - Tests
 final class SetInsertSequenceTests: XCTestCase {
     func test() {
-        let input: Set<Int> = [1, 2]
-        let output: Set<Int> = [1, 2, 3, 4]
+        let set: Set<Int> = [1, 2]
 
-        var result: Set<Int> = input
-        result.insert(contentsOf: [3, 4])
+        var insertedSet: Set<Int> = set
+        insertedSet.insert(contentsOf: [3, 4])
 
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(insertedSet, [1, 2, 3, 4])
     }
 }

@@ -11,7 +11,7 @@ import XCTest
 // MARK: - Tests
 final class JSONEncoderMethodsTests: XCTestCase {
     // MARK: Test Data
-    private struct SomeObject: Codable {
+    private struct Object: Codable {
         let key: String?
     }
     
@@ -32,12 +32,12 @@ final class JSONEncoderMethodsTests: XCTestCase {
     }
     
     func testObjectToJSON() throws {
-        let object: SomeObject = .init(key: "value")
-        
+        let object: Object = .init(key: "value")
+
         let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON(object)
 
         guard
-            let object2: SomeObject = try? JSONDecoder().decodeObjectFromJSON(json)
+            let object2: Object = try? JSONDecoder().decodeObjectFromJSON(json)
         else {
             VCoreLogError("Failed to generate test data")
             fatalError()
@@ -47,12 +47,12 @@ final class JSONEncoderMethodsTests: XCTestCase {
     }
     
     func testObjectsToJSONArray() throws {
-        let objects: [SomeObject] = [.init(key: "value1"), .init(key: "value2")]
-        
+        let objects: [Object] = [.init(key: "value1"), .init(key: "value2")]
+
         let jsonArray: [[String: Any?]] = try JSONEncoder().encodeObjectToJSONArray(objects)
 
         guard
-            let objects2: [SomeObject] = try? JSONDecoder().decodeObjectFromJSONArray(jsonArray)
+            let objects2: [Object] = try? JSONDecoder().decodeObjectFromJSONArray(jsonArray)
         else {
             VCoreLogError("Failed to generate test data")
             fatalError()

@@ -11,38 +11,38 @@ import XCTest
 // MARK: - Tests
 final class CollectionContainsAnyItemTests: XCTestCase {
     func testTrue() {
-        let inputA: [Int] = [1, 2, 3]
-        let inputB: [Int] = [3, 4, 5]
+        let array1: [Int] = [1, 2, 3]
+        let array2: [Int] = [3, 4, 5]
 
-        let result: Bool = inputA.containsAnyItem(fromCollection: inputB)
+        let contains: Bool = array1.containsAnyItem(fromCollection: array2)
 
-        XCTAssertTrue(result)
+        XCTAssertTrue(contains)
     }
 
     func testFalse() {
-        let inputA: [Int] = [1, 2, 3]
-        let inputB: [Int] = [4, 5, 6]
+        let array1: [Int] = [1, 2, 3]
+        let array2: [Int] = [4, 5, 6]
 
-        let result: Bool = inputA.containsAnyItem(fromCollection: inputB)
+        let contains: Bool = array1.containsAnyItem(fromCollection: array2)
 
-        XCTAssertFalse(result)
+        XCTAssertFalse(contains)
     }
 
     func testEmptyCollection() {
-        let inputA: [Int] = []
-        let inputB: [Int] = [1]
+        let array1: [Int] = []
+        let array2: [Int] = [1]
 
-        let result: Bool = inputA.containsAnyItem(fromCollection: inputB)
+        let contains: Bool = array1.containsAnyItem(fromCollection: array2)
 
-        XCTAssertFalse(result)
+        XCTAssertFalse(contains)
     }
 
     func testEmptyOtherCollection() {
-        let inputA: [Int] = [1]
-        let inputB: [Int] = []
+        let array1: [Int] = [1]
+        let array2: [Int] = []
 
-        let result: Bool = inputA.containsAnyItem(fromCollection: inputB)
+        let contains: Bool = array1.containsAnyItem(fromCollection: array2)
 
-        XCTAssertTrue(result)
+        XCTAssertTrue(contains)
     }
 }

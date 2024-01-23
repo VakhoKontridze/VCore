@@ -41,13 +41,13 @@ extension FloatingPoint {
     
     /// Clamps value to range.
     ///
-    ///     var value1: Double = 0.0; value1.clamp(to: 1...10) // 1.0
-    ///     var value2: Double = 5.0; value2.clamp(to: 1...10) // 5.0
-    ///     var value3: Double = 11.0; value3.clamp(to: 1...10) // 10.0
+    ///     var value1: Double = 0; value1.clamp(to: 1...10) // 1.0
+    ///     var value2: Double = 5; value2.clamp(to: 1...10) // 5.0
+    ///     var value3: Double = 11; value3.clamp(to: 1...10) // 10.0
     ///
-    ///     var value4: Double = 0.0; value4.clamp(to: 1...10, step: 3) // 1.0
-    ///     var value5: Double = 5.0; value5.clamp(to: 1...10, step: 3) // 4.0
-    ///     var value6: Double = 11.0; value6.clamp(to: 1...10, step: 3) // 10.0
+    ///     var value4: Double = 0; value4.clamp(to: 1...10, step: 3) // 1.0
+    ///     var value5: Double = 5; value5.clamp(to: 1...10, step: 3) // 4.0
+    ///     var value6: Double = 11; value6.clamp(to: 1...10, step: 3) // 10.0
     ///
     mutating public func clamp(
         to range: ClosedRange<Self>,
@@ -76,13 +76,13 @@ extension FloatingPoint {
     
     /// Clamps value between `min` and `max` values.
     ///
-    ///     var value1: Double = 0.0; value1.clamp(min: 1, max: 10) // 1.0
-    ///     var value2: Double = 5.0; value2.clamp(min: 1, max: 10) // 5.0
-    ///     var value3: Double = 11.0; value3.clamp(min: 1, max: 10) // 10.0
+    ///     var value1: Double = 0; value1.clamp(min: 1, max: 10) // 1.0
+    ///     var value2: Double = 5; value2.clamp(min: 1, max: 10) // 5.0
+    ///     var value3: Double = 11; value3.clamp(min: 1, max: 10) // 10.0
     ///
-    ///     var value4: Double = 0.0; value4.clamp(min: 1, max: 10, step: 3) // 1.0
-    ///     var value5: Double = 5.0; value5.clamp(min: 1, max: 10, step: 3) // 4.0
-    ///     var value6: Double = 11.0; value6.clamp(min: 1, max: 10, step: 3) // 10.0
+    ///     var value4: Double = 0; value4.clamp(min: 1, max: 10, step: 3) // 1.0
+    ///     var value5: Double = 5; value5.clamp(min: 1, max: 10, step: 3) // 4.0
+    ///     var value6: Double = 11; value6.clamp(min: 1, max: 10, step: 3) // 10.0
     ///
     mutating public func clamp(
         min: Self,

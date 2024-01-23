@@ -11,6 +11,9 @@ import XCTest
 // MARK: - Tests
 final class CollectionFirstAndLastIndexAndElementOfTypeTests: XCTestCase {
     // MARK: Test Data
+    private struct S1: P { let value: Int }
+    private struct S2: P { let value: Int }
+
     private let array: [any P] = [
         S1(value: 1),
         S1(value: 2),
@@ -22,31 +25,35 @@ final class CollectionFirstAndLastIndexAndElementOfTypeTests: XCTestCase {
 
     // MARK: Tests - First
     func testFirst() {
-        let result: (index: Int, element: S1)? = array.firstIndexAndElement(ofType: S1.self)
+        let data: (index: Int, element: S1)? = array.firstIndexAndElement(ofType: S1.self)
 
-        XCTAssertEqual(result?.index, 0)
-        XCTAssertEqual(result?.element.value, 1)
+        XCTAssertEqual(data?.index, 0)
+        XCTAssertEqual(data?.element.value, 1)
     }
 
     func testFirstPredicate() {
-        let result: (index: Int, element: S1)? = array.firstIndexAndElement(ofType: S1.self, where: { $0.value > 1 })
+        let data: (index: Int, element: S1)? = array.firstIndexAndElement(ofType: S1.self, where: { $0.value > 1 })
 
-        XCTAssertEqual(result?.index, 1)
-        XCTAssertEqual(result?.element.value, 2)
+        XCTAssertEqual(data?.index, 1)
+        XCTAssertEqual(data?.element.value, 2)
     }
 
     // MARK: Tests - Last
     func testLast() {
-        let result: (index: Int, element: S1)? = array.lastIndexAndElement(ofType: S1.self)
+        let data: (index: Int, element: S1)? = array.lastIndexAndElement(ofType: S1.self)
 
-        XCTAssertEqual(result?.index, 5)
-        XCTAssertEqual(result?.element.value, 6)
+        XCTAssertEqual(data?.index, 5)
+        XCTAssertEqual(data?.element.value, 6)
     }
 
     func testLastPredicate() {
-        let result: (index: Int, element: S1)? = array.lastIndexAndElement(ofType: S1.self, where: { $0.value < 6 })
+        let data: (index: Int, element: S1)? = array.lastIndexAndElement(ofType: S1.self, where: { $0.value < 6 })
 
-        XCTAssertEqual(result?.index, 4)
-        XCTAssertEqual(result?.element.value, 5)
+        XCTAssertEqual(data?.index, 4)
+        XCTAssertEqual(data?.element.value, 5)
     }
+}
+
+private protocol P { // MARK: TODO: Swift 5.10 - Move into test
+    var value: Int { get }
 }

@@ -10,21 +10,19 @@ import XCTest
 
 // MARK: - Tests
 final class NumericWithOppositeSignTests: XCTestCase {
-    // MARK: Test Data
-    private let input: Int = 10
-    
-    private let output: Int = -10
-    
-    // MARK: Tests
     func testConditionalFalse() {
-        let result: Int = input.withOppositeSign(false)
-        
-        XCTAssertNotEqual(result, output)
+        let number: Int = 10
+
+        let reversedNumber: Int = number.withOppositeSign(false)
+
+        XCTAssertEqual(reversedNumber, 10)
     }
     
     func testConditionalTrue() {
-        let result: Int = input.withOppositeSign(true)
-        
-        XCTAssertEqual(result, output)
+        let number: Int = 10
+
+        let reversedNumber: Int = number.withOppositeSign(true)
+
+        XCTAssertEqual(reversedNumber, -10)
     }
 }

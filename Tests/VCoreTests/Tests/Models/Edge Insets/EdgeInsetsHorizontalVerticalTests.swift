@@ -10,129 +10,93 @@ import XCTest
 
 // MARK: - Tests
 final class EdgeInsetsHorizontalVerticalTests: XCTestCase {
-    // MARK: Insets
+    // MARK: Tests - Insets
     func testInsetInset() {
-        let inputHorizontal: CGFloat = 1
-        let inputVertical: CGFloat = 2
-        let inset: CGFloat = 10
-        
-        let result: EdgeInsets_HorizontalVertical = .init(
-            horizontal: inputHorizontal,
-            vertical: inputVertical
-        ).insetBy(inset: inset)
-        
-        XCTAssertEqual(result.horizontal, inputHorizontal + inset)
-        XCTAssertEqual(result.vertical, inputVertical + inset)
+        let insets: EdgeInsets_HorizontalVertical = .init(
+            horizontal: 1,
+            vertical: 2
+        ).insetBy(inset: 10)
+
+        XCTAssertEqual(insets.horizontal, 11)
+        XCTAssertEqual(insets.vertical, 12)
     }
     
     func testInsetHorizontal() {
-        let inputHorizontal: CGFloat = 1
-        let inputVertical: CGFloat = 2
-        let inset: CGFloat = 10
-        
-        let result: EdgeInsets_HorizontalVertical = .init(
-            horizontal: inputHorizontal,
-            vertical: inputVertical
-        ).insetBy(horizontal: inset)
-        
-        XCTAssertEqual(result.horizontal, inputHorizontal + inset)
-        XCTAssertEqual(result.vertical, inputVertical)
+        let insets: EdgeInsets_HorizontalVertical = .init(
+            horizontal: 1,
+            vertical: 2
+        ).insetBy(horizontal: 10)
+
+        XCTAssertEqual(insets.horizontal, 11)
+        XCTAssertEqual(insets.vertical, 2)
     }
     
     func testInsetVertical() {
-        let inputHorizontal: CGFloat = 1
-        let inputVertical: CGFloat = 2
-        let inset: CGFloat = 10
-        
-        let result: EdgeInsets_HorizontalVertical = .init(
-            horizontal: inputHorizontal,
-            vertical: inputVertical
-        ).insetBy(vertical: inset)
-        
-        XCTAssertEqual(result.horizontal, inputHorizontal)
-        XCTAssertEqual(result.vertical, inputVertical + inset)
+        let insets: EdgeInsets_HorizontalVertical = .init(
+            horizontal: 1,
+            vertical: 2
+        ).insetBy(vertical: 10)
+
+        XCTAssertEqual(insets.horizontal, 1)
+        XCTAssertEqual(insets.vertical, 12)
     }
     
-    // MARK: Operators
+    // MARK: Tests - Operators
     func testAddition() {
-        let input1Horizontal: CGFloat = 1
-        let input1Vertical: CGFloat = 2
-        
-        let input2Horizontal: CGFloat = 5
-        let input2Vertical: CGFloat = 6
-        
-        let result: EdgeInsets_HorizontalVertical =
+        let insets: EdgeInsets_HorizontalVertical =
             EdgeInsets_HorizontalVertical(
-                horizontal: input1Horizontal,
-                vertical: input1Vertical
+                horizontal: 1,
+                vertical: 2
             ) +
             EdgeInsets_HorizontalVertical(
-                horizontal: input2Horizontal,
-                vertical: input2Vertical
+                horizontal: 3,
+                vertical: 4
             )
         
-        XCTAssertEqual(result.horizontal, input1Horizontal + input2Horizontal)
-        XCTAssertEqual(result.vertical, input1Vertical + input2Vertical)
+        XCTAssertEqual(insets.horizontal, 4)
+        XCTAssertEqual(insets.vertical, 6)
     }
     
     func testAdditionAssignment() {
-        let input1Horizontal: CGFloat = 1
-        let input1Vertical: CGFloat = 2
-        
-        let input2Horizontal: CGFloat = 5
-        let input2Vertical: CGFloat = 6
-        
-        var result: EdgeInsets_HorizontalVertical = .init(
-            horizontal: input1Horizontal,
-            vertical: input1Vertical
+        var insets: EdgeInsets_HorizontalVertical = .init(
+            horizontal: 1,
+            vertical: 2
         )
-        result += EdgeInsets_HorizontalVertical(
-            horizontal: input2Horizontal,
-            vertical: input2Vertical
+        insets += EdgeInsets_HorizontalVertical(
+            horizontal: 3,
+            vertical: 4
         )
         
-        XCTAssertEqual(result.horizontal, input1Horizontal + input2Horizontal)
-        XCTAssertEqual(result.vertical, input1Vertical + input2Vertical)
+        XCTAssertEqual(insets.horizontal, 4)
+        XCTAssertEqual(insets.vertical, 6)
     }
     
     func testSubtraction() {
-        let input1Horizontal: CGFloat = 1
-        let input1Vertical: CGFloat = 2
-        
-        let input2Horizontal: CGFloat = 5
-        let input2Vertical: CGFloat = 6
-        
-        let result: EdgeInsets_HorizontalVertical =
+        let insets: EdgeInsets_HorizontalVertical =
             EdgeInsets_HorizontalVertical(
-                horizontal: input1Horizontal,
-                vertical: input1Vertical
+                horizontal: 1,
+                vertical: 2
             ) -
             EdgeInsets_HorizontalVertical(
-                horizontal: input2Horizontal,
-                vertical: input2Vertical
+                horizontal: 3,
+                vertical: 4
             )
         
-        XCTAssertEqual(result.horizontal, input1Horizontal - input2Horizontal)
-        XCTAssertEqual(result.vertical, input1Vertical - input2Vertical)
+        XCTAssertEqual(insets.horizontal, -2)
+        XCTAssertEqual(insets.vertical, -2)
     }
     
     func testSubtractionAssignment() {
-        let input1Horizontal: CGFloat = 1
-        let input1Vertical: CGFloat = 2
-        
-        let input2Horizontal: CGFloat = 5
-        let input2Vertical: CGFloat = 6
-        
-        var result: EdgeInsets_HorizontalVertical = .init(
-            horizontal: input1Horizontal,
-            vertical: input1Vertical
+        var insets: EdgeInsets_HorizontalVertical = .init(
+            horizontal: 1,
+            vertical: 2
         )
-        result -= EdgeInsets_HorizontalVertical(
-            horizontal: input2Horizontal,
-            vertical: input2Vertical
+        insets -= EdgeInsets_HorizontalVertical(
+            horizontal: 3,
+            vertical: 4
         )
         
-        XCTAssertEqual(result.horizontal, input1Horizontal - input2Horizontal)
-        XCTAssertEqual(result.vertical, input1Vertical - input2Vertical)
+        XCTAssertEqual(insets.horizontal, -2)
+        XCTAssertEqual(insets.vertical, -2)
     }
 }

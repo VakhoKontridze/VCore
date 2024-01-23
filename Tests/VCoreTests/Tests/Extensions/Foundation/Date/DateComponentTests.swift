@@ -12,8 +12,12 @@ import XCTest
 final class DateComponentTests: XCTestCase {
     func testComponent() {
         let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)
-        guard let date: Date = Calendar.current.date(from: dateComponents) else { XCTFail(); return }
         
+        guard let date: Date = Calendar.current.date(from: dateComponents) else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
         XCTAssertEqual(date.component(.year), dateComponents.year)
         XCTAssertEqual(date.component(.month), dateComponents.month)
         XCTAssertEqual(date.component(.day), dateComponents.day)
@@ -21,8 +25,12 @@ final class DateComponentTests: XCTestCase {
     
     func testComponents() {
         let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)
-        guard let date: Date = Calendar.current.date(from: dateComponents) else { XCTFail(); return }
         
+        guard let date: Date = Calendar.current.date(from: dateComponents) else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
         XCTAssertEqual(
             date.components([.year, .month, .day]),
             dateComponents

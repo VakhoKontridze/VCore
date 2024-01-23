@@ -36,7 +36,7 @@ extension UIFont {
 import SwiftUI
 
 #Preview(body: {
-    let font: UIFont = .systemFont(ofSize: 16)
+    let font: UIFont = .systemFont(ofSize: 17)
 
     return VStack(content: {
         Text("Lorem ipsum")

@@ -11,24 +11,18 @@ import XCTest
 // MARK: - Tests
 final class PointPixelMeasurementTests: XCTestCase {
     func testPointsConversion() {
-        let scale: CGFloat = 3
+        let measurement: PointPixelMeasurement = .pixels(3)
 
-        let input: PointPixelMeasurement = .pixels(3)
-        let output: CGFloat = 1
+        let value: CGFloat = measurement.toPoints(scale: 3)
 
-        let result: CGFloat = input.toPoints(scale: scale)
-
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(value, 1)
     }
 
     func testPixelsConversion() {
-        let scale: CGFloat = 3
+        let measurement: PointPixelMeasurement = .points(1)
 
-        let input: PointPixelMeasurement = .points(1)
-        let output: Int = 3
+        let value: Int = measurement.toPixels(scale: 3)
 
-        let result: Int = input.toPixels(scale: scale)
-
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(value, 3)
     }
 }

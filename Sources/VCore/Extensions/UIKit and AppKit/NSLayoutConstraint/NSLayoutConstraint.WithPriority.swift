@@ -47,7 +47,7 @@ extension NSLayoutConstraint {
     ///
     ///     NSLayoutConstraint.activate([
     ///         view.widthAnchor.constraint(equalToConstant: 100)
-    ///             .withPriority(999)
+    ///             .withPriority(500)
     ///     ])
     ///
     public func withPriority(_ value: CGFloat) -> NSLayoutConstraint {

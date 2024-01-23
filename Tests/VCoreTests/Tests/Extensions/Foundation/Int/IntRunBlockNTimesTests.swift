@@ -11,22 +11,20 @@ import XCTest
 // MARK: - Tests
 final class IntRunBlockNTimesTests: XCTestCase {
     func testBlock() {
-        let input: Int = 5
-        let output: Int = input
+        let number: Int = 5
         
-        var result: Int = 0
-        input.times { result += 1 }
+        var sum: Int = 0
+        number.times { sum += 1 }
         
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(sum, 5)
     }
     
     func testBlockNumbered() {
-        let input: Int = 5
-        let output: Int = (0..<5).reduce(0, +)
+        let number: Int = 5
         
-        var result: Int = 0
-        input.times { result += $0 }
+        var sum: Int = 0
+        number.times { sum += $0 }
         
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(sum, 10)
     }
 }

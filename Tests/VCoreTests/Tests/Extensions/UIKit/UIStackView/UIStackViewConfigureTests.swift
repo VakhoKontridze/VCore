@@ -12,41 +12,34 @@ import XCTest
 
 // MARK: - Tests
 final class UIStackViewConfigureTests: XCTestCase {
-    // MARK: Test Data
-    private let axis: NSLayoutConstraint.Axis = .vertical
-    private let distribution: UIStackView.Distribution = .equalSpacing
-    private let alignment: UIStackView.Alignment = .leading
-    private let spacing: CGFloat = 10
-    
-    // MARK: Tests
     func testConfigure() {
         let stackView: UIStackView = .init()
         
         stackView.configure(
-            axis: axis,
-            distribution: distribution,
-            alignment: alignment,
-            spacing: spacing
+            axis: .vertical,
+            distribution: .equalSpacing,
+            alignment: .leading,
+            spacing: 10
         )
         
-        XCTAssertEqual(stackView.axis, axis)
-        XCTAssertEqual(stackView.distribution, distribution)
-        XCTAssertEqual(stackView.alignment, alignment)
-        XCTAssertEqual(stackView.spacing, spacing)
+        XCTAssertEqual(stackView.axis, NSLayoutConstraint.Axis.vertical)
+        XCTAssertEqual(stackView.distribution, UIStackView.Distribution.equalSpacing)
+        XCTAssertEqual(stackView.alignment, UIStackView.Alignment.leading)
+        XCTAssertEqual(stackView.spacing, 10)
     }
     
     func testInit() {
         let stackView: UIStackView = .init(
-            axis: axis,
-            distribution: distribution,
-            alignment: alignment,
-            spacing: spacing
+            axis: .vertical,
+            distribution: .equalSpacing,
+            alignment: .leading,
+            spacing: 10
         )
         
-        XCTAssertEqual(stackView.axis, axis)
-        XCTAssertEqual(stackView.distribution, distribution)
-        XCTAssertEqual(stackView.alignment, alignment)
-        XCTAssertEqual(stackView.spacing, spacing)
+        XCTAssertEqual(stackView.axis, NSLayoutConstraint.Axis.vertical)
+        XCTAssertEqual(stackView.distribution, UIStackView.Distribution.equalSpacing)
+        XCTAssertEqual(stackView.alignment, UIStackView.Alignment.leading)
+        XCTAssertEqual(stackView.spacing, 10)
     }
 }
 

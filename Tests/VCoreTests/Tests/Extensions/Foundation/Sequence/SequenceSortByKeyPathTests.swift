@@ -17,18 +17,21 @@ final class SequenceSortByKeyPathTests: XCTestCase {
         init(_ name: String) { self.name = name }
     }
     
-    private let input: [City] = ["London", "Paris", "New York"].map { City($0) }
-    private var output: [City] { input.sorted(by: { $0.name < $1.name }) }
-    
     // MARK: Tests
     func testSort() {
-        var result: [City] = input
-        result.sort(by: \.name)
-        
-        XCTAssertEqual(result, output)
+        let array: [City] = [.init("London"), .init("Paris"), .init("New York")]
+
+        var sortedArray: [City] = array
+        sortedArray.sort(by: \.name)
+
+        XCTAssertEqual(sortedArray, [City("London"), City("New York"), City("Paris")])
     }
     
     func testSorted() {
-        XCTAssertEqual(input.sorted(by: \.name), output)
+        let array: [City] = [.init("London"), .init("Paris"), .init("New York")]
+
+        let sortedArray: [City] = array.sorted(by: \.name)
+
+        XCTAssertEqual(sortedArray, [City("London"), City("New York"), City("Paris")])
     }
 }

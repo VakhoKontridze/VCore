@@ -10,27 +10,24 @@ import XCTest
 
 // MARK: - Tests
 final class CollectionAllMatchTests: XCTestCase {
-    // MARK: Test Data
-    private let array: [Int] = [1, 2, 3]
-    private let set: Set<Int> = [1, 2, 3]
-    private let dictionary: [Int: Int] = [1: 1, 2: 2, 3: 3]
-    
-    private let matchValue: Int = 2
-    private let mismatchValue: Int = 1
-    
-    // MARK: Tests
     func testArray() {
-        XCTAssertFalse(array.allMatch({ abs($0 - $1) <= mismatchValue }))
-        XCTAssertTrue(array.allMatch({ abs($0 - $1) <= matchValue }))
+        let array: [Int] = [1, 2, 3]
+
+        XCTAssertFalse(array.allMatch({ abs($0 - $1) <= 1 }))
+        XCTAssertTrue(array.allMatch({ abs($0 - $1) <= 2 }))
     }
     
     func testSet() {
-        XCTAssertFalse(set.allMatch({ abs($0 - $1) <= mismatchValue }))
-        XCTAssertTrue(set.allMatch({ abs($0 - $1) <= matchValue }))
+        let set: Set<Int> = [1, 2, 3]
+
+        XCTAssertFalse(set.allMatch({ abs($0 - $1) <= 1 }))
+        XCTAssertTrue(set.allMatch({ abs($0 - $1) <= 2 }))
     }
     
     func testDictionary() {
-        XCTAssertFalse(dictionary.allMatch({ abs($0.value - $1.value) <= mismatchValue }))
-        XCTAssertTrue(dictionary.allMatch({ abs($0.value - $1.value) <= matchValue }))
+        let dictionary: [Int: Int] = [1: 1, 2: 2, 3: 3]
+
+        XCTAssertFalse(dictionary.allMatch({ abs($0.value - $1.value) <= 1 }))
+        XCTAssertTrue(dictionary.allMatch({ abs($0.value - $1.value) <= 2 }))
     }
 }

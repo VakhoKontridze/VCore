@@ -10,33 +10,39 @@ import XCTest
 
 // MARK: - Tests
 final class ArrayReversedOnConditionTests: XCTestCase {
-    // MARK: Test Data
-    private let input: [Int] = [1, 2, 3]
-    private let output: [Int] = [3, 2, 1]
-    
     // MARK: Tests - Reversed
     func testReversedFalse() {
-        let result: [Int] = input.reversed(false)
-        
-        XCTAssertNotEqual(result, output)
+        let array: [Int] = [1, 2, 3]
+
+        let reversedArray: [Int] = array.reversed(false)
+
+        XCTAssertEqual(reversedArray, [1, 2, 3])
     }
     
     func testReversedTrue() {
-        let result: [Int] = input.reversed(true)
-        
-        XCTAssertEqual(result, output)
+        let array: [Int] = [1, 2, 3]
+
+        let reversedArray: [Int] = array.reversed(true)
+
+        XCTAssertEqual(reversedArray, [3, 2, 1])
     }
 
     // MARK: Tests - Reverse
     func testReverseFalse() {
-        var result = input; result.reverse(false)
+        let array: [Int] = [1, 2, 3]
 
-        XCTAssertNotEqual(result, output)
+        var reversedArray: [Int] = array
+        reversedArray.reverse(false)
+
+        XCTAssertEqual(reversedArray, [1, 2, 3])
     }
 
     func testReverseTrue() {
-        var result = input; result.reverse(true)
+        let array: [Int] = [1, 2, 3]
 
-        XCTAssertEqual(result, output)
+        var reversedArray: [Int] = array
+        reversedArray.reverse(true)
+
+        XCTAssertEqual(reversedArray, [3, 2, 1])
     }
 }

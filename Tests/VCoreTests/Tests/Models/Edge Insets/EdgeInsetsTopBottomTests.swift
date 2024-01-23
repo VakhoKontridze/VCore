@@ -10,129 +10,93 @@ import XCTest
 
 // MARK: - Tests
 final class EdgeInsetsTopBottomTests: XCTestCase {
-    // MARK: Insets
+    // MARK: Tests - Insets
     func testInsetInset() {
-        let inputTop: CGFloat = 1
-        let inputBottom: CGFloat = 2
-        let inset: CGFloat = 10
-        
-        let result: EdgeInsets_TopBottom = .init(
-            top: inputTop,
-            bottom: inputBottom
-        ).insetBy(inset: inset)
-        
-        XCTAssertEqual(result.top, inputTop + inset)
-        XCTAssertEqual(result.bottom, inputBottom + inset)
+        let insets: EdgeInsets_TopBottom = .init(
+            top: 1,
+            bottom: 2
+        ).insetBy(inset: 10)
+
+        XCTAssertEqual(insets.top, 11)
+        XCTAssertEqual(insets.bottom, 12)
     }
     
     func testInsetTop() {
-        let inputTop: CGFloat = 1
-        let inputBottom: CGFloat = 2
-        let inset: CGFloat = 10
-        
-        let result: EdgeInsets_TopBottom = .init(
-            top: inputTop,
-            bottom: inputBottom
-        ).insetBy(top: inset)
-        
-        XCTAssertEqual(result.top, inputTop + inset)
-        XCTAssertEqual(result.bottom, inputBottom)
+        let insets: EdgeInsets_TopBottom = .init(
+            top: 1,
+            bottom: 2
+        ).insetBy(top: 10)
+
+        XCTAssertEqual(insets.top, 11)
+        XCTAssertEqual(insets.bottom, 2)
     }
     
     func testInsetBottom() {
-        let inputTop: CGFloat = 1
-        let inputBottom: CGFloat = 2
-        let inset: CGFloat = 10
-        
-        let result: EdgeInsets_TopBottom = .init(
-            top: inputTop,
-            bottom: inputBottom
-        ).insetBy(bottom: inset)
-        
-        XCTAssertEqual(result.top, inputTop)
-        XCTAssertEqual(result.bottom, inputBottom + inset)
+        let insets: EdgeInsets_TopBottom = .init(
+            top: 1,
+            bottom: 2
+        ).insetBy(bottom: 10)
+
+        XCTAssertEqual(insets.top, 1)
+        XCTAssertEqual(insets.bottom, 12)
     }
     
-    // MARK: Operators
+    // MARK: Tests - Operators
     func testAddition() {
-        let input1Top: CGFloat = 1
-        let input1Bottom: CGFloat = 2
-        
-        let input2Top: CGFloat = 5
-        let input2Bottom: CGFloat = 6
-        
-        let result: EdgeInsets_TopBottom =
+        let insets: EdgeInsets_TopBottom =
             EdgeInsets_TopBottom(
-                top: input1Top,
-                bottom: input1Bottom
+                top: 1,
+                bottom: 2
             ) +
             EdgeInsets_TopBottom(
-                top: input2Top,
-                bottom: input2Bottom
+                top: 3,
+                bottom: 4
             )
         
-        XCTAssertEqual(result.top, input1Top + input2Top)
-        XCTAssertEqual(result.bottom, input1Bottom + input2Bottom)
+        XCTAssertEqual(insets.top, 4)
+        XCTAssertEqual(insets.bottom, 6)
     }
     
     func testAdditionAssignment() {
-        let input1Top: CGFloat = 1
-        let input1Bottom: CGFloat = 2
-        
-        let input2Top: CGFloat = 5
-        let input2Bottom: CGFloat = 6
-        
-        var result: EdgeInsets_TopBottom = .init(
-            top: input1Top,
-            bottom: input1Bottom
+        var insets: EdgeInsets_TopBottom = .init(
+            top: 1,
+            bottom: 2
         )
-        result += EdgeInsets_TopBottom(
-            top: input2Top,
-            bottom: input2Bottom
+        insets += EdgeInsets_TopBottom(
+            top: 3,
+            bottom: 4
         )
         
-        XCTAssertEqual(result.top, input1Top + input2Top)
-        XCTAssertEqual(result.bottom, input1Bottom + input2Bottom)
+        XCTAssertEqual(insets.top, 4)
+        XCTAssertEqual(insets.bottom, 6)
     }
     
     func testSubtraction() {
-        let input1Top: CGFloat = 1
-        let input1Bottom: CGFloat = 2
+        let insets: EdgeInsets_TopBottom =
+            EdgeInsets_TopBottom(
+                top: 1,
+                bottom: 2
+            ) -
+            EdgeInsets_TopBottom(
+                top: 3,
+                bottom: 4
+            )
         
-        let input2Top: CGFloat = 5
-        let input2Bottom: CGFloat = 6
-        
-        let result: EdgeInsets_TopBottom =
-        EdgeInsets_TopBottom(
-            top: input1Top,
-            bottom: input1Bottom
-        ) -
-        EdgeInsets_TopBottom(
-            top: input2Top,
-            bottom: input2Bottom
-        )
-        
-        XCTAssertEqual(result.top, input1Top - input2Top)
-        XCTAssertEqual(result.bottom, input1Bottom - input2Bottom)
+        XCTAssertEqual(insets.top, -2)
+        XCTAssertEqual(insets.bottom, -2)
     }
     
     func testSubtractionAssignment() {
-        let input1Top: CGFloat = 1
-        let input1Bottom: CGFloat = 2
-        
-        let input2Top: CGFloat = 5
-        let input2Bottom: CGFloat = 6
-        
-        var result: EdgeInsets_TopBottom = .init(
-            top: input1Top,
-            bottom: input1Bottom
+        var insets: EdgeInsets_TopBottom = .init(
+            top: 1,
+            bottom: 2
         )
-        result -= EdgeInsets_TopBottom(
-            top: input2Top,
-            bottom: input2Bottom
+        insets -= EdgeInsets_TopBottom(
+            top: 3,
+            bottom: 4
         )
         
-        XCTAssertEqual(result.top, input1Top - input2Top)
-        XCTAssertEqual(result.bottom, input1Bottom - input2Bottom)
+        XCTAssertEqual(insets.top, -2)
+        XCTAssertEqual(insets.bottom, -2)
     }
 }

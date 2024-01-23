@@ -12,23 +12,19 @@ import XCTest
 
 // MARK: - Tests
 final class ArrayAppendingTests: XCTestCase {
-    // MARK: Tests - Element
     func testElement() {
-        let input: [Int] = [1, 2]
-        let result: [Int] = [1, 2, 3]
+        let array: [Int] = [1, 2]
 
-        let output: [Int] = input.appending(3)
+        let appendedArray: [Int] = array.appending(3)
 
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(appendedArray, [1, 2, 3])
     }
 
-    // MARK: Tests - Elements
     func testElements() {
-        let input: [Int] = [1, 2]
-        let result: [Int] = [1, 2, 3, 4]
+        let array: [Int] = [1, 2]
 
-        let output: [Int] = input.appending(contentsOf: [3, 4])
+        let appendedArray: [Int] = array.appending(contentsOf: [3, 4])
 
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(appendedArray, [1, 2, 3, 4])
     }
 }

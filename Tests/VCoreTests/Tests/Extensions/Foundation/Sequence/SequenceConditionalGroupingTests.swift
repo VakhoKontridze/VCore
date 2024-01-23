@@ -10,30 +10,25 @@ import XCTest
 
 // MARK: - Tests
 final class SequenceConditionalGroupingTests: XCTestCase {
-    // MARK: Test Data
-    private struct Student: Equatable {
-        let name: String
-        var firstChar: Character? { name.first }
-
-        init(_ name: String) { self.name = name }
-    }
-    
-    // MARK: Tests
     func testPredicate() {
-        let input: [String] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"]
-        let output: [[String]] = [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
+        let array: [String] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"]
         
-        let result: [[String]] = input.grouped(by: { $0.first == $1.first })
+        let groupedArray: [[String]] = array.grouped(by: { $0.first == $1.first })
         
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(
+            groupedArray,
+            [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
+        )
     }
     
     func testKeyPath() {
-        let input: [Student] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].map { Student($0) }
-        let output: [[Student]] = [[.init("Kofi"), .init("Kweku")], [.init("Abena"), .init("Akosua")], [.init("Efua")]]
-        
-        let result: [[Student]] = input.grouped(by: \.firstChar)
-        
-        XCTAssertEqual(result, output)
+        let array: [String] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"]
+
+        let groupedArray: [[String]] = array.grouped(by: \.first)
+
+        XCTAssertEqual(
+            groupedArray,
+            [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
+        )
     }
 }

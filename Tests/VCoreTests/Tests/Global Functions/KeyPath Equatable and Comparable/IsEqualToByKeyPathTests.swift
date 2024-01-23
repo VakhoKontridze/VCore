@@ -11,7 +11,7 @@ import XCTest
 // MARK: - Tests
 final class IsEqualToByKeyPathTests: XCTestCase {
     // MARK: Test Data
-    struct SomeObject {
+    private struct Object {
         var a: Int = 0
         var b: Int = 0
         var c: Int = 0
@@ -27,140 +27,140 @@ final class IsEqualToByKeyPathTests: XCTestCase {
     // MARK: Tests
     func test1() {
         XCTAssertTrue(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(),
+            Object(),
+            to: Object(),
             by: \.a
         ))
         
         XCTAssertFalse(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(a: 1),
+            Object(),
+            to: Object(a: 1),
             by: \.a
         ))
     }
     
     func test2() {
         XCTAssertTrue(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(),
+            Object(),
+            to: Object(),
             by: \.a, \.b
         ))
         
         XCTAssertFalse(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(b: 1),
+            Object(),
+            to: Object(b: 1),
             by: \.a, \.b
         ))
     }
     
     func test3() {
         XCTAssertTrue(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(),
+            Object(),
+            to: Object(),
             by: \.a, \.b, \.c
         ))
         
         XCTAssertFalse(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(c: 1),
+            Object(),
+            to: Object(c: 1),
             by: \.a, \.b, \.c
         ))
     }
     
     func test4() {
         XCTAssertTrue(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(),
+            Object(),
+            to: Object(),
             by: \.a, \.b, \.c, \.d
         ))
         
         XCTAssertFalse(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(d: 1),
+            Object(),
+            to: Object(d: 1),
             by: \.a, \.b, \.c, \.d
         ))
     }
     
     func test5() {
         XCTAssertTrue(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(),
+            Object(),
+            to: Object(),
             by: \.a, \.b, \.c, \.d, \.e
         ))
         
         XCTAssertFalse(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(e: 1),
+            Object(),
+            to: Object(e: 1),
             by: \.a, \.b, \.c, \.d, \.e
         ))
     }
     
     func test6() {
         XCTAssertTrue(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(),
+            Object(),
+            to: Object(),
             by: \.a, \.b, \.c, \.d, \.e, \.f
         ))
         
         XCTAssertFalse(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(f: 1),
+            Object(),
+            to: Object(f: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f
         ))
     }
     
     func test7() {
         XCTAssertTrue(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(),
+            Object(),
+            to: Object(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
         ))
         
         XCTAssertFalse(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(g: 1),
+            Object(),
+            to: Object(g: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g
         ))
     }
     
     func test8() {
         XCTAssertTrue(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(),
+            Object(),
+            to: Object(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
         ))
         
         XCTAssertFalse(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(h: 1),
+            Object(),
+            to: Object(h: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h
         ))
     }
     
     func test9() {
         XCTAssertTrue(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(),
+            Object(),
+            to: Object(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
         ))
         
         XCTAssertFalse(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(i: 1),
+            Object(),
+            to: Object(i: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i
         ))
     }
     
     func test10() {
         XCTAssertTrue(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(),
+            Object(),
+            to: Object(),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
         ))
         
         XCTAssertFalse(VCore.isEqual(
-            SomeObject(),
-            to: SomeObject(j: 1),
+            Object(),
+            to: Object(j: 1),
             by: \.a, \.b, \.c, \.d, \.e, \.f, \.g, \.h, \.i, \.j
         ))
     }

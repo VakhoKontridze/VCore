@@ -10,129 +10,93 @@ import XCTest
 
 // MARK: - Tests
 final class EdgeInsetsLeadingTrailingTests: XCTestCase {
-    // MARK: Insets
+    // MARK: Tests - Insets
     func testInsetInset() {
-        let inputLeading: CGFloat = 1
-        let inputTrailing: CGFloat = 2
-        let inset: CGFloat = 10
-        
-        let result: EdgeInsets_LeadingTrailing = .init(
-            leading: inputLeading,
-            trailing: inputTrailing
-        ).insetBy(inset: inset)
-        
-        XCTAssertEqual(result.leading, inputLeading + inset)
-        XCTAssertEqual(result.trailing, inputTrailing + inset)
+        let insets: EdgeInsets_LeadingTrailing = .init(
+            leading: 1,
+            trailing: 2
+        ).insetBy(inset: 10)
+
+        XCTAssertEqual(insets.leading, 11)
+        XCTAssertEqual(insets.trailing, 12)
     }
     
     func testInsetLeading() {
-        let inputLeading: CGFloat = 1
-        let inputTrailing: CGFloat = 2
-        let inset: CGFloat = 10
-        
-        let result: EdgeInsets_LeadingTrailing = .init(
-            leading: inputLeading,
-            trailing: inputTrailing
-        ).insetBy(leading: inset)
-        
-        XCTAssertEqual(result.leading, inputLeading + inset)
-        XCTAssertEqual(result.trailing, inputTrailing)
+        let insets: EdgeInsets_LeadingTrailing = .init(
+            leading: 1,
+            trailing: 2
+        ).insetBy(leading: 10)
+
+        XCTAssertEqual(insets.leading, 11)
+        XCTAssertEqual(insets.trailing, 2)
     }
     
     func testInsetTrailing() {
-        let inputLeading: CGFloat = 1
-        let inputTrailing: CGFloat = 2
-        let inset: CGFloat = 10
-        
-        let result: EdgeInsets_LeadingTrailing = .init(
-            leading: inputLeading,
-            trailing: inputTrailing
-        ).insetBy(trailing: inset)
-        
-        XCTAssertEqual(result.leading, inputLeading)
-        XCTAssertEqual(result.trailing, inputTrailing + inset)
+        let insets: EdgeInsets_LeadingTrailing = .init(
+            leading: 1,
+            trailing: 2
+        ).insetBy(trailing: 10)
+
+        XCTAssertEqual(insets.leading, 1)
+        XCTAssertEqual(insets.trailing, 12)
     }
     
-    // MARK: Operators
+    // MARK: Tests - Operators
     func testAddition() {
-        let input1Leading: CGFloat = 1
-        let input1Trailing: CGFloat = 2
-        
-        let input2Leading: CGFloat = 5
-        let input2Trailing: CGFloat = 6
-        
-        let result: EdgeInsets_LeadingTrailing =
+        let insets: EdgeInsets_LeadingTrailing =
             EdgeInsets_LeadingTrailing(
-                leading: input1Leading,
-                trailing: input1Trailing
+                leading: 1,
+                trailing: 2
             ) +
             EdgeInsets_LeadingTrailing(
-                leading: input2Leading,
-                trailing: input2Trailing
+                leading: 3,
+                trailing: 4
             )
         
-        XCTAssertEqual(result.leading, input1Leading + input2Leading)
-        XCTAssertEqual(result.trailing, input1Trailing + input2Trailing)
+        XCTAssertEqual(insets.leading, 4)
+        XCTAssertEqual(insets.trailing, 6)
     }
     
     func testAdditionAssignment() {
-        let input1Leading: CGFloat = 1
-        let input1Trailing: CGFloat = 2
-        
-        let input2Leading: CGFloat = 5
-        let input2Trailing: CGFloat = 6
-        
-        var result: EdgeInsets_LeadingTrailing = .init(
-            leading: input1Leading,
-            trailing: input1Trailing
+        var insets: EdgeInsets_LeadingTrailing = .init(
+            leading: 1,
+            trailing: 2
         )
-        result += EdgeInsets_LeadingTrailing(
-            leading: input2Leading,
-            trailing: input2Trailing
+        insets += EdgeInsets_LeadingTrailing(
+            leading: 3,
+            trailing: 4
         )
         
-        XCTAssertEqual(result.leading, input1Leading + input2Leading)
-        XCTAssertEqual(result.trailing, input1Trailing + input2Trailing)
+        XCTAssertEqual(insets.leading, 4)
+        XCTAssertEqual(insets.trailing, 6)
     }
     
     func testSubtraction() {
-        let input1Leading: CGFloat = 1
-        let input1Trailing: CGFloat = 2
-        
-        let input2Leading: CGFloat = 5
-        let input2Trailing: CGFloat = 6
-        
-        let result: EdgeInsets_LeadingTrailing =
+        let insets: EdgeInsets_LeadingTrailing =
             EdgeInsets_LeadingTrailing(
-                leading: input1Leading,
-                trailing: input1Trailing
+                leading: 1,
+                trailing: 2
             ) -
             EdgeInsets_LeadingTrailing(
-                leading: input2Leading,
-                trailing: input2Trailing
+                leading: 3,
+                trailing: 4
             )
         
-        XCTAssertEqual(result.leading, input1Leading - input2Leading)
-        XCTAssertEqual(result.trailing, input1Trailing - input2Trailing)
+        XCTAssertEqual(insets.leading, -2)
+        XCTAssertEqual(insets.trailing, -2)
     }
     
     func testSubtractionAssignment() {
-        let input1Leading: CGFloat = 1
-        let input1Trailing: CGFloat = 2
-        
-        let input2Leading: CGFloat = 5
-        let input2Trailing: CGFloat = 6
-        
-        var result: EdgeInsets_LeadingTrailing = .init(
-            leading: input1Leading,
-            trailing: input1Trailing
+        var insets: EdgeInsets_LeadingTrailing = .init(
+            leading: 1,
+            trailing: 2
         )
-        result -= EdgeInsets_LeadingTrailing(
-            leading: input2Leading,
-            trailing: input2Trailing
+        insets -= EdgeInsets_LeadingTrailing(
+            leading: 3,
+            trailing: 4
         )
         
-        XCTAssertEqual(result.leading, input1Leading - input2Leading)
-        XCTAssertEqual(result.trailing, input1Trailing - input2Trailing)
+        XCTAssertEqual(insets.leading, -2)
+        XCTAssertEqual(insets.trailing, -2)
     }
 }

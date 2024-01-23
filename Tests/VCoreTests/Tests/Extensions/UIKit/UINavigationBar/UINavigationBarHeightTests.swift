@@ -13,7 +13,9 @@ import XCTest
 // MARK: - Tests
 final class UINavigationBarHeightTests: XCTestCase {
     func test() {
-        XCTAssertGreaterThan(UINavigationBar.height, 0)
+        let height: CGFloat = UINavigationBar.height
+
+        XCTAssertGreaterThan(height, 0)
     }
 }
 

@@ -13,35 +13,31 @@ import XCTest
 // MARK: - Tests
 final class NSLayoutConstraintWithPriorityTests: XCTestCase {
     func testLayoutPriority() {
-        let priority: UILayoutPriority = .required
-        
         let view: UIView = .init()
         
         var constraint: NSLayoutConstraint? = nil
         NSLayoutConstraint.activate([
             view.widthAnchor.constraint(equalToConstant: 100)
-                .withPriority(priority)
+                .withPriority(.required)
                 .storing(in: &constraint)
         ])
         
-        XCTAssertEqual(constraint?.priority, priority)
+        XCTAssertEqual(constraint?.priority, UILayoutPriority.required)
     }
     
     func testConstant() {
-        let priority: CGFloat = 100
-        
         let view: UIView = .init()
         
         var constraint: NSLayoutConstraint? = nil
         NSLayoutConstraint.activate([
             view.widthAnchor.constraint(equalToConstant: 100)
-                .withPriority(priority)
+                .withPriority(500)
                 .storing(in: &constraint)
         ])
         
         XCTAssertEqual(
             (constraint?.priority.rawValue).map { CGFloat($0) },
-            priority
+            500
         )
     }
 }

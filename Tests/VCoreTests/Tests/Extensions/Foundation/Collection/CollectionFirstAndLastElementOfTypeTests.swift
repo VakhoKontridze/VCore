@@ -11,6 +11,9 @@ import XCTest
 // MARK: - Tests
 final class CollectionFirstAndLastElementOfTypeTests: XCTestCase {
     // MARK: Test Data
+    private struct S1: P { let value: Int }
+    private struct S2: P { let value: Int }
+
     private let array: [any P] = [
         S1(value: 1),
         S1(value: 2),
@@ -39,11 +42,6 @@ final class CollectionFirstAndLastElementOfTypeTests: XCTestCase {
     }
 }
 
-// MARK: - Test Data
-/*private*/ protocol P {
+private protocol P { // MARK: TODO: Swift 5.10 - Move into test
     var value: Int { get }
 }
-
-/*private*/ struct S1: P { let value: Int }
-
-/*private*/ struct S2: P { let value: Int }

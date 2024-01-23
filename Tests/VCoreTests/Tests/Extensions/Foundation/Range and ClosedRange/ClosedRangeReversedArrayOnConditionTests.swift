@@ -10,20 +10,19 @@ import XCTest
 
 // MARK: - Tests
 final class ClosedRangeReversedArrayOnConditionTests: XCTestCase {
-    // MARK: Test Data
-    private let input: ClosedRange<Int> = 1...3
-    private let output: [Int] = [3, 2, 1]
-
-    // MARK: Tests
     func testFalse() {
-        let result: [Int] = input.reversedArray(false)
+        let range: ClosedRange<Int> = 1...3
 
-        XCTAssertNotEqual(result, output)
+        let reversedRange: [Int] = range.reversedArray(false)
+
+        XCTAssertEqual(reversedRange, [1, 2, 3])
     }
 
     func testTrue() {
-        let result: [Int] = input.reversedArray(true)
+        let range: ClosedRange<Int> = 1...3
 
-        XCTAssertEqual(result, output)
+        let reversedRange: [Int] = range.reversedArray(true)
+
+        XCTAssertEqual(reversedRange, [3, 2, 1])
     }
 }

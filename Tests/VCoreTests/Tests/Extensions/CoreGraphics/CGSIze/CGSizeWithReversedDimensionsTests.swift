@@ -10,27 +10,21 @@ import XCTest
 
 // MARK: - Tests
 final class CGSizeWithReversedDimensionsTests: XCTestCase {
-    // MARK: Test Data
-    private let inputW: CGFloat = 3
-    private let inputH: CGFloat = 4
-    
-    private let outputW: CGFloat = 4
-    private let outputH: CGFloat = 3
-    
-    // MARK: Tests
     func testConditionalFalse() {
-        let result: CGSize = .init(width: inputW, height: inputH)
-            .withReversedDimensions(false)
+        let size: CGSize = .init(width: 3, height: 4)
+
+        let reversedSize: CGSize = size.withReversedDimensions(false)
         
-        XCTAssertNotEqual(result.width, outputW)
-        XCTAssertNotEqual(result.height, outputH)
+        XCTAssertEqual(reversedSize.width, 3)
+        XCTAssertEqual(reversedSize.height, 4)
     }
     
     func testConditionalTrue() {
-        let result: CGSize = .init(width: inputW, height: inputH)
-            .withReversedDimensions(true)
+        let size: CGSize = .init(width: 3, height: 4)
         
-        XCTAssertEqual(result.width, outputW)
-        XCTAssertEqual(result.height, outputH)
+        let reversedSize: CGSize = size.withReversedDimensions(true)
+        
+        XCTAssertEqual(reversedSize.width, 4)
+        XCTAssertEqual(reversedSize.height, 3)
     }
 }

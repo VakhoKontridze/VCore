@@ -8,7 +8,7 @@
 import XCTest
 @testable import VCore
 
-// MARK: - String Diacritic Insensitive String Tests
+// MARK: - Tests
 final class StringProtocolDiacriticInsensitiveStringTests: XCTestCase {
     func test() {
         XCTAssertEqual("À".diacriticInsensitiveString(), "A")

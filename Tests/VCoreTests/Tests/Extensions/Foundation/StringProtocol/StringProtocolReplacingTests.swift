@@ -10,19 +10,20 @@ import XCTest
 
 // MARK: - Tests
 final class StringProtocolReplacingTests: XCTestCase {
-    // MARK: Test Data
-    private let input: String = "Lorem ipsum"
-    private let output: String = "lorem ipsum"
-
-    // MARK: Tests
     func testReplaced() {
-        XCTAssertEqual(input.replaced(at: 0, with: "l"), output)
+        let string: String = "Lorem ipsum"
+
+        let replacedString: String = string.replaced(at: 0, with: "l")
+
+        XCTAssertEqual(replacedString, "lorem ipsum")
     }
 
     func testReplacing() {
-        var result: String = input
-        result.replacing(at: 0, with: "l")
+        let string: String = "Lorem ipsum"
 
-        XCTAssertEqual(result, output)
+        var replacedString: String = string
+        replacedString.replacing(at: 0, with: "l")
+
+        XCTAssertEqual(replacedString, "lorem ipsum")
     }
 }

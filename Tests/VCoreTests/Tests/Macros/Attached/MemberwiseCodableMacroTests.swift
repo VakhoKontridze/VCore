@@ -24,14 +24,14 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            struct SomeStruct {
+            struct Struct {
                 @CKGCodingKey("key_one") let one: Int
                 @CKGCodingKey("key_two") let two: String
             }
             """,
             expandedSource: 
                 """
-                struct SomeStruct {
+                struct Struct {
                     @CKGCodingKey("key_one") let one: Int
                     @CKGCodingKey("key_two") let two: String
 
@@ -51,14 +51,14 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            struct SomeStruct {
+            struct Struct {
                 let one: Int
                 @CKGCodingKey("key_two") let two: String
             }
             """,
             expandedSource: 
                 """
-                struct SomeStruct {
+                struct Struct {
                     let one: Int
                     @CKGCodingKey("key_two") let two: String
 
@@ -77,14 +77,14 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration(accessLevelModifier: "private")
-            struct SomeStruct {
+            struct Struct {
                 let one: Int
                 let two: String
             }
             """,
             expandedSource: 
                 """
-                struct SomeStruct {
+                struct Struct {
                     let one: Int
                     let two: String
 
@@ -103,7 +103,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            struct SomeStruct {
+            struct Struct {
                 let one: Int
                 let two: String
 
@@ -114,7 +114,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
             """,
             expandedSource: 
                 """
-                struct SomeStruct {
+                struct Struct {
                     let one: Int
                     let two: String
 
@@ -137,13 +137,13 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            struct SomeStruct {
+            struct Struct {
                 let one, two: Int
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Struct {
                     let one, two: Int
                 }
                 """

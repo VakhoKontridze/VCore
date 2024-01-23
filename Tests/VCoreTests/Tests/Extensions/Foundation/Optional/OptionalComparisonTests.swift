@@ -11,6 +11,8 @@ import XCTest
 // MARK: - Tests
 final class OptionalComparisonTests: XCTestCase {
     // MARK: Test Data
+    // Data is stored to avoid casting
+
     private let a: Int? = nil
     private let b: Int? = 10
     private let c: Int? = 20

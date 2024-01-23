@@ -11,12 +11,12 @@ import XCTest
 // MARK: - Tests
 final class CollectionEnumeratedArrayTests: XCTestCase {
     func test() {
-        let chars: [String] = ["A", "B", "C"]
-        let result: [(offset: Int, element: String)] = chars.enumeratedArray()
-        
-        for (i, element) in chars.enumerated() {
-            XCTAssertEqual(result[i].offset, i)
-            XCTAssertEqual(result[i].element, element)
+        let characters: [String] = ["A", "B", "C"]
+        let enumeratedCharacters: [(offset: Int, element: String)] = characters.enumeratedArray()
+
+        for (i, element) in characters.enumerated() {
+            XCTAssertEqual(enumeratedCharacters[i].offset, i)
+            XCTAssertEqual(enumeratedCharacters[i].element, element)
         }
     }
 }

@@ -12,19 +12,14 @@ import XCTest
 // MARK: - Tests
 final class ColorRGBAValuesTests: XCTestCase {
     func testValues() {
-        let inputR: CGFloat = 0.1
-        let inputG: CGFloat = 0.2
-        let inputB: CGFloat = 0.3
-        let inputA: CGFloat = 0.4
-        
-        let color: Color = .init(red: inputR, green: inputG, blue: inputB).opacity(inputA)
-        
-        let result = color.rgbaValues
-        
-        XCTAssertEqual(result.red, inputR, accuracy: pow(10, -5))
-        XCTAssertEqual(result.green, inputG, accuracy: pow(10, -5))
-        XCTAssertEqual(result.blue, inputB, accuracy: pow(10, -5))
-        XCTAssertEqual(result.alpha, inputA)
+        let color: Color = .init(red: 0.1, green: 0.2, blue: 0.3, opacity: 0.4)
+
+        let values = color.rgbaValues
+
+        XCTAssertEqual(values.red, 0.1, accuracy: pow(10, -5))
+        XCTAssertEqual(values.green, 0.2, accuracy: pow(10, -5))
+        XCTAssertEqual(values.blue, 0.3, accuracy: pow(10, -5))
+        XCTAssertEqual(values.alpha, 0.4, accuracy: pow(10, -5))
     }
     
     func testComponents() {
@@ -36,19 +31,14 @@ final class ColorRGBAValuesTests: XCTestCase {
 #endif
         }()
         
-        let inputR: Int = 10
-        let inputG: Int = 20
-        let inputB: Int = 30
-        let inputA: CGFloat = 0.4
-        
-        let color: Color = .init(red: CGFloat(inputR)/255, green: CGFloat(inputG)/255, blue: CGFloat(inputB)/255).opacity(inputA)
-        
-        let result = color.rgbaComponents
-        
-        XCTAssertEqual(result.red, inputR, accuracy: accuracy)
-        XCTAssertEqual(result.green, inputG, accuracy: accuracy)
-        XCTAssertEqual(result.blue, inputB, accuracy: accuracy)
-        XCTAssertEqual(result.alpha, inputA)
+        let color: Color = .init(red: 10.0/255, green: 20.0/255, blue: 30.0/255, opacity: 0.4)
+
+        let components = color.rgbaComponents
+
+        XCTAssertEqual(components.red, 10, accuracy: accuracy)
+        XCTAssertEqual(components.green, 20, accuracy: accuracy)
+        XCTAssertEqual(components.blue, 30, accuracy: accuracy)
+        XCTAssertEqual(components.alpha, 0.4, accuracy: pow(10, -5))
     }
     
     func testISRGBAEqual() {

@@ -19,20 +19,18 @@ final class SequenceMinMaxByKeyPath: XCTestCase {
 
     // MARK: Tests
     func testMin() {
-        let input: [Object] = [.init(1), .init(2), .init(3)]
-        let output: Object = .init(1)
+        let array: [Object] = [.init(1), .init(2), .init(3)]
 
-        let result: Object? = input.min(by: \.value)
+        let element: Object? = array.min(by: \.value)
 
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(element, Object(1))
     }
 
     func testMax() {
-        let input: [Object] = [.init(1), .init(2), .init(3)]
-        let output: Object = .init(3)
+        let array: [Object] = [.init(1), .init(2), .init(3)]
 
-        let result: Object? = input.max(by: \.value)
+        let element: Object? = array.max(by: \.value)
 
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(element, Object(3))
     }
 }

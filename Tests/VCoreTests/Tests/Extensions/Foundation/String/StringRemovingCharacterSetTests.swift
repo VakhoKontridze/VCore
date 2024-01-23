@@ -10,37 +10,39 @@ import XCTest
 
 // MARK: - Tests
 final class StringRemovingCharacterSetTests: XCTestCase {
-    // MARK: Test Data
-    private let input: String = "+0123456789"
-    private let output: String = "0123456789"
-    
-    // MARK: Tests
     func testRemoving() {
-        XCTAssertEqual(input.removing(.symbols), output)
+        let string: String = "+0123456789"
+
+        let trimmedString: String = string.removing(.symbols)
+
+        XCTAssertEqual(trimmedString, "0123456789")
     }
     
     func testRemove() {
-        var result: String = input
-        result.remove(.symbols)
-        
-        XCTAssertEqual(result, output)
+        let string: String = "+0123456789"
+
+        var trimmedString: String = string
+        trimmedString.remove(.symbols)
+
+        XCTAssertEqual(trimmedString, "0123456789")
     }
 }
 
 final class StringRemovingCharacterSetsTests: XCTestCase {
-    // MARK: Test Data
-    private let input: String = "+0123456789A"
-    private let output: String = "0123456789"
-    
-    // MARK: Tests
     func testRemoving() {
-        XCTAssertEqual(input.removing([.symbols, .letters]), output)
+        let string: String = "+0123456789A"
+
+        let trimmedString: String = string.removing([.symbols, .letters])
+
+        XCTAssertEqual(trimmedString, "0123456789")
     }
     
     func testRemove() {
-        var result: String = input
-        result.remove([.symbols, .letters])
-        
-        XCTAssertEqual(result, output)
+        let string: String = "+0123456789A"
+
+        var trimmedString: String = string
+        trimmedString.remove([.symbols, .letters])
+
+        XCTAssertEqual(trimmedString, "0123456789")
     }
 }

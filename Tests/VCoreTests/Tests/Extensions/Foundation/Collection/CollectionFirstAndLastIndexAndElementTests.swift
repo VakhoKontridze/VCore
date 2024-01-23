@@ -10,30 +10,35 @@ import XCTest
 
 // MARK: - Tests
 final class CollectionFirstAndLastIndexAndElementTest: XCTestCase {
-    // MARK: Test Data
-    private let numbers: [Int] = [1, 3, 5, 7]
-    
     // MARK: Tests - First
     func testFirstInvalidElement() {
+        let numbers: [Int] = [1, 3, 5, 7]
+
         XCTAssertNil(numbers.firstIndexAndElement(where: { $0 == 0 }))
     }
     
     func testFirstValidElement() {
-        let result: (index: Int, element: Int)? = numbers.firstIndexAndElement(where: { $0 * $0 >= 10 })
+        let numbers: [Int] = [1, 3, 5, 7]
+
+        let data: (index: Int, element: Int)? = numbers.firstIndexAndElement(where: { $0 * $0 >= 10 })
         
-        XCTAssertEqual(result?.index, 2)
-        XCTAssertEqual(result?.element, 5)
+        XCTAssertEqual(data?.index, 2)
+        XCTAssertEqual(data?.element, 5)
     }
 
     // MARK: Tests - Last
     func testLastInvalidElement() {
+        let numbers: [Int] = [1, 3, 5, 7]
+
         XCTAssertNil(numbers.lastIndexAndElement(where: { $0 == 0 }))
     }
 
     func testLastValidElement() {
-        let result: (index: Int, element: Int)? = numbers.lastIndexAndElement(where: { $0 * $0 >= 10 })
+        let numbers: [Int] = [1, 3, 5, 7]
 
-        XCTAssertEqual(result?.index, 3)
-        XCTAssertEqual(result?.element, 7)
+        let data: (index: Int, element: Int)? = numbers.lastIndexAndElement(where: { $0 * $0 >= 10 })
+
+        XCTAssertEqual(data?.index, 3)
+        XCTAssertEqual(data?.element, 7)
     }
 }

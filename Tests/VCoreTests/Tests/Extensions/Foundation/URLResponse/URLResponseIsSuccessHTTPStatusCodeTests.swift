@@ -11,28 +11,38 @@ import XCTest
 // MARK: - Tests
 final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
     func testSuccess() {
-        let urlResponse: HTTPURLResponse = .init(
-            url: #url("https://www.apple.com"),
-            statusCode: 200,
-            httpVersion: nil,
-            headerFields: nil
-        )!
-        
-        let result: Bool = urlResponse.isSuccessHTTPStatusCode
-        
-        XCTAssertTrue(result)
+        guard
+            let urlResponse: HTTPURLResponse = .init(
+                url: #url("https://www.apple.com"),
+                statusCode: 200,
+                httpVersion: nil,
+                headerFields: nil
+            )
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
+        let isSuccess: Bool = urlResponse.isSuccessHTTPStatusCode
+
+        XCTAssertTrue(isSuccess)
     }
     
     func testFailure() {
-        let urlResponse: HTTPURLResponse = .init(
-            url: #url("https://www.apple.com"),
-            statusCode: 404,
-            httpVersion: nil,
-            headerFields: nil
-        )!
-        
-        let result: Bool = urlResponse.isSuccessHTTPStatusCode
-        
-        XCTAssertFalse(result)
+        guard
+            let urlResponse: HTTPURLResponse = .init(
+                url: #url("https://www.apple.com"),
+                statusCode: 404,
+                httpVersion: nil,
+                headerFields: nil
+            )
+        else {
+            VCoreLogError("Failed to generate test data")
+            fatalError()
+        }
+
+        let isSuccess: Bool = urlResponse.isSuccessHTTPStatusCode
+
+        XCTAssertFalse(isSuccess)
     }
 }

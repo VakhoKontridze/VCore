@@ -11,27 +11,25 @@ import XCTest
 // MARK: - Tests
 final class OptionSetElementsTests: XCTestCase {
     // MARK: Test Data
-    struct RGBColor: OptionSet {
-        static let red: Self = .init(rawValue: 1 << 0)
-        static let green: Self = .init(rawValue: 1 << 1)
-        static let blue: Self = .init(rawValue: 1 << 2)
+    private struct Gender: OptionSet {
+        static let male: Self = .init(rawValue: 1 << 0)
+        static let female: Self = .init(rawValue: 1 << 1)
 
-        static var all: Self { [.red, .green, .blue] }
+        static var all: Self { [.male, .female] }
 
         let rawValue: Int
     }
 
     // MARK: Tests
     func testSingle() {
-        XCTAssertEqual(RGBColor.red.elements, [RGBColor.red])
-        XCTAssertEqual(RGBColor.green.elements, [RGBColor.green])
-        XCTAssertEqual(RGBColor.blue.elements, [RGBColor.blue])
+        XCTAssertEqual(Gender.male.elements, [Gender.male])
+        XCTAssertEqual(Gender.female.elements, [Gender.female])
     }
     
     func testMultiple() {
         XCTAssertEqual(
-            RGBColor.all.elements,
-            [.red, .green, .blue]
+            Gender.all.elements,
+            [.male, .female]
         )
     }
 }

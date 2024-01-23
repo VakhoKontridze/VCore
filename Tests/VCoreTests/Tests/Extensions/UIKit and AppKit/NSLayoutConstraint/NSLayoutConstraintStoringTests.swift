@@ -13,17 +13,15 @@ import XCTest
 // MARK: - Tests
 final class NSLayoutConstraintStoringTests: XCTestCase {
     func test() {
-        let width: CGFloat = 100
-        
         let view: UIView = .init()
         
         var constraint: NSLayoutConstraint? = nil
         NSLayoutConstraint.activate([
-            view.widthAnchor.constraint(equalToConstant: width)
+            view.widthAnchor.constraint(equalToConstant: 100)
                 .storing(in: &constraint)
         ])
         
-        XCTAssertEqual(constraint?.constant, width)
+        XCTAssertEqual(constraint?.constant, 100)
     }
 }
 

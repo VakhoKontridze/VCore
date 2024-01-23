@@ -10,19 +10,20 @@ import XCTest
 
 // MARK: - Tests
 final class ArrayRemovingDuplicatesTests: XCTestCase {
-    // MARK: Test Data
-    private let input: [Int] = [1, 1, 3, 5, 5]
-    private let output: [Int] = [1, 3, 5]
-    
-    // MARK: Tests
     func testRemoving() {
-        XCTAssertEqual(input.removingDuplicates(), output)
+        let array: [Int] = [1, 1, 3, 5, 5]
+
+        let filteredArray: [Int] = array.removingDuplicates()
+
+        XCTAssertEqual(filteredArray, [1, 3, 5])
     }
     
     func testRemove() {
-        var result: [Int] = input
-        result.removeDuplicates()
-        
-        XCTAssertEqual(result, output)
+        let array: [Int] = [1, 1, 3, 5, 5]
+
+        var filteredArray: [Int] = array
+        filteredArray.removeDuplicates()
+
+        XCTAssertEqual(filteredArray, [1, 3, 5])
     }
 }

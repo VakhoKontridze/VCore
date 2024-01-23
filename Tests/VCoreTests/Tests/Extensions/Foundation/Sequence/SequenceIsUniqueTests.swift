@@ -10,18 +10,8 @@ import XCTest
 
 // MARK: - Tests
 final class SequenceIsUniqueTests: XCTestCase {
-    // MARK: Test Data
-    private let uniqueArray: [Int] = [1, 3, 5]
-    private let nonUniqueArray: [Int] = [1, 1, 3, 5, 5]
-    
-    // MARK: Tests
-    func testIsUnique() {
-        XCTAssertTrue(uniqueArray.isUnique)
-        XCTAssertFalse(nonUniqueArray.isUnique)
-    }
-    
-    func testContainsDuplicates() {
-        XCTAssertFalse(uniqueArray.containsDuplicates)
-        XCTAssertTrue(nonUniqueArray.containsDuplicates)
+    func test() {
+        XCTAssertTrue([1, 3, 5].isUnique)
+        XCTAssertFalse([1, 1, 3, 5].isUnique)
     }
 }

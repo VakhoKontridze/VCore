@@ -13,20 +13,25 @@ import AppKit
 
 // MARK: - Tests
 final class NSFontStylingTests: XCTestCase {
-    func testBold() {
+    func testBold() throws {
         let font: NSFont = .systemFont(ofSize: 13)
-        let boldFont: NSFont = font.withBoldStyling!
-        
+
+        let boldFont: NSFont = try XCTUnwrap(
+            font.withBoldStyling
+        )
+
         XCTAssertTrue(boldFont.fontDescriptor.symbolicTraits.contains(.bold))
     }
     
-    func testItalic() {
+    func testItalic() throws {
         let font: NSFont = .systemFont(ofSize: 13)
-        let italicFont: NSFont = font.withItalicStyling!
         
+        let italicFont: NSFont = try XCTUnwrap(
+            font.withItalicStyling
+        )
+
         XCTAssertTrue(italicFont.fontDescriptor.symbolicTraits.contains(.italic))
     }
 }
 
 #endif
-

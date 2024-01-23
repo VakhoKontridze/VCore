@@ -14,36 +14,36 @@ import XCTest
 final class UIViewControllerIsRootViewControllerTests: XCTestCase {
     func testIs() {
         let navigationController: UINavigationController = .init()
-        let vc1: UIViewController = .init()
-        let vc2: UIViewController = .init()
+        let viewController1: UIViewController = .init()
+        let viewController2: UIViewController = .init()
         
-        XCTAssertNil(vc1.isRootViewController)
-        XCTAssertNil(vc2.isRootViewController)
+        XCTAssertNil(viewController1.isRootViewController)
+        XCTAssertNil(viewController2.isRootViewController)
         
-        navigationController.pushViewController(vc1, animated: false)
-        XCTAssertEqual(vc1.isRootViewController, true)
-        XCTAssertNil(vc2.isRootViewController)
+        navigationController.pushViewController(viewController1, animated: false)
+        XCTAssertEqual(viewController1.isRootViewController, true)
+        XCTAssertNil(viewController2.isRootViewController)
         
-        navigationController.pushViewController(vc2, animated: false)
-        XCTAssertEqual(vc1.isRootViewController, true)
-        XCTAssertEqual(vc2.isRootViewController, false)
+        navigationController.pushViewController(viewController2, animated: false)
+        XCTAssertEqual(viewController1.isRootViewController, true)
+        XCTAssertEqual(viewController2.isRootViewController, false)
     }
     
     func testIsNot() {
         let navigationController: UINavigationController = .init()
-        let vc1: UIViewController = .init()
-        let vc2: UIViewController = .init()
+        let viewController1: UIViewController = .init()
+        let viewController2: UIViewController = .init()
         
-        XCTAssertNil(vc1.isNonRootViewController)
-        XCTAssertNil(vc2.isNonRootViewController)
+        XCTAssertNil(viewController1.isNonRootViewController)
+        XCTAssertNil(viewController2.isNonRootViewController)
         
-        navigationController.pushViewController(vc1, animated: false)
-        XCTAssertEqual(vc1.isNonRootViewController, false)
-        XCTAssertNil(vc2.isNonRootViewController)
+        navigationController.pushViewController(viewController1, animated: false)
+        XCTAssertEqual(viewController1.isNonRootViewController, false)
+        XCTAssertNil(viewController2.isNonRootViewController)
         
-        navigationController.pushViewController(vc2, animated: false)
-        XCTAssertEqual(vc1.isNonRootViewController, false)
-        XCTAssertEqual(vc2.isNonRootViewController, true)
+        navigationController.pushViewController(viewController2, animated: false)
+        XCTAssertEqual(viewController1.isNonRootViewController, false)
+        XCTAssertEqual(viewController2.isNonRootViewController, true)
     }
 }
 

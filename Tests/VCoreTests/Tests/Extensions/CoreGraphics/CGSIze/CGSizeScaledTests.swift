@@ -10,79 +10,83 @@ import XCTest
 
 // MARK: - Tests
 final class CGSizeScaledTests: XCTestCase {
-    // MARK: Test data
-    private let input: CGSize = .init(width: 3, height: 4)
-
-    private let scaleConstant: CGFloat = 1
-    private let scaleMultiplier: CGFloat = 2
-
-    private let outputConstantUp: CGSize = .init(width: 4, height: 5)
-    private let outputConstantDown: CGSize = .init(width: 2, height: 3)
-
-    private let outputMultiplierUp: CGSize = .init(width: 6, height: 8)
-    private let outputMultiplierDown: CGSize = .init(width: 1.5, height: 2)
-
     // MARK: Tests - Up with Constant
     func testScaledUpWithConstant() {
-        let result: CGSize = input.scaledUp(withConstant: scaleConstant)
+        let size: CGSize = .init(width: 3, height: 4)
 
-        XCTAssertEqual(result.width, outputConstantUp.width)
-        XCTAssertEqual(result.height, outputConstantUp.height)
+        let scaledSize: CGSize = size.scaledUp(withConstant: 1)
+
+        XCTAssertEqual(scaledSize.width, 4)
+        XCTAssertEqual(scaledSize.height, 5)
     }
 
     func testScaleUpWithConstant() {
-        var result: CGSize = input
-        result.scaleUp(withConstant: scaleConstant)
+        let size: CGSize = .init(width: 3, height: 4)
 
-        XCTAssertEqual(result.width, outputConstantUp.width)
-        XCTAssertEqual(result.height, outputConstantUp.height)
+        var scaledSize: CGSize = size
+        scaledSize.scaleUp(withConstant: 1)
+
+        XCTAssertEqual(scaledSize.width, 4)
+        XCTAssertEqual(scaledSize.height, 5)
     }
 
     // MARK: Tests - Down with Constant
     func testScaledDownWithConstant() {
-        let result: CGSize = input.scaledDown(withConstant: scaleConstant)
+        let size: CGSize = .init(width: 3, height: 4)
 
-        XCTAssertEqual(result.width, outputConstantDown.width)
-        XCTAssertEqual(result.height, outputConstantDown.height)
+        let scaledSize: CGSize = size.scaledDown(withConstant: 1)
+
+        XCTAssertEqual(scaledSize.width, 2)
+        XCTAssertEqual(scaledSize.height, 3)
     }
 
     func testScaleDownWithConstant() {
-        var result: CGSize = input
-        result.scaleDown(withConstant: scaleConstant)
+        let size: CGSize = .init(width: 3, height: 4)
 
-        XCTAssertEqual(result.width, outputConstantDown.width)
-        XCTAssertEqual(result.height, outputConstantDown.height)
+        var scaledSize: CGSize = size
+        scaledSize.scaleDown(withConstant: 1)
+
+        XCTAssertEqual(scaledSize.width, 2)
+        XCTAssertEqual(scaledSize.height, 3)
     }
 
     // MARK: Tests - Up with Multiplier
     func testScaledUpWithMultiplier() {
-        let result: CGSize = input.scaledUp(withMultiplier: scaleMultiplier)
+        let size: CGSize = .init(width: 3, height: 4)
 
-        XCTAssertEqual(result.width, outputMultiplierUp.width)
-        XCTAssertEqual(result.height, outputMultiplierUp.height)
+        let scaledSize: CGSize = size.scaledUp(withMultiplier: 2)
+
+        XCTAssertEqual(scaledSize.width, 6)
+        XCTAssertEqual(scaledSize.height, 8)
     }
 
     func testScaleUpWithMultiplier() {
-        var result: CGSize = input
-        result.scaleUp(withMultiplier: scaleMultiplier)
+        let size: CGSize = .init(width: 3, height: 4)
 
-        XCTAssertEqual(result.width, outputMultiplierUp.width)
-        XCTAssertEqual(result.height, outputMultiplierUp.height)
+        var scaledSize: CGSize = size
+        scaledSize.scaleUp(withMultiplier: 2)
+
+        XCTAssertEqual(scaledSize.width, 6)
+        XCTAssertEqual(scaledSize.height, 8)
     }
 
     // MARK: Tests - Down with Multiplier
     func testScaledDownWithMultiplier() {
-        let result: CGSize = input.scaledDown(withMultiplier: scaleMultiplier)
+        let size: CGSize = .init(width: 3, height: 4)
 
-        XCTAssertEqual(result.width, outputMultiplierDown.width)
-        XCTAssertEqual(result.height, outputMultiplierDown.height)
+        let scaledSize: CGSize = size.scaledDown(withMultiplier: 2)
+
+        XCTAssertEqual(scaledSize.width, 1.5)
+        XCTAssertEqual(scaledSize.height, 2)
     }
 
     func testScaleDownWithMultiplier() {
-        var result: CGSize = input
-        result.scaleDown(withMultiplier: scaleMultiplier)
+        let size: CGSize = .init(width: 3, height: 4)
+        
+        var scaledSize: CGSize = size
+        scaledSize.scaleDown(withMultiplier: 2)
 
-        XCTAssertEqual(result.width, outputMultiplierDown.width)
-        XCTAssertEqual(result.height, outputMultiplierDown.height)
+        XCTAssertEqual(scaledSize.width, 1.5)
+        XCTAssertEqual(scaledSize.height, 2)
     }
 }

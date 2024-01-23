@@ -11,7 +11,7 @@ import XCTest
 // MARK: - Tests
 final class JSONDecoderMethodsTests: XCTestCase {
     // MARK: Test Data
-    private struct SomeObject: Codable {
+    private struct Object: Codable {
         let key: String?
     }
     
@@ -52,7 +52,7 @@ final class JSONDecoderMethodsTests: XCTestCase {
     }
     
     func testJSONToObject() throws {
-        let object: SomeObject = .init(key: "value")
+        let object: Object = .init(key: "value")
         guard
             let objectJSON: [String: Any?] = try? JSONEncoder().encodeObjectToJSON(object)
         else {
@@ -60,13 +60,13 @@ final class JSONDecoderMethodsTests: XCTestCase {
             fatalError()
         }
 
-        let objects2: SomeObject = try JSONDecoder().decodeObjectFromJSON(objectJSON)
+        let objects2: Object = try JSONDecoder().decodeObjectFromJSON(objectJSON)
 
         XCTAssertEqual(objects2.key, object.key)
     }
     
     func testJSONArrayToObjects() throws {
-        let objects: [SomeObject] = [.init(key: "value1"), .init(key: "value2")]
+        let objects: [Object] = [.init(key: "value1"), .init(key: "value2")]
         guard
             let objectsJSONArray: [[String: Any?]] = try? JSONEncoder().encodeObjectToJSONArray(objects)
         else {
@@ -74,7 +74,7 @@ final class JSONDecoderMethodsTests: XCTestCase {
             fatalError()
         }
 
-        let objects2: [SomeObject] = try JSONDecoder().decodeObjectFromJSONArray(objectsJSONArray)
+        let objects2: [Object] = try JSONDecoder().decodeObjectFromJSONArray(objectsJSONArray)
 
         for i in objects.indices {
             XCTAssertEqual(objects2[i].key, objects[i].key)

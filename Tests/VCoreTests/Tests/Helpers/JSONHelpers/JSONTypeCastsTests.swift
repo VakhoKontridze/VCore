@@ -11,6 +11,8 @@ import XCTest
 // MARK: - Tests
 final class JSONTypeCastsTests: XCTestCase {
     // MARK: Test Data
+    // Data is stored to avoid casting
+
     private let int: Int = 10
     private let float: Float = 10
     private let double: Double = 10

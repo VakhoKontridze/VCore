@@ -15,9 +15,9 @@ final class SessionManagerTests: XCTestCase {
         let sessionsManger: SessionManager = .init()
         
         let id: Int = await sessionsManger.generateNewID()
-        let result: Bool = await sessionsManger.isValidID(id)
+        let isValid: Bool = await sessionsManger.isValidID(id)
 
-        XCTAssertTrue(result)
+        XCTAssertTrue(isValid)
     }
     
     func testInvalidID() async {
@@ -25,8 +25,8 @@ final class SessionManagerTests: XCTestCase {
         
         let id: Int = await sessionsManger.generateNewID()
         _ = await sessionsManger.generateNewID()
-        let result: Bool = await sessionsManger.isValidID(id)
+        let isValid: Bool = await sessionsManger.isValidID(id)
 
-        XCTAssertFalse(result)
+        XCTAssertFalse(isValid)
     }
 }

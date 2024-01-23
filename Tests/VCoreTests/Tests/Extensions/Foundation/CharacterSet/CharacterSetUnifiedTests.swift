@@ -11,11 +11,10 @@ import XCTest
 // MARK: - Tests
 final class CharacterSetUnifiedTests: XCTestCase {
     func test() {
-        let input: [CharacterSet] = [.decimalDigits, .letters, .symbols]
-        let output: CharacterSet = .decimalDigits.union(.letters).union(.symbols)
+        let characterSets: [CharacterSet] = [.init(charactersIn: "A"), .init(charactersIn: "B")]
+
+        let unifiedCharacterSet: CharacterSet = characterSets.unified
         
-        let result: CharacterSet = input.unified
-        
-        XCTAssertEqual(result, output)
+        XCTAssertEqual(unifiedCharacterSet, CharacterSet(charactersIn: "AB"))
     }
 }

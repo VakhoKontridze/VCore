@@ -11,23 +11,23 @@ import XCTest
 // MARK: - Tests
 final class KeyPathInitializableEnumerationTests: XCTestCase {
     // MARK: Test Data
-    private enum SomeEnum: KeyPathInitializableEnumeration {
-        case first
-        case second
-        
-        var someProperty: Int {
+    private enum Gender: KeyPathInitializableEnumeration {
+        case male
+        case female
+
+        var value: Int {
             switch self {
-            case .first: 1
-            case .second: 2
+            case .male: 1
+            case .female: 2
             }
         }
     }
     
     // MARK: Tests
     func test() {
-        XCTAssertNil(SomeEnum.aCase(key: \.someProperty, value: 0))
-        XCTAssertEqual(SomeEnum.aCase(key: \.someProperty, value: 1), .first)
-        XCTAssertEqual(SomeEnum.aCase(key: \.someProperty, value: 2), .second)
-        XCTAssertNil(SomeEnum.aCase(key: \.someProperty, value: 3))
+        XCTAssertNil(Gender.aCase(key: \.value, value: 0))
+        XCTAssertEqual(Gender.aCase(key: \.value, value: 1), Gender.male)
+        XCTAssertEqual(Gender.aCase(key: \.value, value: 2), Gender.female)
+        XCTAssertNil(Gender.aCase(key: \.value, value: 3))
     }
 }
