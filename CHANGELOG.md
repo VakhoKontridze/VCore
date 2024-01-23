@@ -1,5 +1,11 @@
 # Change Log
 
+### 6.0.0(90)
+
+General
+
+- Package now partially supports `visionOS`
+
 ### [5.3.0(89)](https://github.com/VakhoKontridze/VCore/releases/tag/5.3.0) — *2024 01 12*
 
 Extensions

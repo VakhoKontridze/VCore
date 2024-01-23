@@ -10,6 +10,7 @@ import SwiftUI
 // MARK: - View Responder Chain Toolbar
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 extension View {
     /// Inserts toolbar that managed focus navigation in responder chain.
     ///

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 24.05.23.
 //
 
-#if canImport(UIKit) && !(os(tvOS) || os(watchOS))
+#if canImport(UIKit) && !(os(tvOS) || os(watchOS) || os(visionOS))
 
 import UIKit
 

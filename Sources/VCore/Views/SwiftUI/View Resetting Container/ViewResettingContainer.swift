@@ -74,7 +74,7 @@ public struct ViewResettingContainer<Content>: View where Content: View {
 // MARK: - Preview
 #if DEBUG
 
-#if !(os(macOS) || os(watchOS))
+#if !(os(macOS) || os(watchOS) || os(visionOS))
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
 #Preview(body: {

@@ -9,6 +9,9 @@ import SwiftUI
 
 // MARK: - Responder Chain Toolbar UI Model
 /// Model that describes UI.
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
+@available(visionOS, unavailable)
 public struct ResponderChainToolbarUIModel {
     // MARK: Properties - Buttons
     var hasButtons: Bool { hasNavigationButtons || hasDoneButton }

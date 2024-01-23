@@ -140,6 +140,8 @@ extension UIView {
 // MARK: - Preview
 #if DEBUG
 
+#if !(os(watchOS) || os(visionOS))
+
 #Preview(body: {
     guard #available(tvOS 16.0, *) else { return EmptyView() }
 
@@ -173,6 +175,8 @@ extension UIView {
 
     return ContentView()
 })
+
+#endif
 
 #endif
 
