@@ -6,6 +6,13 @@ General
 
 - Package now partially supports `visionOS`
 
+Extensions
+
+- `Color.primaryInverted` property is added, that can be used for inverted primary content
+- `Color.dynamic(light:dark:)` method is added, that generates it's color data dynamically
+- `UIColor.dynamic(light:dark:)` method is added, that generates it's color data dynamically
+- `NSColor.dynamic(light:dark:)` method is added, that generates it's color data dynamically
+
 ### [5.3.1(90)](https://github.com/VakhoKontridze/VCore/releases/tag/5.3.1) — *2024 01 23*
 
 General
@@ -24,7 +31,7 @@ Extensions
 
 Global Functions
 
-- `FIXME(_:dsohandle:file:line:function:)` method is added
+- `FIXME(_:fileID:file:line:function:)` method is added
 
 Macros
 

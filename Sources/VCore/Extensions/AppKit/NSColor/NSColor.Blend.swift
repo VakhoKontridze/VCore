@@ -9,7 +9,7 @@
 
 import AppKit
 
-// MARK: - Blend Color
+// MARK: - Color Blend
 extension NSColor {
     /// Blends two `NSColor`s together.
     ///

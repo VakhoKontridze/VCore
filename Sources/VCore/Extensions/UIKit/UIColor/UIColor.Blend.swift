@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Blend Color
+// MARK: - Color Blend
 extension UIColor {
     /// Blends two `UIColor`s together.
     ///
