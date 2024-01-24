@@ -86,12 +86,14 @@ public final class NetworkReachabilityService { // TODO: iOS 17 - Convert to `Ob
 
 // MARK: - Helpers
 extension NWPath.Status {
-    fileprivate var isConnected: Bool? {
+    fileprivate var isConnected: Bool {
         switch self {
-        case .satisfied: true
-        case .unsatisfied: false
-        case .requiresConnection: false
-        @unknown default: nil
+        case .satisfied: return true
+        case .unsatisfied: return false
+        case .requiresConnection: return false
+        @unknown default: 
+            VCoreLogWarning("Unhandled case in 'NWPath.Status.isConnected'")
+            return false
         }
     }
 }

@@ -16,6 +16,7 @@ import AppKit
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public enum GestureBaseButtonGestureState: Int, CaseIterable {
+    // MARK: Cases
     /// Indicates that interaction is possible. This is a default state.
     case possible
     
@@ -48,13 +49,15 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
     init(state: UIGestureRecognizer.State) {
         self = {
             switch state {
-            case .possible: .possible
-            case .began: .began
+            case .possible: return .possible
+            case .began: return .began
             case .changed: fatalError() // Not used
-            case .ended: .ended
-            case .cancelled: .cancelled
+            case .ended: return .ended
+            case .cancelled: return .cancelled
             case .failed: fatalError() // Not used
-            @unknown default: fatalError()
+            @unknown default:
+                VCoreLogError("Unhandled case in 'GestureBaseButtonGestureState.init(state:)'")
+                fatalError()
             }
         }()
     }
@@ -62,13 +65,15 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
     init(state: NSGestureRecognizer.State) {
         self = {
             switch state {
-            case .possible: .possible
-            case .began: .began
+            case .possible: return .possible
+            case .began: return .began
             case .changed: fatalError() // Not used
-            case .ended: .ended
-            case .cancelled: .cancelled
+            case .ended: return .ended
+            case .cancelled: return .cancelled
             case .failed: fatalError() // Not used
-            @unknown default: fatalError()
+            @unknown default:
+                VCoreLogError("Unhandled case in 'GestureBaseButtonGestureState.init(state:)'")
+                fatalError()
             }
         }()
     }

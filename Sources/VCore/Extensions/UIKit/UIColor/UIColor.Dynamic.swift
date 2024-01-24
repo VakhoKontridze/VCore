@@ -27,10 +27,12 @@ extension UIColor {
         .init(
             dynamicProvider: { traitCollection in
                 switch traitCollection.userInterfaceStyle {
-                case .unspecified: light
-                case .light: light
-                case .dark: dark
-                @unknown default: light
+                case .unspecified: return light
+                case .light: return light
+                case .dark: return dark
+                @unknown default:
+                    VCoreLogWarning("Unhandled case in 'UIColor.dynamic(light:dark:)'")
+                    return light
                 }
             }
         )
