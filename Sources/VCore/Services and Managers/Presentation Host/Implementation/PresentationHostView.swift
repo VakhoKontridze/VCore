@@ -11,6 +11,7 @@ import SwiftUI
 
 // MARK: - Presentation Host View
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 struct PresentationHostView<Content>: UIViewControllerRepresentable where Content: View {
     // MARK: Properties
     private let id: String

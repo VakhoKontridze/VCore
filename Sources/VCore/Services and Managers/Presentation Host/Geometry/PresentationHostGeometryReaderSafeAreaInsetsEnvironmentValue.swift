@@ -11,6 +11,7 @@ import SwiftUI
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 extension View {
     func presentationHostGeometryReaderSafeAreaInsets(
         _ presentationHostGeometryReaderSafeAreaInsets: EdgeInsets
@@ -24,6 +25,7 @@ extension View {
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 extension EnvironmentValues {
     /// Presentation Host's `GeometryReader` safe area insets associated with the environment.
     public var presentationHostGeometryReaderSafeAreaInsets: EdgeInsets {
@@ -36,6 +38,7 @@ extension EnvironmentValues {
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 struct PresentationHostGeometryReaderSafeAreaInsetsEnvironmentKey: EnvironmentKey {
-    static var defaultValue: EdgeInsets = .init()
+    static let defaultValue: EdgeInsets = .init()
 }

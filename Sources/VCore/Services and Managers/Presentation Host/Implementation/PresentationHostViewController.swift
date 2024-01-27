@@ -11,6 +11,7 @@ import SwiftUI
 
 // MARK: - Presentation Host View Controller
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 final class PresentationHostViewController: UIViewController, UIViewControllerTransitioningDelegate {
     // MARK: Subviews
     private var hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController?

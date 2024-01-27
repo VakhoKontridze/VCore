@@ -11,6 +11,7 @@ import SwiftUI
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 extension View {
     func presentationHostGeometryReaderSize(
         _ presentationHostGeometryReaderSize: CGSize
@@ -24,6 +25,7 @@ extension View {
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 extension EnvironmentValues {
     /// Presentation Host's `GeometryReader` size associated with the environment.
     public var presentationHostGeometryReaderSize: CGSize {
@@ -36,6 +38,7 @@ extension EnvironmentValues {
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 struct PresentationHostGeometryReaderSizeEnvironmentKey: EnvironmentKey {
-    static var defaultValue: CGSize = .zero
+    static let defaultValue: CGSize = .zero
 }

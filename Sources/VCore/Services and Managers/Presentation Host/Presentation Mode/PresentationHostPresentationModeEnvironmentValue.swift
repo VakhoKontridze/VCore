@@ -11,6 +11,7 @@ import SwiftUI
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 extension View {
     func presentationHostPresentationMode(
         _ presentationHostExternalDismiss: PresentationHostPresentationMode
@@ -24,6 +25,7 @@ extension View {
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 extension EnvironmentValues {
     /// Presentation Host's presentation mode of the `View` associated with the environment.
     public var presentationHostPresentationMode: PresentationHostPresentationMode {
@@ -36,6 +38,7 @@ extension EnvironmentValues {
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 private struct PresentationHostPresentationModeEnvironmentKey: EnvironmentKey {
     static let defaultValue: PresentationHostPresentationMode = .init()
 }

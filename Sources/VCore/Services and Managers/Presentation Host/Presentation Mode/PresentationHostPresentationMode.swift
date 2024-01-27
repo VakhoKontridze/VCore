@@ -18,6 +18,7 @@ import SwiftUI
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 public struct PresentationHostPresentationMode {
     // MARK: Properties
     /// Indicates if `PresentationHostPresentationMode` is embedded via environment.

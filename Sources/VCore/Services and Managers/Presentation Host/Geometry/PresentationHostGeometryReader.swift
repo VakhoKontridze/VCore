@@ -13,6 +13,7 @@ import SwiftUI
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 struct PresentationHostGeometryReader<Content>: View where Content: View {
     // MARK: Properties
     // `proxy.safeAreaInsets` no longer works, because safe areas are being ignored

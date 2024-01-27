@@ -11,6 +11,7 @@ import UIKit
 
 // MARK: - Presentation Host Animated Transitioner
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 final class PresentationHostAnimatedTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
     // MARK: Properties
     private let allowsHitTests: Bool
