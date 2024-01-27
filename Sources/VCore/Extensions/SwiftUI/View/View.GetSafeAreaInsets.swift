@@ -37,7 +37,7 @@ extension View {
 
 // MARK: - Safe Area Insets Preference Key
 private struct SafeAreaInsetsPreferenceKey: PreferenceKey {
-    static var defaultValue: EdgeInsets = .init()
+    static let defaultValue: EdgeInsets = .init()
 
     static func reduce(value: inout EdgeInsets, nextValue: () -> EdgeInsets) {}
 }

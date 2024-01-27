@@ -65,7 +65,7 @@ extension View {
 
 // MARK: - Frame Preference Key
 private struct FramePreferenceKey: PreferenceKey {
-    static var defaultValue: CGRect = .init()
+    static let defaultValue: CGRect = .init()
 
     static func reduce(value: inout CGRect, nextValue: () -> CGRect) {}
 }

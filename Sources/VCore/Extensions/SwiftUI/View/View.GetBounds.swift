@@ -39,7 +39,7 @@ extension View {
 
 // MARK: - Frame Preference Key
 private struct BoundsPreferenceKey: PreferenceKey {
-    static var defaultValue: CGRect?
+    static let defaultValue: CGRect? = nil
 
     static func reduce(value: inout CGRect?, nextValue: () -> CGRect?) {}
 }

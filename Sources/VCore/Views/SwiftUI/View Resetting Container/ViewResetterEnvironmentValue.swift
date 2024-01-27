@@ -31,5 +31,5 @@ extension EnvironmentValues {
 // MARK: - View Resetter Environment Key
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 private struct ViewResetterEnvironmentKey: EnvironmentKey {
-    static var defaultValue: ViewResetter? = nil
+    static let defaultValue: ViewResetter? = nil
 }

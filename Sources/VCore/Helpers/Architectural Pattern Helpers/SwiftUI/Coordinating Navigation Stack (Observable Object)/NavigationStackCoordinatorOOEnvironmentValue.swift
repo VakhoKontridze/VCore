@@ -33,5 +33,5 @@ extension EnvironmentValues {
 // MARK: - Navigation Stack Coordinator Environment Key (Observable Object)
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 private struct NavigationStackCoordinatorOOEnvironmentKey: EnvironmentKey {
-    static var defaultValue: NavigationStackCoordinatorOO? = nil
+    static let defaultValue: NavigationStackCoordinatorOO? = nil
 }

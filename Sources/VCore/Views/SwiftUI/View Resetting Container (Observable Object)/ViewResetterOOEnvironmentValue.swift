@@ -30,5 +30,5 @@ extension EnvironmentValues {
 
 // MARK: - View Resetter Environment Key (Observable Object)
 private struct ViewResetterEnvironmentKeyOO: EnvironmentKey {
-    static var defaultValue: ViewResetterOO? = nil
+    static let defaultValue: ViewResetterOO? = nil
 }
