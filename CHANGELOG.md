@@ -8,6 +8,7 @@ General
 
 Services and Managers - Presentation Host
 
+- Presentation Host no longer queues modals
 - `presentationHostPresentationMode`, embedded in the `Environment`, is now `Optional`
 - `keyboardResponsivenessStrategy` is now non-`Optional`, and instead has `none` instance
 

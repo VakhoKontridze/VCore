@@ -20,11 +20,10 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     private let id: String
     private let uiModel: PresentationHostUIModel
 
-    var isPresentingView: Bool { hostingControllerContainer != nil }
+    var isPresentingViewController: Bool { hostingControllerContainer != nil }
 
-    private var failedToPresentDueToAlreadyPresentingViewController: Bool = false
-    private var dismissNotificationName: Notification.Name { .init(rawValue: "PresentationHostViewController.DidDismissViewController") }
-    
+    private var failedToPresentDueToNoWindow: Bool = false
+
     // MARK: Initializers
     init(
         id: String,
@@ -46,24 +45,13 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
 
-        presentQueuedViewController() // Just in case `isPresented` was set to `true` during `State` initialization
+        // Just in case `isPresented` was set to `true` during `State` initialization
+        presentFailedViewControllerIfNeeded()
     }
 
     // MARK: Setup
     private func setUp() {
-        view.backgroundColor = nil
-
-        addObserversForQueueing()
-    }
-
-    // MARK: Presentation
-    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
-        super.dismiss(animated: flag, completion: { [weak self] in
-            guard let self else { return }
-
-            postDidDismissNotificationForQueueing()
-            completion?()
-        })
+        view.backgroundColor = .clear
     }
 
     // MARK: View Controller Transitioning Delegate
@@ -77,7 +65,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         )
     }
     
-    // MARK: Presentation API - Present
+    // MARK: Presentation - Present
     func presentHostedView(_ content: AnyView) {
         let hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController = .init(
             uiModel: uiModel,
@@ -89,17 +77,20 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         hostingControllerContainer.modalTransitionStyle = .crossDissolve
         hostingControllerContainer.transitioningDelegate = self
 
-        _present(hostingControllerContainer)
+        _presentHostingControllerContainer(hostingControllerContainer)
     }
 
     @discardableResult
-    private func _present(_ viewController: UIViewController) -> Bool {
+    private func _presentHostingControllerContainer(_ viewController: PresentationHostHostingViewControllerContainerViewController) -> Bool {
         guard
-            view.window != nil,
-            presentedViewController == nil
+            view.window != nil
         else {
-            failedToPresentDueToAlreadyPresentingViewController = true
+            failedToPresentDueToNoWindow = true
+            return false
+        }
 
+        if let presentedViewController {
+            VCoreLogWarning("Attempting to present modal '\(id)', which is already presenting '\(presentedViewController.debugDescription)'")
             return false
         }
 
@@ -110,18 +101,38 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         return true
     }
 
-    // MARK: Presentation API - Update
+    private func presentFailedViewControllerIfNeeded() {
+        guard failedToPresentDueToNoWindow else {
+            return
+        }
+
+        guard let hostingControllerContainer else {
+            failedToPresentDueToNoWindow = false
+            return
+        }
+
+        let flag: Bool = _presentHostingControllerContainer(hostingControllerContainer)
+        if flag { failedToPresentDueToNoWindow = false }
+    }
+
+    // MARK: Presentation - Update
     func updateHostedView(with content: AnyView) {
         hostingControllerContainer?.hostingController.rootView = content
     }
 
-    // MARK: Presentation API - Dismiss
+    // MARK: Presentation - Dismiss
     func dismissHostedView(completion: (() -> Void)? = nil) {
         _dismissHostedView(force: false, completion: completion)
     }
     
-    static func forceDismiss(id: String) {
-        PresentationHostViewControllerStorage.shared.storage[id]?._dismissHostedView(force: true, completion: nil)
+    static func forceDismissHostedView(id: String) {
+        guard
+            let viewController: PresentationHostViewController = PresentationHostViewControllerStorage.shared.storage[id]
+        else {
+            return
+        }
+
+        viewController._dismissHostedView(force: true, completion: nil)
     }
     
     private func _dismissHostedView(force: Bool, completion: (() -> Void)?) {
@@ -155,38 +166,6 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
                 completion?()
             })
         }
-    }
-
-    // MARK: Queueing
-    private func presentQueuedViewController() {
-        guard failedToPresentDueToAlreadyPresentingViewController else {
-            return
-        }
-
-        guard let hostingControllerContainer else {
-            failedToPresentDueToAlreadyPresentingViewController = false
-            return
-        }
-
-        let flag: Bool = _present(hostingControllerContainer)
-        if flag { failedToPresentDueToAlreadyPresentingViewController = false }
-    }
-
-    private func addObserversForQueueing() {
-        NotificationCenter.default.addObserver(
-            forName: dismissNotificationName,
-            object: nil,
-            queue: .main,
-            using: { [weak self] _ in self?.presentQueuedViewController() }
-        )
-    }
-
-    private func postDidDismissNotificationForQueueing() {
-        NotificationCenter.default.post(
-            name: dismissNotificationName,
-            object: nil,
-            userInfo: nil
-        )
     }
 }
 

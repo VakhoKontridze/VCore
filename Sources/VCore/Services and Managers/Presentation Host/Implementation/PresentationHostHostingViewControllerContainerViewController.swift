@@ -31,7 +31,7 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
         self.hostingController = {
             let hostingController: UIHostingController = .init(rootView: content)
             hostingController.view.translatesAutoresizingMaskIntoConstraints = false
-            hostingController.view.backgroundColor = nil
+            hostingController.view.backgroundColor = .clear
             hostingController.overrideBehaviors([.disablesSafeAreaInsets, .disablesKeyboardAvoidance])
             return hostingController
         }()
@@ -57,7 +57,7 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
     }
 
     private func setUpView() {
-        view.backgroundColor = nil
+        view.backgroundColor = .clear
     }
 
     private func addSubviews() {

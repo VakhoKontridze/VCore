@@ -80,9 +80,7 @@ public struct PresentationHostUIModel {
         }
 
         /// Default instance. Set to `offsetByObscuredSubviewHeight`.
-        public static var `default`: Self {
-            .offsetByObscuredSubviewHeight()
-        }
+        public static var `default`: Self { .offsetByObscuredSubviewHeight() }
 
         // MARK: Storage
         enum Storage {

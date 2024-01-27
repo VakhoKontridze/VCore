@@ -49,7 +49,7 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
         }
 
         let isExternallyDismissed: Bool =
-            uiViewController.isPresentingView &&
+            uiViewController.isPresentingViewController &&
             !isPresented.wrappedValue &&
             !isBeingInternallyDismissed
 
@@ -73,7 +73,7 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
 
         if
             isPresented.wrappedValue,
-            !uiViewController.isPresentingView,
+            !uiViewController.isPresentingViewController,
             !isBeingInternallyDismissed
         {
             uiViewController.presentHostedView(content)

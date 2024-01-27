@@ -66,7 +66,7 @@ extension View {
     ///         @Environment(\.presentationHostGeometryReaderSafeAreaInsets) private var safeAreaInsets: EdgeInsets
     ///
     ///         @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
-    ///         @State private var isInternallyPresented: Bool = false
+    ///         @State private var isPresentedInternally: Bool = false
     ///
     ///         private let content: () -> Content
     ///
@@ -95,12 +95,12 @@ extension View {
     ///                 )
     ///                 //.safeAreaPaddings(edges: .all, insets: safeAreaInsets) // Can be used to introduce safe areas
     ///
-    ///                 .offset(y: isInternallyPresented ? 0 : containerSize.height)
+    ///                 .offset(y: isPresentedInternally ? 0 : containerSize.height)
     ///             })
     ///             .onAppear(perform: animateIn)
     ///             .onChange(
     ///                 of: presentationMode.isExternallyDismissed,
-    ///                 { (_, newValue) in if newValue && isInternallyPresented { animateOutFromExternalDismiss() } }
+    ///                 { (_, newValue) in if newValue && isPresentedInternally { animateOutFromExternalDismiss() } }
     ///             )
     ///
     ///             .onReceive( // For ensuring proper stating when changing device/interface orientation
@@ -112,14 +112,14 @@ extension View {
     ///         private func animateIn() {
     ///             withAnimation(
     ///                 .easeInOut(duration: 0.3),
-    ///                 { isInternallyPresented = true }
+    ///                 { isPresentedInternally = true }
     ///            )
     ///         }
     ///
     ///         private func animateOut() {
     ///             withAnimation(
     ///                 .easeInOut(duration: 0.3),
-    ///                 { isInternallyPresented = false },
+    ///                 { isPresentedInternally = false },
     ///                 completion: presentationMode.dismiss
     ///             )
     ///         }
@@ -127,7 +127,7 @@ extension View {
     ///         private func animateOutFromExternalDismiss() {
     ///             withAnimation(
     ///                 .easeInOut(duration: 0.3),
-    ///                 { isInternallyPresented = false },
+    ///                 { isPresentedInternally = false },
     ///                 completion: presentationMode.externalDismissCompletion
     ///             )
     ///         }
@@ -232,7 +232,7 @@ extension View {
     {
 #if canImport(UIKit) && !os(watchOS)
         self
-            .onDisappear(perform: { PresentationHostViewController.forceDismiss(id: id) })
+            .onDisappear(perform: { PresentationHostViewController.forceDismissHostedView(id: id) })
             .background(content: {
                 PresentationHostView(
                     id: id,
@@ -294,7 +294,7 @@ private struct SomeModal<Content>: View where Content: View {
     @Environment(\.presentationHostGeometryReaderSafeAreaInsets) private var safeAreaInsets: EdgeInsets
 
     @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
-    @State private var isInternallyPresented: Bool = false
+    @State private var isPresentedInternally: Bool = false
 
     private let content: () -> Content
 
@@ -323,26 +323,26 @@ private struct SomeModal<Content>: View where Content: View {
             )
             //.safeAreaPaddings(edges: .all, insets: safeAreaInsets) // Can be used to introduce safe areas
 
-            .offset(y: isInternallyPresented ? 0 : containerSize.height)
+            .offset(y: isPresentedInternally ? 0 : containerSize.height)
         })
         .onAppear(perform: animateIn)
         .onChange(
             of: presentationMode.isExternallyDismissed,
-            { (_, newValue) in if newValue && isInternallyPresented { animateOutFromExternalDismiss() } }
+            { (_, newValue) in if newValue && isPresentedInternally { animateOutFromExternalDismiss() } }
         )
     }
 
     private func animateIn() {
         withAnimation(
             .easeInOut(duration: 0.3),
-            { isInternallyPresented = true }
+            { isPresentedInternally = true }
        )
     }
 
     private func animateOut() {
         withAnimation(
             .easeInOut(duration: 0.3),
-            { isInternallyPresented = false },
+            { isPresentedInternally = false },
             completion: presentationMode.dismiss
         )
     }
@@ -350,7 +350,7 @@ private struct SomeModal<Content>: View where Content: View {
     private func animateOutFromExternalDismiss() {
         withAnimation(
             .easeInOut(duration: 0.3),
-            { isInternallyPresented = false },
+            { isPresentedInternally = false },
             completion: presentationMode.externalDismissCompletion
         )
     }
