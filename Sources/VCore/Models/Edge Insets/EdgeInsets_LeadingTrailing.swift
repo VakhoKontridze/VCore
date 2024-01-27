@@ -135,7 +135,7 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable {
 
 // MARK: - Padding
 extension View {
-    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_LeadingTrailing`.
+    /// Adds a specific padding amount to each edge of `View` from `EdgeInsets_LeadingTrailing`.
     ///
     ///     let insets: EdgeInsets_LeadingTrailing = .init(
     ///         leading: 10,

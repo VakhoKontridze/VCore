@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - View on Touch Interaction
 @available(tvOS, unavailable)
 extension View {
-    /// Adds an action to perform when this `View` recognizes a touch down or touch up interaction.
+    /// Adds an action to perform when `View` recognizes a touch down or touch up interaction.
     ///
     ///     var body: some View {
     ///         Text("Lorem ipsum")

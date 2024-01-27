@@ -141,7 +141,7 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
 
 // MARK: - Padding
 extension View {
-    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_HorizontalVertical`.
+    /// Adds a specific padding amount to each edge of `View` from `EdgeInsets_HorizontalVertical`.
     ///
     ///     let insets: EdgeInsets_HorizontalVertical = .init(
     ///         horizontal: 10,

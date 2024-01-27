@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - View Fit to Aspect
 extension View {
-    /// Constrains this `View`'s dimensions to the specified aspect ratio without stretching it.
+    /// Constrains `View`'s dimensions to the specified aspect ratio without stretching it.
     ///
     ///     Image("Image")
     ///         .resizable()

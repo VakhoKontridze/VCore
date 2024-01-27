@@ -135,7 +135,7 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable {
 
 // MARK: - Padding
 extension View {
-    /// Adds a specific padding amount to each edge of this `View` from `EdgeInsets_TopBottom`.
+    /// Adds a specific padding amount to each edge of `View` from `EdgeInsets_TopBottom`.
     ///
     ///     let insets: EdgeInsets_TopBottom = .init(
     ///         top: 10,
