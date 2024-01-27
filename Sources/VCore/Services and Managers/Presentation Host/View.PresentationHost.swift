@@ -65,7 +65,7 @@ extension View {
     ///         @Environment(\.presentationHostGeometryReaderSize) private var containerSize: CGSize
     ///         @Environment(\.presentationHostGeometryReaderSafeAreaInsets) private var safeAreaInsets: EdgeInsets
     ///
-    ///         @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode
+    ///         @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
     ///         @State private var isInternallyPresented: Bool = false
     ///
     ///         private let content: () -> Content
@@ -248,7 +248,7 @@ extension View {
 // MARK: - Preview
 #if DEBUG
 
-#if canImport(UIKit) && !(os(tvOS) || os(watchOS))
+#if canImport(UIKit) && !(os(tvOS) || os(watchOS) || os(visionOS))
 
 #Preview(body: {
     guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else { return EmptyView() }
@@ -293,7 +293,7 @@ private struct SomeModal<Content>: View where Content: View {
     @Environment(\.presentationHostGeometryReaderSize) private var containerSize: CGSize
     @Environment(\.presentationHostGeometryReaderSafeAreaInsets) private var safeAreaInsets: EdgeInsets
 
-    @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode
+    @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
     @State private var isInternallyPresented: Bool = false
 
     private let content: () -> Content

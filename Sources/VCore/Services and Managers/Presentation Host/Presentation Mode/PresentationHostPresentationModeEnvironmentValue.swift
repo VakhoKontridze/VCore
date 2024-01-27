@@ -14,10 +14,10 @@ import SwiftUI
 @available(visionOS, unavailable)
 extension View {
     func presentationHostPresentationMode(
-        _ presentationHostExternalDismiss: PresentationHostPresentationMode
+        _ presentationHostPresentationMode: PresentationHostPresentationMode?
     ) -> some View {
         self
-            .environment(\.presentationHostPresentationMode, presentationHostExternalDismiss)
+            .environment(\.presentationHostPresentationMode, presentationHostPresentationMode)
     }
 }
 
@@ -28,7 +28,7 @@ extension View {
 @available(visionOS, unavailable)
 extension EnvironmentValues {
     /// Presentation Host's presentation mode of the `View` associated with the environment.
-    public var presentationHostPresentationMode: PresentationHostPresentationMode {
+    public var presentationHostPresentationMode: PresentationHostPresentationMode? {
         get { self[PresentationHostPresentationModeEnvironmentKey.self] }
         set { self[PresentationHostPresentationModeEnvironmentKey.self] = newValue }
     }
@@ -40,5 +40,5 @@ extension EnvironmentValues {
 @available(watchOS, unavailable)
 @available(visionOS, unavailable)
 private struct PresentationHostPresentationModeEnvironmentKey: EnvironmentKey {
-    static let defaultValue: PresentationHostPresentationMode = .init()
+    static let defaultValue: PresentationHostPresentationMode? = nil
 }

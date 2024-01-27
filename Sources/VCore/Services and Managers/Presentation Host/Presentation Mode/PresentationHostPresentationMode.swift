@@ -20,14 +20,8 @@ import SwiftUI
 @available(watchOS, unavailable)
 @available(visionOS, unavailable)
 public struct PresentationHostPresentationMode {
-    // MARK: Properties
-    /// Indicates if `PresentationHostPresentationMode` is embedded via environment.
-    ///
-    /// Can be used to support both Presentation Host and `DismissAction` APIs.
-    public let isValidConfiguration: Bool
-    
     /// Instance identifier of modal.
-    public let id: String?
+    public let id: String
     
     /// Completion handler that dismisses modal.
     public let dismiss: () -> Void
@@ -39,26 +33,4 @@ public struct PresentationHostPresentationMode {
     ///
     /// Must be called after modal has been animated out.
     public let externalDismissCompletion: () -> Void
-    
-    // MARK: Initializers
-    init(
-        id: String,
-        dismiss: @escaping () -> Void,
-        isExternallyDismissed: Bool,
-        externalDismissCompletion: @escaping () -> Void
-    ) {
-        self.isValidConfiguration = true
-        self.id = id
-        self.dismiss = dismiss
-        self.isExternallyDismissed = isExternallyDismissed
-        self.externalDismissCompletion = externalDismissCompletion
-    }
-    
-    init() {
-        self.isValidConfiguration = false
-        self.id = nil
-        self.dismiss = {}
-        self.isExternallyDismissed = false
-        self.externalDismissCompletion = {}
-    }
 }
