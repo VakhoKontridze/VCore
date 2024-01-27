@@ -159,7 +159,7 @@ open class InfiniteScrollingUITableView: UITableView {
 #endif
 
 // MARK: - Preview
-#if os(iOS)
+#if os(iOS) // `iOS`-only example
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
 #Preview(body: {
