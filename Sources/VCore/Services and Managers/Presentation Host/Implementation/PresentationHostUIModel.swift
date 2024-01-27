@@ -23,7 +23,7 @@ public struct PresentationHostUIModel {
     /// Keyboard responsiveness strategy. Set to `default`.
     ///
     /// Changing this property after modal is presented may cause unintended behaviors.
-    public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy? = .default
+    public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy = .default
 
     // MARK: Initializers
     /// Initializes UI model with default values.
@@ -43,6 +43,11 @@ public struct PresentationHostUIModel {
         }
 
         // MARK: Initializers
+        /// None.
+        public static var none: Self {
+            .init(.none)
+        }
+
         /// Offsets container by the specified value.
         public static func offset(
             _ offset: CGFloat
@@ -81,6 +86,7 @@ public struct PresentationHostUIModel {
 
         // MARK: Storage
         enum Storage {
+            case none
             case offset(offset: CGFloat)
             case offsetByKeyboardHeight(additionalOffset: CGFloat)
             case offsetByObscuredSubviewHeight(safeAreaInset: CGFloat)

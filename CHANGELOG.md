@@ -6,6 +6,11 @@ General
 
 - Package now partially supports `visionOS`
 
+Services and Managers - Presentation Host
+
+- `presentationHostPresentationMode`, embedded in the `Environment`, is now `Optional`
+- `keyboardResponsivenessStrategy` is now non-`Optional`, and instead has `none` instance
+
 Extensions
 
 - `Color.primaryInverted` property is added, that can be used for inverted primary content
