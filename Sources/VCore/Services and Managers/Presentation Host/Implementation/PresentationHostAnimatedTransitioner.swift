@@ -27,14 +27,16 @@ final class PresentationHostAnimatedTransitioner: NSObject, UIViewControllerAnim
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        let transitionView: UIView = transitionContext.containerView
+        transitionView.backgroundColor = .clear
+        transitionView.isUserInteractionEnabled = allowsHitTests
+
         guard let presentedViewController: UIViewController = transitionContext.viewController(forKey: .to) else { return }
-        
-        transitionContext.containerView.addSubview(presentedViewController.view)
-        presentedViewController.view.frame = transitionContext.containerView.frame
-        
-        transitionContext.containerView.backgroundColor = .clear
-        transitionContext.containerView.isUserInteractionEnabled = allowsHitTests
-        
+
+        transitionView.addSubview(presentedViewController.view)
+
+        presentedViewController.view.frame = transitionView.frame
+
         transitionContext.completeTransition(true)
     }
 }

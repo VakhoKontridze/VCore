@@ -16,8 +16,6 @@ import SwiftUI
 public struct PresentationHostUIModel {
     // MARK: Properties
     /// Indicates if modal allows hit tests. Set to `true`.
-    ///
-    /// For `false` to have an effect, underlying `SwiftUI` `View` shouldn't have gestures.
     public var allowsHitTests: Bool = true
 
     /// Keyboard responsiveness strategy. Set to `default`.
