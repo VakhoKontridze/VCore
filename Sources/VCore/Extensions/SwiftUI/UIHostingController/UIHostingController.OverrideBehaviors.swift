@@ -51,30 +51,38 @@ extension UIHostingController {
         }
 
         if behaviors.contains(.disablesSafeAreaInsets) {
-            if let method: Method = class_getInstanceMethod(UIView.self, #selector(getter: UIView.safeAreaInsets)) {
+            let selector: Selector = #selector(getter: UIView.safeAreaInsets)
+
+            if let method: Method = class_getInstanceMethod(UIView.self, selector) {
                 let block: @convention(block) (AnyObject) -> UIEdgeInsets = { _ in .zero }
 
                 class_addMethod(
                     viewSubclass,
-                    #selector(getter: UIView.safeAreaInsets),
+                    selector,
                     imp_implementationWithBlock(block),
                     method_getTypeEncoding(method)
                 )
+
+            } else {
+                VCoreLogError("Couldn't retrieve 'UIView.safeAreaInsets' when overriding 'disablesSafeAreaInsets' in 'UIHostingController'")
             }
         }
 
         if behaviors.contains(.disablesKeyboardAvoidance) {
-            let methodName: String = "keyboardWillShowWithNotification:"
+            let selector: Selector = NSSelectorFromString("keyboardWillShowWithNotification:")
 
-            if let method: Method = class_getInstanceMethod(viewClass, NSSelectorFromString(methodName)) {
+            if let method: Method = class_getInstanceMethod(viewClass, selector) {
                 let block: @convention(block) (AnyObject, AnyObject) -> Void = { (_, _) in }
 
                 class_addMethod(
                     viewSubclass,
-                    NSSelectorFromString(methodName),
+                    selector,
                     imp_implementationWithBlock(block),
                     method_getTypeEncoding(method)
                 )
+
+            } else {
+                VCoreLogError("Couldn't retrieve 'UIView.keyboardWillShowNotification' when overriding 'disablesKeyboardAvoidance' in 'UIHostingController'")
             }
         }
 
