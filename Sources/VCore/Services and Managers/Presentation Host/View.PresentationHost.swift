@@ -110,116 +110,13 @@ extension View {
     /// For additional info, refer to `presentationHostGeometryReaderSize` and `presentationHostGeometryReaderSafeAreaInsets`.
     ///
     /// Additional usage examples are documented under `Documentation/Presentation Host Examples and Tests`.
+    @ViewBuilder
     public func presentationHost<Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
         onPresent presentHandler: (() -> Void)? = nil,
         onDismiss dismissHandler: (() -> Void)? = nil,
-        content: @escaping () -> Content
-    ) -> some View
-        where Content: View
-    {
-        self
-            ._presentationHost(
-                id: id,
-                uiModel: uiModel,
-                isPresented: isPresented,
-                onPresent: presentHandler,
-                onDismiss: dismissHandler,
-                content: content
-            )
-    }
-
-    /// Injects a Presentation Host in view hierarchy for modal presentation.
-    ///
-    /// For additional info, refer to `View.presentationHost(id:uiModel:isPresented:onPresent:onDismiss:content:)`.
-    public func presentationHost<Item, Content>(
-        id: String,
-        uiModel: PresentationHostUIModel = .init(),
-        item: Binding<Item?>,
-        onPresent presentHandler: (() -> Void)? = nil,
-        onDismiss dismissHandler: (() -> Void)? = nil,
-        content: @escaping () -> Content
-    ) -> some View
-        where Content: View
-    {
-        self
-            ._presentationHost(
-                id: id,
-                uiModel: uiModel,
-                isPresented: Binding(
-                    get: { item.wrappedValue != nil },
-                    set: { if !$0 { item.wrappedValue = nil } }
-                ),
-                onPresent: presentHandler,
-                onDismiss: dismissHandler,
-                content: content
-            )
-    }
-    
-    /// Injects a Presentation Host in view hierarchy for modal presentation.
-    ///
-    /// For additional info, refer to `View.presentationHost(id:uiModel:isPresented:onPresent:onDismiss:content:)`.
-    public func presentationHost<T, Content>(
-        id: String,
-        uiModel: PresentationHostUIModel = .init(),
-        isPresented: Binding<Bool>,
-        presenting data: T?,
-        onPresent presentHandler: (() -> Void)? = nil,
-        onDismiss dismissHandler: (() -> Void)? = nil,
-        content: @escaping () -> Content
-    ) -> some View
-        where Content: View
-    {
-        self
-            ._presentationHost(
-                id: id,
-                uiModel: uiModel,
-                isPresented: Binding(
-                    get: { isPresented.wrappedValue && data != nil },
-                    set: { if !$0 { isPresented.wrappedValue = false } }
-                ),
-                onPresent: presentHandler,
-                onDismiss: dismissHandler,
-                content: content
-            )
-    }
-    
-    /// Injects a Presentation Host in view hierarchy for modal presentation.
-    ///
-    /// For additional info, refer to `View.presentationHost(id:uiModel:isPresented:onPresent:onDismiss:content:)`.
-    public func presentationHost<E, Content>(
-        id: String,
-        uiModel: PresentationHostUIModel = .init(),
-        isPresented: Binding<Bool>,
-        error: E?,
-        onPresent presentHandler: (() -> Void)? = nil,
-        onDismiss dismissHandler: (() -> Void)? = nil,
-        content: @escaping () -> Content
-    ) -> some View
-        where Content: View
-    {
-        self
-            ._presentationHost(
-                id: id,
-                uiModel: uiModel,
-                isPresented: Binding(
-                    get: { isPresented.wrappedValue && error != nil },
-                    set: { if !$0 { isPresented.wrappedValue = false } }
-                ),
-                onPresent: presentHandler,
-                onDismiss: dismissHandler,
-                content: content
-            )
-    }
-
-    @ViewBuilder private func _presentationHost<Content>(
-        id: String,
-        uiModel: PresentationHostUIModel = .init(),
-        isPresented: Binding<Bool>,
-        onPresent presentHandler: (() -> Void)?,
-        onDismiss dismissHandler: (() -> Void)?,
         content: @escaping () -> Content
     ) -> some View
         where Content: View
