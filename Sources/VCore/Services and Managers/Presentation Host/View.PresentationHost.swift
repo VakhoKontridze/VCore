@@ -16,33 +16,16 @@ extension View {
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
     ///     @State private var isPresented: Bool = false
-    ///     @State private var text: String = ""
     ///
     ///     var body: some View {
-    ///         VStack(content: {
-    ///             Button(
-    ///                 "Present",
-    ///                 action: { isPresented = true }
-    ///             )
-    ///         })
-    ///         // For `VStack` and `Button` to ignore keyboard
-    ///         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    ///         .ignoresSafeArea(.keyboard)
-    ///
+    ///         Button(
+    ///             "Present",
+    ///             action: { isPresented = true }
+    ///         )
     ///         .someModal(
     ///             id: "some_modal",
     ///             isPresented: $isPresented,
-    ///             content: {
-    ///                 ScrollView(content: {
-    ///                     VStack(spacing: 20, content: {
-    ///                         ForEach(0..<10, id: \.self, content: { _ in
-    ///                             TextField("", text: $text)
-    ///                                 .textFieldStyle(.roundedBorder)
-    ///                         })
-    ///                     })
-    ///                     .padding(30)
-    ///                 })
-    ///             }
+    ///             content: { Color.accentColor }
     ///         )
     ///     }
     ///
@@ -56,7 +39,12 @@ extension View {
     ///                 .presentationHost(
     ///                     id: id,
     ///                     isPresented: isPresented,
-    ///                     content: { SomeModal(content: content) }
+    ///                     content: {
+    ///                         SomeModal(
+    ///                             isPresented: isPresented,
+    ///                             content: content
+    ///                         )
+    ///                     }
     ///                 )
     ///         }
     ///     }
@@ -66,47 +54,40 @@ extension View {
     ///         @Environment(\.presentationHostGeometryReaderSafeAreaInsets) private var safeAreaInsets: EdgeInsets
     ///
     ///         @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
+    ///
+    ///         @Binding private var isPresented: Bool
     ///         @State private var isPresentedInternally: Bool = false
     ///
     ///         private let content: () -> Content
     ///
     ///         init(
+    ///             isPresented: Binding<Bool>,
     ///             @ViewBuilder content: @escaping () -> Content
     ///         ) {
+    ///             self._isPresented = isPresented
     ///            self.content = content
     ///         }
     ///
     ///         var body: some View {
     ///             ZStack(content: {
-    ///                 Color.black.opacity(0.16)
+    ///                 Color.black.opacity(0.1)
     ///                     .contentShape(Rectangle())
-    ///                     .onTapGesture(perform: animateOut)
+    ///                     .onTapGesture(perform: { isPresented = false })
     ///
     ///                 ZStack(content: {
     ///                     Color(uiColor: .systemBackground)
     ///
     ///                     content()
+    ///                         .padding()
     ///                 })
-    ///                 .clipped() // Prevents keyboard content from overflowing
-    ///
     ///                 .frame(
     ///                     width: containerSize.width * 0.9,
     ///                     height: containerSize.height * 0.6
     ///                 )
-    ///                 //.safeAreaPaddings(edges: .all, insets: safeAreaInsets) // Can be used to introduce safe areas
-    ///
     ///                 .offset(y: isPresentedInternally ? 0 : containerSize.height)
     ///             })
-    ///             .onAppear(perform: animateIn)
-    ///             .onChange(
-    ///                 of: presentationMode.isExternallyDismissed,
-    ///                 { (_, newValue) in if newValue && isPresentedInternally { animateOutFromExternalDismiss() } }
-    ///             )
-    ///
-    ///             .onReceive( // For ensuring proper stating when changing device/interface orientation
-    ///                 NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification),
-    ///                 perform: { _ in UIApplication.shared.sendResignFirstResponderAction() }
-    ///             )
+    ///             .onReceive(presentationMode.presentPublisher, perform: animateIn)
+    ///             .onReceive(presentationMode.dismissPublisher, perform: animateOut)
     ///         }
     ///
     ///         private func animateIn() {
@@ -120,24 +101,21 @@ extension View {
     ///             withAnimation(
     ///                 .easeInOut(duration: 0.3),
     ///                 { isPresentedInternally = false },
-    ///                 completion: presentationMode.dismiss
-    ///             )
-    ///         }
-    ///
-    ///         private func animateOutFromExternalDismiss() {
-    ///             withAnimation(
-    ///                 .easeInOut(duration: 0.3),
-    ///                 { isPresentedInternally = false },
-    ///                 completion: presentationMode.externalDismissCompletion
+    ///                 completion: presentationMode.dismissCompletion
     ///             )
     ///         }
     ///     }
     ///
-    /// Due to a presented modal context, content loses its intrinsic safe area properties, and requires custom handling and implementation.
+    /// Due to implementation, content loses its intrinsic safe area properties, and requires custom handling and implementation.
+    /// For additional info, refer to `presentationHostGeometryReaderSize` and `presentationHostGeometryReaderSafeAreaInsets`.
+    ///
+    /// Additional usage examples are documented under `Documentation/Presentation Host Examples and Tests`.
     public func presentationHost<Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
+        onPresent presentHandler: (() -> Void)? = nil,
+        onDismiss dismissHandler: (() -> Void)? = nil,
         content: @escaping () -> Content
     ) -> some View
         where Content: View
@@ -147,17 +125,21 @@ extension View {
                 id: id,
                 uiModel: uiModel,
                 isPresented: isPresented,
+                onPresent: presentHandler,
+                onDismiss: dismissHandler,
                 content: content
             )
     }
 
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
-    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
+    /// For additional info, refer to `View.presentationHost(id:uiModel:isPresented:onPresent:onDismiss:content:)`.
     public func presentationHost<Item, Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         item: Binding<Item?>,
+        onPresent presentHandler: (() -> Void)? = nil,
+        onDismiss dismissHandler: (() -> Void)? = nil,
         content: @escaping () -> Content
     ) -> some View
         where Content: View
@@ -170,18 +152,22 @@ extension View {
                     get: { item.wrappedValue != nil },
                     set: { if !$0 { item.wrappedValue = nil } }
                 ),
+                onPresent: presentHandler,
+                onDismiss: dismissHandler,
                 content: content
             )
     }
     
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
-    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
+    /// For additional info, refer to `View.presentationHost(id:uiModel:isPresented:onPresent:onDismiss:content:)`.
     public func presentationHost<T, Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
         presenting data: T?,
+        onPresent presentHandler: (() -> Void)? = nil,
+        onDismiss dismissHandler: (() -> Void)? = nil,
         content: @escaping () -> Content
     ) -> some View
         where Content: View
@@ -194,18 +180,22 @@ extension View {
                     get: { isPresented.wrappedValue && data != nil },
                     set: { if !$0 { isPresented.wrappedValue = false } }
                 ),
+                onPresent: presentHandler,
+                onDismiss: dismissHandler,
                 content: content
             )
     }
     
     /// Injects a Presentation Host in view hierarchy for modal presentation.
     ///
-    /// For additional info, refer to `View.presentationHost(id:allowsHitTests:isPresented:content:)`.
+    /// For additional info, refer to `View.presentationHost(id:uiModel:isPresented:onPresent:onDismiss:content:)`.
     public func presentationHost<E, Content>(
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
         error: E?,
+        onPresent presentHandler: (() -> Void)? = nil,
+        onDismiss dismissHandler: (() -> Void)? = nil,
         content: @escaping () -> Content
     ) -> some View
         where Content: View
@@ -218,6 +208,8 @@ extension View {
                     get: { isPresented.wrappedValue && error != nil },
                     set: { if !$0 { isPresented.wrappedValue = false } }
                 ),
+                onPresent: presentHandler,
+                onDismiss: dismissHandler,
                 content: content
             )
     }
@@ -226,18 +218,25 @@ extension View {
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
+        onPresent presentHandler: (() -> Void)?,
+        onDismiss dismissHandler: (() -> Void)?,
         content: @escaping () -> Content
     ) -> some View
         where Content: View
     {
 #if canImport(UIKit) && !os(watchOS)
         self
-            .onDisappear(perform: { PresentationHostViewController.forceDismissHostedView(id: id) })
+            .onDisappear(perform: {
+                isPresented.wrappedValue = false
+                PresentationHostViewController.forceDismissHostedView(id: id)
+            })
             .background(content: {
                 PresentationHostView(
                     id: id,
                     uiModel: uiModel,
                     isPresented: isPresented,
+                    onPresent: presentHandler,
+                    onDismiss: dismissHandler,
                     content: content
                 )
             })
@@ -254,7 +253,7 @@ extension View {
     guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else { return EmptyView() }
 
     struct ContentView: View {
-        @State private var isPresented: Bool = false
+        @State private var isPresented: Bool = true
 
         var body: some View {
             Button(
@@ -283,7 +282,12 @@ extension View {
             .presentationHost(
                 id: id,
                 isPresented: isPresented,
-                content: { SomeModal(content: content) }
+                content: {
+                    SomeModal(
+                        isPresented: isPresented,
+                        content: content
+                    )
+                }
             )
     }
 }
@@ -294,42 +298,40 @@ private struct SomeModal<Content>: View where Content: View {
     @Environment(\.presentationHostGeometryReaderSafeAreaInsets) private var safeAreaInsets: EdgeInsets
 
     @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
+
+    @Binding private var isPresented: Bool
     @State private var isPresentedInternally: Bool = false
 
     private let content: () -> Content
 
     init(
+        isPresented: Binding<Bool>,
         @ViewBuilder content: @escaping () -> Content
     ) {
-       self.content = content
+        self._isPresented = isPresented
+        self.content = content
     }
 
     var body: some View {
         ZStack(content: {
-            Color.black.opacity(0.16)
+            Color.black.opacity(0.1)
                 .contentShape(Rectangle())
-                .onTapGesture(perform: animateOut)
+                .onTapGesture(perform: { isPresented = false })
 
             ZStack(content: {
-                Color(uiColor: UIColor.systemBackground)
+                Color(uiColor: .systemBackground)
 
                 content()
+                    .padding()
             })
-            .clipped() // Prevents keyboard content from overflowing
-
             .frame(
                 width: containerSize.width * 0.9,
                 height: containerSize.height * 0.6
             )
-            //.safeAreaPaddings(edges: .all, insets: safeAreaInsets) // Can be used to introduce safe areas
-
             .offset(y: isPresentedInternally ? 0 : containerSize.height)
         })
-        .onAppear(perform: animateIn)
-        .onChange(
-            of: presentationMode.isExternallyDismissed,
-            { (_, newValue) in if newValue && isPresentedInternally { animateOutFromExternalDismiss() } }
-        )
+        .onReceive(presentationMode.presentPublisher, perform: animateIn)
+        .onReceive(presentationMode.dismissPublisher, perform: animateOut)
     }
 
     private func animateIn() {
@@ -343,15 +345,7 @@ private struct SomeModal<Content>: View where Content: View {
         withAnimation(
             .easeInOut(duration: 0.3),
             { isPresentedInternally = false },
-            completion: presentationMode.dismiss
-        )
-    }
-
-    private func animateOutFromExternalDismiss() {
-        withAnimation(
-            .easeInOut(duration: 0.3),
-            { isPresentedInternally = false },
-            completion: presentationMode.externalDismissCompletion
+            completion: presentationMode.dismissCompletion
         )
     }
 }

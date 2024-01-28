@@ -16,7 +16,7 @@ import SwiftUI
 @available(visionOS, unavailable)
 struct PresentationHostGeometryReader<Content>: View where Content: View {
     // MARK: Properties
-    // `proxy.safeAreaInsets` no longer works, because safe areas are being ignored
+    // `UIWindow` must be retrieved, since `proxy.safeAreaInsets` doesn't work due to `ignoresSafeArea`
     private let window: () -> UIWindow?
 
     private let content: () -> Content

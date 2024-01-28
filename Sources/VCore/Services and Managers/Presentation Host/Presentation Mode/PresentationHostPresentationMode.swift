@@ -5,32 +5,34 @@
 //  Created by Vakhtang Kontridze on 4/14/22.
 //
 
-import SwiftUI
+import Foundation
+import Combine
 
 // MARK: - Presentation Host Presentation Mode
 /// Object embedded in environment of modals presented via Presentation Host.
 ///
-/// Contains `dismiss` handler that can be called after internal dismissal to remove content from view hierarchy.
-///
-/// Also contains `isExternallyDismissed` that indicates if dismiss has been triggered via externally via code,
-/// i.e., setting `isPresented` to `false`. When this change is triggered, internal dismiss animation can occur.
-/// After which `externalDismissCompletion` handler must be called to remove content from view hierarchy.
+/// Contains `Publisher`s for detecting modal lifecycle changes.
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 @available(visionOS, unavailable)
 public struct PresentationHostPresentationMode {
-    /// Instance identifier of modal.
+    // MARK: Properties - General
+    /// Modal identifier.
     public let id: String
-    
-    /// Completion handler that dismisses modal.
-    public let dismiss: () -> Void
-    
-    /// Indicates if external dismiss has been triggered externally.
-    public let isExternallyDismissed: Bool
-    
-    /// Completion handler that dismisses modal after external trigger.
-    ///
-    /// Must be called after modal has been animated out.
-    public let externalDismissCompletion: () -> Void
+
+    // MARK: Properties - Present
+    let presentSubject: PassthroughSubject<Void, Never> = .init()
+
+    /// Emits notification when modal should be internally presented.
+    public var presentPublisher: AnyPublisher<Void, Never> { presentSubject.eraseToAnyPublisher() }
+
+    // MARK: Properties - Dismiss
+    let dismissSubject: PassthroughSubject<Void, Never> = .init()
+
+    /// Emits notification when modal should be internally dismissed.
+    public var dismissPublisher: AnyPublisher<Void, Never> { dismissSubject.eraseToAnyPublisher() }
+
+    /// Completion block that should be called when internal animations conclude, to remove modal from the view hierarchy.
+    public let dismissCompletion: () -> Void
 }

@@ -15,22 +15,30 @@ import SwiftUI
 struct PresentationHostView<Content>: UIViewControllerRepresentable where Content: View {
     // MARK: Properties
     private let id: String
+    
     private let uiModel: PresentationHostUIModel
+    
     private let isPresented: Binding<Bool>
+    
+    private let presentHandler: (() -> Void)?
+    private let dismissHandler: (() -> Void)?
+    
     private let content: () -> Content
-
-    @State private var isBeingInternallyDismissed: Bool = false
 
     // MARK: Initializers
     init(
         id: String,
         uiModel: PresentationHostUIModel,
         isPresented: Binding<Bool>,
+        onPresent presentHandler: (() -> Void)?,
+        onDismiss dismissHandler: (() -> Void)?,
         content: @escaping () -> Content
     ) {
         self.id = id
         self.uiModel = uiModel
         self.isPresented = isPresented
+        self.presentHandler = presentHandler
+        self.dismissHandler = dismissHandler
         self.content = content
     }
 
@@ -48,38 +56,39 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
             fatalError()
         }
 
-        let isExternallyDismissed: Bool =
-            uiViewController.isPresentingViewController &&
-            !isPresented.wrappedValue &&
-            !isBeingInternallyDismissed
+        let presentationMode: PresentationHostPresentationMode = .init(
+            id: id,
+            dismissCompletion: { uiViewController.dismissHostedView(completion: nil) }
+        )
 
-        let dismissHandler: () -> Void = {
-            isBeingInternallyDismissed = true
-            isPresented.wrappedValue = false
-            uiViewController.dismissHostedView(completion: { isBeingInternallyDismissed = false })
-        }
-
-        let content: AnyView = PresentationHostGeometryReader(
+        let contentView: AnyView = PresentationHostGeometryReader(
             window: { [weak uiViewController] in uiViewController?.view.window },
             content: content
         )
-        .presentationHostPresentationMode(PresentationHostPresentationMode(
-            id: id,
-            dismiss: dismissHandler,
-            isExternallyDismissed: isExternallyDismissed,
-            externalDismissCompletion: { uiViewController.dismissHostedView() }
-        ))
+        .presentationHostPresentationMode(presentationMode)
         .eraseToAnyView()
 
-        if
-            isPresented.wrappedValue,
-            !uiViewController.isPresentingViewController,
-            !isBeingInternallyDismissed
-        {
-            uiViewController.presentHostedView(content)
+        switch isPresented.wrappedValue {
+        case false:
+            if uiViewController.isPresentingViewController {
+                Task.detached(operation: { @MainActor in
+                    presentationMode.dismissSubject.send()
+                    presentHandler?()
+                })
+            }
+
+        case true:
+            if !uiViewController.isPresentingViewController {
+                uiViewController.presentHostedView(contentView, completion: {
+                    Task.detached(operation: { @MainActor in
+                        presentationMode.presentSubject.send()
+                        dismissHandler?()
+                    })
+                })
+            }
         }
 
-        uiViewController.updateHostedView(with: content)
+        uiViewController.updateHostedView(with: contentView)
     }
 }
 

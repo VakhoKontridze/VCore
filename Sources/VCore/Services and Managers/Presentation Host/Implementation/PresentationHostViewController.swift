@@ -22,8 +22,6 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
 
     var isPresentingViewController: Bool { hostingControllerContainer != nil }
 
-    private var failedToPresentDueToNoWindow: Bool = false
-
     // MARK: Initializers
     init(
         id: String,
@@ -39,14 +37,6 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     
     required init?(coder: NSCoder) {
         fatalError()
-    }
-
-    // MARK: Lifecycle
-    override func didMove(toParent parent: UIViewController?) {
-        super.didMove(toParent: parent)
-
-        // Just in case `isPresented` was set to `true` during `State` initialization
-        presentFailedViewControllerIfNeeded()
     }
 
     // MARK: Setup
@@ -66,7 +56,10 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
     }
     
     // MARK: Presentation - Present
-    func presentHostedView(_ content: AnyView) {
+    func presentHostedView(
+        _ content: AnyView,
+        completion: (() -> Void)?
+    ) {
         let hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController = .init(
             uiModel: uiModel,
             content: content
@@ -77,55 +70,37 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         hostingControllerContainer.modalTransitionStyle = .crossDissolve
         hostingControllerContainer.transitioningDelegate = self
 
-        _presentHostingControllerContainer(hostingControllerContainer)
-    }
+        Task.detached(operation: { @MainActor [weak self] in
+            guard let self else { return }
 
-    @discardableResult
-    private func _presentHostingControllerContainer(_ viewController: PresentationHostHostingViewControllerContainerViewController) -> Bool {
-        guard
-            view.window != nil
-        else {
-            failedToPresentDueToNoWindow = true
-            return false
-        }
+            if let presentedViewController {
+                VCoreLogWarning("Attempting to present modal '\(id)', which is already presenting '\(presentedViewController.debugDescription)'")
+                return
+            }
 
-        if let presentedViewController {
-            VCoreLogWarning("Attempting to present modal '\(id)', which is already presenting '\(presentedViewController.debugDescription)'")
-            return false
-        }
+            present(hostingControllerContainer, animated: true, completion: completion)
 
-        present(viewController, animated: true, completion: nil)
-
-        PresentationHostViewControllerStorage.shared.storage[id] = self
-
-        return true
-    }
-
-    private func presentFailedViewControllerIfNeeded() {
-        guard failedToPresentDueToNoWindow else {
-            return
-        }
-
-        guard let hostingControllerContainer else {
-            failedToPresentDueToNoWindow = false
-            return
-        }
-
-        let flag: Bool = _presentHostingControllerContainer(hostingControllerContainer)
-        if flag { failedToPresentDueToNoWindow = false }
+            PresentationHostViewControllerStorage.shared.storage[id] = self
+        })
     }
 
     // MARK: Presentation - Update
-    func updateHostedView(with content: AnyView) {
+    func updateHostedView(
+        with content: AnyView
+    ) {
         hostingControllerContainer?.hostingController.rootView = content
     }
 
     // MARK: Presentation - Dismiss
-    func dismissHostedView(completion: (() -> Void)? = nil) {
+    func dismissHostedView(
+        completion: (() -> Void)?
+    ) {
         _dismissHostedView(force: false, completion: completion)
     }
     
-    static func forceDismissHostedView(id: String) {
+    static func forceDismissHostedView(
+        id: String
+    ) {
         guard
             let viewController: PresentationHostViewController = PresentationHostViewControllerStorage.shared.storage[id]
         else {
@@ -135,7 +110,10 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         viewController._dismissHostedView(force: true, completion: nil)
     }
     
-    private func _dismissHostedView(force: Bool, completion: (() -> Void)?) {
+    private func _dismissHostedView(
+        force: Bool,
+        completion: (() -> Void)?
+    ) {
         let tearDown: () -> Void = { [weak self] in
             guard let self else { return }
 
@@ -145,7 +123,14 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
             PresentationHostDataSourceCache.shared.remove(key: id)
         }
 
-        if force {
+        switch force {
+        case false:
+            dismiss(animated: false, completion: {
+                tearDown()
+                completion?()
+            })
+
+        case true:
             if
                 let rootViewController: UIViewController = UIApplication.shared
                     .firstWindow(
@@ -159,12 +144,6 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
                     completion?()
                 })
             }
-            
-        } else {
-            dismiss(animated: false, completion: {
-                tearDown()
-                completion?()
-            })
         }
     }
 }

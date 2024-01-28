@@ -8,9 +8,12 @@ General
 
 Services and Managers - Presentation Host
 
+- Presentation API has been massively simplified
 - Presentation Host no longer queues modals
+- `View.presentationHost(...)` now takes `onPresent` and `onDismiss` parameters
 - `presentationHostPresentationMode`, embedded in the `Environment`, is now `Optional`
 - `keyboardResponsivenessStrategy` is now non-`Optional`, and instead has `none` instance
+- `Documentation/Presentation Host Examples and Tests` is added to package
 
 Extensions
 
