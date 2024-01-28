@@ -36,7 +36,8 @@ extension View { // TODO: iOS 17 - Remove. Obsoleted by `safeAreaPadding(...)`.
     ///         }
     ///     }
     ///
-    @ViewBuilder public func safeAreaMargins(
+    @ViewBuilder
+    public func safeAreaMargins(
         edges: Edge.Set,
         insets: EdgeInsets
     ) -> some View {

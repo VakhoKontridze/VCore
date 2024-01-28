@@ -18,7 +18,8 @@ extension View {
     ///             .inlineNavigationTitle("Home")
     ///     }
     ///
-    @ViewBuilder public func inlineNavigationTitle(_ title: String) -> some View {
+    @ViewBuilder 
+    public func inlineNavigationTitle(_ title: String) -> some View {
 #if !(os(macOS) || os(tvOS))
         self
             .navigationTitle(title)
@@ -33,7 +34,8 @@ extension View {
     ///             .inlineNavigationTitle("Home")
     ///     }
     ///
-    @ViewBuilder public func inlineNavigationTitle(_ titleKey: LocalizedStringKey) -> some View {
+    @ViewBuilder 
+    public func inlineNavigationTitle(_ titleKey: LocalizedStringKey) -> some View {
 #if !(os(macOS) || os(tvOS))
         self
             .navigationTitle(titleKey)

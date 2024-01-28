@@ -16,7 +16,8 @@ extension View {
     ///             .lineLimit(type: .closedRange(lineLimit: 4...5))
     ///     }
     ///
-    @ViewBuilder public func lineLimit(
+    @ViewBuilder 
+    public func lineLimit(
         type textLineLimitType: TextLineLimitType
     ) -> some View {
         switch textLineLimitType.storage {

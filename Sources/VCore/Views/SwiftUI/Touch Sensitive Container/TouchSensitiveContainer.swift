@@ -89,7 +89,8 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
             .background(content: { backgroundView })
     }
 
-    @ViewBuilder private var contentView: some View {
+    @ViewBuilder 
+    private var contentView: some View {
         switch content {
         case .content(let content):
             content()

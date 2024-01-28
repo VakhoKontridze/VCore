@@ -20,7 +20,8 @@ extension View {
     ///             .applyIf(isRed, transform: { $0.foregroundStyle(.red) })
     ///     }
     ///
-    @ViewBuilder public func applyIf(
+    @ViewBuilder 
+    public func applyIf(
         _ condition: Bool,
         transform: (Self) -> some View
     ) -> some View {
@@ -46,7 +47,8 @@ extension View {
     ///             )
     ///     }
     ///
-    @ViewBuilder public func applyIf(
+    @ViewBuilder 
+    public func applyIf(
         _ condition: Bool,
         ifTransform: (Self) -> some View,
         elseTransform: (Self) -> some View
@@ -69,7 +71,8 @@ extension View {
     ///             .applyIfLet(color, transform: { $0.foregroundStyle($1) })
     ///     }
     ///
-    @ViewBuilder public func applyIfLet<Value>(
+    @ViewBuilder 
+    public func applyIfLet<Value>(
         _ value: Value?,
         transform: (Self, Value) -> some View
     ) -> some View {
@@ -95,7 +98,8 @@ extension View {
     ///             )
     ///     }
     ///
-    @ViewBuilder public func applyIfLet<Value>(
+    @ViewBuilder 
+    public func applyIfLet<Value>(
         _ value: Value?,
         ifTransform: (Self, Value) -> some View,
         elseTransform: (Self) -> some View
