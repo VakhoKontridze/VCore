@@ -34,11 +34,13 @@ struct ContentView: View {
 }
 
 extension View {
-    func someModal(
+    func someModal<Content>(
         id: String,
         isPresented: Binding<Bool>,
-        @ViewBuilder content: @escaping () -> some View
-    ) -> some View {
+        @ViewBuilder content: @escaping () -> Content
+    ) -> some View
+        where Content: View
+    {
         self
             .presentationHost(
                 id: id,
@@ -76,7 +78,7 @@ struct SomeModal<Content>: View where Content: View {
         ZStack(content: {
             Color.black.opacity(0.1)
                 .contentShape(Rectangle())
-                .onTapGesture(perform: { isPresented = false })
+                .onTapGesture(perform: dismissFromDimmingViewTap)
 
             ZStack(content: {
                 Color(uiColor: .systemBackground)
@@ -98,6 +100,10 @@ struct SomeModal<Content>: View where Content: View {
             NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification),
             perform: { _ in UIApplication.shared.sendResignFirstResponderAction() }
         )
+    }
+
+    private func dismissFromDimmingViewTap() {
+        isPresented = false
     }
 
     private func animateIn() {

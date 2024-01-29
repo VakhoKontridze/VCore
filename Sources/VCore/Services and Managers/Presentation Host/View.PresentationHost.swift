@@ -30,11 +30,13 @@ extension View {
     ///     }
     ///
     ///     extension View {
-    ///         func someModal(
+    ///         func someModal<Content>(
     ///             id: String,
     ///             isPresented: Binding<Bool>,
-    ///             @ViewBuilder content: @escaping () -> some View
-    ///         ) -> some View {
+    ///             @ViewBuilder content: @escaping () -> Content
+    ///         ) -> some View
+    ///             where Content: View
+    ///         {
     ///             self
     ///                 .presentationHost(
     ///                     id: id,
@@ -65,7 +67,7 @@ extension View {
     ///             @ViewBuilder content: @escaping () -> Content
     ///         ) {
     ///             self._isPresented = isPresented
-    ///            self.content = content
+    ///             self.content = content
     ///         }
     ///
     ///         var body: some View {
@@ -170,11 +172,13 @@ extension View {
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension View {
-    fileprivate func someModal(
+    fileprivate func someModal<Content>(
         id: String,
         isPresented: Binding<Bool>,
-        @ViewBuilder content: @escaping () -> some View
-    ) -> some View {
+        @ViewBuilder content: @escaping () -> Content
+    ) -> some View
+        where Content: View
+    {
         self
             .presentationHost(
                 id: id,

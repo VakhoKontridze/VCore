@@ -23,11 +23,13 @@ struct ContentView: View {
 }
 
 extension View {
-    func someModal(
+    func someModal<Content>(
         id: String,
         isPresented: Binding<Bool>,
-        @ViewBuilder content: @escaping () -> some View
-    ) -> some View {
+        @ViewBuilder content: @escaping () -> Content
+    ) -> some View
+        where Content: View
+    {
         self
             .presentationHost(
                 id: id,
