@@ -88,14 +88,13 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
             }
 
         case true:
-            if !uiViewController.isPresentingViewController {
-                uiViewController.presentHostedView(contentView, completion: {
-                    Task(operation: { @MainActor in
-                        presentSubject.send()
-                        presentHandler?()
-                    })
+            // `uiViewController.isPresentingViewController` isn't checked, since it'll be handled internally
+            uiViewController.presentHostedView(contentView, completion: {
+                Task(operation: { @MainActor in
+                    presentSubject.send()
+                    presentHandler?()
                 })
-            }
+            })
         }
 
         uiViewController.updateHostedView(with: contentView)
