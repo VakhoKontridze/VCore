@@ -8,6 +8,7 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import SwiftUI
+import Combine
 
 // MARK: - Presentation Host View
 @available(tvOS, unavailable)
@@ -24,6 +25,10 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
     private let dismissHandler: (() -> Void)?
     
     private let content: () -> Content
+
+    // Subjects needs to be stores here and persisted, since they are `class` types
+    @State private var presentSubject: PassthroughSubject<Void, Never> = .init()
+    @State private var dismissSubject: PassthroughSubject<Void, Never> = .init()
 
     // MARK: Initializers
     init(
@@ -58,7 +63,13 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
 
         let presentationMode: PresentationHostPresentationMode = .init(
             id: id,
-            dismissCompletion: { uiViewController.dismissHostedView(completion: nil) }
+            presentPublisher: presentSubject.eraseToAnyPublisher(),
+            dismissPublisher: dismissSubject.eraseToAnyPublisher(),
+            dismissCompletion: {
+                uiViewController.dismissHostedView(completion: {
+                    dismissHandler?()
+                })
+            }
         )
 
         let contentView: AnyView = PresentationHostGeometryReader(
@@ -71,18 +82,17 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
         switch isPresented.wrappedValue {
         case false:
             if uiViewController.isPresentingViewController {
-                Task.detached(operation: { @MainActor in
-                    presentationMode.dismissSubject.send()
-                    presentHandler?()
+                Task(operation: { @MainActor in
+                    dismissSubject.send()
                 })
             }
 
         case true:
             if !uiViewController.isPresentingViewController {
                 uiViewController.presentHostedView(contentView, completion: {
-                    Task.detached(operation: { @MainActor in
-                        presentationMode.presentSubject.send()
-                        dismissHandler?()
+                    Task(operation: { @MainActor in
+                        presentSubject.send()
+                        presentHandler?()
                     })
                 })
             }

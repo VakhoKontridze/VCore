@@ -70,7 +70,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         hostingControllerContainer.modalTransitionStyle = .crossDissolve
         hostingControllerContainer.transitioningDelegate = self
 
-        Task.detached(operation: { @MainActor [weak self] in
+        Task(operation: { @MainActor [weak self] in
             guard let self else { return }
 
             if let presentedViewController {

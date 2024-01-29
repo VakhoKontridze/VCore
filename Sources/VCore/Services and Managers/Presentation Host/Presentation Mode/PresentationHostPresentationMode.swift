@@ -22,16 +22,12 @@ public struct PresentationHostPresentationMode {
     public let id: String
 
     // MARK: Properties - Present
-    let presentSubject: PassthroughSubject<Void, Never> = .init()
-
     /// Emits notification when modal should be internally presented.
-    public var presentPublisher: AnyPublisher<Void, Never> { presentSubject.eraseToAnyPublisher() }
+    public let presentPublisher: AnyPublisher<Void, Never>
 
     // MARK: Properties - Dismiss
-    let dismissSubject: PassthroughSubject<Void, Never> = .init()
-
     /// Emits notification when modal should be internally dismissed.
-    public var dismissPublisher: AnyPublisher<Void, Never> { dismissSubject.eraseToAnyPublisher() }
+    public let dismissPublisher: AnyPublisher<Void, Never>
 
     /// Completion block that should be called when internal animations conclude, to remove modal from the view hierarchy.
     public let dismissCompletion: () -> Void
