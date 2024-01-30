@@ -63,6 +63,7 @@ struct SomeModal<Content>: View where Content: View {
 
     @Binding private var isPresented: Bool
     @State private var isPresentedInternally: Bool = false
+    @State private var didFinishInternalPresentation: Bool = false
 
     private let content: () -> Content
 
@@ -103,13 +104,16 @@ struct SomeModal<Content>: View where Content: View {
     }
 
     private func dismissFromDimmingViewTap() {
+        guard didFinishInternalPresentation else { return }
+        
         isPresented = false
     }
 
     private func animateIn() {
         withAnimation(
             .easeInOut(duration: 0.3),
-            { isPresentedInternally = true }
+            { isPresentedInternally = true },
+            completion: { didFinishInternalPresentation = true }
        )
     }
 

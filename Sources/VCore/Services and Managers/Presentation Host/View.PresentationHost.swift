@@ -59,6 +59,7 @@ extension View {
     ///
     ///         @Binding private var isPresented: Bool
     ///         @State private var isPresentedInternally: Bool = false
+    ///         @State private var didFinishInternalPresentation: Bool = false
     ///
     ///         private let content: () -> Content
     ///
@@ -93,14 +94,17 @@ extension View {
     ///         }
     ///
     ///         private func dismissFromDimmingViewTap() {
+    ///             guard didFinishInternalPresentation else { return }
+    ///
     ///             isPresented = false
     ///         }
     ///
     ///         private func animateIn() {
     ///             withAnimation(
     ///                 .easeInOut(duration: 0.3),
-    ///                 { isPresentedInternally = true }
-    ///            )
+    ///                 { isPresentedInternally = true },
+    ///                 completion: { didFinishInternalPresentation = true }
+    ///             )
     ///         }
     ///
     ///         private func animateOut() {
