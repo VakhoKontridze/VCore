@@ -106,7 +106,7 @@ private final class _ModalDecoratorView: UIView {
     private func setUp() {
         let transitionViewChild: UIView? = Self.findSuperview(
             ofView: self,
-            where: { $0.superview?.isTransitionView ?? false }
+            where: { $0.superview?.isUITransitionView ?? false }
         )
         
         decorate(
@@ -132,7 +132,7 @@ private final class _ModalDecoratorView: UIView {
 
 // MARK: - Helpers
 extension UIView {
-    fileprivate var isTransitionView: Bool {
+    fileprivate var isUITransitionView: Bool {
         String(describing: type(of: self)) == "UITransitionView"
     }
 }
