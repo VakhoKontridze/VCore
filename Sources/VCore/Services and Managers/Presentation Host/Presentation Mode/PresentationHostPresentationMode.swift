@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 4/14/22.
 //
 
-import Foundation
+import SwiftUI
 import Combine
 
 // MARK: - Presentation Host Presentation Mode
@@ -31,4 +31,8 @@ public struct PresentationHostPresentationMode {
 
     /// Completion block that should be called when internal animations conclude, to remove modal from the view hierarchy.
     public let dismissCompletion: () -> Void
+
+    // MARK: Properties - Interaction
+    /// ???.
+    public let setInteractiveViewFrame: (CGRect?) -> Void
 }

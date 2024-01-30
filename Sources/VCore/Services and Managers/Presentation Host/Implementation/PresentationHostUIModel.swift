@@ -15,8 +15,8 @@ import SwiftUI
 @available(visionOS, unavailable)
 public struct PresentationHostUIModel {
     // MARK: Properties
-    /// Indicates if modal allows hit tests. Set to `true`.
-    public var allowsHitTests: Bool = true
+    /// ???.
+    public var interactionType: InteractionType = .default
 
     /// Keyboard responsiveness strategy. Set to `default`.
     ///
@@ -26,6 +26,24 @@ public struct PresentationHostUIModel {
     // MARK: Initializers
     /// Initializes UI model with default values.
     public init() {}
+
+    // MARK: Interaction
+    /// ???.
+    public enum InteractionType: Int, CaseIterable {
+        // MARK: Cases
+        /// ???.
+        case allowsHitTests
+
+        /// ???.
+        case isPassthrough
+
+        /// ???.
+        case allowsPartialHitTests
+
+        // MARK: Initializers
+        /// ???.
+        public static var `default`: Self { .allowsHitTests }
+    }
 
     // MARK: Keyboard Responsiveness Strategy
     /// Keyboard responsiveness strategy.

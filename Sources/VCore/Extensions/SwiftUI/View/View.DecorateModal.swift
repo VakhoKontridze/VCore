@@ -80,7 +80,7 @@ private struct ModalDecoratorView: UIViewRepresentable {
 private final class _ModalDecoratorView: UIView {
     // MARK: Properties
     private let decorate: (UIView?, UIView?) -> Void
-    
+
     // MARK: Initializers
     init(
         decorate: @escaping (UIView?, UIView?) -> Void
@@ -88,33 +88,33 @@ private final class _ModalDecoratorView: UIView {
         self.decorate = decorate
         super.init(frame: .zero)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError()
     }
-    
+
     // MARK: Lifecycle
     override func didMoveToWindow() {
         super.didMoveToWindow()
-        
+
         if window != nil {
             setUp()
         }
     }
-    
+
     // MARK: Setup
     private func setUp() {
         let transitionViewChild: UIView? = Self.findSuperview(
             ofView: self,
             where: { $0.superview?.isUITransitionView ?? false }
         )
-        
+
         decorate(
             transitionViewChild,
             transitionViewChild?.superview
         )
     }
-    
+
     // MARK: Finding Superview
     private static func findSuperview(
         ofView view: UIView,
@@ -127,13 +127,6 @@ private final class _ModalDecoratorView: UIView {
         } else {
             nil
         }
-    }
-}
-
-// MARK: - Helpers
-extension UIView {
-    fileprivate var isUITransitionView: Bool {
-        String(describing: type(of: self)) == "UITransitionView"
     }
 }
 

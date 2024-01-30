@@ -69,7 +69,8 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
                 uiViewController.dismissHostedView(completion: {
                     dismissHandler?()
                 })
-            }
+            },
+            setInteractiveViewFrame: uiViewController.setInteractiveViewFrame
         )
 
         let contentView: AnyView = PresentationHostGeometryReader(

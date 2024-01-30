@@ -51,7 +51,8 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         source: UIViewController
     ) -> UIViewControllerAnimatedTransitioning? {
         PresentationHostAnimatedTransitioner(
-            allowsHitTests: uiModel.allowsHitTests
+            id: id,
+            interactionType: uiModel.interactionType
         )
     }
     
@@ -121,6 +122,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
             _ = PresentationHostViewControllerStorage.shared.storage.removeValue(forKey: id)
 
             PresentationHostDataSourceCache.shared.remove(key: id)
+            PresentationHostInteractiveViewFrameStorage.shared.remove(key: id)
         }
 
         switch force {
@@ -144,6 +146,20 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
                     completion?()
                 })
             }
+        }
+    }
+
+    // MARK: Interaction
+    func setInteractiveViewFrame(to frame: CGRect?) {
+        guard uiModel.interactionType == .allowsPartialHitTests else {
+            VCoreLogError("'interactionType' must be set to 'allowsPartialHitTests' in 'PresentationHostUIModel' when calling 'setInteractiveViewFrame(_:)'")
+            fatalError()
+        }
+
+        if let frame {
+            PresentationHostInteractiveViewFrameStorage.shared.set(key: id, value: frame)
+        } else {
+            PresentationHostInteractiveViewFrameStorage.shared.remove(key: id)
         }
     }
 }
