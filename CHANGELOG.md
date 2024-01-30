@@ -5,11 +5,11 @@
 General
 
 - Package now partially supports `visionOS`
-- Colors are overhauled to better support other platfoms
+- Colors are overhauled to better support other platforms
 
 Services and Managers - Presentation Host
 
-- Presentation API has been massively simplified
+- Presentation API is massively simplified
 - Presentation Host no longer queues modals
 - `View.presentationHost(...)` now takes `onPresent` and `onDismiss` parameters
 - `presentationHostPresentationMode`, embedded in the `Environment`, is now `Optional`
