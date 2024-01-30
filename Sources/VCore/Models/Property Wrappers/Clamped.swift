@@ -18,7 +18,8 @@ import SwiftUI
 ///     @Clamped(1...10, step: 3) private var b: Double = 5 // 4.0
 ///     @Clamped(1...10, step: 3) private var c: Double = 11 // 10.0
 ///
-@propertyWrapper public struct Clamped<Value>: DynamicProperty {
+@propertyWrapper 
+public struct Clamped<Value>: DynamicProperty {
     // MARK: Properties
     @State private var fieldValue: Value
     

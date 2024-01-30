@@ -29,7 +29,8 @@ import Combine
 ///
 ///     @KeychainStorage("AccessToken", keychainService: .someCustom) var accessToken: String?
 ///
-@propertyWrapper public struct KeychainStorage<Value>: DynamicProperty {
+@propertyWrapper
+public struct KeychainStorage<Value>: DynamicProperty {
     // MARK: Properties
     private let keychainService: KeychainService
     

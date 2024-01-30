@@ -15,7 +15,8 @@ extension Array {
     ///     let index: Int = numbers.binaryAppend(3, by: { $0 < $1 }) // 2
     ///     // [1, 2, 3, 4, 5, 6]
     ///
-    @discardableResult public mutating func binaryAppend(
+    @discardableResult 
+    public mutating func binaryAppend(
         _ item: Element,
         by areInIncreasingOrder: (Element, Element) throws -> Bool
     ) rethrows -> Int {

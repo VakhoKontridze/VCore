@@ -30,7 +30,8 @@ extension UIHostingController {
     ///     let hostingController: UIHostingController = ...
     ///     hostingController.overrideBehaviors([.disablesSafeAreaInsets, .disablesKeyboardAvoidance])
     ///
-    @discardableResult public func overrideBehaviors(
+    @discardableResult 
+    public func overrideBehaviors(
         _ behaviors: OverridableUIHostingControllerBehavior
     ) -> Bool {
         guard !behaviors.isEmpty else { return false }

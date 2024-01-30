@@ -8,7 +8,8 @@
 import UIKit
 
 // MARK: - App Delegate
-@main final class AppDelegate: UIResponder, UIApplicationDelegate {
+@main 
+final class AppDelegate: UIResponder, UIApplicationDelegate {
     // MARK: Application Delegate
     func application(
         _ application: UIApplication,

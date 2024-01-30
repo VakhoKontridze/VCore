@@ -9,7 +9,8 @@ import SwiftUI
 import VCore
 
 // MARK: - App
-@main struct SwiftUIMVVMExampleApp: App {
+@main 
+struct SwiftUIMVVMExampleApp: App {
     var body: some Scene {
         WindowGroup(content: {
             CoordinatingNavigationStackOO(root: {

@@ -20,7 +20,8 @@ import SwiftUI
 ///         })
 ///     }
 ///
-@propertyWrapper public struct OldValueCache<Value>: DynamicProperty {
+@propertyWrapper
+public struct OldValueCache<Value>: DynamicProperty {
     // MARK: Properties
     /// Old value.
     @State private var fieldValue: Value
