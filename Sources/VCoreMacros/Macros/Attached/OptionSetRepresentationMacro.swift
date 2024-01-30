@@ -14,7 +14,7 @@ import SwiftDiagnostics
 // MARK: - Option Set Representation Macro
 struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
     // MARK: Member Macro
-    public static func expansion(
+    static func expansion(
         of attribute: AttributeSyntax,
         providingMembersOf decl: some DeclGroupSyntax,
         in context: some MacroExpansionContext
@@ -69,7 +69,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
     }
 
     // MARK: Extension Macro
-    public static func expansion(
+    static func expansion(
         of node: AttributeSyntax,
         attachedTo declaration: some DeclGroupSyntax,
         providingExtensionsOf type: some TypeSyntaxProtocol,
