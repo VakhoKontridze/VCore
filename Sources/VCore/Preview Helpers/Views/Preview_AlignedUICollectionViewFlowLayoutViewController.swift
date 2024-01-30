@@ -116,7 +116,7 @@ final class Preview_AlignedUICollectionViewFlowLayoutViewController:
                 origin: view.frame.origin,
                 size: CGSize(width: collectionView.frame.size.width, height: 10)
             )
-            view.backgroundColor = .red
+            view.backgroundColor = UIColor.red
 
             return view
 
@@ -131,7 +131,7 @@ final class Preview_AlignedUICollectionViewFlowLayoutViewController:
                 origin: view.frame.origin,
                 size: CGSize(width: collectionView.frame.size.width, height: 10)
             )
-            view.backgroundColor = .blue
+            view.backgroundColor = UIColor.blue
 
             return view
 

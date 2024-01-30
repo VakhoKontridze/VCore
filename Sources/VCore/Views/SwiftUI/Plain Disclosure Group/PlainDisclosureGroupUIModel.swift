@@ -11,6 +11,7 @@ import SwiftUI
 /// Model that describes UI.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable)
 public struct PlainDisclosureGroupUIModel {
     // MARK: Properties - Global
     /// Default padding in native disclosure group. Set to `8`.
@@ -25,7 +26,7 @@ public struct PlainDisclosureGroupUIModel {
     ///
     /// Needed for setting background color to the label.
     public var backgroundColor: Color = {
-#if os(iOS) || targetEnvironment(macCatalyst)
+#if os(iOS)
         Color(uiColor: UIColor.systemBackground)
 #elseif os(macOS)
         Color(nsColor: NSColor.controlColor)

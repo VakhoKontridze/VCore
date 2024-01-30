@@ -39,7 +39,7 @@ import SwiftUI
 ///         )
 ///     }
 ///
-@available(tvOS 16.0, *)
+@available(tvOS 16.0, *)@available(tvOS, unavailable) // Doesn't follow HIG
 public struct TouchSensitiveContainer<Content>: View where Content: View {
     // MARK: Properties - UI Model
     private let uiModel: TouchSensitiveContainerUIModel
@@ -137,7 +137,8 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
 // MARK: - Preview
 #if DEBUG
 
-@available(tvOS 16.0, *)
+#if !os(tvOS)
+
 #Preview(body: {
     TouchSensitiveContainer(content: {
         Text("Lorem ipsum")
@@ -145,5 +146,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
             .padding()
     })
 })
+
+#endif
 
 #endif

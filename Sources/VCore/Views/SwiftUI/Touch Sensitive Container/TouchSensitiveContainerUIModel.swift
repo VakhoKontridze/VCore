@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Touch Sensitive Container UI Model
 /// Model that describes UI.
-@available(tvOS 16.0, *)
+@available(tvOS 16.0, *)@available(tvOS, unavailable)
 public struct TouchSensitiveContainerUIModel {
     // MARK: Properties - Body
     /// Number of taps required to trigger the action. Set to `1`.
@@ -19,11 +19,13 @@ public struct TouchSensitiveContainerUIModel {
     /// Background colors.
     public var backgroundColors: StateColors = {
         let color: Color = {
-#if os(iOS) || targetEnvironment(macCatalyst)
+#if os(iOS)
             Color(uiColor: .systemBackground)
 #elseif os(macOS)
-            Color.clear // No other color is available
+            Color.clear
 #elseif os(watchOS)
+            Color.clear
+#elseif os(visionOS)
             Color.clear
 #else
             fatalError() // Not supported
@@ -31,12 +33,14 @@ public struct TouchSensitiveContainerUIModel {
         }()
 
         let pressedColor: Color = {
-#if os(iOS) || targetEnvironment(macCatalyst)
+#if os(iOS)
             Color(uiColor: .systemFill)
 #elseif os(macOS)
             Color(nsColor: .windowBackgroundColor)
 #elseif os(watchOS)
             Color.gray.opacity(0.3)
+#elseif os(visionOS)
+            Color(uiColor: .systemFill)
 #else
             fatalError() // Not supported
 #endif

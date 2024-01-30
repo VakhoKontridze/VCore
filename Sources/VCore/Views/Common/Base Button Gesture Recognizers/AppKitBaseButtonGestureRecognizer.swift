@@ -15,7 +15,7 @@ final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRec
     override var state: NSGestureRecognizer.State {
         get { super.state }
         set {
-            guard newValue != .changed else { return } // Not supported
+            guard newValue != .changed else { return } // Not used
             
             super.state = newValue
             stateChangeHandler(GestureBaseButtonGestureState(state: newValue))
@@ -88,6 +88,7 @@ final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRec
     }
 }
 
+// MARK: - Helpers
 extension NSView {
     fileprivate var centerLocationOnSuperView: CGPoint? {
         superview?.convert(center, to: nil)

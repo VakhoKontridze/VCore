@@ -36,6 +36,7 @@ import SwiftUI
 ///
 @available(tvOS 16.0, *)@available(tvOS, unavailable)
 @available(watchOS, unavailable)
+@available(visionOS, unavailable) // Doesn't follow HIG
 public struct PlainDisclosureGroup<Label, Content>: View
     where
         Label: View,
@@ -147,7 +148,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
 // MARK: - Preview
 #if DEBUG
 
-#if !(os(tvOS) || os(watchOS))
+#if !(os(tvOS) || os(watchOS) || os(visionOS))
 
 #Preview(body: {
     struct ContentView: View {
@@ -155,8 +156,11 @@ public struct PlainDisclosureGroup<Label, Content>: View
 
         var body: some View {
             ZStack(content: {
-                Color.gray.opacity(0.16)
-                    .ignoresSafeArea()
+#if os(iOS)
+                Color(uiColor: .secondarySystemBackground).ignoresSafeArea()
+#elseif os(macOS)
+                Color.clear
+#endif
 
                 PlainDisclosureGroup(
                     isExpanded: $isExpanded,
@@ -164,6 +168,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
                         Text("Lorem Ipsum")
                             .frame(maxWidth: .infinity)
                             .padding()
+                            .allowsHitTesting(false)
                     },
                     content: {
                         Color.accentColor
@@ -172,7 +177,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
                 )
                 .applyModifier({
 #if os(macOS)
-                    $0.frame(dimension: 640)
+                    $0.frame(dimension: 480)
 #else
                     $0
 #endif

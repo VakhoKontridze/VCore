@@ -63,9 +63,7 @@ extension UIView {
 #Preview(body: {
     let view: UIView = .init()
     view.translatesAutoresizingMaskIntoConstraints = false
-#if !(os(tvOS) || os(watchOS))
-    view.backgroundColor = UIColor.systemBackground
-#endif
+    view.backgroundColor = UIColor.systemBlue
     view.applyShadow(
         color: UIColor.black.withAlphaComponent(0.3),
         radius: 5,
