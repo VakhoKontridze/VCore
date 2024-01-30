@@ -74,7 +74,7 @@ extension View {
     ///             ZStack(content: {
     ///                 Color.black.opacity(0.1)
     ///                     .contentShape(Rectangle())
-    ///                     .onTapGesture(perform: { isPresented = false })
+    ///                     .onTapGesture(perform: dismissFromDimmingViewTap)
     ///
     ///                 ZStack(content: {
     ///                     Color(uiColor: .systemBackground)
@@ -90,6 +90,10 @@ extension View {
     ///             })
     ///             .onReceive(presentationMode.presentPublisher, perform: animateIn)
     ///             .onReceive(presentationMode.dismissPublisher, perform: animateOut)
+    ///         }
+    ///
+    ///         private func dismissFromDimmingViewTap() {
+    ///             isPresented = false
     ///         }
     ///
     ///         private func animateIn() {
