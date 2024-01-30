@@ -152,27 +152,27 @@ extension View {
 
 #if canImport(UIKit) && !(os(tvOS) || os(watchOS) || os(visionOS))
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
 #Preview(body: {
-    guard #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) else { return EmptyView() }
-
-    struct ContentView: View {
-        @State private var isPresented: Bool = true
-
-        var body: some View {
-            Button(
-                "Present",
-                action: { isPresented = true }
-            )
-            .someModal(
-                id: "some_modal",
-                isPresented: $isPresented,
-                content: { Color.accentColor }
-            )
-        }
-    }
-
-    return ContentView()
+    ContentView()
 })
+
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+fileprivate struct ContentView: View {
+    @State private var isPresented: Bool = true
+
+    var body: some View {
+        Button(
+            "Present",
+            action: { isPresented = true }
+        )
+        .someModal(
+            id: "some_modal",
+            isPresented: $isPresented,
+            content: { Color.accentColor }
+        )
+    }
+}
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension View {
