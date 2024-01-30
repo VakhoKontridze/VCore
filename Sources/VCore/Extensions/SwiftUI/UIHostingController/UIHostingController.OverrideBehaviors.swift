@@ -35,7 +35,11 @@ extension UIHostingController {
     ) -> Bool {
         guard !behaviors.isEmpty else { return false }
 
-        guard let viewClass: AnyClass = object_getClass(view) else { return false }
+        guard let viewClass: AnyClass = object_getClass(view) else {
+            VCoreLogError("Couldn't retrieve class type when overriding behaviors in 'UIHostingController'")
+            return false
+        }
+
         let viewSubclassName: String = String(cString: class_getName(viewClass)).appending("_OverridenBehaviors")
 
         if let viewSubclass: AnyClass = NSClassFromString(viewSubclassName) {
@@ -44,52 +48,66 @@ extension UIHostingController {
         }
 
         guard
-            let viewSubclassNameUtf8: UnsafePointer<CChar> = (viewSubclassName as NSString).utf8String,
-            let viewSubclass: AnyClass = objc_allocateClassPair(viewClass, viewSubclassNameUtf8, 0)
+            let viewSubclassNameUTF8: UnsafePointer<CChar> = (viewSubclassName as NSString).utf8String,
+            let viewSubclass: AnyClass = objc_allocateClassPair(viewClass, viewSubclassNameUTF8, 0)
         else {
+            VCoreLogError("Couldn't retrieve class name when overriding behaviors in 'UIHostingController'")
             return false
         }
 
         if behaviors.contains(.disablesSafeAreaInsets) {
-            let selector: Selector = #selector(getter: UIView.safeAreaInsets)
-
-            if let method: Method = class_getInstanceMethod(UIView.self, selector) {
-                let block: @convention(block) (AnyObject) -> UIEdgeInsets = { _ in .zero }
-
-                class_addMethod(
-                    viewSubclass,
-                    selector,
-                    imp_implementationWithBlock(block),
-                    method_getTypeEncoding(method)
-                )
-
-            } else {
-                VCoreLogError("Couldn't retrieve 'UIView.safeAreaInsets' when overriding 'disablesSafeAreaInsets' in 'UIHostingController'")
-            }
+            overrideDisablesSafeAreaInsets(viewSubclass: viewSubclass)
         }
 
         if behaviors.contains(.disablesKeyboardAvoidance) {
-            let selector: Selector = NSSelectorFromString("keyboardWillShowWithNotification:")
-
-            if let method: Method = class_getInstanceMethod(viewClass, selector) {
-                let block: @convention(block) (AnyObject, AnyObject) -> Void = { (_, _) in }
-
-                class_addMethod(
-                    viewSubclass,
-                    selector,
-                    imp_implementationWithBlock(block),
-                    method_getTypeEncoding(method)
-                )
-
-            } else {
-                VCoreLogError("Couldn't retrieve 'UIView.keyboardWillShowNotification' when overriding 'disablesKeyboardAvoidance' in 'UIHostingController'")
-            }
+            overrideDisabledKeyboardAvoidance(viewClass: viewClass, viewSubclass: viewSubclass)
         }
 
         objc_registerClassPair(viewSubclass)
         object_setClass(view, viewSubclass)
 
         return true
+    }
+
+    private func overrideDisablesSafeAreaInsets(
+        viewSubclass: AnyClass
+    ) {
+        let selector: Selector = #selector(getter: UIView.safeAreaInsets)
+
+        guard let method: Method = class_getInstanceMethod(UIView.self, selector) else {
+            VCoreLogError("Couldn't retrieve 'UIView.safeAreaInsets' when overriding 'disablesSafeAreaInsets' in 'UIHostingController'")
+            return
+        }
+
+        let block: @convention(block) (AnyObject) -> UIEdgeInsets = { _ in .zero }
+
+        class_addMethod(
+            viewSubclass,
+            selector,
+            imp_implementationWithBlock(block),
+            method_getTypeEncoding(method)
+        )
+    }
+
+    private func overrideDisabledKeyboardAvoidance(
+        viewClass: AnyClass,
+        viewSubclass: AnyClass
+    ) {
+        let selector: Selector = NSSelectorFromString("keyboardWillShowWithNotification:")
+
+        guard let method: Method = class_getInstanceMethod(viewClass, selector) else {
+            VCoreLogError("Couldn't retrieve 'UIView.keyboardWillShowNotification' when overriding 'disablesKeyboardAvoidance' in 'UIHostingController'")
+            return
+        }
+
+        let block: @convention(block) (AnyObject, AnyObject) -> Void = { (_, _) in }
+
+        class_addMethod(
+            viewSubclass,
+            selector,
+            imp_implementationWithBlock(block),
+            method_getTypeEncoding(method)
+        )
     }
 }
 
