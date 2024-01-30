@@ -121,8 +121,8 @@ struct _MultipartFormDataFile {
     ) {
         self.name = name
         self.filename = {
-            if let fileName: String = file.filename {
-                fileName
+            if let filename: String = file.filename {
+                filename
             } else if
                 let fileExtension: String = file.mimeType.components(separatedBy: "/").last,
                 !fileExtension.isEmpty
