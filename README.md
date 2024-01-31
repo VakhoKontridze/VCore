@@ -170,7 +170,7 @@ var body: some View {
 
 ```swift
 final class ViewController: KeyboardResponsiveUIViewController {
-    private let textField: UITextField = { ... }()
+    private let textField: UITextField = ...
 
     override func viewDidLoad() {
         super.viewDidLoad()

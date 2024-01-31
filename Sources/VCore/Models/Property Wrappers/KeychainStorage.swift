@@ -16,18 +16,18 @@ import Combine
 /// Alternately, a `KeychainServiceConfiguration` can be passed to customize queries.
 ///
 ///     extension KeychainServiceConfiguration {
-///         static let someCustom: Self = { ... }()
+///         static let someCustomConfiguration: Self = ...
 ///     }
 ///
-///     @KeychainStorage("AccessToken", configuration: .someCustom) var accessToken: String?
+///     @KeychainStorage("AccessToken", configuration: .someCustomConfiguration) var accessToken: String?
 ///
 /// Or, a reference to an instance of `KeychainService` can be used.
 ///
 ///     extension KeychainService {
-///         static let someCustom: KeychainService = { ... }()
+///         static let someCustomConfiguration: KeychainService = ...
 ///     }
 ///
-///     @KeychainStorage("AccessToken", keychainService: .someCustom) var accessToken: String?
+///     @KeychainStorage("AccessToken", keychainService: .someCustomConfiguration) var accessToken: String?
 ///
 @propertyWrapper
 public struct KeychainStorage<Value>: DynamicProperty {

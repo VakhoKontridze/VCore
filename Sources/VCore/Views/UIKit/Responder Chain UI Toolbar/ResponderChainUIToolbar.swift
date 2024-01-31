@@ -13,8 +13,8 @@ import UIKit
 /// Toolbar that handles focus navigation in the responder chain.
 ///
 ///     final class ViewController: UIViewController {
-///         private let textField: UITextField = { ... }()
-///         private let textView: UITextView = { ... }()
+///         private let textField: UITextField = ...
+///         private let textView: UITextView = ...
 ///
 ///         override func viewDidLoad() {
 ///             super.viewDidLoad()

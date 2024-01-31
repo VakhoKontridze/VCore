@@ -18,7 +18,7 @@ extension UIView {
     /// Much like `UIView` animations, there may be discrepancy between physical device and simulator.
     ///
     ///     final class SomeViewController: KeyboardResponsiveUIViewController {
-    ///         private let textField: UITextField = { ... }()
+    ///         private let textField: UITextField = ...
     ///
     ///         override func viewDidLoad() {
     ///             super.viewDidLoad()
@@ -91,7 +91,7 @@ extension UIView {
     /// Parameter `containerView` is `UIView` on which `bound` animations will be applied.
     ///
     ///     final class SomeViewController: KeyboardResponsiveUIViewController {
-    ///         private let textField: UITextField = { ... }()
+    ///         private let textField: UITextField = ...
     ///
     ///         override func viewDidLoad() {
     ///             super.viewDidLoad()
