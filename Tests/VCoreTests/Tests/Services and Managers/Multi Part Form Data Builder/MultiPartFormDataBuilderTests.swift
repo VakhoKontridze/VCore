@@ -79,25 +79,36 @@ final class MultipartFormDataBuilderTests: XCTestCase {
         let result: [String: Any?] = try JSONDecoder.decodeJSONFromData(data)
 
         XCTAssertEqual(
-            result["form"]?.toUnwrappedJSON["key"]?.toString,
+            result["form"]?.toJSON?["key"]?.toString,
             "value"
         )
 
 #if canImport(UIKit)
         XCTAssertEqual(
-            result["files"]?.toUnwrappedJSON["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
+            result["files"]?.toJSON?["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
             profileImage?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
         )
 
         XCTAssertEqual(
-            result["files"]?.toUnwrappedJSON["gallery[0]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
+            result["files"]?.toJSON?["gallery[0]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
             galleryImages?[0]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
         )
 
         XCTAssertEqual(
-            result["files"]?.toUnwrappedJSON["gallery[1]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
+            result["files"]?.toJSON?["gallery[1]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
             galleryImages?[1]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
         )
 #endif
+    }
+}
+
+// MARK: - Helpers
+extension Optional where Wrapped == Any {
+    fileprivate var toString: String? {
+        self as? String
+    }
+
+    fileprivate var toJSON: [String: Any?]? {
+        self as? [String: Any?]
     }
 }

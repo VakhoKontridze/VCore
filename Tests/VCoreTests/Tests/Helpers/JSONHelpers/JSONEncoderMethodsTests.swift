@@ -63,3 +63,10 @@ final class JSONEncoderMethodsTests: XCTestCase {
         }
     }
 }
+
+// MARK: - Helpers
+extension Optional where Wrapped == Any {
+    fileprivate var toString: String? {
+        self as? String
+    }
+}

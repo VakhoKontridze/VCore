@@ -16,7 +16,7 @@ extension UIImage {
     ///     let sizeInKilobytes: Double? = image.sizeInKilobytes
     ///
     public var sizeInKilobytes: Double? {
-        (pngData()?.count).toDouble?.decimalBytesConverted(to: .kB)
+        (pngData()?.count).map { Double($0) }?.decimalBytesConverted(to: .kB)
     }
     
     /// Returns `UIImage` size in megabytes.
@@ -24,7 +24,7 @@ extension UIImage {
     ///     let sizeInMegabytes: Double? = image.sizeInMegabytes
     ///
     public var sizeInMegabytes: Double? {
-        (pngData()?.count).toDouble?.decimalBytesConverted(to: .MB)
+        (pngData()?.count).map { Double($0) }?.decimalBytesConverted(to: .MB)
     }
 }
 
@@ -35,7 +35,7 @@ extension UIImage {
     ///     let sizeInKibibytes: Double? = image.sizeInKibibytes
     ///
     public var sizeInKibibytes: Double? {
-        (pngData()?.count).toDouble?.binaryBytesConverted(to: .KiB)
+        (pngData()?.count).map { Double($0) }?.binaryBytesConverted(to: .KiB)
     }
     
     /// Returns `UIImage` size in mebibytes.
@@ -43,7 +43,7 @@ extension UIImage {
     ///     let sizeInMebibytes: Double? = image.sizeInMebibytes
     ///
     public var sizeInMebibytes: Double? {
-        (pngData()?.count).toDouble?.binaryBytesConverted(to: .MiB)
+        (pngData()?.count).map { Double($0) }?.binaryBytesConverted(to: .MiB)
     }
 }
 

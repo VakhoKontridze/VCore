@@ -20,6 +20,10 @@ Views
 
 - Crashes in `TouchSensitiveContainer` on `tvOS` are fixed, and view is marked as unavailable
 
+Helpers
+
+- JSON type casting helpers have been removed due to ambiguous API
+
 Extensions
 
 - `Color.primaryInverted` property is added, that can be used for inverted primary content
