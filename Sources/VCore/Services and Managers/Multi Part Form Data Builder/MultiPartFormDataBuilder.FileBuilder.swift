@@ -51,19 +51,19 @@ extension MultipartFormDataBuilder {
         ) throws {
             guard
                 let element,
-                let file: MultipartFormDataFile = element as? MultipartFormDataFile
+                let file: MultipartFormDataFile = element as? MultipartFormDataFile,
+                let fileData: Data = file.data
             else {
                 return
             }
-            
-            let _file: _MultipartFormDataFile = .init(name: key, file: file)
-            guard let _fileData: Data = _file.data else { return }
-            
+
+            let filename: String = file.generateFilename(key: key)
+
             try data.appendString("--\(boundary)\(lineBreak)")
             
-            try data.appendString("Content-Disposition: form-data; name=\"\(_file.name)\"; filename=\"\(_file.filename)\"\(lineBreak)")
-            try data.appendString("Content-Type: \(_file.mimeType)\(lineBreak)\(lineBreak)")
-            data.append(_fileData)
+            try data.appendString("Content-Disposition: form-data; name=\"\(key)\"; filename=\"\(filename)\"\(lineBreak)")
+            try data.appendString("Content-Type: \(file.mimeType)\(lineBreak)\(lineBreak)")
+            data.append(fileData)
             
             try data.appendString(lineBreak)
         }

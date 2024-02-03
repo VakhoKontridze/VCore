@@ -104,35 +104,15 @@ public struct MultipartFormDataFile {
         self.mimeType = mimeType
         self.data = data
     }
-}
 
-// MARK: - _ Multipart Form Data File
-struct _MultipartFormDataFile {
-    // MARK: Properties
-    let name: String
-    let filename: String
-    let mimeType: String
-    let data: Data?
-    
-    // MARK: Initializers
-    init(
-        name: String,
-        file: MultipartFormDataFile
-    ) {
-        self.name = name
-        self.filename = {
-            if let filename: String = file.filename {
-                filename
-            } else if
-                let fileExtension: String = file.mimeType.components(separatedBy: "/").last,
-                !fileExtension.isEmpty
-            {
-                "\(name).\(fileExtension)"
-            } else {
-                name
-            }
-        }()
-        self.mimeType = file.mimeType
-        self.data = file.data
+    // MARK: Helpers
+    func generateFilename(key: String) -> String {
+        if let filename {
+            filename
+        } else if let fileExtension: String = mimeType.components(separatedBy: "/").last?.nonEmpty {
+            "\(key).\(fileExtension)"
+        } else {
+            key
+        }
     }
 }
