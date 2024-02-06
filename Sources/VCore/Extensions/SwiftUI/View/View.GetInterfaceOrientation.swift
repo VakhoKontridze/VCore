@@ -8,7 +8,6 @@
 #if canImport(UIKit) && !(os(tvOS) || os(watchOS))
 
 import SwiftUI
-import UIKit
 
 // MARK: - View Get Interface Orientation
 extension View {

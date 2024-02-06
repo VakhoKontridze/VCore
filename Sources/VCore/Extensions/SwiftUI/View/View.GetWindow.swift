@@ -8,7 +8,6 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import SwiftUI
-import UIKit
 
 // MARK: - View Get Window
 extension View {

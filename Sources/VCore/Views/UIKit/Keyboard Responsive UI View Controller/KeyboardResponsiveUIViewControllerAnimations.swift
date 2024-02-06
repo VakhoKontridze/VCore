@@ -7,7 +7,6 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
 import SwiftUI
 
 // MARK: - Keyboard Animation - Custom
