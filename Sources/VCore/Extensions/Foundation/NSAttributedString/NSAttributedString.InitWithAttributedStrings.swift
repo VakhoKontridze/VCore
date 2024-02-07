@@ -1,5 +1,5 @@
 //
-//  NSAttributedString.InitWithAttributedString.swift
+//  NSAttributedString.InitWithAttributedStrings.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 12.07.22.

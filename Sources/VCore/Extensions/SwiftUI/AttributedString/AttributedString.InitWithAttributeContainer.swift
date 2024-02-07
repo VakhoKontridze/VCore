@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Attributed String Init with Attribute Container
+// MARK: - Attributed String Init with Attribute Containers
 extension AttributedString {
     /// Initializes `AttributedString` with child `AttributedString` components created from mapping tag names to `AttributeContainer`s.
     ///
@@ -143,26 +143,26 @@ extension String {
                 // Character is inside the tag, and component can be closed
                 if isInsideTag {
                     guard index + 3 < count else {
-                        throw ComponentsSeparatedByTagsError(.invalidClosingTag)
+                        throw StringComponentsSeparatedByTagsError(.invalidClosingTag)
                     }
 
                     if
                         tagNames.contains(self[index+1]),
                         self[index+1] != currentTagName
                     {
-                        throw ComponentsSeparatedByTagsError(.nestedTagsNotSupported)
+                        throw StringComponentsSeparatedByTagsError(.nestedTagsNotSupported)
                     }
 
                     guard self[index+1] == "/" else {
-                        throw ComponentsSeparatedByTagsError(.closingTagSlashNotFound)
+                        throw StringComponentsSeparatedByTagsError(.closingTagSlashNotFound)
                     }
 
                     guard let tagName: Character = tagNames.first(where: { $0 == self[index+2] }) else {
-                        throw ComponentsSeparatedByTagsError(.closingTagNameNotFound)
+                        throw StringComponentsSeparatedByTagsError(.closingTagNameNotFound)
                     }
 
                     guard self[index+3] == ">" else {
-                        throw ComponentsSeparatedByTagsError(.invalidClosingTag)
+                        throw StringComponentsSeparatedByTagsError(.invalidClosingTag)
                     }
 
                     result.append((tagName: tagName, substring: currentSubstring))
@@ -181,19 +181,19 @@ extension String {
                     }
 
                     guard index + 2 < count else {
-                        throw ComponentsSeparatedByTagsError(.invalidOpeningTag)
+                        throw StringComponentsSeparatedByTagsError(.invalidOpeningTag)
                     }
 
                     guard self[index+1] != "/" else {
-                        throw ComponentsSeparatedByTagsError(.slashFoundInOpeningTag)
+                        throw StringComponentsSeparatedByTagsError(.slashFoundInOpeningTag)
                     }
 
                     guard let tagName: Character = tagNames.first(where: { $0 == self[index+1] }) else {
-                        throw ComponentsSeparatedByTagsError(.openingTagNameNotFound)
+                        throw StringComponentsSeparatedByTagsError(.openingTagNameNotFound)
                     }
 
                     guard self[index+2] == ">" else {
-                        throw ComponentsSeparatedByTagsError(.invalidOpeningTag)
+                        throw StringComponentsSeparatedByTagsError(.invalidOpeningTag)
                     }
 
                     isInsideTag = true
@@ -204,9 +204,11 @@ extension String {
 
             case ">":
                 if index == 0 {
-                    throw ComponentsSeparatedByTagsError(.invalidClosingTag)
+                    throw StringComponentsSeparatedByTagsError(.invalidClosingTag)
+
                 } else {
-                    fatalError() // Will never occur, as it's skipped
+                    VCoreLogError("Unhanded edge-case") // Will never occur, as it's skipped
+                    throw StringComponentsSeparatedByTagsError(.unknownError)
                 }
 
             default:
@@ -216,7 +218,8 @@ extension String {
         }
 
         if isInsideTag {
-            fatalError() // Will never occur, as it's skipped
+            VCoreLogError("Unhanded edge-case") // Will never occur
+            throw StringComponentsSeparatedByTagsError(.unknownError)
         }
 
         // Terminates existing un-attributed component
@@ -228,47 +231,35 @@ extension String {
     }
 }
 
-// MARK: - Components Separated by Tags Errors
-/// An error that occurs in `AttributedString.init(_:attributeContainers:)` initializer.
-public struct ComponentsSeparatedByTagsError: VCoreError, Equatable {
+// MARK: - String Components Separated by Tags Errors
+/*private*/ struct StringComponentsSeparatedByTagsError: VCoreError, Equatable {
     // MARK: Properties
     private let code: Code
 
     // MARK: Initializers
-    /// Initializes `ComponentsSeparatedByTagsError` with the given error code.
-    public init(_ code: Code) {
+    init(_ code: Code) {
         self.code = code
     }
 
     // MARK: Code
-    /// Error code.
-    public enum Code: Int, Equatable {
-        /// Indicates that nested tags were found.
+    enum Code: Int, Equatable {
         case nestedTagsNotSupported
 
-        /// Indicates that opening tag was invalid.
         case invalidOpeningTag
-
-        /// Indicates that slash was found in the opening tag.
         case slashFoundInOpeningTag
-
-        /// Indicates that opening tag name was not found.
         case openingTagNameNotFound
 
-        /// Indicates that closing tag was invalid.
         case invalidClosingTag
-
-        /// Indicates that closing tag slash was not found.
         case closingTagSlashNotFound
-
-        /// Indicates that closing tag name was not found.
         case closingTagNameNotFound
+
+        case unknownError
     }
 
     // MARK: VCore Error
-    public var vCoreErrorCode: Int { code.rawValue }
+    var vCoreErrorCode: Int { code.rawValue }
 
-    public var vCoreErrorDescription: String {
+    var vCoreErrorDescription: String {
         switch code {
         case .nestedTagsNotSupported: "Nested tags not supported"
 
@@ -279,11 +270,13 @@ public struct ComponentsSeparatedByTagsError: VCoreError, Equatable {
         case .invalidClosingTag: "Invalid closing tag"
         case .closingTagSlashNotFound: "Closing tag slash not found"
         case .closingTagNameNotFound: "Closing tag name not found"
+
+        case .unknownError: "Unknown error"
         }
     }
 
     // MARK: Equatable
-    public static func == (lhs: Self, rhs: Self) -> Bool {
+    static func == (lhs: Self, rhs: Self) -> Bool {
         lhs.code == rhs.code
     }
 }

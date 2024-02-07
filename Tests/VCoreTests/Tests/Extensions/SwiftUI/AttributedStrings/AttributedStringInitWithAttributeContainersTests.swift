@@ -1,5 +1,5 @@
 //
-//  AttributedStringInitWithAttributeContainerTests.swift
+//  AttributedStringInitWithAttributeContainersTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 07.02.24.
@@ -10,7 +10,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
+final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
     // MARK: Tests
     func testPlainString() throws {
         let string: String = "Lorem ipsum"
@@ -72,7 +72,7 @@ final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
 
         XCTAssertThrowsError(
             try string.components(separatedByTagNames: ["b", "c"]),
-            error: ComponentsSeparatedByTagsError(.nestedTagsNotSupported)
+            error: StringComponentsSeparatedByTagsError(.nestedTagsNotSupported)
         )
     }
 
@@ -82,7 +82,7 @@ final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
 
             XCTAssertThrowsError(
                 try string.components(separatedByTagNames: ["b"]),
-                error: ComponentsSeparatedByTagsError(.invalidOpeningTag)
+                error: StringComponentsSeparatedByTagsError(.invalidOpeningTag)
             )
         }
 
@@ -91,7 +91,7 @@ final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
 
             XCTAssertThrowsError(
                 try string.components(separatedByTagNames: ["b"]),
-                error: ComponentsSeparatedByTagsError(.invalidOpeningTag)
+                error: StringComponentsSeparatedByTagsError(.invalidOpeningTag)
             )
         }
     }
@@ -101,7 +101,7 @@ final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
 
         XCTAssertThrowsError(
             try string.components(separatedByTagNames: ["b"]),
-            error: ComponentsSeparatedByTagsError(.slashFoundInOpeningTag)
+            error: StringComponentsSeparatedByTagsError(.slashFoundInOpeningTag)
         )
     }
 
@@ -110,7 +110,7 @@ final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
 
         XCTAssertThrowsError(
             try string.components(separatedByTagNames: ["b"]),
-            error: ComponentsSeparatedByTagsError(.openingTagNameNotFound)
+            error: StringComponentsSeparatedByTagsError(.openingTagNameNotFound)
         )
     }
 
@@ -120,7 +120,7 @@ final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
 
             XCTAssertThrowsError(
                 try string.components(separatedByTagNames: ["b"]),
-                error: ComponentsSeparatedByTagsError(.invalidClosingTag)
+                error: StringComponentsSeparatedByTagsError(.invalidClosingTag)
             )
         }
 
@@ -129,7 +129,7 @@ final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
 
             XCTAssertThrowsError(
                 try string.components(separatedByTagNames: ["b"]),
-                error: ComponentsSeparatedByTagsError(.invalidClosingTag)
+                error: StringComponentsSeparatedByTagsError(.invalidClosingTag)
             )
         }
 
@@ -138,7 +138,7 @@ final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
 
             XCTAssertThrowsError(
                 try string.components(separatedByTagNames: ["b"]),
-                error: ComponentsSeparatedByTagsError(.invalidClosingTag)
+                error: StringComponentsSeparatedByTagsError(.invalidClosingTag)
             )
         }
     }
@@ -148,7 +148,7 @@ final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
 
         XCTAssertThrowsError(
             try string.components(separatedByTagNames: ["b"]),
-            error: ComponentsSeparatedByTagsError(.closingTagSlashNotFound)
+            error: StringComponentsSeparatedByTagsError(.closingTagSlashNotFound)
         )
     }
 
@@ -157,7 +157,7 @@ final class AttributedStringInitWithAttributeContainerTests: XCTestCase {
 
         XCTAssertThrowsError(
             try string.components(separatedByTagNames: ["b"]),
-            error: ComponentsSeparatedByTagsError(.closingTagNameNotFound)
+            error: StringComponentsSeparatedByTagsError(.closingTagNameNotFound)
         )
     }
 
