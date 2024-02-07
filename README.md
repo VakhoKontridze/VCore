@@ -43,7 +43,7 @@ Project includes folder `Documentation`, which contains:
 
 - Documentation and example apps of various SwiftUI/UIKit architectures
 
-- Documentation of CLEAN networking
+- Documentation of networking
 
 ## Showcase
 

@@ -1,4 +1,4 @@
-# CLEAN Interactors and Gateways
+# Interactors and Gateways
 
 ## Table of Contents
 

@@ -20,7 +20,7 @@ A backronym for `View`, `Interactor`, `Presenter`, `Entity`, and a `Router`.
 
 Implementation of VIPER presented in this document is highly-decoupled, follows modular design, obeys the single-responsibility principle, and is built on the interface communication pattern.
 
-Decoupled objects are `ViewController`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are `Factory`, `Parameters`, `Delegate`, and an `UIModel`. Even though VIPER contains `Entity` (E) in it's name, this implementation of VIPER separates scenes from the domain layer, and instead ties them to `Gateway`s via the CLEAN architecture.
+Decoupled objects are `ViewController`, `Presenter`, `Router`, and `Interactor`. Supporting declarations are `Factory`, `Parameters`, `Delegate`, and an `UIModel`. Even though VIPER contains `Entity` (E) in it's name, this implementation of VIPER separates scenes from the domain layer, and instead ties them to `Gateway`s.
 
 #### Structure
 

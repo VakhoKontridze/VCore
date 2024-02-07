@@ -9,7 +9,7 @@
 
 ## Intro
 
-This document provides examples of network requests made using `URLSession` following the principles of "CLEAN Gateways," as discussed elsewhere.
+This document provides examples of network requests made using `URLSession` following the principles of "Interactors and Gateways" as discussed elsewhere.
 
 ## Simple Request
 
