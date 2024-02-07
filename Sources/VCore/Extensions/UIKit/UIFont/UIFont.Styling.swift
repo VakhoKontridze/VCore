@@ -11,22 +11,22 @@ import UIKit
 
 // MARK: - Font Styling
 extension UIFont {
-    /// Returns `UIFont` with bold styling.
-    ///
-    ///     let systemFont: UIFont = .systemFont(ofSize: 13)
-    ///     let boldSystemFont: UIFont? = systemFont.withBoldStyling
-    ///
-    public var withBoldStyling: UIFont? {
-        fontDescriptor.withSymbolicTraits(.traitBold).map { UIFont(descriptor: $0, size: 0) }
-    }
-    
     /// Returns `UIFont` with italic styling.
     ///
     ///     let systemFont: UIFont = .systemFont(ofSize: 13)
-    ///     let italicSystemFont: UIFont? = systemFont.withItalicStyling
+    ///     let italicSystemFont: UIFont? = systemFont.withItalicStyling()
     ///
-    public var withItalicStyling: UIFont? {
+    public func withItalicStyling() -> UIFont? {
         fontDescriptor.withSymbolicTraits(.traitItalic).map { UIFont(descriptor: $0, size: 0) }
+    }
+
+    /// Returns `UIFont` with bold styling.
+    ///
+    ///     let systemFont: UIFont = .systemFont(ofSize: 13)
+    ///     let boldSystemFont: UIFont? = systemFont.withBoldStyling()
+    ///
+    public func withBoldStyling() -> UIFont? {
+        fontDescriptor.withSymbolicTraits(.traitBold).map { UIFont(descriptor: $0, size: 0) }
     }
 }
 
@@ -42,12 +42,12 @@ import SwiftUI
         Text("Lorem ipsum")
             .font(Font(font))
 
-        if let font = font.withBoldStyling {
+        if let font = font.withItalicStyling() {
             Text("Lorem ipsum")
                 .font(Font(font))
         }
 
-        if let font = font.withItalicStyling {
+        if let font = font.withBoldStyling() {
             Text("Lorem ipsum")
                 .font(Font(font))
         }

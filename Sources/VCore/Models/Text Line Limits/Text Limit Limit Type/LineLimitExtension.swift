@@ -1,5 +1,5 @@
 //
-//  View.LineLimit.swift
+//  LineLimitExtension.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 09.01.24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - View Line Limit
+// MARK: - Line Limit Extension
 extension View {
     /// Sets line limit based on `TextLineLimitType`.
     ///

@@ -11,7 +11,7 @@ import Foundation
 extension Date {
     /// Returns age as integer from given date to current time.
     ///
-    ///     let age: Int? = birthDate.age
+    ///     let age: Int? = birthDate.age()
     ///
     public func age(
         inCalendar calendar: Calendar = .current

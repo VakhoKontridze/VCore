@@ -13,7 +13,7 @@ extension View {
     ///
     ///     someView
     ///         .shadow(
-    ///             color: .black.opacity(0.3),
+    ///             color: Color.black.opacity(0.3),
     ///             radius: 10,
     ///             offset: CGPoint(x: 0, y: 10)
     ///         )

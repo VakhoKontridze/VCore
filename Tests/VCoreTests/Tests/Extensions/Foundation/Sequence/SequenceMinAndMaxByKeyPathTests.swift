@@ -1,5 +1,5 @@
 //
-//  SequenceMinMaxByKeyPath.swift
+//  SequenceMinAndMaxByKeyPathTests.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 06.10.23.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class SequenceMinMaxByKeyPath: XCTestCase {
+final class SequenceMinAndMaxByKeyPathTests: XCTestCase {
     // MARK: Test Data
     private struct Object: Equatable {
         let value: Int

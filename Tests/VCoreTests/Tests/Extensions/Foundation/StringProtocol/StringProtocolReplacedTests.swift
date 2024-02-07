@@ -1,5 +1,5 @@
 //
-//  StringProtocolReplacingTests.swift
+//  StringProtocolReplacedTests.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11.12.23.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class StringProtocolReplacingTests: XCTestCase {
+final class StringProtocolReplacedTests: XCTestCase {
     func testReplaced() {
         let string: String = "Lorem ipsum"
 
@@ -22,7 +22,7 @@ final class StringProtocolReplacingTests: XCTestCase {
         let string: String = "Lorem ipsum"
 
         var replacedString: String = string
-        replacedString.replacing(at: 0, with: "l")
+        replacedString.replace(at: 0, with: "l")
 
         XCTAssertEqual(replacedString, "lorem ipsum")
     }

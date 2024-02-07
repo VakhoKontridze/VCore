@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Array Prepending (Element)
+// MARK: - Array Prepending Element
 extension Array {
     /// Returns `Array` with new element prepended at the beginning.
     ///
@@ -28,7 +28,7 @@ extension Array {
     }
 }
 
-// MARK: - Array Prepending (Elements)
+// MARK: - Array Prepending Elements
 extension Array {
     /// Returns `Array` with new elements of a `Sequence` prepended at the beginning.
     ///

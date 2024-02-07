@@ -1,5 +1,5 @@
 //
-//  Array.AppendingAndPrepending.swift
+//  Array.Appending.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11.11.23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Array Appending (Element)
+// MARK: - Array Appending Element
 extension Array {
     /// Returns `Array` with new element appended at the end.
     ///
@@ -18,7 +18,7 @@ extension Array {
     }
 }
 
-// MARK: - Array Appending (Elements)
+// MARK: - Array Appending Elements
 extension Array {
     /// Returns `Array` with new elements of a `Sequence` appended at the end.
     ///

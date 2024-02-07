@@ -18,11 +18,11 @@ extension Color {
     ///
     public static let primaryInverted: Color = {
 #if os(iOS)
-        .dynamic(light: .white, dark: .black)
+        .dynamic(light: Color.white, dark: Color.black)
 #elseif os(macOS)
-        .dynamic(light: .white, dark: .black)
+        .dynamic(light: Color.white, dark: Color.black)
 #elseif os(tvOS)
-        .dynamic(light: .white, dark: .black)
+        .dynamic(light: Color.white, dark: Color.black)
 #elseif os(watchOS)
         .black
 #elseif os(visionOS)

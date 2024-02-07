@@ -1,5 +1,5 @@
 //
-//  JSONDecoderMethods.swift
+//  JSONDecoder.Methods.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.09.23.

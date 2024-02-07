@@ -1,5 +1,5 @@
 //
-//  JSONEncoderMethods.swift
+//  JSONEncoder.Methods.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.09.23.

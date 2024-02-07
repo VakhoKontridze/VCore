@@ -19,7 +19,7 @@ extension StringProtocol {
             self[index(startIndex, offsetBy: i)]
         } 
         set {
-            replacing(at: i, with: newValue)
+            replace(at: i, with: newValue)
         }
     }
 }

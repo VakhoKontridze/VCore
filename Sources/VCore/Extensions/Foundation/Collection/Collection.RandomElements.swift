@@ -15,7 +15,7 @@ extension Collection {
     ///     let randomNumbers: [Int?] = numbers.randomElements(3) // [10, 60, 40]
     ///
     public func randomElements(_ n: Int) -> [Element]? {
-        guard n >= 0, n <= count else { return nil }
+        guard 0 <= n, n <= count else { return nil }
 
         return indices.shuffled().prefix(upTo: n).map { self[$0] }
     }

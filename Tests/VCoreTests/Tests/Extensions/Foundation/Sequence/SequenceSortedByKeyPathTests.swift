@@ -1,5 +1,5 @@
 //
-//  SequenceSortByKeyPathTests.swift
+//  SequenceSortedByKeyPathTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 06.05.22.
@@ -9,7 +9,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class SequenceSortByKeyPathTests: XCTestCase {
+final class SequenceSortedByKeyPathTests: XCTestCase {
     // MARK: Test Data
     private struct City: Equatable {
         let name: String

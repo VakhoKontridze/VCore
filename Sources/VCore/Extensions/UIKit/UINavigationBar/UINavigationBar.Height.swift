@@ -21,7 +21,8 @@ extension UINavigationBar {
         )
         .navigationBar
         .frame
-        .size.height
+        .size
+        .height
     }
 }
 

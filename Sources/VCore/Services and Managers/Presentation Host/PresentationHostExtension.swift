@@ -1,5 +1,5 @@
 //
-//  View.PresentationHost.swift
+//  PresentationHostExtension.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 06.03.23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - View Presentation Host
+// MARK: - Presentation Host Extension
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)

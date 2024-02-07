@@ -16,9 +16,9 @@ import SwiftUI
 ///
 ///     struct SomeButtonUIModel {
 ///         var titleColors: StateColors = .init(
-///             enabled: .black,
-///             pressed: .gray,
-///             disabled: .gray
+///             enabled: Color.primary,
+///             pressed: Color.secondary,
+///             disabled: Color.secondary
 ///         )
 ///
 ///         typealias StateColors = GenericStateModel_EnabledPressedDisabled<Color>

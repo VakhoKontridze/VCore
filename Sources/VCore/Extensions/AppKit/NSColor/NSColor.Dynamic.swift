@@ -23,16 +23,18 @@ extension NSColor {
             name: nil,
             dynamicProvider: { appearance in
                 switch appearance.name {
-                case .aqua: light
-                case .accessibilityHighContrastAqua: light
-                case .accessibilityHighContrastVibrantLight: light
+                case .aqua: return light
+                case .accessibilityHighContrastAqua: return light
+                case .accessibilityHighContrastVibrantLight: return light
 
-                case .darkAqua: dark
-                case .vibrantDark: dark
-                case .accessibilityHighContrastDarkAqua: dark
-                case .accessibilityHighContrastVibrantDark: dark
+                case .darkAqua: return dark
+                case .vibrantDark: return dark
+                case .accessibilityHighContrastDarkAqua: return dark
+                case .accessibilityHighContrastVibrantDark: return dark
 
-                default: light
+                default:
+                    VCoreLogWarning("Unhandled case in 'NSColor.dynamic(light:dark:)'")
+                    return light
                 }
             }
         )

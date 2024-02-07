@@ -13,7 +13,9 @@ extension StringProtocol {
     ///
     ///     let string: String = "À".diacriticInsensitiveString() // "A"
     ///
-    public func diacriticInsensitiveString(locale: Locale? = nil) -> String {
+    public func diacriticInsensitiveString(
+        locale: Locale? = nil
+    ) -> String {
         folding(options: .diacriticInsensitive, locale: locale)
     }
 }

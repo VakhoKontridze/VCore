@@ -30,21 +30,21 @@ extension Locale {
         
         if
             (regionCodeOrCurrent != nil || other.regionCodeOrCurrent != nil) &&
-                regionCodeOrCurrent != other.regionCodeOrCurrent
+            regionCodeOrCurrent != other.regionCodeOrCurrent
         {
             return false
         }
         
         if
             (scriptCodeOrCurrent != nil || other.scriptCodeOrCurrent != nil) &&
-                scriptCodeOrCurrent != other.scriptCodeOrCurrent
+            scriptCodeOrCurrent != other.scriptCodeOrCurrent
         {
             return false
         }
         
         if
             (variantCodeOrCurrent != nil || other.variantCodeOrCurrent != nil) &&
-                variantCodeOrCurrent != other.variantCodeOrCurrent
+            variantCodeOrCurrent != other.variantCodeOrCurrent
         {
             return false
         }

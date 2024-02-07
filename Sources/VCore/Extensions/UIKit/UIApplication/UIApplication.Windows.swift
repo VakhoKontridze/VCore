@@ -1,5 +1,5 @@
 //
-//  UIApplication.FirstWindow.swift
+//  UIApplication.Windows.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 4/14/22.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Application First Window
+// MARK: - Application Windows
 extension UIApplication {
     /// Returns first `UIWindow` from all connected scenes that satisfies predicate.
     public func firstWindow(

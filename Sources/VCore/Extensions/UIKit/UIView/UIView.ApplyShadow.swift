@@ -14,7 +14,7 @@ extension UIView {
     /// Applies shadow to `UIView`.
     ///
     ///     view.applyShadow(
-    ///         color: .black.withAlphaComponent(0.16),
+    ///         color: UIColor.black.withAlphaComponent(0.16),
     ///         radius: 5,
     ///         offset: CGSize(width: 0, height: 5)
     ///     )
@@ -34,7 +34,7 @@ extension UIView {
     ///
     ///     view.roundCornersAndApplyShadow(
     ///         cornerRadius: 10,
-    ///         color: .black.withAlphaComponent(0.16),
+    ///         color: UIColor.black.withAlphaComponent(0.16),
     ///         radius: 5,
     ///         offset: CGSize(width: 0, height: 5)
     ///     )

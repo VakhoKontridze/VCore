@@ -17,6 +17,7 @@ import Foundation
 /// For single-module projects, this step can be skipped.
 ///
 ///     private final class BundleSeeker {}
+///
 ///     extension Bundle {
 ///         static let current: Bundle = .init(for: BundleSeeker.self)
 ///         public static var submodule: Bundle { current } // Can be used to retrieve `Bundle` from the main module

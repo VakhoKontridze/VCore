@@ -1,5 +1,5 @@
 //
-//  StringProtocol.Replacing.swift
+//  StringProtocol.Replaced.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11.12.23.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - String Protocol Replacing
+// MARK: - String Protocol Replaced
 extension StringProtocol {
     /// Returns `String` with an element replaced at index.
     ///
@@ -23,7 +23,7 @@ extension StringProtocol {
     ///     var string: String = "Lorem ipsum"
     ///     string.replacing(at: 0, with: "l") // "lorem ipsum"
     ///
-    mutating public func replacing(at i: Int, with element: Element) {
+    mutating public func replace(at i: Int, with element: Element) {
         self = replaced(at: i, with: element)
     }
 }

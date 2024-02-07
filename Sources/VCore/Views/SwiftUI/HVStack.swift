@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - HVStack
 /// `View` that arranges its subviews in a horizontal or vertical line.
-public struct HVStack<Content>: View where Content: View { // TODO: iOS 16 - Remove. Obsoleted by `Layout`.
+public struct HVStack<Content>: View where Content: View { // TODO: iOS 16 - Remove, as it's obsoleted by `Layout`
     // MARK: Properties
     private let alignmentHorizontal: HorizontalAlignment
     private let alignmentVertical: VerticalAlignment

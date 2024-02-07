@@ -11,7 +11,7 @@ import Foundation
 extension ClosedRange where Bound: FixedWidthInteger {
     /// Returns reversed `Array` from `ClosedRange` if condition is met.
     ///
-    ///     let number: [Int] = 1...3   // [3, 2, 1]
+    ///     let number: [Int] = 1...3 // [3, 2, 1]
     ///         .reversedArray()
     ///
     public func reversedArray(

@@ -27,14 +27,12 @@ extension Calendar {
     ///     let numberOfDaysInMonth: Int? = Calendar.current.numberOfDaysInMonth(year: year, month: month)) // 31
     ///
     public func numberOfDaysInMonth(year: Int, month: Int) -> Int? {
-        let date: Date? = {
-            var components: DateComponents = .init()
-            components.year = year
-            components.month = month
-            
-            return self.date(from: components)
-        }()
-        
-        return date.flatMap { numberOfDaysInMonth(date: $0) }
+        var components: DateComponents = .init()
+        components.year = year
+        components.month = month
+
+        guard let date: Date = self.date(from: components) else { return nil }
+
+        return numberOfDaysInMonth(date: date)
     }
 }

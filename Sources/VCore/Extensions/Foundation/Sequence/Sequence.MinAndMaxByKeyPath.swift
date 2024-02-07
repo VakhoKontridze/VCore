@@ -1,5 +1,5 @@
 //
-//  Sequence.MinMaxByKeyPath.swift
+//  Sequence.MinAndMaxByKeyPath.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 06.10.23.

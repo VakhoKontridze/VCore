@@ -1,5 +1,5 @@
 //
-//  Sequence.SortByKeyPath.swift
+//  Sequence.SortedByKeyPath.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 9/13/21.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Sequence Sort by KeyPath
+// MARK: - Sequence Sorted by KeyPath
 extension Sequence {
     /// Returns the elements of a `Sequence`, sorted using the given `KeyPath` as the comparison between elements.
     ///
