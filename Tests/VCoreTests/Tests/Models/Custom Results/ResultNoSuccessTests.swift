@@ -11,11 +11,15 @@ import XCTest
 // MARK: - Tests
 final class ResultNoSuccessTests: XCTestCase {
     // MARK: Test Data
-    private struct TestError: EquatableError {
+    private struct TestError: Error, Equatable {
         private let code: Int
         
         static var a: Self { .init(code: 1) }
         static var b: Self { .init(code: 2) }
+
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            lhs.code == rhs.code
+        }
     }
     
     private let resultS: ResultNoSuccess<TestError> = .success
