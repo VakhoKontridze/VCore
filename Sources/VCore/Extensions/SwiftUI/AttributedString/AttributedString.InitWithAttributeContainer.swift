@@ -111,7 +111,7 @@ extension AttributedString {
     }
 }
 
-// MARK: - Components Separated by Tags
+// MARK: - String Components Separated by Tags
 extension String {
     /*fileprivate*/ func components(
         separatedByTagNames tagNames: [Character]
@@ -208,7 +208,7 @@ extension String {
 
                 } else {
                     VCoreLogError("Unhanded edge-case") // Will never occur, as it's skipped
-                    throw StringComponentsSeparatedByTagsError(.unknownError)
+                    throw StringComponentsSeparatedByTagsError(.unknownErrorOccurred)
                 }
 
             default:
@@ -219,7 +219,7 @@ extension String {
 
         if isInsideTag {
             VCoreLogError("Unhanded edge-case") // Will never occur
-            throw StringComponentsSeparatedByTagsError(.unknownError)
+            throw StringComponentsSeparatedByTagsError(.unknownErrorOccurred)
         }
 
         // Terminates existing un-attributed component
@@ -253,7 +253,7 @@ extension String {
         case closingTagSlashNotFound
         case closingTagNameNotFound
 
-        case unknownError
+        case unknownErrorOccurred
     }
 
     // MARK: VCore Error
@@ -271,7 +271,7 @@ extension String {
         case .closingTagSlashNotFound: "Closing tag slash not found"
         case .closingTagNameNotFound: "Closing tag name not found"
 
-        case .unknownError: "Unknown error"
+        case .unknownErrorOccurred: "Unknown error occurred"
         }
     }
 
