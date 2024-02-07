@@ -9,32 +9,29 @@ import Foundation
 
 // MARK: - V Core Error
 /// An error that occurs in `VCore`.
-///
-/// Dynamic member `domain` is linked with static member `errorDomain`.
-/// Override `errorDomain` to change both.
 public protocol VCoreError: LocalizedError, CustomNSError {
     /// Error domain.
-    var domain: String { get }
+    static var vCoreErrorDomain: String { get }
     
     /// Error code.
-    var code: Int { get }
+    var vCoreErrorCode: Int { get }
     
     /// Error description.
-    var description: String { get }
+    var vCoreErrorDescription: String { get }
 }
 
 extension VCoreError {
     // VCoreError
-    public var domain: String { Self.errorDomain }
-    
+    public static var vCoreErrorDomain: String { "com.vcore.\(String(describing: Self.self).lowercased())" }
+
     // LocalizedError
-    public var errorDescription: String? { description }
+    public var errorDescription: String? { vCoreErrorDescription }
     public var failureReason: String? { nil }
     public var recoverySuggestion: String? { nil }
     public var helpAnchor: String? { nil }
-    public var localizedDescription: String { description }
+    public var localizedDescription: String { vCoreErrorDescription }
     
     // NSError
-    public static var errorDomain: String { "com.vcore.\(String(describing: Self.self).lowercased())" }
-    public var errorCode: Int { code }
+    public static var errorDomain: String { vCoreErrorDomain }
+    public var errorCode: Int { vCoreErrorCode }
 }

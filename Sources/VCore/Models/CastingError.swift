@@ -24,12 +24,13 @@ public struct CastingError: VCoreError, Equatable {
         self.toType = toType
     }
 
-    // MARK: VCore Error
-    public let code: Int = 0
-    public var description: String { "Failed to cast '\(fromType)' to '\(toType)'" }
+    // MARK: Properties - VCore Error
+    public let vCoreErrorCode: Int = 0
+
+    public var vCoreErrorDescription: String { "Failed to cast '\(fromType)' to '\(toType)'" }
 
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.code == rhs.code
+        lhs.vCoreErrorCode == rhs.vCoreErrorCode
     }
 }

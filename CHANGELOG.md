@@ -20,6 +20,10 @@ Views
 
 - Crashes in `TouchSensitiveContainer` on `tvOS` are fixed, and view is marked as unavailable
 
+Models
+
+- `VCoreError` API is updated
+
 Helpers
 
 - JSON type casting helpers have been removed due to ambiguous API

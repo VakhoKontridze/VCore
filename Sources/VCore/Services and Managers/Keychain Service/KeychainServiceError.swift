@@ -13,16 +13,6 @@ public struct KeychainServiceError: VCoreError, Equatable {
     // MARK: Properties
     private let _code: Code
     
-    // MARK: VCore Error
-    public var code: Int { _code.rawValue }
-    public var description: String {
-        switch _code {
-        case .failedToGet: "Data cannot be retrieved from Security framework"
-        case .failedToSet: "Data cannot be set from Security framework"
-        case .failedToDelete: "Data cannot be deleted from Security framework"
-        }
-    }
-    
     // MARK: Initializers
     init(_ code: Code) {
         self._code = code
@@ -49,9 +39,20 @@ public struct KeychainServiceError: VCoreError, Equatable {
         /// Indicates that delete operation has failed.
         case failedToDelete
     }
-    
+
+    // MARK: VCore Error
+    public var vCoreErrorCode: Int { _code.rawValue }
+
+    public var vCoreErrorDescription: String {
+        switch _code {
+        case .failedToGet: "Data cannot be retrieved from Security framework"
+        case .failedToSet: "Data cannot be set from Security framework"
+        case .failedToDelete: "Data cannot be deleted from Security framework"
+        }
+    }
+
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.code == rhs.code
+        lhs.vCoreErrorCode == rhs.vCoreErrorCode
     }
 }
