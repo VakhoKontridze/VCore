@@ -1,5 +1,5 @@
 //
-//  XCTAssertEqualArray.swift
+//  XCTAssertEqualOneOfArray.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.09.23.
@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 import VCore
 
-// MARK: - XCTest Assert Equal Array
+// MARK: - XCTest Assert Equal One of Array
 func XCTAssertEqual<T>(
     _ expression1: @autoclosure () throws -> T,
     oneOf expression2: @autoclosure () throws -> [T],

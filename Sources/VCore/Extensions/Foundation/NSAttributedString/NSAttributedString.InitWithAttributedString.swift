@@ -1,5 +1,5 @@
 //
-//  NSAttributedString.InitFromArray.swift
+//  NSAttributedString.InitWithAttributedString.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 12.07.22.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-// MARK: - Attributed String Init from Array
+// MARK: - Attributed String Init with Attributed Strings
 extension NSAttributedString {
-    /// Initializes `NSAttributedString` with sub `NSAttributedString`s.
+    /// Initializes `NSAttributedString` with child `NSAttributedString` components.
     ///
     ///     let label: UILabel = .init()
     ///
