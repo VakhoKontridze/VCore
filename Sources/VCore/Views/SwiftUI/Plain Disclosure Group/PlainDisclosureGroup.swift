@@ -34,8 +34,8 @@ import SwiftUI
 ///         .padding()
 ///     }
 ///
-@available(tvOS 16.0, *)@available(tvOS, unavailable)
-@available(watchOS, unavailable)
+@available(tvOS 16.0, *)@available(tvOS, unavailable) // No `DisclosureGroup`
+@available(watchOS, unavailable) // No `DisclosureGroup`
 @available(visionOS, unavailable) // Doesn't follow HIG
 public struct PlainDisclosureGroup<Label, Content>: View
     where

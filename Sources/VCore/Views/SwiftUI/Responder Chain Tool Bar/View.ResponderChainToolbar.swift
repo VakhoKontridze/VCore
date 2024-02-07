@@ -8,9 +8,9 @@
 import SwiftUI
 
 // MARK: - View Responder Chain Toolbar
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
-@available(visionOS, unavailable)
+@available(tvOS, unavailable) // No `ToolbarItemPlacement.keyboard`
+@available(watchOS, unavailable) // No `ToolbarItemPlacement.keyboard`
+@available(visionOS, unavailable) // No `ToolbarItemPlacement.keyboard`
 extension View {
     /// Inserts toolbar that managed focus navigation in responder chain.
     ///

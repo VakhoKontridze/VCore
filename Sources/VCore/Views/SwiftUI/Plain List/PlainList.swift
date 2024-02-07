@@ -20,8 +20,8 @@ import SwiftUI
 ///     })
 ///
 @available(macOS 13.0, *)
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
+@available(tvOS, unavailable) // Doesn't follow HIG. Implementation doesn't fully work.
+@available(watchOS, unavailable) // Doesn't follow HIG. Implementation doesn't fully work.
 public struct PlainList<Content>: View where Content: View {
     // MARK: Properties
     private let uiModel: PlainListUIModel
