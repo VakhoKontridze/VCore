@@ -19,13 +19,16 @@ final class PresentationHostHostingViewControllerContainerViewController: Keyboa
     // MARK: Properties
     typealias HostingViewControllerType = UIHostingController<AnyView>
 
+    let id: String
     private let uiModel: PresentationHostUIModel
 
     // MARK: Initializers
     init(
+        id: String,
         uiModel: PresentationHostUIModel,
         content: AnyView
     ) {
+        self.id = id
         self.uiModel = uiModel
 
         self.hostingController = {

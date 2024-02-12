@@ -62,24 +62,34 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         completion: (() -> Void)?
     ) {
         let hostingControllerContainer: PresentationHostHostingViewControllerContainerViewController = .init(
+            id: id,
             uiModel: uiModel,
             content: content
         )
-        self.hostingControllerContainer = hostingControllerContainer
 
         hostingControllerContainer.modalPresentationStyle = .overFullScreen
         hostingControllerContainer.modalTransitionStyle = .crossDissolve
         hostingControllerContainer.transitioningDelegate = self
 
-        Task(operation: { @MainActor [weak self] in
+        Task(operation: { @MainActor [weak self] in // `Task` is needed here, to retrieve correct values from `presentedViewController`
             guard let self else { return }
 
             if let presentedViewController {
-                Logger.presentationHost.warning("Attempting to present modal with ID '\(id)', which is already presenting '\(presentedViewController.debugDescription)'")
-                return
+                if
+                    let presentedViewController = presentedViewController as? PresentationHostHostingViewControllerContainerViewController,
+                    presentedViewController.id == id
+                {
+                    return
+
+                } else {
+                    Logger.presentationHost.warning("Attempting to present modal with ID '\(self.id)', which is already presenting '\(presentedViewController.debugDescription)'")
+                    return
+                }
             }
 
             present(hostingControllerContainer, animated: true, completion: completion)
+
+            self.hostingControllerContainer = hostingControllerContainer
 
             PresentationHostViewControllerStorage.shared.storage[id] = self
         })
