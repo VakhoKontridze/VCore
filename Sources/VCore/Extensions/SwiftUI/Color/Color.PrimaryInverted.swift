@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Color Primary Inverted
 extension Color {
-    /// `Color` that can be uses for inverted primary content.
+    /// `Color` that can be used for inverted primary content.
     ///
     ///     Text("Lorem ipsum")
     ///         .foregroundStyle(Color.primaryInverted)
