@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 // MARK: - Attributed String Init with Attribute Containers
 extension AttributedString {
@@ -105,7 +106,7 @@ extension AttributedString {
             self = try AttributedString(string, attributeContainers: attributeContainers)
 
         } catch {
-            VCoreLogError(error)
+            Logger.misc.debug("Failed to create 'AttributedString' with `AttributeContainer`s, and defaulting to 'AttributedString(string)'")
             self = AttributedString(string)
         }
     }
@@ -206,8 +207,8 @@ extension String {
                 if index == 0 {
                     throw StringComponentsSeparatedByTagsError(.invalidClosingTag)
 
-                } else {
-                    VCoreLogError("Unhanded edge-case") // Will never occur, as it's skipped
+                } else { // Will never occur, as it's skipped
+                    Logger.misc.fault("Unhandled edge-case in 'String.components(separatedByTagNames:)'")
                     throw StringComponentsSeparatedByTagsError(.unknownErrorOccurred)
                 }
 
@@ -217,8 +218,8 @@ extension String {
             }
         }
 
-        if isInsideTag {
-            VCoreLogError("Unhanded edge-case") // Will never occur
+        if isInsideTag { // Will never occur
+            Logger.misc.fault("Unhandled edge-case in 'String.components(separatedByTagNames:)'")
             throw StringComponentsSeparatedByTagsError(.unknownErrorOccurred)
         }
 

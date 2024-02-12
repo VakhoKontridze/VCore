@@ -8,6 +8,7 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import SwiftUI
+import OSLog
 
 // MARK: - Presentation Host View Controller
 @available(tvOS, unavailable)
@@ -74,7 +75,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
             guard let self else { return }
 
             if let presentedViewController {
-                VCoreLogWarning("Attempting to present modal '\(id)', which is already presenting '\(presentedViewController.debugDescription)'")
+                Logger.presentationHost.warning("Attempting to present modal with ID '\(id)', which is already presenting '\(presentedViewController.debugDescription)'")
                 return
             }
 

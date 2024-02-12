@@ -9,6 +9,7 @@
 
 import SwiftUI
 import Combine
+import OSLog
 
 // MARK: - Presentation Host View
 @available(tvOS, unavailable)
@@ -57,7 +58,7 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
         guard let uiViewController = uiViewController as? PresentationHostViewController else {
-            VCoreLogError("Failed to cast '\(String(describing: type(of: uiViewController)))' to 'PresentationHostViewController'")
+            Logger.presentationHost.critical("Failed to cast '\(String(describing: type(of: uiViewController)))' to 'PresentationHostViewController'")
             fatalError()
         }
 

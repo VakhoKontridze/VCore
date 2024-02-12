@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 // MARK: - Image Init with Data
 extension Image {
@@ -20,7 +21,7 @@ extension Image {
         guard
             let uiImage: UIImage = .init(data: data)
         else {
-            VCoreLogError("Could not initialize 'UIImage' from the specified data.")
+            Logger.misc.critical("Failed to initialize 'UIImage' from `Data`")
             fatalError()
         }
         
@@ -29,7 +30,7 @@ extension Image {
         guard
             let nsImage: NSImage = .init(data: data)
         else {
-            VCoreLogError("Could not initialize 'NSImage' from the specified data.")
+            Logger.misc.critical("Failed to initialize 'NSImage' from `Data`")
             fatalError()
         }
         

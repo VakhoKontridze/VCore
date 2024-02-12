@@ -8,6 +8,7 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import UIKit
+import OSLog
 
 // MARK: - Carousel UI Collection View Flow Layout
 /// Layout object that organizes items into a grid with a flowing carousel alignment.
@@ -90,13 +91,13 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         collectionView: UICollectionView
     ) {
         guard scrollDirection == .horizontal else {
-            VCoreLogError("'scrollDirection' must be set to 'horizontal'")
+            Logger.carouselCollectionViewFlowLayout.critical("'scrollDirection' must be set to 'horizontal'")
             fatalError()
         }
         
 #if !os(tvOS)
         guard !collectionView.isPagingEnabled else {
-            VCoreLogError("'isPagingEnabled' must be set to 'false'")
+            Logger.carouselCollectionViewFlowLayout.critical("'isPagingEnabled' must be set to 'false'")
             fatalError()
         }
 #endif
@@ -105,7 +106,7 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             let flowDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout,
             delegateSupportsSizeForItem(collectionView: collectionView, flowDelegate: flowDelegate)
         {
-            VCoreLogError("'collectionView(_:layout:sizeForItemAt:)' should not be implemented")
+            Logger.carouselCollectionViewFlowLayout.critical("'collectionView(_:layout:sizeForItemAt:)' should not be implemented")
             fatalError()
         }
     }

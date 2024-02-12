@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 // MARK: - Keychain Service
 /// Service objects that performs `Data` get, set, and delete operations to keychain.
@@ -47,9 +48,7 @@ open class KeychainService {
         }
         
         guard let data: Data = valueObject as? Data else {
-            let error: CastingError = .init(from: String(describing: type(of: valueObject)), to: "Data")
-            VCoreLogError(error)
-            throw error
+            throw CastingError(from: String(describing: type(of: valueObject)), to: "Data")
         }
         
         return data
@@ -60,7 +59,7 @@ open class KeychainService {
     open func set(key: String, data: Data?) throws {
         switch data {
         case nil:
-            try delete(key: key) // Logged internally
+            try delete(key: key)
             
         case let data?:
             try? delete(key: key, logsError: false)
@@ -70,9 +69,8 @@ open class KeychainService {
             let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
             
             guard status == noErr else {
-                let error: KeychainServiceError = .init(.failedToSet)
-                VCoreLogError(error, "Status code '\(status)'")
-                throw error
+                Logger.keychainService.error("Failed to set 'Data' with key '\(key)' with 'OSStatus' '\(status)'")
+                throw KeychainServiceError(.failedToSet)
             }
         }
     }
@@ -80,23 +78,28 @@ open class KeychainService {
     // MARK: Delete
     /// Deletes `Data` with key.
     open func delete(
+        key: String
+    ) throws {
+        try delete(key: key, logsError: true)
+    }
+
+    private func delete(
         key: String,
-        logsError: Bool = true
+        logsError: Bool
     ) throws {
         let query: [String: Any] = configuration.deleteQuery.build(key: key)
-        
+
         let status: OSStatus = SecItemDelete(query as CFDictionary)
-        
+
         guard status == noErr else {
-            let error: KeychainServiceError = .init(.failedToDelete)
-            if logsError { VCoreLogError(error, "Status code '\(status)'") }
-            throw error
+            if logsError { Logger.keychainService.error("Failed to set 'Data' with key '\(key)' with 'OSStatus' '\(status)'") }
+            throw KeychainServiceError(.failedToDelete)
         }
     }
-    
+
     // MARK: Subscript
     open subscript(_ key: String) -> Data? {
-        get { try? get(key: key) } // Logged internally
-        set { try? set(key: key, data: newValue) } // Logged internally
+        get { try? get(key: key) }
+        set { try? set(key: key, data: newValue) }
     }
 }

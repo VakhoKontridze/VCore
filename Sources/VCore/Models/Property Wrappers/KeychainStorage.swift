@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import OSLog
 
 // MARK: - Keychain Storage
 /// Property wrapper type that reflects a value from key chain and invalidates a view on a change in value in that key chain.
@@ -159,7 +160,7 @@ extension KeychainStorage {
             return value
             
         } catch let error {
-            VCoreLogError(error)
+            Logger.keychainStorage.error("Failed to decode '\(T.self)' from 'Data': \(error)")
             return defaultValue
         }
     }
@@ -175,7 +176,7 @@ extension KeychainStorage {
             keychainService[key] = try JSONEncoder().encode(value)
             
         } catch let error {
-            VCoreLogError(error)
+            Logger.keychainStorage.error("Failed to encode '\(T.self)' to 'Data': \(error)")
         }
     }
 }

@@ -74,9 +74,9 @@ public struct MultipartFormDataBuilder {
         files: [String: (some AnyMultipartFormDataFile)?]
     ) throws -> (boundary: String, data: Data) {
         var data: Data = .init()
-        data.append(try JSONBuilder(boundary: boundary).build(json: json)) // Logged internally
-        data.append(try FileBuilder(boundary: boundary).build(files: files)) // Logged internally
-        try data.appendString("--\(boundary)--\(Self.lineBreak)") // Logged internally
+        data.append(try JSONBuilder(boundary: boundary).build(json: json))
+        data.append(try FileBuilder(boundary: boundary).build(files: files))
+        try data.appendString("--\(boundary)--\(Self.lineBreak)")
         
         return (boundary, data)
     }
@@ -87,12 +87,12 @@ public struct MultipartFormDataBuilder {
         files: [String: (some AnyMultipartFormDataFile)?],
         optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
-        let json: [String: Any?] = try JSONDecoder.decodeJSONFromData( // Logged internally
+        let json: [String: Any?] = try JSONDecoder.decodeJSONFromData(
             data,
             optionsDataToJSONObject: optionsDataToJSONObject
         )
         
-        return try build(json: json, files: files) // Logged internally
+        return try build(json: json, files: files)
     }
     
     /// Builds and returns boundary `String` and `Data` that can be sent over network.
@@ -101,12 +101,12 @@ public struct MultipartFormDataBuilder {
         files: [String: (some AnyMultipartFormDataFile)?],
         optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
-        let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON( // Logged internally
+        let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON(
             object,
             optionsDataToJSONObject: optionsDataToJSONObject
         )
         
-        return try build(json: json, files: files) // Logged internally
+        return try build(json: json, files: files)
     }
 }
 
@@ -114,9 +114,7 @@ public struct MultipartFormDataBuilder {
 extension Data {
     mutating func appendString(_ string: String) throws {
         guard let data: Data = string.data(using: .utf8) else {
-            let error: CastingError = .init(from: "String", to: "Data")
-            VCoreLogError(error)
-            throw error
+            throw CastingError(from: "String", to: "Data")
         }
         
         append(data)

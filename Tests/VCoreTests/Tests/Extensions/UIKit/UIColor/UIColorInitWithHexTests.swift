@@ -7,6 +7,7 @@
 
 #if canImport(UIKit)
 
+import Foundation
 import XCTest
 @testable import VCore
 

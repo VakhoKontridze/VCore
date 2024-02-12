@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 // MARK: - Task Sleep
 extension Task where Success == Never, Failure == Never {
@@ -19,7 +20,7 @@ extension Task where Success == Never, Failure == Never {
     ///
     public static func sleep(seconds duration: TimeInterval) async throws {
         guard duration >= 0 else {
-            VCoreLogError("'duration' must be greater than or equal to '0'")
+            Logger.misc.critical("'duration' must be greater than or equal to '0'")
             fatalError()
         }
 

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 import XCTest
 @testable import VCore
 
@@ -26,7 +27,7 @@ final class ImageInitWithDataTests: XCTestCase {
             ),
             let data: Data = uiImage.jpegData(compressionQuality: 1)
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.imageInitWithDataTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -39,7 +40,7 @@ final class ImageInitWithDataTests: XCTestCase {
             ),
             let data: Data = nsImage.tiffRepresentation
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.imageInitWithDataTests.critical("Failed to generate test data")
             fatalError()
         }
 

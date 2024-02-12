@@ -8,6 +8,7 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import UIKit
+import OSLog
 
 // MARK: - Parameter
 /// Protocol that allows parameter to configure an `UITableViewCell`.
@@ -130,7 +131,7 @@ extension UITableView {
         guard
             let cell = dequeueReusableCell(withIdentifier: parameter.reuseID) as? any ConfigurableUITableViewCell
         else {
-            VCoreLogError("Unable to dequeue a cell with identifier '\(parameter.reuseID)'")
+            Logger.misc.critical("Unable to dequeue 'ConfigurableUITableViewCell' with identifier '\(parameter.reuseID)'")
             fatalError()
         }
         

@@ -7,8 +7,8 @@
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import XCTest
 import AppKit
+import XCTest
 @testable import VCore
 
 // MARK: - Tests

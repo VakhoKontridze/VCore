@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 09.05.22.
 //
 
+import Foundation
+import OSLog
 import XCTest
 @testable import VCore
 
@@ -19,7 +21,7 @@ final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
                 headerFields: nil
             )
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.urlResponseIsSuccessHTTPStatusCodeTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -27,7 +29,7 @@ final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
 
         XCTAssertTrue(isSuccess)
     }
-    
+
     func testFailure() {
         guard
             let urlResponse: HTTPURLResponse = .init(
@@ -37,7 +39,7 @@ final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
                 headerFields: nil
             )
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.urlResponseIsSuccessHTTPStatusCodeTests.critical("Failed to generate test data")
             fatalError()
         }
 

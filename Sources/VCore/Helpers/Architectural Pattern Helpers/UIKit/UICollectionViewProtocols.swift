@@ -8,6 +8,7 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import UIKit
+import OSLog
 
 // MARK: - Parameters
 /// Protocol that allows parameter to configure an `UICollectionViewCell`.
@@ -132,7 +133,7 @@ extension UICollectionView {
         guard
             let cell = dequeueReusableCell(withReuseIdentifier: parameter.reuseID, for: indexPath) as? any ConfigurableUICollectionViewCell
         else {
-            VCoreLogError("Unable to dequeue a cell with identifier '\(parameter.reuseID)'")
+            Logger.misc.critical("Unable to dequeue 'ConfigurableUICollectionViewCell' with identifier '\(parameter.reuseID)'")
             fatalError()
         }
         

@@ -10,6 +10,7 @@ import UIKit
 #elseif canImport(AppKit)
 import AppKit
 #endif
+import OSLog
 
 // MARK: - Gesture Base Button Gesture State
 /// Enumeration that represents state, such as `possible`, `began`, `ended`, or `cancelled`.
@@ -56,7 +57,7 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
             case .cancelled: return .cancelled
             case .failed: fatalError() // Not used
             @unknown default:
-                VCoreLogError("Unhandled case in 'GestureBaseButtonGestureState.init(state:)'")
+                Logger.baseButtonGestureRecognizer.critical("Unhandled case in 'GestureBaseButtonGestureState.init(state:)'")
                 fatalError()
             }
         }()
@@ -72,7 +73,7 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
             case .cancelled: return .cancelled
             case .failed: fatalError() // Not used
             @unknown default:
-                VCoreLogError("Unhandled case in 'GestureBaseButtonGestureState.init(state:)'")
+                Logger.baseButtonGestureRecognizer.critical("Unhandled case in 'GestureBaseButtonGestureState.init(state:)'")
                 fatalError()
             }
         }()

@@ -1,34 +1,15 @@
 //
-//  DebugHelpers.swift
-//  VCore
+//  String.CombiningDebugItems.swift
+//  VCoreTests
 //
-//  Created by Vakhtang Kontridze on 31.12.23.
+//  Created by Vakhtang Kontridze on 12.02.24.
 //
 
 import Foundation
 
-// MARK: - Module Description
-func moduleDescription(
-    fileID: String = #fileID
-) -> String {
-    let module: String = fileID.components(separatedBy: "/").first ?? fileID
-
-    return module
-}
-
-// MARK: - Call Site Description
-func callSiteDescription(
-    file: String,
-    line: UInt
-) -> String {
-    let file: String = file.components(separatedBy: "/").last ?? file
-
-    return "\(file):\(line)"
-}
-
 // MARK: - String Combining Debug Items
 extension String {
-    package static func combiningDebugItems(
+    static func combiningDebugItems(
         _ items: Any...
     ) -> String {
         let messages: [String] = items

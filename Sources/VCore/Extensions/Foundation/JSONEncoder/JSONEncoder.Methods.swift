@@ -19,19 +19,10 @@ extension JSONEncoder {
         optionsAnyToData options: JSONSerialization.WritingOptions = []
     ) throws -> Data {
         guard let any else {
-            let error: CastingError = .init(from: "Any?", to: "Any")
-            VCoreLogError(error)
-            throw error
+            throw CastingError(from: "Any?", to: "Any")
         }
 
-        let data: Data
-        do {
-            data = try JSONSerialization.data(withJSONObject: any, options: options)
-
-        } catch let error {
-            VCoreLogError(error)
-            throw error
-        }
+        let data: Data = try JSONSerialization.data(withJSONObject: any, options: options)
 
         return data
     }
@@ -45,25 +36,12 @@ extension JSONEncoder {
         _ object: some Encodable,
         optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
     ) throws -> [String: Any?] {
-        let data: Data
-        do {
-            data = try encode(object)
-
-        } catch let error {
-            VCoreLogError(error)
-            throw error
-        }
-
-        let json: [String: Any?]
-        do {
-            json = try JSONDecoder.decodeJSONFromData(
-                data,
-                optionsDataToJSONObject: options
-            )
-
-        } catch /*let error*/ { // Logged internally
-            throw error
-        }
+        let data: Data = try encode(object)
+        
+        let json: [String: Any?] = try JSONDecoder.decodeJSONFromData(
+            data,
+            optionsDataToJSONObject: options
+        )
 
         return json
     }
@@ -77,25 +55,12 @@ extension JSONEncoder {
         _ objects: some Encodable,
         optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
     ) throws -> [[String: Any?]] {
-        let data: Data
-        do {
-            data = try encode(objects)
+        let data: Data = try encode(objects)
 
-        } catch let error {
-            VCoreLogError(error)
-            throw error
-        }
-
-        let jsonArray: [[String: Any?]]
-        do {
-            jsonArray = try JSONDecoder.decodeJSONArrayFromData(
-                data,
-                optionsDataToJSONObject: options
-            )
-
-        } catch /*let error*/ { // Logged internally
-            throw error
-        }
+        let jsonArray: [[String: Any?]] = try JSONDecoder.decodeJSONArrayFromData(
+            data,
+            optionsDataToJSONObject: options
+        )
 
         return jsonArray
     }

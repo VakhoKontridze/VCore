@@ -12,6 +12,7 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import SwiftUI
+import OSLog
 
 // MARK: - Overridable UI Hosting Controller Behavior
 /// `UIHostingController` behavior overriding option.
@@ -37,7 +38,7 @@ extension UIHostingController {
         guard !behaviors.isEmpty else { return false }
 
         guard let viewClass: AnyClass = object_getClass(view) else {
-            VCoreLogError("Couldn't retrieve class type when overriding behaviors in 'UIHostingController'")
+            Logger.misc.error("Failed to retrieve class type when overriding behaviors in 'UIHostingController'")
             return false
         }
 
@@ -52,7 +53,7 @@ extension UIHostingController {
             let viewSubclassNameUTF8: UnsafePointer<CChar> = (viewSubclassName as NSString).utf8String,
             let viewSubclass: AnyClass = objc_allocateClassPair(viewClass, viewSubclassNameUTF8, 0)
         else {
-            VCoreLogError("Couldn't retrieve class name when overriding behaviors in 'UIHostingController'")
+            Logger.misc.error("Failed to retrieve class name when overriding behaviors in 'UIHostingController'")
             return false
         }
 
@@ -76,7 +77,7 @@ extension UIHostingController {
         let selector: Selector = #selector(getter: UIView.safeAreaInsets)
 
         guard let method: Method = class_getInstanceMethod(UIView.self, selector) else {
-            VCoreLogError("Couldn't retrieve 'UIView.safeAreaInsets' when overriding 'disablesSafeAreaInsets' in 'UIHostingController'")
+            Logger.misc.error("Failed to retrieve 'UIView.safeAreaInsets' when overriding 'disablesSafeAreaInsets' in 'UIHostingController'")
             return
         }
 
@@ -97,7 +98,7 @@ extension UIHostingController {
         let selector: Selector = NSSelectorFromString("keyboardWillShowWithNotification:")
 
         guard let method: Method = class_getInstanceMethod(viewClass, selector) else {
-            VCoreLogError("Couldn't retrieve 'UIView.keyboardWillShowNotification' when overriding 'disablesKeyboardAvoidance' in 'UIHostingController'")
+            Logger.misc.error("Failed to retrieve 'UIView.keyboardWillShowNotification' when overriding 'disablesKeyboardAvoidance' in 'UIHostingController'")
             return
         }
 

@@ -7,6 +7,8 @@
 
 #if canImport(UIKit) && !os(watchOS) // `UIImage.averageColor` doesn't work on watchOS
 
+import Foundation
+import OSLog
 import XCTest
 @testable import VCore
 
@@ -16,7 +18,7 @@ final class UIImageCroppedTests: XCTestCase {
         guard
             let image: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red)
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageCroppedTests.critical("Failed to generate test data")
             fatalError()
         }
         
@@ -30,7 +32,7 @@ final class UIImageCroppedTests: XCTestCase {
         guard
             let croppedImageAverageColor: UIColor = croppedImage.averageColor
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageCroppedTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -41,7 +43,7 @@ final class UIImageCroppedTests: XCTestCase {
         guard
             let image: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red)
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageCroppedTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -50,7 +52,7 @@ final class UIImageCroppedTests: XCTestCase {
         guard
             let croppedImageAverageColor: UIColor = croppedImage.averageColor
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageCroppedTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -63,7 +65,7 @@ final class UIImageCroppedTests: XCTestCase {
             let image2: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.green),
             let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageCroppedTests.critical("Failed to generate test data")
             fatalError()
         }
         
@@ -77,7 +79,7 @@ final class UIImageCroppedTests: XCTestCase {
         guard
             let croppedImageAverageColor: UIColor = croppedImage.averageColor
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageCroppedTests.critical("Failed to generate test data")
             fatalError()
         }
 

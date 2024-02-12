@@ -8,6 +8,7 @@
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
 import AppKit
+import OSLog
 
 // MARK: - Color Dynamic
 extension NSColor {
@@ -33,7 +34,7 @@ extension NSColor {
                 case .accessibilityHighContrastVibrantDark: return dark
 
                 default:
-                    VCoreLogWarning("Unhandled case in 'NSColor.dynamic(light:dark:)'")
+                    Logger.misc.fault("Unhandled case in 'NSColor.dynamic(light:dark:)'")
                     return light
                 }
             }

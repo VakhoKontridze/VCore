@@ -7,6 +7,7 @@
 
 #if canImport(QuartzCore)
 
+import QuartzCore
 import XCTest
 @testable import VCore
 

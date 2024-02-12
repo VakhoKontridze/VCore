@@ -7,6 +7,8 @@
 
 #if canImport(UIKit)
 
+import Foundation
+import OSLog
 import XCTest
 @testable import VCore
 
@@ -17,7 +19,7 @@ final class UIImageCompressedTests: XCTestCase {
             let image: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red),
             let imageData: Data = image.jpegData(compressionQuality: 1)
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageCompressedTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -28,7 +30,7 @@ final class UIImageCompressedTests: XCTestCase {
         guard
             let compressedImageData: Data = compressedImage.jpegData(compressionQuality: 1)
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageCompressedTests.critical("Failed to generate test data")
             fatalError()
         }
 

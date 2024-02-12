@@ -18,19 +18,10 @@ extension JSONDecoder {
         _ data: Data,
         optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
     ) throws -> [String: Any?] {
-        let jsonObject: Any
-        do {
-            jsonObject = try JSONSerialization.jsonObject(with: data, options: options)
-
-        } catch let error {
-            VCoreLogError(error)
-            throw error
-        }
+        let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: options)
 
         guard let json = jsonObject as? [String: Any?] else {
-            let error: CastingError = .init(from: "Any", to: "[String: Any?]")
-            VCoreLogError(error)
-            throw error
+            throw CastingError(from: "Any", to: "[String: Any?]")
         }
 
         return json
@@ -45,19 +36,10 @@ extension JSONDecoder {
         _ data: Data,
         optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
     ) throws -> [[String: Any?]] {
-        let jsonObject: Any
-        do {
-            jsonObject = try JSONSerialization.jsonObject(with: data, options: options)
-
-        } catch let error {
-            VCoreLogError(error)
-            throw error
-        }
+        let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: options)
 
         guard let jsonArray = jsonObject as? [[String: Any?]] else {
-            let error: CastingError = .init(from: "Any", to: "[[String: Any?]]")
-            VCoreLogError(error)
-            throw error
+            throw CastingError(from: "Any", to: "[[String: Any?]]")
         }
 
         return jsonArray
@@ -74,23 +56,9 @@ extension JSONDecoder {
     ) throws -> T
         where T: Decodable
     {
-        let data: Data
-        do {
-            data = try JSONSerialization.data(withJSONObject: json, options: options)
+        let data: Data = try JSONSerialization.data(withJSONObject: json, options: options)
 
-        } catch let error {
-            VCoreLogError(error)
-            throw error
-        }
-
-        let object: T
-        do {
-            object = try decode(T.self, from: data)
-
-        } catch let error {
-            VCoreLogError(error)
-            throw error
-        }
+        let object: T = try decode(T.self, from: data)
 
         return object
     }
@@ -105,23 +73,9 @@ extension JSONDecoder {
     ) throws -> T
         where T: Decodable
     {
-        let data: Data
-        do {
-            data = try JSONSerialization.data(withJSONObject: jsonArray, options: options)
+        let data: Data = try JSONSerialization.data(withJSONObject: jsonArray, options: options)
 
-        } catch let error {
-            VCoreLogError(error)
-            throw error
-        }
-
-        let object: T
-        do {
-            object = try decode(T.self, from: data)
-
-        } catch let error {
-            VCoreLogError(error)
-            throw error
-        }
+        let object: T = try decode(T.self, from: data)
 
         return object
     }

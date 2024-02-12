@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 import Network
+import OSLog
 
 // MARK: - Network Reachability Service
 /// Network connection service that manages reachability.
@@ -92,7 +93,7 @@ extension NWPath.Status {
         case .unsatisfied: return false
         case .requiresConnection: return false
         @unknown default: 
-            VCoreLogWarning("Unhandled case in 'NWPath.Status.isConnected'")
+            Logger.networkReachabilityService.fault("Unhandled case in 'NWPath.Status.isConnected'")
             return false
         }
     }

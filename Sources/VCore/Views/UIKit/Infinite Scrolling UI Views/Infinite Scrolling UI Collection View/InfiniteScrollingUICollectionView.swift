@@ -8,6 +8,7 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import UIKit
+import OSLog
 
 // MARK: - Infinite Scrolling UI Collection View
 /// `UICollectionView` that handles infinite scrolling.
@@ -181,7 +182,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         guard
             (collectionViewLayout as? UICollectionViewFlowLayout)?.scrollDirection == .vertical
         else {
-            VCoreLogError("'scrollDirection' must be set to 'vertical'")
+            Logger.infiniteScrollingUICollectionView.critical("'scrollDirection' must be set to 'vertical'")
             fatalError()
         }
         
@@ -209,7 +210,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     /// Returns `UIActivityIndicator`.
     open func viewForSupplementaryElement(kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         guard numberOfSections <= 1 else {
-            VCoreLogError("'numberOfSections' must be set to '1'")
+            Logger.infiniteScrollingUICollectionView.critical("'numberOfSections' must be set to '1'")
             fatalError()
         }
         

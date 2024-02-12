@@ -8,6 +8,7 @@
 #if canImport(UIKit)
 
 import UIKit
+import OSLog
 
 // MARK: - Color Dynamic
 @available(watchOS, unavailable) // Light/dark mode and `UIColor(dynamicProvider:)` API do not exist. OS selects light color from the assets catalogue.
@@ -31,7 +32,7 @@ extension UIColor {
                 case .light: return light
                 case .dark: return dark
                 @unknown default:
-                    VCoreLogWarning("Unhandled case in 'UIColor.dynamic(light:dark:)'")
+                    Logger.misc.fault("Unhandled case in 'UIColor.dynamic(light:dark:)'")
                     return light
                 }
             }

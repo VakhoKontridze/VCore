@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 06.05.22.
 //
 
+import Foundation
+import OSLog
 import XCTest
 @testable import VCore
 
@@ -14,7 +16,7 @@ final class DateComponentTests: XCTestCase {
         let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)
         
         guard let date: Date = Calendar.current.date(from: dateComponents) else {
-            VCoreLogError("Failed to generate test data")
+            Logger.misc.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -27,7 +29,7 @@ final class DateComponentTests: XCTestCase {
         let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)
         
         guard let date: Date = Calendar.current.date(from: dateComponents) else {
-            VCoreLogError("Failed to generate test data")
+            Logger.misc.critical("Failed to generate test data")
             fatalError()
         }
 

@@ -31,18 +31,4 @@ public struct MultipartFormDataRequestHeaderFields: Encodable {
     public init(boundary: String) {
         self.contentType = "multipart/form-data; boundary=\(boundary)"
     }
-    
-    // MARK: Codable
-    public func encode(to encoder: Encoder) throws {
-        var container: KeyedEncodingContainer<CodingKeys> = encoder.container(keyedBy: CodingKeys.self)
-        
-        do {
-            try container.encode(accept, forKey: .accept)
-            try container.encode(contentType, forKey: .contentType)
-            
-        } catch {
-            VCoreLogError(error)
-            throw error
-        }
-    }
 }

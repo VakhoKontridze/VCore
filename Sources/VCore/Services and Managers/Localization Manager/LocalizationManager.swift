@@ -7,6 +7,7 @@
 
 import Foundation
 import Combine
+import OSLog
 
 // MARK: - Localization Manager
 /// Object that manages localization without interfacing to identifiers and `UserDefaults`.
@@ -184,7 +185,7 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
                 !validateIsAdded(bundleLocale) &&
                 bundleLocale.identifier.lowercased() != "base"
             {
-                VCoreLogWarning("Localization '\(bundleLocale.identifier)' is not added to 'LocalizationManager'")
+                Logger.localizationManager.warning("Localization '\(bundleLocale.identifier)' is not added to 'LocalizationManager'")
             }
         }
     }
@@ -301,7 +302,7 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
     // MARK: Validation and Assertion
     private func assertIsAddedToBundle(_ locale: Locale) {
         guard bundleLocales.contains(where: { $0.isEquivalent(to: locale) }) else {
-            VCoreLogError("Localization '\(locale.identifier)' is not added to the 'Bundle.main' or no files are localized")
+            Logger.localizationManager.critical("Localization '\(locale.identifier)' is not added to the 'Bundle.main' or no files are localized")
             fatalError()
         }
     }
@@ -312,7 +313,7 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
     
     private func assertIsAdded(_ locale: Locale) {
         guard validateIsAdded(locale) else {
-            VCoreLogError("Localization '\(locale.identifier)' is not added to 'LocalizationManager'")
+            Logger.localizationManager.critical("Localization '\(locale.identifier)' is not added to 'LocalizationManager'")
             fatalError()
         }
     }

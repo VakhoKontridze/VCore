@@ -7,6 +7,8 @@
 
 #if canImport(UIKit)
 
+import Foundation
+import OSLog
 import XCTest
 @testable import VCore
 
@@ -19,7 +21,7 @@ final class UIImageScaledTests: XCTestCase {
                 color: UIColor.red
             )
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageScaledTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -41,7 +43,7 @@ final class UIImageScaledTests: XCTestCase {
                 color: UIColor.red
             )
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageScaledTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -63,7 +65,7 @@ final class UIImageScaledTests: XCTestCase {
                 color: UIColor.red
             )
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageScaledTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -85,7 +87,7 @@ final class UIImageScaledTests: XCTestCase {
                 color: UIColor.red
             )
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageScaledTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -107,7 +109,7 @@ final class UIImageScaledTests: XCTestCase {
                 color: UIColor.red
             )
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageScaledTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -123,7 +125,7 @@ final class UIImageScaledTests: XCTestCase {
                 color: UIColor.red
             )
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.uiImageScaledTests.critical("Failed to generate test data")
             fatalError()
         }
 

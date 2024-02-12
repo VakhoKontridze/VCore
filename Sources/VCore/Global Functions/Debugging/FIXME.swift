@@ -15,27 +15,10 @@ import Foundation
 ///     }
 ///
 public func FIXME(
-    _ message: @autoclosure () -> String? = nil,
-    fileID: String = #fileID,
-    file: String = #file,
-    line: UInt = #line,
-    function: String = #function
+    _ message: @autoclosure () -> String? = nil
 ) -> Never {
-#if DEBUG
-    let module: String = moduleDescription(
-        fileID: fileID
-    )
-
-    let callSite: String = callSiteDescription(
-        file: file,
-        line: line
-    )
-
-    var string: String = "[\(module)] FIXME not implemented in '\(function)' at '\(callSite)'"
+    var string: String = "FIXME not implemented"
     message().map { string += ": \($0)" }
 
-    NSLog(string)
-#endif
-
-    fatalError()
+    fatalError(string)
 }

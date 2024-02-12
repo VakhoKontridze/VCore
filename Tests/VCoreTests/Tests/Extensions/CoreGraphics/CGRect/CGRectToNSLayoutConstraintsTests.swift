@@ -7,6 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
+import UIKit
 import XCTest
 @testable import VCore
 

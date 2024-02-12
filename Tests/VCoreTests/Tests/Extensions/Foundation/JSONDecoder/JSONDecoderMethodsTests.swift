@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 15.05.22.
 //
 
+import Foundation
+import OSLog
 import XCTest
 @testable import VCore
 
@@ -21,7 +23,7 @@ final class JSONDecoderMethodsTests: XCTestCase {
         guard
             let jsonData: Data = try? JSONEncoder.encodeAnyToData(json)
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.jsonDecoderMethodTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -39,7 +41,7 @@ final class JSONDecoderMethodsTests: XCTestCase {
         guard
             let jsonArrayData = try? JSONEncoder.encodeAnyToData(jsonArray)
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.jsonDecoderMethodTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -56,7 +58,7 @@ final class JSONDecoderMethodsTests: XCTestCase {
         guard
             let objectJSON: [String: Any?] = try? JSONEncoder().encodeObjectToJSON(object)
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.jsonDecoderMethodTests.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -70,7 +72,7 @@ final class JSONDecoderMethodsTests: XCTestCase {
         guard
             let objectsJSONArray: [[String: Any?]] = try? JSONEncoder().encodeObjectToJSONArray(objects)
         else {
-            VCoreLogError("Failed to generate test data")
+            Logger.jsonDecoderMethodTests.critical("Failed to generate test data")
             fatalError()
         }
 

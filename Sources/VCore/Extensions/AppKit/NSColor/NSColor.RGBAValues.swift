@@ -8,6 +8,7 @@
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
 import AppKit
+import OSLog
 
 // MARK: - RGBA Values
 extension NSColor {
@@ -23,7 +24,7 @@ extension NSColor {
         guard
             let calibratedColor: NSColor = usingColorSpace(.deviceRGB)
         else {
-            VCoreLogError("Failed to calibrate 'NSColor' '\(debugDescription)' with 'NSColorSpace.deviceRGB'")
+            Logger.misc.critical("Failed to calibrate 'NSColor' '\(debugDescription)' with 'NSColorSpace.deviceRGB'")
             fatalError()
         }
 

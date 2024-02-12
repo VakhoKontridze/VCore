@@ -37,6 +37,10 @@ Extensions
 - `View.onFirstDisappear(perform:)` method is added, that performs an action before `View` disappears for the first time
 - `AttributedString.init(_:attributeContainers:)` initializer is added, that initializes `AttributedString` with child `AttributedString` components created from mapping tag names to `AttributeContainer`s
 
+Global Functions
+
+- `VCoreLogError(...)` and `VCoreLogWarning(...)` functions have been removed in favor of native `Logger` API
+
 ### [5.3.1(90)](https://github.com/VakhoKontridze/VCore/releases/tag/5.3.1) — *2024 01 23*
 
 General

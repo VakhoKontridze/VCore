@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 06.05.22.
 //
 
+import Foundation
+import OSLog
 import XCTest
 @testable import VCore
 
@@ -12,7 +14,7 @@ import XCTest
 final class DateAgeTests: XCTestCase {
     func testInvalidDate() {
         guard let birthDate: Date = Calendar.current.date(byAdding: .second, value: 1, to: Date()) else {
-            VCoreLogError("Failed to generate test data")
+            Logger.misc.critical("Failed to generate test data")
             fatalError()
         }
 
@@ -21,7 +23,7 @@ final class DateAgeTests: XCTestCase {
 
     func testValidDate() {
         guard let birthDate: Date = Calendar.current.date(from: DateComponents(year: 1970, month: 1, day: 1)) else {
-            VCoreLogError("Failed to generate test data")
+            Logger.misc.critical("Failed to generate test data")
             fatalError()
         }
 

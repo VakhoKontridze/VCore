@@ -5,6 +5,7 @@
 //  Created by Vakhtang Kontridze on 15.05.22.
 //
 
+import Foundation
 import XCTest
 @testable import VCore
 

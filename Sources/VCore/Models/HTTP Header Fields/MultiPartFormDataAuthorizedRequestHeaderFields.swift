@@ -36,19 +36,4 @@ public struct MultipartFormDataAuthorizedRequestHeaderFields: Encodable {
         self.contentType = "multipart/form-data; boundary=\(boundary)"
         self.authorization = "Bearer \(token)"
     }
-    
-    // MARK: Encodable
-    public func encode(to encoder: Encoder) throws {
-        var container: KeyedEncodingContainer<CodingKeys> = encoder.container(keyedBy: CodingKeys.self)
-        
-        do {
-            try container.encode(accept, forKey: .accept)
-            try container.encode(contentType, forKey: .contentType)
-            try container.encode(authorization, forKey: .authorization)
-            
-        } catch {
-            VCoreLogError(error)
-            throw error
-        }
-    }
 }

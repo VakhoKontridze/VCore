@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 // MARK: - Double Rounded to Precision
 extension Double {
@@ -17,7 +18,7 @@ extension Double {
     ///
     public func rounded(fractions: Int) -> Double {
         guard fractions >= 0 else {
-            VCoreLogError("'fractions' must be greater than or equal to '0'")
+            Logger.misc.critical("'fractions' must be greater than or equal to '0'")
             fatalError()
         }
         
