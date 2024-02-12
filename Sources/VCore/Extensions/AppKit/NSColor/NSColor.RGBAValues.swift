@@ -24,7 +24,7 @@ extension NSColor {
         guard
             let calibratedColor: NSColor = usingColorSpace(.deviceRGB)
         else {
-            Logger.misc.critical("Failed to calibrate 'NSColor' '\(debugDescription)' with 'NSColorSpace.deviceRGB'")
+            Logger.misc.critical("Failed to calibrate 'NSColor' '\(self.debugDescription)' with 'NSColorSpace.deviceRGB'")
             fatalError()
         }
 
