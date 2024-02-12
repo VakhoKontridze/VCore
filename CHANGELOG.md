@@ -16,6 +16,11 @@ Services and Managers - Presentation Host
 - `keyboardResponsivenessStrategy` is now non-`Optional`, and instead has `none` instance
 - `Documentation/Presentation Host Examples and Tests` is added to package
 
+Services and Managers - Localization Manager
+
+- `LocalizationManager` no longer offers an API for overriding `Bundle`s
+- `LocalizationKeyProvider` is removed, as it's obsoleted by the String catalog API
+
 Views
 
 - Crashes in `TouchSensitiveContainer` on `tvOS` are fixed, and view is marked as unavailable

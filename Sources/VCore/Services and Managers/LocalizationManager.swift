@@ -47,23 +47,25 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
     /// Shared instance of `LocalizationManager`.
     public static let shared: LocalizationManager = .init()
     
-    // MARK: Properties - Locales
+    // MARK: Properties - Current Locale
     /// Current `Locale`.
     ///
     /// It's important to differentiate `LocalizationManager.shared.currentLocale` and `Locale.current`.
-    /// `LocalizationManager.shared.currentLocale` is `Locale` associated with the language either set through this object, or picker from `iOS` settings.
+    /// `LocalizationManager.shared.currentLocale` is `Locale` associated with the language either set through this object, or picked from the `iOS` settings.
     /// While `Locale.current` is `Locale` region from user's settings.
     ///
     /// To set property, refer to `setCurrentLocale(to:)` method.
     private(set) public lazy var currentLocale: Locale = getCurrentAppLocale()
     
+    // MARK: Properties - Locales
     /// `Locales` that are added to the `LocalizationManager`.
     ///
     /// To set property, refer to `addLocale(_:)` or `addLocales(_:)` methods.
     private(set) public var locales: [Locale] = []
     
-    private var _defaultLocale: Locale!
-    
+    private var _defaultLocale: Locale?
+
+    // MARK: Properties - Default Locale
     /// Default `Locale` that will be retrieved in the absence of current value.
     ///
     /// To set property, refer to `setDefaultLocale(to:)` method.
@@ -72,23 +74,28 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
     /// Instead, user's preferred `Locale` will be retrieved.
     /// If absent, specified default `Locale` will be used.
     /// To bypass this behavior, set `retrievesDefaultLocaleFromPreferences` to `false`.
-    public var defaultLocale: Locale! {
+    public var defaultLocale: Locale {
         if
             retrievesDefaultLocaleFromPreferences,
             let preferredLocale,
-            validateIsAdded(preferredLocale)
+            validateIsAddedToManager(preferredLocale)
         {
             return preferredLocale
         }
         
+        guard let _defaultLocale else {
+            Logger.localizationManager.critical("`defaultLocale` is not set")
+            fatalError()
+        }
+
         return _defaultLocale
     }
-    
-    // MARK: Properties - Misc
+
     /// Indicates if default `Locale` is first retrieved from user's preferred `Locale`s,
     /// before referring to `Locale` passed to `setDefaultLocale(to:)`.
     public var retrievesDefaultLocaleFromPreferences: Bool = true
-    
+
+    // MARK: Properties - Misc
     /// `Publisher` that emits when current `Locale` changes.
     public let currentLocaleChangePublisher: PassthroughSubject<Locale, Never> = .init()
     
@@ -105,57 +112,11 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
     /// If `Locale` is not already added to `LocalizationManager`, app will crash.
     public func setCurrentLocale(to locale: Locale) {
         assertIsAddedToBundle(locale)
-        assertIsAdded(locale)
+        assertIsAddedToManager(locale)
 
         if !currentLocale.isEquivalent(to: locale) {
             currentLocale = locale
             setCurrentAppLocale(locale)
-
-            currentLocaleChangePublisher.send(locale)
-        }
-    }
-
-    /// Sets current `Locale`.
-    ///
-    /// If `Locale` is not already added to `Bundle.main`, app will crash.
-    ///
-    /// If `Locale` is not already added to `LocalizationManager`, app will crash.
-    ///
-    /// Optionally, `Bundle` `Array` can be passed in `replaceLocalizationTableInBundles` argument
-    /// to replace `Bundle` `class` with a sub-`class` that overrides table path internally,
-    /// that reads values form correct localization table.
-    ///
-    /// Major challenge with localization on iOS is reading values from correct localization table.
-    /// `NSLocalizedString(...)` will not read values from localization table application has switched to.
-    /// There are two solutions here.
-    ///
-    /// First option, is to use `LocalizationManager.shared.localizedInStringsFile(...)` method that finds correct table path
-    /// within the `Bundle` and reads values from it.
-    ///
-    /// Second option, is to replace the `Bundle` `class` with a sub-`class` that overrides table path internally.
-    /// Advantage of this approach is that `NSLocalizedString(...)` will return correct values.
-    /// To override a `class`, use `replaceLocalizationTableInBundles` parameter when changing a localization.
-    ///
-    ///     LocalizationManager.shared.setCurrentLocale(
-    ///         to: .english,
-    ///         replaceLocalizationTableInBundles: [.main]
-    ///     )
-    ///
-    /// However, replacing localization tables doesn't re-launch app, like changing a language does from `iOS` settings.
-    /// To achieve this behavior in `UIKit`, replace `rootViewController` inside `AppDelegate`/`SceneDelegate`.
-    /// In `SwiftUI`, use `ViewResettingContainer` and trigger `View` resets when localization changes.
-    public func setCurrentLocale(
-        to locale: Locale,
-        replaceLocalizationTableInBundles bundles: [Bundle]?
-    ) {
-        assertIsAddedToBundle(locale)
-        assertIsAdded(locale)
-        
-        if !currentLocale.isEquivalent(to: locale) {
-            currentLocale = locale
-            setCurrentAppLocale(locale)
-            
-            bundles?.forEach { LocalizationStringsFileOverridingBundle.overrideTable(toLocale: locale, inBundle: $0) }
 
             currentLocaleChangePublisher.send(locale)
         }
@@ -175,14 +136,14 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
     public func addLocales(_ locales: [Locale]) {
         for locale in locales {
             assertIsAddedToBundle(locale)
-            guard !validateIsAdded(locale) else { continue }
+            guard !validateIsAddedToManager(locale) else { continue }
             
             self.locales.append(locale)
         }
         
         for bundleLocale in bundleLocales {
             if
-                !validateIsAdded(bundleLocale) &&
+                !validateIsAddedToManager(bundleLocale) &&
                 bundleLocale.identifier.lowercased() != "base"
             {
                 Logger.localizationManager.warning("Localization '\(bundleLocale.identifier)' is not added to 'LocalizationManager'")
@@ -202,7 +163,7 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
     /// If `Locale` is not already added to `LocalizationManager`, app will crash.
     public func setDefaultLocale(to locale: Locale) {
         assertIsAddedToBundle(locale)
-        assertIsAdded(locale)
+        assertIsAddedToManager(locale)
         
         _defaultLocale = locale
     }
@@ -232,7 +193,7 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
         )
     }
 
-    /*private*/ static func findStringsFileBundle(
+    private static func findStringsFileBundle(
         bundle: Bundle,
         locale: Locale
     ) -> String? {
@@ -286,7 +247,7 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
     private func getCurrentAppLocale() -> Locale {
         guard
             let currentAppLocale,
-            validateIsAdded(currentAppLocale)
+            validateIsAddedToManager(currentAppLocale)
         else {
             setCurrentAppLocale(defaultLocale)
             return defaultLocale
@@ -307,12 +268,12 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
         }
     }
     
-    private func validateIsAdded(_ locale: Locale) -> Bool {
+    private func validateIsAddedToManager(_ locale: Locale) -> Bool {
         locales.contains(where: { $0.isEquivalent(to: locale) })
     }
     
-    private func assertIsAdded(_ locale: Locale) {
-        guard validateIsAdded(locale) else {
+    private func assertIsAddedToManager(_ locale: Locale) {
+        guard validateIsAddedToManager(locale) else {
             Logger.localizationManager.critical("Localization '\(locale.identifier)' is not added to 'LocalizationManager'")
             fatalError()
         }
