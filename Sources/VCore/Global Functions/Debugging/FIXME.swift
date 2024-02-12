@@ -15,10 +15,10 @@ import Foundation
 ///     }
 ///
 public func FIXME(
-    _ message: @autoclosure () -> String? = nil
+    _ message: String? = nil
 ) -> Never {
     var string: String = "FIXME not implemented"
-    message().map { string += ": \($0)" }
+    message.map { string += ": \($0)" }
 
     fatalError(string)
 }

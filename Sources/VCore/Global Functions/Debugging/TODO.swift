@@ -15,10 +15,10 @@ import Foundation
 ///     }
 ///
 public func TODO(
-    _ message: @autoclosure () -> String? = nil
+    _ message: String? = nil
 ) -> Never {
     var string: String = "TODO not implemented"
-    message().map { string += ": \($0)" }
+    message.map { string += ": \($0)" }
 
     fatalError(string)
 }
