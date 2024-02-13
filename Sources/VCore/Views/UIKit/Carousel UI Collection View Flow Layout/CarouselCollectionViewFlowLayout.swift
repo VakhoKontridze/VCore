@@ -82,35 +82,11 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         guard let collectionView else { return }
         
-        checkPreconditions(collectionView: collectionView)
+        validate(collectionView: collectionView)
         setUp(collectionView: collectionView)
     }
     
     // MARK: Setup
-    private func checkPreconditions(
-        collectionView: UICollectionView
-    ) {
-        guard scrollDirection == .horizontal else {
-            Logger.carouselCollectionViewFlowLayout.critical("'scrollDirection' must be set to 'horizontal'")
-            fatalError()
-        }
-        
-#if !os(tvOS)
-        guard !collectionView.isPagingEnabled else {
-            Logger.carouselCollectionViewFlowLayout.critical("'isPagingEnabled' must be set to 'false'")
-            fatalError()
-        }
-#endif
-        
-        if
-            let flowDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout,
-            delegateSupportsSizeForItem(collectionView: collectionView, flowDelegate: flowDelegate)
-        {
-            Logger.carouselCollectionViewFlowLayout.critical("'collectionView(_:layout:sizeForItemAt:)' should not be implemented")
-            fatalError()
-        }
-    }
-    
     private func setUp(
         collectionView: UICollectionView
     ) {
@@ -130,7 +106,7 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         collectionView.decelerationRate = .fast
     }
     
-    // MARK: Carousel
+    // MARK: Collection View Layout
     override open var flipsHorizontallyInOppositeLayoutDirection: Bool {
         true
     }
@@ -190,7 +166,32 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         
         return Int(floor((offset - itemWidth / 2) / itemWidth) + 1)
     }
-    
+
+    // MARK: Validation
+    private func validate(
+        collectionView: UICollectionView
+    ) {
+        guard scrollDirection == .horizontal else {
+            Logger.carouselCollectionViewFlowLayout.critical("'scrollDirection' must be set to 'horizontal'")
+            fatalError()
+        }
+
+#if !os(tvOS)
+        guard !collectionView.isPagingEnabled else {
+            Logger.carouselCollectionViewFlowLayout.critical("'isPagingEnabled' must be set to 'false'")
+            fatalError()
+        }
+#endif
+
+        if
+            let flowDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout,
+            delegateSupportsSizeForItem(collectionView: collectionView, flowDelegate: flowDelegate)
+        {
+            Logger.carouselCollectionViewFlowLayout.critical("'collectionView(_:layout:sizeForItemAt:)' should not be implemented")
+            fatalError()
+        }
+    }
+
     // MARK: Helpers
     private func delegateSupportsSizeForItem(
         collectionView: UICollectionView,
