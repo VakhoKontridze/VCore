@@ -24,6 +24,7 @@ Services and Managers - Localization Manager
 Views
 
 - Crashes in `TouchSensitiveContainer` on `tvOS` are fixed, and view is marked as unavailable
+- `defaultDisclosureGroupPadding` is renamed to `systemDisclosureGroupPadding`, and `systemDisclosureGroupContentHeight` is introduced to better leverage the `DisclosureGroup` API
 
 Models
 

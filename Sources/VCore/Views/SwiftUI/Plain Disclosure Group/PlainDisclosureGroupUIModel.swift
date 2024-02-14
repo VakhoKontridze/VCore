@@ -11,15 +11,25 @@ import SwiftUI
 /// Model that describes UI.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-@available(visionOS, unavailable)
 public struct PlainDisclosureGroupUIModel {
     // MARK: Properties - Global
-    /// Default padding in native disclosure group. Set to `8`.
+    /// Content height in system disclosure group which includes the chevron button. Set to `14`.
     ///
     /// Value is used during the frame calculations, and must be provided.
     ///
-    /// In future releases of `iOS`/`macOS`, this value may change.
-    public var defaultDisclosureGroupPadding: CGFloat = 8
+    /// To achieve desired result, label height must be greater than or equal to `systemDisclosureGroupContentHeight` + `systemDisclosureGroupPadding`.
+    ///
+    /// In future OS releases, this value may change.
+    public var systemDisclosureGroupContentHeight: CGFloat = 14
+
+    /// Padding in system disclosure group. Set to `8`.
+    ///
+    /// Value is used during the frame calculations, and must be provided.
+    ///
+    /// To achieve desired result, label height must be greater than or equal to `systemDisclosureGroupContentHeight` + `systemDisclosureGroupPadding`.
+    ///
+    /// In future OS releases, this value may change.
+    public var systemDisclosureGroupPadding: CGFloat = 8
 
     // MARK: Properties - Background
     /// Background color.
@@ -29,7 +39,7 @@ public struct PlainDisclosureGroupUIModel {
 #if os(iOS)
         Color(uiColor: UIColor.systemBackground)
 #elseif os(macOS)
-        Color(nsColor: NSColor.controlColor)
+        Color.clear
 #else
         fatalError() // Not supported
 #endif

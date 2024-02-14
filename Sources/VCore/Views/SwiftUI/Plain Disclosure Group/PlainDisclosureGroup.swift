@@ -13,25 +13,31 @@ import SwiftUI
 ///     @State private var isExpanded: Bool = true
 ///
 ///     var body: some View {
-///         PlainDisclosureGroup(
-///             isExpanded: $isExpanded,
-///             label: {
-///                 Text("Lorem Ipsum")
-///                     .allowsHitTesting(false)
-///             },
-///             content: {
-///                 ScrollView(content: {
-///                     LazyVStack(content: {
-///                         ForEach(0..<10, content: { num in
-///                             Text(String(num))
-///                                 .frame(maxWidth: .infinity, alignment: .leading)
-///                                 .padding(.vertical, 5)
+///         ZStack(content: {
+///             Color(uiColor: .secondarySystemBackground).ignoresSafeArea()
+///
+///             PlainDisclosureGroup(
+///                 isExpanded: $isExpanded,
+///                 label: {
+///                     Text("Lorem Ipsum")
+///                         .frame(maxWidth: .infinity)
+///                         .padding(5)
+///                         .allowsHitTesting(false)
+///                 },
+///                 content: {
+///                     ScrollView(content: {
+///                         LazyVStack(content: {
+///                             ForEach(0..<10, content: { num in
+///                                 Text(String(num))
+///                                     .frame(maxWidth: .infinity, alignment: .leading)
+///                                     .padding(.vertical, 5)
+///                             })
 ///                         })
 ///                     })
-///                 })
-///             }
-///         )
-///         .padding()
+///                 }
+///             )
+///             .padding()
+///         })
 ///     }
 ///
 @available(tvOS 16.0, *)@available(tvOS, unavailable) // No `DisclosureGroup`
@@ -42,9 +48,10 @@ public struct PlainDisclosureGroup<Label, Content>: View
         Label: View,
         Content: View
 {
-    // MARK: Properties
+    // MARK: Properties - UI Model
     private let uiModel: PlainDisclosureGroupUIModel
     
+    // MARK: Properties - State
     @State private var _isExpanded_internal: Bool
     @Binding private var _isExpanded_external: Bool
     private let stateManagement: StateManagement
@@ -65,11 +72,24 @@ public struct PlainDisclosureGroup<Label, Content>: View
         )
     }
     
+    // MARK: Properties - Label and Content
     private let label: () -> Label
     private let content: () -> Content
     
+    // MARK: Properties - Frame
     @State private var labelHeight: CGFloat = 0
-    
+
+    private var nativeLabelHeight: CGFloat {
+        let target: CGFloat = labelHeight - uiModel.systemDisclosureGroupPadding
+        let system: CGFloat = uiModel.systemDisclosureGroupContentHeight
+
+        return max(target, system)
+    }
+
+    private var nativeLabelMaskHeight: CGFloat {
+        nativeLabelHeight + uiModel.systemDisclosureGroupPadding
+    }
+
     // MARK: Initializers
     /// Initializes `PlainDisclosureGroup` with label and content.
     public init(
@@ -109,8 +129,9 @@ public struct PlainDisclosureGroup<Label, Content>: View
                     set: expandCollapseFromInternalAction
                 ),
                 content: content,
-                label: { Spacer().frame(height: max(0, labelHeight - uiModel.defaultDisclosureGroupPadding)) }
+                label: { Spacer().frame(height: nativeLabelHeight) }
             )
+            .mask({ nativeLabelViewMask })
             .animation(.default, value: isExpanded.wrappedValue)
             
             labelView
@@ -123,12 +144,19 @@ public struct PlainDisclosureGroup<Label, Content>: View
             .frame(maxWidth: .infinity)
             .getSize({ labelHeight = $0.height })
             .background(content: {
-                uiModel.backgroundColor
+                Color.clear
                     .contentShape(Rectangle())
                     .onTapGesture(perform: expandCollapseFromLabelTap)
             })
     }
-    
+
+    private var nativeLabelViewMask: some View {
+        VStack(spacing: 0, content: {
+            Color.clear.frame(height: nativeLabelMaskHeight)
+            Color.black
+        })
+    }
+
     // MARK: Actions
     private func expandCollapseFromInternalAction(newValue: Bool) {
         withAnimation(uiModel.expandCollapseAnimation, { isExpanded.wrappedValue = newValue })
@@ -167,7 +195,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
                     label: {
                         Text("Lorem Ipsum")
                             .frame(maxWidth: .infinity)
-                            .padding()
+                            .padding(5)
                             .allowsHitTesting(false)
                     },
                     content: {
