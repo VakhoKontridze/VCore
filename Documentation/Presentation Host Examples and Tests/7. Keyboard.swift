@@ -82,7 +82,7 @@ struct SomeModal<Content>: View where Content: View {
                 .onTapGesture(perform: dismissFromDimmingViewTap)
 
             ZStack(content: {
-                Color(uiColor: .systemBackground)
+                Color(uiColor: UIColor.systemBackground)
 
                 content()
                     .padding()

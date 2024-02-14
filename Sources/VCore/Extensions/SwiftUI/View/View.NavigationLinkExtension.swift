@@ -16,7 +16,7 @@ extension View {
     ///     var body: some View {
     ///         NavigationView(content: {
     ///             ZStack(content: {
-    ///                 Color(uiColor: .secondaryBackground).ignoresSafeArea()
+    ///                 Color(uiColor: UIColor.secondaryBackground).ignoresSafeArea()
     ///
     ///                 Button(
     ///                     action: { isActive = true },
@@ -30,7 +30,7 @@ extension View {
     ///     }
     ///
     ///     private var destination: some View {
-    ///         Color(uiColor: .systemBackground)
+    ///         Color(uiColor: UIColor.systemBackground)
     ///             .ignoresSafeArea()
     ///             .inlineNavigationTitle("Destination")
     ///     }

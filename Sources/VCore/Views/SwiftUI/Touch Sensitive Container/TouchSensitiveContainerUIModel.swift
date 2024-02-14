@@ -20,7 +20,7 @@ public struct TouchSensitiveContainerUIModel {
     public var backgroundColors: StateColors = {
         let color: Color = {
 #if os(iOS)
-            Color(uiColor: .systemBackground)
+            Color(uiColor: UIColor.systemBackground)
 #elseif os(macOS)
             Color.clear
 #elseif os(watchOS)
@@ -34,13 +34,13 @@ public struct TouchSensitiveContainerUIModel {
 
         let pressedColor: Color = {
 #if os(iOS)
-            Color(uiColor: .systemFill)
+            Color(uiColor: UIColor.systemFill)
 #elseif os(macOS)
-            Color(nsColor: .windowBackgroundColor)
+            Color(nsColor: NSColor.windowBackgroundColor)
 #elseif os(watchOS)
             Color.gray.opacity(0.3)
 #elseif os(visionOS)
-            Color(uiColor: .systemFill)
+            Color(uiColor: UIColor.systemFill)
 #else
             fatalError() // Not supported
 #endif

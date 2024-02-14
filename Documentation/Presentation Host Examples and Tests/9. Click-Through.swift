@@ -73,7 +73,7 @@ struct SomeModal<Content>: View where Content: View {
             Color.black.opacity(0.1)
 
             ZStack(content: {
-                Color(uiColor: .systemBackground)
+                Color(uiColor: UIColor.systemBackground)
 
                 content()
                     .padding()

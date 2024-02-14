@@ -78,7 +78,7 @@ extension View {
     ///                     .onTapGesture(perform: dismissFromDimmingViewTap)
     ///
     ///                 ZStack(content: {
-    ///                     Color(uiColor: .systemBackground)
+    ///                     Color(uiColor: UIColor.systemBackground)
     ///
     ///                     content()
     ///                         .padding()
@@ -228,7 +228,7 @@ private struct SomeModal<Content>: View where Content: View {
                 .onTapGesture(perform: { isPresented = false })
 
             ZStack(content: {
-                Color(uiColor: .systemBackground)
+                Color(uiColor: UIColor.systemBackground)
 
                 content()
                     .padding()
