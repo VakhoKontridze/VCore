@@ -57,7 +57,7 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
             case .cancelled: return .cancelled
             case .failed: fatalError() // Not used
             @unknown default:
-                Logger.baseButtonGestureRecognizer.critical("Unhandled case in 'GestureBaseButtonGestureState.init(state:)'")
+                Logger.baseButtonGestureRecognizer.critical("Unhandled 'UIGestureRecognizer.State' '\(String(describing: state))' in 'GestureBaseButtonGestureState.init(state:)'")
                 fatalError()
             }
         }()
@@ -73,7 +73,7 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
             case .cancelled: return .cancelled
             case .failed: fatalError() // Not used
             @unknown default:
-                Logger.baseButtonGestureRecognizer.critical("Unhandled case in 'GestureBaseButtonGestureState.init(state:)'")
+                Logger.baseButtonGestureRecognizer.critical("Unhandled 'NSGestureRecognizer.State' '\(String(describing: state))' in 'GestureBaseButtonGestureState.init(state:)'")
                 fatalError()
             }
         }()

@@ -84,7 +84,7 @@ public final class LocalizationManager { // TODO: iOS 17 - Convert to `Observabl
         }
         
         guard let _defaultLocale else {
-            Logger.localizationManager.critical("`defaultLocale` is not set")
+            Logger.localizationManager.critical("'defaultLocale' is not set in 'LocalizationManager'")
             fatalError()
         }
 

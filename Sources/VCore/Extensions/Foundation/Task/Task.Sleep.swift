@@ -20,7 +20,7 @@ extension Task where Success == Never, Failure == Never {
     ///
     public static func sleep(seconds duration: TimeInterval) async throws {
         guard duration >= 0 else {
-            Logger.misc.critical("'duration' must be greater than or equal to '0'")
+            Logger.misc.critical("'duration' must be greater than or equal to '0' in 'Task.sleep(seconds:)'")
             fatalError()
         }
 

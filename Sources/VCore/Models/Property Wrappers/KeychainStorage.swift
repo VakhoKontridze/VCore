@@ -160,7 +160,7 @@ extension KeychainStorage {
             return value
             
         } catch let error {
-            Logger.keychainStorage.error("Failed to decode '\(T.self)' from 'Data': \(error)")
+            Logger.keychainStorage.error("Failed to decode '\(T.self)' from 'Data in 'KeychainStorage'': \(error)")
             return defaultValue
         }
     }
@@ -176,7 +176,7 @@ extension KeychainStorage {
             keychainService[key] = try JSONEncoder().encode(value)
             
         } catch let error {
-            Logger.keychainStorage.error("Failed to encode '\(T.self)' to 'Data': \(error)")
+            Logger.keychainStorage.error("Failed to encode '\(T.self)' to 'Data' in 'KeychainStorage': \(error)")
         }
     }
 }

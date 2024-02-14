@@ -21,7 +21,7 @@ extension Image {
         guard
             let uiImage: UIImage = .init(data: data)
         else {
-            Logger.misc.critical("Failed to initialize 'UIImage' from `Data`")
+            Logger.misc.critical("Failed to initialize 'UIImage' from 'Data' in 'Image.init(data:)'")
             fatalError()
         }
         
@@ -30,7 +30,7 @@ extension Image {
         guard
             let nsImage: NSImage = .init(data: data)
         else {
-            Logger.misc.critical("Failed to initialize 'NSImage' from `Data`")
+            Logger.misc.critical("Failed to initialize 'NSImage' from 'Data' in 'Image.init(data:)'")
             fatalError()
         }
         

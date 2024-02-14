@@ -82,7 +82,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
                     return
 
                 } else {
-                    Logger.presentationHost.warning("Attempting to present modal with ID '\(self.id)', which is already presenting '\(presentedViewController.debugDescription)'")
+                    Logger.presentationHost.warning("Attempting to present modal with ID '\(self.id)' in 'PresentationHost', which is already presenting '\(presentedViewController.debugDescription)'")
                     return
                 }
             }

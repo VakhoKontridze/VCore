@@ -34,7 +34,7 @@ extension NSColor {
                 case .accessibilityHighContrastVibrantDark: return dark
 
                 default:
-                    Logger.misc.fault("Unhandled case in 'NSColor.dynamic(light:dark:)'")
+                    Logger.misc.fault("Unhandled 'NSAppearance' '\(appearance.debugDescription)' in 'NSColor.dynamic(light:dark:)'")
                     return light
                 }
             }

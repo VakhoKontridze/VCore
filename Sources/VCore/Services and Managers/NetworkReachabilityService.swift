@@ -93,7 +93,7 @@ extension NWPath.Status {
         case .unsatisfied: return false
         case .requiresConnection: return false
         @unknown default: 
-            Logger.networkReachabilityService.fault("Unhandled case in 'NWPath.Status.isConnected'")
+            Logger.networkReachabilityService.fault("Unhandled 'NWPath.Status' '\(String(describing: self))' in 'NWPath.Status.isConnected'")
             return false
         }
     }

@@ -133,7 +133,7 @@ extension UICollectionView {
         guard
             let cell = dequeueReusableCell(withReuseIdentifier: parameter.reuseID, for: indexPath) as? any ConfigurableUICollectionViewCell
         else {
-            Logger.misc.critical("Unable to dequeue 'ConfigurableUICollectionViewCell' with identifier '\(parameter.reuseID)'")
+            Logger.misc.critical("Failed to dequeue 'ConfigurableUICollectionViewCell' with identifier '\(parameter.reuseID)' in 'UICollectionView.dequeueAndConfigureReusableCell(indexPath:parameter:)'")
             fatalError()
         }
         

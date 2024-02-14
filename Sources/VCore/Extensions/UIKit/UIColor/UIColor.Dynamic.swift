@@ -32,7 +32,7 @@ extension UIColor {
                 case .light: return light
                 case .dark: return dark
                 @unknown default:
-                    Logger.misc.fault("Unhandled case in 'UIColor.dynamic(light:dark:)'")
+                    Logger.misc.fault("Unhandled 'UITraitCollection' '\(traitCollection.debugDescription)' in 'UIColor.dynamic(light:dark:)'")
                     return light
                 }
             }

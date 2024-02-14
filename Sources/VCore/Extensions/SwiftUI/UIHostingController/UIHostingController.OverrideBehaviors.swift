@@ -38,7 +38,7 @@ extension UIHostingController {
         guard !behaviors.isEmpty else { return false }
 
         guard let viewClass: AnyClass = object_getClass(view) else {
-            Logger.misc.error("Failed to retrieve class type when overriding behaviors in 'UIHostingController'")
+            Logger.misc.error("Failed to retrieve class type of '\(self.view.debugDescription)' in 'UIHostingController.overrideBehaviors(_:)'")
             return false
         }
 
@@ -50,10 +50,16 @@ extension UIHostingController {
         }
 
         guard
-            let viewSubclassNameUTF8: UnsafePointer<CChar> = (viewSubclassName as NSString).utf8String,
+            let viewSubclassNameUTF8: UnsafePointer<CChar> = (viewSubclassName as NSString).utf8String
+        else {
+            Logger.misc.error("Failed to create class name pointer of '\(viewSubclassName)' in 'UIHostingController.overrideBehaviors(_:)'")
+            return false
+        }
+
+        guard
             let viewSubclass: AnyClass = objc_allocateClassPair(viewClass, viewSubclassNameUTF8, 0)
         else {
-            Logger.misc.error("Failed to retrieve class name when overriding behaviors in 'UIHostingController'")
+            Logger.misc.error("Failed to allocate class pair of name '\(viewSubclassName)' in 'UIHostingController.overrideBehaviors(_:)'")
             return false
         }
 
@@ -77,7 +83,7 @@ extension UIHostingController {
         let selector: Selector = #selector(getter: UIView.safeAreaInsets)
 
         guard let method: Method = class_getInstanceMethod(UIView.self, selector) else {
-            Logger.misc.error("Failed to retrieve 'UIView.safeAreaInsets' when overriding 'disablesSafeAreaInsets' in 'UIHostingController'")
+            Logger.misc.error("Failed to retrieve 'UIView.safeAreaInsets' when overriding 'disablesSafeAreaInsets' in 'UIHostingController.overrideBehaviors(_:)'")
             return
         }
 
@@ -98,7 +104,7 @@ extension UIHostingController {
         let selector: Selector = NSSelectorFromString("keyboardWillShowWithNotification:")
 
         guard let method: Method = class_getInstanceMethod(viewClass, selector) else {
-            Logger.misc.error("Failed to retrieve 'UIView.keyboardWillShowNotification' when overriding 'disablesKeyboardAvoidance' in 'UIHostingController'")
+            Logger.misc.error("Failed to retrieve 'UIView.keyboardWillShowNotification' when overriding 'disablesKeyboardAvoidance' in 'UIHostingController.overrideBehaviors(_:)'")
             return
         }
 
