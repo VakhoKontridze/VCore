@@ -16,19 +16,10 @@ extension Color {
     ///         .padding()
     ///         .background(content: { Color.primary })
     ///
-    public static let primaryInverted: Color = {
-#if os(iOS)
-        .dynamic(light: Color.white, dark: Color.black)
-#elseif os(macOS)
-        .dynamic(light: Color.white, dark: Color.black)
-#elseif os(tvOS)
-        .dynamic(light: Color.white, dark: Color.black)
-#elseif os(watchOS)
-        .black
-#elseif os(visionOS)
-        .black
-#endif
-    }()
+    public static let primaryInverted: Color = .platformDynamic(
+        light: Color.white,
+        dark: Color.black
+    )
 }
 
 // MARK: - Preview
@@ -37,7 +28,7 @@ extension Color {
 #Preview(body: {
     VStack(content: {
         Text("Lorem ipsum")
-            .foregroundStyle(.primary)
+            .foregroundStyle(Color.primary)
             .padding()
 
         Text("Lorem ipsum")

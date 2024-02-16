@@ -38,6 +38,7 @@ Extensions
 
 - `Color.primaryInverted` property is added, that can be used for inverted primary content
 - `Color.dynamic(light:dark:)` method is added, that generates it's color data dynamically
+- `Color.platformDynamic(light:dark:)` method is added, that generates it's color data dynamically for each platform
 - `UIColor.dynamic(light:dark:)` method is added, that generates it's color data dynamically
 - `NSColor.dynamic(light:dark:)` method is added, that generates it's color data dynamically
 - `View.onFirstDisappear(perform:)` method is added, that performs an action before `View` disappears for the first time
