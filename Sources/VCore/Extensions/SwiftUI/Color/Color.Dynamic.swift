@@ -13,25 +13,19 @@ import SwiftUI
 extension Color {
     /// Creates `Color` that generates it's color data dynamically.
     ///
-    ///     let accentColor: Color = .dynamic(light: ..., dark: ...)
+    ///     let color: Color = .dynamic(Color.black, Color.white)
     ///
     public static func dynamic(
-        light: Color,
-        dark: Color
+        _ light: Color,
+        _ dark: Color
     ) -> Self {
 #if canImport(UIKit)
         .init(
-            uiColor: UIColor.dynamic(
-                light: UIColor(light),
-                dark: UIColor(dark)
-            )
+            uiColor: UIColor.dynamic(UIColor(light), UIColor(dark))
         )
 #elseif canImport(AppKit)
         .init(
-            nsColor: NSColor.dynamic(
-                light: NSColor(light),
-                dark: NSColor(dark)
-            )
+            nsColor: NSColor.dynamic(NSColor(light), NSColor(dark))
         )
 #endif
     }

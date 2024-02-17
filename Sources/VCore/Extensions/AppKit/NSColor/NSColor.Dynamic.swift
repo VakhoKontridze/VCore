@@ -14,11 +14,11 @@ import OSLog
 extension NSColor {
     /// Creates `NSColor` that generates it's color data dynamically.
     ///
-    ///     let accentColor: NSColor = .dynamic(light: ..., dark: ...)
+    ///     let color: NSColor = .dynamic(NSColor.black, NSColor.white)
     ///
     public static func dynamic(
-        light: NSColor,
-        dark: NSColor
+        _ light: NSColor,
+        _ dark: NSColor
     ) -> NSColor {
         .init(
             name: nil,
@@ -34,7 +34,7 @@ extension NSColor {
                 case .accessibilityHighContrastVibrantDark: return dark
 
                 default:
-                    Logger.misc.fault("Unhandled 'NSAppearance' '\(appearance.debugDescription)' in 'NSColor.dynamic(light:dark:)'")
+                    Logger.misc.fault("Unhandled 'NSAppearance' '\(appearance.debugDescription)' in 'NSColor.dynamic(_:_:)'")
                     return light
                 }
             }

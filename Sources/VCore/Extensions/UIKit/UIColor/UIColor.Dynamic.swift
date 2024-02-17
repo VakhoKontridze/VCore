@@ -16,11 +16,11 @@ import OSLog
 extension UIColor {
     /// Creates `UIColor` that generates it's color data dynamically.
     ///
-    ///     let accentColor: UIColor = .dynamic(light: ..., dark: ...)
+    ///     let color: UIColor = .dynamic(UIColor.black, UIColor.white)
     ///
     public static func dynamic(
-        light: UIColor,
-        dark: UIColor
+        _ light: UIColor,
+        _ dark: UIColor
     ) -> UIColor {
 #if os(watchOS)
         fatalError()
@@ -32,7 +32,7 @@ extension UIColor {
                 case .light: return light
                 case .dark: return dark
                 @unknown default:
-                    Logger.misc.fault("Unhandled 'UIUserInterfaceStyle' '\(String(describing: traitCollection.userInterfaceStyle))' in 'UIColor.dynamic(light:dark:)'")
+                    Logger.misc.fault("Unhandled 'UIUserInterfaceStyle' '\(String(describing: traitCollection.userInterfaceStyle))' in 'UIColor.dynamic(_:_:)'")
                     return light
                 }
             }

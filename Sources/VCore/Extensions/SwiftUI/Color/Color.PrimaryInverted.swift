@@ -16,10 +16,7 @@ extension Color {
     ///         .padding()
     ///         .background(content: { Color.primary })
     ///
-    public static let primaryInverted: Color = .platformDynamic(
-        light: Color.white,
-        dark: Color.black
-    )
+    public static let primaryInverted: Color = .platformDynamic(Color.white, Color.black)
 }
 
 // MARK: - Preview

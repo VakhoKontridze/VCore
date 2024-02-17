@@ -10,16 +10,19 @@ import SwiftUI
 // MARK: - Color Platform Dynamic
 extension Color {
     /// Creates `Color` that generates it's color data dynamically for each platform.
+    ///
+    ///     let color: Color = .dynamic(Color.black, Color.white)
+    ///
     public static func platformDynamic(
-        light: Color,
-        dark: Color
+        _ light: Color,
+        _ dark: Color
     ) -> Self {
 #if os(iOS)
-        Color.dynamic(light: light, dark: dark)
+        Color.dynamic(light, dark)
 #elseif os(macOS)
-        Color.dynamic(light: light, dark: dark)
+        Color.dynamic(light, dark)
 #elseif os(tvOS)
-        Color.dynamic(light: light, dark: dark)
+        Color.dynamic(light, dark)
 #elseif os(watchOS)
         dark
 #elseif os(visionOS)
@@ -33,7 +36,7 @@ extension Color {
 
 #Preview(body: {
     Text("Lorem ipsum")
-        .foregroundStyle(Color.platformDynamic(light: Color.black, dark: Color.white))
+        .foregroundStyle(Color.platformDynamic(Color.black, Color.white))
         .padding()
 })
 
