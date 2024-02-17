@@ -106,7 +106,7 @@ extension AttributedString {
             self = try AttributedString(string, attributeContainers: attributeContainers)
 
         } catch {
-            Logger.misc.debug("Failed to create 'AttributedString' with 'AttributeContainer's in 'AttributedString.init(defaultingIfError:attributeContainers:)'. Defaulting to 'AttributedString(string)' expression.")
+            Logger.misc.error("Failed to create 'AttributedString' with 'AttributeContainer's in 'AttributedString.init(defaultingIfError:attributeContainers:)'. Defaulting to 'AttributedString(string)' expression.")
             self = AttributedString(string)
         }
     }
