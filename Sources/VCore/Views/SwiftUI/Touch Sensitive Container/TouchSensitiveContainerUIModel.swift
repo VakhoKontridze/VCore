@@ -54,7 +54,7 @@ public struct TouchSensitiveContainerUIModel {
     }()
 
     // MARK: Properties - Content
-    /// Content opacities. Set to `1`s.
+    /// Content opacities. Set to `(1, 1, 1)`.
     public var contentOpacities: StateOpacities = .init(1)
 
     // MARK: Properties - Transition
