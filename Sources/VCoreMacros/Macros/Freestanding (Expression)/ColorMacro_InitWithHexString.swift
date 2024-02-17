@@ -47,9 +47,27 @@ struct ColorMacro_InitWithHexString: ExpressionMacro {
             return value
         }()
 
-        // RGBA values
+        // `opacity` parameter
+        let opacity: CGFloat = try {
+            guard
+                let argument: LabeledExprSyntax = node.argumentList.first(where: { $0.label?.text == "opacity" })
+            else {
+                return 1 // Default value
+            }
+
+            guard
+                let valueString: String = argument.expression.as(FloatLiteralExprSyntax.self)?.literal.text,
+                let value: CGFloat = Double(valueString).map({ CGFloat($0) })
+            else {
+                throw ColorMacroError_InitWithHexUInt.invalidOpacityParameter
+            }
+
+            return value
+        }()
+
+        // RGB values
         guard
-            let rgbaValues = hex._hexColorRGBAValues()
+            let rgbValues = hex._hexColorRGBValues()
         else {
             throw ColorMacroError_InitWithHexString.invalidHexParameter
         }
@@ -59,10 +77,10 @@ struct ColorMacro_InitWithHexString: ExpressionMacro {
             """
             Color(
                 .\(raw: colorSpaceString),
-                red: \(raw: rgbaValues.red),
-                green: \(raw: rgbaValues.green),
-                blue: \(raw: rgbaValues.blue),
-                opacity: \(raw: rgbaValues.alpha)
+                red: \(raw: rgbValues.red),
+                green: \(raw: rgbValues.green),
+                blue: \(raw: rgbValues.blue),
+                opacity: \(raw: opacity)
             )
             """
     }
@@ -82,4 +100,5 @@ struct ColorMacroError_InitWithHexString: Error, CustomStringConvertible {
 
     static var invalidColorSpaceParameter: Self { .init("Invalid `colorSpace` parameter") }
     static var invalidHexParameter: Self { .init("Invalid 'hex' parameter") }
+    static var invalidOpacityParameter: Self { .init("Invalid 'opacity' parameter") }
 }

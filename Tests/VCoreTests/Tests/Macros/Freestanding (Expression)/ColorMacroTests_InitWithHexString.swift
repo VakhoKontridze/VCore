@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 09.01.24.
 //
 
-// Other test cases are covered under `UIColorInitWithHexTests`
-
 #if canImport(VCoreMacros)
 
 import Foundation

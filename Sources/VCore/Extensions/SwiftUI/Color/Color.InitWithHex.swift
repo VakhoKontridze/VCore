@@ -12,22 +12,23 @@ import VCoreShared
 extension Color {
     /// Initializes `UIColor` with a hex `String`.
     ///
-    /// `hex` parameter must have `2`, `4`, `6`, or `8`-digits.
+    /// `hex` parameter must have `6` digits.
     ///
     ///     let color: Color? = .init(hex: "#007AFF")
     ///
     public init?(
         _ colorSpace: RGBColorSpace = .sRGB,
-        hex string: String
+        hex string: String,
+        opacity: CGFloat = 1
     ) {
-        guard let values = string._hexColorRGBAValues() else { return nil }
+        guard let values = string._hexColorRGBValues() else { return nil }
 
         self.init(
             colorSpace,
             red: values.red,
             green: values.green,
             blue: values.blue,
-            opacity: values.alpha
+            opacity: opacity
         )
     }
 }
@@ -36,7 +37,7 @@ extension Color {
 extension Color {
     /// Initializes `UIColor` with a hex `UInt`
     ///
-    /// `hex` parameter must have at least `6` digits.
+    /// `hex` parameter must have `6` digits.
     /// All digits before the last `6` will be dropped.
     ///
     ///     let color: Color? = .init(hex: 0x007AFF)

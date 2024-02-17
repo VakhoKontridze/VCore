@@ -43,10 +43,13 @@ Extensions
 - `NSColor.dynamic(_:_:)` method is added, that generates it's color data dynamically
 - `View.onFirstDisappear(perform:)` method is added, that performs an action before `View` disappears for the first time
 - `AttributedString.init(_:attributeContainers:)` initializer is added, that initializes `AttributedString` with child `AttributedString` components created from mapping tag names to `AttributeContainer`s
+- Due to ambiguous API, `Color.init(_:hex:)`, `Color.init(hex:)`, `Color.init(display3PHex:)` methods will no longer accept non-`6` digit codes, and instead would take `opacity`/`alpha` parameter
 
 Global Functions
 
 - `VCoreLogError(...)` and `VCoreLogWarning(...)` functions have been removed in favor of native `Logger` API
+
+- Due to ambiguous API, `color(_:hex:)` macro (with `String`) will no longer accept non-`6` digit code, and instead would take `opacity` parameter
 
 ### [5.3.1(90)](https://github.com/VakhoKontridze/VCore/releases/tag/5.3.1) — *2024 01 23*
 

@@ -14,39 +14,41 @@ import VCoreShared
 extension UIColor {
     /// Initializes `UIColor` with a hex `String`.
     ///
-    /// `hex` parameter must have `2`, `4`, `6`, or `8`-digits.
+    /// `hex` parameter must have `6` digits.
     ///
     ///     let color: UIColor? = .init(hex: "#007AFF")
     ///
     public convenience init?(
-        hex string: String
+        hex string: String,
+        alpha: CGFloat = 1
     ) {
-        guard let values = string._hexColorRGBAValues() else { return nil }
+        guard let values = string._hexColorRGBValues() else { return nil }
 
         self.init(
             red: values.red,
             green: values.green,
             blue: values.blue,
-            alpha: values.alpha
+            alpha: alpha
         )
     }
 
     /// Initializes `UIColor` with a hex `String`.
     ///
-    /// `displayP3Hex` parameter must be in a `2`, `4`, `6`, or `8`-digit format.
+    /// `displayP3Hex` parameter must have `6` digits.
     ///
     ///     let color: UIColor? = .init(displayP3Hex: "#007AFF")
     ///
     public convenience init?(
-        displayP3Hex string: String
+        displayP3Hex string: String,
+        alpha: CGFloat = 1
     ) {
-        guard let values = string._hexColorRGBAValues() else { return nil }
+        guard let values = string._hexColorRGBValues() else { return nil }
 
         self.init(
             displayP3Red: values.red,
             green: values.green,
             blue: values.blue,
-            alpha: values.alpha
+            alpha: alpha
         )
     }
 }

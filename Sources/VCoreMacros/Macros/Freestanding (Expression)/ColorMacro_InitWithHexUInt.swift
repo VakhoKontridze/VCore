@@ -61,7 +61,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
                 let valueString: String = argument.expression.as(FloatLiteralExprSyntax.self)?.literal.text,
                 let value: CGFloat = Double(valueString).map({ CGFloat($0) })
             else {
-                throw ColorMacroError_InitWithHexUInt.invalidColorSpaceParameter
+                throw ColorMacroError_InitWithHexUInt.invalidOpacityParameter
             }
 
             return value

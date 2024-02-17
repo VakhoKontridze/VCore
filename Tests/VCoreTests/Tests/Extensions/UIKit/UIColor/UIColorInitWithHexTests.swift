@@ -13,28 +13,6 @@ import XCTest
 
 // MARK: - Tests
 final class UIColorInitWithHexTests: XCTestCase {
-    func test2Digit_String() throws {
-        let color: UIColor = try XCTUnwrap(
-            UIColor(hex: "#10")
-        )
-
-        XCTAssertEqualColor(
-            color,
-            UIColor(red: 16/255, green: 16/255, blue: 16/255, alpha: 1)
-        )
-    }
-
-    func test4Digit_String() throws {
-        let color: UIColor = try XCTUnwrap(
-            UIColor(hex: "#1010")
-        )
-
-        XCTAssertEqualColor(
-            color,
-            UIColor(red: 16/255, green: 16/255, blue: 16/255, alpha: 16/255)
-        )
-    }
-
     func test6Digit_String() throws {
         let color: UIColor = try XCTUnwrap(
             UIColor(hex: "#007AFF")
@@ -43,17 +21,6 @@ final class UIColorInitWithHexTests: XCTestCase {
         XCTAssertEqualColor(
             color,
             UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
-        )
-    }
-
-    func test8Digit_String() throws {
-        let color: UIColor = try XCTUnwrap(
-            UIColor(hex: "#007AFF10")
-        )
-
-        XCTAssertEqualColor(
-            color,
-            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 16/255)
         )
     }
 

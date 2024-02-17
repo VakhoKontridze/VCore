@@ -10,14 +10,15 @@ import SwiftUI
 // MARK: - Color Macro (Init with Hex String)
 /// Returns non-optional `Color` from `String`, checked during the compile time.
 ///
-/// `hex` parameter must have `2`, `4`, `6`, or `8`-digits.
+/// `hex` parameter must have `6` digits.
 ///
 ///     let color: Color = #color(hex: "#007AFF")
 ///
 @freestanding(expression)
 public macro color(
     _ colorSpace: Color.RGBColorSpace = .sRGB,
-    hex string: String
+    hex string: String,
+    opacity: CGFloat = 1
 ) -> Color = #externalMacro(
     module: "VCoreMacros",
     type: "ColorMacro_InitWithHexString"
