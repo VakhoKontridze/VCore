@@ -12,7 +12,7 @@ import VCoreShared
 extension Color {
     /// Initializes `UIColor` with a hex `String`.
     ///
-    /// `hex` parameter must have `6` digits.
+    /// `hex` parameter must have `6` characters.
     ///
     ///     let color: Color? = .init(hex: "#007AFF")
     ///
@@ -37,8 +37,8 @@ extension Color {
 extension Color {
     /// Initializes `UIColor` with a hex `UInt`
     ///
-    /// `hex` parameter must have `6` digits.
-    /// All digits before the last `6` will be dropped.
+    /// `hex` parameter must have `6` characters.
+    /// All characters before the last `6` will be dropped.
     ///
     ///     let color: Color? = .init(hex: 0x007AFF)
     ///

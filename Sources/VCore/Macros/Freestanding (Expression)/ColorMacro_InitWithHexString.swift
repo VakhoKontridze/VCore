@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - Color Macro (Init with Hex String)
 /// Returns non-optional `Color` from `String`, checked during the compile time.
 ///
-/// `hex` parameter must have `6` digits.
+/// `hex` parameter must have `6` characters.
 ///
 ///     let color: Color = #color(hex: "#007AFF")
 ///

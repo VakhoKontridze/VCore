@@ -24,7 +24,7 @@ final class UIColorInitWithHexTests: XCTestCase {
         )
     }
 
-    func testManyDigit_String() {
+    func testManyCharacters_String() {
         let color: UIColor? = .init(hex: "#000000007AFF")
 
         XCTAssertNil(color)
@@ -52,7 +52,7 @@ final class UIColorInitWithHexTests: XCTestCase {
         )
     }
 
-    func testManyDigit_UInt() throws {
+    func testManyCharacters_UInt() throws {
         let color: UIColor = try XCTUnwrap(
             UIColor(hex: 0x000000007AFF) // +0(6)
         )

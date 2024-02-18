@@ -82,7 +82,7 @@ final class ColorMacroTests_InitWithHexUInt: XCTestCase {
         )
     }
 
-    func testManyDigitsInHexParameter() {
+    func testManyCharactersInHexParameter() {
         assertMacroExpansion(
             """
             let color: Color = #color(hex: 0x000000007AFF)
