@@ -38,7 +38,6 @@ extension Color {
     /// Initializes `UIColor` with a hex `UInt`
     ///
     /// `hex` parameter must have `6` characters.
-    /// All characters before the last `6` will be dropped.
     ///
     ///     let color: Color? = .init(hex: 0x007AFF)
     ///

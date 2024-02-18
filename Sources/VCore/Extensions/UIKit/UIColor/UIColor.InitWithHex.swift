@@ -58,7 +58,6 @@ extension UIColor {
     /// Initializes `UIColor` with a hex `UInt`.
     ///
     /// `hex` parameter must have at least `6` characters.
-    /// All characters before the last `6` will be dropped.
     ///
     ///     let color: UIColor? = .init(hex: 0x007AFF)
     ///
@@ -78,8 +77,7 @@ extension UIColor {
 
     /// Initializes `UIColor` with a hex `UInt`.
     ///
-    /// `hex` parameter must have at least `6` characters.
-    /// All characters before the last `6` will be dropped.
+    /// `displayP3Hex` parameter must have at least `6` characters.
     ///
     ///     let color: UIColor? = .init(displayP3Hex: 0x007AFF)
     ///
