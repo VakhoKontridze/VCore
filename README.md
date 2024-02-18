@@ -293,7 +293,7 @@ Add `https://github.com/VakhoKontridze/VCore` as a Swift Package in Xcode and fo
 
 #### Platform and Version Support
 
-Package provides limited `macOS`, `tvOS`, and `watchOS` support.
+Package provides limited `macOS`, `tvOS`, `watchOS`, and `visionOS` support.
 
 Versions with different majors are not directly compatible. When a new major is released, deprecated symbols are removed.
 
@@ -318,9 +318,7 @@ Versions with different majors are not directly compatible. When a new major is 
   </tr>
   
   <tr>
-    <td>
-        6.0<br><i><sup>(6.0.0 - 6.x.x)</sup></i>
-    </td>
+    <td>6.0</td>
     <td>2024 02 18</td>
     <td>
         5.9
@@ -339,9 +337,7 @@ Versions with different majors are not directly compatible. When a new major is 
   </tr>
   
   <tr>
-    <td>
-        5.0<br><i><sup>(5.0.0 - 5.3.0)</sup></i>
-    </td>
+    <td>5.0</td>
     <td>2023 10 08</td>
     <td>
         5.9
@@ -359,9 +355,7 @@ Versions with different majors are not directly compatible. When a new major is 
   </tr>
   
   <tr>
-    <td>
-        4.0<br><i><sup>(4.0.0 - 4.11.0)</sup></i>
-    </td>
+    <td>4.0</td>
     <td>2022 09 14</td>
     <td>
         5.8<br><i><sup>(4.7.0 - 4.x.x)</sup></i><br>
@@ -377,9 +371,7 @@ Versions with different majors are not directly compatible. When a new major is 
   </tr>
   
   <tr>
-    <td>
-        3.0<br><i><sup>(3.0.0 - 3.20.2)</sup></i>
-    </td>
+    <td>3.0</td>
     <td>2022 05 17</td>
     <td>5.6</td>
     <td>
@@ -395,9 +387,7 @@ Versions with different majors are not directly compatible. When a new major is 
   </tr>
   
   <tr>
-    <td>
-        2.0<br><i><sup>(2.0.0 - 2.3.0)</sup></i>
-    </td>
+    <td>2.0</td>
     <td>2021 12 28</td>
     <td>5.3</td>
     <td>iOS 13.0</td>
@@ -405,9 +395,7 @@ Versions with different majors are not directly compatible. When a new major is 
   </tr>
   
   <tr>
-    <td>
-        1.0<br><i><sup>(1.0.0 - 1.4.0)</sup></i>
-    </td>
+    <td>1.0</td>
     <td>2021 10 07</td>
     <td>5.3</td>
     <td>iOS 14.0</td>
