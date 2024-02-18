@@ -321,7 +321,7 @@ Versions with different majors are not directly compatible. When a new major is 
     <td>
         6.0<br><i><sup>(6.0.0 - 6.x.x)</sup></i>
     </td>
-    <td>2024 XX XX</td>
+    <td>2024 02 18</td>
     <td>
         5.9
     </td>
@@ -333,7 +333,8 @@ Versions with different majors are not directly compatible. When a new major is 
         visionOS 1.0
     </td>
     <td>
-        visionOS support
+        visionOS support<br>
+        API changes.
     </td>
   </tr>
   
