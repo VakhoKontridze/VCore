@@ -9,7 +9,7 @@ import SwiftUI
 import XCTest
 import VCore
 
-// MARK: - XCTest Assert Equal Color
+// MARK: - XCT Assert Equal Color
 
 #if canImport(UIKit)
 

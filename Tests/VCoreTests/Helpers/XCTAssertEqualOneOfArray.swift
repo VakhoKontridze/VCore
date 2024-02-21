@@ -9,7 +9,7 @@ import Foundation
 import XCTest
 import VCore
 
-// MARK: - XCTest Assert Equal One of Array
+// MARK: - XCT Assert Equal One of Array
 func XCTAssertEqual<T>(
     _ expression1: @autoclosure () throws -> T,
     oneOf expression2: @autoclosure () throws -> [T],

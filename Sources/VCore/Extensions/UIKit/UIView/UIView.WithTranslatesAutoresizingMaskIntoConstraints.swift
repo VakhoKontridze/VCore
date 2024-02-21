@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - UIView with Translates Autoresizing Mask into Constraints
+// MARK: - UI View with Translates Autoresizing Mask into Constraints
 extension UIView {
     /// Applies flag to `translatesAutoresizingMaskIntoConstraints` property of `UIView`, and returns it.
     ///

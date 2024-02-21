@@ -8,7 +8,7 @@
 import Foundation
 import XCTest
 
-// MARK: - XCTests Assert Throws Error Instance
+// MARK: - XCT Assert Throws Error Instance
 func XCTAssertThrowsError<T, E>(
     _ expression: @autoclosure () throws -> T,
     error: E,
