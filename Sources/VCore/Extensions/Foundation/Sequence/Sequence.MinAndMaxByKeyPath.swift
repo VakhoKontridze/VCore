@@ -11,11 +11,11 @@ import Foundation
 extension Sequence {
     /// Returns the minimum element in the `Sequence`, using the given `KeyPath` as the comparison between elements.
     ///
-    ///     struct SomeObject {
+    ///     struct SomeClass {
     ///         let value: Int
     ///     }
     ///
-    ///     let objects: [SomeObject] = ...
+    ///     let objects: [SomeClass] = ...
     ///
     ///     let max: Object? = objects.min(by: \.value)
     ///
@@ -27,11 +27,11 @@ extension Sequence {
 
     /// Returns the maximum element in the `Sequence`, using the given `KeyPath` as the comparison between elements.
     ///
-    ///     struct SomeObject {
+    ///     struct SomeClass {
     ///         let value: Int
     ///     }
     ///
-    ///     let objects: [SomeObject] = ...
+    ///     let objects: [SomeClass] = ...
     ///
     ///     let max: Object? = objects.max(by: \.value)
     ///
