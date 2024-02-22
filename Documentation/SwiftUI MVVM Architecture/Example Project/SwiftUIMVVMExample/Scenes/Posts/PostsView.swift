@@ -11,7 +11,7 @@ import VCore
 // MARK: - Posts View
 struct PostsView: View {
     // MARK: Properties
-    @StateObject private var viewModel: PostsViewModel
+    @State private var viewModel: PostsViewModel
 
     private typealias UIModel = PostsUIModel
 
@@ -19,7 +19,7 @@ struct PostsView: View {
 
     // MARK: Initializers
     init() {
-        self._viewModel = StateObject(wrappedValue: PostsViewModel())
+        self._viewModel = State(wrappedValue: PostsViewModel())
     }
     
     // MARK: Body

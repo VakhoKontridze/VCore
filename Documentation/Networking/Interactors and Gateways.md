@@ -77,7 +77,6 @@ struct UpdateUserDataNetworkGateway: UpdateUserDataGateway {
 This allows a presenter to perform a fetch request:
 
 ```swift
-@MainActor
 final class HomePresenter<Interactor>: HomePresentable
     where Interactor: HomeInteractive
 {
@@ -89,7 +88,12 @@ final class HomePresenter<Interactor>: HomePresentable
         self.interactor = interactor
     }
 
-    func fetchData() async {
+    func viewDidLoad() {
+        Task(operation: { await self.fetchData() })
+    }
+
+    @MainActor
+    private func fetchData() async {
         let parameters: UpdateUserDataGatewayParameters = .init(...)
     
         do {

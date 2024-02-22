@@ -11,13 +11,13 @@ import VCore
 // MARK: - Post Details View
 struct PostDetailsView: View {
     // MARK: Properties
-    @StateObject private var viewModel: PostDetailsViewModel
+    @State private var viewModel: PostDetailsViewModel
 
     private typealias UIModel = PostDetailsUIModel
 
     // MARK: Initializers
     init(parameters: PostDetailsParameters) {
-        self._viewModel = StateObject(wrappedValue: PostDetailsViewModel(parameters: parameters))
+        self._viewModel = State(wrappedValue: PostDetailsViewModel(parameters: parameters))
     }
     
     // MARK: Body

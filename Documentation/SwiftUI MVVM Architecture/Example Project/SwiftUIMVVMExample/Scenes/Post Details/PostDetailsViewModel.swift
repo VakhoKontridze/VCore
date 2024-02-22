@@ -9,10 +9,10 @@ import Foundation
 import VCore
 
 // MARK: - Post Details View Model
-@MainActor
+@Observable
 final class PostDetailsViewModel: ObservableObject {
     // MARK: Properties
-    private let parameters: PostDetailsParameters
+    @ObservationIgnored private let parameters: PostDetailsParameters
 
     var title: String { parameters.post.title }
     var body: String { parameters.post.body }

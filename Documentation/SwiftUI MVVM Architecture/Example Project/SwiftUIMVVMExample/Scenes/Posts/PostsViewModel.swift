@@ -9,17 +9,17 @@ import Foundation
 import VCore
 
 // MARK: - Posts View Model
-@MainActor
-final class PostsViewModel: ObservableObject {
+@Observable
+final class PostsViewModel {
     // MARK: Properties
-    @Published private(set) var posts: [PostsEntity.Post] = []
+    private(set) var posts: [PostsEntity.Post] = []
 
-    var navigationStackCoordinator: NavigationStackCoordinatorOO!
-    @Published var alertParameters: AlertParameters?
-    @Published private(set) var progressViewParameters: ProgressViewParameters?
+    @ObservationIgnored var navigationStackCoordinator: NavigationStackCoordinatorOO!
+    var alertParameters: AlertParameters?
+    private(set) var progressViewParameters: ProgressViewParameters?
 
-    private var fetchPostsTask: Task<Void, Never>?
-    
+    @ObservationIgnored private var fetchPostsTask: Task<Void, Never>?
+
     // MARK: Initializers
     init() {}
 
@@ -29,12 +29,12 @@ final class PostsViewModel: ObservableObject {
 
     // MARK: Lifecycle
     func didLoad() {
-        fetchPosts()
+        Task(operation: { await self.fetchPosts() })
     }
     
     // MARK: Actions
     func didPullToRefresh() {
-        fetchPosts()
+        Task(operation: { await self.fetchPosts() })
     }
     
     func didTapPost(_ post: PostsEntity.Post) {
@@ -42,6 +42,7 @@ final class PostsViewModel: ObservableObject {
     }
     
     // MARK: Requests
+    @MainActor
     private func fetchPosts() {
         posts = []
         
