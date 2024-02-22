@@ -11,7 +11,7 @@ import VCore
 // MARK: - DI Container
 final class DIContainer {
     // MARK: Properties
-    private(set) lazy var gateways: Gateways = .init()
+    private(set) lazy var networkGateways: NetworkGateways = .init()
 
     // MARK: Properties - Singleton
     static let current: DIContainer = .init()
@@ -20,25 +20,24 @@ final class DIContainer {
     private init() {}
 }
 
-// MARK: - Gateways
+// MARK: - Network Gateways
 extension DIContainer {
-    final class Gateways {
-        // MARK: Properties
-        lazy var posts: any PostsGateway = make(
+    final class NetworkGateways {
+        private(set) lazy var posts: any PostsGateway = make(
             PostsNetworkGateway(),
             preview: PostsMockGateway()
         )
+    }
+}
 
-        // MARK: Helpers
-        private func make<T>(
-            _ object: @autoclosure () -> T,
-            preview previewObject: @autoclosure () -> T
-        ) -> T {
-            if ProcessInfo.processInfo.isPreview {
-                return previewObject()
-            } else {
-                return object()
-            }
-        }
+// MARK: - Value Factory
+private func make<T>(
+    _ value: @autoclosure () -> T,
+    preview previewValue: @autoclosure () -> T
+) -> T {
+    if ProcessInfo.processInfo.isPreview {
+        previewValue()
+    } else {
+        value()
     }
 }

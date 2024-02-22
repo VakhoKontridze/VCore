@@ -52,7 +52,7 @@ final class PostsViewModel {
             defer { progressViewParameters = nil }
 
             do {
-                let postsEntity: PostsEntity = try await DIContainer.current.gateways.posts.fetch()
+                let postsEntity: PostsEntity = try await DIContainer.current.networkGateways.posts.fetch()
                 guard !Task.isCancelled else { return }
                 
                 posts = postsEntity.posts
