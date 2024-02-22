@@ -12,18 +12,24 @@ import Observation
 /// Tracks access to properties in a `class` type continuously.
 ///
 ///     @Observable
-///      final class SomeObject {
-///         private var value: Int = 0
+///     private final class SomeClass {
+///         private var input: Int = 1
+///         private(set) var output: Int?
 ///
 ///         init() {
 ///             addSubscriptions()
 ///         }
 ///
+///         func mutate() {
+///             input += 1
+///         }
+///
 ///         private func addSubscriptions() {
 ///             withContinuousObservationTracking(
-///                 of: \.value,
+///                 of: \.input,
 ///                 on: self,
-///                 execute: { print($0) }
+///                 initial: true,
+///                 execute: { [weak self] in self?.output = $0 }
 ///             )
 ///         }
 ///     }
@@ -41,32 +47,18 @@ public func withContinuousObservationTracking<Object, T>(
         block(object[keyPath: keyPath])
     }
 
-    _withContinuousObservationTracking(
-        of: keyPath,
-        on: object,
-        execute: block
-    )
-}
-
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private func _withContinuousObservationTracking<Object, T>(
-    of keyPath: KeyPath<Object, T>,
-    on object: Object,
-    execute block: @escaping @Sendable (T) -> Void
-)
-    where Object: AnyObject
-{
     withObservationTracking(
         { _ = object[keyPath: keyPath] },
         onChange: { [weak object] in
             guard let object else { return }
 
-            DispatchQueue.main.async(execute: {
+            Task(operation: { @MainActor in
                 block(object[keyPath: keyPath])
 
-                _withContinuousObservationTracking(
+                withContinuousObservationTracking(
                     of: keyPath,
                     on: object,
+                    initial: false,
                     execute: block
                 )
             })
