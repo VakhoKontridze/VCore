@@ -53,7 +53,7 @@ Global Functions
 
 ### [5.3.1(90)](https://github.com/VakhoKontridze/VCore/releases/tag/5.3.1) — *2024 01 23*
 
-General
+Other
 
 - Bug fixes and improvements
 
@@ -82,9 +82,9 @@ Macros
 
 ### [5.2.1(88)](https://github.com/VakhoKontridze/VCore/releases/tag/5.2.1) — *2023 12 08*
 
-Other
+Views
 
-- Deprecations messages for `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage` are fixed
+- Deprecation messages for `FetchDelegatingAsyncImage` and `FetchDelegatingCompletionImage` are fixed
 
 ### [5.2.0(87)](https://github.com/VakhoKontridze/VCore/releases/tag/5.2.0) — *2023 12 07*
 
@@ -275,7 +275,7 @@ Extensions
 
 General
 
-- Several APIs are now exposed to `mac` `Catalyst`
+- Several APIs are now exposed to `Mac Catalyst`
 
 Views
 
@@ -358,7 +358,7 @@ Services and managers
 
 General
 
-- Package now compiles on Mac Catalyst
+- Package now compiles on `Mac Catalyst`
 
 Models
 
@@ -533,7 +533,7 @@ Extensions
 
 ### [4.2.1(67)](https://github.com/VakhoKontridze/VCore/releases/tag/4.2.1) — *2022 12 15*
 
-General
+Other
 
 - `UILabel.lineBreakStrategy` is now placed under `iOS` `14` API availability check
 
@@ -569,7 +569,6 @@ Services and Managers
 General
 
 - `Error`s are now `struct`s, backed by `ErrorCode` enumerations
-- `VCoreLog(_:)` is added that logs errors throws by objects, such as `NetworkClient`, `KeychainService`, `JSONEncoderService`, and `JSONDecoderService`
 
 Services and Managers
 
@@ -614,6 +613,10 @@ Extensions
 - `CALayerCornerCurve` parameter is added to `UIView.roundCornersAndApplyShadow(cornerRadius:color:radius:offset)`
 - `View.fitToAspect(_:contentMode)` method is added
 - `View.shadow(color:radius:offset)` method is added
+
+Global Functions
+
+- `VCoreLog(_:)` is added that logs errors throws by objects, such as `NetworkClient`, `KeychainService`, `JSONEncoderService`, and `JSONDecoderService`
 
 API
 
@@ -876,7 +879,7 @@ Extensions
 
 ### [3.10.3(38)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.3) — *2022 07 04*
 
-General
+Other
 
 - Bug fixes and improvements
 
@@ -1110,7 +1113,7 @@ Views
 
 ### [3.0.1(18)](https://github.com/VakhoKontridze/VCore/releases/tag/3.0.1) — *2022 05 17*
 
-General
+Other
 
 - Missing `public` access modifiers are added
 
@@ -1120,7 +1123,6 @@ General
 
 - Project is migrated from `XCFramework` to `Swift` Package
 - Project now partially supports `macOS`, `tvOS`, and `watchOS`
-- Project is now covered under unit tests
 
 Services and Managers
 
@@ -1151,6 +1153,10 @@ API
 Extra - Localization Service
 
 - `LocalizationService` now supports language switching from the system settings
+
+Other
+
+- Framework is now partially covered with unit tests
 
 ### [2.3.0(16)](https://github.com/VakhoKontridze/VCore/releases/tag/2.3.0) — *2022 02 25*
 
