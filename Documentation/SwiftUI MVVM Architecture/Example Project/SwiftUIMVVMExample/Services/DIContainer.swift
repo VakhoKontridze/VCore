@@ -10,7 +10,7 @@ import VCore
 
 // MARK: - DI Container
 final class DIContainer {
-    // MARK: Properties
+    // MARK: Properties - Network Gateways
     private(set) lazy var networkGateways: NetworkGateways = .init()
 
     // MARK: Properties - Singleton
@@ -30,7 +30,7 @@ extension DIContainer {
     }
 }
 
-// MARK: - Value Factory
+// MARK: - Factory
 private func make<T>(
     _ value: @autoclosure () -> T,
     preview previewValue: @autoclosure () -> T
