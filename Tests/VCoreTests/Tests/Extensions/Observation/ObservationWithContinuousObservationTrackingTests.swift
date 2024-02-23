@@ -15,7 +15,7 @@ import XCTest
 final class ObservationWithContinuousObservationTrackingTests: XCTestCase {
     // MARK: Test Data
     @Observable
-    /*private*/ final class SomeClass {
+    private final class SomeClass: Observable {
         private var input: Int = 1
         fileprivate var output: Int?
 
