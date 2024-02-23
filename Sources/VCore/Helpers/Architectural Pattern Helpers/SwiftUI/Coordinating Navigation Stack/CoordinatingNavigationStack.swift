@@ -41,7 +41,7 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     private let root: (NavigationStackCoordinator) -> Root
 
     // MARK: Initializers - NavigationPath
-    /// Initializes `CoordinatingNavigationStackOO`.
+    /// Initializes `CoordinatingNavigationStack`.
     public init(
         path navigationPath: @escaping @autoclosure () -> NavigationPath,
         @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
@@ -50,7 +50,7 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         self.root = root
     }
 
-    /// Initializes `CoordinatingNavigationStackOO`.
+    /// Initializes `CoordinatingNavigationStack`.
     public init(
         path navigationPath: @escaping @autoclosure () -> NavigationPath,
         @ViewBuilder root: @escaping () -> Root
@@ -60,7 +60,7 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     }
 
     // MARK: Initializers
-    /// Initializes `CoordinatingNavigationStackOO`.
+    /// Initializes `CoordinatingNavigationStack`.
     public init(
         @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
     ) {
@@ -68,7 +68,7 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         self.root = root
     }
 
-    /// Initializes `CoordinatingNavigationStackOO`.
+    /// Initializes `CoordinatingNavigationStack`.
     public init(
         @ViewBuilder root: @escaping () -> Root
     ) {
