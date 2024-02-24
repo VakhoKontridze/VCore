@@ -164,7 +164,7 @@ var body: some View {
 }
 ```
 
-#### Various UIKit Views/ViewControllers
+#### Various UIKit UIViews/UIViewControllers
 
 `KeyboardResponsiveUIViewController` that handles keyboard notifications:
 
@@ -234,19 +234,9 @@ enum SomeEnum: KeyPathInitializableEnumeration {
 let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
 ```
 
-#### Various Extensions and Global Functions
+#### Various Extensions
 
-`Optional` comparison:
-
-```swift
-let a: Int? = 10
-let b: Int? = nil
-
-a.isOptionalLess(than: b, order: .nilIsLess) // false
-a.isOptionalLess(than: b, order: .nilIsGreater) // true
-```
-
-Detecting changes in `View` size:
+Retrieving `CGSize` form `View`:
 
 ```swift
 @State private var size: CGSize = .zero
@@ -254,8 +244,18 @@ Detecting changes in `View` size:
 var body: some View {
     VStack(content: {
         Color.accentColor
-            .onSizeChange(perform: { size = $0 })
+            .getSize({ size = $0 })
     })
+}
+```
+
+#### Global Functions
+
+Function that calls `fatalError` because feature is not implemented: 
+
+```swift
+func didTapContinueButton() {
+    TODO()
 }
 ```
 
