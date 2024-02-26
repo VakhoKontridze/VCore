@@ -49,7 +49,7 @@ struct PostDetailsView: View {
 #if DEBUG
 
 #Preview(body: {
-    CoordinatingNavigationStackOO(root: {
+    CoordinatingNavigationStack(root: {
         PostDetailsView(parameters: .mock)
     })
 })

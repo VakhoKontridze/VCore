@@ -27,10 +27,7 @@ import SwiftUI
 ///                 "Navigate",
 ///                 action: { navigationStackCoordinator.path.append(DestinationParameters()) }
 ///             )
-///             .navigationDestination(
-///                 for: DestinationParameters.self,
-///                 destination: { DestinationView(parameters: $0) }
-///             )
+///             .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
 ///         }
 ///     }
 ///
@@ -119,10 +116,7 @@ private struct HomeView: View {
             $0
 #endif
         })
-        .navigationDestination(
-            for: DestinationParameters.self,
-            destination: { DestinationView(parameters: $0) }
-        )
+        .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
     }
 }
 

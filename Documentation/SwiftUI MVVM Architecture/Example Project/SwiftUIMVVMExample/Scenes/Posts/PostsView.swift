@@ -15,7 +15,7 @@ struct PostsView: View {
 
     private typealias UIModel = PostsUIModel
 
-    @Environment(\.navigationStackCoordinatorOO) private var navigationStackCoordinator: NavigationStackCoordinatorOO!
+    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
 
     // MARK: Initializers
     init() {
@@ -62,7 +62,7 @@ struct PostsView: View {
 #if DEBUG
 
 #Preview(body: {
-    CoordinatingNavigationStackOO(root: {
+    CoordinatingNavigationStack(root: {
         PostsView()
     })
 })

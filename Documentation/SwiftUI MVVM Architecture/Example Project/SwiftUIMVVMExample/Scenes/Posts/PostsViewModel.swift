@@ -14,7 +14,7 @@ final class PostsViewModel {
     // MARK: Properties
     private(set) var posts: [PostsEntity.Post] = []
 
-    @ObservationIgnored var navigationStackCoordinator: NavigationStackCoordinatorOO!
+    @ObservationIgnored var navigationStackCoordinator: NavigationStackCoordinator!
     var alertParameters: AlertParameters?
     private(set) var progressViewParameters: ProgressViewParameters?
 
