@@ -14,8 +14,8 @@ extension String {
     ///     "key".isUserDefaultsKey()
     ///
     public func isUserDefaultsKey(
-        in defaults: UserDefaults = .standard
+        in store: UserDefaults = .standard
     ) -> Bool {
-        defaults.value(forKey: self) != nil
+        store.value(forKey: self) != nil
     }
 }
