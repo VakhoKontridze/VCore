@@ -26,7 +26,7 @@ public struct JSONAuthorizedRequestHeaderFields: Encodable {
     /// Content type. Set to `application/json`.
     @CKGCodingKey("Content-Type") public let contentType: String = "application/json"
 
-    /// Authorization
+    /// Authorization.
     @CKGCodingKey("Authorization") public let authorization: String
 
     // MARK: Initializers
