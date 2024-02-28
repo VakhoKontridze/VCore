@@ -7,5 +7,12 @@
 
 import Foundation
 
-// MARK: - Post Parameters
-struct PostParameters: Hashable {}
+// MARK: - Posts Parameters
+struct PostsParameters: Hashable {
+    // MARK: Mock
+#if DEBUG
+    static var mock: Self {
+        .init()
+    }
+#endif
+}

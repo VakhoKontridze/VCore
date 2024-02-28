@@ -1,5 +1,7 @@
 //  ___FILEHEADER___
 
+#if DEBUG
+
 import Foundation
 
 // MARK: - ___VARIABLE_productName___ Mock Gateway
@@ -8,3 +10,5 @@ struct ___VARIABLE_productName___MockGateway: ___VARIABLE_productName___Gateway 
         completion(.success(.mock))
     }
 }
+
+#endif

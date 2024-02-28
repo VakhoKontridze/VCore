@@ -8,5 +8,9 @@ struct ___VARIABLE_productName___Parameters {
     // ...
     
     // MARK: Mock
-    static var mock: Self { .init() }
+#if DEBUG
+    static var mock: Self {
+        .init()
+    }
+#endif
 }

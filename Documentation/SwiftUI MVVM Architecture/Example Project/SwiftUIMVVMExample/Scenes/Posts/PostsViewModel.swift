@@ -12,6 +12,8 @@ import VCore
 @Observable
 final class PostsViewModel {
     // MARK: Properties
+    @ObservationIgnored private let parameters: PostsParameters
+
     private(set) var posts: [PostsEntity.Post] = []
 
     @ObservationIgnored var navigationStackCoordinator: NavigationStackCoordinator!
@@ -21,7 +23,9 @@ final class PostsViewModel {
     @ObservationIgnored private var fetchPostsTask: Task<Void, Never>?
 
     // MARK: Initializers
-    init() {}
+    init(parameters: PostsParameters) {
+        self.parameters = parameters
+    }
 
     deinit {
         fetchPostsTask?.cancel()

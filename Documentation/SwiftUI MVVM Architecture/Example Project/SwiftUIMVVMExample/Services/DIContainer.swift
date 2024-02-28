@@ -23,21 +23,18 @@ final class DIContainer {
 // MARK: - Network Gateways
 extension DIContainer {
     final class NetworkGateways {
-        private(set) lazy var posts: any PostsGateway = make(
-            PostsNetworkGateway(),
-            preview: PostsMockGateway()
-        )
+        fileprivate(set) lazy var posts: any PostsGateway = PostsNetworkGateway()
     }
 }
 
-// MARK: - Factory
-private func make<T>(
-    _ value: @autoclosure () -> T,
-    preview previewValue: @autoclosure () -> T
-) -> T {
-    if ProcessInfo.processInfo.isPreview {
-        previewValue()
-    } else {
-        value()
+// MARK: - Injections
+#if DEBUG
+
+extension DIContainer {
+    func injectPreview() {
+        // Gateways - Network
+        networkGateways.posts = PostsMockGateway()
     }
 }
+
+#endif

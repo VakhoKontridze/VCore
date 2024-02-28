@@ -13,6 +13,7 @@ struct PostDetailsParameters: Hashable {
     let post: PostsEntity.Post
 
     // MARK: Mock
+#if DEBUG
     static var mock: Self {
         .init(
             post: PostsEntity.Post(
@@ -23,4 +24,5 @@ struct PostDetailsParameters: Hashable {
             )
         )
     }
+#endif
 }

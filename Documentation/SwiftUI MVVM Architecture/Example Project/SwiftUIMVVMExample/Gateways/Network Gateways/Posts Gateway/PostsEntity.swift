@@ -23,6 +23,7 @@ struct PostsEntity {
     }
 
     // MARK: Mock
+#if DEBUG
     static var mock: Self {
         .init(
             posts: (0..<20).map { i in
@@ -35,4 +36,5 @@ struct PostsEntity {
             }
         )
     }
+#endif
 }

@@ -18,8 +18,8 @@ struct PostsView: View {
     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
 
     // MARK: Initializers
-    init() {
-        self._viewModel = State(wrappedValue: PostsViewModel())
+    init(parameters: PostsParameters) {
+        self._viewModel = State(wrappedValue: PostsViewModel(parameters: parameters))
     }
     
     // MARK: Body
@@ -62,8 +62,10 @@ struct PostsView: View {
 #if DEBUG
 
 #Preview(body: {
-    CoordinatingNavigationStack(root: {
-        PostsView()
+    DIContainer.current.injectPreview()
+
+    return CoordinatingNavigationStack(root: {
+        PostsView(parameters: .mock)
     })
 })
 

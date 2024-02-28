@@ -14,7 +14,7 @@ struct SwiftUIMVVMExampleApp: App {
     var body: some Scene {
         WindowGroup(content: {
             CoordinatingNavigationStack(root: {
-                PostsView()
+                PostsView(parameters: PostsParameters())
             })
         })
     }
