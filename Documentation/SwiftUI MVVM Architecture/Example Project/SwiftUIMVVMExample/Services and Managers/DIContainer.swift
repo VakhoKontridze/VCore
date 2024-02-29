@@ -10,7 +10,7 @@ import VCore
 
 // MARK: - DI Container
 final class DIContainer {
-    // MARK: Properties - Network Gateways
+    // MARK: Properties - Gateways
     private(set) lazy var networkGateways: NetworkGateways = .init()
 
     // MARK: Properties - Singleton
@@ -23,17 +23,17 @@ final class DIContainer {
 // MARK: - Network Gateways
 extension DIContainer {
     final class NetworkGateways {
-        fileprivate(set) lazy var posts: any PostsGateway = PostsNetworkGateway()
+        fileprivate(set) lazy var posts: any FetchPostsGatewayProtocol = FetchPostsGateway()
     }
 }
 
-// MARK: - Injections
+// MARK: - Environment Injections
 #if DEBUG
 
 extension DIContainer {
-    func injectPreview() {
+    func injectPreviewDependencies() {
         // Gateways - Network
-        networkGateways.posts = PostsNetworkMockGateway()
+        networkGateways.posts = MockFetchPostsGateway()
     }
 }
 

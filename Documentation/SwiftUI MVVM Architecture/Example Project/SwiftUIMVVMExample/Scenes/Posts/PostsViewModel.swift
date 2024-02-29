@@ -14,7 +14,7 @@ final class PostsViewModel {
     // MARK: Properties
     @ObservationIgnored private let parameters: PostsParameters
 
-    private(set) var posts: [PostsEntity.Post] = []
+    private(set) var posts: [FetchPostsEntity.Post] = []
 
     @ObservationIgnored var navigationStackCoordinator: NavigationStackCoordinator!
     var alertParameters: AlertParameters?
@@ -41,7 +41,7 @@ final class PostsViewModel {
         Task(operation: { await self.fetchPosts() })
     }
     
-    func didTapPost(_ post: PostsEntity.Post) {
+    func didTapPost(_ post: FetchPostsEntity.Post) {
         navigationStackCoordinator.path.append(PostDetailsParameters(post: post))
     }
     
@@ -56,7 +56,7 @@ final class PostsViewModel {
             defer { progressViewParameters = nil }
 
             do {
-                let postsEntity: PostsEntity = try await DIContainer.current.networkGateways.posts.fetch()
+                let postsEntity: FetchPostsEntity = try await DIContainer.current.networkGateways.posts.fetch()
                 guard !Task.isCancelled else { return }
                 
                 posts = postsEntity.posts

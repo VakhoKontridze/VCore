@@ -10,13 +10,13 @@ import Foundation
 // MARK: - Post Details Parameters
 struct PostDetailsParameters {
     // MARK: Properties
-    let post: PostsEntity.Post
+    let post: FetchPostsEntity.Post
 
     // MARK: Mock
 #if DEBUG
     static var mock: Self {
         .init(
-            post: PostsEntity.Post(
+            post: FetchPostsEntity.Post(
                 id: 0,
                 userID: 0,
                 title: "Lorem Ipsum",

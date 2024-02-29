@@ -13,14 +13,14 @@ This document provides examples of network requests made using `URLSession` foll
 
 ## Simple Request
 
-Following gateway initiates a straightforward request to retrieve a `GetPostEntity` object with an identifier specified by `GetPostGatewayParameters.id`:
+Following gateway initiates a straightforward request to retrieve a `GetPostEntity` object with an identifier specified by `GetPostParameters.id`:
 
 ```swift
-protocol GetPostGateway {
-    func fetch(with parameters: GetPostGatewayParameters) async throws -> GetPostEntity
+protocol GetPostGatewayProtocol {
+    func fetch(with parameters: GetPostParameters) async throws -> GetPostEntity
 }
 
-struct GetPostGatewayParameters {
+struct GetPostParameters {
     let id: Int
 }
 
@@ -32,8 +32,8 @@ struct GetPostEntity: Decodable {
     @CKGCodingKey("body") let body: String
 }
 
-struct GetPostNetworkGateway: GetPostGateway {
-    func fetch(with parameters: GetPostGatewayParameters) async throws -> GetPostEntity {
+struct GetPostGateway: GetPostGatewayProtocol {
+    func fetch(with parameters: GetPostParameters) async throws -> GetPostEntity {
         let urlString: String = "https://jsonplaceholder.typicode.com/posts/\(parameters.id)"
         guard let url: URL = .init(string: urlString) else { throw URLError(.badURL) }
 
@@ -57,9 +57,9 @@ Request is initiated to retrieve a post with an ID of `1`:
 ```
 Task(operation: {
     do {
-        let parameters: GetPostGatewayParameters = .init(id: 1)
+        let parameters: GetPostParameters = .init(id: 1)
 
-        let entity: GetPostEntity = try await GetPostNetworkGateway().fetch(with: parameters)
+        let entity: GetPostEntity = try await GetPostGateway().fetch(with: parameters)
 
         dump(entity)
 
@@ -161,15 +161,15 @@ func processURLSessionData(
 
 #### Gateway
 
-Following gateway initiates a request to echo a `String`, specified by `EchoGatewayParameters.value`. Within the `EchoNetworkGateway`, both `Data` and `URLResponse` are processed with methods defined above.
+Following gateway initiates a request to echo a `String`, specified by `EchoParameters.value`. Within the `EchoGateway`, both `Data` and `URLResponse` are processed with methods defined above.
 
 ```swift
-protocol EchoGateway {
-    func fetch(with parameters: EchoGatewayParameters) async throws -> EchoEntity
+protocol EchoGatewayProtocol {
+    func fetch(with parameters: EchoParameters) async throws -> EchoEntity
 }
 
 @CodingKeysGeneration
-struct EchoGatewayParameters: Encodable {
+struct EchoParameters: Encodable {
     @CKGCodingKey("value") let value: String
 }
 
@@ -178,8 +178,8 @@ struct EchoEntity: Decodable {
     @CKGCodingKey("value") let value: String
 }
 
-struct EchoNetworkGateway: EchoGateway {
-    func fetch(with parameters: EchoGatewayParameters) async throws -> EchoEntity {
+struct EchoGateway: EchoGatewayProtocol {
+    func fetch(with parameters: EchoParameters) async throws -> EchoEntity {
         let url: URL = #url("https://httpbin.org/post")
 
         var request: URLRequest = .init(url: url)
@@ -206,9 +206,9 @@ Request is initiated to echo a `String` "test":
 ```swift
 Task(operation: {
     do {
-        let parameters: EchoGatewayParameters = .init(value: "test")
+        let parameters: EchoParameters = .init(value: "test")
 
-        let entity: EchoEntity = try await EchoNetworkGateway().fetch(with: parameters)
+        let entity: EchoEntity = try await EchoGateway().fetch(with: parameters)
 
         print(entity.value) // "test"
 
@@ -223,14 +223,14 @@ Task(operation: {
 Following gateway initiates a request to retrieve an `UIImage` with from an url, and communicate the download progress:
 
 ```swift
-protocol FetchImageGateway {
+protocol FetchImageGatewayProtocol {
     func fetch(
-        with parameters: FetchImageGatewayParameters,
+        with parameters: FetchImageParameters,
         onProgressChange progressHandler: (Double) -> Void
     ) async throws -> FetchImageEntity
 }
 
-struct FetchImageGatewayParameters {
+struct FetchImageParameters {
     let url: String
 }
 
@@ -238,9 +238,9 @@ struct FetchImageEntity {
     let image: UIImage?
 }
 
-struct FetchImageNetworkGateway: FetchImageGateway {
+struct FetchImageGateway: FetchImageGatewayProtocol {
     func fetch(
-        with parameters: FetchImageGatewayParameters,
+        with parameters: FetchImageParameters,
         onProgressChange progressHandler: (Double) -> Void
     ) async throws -> FetchImageEntity {
         guard let url: URL = .init(string: parameters.url) else { throw URLError(.badURL) }
@@ -285,9 +285,9 @@ Request is initiated to retrieve an `UIImage` and print the download progress:
 Task(operation: {
     do {
         let url: String = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg"
-        let parameters: FetchImageGatewayParameters = .init(url: url)
+        let parameters: FetchImageParameters = .init(url: url)
         
-        let entity: FetchImageEntity = try await FetchImageNetworkGateway().fetch(
+        let entity: FetchImageEntity = try await FetchImageGateway().fetch(
             with: parameters, 
             onProgressChange: { print($0) }
         )

@@ -1,5 +1,5 @@
 //  
-//  PostsEntity.swift
+//  FetchPostsEntity.swift
 //  SwiftUIMVVMExample
 //
 //  Created by Vakhtang Kontridze on 19.06.22.
@@ -8,8 +8,8 @@
 import Foundation
 import VCore
 
-// MARK: - Posts Entity
-struct PostsEntity {
+// MARK: - Fetch Posts Entity
+struct FetchPostsEntity {
     // MARK: Posts
     let posts: [Post]
 
@@ -27,7 +27,7 @@ struct PostsEntity {
     static var mock: Self {
         .init(
             posts: (0..<20).map { i in
-                PostsEntity.Post(
+                FetchPostsEntity.Post(
                     id: i,
                     userID: .random(in: 1...10),
                     title: "Lorem Ipsum",

@@ -30,5 +30,5 @@ protocol PostsRoutable {
 
 // MARK: - Posts Interactive
 protocol PostsInteractive {
-    func fetchPosts(completion: @escaping (Result<PostsEntity, any Error>) -> Void)
+    func fetchPosts(completion: @escaping (Result<FetchPostsEntity, any Error>) -> Void)
 }

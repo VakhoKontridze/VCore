@@ -34,7 +34,7 @@ struct PostsFactory {
 
         let router: PostsRouter = .init(navigator: viewController)
 
-        let interactor: PostsMockInteractor = .init()
+        let interactor: MockPostsInteractor = .init()
 
         let presenter: PostsPresenter = .init(
             view: viewController,

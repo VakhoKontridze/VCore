@@ -12,10 +12,10 @@ struct PostRowView: View {
     // MARK: Properties
     private typealias UIModel = PostRowViewUIModel
     
-    private let post: PostsEntity.Post
+    private let post: FetchPostsEntity.Post
 
     // MARK: Initializers
-    init(post: PostsEntity.Post) {
+    init(post: FetchPostsEntity.Post) {
         self.post = post
     }
     
@@ -46,7 +46,7 @@ struct PostRowView: View {
 
 #Preview(body: {
     PostRowView(
-        post: PostsEntity.Post(
+        post: FetchPostsEntity.Post(
             id: 0,
             userID: 0,
             title: "Lorem Ipsum",

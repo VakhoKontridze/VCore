@@ -30,7 +30,7 @@ struct ___VARIABLE_productName___Factory {
 
         let router: ___VARIABLE_productName___Router = .init(navigator: viewController)
 
-        let interactor: ___VARIABLE_productName___MockInteractor = .init()
+        let interactor: Mock___VARIABLE_productName___Interactor = .init()
 
         let presenter: ___VARIABLE_productName___Presenter = .init(
             view: viewController,

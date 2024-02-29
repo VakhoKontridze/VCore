@@ -15,6 +15,6 @@ final class StringIsUserDefaultsKey: XCTestCase { // Can't be properly tested
         let key: String = "Key"
         UserDefaults.mock.set(5, forKey: key)
 
-        XCTAssertTrue(key.isUserDefaultsKey(in: .mock))
+        XCTAssertTrue(key.isUserDefaultsKey(in: UserDefaults.mock))
     }
 }

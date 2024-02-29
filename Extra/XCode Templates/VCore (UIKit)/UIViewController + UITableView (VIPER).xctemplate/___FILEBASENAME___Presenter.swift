@@ -34,19 +34,19 @@ final class ___VARIABLE_productName___Presenter<View, Router, Interactor>: ___VA
 
     // MARK: Table View Delegable
     func tableViewDidSelectRow(section: Int, row: Int) {
-        TODO()
+        FIXME()
     }
 
     // MARK: Table View DataSourceable
     var tableViewNumberOfSections: Int {
-        TODO()
+        FIXME()
     }
     
     func tableViewNumberOfRows(section: Int) -> Int {
-        TODO()
+        FIXME()
     }
     
     func tableViewCellParameter(section: Int, row: Int) -> any UITableViewCellParameter {
-        TODO()
+        FIXME()
     }
 }

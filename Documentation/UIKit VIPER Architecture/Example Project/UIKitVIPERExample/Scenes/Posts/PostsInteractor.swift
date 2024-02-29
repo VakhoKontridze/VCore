@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Posts Interactor
 struct PostsInteractor: PostsInteractive {
-    func fetchPosts(completion: @escaping (Result<PostsEntity, any Error>) -> Void) {
-        PostsNetworkGateway().fetch(completion: completion)
+    func fetchPosts(completion: @escaping (Result<FetchPostsEntity, any Error>) -> Void) {
+        FetchPostsGateway().fetch(completion: completion)
     }
 }

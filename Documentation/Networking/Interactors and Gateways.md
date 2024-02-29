@@ -18,11 +18,11 @@ To avoid writing boilerplate for every `Gateway`, project includes XCode templat
 
 ## Gateway Components
 
-#### Gateway (Protocol)
+#### Gateway Protocol
 
 Defines a fetch request interface. `Gateway` should only contain a single method.
 
-#### Gateway Parameters
+#### Parameters
 
 Parameters used for the fetch request. A `struct`, that can conform to `Encodable`.
 
@@ -30,7 +30,7 @@ Parameters used for the fetch request. A `struct`, that can conform to `Encodabl
 
 Entity that's returned from the fetch request. Also a `struct`, that can conform to `Decodable`.
 
-#### Gateway (Object)
+#### Gateway
 
 A specific implementation of a gateway.
 
@@ -44,22 +44,22 @@ Relationship between an `Interactor`  and `Gateway` is the following:
 
 ```swift
 protocol HomeInteractive {
-    func updateUserData(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity
+    func updateUserData(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity
 }
 
 struct HomeInteractor: HomeInteractive {
-    func updateUserData(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity {
-        try await UpdateUserDataNetworkGateway().fetch(with: parameters)
+    func updateUserData(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity {
+        try await UpdateUserDataGateway().fetch(with: parameters)
     }
 }
 ```
 
 ```swift
-protocol UpdateUserDataGateway {
-    func fetch(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity
+protocol UpdateUserDataGatewayProtocol {
+    func fetch(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity
 }
 
-struct UpdateUserDataGatewayParameters: Encodable {
+struct UpdateUserDataParameters: Encodable {
     ...
 }
 
@@ -67,8 +67,8 @@ struct UpdateUserDataEntity: Decodable {
     ...
 }
 
-struct UpdateUserDataNetworkGateway: UpdateUserDataGateway {
-    func fetch(with parameters: UpdateUserDataGatewayParameters) async throws -> UpdateUserDataEntity {
+struct UpdateUserDataGateway: UpdateUserDataGatewayProtocol {
+    func fetch(with parameters: UpdateUserDataParameters) async throws -> UpdateUserDataEntity {
         ...
     }
 }
@@ -94,7 +94,7 @@ final class HomePresenter<Interactor>: HomePresentable
 
     @MainActor
     private func fetchData() async {
-        let parameters: UpdateUserDataGatewayParameters = .init(...)
+        let parameters: UpdateUserDataParameters = .init(...)
     
         do {
             let entity: UpdateUserDataEntity = try await interactor.updateUserData(with: parameters)

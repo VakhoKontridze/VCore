@@ -15,7 +15,7 @@ import Foundation
 ///
 ///     struct UpdateUserDataGateway {
 ///         func fetch(
-///             parameters: UpdateUserDataGatewayParameters,
+///             parameters: UpdateUserDataParameters,
 ///             completion: (ResultNoFailure<UpdateUserDataEntity>) -> Void
 ///         )
 ///     }

@@ -1,8 +1,11 @@
 //  ___FILEHEADER___
 
 import Foundation
+import VCore
 
 // MARK: - ___VARIABLE_productName___ Gateway
-protocol ___VARIABLE_productName___Gateway {
-    func fetch(with parameters: ___VARIABLE_productName___GatewayParameters) async throws -> ___VARIABLE_productName___Entity
+struct ___VARIABLE_productName___Gateway: ___VARIABLE_productName___GatewayProtocol {
+    func fetch(with parameters: ___VARIABLE_productName___Parameters) async throws -> ___VARIABLE_productName___Entity {
+        FIXME()
+    }
 }
