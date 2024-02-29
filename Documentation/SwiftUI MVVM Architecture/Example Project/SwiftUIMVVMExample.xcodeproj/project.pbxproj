@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 55;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,9 +13,10 @@
 		870B88B9285F1CF100B0D0AD /* PostDetailsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B88B2285F1CF100B0D0AD /* PostDetailsView.swift */; };
 		870B88BA285F1CF100B0D0AD /* PostDetailsUIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B88B3285F1CF100B0D0AD /* PostDetailsUIModel.swift */; };
 		870B88BC285F1CF100B0D0AD /* PostDetailsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870B88B5285F1CF100B0D0AD /* PostDetailsParameters.swift */; };
+		87227F802B9079AD00CF2370 /* VCore in Frameworks */ = {isa = PBXBuildFile; productRef = 87227F7F2B9079AD00CF2370 /* VCore */; };
 		872EE7A12860BF8D00845B5C /* PostsParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872EE7A02860BF8D00845B5C /* PostsParameters.swift */; };
 		873005A32B8CAF08008BF606 /* PostsNetworkGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8730059F2B8CAF08008BF606 /* PostsNetworkGateway.swift */; };
-		873005A42B8CAF08008BF606 /* PostsMockGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873005A02B8CAF08008BF606 /* PostsMockGateway.swift */; };
+		873005A42B8CAF08008BF606 /* PostsNetworkMockGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873005A02B8CAF08008BF606 /* PostsNetworkMockGateway.swift */; };
 		873005A52B8CAF08008BF606 /* PostsGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873005A12B8CAF08008BF606 /* PostsGateway.swift */; };
 		873005A62B8CAF08008BF606 /* PostsEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 873005A22B8CAF08008BF606 /* PostsEntity.swift */; };
 		8780A057285F0DA0002E8F66 /* SwiftUIMVVMExampleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8780A056285F0DA0002E8F66 /* SwiftUIMVVMExampleApp.swift */; };
@@ -37,7 +38,7 @@
 		870B88B5285F1CF100B0D0AD /* PostDetailsParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsParameters.swift; sourceTree = "<group>"; };
 		872EE7A02860BF8D00845B5C /* PostsParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsParameters.swift; sourceTree = "<group>"; };
 		8730059F2B8CAF08008BF606 /* PostsNetworkGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsNetworkGateway.swift; sourceTree = "<group>"; };
-		873005A02B8CAF08008BF606 /* PostsMockGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsMockGateway.swift; sourceTree = "<group>"; };
+		873005A02B8CAF08008BF606 /* PostsNetworkMockGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsNetworkMockGateway.swift; sourceTree = "<group>"; };
 		873005A12B8CAF08008BF606 /* PostsGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsGateway.swift; sourceTree = "<group>"; };
 		873005A22B8CAF08008BF606 /* PostsEntity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsEntity.swift; sourceTree = "<group>"; };
 		8780A053285F0DA0002E8F66 /* SwiftUI MVVM.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "SwiftUI MVVM.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				87227F802B9079AD00CF2370 /* VCore in Frameworks */,
 				87846D8829D4D2AF0071CDAC /* VCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,7 +108,7 @@
 				873005A12B8CAF08008BF606 /* PostsGateway.swift */,
 				873005A22B8CAF08008BF606 /* PostsEntity.swift */,
 				8730059F2B8CAF08008BF606 /* PostsNetworkGateway.swift */,
-				873005A02B8CAF08008BF606 /* PostsMockGateway.swift */,
+				873005A02B8CAF08008BF606 /* PostsNetworkMockGateway.swift */,
 			);
 			path = "Posts Gateway";
 			sourceTree = "<group>";
@@ -135,7 +137,7 @@
 				8780A065285F0DD9002E8F66 /* App Control */,
 				8780A066285F0DE1002E8F66 /* Scenes */,
 				870B88A7285F147000B0D0AD /* Views */,
-				87C80B722AB0836100346987 /* Services */,
+				87C80B722AB0836100346987 /* Services and Managers */,
 				8780A07E285F0FCE002E8F66 /* Gateways */,
 				8780A064285F0DC0002E8F66 /* Resources */,
 			);
@@ -203,12 +205,12 @@
 			path = Gateways;
 			sourceTree = "<group>";
 		};
-		87C80B722AB0836100346987 /* Services */ = {
+		87C80B722AB0836100346987 /* Services and Managers */ = {
 			isa = PBXGroup;
 			children = (
 				87C80B732AB0836B00346987 /* DIContainer.swift */,
 			);
-			path = Services;
+			path = "Services and Managers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -229,6 +231,7 @@
 			name = SwiftUIMVVMExample;
 			packageProductDependencies = (
 				87846D8729D4D2AF0071CDAC /* VCore */,
+				87227F7F2B9079AD00CF2370 /* VCore */,
 			);
 			productName = SwiftUIMVVMExample;
 			productReference = 8780A053285F0DA0002E8F66 /* SwiftUI MVVM.app */;
@@ -258,6 +261,9 @@
 				Base,
 			);
 			mainGroup = 8780A04A285F0DA0002E8F66;
+			packageReferences = (
+				87227F7E2B9079AD00CF2370 /* XCLocalSwiftPackageReference "../../.." */,
+			);
 			productRefGroup = 8780A054285F0DA0002E8F66 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -287,7 +293,7 @@
 				870B88BA285F1CF100B0D0AD /* PostDetailsUIModel.swift in Sources */,
 				870B88A9285F147E00B0D0AD /* PostRowView.swift in Sources */,
 				873005A62B8CAF08008BF606 /* PostsEntity.swift in Sources */,
-				873005A42B8CAF08008BF606 /* PostsMockGateway.swift in Sources */,
+				873005A42B8CAF08008BF606 /* PostsNetworkMockGateway.swift in Sources */,
 				8780A06F285F0DF6002E8F66 /* PostsViewModel.swift in Sources */,
 				873005A52B8CAF08008BF606 /* PostsGateway.swift in Sources */,
 				87C80B742AB0836B00346987 /* DIContainer.swift in Sources */,
@@ -503,7 +509,18 @@
 		};
 /* End XCConfigurationList section */
 
+/* Begin XCLocalSwiftPackageReference section */
+		87227F7E2B9079AD00CF2370 /* XCLocalSwiftPackageReference "../../.." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../..;
+		};
+/* End XCLocalSwiftPackageReference section */
+
 /* Begin XCSwiftPackageProductDependency section */
+		87227F7F2B9079AD00CF2370 /* VCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = VCore;
+		};
 		87846D8729D4D2AF0071CDAC /* VCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = VCore;

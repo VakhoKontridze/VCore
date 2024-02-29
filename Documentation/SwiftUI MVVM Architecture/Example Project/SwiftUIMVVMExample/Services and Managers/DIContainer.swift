@@ -33,7 +33,7 @@ extension DIContainer {
 extension DIContainer {
     func injectPreview() {
         // Gateways - Network
-        networkGateways.posts = PostsMockGateway()
+        networkGateways.posts = PostsNetworkMockGateway()
     }
 }
 
