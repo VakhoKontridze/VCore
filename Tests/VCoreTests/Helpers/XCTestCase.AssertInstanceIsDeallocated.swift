@@ -1,5 +1,5 @@
 //
-//  XCTestCase.DetectMemoryLeak.swift
+//  XCTestCase.AssertInstanceIsDeallocated.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 21.02.24.
@@ -8,10 +8,10 @@
 import Foundation
 import XCTest
 
-// MARK: - XC Test Case Detect Memory Leak
+// MARK: - XC Test Assert Instance Is Deallocated
 extension XCTestCase {
-    func detectMemoryLeak(
-        of instance: AnyObject,
+    func assertInstanceIsDeallocated(
+        _ instance: AnyObject,
         _ message: @escaping @autoclosure () -> String = "",
         file: StaticString = #filePath,
         line: UInt = #line

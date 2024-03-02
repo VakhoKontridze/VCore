@@ -33,6 +33,6 @@ final class PublisherAssignWeakTests: XCTestCase {
     // MARK: Tests
     func test() async {
         let object: SomeClass = .init()
-        detectMemoryLeak(of: object)
+        assertInstanceIsDeallocated(object)
     }
 }

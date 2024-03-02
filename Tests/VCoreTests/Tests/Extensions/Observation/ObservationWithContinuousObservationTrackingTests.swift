@@ -52,6 +52,6 @@ final class ObservationWithContinuousObservationTrackingTests: XCTestCase {
         try await Task.sleep(seconds: 0.01)
         XCTAssertEqual(object.output, 3)
 
-        detectMemoryLeak(of: object)
+        assertInstanceIsDeallocated(object)
     }
 }
