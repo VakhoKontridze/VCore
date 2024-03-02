@@ -1,5 +1,11 @@
 # Change Log
 
+### 6.0.1(61)
+
+Macros
+
+- `CodingKeysGeneration` will no longer generate `CodingKeys`, if property list is not provided
+
 ### [6.0.0(91)](https://github.com/VakhoKontridze/VCore/releases/tag/6.0.0) — *2024 02 18*
 
 General

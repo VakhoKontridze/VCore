@@ -104,13 +104,15 @@ struct CodingKeysGenerationMacro: MemberMacro {
         // Result
         var result: [DeclSyntax] = []
 
-        result.append(
-            """
-            \(raw: accessLevelModifier) enum CodingKeys: String, CodingKey {
-                \(raw: codingKeyLines.joined(separator: "\n"))
-            }
-            """
-        )
+        if !codingKeyLines.isEmpty {
+            result.append(
+                """
+                \(raw: accessLevelModifier) enum CodingKeys: String, CodingKey {
+                    \(raw: codingKeyLines.joined(separator: "\n"))
+                }
+                """
+            )
+        }
 
         return result
     }
