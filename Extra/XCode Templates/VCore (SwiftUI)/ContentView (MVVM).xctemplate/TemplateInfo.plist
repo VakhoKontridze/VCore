@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-
 <plist version="1.0">
 <dict>
 	<key>Kind</key>
@@ -9,14 +8,16 @@
 	<array>
 		<dict>
 			<key>Identifier</key>
-				<string>productName</string>
+			<string>productName</string>
 			<key>Required</key>
-				<true/>
+			<true/>
 			<key>Type</key>
-				<string>text</string>
+			<string>text</string>
 			<key>Name</key>
-				<string>Title (eg "Home"):</string>
+			<string>Title (eg "Home"):</string>
 		</dict>
 	</array>
+	<key>SupportsSwiftPackage</key>
+	<true/>
 </dict>
 </plist>

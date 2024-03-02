@@ -6,6 +6,10 @@ Macros
 
 - `CodingKeysGeneration` macro will no longer generate `CodingKeys`, if property list is not provided
 
+Extra - XCode Templates
+
+- XCode templates now support Swift Packages
+
 ### [6.0.0(91)](https://github.com/VakhoKontridze/VCore/releases/tag/6.0.0) — *2024 02 18*
 
 General
