@@ -1,5 +1,5 @@
 //
-//  ColorMacro_InitWithHexUInt.swift
+//  ColorMacro_InitWithHexString.swift
 //  VCoreMacros
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
@@ -10,8 +10,8 @@ import SwiftSyntax
 import SwiftSyntaxMacros
 import VCoreShared
 
-// MARK: - Color Macro (Init with Hex UInt)
-struct ColorMacro_InitWithHexUInt: ExpressionMacro {
+// MARK: - Color Macro (Init with Hex String)
+struct ColorMacro_InitWithHexString: ExpressionMacro {
     static func expansion(
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
@@ -29,21 +29,19 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
                     .declName.as(DeclReferenceExprSyntax.self)?
                     .baseName.text
             else {
-                throw ColorMacroError_InitWithHexUInt.invalidColorSpaceParameter
+                throw ColorMacroError_InitWithHexString.invalidColorSpaceParameter
             }
 
             return value
         }()
 
         // `hex` parameter
-        let hex: UInt = try {
+        let hex: String = try {
             guard
                 let argument: LabeledExprSyntax = node.argumentList.first(where: { $0.label?.text == "hex" }),
-                let valueString: String = argument.expression.as(IntegerLiteralExprSyntax.self)?.literal.text
-                    .replacingOccurrences(of: "0x", with: ""),
-                let value: UInt = .init(valueString, radix: 16)
+                let value: String = argument.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue
             else {
-                throw ColorMacroError_InitWithHexUInt.invalidHexParameter
+                throw ColorMacroError_InitWithHexString.invalidHexParameter
             }
 
             return value
@@ -71,11 +69,11 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         guard
             let rgbValues = hex._hexColorRGBValues()
         else {
-            throw ColorMacroError_InitWithHexUInt.invalidHexParameter
+            throw ColorMacroError_InitWithHexString.invalidHexParameter
         }
 
         // Result
-        return
+        return 
             """
             Color(
                 .\(raw: colorSpaceString),
@@ -86,21 +84,4 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
             )
             """
     }
-}
-
-// MARK: - Color Macro Error (Init with Hex UInt)
-struct ColorMacroError_InitWithHexUInt: Error, CustomStringConvertible {
-    // MARK: Properties
-    let description: String
-
-    // MARK: Initializers
-    private init(
-        _ description: String
-    ) {
-        self.description = description
-    }
-
-    static var invalidColorSpaceParameter: Self { .init("Invalid `colorSpace` parameter") }
-    static var invalidHexParameter: Self { .init("Invalid 'hex' parameter") }
-    static var invalidOpacityParameter: Self { .init("Invalid 'opacity' parameter") }
 }

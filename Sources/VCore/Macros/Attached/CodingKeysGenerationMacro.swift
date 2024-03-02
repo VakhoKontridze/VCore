@@ -48,7 +48,7 @@ public macro CKGCodingKey(
     type: "CKGCodingKeyMacro"
 )
 
-// MARK: - Membewise Codable Coding Key Ignored Macro
+// MARK: - Coding Keys Generation Coding Key Ignored Macro
 /// Ignores generation of ucstom `Codable` key for a property.
 ///
 /// For additional info, refer to `CodingKeysGeneration`.

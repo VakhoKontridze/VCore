@@ -1,6 +1,6 @@
 //
 //  String.RemovingReservedKeywordBackticks.swift
-//  VCore
+//  VCoreMacros
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
 //

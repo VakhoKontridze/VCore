@@ -38,19 +38,3 @@ struct URLMacro_InitWithString: ExpressionMacro {
         return "URL(string: \(urlStringExpression))!" // Force-unwrap
     }
 }
-
-// MARK: - URL Macro Error (Init with String)
-struct URLMacroError_InitWithString: Error, CustomStringConvertible {
-    // MARK: Properties
-    let description: String
-
-    // MARK: Initializers
-    private init(
-        _ description: String
-    ) {
-        self.description = description
-    }
-
-    static var invalidURLStringParameter: Self { .init("Invalid 'URL' 'String' parameter") }
-    static var malformedURL: Self { .init("Malformed 'URL'") }
-}
