@@ -127,7 +127,7 @@ extension BasicAnimation {
 ///         completion: { ... }
 ///     )
 ///
-public func withBasicAnimation<Result>( // TODO: iOS 17 - Remove
+public func withBasicAnimation<Result>( // TODO: iOS 17.0 - Remove
     _ animation: BasicAnimation?,
     body: () throws -> Result,
     completion: (() -> Void)?

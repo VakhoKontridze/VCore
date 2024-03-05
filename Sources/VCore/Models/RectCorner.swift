@@ -11,7 +11,7 @@ import Foundation
 /// Corners of a rectangle.
 ///
 /// Unlike `UIRectCorner`, `RectCorner` is multi-platform.
-public struct RectCorner: OptionSet, Sendable { // TODO: iOS 16 - Remove, as it's obsoleted by `clipShape(.rect(...))` and `UnevenRoundedRectangle`
+public struct RectCorner: OptionSet, Sendable { // TODO: iOS 16.0 - Remove, as it's obsoleted by `clipShape(.rect(...))` and `UnevenRoundedRectangle`
     // MARK: Options
     /// Top-left corner of the rectangle.
     public static let topLeft: Self = .init(rawValue: 1 << 0)
