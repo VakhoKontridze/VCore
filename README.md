@@ -332,7 +332,7 @@ Versions with different majors are not directly compatible. When a new major is 
         visionOS 1.0
     </td>
     <td>
-        visionOS support<br>
+        visionOS support.<br>
         API changes.
     </td>
   </tr>
@@ -392,7 +392,7 @@ Versions with different majors are not directly compatible. When a new major is 
     <td>2021 12 28</td>
     <td>5.3</td>
     <td>iOS 13.0</td>
-    <td>iOS 13.0 support</td>
+    <td>iOS 13.0 support.</td>
   </tr>
   
   <tr>
