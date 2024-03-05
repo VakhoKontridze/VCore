@@ -12,6 +12,10 @@ import XCTest
 // MARK: - Tests
 final class CollectionFirstAndLastElementOfTypeTests: XCTestCase {
     // MARK: Test Data
+    private protocol P {
+        var value: Int { get }
+    }
+    
     private struct S1: P { let value: Int }
     private struct S2: P { let value: Int }
 
@@ -41,8 +45,4 @@ final class CollectionFirstAndLastElementOfTypeTests: XCTestCase {
     func testLastPredicate() {
         XCTAssertEqual(array.lastElement(ofType: S1.self, where: { $0.value < 6 })?.value, 5)
     }
-}
-
-private protocol P { // MARK: TODO: Swift 5.10 - Move into test
-    var value: Int { get }
 }

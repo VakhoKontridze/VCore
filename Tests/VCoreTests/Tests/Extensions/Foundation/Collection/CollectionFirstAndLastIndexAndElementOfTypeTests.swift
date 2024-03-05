@@ -12,6 +12,10 @@ import XCTest
 // MARK: - Tests
 final class CollectionFirstAndLastIndexAndElementOfTypeTests: XCTestCase {
     // MARK: Test Data
+    private protocol P {
+        var value: Int { get }
+    }
+
     private struct S1: P { let value: Int }
     private struct S2: P { let value: Int }
 
@@ -53,8 +57,4 @@ final class CollectionFirstAndLastIndexAndElementOfTypeTests: XCTestCase {
         XCTAssertEqual(data?.index, 4)
         XCTAssertEqual(data?.element.value, 5)
     }
-}
-
-private protocol P { // MARK: TODO: Swift 5.10 - Move into test
-    var value: Int { get }
 }

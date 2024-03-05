@@ -19,14 +19,14 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         // `colorSpace` parameter
         let colorSpaceString: String = try {
             guard
-                let argument: LabeledExprSyntax = node.argumentList.first(where: { $0.label?.text == nil })
+                let argument: LabeledExprSyntax = node.arguments.first(where: { $0.label?.text == nil })
             else {
                 return "sRGB" // Default value
             }
 
             guard
                 let value: String = argument.expression.as(MemberAccessExprSyntax.self)?
-                    .declName.as(DeclReferenceExprSyntax.self)?
+                    .declName
                     .baseName.text
             else {
                 throw ColorMacroError_InitWithHexUInt.invalidColorSpaceParameter
@@ -38,7 +38,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         // `hex` parameter
         let hex: UInt = try {
             guard
-                let argument: LabeledExprSyntax = node.argumentList.first(where: { $0.label?.text == "hex" }),
+                let argument: LabeledExprSyntax = node.arguments.first(where: { $0.label?.text == "hex" }),
                 let valueString: String = argument.expression.as(IntegerLiteralExprSyntax.self)?.literal.text
                     .replacingOccurrences(of: "0x", with: ""),
                 let value: UInt = .init(valueString, radix: 16)
@@ -52,7 +52,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         // `opacity` parameter
         let opacity: CGFloat = try {
             guard
-                let argument: LabeledExprSyntax = node.argumentList.first(where: { $0.label?.text == "opacity" })
+                let argument: LabeledExprSyntax = node.arguments.first(where: { $0.label?.text == "opacity" })
             else {
                 return 1 // Default value
             }
