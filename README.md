@@ -19,11 +19,11 @@ Package files are grouped as:
 
 - ***Services and Managers***. Services, managers, controllers, and formatters. For instance, `MultiPartFormDataBuilder`.
 
-- ***Views***. Reusable non-scene `View`s, `UIView`s, and `UIViewController`s. For instance `BaseButton`s.
+- ***Views***. `View`s, `UIView`s, and `UIViewController`s. For instance `BaseButton`s.
 
-- ***Models***. Reusable models. For instance, `GenericState`s and `GenericStateModel`s.
+- ***Models***. Models. For instance, `GenericState`s and `GenericStateModel`s.
 
-- ***Helpers***. Non-service, non-extension objects and methods. For instance, architectural pattern helpers.
+- ***Helpers***. Helper objects and methods. For instance, architectural pattern helpers.
 
 - ***Extensions***. Global extensions.
 
