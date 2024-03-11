@@ -4,7 +4,7 @@ import UIKit
 import VCore
 
 // MARK: - ___VARIABLE_productName___ Factory
-@NonInitializable
+@Uninitializable
 struct ___VARIABLE_productName___Factory {
     static func `default`(parameters: ___VARIABLE_productName___Parameters) -> UIViewController {
         let viewController: ___VARIABLE_productName___ViewController = .init()

@@ -9,7 +9,7 @@ import UIKit
 import VCore
 
 // MARK: - Posts UI Model
-@NonInitializable
+@Uninitializable
 struct PostsUIModel {
     static var backgroundColor: UIColor { .systemBackground }
 }

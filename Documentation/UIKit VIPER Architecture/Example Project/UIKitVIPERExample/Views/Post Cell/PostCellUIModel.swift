@@ -9,7 +9,7 @@ import UIKit
 import VCore
 
 // MARK: - Post Cell UI Model
-@NonInitializable
+@Uninitializable
 struct PostCellUIModel {
     static var backgroundColor: UIColor { .systemBackground }
 

@@ -9,7 +9,7 @@ import UIKit
 import VCore
 
 // MARK: - Posts Factory
-@NonInitializable
+@Uninitializable
 struct PostsFactory {
     static func `default`() -> UIViewController {
         let viewController: PostsViewController = .init()

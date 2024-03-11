@@ -6,3 +6,12 @@
 //
 
 import SwiftUI
+
+// MARK: - Macros
+@available(*, deprecated, renamed: "Uninitializable")
+@attached(member, names: named(init))
+public macro NonInitializable() = #externalMacro(
+    module: "VCoreMacros",
+    type: "UninitializableMacro"
+)
+

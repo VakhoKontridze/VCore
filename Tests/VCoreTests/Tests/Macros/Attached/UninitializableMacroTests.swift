@@ -1,5 +1,5 @@
 //
-//  NonInitializableMacroTests.swift
+//  UninitializableMacroTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
@@ -15,15 +15,15 @@ import SwiftSyntaxMacrosTestSupport
 @testable import VCoreMacros
 
 // MARK: - Tests
-final class NonInitializableMacroTests: XCTestCase {
+final class UninitializableMacroTests: XCTestCase {
     // MARK: Test Data
-    private let macros: [String: Macro.Type] = ["NonInitializable": NonInitializableMacro.self]
+    private let macros: [String: Macro.Type] = ["Uninitializable": UninitializableMacro.self]
 
     // MARK: Tests
     func test() {
         assertMacroExpansion(
             """
-            @NonInitializable
+            @Uninitializable
             struct AppConstants {
                 static let apiKey: String = "..."
             }

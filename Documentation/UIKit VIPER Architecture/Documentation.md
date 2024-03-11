@@ -50,7 +50,7 @@ To avoid writing boilerplate for every scene, project includes XCode templates.
 
 ```swift
 // MARK: - Home Factory
-@NonInitializable
+@Uninitializable
 struct HomeFactory {
     static func `default`(parameters: HomeParameters) -> UIViewController {
         let viewController: HomeViewController = .init()
@@ -518,7 +518,7 @@ struct HomeInteractor: HomeInteractive {
 
 ```swift
 // MARK: - Home UI Model
-@NonInitializable
+@Uninitializable
 struct HomeUIModel {
     static var backgroundColor: UIColor { .systemBackground }
     
