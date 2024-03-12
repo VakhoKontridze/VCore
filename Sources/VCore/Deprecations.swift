@@ -14,4 +14,3 @@ public macro NonInitializable() = #externalMacro(
     module: "VCoreMacros",
     type: "UninitializableMacro"
 )
-
