@@ -255,7 +255,7 @@ Function that calls `fatalError` because feature is not implemented:
 
 ```swift
 func didTapContinueButton() {
-    TODO()
+    FIXME()
 }
 ```
 
