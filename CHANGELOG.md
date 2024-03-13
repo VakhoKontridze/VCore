@@ -2,6 +2,10 @@
 
 ### 6.0.2(93)
 
+Helpers
+
+- `KeyPathInitializableEnumeration.aCase(key:value)` is replaced with `KeyPathInitializableEnumeration.init(key:value)`
+
 Macros
 
 - `NonInitializable` is renamed to `Uninitializable`

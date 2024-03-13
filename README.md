@@ -231,7 +231,7 @@ enum SomeEnum: KeyPathInitializableEnumeration {
     }
 }
 
-let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
+let value: SomeEnum? = .init(key: \.someProperty, value: 2)
 ```
 
 #### Various Extensions

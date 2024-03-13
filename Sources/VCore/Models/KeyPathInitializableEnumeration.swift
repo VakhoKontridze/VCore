@@ -22,23 +22,29 @@ import Foundation
 ///         }
 ///     }
 ///
-///     let value: SomeEnum? = .aCase(key: \.someProperty, value: 2)
+///     let value: SomeEnum? = .init(key: \.someProperty, value: 2)
 ///
 public protocol KeyPathInitializableEnumeration: CaseIterable {
-    static func aCase<Property>(
+    init?<Property>(
         key keyPath: KeyPath<Self, Property>,
         value: Property
-    ) -> Self?
+    )
         where Property: Equatable
 }
 
 extension KeyPathInitializableEnumeration {
-    public static func aCase<Property>(
+    public init?<Property>(
         key keyPath: KeyPath<Self, Property>,
         value: Property
-    ) -> Self?
+    ) 
         where Property: Equatable
     {
-        Self.allCases.first { $0[keyPath: keyPath] == value }
+        guard 
+            let aCase: Self = .allCases.first(where: { $0[keyPath: keyPath] == value })
+        else {
+            return nil
+        }
+
+        self = aCase
     }
 }

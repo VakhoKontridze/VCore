@@ -26,9 +26,9 @@ final class KeyPathInitializableEnumerationTests: XCTestCase {
     
     // MARK: Tests
     func test() {
-        XCTAssertNil(Gender.aCase(key: \.value, value: 0))
-        XCTAssertEqual(Gender.aCase(key: \.value, value: 1), Gender.male)
-        XCTAssertEqual(Gender.aCase(key: \.value, value: 2), Gender.female)
-        XCTAssertNil(Gender.aCase(key: \.value, value: 3))
+        XCTAssertNil(Gender(key: \.value, value: 0))
+        XCTAssertEqual(Gender(key: \.value, value: 1), Gender.male)
+        XCTAssertEqual(Gender(key: \.value, value: 2), Gender.female)
+        XCTAssertNil(Gender(key: \.value, value: 3))
     }
 }
