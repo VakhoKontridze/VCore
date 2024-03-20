@@ -145,7 +145,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
             .getSize({ labelHeight = $0.height })
             .background(content: {
                 Color.clear
-                    .contentShape(Rectangle())
+                    .contentShape(.rect)
                     .onTapGesture(perform: expandCollapseFromLabelTap)
             })
     }

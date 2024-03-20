@@ -74,7 +74,7 @@ extension View {
     ///         var body: some View {
     ///             ZStack(content: {
     ///                 Color.black.opacity(0.1)
-    ///                     .contentShape(Rectangle())
+    ///                     .contentShape(.rect)
     ///                     .onTapGesture(perform: dismissFromDimmingViewTap)
     ///
     ///                 ZStack(content: {
@@ -224,7 +224,7 @@ private struct SomeModal<Content>: View where Content: View {
     var body: some View {
         ZStack(content: {
             Color.black.opacity(0.1)
-                .contentShape(Rectangle())
+                .contentShape(.rect)
                 .onTapGesture(perform: { isPresented = false })
 
             ZStack(content: {
