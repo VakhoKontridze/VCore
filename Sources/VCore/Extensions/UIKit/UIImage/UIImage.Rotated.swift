@@ -24,10 +24,10 @@ extension UIImage {
                 .applying(CGAffineTransform(rotationAngle: radians))
             
             newRect = CGRect(
-                x: newRect.origin.x.rounded(),
-                y: newRect.origin.y.rounded(),
-                width: newRect.width.rounded(),
-                height: newRect.height.rounded()
+                x: newRect.origin.x,
+                y: newRect.origin.y,
+                width: newRect.width,
+                height: newRect.height
             )
             
             return newRect

@@ -115,8 +115,11 @@ public struct DigitalTimeFormatter {
     }
 
     /// Returns `String` from seconds with specified format.
-    public func string(from seconds: Double) -> String? {
-        let seconds: Int = .init(seconds.rounded(.toNearestOrAwayFromZero))
+    public func string(
+        from seconds: Double,
+        roundingRule: FloatingPointRoundingRule = .up
+    ) -> String? {
+        let seconds: Int = .init(seconds.rounded(roundingRule))
 
         return string(from: seconds)
     }

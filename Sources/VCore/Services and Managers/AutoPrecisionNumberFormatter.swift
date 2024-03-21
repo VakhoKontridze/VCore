@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 // MARK: - Extension
 extension Double {
@@ -52,12 +53,19 @@ public struct AutoPrecisionNumberFormatter {
     // MARK: Formatting
     /// Returns `String` from number with specified format.
     public func string(from number: Double) -> String? {
-        guard
-            minFractions >= 0,
-            maxFractions >= 0,
-            maxFractions >= minFractions
-        else {
-            return nil
+        guard minFractions > 0 else {
+            Logger.misc.critical("'minFractions' must be greater then or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            fatalError()
+        }
+
+        guard maxFractions > 0 else {
+            Logger.misc.critical("'maxFractions' must be greater then or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            fatalError()
+        }
+
+        guard maxFractions >= minFractions else {
+            Logger.misc.critical("'maxFractions' must be greater then or equal to 'minFractions' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            fatalError()
         }
         
         let numberFormatter: NumberFormatter = .init()
