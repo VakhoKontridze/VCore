@@ -295,7 +295,7 @@ Extensions
 
 General
 
-- Several APIs are now exposed to `Mac Catalyst`
+- More `Mac Catalyst` support is added
 
 Views
 
@@ -378,7 +378,7 @@ Services and managers
 
 General
 
-- Package now compiles on `Mac Catalyst`
+- Package now partially supports `Mac Catalyst`
 
 Models
 
@@ -561,7 +561,7 @@ Other
 
 General
 
-- `macOS` `13.0` API is now exposed to `macOS`
+- `macOS` `13.0` support is added
 
 ### [4.1.0(65)](https://github.com/VakhoKontridze/VCore/releases/tag/4.1.0) — *2022 10 02*
 
@@ -585,10 +585,6 @@ Services and Managers
 - Issue with `Data` being empty in `NetworkResponseProcessor.response(_:_:)` when calling `noData(from:)` in `NetworkClient` is fixed
 
 ### [4.0.0(63)](https://github.com/VakhoKontridze/VCore/releases/tag/4.0.0) — *2022 09 14*
-
-General
-
-- `Error`s are now `struct`s, backed by `ErrorCode` enumerations
 
 Services and Managers
 
@@ -645,6 +641,10 @@ API
 Extra - XCode Templates
 
 - Project now includes templates for `SwiftUI`
+
+Other
+
+- `Error`s are now `struct`s, backed by `ErrorCode` enumerations
 
 ### [3.20.2(62)](https://github.com/VakhoKontridze/VCore/releases/tag/3.20.2) — *2022 09 05*
 
@@ -1055,10 +1055,6 @@ Extra - XCode Templates
 
 ### [3.4.0(25)](https://github.com/VakhoKontridze/VCore/releases/tag/3.4.0) — *2022 06 11*
 
-General
-
-- Several `let` declarations are now mutable
-
 Helpers
 
 - `KVInitializableEnumeration` is renamed to `KeyPathInitializableEnumeration`
@@ -1079,6 +1075,10 @@ Extensions
 - `SizeConfiguration` is renamed to `MinIdealMaxSizes`
 - App info properties are moved from `UIApplication` to `Bundle`, and support is added for all platforms
 - `UIView.withTranslatesAutoresizingMaskIntoConstraints(_:)` method is added
+
+Other
+
+- Several `let` declarations are now mutable
 
 ### [3.3.1(24)](https://github.com/VakhoKontridze/VCore/releases/tag/3.3.1) — *2022 06 08*
 
