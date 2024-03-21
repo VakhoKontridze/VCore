@@ -128,21 +128,21 @@ public struct DigitalTimeFormatter {
     private func extractTimeComponents(
         from seconds: Int
     ) -> (d: Int, h: Int, m: Int, s: Int) {
-        var seconds = seconds
-        
-        let result1 = seconds.quotientAndRemainder(dividingBy: 86_400)
-        var d: Int = result1.quotient
-        seconds = result1.remainder
+        var remainingSeconds: Int = seconds
 
-        let result2 = seconds.quotientAndRemainder(dividingBy: 3_600)
-        var h: Int = result2.quotient
-        seconds = result2.remainder
+        let resultD = remainingSeconds.quotientAndRemainder(dividingBy: 86_400)
+        var d: Int = resultD.quotient
+        remainingSeconds = resultD.remainder
 
-        let result3 = seconds.quotientAndRemainder(dividingBy: 60)
-        var m: Int = result3.quotient
-        seconds = result3.remainder
+        let resultH = remainingSeconds.quotientAndRemainder(dividingBy: 3_600)
+        var h: Int = resultH.quotient
+        remainingSeconds = resultH.remainder
 
-        var s: Int = seconds
+        let resultM = remainingSeconds.quotientAndRemainder(dividingBy: 60)
+        var m: Int = resultM.quotient
+        remainingSeconds = resultM.remainder
+
+        var s: Int = remainingSeconds
 
         if s == 60 { s = 0; m += 1 }
         if m == 60 { m = 0; h += 1 }
