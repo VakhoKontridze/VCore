@@ -1,6 +1,10 @@
 # Change Log
 
-### 6.0.2(93)
+### 6.1.0(93)
+
+Extensions
+
+- `View.onOpenURL(_:perform:)` method is added, that registers a handler to invokes when a specific `URL` is received. This method can be paired with `AttributedString`'s initializers to create a tappable `Text`.
 
 Helpers
 
