@@ -31,7 +31,7 @@ extension AttributedString {
     ///
     ///     let attributedString: AttributedString = {
     ///         do {
-    ///             return try AttributedString(string, attributeContainers: attributeContainers)
+    ///             return try AttributedString(string: string, attributeContainers: attributeContainers)
     ///         } catch {
     ///             return AttributedString(string)
     ///         }
@@ -46,7 +46,7 @@ extension AttributedString {
     ///     }
     ///
     public init(
-        _ string: String,
+        string: String,
         attributeContainers: [Character: AttributeContainer]
     ) throws {
         let tagNames: [Character] = .init(attributeContainers.keys)
@@ -75,7 +75,7 @@ extension AttributedString {
     ///     var body: some View {
     ///         Text(
     ///             AttributedString(
-    ///                 defaultingIfError: "Lorem <b>ipsum dolor</b> sit amet, <c>consectetur adipiscing</c> elit",
+    ///                 stringAndDefault: "Lorem <b>ipsum dolor</b> sit amet, <c>consectetur adipiscing</c> elit",
     ///                 attributeContainers: [
     ///                     "b": {
     ///                         var container: AttributeContainer = .init()
@@ -99,15 +99,15 @@ extension AttributedString {
     ///     }
     ///
     public init(
-        defaultingIfError string: String,
+        stringAndDefault: String,
         attributeContainers: [Character: AttributeContainer]
     ) {
         do {
-            self = try AttributedString(string, attributeContainers: attributeContainers)
+            self = try AttributedString(string: stringAndDefault, attributeContainers: attributeContainers)
 
         } catch {
             Logger.misc.error("Failed to create 'AttributedString' with 'AttributeContainer's in 'AttributedString.init(defaultingIfError:attributeContainers:)'. Defaulting to 'AttributedString(string)' expression.")
-            self = AttributedString(string)
+            self = AttributedString(stringAndDefault)
         }
     }
 }
@@ -288,7 +288,7 @@ extension String {
 #Preview(body: {
     Text(
         AttributedString(
-            defaultingIfError: "Lorem <b>ipsum dolor</b> sit amet, <c>consectetur adipiscing</c> elit",
+            stringAndDefault: "Lorem <b>ipsum dolor</b> sit amet, <c>consectetur adipiscing</c> elit",
             attributeContainers: [
                 "b": {
                     var container: AttributeContainer = .init()

@@ -20,6 +20,25 @@ extension KeyPathInitializableEnumeration {
     }
 }
 
+// MARK: - Extensions
+extension AttributedString {
+    @available(*, deprecated, renamed: "init(string:attributeContainers:)")
+    public init(
+        _ string: String,
+        attributeContainers: [Character: AttributeContainer]
+    ) throws {
+        try self.init(string: string, attributeContainers: attributeContainers)
+    }
+
+    @available(*, deprecated, renamed: "init(stringAndDefault:attributeContainers:)")
+    public init(
+        defaultingIfError string: String,
+        attributeContainers: [Character: AttributeContainer]
+    ) {
+        self.init(stringAndDefault: string, attributeContainers: attributeContainers)
+    }
+}
+
 // MARK: - Uninitializable Macro
 @available(*, deprecated, renamed: "Uninitializable")
 @attached(member, names: named(init))
