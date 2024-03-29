@@ -4,7 +4,7 @@
 
 Extensions
 
-- `View.onOpenURL(_:perform:)` method is added, that registers a handler to invokes when a specific `URL` is received. This method can be paired with `AttributedString`'s initializers to create a tappable `Text`.
+- `View.addOpenURLAction(_:)` method is added, that inserts `OpenURLAction` in the `Environment`. This method can be paired with `AttributedString`'s initializers to create a tappable `Text`.
 
 Helpers
 
