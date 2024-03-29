@@ -11,7 +11,7 @@ import SwiftUI
 extension View {
     /// Inserts `OpenURLAction` in the `Environment`.
     ///
-    /// Can be paired with `AttributedString`'s initializers to create a tappable `Text`.
+    /// Can be paired with `AttributedString`'s initializer to create a tappable `Text`.
     ///
     ///     @State private var count: Int = 0
     ///
