@@ -11,18 +11,6 @@ import UIKit
 
 // MARK: - Application Windows
 extension UIApplication {
-    /// Returns first `UIWindow` from all connected scenes that satisfies predicate.
-    public func firstWindow(
-        activationStates: [UIScene.ActivationState],
-        where predicate: (UIWindow) throws -> Bool
-    ) rethrows -> UIWindow? {
-        try connectedScenes
-            .filter { activationStates.contains($0.activationState) }
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap { $0.windows }
-            .first(where: predicate)
-    }
-
     /// Returns first `UIWindow` in a single-scene application.
     ///
     /// This property assumes, that `supportsMultipleScenes` is `false`.
@@ -56,10 +44,11 @@ extension UIApplication {
     ///     let window: UIWindow? = UIApplication.shared.firstKeyActiveWindowInSingleSceneApp
     ///
     public var firstKeyActiveWindowInSingleSceneApp: UIWindow? {
-        firstWindow(
-            activationStates: [.foregroundActive],
-            where: { $0.isKeyWindow }
-        )
+        connectedScenes
+            .filter { $0.activationState == .foregroundActive }
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first { $0.isKeyWindow }
     }
 }
 

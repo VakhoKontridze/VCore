@@ -20,7 +20,7 @@ extension KeyPathInitializableEnumeration {
     }
 }
 
-// MARK: - Extensions
+// MARK: - Extensions - Foundation
 extension AttributedString {
     @available(*, deprecated, renamed: "init(string:attributeContainers:)")
     public init(
@@ -38,6 +38,25 @@ extension AttributedString {
         self.init(stringAndDefault: string, attributeContainers: attributeContainers)
     }
 }
+
+// MARK: - Extensions - UIKit
+#if canImport(UIKit) && !os(watchOS)
+
+extension UIApplication {
+    @available(*, deprecated, message: "Method will be removed in VCore 7.0")
+    public func firstWindow(
+        activationStates: [UIScene.ActivationState],
+        where predicate: (UIWindow) throws -> Bool
+    ) rethrows -> UIWindow? {
+        try connectedScenes
+            .filter { activationStates.contains($0.activationState) }
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first(where: predicate)
+    }
+}
+
+#endif
 
 // MARK: - Uninitializable Macro
 @available(*, deprecated, renamed: "Uninitializable")
