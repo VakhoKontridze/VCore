@@ -12,16 +12,16 @@ import OSLog
 extension AttributedString {
     /// Initializes `AttributedString` with child `AttributedString` components created from mapping tag names to `AttributeContainer`s.
     ///
-    ///     let string: String = "Lorem <b>ipsum dolor</b> sit amet, <c>consectetur adipiscing</c> elit"
+    ///     let string: String = "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit"
     ///
     ///     let attributeContainers: [Character: AttributeContainer] = [
-    ///         "b": {
+    ///         "a": {
     ///             var container: AttributeContainer = .init()
     ///             container.foregroundColor = .red
     ///             container.font = .title.weight(.ultraLight)
     ///             return container
     ///         }(),
-    ///         "c": {
+    ///         "b": {
     ///             var container: AttributeContainer = .init()
     ///             container.foregroundColor = .blue
     ///             container.font = .callout.weight(.bold)
@@ -75,15 +75,15 @@ extension AttributedString {
     ///     var body: some View {
     ///         Text(
     ///             AttributedString(
-    ///                 stringAndDefault: "Lorem <b>ipsum dolor</b> sit amet, <c>consectetur adipiscing</c> elit",
+    ///                 stringAndDefault: "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit",
     ///                 attributeContainers: [
-    ///                     "b": {
+    ///                     "a": {
     ///                         var container: AttributeContainer = .init()
     ///                         container.foregroundColor = .red
     ///                         container.font = .title.weight(.ultraLight)
     ///                         return container
     ///                     }(),
-    ///                     "c": {
+    ///                     "b": {
     ///                         var container: AttributeContainer = .init()
     ///                         container.foregroundColor = .blue
     ///                         container.font = .callout.weight(.bold)
@@ -118,14 +118,14 @@ extension String {
         separatedByTagNames tagNames: [Character]
     ) throws -> [(tagName: Character?, substring: String)] {
         // Input:
-        // "Lorem <b>ipsum dolor</b> sit amet, <c>consectetur adipiscing</c> elit"
+        // "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit"
         //
         // Output:
         // [
         //     (nil: "Lorem "),
-        //     ("b": "ipsum dolor"),
+        //     ("a": "ipsum dolor"),
         //     (nil: " sit amet "),
-        //     ("c": "consectetur adipiscing"),
+        //     ("b": "consectetur adipiscing"),
         //     (nil: " elit")
         // ]
 
@@ -288,15 +288,15 @@ extension String {
 #Preview(body: {
     Text(
         AttributedString(
-            stringAndDefault: "Lorem <b>ipsum dolor</b> sit amet, <c>consectetur adipiscing</c> elit",
+            stringAndDefault: "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit",
             attributeContainers: [
-                "b": {
+                "a": {
                     var container: AttributeContainer = .init()
                     container.foregroundColor = .red
                     container.font = .title.weight(.ultraLight)
                     return container
                 }(),
-                "c": {
+                "b": {
                     var container: AttributeContainer = .init()
                     container.foregroundColor = .blue
                     container.font = .callout.weight(.bold)
