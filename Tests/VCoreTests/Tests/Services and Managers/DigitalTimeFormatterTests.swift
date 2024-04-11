@@ -25,14 +25,14 @@ final class DigitalTimeFormatterTests: XCTestCase {
         XCTAssertEqual(formatter.string(from: 905048), "10:11:24:08")
         XCTAssertEqual(formatter.string(from: 8553600), "99:00:00:00")
     }
-    
-    func testEmptySignificantComponentsAreIncluded() {
+
+    func testDelimiter() {
         var formatter: DigitalTimeFormatter = .init()
-        formatter.emptySignificantComponentsAreIncluded = true
-        
-        XCTAssertEqual(formatter.string(from: 0), "0:00:00:00")
+        formatter.delimiter = " "
+
+        XCTAssertEqual(formatter.string(from: 8553600), "99 00 00 00")
     }
-    
+
     func testHourComponentHasTwoDigits() {
         do {
             var formatter: DigitalTimeFormatter = .init()
@@ -45,30 +45,39 @@ final class DigitalTimeFormatterTests: XCTestCase {
         
         do {
             var formatter: DigitalTimeFormatter = .init()
-            formatter.hourComponentHasTwoDigits = true
-            formatter.minuteComponentHasTwoDigits = true
-            
-            XCTAssertEqual(formatter.string(from: 91), "01:31")
+            formatter.hourComponentHasTwoDigits = false
+
             XCTAssertEqual(formatter.string(from: 2335.6), "38:56")
-            XCTAssertEqual(formatter.string(from: 7247.6), "02:00:48")
+            XCTAssertEqual(formatter.string(from: 7247.6), "2:00:48")
             XCTAssertEqual(formatter.string(from: 51887.6), "14:24:48")
         }
     }
     
     func testMinuteComponentHasTwoDigits() {
-        var formatter: DigitalTimeFormatter = .init()
-        formatter.minuteComponentHasTwoDigits = true
-        
-        XCTAssertEqual(formatter.string(from: 1), "00:01")
-        XCTAssertEqual(formatter.string(from: 535.6), "08:56")
-        XCTAssertEqual(formatter.string(from: 2335.6), "38:56")
+        do {
+            var formatter: DigitalTimeFormatter = .init()
+            formatter.minuteComponentHasTwoDigits = false
+
+            XCTAssertEqual(formatter.string(from: 1), "0:01")
+            XCTAssertEqual(formatter.string(from: 535.6), "8:56")
+            XCTAssertEqual(formatter.string(from: 2335.6), "38:56")
+        }
+
+        do {
+            var formatter: DigitalTimeFormatter = .init()
+            formatter.minuteComponentHasTwoDigits = true
+
+            XCTAssertEqual(formatter.string(from: 1), "00:01")
+            XCTAssertEqual(formatter.string(from: 535.6), "08:56")
+            XCTAssertEqual(formatter.string(from: 2335.6), "38:56")
+        }
     }
     
     func testSecondComponentHasTwoDigits() {
         do {
             var formatter: DigitalTimeFormatter = .init()
-            formatter.secondComponentHasTwoDigits = false
-            
+            formatter.secondComponentHasTwoDigits = true
+
             XCTAssertEqual(formatter.string(from: 0), "0:00")
             XCTAssertEqual(formatter.string(from: 1), "0:01")
             XCTAssertEqual(formatter.string(from: 91), "1:31")
@@ -84,21 +93,21 @@ final class DigitalTimeFormatterTests: XCTestCase {
             XCTAssertEqual(formatter.string(from: 91), "1:31")
         }
     }
-    
+
+    func testEmptySignificantComponentsAreIncluded() {
+        var formatter: DigitalTimeFormatter = .init()
+        formatter.emptySignificantComponentsAreIncluded = true
+
+        XCTAssertEqual(formatter.string(from: 0), "0:00:00:00")
+    }
+
     func testMinuteComponentIsIncludedIfOnlySecondComponentIsIncluded() {
         var formatter: DigitalTimeFormatter = .init()
         formatter.minuteComponentIsIncludedIfOnlySecondComponentIsIncluded = false
         
-        XCTAssertEqual(formatter.string(from: 0), "00") // second has two digits
-        XCTAssertEqual(formatter.string(from: 1), "01") // second has two digits
+        XCTAssertEqual(formatter.string(from: 0), "00")
+        XCTAssertEqual(formatter.string(from: 1), "01")
         XCTAssertEqual(formatter.string(from: 91), "1:31")
         XCTAssertEqual(formatter.string(from: 2335.6), "38:56")
-    }
-    
-    func testDelimiter() {
-        var formatter: DigitalTimeFormatter = .init()
-        formatter.delimiter = " "
-        
-        XCTAssertEqual(formatter.string(from: 8553600), "99 00 00 00")
     }
 }

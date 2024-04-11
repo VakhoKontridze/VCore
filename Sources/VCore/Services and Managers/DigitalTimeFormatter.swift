@@ -10,8 +10,7 @@ import Foundation
 // MARK: - Digital Time Formatter
 /// Digital time formatter that formats seconds to day, hour, minute, and second format.
 ///
-/// Formatter can be customized by setting flags to change behavior, such as component visibility
-/// or delimiter.
+/// Formatter can be customized by setting flags to change behavior, such as component visibility or delimiter.
 ///
 ///     let formatter: DigitalTimeFormatter = .init()
 ///
@@ -32,13 +31,13 @@ public struct DigitalTimeFormatter {
     public var delimiter: String = ":"
 
     // MARK: Properties - Digits
-    /// Indicates if hour component in has two digits, assuming that day component is absent. Set to `false`.
+    /// Indicates if hour component has two digits, if it's the most significant component. Set to `false`.
     public var hourComponentHasTwoDigits: Bool = false
     
-    /// Indicates if minute component has two digits, assuming that minute component is absent. Set to `false`.
+    /// Indicates if minute component has two digits, if it's the most significant component. Set to `false`.
     public var minuteComponentHasTwoDigits: Bool = false
     
-    /// Indicates if second component has two digits, assuming that second component is absent. Set to `true`.
+    /// Indicates if second component has two digits, if it's the most significant component. Set to `true`.
     ///
     /// `minuteComponentIsIncludedIfOnlySecondComponentIsIncluded` must be set to false.
     public var secondComponentHasTwoDigits: Bool = true
