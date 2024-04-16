@@ -20,6 +20,48 @@ extension KeyPathInitializableEnumeration {
     }
 }
 
+// MARK: - Custom Dismiss Action
+@available(*, deprecated, message: "Model will be removed in VCore 7.0")
+public struct CustomDismissAction {
+    public let action: () -> Void
+
+    public init(
+        _ action: @escaping () -> Void
+    ) {
+        self.action = action
+    }
+
+    init() {
+        self.action = {}
+    }
+
+    public func callAsFunction() {
+        action()
+    }
+}
+
+extension View {
+    @available(*, deprecated, message: "Method will be removed in VCore 7.0")
+    public func customDismissAction(
+        _ customDismissAction: CustomDismissAction
+    ) -> some View {
+        self
+            .environment(\.customDismissAction, customDismissAction)
+    }
+}
+
+extension EnvironmentValues {
+    @available(*, deprecated, message: "Property will be removed in VCore 7.0")
+    public var customDismissAction: CustomDismissAction {
+        get { self[CustomDismissActionEnvironmentKey.self] }
+        set { self[CustomDismissActionEnvironmentKey.self] = newValue }
+    }
+}
+
+struct CustomDismissActionEnvironmentKey: EnvironmentKey {
+    static let defaultValue: CustomDismissAction = .init()
+}
+
 // MARK: - Extensions - Foundation
 extension AttributedString {
     @available(*, deprecated, renamed: "init(string:attributeContainers:)")
@@ -58,7 +100,7 @@ extension UIApplication {
 
 #endif
 
-// MARK: - Uninitializable Macro
+// MARK: - Uninitializable
 @available(*, deprecated, renamed: "Uninitializable")
 @attached(member, names: named(init))
 public macro NonInitializable() = #externalMacro(
