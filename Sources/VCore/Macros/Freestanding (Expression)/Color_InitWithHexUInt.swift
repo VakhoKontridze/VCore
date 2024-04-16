@@ -1,5 +1,5 @@
 //
-//  ColorMacro_InitWithHexUInt.swift
+//  Color_InitWithHexUInt.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Color Macro (Init with Hex UInt)
+// MARK: - Color (Init with Hex UInt)
 /// Returns non-optional `Color` from `UInt`, checked during the compile time.
 ///
 /// `hex` parameter must have at least `6` characters.

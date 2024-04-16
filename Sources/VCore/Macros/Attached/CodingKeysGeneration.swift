@@ -1,5 +1,5 @@
 //
-//  CodingKeysGenerationMacro.swift
+//  CodingKeysGeneration.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Coding Keys Generation Macro
+// MARK: - Coding Keys Generation
 /// Adds `CodingKeys` to a declaration.
 ///
 ///     @CodingKeysGeneration
@@ -36,7 +36,7 @@ public macro CodingKeysGeneration(
     type: "CodingKeysGenerationMacro"
 )
 
-// MARK: - Coding Keys Generation Coding Key Macro
+// MARK: - Coding Keys Generation Coding Key
 /// Attaches custom `Codable` key to a property.
 ///
 /// For additional info, refer to `CodingKeysGeneration`.
@@ -48,7 +48,7 @@ public macro CKGCodingKey(
     type: "CKGCodingKeyMacro"
 )
 
-// MARK: - Coding Keys Generation Coding Key Ignored Macro
+// MARK: - Coding Keys Generation Coding Key Ignored
 /// Ignores generation of ucstom `Codable` key for a property.
 ///
 /// For additional info, refer to `CodingKeysGeneration`.

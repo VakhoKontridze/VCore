@@ -1,5 +1,5 @@
 //
-//  ColorMacro_InitWithHexString.swift
+//  Color_InitWithHexString.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Color Macro (Init with Hex String)
+// MARK: - Color (Init with Hex String)
 /// Returns non-optional `Color` from `String`, checked during the compile time.
 ///
 /// `hex` parameter must have `6` characters.

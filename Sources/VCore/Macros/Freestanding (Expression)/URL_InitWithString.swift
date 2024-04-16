@@ -1,5 +1,5 @@
 //
-//  URLMacro_InitWithString.swift
+//  URL_InitWithString.swift
 //  VCoreMacros
 //
 //  Created by Vakhtang Kontridze on 07.01.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - URL Macro (Init with String)
+// MARK: - URL (Init with String)
 /// Returns non-optional `URL` from `String`, checked during the compile time.
 ///
 ///     let url: URL = #url("https://example.com")

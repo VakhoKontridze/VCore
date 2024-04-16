@@ -1,5 +1,5 @@
 //
-//  UninitializableMacro.swift
+//  Uninitializable.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Uninitializable Macro
+// MARK: - Uninitializable
 /// Adds `private` initializer to declaration, preventing object creation.
 ///
 /// Can be used to simplify declarations of simple objects containing various constants.

@@ -1,5 +1,5 @@
 //
-//  CaseDetectionMacro.swift
+//  CaseDetection.swift
 //  VCoreMacros
 //
 //  Created by Vakhtang Kontridze on 07.01.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Case Detection Macro
+// MARK: - Case Detection
 /// Adds computed properties to an `enum` to represent each `case`.
 ///
 ///     @CaseDetection

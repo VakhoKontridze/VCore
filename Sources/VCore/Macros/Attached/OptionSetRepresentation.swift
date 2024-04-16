@@ -1,5 +1,5 @@
 //
-//  OptionSetRepresentationMacro.swift
+//  OptionSetRepresentation.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Option Set Representation Macro
+// MARK: - Option Set Representation
 /// Adds an `OptionSet` from `struct` that contains a nested `Options` `enum`.
 ///
 ///     @OptionSetRepresentation<Int>
