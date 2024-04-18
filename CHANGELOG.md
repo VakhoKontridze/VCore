@@ -2,6 +2,10 @@
 
 ### 6.1.0(93)
 
+Models
+
+- `PublishingObservationContainer` is added, that triggers a `Publisher` when a value changes.
+
 Extensions
 
 - `View.addOpenURLAction(_:)` method is added, that inserts `OpenURLAction` in the `Environment`. This method can be paired with `AttributedString`'s initializers to create a tappable `Text`.
