@@ -5,6 +5,7 @@
 Models
 
 - `PublishingObservationContainer` is added, that triggers a `Publisher` when a value changes.
+- Conformance to `Comparable` `protocol` is removed from `GenericStateModel` due to ambiguous API
 
 Extensions
 

@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Genetic State (Enabled, Loading, Disabled)
 /// Enumeration that represents state, such as `enabled`, `loading`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_EnabledLoadingDisabled`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_EnabledLoadingDisabled`, with `value(for:)` method.
 public enum GenericState_EnabledLoadingDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -46,7 +51,7 @@ public enum GenericState_EnabledLoadingDisabled: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Loading, Disabled)
 /// Value group containing generic `enabled`, `loading`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_EnabledLoadingDisabled` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_EnabledLoadingDisabled` to model, with `value(for:)` method.
 public struct GenericStateModel_EnabledLoadingDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
@@ -79,14 +84,42 @@ public struct GenericStateModel_EnabledLoadingDisabled<Value> {
         self.disabled = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_EnabledLoadingDisabled<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_EnabledLoadingDisabled<Color> {
         .init(.clear)
+    }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_EnabledLoadingDisabled<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_EnabledLoadingDisabled<NSColor> {
+        .init(.clear)
+    }
+
+#endif
+
+    // MARK: Initializers - Model Casting
+    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `GenericStateModel_EnabledPressedLoadingDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
+        self.init(
+            enabled: model.enabled,
+            loading: model.loading,
+            disabled: model.disabled
+        )
     }
 
     // MARK: Map
@@ -102,53 +135,10 @@ public struct GenericStateModel_EnabledLoadingDisabled<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_EnabledLoadingDisabled {
-    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_EnabledLoadingDisabled<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_EnabledLoadingDisabled {
-    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_EnabledLoadingDisabled<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Model-Casting Initializers
-extension GenericStateModel_EnabledLoadingDisabled {
-    /// Initializes `GenericStateModel_EnabledLoadingDisabled` with `GenericStateModel_EnabledPressedLoadingDisabled`.
-    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
-        self.init(
-            enabled: model.enabled,
-            loading: model.loading,
-            disabled: model.disabled
-        )
-    }
-}
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_EnabledLoadingDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_EnabledLoadingDisabled: Hashable where Value: Hashable {}
-
-extension GenericStateModel_EnabledLoadingDisabled: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.enabled, \.loading, \.disabled)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_EnabledLoadingDisabled {

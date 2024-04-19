@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Generic State (Off, On, Pressed)
 /// Enumeration that represents state, such as `off`, `on`, `pressed` (`off`), or `pressed` (`on`).
 ///
-/// Used for mapping state to `GenericStateModel_OffOnPressed`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_OffOnPressed`, with `value(for:)` method.
 public enum GenericState_OffOnPressed: Int, CaseIterable {
     // MARK: Cases
     /// Off.
@@ -49,7 +54,7 @@ public enum GenericState_OffOnPressed: Int, CaseIterable {
 // MARK: - Generic State Model (Off, On, Pressed)
 /// Value group containing `off`, `on`, `pressed` (`off`), and `pressed` (`on`).
 ///
-/// Used for mapping `GenericState_OffOnPressed` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_OffOnPressed` to model, with `value(for:)` method.
 public struct GenericStateModel_OffOnPressed<Value> {
     // MARK: Properties
     /// Off value.
@@ -88,14 +93,43 @@ public struct GenericStateModel_OffOnPressed<Value> {
         self.pressedOn = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_OffOnPressed` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_OffOnPressed<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_OffOnPressed` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_OffOnPressed<Color> {
         .init(.clear)
+    }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_OffOnPressed` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_OffOnPressed<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_OffOnPressed` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_OffOnPressed<NSColor> {
+        .init(.clear)
+    }
+
+#endif
+
+    // MARK: Initializers - Model Casting
+    /// Initializes `GenericStateModel_OffOnPressed` with `GenericStateModel_OffOnPressedDisabled`.
+    public init(_ model: GenericStateModel_OffOnPressedDisabled<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            pressedOff: model.pressedOff,
+            pressedOn: model.pressedOn
+        )
     }
 
     // MARK: Map
@@ -112,54 +146,10 @@ public struct GenericStateModel_OffOnPressed<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_OffOnPressed {
-    /// Initializes `GenericStateModel_OffOnPressed` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_OffOnPressed<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_OffOnPressed {
-    /// Initializes `GenericStateModel_OffOnPressed` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_OffOnPressed<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Model-Casting Initializers
-extension GenericStateModel_OffOnPressed {
-    /// Initializes `GenericStateModel_OffOnPressed` with `GenericStateModel_OffOnPressedDisabled`.
-    public init(_ model: GenericStateModel_OffOnPressedDisabled<Value>) {
-        self.init(
-            off: model.off,
-            on: model.on,
-            pressedOff: model.pressedOff,
-            pressedOn: model.pressedOn
-        )
-    }
-}
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_OffOnPressed: Equatable where Value: Equatable {}
 
 extension GenericStateModel_OffOnPressed: Hashable where Value: Hashable {}
-
-extension GenericStateModel_OffOnPressed: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.off, \.on, \.pressedOff, \.pressedOn)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_OffOnPressed {

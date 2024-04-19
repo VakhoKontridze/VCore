@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Genetic State (Enabled, Pressed, Disabled)
 /// Enumeration that represents state, such as `enabled`, `pressed`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_EnabledPressedDisabled`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_EnabledPressedDisabled`, with `value(for:)` method.
 public enum GenericState_EnabledPressedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -46,7 +51,7 @@ public enum GenericState_EnabledPressedDisabled: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Pressed, Disabled)
 /// Value group containing generic `enabled`, `pressed`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_EnabledPressedDisabled` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_EnabledPressedDisabled` to model, with `value(for:)` method.
 public struct GenericStateModel_EnabledPressedDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
@@ -78,15 +83,52 @@ public struct GenericStateModel_EnabledPressedDisabled<Value> {
         self.pressed = value
         self.disabled = value
     }
-    
+
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_EnabledPressedDisabled` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_EnabledPressedDisabled<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_EnabledPressedDisabled` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_EnabledPressedDisabled<Color> {
         .init(.clear)
+    }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_EnabledPressedDisabled<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_EnabledPressedDisabled<NSColor> {
+        .init(.clear)
+    }
+
+#endif
+
+    // MARK: Initializers - Model Casting
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `GenericStateModel_EnabledPressedLoadingDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
+        self.init(
+            enabled: model.enabled,
+            pressed: model.pressed,
+            disabled: model.disabled
+        )
+    }
+
+    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `GenericStateModel_EnabledPressedFocusedDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedFocusedDisabled<Value>) {
+        self.init(
+            enabled: model.enabled,
+            pressed: model.pressed,
+            disabled: model.disabled
+        )
     }
 
     // MARK: Map
@@ -102,62 +144,10 @@ public struct GenericStateModel_EnabledPressedDisabled<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_EnabledPressedDisabled {
-    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_EnabledPressedDisabled<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_EnabledPressedDisabled {
-    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_EnabledPressedDisabled<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Model-Casting Initializers
-extension GenericStateModel_EnabledPressedDisabled {
-    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `GenericStateModel_EnabledPressedLoadingDisabled`.
-    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
-        self.init(
-            enabled: model.enabled,
-            pressed: model.pressed,
-            disabled: model.disabled
-        )
-    }
-    
-    /// Initializes `GenericStateModel_EnabledPressedDisabled` with `GenericStateModel_EnabledPressedFocusedDisabled`.
-    public init(_ model: GenericStateModel_EnabledPressedFocusedDisabled<Value>) {
-        self.init(
-            enabled: model.enabled,
-            pressed: model.pressed,
-            disabled: model.disabled
-        )
-    }
-}
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_EnabledPressedDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_EnabledPressedDisabled: Hashable where Value: Hashable {}
-
-extension GenericStateModel_EnabledPressedDisabled: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.enabled, \.pressed, \.disabled)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_EnabledPressedDisabled {

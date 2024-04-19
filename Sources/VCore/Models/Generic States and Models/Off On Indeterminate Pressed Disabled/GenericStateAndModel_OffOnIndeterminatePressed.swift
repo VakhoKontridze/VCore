@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Generic State (Off, On, Indeterminate, Pressed)
 /// Enumeration that represents state, such as `off`, `on`, `indeterminate`, `pressed` (`off`), `pressed` (`on`)` and `pressed` (`indeterminate`).
 ///
-/// Used for mapping state to `GenericStateModel_OffOnIndeterminatePressed`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_OffOnIndeterminatePressed`, with `value(for:)` method.
 public enum GenericState_OffOnIndeterminatePressed: Int, CaseIterable {
     // MARK: Cases
     /// Off.
@@ -58,7 +63,7 @@ public enum GenericState_OffOnIndeterminatePressed: Int, CaseIterable {
 // MARK: - Generic State Model (Off, On, Indeterminate, Pressed)
 /// Value group containing `off`, `on`, `indeterminate`, `pressed` (`off`), `pressed` (`on`), and `pressed`(`indeterminate`).
 ///
-/// Used for mapping `GenericState_OffOnIndeterminatePressed` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_OffOnIndeterminatePressed` to model, with `value(for:)` method.
 public struct GenericStateModel_OffOnIndeterminatePressed<Value> {
     // MARK: Properties
     /// Off value.
@@ -109,14 +114,45 @@ public struct GenericStateModel_OffOnIndeterminatePressed<Value> {
         self.pressedIndeterminate = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_OffOnIndeterminatePressed<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_OffOnIndeterminatePressed<Color> {
         .init(.clear)
+    }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_OffOnIndeterminatePressed<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_OffOnIndeterminatePressed<NSColor> {
+        .init(.clear)
+    }
+
+#endif
+
+    // MARK: Initializers - Model Casting
+    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `GenericStateModel_OffOnIndeterminatePressedDisabled`.
+    public init(_ model: GenericStateModel_OffOnIndeterminatePressedDisabled<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate,
+            pressedOff: model.pressedOff,
+            pressedOn: model.pressedOn,
+            pressedIndeterminate: model.pressedIndeterminate
+        )
     }
 
     // MARK: Map
@@ -135,56 +171,10 @@ public struct GenericStateModel_OffOnIndeterminatePressed<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_OffOnIndeterminatePressed {
-    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_OffOnIndeterminatePressed<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_OffOnIndeterminatePressed {
-    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_OffOnIndeterminatePressed<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Model-Casting Initializers
-extension GenericStateModel_OffOnIndeterminatePressed {
-    /// Initializes `GenericStateModel_OffOnIndeterminatePressed` with `GenericStateModel_OffOnIndeterminatePressedDisabled`.
-    public init(_ model: GenericStateModel_OffOnIndeterminatePressedDisabled<Value>) {
-        self.init(
-            off: model.off,
-            on: model.on,
-            indeterminate: model.indeterminate,
-            pressedOff: model.pressedOff,
-            pressedOn: model.pressedOn,
-            pressedIndeterminate: model.pressedIndeterminate
-        )
-    }
-}
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_OffOnIndeterminatePressed: Equatable where Value: Equatable {}
 
 extension GenericStateModel_OffOnIndeterminatePressed: Hashable where Value: Hashable {}
-
-extension GenericStateModel_OffOnIndeterminatePressed: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.off, \.on, \.indeterminate, \.pressedOff, \.pressedOn, \.pressedIndeterminate)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_OffOnIndeterminatePressed {

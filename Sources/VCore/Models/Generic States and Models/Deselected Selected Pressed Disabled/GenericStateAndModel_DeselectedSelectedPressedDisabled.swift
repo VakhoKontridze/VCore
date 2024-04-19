@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Generic State (Deselected, Selected, Pressed, Disabled)
 /// Enumeration that represents state, such as `deselected`, `selected`, `pressed` (`deselected`), `pressed` (`selected`), or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_DeselectedSelectedPressedDisabled`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_DeselectedSelectedPressedDisabled`, with `value(for:)` method.
 public enum GenericState_DeselectedSelectedPressedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Deselected.
@@ -66,7 +71,7 @@ public enum GenericState_DeselectedSelectedPressedDisabled: Int, CaseIterable {
 // MARK: - Generic State Model (Deselected, Selected, Pressed, Disabled)
 /// Value group containing `deselected`, `selected`, `pressed` (`deselected`), `pressed` (`selected`), and `disabled`.
 ///
-/// Used for mapping `GenericState_DeselectedSelectedPressedDisabled` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_DeselectedSelectedPressedDisabled` to model, with `value(for:)` method.
 public struct GenericStateModel_DeselectedSelectedPressedDisabled<Value> {
     // MARK: Properties
     /// Deselected value.
@@ -111,15 +116,33 @@ public struct GenericStateModel_DeselectedSelectedPressedDisabled<Value> {
         self.disabled = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_DeselectedSelectedPressedDisabled` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_DeselectedSelectedPressedDisabled<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_DeselectedSelectedPressedDisabled` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_DeselectedSelectedPressedDisabled<Color> {
         .init(.clear)
     }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_DeselectedSelectedPressedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_DeselectedSelectedPressedDisabled<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_DeselectedSelectedPressedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_DeselectedSelectedPressedDisabled<NSColor> {
+        .init(.clear)
+    }
+
+#endif
 
     // MARK: Map
     /// Returns `GenericStateModel_DeselectedSelectedPressedDisabled`  containing the results of mapping the given closure over the values.
@@ -136,41 +159,10 @@ public struct GenericStateModel_DeselectedSelectedPressedDisabled<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_DeselectedSelectedPressedDisabled {
-    /// Initializes `GenericStateModel_DeselectedSelectedPressedDisabled` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_DeselectedSelectedPressedDisabled<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_DeselectedSelectedPressedDisabled {
-    /// Initializes `GenericStateModel_DeselectedSelectedPressedDisabled` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_DeselectedSelectedPressedDisabled<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_DeselectedSelectedPressedDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_DeselectedSelectedPressedDisabled: Hashable where Value: Hashable {}
-
-extension GenericStateModel_DeselectedSelectedPressedDisabled: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.deselected, \.selected, \.pressedDeselected, \.pressedSelected, \.disabled)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_DeselectedSelectedPressedDisabled {

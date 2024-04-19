@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Generic State (Off, On, Disabled)
 /// Enumeration that represents state, such as `off` or `on`.
 ///
-/// Used for mapping state to `GenericStateModel_OffOn`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_OffOn`, with `value(for:)` method.
 public enum GenericState_OffOn: Int, CaseIterable {
     // MARK: Cases
     /// Off.
@@ -52,7 +57,7 @@ extension Binding where Value == GenericState_OffOn {
 // MARK: - Generic State Model (Off, On)
 /// Value group containing `off` and `on`.
 ///
-/// Used for mapping `GenericState_OffOn` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_OffOn` to model, with `value(for:)` method.
 public struct GenericStateModel_OffOn<Value> {
     // MARK: Properties
     /// Off value.
@@ -79,55 +84,35 @@ public struct GenericStateModel_OffOn<Value> {
         self.on = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_OffOn` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_OffOn<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_OffOn` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_OffOn<Color> {
         .init(.clear)
     }
 
-    // MARK: Map
-    /// Returns `GenericStateModel_OffOn`  containing the results of mapping the given closure over the values.
-    public func map(
-        _ transform: (Value) throws -> Value
-    ) rethrows -> Self {
-        .init(
-            off: try transform(off),
-            on: try transform(on)
-        )
-    }
-}
-
-// MARK: Platform-Specific Initializers
 #if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_OffOn {
+    
     /// Initializes `GenericStateModel_OffOn` with `clear` `UIColor` values.
     public static var clearUIColors: GenericStateModel_OffOn<UIColor> {
         .init(.clear)
     }
-}
-
+    
 #elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_OffOn {
+    
     /// Initializes `GenericStateModel_OffOn` with `clear` `NSColor` values.
     public static var clearNSColors: GenericStateModel_OffOn<NSColor> {
         .init(.clear)
     }
-}
-
+    
 #endif
-
-// MARK: Model-Casting Initializers
-extension GenericStateModel_OffOn {
+    
+    // MARK: Initializers - Model Casting
     /// Initializes `GenericStateModel_OffOn` with `GenericStateModel_OffOnDisabled`.
     public init(_ model: GenericStateModel_OffOnDisabled<Value>) {
         self.init(
@@ -151,18 +136,23 @@ extension GenericStateModel_OffOn {
             on: model.on
         )
     }
+
+    // MARK: Map
+    /// Returns `GenericStateModel_OffOn`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (Value) throws -> Value
+    ) rethrows -> Self {
+        .init(
+            off: try transform(off),
+            on: try transform(on)
+        )
+    }
 }
 
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_OffOn: Equatable where Value: Equatable {}
 
 extension GenericStateModel_OffOn: Hashable where Value: Hashable {}
-
-extension GenericStateModel_OffOn: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.off, \.on)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_OffOn {

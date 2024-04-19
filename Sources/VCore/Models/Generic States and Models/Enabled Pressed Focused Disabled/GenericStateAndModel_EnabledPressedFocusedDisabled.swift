@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Genetic State (Enabled, Pressed, Focused, Disabled)
 /// Enumeration that represents state, such as `enabled`, `pressed`, `focused`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_EnabledPressedFocusedDisabled`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_EnabledPressedFocusedDisabled`, with `value(for:)` method.
 public enum GenericState_EnabledPressedFocusedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -51,7 +56,7 @@ public enum GenericState_EnabledPressedFocusedDisabled: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Pressed, Focused, Disabled)
 /// Value group containing generic `enabled`, `pressed`, `focused`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_EnabledPressedFocusedDisabled` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_EnabledPressedFocusedDisabled` to model, with `value(for:)` method.
 public struct GenericStateModel_EnabledPressedFocusedDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
@@ -90,15 +95,33 @@ public struct GenericStateModel_EnabledPressedFocusedDisabled<Value> {
         self.disabled = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_EnabledPressedFocusedDisabled<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_EnabledPressedFocusedDisabled<Color> {
         .init(.clear)
     }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_EnabledPressedFocusedDisabled<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_EnabledPressedFocusedDisabled<NSColor> {
+        .init(.clear)
+    }
+
+#endif
 
     // MARK: Map
     /// Returns `GenericStateModel_EnabledPressedFocusedDisabled`  containing the results of mapping the given closure over the values.
@@ -114,41 +137,10 @@ public struct GenericStateModel_EnabledPressedFocusedDisabled<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_EnabledPressedFocusedDisabled {
-    /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_EnabledPressedFocusedDisabled<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_EnabledPressedFocusedDisabled {
-    /// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_EnabledPressedFocusedDisabled<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_EnabledPressedFocusedDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_EnabledPressedFocusedDisabled: Hashable where Value: Hashable {}
-
-extension GenericStateModel_EnabledPressedFocusedDisabled: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.enabled, \.pressed, \.focused, \.disabled)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_EnabledPressedFocusedDisabled {

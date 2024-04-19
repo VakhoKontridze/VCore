@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Genetic State (Enabled, Pressed)
 /// Enumeration that represents state, such as `enabled` or `pressed`.
 ///
-/// Used for mapping state to `GenericStateModel_EnabledPressed`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_EnabledPressed`, with `value(for:)` method.
 public enum GenericState_EnabledPressed: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -32,7 +37,7 @@ public enum GenericState_EnabledPressed: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Pressed)
 /// Value group containing generic `enabled` and `pressed` values.
 ///
-/// Used for mapping `GenericState_EnabledPressed` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_EnabledPressed` to model, with `value(for:)` method.
 public struct GenericStateModel_EnabledPressed<Value> {
     // MARK: Properties
     /// Enabled value.
@@ -59,15 +64,33 @@ public struct GenericStateModel_EnabledPressed<Value> {
         self.pressed = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_EnabledPressed` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_EnabledPressed<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_EnabledPressed` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_EnabledPressed<Color> {
         .init(.clear)
     }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_EnabledPressed` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_EnabledPressed<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_EnabledPressed` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_EnabledPressed<NSColor> {
+        .init(.clear)
+    }
+
+#endif
 
     // MARK: Map
     /// Returns `GenericStateModel_EnabledPressed`  containing the results of mapping the given closure over the values.
@@ -81,41 +104,10 @@ public struct GenericStateModel_EnabledPressed<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_EnabledPressed {
-    /// Initializes `GenericStateModel_EnabledPressed` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_EnabledPressed<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_EnabledPressed {
-    /// Initializes `GenericStateModel_EnabledPressed` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_EnabledPressed<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_EnabledPressed: Equatable where Value: Equatable {}
 
 extension GenericStateModel_EnabledPressed: Hashable where Value: Hashable {}
-
-extension GenericStateModel_EnabledPressed: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.enabled, \.pressed)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_EnabledPressed {

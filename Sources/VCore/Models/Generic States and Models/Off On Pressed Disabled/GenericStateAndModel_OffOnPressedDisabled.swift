@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Generic State (Off, On, Pressed, Disabled)
 /// Enumeration that represents state, such as `off`, `on`, `pressed` (`off`), `pressed` (`on`), or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_OffOnPressedDisabled`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_OffOnPressedDisabled`, with `value(for:)` method.
 public enum GenericState_OffOnPressedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Off.
@@ -66,7 +71,7 @@ public enum GenericState_OffOnPressedDisabled: Int, CaseIterable {
 // MARK: - Generic State Model (Off, On, Pressed, Disabled)
 /// Value group containing `off`, `on`, `pressed` (`off`), `pressed` (`on`), and `disabled`.
 ///
-/// Used for mapping `GenericState_OffOnPressedDisabled` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_OffOnPressedDisabled` to model, with `value(for:)` method.
 public struct GenericStateModel_OffOnPressedDisabled<Value> {
     // MARK: Properties
     /// Off value.
@@ -111,15 +116,32 @@ public struct GenericStateModel_OffOnPressedDisabled<Value> {
         self.disabled = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_OffOnPressedDisabled` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_OffOnPressedDisabled<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_OffOnPressedDisabled` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_OffOnPressedDisabled<Color> {
         .init(.clear)
     }
+
+#if canImport(UIKit)
+    /// Initializes `GenericStateModel_OffOnPressedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_OffOnPressedDisabled<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_OffOnPressedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_OffOnPressedDisabled<NSColor> {
+        .init(.clear)
+    }
+
+#endif
 
     // MARK: Map
     /// Returns `GenericStateModel_OffOnPressedDisabled`  containing the results of mapping the given closure over the values.
@@ -136,41 +158,10 @@ public struct GenericStateModel_OffOnPressedDisabled<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_OffOnPressedDisabled {
-    /// Initializes `GenericStateModel_OffOnPressedDisabled` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_OffOnPressedDisabled<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_OffOnPressedDisabled {
-    /// Initializes `GenericStateModel_OffOnPressedDisabled` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_OffOnPressedDisabled<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_OffOnPressedDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_OffOnPressedDisabled: Hashable where Value: Hashable {}
-
-extension GenericStateModel_OffOnPressedDisabled: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.off, \.on, \.pressedOff, \.pressedOn, \.disabled)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_OffOnPressedDisabled {

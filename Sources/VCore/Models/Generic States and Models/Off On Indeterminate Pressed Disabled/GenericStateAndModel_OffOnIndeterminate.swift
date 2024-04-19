@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Generic State (Off, On, Indeterminate)
 /// Enumeration that represents state, such as `off`, `on`, or `indeterminate`.
 ///
-/// Used for mapping state to `GenericStateModel_OffOnIndeterminate`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_OffOnIndeterminate`, with `value(for:)` method.
 public enum GenericState_OffOnIndeterminate: Int, CaseIterable {
     // MARK: Cases
     /// Off.
@@ -56,7 +61,7 @@ extension Binding where Value == GenericState_OffOnIndeterminate {
 // MARK: - Generic State Model (Off, On, Indeterminate)
 /// Value group containing `off`, `on`, and `indeterminate`.
 ///
-/// Used for mapping `GenericState_OffOnIndeterminate` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_OffOnIndeterminate` to model, with `value(for:)` method.
 public struct GenericStateModel_OffOnIndeterminate<Value> {
     // MARK: Properties
     /// Off value.
@@ -89,14 +94,60 @@ public struct GenericStateModel_OffOnIndeterminate<Value> {
         self.indeterminate = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_OffOnIndeterminate` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_OffOnIndeterminate<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_OffOnIndeterminate` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_OffOnIndeterminate<Color> {
         .init(.clear)
+    }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_OffOnIndeterminate<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_OffOnIndeterminate<NSColor> {
+        .init(.clear)
+    }
+    
+#endif
+
+    // MARK: Initializers - Model Casting
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `GenericStateModel_OffOnIndeterminateDisabled`.
+    public init(_ model: GenericStateModel_OffOnIndeterminateDisabled<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate
+        )
+    }
+
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `GenericStateModel_OffOnIndeterminatePressed`.
+    public init(_ model: GenericStateModel_OffOnIndeterminatePressed<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate
+        )
+    }
+
+    /// Initializes `GenericStateModel_OffOnIndeterminate` with `GenericStateModel_OffOnIndeterminatePressedDisabled`.
+    public init(_ model: GenericStateModel_OffOnIndeterminatePressedDisabled<Value>) {
+        self.init(
+            off: model.off,
+            on: model.on,
+            indeterminate: model.indeterminate
+        )
     }
 
     // MARK: Map
@@ -112,71 +163,10 @@ public struct GenericStateModel_OffOnIndeterminate<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_OffOnIndeterminate {
-    /// Initializes `GenericStateModel_OffOnIndeterminate` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_OffOnIndeterminate<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_OffOnIndeterminate {
-    /// Initializes `GenericStateModel_OffOnIndeterminate` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_OffOnIndeterminate<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Model-Casting Initializers
-extension GenericStateModel_OffOnIndeterminate {
-    /// Initializes `GenericStateModel_OffOnIndeterminate` with `GenericStateModel_OffOnIndeterminateDisabled`.
-    public init(_ model: GenericStateModel_OffOnIndeterminateDisabled<Value>) {
-        self.init(
-            off: model.off,
-            on: model.on,
-            indeterminate: model.indeterminate
-        )
-    }
-    
-    /// Initializes `GenericStateModel_OffOnIndeterminate` with `GenericStateModel_OffOnIndeterminatePressed`.
-    public init(_ model: GenericStateModel_OffOnIndeterminatePressed<Value>) {
-        self.init(
-            off: model.off,
-            on: model.on,
-            indeterminate: model.indeterminate
-        )
-    }
-    
-    /// Initializes `GenericStateModel_OffOnIndeterminate` with `GenericStateModel_OffOnIndeterminatePressedDisabled`.
-    public init(_ model: GenericStateModel_OffOnIndeterminatePressedDisabled<Value>) {
-        self.init(
-            off: model.off,
-            on: model.on,
-            indeterminate: model.indeterminate
-        )
-    }
-}
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_OffOnIndeterminate: Equatable where Value: Equatable {}
 
 extension GenericStateModel_OffOnIndeterminate: Hashable where Value: Hashable {}
-
-extension GenericStateModel_OffOnIndeterminate: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.off, \.on, \.indeterminate)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_OffOnIndeterminate {

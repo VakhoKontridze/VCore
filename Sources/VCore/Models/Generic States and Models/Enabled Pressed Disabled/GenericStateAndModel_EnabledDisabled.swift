@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Genetic State (Enabled, Disabled)
 /// Enumeration that represents state, such as `enabled` or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_EnabledDisabled`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_EnabledDisabled`, with `value(for:)` method.
 public enum GenericState_EnabledDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -41,7 +46,7 @@ public enum GenericState_EnabledDisabled: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Disabled)
 /// Value group containing generic `enabled` and `disabled` values.
 ///
-/// Used for mapping `GenericState_EnabledDisabled` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_EnabledDisabled` to model, with `value(for:)` method.
 public struct GenericStateModel_EnabledDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
@@ -67,56 +72,36 @@ public struct GenericStateModel_EnabledDisabled<Value> {
         self.enabled = value
         self.disabled = value
     }
-    
+
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_EnabledDisabled` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_EnabledDisabled<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_EnabledDisabled` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_EnabledDisabled<Color> {
         .init(.clear)
     }
 
-    // MARK: Map
-    /// Returns `GenericStateModel_EnabledDisabled`  containing the results of mapping the given closure over the values.
-    public func map(
-        _ transform: (Value) throws -> Value
-    ) rethrows -> Self {
-        .init(
-            enabled: try transform(enabled),
-            disabled: try transform(disabled)
-        )
-    }
-}
-
-// MARK: Platform-Specific Initializers
 #if canImport(UIKit)
 
-import UIKit
-
-extension GenericStateModel_EnabledDisabled {
     /// Initializes `GenericStateModel_EnabledDisabled` with `clear` `UIColor` values.
     public static var clearUIColors: GenericStateModel_EnabledDisabled<UIColor> {
         .init(.clear)
     }
-}
 
 #elseif canImport(AppKit)
 
-import AppKit
-
-extension GenericStateModel_EnabledDisabled {
     /// Initializes `GenericStateModel_EnabledDisabled` with `clear` `NSColor` values.
     public static var clearNSColors: GenericStateModel_EnabledDisabled<NSColor> {
         .init(.clear)
     }
-}
 
 #endif
 
-// MARK: Model-Casting Initializers
-extension GenericStateModel_EnabledDisabled {
+    // MARK: Initializers - Model Casting
     /// Initializes `GenericStateModel_EnabledDisabled` with `GenericStateModel_EnabledPressedDisabled`.
     public init(_ model: GenericStateModel_EnabledPressedDisabled<Value>) {
         self.init(
@@ -148,18 +133,23 @@ extension GenericStateModel_EnabledDisabled {
             disabled: model.disabled
         )
     }
+
+    // MARK: Map
+    /// Returns `GenericStateModel_EnabledDisabled`  containing the results of mapping the given closure over the values.
+    public func map(
+        _ transform: (Value) throws -> Value
+    ) rethrows -> Self {
+        .init(
+            enabled: try transform(enabled),
+            disabled: try transform(disabled)
+        )
+    }
 }
 
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_EnabledDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_EnabledDisabled: Hashable where Value: Hashable {}
-
-extension GenericStateModel_EnabledDisabled: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.enabled, \.disabled)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_EnabledDisabled {

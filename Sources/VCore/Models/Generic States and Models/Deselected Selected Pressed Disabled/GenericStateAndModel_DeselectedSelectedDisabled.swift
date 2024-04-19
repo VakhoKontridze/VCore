@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Generic State (Deselected, Selected, Disabled)
 /// Enumeration that represents state, such as `deselected`, `selected`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_DeselectedSelectedDisabled`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_DeselectedSelectedDisabled`, with `value(for:)` method.
 public enum GenericState_DeselectedSelectedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Deselected.
@@ -56,7 +61,7 @@ public enum GenericState_DeselectedSelectedDisabled: Int, CaseIterable {
 // MARK: - Generic State Model (Deselected, Selected, Disabled)
 /// Value group containing `deselected`, `selected`, and `disabled`.
 ///
-/// Used for mapping `GenericState_DeselectedSelectedDisabled` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_DeselectedSelectedDisabled` to model, with `value(for:)` method.
 public struct GenericStateModel_DeselectedSelectedDisabled<Value> {
     // MARK: Properties
     /// Deselected value.
@@ -89,14 +94,42 @@ public struct GenericStateModel_DeselectedSelectedDisabled<Value> {
         self.disabled = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_DeselectedSelectedDisabled` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_DeselectedSelectedDisabled<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_DeselectedSelectedDisabled` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_DeselectedSelectedDisabled<Color> {
         .init(.clear)
+    }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_DeselectedSelectedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_DeselectedSelectedDisabled<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_DeselectedSelectedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_DeselectedSelectedDisabled<NSColor> {
+        .init(.clear)
+    }
+
+#endif
+
+    // MARK: Initializers - Model Casting
+    /// Initializes `GenericStateModel_DeselectedSelectedDisabled` with `GenericStateModel_DeselectedSelectedPressedDisabled`.
+    public init(_ model: GenericStateModel_DeselectedSelectedPressedDisabled<Value>) {
+        self.init(
+            deselected: model.deselected,
+            selected: model.selected,
+            disabled: model.disabled
+        )
     }
 
     // MARK: Map
@@ -112,53 +145,10 @@ public struct GenericStateModel_DeselectedSelectedDisabled<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_DeselectedSelectedDisabled {
-    /// Initializes `GenericStateModel_DeselectedSelectedDisabled` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_DeselectedSelectedDisabled<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_DeselectedSelectedDisabled {
-    /// Initializes `GenericStateModel_DeselectedSelectedDisabled` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_DeselectedSelectedDisabled<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Model-Casting Initializers
-extension GenericStateModel_DeselectedSelectedDisabled {
-    /// Initializes `GenericStateModel_DeselectedSelectedDisabled` with `GenericStateModel_DeselectedSelectedPressedDisabled`.
-    public init(_ model: GenericStateModel_DeselectedSelectedPressedDisabled<Value>) {
-        self.init(
-            deselected: model.deselected,
-            selected: model.selected,
-            disabled: model.disabled
-        )
-    }
-}
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_DeselectedSelectedDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_DeselectedSelectedDisabled: Hashable where Value: Hashable {}
-
-extension GenericStateModel_DeselectedSelectedDisabled: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.deselected, \.selected, \.disabled)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_DeselectedSelectedDisabled {

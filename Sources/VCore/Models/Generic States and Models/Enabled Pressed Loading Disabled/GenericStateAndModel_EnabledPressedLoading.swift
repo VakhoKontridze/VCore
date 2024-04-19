@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Genetic State (Enabled, Pressed, Loading)
 /// Enumeration that represents state, such as `enabled`, `pressed`, or `loading`.
 ///
-/// Used for mapping state to `GenericStateModel_EnabledPressedLoading`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_EnabledPressedLoading`, with `value(for:)` method.
 public enum GenericState_EnabledPressedLoading: Int, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -45,7 +50,7 @@ public enum GenericState_EnabledPressedLoading: Int, CaseIterable {
 // MARK: - Generic State Model (Enabled, Pressed, Loading)
 /// Value group containing generic `enabled`, `pressed`, and `loading` values.
 ///
-/// Used for mapping `GenericState_EnabledPressedLoading` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_EnabledPressedLoading` to model, with `value(for:)` method.
 public struct GenericStateModel_EnabledPressedLoading<Value> {
     // MARK: Properties
     /// Enabled value.
@@ -78,14 +83,41 @@ public struct GenericStateModel_EnabledPressedLoading<Value> {
         self.loading = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_EnabledPressedLoading` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_EnabledPressedLoading<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_EnabledPressedLoading` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_EnabledPressedLoading<Color> {
         .init(.clear)
+    }
+
+#if canImport(UIKit)
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_EnabledPressedLoading<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_EnabledPressedLoading<NSColor> {
+        .init(.clear)
+    }
+
+#endif
+
+    // MARK: Initializers - Model Casting
+    /// Initializes `GenericStateModel_EnabledPressedLoading` with `GenericStateModel_EnabledPressedLoadingDisabled`.
+    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
+        self.init(
+            enabled: model.enabled,
+            pressed: model.pressed,
+            loading: model.loading
+        )
     }
 
     // MARK: Map
@@ -101,53 +133,10 @@ public struct GenericStateModel_EnabledPressedLoading<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_EnabledPressedLoading {
-    /// Initializes `GenericStateModel_EnabledPressedLoading` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_EnabledPressedLoading<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_EnabledPressedLoading {
-    /// Initializes `GenericStateModel_EnabledPressedLoading` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_EnabledPressedLoading<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Model-Casting Initializers
-extension GenericStateModel_EnabledPressedLoading {
-    /// Initializes `GenericStateModel_EnabledPressedLoading` with `GenericStateModel_EnabledPressedLoadingDisabled`.
-    public init(_ model: GenericStateModel_EnabledPressedLoadingDisabled<Value>) {
-        self.init(
-            enabled: model.enabled,
-            pressed: model.pressed,
-            loading: model.loading
-        )
-    }
-}
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_EnabledPressedLoading: Equatable where Value: Equatable {}
 
 extension GenericStateModel_EnabledPressedLoading: Hashable where Value: Hashable {}
-
-extension GenericStateModel_EnabledPressedLoading: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.enabled, \.pressed, \.loading)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_EnabledPressedLoading {

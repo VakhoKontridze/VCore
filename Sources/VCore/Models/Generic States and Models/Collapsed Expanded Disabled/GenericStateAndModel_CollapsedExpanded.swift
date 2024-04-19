@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Genetic State (Collapsed, Expanded)
 /// Enumeration that represents state, such as `collapsed` or `expanded`.
 ///
-/// Used for mapping state to `GenericStateModel_CollapsedExpanded`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_CollapsedExpanded`, with `value(for:)` method.
 public enum GenericState_CollapsedExpanded: Int, CaseIterable {
     // MARK: Cases
     /// Collapsed.
@@ -52,7 +57,7 @@ extension Binding where Value == GenericState_CollapsedExpanded {
 // MARK: - Generic State Model (Collapsed, Expanded)
 /// Value group containing generic `collapsed` and `expanded` values.
 ///
-/// Used for mapping `GenericState_CollapsedExpanded` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_CollapsedExpanded` to model, with `value(for:)` method.
 public struct GenericStateModel_CollapsedExpanded<Value> {
     // MARK: Properties
     /// Collapsed value.
@@ -79,14 +84,41 @@ public struct GenericStateModel_CollapsedExpanded<Value> {
         self.expanded = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_CollapsedExpanded` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_CollapsedExpanded<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_CollapsedExpanded` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_CollapsedExpanded<Color> {
         .init(.clear)
+    }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_CollapsedExpanded` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_CollapsedExpanded<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_CollapsedExpanded` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_CollapsedExpanded<NSColor> {
+        .init(.clear)
+    }
+
+#endif
+
+    // MARK: Initializers - Model Casting
+    /// Initializes `GenericStateModel_CollapsedExpanded` with `GenericStateModel_CollapsedExpandedDisabled`.
+    public init(_ model: GenericStateModel_CollapsedExpandedDisabled<Value>) {
+        self.init(
+            collapsed: model.collapsed,
+            expanded: model.expanded
+        )
     }
 
     // MARK: Map
@@ -101,52 +133,10 @@ public struct GenericStateModel_CollapsedExpanded<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_CollapsedExpanded {
-    /// Initializes `GenericStateModel_CollapsedExpanded` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_CollapsedExpanded<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_CollapsedExpanded {
-    /// Initializes `GenericStateModel_CollapsedExpanded` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_CollapsedExpanded<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Model-Casting Initializers
-extension GenericStateModel_CollapsedExpanded {
-    /// Initializes `GenericStateModel_CollapsedExpanded` with `GenericStateModel_CollapsedExpandedDisabled`.
-    public init(_ model: GenericStateModel_CollapsedExpandedDisabled<Value>) {
-        self.init(
-            collapsed: model.collapsed,
-            expanded: model.expanded
-        )
-    }
-}
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_CollapsedExpanded: Equatable where Value: Equatable {}
 
 extension GenericStateModel_CollapsedExpanded: Hashable where Value: Hashable {}
-
-extension GenericStateModel_CollapsedExpanded: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.collapsed, \.expanded)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_CollapsedExpanded {

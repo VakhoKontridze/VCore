@@ -6,11 +6,16 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 // MARK: - Genetic State (Collapsed, Expanded, Disabled)
 /// Enumeration that represents state, such as `collapsed`, `expanded`, or `disabled`.
 ///
-/// Used for mapping state to `GenericStateModel_CollapsedExpandedDisabled`, via `value(for:)` method.
+/// Used for mapping state to `GenericStateModel_CollapsedExpandedDisabled`, with `value(for:)` method.
 public enum GenericState_CollapsedExpandedDisabled: Int, CaseIterable {
     // MARK: Cases
     /// Collapsed.
@@ -56,7 +61,7 @@ public enum GenericState_CollapsedExpandedDisabled: Int, CaseIterable {
 // MARK: - Generic State Model (Collapsed, Expanded, Disabled)
 /// Value group containing generic `collapsed`, `expanded`, and `disabled` values.
 ///
-/// Used for mapping `GenericState_CollapsedExpandedDisabled` to model, via `value(for:)` method.
+/// Used for mapping `GenericState_CollapsedExpandedDisabled` to model, with `value(for:)` method.
 public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
     // MARK: Properties
     /// Collapsed value.
@@ -89,15 +94,33 @@ public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
         self.disabled = value
     }
     
+    // MARK: Initializers - Dimensions
     /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with `0` `CGFloat` values.
     public static var zero: GenericStateModel_CollapsedExpandedDisabled<CGFloat> {
         .init(0)
     }
     
+    // MARK: Initializers - Colors
     /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with `clear` `Color` values.
     public static var clearColors: GenericStateModel_CollapsedExpandedDisabled<Color> {
         .init(.clear)
     }
+
+#if canImport(UIKit)
+
+    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with `clear` `UIColor` values.
+    public static var clearUIColors: GenericStateModel_CollapsedExpandedDisabled<UIColor> {
+        .init(.clear)
+    }
+
+#elseif canImport(AppKit)
+
+    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with `clear` `NSColor` values.
+    public static var clearNSColors: GenericStateModel_CollapsedExpandedDisabled<NSColor> {
+        .init(.clear)
+    }
+
+#endif
 
     // MARK: Map
     /// Returns `GenericStateModel_CollapsedExpandedDisabled`  containing the results of mapping the given closure over the values.
@@ -112,41 +135,10 @@ public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
     }
 }
 
-// MARK: Platform-Specific Initializers
-#if canImport(UIKit)
-
-import UIKit
-
-extension GenericStateModel_CollapsedExpandedDisabled {
-    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with `clear` `UIColor` values.
-    public static var clearUIColors: GenericStateModel_CollapsedExpandedDisabled<UIColor> {
-        .init(.clear)
-    }
-}
-
-#elseif canImport(AppKit)
-
-import AppKit
-
-extension GenericStateModel_CollapsedExpandedDisabled {
-    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with `clear` `NSColor` values.
-    public static var clearNSColors: GenericStateModel_CollapsedExpandedDisabled<NSColor> {
-        .init(.clear)
-    }
-}
-
-#endif
-
-// MARK: Equatable, Hashable, Comparable
+// MARK: Equatable, Hashable
 extension GenericStateModel_CollapsedExpandedDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_CollapsedExpandedDisabled: Hashable where Value: Hashable {}
-
-extension GenericStateModel_CollapsedExpandedDisabled: Comparable where Value: Comparable {
-    public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.collapsed, \.expanded, \.disabled)
-    }
-}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_CollapsedExpandedDisabled {
