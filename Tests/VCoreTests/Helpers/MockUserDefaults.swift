@@ -7,22 +7,29 @@
 
 import Foundation
 
-// MARK: - Mock User Defaults
+// MARK: - Instance
 extension UserDefaults {
     static let mock: UserDefaults = MockUserDefaults()
 }
 
+// MARK: - Mock User Defaults
 final class MockUserDefaults: UserDefaults {
+    // MARK: Properties
     private static var storage: [String: Any] = [:]
-    
-    override class func setValue(_ value: Any?, forKey key: String) {
-        storage[key] = value
+
+    // MARK: Methods
+    override func object(forKey defaultName: String) -> Any? {
+        Self.storage[defaultName]
     }
-    
-    override class func value(forKey key: String) -> Any? {
-        storage[key]
+
+    override func set(_ value: Any?, forKey defaultName: String) {
+        if let value {
+            Self.storage[defaultName] = value
+        } else {
+            removeObject(forKey: defaultName)
+        }
     }
-    
+
     override func removeObject(forKey defaultName: String) {
         Self.storage.removeValue(forKey: defaultName)
     }
