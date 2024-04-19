@@ -52,7 +52,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
                     throw CodingKeysGenerationMacroError.onePropertyAllowedPerLine
                 }
 
-                // Skipping computer properties
+                // Skips computed properties
                 guard
                     propertyBinding.accessorBlock == nil
                 else {
