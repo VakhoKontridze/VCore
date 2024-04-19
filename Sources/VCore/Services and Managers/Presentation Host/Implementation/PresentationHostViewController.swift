@@ -144,10 +144,11 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         case true:
             if
                 let rootViewController: UIViewController = UIApplication.shared
-                    .firstWindow(
-                        activationStates: [.foregroundActive],
-                        where: { $0.rootViewController?.presentedViewController == hostingControllerContainer }
-                    )?
+                    .connectedScenes
+                    .filter({ $0.activationState == .foregroundActive })
+                    .compactMap({ $0 as? UIWindowScene })
+                    .flatMap({ $0.windows })
+                    .first(where: { $0.rootViewController?.presentedViewController == hostingControllerContainer })?
                     .rootViewController
             {
                 rootViewController.dismiss(animated: false, completion: {

@@ -67,7 +67,7 @@ public struct ViewResettingContainer<Content>: View where Content: View {
                 content(viewResetter)
             }
         })
-        .viewResetter(viewResetter)
+        .environment(\.viewResetter, viewResetter)
     }
 }
 

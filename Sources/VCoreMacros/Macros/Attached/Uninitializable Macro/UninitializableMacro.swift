@@ -16,14 +16,10 @@ struct UninitializableMacro: MemberMacro {
         providingMembersOf declaration: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        var result: [DeclSyntax] = []
-
-        result.append(
+        [
             """
             private init() {}
             """
-        )
-
-        return result
+        ]
     }
 }

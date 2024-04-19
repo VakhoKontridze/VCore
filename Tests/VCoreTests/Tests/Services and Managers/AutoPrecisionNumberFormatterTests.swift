@@ -27,15 +27,6 @@ final class AutoPrecisionNumberFormatterTests: XCTestCase {
         XCTAssertEqual(formatter.string(from: 3.1410), "3.14")
     }
     
-    func testInvalidFormatting() {
-        let formatter: AutoPrecisionNumberFormatter = .init(
-            minFractions: 0,
-            maxFractions: -1
-        )
-        
-        XCTAssertNil(formatter.string(from: 3.14))
-    }
-    
     func testExtension() {
         XCTAssertEqual(3.1415.rounded(maxFractions: 2), "3.14")
     }

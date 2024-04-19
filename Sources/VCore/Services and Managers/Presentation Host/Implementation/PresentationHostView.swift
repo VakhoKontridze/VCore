@@ -77,8 +77,8 @@ struct PresentationHostView<Content>: UIViewControllerRepresentable where Conten
             window: { [weak uiViewController] in uiViewController?.view.window },
             content: content
         )
-        .presentationHostPresentationMode(presentationMode)
-        .eraseToAnyView()
+            .environment(\.presentationHostPresentationMode, presentationMode)
+            .eraseToAnyView()
 
         switch isPresented.wrappedValue {
         case false:

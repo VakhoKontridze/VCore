@@ -79,6 +79,6 @@ public struct CoordinatingNavigationStackOO<Root>: View where Root: View { // TO
             path: $navigationStackCoordinator.path,
             root: { root(navigationStackCoordinator) }
         )
-        .navigationStackCoordinatorOO(navigationStackCoordinator)
+        .environment(\.navigationStackCoordinatorOO, navigationStackCoordinator)
     }
 }

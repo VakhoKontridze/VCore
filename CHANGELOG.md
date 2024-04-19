@@ -16,6 +16,7 @@ Helpers
 
 Macros
 
+- `EnvironmentValueGeneration` macro is added, that adds `EnvironmentKey` to a declaration
 - `NonInitializable` is renamed to `Uninitializable`
 
 ### [6.0.1(92)](https://github.com/VakhoKontridze/VCore/releases/tag/6.0.1) — *2024 03 07*

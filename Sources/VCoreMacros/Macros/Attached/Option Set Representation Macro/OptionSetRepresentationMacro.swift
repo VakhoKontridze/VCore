@@ -123,7 +123,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         declaration: some DeclGroupSyntax,
         context: some MacroExpansionContext
     ) throws -> ExpansionData {
-        // Parameter - accessLevelModifier
+        // `accessLevelModifier` parameter
         let accessLevelModifier: String = try {
             guard
                 let argument: LabeledExprSyntax? = attribute.arguments?.toArgumentListGetAssociatedValue()?
@@ -175,7 +175,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             throw OptionSetRepresentationMacroError.optionsEnumRawTypeNotDeclared
         }
 
-        // Returns
+        // Result
         return ExpansionData(
             accessLevelModifier: accessLevelModifier,
             structDeclaration: structDeclaration,

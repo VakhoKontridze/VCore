@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-// MARK: - Safe Area Insets Environment Value
+// MARK: - Environment Values Safe Area Insets
 extension EnvironmentValues {
     /// Safe are insets of the view in `UIApplication.shared.firstWindowInSingleSceneApp`.
     ///
@@ -26,13 +26,6 @@ extension EnvironmentValues {
     ///     }
     ///
     public var safeAreaInsets: EdgeInsets {
-        self[SafeAreaInsetsEnvironmentKey.self]
-    }
-}
-
-// MARK: - Safe Area Insets Environment Key
-private struct SafeAreaInsetsEnvironmentKey: EnvironmentKey {
-    static var defaultValue: EdgeInsets {
         guard
             let window: UIWindow = UIApplication.shared.firstWindowInSingleSceneApp
         else {

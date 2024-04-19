@@ -38,10 +38,11 @@ struct CodingKeysGenerationMacro: MemberMacro {
         // Coding key lines
         let codingKeyLines: [String] = try declaration.memberBlock.members
             .compactMap { member in
+                // Limits declaration to variables
                 guard
                     let propertyDeclaration: VariableDeclSyntax = member.decl.as(VariableDeclSyntax.self)
                 else {
-                    return nil // Limits declaration to variables
+                    return nil
                 }
 
                 guard
@@ -51,10 +52,11 @@ struct CodingKeysGenerationMacro: MemberMacro {
                     throw CodingKeysGenerationMacroError.onePropertyAllowedPerLine
                 }
 
+                // Skipping computer properties
                 guard
                     propertyBinding.accessorBlock == nil
                 else {
-                    return nil // Skipping computer properties
+                    return nil
                 }
 
                 guard

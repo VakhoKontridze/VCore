@@ -53,12 +53,12 @@ public struct AutoPrecisionNumberFormatter {
     // MARK: Formatting
     /// Returns `String` from number with specified format.
     public func string(from number: Double) -> String? {
-        guard minFractions > 0 else {
+        guard minFractions >= 0 else {
             Logger.misc.critical("'minFractions' must be greater then or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
             fatalError()
         }
 
-        guard maxFractions > 0 else {
+        guard maxFractions >= 0 else {
             Logger.misc.critical("'maxFractions' must be greater then or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
             fatalError()
         }
