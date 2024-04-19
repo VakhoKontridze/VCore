@@ -47,31 +47,29 @@ public struct Clamped<Value>: DynamicProperty {
         self._fieldValue = State(initialValue: transformation(wrappedValue))
         self.transformation = transformation
     }
-}
 
-// MARK: Initializers - Binary Integer
-extension Clamped where Value: BinaryInteger {
     /// Initializes `Clamped` with range.
     public init(
         wrappedValue: Value,
         _ range: ClosedRange<Value>,
         step: Value? = nil
-    ) {
+    )
+        where Value: BinaryInteger
+    {
         self.init(
             wrappedValue: wrappedValue,
             transformation: { $0.clamped(to: range, step: step) }
         )
     }
-}
 
-// MARK: Initializers - Floating Point
-extension Clamped where Value: FloatingPoint {
     /// Initializes `Clamped` with range.
     public init(
         wrappedValue: Value,
         _ range: ClosedRange<Value>,
         step: Value? = nil
-    ) {
+    )
+        where Value: FloatingPoint
+    {
         self.init(
             wrappedValue: wrappedValue,
             transformation: { $0.clamped(to: range, step: step) }

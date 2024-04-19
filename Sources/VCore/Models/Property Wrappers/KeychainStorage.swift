@@ -67,7 +67,102 @@ public struct KeychainStorage<Value>: DynamicProperty {
         self.storage = ObservableContainerOO(value: initialValue)
         self.valueSetter = valueSetter
     }
-    
+
+    // MARK: Initializers - Codable
+    /// Initializes `KeychainStorage` from `Codable`.
+    public init(
+        wrappedValue defaultValue: Value,
+        _ key: String,
+        keychainService: KeychainService = .default
+    ) 
+        where Value: Codable
+    {
+        self.init(
+            keychainService: keychainService,
+            initialValue: Self.getValue(key: key, defaultValue: defaultValue, in: keychainService),
+            valueSetter: { Self.setValue($0, key: key, in: keychainService) }
+        )
+    }
+
+    /// Initializes `KeychainStorage` from `Codable`.
+    public init(
+        wrappedValue defaultValue: Value,
+        _ key: String,
+        configuration: KeychainServiceConfiguration
+    ) 
+        where Value: Codable
+    {
+        self.init(
+            wrappedValue: defaultValue,
+            key,
+            keychainService: KeychainService(configuration: configuration)
+        )
+    }
+
+    // MARK: Initializers - Codable & Expressible by Nil Literal
+    /// Initializes `KeychainStorage` from `Optional` `Codable`.
+    public init(
+        _ key: String,
+        keychainService: KeychainService = .default
+    )
+        where Value: Codable & ExpressibleByNilLiteral
+    {
+        self.init(
+            wrappedValue: nil,
+            key,
+            keychainService: keychainService
+        )
+    }
+
+    /// Initializes `KeychainStorage` from `Optional` `Codable`.
+    public init(
+        _ key: String,
+        configuration: KeychainServiceConfiguration
+    )
+        where Value: Codable & ExpressibleByNilLiteral
+    {
+        self.init(
+            wrappedValue: nil,
+            key,
+            configuration: configuration
+        )
+    }
+
+    // MARK: Helpers
+    private static func getValue<T>(
+        key: String,
+        defaultValue: T,
+        in keychainService: KeychainService
+    ) -> T
+        where T: Decodable
+    {
+        guard let data: Data = keychainService[key] else { return defaultValue }
+
+        do {
+            let value: T = try JSONDecoder().decode(T.self, from: data)
+            return value
+
+        } catch let error {
+            Logger.keychainStorage.error("Failed to decode '\(T.self)' from 'Data in 'KeychainStorage'': \(error)")
+            return defaultValue
+        }
+    }
+
+    private static func setValue<T>(
+        _ value: T,
+        key: String,
+        in keychainService: KeychainService
+    )
+        where T: Encodable
+    {
+        do {
+            keychainService[key] = try JSONEncoder().encode(value)
+
+        } catch let error {
+            Logger.keychainStorage.error("Failed to encode '\(T.self)' to 'Data' in 'KeychainStorage': \(error)")
+        }
+    }
+
     // MARK: Observable Object Support
     public static subscript<T>(
         _enclosingInstance instance: T,
@@ -86,97 +181,6 @@ public struct KeychainStorage<Value>: DynamicProperty {
             {
                 observableObjectPublisher.send()
             }
-        }
-    }
-}
-
-// MARK: Initializers - Codable
-extension KeychainStorage where Value: Codable {
-    /// Initializes `KeychainStorage` from `Codable`.
-    public init(
-        wrappedValue defaultValue: Value,
-        _ key: String,
-        keychainService: KeychainService = .default
-    ) {
-        self.init(
-            keychainService: keychainService,
-            initialValue: Self.getValue(key: key, defaultValue: defaultValue, in: keychainService),
-            valueSetter: { Self.setValue($0, key: key, in: keychainService) }
-        )
-    }
-    
-    /// Initializes `KeychainStorage` from `Codable`.
-    public init(
-        wrappedValue defaultValue: Value,
-        _ key: String,
-        configuration: KeychainServiceConfiguration
-    ) {
-        self.init(
-            wrappedValue: defaultValue,
-            key,
-            keychainService: KeychainService(configuration: configuration)
-        )
-    }
-}
-
-extension KeychainStorage where Value: Codable, Value: ExpressibleByNilLiteral {
-    /// Initializes `KeychainStorage` from `Optional` `Codable`.
-    public init(
-        _ key: String,
-        keychainService: KeychainService = .default
-    ) {
-        self.init(
-            wrappedValue: nil,
-            key,
-            keychainService: keychainService
-        )
-    }
-    
-    /// Initializes `KeychainStorage` from `Optional` `Codable`.
-    public init(
-        _ key: String,
-        configuration: KeychainServiceConfiguration
-    ) {
-        self.init(
-            wrappedValue: nil,
-            key,
-            configuration: configuration
-        )
-    }
-}
-
-extension KeychainStorage {
-    fileprivate static func getValue<T>(
-        key: String,
-        defaultValue: T,
-        in keychainService: KeychainService
-    ) -> T
-        where T: Codable
-    {
-        guard let data: Data = keychainService[key] else { return defaultValue }
-        
-        do {
-            let value: T = try JSONDecoder().decode(T.self, from: data)
-            return value
-            
-        } catch let error {
-            Logger.keychainStorage.error("Failed to decode '\(T.self)' from 'Data in 'KeychainStorage'': \(error)")
-            return defaultValue
-        }
-    }
-    
-    fileprivate static func setValue<T>(
-        _ value: T,
-        key: String,
-        in keychainService: KeychainService
-    )
-        where T: Encodable
-    {
-        do {
-            keychainService[key] = try JSONEncoder().encode(value)
-            
-        } catch let error {
-            Logger.keychainStorage.error("Failed to encode '\(T.self)' to 'Data' in 'KeychainStorage': \(error)")
         }
     }
 }
