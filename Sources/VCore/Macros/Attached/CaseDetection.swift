@@ -16,7 +16,7 @@ import Foundation
 ///         case pixels
 ///     }
 ///
-///     let measurement: PointPixelMeasurement = ...
+///     let measurement: PointPixelMeasurement = .points(displayScale: 3)
 ///     measurement.isPoints // true
 ///
 @attached(member, names: arbitrary)
