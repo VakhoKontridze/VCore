@@ -12,6 +12,14 @@ import OSLog
 // MARK: - Localization Manager
 /// Object that manages localization without interfacing with identifiers and `UserDefaults`.
 ///
+/// You can localize `String`s with a simple extension:
+///
+///     extension String {
+///         var localized: String {
+///             LocalizationManager.shared.localize(self)
+///         }
+///     }
+///
 /// You can create a simple localization picker, although it would require relaunch for `Bundle` to be updated:
 ///
 ///     VStack(content: {
@@ -80,7 +88,7 @@ public final class LocalizationManager { // TODO: iOS 17.0 - Convert to `Observa
         get {
             guard
                 let identifier: String = (UserDefaults.standard.object(forKey: "AppleLanguages") as? [String])?.first,
-                let locale: Locale = locales.first(where: { $0.isEquivalent(to: Locale(identifier: identifier)) }) // `UserDefault` usually attaches region code
+                let locale: Locale = locales.first(where: { $0.isEquivalent(to: Locale(identifier: identifier)) }) // Region code may be attached
             else {
                 return nil
             }
