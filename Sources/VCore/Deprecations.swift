@@ -7,6 +7,82 @@
 
 import SwiftUI
 
+// MARK: - Localization Manager
+extension LocalizationManager {
+    @available(*, deprecated, message: "Use property directly")
+    public func setCurrentLocale(to locale: Locale) {
+        fatalError()
+    }
+
+    @available(*, deprecated, message: "Use property directly")
+    public func addLocale(_ locale: Locale) {
+        fatalError()
+    }
+
+    @available(*, deprecated, message: "Use property directly")
+    public func addLocales(_ locales: [Locale]) {
+        fatalError()
+    }
+
+    @available(*, deprecated, message: "Use property directly")
+    public func setDefaultLocale(to locale: Locale) {
+        fatalError()
+    }
+
+    @available(iOS, deprecated: 16.0, message: "Use `localized` instead")
+    @available(macOS, deprecated: 13.0, message: "Use `localized` instead")
+    @available(tvOS, deprecated: 16.0, message: "Use `localized` instead")
+    @available(watchOS, deprecated: 9.0, message: "Use `localized` instead")
+    @available(visionOS, deprecated: 1.0, message: "Use `localized` instead")
+    public func localizedInStringsFile(
+        _ key: String,
+        tableName: String? = nil,
+        bundle: Bundle = .main,
+        value: String = ""
+    ) -> String {
+        guard
+            let path: String = Self.findStringsFileBundle(bundle: bundle, locale: currentLocale),
+            let currentLocaleBundle: Bundle = .init(path: path)
+        else {
+            return value
+        }
+
+        return currentLocaleBundle.localizedString(
+            forKey: key,
+            value: value,
+            table: tableName
+        )
+    }
+
+    private static func findStringsFileBundle(
+        bundle: Bundle,
+        locale: Locale
+    ) -> String? {
+        let fileType: String = "lproj"
+
+        return
+            bundle.path(forResource: locale.identifier, ofType: fileType) ??
+            bundle.path(forResource: locale.languageCode, ofType: fileType)  // Just in case "en_US" is passed, but file is called "en"
+    }
+
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+    @available(*, deprecated, renamed: "localize")
+    public func localizedInStringCatalog(
+        _ key: String,
+        table: String? = nil,
+        bundle: Bundle? = nil,
+        locale: Locale = .current,
+        comment: StaticString? = nil
+    ) -> String {
+        localize(
+            key,
+            table: table,
+            bundle: bundle,
+            comment: comment
+        )
+    }
+}
+
 // MARK: - KeyPath Initializable Enumeration
 extension KeyPathInitializableEnumeration {
     @available(*, deprecated, message: "Use initializer instead")

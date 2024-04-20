@@ -11,7 +11,7 @@ import Foundation
 extension Locale {
     /// Returns the display name for the given locale component value.
     ///
-    ///     Locale(identifier: "es").displayName(forKey: .identifier) // In English locale, returns "Spanish"
+    ///     Locale(identifier: "es").displayName(forKey: .identifier) // In English `Locale`, returns "Spanish"
     ///
     public func displayName(forKey key: NSLocale.Key) -> String? {
         guard

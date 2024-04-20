@@ -91,34 +91,6 @@ let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for
 ...
 ```
 
-#### Localization Manager
-
-`LocalizationManager` that manages localizations without interacting with raw `String`s:
-
-```swift
-extension Locale {
-    static var english: Self { .init(identifier: "en") }
-    static var english_uk: Self { .init(identifier: "en-GB") }
-    static var spanish: Self { .init(identifier: "es") }
-}
-
-LocalizationManager.shared.addLocales([.english, .english_uk, .spanish])
-LocalizationManager.shared.setDefaultLocale(to: .english)
-```
-
-```swift
-LocalizationManager.shared.setCurrentLocale(to: .english)
-```
-
-```swift
-let lhs: Locale = .init(identifier: "en")
-let rhs: Locale = .init(identifier: "en-US")
-
-lhs == rhs // false
-
-lhs.isEquivalent(to: rhs) // true, if `Locale.current.regionCode` is "US"
-```
-
 #### Keychain Service
 
 `KeychainService` that supports custom queries, and has a dedicated property wrapper:

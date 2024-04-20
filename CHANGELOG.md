@@ -2,6 +2,10 @@
 
 ### 6.1.0(93)
 
+Services and Managers
+
+- `LocalizationManager` API is overhauled
+
 Models
 
 - `PublishingObservationContainer` is added, that triggers a `Publisher` when a value changes.
