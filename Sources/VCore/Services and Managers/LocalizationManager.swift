@@ -85,7 +85,7 @@ public final class LocalizationManager { // TODO: iOS 17.0 - Convert to `Observa
                 return nil
             }
 
-            _currentLocaleUserDefaults = locale // Strips region code
+            UserDefaults.standard.set([locale.identifier], forKey: "AppleLanguages") // Strips region code
 
             return locale
         }
@@ -103,8 +103,8 @@ public final class LocalizationManager { // TODO: iOS 17.0 - Convert to `Observa
             let _currentLocaleUserDefaults,
             validateLocaleIsAdded(_currentLocaleUserDefaults)
         else {
-            _currentLocaleUserDefaults = _defaultLocale
-            return _defaultLocale
+            _currentLocaleUserDefaults = defaultLocale
+            return defaultLocale
         }
 
         return _currentLocaleUserDefaults
@@ -147,7 +147,7 @@ public final class LocalizationManager { // TODO: iOS 17.0 - Convert to `Observa
             localized: String.LocalizationValue(key),
             table: table,
             bundle: bundle,
-            locale: _currentLocale,
+            locale: currentLocale,
             comment: comment
         )
     }
