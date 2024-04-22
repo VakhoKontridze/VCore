@@ -1,6 +1,6 @@
 # Change Log
 
-### 6.1.1(94)
+### [6.1.1(94)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.1) — *2024 04 22*
 
 Services and Managers
 
