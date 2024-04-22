@@ -9,22 +9,22 @@ import SwiftUI
 
 // MARK: - Localization Manager
 extension LocalizationManager {
-    @available(*, deprecated, message: "Use property directly")
+    @available(*, unavailable, message: "Use property directly")
     public func setCurrentLocale(to locale: Locale) {
         fatalError()
     }
 
-    @available(*, deprecated, message: "Use property directly")
+    @available(*, unavailable, message: "Use property directly")
     public func addLocale(_ locale: Locale) {
         fatalError()
     }
 
-    @available(*, deprecated, message: "Use property directly")
+    @available(*, unavailable, message: "Use property directly")
     public func addLocales(_ locales: [Locale]) {
         fatalError()
     }
 
-    @available(*, deprecated, message: "Use property directly")
+    @available(*, unavailable, message: "Use property directly")
     public func setDefaultLocale(to locale: Locale) {
         fatalError()
     }

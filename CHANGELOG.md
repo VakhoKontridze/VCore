@@ -1,5 +1,11 @@
 # Change Log
 
+### 6.1.1(94)
+
+Services and Managers
+
+- Deprecated API in `LocalizationManager` is now marked as unavailable
+
 ### [6.1.0(93)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.0) — *2024 04 22*
 
 Services and Managers
