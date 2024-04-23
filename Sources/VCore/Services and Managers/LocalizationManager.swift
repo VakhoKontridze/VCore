@@ -24,9 +24,14 @@ import OSLog
 ///
 ///     VStack(content: {
 ///         ForEach(
-///             LocalizationManager.shared.locales
-///                 .sorted(by: \.displayNameNative!.capitalized)
-///             ,
+///             LocalizationManager.shared.locales.sorted(by: { (lhs, rhs) in
+///                 lhs.displayNameNative
+///                     .isOptionalLess(
+///                         than: rhs.displayNameNative,
+///                         order: .nilIsGreater,
+///                         comparison: { $0.compare($1, options: .caseInsensitive) == .orderedAscending }
+///                     )
+///             }),
 ///             id: \.identifier,
 ///             content: { locale in
 ///                 Button(
@@ -34,7 +39,7 @@ import OSLog
 ///                         LocalizationManager.shared.currentLocale = locale
 ///                     },
 ///                     label: {
-///                         Text(locale.displayNameNative!.capitalized)
+///                         Text(locale.displayNameNative?.capitalized ?? locale.identifier)
 ///                             .fontWeight(LocalizationManager.shared.currentLocale == locale ? .bold : .regular)
 ///                     }
 ///                 )

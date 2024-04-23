@@ -1,5 +1,11 @@
 # Change Log
 
+### 6.2.0(95)
+
+Extensions
+
+- `Optional.isOptionalLess(than:order:comparison:)` method is added, that returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`
+
 ### [6.1.1(94)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.1) — *2024 04 22*
 
 Services and Managers

@@ -8,8 +8,36 @@
 import Foundation
 
 // MARK: - Optional Comparison
+extension Optional {
+    /// Returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`.
+    ///
+    ///     let a: String? = "Lorem ipsum"
+    ///     let b: String? = nil
+    ///
+    ///     a.isOptionalLess(
+    ///         than: b,
+    ///         order: .nilIsLess,
+    ///         comparison: { $0.compare($1, options: .caseInsensitive) == .orderedAscending }
+    ///     ) // false
+    ///
+    public func isOptionalLess(
+        than other: Self,
+        order: OptionalComparisonNilOrder,
+        comparison: (Wrapped, Wrapped) -> Bool
+    ) -> Bool {
+        switch (self, other, order) {
+        case (nil, nil, _): false
+        case (nil, _?, .nilIsLess): true
+        case (nil, _?, .nilIsGreater): false
+        case (_?, nil, .nilIsLess): false
+        case (_?, nil, .nilIsGreater): true
+        case (let lhs?, let rhs?, _): comparison(lhs, rhs)
+        }
+    }
+}
+
 extension Optional where Wrapped: Comparable {
-    /// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `OptionalComparisonNilOrder`.
+    /// Returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`.
     ///
     ///     let a: Int? = 10
     ///     let b: Int? = nil
@@ -30,7 +58,7 @@ extension Optional where Wrapped: Comparable {
         }
     }
     
-    /// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `OptionalComparisonNilOrder`.
+    /// Returns a `Bool` indicating whether current value is greater than that of the second argument with given the `OptionalComparisonNilOrder`.
     ///
     ///     let a: Int? = 10
     ///     let b: Int? = nil
@@ -44,7 +72,7 @@ extension Optional where Wrapped: Comparable {
         other.isOptionalLess(than: self, order: order)
     }
     
-    /// Returns a `Bool` value indicating whether the value of the first argument is less than or equal to that of the second argument with given `OptionalComparisonNilOrder`.
+    /// Returns a `Bool` indicating whether current value is less than or equal to the second value, given the `OptionalComparisonNilOrder`.
     ///
     ///
     ///     let a: Int? = 10
@@ -59,7 +87,7 @@ extension Optional where Wrapped: Comparable {
         !(other.isOptionalLess(than: self, order: order))
     }
     
-    /// Returns a `Bool` value indicating whether the value of the first argument is greater than or equal to that of the second argument with given `OptionalComparisonNilOrder`.
+    /// Returns a `Bool` indicating whether current value is greater than or equal to the second value, given the `OptionalComparisonNilOrder`.
     ///
     ///     let a: Int? = 10
     ///     let b: Int? = nil

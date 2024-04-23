@@ -19,16 +19,32 @@ final class OptionalComparisonTests: XCTestCase {
     private let c: Int? = 20
     
     // MARK: Tests
+    func testIsLessClosure() {
+        let a: String? = nil
+        let b: String? = "Lorem ipsum"
+        let c: String? = "z"
+
+        let comparison: (String, String) -> Bool = { (a, b) in a.compare(b, options: .caseInsensitive) == .orderedAscending }
+
+        XCTAssertTrue(a.isOptionalLess(than: b, order: .nilIsLess, comparison: comparison))
+        XCTAssertTrue(a.isOptionalLess(than: c, order: .nilIsLess, comparison: comparison))
+        XCTAssertTrue(b.isOptionalLess(than: c, order: .nilIsLess, comparison: comparison))
+
+        XCTAssertFalse(a.isOptionalLess(than: b, order: .nilIsGreater, comparison: comparison))
+        XCTAssertFalse(a.isOptionalLess(than: c, order: .nilIsGreater, comparison: comparison))
+        XCTAssertTrue(b.isOptionalLess(than: c, order: .nilIsGreater, comparison: comparison))
+    }
+
     func testIsLess() {
         XCTAssertTrue(a.isOptionalLess(than: b, order: .nilIsLess))
         XCTAssertTrue(a.isOptionalLess(than: c, order: .nilIsLess))
         XCTAssertTrue(b.isOptionalLess(than: c, order: .nilIsLess))
-        
+
         XCTAssertFalse(a.isOptionalLess(than: b, order: .nilIsGreater))
         XCTAssertFalse(a.isOptionalLess(than: c, order: .nilIsGreater))
         XCTAssertTrue(b.isOptionalLess(than: c, order: .nilIsGreater))
     }
-    
+
     func testIsGreater() {
         XCTAssertFalse(a.isOptionalGreater(than: b, order: .nilIsLess))
         XCTAssertFalse(a.isOptionalGreater(than: c, order: .nilIsLess))
