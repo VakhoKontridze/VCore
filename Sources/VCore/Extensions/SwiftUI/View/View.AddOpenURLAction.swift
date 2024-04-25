@@ -68,7 +68,7 @@ extension View {
         var body: some View {
             Text(
                 AttributedString(
-                    stringAndDefault: "Lorem <a>ipsum</a> dolor sit <b>amet</b>: \(count)",
+                    string: "Lorem <a>ipsum</a> dolor sit <b>amet</b>: \(count)",
                     attributeContainers: [
                         "a": {
                             var container: AttributeContainer = .init()

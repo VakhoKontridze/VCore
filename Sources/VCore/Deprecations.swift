@@ -145,15 +145,23 @@ extension AttributedString {
         _ string: String,
         attributeContainers: [Character: AttributeContainer]
     ) throws {
-        try self.init(string: string, attributeContainers: attributeContainers)
+        self.init(string: string, attributeContainers: attributeContainers)
     }
 
-    @available(*, deprecated, renamed: "init(stringAndDefault:attributeContainers:)")
+    @available(*, deprecated, renamed: "init(string:attributeContainers:)")
     public init(
         defaultingIfError string: String,
         attributeContainers: [Character: AttributeContainer]
     ) {
-        self.init(stringAndDefault: string, attributeContainers: attributeContainers)
+        self.init(string: string, attributeContainers: attributeContainers)
+    }
+
+    @available(*, deprecated, renamed: "init(string:attributeContainers:)")
+    public init(
+        stringAndDefault: String,
+        attributeContainers: [Character: AttributeContainer]
+    ) {
+        self.init(string: stringAndDefault, attributeContainers: attributeContainers)
     }
 }
 

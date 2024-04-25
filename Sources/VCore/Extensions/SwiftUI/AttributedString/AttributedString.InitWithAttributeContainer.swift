@@ -12,70 +12,10 @@ import OSLog
 extension AttributedString {
     /// Initializes `AttributedString` with child `AttributedString` components created from mapping tag names to `AttributeContainer`s.
     ///
-    ///     let string: String = "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit"
-    ///
-    ///     let attributeContainers: [Character: AttributeContainer] = [
-    ///         "a": {
-    ///             var container: AttributeContainer = .init()
-    ///             container.foregroundColor = .red
-    ///             container.font = .title.weight(.ultraLight)
-    ///             return container
-    ///         }(),
-    ///         "b": {
-    ///             var container: AttributeContainer = .init()
-    ///             container.foregroundColor = .blue
-    ///             container.font = .callout.weight(.bold)
-    ///             return container
-    ///         }()
-    ///     ]
-    ///
-    ///     let attributedString: AttributedString = {
-    ///         do {
-    ///             return try AttributedString(string: string, attributeContainers: attributeContainers)
-    ///         } catch {
-    ///             return AttributedString(string)
-    ///         }
-    ///     }()
-    ///
-    ///     var body: some View {
-    ///         Text(attributedString)
-    ///             .multilineTextAlignment(.center)
-    ///             .foregroundStyle(.primary)
-    ///             .font(.body)
-    ///             .padding(.horizontal)
-    ///     }
-    ///
-    public init(
-        string: String,
-        attributeContainers: [Character: AttributeContainer]
-    ) throws {
-        let tagNames: [Character] = .init(attributeContainers.keys)
-        let components: [(tagName: Character?, substring: String)] = try string.components(separatedByTagNames: tagNames)
-
-        var result: AttributedString = .init()
-
-        for component in components {
-            var attributedString: AttributedString = .init(component.substring)
-
-            if
-                let tagName: Character = component.tagName,
-                let attributeContainer: AttributeContainer = attributeContainers[tagName]
-            {
-                attributedString.setAttributes(attributeContainer)
-            }
-
-            result.append(attributedString)
-        }
-
-        self = result
-    }
-
-    /// Initializes `AttributedString` with child `AttributedString` components created from mapping tag names to `AttributeContainer`s.
-    ///
     ///     var body: some View {
     ///         Text(
     ///             AttributedString(
-    ///                 stringAndDefault: "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit",
+    ///                 string: "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit",
     ///                 attributeContainers: [
     ///                     "a": {
     ///                         var container: AttributeContainer = .init()
@@ -99,16 +39,28 @@ extension AttributedString {
     ///     }
     ///
     public init(
-        stringAndDefault: String,
+        string: String,
         attributeContainers: [Character: AttributeContainer]
     ) {
-        do {
-            self = try AttributedString(string: stringAndDefault, attributeContainers: attributeContainers)
+        let tagNames: [Character] = .init(attributeContainers.keys)
+        let components: [(tagName: Character?, substring: String)] = string.components(separatedByTagNames: tagNames)
 
-        } catch {
-            Logger.misc.error("Failed to create 'AttributedString' with 'AttributeContainer's in 'AttributedString.init(defaultingIfError:attributeContainers:)'. Defaulting to 'AttributedString(string)' expression.")
-            self = AttributedString(stringAndDefault)
+        var result: AttributedString = .init()
+
+        for component in components {
+            var attributedString: AttributedString = .init(component.substring)
+
+            if
+                let tagName: Character = component.tagName,
+                let attributeContainer: AttributeContainer = attributeContainers[tagName]
+            {
+                attributedString.setAttributes(attributeContainer)
+            }
+
+            result.append(attributedString)
         }
+
+        self = result
     }
 }
 
@@ -116,7 +68,7 @@ extension AttributedString {
 extension String {
     /*fileprivate*/ func components(
         separatedByTagNames tagNames: [Character]
-    ) throws -> [(tagName: Character?, substring: String)] {
+    ) -> [(tagName: Character?, substring: String)] {
         // Input:
         // "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit"
         //
@@ -137,90 +89,42 @@ extension String {
         var currentSubstring: String = ""
 
         while index < count {
-            let char: Character = self[index]
-
-            switch char {
-            case "<":
-                // Character is inside the tag, and component can be closed
-                if isInsideTag {
-                    guard index + 3 < count else {
-                        throw StringComponentsSeparatedByTagsError(.invalidClosingTag)
-                    }
-
-                    if
-                        tagNames.contains(self[index+1]),
-                        self[index+1] != currentTagName
-                    {
-                        throw StringComponentsSeparatedByTagsError(.nestedTagsNotSupported)
-                    }
-
-                    guard self[index+1] == "/" else {
-                        throw StringComponentsSeparatedByTagsError(.closingTagSlashNotFound)
-                    }
-
-                    guard let tagName: Character = tagNames.first(where: { $0 == self[index+2] }) else {
-                        throw StringComponentsSeparatedByTagsError(.closingTagNameNotFound)
-                    }
-
-                    guard self[index+3] == ">" else {
-                        throw StringComponentsSeparatedByTagsError(.invalidClosingTag)
-                    }
-
-                    result.append((tagName: tagName, substring: currentSubstring))
-
-                    isInsideTag = false
-                    currentTagName = nil
-                    currentSubstring = ""
-                    index += 1+3 // Skips the entire tag
-
-                // Character is beginning a new component
-                } else {
-                    // Terminates existing un-attributed component
-                    if !currentSubstring.isEmpty {
-                        result.append((tagName: nil, substring: currentSubstring))
-                        currentSubstring = ""
-                    }
-
-                    guard index + 2 < count else {
-                        throw StringComponentsSeparatedByTagsError(.invalidOpeningTag)
-                    }
-
-                    guard self[index+1] != "/" else {
-                        throw StringComponentsSeparatedByTagsError(.slashFoundInOpeningTag)
-                    }
-
-                    guard let tagName: Character = tagNames.first(where: { $0 == self[index+1] }) else {
-                        throw StringComponentsSeparatedByTagsError(.openingTagNameNotFound)
-                    }
-
-                    guard self[index+2] == ">" else {
-                        throw StringComponentsSeparatedByTagsError(.invalidOpeningTag)
-                    }
-
-                    isInsideTag = true
-                    currentTagName = tagName
-                    currentSubstring = ""
-                    index += 1+2 // Skips the entire tag
+            if
+                !isInsideTag,
+                index + 2 < count,
+                self[index] == "<",
+                tagNames.contains(self[index+1]),
+                self[index+2] == ">"
+            {
+                if !currentSubstring.isEmpty {
+                    result.append((tagName: nil, substring: currentSubstring))
                 }
 
-            case ">":
-                if index == 0 {
-                    throw StringComponentsSeparatedByTagsError(.invalidClosingTag)
+                isInsideTag = true
+                currentTagName = self[index+1]
+                currentSubstring = ""
+                index += 3
 
-                } else { // Will never occur, as it's skipped
-                    Logger.misc.fault("Unhandled edge-case in 'String.components(separatedByTagNames:)'")
-                    throw StringComponentsSeparatedByTagsError(.unknownErrorOccurred)
-                }
+            } else if
+                isInsideTag,
+                index + 3 < count,
+                self[index] == "<",
+                self[index+1] == "/",
+                self[index+2] == currentTagName,
+                self[index+3] == ">"
+            {
+                result.append((self[index+2], currentSubstring))
 
-            default:
-                currentSubstring.append(char)
+                isInsideTag = false
+                currentTagName = nil
+                currentSubstring = ""
+                index += 4
+
+            } else {
+                currentSubstring.append(self[index])
+
                 index += 1
             }
-        }
-
-        if isInsideTag { // Will never occur
-            Logger.misc.fault("Unhandled edge-case in 'String.components(separatedByTagNames:)'")
-            throw StringComponentsSeparatedByTagsError(.unknownErrorOccurred)
         }
 
         // Terminates existing un-attributed component
@@ -232,55 +136,6 @@ extension String {
     }
 }
 
-// MARK: - String Components Separated by Tags Errors
-/*private*/ struct StringComponentsSeparatedByTagsError: VCoreError, Equatable {
-    // MARK: Properties
-    private let code: Code
-
-    // MARK: Initializers
-    init(_ code: Code) {
-        self.code = code
-    }
-
-    // MARK: Code
-    enum Code: Int, Equatable {
-        case nestedTagsNotSupported
-
-        case invalidOpeningTag
-        case slashFoundInOpeningTag
-        case openingTagNameNotFound
-
-        case invalidClosingTag
-        case closingTagSlashNotFound
-        case closingTagNameNotFound
-
-        case unknownErrorOccurred
-    }
-
-    // MARK: VCore Error
-    var vCoreErrorCode: Int { code.rawValue }
-
-    var vCoreErrorDescription: String {
-        switch code {
-        case .nestedTagsNotSupported: "Nested tags not supported"
-
-        case .invalidOpeningTag: "Invalid opening tag"
-        case .slashFoundInOpeningTag: "Slash found in opening tag"
-        case .openingTagNameNotFound: "Opening tag name not found"
-
-        case .invalidClosingTag: "Invalid closing tag"
-        case .closingTagSlashNotFound: "Closing tag slash not found"
-        case .closingTagNameNotFound: "Closing tag name not found"
-
-        case .unknownErrorOccurred: "Unknown error occurred"
-        }
-    }
-
-    // MARK: Equatable
-    static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.code == rhs.code
-    }
-}
 
 // MARK: - Preview
 #if DEBUG
@@ -288,7 +143,7 @@ extension String {
 #Preview(body: {
     Text(
         AttributedString(
-            stringAndDefault: "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit",
+            string: "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit",
             attributeContainers: [
                 "a": {
                     var container: AttributeContainer = .init()

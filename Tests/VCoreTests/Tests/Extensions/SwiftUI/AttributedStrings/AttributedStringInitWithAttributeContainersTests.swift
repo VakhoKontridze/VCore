@@ -12,160 +12,227 @@ import XCTest
 // MARK: - Tests
 final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
     // MARK: Tests
-    func testPlainString() throws {
-        let string: String = "Lorem ipsum"
-
-        let components = try string.components(separatedByTagNames: [])
-
-        XCTAssertEqual(
-            testable(components),
-            testable([(nil, "Lorem ipsum")])
+    func testPlainString() {
+        test(
+            string: "Lorem ipsum",
+            tagNames: [],
+            result: [
+                (nil, "Lorem ipsum")
+            ]
         )
     }
 
-    func testSingleTag() throws {
-        let string: String = "Lorem <a>ipsum</a> dolor"
-
-        let components = try string.components(separatedByTagNames: ["a"])
-
-        XCTAssertEqual(
-            testable(components),
-            testable([(nil, "Lorem "), ("a", "ipsum"), (nil, " dolor")])
+    func testSingleTag() {
+        test(
+            string: "Lorem <a>ipsum</a> dolor",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem "),
+                ("a", "ipsum"),
+                (nil, " dolor")
+            ]
         )
     }
 
-    func testMultipleTags() throws {
-        let string: String = "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit"
-
-        let components = try string.components(separatedByTagNames: ["a", "b"])
-
-        XCTAssertEqual(
-            testable(components),
-            testable([(nil, "Lorem "), ("a", "ipsum dolor"), (nil, " sit amet, "), ("b", "consectetur adipiscing"), (nil, " elit")])
+    func testMultipleTags() {
+        test(
+            string: "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit",
+            tagNames: ["a", "b"],
+            result: [
+                (nil, "Lorem "),
+                ("a", "ipsum dolor"),
+                (nil, " sit amet, "),
+                ("b", "consectetur adipiscing"),
+                (nil, " elit")
+            ]
         )
     }
 
-    func testStartingTag() throws {
-        let string: String = "<a>Lorem</a> ipsum dolor"
-
-        let components = try string.components(separatedByTagNames: ["a"])
-
-        XCTAssertEqual(
-            testable(components),
-            testable([("a", "Lorem"), (nil, " ipsum dolor")])
+    func testStartingTag() {
+        test(
+            string: "<a>Lorem</a> ipsum dolor",
+            tagNames: ["a"],
+            result: [
+                ("a", "Lorem"),
+                (nil, " ipsum dolor")
+            ]
         )
     }
 
-    func testEndingTag() throws {
-        let string: String = "Lorem ipsum <a>dolor</a>"
-
-        let components = try string.components(separatedByTagNames: ["a"])
-
-        XCTAssertEqual(
-            testable(components),
-            testable([(nil, "Lorem ipsum "), ("a", "dolor")])
+    func testEndingTag() {
+        test(
+            string: "Lorem <a>ipsum</a>",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem "),
+                ("a", "ipsum")
+            ]
         )
+    }
+
+    func testSpecialCharacters() {
+        do {
+            test(
+                string: "Lorem <a><</a>",
+                tagNames: ["a"],
+                result: [
+                    (nil, "Lorem "),
+                    ("a", "<")
+                ]
+            )
+        }
+
+        do {
+            test(
+                string: "Lorem <a>></a>",
+                tagNames: ["a"],
+                result: [
+                    (nil, "Lorem "),
+                    ("a", ">")
+                ]
+            )
+        }
+
+        do {
+            test(
+                string: "Lorem <a>/</a>",
+                tagNames: ["a"],
+                result: [
+                    (nil, "Lorem "),
+                    ("a", "/")
+                ]
+            )
+        }
     }
 
     func testNestedTagsNotSupported() {
-        let string: String = "Lorem <a>ipsum <b>dolor</b> sit</a> amet"
-
-        XCTAssertThrowsError(
-            try string.components(separatedByTagNames: ["a", "b"]),
-            error: StringComponentsSeparatedByTagsError(.nestedTagsNotSupported)
+        test(
+            string: "Lorem <a>ipsum <b>dolor</b> sit</a> amet",
+            tagNames: ["a", "b"],
+            result: [
+                (nil, "Lorem "),
+                ("a", "ipsum <b>dolor</b> sit"),
+                (nil, " amet")
+            ]
         )
     }
 
     func testInvalidOpeningTag() {
         do {
-            let string: String = "Lorem <a"
-
-            XCTAssertThrowsError(
-                try string.components(separatedByTagNames: ["a"]),
-                error: StringComponentsSeparatedByTagsError(.invalidOpeningTag)
+            test(
+                string: "Lorem <a",
+                tagNames: ["a"],
+                result: [
+                    (nil, "Lorem <a")
+                ]
             )
         }
 
         do {
-            let string: String = "Lorem <a ipsum</a> dolor"
-
-            XCTAssertThrowsError(
-                try string.components(separatedByTagNames: ["a"]),
-                error: StringComponentsSeparatedByTagsError(.invalidOpeningTag)
+            test(
+                string: "Lorem <a ipsum</a> dolor",
+                tagNames: ["a"],
+                result: [
+                    (nil, "Lorem <a ipsum</a> dolor")
+                ]
             )
         }
     }
 
     func testSlashFoundInOpeningTag() {
-        let string: String = "Lorem </a>ipsum</a> dolor"
-
-        XCTAssertThrowsError(
-            try string.components(separatedByTagNames: ["a"]),
-            error: StringComponentsSeparatedByTagsError(.slashFoundInOpeningTag)
+        test(
+            string: "Lorem </a>ipsum</a> dolor",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem </a>ipsum</a> dolor")
+            ]
         )
     }
 
     func testOpeningTagNameNotFound() {
-        let string: String = "Lorem <> ipsum</a> dolor"
-
-        XCTAssertThrowsError(
-            try string.components(separatedByTagNames: ["a"]),
-            error: StringComponentsSeparatedByTagsError(.openingTagNameNotFound)
+        test(
+            string: "Lorem <> ipsum</a> dolor",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem <> ipsum</a> dolor")
+            ]
         )
     }
 
     func testInvalidClosingTag() {
         do {
-            let string: String = "Lorem <a>ipsum</b"
-
-            XCTAssertThrowsError(
-                try string.components(separatedByTagNames: ["a"]),
-                error: StringComponentsSeparatedByTagsError(.invalidClosingTag)
+            test(
+                string: "Lorem <a>ipsum</a",
+                tagNames: ["a"],
+                result: [
+                    (nil, "Lorem "),
+                    (nil, "ipsum</a")
+                ]
             )
         }
 
         do {
-            let string: String = "Lorem <a>ipsum</a dolor"
-
-            XCTAssertThrowsError(
-                try string.components(separatedByTagNames: ["a"]),
-                error: StringComponentsSeparatedByTagsError(.invalidClosingTag)
+            test(
+                string: "Lorem <a>ipsum</a dolor",
+                tagNames: ["a"],
+                result: [
+                    (nil, "Lorem "),
+                    (nil, "ipsum</a dolor")
+                ]
             )
         }
 
         do {
-            let string: String = "> Lorem <a>ipsum</a> dolor"
-
-            XCTAssertThrowsError(
-                try string.components(separatedByTagNames: ["a"]),
-                error: StringComponentsSeparatedByTagsError(.invalidClosingTag)
+            test(
+                string: "> Lorem <a>ipsum</a> dolor",
+                tagNames: ["a"],
+                result: [
+                    (nil, "> Lorem "),
+                    ("a", "ipsum"),
+                    (nil, " dolor")
+                ]
             )
         }
     }
 
     func testClosingTagSlashNotFound() {
-        let string: String = "Lorem <a> ipsum<a> dolor"
-
-        XCTAssertThrowsError(
-            try string.components(separatedByTagNames: ["a"]),
-            error: StringComponentsSeparatedByTagsError(.closingTagSlashNotFound)
+        test(
+            string: "Lorem <a>ipsum<a> dolor",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem "),
+                (nil, "ipsum<a> dolor"),
+            ]
         )
     }
 
     func testClosingTagNameNotFound() {
-        let string: String = "Lorem <a> ipsum</> dolor"
-
-        XCTAssertThrowsError(
-            try string.components(separatedByTagNames: ["a"]),
-            error: StringComponentsSeparatedByTagsError(.closingTagNameNotFound)
+        test(
+            string: "Lorem <a>ipsum</> dolor",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem "),
+                (nil, "ipsum</> dolor"),
+            ]
         )
     }
 
     // MARK: Helpers
+    private func test(
+        string: String,
+        tagNames: [Character],
+        result: [(Character?, String)]
+    ) {
+        XCTAssertEqual(
+            testable(string.components(separatedByTagNames: tagNames)),
+            testable(result)
+        )
+    }
+
     private func testable(
         _ values: [(Character?, String)]
     ) -> [Wrapper] {
-        values.map { .init(tagName: $0, substring: $1) }
+        values.map { Wrapper(tagName: $0, substring: $1) }
     }
 
     private struct Wrapper: Equatable {
