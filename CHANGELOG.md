@@ -1,5 +1,12 @@
 # Change Log
 
+### 6.1.2(95)
+
+Helpers - Architectural Pattern Helpers
+
+- Issue with `View.alert(parameters:)` not setting `nil` to `AlertParameters` if no custom button is provided is fixed
+- Issue with `ConfirmationDialog.alert(parameters:)` not setting `nil` to `ConfirmationDialogParameters` if no custom button is provided is fixed
+
 ### [6.1.1(94)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.1) — *2024 04 22*
 
 Services and Managers

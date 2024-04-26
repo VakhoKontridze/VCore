@@ -37,7 +37,7 @@ extension View {
             parameters.wrappedValue?.title ?? "",
             isPresented: Binding(
                 get: { parameters.wrappedValue != nil },
-                set: { if $0 { parameters.wrappedValue = nil } }
+                set: { if !$0 { parameters.wrappedValue = nil } }
             ),
             titleVisibility: {
                 switch (parameters.wrappedValue?.title, parameters.wrappedValue?.message) {
@@ -54,7 +54,6 @@ extension View {
                         id: \.offset, // Native `View.confirmationDialog(...)` doesn't react to changes
                         content: { (_, button) in
                             button.makeBody(animateOutHandler: { completion in
-                                parameters.wrappedValue = nil
                                 completion?()
                             })
                         }
