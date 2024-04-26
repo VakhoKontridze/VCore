@@ -1,6 +1,6 @@
 # Change Log
 
-### 6.1.2(95)
+### [6.1.2(95)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.2) — *2024 04 26*
 
 Helpers - Architectural Pattern Helpers
 
