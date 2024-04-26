@@ -37,7 +37,7 @@ extension View {
             parameters.wrappedValue?.title ?? "",
             isPresented: Binding(
                 get: { parameters.wrappedValue != nil },
-                set: { if $0 { parameters.wrappedValue = nil } }
+                set: { if !$0 { parameters.wrappedValue = nil } }
             ),
             actions: {
                 if let buttons: [any AlertButtonProtocol] = parameters.wrappedValue?.buttons() {
@@ -46,7 +46,6 @@ extension View {
                         id: \.offset, // Native `View.alert(...)` doesn't react to changes
                         content: { (_, button) in
                             button.makeBody(animateOutHandler: { completion in
-                                parameters.wrappedValue = nil
                                 completion?()
                             })
                         }

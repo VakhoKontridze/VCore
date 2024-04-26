@@ -1,12 +1,19 @@
 # Change Log
 
-### 6.2.0(95)
+### 6.2.0(96)
 
 Extensions
 
 - `AttributedString.init(string:attributeContainers:)` no longer throws
 - `AttributedString.init(string:attributeContainers:)` can now process special characters, such as `<`, `>`, and `\`
 - `Optional.isOptionalLess(than:order:comparison:)` method is added, that returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`
+
+### [6.1.2(95)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.2) — *2024 04 26*
+
+Helpers - Architectural Pattern Helpers
+
+- Issue with `View.alert(parameters:)` not setting `nil` to `AlertParameters` if no custom button is provided is fixed
+- Issue with `ConfirmationDialog.alert(parameters:)` not setting `nil` to `ConfirmationDialogParameters` if no custom button is provided is fixed
 
 ### [6.1.1(94)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.1) — *2024 04 22*
 
