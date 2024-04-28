@@ -21,5 +21,5 @@ public macro color(
     opacity: CGFloat = 1
 ) -> Color = #externalMacro(
     module: "VCoreMacros",
-    type: "ColorMacro_InitWithHexUInt64"
+    type: "ColorMacro_InitWithHexUInt"
 )
