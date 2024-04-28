@@ -11,7 +11,7 @@ import XCTest
 
 // MARK: - Tests
 final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
-    // MARK: Tests
+    // MARK: Tests - Valid
     func testPlainString() {
         test(
             string: "Lorem ipsum",
@@ -105,6 +105,7 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         }
     }
 
+    // MARK: Tests - Invalid
     func testNestedTagsNotSupported() {
         test(
             string: "Lorem <a>ipsum <b>dolor</b> sit</a> amet",
