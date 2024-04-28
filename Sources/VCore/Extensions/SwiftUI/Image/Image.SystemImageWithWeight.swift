@@ -32,6 +32,23 @@ extension Image {
         
         self.init(uiImage: uiImage)
     }
+
+    /// Creates a system symbol image with weight.
+    ///
+    ///     var body: some View {
+    ///         Image(systemName: "shuffle", weight: .bold)
+    ///     }
+    ///
+    public init(
+        systemNameAndDefault: String,
+        weight: UIImage.SymbolWeight
+    ) {
+        if let image: Image = .init(systemName: systemNameAndDefault, weight: weight) {
+            self = image
+        } else {
+            self = Image(systemName: systemNameAndDefault)
+        }
+    }
 }
 
 // MARK: - Preview
@@ -40,7 +57,7 @@ extension Image {
 #Preview(body: {
     VStack(spacing: 10, content: {
         Image(systemName: "shuffle")
-        Image(systemName: "shuffle", weight: .bold)
+        Image(systemNameAndDefault: "shuffle", weight: .bold)
     })
 })
 
