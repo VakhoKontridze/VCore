@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - Color (Init with Hex UInt)
 /// Returns non-optional `Color` from `UInt`, checked during the compile time.
 ///
-/// `hex` parameter must have at least `6` characters.
+/// `hex` parameter must have `6` characters.
 ///
 ///     let color: Color = #color(hex: 0x007AFF)
 ///
