@@ -49,7 +49,7 @@ public macro CKGCodingKey(
 )
 
 // MARK: - Coding Keys Generation Coding Key Ignored
-/// Ignores generation of ucstom `Codable` key for a property.
+/// Ignores generation of custom `Codable` key for a property.
 ///
 /// For additional info, refer to `CodingKeysGeneration`.
 @attached(peer)
