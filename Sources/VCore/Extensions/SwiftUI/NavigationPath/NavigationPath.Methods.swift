@@ -13,7 +13,7 @@ extension NavigationPath {
     /// Adds the elements of a sequence or collection to the end of the path.
     ///
     ///     var path: NavigationPath = .init()
-    ///     path.append(contentsOf: ["Destination1", "Destionation2"])
+    ///     path.append(contentsOf: ["Destination1", "Destination2"])
     ///
     mutating public func append(
         contentsOf newElements: some Sequence<some Hashable>
