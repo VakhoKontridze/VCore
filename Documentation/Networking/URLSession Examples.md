@@ -276,7 +276,7 @@ struct FetchImageGateway: FetchImageGatewayProtocol {
         return entity
     }
 }
-```swift
+```
 
 Request is initiated to retrieve an `UIImage` and print the download progress:
 
