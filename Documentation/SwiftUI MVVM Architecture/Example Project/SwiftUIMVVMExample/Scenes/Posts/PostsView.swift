@@ -62,7 +62,7 @@ struct PostsView: View {
 #if DEBUG
 
 #Preview(body: {
-    DIContainer.current.injectPreviewDependencies()
+    DIContainer.shared.injectPreviewDependencies()
 
     return CoordinatingNavigationStack(root: {
         PostsView(parameters: .mock)

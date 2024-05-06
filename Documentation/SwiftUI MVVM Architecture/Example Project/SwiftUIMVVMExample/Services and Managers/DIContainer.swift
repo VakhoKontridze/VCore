@@ -14,7 +14,7 @@ final class DIContainer {
     lazy var networkGateways: NetworkGateways = .init()
 
     // MARK: Properties - Singleton
-    static let current: DIContainer = .init()
+    static let shared: DIContainer = .init()
 
     // MARK: Initializers
     private init() {}
