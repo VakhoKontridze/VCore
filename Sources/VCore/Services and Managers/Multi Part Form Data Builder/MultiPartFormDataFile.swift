@@ -12,7 +12,7 @@ import Foundation
 ///
 /// While not a non-nominal type, `AnyMultipartFormDataFile` mimics `Any`.
 ///
-/// `MultipartFormDataFile`, `Dictionary` with a value of `AnyMultipartFormDataFile`, and array of `AnyMultipartFormDataFile` all conform to this protocol.
+/// `MultipartFormDataFile`, `Dictionary` with a value of `AnyMultipartFormDataFile`, and array of `AnyMultipartFormDataFile` all conform to this `protocol`.
 /// This allows `MultipartFormDataBuilder` to effectively send a single item, dictionary, array, combination, or a nested structure of each other.
 ///
 /// Files passed to `MultiParFormDataBuilder` via dictionary will have joined names,

@@ -12,8 +12,8 @@ import UIKit
 // MARK: - UI Action Sheet Viewable
 /// Protocol for presenting an `UIActionSheet`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `View/Controller`.
-/// In `MVVM` architecture, this protocol is conformed to by a `View/Controller`.
+/// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `View/Controller`.
+/// In `MVVM` architecture, this `protocol` is conformed to by a `View/Controller`.
 ///
 ///     final class ViewController: UIViewController, UIActionSheetViewable {
 ///         var presenter: Presenter!

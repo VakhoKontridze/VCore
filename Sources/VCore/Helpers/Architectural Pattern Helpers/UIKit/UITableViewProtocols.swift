@@ -92,8 +92,8 @@ extension ConfigurableUITableViewCell {
 // MARK: - Table View
 /// Allows for the delegation of `UITableViewDelegate`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `Presenter`.
-/// in `MVVM` architecture, this protocol is conformed to by a `ViewModel`.
+/// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `Presenter`.
+/// in `MVVM` architecture, this `protocol` is conformed to by a `ViewModel`.
 public protocol UITableViewDelegable {
     /// Notifies that a `UITableViewCell` has been selected and section and row.
     func tableViewDidSelectRow(section: Int, row: Int)
@@ -101,8 +101,8 @@ public protocol UITableViewDelegable {
 
 /// Allows for the delegation of `UITableViewDataSource`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `Presenter`.
-/// in `MVVM` architecture, this protocol is conformed to by a `ViewModel`.
+/// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `Presenter`.
+/// in `MVVM` architecture, this `protocol` is conformed to by a `ViewModel`.
 public protocol UITableViewDataSourceable {
     /// Number of sections in `UITableView`.
     var tableViewNumberOfSections: Int { get }

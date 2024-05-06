@@ -12,8 +12,8 @@ import UIKit
 // MARK: - UI Alert Viewable
 /// Protocol for presenting an `UIAlert`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this protocol is conformed to by a `View/Controller`.
-/// In `MVVM` architecture, this protocol is conformed to by a `View/Controller`.
+/// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `View/Controller`.
+/// In `MVVM` architecture, this `protocol` is conformed to by a `View/Controller`.
 ///
 ///     final class ViewController: UIViewController, UIAlertViewable {
 ///         var presenter: Presenter!
