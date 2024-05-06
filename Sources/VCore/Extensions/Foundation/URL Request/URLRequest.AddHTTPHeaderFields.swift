@@ -33,12 +33,9 @@ extension URLRequest {
         json httpHeaderFields: [String: Any?]
     ) {
         for (key, value) in httpHeaderFields {
-            guard
-                let value,
-                let valueStr: String = .init(unwrappedDescribing: value)
-            else {
-                continue
-            }
+            guard let value else { continue }
+
+            let valueStr: String = .init(describing: value)
 
             addValue(valueStr, forHTTPHeaderField: key)
         }

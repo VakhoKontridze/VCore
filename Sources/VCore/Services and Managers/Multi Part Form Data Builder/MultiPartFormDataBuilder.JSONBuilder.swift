@@ -49,8 +49,10 @@ extension MultipartFormDataBuilder {
             element: Any?,
             to data: inout Data
         ) throws {
-            guard let value: String = .init(unwrappedDescribing: element) else { return }
-            
+            guard let element else { return }
+
+            let value: String = .init(describing: element)
+
             try data.appendString("--\(boundary)\(lineBreak)")
             try data.appendString("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak)\(lineBreak)")
             try data.appendString("\(value)\(lineBreak)")

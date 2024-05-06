@@ -139,6 +139,14 @@ struct CustomDismissActionEnvironmentKey: EnvironmentKey {
 }
 
 // MARK: - Extensions - Foundation
+extension String {
+    @available(*, deprecated, message: "Initializer will be removed in VCore 7.0")
+    public init?<Subject>(unwrappedDescribing instance: Subject?) {
+        guard let instance else { return nil }
+        self.init(describing: instance)
+    }
+}
+
 extension AttributedString {
     @available(*, deprecated, renamed: "init(string:attributeContainers:)")
     public init(
