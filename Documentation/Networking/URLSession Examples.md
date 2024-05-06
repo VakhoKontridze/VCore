@@ -77,7 +77,6 @@ Frequently, databases return their data or response objects in the form of neste
 
 ```swift
 {
-    "success": false,
     "message": "Something went wrong",
     "data": {
         ...
@@ -128,7 +127,7 @@ func processURLSessionResponse(
 
     guard
         let json: [String: Any?] = try? JSONDecoder.decodeJSONFromData(data),
-        let message: String = json["error"]?.toString
+        let message: String = json["message"]?.toString
     else {
         throw URLError(.cannotDecodeContentData)
     }
@@ -148,7 +147,7 @@ func processURLSessionData(
 ) throws -> Data {
     guard
         let json: [String: Any?] = try? JSONDecoder.decodeJSONFromData(data),
-        let dataObjectOpt: Any? = json["json"],
+        let dataObjectOpt: Any? = json["data"],
         let dataObject: Any = dataObjectOpt,
         let dataData: Data = try? JSONEncoder.encodeAnyToData(dataObject)
     else {
