@@ -78,7 +78,7 @@ Frequently, databases return their data or response objects in the form of neste
 ```swift
 {
     "success": false,
-    "message": "You are encountered ... error",
+    "message": "Something went wrong",
     "data": {
         ...
     }
