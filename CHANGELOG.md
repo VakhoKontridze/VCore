@@ -7,7 +7,7 @@ Extensions
 - `AttributedString.init(string:attributeContainers:)` no longer throws
 - `AttributedString.init(string:attributeContainers:)` can now process special characters, such as `<`, `>`, and `\`
 - `Optional.isOptionalLess(than:order:comparison:)` method is added, that returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`
-- `Image.init(systemName:weight:)` initializer is added, as a non-throwing counterpart to the existing initializer
+- `Image.init(systemNameAndDefault:weight:)` initializer is added, as a non-throwing counterpart to the existing initializer
 
 ### [6.1.2(95)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.2) — *2024 04 26*
 
