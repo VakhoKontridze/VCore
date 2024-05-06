@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - View Shadow with CGPoint
+// MARK: - View Shadow with CG Point
 extension View {
     /// Adds a shadow to this view.
     ///

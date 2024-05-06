@@ -30,7 +30,7 @@ extension View {
     ///         })
     ///     }
     ///
-    /// One solution lies in using `.sheet(item:content:)` to bind value to modal:
+    /// One solution lies in using `View.sheet(item:content:)` to bind value to modal:
     ///
     ///     private struct Sheet: Identifiable {
     ///         let id: UUID = .init()
