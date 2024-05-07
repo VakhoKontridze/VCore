@@ -26,7 +26,8 @@ extension UIViewController {
         }())
     }
     
-    @objc private func endEditingOnOutsideTap() {
+    @objc 
+    private func endEditingOnOutsideTap() {
         view.endEditing(true)
     }
 }

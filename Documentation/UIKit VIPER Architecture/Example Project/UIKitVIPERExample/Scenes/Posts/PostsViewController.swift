@@ -107,7 +107,8 @@ final class PostsViewController:
     }
     
     // MARK: Refresh Control
-    @objc private func refreshTable(sender: UIRefreshControl) {
+    @objc 
+    private func refreshTable(sender: UIRefreshControl) {
         presenter.didPullToRefresh()
     }
 }

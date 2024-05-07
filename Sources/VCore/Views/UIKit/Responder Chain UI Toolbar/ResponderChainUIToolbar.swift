@@ -180,17 +180,20 @@ open class ResponderChainUIToolbar: UIToolbar {
 
     // MARK: Actions
     /// Selector that runs when arrow up button is tapped.
-    @objc open func didTapArrowUpButton(sender: UIBarButtonItem) -> Void {
+    @objc 
+    open func didTapArrowUpButton(sender: UIBarButtonItem) -> Void {
         arrowUpButtonAction?()
     }
 
     /// Selector that runs when arrow down button is tapped.
-    @objc open func didTapArrowDownButton(sender: UIBarButtonItem) -> Void {
+    @objc 
+    open func didTapArrowDownButton(sender: UIBarButtonItem) -> Void {
         arrowDownButtonAction?()
     }
 
     /// Selector that runs when done button is tapped.
-    @objc open func didTapDoneButton(sender: UIBarButtonItem) -> Void {
+    @objc 
+    open func didTapDoneButton(sender: UIBarButtonItem) -> Void {
         doneButtonAction?()
     }
 }
