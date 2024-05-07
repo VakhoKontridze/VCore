@@ -7,6 +7,94 @@
 
 import SwiftUI
 
+// MARK: - Aligned Grid Layout
+@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+extension AlignedGridLayout {
+    @available(*, deprecated, renamed: "init(horizontalAlignment:verticalAlignment:spacingHorizontal:spacingVertical:)")
+    public init(
+        alignment: HorizontalAlignment,
+        verticalAlignment: VerticalAlignment = .center,
+        spacingHorizontal: CGFloat,
+        spacingVertical: CGFloat
+    ) {
+        self.init(
+            horizontalAlignment: alignment,
+            verticalAlignment: verticalAlignment,
+            spacingHorizontal: spacingHorizontal,
+            spacingVertical: spacingVertical
+        )
+    }
+
+    @available(*, deprecated, renamed: "init(horizontalAlignment:verticalAlignment:spacing:)")
+    public init(
+        alignment: HorizontalAlignment,
+        verticalAlignment: VerticalAlignment = .center,
+        spacing: CGFloat
+    ) {
+        self.init(
+            horizontalAlignment: alignment,
+            verticalAlignment: verticalAlignment,
+            spacingHorizontal: spacing,
+            spacingVertical: spacing
+        )
+    }
+}
+
+// MARK: - KeyPath Initializable Enumeration
+extension KeyPathInitializableEnumeration {
+    @available(*, deprecated, message: "Use initializer instead")
+    public static func aCase<Property>(
+        key keyPath: KeyPath<Self, Property>,
+        value: Property
+    ) -> Self?
+        where Property: Equatable
+    {
+        Self.allCases.first { $0[keyPath: keyPath] == value }
+    }
+}
+
+// MARK: - Custom Dismiss Action
+@available(*, deprecated, message: "Model will be removed in VCore 7.0")
+public struct CustomDismissAction {
+    public let action: () -> Void
+
+    public init(
+        _ action: @escaping () -> Void
+    ) {
+        self.action = action
+    }
+
+    init() {
+        self.action = {}
+    }
+
+    public func callAsFunction() {
+        action()
+    }
+}
+
+extension View {
+    @available(*, deprecated, message: "Method will be removed in VCore 7.0")
+    public func customDismissAction(
+        _ customDismissAction: CustomDismissAction
+    ) -> some View {
+        self
+            .environment(\.customDismissAction, customDismissAction)
+    }
+}
+
+extension EnvironmentValues {
+    @available(*, deprecated, message: "Property will be removed in VCore 7.0")
+    public var customDismissAction: CustomDismissAction {
+        get { self[CustomDismissActionEnvironmentKey.self] }
+        set { self[CustomDismissActionEnvironmentKey.self] = newValue }
+    }
+}
+
+struct CustomDismissActionEnvironmentKey: EnvironmentKey {
+    static let defaultValue: CustomDismissAction = .init()
+}
+
 // MARK: - Localization Manager
 extension LocalizationManager {
     @available(*, unavailable, message: "Use property directly")
@@ -81,61 +169,6 @@ extension LocalizationManager {
             comment: comment
         )
     }
-}
-
-// MARK: - KeyPath Initializable Enumeration
-extension KeyPathInitializableEnumeration {
-    @available(*, deprecated, message: "Use initializer instead")
-    public static func aCase<Property>(
-        key keyPath: KeyPath<Self, Property>,
-        value: Property
-    ) -> Self?
-        where Property: Equatable
-    {
-        Self.allCases.first { $0[keyPath: keyPath] == value }
-    }
-}
-
-// MARK: - Custom Dismiss Action
-@available(*, deprecated, message: "Model will be removed in VCore 7.0")
-public struct CustomDismissAction {
-    public let action: () -> Void
-
-    public init(
-        _ action: @escaping () -> Void
-    ) {
-        self.action = action
-    }
-
-    init() {
-        self.action = {}
-    }
-
-    public func callAsFunction() {
-        action()
-    }
-}
-
-extension View {
-    @available(*, deprecated, message: "Method will be removed in VCore 7.0")
-    public func customDismissAction(
-        _ customDismissAction: CustomDismissAction
-    ) -> some View {
-        self
-            .environment(\.customDismissAction, customDismissAction)
-    }
-}
-
-extension EnvironmentValues {
-    @available(*, deprecated, message: "Property will be removed in VCore 7.0")
-    public var customDismissAction: CustomDismissAction {
-        get { self[CustomDismissActionEnvironmentKey.self] }
-        set { self[CustomDismissActionEnvironmentKey.self] = newValue }
-    }
-}
-
-struct CustomDismissActionEnvironmentKey: EnvironmentKey {
-    static let defaultValue: CustomDismissAction = .init()
 }
 
 // MARK: - Extensions - Foundation

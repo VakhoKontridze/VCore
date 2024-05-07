@@ -73,7 +73,7 @@ import SwiftUI
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 public struct AlignedGridLayout: Layout {
     // MARK: Properties
-    private let alignment: HorizontalAlignment
+    private let horizontalAlignment: HorizontalAlignment
     private let verticalAlignment: VerticalAlignment
 
     private let spacingHorizontal: CGFloat
@@ -82,12 +82,12 @@ public struct AlignedGridLayout: Layout {
     // MARK: Initializers
     /// Initializes `AlignedGridLayout` with alignment and spacings.
     public init(
-        alignment: HorizontalAlignment,
+        horizontalAlignment: HorizontalAlignment,
         verticalAlignment: VerticalAlignment = .center,
         spacingHorizontal: CGFloat,
         spacingVertical: CGFloat
     ) {
-        self.alignment = alignment
+        self.horizontalAlignment = horizontalAlignment
         self.verticalAlignment = verticalAlignment
         self.spacingHorizontal = spacingHorizontal
         self.spacingVertical = spacingVertical
@@ -95,12 +95,12 @@ public struct AlignedGridLayout: Layout {
     
     /// Initializes `AlignedGridLayout` with alignment and spacing.
     public init(
-        alignment: HorizontalAlignment,
+        horizontalAlignment: HorizontalAlignment,
         verticalAlignment: VerticalAlignment = .center,
         spacing: CGFloat
     ) {
         self.init(
-            alignment: alignment,
+            horizontalAlignment: horizontalAlignment,
             verticalAlignment: verticalAlignment,
             spacingHorizontal: spacing,
             spacingVertical: spacing
@@ -205,7 +205,7 @@ public struct AlignedGridLayout: Layout {
             for i in rects.indices {
                 for j in rects[i].indices {
                     let offset: CGFloat = {
-                        switch alignment {
+                        switch horizontalAlignment {
                         case .leading: 0
                         case .center: remainingRowSpacings[i]/2
                         case .trailing: remainingRowSpacings[i]
@@ -319,7 +319,7 @@ public struct AlignedGridLayout: Layout {
 
 @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 private struct Preview_Section: View {
-    private let alignment: HorizontalAlignment
+    private let horizontalAlignment: HorizontalAlignment
     private let verticalAlignment: VerticalAlignment
     private let hasDifferentHeights: Bool
 
@@ -331,18 +331,18 @@ private struct Preview_Section: View {
     ]
 
     init(
-        _ alignment: HorizontalAlignment,
+        _ horizontalAlignment: HorizontalAlignment,
         verticalAlignment: VerticalAlignment = .center,
         hasDifferentHeights: Bool = false
     ) {
-        self.alignment = alignment
+        self.horizontalAlignment = horizontalAlignment
         self.verticalAlignment = verticalAlignment
         self.hasDifferentHeights = hasDifferentHeights
     }
 
     var body: some View {
         AlignedGridLayout(
-            alignment: alignment,
+            horizontalAlignment: horizontalAlignment,
             verticalAlignment: verticalAlignment,
             spacing: 5
         ).callAsFunction({
