@@ -24,14 +24,14 @@ Services and Managers
 
 ### [6.1.0(93)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.0) — *2024 04 22*
 
-Services and Managers
-
-- `LocalizationManager` API is overhauled
-
 Models
 
 - `PublishingObservationContainer` is added, that triggers a `Publisher` when a value changes.
 - Conformance to `Comparable` `protocol` is removed from `GenericStateModel` due to ambiguous API
+
+Services and Managers
+
+- `LocalizationManager` API is overhauled
 
 Extensions
 
@@ -63,6 +63,15 @@ General
 - Package now partially supports `visionOS`
 - Colors are overhauled to better support other platforms
 
+Views
+
+- Crashes in `TouchSensitiveContainer` on `tvOS` are fixed, and view is marked as unavailable
+- `defaultDisclosureGroupPadding` is renamed to `systemDisclosureGroupPadding`, and `systemDisclosureGroupContentHeight` is introduced to better leverage the `DisclosureGroup` API
+
+Models
+
+- `VCoreError` API is updated
+
 Services and Managers - Presentation Host
 
 - Presentation API is massively simplified
@@ -76,15 +85,6 @@ Services and Managers - Localization Manager
 
 - `LocalizationManager` no longer offers an API for overriding `Bundle`s
 - `LocalizationKeyProvider` is removed, as it's obsoleted by the String catalog API
-
-Views
-
-- Crashes in `TouchSensitiveContainer` on `tvOS` are fixed, and view is marked as unavailable
-- `defaultDisclosureGroupPadding` is renamed to `systemDisclosureGroupPadding`, and `systemDisclosureGroupContentHeight` is introduced to better leverage the `DisclosureGroup` API
-
-Models
-
-- `VCoreError` API is updated
 
 Helpers
 
@@ -144,10 +144,6 @@ Views
 
 ### [5.2.0(87)](https://github.com/VakhoKontridze/VCore/releases/tag/5.2.0) — *2023 12 07*
 
-Services and Managers
-
-- `LocalizationManager.localizedInStringCatalog(...)` method is added to support String catalog API
-
 Views
 
 - `PlainList` is added, that wraps `List` and removed all decoration
@@ -161,6 +157,10 @@ Models
 
 - `map(_:)` method is added to `EdgeInsets`s, that returns itself containing the results of mapping the given closure over the values
 - `map(_:)` method is added to `GenericStateModel`s, that returns itself containing the results of mapping the given closure over the values
+
+Services and Managers
+
+- `LocalizationManager.localizedInStringCatalog(...)` method is added to support String catalog API
 
 Extensions
 
@@ -181,18 +181,18 @@ Extra - XCode Templates
 
 ### [5.1.0(86)](https://github.com/VakhoKontridze/VCore/releases/tag/5.1.0) — *2023 11 11*
 
-Services and Managers - Presentation Host
+Views
 
-- Issue with XCode previews is fixed
+- `TouchSensitiveContainer` now supports `tvOS`
 
 Servies and Managers
 
 - `LocalizationManager` now emits notifications using `Combine`
 - `NetworkReachabilityService` now emits notifications using `Combine`
 
-Views
+Services and Managers - Presentation Host
 
-- `TouchSensitiveContainer` now supports `tvOS`
+- Issue with XCode previews is fixed
 
 Helpers - Architectural Pattern Helpers
 
@@ -210,6 +210,29 @@ Extensions
 - `Publisher.assignWeak(to:on:)` method is added, that assigns each element from `Publisher` to a property of an object with a weak retain cycle
 
 ### [5.0.0(85)](https://github.com/VakhoKontridze/VCore/releases/tag/5.0.0) — *2023 10 08*
+
+Views
+
+- `TouchSensitiveContainer` is added that detects and reacts to touch down and touch up interactions
+- `ResponderChainToolBar` can now be initialized with custom `CGSize`
+- Responders in `ResponderChainToolBarManager` can now be initialized with custom `CGSize` and `ResponderChainToolBarUIModel`s
+- `keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin` is added to `FirstResponderViewUnObscuringUIViewController`
+- `CarouselCollectionViewFlowLayout` is renamed to `CarouselUICollectionViewFlowLayout`
+- `CoordinatingNavigationStack` is converted to `Observable`, and `ObservableObject`-based version is renamed to `CoordinatingNavigationStackOO`
+- `ViewResettingContainer` is converted to `Observable`, and `ObservableObject`-based version is renamed to `ViewResettingContainerOO`
+- `AlignedGridView` is renamed to `AlignedGridLayout`
+- `AlignedGridLayout` now takes `VerticalAlignment` as a parameter
+
+Models
+
+- `CastingError` is added to represents failed casting
+- `EnvironmentValues.safeAreaInsets` are added that retrieve safe areas from `UIApplication.shared.firstWindowInSingleSceneApp`
+- `PointPixelMeasurement` is added that represents points or pixels
+- `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
+- `delay` is added to `BasicAnimation`
+- JSON request headers are renamed to JSON request header fields
+- `EnvironmentValues.viewResetter` is added
+- `ObservableContainer` is renamed to `ObservableContainerOO`, to reflect it's `ObservableObject` implementation
 
 Services and Managers
 
@@ -242,29 +265,6 @@ Services and Managers - JSON Decoder Service
 - `JSONDecoderService.decodable(data)` is removed
 - `JSONDecoderService.decodable(json:options:)` is replaced with `JSONDecoder.decodeObjectFromJSON(_:optionsJSONToData:)`
 - `JSONDecoderService.decodable(jsonArray:options:)` is replaced with `JSONDecoder.decodeObjectFromJSONArray(_:optionsJSONArrayToData:)`
-
-Views
-
-- `TouchSensitiveContainer` is added that detects and reacts to touch down and touch up interactions
-- `ResponderChainToolBar` can now be initialized with custom `CGSize`
-- Responders in `ResponderChainToolBarManager` can now be initialized with custom `CGSize` and `ResponderChainToolBarUIModel`s
-- `keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin` is added to `FirstResponderViewUnObscuringUIViewController`
-- `CarouselCollectionViewFlowLayout` is renamed to `CarouselUICollectionViewFlowLayout`
-- `CoordinatingNavigationStack` is converted to `Observable`, and `ObservableObject`-based version is renamed to `CoordinatingNavigationStackOO`
-- `ViewResettingContainer` is converted to `Observable`, and `ObservableObject`-based version is renamed to `ViewResettingContainerOO`
-- `AlignedGridView` is renamed to `AlignedGridLayout`
-- `AlignedGridLayout` now takes `VerticalAlignment` as a parameter
-
-Models
-
-- `CastingError` is added to represents failed casting
-- `EnvironmentValues.safeAreaInsets` are added that retrieve safe areas from `UIApplication.shared.firstWindowInSingleSceneApp`
-- `PointPixelMeasurement` is added that represents points or pixels
-- `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
-- `delay` is added to `BasicAnimation`
-- JSON request headers are renamed to JSON request header fields
-- `EnvironmentValues.viewResetter` is added
-- `ObservableContainer` is renamed to `ObservableContainerOO`, to reflect it's `ObservableObject` implementation
 
 Helpers - Architectural Pattern Helpers
 
@@ -307,10 +307,6 @@ General
 
 - UIModels are re-structured and no longer depend on sub UI models
 
-Services and Managers
-
-- `LocalizationKeyProvider` is added, that allows for convenient localization by providing a localization key
-
 Views
 
 - `GradientLayerUIView` is added, that automatically resizes `CAGradientLayer` to it's `bounds`
@@ -319,6 +315,10 @@ Views
 Models
 
 - `class`-based `LockedAtomicInteger` is added
+
+Services and Managers
+
+- `LocalizationKeyProvider` is added, that allows for convenient localization by providing a localization key
 
 Extensions
 
@@ -367,13 +367,13 @@ Extensions
 
 ### [4.9.0(80)](https://github.com/VakhoKontridze/VCore/releases/tag/4.9.0) — *2023 05 01*
 
-Services and Managers
-
-- `PresentationHost` now queues simultaneous presentations, and presents them once current modal is dismissed
-
 Views
 
 - `ViewResetter` is now a callable objects
+
+Services and Managers
+
+- `PresentationHost` now queues simultaneous presentations, and presents them once current modal is dismissed
 
 Extensions
 
@@ -426,10 +426,6 @@ Extensions
 
 ### [4.7.0(74)](https://github.com/VakhoKontridze/VCore/releases/tag/4.7.0) — *2023 04 09*
 
-Services and managers
-
-- `PresentationHost` is brought from [VComponents](https://github.com/VakhoKontridze/VComponents)
-
 Views
 
 - `SwiftUIBaseButton` is renamed to `SwiftUIGestureBaseButton`
@@ -452,6 +448,10 @@ Models
 - `alignment` and `edge` are added to layout directions
 - `axis` is added to `LayoutDirectionOmni`
 - `withReversedLeftAndRightCorners(_:)` method is added to `RectCorner` that reversed left and right corners if condition is met
+
+Services and managers
+
+- `PresentationHost` is brought from [VComponents](https://github.com/VakhoKontridze/VComponents)
 
 Extensions
 
@@ -525,11 +525,6 @@ Services and Managers
 
 ### [4.4.0(69)](https://github.com/VakhoKontridze/VCore/releases/tag/4.4.0) — *2023 02 08*
 
-Services and Managers
-
-- `LocalizationService` is removed from `Extra`, and added to Package as `LocalizationManager`
-- `MultiPartFormDataBuilder` is renamed to `MultipartFormDataBuilder` 
-
 Views
 
 - `ViewResettingContainer` is added that allows for view reset on demand
@@ -537,6 +532,11 @@ Views
 Models
 
 - `ObservableContainer` now has an `open` access level
+
+Services and Managers
+
+- `LocalizationService` is removed from `Extra`, and added to Package as `LocalizationManager`
+- `MultiPartFormDataBuilder` is renamed to `MultipartFormDataBuilder` 
 
 Extensions
 
@@ -566,16 +566,16 @@ Other
 
 ### [4.3.0(68)](https://github.com/VakhoKontridze/VCore/releases/tag/4.3.0) — *2022 12 28*
 
+Models
+
+- `setValue(to:)` is added to `AtomicContainer`
+
 Services and Managers
 
 - `MultiPartFormDataBuilder` API is updated, and boundary can be changed
 - `KeychainServiceConfiguration` is added to allow modification of queries in `KeychainService`
 - `class` subscripts in `KeychainService` are replaced with instance ones
 - Methods in `JSONEncoderService`, `JSONDecoderService`, and `NetworkClient` now take `JSONSerialization.ReadingOptions` and `JSONSerialization.WritingOptions` as parameters
-
-Models
-
-- `setValue(to:)` is added to `AtomicContainer`
 
 Extensions
 
@@ -622,14 +622,6 @@ Services and Managers
 
 ### [4.0.0(63)](https://github.com/VakhoKontridze/VCore/releases/tag/4.0.0) — *2022 09 14*
 
-Services and Managers
-
-- `status` is added to `NetworkReachabilityService`
-- `KeychainService` API is changed from `Result` types to throwing methods
-- `SessionManager` is now an `actor`
-- `error(_:)` is removed from `NetworkErrorProcessor`
-- `JSONEncoderService` and `JSONDecoderService` now have instance-based APIs
-
 Views
 
 - `CapsuleUIView` and `CapsuleUIImageView` will now round corners based on width, if width is less than height
@@ -644,6 +636,14 @@ Models
 - `horizontalAverage` and `verticalAverage` are added to `EdgeInset`s
 - `horizontal` is renamed to `horizontalSum` in `EdgeInsets_LeadingTrailingTopBottom`
 - `vertical` is renamed to `verticalSum` in `EdgeInsets_LeadingTrailingTopBottom`
+
+Services and Managers
+
+- `status` is added to `NetworkReachabilityService`
+- `KeychainService` API is changed from `Result` types to throwing methods
+- `SessionManager` is now an `actor`
+- `error(_:)` is removed from `NetworkErrorProcessor`
+- `JSONEncoderService` and `JSONDecoderService` now have instance-based APIs
 
 Helpers - Architectural Pattern Helpers
 
@@ -741,7 +741,7 @@ Models
 
 ### [3.18.2(55)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.2) — *2022 07 26*
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - Missing `public` modifier is added to extension method of `pop(count: Int, animated: Bool)` in `StandardNavigable`
 
@@ -751,7 +751,7 @@ Views
 
 - `CapsuleImageView` is renamed to `CapsuleUIImageView`
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - Missing `public` modifier is added to default implementation of `pop(count: Int, animated: Bool)` method in `StandardNavigable`
 
@@ -776,15 +776,15 @@ Extensions
 
 ### [3.17.0(52)](https://github.com/VakhoKontridze/VCore/releases/tag/3.17.0) — *2022 07 23*
 
-Services and Managers
-
-- `KeychainService` is added
-
 Models
 
 - `KeychainStorage` `PropertyWrapper` is added
 
-Architectural Pattern Helpers
+Services and Managers
+
+- `KeychainService` is added
+
+Helpers - Architectural Pattern Helpers
 
 - `UIAlertParameters` now builds actions using `resultBuilder`
 
@@ -954,10 +954,6 @@ Extensions
 
 ### [3.10.0(35)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.0) — *2022 07 04*
 
-Services and Managers
-
-- `isConnectedToNetwork` `NetworkReachabilityService` on `watchOS` is no longer optional. Property will be set to `false` on app launch.
-
 Views
 
 - `LeftAlignedCollectionViewFlowLayout` is added
@@ -971,6 +967,10 @@ Models
 - State models are now added for `GenericStateModel`s
 - Various `GenericState`s' and `GenericStateModel`s are added
 - `zero`, `clearColors`, `clearUIColors`, and `clearNSColors` factory properties are added to  `GenericStateModel`s
+
+Services and Managers
+
+- `isConnectedToNetwork` `NetworkReachabilityService` on `watchOS` is no longer optional. Property will be set to `false` on app launch.
 
 Other
 
@@ -1095,7 +1095,7 @@ Helpers
 
 - `KVInitializableEnumeration` is renamed to `KeyPathInitializableEnumeration`
 
-Architectural Pattern Helpers
+Helpers - Architectural Pattern Helpers
 
 - `UIAlertViewModel` has a new API that supports many buttons with state and style
 - `UIActivityIndicatorViewable` now has a default implementation for `UIView`
@@ -1147,13 +1147,13 @@ Services and Managers
 
 ### [3.1.0(20)](https://github.com/VakhoKontridze/VCore/releases/tag/3.1.0) — *2022 05 20*
 
-Services and Managers
-
-- `AnyMultiPartFormFile` is renamed to `AnyMultiPartFormDataFile`
-
 Views
 
 - Issue with accessing `SwiftUIBaseButton` in `SwiftUI` is fixed
+
+Services and Managers
+
+- `AnyMultiPartFormFile` is renamed to `AnyMultiPartFormDataFile`
 
 Extensions
 
@@ -1302,6 +1302,12 @@ General
 
 - Framework now supports `iOS` `13.0`
 
+Views
+
+- `UIKitBaseButton` and `SwiftUIBaseButton` are added
+- `KeyboardResponsiveViewController` are added
+- `InfiniteScrollingCollectionView` are added
+
 Services and Managers
 
 - `MultiPartFormDataBuilder` is added
@@ -1313,12 +1319,6 @@ Services and Managers - Network Client
 - `NetworkServicePostProcessor` is renamed to `NetworkProcessor`
 - Several cases are added to `NetworkError`
 - `NetworkError.incompleteEntity` is renamed to `NetworkError.invalidData`
-
-Views
-
-- `UIKitBaseButton` and `SwiftUIBaseButton` are added
-- `KeyboardResponsiveViewController` are added
-- `InfiniteScrollingCollectionView` are added
 
 Helpers
 

@@ -17,11 +17,11 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 
 Package files are grouped as:
 
-- ***Services and Managers***. Services, managers, and controllers. For instance, `MultiPartFormDataBuilder`.
-
 - ***Views***. `View`s, `UIView`s, and `UIViewController`s. For instance, `SwiftUIBaseButton`.
 
 - ***Models***. Models. For instance, `GenericState`s and `GenericStateModel`s.
+
+- ***Services and Managers***. Services, managers, and controllers. For instance, `MultiPartFormDataBuilder`.
 
 - ***Helpers***. Helper objects and methods. For instance, architectural pattern helpers.
 
