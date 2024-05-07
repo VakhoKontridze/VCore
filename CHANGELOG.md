@@ -9,6 +9,11 @@ Extensions
 - `Optional.isOptionalLess(than:order:comparison:)` method is added, that returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`
 - `Image.init(systemNameAndDefault:weight:)` initializer is added, as a non-throwing counterpart to the existing initializer
 
+Extra - XCode Templates
+
+- `UIKit` XCode templates are removed
+- Completion-based Gateway XCode template is removed
+
 ### [6.1.2(95)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.2) — *2024 04 26*
 
 Helpers - Architectural Pattern Helpers
@@ -556,7 +561,7 @@ API
 
 - `VCoreLocalizationService` is renamed to `VCoreLocalizationManager`
 
-Documentation
+Extra - Documentation
 
 - Swift style guide is added
 
@@ -997,9 +1002,9 @@ Extensions
 
 ### [3.8.1(31)](https://github.com/VakhoKontridze/VCore/releases/tag/3.8.1) — *2022 06 25*
 
-Documentation
+Extra - Documentation
 
-- Remove duplicate CLEAN Gateway documentation
+- Duplicate CLEAN Gateway documentation is removed
 
 ### [3.8.0(30)](https://github.com/VakhoKontridze/VCore/releases/tag/3.8.0) — *2022 06 25*
 

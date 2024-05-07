@@ -5,13 +5,14 @@ import VCore
 
 // MARK: - ___VARIABLE_productName___ View
 struct ___VARIABLE_productName___View: View {
-    // MARK: Properties
+    // MARK: Properties - Architecture
     @State private var viewModel: ___VARIABLE_productName___ViewModel
 
-    private typealias UIModel = ___VARIABLE_productName___UIModel
-
     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
-    
+
+    // MARK: Properties - ???
+    // ...
+
     // MARK: Initializers
     init(parameters: ___VARIABLE_productName___Parameters) {
         self._viewModel = State(wrappedValue: ___VARIABLE_productName___ViewModel(parameters: parameters))
@@ -34,7 +35,8 @@ struct ___VARIABLE_productName___View: View {
     }
     
     private var backgroundView: some View {
-        UIModel.backgroundColor.ignoresSafeArea()
+        Color(uiColor: .systemBackground)
+            .ignoresSafeArea()
     }
     
     private var contentView: some View {

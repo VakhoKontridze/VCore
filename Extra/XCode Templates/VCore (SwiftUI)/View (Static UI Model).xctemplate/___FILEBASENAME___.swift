@@ -4,10 +4,13 @@ import SwiftUI
 
 // MARK: - ___VARIABLE_productName___
 struct ___VARIABLE_productName___: View {
-    // MARK: Properties
+    // MARK: Properties - Architecture
     private typealias UIModel = ___VARIABLE_productName___UIModel
     private let parameters: ___VARIABLE_productName___Parameters
-    
+
+    // MARK: Properties - ???
+    // ...
+
     // MARK: Initializers
     init(parameters: ___VARIABLE_productName___Parameters) {
         self.parameters = parameters
