@@ -26,6 +26,7 @@ struct ___VARIABLE_productName___View: View {
         })
         .onFirstAppear(perform: {
             viewModel.navigationStackCoordinator = navigationStackCoordinator
+            viewModel.didLoad()
         })
 
         .inlineNavigationTitle("___VARIABLE_productName___".localized)
@@ -41,6 +42,12 @@ struct ___VARIABLE_productName___View: View {
     
     private var contentView: some View {
         EmptyView()
+    }
+
+    // MARK: UI Model
+    @Uninitializable
+    private struct UIModel {
+        // ...
     }
 }
 

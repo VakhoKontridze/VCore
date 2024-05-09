@@ -13,11 +13,38 @@ final class ___VARIABLE_productName___ViewModel {
     var alertParameters: AlertParameters?
     private(set) var progressViewParameters: ProgressViewParameters?
 
+    // MARK: Properties - Data
+    // ...
+
     // MARK: Properties - ???
+    // ...
+
+    // MARK: Properties - Cancellables
     // ...
 
     // MARK: Initializers
     init(parameters: ___VARIABLE_productName___Parameters) {
         self.parameters = parameters
     }
+
+    deinit {
+        // ...
+    }
+
+    // MARK: Lifecycle
+    func didLoad() {
+        // ...
+    }
+
+    // MARK: Actions
+    // ...
+
+    // MARK: Child Scenes
+    // ...
+
+    // MARK: Requests
+    // ...
+
+    // MARK: ???
+    // ...
 }
