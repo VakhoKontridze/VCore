@@ -1,6 +1,6 @@
 # Change Log
 
-### 6.2.0(96)
+### [6.2.0(96)](https://github.com/VakhoKontridze/VCore/releases/tag/6.1.2) — *2024 05 09*
 
 Extensions
 
