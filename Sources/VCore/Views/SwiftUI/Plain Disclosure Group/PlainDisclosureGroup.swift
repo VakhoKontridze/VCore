@@ -14,7 +14,8 @@ import SwiftUI
 ///
 ///     var body: some View {
 ///         ZStack(content: {
-///             Color(uiColor: UIColor.secondarySystemBackground).ignoresSafeArea()
+///             Color(uiColor: UIColor.secondarySystemBackground)
+///             .ignoresSafeArea()
 ///
 ///             PlainDisclosureGroup(
 ///                 isExpanded: $isExpanded,
@@ -185,7 +186,8 @@ public struct PlainDisclosureGroup<Label, Content>: View
         var body: some View {
             ZStack(content: {
 #if os(iOS)
-                Color(uiColor: UIColor.secondarySystemBackground).ignoresSafeArea()
+                Color(uiColor: UIColor.secondarySystemBackground)
+                    .ignoresSafeArea()
 #elseif os(macOS)
                 Color.clear
 #endif

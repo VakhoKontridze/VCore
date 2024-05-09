@@ -16,7 +16,8 @@ extension View {
     ///     var body: some View {
     ///         NavigationView(content: {
     ///             ZStack(content: {
-    ///                 Color(uiColor: UIColor.secondaryBackground).ignoresSafeArea()
+    ///                 Color(uiColor: UIColor.secondaryBackground)
+    ///                     .ignoresSafeArea()
     ///
     ///                 Button(
     ///                     action: { isActive = true },

@@ -17,7 +17,7 @@ import SwiftUI
 ///     ]
 ///
 ///     var body: some View {
-///         AlignedGridLayout(alignment: .center, spacing: 5).callAsFunction({
+///         AlignedGridLayout(horizontalAlignment: .center, spacing: 5).callAsFunction({
 ///             ForEach(strings, id: \.self, content: { string in
 ///                 Text(string)
 ///                     .background(content: { Color.accentColor.opacity(0.5) })

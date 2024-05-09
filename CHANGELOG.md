@@ -310,7 +310,7 @@ API
 
 General
 
-- UIModels are re-structured and no longer depend on sub UI models
+- UI Models are re-structured and no longer depend on sub UI models
 
 Views
 
