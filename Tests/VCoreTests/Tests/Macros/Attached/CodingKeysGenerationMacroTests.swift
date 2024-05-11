@@ -40,8 +40,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                         case two = "key_two"
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -67,8 +66,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                         case two = "key_two"
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -93,8 +91,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                         case two
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -127,8 +124,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                         case two
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -146,8 +142,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                 struct SomeStruct: Encodable {
                     let one, two: Int
                 }
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: CodingKeysGenerationMacroError.onePropertyAllowedPerLine.description, line: 1, column: 1)
             ],
@@ -164,8 +159,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
             expandedSource:
                 """
                 struct SomeStruct: Encodable {}
-                """
-            ,
+                """,
             macros: macros
         )
     }

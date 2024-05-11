@@ -51,8 +51,7 @@ final class CaseDetectionMacroTests: XCTestCase {
                         }
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -66,8 +65,7 @@ final class CaseDetectionMacroTests: XCTestCase {
             expandedSource: 
                 """
                 enum Gender {}
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -81,8 +79,7 @@ final class CaseDetectionMacroTests: XCTestCase {
             expandedSource: 
                 """
                 struct SomeStruct {}
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: CaseDetectionMacroError.canOnlyBeAppliedToEnums.description, line: 1, column: 1)
             ],
@@ -121,8 +118,7 @@ final class CaseDetectionMacroTests: XCTestCase {
                         }
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -148,8 +144,7 @@ final class CaseDetectionMacroTests: XCTestCase {
                         }
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -185,8 +180,7 @@ final class CaseDetectionMacroTests: XCTestCase {
                         }
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -214,8 +208,7 @@ final class CaseDetectionMacroTests: XCTestCase {
                         }
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -249,8 +242,7 @@ final class CaseDetectionMacroTests: XCTestCase {
                         }
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }

@@ -43,8 +43,7 @@ final class EnvironmentValueGenerationMacroTests: XCTestCase {
                         static let defaultValue: Int = 10
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -72,8 +71,7 @@ final class EnvironmentValueGenerationMacroTests: XCTestCase {
                         static let defaultValue: Int? = 10
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -101,8 +99,7 @@ final class EnvironmentValueGenerationMacroTests: XCTestCase {
                         static let defaultValue: Int? = nil
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -120,8 +117,7 @@ final class EnvironmentValueGenerationMacroTests: XCTestCase {
                 extension EnvironmentValues {
                     struct SomeStruct {}
                 }
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: EnvironmentValueGenerationMacroError.canOnlyBeAppliedToProperties.description, line: 2, column: 5)
             ],
@@ -141,8 +137,7 @@ final class EnvironmentValueGenerationMacroTests: XCTestCase {
                 extension EnvironmentValues {
                     let value: Int = 10
                 }
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: EnvironmentValueGenerationMacroError.canOnlyBeAppliedToVariableProperties.description, line: 2, column: 5)
             ],
@@ -162,8 +157,7 @@ final class EnvironmentValueGenerationMacroTests: XCTestCase {
                 extension EnvironmentValues {
                     var value = 10
                 }
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: EnvironmentValueGenerationMacroError.invalidPropertyType.description, line: 2, column: 5)
             ],
@@ -183,8 +177,7 @@ final class EnvironmentValueGenerationMacroTests: XCTestCase {
                 extension EnvironmentValues {
                     var value: Int
                 }
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: EnvironmentValueGenerationMacroError.invalidDefaultValue.description, line: 2, column: 5)
             ],

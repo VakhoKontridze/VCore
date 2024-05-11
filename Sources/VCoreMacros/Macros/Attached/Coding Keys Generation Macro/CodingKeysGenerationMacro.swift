@@ -20,14 +20,18 @@ struct CodingKeysGenerationMacro: MemberMacro {
         // `accessLevelModifier` parameter
         let accessLevelModifier: String = try {
             guard
-                let argument: LabeledExprSyntax? = node.arguments?.toArgumentListGetAssociatedValue()?
+                let argument: LabeledExprSyntax? = node
+                    .arguments?
+                    .toArgumentListGetAssociatedValue()?
                     .first(where: { $0.label?.text == "accessLevelModifier" })
             else {
                 return "internal" // Default value
             }
 
             guard
-                let value: String = argument?.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue
+                let value: String = argument?
+                    .expression.as(StringLiteralExprSyntax.self)?
+                    .representedLiteralValue
             else {
                 throw CodingKeysGenerationMacroError.invalidAccessLevelModifierParameter
             }
@@ -60,7 +64,10 @@ struct CodingKeysGenerationMacro: MemberMacro {
                 }
 
                 guard
-                    let propertyName: String = propertyBinding.pattern.as(IdentifierPatternSyntax.self)?.identifier.text
+                    let propertyName: String = propertyBinding
+                        .pattern.as(IdentifierPatternSyntax.self)?
+                        .identifier
+                        .text
                 else {
                     throw CodingKeysGenerationMacroError.invalidPropertyName
                 }
@@ -88,7 +95,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
                                 .description == "CKGCodingKey"
                         })
                 else {
-                    return "case \(propertyName)" // Doesn't use `MWVCodingKey` macro
+                    return "case \(propertyName)" // Doesn't use `CKGCodingKey` macro
                 }
 
                 guard

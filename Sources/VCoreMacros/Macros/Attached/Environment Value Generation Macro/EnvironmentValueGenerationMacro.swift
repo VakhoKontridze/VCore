@@ -87,7 +87,9 @@ struct EnvironmentValueGenerationMacro: PeerMacro, AccessorMacro {
 
         // Property specifier
         guard
-            let propertySpecifier: Keyword = propertyDeclaration.bindingSpecifier.tokenKind.toKeywordAssociatedValue(),
+            let propertySpecifier: Keyword = propertyDeclaration
+                .bindingSpecifier
+                .tokenKind.toKeywordAssociatedValue(),
             propertySpecifier == .var
         else {
             throw EnvironmentValueGenerationMacroError.canOnlyBeAppliedToVariableProperties
@@ -95,7 +97,10 @@ struct EnvironmentValueGenerationMacro: PeerMacro, AccessorMacro {
 
         // Property name
         guard
-            let propertyName: String = propertyBinding.pattern.as(IdentifierPatternSyntax.self)?.identifier.text
+            let propertyName: String = propertyBinding
+                .pattern.as(IdentifierPatternSyntax.self)?
+                .identifier
+                .text
         else {
             throw EnvironmentValueGenerationMacroError.invalidPropertyName
         }

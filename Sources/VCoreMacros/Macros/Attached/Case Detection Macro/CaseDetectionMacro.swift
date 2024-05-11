@@ -19,14 +19,18 @@ struct CaseDetectionMacro: MemberMacro {
         // `accessLevelModifier` parameter
         let accessLevelModifier: String = try {
             guard
-                let argument: LabeledExprSyntax? = node.arguments?.toArgumentListGetAssociatedValue()?
+                let argument: LabeledExprSyntax? = node
+                    .arguments?
+                    .toArgumentListGetAssociatedValue()?
                     .first(where: { $0.label?.text == "accessLevelModifier" })
             else {
                 return "internal" // Default value
             }
 
             guard
-                let value: String = argument?.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue
+                let value: String = argument?
+                    .expression.as(StringLiteralExprSyntax.self)?
+                    .representedLiteralValue
             else {
                 throw CaseDetectionMacroError.invalidAccessLevelModifierParameter
             }
@@ -42,7 +46,9 @@ struct CaseDetectionMacro: MemberMacro {
         }
 
         // Enum cases
-        let enumCases: [EnumCaseElementSyntax] = declaration.memberBlock.members
+        let enumCases: [EnumCaseElementSyntax] = declaration
+            .memberBlock
+            .members
             .compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
             .flatMap { $0.elements } // Retrieves all cases from the same line
 

@@ -17,8 +17,9 @@ struct Plugin: CompilerPlugin {
         CaseDetectionMacro.self,
         CodingKeysGenerationMacro.self, CKGCodingKeyMacro.self, CKGCodingKeyIgnoredMacro.self,
         EnvironmentValueGenerationMacro.self,
-        UninitializableMacro.self,
+        MemberwiseInitializableMacro.self,
         OptionSetRepresentationMacro.self,
+        UninitializableMacro.self,
 
         // Freestanding (Declaration)
         // ...

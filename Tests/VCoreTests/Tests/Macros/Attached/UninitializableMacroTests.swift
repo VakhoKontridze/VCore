@@ -36,8 +36,7 @@ final class UninitializableMacroTests: XCTestCase {
                     private init() {
                     }
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }

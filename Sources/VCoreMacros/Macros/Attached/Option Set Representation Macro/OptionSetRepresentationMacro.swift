@@ -91,7 +91,10 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         // Skips conformance, if it already exits.
         // This is essential, if declaration has availability attributes.
         if
-            let inheritedTypes: InheritedTypeListSyntax = expansionData.structDeclaration.inheritanceClause?.inheritedTypes,
+            let inheritedTypes: InheritedTypeListSyntax = expansionData
+                .structDeclaration
+                .inheritanceClause?
+                .inheritedTypes,
             inheritedTypes.contains(where: { $0.trimmedDescription == "OptionSet" })
         {
             return []
@@ -126,14 +129,17 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         // `accessLevelModifier` parameter
         let accessLevelModifier: String = try {
             guard
-                let argument: LabeledExprSyntax? = attribute.arguments?.toArgumentListGetAssociatedValue()?
+                let argument: LabeledExprSyntax? = attribute
+                    .arguments?.toArgumentListGetAssociatedValue()?
                     .first(where: { $0.label?.text == "accessLevelModifier" })
             else {
                 return "internal" // Default value
             }
 
             guard
-                let value: String = argument?.expression.as(StringLiteralExprSyntax.self)?.representedLiteralValue
+                let value: String = argument?
+                    .expression.as(StringLiteralExprSyntax.self)?
+                    .representedLiteralValue
             else {
                 throw OptionSetRepresentationMacroError.invalidAccessLevelModifierParameter
             }
@@ -168,7 +174,8 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
         // Raw type from `Option` enum
         guard
-            let geneticArgument: GenericArgumentClauseSyntax = attribute.attributeName.as(IdentifierTypeSyntax.self)?
+            let geneticArgument: GenericArgumentClauseSyntax = attribute
+                .attributeName.as(IdentifierTypeSyntax.self)?
                 .genericArgumentClause,
             let rawType: TypeSyntax = geneticArgument.arguments.first?.argument // Only one raw type
         else {

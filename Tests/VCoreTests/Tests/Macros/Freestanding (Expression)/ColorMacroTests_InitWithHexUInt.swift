@@ -36,8 +36,7 @@ final class ColorMacroTests_InitWithHexUInt: XCTestCase {
                     blue: 1.0,
                     opacity: 1.0
                 )
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -56,8 +55,7 @@ final class ColorMacroTests_InitWithHexUInt: XCTestCase {
                     blue: 1.0,
                     opacity: 1.0
                 )
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -76,8 +74,7 @@ final class ColorMacroTests_InitWithHexUInt: XCTestCase {
                     blue: 1.0,
                     opacity: 0.5
                 )
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -96,8 +93,7 @@ final class ColorMacroTests_InitWithHexUInt: XCTestCase {
                     blue: 1.0,
                     opacity: 1.0
                 )
-                """
-            ,
+                """,
             macros: macros
         )
     }

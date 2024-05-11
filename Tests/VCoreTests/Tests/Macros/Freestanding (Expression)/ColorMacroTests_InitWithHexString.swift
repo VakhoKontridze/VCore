@@ -34,8 +34,7 @@ final class ColorMacroTests_InitWithHexString: XCTestCase {
                     blue: 1.0,
                     opacity: 1.0
                 )
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -54,8 +53,7 @@ final class ColorMacroTests_InitWithHexString: XCTestCase {
                     blue: 1.0,
                     opacity: 1.0
                 )
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -68,8 +66,7 @@ final class ColorMacroTests_InitWithHexString: XCTestCase {
             expandedSource:
                 """
                 let color: Color = #color(hex: "#000000007AFF")
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: ColorMacroError_InitWithHexString.invalidHexParameter.description, line: 1, column: 20)
             ],

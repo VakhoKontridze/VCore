@@ -62,8 +62,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
 
                 extension Gender: OptionSet {
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -83,8 +82,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                     case male
                     case female
                 }
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: OptionSetRepresentationMacroError.canOnlyBeAppliedToStructs.description, line: 1, column: 1)
             ],
@@ -130,8 +128,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
 
                 extension Gender: OptionSet {
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -145,8 +142,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
             expandedSource: 
                 """
                 struct Gender {}
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: OptionSetRepresentationMacroError.optionsEnumNotFound.description,line: 1, column: 1)
             ],
@@ -164,8 +160,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                     case female
                 }
             }
-            """
-            ,
+            """,
             expandedSource:
                 """
                 struct Gender {
@@ -174,8 +169,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                         case female
                     }
                 }
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: OptionSetRepresentationMacroError.optionsEnumRawTypeNotDeclared.description, line: 1, column: 1)
             ],
@@ -218,8 +212,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
 
                     internal static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -260,8 +253,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
 
                 extension Gender: OptionSet {
                 }
-                """
-            ,
+                """,
             macros: macros
         )
     }

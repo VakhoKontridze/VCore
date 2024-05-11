@@ -25,9 +25,11 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
             }
 
             guard
-                let value: String = argument.expression.as(MemberAccessExprSyntax.self)?
+                let value: String = argument
+                    .expression.as(MemberAccessExprSyntax.self)?
                     .declName
-                    .baseName.text
+                    .baseName
+                    .text
             else {
                 throw ColorMacroError_InitWithHexUInt.invalidColorSpaceParameter
             }
@@ -38,8 +40,13 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         // `hex` parameter
         let hex: UInt = try {
             guard
-                let argument: LabeledExprSyntax = node.arguments.first(where: { $0.label?.text == "hex" }),
-                let valueString: String = argument.expression.as(IntegerLiteralExprSyntax.self)?.literal.text
+                let argument: LabeledExprSyntax = node
+                    .arguments
+                    .first(where: { $0.label?.text == "hex" }),
+                let valueString: String = argument
+                    .expression.as(IntegerLiteralExprSyntax.self)?
+                    .literal
+                    .text
                     .replacingOccurrences(of: "0x", with: ""),
                 let value: UInt = .init(valueString, radix: 16)
             else {
@@ -52,13 +59,18 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         // `opacity` parameter
         let opacity: CGFloat = try {
             guard
-                let argument: LabeledExprSyntax = node.arguments.first(where: { $0.label?.text == "opacity" })
+                let argument: LabeledExprSyntax = node
+                    .arguments
+                    .first(where: { $0.label?.text == "opacity" })
             else {
                 return 1 // Default value
             }
 
             guard
-                let valueString: String = argument.expression.as(FloatLiteralExprSyntax.self)?.literal.text,
+                let valueString: String = argument
+                    .expression.as(FloatLiteralExprSyntax.self)?
+                    .literal
+                    .text,
                 let value: CGFloat = Double(valueString).map({ CGFloat($0) })
             else {
                 throw ColorMacroError_InitWithHexUInt.invalidOpacityParameter

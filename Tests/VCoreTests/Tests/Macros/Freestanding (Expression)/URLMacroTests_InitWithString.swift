@@ -28,8 +28,7 @@ final class URLMacroTests_InitWithString: XCTestCase {
             expandedSource:
                 """
                 let url: URL = URL(string: "https://example.com")!
-                """
-            ,
+                """,
             macros: macros
         )
     }
@@ -44,8 +43,7 @@ final class URLMacroTests_InitWithString: XCTestCase {
                 """
                 let urlString: String = "https://example.com"
                 let url: URL = #url(urlString)
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: URLMacroError_InitWithString.invalidURLStringParameter.description, line: 2, column: 16)
             ],
@@ -61,8 +59,7 @@ final class URLMacroTests_InitWithString: XCTestCase {
             expandedSource: 
                 """
                 let url: URL = #url("https://example .com")
-                """
-            ,
+                """,
             diagnostics: [
                 DiagnosticSpec(message: URLMacroError_InitWithString.malformedURL.description, line: 1, column: 16)
             ],
