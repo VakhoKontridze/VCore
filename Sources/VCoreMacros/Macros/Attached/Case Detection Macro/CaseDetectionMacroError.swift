@@ -6,8 +6,6 @@
 //
 
 import Foundation
-import SwiftSyntax
-import SwiftSyntaxMacros
 
 // MARK: - Case Detection Macro Error
 struct CaseDetectionMacroError: Error, CustomStringConvertible {
