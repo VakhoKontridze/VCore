@@ -46,10 +46,12 @@ public struct TextLineType {
         alignment: TextAlignment,
         lineLimit: Int?
     ) -> Self {
-        .init(.multiLine(
-            alignment: alignment,
-            textLineLimitType: .fixed(lineLimit: lineLimit)
-        ))
+        .init(
+            .multiLine(
+                alignment: alignment,
+                textLineLimitType: .fixed(lineLimit: lineLimit)
+            )
+        )
     }
     
     /// Multi-line.
@@ -59,10 +61,12 @@ public struct TextLineType {
         lineLimit: Int,
         reservesSpace: Bool
     ) -> Self {
-        .init(.multiLine(
-            alignment: alignment,
-            textLineLimitType: .spaceReserved(lineLimit: lineLimit, reservesSpace: reservesSpace)
-        ))
+        .init(
+            .multiLine(
+                alignment: alignment,
+                textLineLimitType: .spaceReserved(lineLimit: lineLimit, reservesSpace: reservesSpace)
+            )
+        )
     }
     
     /// Multi-line.
@@ -71,10 +75,12 @@ public struct TextLineType {
         alignment: TextAlignment,
         lineLimit: PartialRangeFrom<Int>
     ) -> Self {
-        .init(.multiLine(
-            alignment: alignment,
-            textLineLimitType: .partialRangeFrom(lineLimit: lineLimit)
-        ))
+        .init(
+            .multiLine(
+                alignment: alignment,
+                textLineLimitType: .partialRangeFrom(lineLimit: lineLimit)
+            )
+        )
     }
     
     /// Multi-line.
@@ -83,10 +89,12 @@ public struct TextLineType {
         alignment: TextAlignment,
         lineLimit: PartialRangeThrough<Int>
     ) -> Self {
-        .init(.multiLine(
-            alignment: alignment,
-            textLineLimitType: .partialRangeThrough(lineLimit: lineLimit)
-        ))
+        .init(
+            .multiLine(
+                alignment: alignment,
+                textLineLimitType: .partialRangeThrough(lineLimit: lineLimit)
+            )
+        )
     }
     
     /// Multi-line.
@@ -95,10 +103,12 @@ public struct TextLineType {
         alignment: TextAlignment,
         lineLimit: ClosedRange<Int>
     ) -> Self {
-        .init(.multiLine(
-            alignment: alignment,
-            textLineLimitType: .closedRange(lineLimit: lineLimit)
-        ))
+        .init(
+            .multiLine(
+                alignment: alignment,
+                textLineLimitType: .closedRange(lineLimit: lineLimit)
+            )
+        )
     }
 
     // MARK: Storage

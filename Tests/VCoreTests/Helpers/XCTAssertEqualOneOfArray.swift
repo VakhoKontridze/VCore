@@ -22,11 +22,13 @@ func XCTAssertEqual<T>(
         expression1Value = try expression1()
 
     } catch {
-        XCTFail(String.combiningDebugItems(
-            "Failed to retrieve 'expression1'",
-            error,
-            message()
-        ))
+        XCTFail(
+            String.combiningDebugItems(
+                "Failed to retrieve 'expression1'",
+                error,
+                message()
+            )
+        )
 
         return
     }
@@ -36,11 +38,13 @@ func XCTAssertEqual<T>(
         expression2Values = try expression2()
 
     } catch {
-        XCTFail(String.combiningDebugItems(
-            "Failed to retrieve 'expression2'",
-            error,
-            message()
-        ))
+        XCTFail(
+            String.combiningDebugItems(
+                "Failed to retrieve 'expression2'",
+                error,
+                message()
+            )
+        )
 
         return
     }
@@ -51,8 +55,10 @@ func XCTAssertEqual<T>(
         }
     }
 
-    XCTFail(String.combiningDebugItems(
-        "Failed to match '\(expression1Value)' with any values from '\(expression2Values)'",
-        message()
-    ))
+    XCTFail(
+        String.combiningDebugItems(
+            "Failed to match '\(expression1Value)' with any values from '\(expression2Values)'",
+            message()
+        )
+    )
 }

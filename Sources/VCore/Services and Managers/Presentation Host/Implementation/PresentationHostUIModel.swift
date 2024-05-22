@@ -50,9 +50,11 @@ public struct PresentationHostUIModel {
         public static func offset(
             _ offset: CGFloat
         ) -> Self {
-            .init(.offset(
-                offset: offset
-            ))
+            .init(
+                .offset(
+                    offset: offset
+                )
+            )
         }
 
         /// Offsets container by the keyboard height, plus the specified value.
@@ -63,18 +65,22 @@ public struct PresentationHostUIModel {
         public static func offsetByKeyboardHeight(
             additionalOffset: CGFloat = 0
         ) -> Self {
-            .init(.offsetByKeyboardHeight(
-                additionalOffset: additionalOffset
-            ))
+            .init(
+                .offsetByKeyboardHeight(
+                    additionalOffset: additionalOffset
+                )
+            )
         }
 
         /// Offsets container to un-obscure first responder view, if needed, plus the specified safe area inset.
         public static func offsetByObscuredSubviewHeight(
             safeAreaInset: CGFloat = 20
         ) -> Self {
-            .init(.offsetByObscuredSubviewHeight(
-                safeAreaInset: safeAreaInset
-            ))
+            .init(
+                .offsetByObscuredSubviewHeight(
+                    safeAreaInset: safeAreaInset
+                )
+            )
         }
 
         /// Default instance. Set to `offsetByObscuredSubviewHeight`.

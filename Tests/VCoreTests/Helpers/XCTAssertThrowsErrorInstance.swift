@@ -27,10 +27,12 @@ func XCTAssertThrowsError<T, E>(
             guard
                 let thrownError = thrownError as? E
             else {
-                XCTFail(String.combiningDebugItems(
-                    "'\(thrownError)' is not of type '\(String(describing: E.self))'",
-                    message()
-                ))
+                XCTFail(
+                    String.combiningDebugItems(
+                        "'\(thrownError)' is not of type '\(String(describing: E.self))'",
+                        message()
+                    )
+                )
                 return
             }
 

@@ -40,11 +40,13 @@ private struct CornerRadiusShape: Shape {
     
     // MARK: Shape
     func path(in rect: CGRect) -> Path {
-        .init(UIBezierPath(
-            roundedRect: rect,
-            byRoundingCorners: corners,
-            cornerRadii: CGSize(dimension: radius)
-        ).cgPath)
+        .init(
+            UIBezierPath(
+                roundedRect: rect,
+                byRoundingCorners: corners,
+                cornerRadii: CGSize(dimension: radius)
+            ).cgPath
+        )
     }
 }
 

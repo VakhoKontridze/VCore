@@ -24,10 +24,12 @@ extension View {
         perform action: @escaping ((Bool) -> Void)
     ) -> some View {
         self
-            .modifier(TouchDownTouchUpInteractionRecognizerViewModifier(
-                minimumDistance: minimumDistance,
-                completion: action
-            ))
+            .modifier(
+                TouchDownTouchUpInteractionRecognizerViewModifier(
+                    minimumDistance: minimumDistance,
+                    completion: action
+                )
+            )
     }
 }
 

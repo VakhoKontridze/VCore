@@ -90,10 +90,12 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
             action: action,
             label: EmptyView.init
         )
-        .buttonStyle(SwiftUIBaseButtonStyle(
-            uiModel: uiModel,
-            label: label
-        ))
+        .buttonStyle(
+            SwiftUIBaseButtonStyle(
+                uiModel: uiModel,
+                label: label
+            )
+        )
     }
 }
 
