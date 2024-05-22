@@ -44,7 +44,7 @@ struct CaseDetectionMacro: MemberMacro {
         node: AttributeSyntax
     ) throws -> String {
         guard
-            let argument: LabeledExprSyntax? = node
+            let argument: LabeledExprSyntax = node
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })
@@ -53,7 +53,7 @@ struct CaseDetectionMacro: MemberMacro {
         }
 
         guard
-            let value: String = argument?
+            let value: String = argument
                 .expression.as(StringLiteralExprSyntax.self)?
                 .representedLiteralValue
         else {

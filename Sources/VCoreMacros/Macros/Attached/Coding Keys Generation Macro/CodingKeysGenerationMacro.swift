@@ -31,7 +31,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         node: AttributeSyntax
     ) throws -> String {
         guard
-            let argument: LabeledExprSyntax? = node
+            let argument: LabeledExprSyntax = node
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })
@@ -40,7 +40,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         }
 
         guard
-            let value: String = argument?
+            let value: String = argument
                 .expression.as(StringLiteralExprSyntax.self)?
                 .representedLiteralValue
         else {
@@ -58,7 +58,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         let codingKeyLines: [String] = try declaration
             .memberBlock
             .members
-            .compactMap { try _codingKeyLine(member: $0) }
+            .compactMap { try codingKeyLine(member: $0) }
 
         // Result
         var result: [DeclSyntax] = []
@@ -76,7 +76,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         return result
     }
 
-    private static func _codingKeyLine(
+    private static func codingKeyLine(
         member: MemberBlockItemSyntax
     ) throws -> String? {
         // Limits declaration to variables

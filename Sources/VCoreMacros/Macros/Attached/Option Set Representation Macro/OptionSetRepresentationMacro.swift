@@ -147,7 +147,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         context: some MacroExpansionContext
     ) throws -> ExpansionData {
         // Parameters
-        let accessLevelModifier: String = try _accessLevelModifierParameter(attribute: attribute)
+        let accessLevelModifier: String = try accessLevelModifierParameter(attribute: attribute)
 
         // Limits declaration to `struct`s
         guard
@@ -193,7 +193,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         )
     }
 
-    private static func _accessLevelModifierParameter(
+    private static func accessLevelModifierParameter(
         attribute: AttributeSyntax
     ) throws -> String {
         guard

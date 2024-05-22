@@ -20,7 +20,7 @@ final class CaseDetectionMacroTests: XCTestCase {
     private let macros: [String: Macro.Type] = ["CaseDetection": CaseDetectionMacro.self]
 
     // MARK: Tests
-    func testSimpleEnumeration() {
+    func testSimpleEnum() {
         assertMacroExpansion(
             """
             @CaseDetection
@@ -56,7 +56,7 @@ final class CaseDetectionMacroTests: XCTestCase {
         )
     }
 
-    func testEmptyEnumeration() {
+    func testEmptyEnum() {
         assertMacroExpansion(
             """
             @CaseDetection
@@ -70,7 +70,7 @@ final class CaseDetectionMacroTests: XCTestCase {
         )
     }
 
-    func testNonEnumeration() {
+    func testNonEnum() {
         assertMacroExpansion(
             """
             @CaseDetection
