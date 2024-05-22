@@ -225,6 +225,37 @@ extension UIApplication {
 
 #endif
 
+// MARK: - Case Detection
+@available(*, unavailable, message: "Use 'AccessLevelModifierKeyword' for 'accessLevelModifier'")
+@attached(member, names: arbitrary)
+public macro CaseDetection(
+    accessLevelModifier: String
+) = #externalMacro(
+    module: "VCoreMacros",
+    type: "CaseDetectionMacro"
+)
+
+// MARK: - Coding Keys Generation
+@available(*, unavailable, message: "Use 'AccessLevelModifierKeyword' for 'accessLevelModifier'")
+@attached(member, names: named(CodingKeys), named(CodingKey), named(CKGCodingKeyIgnored))
+public macro CodingKeysGeneration(
+    accessLevelModifier: String
+) = #externalMacro(
+    module: "VCoreMacros",
+    type: "CodingKeysGenerationMacro"
+)
+
+// MARK: - Option Set Representation
+@available(*, unavailable, message: "Use 'AccessLevelModifierKeyword' for 'accessLevelModifier'")
+@attached(member, names: arbitrary)
+@attached(extension, conformances: OptionSet)
+public macro OptionSetRepresentation<RawType>(
+    accessLevelModifier: String
+) = #externalMacro(
+    module: "VCoreMacros",
+    type: "OptionSetRepresentationMacro"
+)
+
 // MARK: - Uninitializable
 @available(*, deprecated, renamed: "Uninitializable")
 @attached(member, names: named(init))

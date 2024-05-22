@@ -17,7 +17,7 @@ struct CaseDetectionMacro: MemberMacro {
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         // Parameters
-        let accessLevelModifier: String = try accessLevelModifierParameter(node: node)
+        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(node: node)
 
         // Limits declaration to `enum`s
         guard
@@ -42,20 +42,24 @@ struct CaseDetectionMacro: MemberMacro {
 
     private static func accessLevelModifierParameter(
         node: AttributeSyntax
-    ) throws -> String {
+    ) throws -> AccessLevelModifierKeyword {
         guard
             let argument: LabeledExprSyntax = node
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })
         else {
-            return "internal" // Default value
+            return AccessLevelModifierKeyword.internal // Default value
         }
 
         guard
-            let value: String = argument
-                .expression.as(StringLiteralExprSyntax.self)?
-                .representedLiteralValue
+            let valueString: String = argument
+                .expression.as(MemberAccessExprSyntax.self)?
+                .declName
+                .baseName
+                .trimmedDescription,
+            
+            let value: AccessLevelModifierKeyword = .init(rawValue: valueString)
         else {
             throw CaseDetectionMacroError.invalidAccessLevelModifierParameter
         }
@@ -64,7 +68,7 @@ struct CaseDetectionMacro: MemberMacro {
     }
 
     private static func result(
-        accessLevelModifier: String,
+        accessLevelModifier: AccessLevelModifierKeyword,
         enumCases: [EnumCaseElementSyntax]
     ) -> [DeclSyntax] {
         var result: [DeclSyntax] = []

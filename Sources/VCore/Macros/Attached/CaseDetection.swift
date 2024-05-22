@@ -21,7 +21,7 @@ import Foundation
 ///
 @attached(member, names: arbitrary)
 public macro CaseDetection(
-    accessLevelModifier: String = "internal"
+    accessLevelModifier: AccessLevelModifierKeyword = .internal
 ) = #externalMacro(
     module: "VCoreMacros",
     type: "CaseDetectionMacro"

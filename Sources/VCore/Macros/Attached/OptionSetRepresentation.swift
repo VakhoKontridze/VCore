@@ -29,7 +29,7 @@ import Foundation
 @attached(member, names: arbitrary)
 @attached(extension, conformances: OptionSet)
 public macro OptionSetRepresentation<RawType>(
-    accessLevelModifier: String = "internal"
+    accessLevelModifier: AccessLevelModifierKeyword = .internal
 ) = #externalMacro(
     module: "VCoreMacros",
     type: "OptionSetRepresentationMacro"

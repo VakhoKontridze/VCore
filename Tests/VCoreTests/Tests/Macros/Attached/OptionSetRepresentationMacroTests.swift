@@ -93,7 +93,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
     func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<Int>(accessLevelModifier: "public")
+            @OptionSetRepresentation<Int>(accessLevelModifier: .public)
             public struct Gender {
                 private enum Options: Int {
                     case male

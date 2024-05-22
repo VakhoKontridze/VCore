@@ -90,7 +90,7 @@ final class CaseDetectionMacroTests: XCTestCase {
     func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
-            @CaseDetection(accessLevelModifier: "fileprivate")
+            @CaseDetection(accessLevelModifier: .fileprivate)
             enum Gender {
                 case male
                 case female

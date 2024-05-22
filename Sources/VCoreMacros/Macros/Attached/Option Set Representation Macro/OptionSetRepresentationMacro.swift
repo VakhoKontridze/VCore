@@ -134,7 +134,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
     // MARK: Expansion
     private struct ExpansionData {
-        let accessLevelModifier: String
+        let accessLevelModifier: AccessLevelModifierKeyword
         let structDeclaration: StructDeclSyntax
         let optionsEnumDeclaration: EnumDeclSyntax
         let rawType: TypeSyntax
@@ -147,7 +147,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         context: some MacroExpansionContext
     ) throws -> ExpansionData {
         // Parameters
-        let accessLevelModifier: String = try accessLevelModifierParameter(attribute: attribute)
+        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(attribute: attribute)
 
         // Limits declaration to `struct`s
         guard
@@ -195,20 +195,24 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
     private static func accessLevelModifierParameter(
         attribute: AttributeSyntax
-    ) throws -> String {
+    ) throws -> AccessLevelModifierKeyword {
         guard
-            let argument: LabeledExprSyntax? = attribute
+            let argument: LabeledExprSyntax = attribute
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })
         else {
-            return "internal" // Default value
+            return AccessLevelModifierKeyword.internal // Default value
         }
 
         guard
-            let value: String = argument?
-                .expression.as(StringLiteralExprSyntax.self)?
-                .representedLiteralValue
+            let valueString: String = argument
+                .expression.as(MemberAccessExprSyntax.self)?
+                .declName
+                .baseName
+                .trimmedDescription,
+
+            let value: AccessLevelModifierKeyword = .init(rawValue: valueString)
         else {
             throw OptionSetRepresentationMacroError.invalidAccessLevelModifierParameter
         }

@@ -74,7 +74,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
     func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
-            @CodingKeysGeneration(accessLevelModifier: "private")
+            @CodingKeysGeneration(accessLevelModifier: .private)
             struct SomeStruct: Encodable {
                 let one: Int
                 let two: String

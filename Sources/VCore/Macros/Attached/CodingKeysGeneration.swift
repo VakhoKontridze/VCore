@@ -30,7 +30,7 @@ import Foundation
 ///
 @attached(member, names: named(CodingKeys), named(CodingKey), named(CKGCodingKeyIgnored))
 public macro CodingKeysGeneration(
-    accessLevelModifier: String = "internal"
+    accessLevelModifier: AccessLevelModifierKeyword = .internal
 ) = #externalMacro(
     module: "VCoreMacros",
     type: "CodingKeysGenerationMacro"
