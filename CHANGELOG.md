@@ -1,5 +1,11 @@
 # Change Log
 
+### 6.3.0(97)
+
+Macros
+
+- `MemberwiseInitializable` macro is added, that generates memberwise initializer
+
 ### [6.2.0(96)](https://github.com/VakhoKontridze/VCore/releases/tag/6.2.0) — *2024 05 09*
 
 Extensions
