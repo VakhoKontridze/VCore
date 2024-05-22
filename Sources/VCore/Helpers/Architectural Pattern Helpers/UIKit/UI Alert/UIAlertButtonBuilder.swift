@@ -11,7 +11,8 @@ import Foundation
 
 // MARK: - UI Alert Button Builder
 /// Custom parameter attribute that constructs views from closures.
-@resultBuilder public struct UIAlertButtonBuilder {
+@resultBuilder 
+public struct UIAlertButtonBuilder {
     // MARK: Properties
     public typealias Component = any UIAlertButtonConvertible
     public typealias Result = [any UIAlertButtonProtocol]
