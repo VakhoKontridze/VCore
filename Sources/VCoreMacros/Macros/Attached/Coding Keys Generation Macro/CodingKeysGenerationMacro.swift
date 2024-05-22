@@ -31,7 +31,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         node: AttributeSyntax
     ) throws -> AccessLevelModifierKeyword {
         guard
-            let argument: LabeledExprSyntax = node
+            let parameter: LabeledExprSyntax = node
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })
@@ -40,7 +40,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         }
 
         guard
-            let valueString: String = argument
+            let valueString: String = parameter
                 .expression.as(MemberAccessExprSyntax.self)?
                 .declName
                 .baseName

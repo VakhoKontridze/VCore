@@ -197,7 +197,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         attribute: AttributeSyntax
     ) throws -> AccessLevelModifierKeyword {
         guard
-            let argument: LabeledExprSyntax = attribute
+            let parameter: LabeledExprSyntax = attribute
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })
@@ -206,7 +206,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         }
 
         guard
-            let valueString: String = argument
+            let valueString: String = parameter
                 .expression.as(MemberAccessExprSyntax.self)?
                 .declName
                 .baseName

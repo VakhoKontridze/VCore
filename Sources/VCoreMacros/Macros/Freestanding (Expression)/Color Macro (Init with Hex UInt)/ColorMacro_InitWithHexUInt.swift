@@ -45,7 +45,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         node: some FreestandingMacroExpansionSyntax
     ) throws -> String {
         guard
-            let argument: LabeledExprSyntax = node
+            let parameter: LabeledExprSyntax = node
                 .arguments
                 .first(where: { $0.label?.trimmedDescription == nil })
         else {
@@ -53,7 +53,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         }
 
         guard
-            let value: String = argument
+            let value: String = parameter
                 .expression.as(MemberAccessExprSyntax.self)?
                 .declName
                 .baseName
@@ -69,11 +69,11 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         node: some FreestandingMacroExpansionSyntax
     ) throws -> UInt {
         guard
-            let argument: LabeledExprSyntax = node
+            let parameter: LabeledExprSyntax = node
                 .arguments
                 .first(where: { $0.label?.trimmedDescription == "hex" }),
 
-            let valueString: String = argument
+            let valueString: String = parameter
                 .expression.as(IntegerLiteralExprSyntax.self)?
                 .literal
                 .trimmedDescription
@@ -91,7 +91,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         node: some FreestandingMacroExpansionSyntax
     ) throws -> CGFloat {
         guard
-            let argument: LabeledExprSyntax = node
+            let parameter: LabeledExprSyntax = node
                 .arguments
                 .first(where: { $0.label?.trimmedDescription == "opacity" })
         else {
@@ -99,7 +99,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         }
 
         guard
-            let valueString: String = argument
+            let valueString: String = parameter
                 .expression.as(FloatLiteralExprSyntax.self)?
                 .literal
                 .trimmedDescription,
