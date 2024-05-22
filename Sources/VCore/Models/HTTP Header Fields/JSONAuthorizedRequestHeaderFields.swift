@@ -13,9 +13,11 @@ import Foundation
 /// Can be used in `URLRequest`.
 ///
 ///     var request: URLRequest = ...
-///     try request.addHTTPHeaderFields(object: JSONAuthorizedRequestHeaderFields(
-///         token: "token"
-///     ))
+///     try request.addHTTPHeaderFields(
+///         object: JSONAuthorizedRequestHeaderFields(
+///             token: "token"
+///         )
+///     )
 ///
 @CodingKeysGeneration
 public struct JSONAuthorizedRequestHeaderFields: Encodable {

@@ -27,14 +27,16 @@ import UIKit
 ///         }
 ///
 ///         func present() {
-///             view.presentActionSheet(parameters: UIActionSheetParameters(
-///                 title: "Lorem Ipsum",
-///                 message: "Lorem ipsum dolor sit amet",
-///                 actions: {
-///                     UIActionSheetButton(title: "Confirm", action: { print("Confirmed") })
-///                     UIActionSheetButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
-///                 }
-///             ))
+///             view.presentActionSheet(
+///                 parameters: UIActionSheetParameters(
+///                     title: "Lorem Ipsum",
+///                     message: "Lorem ipsum dolor sit amet",
+///                     actions: {
+///                         UIActionSheetButton(title: "Confirm", action: { print("Confirmed") })
+///                         UIActionSheetButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///                     }
+///                 )
+///             )
 ///         }
 ///     }
 ///
@@ -83,14 +85,16 @@ private final class ViewController: UIViewController, UIActionSheetViewable {
     }
 
     private func present() {
-        presentActionSheet(parameters: UIActionSheetParameters(
-            title: "Lorem Ipsum",
-            message: "Lorem ipsum dolor sit amet",
-            actions: {
-                UIActionSheetButton(title: "Confirm", action: {})
-                UIActionSheetButton(style: .cancel, title: "Cancel", action: {})
-            }
-        ))
+        presentActionSheet(
+            parameters: UIActionSheetParameters(
+                title: "Lorem Ipsum",
+                message: "Lorem ipsum dolor sit amet",
+                actions: {
+                    UIActionSheetButton(title: "Confirm", action: {})
+                    UIActionSheetButton(style: .cancel, title: "Cancel", action: {})
+                }
+            )
+        )
     }
 }
 

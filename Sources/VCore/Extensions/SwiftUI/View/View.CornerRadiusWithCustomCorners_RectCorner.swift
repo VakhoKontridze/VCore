@@ -40,11 +40,13 @@ private struct CornerRadiusShape: Shape {
     func path(in rect: CGRect) -> Path {
         var path: Path = .init()
         
-        path.move(to: CGPoint(
-            x: rect.minX,
-            y: corners.contains(.topLeft) ? rect.minY + radius : rect.minY
-        ))
-        
+        path.move(
+            to: CGPoint(
+                x: rect.minX,
+                y: corners.contains(.topLeft) ? rect.minY + radius : rect.minY
+            )
+        )
+
         path.addArc(
             tangent1End: CGPoint(
                 x: rect.minX,
@@ -57,11 +59,13 @@ private struct CornerRadiusShape: Shape {
             radius: radius
         )
         
-        path.addLine(to: CGPoint(
-            x: corners.contains(.topRight) ? rect.maxX - radius : rect.maxX,
-            y: rect.minY
-        ))
-        
+        path.addLine(
+            to: CGPoint(
+                x: corners.contains(.topRight) ? rect.maxX - radius : rect.maxX,
+                y: rect.minY
+            )
+        )
+
         path.addArc(
             tangent1End: CGPoint(
                 x: rect.maxX,
@@ -74,11 +78,13 @@ private struct CornerRadiusShape: Shape {
             radius: radius
         )
         
-        path.addLine(to: CGPoint(
-            x: rect.maxX,
-            y: corners.contains(.bottomRight) ? rect.maxY - radius : rect.maxY
-        ))
-        
+        path.addLine(
+            to: CGPoint(
+                x: rect.maxX,
+                y: corners.contains(.bottomRight) ? rect.maxY - radius : rect.maxY
+            )
+        )
+
         path.addArc(
             tangent1End: CGPoint(
                 x: rect.maxX,
@@ -91,11 +97,13 @@ private struct CornerRadiusShape: Shape {
             radius: radius
         )
         
-        path.addLine(to: CGPoint(
-            x: corners.contains(.bottomLeft) ? rect.minX + radius : rect.minX,
-            y: rect.maxY
-        ))
-        
+        path.addLine(
+            to: CGPoint(
+                x: corners.contains(.bottomLeft) ? rect.minX + radius : rect.minX,
+                y: rect.maxY
+            )
+        )
+
         path.addArc(
             tangent1End: CGPoint(
                 x: rect.minX,

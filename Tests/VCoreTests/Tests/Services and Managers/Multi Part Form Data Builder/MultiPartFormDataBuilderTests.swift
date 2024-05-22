@@ -69,10 +69,12 @@ final class MultipartFormDataBuilderTests: XCTestCase {
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = "POST"
-        try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaderFields(
-            boundary: boundary,
-            token: "token"
-        ))
+        try request.addHTTPHeaderFields(
+            object: MultipartFormDataAuthorizedRequestHeaderFields(
+                boundary: boundary,
+                token: "token"
+            )
+        )
         request.httpBody = httpData.nonEmpty
 
         let data: Data = try await URLSession.shared.data(for: request).0

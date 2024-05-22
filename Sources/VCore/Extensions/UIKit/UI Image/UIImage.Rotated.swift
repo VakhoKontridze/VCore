@@ -41,14 +41,16 @@ extension UIImage {
         cgContext.translateBy(x: newRect.width/2, y: newRect.height/2)
         cgContext.rotate(by: radians)
         
-        draw(in: CGRect(
-            origin: .init(
-                x: -size.width / 2,
-                y: -size.height / 2
-            ),
-            size: size
-        ))
-        
+        draw(
+            in: CGRect(
+                origin: .init(
+                    x: -size.width / 2,
+                    y: -size.height / 2
+                ),
+                size: size
+            )
+        )
+
         return UIGraphicsGetImageFromCurrentImageContext()
     }
     

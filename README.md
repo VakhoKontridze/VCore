@@ -80,10 +80,12 @@ let url: URL = #url("https://somewebsite.com/api/some_endpoint")
 
 var request: URLRequest = .init(url: url)
 request.httpMethod = "POST"
-try request.addHTTPHeaderFields(object: MultipartFormDataAuthorizedRequestHeaderFields(
-    boundary: boundary,
-    token: "token"
-))
+try request.addHTTPHeaderFields(
+    object: MultipartFormDataAuthorizedRequestHeaderFields(
+        boundary: boundary,
+        token: "token"
+    )
+)
 request.httpBody = httpData.nonEmpty
 
 let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)

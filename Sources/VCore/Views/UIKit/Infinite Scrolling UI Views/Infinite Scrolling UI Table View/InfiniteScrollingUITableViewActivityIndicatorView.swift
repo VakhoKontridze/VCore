@@ -19,13 +19,15 @@ final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
     
     // MARK: Initializers
     init(in tableView: UITableView) {
-        super.init(frame: CGRect(
-            origin: .zero,
-            size: CGSize(
-                width: tableView.frame.size.width,
-                height: UIModel.height
+        super.init(
+            frame: CGRect(
+                origin: .zero,
+                size: CGSize(
+                    width: tableView.frame.size.width,
+                    height: UIModel.height
+                )
             )
-        ))
+        )
         setUp()
     }
     

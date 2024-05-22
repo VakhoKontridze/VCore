@@ -14,11 +14,13 @@ import XCTest
 // MARK: - Tests
 final class CGRectToNSLayoutConstraintsTests: XCTestCase {
     // MARK: Test Data
-    private let superview: UIView = .init(frame: CGRect(
-        origin: .zero,
-        size: CGSize(width: 300, height: 400)
-    ))
-    
+    private let superview: UIView = .init(
+        frame: CGRect(
+            origin: .zero,
+            size: CGSize(width: 300, height: 400)
+        )
+    )
+
     private let viewRect: CGRect = .init(
         origin: CGPoint(x: 100, y: 100),
         size: CGSize(width: 150, height: 200)

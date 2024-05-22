@@ -19,10 +19,12 @@ extension UIImage {
     public func scaled(
         toWidth newWidth: CGFloat
     ) -> UIImage? {
-        scaled(toSize: CGSize(
-            width: newWidth,
-            height: size.height * (newWidth / size.width)
-        ))
+        scaled(
+            toSize: CGSize(
+                width: newWidth,
+                height: size.height * (newWidth / size.width)
+            )
+        )
     }
     
     /// Scales `UIImage` to specified height.
@@ -33,10 +35,12 @@ extension UIImage {
     public func scaled(
         toHeight newHeight: CGFloat
     ) -> UIImage? {
-        scaled(toSize: CGSize(
-            width: size.width * (newHeight / size.height),
-            height: newHeight
-        ))
+        scaled(
+            toSize: CGSize(
+                width: size.width * (newHeight / size.height),
+                height: newHeight
+            )
+        )
     }
     
     private func scaled(

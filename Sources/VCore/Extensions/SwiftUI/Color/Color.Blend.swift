@@ -20,19 +20,23 @@ extension Color {
         ratio2: CGFloat = 0.5
     ) -> Color {
 #if canImport(UIKit)
-        Color(uiColor: UIColor.blend(
-            UIColor(color1),
-            ratio1: ratio1,
-            with: UIColor(color2),
-            ratio2: ratio2
-        ))
+        Color(
+            uiColor: UIColor.blend(
+                UIColor(color1),
+                ratio1: ratio1,
+                with: UIColor(color2),
+                ratio2: ratio2
+            )
+        )
 #elseif canImport(AppKit)
-        Color(nsColor: NSColor.blend(
-            NSColor(color1),
-            ratio1: ratio1,
-            with: NSColor(color2),
-            ratio2: ratio2
-        ))
+        Color(
+            nsColor: NSColor.blend(
+                NSColor(color1),
+                ratio1: ratio1,
+                with: NSColor(color2),
+                ratio2: ratio2
+            )
+        )
 #endif
     }
     

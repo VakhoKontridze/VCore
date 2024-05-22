@@ -27,14 +27,16 @@ import UIKit
 ///         }
 ///
 ///         func present() {
-///             view.presentAlert(parameters: UIAlertParameters(
-///                 title: "Lorem Ipsum",
-///                 message: "Lorem ipsum dolor sit amet",
-///                 actions: {
-///                     UIAlertButton(title: "Confirm", action: { print("Confirmed") })
-///                     UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
-///                 }
-///             ))
+///             view.presentAlert(
+///                 parameters: UIAlertParameters(
+///                     title: "Lorem Ipsum",
+///                     message: "Lorem ipsum dolor sit amet",
+///                     actions: {
+///                         UIAlertButton(title: "Confirm", action: { print("Confirmed") })
+///                        UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///                     }
+///                 )
+///             )
 ///         }
 ///     }
 ///
@@ -83,14 +85,16 @@ private final class ViewController: UIViewController, UIAlertViewable {
     }
 
     private func present() {
-        presentAlert(parameters: UIAlertParameters(
-            title: "Lorem Ipsum",
-            message: "Lorem ipsum dolor sit amet",
-            actions: {
-                UIAlertButton(title: "Confirm", action: { print("Confirmed") })
-                UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
-            }
-        ))
+        presentAlert(
+            parameters: UIAlertParameters(
+                title: "Lorem Ipsum",
+                message: "Lorem ipsum dolor sit amet",
+                actions: {
+                    UIAlertButton(title: "Confirm", action: { print("Confirmed") })
+                    UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+                }
+            )
+        )
     }
 }
 

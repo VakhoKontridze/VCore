@@ -17,14 +17,16 @@ import UIKit
 ///
 /// For usage example, refer to `UIActionSheetViewable`.
 ///
-///     presentActionSheet(parameters: .init(
-///         title: "Lorem Ipsum",
-///         message: "Lorem ipsum dolor sit amet",
-///         actions: {
-///             UIActionSheetButton(title: "Confirm", action: { print("Confirmed") })
-///             UIActionSheetButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
-///         }
-///     ))
+///     presentActionSheet(
+///         parameters: UIActionSheetParameters(
+///             title: "Lorem Ipsum",
+///             message: "Lorem ipsum dolor sit amet",
+///             actions: {
+///                 UIActionSheetButton(title: "Confirm", action: { print("Confirmed") })
+///                 UIActionSheetButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///             }
+///         )
+///     )
 ///
 public struct UIActionSheetParameters {
     // MARK: Properties

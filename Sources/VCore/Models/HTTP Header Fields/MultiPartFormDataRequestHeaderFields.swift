@@ -13,9 +13,11 @@ import Foundation
 /// Can be used in `URLRequest` with `MultipartFormDataBuilder`.
 ///
 ///     var request: URLRequest = ...
-///     try request.addHTTPHeaderFields(object: MultipartFormDataRequestHeaderFields(
-///         boundary: boundary
-///     ))
+///     try request.addHTTPHeaderFields(
+///         object: MultipartFormDataRequestHeaderFields(
+///             boundary: boundary
+///         )
+///     )
 ///
 @CodingKeysGeneration
 public struct MultipartFormDataRequestHeaderFields: Encodable {

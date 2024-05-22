@@ -106,10 +106,12 @@ open class ResponderChainUIToolbar: UIToolbar {
     ) {
         self.uiModel = uiModel
 
-        super.init(frame: CGRect(
-            origin: .zero,
-            size: size
-        ))
+        super.init(
+            frame: CGRect(
+                origin: .zero,
+                size: size
+            )
+        )
 
         setUp()
         configure(uiModel: uiModel)
