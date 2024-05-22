@@ -15,21 +15,8 @@ struct URLMacro_InitWithString: ExpressionMacro {
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
-        // `urlString` parameter
-        let (urlString, urlStringExpression): (String, ExprSyntax) = try {
-            guard
-                let argument: LabeledExprSyntax = node
-                    .arguments
-                    .first, // Only one argument, with no name
-                let value: String = argument
-                    .expression.as(StringLiteralExprSyntax.self)?
-                    .representedLiteralValue
-            else {
-                throw URLMacroError_InitWithString.invalidURLStringParameter
-            }
-
-            return (value, argument.expression)
-        }()
+        // Parameters
+        let (urlString, urlStringExpression): (String, ExprSyntax) = try urlStringParameter(node: node)
 
         // Checks compilation
         guard
@@ -40,5 +27,23 @@ struct URLMacro_InitWithString: ExpressionMacro {
 
         // Result
         return "URL(string: \(urlStringExpression))!" // Force-unwrap
+    }
+
+    private static func urlStringParameter(
+        node: some FreestandingMacroExpansionSyntax
+    ) throws -> (String, ExprSyntax) {
+        guard
+            let argument: LabeledExprSyntax = node
+                .arguments
+                .first, // Only one argument, with no name
+
+            let value: String = argument
+                .expression.as(StringLiteralExprSyntax.self)?
+                .representedLiteralValue
+        else {
+            throw URLMacroError_InitWithString.invalidURLStringParameter
+        }
+
+        return (value, argument.expression)
     }
 }

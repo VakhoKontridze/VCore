@@ -26,7 +26,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             context: context
         )
 
-        // `Option` enum cases
+        // `Option` `enum` cases
         let optionEnumCases: [EnumCaseElementSyntax] = expansionData
             .optionsEnumDeclaration
             .memberBlock
@@ -35,6 +35,16 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             .flatMap { $0.elements } // Retrieves all cases from the same line
 
         // Result
+        return memberResult(
+            expansionData: expansionData,
+            optionEnumCases: optionEnumCases
+        )
+    }
+
+    private static func memberResult(
+        expansionData: ExpansionData,
+        optionEnumCases: [EnumCaseElementSyntax]
+    ) -> [DeclSyntax] {
         var result: [DeclSyntax] = []
 
         result.append("\(raw: expansionData.accessLevelModifier) typealias RawValue = \(expansionData.rawType)")
@@ -43,7 +53,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
         result.append(
             """
-            \(raw: expansionData.accessLevelModifier) init() { 
+            \(raw: expansionData.accessLevelModifier) init() {
                 self.rawValue = 0
             }
             """
@@ -87,7 +97,17 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             return [] // Errors are thrown from `MemberMacro`
         }
 
-        // Result.
+        // Result
+        return extensionResult(
+            type: type,
+            expansionData: expansionData
+        )
+    }
+
+    private static func extensionResult(
+        type: some TypeSyntaxProtocol,
+        expansionData: ExpansionData
+    ) -> [ExtensionDeclSyntax] {
         // Skips conformance, if it already exits.
         // This is essential, if declaration has availability attributes.
         if
@@ -112,55 +132,37 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         }
     }
 
-    // MARK: Helpers
+    // MARK: Expansion
     private struct ExpansionData {
         let accessLevelModifier: String
         let structDeclaration: StructDeclSyntax
         let optionsEnumDeclaration: EnumDeclSyntax
         let rawType: TypeSyntax
     }
-
+    
     // Decodes arguments and extract various roles used by both protocols.
     private static func decodeExpansion(
         attribute: AttributeSyntax,
         declaration: some DeclGroupSyntax,
         context: some MacroExpansionContext
     ) throws -> ExpansionData {
-        // `accessLevelModifier` parameter
-        let accessLevelModifier: String = try {
-            guard
-                let argument: LabeledExprSyntax? = attribute
-                    .arguments?.toArgumentListGetAssociatedValue()?
-                    .first(where: { $0.label?.text == "accessLevelModifier" })
-            else {
-                return "internal" // Default value
-            }
+        // Parameters
+        let accessLevelModifier: String = try _accessLevelModifierParameter(attribute: attribute)
 
-            guard
-                let value: String = argument?
-                    .expression.as(StringLiteralExprSyntax.self)?
-                    .representedLiteralValue
-            else {
-                throw OptionSetRepresentationMacroError.invalidAccessLevelModifierParameter
-            }
-
-            return value
-        }()
-
-        // Limits declaration to structs
+        // Limits declaration to `struct`s
         guard
             let structDeclaration: StructDeclSyntax = declaration.as(StructDeclSyntax.self)
         else {
             throw OptionSetRepresentationMacroError.canOnlyBeAppliedToStructs
         }
 
-        // `Option` enum within the struct
+        // `Option` `enum` within the `struct`
         guard
             let optionsEnumDeclaration: EnumDeclSyntax = declaration.memberBlock.members
                 .first(where: { member in
                     guard
                         let enumDeclaration: EnumDeclSyntax = member.decl.as(EnumDeclSyntax.self),
-                        enumDeclaration.name.text == "Options"
+                        enumDeclaration.name.trimmedDescription == "Options"
                     else {
                         return false
                     }
@@ -172,7 +174,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             throw OptionSetRepresentationMacroError.optionsEnumNotFound
         }
 
-        // Raw type from `Option` enum
+        // Raw type from `Option` `enum`
         guard
             let geneticArgument: GenericArgumentClauseSyntax = attribute
                 .attributeName.as(IdentifierTypeSyntax.self)?
@@ -189,5 +191,28 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             optionsEnumDeclaration: optionsEnumDeclaration,
             rawType: rawType
         )
+    }
+
+    private static func _accessLevelModifierParameter(
+        attribute: AttributeSyntax
+    ) throws -> String {
+        guard
+            let argument: LabeledExprSyntax? = attribute
+                .arguments?
+                .toArgumentListGetAssociatedValue()?
+                .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })
+        else {
+            return "internal" // Default value
+        }
+
+        guard
+            let value: String = argument?
+                .expression.as(StringLiteralExprSyntax.self)?
+                .representedLiteralValue
+        else {
+            throw OptionSetRepresentationMacroError.invalidAccessLevelModifierParameter
+        }
+
+        return value
     }
 }

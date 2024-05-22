@@ -16,36 +16,17 @@ struct CaseDetectionMacro: MemberMacro {
         providingMembersOf declaration: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        // `accessLevelModifier` parameter
-        let accessLevelModifier: String = try {
-            guard
-                let argument: LabeledExprSyntax? = node
-                    .arguments?
-                    .toArgumentListGetAssociatedValue()?
-                    .first(where: { $0.label?.text == "accessLevelModifier" })
-            else {
-                return "internal" // Default value
-            }
+        // Parameters
+        let accessLevelModifier: String = try accessLevelModifierParameter(node: node)
 
-            guard
-                let value: String = argument?
-                    .expression.as(StringLiteralExprSyntax.self)?
-                    .representedLiteralValue
-            else {
-                throw CaseDetectionMacroError.invalidAccessLevelModifierParameter
-            }
-
-            return value
-        }()
-
-        // Limits declaration to enums
+        // Limits declaration to `enum`s
         guard
             declaration.is(EnumDeclSyntax.self)
         else {
             throw CaseDetectionMacroError.canOnlyBeAppliedToEnums
         }
 
-        // Enum cases
+        // `enum` cases
         let enumCases: [EnumCaseElementSyntax] = declaration
             .memberBlock
             .members
@@ -53,10 +34,43 @@ struct CaseDetectionMacro: MemberMacro {
             .flatMap { $0.elements } // Retrieves all cases from the same line
 
         // Result
+        return result(
+            accessLevelModifier: accessLevelModifier,
+            enumCases: enumCases
+        )
+    }
+
+    private static func accessLevelModifierParameter(
+        node: AttributeSyntax
+    ) throws -> String {
+        guard
+            let argument: LabeledExprSyntax? = node
+                .arguments?
+                .toArgumentListGetAssociatedValue()?
+                .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })
+        else {
+            return "internal" // Default value
+        }
+
+        guard
+            let value: String = argument?
+                .expression.as(StringLiteralExprSyntax.self)?
+                .representedLiteralValue
+        else {
+            throw CaseDetectionMacroError.invalidAccessLevelModifierParameter
+        }
+
+        return value
+    }
+
+    private static func result(
+        accessLevelModifier: String,
+        enumCases: [EnumCaseElementSyntax]
+    ) -> [DeclSyntax] {
         var result: [DeclSyntax] = []
 
         for enumCase in enumCases {
-            let enumCaseName: String = enumCase.name.text.removingReservedKeywordBackticks()
+            let enumCaseName: String = enumCase.name.trimmedDescription.removingReservedKeywordBackticks()
 
             let firstCharUppercasedName: String = {
                 if let firstChar: Character = enumCaseName.first {

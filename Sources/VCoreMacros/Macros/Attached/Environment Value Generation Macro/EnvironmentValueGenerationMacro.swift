@@ -66,7 +66,7 @@ struct EnvironmentValueGenerationMacro: PeerMacro, AccessorMacro {
         ]
     }
 
-    // MARK: Helpers
+    // MARK: Expansion
     private struct ExpansionData {
         let propertyName: String
         let propertyType: String
@@ -90,7 +90,7 @@ struct EnvironmentValueGenerationMacro: PeerMacro, AccessorMacro {
             let propertySpecifier: Keyword = propertyDeclaration
                 .bindingSpecifier
                 .tokenKind.toKeywordAssociatedValue(),
-            propertySpecifier == .var
+            propertySpecifier == Keyword.var
         else {
             throw EnvironmentValueGenerationMacroError.canOnlyBeAppliedToVariableProperties
         }
@@ -100,7 +100,7 @@ struct EnvironmentValueGenerationMacro: PeerMacro, AccessorMacro {
             let propertyName: String = propertyBinding
                 .pattern.as(IdentifierPatternSyntax.self)?
                 .identifier
-                .text
+                .trimmedDescription
         else {
             throw EnvironmentValueGenerationMacroError.invalidPropertyName
         }

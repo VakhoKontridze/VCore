@@ -16,67 +16,10 @@ struct ColorMacro_InitWithHexString: ExpressionMacro {
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
-        // `colorSpace` parameter
-        let colorSpaceString: String = try {
-            guard
-                let argument: LabeledExprSyntax = node
-                    .arguments
-                    .first(where: { $0.label?.text == nil })
-            else {
-                return "sRGB" // Default value
-            }
-
-            guard
-                let value: String = argument
-                    .expression.as(MemberAccessExprSyntax.self)?
-                    .declName
-                    .baseName
-                    .text
-            else {
-                throw ColorMacroError_InitWithHexString.invalidColorSpaceParameter
-            }
-
-            return value
-        }()
-
-        // `hex` parameter
-        let hex: String = try {
-            guard
-                let argument: LabeledExprSyntax = node
-                    .arguments
-                    .first(where: { $0.label?.text == "hex" }),
-                let value: String = argument
-                    .expression.as(StringLiteralExprSyntax.self)?
-                    .representedLiteralValue
-            else {
-                throw ColorMacroError_InitWithHexString.invalidHexParameter
-            }
-
-            return value
-        }()
-
-        // `opacity` parameter
-        let opacity: CGFloat = try {
-            guard
-                let argument: LabeledExprSyntax = node
-                    .arguments
-                    .first(where: { $0.label?.text == "opacity" })
-            else {
-                return 1 // Default value
-            }
-
-            guard
-                let valueString: String = argument
-                    .expression.as(FloatLiteralExprSyntax.self)?
-                    .literal
-                    .text,
-                let value: CGFloat = Double(valueString).map({ CGFloat($0) })
-            else {
-                throw ColorMacroError_InitWithHexUInt.invalidOpacityParameter
-            }
-
-            return value
-        }()
+        // Parameters
+        let colorSpaceString: String = try colorSpaceParameter(node: node)
+        let hex: String = try hexParameter(node: node)
+        let opacity: CGFloat = try opacityParameter(node: node)
 
         // RGB values
         guard
@@ -96,5 +39,72 @@ struct ColorMacro_InitWithHexString: ExpressionMacro {
                 opacity: \(raw: opacity)
             )
             """
+    }
+
+    private static func colorSpaceParameter(
+        node: some FreestandingMacroExpansionSyntax
+    ) throws -> String {
+        guard
+            let argument: LabeledExprSyntax = node
+                .arguments
+                .first(where: { $0.label?.trimmedDescription == nil })
+        else {
+            return "sRGB" // Default value
+        }
+
+        guard
+            let value: String = argument
+                .expression.as(MemberAccessExprSyntax.self)?
+                .declName
+                .baseName
+                .trimmedDescription
+        else {
+            throw ColorMacroError_InitWithHexString.invalidColorSpaceParameter
+        }
+
+        return value
+    }
+
+    private static func hexParameter(
+        node: some FreestandingMacroExpansionSyntax
+    ) throws -> String {
+        guard
+            let argument: LabeledExprSyntax = node
+                .arguments
+                .first(where: { $0.label?.trimmedDescription == "hex" }),
+
+            let value: String = argument
+                .expression.as(StringLiteralExprSyntax.self)?
+                .representedLiteralValue
+        else {
+            throw ColorMacroError_InitWithHexString.invalidHexParameter
+        }
+
+        return value
+    }
+
+    private static func opacityParameter(
+        node: some FreestandingMacroExpansionSyntax
+    ) throws -> CGFloat {
+        guard
+            let argument: LabeledExprSyntax = node
+                .arguments
+                .first(where: { $0.label?.trimmedDescription == "opacity" })
+        else {
+            return 1 // Default value
+        }
+
+        guard
+            let valueString: String = argument
+                .expression.as(FloatLiteralExprSyntax.self)?
+                .literal
+                .trimmedDescription,
+
+            let value: CGFloat = Double(valueString).map({ CGFloat($0) })
+        else {
+            throw ColorMacroError_InitWithHexUInt.invalidOpacityParameter
+        }
+
+        return value
     }
 }
