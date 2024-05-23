@@ -8,8 +8,7 @@
 import Foundation
 
 // MARK: - Access Level Modifier Keyword
-/// Enumeration that represent access level modifier.
-public enum AccessLevelModifierKeyword: String {
+enum AccessLevelModifierKeyword: String {
     case `open` = "open"
     case `public` = "public"
     case `package` = "package"
