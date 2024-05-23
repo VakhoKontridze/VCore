@@ -1,5 +1,5 @@
 //
-//  MacroBridge.swift
+//  AccessLevelModifierKeyword.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 23.05.24.
@@ -22,7 +22,7 @@ public enum AccessLevelModifierKeyword: String {
     /// Internal.
     case `internal` = "internal"
 
-    /// Fileprivate/
+    /// Fileprivate.
     case `fileprivate` = "fileprivate"
 
     /// Private.

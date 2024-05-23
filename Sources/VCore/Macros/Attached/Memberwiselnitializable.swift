@@ -14,7 +14,7 @@ import Foundation
 ///         accessLevelModifier: .public,
 ///         externalParameterNames: ["url": "_"]
 ///     )
-///     public struct FetchImageParameter {
+///     public struct FetchImageParameters {
 ///         public let url: String
 ///         public let completion: (String) async throws -> UIImage
 ///     }
@@ -32,9 +32,19 @@ import Foundation
 public macro MemberwiseInitializable(
     accessLevelModifier: AccessLevelModifierKeyword = .internal,
     externalParameterNames: [String: String] = [:],
-    parameterDefaultValues: [String: String] = [:],
+    parameterDefaultValues: [String: MemberwiseInitializableParameterDefaultValue] = [:],
     excludedParameters: [String] = []
 ) = #externalMacro(
     module: "VCoreMacros",
     type: "MemberwiseInitializableMacro"
 )
+
+// MARK: - Memberwise Initializable Parameter Default Value
+/// Enumeration that represents parameter default value.
+public enum MemberwiseInitializableParameterDefaultValue {
+    /// Value.
+    case value(Any?)
+
+    /// Omitted value.
+    case omit
+}

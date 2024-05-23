@@ -21,7 +21,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         // Parameters
         let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(node: node)
         let externalParameterNamesStrings: [String: String] = try externalParameterNamesParameter(node: node)
-        let parameterDefaultValuesStrings: [String: String] = try parameterDefaultValuesParameter(node: node)
+        let parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue] = try parameterDefaultValuesParameter(node: node)
         let excludedParametersStrings: [String] = try excludedParametersParameter(node: node)
 
         // Skips `enum`s
@@ -124,7 +124,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
     private static func parameterDefaultValuesParameter(
         node: AttributeSyntax
-    ) throws -> [String: String] {
+    ) throws -> [String: MemberwiselnitializableParameterDefaultValue] {
         guard
             let parameter: LabeledExprSyntax = node
                 .arguments?
@@ -135,7 +135,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         }
 
         guard
-            let value: [String: String] = try parameter
+            let value: [String: MemberwiselnitializableParameterDefaultValue] = try parameter
                 .expression.as(DictionaryExprSyntax.self)?
                 .content.as(DictionaryElementListSyntax.self)?
                 .reduce(into: [:], { (result, element) in
@@ -145,17 +145,50 @@ struct MemberwiseInitializableMacro: MemberMacro {
                             .segments
                             .first?.as(StringSegmentSyntax.self)?
                             .content
-                            .trimmedDescription,
-
-                        let value: String = element
-                            .value.as(StringLiteralExprSyntax.self)?
-                            .segments
-                            .first?.as(StringSegmentSyntax.self)?
-                            .content
                             .trimmedDescription
                     else {
                         throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
                     }
+
+                    let value: MemberwiselnitializableParameterDefaultValue = try {
+                        if
+                            let caseName: String = element
+                                .value.as(FunctionCallExprSyntax.self)?
+                                .calledExpression.as(MemberAccessExprSyntax.self)?
+                                .declName
+                                .baseName
+                                .trimmedDescription,
+
+                            caseName == "value"
+                        {
+                            guard
+                                let value: String = element
+                                    .value.as(FunctionCallExprSyntax.self)?
+                                    .arguments
+                                    .first?
+                                    .expression
+                                    .trimmedDescription
+                            else {
+                                throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
+                            }
+
+                            return .value(value)
+                        }
+
+                        if
+                            let caseName: String = element
+                                .value.as(MemberAccessExprSyntax.self)?
+                                .declName
+                                .baseName
+                                .trimmedDescription,
+
+                            caseName == "omit"
+                        {
+                            return .omit
+                        }
+
+                        throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
+                    }()
 
                     result[key] = value
                 })
@@ -205,7 +238,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
     private static func parameter(
         externalParameterNamesStrings: [String: String],
-        parameterDefaultValuesStrings: [String: String],
+        parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue],
         excludedParametersStrings: [String],
         member: MemberBlockItemSyntax
     ) throws -> Parameter? {
@@ -299,8 +332,11 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
         // Parameter default value
         let parameterDefaultValue: String? = {
-            if let specifiedDefaultValue: String = parameterDefaultValuesStrings[propertyName] {
-                return specifiedDefaultValue
+            if let specifiedDefaultValue: MemberwiselnitializableParameterDefaultValue = parameterDefaultValuesStrings[propertyName] {
+                switch specifiedDefaultValue {
+                case .value(let string): return string
+                case .omit: return nil
+                }
             } else if isPropertyConstant {
                 return nil
             } else if isPropertyOptional {

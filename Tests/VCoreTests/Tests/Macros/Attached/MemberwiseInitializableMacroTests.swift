@@ -357,17 +357,21 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             """
             @MemberwiseInitializable(
                 parameterDefaultValues: [
-                    "a1": "1",
-                    "a2": "2",
-                    "b1": "3",
-                    "b2": "4",
+                    "a1": .value(1),
+                    "a2": .value(2),
+                    "b1": .value(3),
+                    "b2": .value(4),
+                    "c": .value("")
                 ]
             )
             struct SomeStruct {
                 let a1: Int
                 var a2: Int
+                
                 let b1: Int?
                 var b2: Int?
+
+                let c: String
             }
             """,
             expandedSource:
@@ -375,19 +379,63 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                 struct SomeStruct {
                     let a1: Int
                     var a2: Int
+                    
                     let b1: Int?
                     var b2: Int?
+
+                    let c: String
 
                     internal init(
                         a1: Int = 1,
                         a2: Int = 2,
                         b1: Int? = 3,
-                        b2: Int? = 4
+                        b2: Int? = 4,
+                        c: String = ""
                     ) {
                         self.a1 = a1
                         self.a2 = a2
                         self.b1 = b1
                         self.b2 = b2
+                        self.c = c
+                    }
+                }
+                """,
+            macros: macros
+        )
+
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable(
+                parameterDefaultValues: [
+                    "b": .omit,
+                    "d": .omit,
+                ]
+            )
+            struct SomeStruct {
+                var a: Int?
+                var b: Int?
+                var c: Int? = 1
+                var d: Int? = 1
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    var a: Int?
+                    var b: Int?
+                    var c: Int? = 1
+                    var d: Int? = 1
+
+                    internal init(
+                        a: Int? = nil,
+                        b: Int?,
+                        c: Int? = nil,
+                        d: Int?
+                    ) {
+                        self.a = a
+                        self.b = b
+                        self.c = c
+                        self.d = d
                     }
                 }
                 """,
