@@ -154,6 +154,34 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         )
     }
 
+    func testPropertyWrappersAndFunctionAttributed() {
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable
+            struct SomeStruct {
+                @SomeWrapper var a: Int
+                @ViewBuilder let b: () -> Void
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    @SomeWrapper var a: Int
+                    @ViewBuilder let b: () -> Void
+
+                    internal init(
+                        a: Int,
+                        @ViewBuilder b: @escaping () -> Void
+                    ) {
+                        self.a = a
+                        self.b = b
+                    }
+                }
+                """,
+            macros: macros
+        )
+    }
+
     func testClosures() {
         assertMacroExpansion(
             """
@@ -174,7 +202,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
 
                 let d: () async throws -> Void
 
-                @ViewBuilder let e: () -> Void
+                let e: @Sendable () -> Void
             }
             """,
             expandedSource:
@@ -195,7 +223,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
 
                     let d: () async throws -> Void
 
-                    @ViewBuilder let e: () -> Void
+                    let e: @Sendable () -> Void
 
                     internal init(
                         a1: @escaping () -> Void,
@@ -209,7 +237,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                         c3: ((() -> Void) -> Void)?,
                         c4: (((() -> Void)?) -> Void)?,
                         d: @escaping () async throws -> Void,
-                        @ViewBuilder e: @escaping () -> Void
+                        e: @escaping @Sendable () -> Void
                     ) {
                         self.a1 = a1
                         self.a2 = a2

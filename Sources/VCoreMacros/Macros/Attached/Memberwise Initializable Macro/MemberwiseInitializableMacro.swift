@@ -238,9 +238,6 @@ struct MemberwiseInitializableMacro: MemberMacro {
             return nil
         }
 
-        // Property attributes
-        let propertyAttributes: String? = propertyDeclaration.attributes.trimmedDescription.nonEmpty
-
         // Constant flag
         let isPropertyConstant: Bool = propertyDeclaration.bindingSpecifier.tokenKind == .keyword(Keyword.let)
 
@@ -285,6 +282,18 @@ struct MemberwiseInitializableMacro: MemberMacro {
             throw MemberwiseInitializableMacroError.invalidPropertyType
         }
 
+        // Function type flag
+        let isPropertyFunctionType: Bool = propertyType.contains("->")
+
+        // Parameter attributes
+        let parameterAttributes: String? = {
+            if isPropertyFunctionType {
+                return propertyDeclaration.attributes.trimmedDescription.nonEmpty
+            } else {
+                return nil
+            }
+        }()
+
         // Optional flag
         let isPropertyOptional: Bool = propertyBinding.typeAnnotation?.type.is(OptionalTypeSyntax.self) == true
 
@@ -303,21 +312,26 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
         // Result
         return Parameter(
-            attributes: propertyAttributes,
+            attributes: parameterAttributes,
             externalName: externalParameterNames,
             name: propertyName,
             type: propertyType,
             _isOptional: isPropertyOptional,
+            _isFunctionType: isPropertyFunctionType,
             defaultValue: parameterDefaultValue
         )
     }
 
     private struct Parameter {
         let attributes: String?
+        
         let externalName: String?
         let name: String
+        
         let type: String
         let _isOptional: Bool // Derived value
+        let _isFunctionType: Bool // Derived value
+
         let defaultValue: String?
     }
 
@@ -342,7 +356,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
             result.append("\(parameter.name): ")
 
             if
-                parameter.type.contains("->"),
+                parameter._isFunctionType,
                 !parameter._isOptional
             {
                 result.append("@escaping ")
