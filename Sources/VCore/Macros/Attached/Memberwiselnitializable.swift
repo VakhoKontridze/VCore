@@ -33,7 +33,8 @@ public macro MemberwiseInitializable(
     accessLevelModifier: AccessLevelModifierKeyword = .internal,
     externalParameterNames: [String: String] = [:],
     parameterDefaultValues: [String: MemberwiseInitializableParameterDefaultValue] = [:],
-    excludedParameters: [String] = []
+    excludedParameters: [String] = [],
+    comment: String? = nil
 ) = #externalMacro(
     module: "VCoreMacros",
     type: "MemberwiseInitializableMacro"

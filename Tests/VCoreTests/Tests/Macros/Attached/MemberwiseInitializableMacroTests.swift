@@ -471,6 +471,66 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         )
     }
 
+    func testCommentParameter() {
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable(
+                comment: "///Lorem ipsum dolor ist amet."
+            )
+            struct SomeStruct {
+                let a: Int
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    let a: Int
+
+                    ///Lorem ipsum dolor ist amet.
+                    internal init(
+                        a: Int
+                    ) {
+                        self.a = a
+                    }
+                }
+                """,
+            macros: macros
+        )
+
+        assertMacroExpansion(
+            #"""
+            @MemberwiseInitializable(
+                comment: """
+                    /// Lorem ipsum dolor ist amet.
+                    ///
+                    ///     Example.
+                    ///
+                    """
+            )
+            struct SomeStruct {
+                let a: Int
+            }
+            """#,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    let a: Int
+
+                    /// Lorem ipsum dolor ist amet.
+                    ///
+                    ///     Example.
+                    ///
+                    internal init(
+                        a: Int
+                    ) {
+                        self.a = a
+                    }
+                }
+                """,
+            macros: macros
+        )
+    }
+
     func testEnum() {
         assertMacroExpansion(
             """

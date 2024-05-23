@@ -24,6 +24,7 @@ struct MemberwiseInitializableMacroError: Error, CustomStringConvertible {
     static var invalidExternalParameterNamesParameter: Self { .init("Invalid 'externalParameterNames' parameter") }
     static var invalidParameterDefaultValuesParameter: Self { .init("Invalid 'parameterDefaultValues' parameter") }
     static var invalidExcludedParametersParameter: Self { .init("Invalid 'excludedParameters' parameter") }
+    static var invalidCommentParameter: Self { .init("Invalid 'comment' parameter") }
     static var onePropertyAllowedPerLine: Self { .init("Only one property declaration is allowed per line") }
     static var invalidPropertyType: Self { .init("Invalid property type") }
 }

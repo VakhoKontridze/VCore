@@ -23,6 +23,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         let externalParameterNamesStrings: [String: String] = try externalParameterNamesParameter(node: node)
         let parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue] = try parameterDefaultValuesParameter(node: node)
         let excludedParametersStrings: [String] = try excludedParametersParameter(node: node)
+        let comment: String? = try commentParameter(node: node)
 
         // Skips `enum`s
         guard
@@ -47,7 +48,8 @@ struct MemberwiseInitializableMacro: MemberMacro {
         // Result
         return result(
             accessLevelModifier: accessLevelModifier,
-            parameters: parameters
+            parameters: parameters,
+            comment: comment
         )
     }
 
@@ -236,6 +238,29 @@ struct MemberwiseInitializableMacro: MemberMacro {
         return value
     }
 
+    private static func commentParameter(
+        node: AttributeSyntax
+    ) throws -> String? {
+        guard
+            let parameter: LabeledExprSyntax = node
+                .arguments?
+                .toArgumentListGetAssociatedValue()?
+                .first(where: { $0.label?.trimmedDescription == "comment" })
+        else {
+            return nil // Default value
+        }
+
+        guard
+            let value: String = parameter
+                .expression.as(StringLiteralExprSyntax.self)?
+                .representedLiteralValue
+        else {
+            throw MemberwiseInitializableMacroError.invalidCommentParameter
+        }
+
+        return value
+    }
+
     private static func parameter(
         externalParameterNamesStrings: [String: String],
         parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue],
@@ -373,9 +398,15 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
     private static func result(
         accessLevelModifier: AccessLevelModifierKeyword,
-        parameters: [Parameter]
+        parameters: [Parameter],
+        comment: String?
     ) -> [DeclSyntax] {
         var result: String = ""
+
+        if let comment {
+            result.append(comment)
+            result.append("\n")
+        }
 
         result.append("\(accessLevelModifier) init(")
         result.append("\n")
