@@ -154,7 +154,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         )
     }
 
-    func testPropertyWrappersAndFunctionAttributed() {
+    func testPropertyWrappersAndFunctionAttributes() {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
@@ -172,6 +172,32 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     internal init(
                         a: Int,
                         @ViewBuilder b: @escaping () -> Void
+                    ) {
+                        self.a = a
+                        self.b = b
+                    }
+                }
+                """,
+            macros: macros
+        )
+
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable
+            class SomeClass {
+                @objc let a: Int
+                dynamic let b: Int
+            }
+            """,
+            expandedSource: 
+                """
+                class SomeClass {
+                    @objc let a: Int
+                    dynamic let b: Int
+
+                    internal init(
+                        a: Int,
+                        b: Int
                     ) {
                         self.a = a
                         self.b = b
