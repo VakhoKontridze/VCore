@@ -103,25 +103,25 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
 #if DEBUG
 
 #Preview(body: {
-    struct ContentView: View {
-        let colors: GenericStateModel_EnabledPressedDisabled<Color> = .init(
-            enabled: Color.primary,
-            pressed: Color.secondary,
-            disabled: Color.secondary
-        )
-
-        var body: some View {
-            SwiftUIBaseButton(
-                action: {},
-                label: { baseButtonState in
-                    Text("Lorem Ipsum")
-                        .foregroundStyle(colors.value(for: baseButtonState))
-                }
-            )
-        }
-    }
-
-    return ContentView()
+    ContentView()
 })
+
+private struct ContentView: View { // TODO: Move into macro when nested macro expansions are supported
+    let colors: GenericStateModel_EnabledPressedDisabled<Color> = .init(
+        enabled: Color.primary,
+        pressed: Color.secondary,
+        disabled: Color.secondary
+    )
+
+    var body: some View {
+        SwiftUIBaseButton(
+            action: {},
+            label: { baseButtonState in
+                Text("Lorem Ipsum")
+                    .foregroundStyle(colors.value(for: baseButtonState))
+            }
+        )
+    }
+}
 
 #endif
