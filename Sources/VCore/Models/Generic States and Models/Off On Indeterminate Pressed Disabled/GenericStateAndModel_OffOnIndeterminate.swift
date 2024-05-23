@@ -62,6 +62,10 @@ extension Binding where Value == GenericState_OffOnIndeterminate {
 /// Value group containing `off`, `on`, and `indeterminate`.
 ///
 /// Used for mapping `GenericState_OffOnIndeterminate` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_OffOnIndeterminate` with values."
+)
 public struct GenericStateModel_OffOnIndeterminate<Value> {
     // MARK: Properties
     /// Off value.
@@ -74,17 +78,6 @@ public struct GenericStateModel_OffOnIndeterminate<Value> {
     public var indeterminate: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_OffOnIndeterminate` with values.
-    public init(
-        off: Value,
-        on: Value,
-        indeterminate: Value
-    ) {
-        self.off = off
-        self.on = on
-        self.indeterminate = indeterminate
-    }
-    
     /// Initializes `GenericStateModel_OffOnIndeterminate` with value.
     public init(
         _ value: Value

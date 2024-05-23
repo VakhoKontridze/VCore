@@ -58,6 +58,10 @@ extension Binding where Value == GenericState_OffOn {
 /// Value group containing `off` and `on`.
 ///
 /// Used for mapping `GenericState_OffOn` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_OffOn` with values."
+)
 public struct GenericStateModel_OffOn<Value> {
     // MARK: Properties
     /// Off value.
@@ -67,15 +71,6 @@ public struct GenericStateModel_OffOn<Value> {
     public var on: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_OffOn` with values.
-    public init(
-        off: Value,
-        on: Value
-    ) {
-        self.off = off
-        self.on = on
-    }
-    
     /// Initializes `GenericStateModel_OffOn` with value.
     public init(
         _ value: Value

@@ -9,6 +9,10 @@ import SwiftUI
 
 // MARK: - Edge Insets (Leading, Trailing, Top, Bottom)
 /// Edge insets containing `leading`, `trailing`, `top` and `bottom` values.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `EdgeInsets_LeadingTrailingTopBottom` with values."
+)
 public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
     // MARK: Properties
     /// Leading inset value.
@@ -36,19 +40,6 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
     public var verticalAverage: CGFloat { (top + bottom)/2 }
     
     // MARK: Initializers
-    /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with values.
-    public init(
-        leading: CGFloat,
-        trailing: CGFloat,
-        top: CGFloat,
-        bottom: CGFloat
-    ) {
-        self.leading = leading
-        self.trailing = trailing
-        self.top = top
-        self.bottom = bottom
-    }
-    
     /// Initializes `EdgeInsets_LeadingTrailingTopBottom` with horizontal and vertical values.
     public init(
         horizontal: CGFloat,

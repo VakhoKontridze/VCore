@@ -47,6 +47,10 @@ public enum GenericState_EnabledDisabled: Int, CaseIterable {
 /// Value group containing generic `enabled` and `disabled` values.
 ///
 /// Used for mapping `GenericState_EnabledDisabled` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_EnabledDisabled` with values."
+)
 public struct GenericStateModel_EnabledDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
@@ -56,15 +60,6 @@ public struct GenericStateModel_EnabledDisabled<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_EnabledDisabled` with values.
-    public init(
-        enabled: Value,
-        disabled: Value
-    ) {
-        self.enabled = enabled
-        self.disabled = disabled
-    }
-    
     /// Initializes `GenericStateModel_EnabledDisabled` with value.
     public init(
         _ value: Value

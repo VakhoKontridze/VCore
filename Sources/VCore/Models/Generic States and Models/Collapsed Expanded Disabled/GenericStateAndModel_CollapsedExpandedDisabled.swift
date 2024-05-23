@@ -62,6 +62,10 @@ public enum GenericState_CollapsedExpandedDisabled: Int, CaseIterable {
 /// Value group containing generic `collapsed`, `expanded`, and `disabled` values.
 ///
 /// Used for mapping `GenericState_CollapsedExpandedDisabled` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_CollapsedExpandedDisabled` with values."
+)
 public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
     // MARK: Properties
     /// Collapsed value.
@@ -74,17 +78,6 @@ public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with values.
-    public init(
-        collapsed: Value,
-        expanded: Value,
-        disabled: Value
-    ) {
-        self.collapsed = collapsed
-        self.expanded = expanded
-        self.disabled = disabled
-    }
-    
     /// Initializes `GenericStateModel_CollapsedExpandedDisabled` with value.
     public init(
         _ value: Value

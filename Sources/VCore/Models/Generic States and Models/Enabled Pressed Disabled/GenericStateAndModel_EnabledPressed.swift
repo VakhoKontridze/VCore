@@ -38,6 +38,10 @@ public enum GenericState_EnabledPressed: Int, CaseIterable {
 /// Value group containing generic `enabled` and `pressed` values.
 ///
 /// Used for mapping `GenericState_EnabledPressed` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_EnabledPressed` with values."
+)
 public struct GenericStateModel_EnabledPressed<Value> {
     // MARK: Properties
     /// Enabled value.
@@ -47,15 +51,6 @@ public struct GenericStateModel_EnabledPressed<Value> {
     public var pressed: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_EnabledPressed` with values.
-    public init(
-        enabled: Value,
-        pressed: Value
-    ) {
-        self.enabled = enabled
-        self.pressed = pressed
-    }
-    
     /// Initializes `GenericStateModel_EnabledPressed` with value.
     public init(
         _ value: Value

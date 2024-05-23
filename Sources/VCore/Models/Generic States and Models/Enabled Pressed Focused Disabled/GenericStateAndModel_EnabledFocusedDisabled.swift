@@ -52,6 +52,10 @@ public enum GenericState_EnabledFocusedDisabled: Int, CaseIterable {
 /// Value group containing generic `enabled`, `focused`, and `disabled` values.
 ///
 /// Used for mapping `GenericState_EnabledFocusedDisabled` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_EnabledFocusedDisabled` with values."
+)
 public struct GenericStateModel_EnabledFocusedDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
@@ -64,17 +68,6 @@ public struct GenericStateModel_EnabledFocusedDisabled<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_EnabledFocusedDisabled` with values.
-    public init(
-        enabled: Value,
-        focused: Value,
-        disabled: Value
-    ) {
-        self.enabled = enabled
-        self.focused = focused
-        self.disabled = disabled
-    }
-    
     /// Initializes `GenericStateModel_EnabledFocusedDisabled` with value.
     public init(
         _ value: Value

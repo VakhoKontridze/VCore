@@ -55,6 +55,10 @@ public enum GenericState_OffOnPressed: Int, CaseIterable {
 /// Value group containing `off`, `on`, `pressed` (`off`), and `pressed` (`on`).
 ///
 /// Used for mapping `GenericState_OffOnPressed` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_OffOnPressed` with values."
+)
 public struct GenericStateModel_OffOnPressed<Value> {
     // MARK: Properties
     /// Off value.
@@ -70,19 +74,6 @@ public struct GenericStateModel_OffOnPressed<Value> {
     public var pressedOn: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_OffOnPressed` with values.
-    public init(
-        off: Value,
-        on: Value,
-        pressedOff: Value,
-        pressedOn: Value
-    ) {
-        self.off = off
-        self.on = on
-        self.pressedOff = pressedOff
-        self.pressedOn = pressedOn
-    }
-    
     /// Initializes `GenericStateModel_OffOnPressed` with value.
     public init(
         _ value: Value

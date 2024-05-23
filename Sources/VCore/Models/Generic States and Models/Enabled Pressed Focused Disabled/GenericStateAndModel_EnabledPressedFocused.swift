@@ -42,6 +42,10 @@ public enum GenericState_EnabledPressedFocused: Int, CaseIterable {
 /// Value group containing generic `enabled`, `pressed`, and `focused` values.
 ///
 /// Used for mapping `GenericState_EnabledPressedFocused` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_EnabledPressedFocused` with values."
+)
 public struct GenericStateModel_EnabledPressedFocused<Value> {
     // MARK: Properties
     /// Enabled value.
@@ -54,17 +58,6 @@ public struct GenericStateModel_EnabledPressedFocused<Value> {
     public var focused: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_EnabledPressedFocused` with values.
-    public init(
-        enabled: Value,
-        pressed: Value,
-        focused: Value
-    ) {
-        self.enabled = enabled
-        self.pressed = pressed
-        self.focused = focused
-    }
-    
     /// Initializes `GenericStateModel_EnabledPressedFocused` with value.
     public init(
         _ value: Value

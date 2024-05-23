@@ -58,6 +58,10 @@ extension Binding where Value == GenericState_DeselectedSelected {
 /// Value group containing `deselected` and `selected`.
 ///
 /// Used for mapping `GenericState_DeselectedSelected` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_DeselectedSelected` with values."
+)
 public struct GenericStateModel_DeselectedSelected<Value> {
     // MARK: Properties
     /// Deselected value.
@@ -67,15 +71,6 @@ public struct GenericStateModel_DeselectedSelected<Value> {
     public var selected: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_DeselectedSelected` with values.
-    public init(
-        deselected: Value,
-        selected: Value
-    ) {
-        self.deselected = deselected
-        self.selected = selected
-    }
-    
     /// Initializes `GenericStateModel_DeselectedSelected` with value.
     public init(
         _ value: Value

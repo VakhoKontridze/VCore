@@ -58,6 +58,10 @@ extension Binding where Value == GenericState_CollapsedExpanded {
 /// Value group containing generic `collapsed` and `expanded` values.
 ///
 /// Used for mapping `GenericState_CollapsedExpanded` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_CollapsedExpanded` with values."
+)
 public struct GenericStateModel_CollapsedExpanded<Value> {
     // MARK: Properties
     /// Collapsed value.
@@ -67,15 +71,6 @@ public struct GenericStateModel_CollapsedExpanded<Value> {
     public var expanded: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_CollapsedExpanded` with values.
-    public init(
-        collapsed: Value,
-        expanded: Value
-    ) {
-        self.collapsed = collapsed
-        self.expanded = expanded
-    }
-    
     /// Initializes `GenericStateModel_CollapsedExpanded` with value.
     public init(
         _ value: Value

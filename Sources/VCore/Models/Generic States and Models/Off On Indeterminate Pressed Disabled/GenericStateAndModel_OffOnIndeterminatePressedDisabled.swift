@@ -83,6 +83,10 @@ public enum GenericState_OffOnIndeterminatePressedDisabled: Int, CaseIterable {
 /// Value group containing `off`, `on`, `indeterminate`, `pressed` (`off`), `pressed` (`on`), `pressed`(`indeterminate`), and `disabled`.
 ///
 /// Used for mapping `GenericState_OffOnIndeterminatePressedDisabled` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_OffOnIndeterminatePressedDisabled` with values."
+)
 public struct GenericStateModel_OffOnIndeterminatePressedDisabled<Value> {
     // MARK: Properties
     /// Off value.
@@ -107,25 +111,6 @@ public struct GenericStateModel_OffOnIndeterminatePressedDisabled<Value> {
     public var disabled: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_OffOnIndeterminatePressedDisabled` with values.
-    public init(
-        off: Value,
-        on: Value,
-        indeterminate: Value,
-        pressedOff: Value,
-        pressedOn: Value,
-        pressedIndeterminate: Value,
-        disabled: Value
-    ) {
-        self.off = off
-        self.on = on
-        self.indeterminate = indeterminate
-        self.pressedOff = pressedOff
-        self.pressedOn = pressedOn
-        self.pressedIndeterminate = pressedIndeterminate
-        self.disabled = disabled
-    }
-    
     /// Initializes `GenericStateModel_OffOnIndeterminatePressedDisabled` with value.
     public init(
         _ value: Value

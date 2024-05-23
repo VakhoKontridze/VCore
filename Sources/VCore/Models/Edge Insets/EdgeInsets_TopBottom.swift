@@ -9,6 +9,10 @@ import SwiftUI
 
 // MARK: - Edge Insets (Top, Bottom)
 /// Edge insets containing `top` and `bottom` values.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `EdgeInsets_TopBottom` with values."
+)
 public struct EdgeInsets_TopBottom: Equatable, Hashable {
     // MARK: Properties
     /// Top inset value.
@@ -24,15 +28,6 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable {
     public var verticalAverage: CGFloat { (top + bottom)/2 }
     
     // MARK: Initializers
-    /// Initializes `EdgeInsets_TopBottom` with values.
-    public init(
-        top: CGFloat,
-        bottom: CGFloat
-    ) {
-        self.top = top
-        self.bottom = bottom
-    }
-    
     /// Initializes `EdgeInsets_TopBottom` with value.
     public init(
         _ value: CGFloat

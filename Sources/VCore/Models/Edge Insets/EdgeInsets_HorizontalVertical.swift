@@ -9,6 +9,10 @@ import SwiftUI
 
 // MARK: - Edge Insets (Horizontal, Vertical)
 /// Edge insets containing `horizontal` and `vertical` values.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `EdgeInsets_HorizontalVertical` with values."
+)
 public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
     // MARK: Properties
     /// Horizontal inset value.
@@ -30,15 +34,6 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
     public var bottom: CGFloat { vertical }
     
     // MARK: Initializers
-    /// Initializes `EdgeInsets_HorizontalVertical` with values.
-    public init(
-        horizontal: CGFloat,
-        vertical: CGFloat
-    ) {
-        self.horizontal = horizontal
-        self.vertical = vertical
-    }
-    
     /// Initializes `EdgeInsets_HorizontalVertical` with value.
     public init(
         _ value: CGFloat

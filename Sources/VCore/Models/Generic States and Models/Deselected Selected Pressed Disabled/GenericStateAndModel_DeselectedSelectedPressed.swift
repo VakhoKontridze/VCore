@@ -55,6 +55,10 @@ public enum GenericState_DeselectedSelectedPressed: Int, CaseIterable {
 /// Value group containing `deselected`, `selected`, `pressed` (`deselected`), and `pressed` (`selected`).
 ///
 /// Used for mapping `GenericState_DeselectedSelectedPressed` to model, with `value(for:)` method.
+@MemberwiseInitializable(
+    accessLevelModifier: .public,
+    comment: "/// Initializes `GenericStateModel_DeselectedSelectedPressed` with values."
+)
 public struct GenericStateModel_DeselectedSelectedPressed<Value> {
     // MARK: Properties
     /// Deselected value.
@@ -70,19 +74,6 @@ public struct GenericStateModel_DeselectedSelectedPressed<Value> {
     public var pressedSelected: Value
     
     // MARK: Initializers
-    /// Initializes `GenericStateModel_DeselectedSelectedPressed` with values.
-    public init(
-        deselected: Value,
-        selected: Value,
-        pressedDeselected: Value,
-        pressedSelected: Value
-    ) {
-        self.deselected = deselected
-        self.selected = selected
-        self.pressedDeselected = pressedDeselected
-        self.pressedSelected = pressedSelected
-    }
-    
     /// Initializes `GenericStateModel_DeselectedSelectedPressed` with value.
     public init(
         _ value: Value
