@@ -1,6 +1,6 @@
 # Change Log
 
-### 6.3.0(97)
+### [6.3.0(97)](https://github.com/VakhoKontridze/VCore/releases/tag/6.3.0) — *2024 05 23*
 
 Macros
 
