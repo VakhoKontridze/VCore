@@ -14,7 +14,7 @@ extension URLRequest {
     ///     var request: URLRequest = ...
     ///     request.addHTTPHeaderFields(["key": "value"])
     ///
-    public mutating func addHTTPHeaderFields(
+    mutating public func addHTTPHeaderFields(
         _ httpHeaderFields: [String: String?]
     ) {
         for (key, value) in httpHeaderFields {
@@ -29,7 +29,7 @@ extension URLRequest {
     ///     var request: URLRequest = ...
     ///     request.addHTTPHeaderFields(json: ["key": "value"])
     ///
-    public mutating func addHTTPHeaderFields(
+    mutating public func addHTTPHeaderFields(
         json httpHeaderFields: [String: Any?]
     ) {
         for (key, value) in httpHeaderFields {
@@ -46,7 +46,7 @@ extension URLRequest {
     ///     var request: URLRequest = ...
     ///     try request.addHTTPHeaderFields(object: JSONRequestHeaderFields())
     ///
-    public mutating func addHTTPHeaderFields(
+    mutating public func addHTTPHeaderFields(
         object: some Encodable
     ) throws {
         addHTTPHeaderFields(json: try JSONEncoder().encodeObjectToJSON(object))

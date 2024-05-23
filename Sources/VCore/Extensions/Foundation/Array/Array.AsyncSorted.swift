@@ -37,7 +37,7 @@ extension Array {
     ///         return lhs < rhs
     ///     })
     ///
-    public mutating func asyncSort(
+    mutating public func asyncSort(
         by areInIncreasingOrder: @Sendable (Element, Element) async throws -> Bool
     ) async rethrows {
         guard !isEmpty else { return }

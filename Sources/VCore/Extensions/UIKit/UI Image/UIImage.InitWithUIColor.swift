@@ -18,7 +18,7 @@ extension UIImage {
     ///         color: UIColor.systemBlue
     ///     )!
     ///
-    public convenience init?(
+    convenience public init?(
         size: CGSize,
         color: UIColor
     ) {

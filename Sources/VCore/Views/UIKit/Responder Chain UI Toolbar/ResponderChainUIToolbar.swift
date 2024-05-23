@@ -118,7 +118,7 @@ open class ResponderChainUIToolbar: UIToolbar {
     }
 
     /// Initializes `ResponderChainUIToolbar` with actions.
-    public convenience init(
+    convenience public init(
         uiModel: ResponderChainUIToolbarUIModel = .init(),
         size: CGSize,
         arrowUpButtonAction: (() -> Void)?,

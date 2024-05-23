@@ -18,7 +18,7 @@ extension NSImage {
     ///         color: NSColor.systemBlue
     ///     )!
     ///
-    public convenience init?(
+    convenience public init?(
         size: CGSize,
         color: NSColor
     ) {

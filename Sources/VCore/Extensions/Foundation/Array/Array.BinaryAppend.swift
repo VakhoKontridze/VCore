@@ -16,7 +16,7 @@ extension Array {
     ///     // [1, 2, 3, 4, 5, 6]
     ///
     @discardableResult 
-    public mutating func binaryAppend(
+    mutating public func binaryAppend(
         _ item: Element,
         by areInIncreasingOrder: (Element, Element) throws -> Bool
     ) rethrows -> Int {

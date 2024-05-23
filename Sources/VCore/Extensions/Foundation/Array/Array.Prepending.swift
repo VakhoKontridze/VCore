@@ -23,7 +23,7 @@ extension Array {
     ///     let index: Int = numbers.prepend(1)
     ///     // [1, 2, 3]
     ///
-    public mutating func prepend(_ newElement: Element) {
+    mutating public func prepend(_ newElement: Element) {
         insert(newElement, at: 0)
     }
 }
@@ -50,7 +50,7 @@ extension Array {
     ///     let index: Int = numbers.prepend(contentsOf: [1, 2])
     ///     // [1, 2, 3, 4]
     ///
-    public mutating func prepend<S>(
+    mutating public func prepend<S>(
         contentsOf newElements: S
     )
         where

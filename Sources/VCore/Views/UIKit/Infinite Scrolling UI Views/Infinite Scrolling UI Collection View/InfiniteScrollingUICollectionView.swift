@@ -150,7 +150,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         setUp()
     }
     
-    public required init?(coder: NSCoder) {
+    required public init?(coder: NSCoder) {
         fatalError()
     }
     

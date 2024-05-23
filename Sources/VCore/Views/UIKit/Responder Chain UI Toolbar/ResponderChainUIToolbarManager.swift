@@ -51,7 +51,7 @@ open class ResponderChainUIToolbarManager {
     public init() {}
 
     /// Initializes `ResponderChainUIToolbarManager` with responders.
-    public convenience init(
+    convenience public init(
         responders responderParameters: [ResponderChainUIToolbarResponderParameters]
     ) {
         self.init()

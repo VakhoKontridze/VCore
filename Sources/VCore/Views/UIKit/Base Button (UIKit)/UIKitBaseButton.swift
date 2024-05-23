@@ -168,7 +168,7 @@ open class UIKitBaseButton: UIView {
     }
     
     /// Initializes `UIKitBaseButton` with action.
-    public convenience init(
+    convenience public init(
         action: @escaping () -> Void
     ) {
         self.init(onStateChange: { gestureState in
