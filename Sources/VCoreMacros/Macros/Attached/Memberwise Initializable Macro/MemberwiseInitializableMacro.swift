@@ -326,7 +326,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
             }
         }()
 
-        // Skips excluded parameter
+        // Skips excluded parameters
         guard
             !excludedParametersStrings.contains(propertyName)
         else {
