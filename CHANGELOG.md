@@ -4,7 +4,7 @@
 
 Services and Managers
 
-- `getCodable(key:)', 'setCodable(key:value:)`, and `deleteCodable(key:)` methods are added in 'KeychainService' 
+- `getCodable(key:)`, `setCodable(key:value:)`, and `deleteCodable(key:)` methods are added in `KeychainService` 
 
 ### [6.3.0(97)](https://github.com/VakhoKontridze/VCore/releases/tag/6.3.0) — *2024 05 23*
 
