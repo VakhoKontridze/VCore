@@ -16,6 +16,6 @@ extension String {
     public func isUserDefaultsKey(
         in store: UserDefaults = .standard
     ) -> Bool {
-        store.value(forKey: self) != nil
+        store.object(forKey: self) != nil
     }
 }

@@ -15,7 +15,7 @@ extension Locale {
     ///
     public func displayName(forKey key: NSLocale.Key) -> String? {
         guard
-            let currentLocaleID: String = (UserDefaults.standard.value(forKey: "AppleLanguages") as? [String])?.first
+            let currentLocaleID: String = (UserDefaults.standard.object(forKey: "AppleLanguages") as? [String])?.first
         else {
             return nil
         }
