@@ -53,7 +53,7 @@ public final class PresentationHostDataSourceCache {
     // MARK: Initializers
     private init() {}
     
-    // MARK: Get and Set
+    // MARK: Operations
     /// Returns data from key.
     public func get(key: String) -> Any? {
         storage[key]

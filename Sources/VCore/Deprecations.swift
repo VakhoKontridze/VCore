@@ -53,6 +53,38 @@ extension KeyPathInitializableEnumeration {
     }
 }
 
+// MARK: - Keychain Storage
+extension KeychainStorage {
+    @available(*, deprecated, message: "User init with 'keychainService' parameter")
+    public init(
+        wrappedValue defaultValue: Value,
+        _ key: String,
+        configuration: KeychainServiceConfiguration
+    )
+        where Value: Codable
+    {
+        self.init(
+            wrappedValue: defaultValue,
+            key,
+            keychainService: KeychainService(configuration: configuration)
+        )
+    }
+
+    @available(*, deprecated, message: "User init with 'keychainService' parameter")
+    public init(
+        _ key: String,
+        configuration: KeychainServiceConfiguration
+    )
+        where Value: Codable & ExpressibleByNilLiteral
+    {
+        self.init(
+            wrappedValue: nil,
+            key,
+            configuration: configuration
+        )
+    }
+}
+
 // MARK: - Custom Dismiss Action
 @available(*, deprecated, message: "Model will be removed in VCore 7.0")
 public struct CustomDismissAction {
@@ -168,6 +200,32 @@ extension LocalizationManager {
             bundle: bundle,
             comment: comment
         )
+    }
+}
+
+// MARK: - Keychain Service
+extension KeychainService {
+    @available(*, deprecated, message: "Use method without 'Optional' 'data' parameter")
+    public func set(
+        key: String,
+        data: Data?
+    ) throws {
+        switch data {
+        case nil:
+            try delete(key: key)
+
+        case let data?:
+            try? delete(key: key, logsError: false)
+
+            let query: [String: Any] = configuration.setQuery.build(key: key, value: data)
+
+            let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
+
+            guard status == noErr else {
+                Logger.keychainService.error("Failed to set 'Data' with key '\(key)' with 'OSStatus' '\(status)' in 'KeychainService.set(key:data:)'")
+                throw KeychainServiceError(.failedToSet)
+            }
+        }
     }
 }
 

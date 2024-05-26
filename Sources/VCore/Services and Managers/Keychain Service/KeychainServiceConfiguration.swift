@@ -130,10 +130,10 @@ extension KeychainServiceConfiguration {
         
         // MARK: Building
         /// Builds query with key and data.
-        public func build(key: String, data: Data) -> [String: Any] {
+        public func build(key: String, value: Data) -> [String: Any] {
             var query = query
             query[kSecAttrAccount as String] = key
-            query[kSecValueData as String] = data
+            query[kSecValueData as String] = value
             return query
         }
     }

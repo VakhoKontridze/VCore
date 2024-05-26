@@ -33,8 +33,6 @@ import OSLog
 @propertyWrapper
 public struct KeychainStorage<Value>: DynamicProperty {
     // MARK: Properties
-    private let keychainService: KeychainService
-    
     @ObservedObject private var storage: ObservableContainerOO<Value> // No need for `StateObject`
     private let valueSetter: (Value) -> Void
     
@@ -59,11 +57,9 @@ public struct KeychainStorage<Value>: DynamicProperty {
     
     // MARK: Initializers
     fileprivate init(
-        keychainService: KeychainService,
         initialValue: Value,
         valueSetter: @escaping (Value) -> Void
     ) {
-        self.keychainService = keychainService
         self.storage = ObservableContainerOO(value: initialValue)
         self.valueSetter = valueSetter
     }
@@ -78,28 +74,11 @@ public struct KeychainStorage<Value>: DynamicProperty {
         where Value: Codable
     {
         self.init(
-            keychainService: keychainService,
-            initialValue: Self.getValue(key: key, defaultValue: defaultValue, in: keychainService),
-            valueSetter: { Self.setValue($0, key: key, in: keychainService) }
+            initialValue: (try? keychainService.getCodable(key: key)) ?? defaultValue,
+            valueSetter: { try? keychainService.setCodable(key: key, value: $0) }
         )
     }
 
-    /// Initializes `KeychainStorage` from `Codable`.
-    public init(
-        wrappedValue defaultValue: Value,
-        _ key: String,
-        configuration: KeychainServiceConfiguration
-    ) 
-        where Value: Codable
-    {
-        self.init(
-            wrappedValue: defaultValue,
-            key,
-            keychainService: KeychainService(configuration: configuration)
-        )
-    }
-
-    // MARK: Initializers - Codable & Expressible by Nil Literal
     /// Initializes `KeychainStorage` from `Optional` `Codable`.
     public init(
         _ key: String,
@@ -112,55 +91,6 @@ public struct KeychainStorage<Value>: DynamicProperty {
             key,
             keychainService: keychainService
         )
-    }
-
-    /// Initializes `KeychainStorage` from `Optional` `Codable`.
-    public init(
-        _ key: String,
-        configuration: KeychainServiceConfiguration
-    )
-        where Value: Codable & ExpressibleByNilLiteral
-    {
-        self.init(
-            wrappedValue: nil,
-            key,
-            configuration: configuration
-        )
-    }
-
-    // MARK: Helpers
-    private static func getValue<T>(
-        key: String,
-        defaultValue: T,
-        in keychainService: KeychainService
-    ) -> T
-        where T: Decodable
-    {
-        guard let data: Data = keychainService[key] else { return defaultValue }
-
-        do {
-            let value: T = try JSONDecoder().decode(T.self, from: data)
-            return value
-
-        } catch let error {
-            Logger.keychainStorage.error("Failed to decode '\(T.self)' from 'Data in 'KeychainStorage'': \(error)")
-            return defaultValue
-        }
-    }
-
-    private static func setValue<T>(
-        _ value: T,
-        key: String,
-        in keychainService: KeychainService
-    )
-        where T: Encodable
-    {
-        do {
-            keychainService[key] = try JSONEncoder().encode(value)
-
-        } catch let error {
-            Logger.keychainStorage.error("Failed to encode '\(T.self)' to 'Data' in 'KeychainStorage': \(error)")
-        }
     }
 
     // MARK: Observable Object Support

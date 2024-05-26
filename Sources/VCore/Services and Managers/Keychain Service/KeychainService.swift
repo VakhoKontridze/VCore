@@ -16,67 +16,73 @@ import OSLog
 /// For error codes, refer to [documentation](https://developer.apple.com/documentation/security/1542001-security_framework_result_codes).
 ///
 ///     KeychainService.default.get(key: "SomeKey")
-///     KeychainService.default.set(key: "SomeKey", data: data)
+///     KeychainService.default.set(key: "SomeKey", value: data)
 ///     KeychainService.default.delete(key: "SomeKey")
 ///
 open class KeychainService {
     // MARK: Properties
     /// Configuration.
     open var configuration: KeychainServiceConfiguration
-    
+
     /// Default instance of KeychainService.
     ///
     /// `default` instance is used as `KeychainServiceConfiguration`.
     public static let `default`: KeychainService = .init(configuration: .default)
-    
+
+    private static let jsonDecoder: JSONDecoder = .init()
+    private static let jsonEncoder: JSONEncoder = .init()
+
     // MARK: Initializers
     /// Initializes `KeychainService` with `KeychainServiceConfiguration`.
-    public init(configuration: KeychainServiceConfiguration) {
+    public init(
+        configuration: KeychainServiceConfiguration
+    ) {
         self.configuration = configuration
     }
-    
-    // MARK: Get
-    /// Returns `Data` from key.
-    open func get(key: String) throws -> Data {
+
+    // MARK: Operations
+    /// Returns `Data` associated with the key.
+    open func get(
+        key: String
+    ) throws -> Data {
         let query: [String: Any] = configuration.getQuery.build(key: key)
-        
+
         var valueObject: AnyObject?
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &valueObject)
-        
+
         guard status == noErr else {
-            throw KeychainServiceError(.failedToGet) // No logging should occur if data simply isn't there
+            throw KeychainServiceError(.failedToGet) // Nothing should be logged if data simply isn't there
         }
-        
-        guard let data: Data = valueObject as? Data else {
-            throw CastingError(from: String(describing: type(of: valueObject)), to: "Data")
+
+        guard
+            let data: Data = valueObject as? Data
+        else {
+            let fromType: String = .init(describing: type(of: valueObject))
+            Logger.keychainService.error("Failed to cast '\(fromType)' to 'Data' in 'KeychainService.get(key:)'")
+            throw CastingError(from: fromType, to: "Data")
         }
-        
+
         return data
     }
-    
-    // MARK: Set
-    /// Sets `Data` with key.
-    open func set(key: String, data: Data?) throws {
-        switch data {
-        case nil:
-            try delete(key: key)
-            
-        case let data?:
-            try? delete(key: key, logsError: false)
 
-            let query: [String: Any] = configuration.setQuery.build(key: key, data: data)
-            
-            let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
-            
-            guard status == noErr else {
-                Logger.keychainService.error("Failed to set 'Data' with key '\(key)' with 'OSStatus' '\(status)' in 'KeychainService.set(key:data:)'")
-                throw KeychainServiceError(.failedToSet)
-            }
+    /// Sets `Data` with associated key.
+    open func set(
+        key: String,
+        value: Data
+    ) throws {
+        try? delete(key: key, logsError: false)
+
+        let query: [String: Any] = configuration.setQuery.build(key: key, value: value)
+
+        let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
+
+        guard status == noErr else {
+            Logger.keychainService.error("Failed to set 'Data' with key '\(key)' with 'OSStatus' '\(status)' in 'KeychainService.set(key:value:)'")
+            throw KeychainServiceError(.failedToSet)
         }
     }
-    
-    // MARK: Delete
-    /// Deletes `Data` with key.
+
+    /// Deletes `Data` associated with the key.
     open func delete(
         key: String
     ) throws {
@@ -92,14 +98,68 @@ open class KeychainService {
         let status: OSStatus = SecItemDelete(query as CFDictionary)
 
         guard status == noErr else {
-            if logsError { Logger.keychainService.error("Failed to set 'Data' with key '\(key)' with 'OSStatus' '\(status)' in 'KeychainService.delete(key:)'") }
+            if logsError { Logger.keychainService.error("Failed to delete 'Data' with key '\(key)' with 'OSStatus' '\(status)' in 'KeychainService.delete(key:)'") }
             throw KeychainServiceError(.failedToDelete)
         }
     }
 
+    // MARK: Operations - Codable
+    /// Returns `Codable` associated with the key.
+    open func getCodable<Value>(
+        key: String
+    ) throws -> Value
+        where Value: Decodable
+    {
+        let data: Data = try get(key: key)
+
+        let value: Value
+        do {
+            value = try Self.jsonDecoder.decode(Value.self, from: data)
+
+        } catch {
+            Logger.keychainService.error("Failed to decode '\(Value.self)' from 'Data` in 'KeychainService.getCodable(key:)': \(error)")
+            throw KeychainServiceError(.failedToGet)
+        }
+
+        return value
+    }
+
+    /// Sets `Codable` with associated key.
+    open func setCodable<Value>(
+        key: String,
+        value: Value
+    ) throws
+        where Value: Encodable
+    {
+        let data: Data
+        do {
+            data = try Self.jsonEncoder.encode(value)
+        } catch {
+            Logger.keychainService.error("Failed to encode '\(Value.self)' to 'Data` in 'KeychainService.setCodable(key:value:)': \(error)")
+            throw KeychainServiceError(.failedToSet)
+        }
+
+        try set(key: key, value: data)
+    }
+
+    /// Deletes `Codable` associated with the key.
+    open func deleteCodable(
+        key: String
+    ) throws {
+        try delete(key: key)
+    }
+
     // MARK: Subscript
     open subscript(_ key: String) -> Data? {
-        get { try? get(key: key) }
-        set { try? set(key: key, data: newValue) }
+        get {
+            try? get(key: key)
+        }
+        set {
+            if let newValue {
+                try? set(key: key, value: newValue)
+            } else {
+                try? delete(key: key)
+            }
+        }
     }
 }
