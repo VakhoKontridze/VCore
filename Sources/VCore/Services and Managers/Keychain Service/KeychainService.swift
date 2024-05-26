@@ -77,7 +77,7 @@ open class KeychainService {
         let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
 
         guard status == noErr else {
-            Logger.keychainService.error("Failed to set 'Data' with key '\(key)' with 'OSStatus' '\(status)' in 'KeychainService.set(key:value:)'")
+            Logger.keychainService.error("Failed to set 'Data' with key '\(key)' in 'KeychainService.set(key:value:)': 'OSStatus' '\(status)'")
             throw KeychainServiceError(.failedToSet)
         }
     }
@@ -98,7 +98,7 @@ open class KeychainService {
         let status: OSStatus = SecItemDelete(query as CFDictionary)
 
         guard status == noErr else {
-            if logsError { Logger.keychainService.error("Failed to delete 'Data' with key '\(key)' with 'OSStatus' '\(status)' in 'KeychainService.delete(key:)'") }
+            if logsError { Logger.keychainService.error("Failed to delete 'Data' with key '\(key)' in 'KeychainService.delete(key:)': 'OSStatus' '\(status)'") }
             throw KeychainServiceError(.failedToDelete)
         }
     }

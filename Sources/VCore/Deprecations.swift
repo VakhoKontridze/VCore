@@ -215,16 +215,7 @@ extension KeychainService {
             try delete(key: key)
 
         case let data?:
-            try? delete(key: key, logsError: false)
-
-            let query: [String: Any] = configuration.setQuery.build(key: key, value: data)
-
-            let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
-
-            guard status == noErr else {
-                Logger.keychainService.error("Failed to set 'Data' with key '\(key)' with 'OSStatus' '\(status)' in 'KeychainService.set(key:data:)'")
-                throw KeychainServiceError(.failedToSet)
-            }
+            try set(key: key, value: data)
         }
     }
 }
