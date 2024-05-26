@@ -14,30 +14,33 @@ import OSLog
 /// Object contains default instance `default`.
 ///
 /// For error codes, refer to [documentation](https://developer.apple.com/documentation/security/1542001-security_framework_result_codes).
-///
-///     KeychainService.default.get(key: "SomeKey")
-///     KeychainService.default.set(key: "SomeKey", value: data)
-///     KeychainService.default.delete(key: "SomeKey")
-///
 open class KeychainService {
-    // MARK: Properties
+    // MARK: Properties - Configuration
     /// Configuration.
     open var configuration: KeychainServiceConfiguration
 
-    /// Default instance of KeychainService.
-    ///
-    /// `default` instance is used as `KeychainServiceConfiguration`.
-    public static let `default`: KeychainService = .init(configuration: .default)
+    /// `JSONEncoder`.
+    open var jsonEncoder: JSONEncoder
 
-    private static let jsonDecoder: JSONDecoder = .init()
-    private static let jsonEncoder: JSONEncoder = .init()
+    /// `JSONDecoder`.
+    open var jsonDecoder: JSONDecoder
+
+    // MARK: Properties - Singleton
+    /// Default instance of `KeychainService`.
+    public static let `default`: KeychainService = .init(
+        configuration: .default
+    )
 
     // MARK: Initializers
     /// Initializes `KeychainService` with `KeychainServiceConfiguration`.
     public init(
-        configuration: KeychainServiceConfiguration
+        configuration: KeychainServiceConfiguration,
+        jsonEncoder: JSONEncoder = .init(),
+        jsonDecoder: JSONDecoder = .init()
     ) {
         self.configuration = configuration
+        self.jsonEncoder = jsonEncoder
+        self.jsonDecoder = jsonDecoder
     }
 
     // MARK: Operations
@@ -114,7 +117,7 @@ open class KeychainService {
 
         let value: Value
         do {
-            value = try Self.jsonDecoder.decode(Value.self, from: data)
+            value = try jsonDecoder.decode(Value.self, from: data)
 
         } catch {
             Logger.keychainService.error("Failed to decode '\(Value.self)' from 'Data` in 'KeychainService.getCodable(key:)': \(error)")
@@ -133,7 +136,7 @@ open class KeychainService {
     {
         let data: Data
         do {
-            data = try Self.jsonEncoder.encode(value)
+            data = try jsonEncoder.encode(value)
         } catch {
             Logger.keychainService.error("Failed to encode '\(Value.self)' to 'Data` in 'KeychainService.setCodable(key:value:)': \(error)")
             throw KeychainServiceError(.failedToSet)

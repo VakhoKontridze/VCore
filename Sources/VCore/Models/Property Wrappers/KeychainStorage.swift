@@ -7,7 +7,6 @@
 
 import SwiftUI
 import Combine
-import OSLog
 
 // MARK: - Keychain Storage
 /// Property wrapper type that reflects a value from key chain and invalidates a view on a change in value in that key chain.
