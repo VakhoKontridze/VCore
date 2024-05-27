@@ -20,10 +20,14 @@ open class KeychainService {
     open var configuration: KeychainServiceConfiguration
 
     /// `JSONEncoder`.
-    open var jsonEncoder: JSONEncoder
+    ///
+    /// Used in `Codable` methods.
+    open lazy var jsonEncoder: JSONEncoder = .init()
 
     /// `JSONDecoder`.
-    open var jsonDecoder: JSONDecoder
+    ///
+    /// Used in `Codable` methods.
+    open lazy var jsonDecoder: JSONDecoder = .init()
 
     // MARK: Properties - Singleton
     /// Default instance of `KeychainService`.
@@ -34,13 +38,9 @@ open class KeychainService {
     // MARK: Initializers
     /// Initializes `KeychainService` with `KeychainServiceConfiguration`.
     public init(
-        configuration: KeychainServiceConfiguration,
-        jsonEncoder: JSONEncoder = .init(),
-        jsonDecoder: JSONDecoder = .init()
+        configuration: KeychainServiceConfiguration
     ) {
         self.configuration = configuration
-        self.jsonEncoder = jsonEncoder
-        self.jsonDecoder = jsonDecoder
     }
 
     // MARK: Operations
@@ -68,7 +68,7 @@ open class KeychainService {
         return data
     }
 
-    /// Sets `Data` with associated key.
+    /// Sets `Data` with key.
     open func set(
         key: String,
         value: Data
@@ -127,7 +127,7 @@ open class KeychainService {
         return value
     }
 
-    /// Sets `Codable` with associated key.
+    /// Sets `Codable` with key.
     open func setCodable<Value>(
         key: String,
         value: Value
