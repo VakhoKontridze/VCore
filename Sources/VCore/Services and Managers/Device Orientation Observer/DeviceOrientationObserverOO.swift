@@ -25,10 +25,6 @@ public final class DeviceOrientationObserverOO: ObservableObject { // TODO: iOS 
         addSubscriptions()
     }
 
-    deinit {
-        subscription?.cancel()
-    }
-
     // MARK: Subscriptions
     private func addSubscriptions() {
         subscription = NotificationCenter.default

@@ -27,10 +27,6 @@ final class ___VARIABLE_productName___ViewModel {
         self.parameters = parameters
     }
 
-    deinit {
-        // ...
-    }
-
     // MARK: Lifecycle
     func didLoad() {
         // ...

@@ -27,10 +27,6 @@ public final class DeviceOrientationObserver {
         addSubscriptions()
     }
 
-    deinit {
-        subscription?.cancel()
-    }
-
     // MARK: Subscriptions
     private func addSubscriptions() {
         subscription = NotificationCenter.default
