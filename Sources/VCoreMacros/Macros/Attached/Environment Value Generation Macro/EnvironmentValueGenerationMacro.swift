@@ -66,7 +66,7 @@ struct EnvironmentValueGenerationMacro: PeerMacro, AccessorMacro {
         ]
     }
 
-    // MARK: Expansion
+    // MARK: Expansion Data
     private struct ExpansionData {
         let propertyName: String
         let propertyType: String

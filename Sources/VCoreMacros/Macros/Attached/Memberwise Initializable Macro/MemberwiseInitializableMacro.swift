@@ -33,7 +33,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         }
 
         // Parameters
-        let parameters: [Parameter] = try declaration
+        let parameters: [ParameterData] = try declaration
             .memberBlock
             .members
             .compactMap { 
@@ -266,7 +266,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue],
         excludedParametersStrings: [String],
         member: MemberBlockItemSyntax
-    ) throws -> Parameter? {
+    ) throws -> ParameterData? {
         // Limits declaration to variables
         guard
             let propertyDeclaration: VariableDeclSyntax = member.decl.as(VariableDeclSyntax.self)
@@ -372,7 +372,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         }()
 
         // Result
-        return Parameter(
+        return ParameterData(
             attributes: parameterAttributes,
             externalName: externalParameterNames,
             name: propertyName,
@@ -383,7 +383,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         )
     }
 
-    private struct Parameter {
+    private struct ParameterData {
         let attributes: String?
         
         let externalName: String?
@@ -398,7 +398,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
     private static func result(
         accessLevelModifier: AccessLevelModifierKeyword,
-        parameters: [Parameter],
+        parameters: [ParameterData],
         comment: String?
     ) -> [DeclSyntax] {
         var result: String = ""

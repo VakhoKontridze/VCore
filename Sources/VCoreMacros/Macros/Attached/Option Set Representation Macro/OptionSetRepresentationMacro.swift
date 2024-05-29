@@ -132,15 +132,14 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         }
     }
 
-    // MARK: Expansion
+    // MARK: Expansion Data
     private struct ExpansionData {
         let accessLevelModifier: AccessLevelModifierKeyword
         let structDeclaration: StructDeclSyntax
         let optionsEnumDeclaration: EnumDeclSyntax
         let rawType: TypeSyntax
     }
-    
-    // Decodes arguments and extract various roles used by both protocols.
+
     private static func decodeExpansion(
         attribute: AttributeSyntax,
         declaration: some DeclGroupSyntax,
