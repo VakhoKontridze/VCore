@@ -17,7 +17,7 @@ struct CaseDetectionMacro: MemberMacro {
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         // Parameters
-        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(node: node)
+        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(attribute: node)
 
         // Limits declaration to `enum`s
         guard
@@ -41,10 +41,10 @@ struct CaseDetectionMacro: MemberMacro {
     }
 
     private static func accessLevelModifierParameter(
-        node: AttributeSyntax
+        attribute: AttributeSyntax
     ) throws -> AccessLevelModifierKeyword {
         guard
-            let parameter: LabeledExprSyntax = node
+            let parameter: LabeledExprSyntax = attribute
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })

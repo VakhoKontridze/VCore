@@ -19,11 +19,11 @@ struct MemberwiseInitializableMacro: MemberMacro {
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         // Parameters
-        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(node: node)
-        let externalParameterNamesStrings: [String: String] = try externalParameterNamesParameter(node: node)
-        let parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue] = try parameterDefaultValuesParameter(node: node)
-        let excludedParametersStrings: [String] = try excludedParametersParameter(node: node)
-        let comment: String? = try commentParameter(node: node)
+        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(attribute: node)
+        let externalParameterNamesStrings: [String: String] = try externalParameterNamesParameter(attribute: node)
+        let parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue] = try parameterDefaultValuesParameter(attribute: node)
+        let excludedParametersStrings: [String] = try excludedParametersParameter(attribute: node)
+        let comment: String? = try commentParameter(attribute: node)
 
         // Skips `enum`s
         guard
@@ -54,10 +54,10 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
 
     private static func accessLevelModifierParameter(
-        node: AttributeSyntax
+        attribute: AttributeSyntax
     ) throws -> AccessLevelModifierKeyword {
         guard
-            let parameter: LabeledExprSyntax = node
+            let parameter: LabeledExprSyntax = attribute
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })
@@ -81,10 +81,10 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
 
     private static func externalParameterNamesParameter(
-        node: AttributeSyntax
+        attribute: AttributeSyntax
     ) throws -> [String: String] {
         guard
-            let parameter: LabeledExprSyntax = node
+            let parameter: LabeledExprSyntax = attribute
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "externalParameterNames" })
@@ -125,10 +125,10 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
 
     private static func parameterDefaultValuesParameter(
-        node: AttributeSyntax
+        attribute: AttributeSyntax
     ) throws -> [String: MemberwiselnitializableParameterDefaultValue] {
         guard
-            let parameter: LabeledExprSyntax = node
+            let parameter: LabeledExprSyntax = attribute
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "parameterDefaultValues" })
@@ -202,10 +202,10 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
 
     private static func excludedParametersParameter(
-        node: AttributeSyntax
+        attribute: AttributeSyntax
     ) throws -> [String] {
         guard
-            let parameter: LabeledExprSyntax = node
+            let parameter: LabeledExprSyntax = attribute
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "excludedParameters" })
@@ -239,10 +239,10 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
 
     private static func commentParameter(
-        node: AttributeSyntax
+        attribute: AttributeSyntax
     ) throws -> String? {
         guard
-            let parameter: LabeledExprSyntax = node
+            let parameter: LabeledExprSyntax = attribute
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
                 .first(where: { $0.label?.trimmedDescription == "comment" })
