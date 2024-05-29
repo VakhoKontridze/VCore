@@ -28,7 +28,7 @@ import Foundation
 ///         case body = "body"
 ///     }
 ///
-@attached(member, names: named(CodingKeys), named(CodingKey), named(CKGCodingKeyIgnored))
+@attached(member, names: named(CodingKeys))
 public macro CodingKeysGeneration(
     accessLevelModifier: AccessLevelModifierKeyword = .internal
 ) = #externalMacro(
