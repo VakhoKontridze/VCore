@@ -108,8 +108,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         type: some TypeSyntaxProtocol,
         expansionData: ExpansionData
     ) -> [ExtensionDeclSyntax] {
-        // Skips conformance, if it already exits.
-        // This is essential, if declaration has availability attributes.
+        // Skips conformance, if it already exits
         if
             let inheritedTypes: InheritedTypeListSyntax = expansionData
                 .structDeclaration
@@ -122,7 +121,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         } else {
             var result: [DeclSyntax] = []
 
-            result.append(
+            result.append( // Works, even if type is nested
                 """
                 extension \(raw: type): OptionSet {}
                 """
