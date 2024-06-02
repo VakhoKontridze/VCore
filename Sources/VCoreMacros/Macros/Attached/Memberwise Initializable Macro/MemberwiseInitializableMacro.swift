@@ -13,6 +13,7 @@ import SwiftDiagnostics
 
 // MARK: - Memberwise Initializable Macro
 struct MemberwiseInitializableMacro: MemberMacro {
+    // MARK: Member Macro
     static func expansion(
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclGroupSyntax,
@@ -53,6 +54,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         )
     }
 
+    // MARK: Parameters
     private static func accessLevelModifierParameter(
         attribute: AttributeSyntax
     ) throws -> AccessLevelModifierKeyword {
@@ -261,6 +263,20 @@ struct MemberwiseInitializableMacro: MemberMacro {
         return value
     }
 
+    // MARK: Data
+    private struct ParameterData {
+        let attributes: String?
+
+        let externalName: String?
+        let name: String
+
+        let type: String
+        let _isOptional: Bool // Derived value
+        let _isFunctionType: Bool // Derived value
+
+        let defaultValue: String?
+    }
+
     private static func parameter(
         externalParameterNamesStrings: [String: String],
         parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue],
@@ -383,19 +399,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         )
     }
 
-    private struct ParameterData {
-        let attributes: String?
-        
-        let externalName: String?
-        let name: String
-        
-        let type: String
-        let _isOptional: Bool // Derived value
-        let _isFunctionType: Bool // Derived value
-
-        let defaultValue: String?
-    }
-
+    // MARK: Result
     private static func result(
         accessLevelModifier: AccessLevelModifierKeyword,
         parameters: [ParameterData],

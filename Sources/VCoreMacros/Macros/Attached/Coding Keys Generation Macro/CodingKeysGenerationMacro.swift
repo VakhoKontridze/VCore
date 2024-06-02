@@ -12,6 +12,7 @@ import VCoreShared
 
 // MARK: - Coding Keys Generation Macro
 struct CodingKeysGenerationMacro: MemberMacro {
+    // MARK: Member Macro
     static func expansion(
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclGroupSyntax,
@@ -20,13 +21,20 @@ struct CodingKeysGenerationMacro: MemberMacro {
         // Parameters
         let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(attribute: node)
 
+        // `CodingKey` lines
+        let codingKeyLines: [String] = try declaration
+            .memberBlock
+            .members
+            .compactMap { try codingKeyLine(member: $0) }
+
         // Result
-        return try result(
-            declaration: declaration,
-            accessLevelModifier: accessLevelModifier
+        return result(
+            accessLevelModifier: accessLevelModifier,
+            codingKeyLines: codingKeyLines
         )
     }
 
+    // MARK: Parameters
     private static func accessLevelModifierParameter(
         attribute: AttributeSyntax
     ) throws -> AccessLevelModifierKeyword {
@@ -54,32 +62,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         return value
     }
 
-    private static func result(
-        declaration: some DeclGroupSyntax,
-        accessLevelModifier: AccessLevelModifierKeyword
-    ) throws -> [DeclSyntax] {
-        // `CodingKey` lines
-        let codingKeyLines: [String] = try declaration
-            .memberBlock
-            .members
-            .compactMap { try codingKeyLine(member: $0) }
-
-        // Result
-        var result: [DeclSyntax] = []
-
-        if !codingKeyLines.isEmpty {
-            result.append(
-                """
-                \(raw: accessLevelModifier) enum CodingKeys: String, CodingKey {
-                    \(raw: codingKeyLines.joined(separator: "\n"))
-                }
-                """
-            )
-        }
-
-        return result
-    }
-
+    // MARK: Data
     private static func codingKeyLine(
         member: MemberBlockItemSyntax
     ) throws -> String? {
@@ -155,5 +138,26 @@ struct CodingKeysGenerationMacro: MemberMacro {
 
         // Result
         return "case \(propertyName) = \(customKeyValue)"
+    }
+
+    // MARK: Result
+    private static func result(
+        accessLevelModifier: AccessLevelModifierKeyword,
+        codingKeyLines: [String]
+    ) -> [DeclSyntax] {
+        // Result
+        var result: [DeclSyntax] = []
+
+        if !codingKeyLines.isEmpty {
+            result.append(
+                """
+                \(raw: accessLevelModifier) enum CodingKeys: String, CodingKey {
+                    \(raw: codingKeyLines.joined(separator: "\n"))
+                }
+                """
+            )
+        }
+
+        return result
     }
 }

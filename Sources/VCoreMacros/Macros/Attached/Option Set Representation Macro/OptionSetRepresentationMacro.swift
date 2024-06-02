@@ -191,6 +191,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         )
     }
 
+    // MARK: Parameters
     private static func accessLevelModifierParameter(
         attribute: AttributeSyntax
     ) throws -> AccessLevelModifierKeyword {

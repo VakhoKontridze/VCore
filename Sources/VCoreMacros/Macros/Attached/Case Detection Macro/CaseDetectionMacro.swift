@@ -11,6 +11,7 @@ import SwiftSyntaxMacros
 
 // MARK: - Case Detection Macro
 struct CaseDetectionMacro: MemberMacro {
+    // MARK: Expansion Macro
     static func expansion(
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclGroupSyntax,
@@ -40,6 +41,7 @@ struct CaseDetectionMacro: MemberMacro {
         )
     }
 
+    // MARK: Parameters
     private static func accessLevelModifierParameter(
         attribute: AttributeSyntax
     ) throws -> AccessLevelModifierKeyword {
@@ -67,6 +69,7 @@ struct CaseDetectionMacro: MemberMacro {
         return value
     }
 
+    // MARK: Result
     private static func result(
         accessLevelModifier: AccessLevelModifierKeyword,
         enumCases: [EnumCaseElementSyntax]
