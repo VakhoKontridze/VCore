@@ -113,22 +113,22 @@ struct CodingKeysGenerationMacro: MemberMacro {
             return nil
         }
 
-        // Early exit for non-`CKGCodingKey` properties
+        // `CKGCodingKey` macro, or early exit
         guard
-            let keyMacro: AttributeListSyntax.Element = member.decl.as(VariableDeclSyntax.self)?
+            let keyMacro: AttributeSyntax = member.decl.as(VariableDeclSyntax.self)?
                 .attributes
                 .first(where: { attribute in
                     attribute.as(AttributeSyntax.self)?
                         .attributeName.as(IdentifierTypeSyntax.self)?
                         .description == "CKGCodingKey"
-                })
+                })?.as(AttributeSyntax.self)
         else {
             return "case \(propertyName)"
         }
 
         // Value
         guard
-            let customKeyValue: ExprSyntax = keyMacro.as(AttributeSyntax.self)?
+            let customKeyValue: ExprSyntax = keyMacro
                 .arguments?.as(LabeledExprListSyntax.self)?
                 .first? // Only one argument, with no name
                 .expression
