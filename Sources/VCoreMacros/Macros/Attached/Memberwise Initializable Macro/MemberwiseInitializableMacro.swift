@@ -405,56 +405,62 @@ struct MemberwiseInitializableMacro: MemberMacro {
         parameters: [ParameterData],
         comment: String?
     ) -> [DeclSyntax] {
-        var result: String = ""
+        var result: [DeclSyntax] = []
 
-        if let comment {
-            result.append(comment)
-            result.append("\n")
+        do {
+            var string: String = ""
+
+            if let comment {
+                string.append(comment)
+                string.append("\n")
+            }
+
+            string.append("\(accessLevelModifier) init(")
+            string.append("\n")
+
+            for (i, parameter) in parameters.enumerated() {
+                if let attributes: String = parameter.attributes {
+                    string.append("\(attributes) ")
+                }
+
+                if let externalName: String = parameter.externalName {
+                    string.append("\(externalName) ")
+                }
+
+                string.append("\(parameter.name): ")
+
+                if
+                    parameter._isFunctionType,
+                    !parameter._isOptional
+                {
+                    string.append("@escaping ")
+                }
+
+                string.append(parameter.type)
+
+                if let defaultValue: String = parameter.defaultValue {
+                    string.append(" = \(defaultValue)")
+                }
+
+                if i != parameters.count-1 { string.append(",") }
+
+                string.append("\n")
+            }
+
+            string.append(") {")
+            string.append("\n")
+
+            for parameter in parameters {
+                string.append("self.\(parameter.name) = \(parameter.name)")
+                string.append("\n")
+            }
+
+            string.append("}")
+
+            result.append("\(raw: string)")
         }
 
-        result.append("\(accessLevelModifier) init(")
-        result.append("\n")
-
-        for (i, parameter) in parameters.enumerated() {
-            if let attributes: String = parameter.attributes {
-                result.append("\(attributes) ")
-            }
-
-            if let externalName: String = parameter.externalName {
-                result.append("\(externalName) ")
-            }
-
-            result.append("\(parameter.name): ")
-
-            if
-                parameter._isFunctionType,
-                !parameter._isOptional
-            {
-                result.append("@escaping ")
-            }
-
-            result.append(parameter.type)
-
-            if let defaultValue: String = parameter.defaultValue {
-                result.append(" = \(defaultValue)")
-            }
-
-            if i != parameters.count-1 { result.append(",") }
-
-            result.append("\n")
-        }
-
-        result.append(") {")
-        result.append("\n")
-
-        for parameter in parameters {
-            result.append("self.\(parameter.name) = \(parameter.name)")
-            result.append("\n")
-        }
-
-        result.append("}")
-
-        return ["\(raw: result)"]
+        return result
     }
 }
 

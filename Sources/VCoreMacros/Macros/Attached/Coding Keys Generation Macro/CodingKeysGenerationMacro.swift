@@ -21,16 +21,16 @@ struct CodingKeysGenerationMacro: MemberMacro {
         // Parameters
         let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(attribute: node)
 
-        // `CodingKey` lines
-        let codingKeyLines: [String] = try declaration
+        // Properties
+        let properties: [PropertyData] = try declaration
             .memberBlock
             .members
-            .compactMap { try codingKeyLine(member: $0) }
+            .compactMap { try property(member: $0) }
 
         // Result
         return result(
             accessLevelModifier: accessLevelModifier,
-            codingKeyLines: codingKeyLines
+            properties: properties
         )
     }
 
@@ -63,9 +63,14 @@ struct CodingKeysGenerationMacro: MemberMacro {
     }
 
     // MARK: Data
-    private static func codingKeyLine(
+    private struct PropertyData {
+        let name: String
+        let key: String?
+    }
+
+    private static func property(
         member: MemberBlockItemSyntax
-    ) throws -> String? {
+    ) throws -> PropertyData? {
         // Limits declaration to variables
         guard
             let propertyDeclaration: VariableDeclSyntax = member.decl.as(VariableDeclSyntax.self)
@@ -100,7 +105,8 @@ struct CodingKeysGenerationMacro: MemberMacro {
 
         // Skips `CKGCodingKeyIgnored`
         if
-            member.decl.as(VariableDeclSyntax.self)?
+            member
+                .decl.as(VariableDeclSyntax.self)?
                 .attributes
                 .contains(where: { attribute in
                     attribute.as(AttributeSyntax.self)?
@@ -113,49 +119,74 @@ struct CodingKeysGenerationMacro: MemberMacro {
             return nil
         }
 
-        // `CKGCodingKey` macro, or early exit
-        guard
-            let keyMacro: AttributeSyntax = member.decl.as(VariableDeclSyntax.self)?
-                .attributes
-                .first(where: { attribute in
-                    attribute.as(AttributeSyntax.self)?
-                        .attributeName.as(IdentifierTypeSyntax.self)?
-                        .description == "CKGCodingKey"
-                })?.as(AttributeSyntax.self)
-        else {
-            return "case \(propertyName)"
-        }
+        // Property key
+        let propertyKey: String? = try {
+            guard
+                let keyMacro: AttributeSyntax = member
+                    .decl.as(VariableDeclSyntax.self)?
+                    .attributes
+                    .first(where: { attribute in
+                        attribute.as(AttributeSyntax.self)?
+                            .attributeName.as(IdentifierTypeSyntax.self)?
+                            .description == "CKGCodingKey"
+                    })?.as(AttributeSyntax.self)
+            else {
+                return nil
+            }
 
-        // Value
-        guard
-            let customKeyValue: ExprSyntax = keyMacro
-                .arguments?.as(LabeledExprListSyntax.self)?
-                .first? // Only one argument, with no name
-                .expression
-        else {
-            throw CodingKeysGenerationMacroError.invalidKeyName
-        }
+            guard
+                let propertyKey: String = keyMacro
+                    .arguments?.as(LabeledExprListSyntax.self)?
+                    .first? // Only one argument, with no name
+                    .expression.as(StringLiteralExprSyntax.self)?
+                    .segments
+                    .first?.as(StringSegmentSyntax.self)?
+                    .content
+                    .trimmedDescription
+            else {
+                throw CodingKeysGenerationMacroError.invalidKeyName
+            }
+
+            return propertyKey
+        }()
 
         // Result
-        return "case \(propertyName) = \(customKeyValue)"
+        return PropertyData(
+            name: propertyName,
+            key: propertyKey
+        )
     }
 
     // MARK: Result
     private static func result(
         accessLevelModifier: AccessLevelModifierKeyword,
-        codingKeyLines: [String]
+        properties: [PropertyData]
     ) -> [DeclSyntax] {
         // Result
         var result: [DeclSyntax] = []
 
-        if !codingKeyLines.isEmpty {
-            result.append(
-                """
-                \(raw: accessLevelModifier) enum CodingKeys: String, CodingKey {
-                    \(raw: codingKeyLines.joined(separator: "\n"))
+        loop: do {
+            guard !properties.isEmpty else { break loop }
+
+            var string: String = ""
+
+            string.append("\(accessLevelModifier) enum CodingKeys: String, CodingKey {")
+            string.append("\n")
+
+            for property in properties {
+                if let key: String = property.key {
+                    string.append("case \(property.name) = \"\(key)\"")
+                } else {
+                    string.append("case \(property.name)")
                 }
-                """
-            )
+
+                string.append("\n")
+            }
+
+            string.append("}")
+            string.append("\n")
+
+            result.append("\(raw: string)")
         }
 
         return result
