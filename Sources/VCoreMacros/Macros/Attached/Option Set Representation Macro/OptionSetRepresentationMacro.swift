@@ -121,11 +121,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         } else {
             var result: [DeclSyntax] = []
 
-            result.append( // Works, even if type is nested
-                """
-                extension \(raw: type): OptionSet {}
-                """
-            )
+            result.append("extension \(raw: type): OptionSet {}") // Works, even if type is nested
 
             return result.compactMap { $0.as(ExtensionDeclSyntax.self) }
         }
