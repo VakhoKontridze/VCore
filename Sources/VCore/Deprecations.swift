@@ -280,7 +280,7 @@ extension UIApplication {
 public macro CaseDetection(
     accessLevelModifier: String
 ) = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "CaseDetectionMacro"
 )
 
@@ -290,7 +290,7 @@ public macro CaseDetection(
 public macro CodingKeysGeneration(
     accessLevelModifier: String
 ) = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "CodingKeysGenerationMacro"
 )
 
@@ -301,7 +301,7 @@ public macro CodingKeysGeneration(
 public macro OptionSetRepresentation<RawType>(
     accessLevelModifier: String
 ) = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "OptionSetRepresentationMacro"
 )
 
@@ -309,6 +309,6 @@ public macro OptionSetRepresentation<RawType>(
 @available(*, deprecated, renamed: "Uninitializable")
 @attached(member, names: named(init))
 public macro NonInitializable() = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "UninitializableMacro"
 )

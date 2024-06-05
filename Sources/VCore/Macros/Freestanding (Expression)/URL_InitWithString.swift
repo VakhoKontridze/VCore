@@ -1,6 +1,6 @@
 //
 //  URL_InitWithString.swift
-//  VCoreMacros
+//  VCoreMacrosImplementation
 //
 //  Created by Vakhtang Kontridze on 07.01.24.
 //
@@ -16,6 +16,6 @@ import Foundation
 public macro url(
     _ urlString: String
 ) -> URL = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "URLMacro_InitWithString"
 )

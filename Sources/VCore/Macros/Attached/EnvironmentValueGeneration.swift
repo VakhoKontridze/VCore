@@ -23,6 +23,6 @@ import Foundation
 @attached(peer, names: suffixed(_EnvironmentKey))
 @attached(accessor, names: named(get), named(set))
 public macro EnvironmentValueGeneration() = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "EnvironmentValueGenerationMacro"
 )

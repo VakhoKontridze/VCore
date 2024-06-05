@@ -32,7 +32,7 @@ import Foundation
 public macro CodingKeysGeneration(
     accessLevelModifier: AccessLevelModifierKeyword = .internal
 ) = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "CodingKeysGenerationMacro"
 )
 
@@ -44,7 +44,7 @@ public macro CodingKeysGeneration(
 public macro CKGCodingKey(
     _ key: String
 ) = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "CKGCodingKeyMacro"
 )
 
@@ -54,6 +54,6 @@ public macro CKGCodingKey(
 /// For additional info, refer to `CodingKeysGeneration`.
 @attached(peer)
 public macro CKGCodingKeyIgnored() = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "CKGCodingKeyIgnoredMacro"
 )

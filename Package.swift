@@ -33,7 +33,7 @@ let package: Package = .init(
         ),
 
         .macro(
-            name: "VCoreMacros",
+            name: "VCoreMacrosImplementation",
             dependencies: [
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
@@ -45,7 +45,7 @@ let package: Package = .init(
             name: "VCore",
             dependencies: [
                 "VCoreShared",
-                "VCoreMacros"
+                "VCoreMacrosImplementation"
             ],
             exclude: [
                 "../../Documentation",
@@ -58,7 +58,7 @@ let package: Package = .init(
                 .product(name: "SwiftSyntaxMacrosTestSupport", package: "swift-syntax"),
                 "VCore",
                 "VCoreShared",
-                "VCoreMacros"
+                "VCoreMacrosImplementation"
             ]
         )
     ]

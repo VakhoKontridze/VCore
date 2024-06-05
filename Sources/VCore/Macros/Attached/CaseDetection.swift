@@ -1,6 +1,6 @@
 //
 //  CaseDetection.swift
-//  VCoreMacros
+//  VCoreMacrosImplementation
 //
 //  Created by Vakhtang Kontridze on 07.01.24.
 //
@@ -23,6 +23,6 @@ import Foundation
 public macro CaseDetection(
     accessLevelModifier: AccessLevelModifierKeyword = .internal
 ) = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "CaseDetectionMacro"
 )

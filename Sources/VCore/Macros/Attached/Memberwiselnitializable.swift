@@ -36,7 +36,7 @@ public macro MemberwiseInitializable(
     excludedParameters: [String] = [],
     comment: String? = nil
 ) = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "MemberwiseInitializableMacro"
 )
 

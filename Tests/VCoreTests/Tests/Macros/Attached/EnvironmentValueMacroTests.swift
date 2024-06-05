@@ -5,14 +5,14 @@
 //  Created by Vakhtang Kontridze on 19.04.24.
 //
 
-#if canImport(VCoreMacros)
+#if canImport(VCoreMacrosImplementation)
 
 import Foundation
 import XCTest
 import SwiftSyntax
 import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
-@testable import VCoreMacros
+@testable import VCoreMacrosImplementation
 
 // MARK: - Tests
 final class EnvironmentValueGenerationMacroTests: XCTestCase {

@@ -31,6 +31,6 @@ import Foundation
 public macro OptionSetRepresentation<RawType>(
     accessLevelModifier: AccessLevelModifierKeyword = .internal
 ) = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "OptionSetRepresentationMacro"
 )

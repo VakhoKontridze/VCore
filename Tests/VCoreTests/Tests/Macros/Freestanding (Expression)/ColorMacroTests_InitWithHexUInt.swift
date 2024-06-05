@@ -7,14 +7,14 @@
 
 // Other test cases are covered under `UIColorInitWithHexTests`
 
-#if canImport(VCoreMacros)
+#if canImport(VCoreMacrosImplementation)
 
 import Foundation
 import XCTest
 import SwiftSyntax
 import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
-@testable import VCoreMacros
+@testable import VCoreMacrosImplementation
 
 // MARK: - Tests
 final class ColorMacroTests_InitWithHexUInt: XCTestCase {

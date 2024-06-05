@@ -5,14 +5,14 @@
 //  Created by Vakhtang Kontridze on 08.01.24.
 //
 
-#if canImport(VCoreMacros)
+#if canImport(VCoreMacrosImplementation)
 
 import Foundation
 import XCTest
 import SwiftSyntax
 import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
-@testable import VCoreMacros
+@testable import VCoreMacrosImplementation
 
 // MARK: - Tests
 final class OptionSetRepresentationMacroTests: XCTestCase {

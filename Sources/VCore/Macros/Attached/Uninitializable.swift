@@ -19,6 +19,6 @@ import Foundation
 ///
 @attached(member, names: named(init))
 public macro Uninitializable() = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "UninitializableMacro"
 )

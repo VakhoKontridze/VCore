@@ -20,6 +20,6 @@ public macro color(
     hex uInt: UInt,
     opacity: CGFloat = 1
 ) -> Color = #externalMacro(
-    module: "VCoreMacros",
+    module: "VCoreMacrosImplementation",
     type: "ColorMacro_InitWithHexUInt"
 )
