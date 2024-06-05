@@ -113,7 +113,7 @@ extension CGSize {
     /// Scales down `CGSize` with a given multiplier.
     ///
     ///     var size: CGSize = .init(width: 3, height: 4)
-    ///     size.scaleDown(withMultiplier: 2) /// 1.5x2
+    ///     size.scaleDown(withMultiplier: 2) // 1.5x2
     ///
     mutating public func scaleDown(
         withMultiplier value: CGFloat
