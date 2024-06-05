@@ -89,7 +89,8 @@ struct EnvironmentValueGenerationMacro: PeerMacro, AccessorMacro {
         guard
             let propertySpecifier: Keyword = propertyDeclaration
                 .bindingSpecifier
-                .tokenKind.toKeywordAssociatedValue(),
+                .tokenKind
+                .toKeywordAssociatedValue(),
             propertySpecifier == Keyword.var
         else {
             throw EnvironmentValueGenerationMacroError.canOnlyBeAppliedToVariableProperties
