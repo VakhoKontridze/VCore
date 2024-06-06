@@ -43,7 +43,6 @@ public enum GenericState_EnabledPressedFocused: Int, CaseIterable {
 ///
 /// Used for mapping `GenericState_EnabledPressedFocused` to model, with `value(for:)` method.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `GenericStateModel_EnabledPressedFocused` with values."
 )
 public struct GenericStateModel_EnabledPressedFocused<Value> {

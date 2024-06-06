@@ -10,7 +10,6 @@ import SwiftUI
 // MARK: - Edge Insets (Horizontal, Vertical)
 /// Edge insets containing `horizontal` and `vertical` values.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `EdgeInsets_HorizontalVertical` with values."
 )
 public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {

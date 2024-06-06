@@ -10,6 +10,7 @@ Macros
 
 - `CKGCodingKey` is renamed to `CKGProperty`
 - `CKGCodingKeyIgnore` macro has been removed. `CodingKeysGeneration` macro will ignore all properties not marked with `CKGProperty`.
+- `accessLevelModifier` parameter will now be inherited from type, instead of defaulting to `internal` in `CaseDetection`, `CodingKeysGeneration`, `MemberwiseInitializable`, and `OptionSetRepresentation`
 
 ### [6.3.0(97)](https://github.com/VakhoKontridze/VCore/releases/tag/6.3.0) — *2024 05 23*
 

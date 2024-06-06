@@ -39,7 +39,6 @@ public enum GenericState_EnabledLoading: Int, CaseIterable {
 ///
 /// Used for mapping `GenericState_EnabledLoading` to model, with `value(for:)` method.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `GenericStateModel_EnabledLoading` with values."
 )
 public struct GenericStateModel_EnabledLoading<Value> {

@@ -73,7 +73,6 @@ public enum GenericState_DeselectedSelectedPressedDisabled: Int, CaseIterable {
 ///
 /// Used for mapping `GenericState_DeselectedSelectedPressedDisabled` to model, with `value(for:)` method.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `GenericStateModel_DeselectedSelectedPressedDisabled` with values."
 )
 public struct GenericStateModel_DeselectedSelectedPressedDisabled<Value> {

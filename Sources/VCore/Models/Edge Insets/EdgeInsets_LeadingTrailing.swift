@@ -10,7 +10,6 @@ import SwiftUI
 // MARK: - Edge Insets (Leading, Trailing)
 /// Edge insets containing `leading` and `trailing` values.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `EdgeInsets_LeadingTrailing` with values."
 )
 public struct EdgeInsets_LeadingTrailing: Equatable, Hashable {

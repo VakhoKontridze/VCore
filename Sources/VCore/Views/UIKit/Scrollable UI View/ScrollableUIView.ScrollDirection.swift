@@ -12,7 +12,7 @@ import Foundation
 // MARK: - Scrollable UI View Scroll Direction
 extension ScrollableUIView {
     /// Scroll Direction.
-    @OptionSetRepresentation<Int>(accessLevelModifier: .public)
+    @OptionSetRepresentation<Int>
     public struct ScrollDirection {
         // MARK: Options
         private enum Options: Int {

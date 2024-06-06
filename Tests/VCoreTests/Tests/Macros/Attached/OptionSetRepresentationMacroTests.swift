@@ -93,7 +93,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
     func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<Int>(accessLevelModifier: .public)
+            @OptionSetRepresentation<Int>
             public struct Gender {
                 private enum Options: Int {
                     case male
@@ -124,6 +124,47 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                     public static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
 
                     public static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
+                }
+
+                extension Gender: OptionSet {
+                }
+                """,
+            macros: macros
+        )
+
+        assertMacroExpansion(
+            """
+            @OptionSetRepresentation<Int>(accessLevelModifier: .fileprivate)
+            struct Gender {
+                private enum Options: Int {
+                    case male
+                    case female
+                }
+            }
+            """,
+            expandedSource:
+                """
+                struct Gender {
+                    private enum Options: Int {
+                        case male
+                        case female
+                    }
+
+                    fileprivate typealias RawValue = Int
+
+                    fileprivate let rawValue: RawValue
+
+                    fileprivate init() {
+                        self.rawValue = 0
+                    }
+
+                    fileprivate init(rawValue: RawValue) {
+                        self.rawValue = rawValue
+                    }
+
+                    fileprivate static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
+
+                    fileprivate static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
                 }
 
                 extension Gender: OptionSet {

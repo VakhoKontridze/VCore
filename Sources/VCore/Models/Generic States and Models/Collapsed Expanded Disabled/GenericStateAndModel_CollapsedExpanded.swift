@@ -59,7 +59,6 @@ extension Binding where Value == GenericState_CollapsedExpanded {
 ///
 /// Used for mapping `GenericState_CollapsedExpanded` to model, with `value(for:)` method.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `GenericStateModel_CollapsedExpanded` with values."
 )
 public struct GenericStateModel_CollapsedExpanded<Value> {

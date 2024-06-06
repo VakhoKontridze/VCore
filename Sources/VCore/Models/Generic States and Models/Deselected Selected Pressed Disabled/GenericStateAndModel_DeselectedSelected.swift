@@ -59,7 +59,6 @@ extension Binding where Value == GenericState_DeselectedSelected {
 ///
 /// Used for mapping `GenericState_DeselectedSelected` to model, with `value(for:)` method.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `GenericStateModel_DeselectedSelected` with values."
 )
 public struct GenericStateModel_DeselectedSelected<Value> {

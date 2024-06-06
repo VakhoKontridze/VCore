@@ -19,7 +19,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         // Parameters
-        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(attribute: node)
+        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(attribute: node, declaration: declaration)
 
         // Properties
         let properties: [PropertyData] = try declaration
@@ -36,15 +36,23 @@ struct CodingKeysGenerationMacro: MemberMacro {
 
     // MARK: Parameters
     private static func accessLevelModifierParameter(
-        attribute: AttributeSyntax
+        attribute: AttributeSyntax,
+        declaration: some DeclGroupSyntax
     ) throws -> AccessLevelModifierKeyword {
         guard
             let parameter: LabeledExprSyntax = attribute
                 .arguments?
                 .toArgumentListGetAssociatedValue()?
-                .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" })
+                .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" }),
+            !parameter.expression.is(NilLiteralExprSyntax.self)
         else {
-            return AccessLevelModifierKeyword.internal // Default value
+            let inheritedValue: AccessLevelModifierKeyword? = .allCases.first(where: { aCase in
+                declaration.modifiers.contains(where: { modifier in
+                    modifier.name.tokenKind.toKeywordAssociatedValue() == aCase.swiftSyntaxKeyword
+                })
+            })
+
+            return inheritedValue ?? AccessLevelModifierKeyword.default
         }
 
         guard

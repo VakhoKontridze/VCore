@@ -63,7 +63,6 @@ public enum GenericState_CollapsedExpandedDisabled: Int, CaseIterable {
 ///
 /// Used for mapping `GenericState_CollapsedExpandedDisabled` to model, with `value(for:)` method.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `GenericStateModel_CollapsedExpandedDisabled` with values."
 )
 public struct GenericStateModel_CollapsedExpandedDisabled<Value> {

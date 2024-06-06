@@ -33,7 +33,6 @@ extension View {
 // MARK: - SwiftUI Drop Shadow Parameters
 /// Model that can be used to apply shadow to `View`.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `SwiftUIDropShadowParameters` with parameters."
 )
 public struct SwiftUIDropShadowParameters {

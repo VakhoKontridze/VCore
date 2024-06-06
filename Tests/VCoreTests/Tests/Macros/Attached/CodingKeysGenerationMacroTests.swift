@@ -48,13 +48,36 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
     func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
+            @CodingKeysGeneration
+            public struct SomeStruct: Encodable {
+                @CKGProperty("one") public let one: Int
+                @CKGProperty("two") public let two: String
+            }
+            """,
+            expandedSource: 
+                """
+                public struct SomeStruct: Encodable {
+                    @CKGProperty("one") public let one: Int
+                    @CKGProperty("two") public let two: String
+
+                    public enum CodingKeys: String, CodingKey {
+                        case one = "one"
+                        case two = "two"
+                    }
+                }
+                """,
+            macros: macros
+        )
+
+        assertMacroExpansion(
+            """
             @CodingKeysGeneration(accessLevelModifier: .private)
             struct SomeStruct: Encodable {
                 @CKGProperty("one") let one: Int
                 @CKGProperty("two") let two: String
             }
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 struct SomeStruct: Encodable {
                     @CKGProperty("one") let one: Int

@@ -65,7 +65,6 @@ public enum GenericState_OffOnIndeterminatePressed: Int, CaseIterable {
 ///
 /// Used for mapping `GenericState_OffOnIndeterminatePressed` to model, with `value(for:)` method.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `GenericStateModel_OffOnIndeterminatePressed` with values."
 )
 public struct GenericStateModel_OffOnIndeterminatePressed<Value> {

@@ -10,6 +10,8 @@ import Foundation
 // MARK: - Coding Keys Generation
 /// Adds `CodingKeys` to a declaration.
 ///
+/// If `accessLevelModifier` is `nil`, it will be inherited from the type.
+///
 ///     @CodingKeysGeneration
 ///     struct GetPostEntity: Decodable {
 ///         @CKGProperty("id") let id: Int
@@ -30,7 +32,7 @@ import Foundation
 ///
 @attached(member, names: named(CodingKeys))
 public macro CodingKeysGeneration(
-    accessLevelModifier: AccessLevelModifierKeyword = .internal
+    accessLevelModifier: AccessLevelModifierKeyword? = nil
 ) = #externalMacro(
     module: "VCoreMacrosImplementation",
     type: "CodingKeysGenerationMacro"

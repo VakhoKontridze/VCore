@@ -329,7 +329,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
     func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
-            @MemberwiseInitializable(accessLevelModifier: .public)
+            @MemberwiseInitializable
             public struct SomeStruct {
                 public let a: Int
             }
@@ -340,6 +340,28 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     public let a: Int
 
                     public init(
+                        a: Int
+                    ) {
+                        self.a = a
+                    }
+                }
+                """,
+            macros: macros
+        )
+
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable(accessLevelModifier: .fileprivate)
+            struct SomeStruct {
+                let a: Int
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    let a: Int
+
+                    fileprivate init(
                         a: Int
                     ) {
                         self.a = a

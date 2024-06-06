@@ -39,7 +39,6 @@ public enum GenericState_EnabledPressed: Int, CaseIterable {
 ///
 /// Used for mapping `GenericState_EnabledPressed` to model, with `value(for:)` method.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `GenericStateModel_EnabledPressed` with values."
 )
 public struct GenericStateModel_EnabledPressed<Value> {

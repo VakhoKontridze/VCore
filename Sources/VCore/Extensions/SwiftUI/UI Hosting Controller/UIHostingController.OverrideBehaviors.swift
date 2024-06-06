@@ -16,7 +16,7 @@ import OSLog
 
 // MARK: - Overridable UI Hosting Controller Behavior
 /// `UIHostingController` behavior overriding option.
-@OptionSetRepresentation<Int>(accessLevelModifier: .public)
+@OptionSetRepresentation<Int>
 public struct OverridableUIHostingControllerBehavior {
     private enum Options: Int {
         case disablesSafeAreaInsets

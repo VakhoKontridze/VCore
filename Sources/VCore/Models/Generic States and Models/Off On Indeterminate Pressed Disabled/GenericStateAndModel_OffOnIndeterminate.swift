@@ -63,7 +63,6 @@ extension Binding where Value == GenericState_OffOnIndeterminate {
 ///
 /// Used for mapping `GenericState_OffOnIndeterminate` to model, with `value(for:)` method.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `GenericStateModel_OffOnIndeterminate` with values."
 )
 public struct GenericStateModel_OffOnIndeterminate<Value> {

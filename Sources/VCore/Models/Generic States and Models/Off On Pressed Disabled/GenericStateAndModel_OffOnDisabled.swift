@@ -63,7 +63,6 @@ public enum GenericState_OffOnDisabled: Int, CaseIterable {
 ///
 /// Used for mapping `GenericState_OffOnDisabled` to model, with `value(for:)` method.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `GenericStateModel_OffOnDisabled` with values."
 )
 public struct GenericStateModel_OffOnDisabled<Value> {

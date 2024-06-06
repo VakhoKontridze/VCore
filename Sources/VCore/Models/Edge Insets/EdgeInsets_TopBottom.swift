@@ -10,7 +10,6 @@ import SwiftUI
 // MARK: - Edge Insets (Top, Bottom)
 /// Edge insets containing `top` and `bottom` values.
 @MemberwiseInitializable(
-    accessLevelModifier: .public,
     comment: "/// Initializes `EdgeInsets_TopBottom` with values."
 )
 public struct EdgeInsets_TopBottom: Equatable, Hashable {

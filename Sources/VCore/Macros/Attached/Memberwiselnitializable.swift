@@ -10,8 +10,9 @@ import Foundation
 // MARK: - Memberwise Initializable
 /// Generates memberwise initializer.
 ///
+/// If `accessLevelModifier` is `nil`, it will be inherited from the type.
+///
 ///     @MemberwiseInitializable(
-///         accessLevelModifier: .public,
 ///         externalParameterNames: ["url": "_"]
 ///     )
 ///     public struct FetchImageParameters {
@@ -30,7 +31,7 @@ import Foundation
 ///
 @attached(member, names: named(init))
 public macro MemberwiseInitializable(
-    accessLevelModifier: AccessLevelModifierKeyword = .internal,
+    accessLevelModifier: AccessLevelModifierKeyword? = nil,
     externalParameterNames: [String: String] = [:],
     parameterDefaultValues: [String: MemberwiseInitializableParameterDefaultValue] = [:],
     excludedParameters: [String] = [],

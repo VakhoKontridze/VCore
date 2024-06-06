@@ -90,13 +90,47 @@ final class CaseDetectionMacroTests: XCTestCase {
     func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
+            @CaseDetection
+            public enum Gender {
+                case male
+                case female
+            }
+            """,
+            expandedSource: 
+                """
+                public enum Gender {
+                    case male
+                    case female
+
+                    public var isMale: Bool {
+                        if case .male = self {
+                            true
+                        } else {
+                            false
+                        }
+                    }
+
+                    public var isFemale: Bool {
+                        if case .female = self {
+                            true
+                        } else {
+                            false
+                        }
+                    }
+                }
+                """,
+            macros: macros
+        )
+
+        assertMacroExpansion(
+            """
             @CaseDetection(accessLevelModifier: .fileprivate)
             enum Gender {
                 case male
                 case female
             }
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 enum Gender {
                     case male
