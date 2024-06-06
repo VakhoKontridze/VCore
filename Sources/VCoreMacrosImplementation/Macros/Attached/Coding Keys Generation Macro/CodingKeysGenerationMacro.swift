@@ -71,11 +71,41 @@ struct CodingKeysGenerationMacro: MemberMacro {
     private static func property(
         member: MemberBlockItemSyntax
     ) throws -> PropertyData? {
+        // Skips `CKGCodingKeyIgnored`
+        if
+            member
+                .decl.asProtocol(WithAttributesSyntax.self)?
+                .attributes
+                .contains(where: { attribute in
+                    attribute.as(AttributeSyntax.self)?
+                        .attributeName.as(IdentifierTypeSyntax.self)?
+                        .trimmedDescription
+                        == "CKGCodingKeyIgnored"
+                })
+                == true
+        {
+            return nil // No need to throw errors for non-variables
+        }
+
+        // `CKGCodingKey`
+        let keyMacro: AttributeSyntax? = member
+            .decl.asProtocol(WithAttributesSyntax.self)?
+            .attributes
+            .first(where: { attribute in
+                attribute.as(AttributeSyntax.self)?
+                    .attributeName.as(IdentifierTypeSyntax.self)?
+                    .trimmedDescription == "CKGCodingKey"
+            })?.as(AttributeSyntax.self)
+
         // Limits declaration to variables
         guard
             let propertyDeclaration: VariableDeclSyntax = member.decl.as(VariableDeclSyntax.self)
         else {
-            return nil
+            if keyMacro != nil {
+                throw CodingKeysGenerationMacroError.canOnlyBeAppliedToVariables
+            } else {
+                return nil
+            }
         }
 
         // Limits declaration to one property per line
@@ -90,7 +120,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         guard
             propertyBinding.accessorBlock == nil
         else {
-            return nil
+            throw CodingKeysGenerationMacroError.cannotBeAppliedToComputedProperties
         }
 
         // Property name
@@ -103,51 +133,33 @@ struct CodingKeysGenerationMacro: MemberMacro {
             throw CodingKeysGenerationMacroError.invalidPropertyName
         }
 
-        // Skips `CKGCodingKeyIgnored`
-        if
-            member
-                .decl.as(VariableDeclSyntax.self)?
-                .attributes
-                .contains(where: { attribute in
-                    attribute.as(AttributeSyntax.self)?
-                        .attributeName.as(IdentifierTypeSyntax.self)?
-                        .description
-                        ._removing(.whitespaces) == "CKGCodingKeyIgnored"
-                })
-                == true
-        {
-            return nil
-        }
-
         // Property key
         let propertyKey: String? = try {
-            guard
-                let keyMacro: AttributeSyntax = member
-                    .decl.as(VariableDeclSyntax.self)?
-                    .attributes
-                    .first(where: { attribute in
-                        attribute.as(AttributeSyntax.self)?
-                            .attributeName.as(IdentifierTypeSyntax.self)?
-                            .description == "CKGCodingKey"
-                    })?.as(AttributeSyntax.self)
-            else {
+            if let keyMacro {
+                guard
+                    let propertyKeyParameter: LabeledExprSyntax = keyMacro
+                        .arguments?.as(LabeledExprListSyntax.self)?
+                        .first // Only one argument, with no name
+                else {
+                    throw CodingKeysGenerationMacroError.invalidKey
+                }
+
+                guard
+                    let propertyKey: String = propertyKeyParameter
+                        .expression.as(StringLiteralExprSyntax.self)?
+                        .segments
+                        .first?.as(StringSegmentSyntax.self)?
+                        .content
+                        .trimmedDescription
+                else {
+                    throw CodingKeysGenerationMacroError.invalidKey
+                }
+
+                return propertyKey
+
+            } else {
                 return nil
             }
-
-            guard
-                let propertyKey: String = keyMacro
-                    .arguments?.as(LabeledExprListSyntax.self)?
-                    .first? // Only one argument, with no name
-                    .expression.as(StringLiteralExprSyntax.self)?
-                    .segments
-                    .first?.as(StringSegmentSyntax.self)?
-                    .content
-                    .trimmedDescription
-            else {
-                throw CodingKeysGenerationMacroError.invalidKeyName
-            }
-
-            return propertyKey
         }()
 
         // Result

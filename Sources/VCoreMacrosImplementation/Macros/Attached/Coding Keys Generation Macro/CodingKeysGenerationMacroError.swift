@@ -20,7 +20,9 @@ struct CodingKeysGenerationMacroError: Error, CustomStringConvertible {
     }
 
     static var invalidAccessLevelModifierParameter: Self { .init("Invalid 'accessLevelModifier' parameter") }
+    static var canOnlyBeAppliedToVariables: Self { .init("'CKGCodingKey' macro can only be applied to variables") }
     static var onePropertyAllowedPerLine: Self { .init("Only one property declaration is allowed per line") }
+    static var cannotBeAppliedToComputedProperties: Self { .init("'CKGCodingKey' macro can not be applied to computed properties") }
     static var invalidPropertyName: Self { .init("Invalid property name") }
-    static var invalidKeyName: Self { .init("Invalid key name") }
+    static var invalidKey: Self { .init("Invalid key") }
 }

@@ -71,8 +71,12 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         guard
             let parameter: LabeledExprSyntax = node
                 .arguments
-                .first(where: { $0.label?.trimmedDescription == "hex" }),
+                .first(where: { $0.label?.trimmedDescription == "hex" })
+        else {
+            throw ColorMacroError_InitWithHexUInt.invalidHexParameter
+        }
 
+        guard
             let valueString: String = parameter
                 .expression.as(IntegerLiteralExprSyntax.self)?
                 .literal

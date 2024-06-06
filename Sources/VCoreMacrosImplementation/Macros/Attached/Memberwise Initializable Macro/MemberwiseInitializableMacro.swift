@@ -177,9 +177,8 @@ struct MemberwiseInitializableMacro: MemberMacro {
                             }
 
                             return .value(value)
-                        }
 
-                        if
+                        } else if
                             let caseName: String = element
                                 .value.as(MemberAccessExprSyntax.self)?
                                 .declName
@@ -189,9 +188,10 @@ struct MemberwiseInitializableMacro: MemberMacro {
                             caseName == "omit"
                         {
                             return .omit
-                        }
 
-                        throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
+                        } else {
+                            throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
+                        }
                     }()
 
                     result[key] = value

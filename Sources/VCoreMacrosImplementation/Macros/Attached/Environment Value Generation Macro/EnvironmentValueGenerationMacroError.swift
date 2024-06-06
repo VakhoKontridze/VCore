@@ -19,7 +19,7 @@ struct EnvironmentValueGenerationMacroError: Error, CustomStringConvertible {
         self.description = description
     }
 
-    static var canOnlyBeAppliedToProperties: Self { .init("'EnvironmentValueGeneration' macro can only be applied to a properties") }
+    static var canOnlyBeAppliedToProperties: Self { .init("'EnvironmentValueGeneration' macro can only be applied to properties") }
     static var canOnlyBeAppliedToVariableProperties: Self { .init("'EnvironmentValueGeneration' macro can only be applied to variable properties") }
     static var invalidPropertyName: Self { .init("Invalid property name") }
     static var invalidPropertyType: Self { .init("Invalid property type") }

@@ -129,6 +129,27 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         )
     }
 
+    func testNonProperties() {
+        assertMacroExpansion(
+            """
+            @CodingKeysGeneration
+            struct SomeStruct: Encodable {
+                @CKGCodingKey("one") func one() {}
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct: Encodable {
+                    @CKGCodingKey("one") func one() {}
+                }
+                """,
+            diagnostics: [
+                DiagnosticSpec(message: CodingKeysGenerationMacroError.canOnlyBeAppliedToVariables.description, line: 1, column: 1)
+            ],
+            macros: macros
+        )
+    }
+
     func testSameLineProperties() {
         assertMacroExpansion(
             """
@@ -160,6 +181,27 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                 """
                 struct SomeStruct: Encodable {}
                 """,
+            macros: macros
+        )
+    }
+
+    func testInvalidProperties() {
+        assertMacroExpansion(
+            """
+            @CodingKeysGeneration
+            struct SomeStruct: Encodable {
+                @CKGCodingKey("one") var one: Int { 0 }
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct: Encodable {
+                    @CKGCodingKey("one") var one: Int { 0 }
+                }
+                """,
+            diagnostics: [
+                DiagnosticSpec(message: CodingKeysGenerationMacroError.cannotBeAppliedToComputedProperties.description, line: 1, column: 1)
+            ],
             macros: macros
         )
     }

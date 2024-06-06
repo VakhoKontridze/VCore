@@ -35,8 +35,12 @@ struct URLMacro_InitWithString: ExpressionMacro {
         guard
             let parameter: LabeledExprSyntax = node
                 .arguments
-                .first, // Only one argument, with no name
+                .first // Only one argument, with no name
+        else {
+            throw URLMacroError_InitWithString.invalidURLStringParameter
+        }
 
+        guard
             let value: String = parameter
                 .expression.as(StringLiteralExprSyntax.self)?
                 .representedLiteralValue

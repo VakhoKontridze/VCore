@@ -20,5 +20,5 @@ struct CaseDetectionMacroError: Error, CustomStringConvertible {
     }
 
     static var invalidAccessLevelModifierParameter: Self { .init("Invalid 'accessLevelModifier' parameter") }
-    static var canOnlyBeAppliedToEnums: Self { .init("'CaseDetection' macro can only be applied to an 'enum'") }
+    static var canOnlyBeAppliedToEnums: Self { .init("'CaseDetection' macro can only be applied to 'enum's") }
 }

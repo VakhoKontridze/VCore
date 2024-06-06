@@ -20,7 +20,7 @@ struct OptionSetRepresentationMacroError: Error, CustomStringConvertible {
     }
 
     static var invalidAccessLevelModifierParameter: Self { .init("Invalid 'accessLevelModifier' parameter") }
-    static var canOnlyBeAppliedToStructs: Self { .init("'OptionSetRepresentation' macro can only be applied to a 'struct'") }
+    static var canOnlyBeAppliedToStructs: Self { .init("'OptionSetRepresentation' macro can only be applied to 'struct's") }
     static var optionsEnumNotFound: Self { .init("Options 'enum' not found") }
     static var optionsEnumRawTypeNotDeclared: Self { .init("Options 'enum' must conform to a raw type") }
 }
