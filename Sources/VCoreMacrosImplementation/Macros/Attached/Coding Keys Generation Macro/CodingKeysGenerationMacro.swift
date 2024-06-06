@@ -161,7 +161,6 @@ struct CodingKeysGenerationMacro: MemberMacro {
         accessLevelModifier: AccessLevelModifierKeyword,
         properties: [PropertyData]
     ) -> [DeclSyntax] {
-        // Result
         var result: [DeclSyntax] = []
 
         do {
