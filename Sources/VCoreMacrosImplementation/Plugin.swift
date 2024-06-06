@@ -15,7 +15,7 @@ struct Plugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         // Attached
         CaseDetectionMacro.self,
-        CodingKeysGenerationMacro.self, CKGCodingKeyMacro.self, CKGCodingKeyIgnoredMacro.self,
+        CodingKeysGenerationMacro.self, CKGPropertyMacro.self,
         EnvironmentValueGenerationMacro.self,
         MemberwiseInitializableMacro.self,
         OptionSetRepresentationMacro.self,

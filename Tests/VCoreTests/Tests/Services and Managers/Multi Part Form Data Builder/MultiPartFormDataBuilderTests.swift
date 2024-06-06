@@ -18,7 +18,7 @@ final class MultipartFormDataBuilderTests: XCTestCase {
 
     @CodingKeysGeneration
     private struct JSONPart: Encodable {
-        @CKGCodingKey("key") let key: String
+        @CKGProperty("key") let key: String
     }
 
     // MARK: Tests

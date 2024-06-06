@@ -286,12 +286,19 @@ public macro CaseDetection(
 
 // MARK: - Coding Keys Generation
 @available(*, unavailable, message: "Use 'AccessLevelModifierKeyword' for 'accessLevelModifier'")
-@attached(member, names: named(CodingKeys), named(CodingKey), named(CKGCodingKeyIgnored))
+@attached(member, names: named(CodingKeys))
 public macro CodingKeysGeneration(
     accessLevelModifier: String
 ) = #externalMacro(
     module: "VCoreMacrosImplementation",
     type: "CodingKeysGenerationMacro"
+)
+
+@available(*, unavailable, message: "Macro is unavailable. All properties not marked with 'CKGProperty' will be automatically ignored.")
+@attached(peer)
+public macro CKGCodingKeyIgnored() = #externalMacro(
+    module: "VCoreMacrosImplementation",
+    type: "CKGCodingKeyIgnoredMacro"
 )
 
 // MARK: - Option Set Representation

@@ -23,10 +23,10 @@ import Foundation
 public struct MultipartFormDataRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    @CKGCodingKey("Accept") public let accept: String = "application/json"
+    @CKGProperty("Accept") public let accept: String = "application/json"
 
     /// Content type.
-    @CKGCodingKey("Content-Type") public let contentType: String
+    @CKGProperty("Content-Type") public let contentType: String
 
     // MARK: Initializers
     /// Initializes `MultipartFormDataRequestHeaderFields` with boundary.

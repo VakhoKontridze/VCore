@@ -25,45 +25,19 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration
             struct SomeStruct: Encodable {
-                @CKGCodingKey("key_one") let one: Int
-                @CKGCodingKey("key_two") let two: String
+                @CKGProperty("one") let one: Int
+                @CKGProperty("two") let two: String
             }
             """,
             expandedSource: 
                 """
                 struct SomeStruct: Encodable {
-                    @CKGCodingKey("key_one") let one: Int
-                    @CKGCodingKey("key_two") let two: String
+                    @CKGProperty("one") let one: Int
+                    @CKGProperty("two") let two: String
 
                     internal enum CodingKeys: String, CodingKey {
-                        case one = "key_one"
-                        case two = "key_two"
-                    }
-                }
-                """,
-            macros: macros
-        )
-    }
-
-
-    func testNoCustomCodingKey() {
-        assertMacroExpansion(
-            """
-            @CodingKeysGeneration
-            struct SomeStruct: Encodable {
-                let one: Int
-                @CKGCodingKey("key_two") let two: String
-            }
-            """,
-            expandedSource: 
-                """
-                struct SomeStruct: Encodable {
-                    let one: Int
-                    @CKGCodingKey("key_two") let two: String
-
-                    internal enum CodingKeys: String, CodingKey {
-                        case one
-                        case two = "key_two"
+                        case one = "one"
+                        case two = "two"
                     }
                 }
                 """,
@@ -76,19 +50,19 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration(accessLevelModifier: .private)
             struct SomeStruct: Encodable {
-                let one: Int
-                let two: String
+                @CKGProperty("one") let one: Int
+                @CKGProperty("two") let two: String
             }
             """,
             expandedSource: 
                 """
                 struct SomeStruct: Encodable {
-                    let one: Int
-                    let two: String
+                    @CKGProperty("one") let one: Int
+                    @CKGProperty("two") let two: String
 
                     private enum CodingKeys: String, CodingKey {
-                        case one
-                        case two
+                        case one = "one"
+                        case two = "two"
                     }
                 }
                 """,
@@ -101,10 +75,10 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration
             struct SomeStruct: Encodable {
-                let one: Int
-                let two: String
-
-                @CKGCodingKeyIgnored var attributes: [String: Any?] = [:]
+                @CKGProperty("one") let one: Int
+                var two: Int { one * 2 }
+                
+                var attributes: [String: Any?] = [:]
 
                 func foo() {}
             }
@@ -112,16 +86,15 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
             expandedSource: 
                 """
                 struct SomeStruct: Encodable {
-                    let one: Int
-                    let two: String
-
-                    @CKGCodingKeyIgnored var attributes: [String: Any?] = [:]
+                    @CKGProperty("one") let one: Int
+                    var two: Int { one * 2 }
+                    
+                    var attributes: [String: Any?] = [:]
 
                     func foo() {}
 
                     internal enum CodingKeys: String, CodingKey {
-                        case one
-                        case two
+                        case one = "one"
                     }
                 }
                 """,
@@ -134,13 +107,13 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration
             struct SomeStruct: Encodable {
-                @CKGCodingKey("one") func one() {}
+                @CKGProperty("one") func one() {}
             }
             """,
             expandedSource:
                 """
                 struct SomeStruct: Encodable {
-                    @CKGCodingKey("one") func one() {}
+                    @CKGProperty("one") func one() {}
                 }
                 """,
             diagnostics: [
@@ -155,13 +128,13 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration
             struct SomeStruct: Encodable {
-                let one, two: Int
+                @CKGProperty("one+two") let one, two: Int
             }
             """,
             expandedSource:
                 """
                 struct SomeStruct: Encodable {
-                    let one, two: Int
+                    @CKGProperty("one+two") let one, two: Int
                 }
                 """,
             diagnostics: [
@@ -172,14 +145,36 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
     }
 
     func testNoProperties() {
-        assertMacroExpansion(
+        assertMacroExpansion( // Compiler will handle errors
             """
             @CodingKeysGeneration
             struct SomeStruct: Encodable {}
             """,
             expandedSource:
                 """
-                struct SomeStruct: Encodable {}
+                struct SomeStruct: Encodable {
+
+                    internal enum CodingKeys: String, CodingKey {
+                    }}
+                """,
+            macros: macros
+        )
+
+        assertMacroExpansion( // Compiler will handle errors
+            """
+            @CodingKeysGeneration
+            struct SomeStruct: Encodable {
+                let one: Int
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct: Encodable {
+                    let one: Int
+
+                    internal enum CodingKeys: String, CodingKey {
+                    }
+                }
                 """,
             macros: macros
         )
@@ -190,13 +185,13 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration
             struct SomeStruct: Encodable {
-                @CKGCodingKey("one") var one: Int { 0 }
+                @CKGProperty("one") var one: Int { 0 }
             }
             """,
             expandedSource:
                 """
                 struct SomeStruct: Encodable {
-                    @CKGCodingKey("one") var one: Int { 0 }
+                    @CKGProperty("one") var one: Int { 0 }
                 }
                 """,
             diagnostics: [

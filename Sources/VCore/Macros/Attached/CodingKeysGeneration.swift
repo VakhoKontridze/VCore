@@ -12,12 +12,12 @@ import Foundation
 ///
 ///     @CodingKeysGeneration
 ///     struct GetPostEntity: Decodable {
-///         @CKGCodingKey("id") let id: Int
-///         @CKGCodingKey("userId") let userID: Int
-///         @CKGCodingKey("title") let title: String
-///         @CKGCodingKey("body") let body: String
+///         @CKGProperty("id") let id: Int
+///         @CKGProperty("userId") let userID: Int
+///         @CKGProperty("title") let title: String
+///         @CKGProperty("body") let body: String
 ///
-///         @CKGCodingKeyIgnored var attributes: [String: Any?] = [:]
+///         var attributes: [String: Any?] = [:]
 ///     }
 ///
 ///     // Generates
@@ -41,19 +41,9 @@ public macro CodingKeysGeneration(
 ///
 /// For additional info, refer to `CodingKeysGeneration`.
 @attached(peer)
-public macro CKGCodingKey(
+public macro CKGProperty(
     _ key: String
 ) = #externalMacro(
     module: "VCoreMacrosImplementation",
-    type: "CKGCodingKeyMacro"
-)
-
-// MARK: - Coding Keys Generation Coding Key Ignored
-/// Ignores generation of custom `Codable` key for a property.
-///
-/// For additional info, refer to `CodingKeysGeneration`.
-@attached(peer)
-public macro CKGCodingKeyIgnored() = #externalMacro(
-    module: "VCoreMacrosImplementation",
-    type: "CKGCodingKeyIgnoredMacro"
+    type: "CKGPropertyMacro"
 )

@@ -240,12 +240,12 @@ Macro that adds `CodingKeys` to a declaration:
 ```swift
 @CodingKeysGeneration
 struct GetPostEntity: Decodable {
-    @CKGCodingKey("id") let id: Int
-    @CKGCodingKey("userId") let userID: Int
-    @CKGCodingKey("title") let title: String
-    @CKGCodingKey("body") let body: String
+    @CKGProperty("id") let id: Int
+    @CKGProperty("userId") let userID: Int
+    @CKGProperty("title") let title: String
+    @CKGProperty("body") let body: String
     
-    @CKGCodingKeyIgnored var attributes: [String: Any?] = [:]
+    var attributes: [String: Any?] = [:]
 }
 
 // Generates

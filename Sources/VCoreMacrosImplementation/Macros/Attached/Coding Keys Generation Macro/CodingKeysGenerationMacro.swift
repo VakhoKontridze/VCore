@@ -65,47 +65,31 @@ struct CodingKeysGenerationMacro: MemberMacro {
     // MARK: Data
     private struct PropertyData {
         let name: String
-        let key: String?
+        let key: String
     }
 
     private static func property(
         member: MemberBlockItemSyntax
     ) throws -> PropertyData? {
-        // Skips `CKGCodingKeyIgnored`
-        if
-            member
+        // `CKGProperty`
+        guard
+            let keyMacro: AttributeSyntax = member
                 .decl.asProtocol(WithAttributesSyntax.self)?
                 .attributes
-                .contains(where: { attribute in
+                .first(where: { attribute in
                     attribute.as(AttributeSyntax.self)?
                         .attributeName.as(IdentifierTypeSyntax.self)?
-                        .trimmedDescription
-                        == "CKGCodingKeyIgnored"
-                })
-                == true
-        {
-            return nil // No need to throw errors for non-variables
+                        .trimmedDescription == "CKGProperty"
+                })?.as(AttributeSyntax.self)
+        else {
+            return nil
         }
-
-        // `CKGCodingKey`
-        let keyMacro: AttributeSyntax? = member
-            .decl.asProtocol(WithAttributesSyntax.self)?
-            .attributes
-            .first(where: { attribute in
-                attribute.as(AttributeSyntax.self)?
-                    .attributeName.as(IdentifierTypeSyntax.self)?
-                    .trimmedDescription == "CKGCodingKey"
-            })?.as(AttributeSyntax.self)
 
         // Limits declaration to variables
         guard
             let propertyDeclaration: VariableDeclSyntax = member.decl.as(VariableDeclSyntax.self)
         else {
-            if keyMacro != nil {
-                throw CodingKeysGenerationMacroError.canOnlyBeAppliedToVariables
-            } else {
-                return nil
-            }
+            throw CodingKeysGenerationMacroError.canOnlyBeAppliedToVariables
         }
 
         // Limits declaration to one property per line
@@ -134,32 +118,27 @@ struct CodingKeysGenerationMacro: MemberMacro {
         }
 
         // Property key
-        let propertyKey: String? = try {
-            if let keyMacro {
-                guard
-                    let parameter: LabeledExprSyntax = keyMacro
-                        .arguments?.as(LabeledExprListSyntax.self)?
-                        .first // Only one argument, with no name
-                else {
-                    throw CodingKeysGenerationMacroError.invalidKey
-                }
-
-                guard
-                    let value: String = parameter
-                        .expression.as(StringLiteralExprSyntax.self)?
-                        .segments
-                        .first?.as(StringSegmentSyntax.self)?
-                        .content
-                        .trimmedDescription
-                else {
-                    throw CodingKeysGenerationMacroError.invalidKey
-                }
-
-                return value
-
-            } else {
-                return nil
+        let propertyKey: String = try {
+            guard
+                let parameter: LabeledExprSyntax = keyMacro
+                    .arguments?.as(LabeledExprListSyntax.self)?
+                    .first // Only one argument, with no name
+            else {
+                throw CodingKeysGenerationMacroError.invalidKey
             }
+
+            guard
+                let value: String = parameter
+                    .expression.as(StringLiteralExprSyntax.self)?
+                    .segments
+                    .first?.as(StringSegmentSyntax.self)?
+                    .content
+                    .trimmedDescription
+            else {
+                throw CodingKeysGenerationMacroError.invalidKey
+            }
+
+            return value
         }()
 
         // Result
@@ -177,21 +156,14 @@ struct CodingKeysGenerationMacro: MemberMacro {
         // Result
         var result: [DeclSyntax] = []
 
-        loop: do {
-            guard !properties.isEmpty else { break loop }
-
+        do {
             var string: String = ""
 
             string.append("\(accessLevelModifier) enum CodingKeys: String, CodingKey {")
             string.append("\n")
 
             for property in properties {
-                if let key: String = property.key {
-                    string.append("case \(property.name) = \"\(key)\"")
-                } else {
-                    string.append("case \(property.name)")
-                }
-
+                string.append("case \(property.name) = \"\(property.key)\"")
                 string.append("\n")
             }
 

@@ -19,10 +19,10 @@ import Foundation
 public struct JSONRequestHeaderFields: Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
-    @CKGCodingKey("Accept") public let accept: String = "application/json"
+    @CKGProperty("Accept") public let accept: String = "application/json"
 
     /// Content type. Set to `application/json`.
-    @CKGCodingKey("Content-Type") public let contentType: String = "application/json"
+    @CKGProperty("Content-Type") public let contentType: String = "application/json"
 
     // MARK: Initializers
     /// initializes `JSONRequestHeaderFields`.

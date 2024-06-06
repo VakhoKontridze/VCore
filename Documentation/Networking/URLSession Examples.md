@@ -26,10 +26,10 @@ struct GetPostParameters {
 
 @CodingKeysGeneration
 struct GetPostEntity: Decodable {
-    @CKGCodingKey("id") let id: Int
-    @CKGCodingKey("userId") let userID: Int
-    @CKGCodingKey("title") let title: String
-    @CKGCodingKey("body") let body: String
+    @CKGProperty("id") let id: Int
+    @CKGProperty("userId") let userID: Int
+    @CKGProperty("title") let title: String
+    @CKGProperty("body") let body: String
 }
 
 struct GetPostGateway: GetPostGatewayProtocol {
@@ -169,12 +169,12 @@ protocol EchoGatewayProtocol {
 
 @CodingKeysGeneration
 struct EchoParameters: Encodable {
-    @CKGCodingKey("value") let value: String
+    @CKGProperty("value") let value: String
 }
 
 @CodingKeysGeneration
 struct EchoEntity: Decodable {
-    @CKGCodingKey("value") let value: String
+    @CKGProperty("value") let value: String
 }
 
 struct EchoGateway: EchoGatewayProtocol {
