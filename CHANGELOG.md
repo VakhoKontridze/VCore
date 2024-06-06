@@ -1,6 +1,6 @@
 # Change Log
 
-### 6.4.0(98)
+### [6.4.0(98)](https://github.com/VakhoKontridze/VCore/releases/tag/6.4.0) — *2024 06 06*
 
 Services and Managers
 
