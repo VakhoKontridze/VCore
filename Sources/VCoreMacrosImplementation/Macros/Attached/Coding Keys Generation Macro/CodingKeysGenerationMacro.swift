@@ -137,7 +137,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         let propertyKey: String? = try {
             if let keyMacro {
                 guard
-                    let propertyKeyParameter: LabeledExprSyntax = keyMacro
+                    let parameter: LabeledExprSyntax = keyMacro
                         .arguments?.as(LabeledExprListSyntax.self)?
                         .first // Only one argument, with no name
                 else {
@@ -145,7 +145,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
                 }
 
                 guard
-                    let propertyKey: String = propertyKeyParameter
+                    let value: String = parameter
                         .expression.as(StringLiteralExprSyntax.self)?
                         .segments
                         .first?.as(StringSegmentSyntax.self)?
@@ -155,7 +155,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
                     throw CodingKeysGenerationMacroError.invalidKey
                 }
 
-                return propertyKey
+                return value
 
             } else {
                 return nil
