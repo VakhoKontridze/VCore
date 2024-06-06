@@ -301,6 +301,13 @@ public macro CKGCodingKeyIgnored() = #externalMacro(
     type: "CKGCodingKeyIgnoredMacro"
 )
 
+@available(*, unavailable, renamed: "CKGProperty")
+@attached(peer)
+public macro CKGCodingKey() = #externalMacro(
+    module: "VCoreMacrosImplementation",
+    type: "CKGPropertyMacro"
+)
+
 // MARK: - Option Set Representation
 @available(*, unavailable, message: "Use 'AccessLevelModifierKeyword' for 'accessLevelModifier'")
 @attached(member, names: arbitrary)
