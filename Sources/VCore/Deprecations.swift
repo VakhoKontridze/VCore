@@ -303,7 +303,9 @@ public macro CKGCodingKeyIgnored() = #externalMacro(
 
 @available(*, unavailable, renamed: "CKGProperty")
 @attached(peer)
-public macro CKGCodingKey() = #externalMacro(
+public macro CKGCodingKey(
+    _ key: String
+) = #externalMacro(
     module: "VCoreMacrosImplementation",
     type: "CKGPropertyMacro"
 )
