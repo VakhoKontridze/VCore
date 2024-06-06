@@ -81,7 +81,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
     ) throws -> PropertyData? {
         // `CKGProperty`
         guard
-            let keyMacro: AttributeSyntax = member
+            let propertyMacro: AttributeSyntax = member
                 .decl.asProtocol(WithAttributesSyntax.self)?
                 .attributes
                 .first(where: { attribute in
@@ -128,7 +128,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         // Property key
         let propertyKey: String = try {
             guard
-                let parameter: LabeledExprSyntax = keyMacro
+                let parameter: LabeledExprSyntax = propertyMacro
                     .arguments?.as(LabeledExprListSyntax.self)?
                     .first // Only one argument, with no name
             else {
