@@ -34,8 +34,7 @@ public struct KeychainStorage<Value>: DynamicProperty {
     // MARK: Properties
     @ObservedObject private var storage: ObservableContainerOO<Value> // No need for `StateObject`
     private let valueSetter: (Value) -> Void
-    
-    /// The underlying value referenced by the state variable.
+
     public var wrappedValue: Value {
         get {
             storage.value
@@ -46,7 +45,6 @@ public struct KeychainStorage<Value>: DynamicProperty {
         }
     }
     
-    /// The property for which this instance exposes a publisher.
     public var projectedValue: Binding<Value> {
         .init(
             get: { wrappedValue },

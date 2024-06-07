@@ -22,14 +22,12 @@ import SwiftUI
 public struct Clamped<Value>: DynamicProperty {
     // MARK: Properties
     @State private var fieldValue: Value
-    
-    /// The underlying value referenced by the state variable.
+
     public var wrappedValue: Value {
         get { fieldValue }
         nonmutating set { fieldValue = transformation(newValue) }
     }
     
-    /// The property for which this instance exposes a publisher.
     public var projectedValue: Binding<Value> {
         .init(
             get: { wrappedValue },

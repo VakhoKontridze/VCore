@@ -35,8 +35,7 @@ public struct OldValueCache<Value>: DynamicProperty {
             fieldValue = newValue
         }
     }
-    
-    /// The property for which this instance exposes a publisher.
+
     public var projectedValue: Binding<Value> {
         .init(
             get: { wrappedValue },
