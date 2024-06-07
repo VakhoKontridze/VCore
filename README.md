@@ -99,7 +99,7 @@ let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for
 
 ```swift
 KeychainService.default.get(key: "SomeKey")
-KeychainService.default.set(key: "SomeKey", data: data)
+KeychainService.default.set(key: "SomeKey", value: data)
 KeychainService.default.delete(key: "SomeKey")
 ```
 
