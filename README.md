@@ -41,8 +41,6 @@ Project includes folder `Documentation`, which contains:
 
 - Swift style guide
 
-- Documentation and example apps of various SwiftUI/UIKit architectures
-
 - Documentation of networking
 
 ## Showcase
@@ -223,7 +221,7 @@ var body: some View {
 }
 ```
 
-#### Global Functions
+#### Various Global Functions
 
 Function that calls `fatalError` because feature is not implemented: 
 
