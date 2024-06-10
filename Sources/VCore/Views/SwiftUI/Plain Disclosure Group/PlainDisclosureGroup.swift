@@ -99,7 +99,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
         content: @escaping () -> Content
     ) {
         self.uiModel = uiModel
-        self.__isExpanded_internal = State(initialValue: false)
+        self.__isExpanded_internal = State(wrappedValue: false)
         self.__isExpanded_external = .constant(false) // Doesn't matter
         self.stateManagement = .internal
         self.label = label
@@ -114,7 +114,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
         content: @escaping () -> Content
     ) {
         self.uiModel = uiModel
-        self.__isExpanded_internal = State(initialValue: false) // Doesn't matter
+        self.__isExpanded_internal = State(wrappedValue: false) // Doesn't matter
         self.__isExpanded_external = isExpanded
         self.stateManagement = .external
         self.label = label

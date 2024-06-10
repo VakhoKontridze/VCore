@@ -48,6 +48,6 @@ public struct OldValueCache<Value>: DynamicProperty {
     // MARK: Initializers
     /// Initializes `OldValueCache`.
     public init(wrappedValue: Value) {
-        self._fieldValue = State(initialValue: wrappedValue)
+        self._fieldValue = State(wrappedValue: wrappedValue)
     }
 }

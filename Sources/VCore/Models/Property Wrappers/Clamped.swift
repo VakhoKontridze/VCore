@@ -42,7 +42,7 @@ public struct Clamped<Value>: DynamicProperty {
         wrappedValue: Value,
         transformation: @escaping (Value) -> Value
     ) {
-        self._fieldValue = State(initialValue: transformation(wrappedValue))
+        self._fieldValue = State(wrappedValue: transformation(wrappedValue))
         self.transformation = transformation
     }
 
