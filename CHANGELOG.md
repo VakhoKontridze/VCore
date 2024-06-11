@@ -1,5 +1,11 @@
 # Change Log
 
+### 6.5.0(99)
+
+Extra - XCode Templates
+
+- `SwiftUI` MV template is added
+
 ### [6.4.0(98)](https://github.com/VakhoKontridze/VCore/releases/tag/6.4.0) — *2024 06 06*
 
 Services and Managers
