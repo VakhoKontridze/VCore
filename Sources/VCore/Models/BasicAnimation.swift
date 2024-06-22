@@ -135,7 +135,7 @@ public func withBasicAnimation<Result>( // TODO: iOS 17.0 - Remove
     let result: Result = try withAnimation(animation?.toSwiftUIAnimation, body)
     
     DispatchQueue.main.asyncAfter(
-        deadline: .now() + (animation?.delay ?? 0) + (animation?.duration ?? 0),
+        deadline: DispatchTime.now() + (animation?.delay ?? 0) + (animation?.duration ?? 0),
         execute: { completion?() }
     )
     

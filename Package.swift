@@ -3,6 +3,15 @@
 import PackageDescription
 import CompilerPluginSupport
 
+let swiftSettings: [SwiftSetting] = [
+    .unsafeFlags([
+        "-Xfrontend", "-debug-time-function-bodies",
+        "-Xfrontend", "-debug-time-expression-type-checking",
+        "-Xfrontend", "-warn-long-function-bodies=100",
+        "-Xfrontend", "-warn-long-expression-type-checking=100"
+    ])
+]
+
 let package: Package = .init(
     name: "VCore",
 
@@ -29,7 +38,8 @@ let package: Package = .init(
 
     targets: [
         .target(
-            name: "VCoreShared"
+            name: "VCoreShared",
+            swiftSettings: swiftSettings
         ),
 
         .macro(
@@ -38,7 +48,8 @@ let package: Package = .init(
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
                 "VCoreShared"
-            ]
+            ],
+            swiftSettings: swiftSettings
         ),
 
         .target(
@@ -50,7 +61,8 @@ let package: Package = .init(
             exclude: [
                 "../../Documentation",
                 "../../Extra"
-            ]
+            ],
+            swiftSettings: swiftSettings
         ),
         .testTarget(
             name: "VCoreTests",
