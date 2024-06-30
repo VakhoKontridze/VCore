@@ -40,7 +40,7 @@ import UIKit
 ///
 open class ScrollableUIView: UIView {
     // MARK: Subviews
-    /// `UIScrollView` object.
+    /// `UIScrollView`.
     open var scrollView: UIScrollView = {
         let scrollView: UIScrollView = .init()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -48,7 +48,7 @@ open class ScrollableUIView: UIView {
         return scrollView
     }()
     
-    /// Container in which subviews must be added.
+    /// Container in which subviews should be added.
     open var contentView: UIView = {
         let view: UIView = .init()
         view.translatesAutoresizingMaskIntoConstraints = false
