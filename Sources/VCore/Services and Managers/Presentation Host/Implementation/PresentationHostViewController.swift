@@ -36,6 +36,7 @@ final class PresentationHostViewController: UIViewController, UIViewControllerTr
         setUp()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError()
     }

@@ -43,6 +43,7 @@ open class GradientLayerUIView: UIView {
         setUp()
     }
 
+    @available(*, unavailable)
     required public init?(coder: NSCoder) {
         fatalError()
     }

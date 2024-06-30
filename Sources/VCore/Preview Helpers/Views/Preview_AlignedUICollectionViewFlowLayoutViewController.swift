@@ -71,6 +71,7 @@ final class Preview_AlignedUICollectionViewFlowLayoutViewController:
         super.init(nibName: nil, bundle: nil)
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError()
     }
@@ -176,6 +177,7 @@ private final class Preview_AlignedUICollectionViewCell: UICollectionViewCell {
         ])
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError()
     }

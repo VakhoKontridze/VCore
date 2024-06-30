@@ -135,6 +135,7 @@ open class ResponderChainUIToolbar: UIToolbar {
         self.doneButtonAction = doneButtonAction
     }
 
+    @available(*, unavailable)
     required public init?(coder: NSCoder) {
         fatalError()
     }

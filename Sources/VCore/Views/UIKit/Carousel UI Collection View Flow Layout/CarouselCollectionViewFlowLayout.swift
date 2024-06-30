@@ -72,6 +72,7 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         scrollDirection = .horizontal
     }
     
+    @available(*, unavailable)
     required public init?(coder: NSCoder) {
         fatalError()
     }

@@ -69,6 +69,7 @@ import UIKit
 ///             configure(title: title)
 ///         }
 ///
+///         @available(*, unavailable)
 ///         required init?(coder: NSCoder) {
 ///             fatalError()
 ///         }
@@ -176,6 +177,7 @@ open class UIKitBaseButton: UIView {
         })
     }
     
+    @available(*, unavailable)
     required public init?(coder: NSCoder) {
         fatalError()
     }
@@ -266,6 +268,7 @@ private final class SomeButton: UIView {
         configure(title: title)
     }
 
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError()
     }

@@ -31,6 +31,7 @@ final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
         setUp()
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError()
     }

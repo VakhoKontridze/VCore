@@ -38,6 +38,7 @@ open class InnerShadowUIView: UIView {
         configure(uiModel: uiModel)
     }
     
+    @available(*, unavailable)
     required public init?(coder: NSCoder) {
         fatalError()
     }

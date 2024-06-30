@@ -39,6 +39,7 @@ final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRec
         delegate = self
     }
     
+    @available(*, unavailable)
     required init?(coder: NSCoder) {
         fatalError()
     }
