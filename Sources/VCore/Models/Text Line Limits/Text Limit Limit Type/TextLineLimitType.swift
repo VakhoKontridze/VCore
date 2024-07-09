@@ -55,7 +55,7 @@ public struct TextLineLimitType {
         )
     }
     
-    /// Partial range (though) line limit.
+    /// Partial range (through) line limit.
     @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public static func partialRangeThrough(lineLimit: PartialRangeThrough<Int>) -> Self {
         .init(
@@ -81,6 +81,7 @@ public struct TextLineLimitType {
         case fixed(lineLimit: Int?)
         case spaceReserved(lineLimit: Int, reservesSpace: Bool)
         case partialRangeFrom(lineLimit: PartialRangeFrom<Int>)
+        //case partialRangeUpTo(lineLimit: PartialRangeUpTo<Int>) // Not supported natively
         case partialRangeThrough(lineLimit: PartialRangeThrough<Int>)
         case closedRange(lineLimit: ClosedRange<Int>)
     }
