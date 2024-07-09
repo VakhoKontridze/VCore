@@ -12,12 +12,12 @@ import XCTest
 // MARK: - Tests
 final class LocaleIsEquivalentTests: XCTestCase {
     // MARK: Test Data
-    private let regionCode: String? = Locale.current.regionCode
-    private lazy var otherRegionCode: String = { regionCode == "GB" ? "CA" : "GB" }()
-    
-    private let scriptCode: String? = Locale.current.scriptCode
-    private lazy var otherScriptCode: String = { scriptCode == "JP" ? "CN" : "JP" }()
-    
+    private let regionIdentifier: String? = Locale.current.region?.identifier
+    private lazy var otherRegionIdentifier: String = regionIdentifier == "GB" ? "CA" : "GB"
+
+    private let languageScriptIdentifier: String? = Locale.current.language.script?.identifier
+    private lazy var otherLanguageScriptIdentifier: String = languageScriptIdentifier == "JP" ? "CN" : "JP"
+
     // MARK: Tests
     func testIsSameLocaleLanguageCode() {
         let lhs: Locale = .init(identifier: "en")
@@ -26,37 +26,37 @@ final class LocaleIsEquivalentTests: XCTestCase {
         XCTAssertFalse(lhs.isEquivalent(to: rhs))
     }
     
-    func testIsSameLocaleRegionCode() {
+    func testIsSameLocaleRegionIdentifier() {
         do {
             let lhs: Locale = .init(identifier: "en")
-            let rhs: Locale = .init(identifier: "en_\(otherRegionCode)")
-            
+            let rhs: Locale = .init(identifier: "en_\(otherRegionIdentifier)")
+
             XCTAssertFalse(lhs.isEquivalent(to: rhs))
         }
         
         do {
-            if let regionCode {
+            if let regionIdentifier {
                 let lhs: Locale = .init(identifier: "en")
-                let rhs: Locale = .init(identifier: "en_\(regionCode)")
-                
+                let rhs: Locale = .init(identifier: "en_\(regionIdentifier)")
+
                 XCTAssertTrue(lhs.isEquivalent(to: rhs))
             }
         }
     }
     
-    func testIsSameLocaleScriptCode() {
+    func testIsSameLocaleLanguageScriptIdentifier() {
         do {
             let lhs: Locale = .init(identifier: "zh_Hans")
-            let rhs: Locale = .init(identifier: "zh_Hans-\(otherScriptCode)")
-            
+            let rhs: Locale = .init(identifier: "zh_Hans-\(otherLanguageScriptIdentifier)")
+
             XCTAssertFalse(lhs.isEquivalent(to: rhs))
         }
         
         do {
-            if let scriptCode {
+            if let languageScriptIdentifier {
                 let lhs: Locale = .init(identifier: "zh_Hans")
-                let rhs: Locale = .init(identifier: "zh_Hans-\(scriptCode)")
-                
+                let rhs: Locale = .init(identifier: "zh_Hans-\(languageScriptIdentifier)")
+
                 XCTAssertTrue(lhs.isEquivalent(to: rhs))
             }
         }

@@ -11,6 +11,7 @@ General
 Views
 
 - `HVStack` has been removed, as it's obsoleted by `Layout`
+- `View.navigationLink(isActive:destination)` is removed, as it's obsoleted by `View.navigationDestination(isPresented:destination:)`
 
 Models
 
