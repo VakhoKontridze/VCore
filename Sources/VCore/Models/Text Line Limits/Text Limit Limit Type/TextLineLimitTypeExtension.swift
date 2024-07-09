@@ -1,5 +1,5 @@
 //
-//  LineLimitExtension.swift
+//  TextLineLimitTypeExtension.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 09.01.24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Line Limit Extension
+// MARK: - Text Line Limit Type Extension
 extension View {
     /// Sets line limit based on `TextLineLimitType`.
     ///
@@ -28,21 +28,21 @@ extension View {
             self
                 .lineLimit(lineLimit)
 
-        case .spaceReserved(let lineLimit, let reservesSpace):
+        case .fixedSpaceReserved(let lineLimit, let reservesSpace):
             self
                 .lineLimit(lineLimit, reservesSpace: reservesSpace)
 
-        case .partialRangeThrough(let lineLimit):
+        case .partialRangeThrough(let range):
             self
-                .lineLimit(lineLimit)
+                .lineLimit(range)
 
-        case .partialRangeFrom(let lineLimit):
+        case .partialRangeFrom(let range):
             self
-                .lineLimit(lineLimit)
+                .lineLimit(range)
 
-        case .closedRange(let lineLimit):
+        case .closedRange(let range):
             self
-                .lineLimit(lineLimit)
+                .lineLimit(range)
         }
     }
 }

@@ -24,7 +24,7 @@ public struct TextLineType {
     /// `TextLineLimitType`.
     public var textLineLimitType: TextLineLimitType {
         switch storage {
-        case .singleLine: .fixed(lineLimit: 1)
+        case .singleLine: .fixed(1)
         case .multiLine(_, let textLineLimitType): textLineLimitType
         }
     }
@@ -49,7 +49,7 @@ public struct TextLineType {
         .init(
             .multiLine(
                 alignment: alignment,
-                textLineLimitType: .fixed(lineLimit: lineLimit)
+                textLineLimitType: .fixed(lineLimit)
             )
         )
     }
@@ -63,7 +63,7 @@ public struct TextLineType {
         .init(
             .multiLine(
                 alignment: alignment,
-                textLineLimitType: .spaceReserved(lineLimit: lineLimit, reservesSpace: reservesSpace)
+                textLineLimitType: .fixed(lineLimit, reservesSpace: reservesSpace)
             )
         )
     }
@@ -76,7 +76,7 @@ public struct TextLineType {
         .init(
             .multiLine(
                 alignment: alignment,
-                textLineLimitType: .partialRangeThrough(lineLimit: lineLimit)
+                textLineLimitType: .partialRangeThrough(lineLimit)
             )
         )
     }
@@ -89,7 +89,7 @@ public struct TextLineType {
         .init(
             .multiLine(
                 alignment: alignment,
-                textLineLimitType: .partialRangeFrom(lineLimit: lineLimit)
+                textLineLimitType: .partialRangeFrom(lineLimit)
             )
         )
     }
@@ -102,7 +102,7 @@ public struct TextLineType {
         .init(
             .multiLine(
                 alignment: alignment,
-                textLineLimitType: .closedRange(lineLimit: lineLimit)
+                textLineLimitType: .closedRange(lineLimit)
             )
         )
     }

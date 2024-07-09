@@ -27,7 +27,7 @@ public struct TextLineLimitType {
     
     /// Fixed line limit.
     public static func fixed(
-        lineLimit: Int?
+        _ lineLimit: Int?
     ) -> Self {
         .init(
             .fixed(
@@ -37,12 +37,12 @@ public struct TextLineLimitType {
     }
     
     /// Fixed line limit with reserved space.
-    public static func spaceReserved(
-        lineLimit: Int,
+    public static func fixed(
+        _ lineLimit: Int,
         reservesSpace: Bool
     ) -> Self {
         .init(
-            .spaceReserved(
+            .fixedSpaceReserved(
                 lineLimit: lineLimit,
                 reservesSpace: reservesSpace
             )
@@ -51,33 +51,33 @@ public struct TextLineLimitType {
     
     /// Partial range (through) line limit.
     public static func partialRangeThrough(
-        lineLimit: PartialRangeThrough<Int>
+        _ range: PartialRangeThrough<Int>
     ) -> Self {
         .init(
             .partialRangeThrough(
-                lineLimit: lineLimit
+                range: range
             )
         )
     }
 
     /// Partial range (from) line limit.
     public static func partialRangeFrom(
-        lineLimit: PartialRangeFrom<Int>
+        _ range: PartialRangeFrom<Int>
     ) -> Self {
         .init(
             .partialRangeFrom(
-                lineLimit: lineLimit
+                range: range
             )
         )
     }
 
     /// Closed range line limit.
     public static func closedRange(
-        lineLimit: ClosedRange<Int>
+        _ range: ClosedRange<Int>
     ) -> Self {
         .init(
             .closedRange(
-                lineLimit: lineLimit
+                range: range
             )
         )
     }
@@ -86,11 +86,11 @@ public struct TextLineLimitType {
     enum Storage {
         case none
         case fixed(lineLimit: Int?)
-        case spaceReserved(lineLimit: Int, reservesSpace: Bool)
-        //case partialRangeUpTo(lineLimit: PartialRangeUpTo<Int>) // Not supported natively
-        case partialRangeThrough(lineLimit: PartialRangeThrough<Int>)
-        case partialRangeFrom(lineLimit: PartialRangeFrom<Int>)
-        //case range(lineLimit: Range<Int>) // Not supported natively
-        case closedRange(lineLimit: ClosedRange<Int>)
+        case fixedSpaceReserved(lineLimit: Int, reservesSpace: Bool)
+        //case partialRangeUpTo(range: PartialRangeUpTo<Int>) // Not supported natively
+        case partialRangeThrough(range: PartialRangeThrough<Int>)
+        case partialRangeFrom(range: PartialRangeFrom<Int>)
+        //case range(range: Range<Int>) // Not supported natively
+        case closedRange(range: ClosedRange<Int>)
     }
 }
