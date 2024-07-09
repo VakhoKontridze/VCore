@@ -149,7 +149,6 @@ public final class LocalizationManager { // TODO: iOS 17.0 - Convert to `Observa
 
     // MARK: Localization
     /// Returns localized `String` from the given table and `Bundle`.
-    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public func localize(
         _ key: String,
         table: String? = nil,

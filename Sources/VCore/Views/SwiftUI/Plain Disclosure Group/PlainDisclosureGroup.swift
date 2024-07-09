@@ -41,7 +41,7 @@ import SwiftUI
 ///         })
 ///     }
 ///
-@available(tvOS 16.0, *)@available(tvOS, unavailable) // No `DisclosureGroup`
+@available(tvOS, unavailable) // No `DisclosureGroup`
 @available(watchOS, unavailable) // No `DisclosureGroup`
 @available(visionOS, unavailable) // Doesn't follow HIG
 public struct PlainDisclosureGroup<Label, Content>: View

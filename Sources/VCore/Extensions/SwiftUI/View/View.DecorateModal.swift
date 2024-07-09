@@ -144,8 +144,6 @@ extension UIView {
 #if !(os(watchOS) || os(visionOS))
 
 #Preview(body: {
-    guard #available(tvOS 16.0, *) else { return EmptyView() }
-
     struct ContentView: View {
         @State private var isPresented: Bool = false
 

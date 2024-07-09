@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - Plain List Decoration
-@available(macOS 13.0, *)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 extension View {

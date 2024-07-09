@@ -19,7 +19,6 @@ import SwiftUI
 ///         })
 ///     })
 ///
-@available(macOS 13.0, *)
 @available(tvOS, unavailable) // Doesn't follow HIG. Implementation doesn't fully work.
 @available(watchOS, unavailable) // Doesn't follow HIG. Implementation doesn't fully work.
 public struct PlainList<Content>: View where Content: View {
@@ -54,7 +53,6 @@ public struct PlainList<Content>: View where Content: View {
 
 #if !(os(tvOS) || os(watchOS))
 
-@available(macOS 13.0, *)
 #Preview(body: {
     PlainList(content: {
         ForEach(0..<3, id: \.self, content: { i in

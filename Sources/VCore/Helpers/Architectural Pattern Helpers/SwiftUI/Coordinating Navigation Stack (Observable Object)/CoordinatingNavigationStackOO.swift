@@ -31,7 +31,6 @@ import SwiftUI
 ///         }
 ///     }
 ///
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 public struct CoordinatingNavigationStackOO<Root>: View where Root: View { // TODO: iOS 17.0 - Remove, as it's obsoleted
     // MARK: Properties
     @StateObject private var navigationStackCoordinator: NavigationStackCoordinatorOO

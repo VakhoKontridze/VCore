@@ -29,36 +29,20 @@ extension View {
                 .lineLimit(lineLimit)
 
         case .spaceReserved(let lineLimit, let reservesSpace):
-            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
-                self
-                    .lineLimit(lineLimit, reservesSpace: reservesSpace)
-            } else {
-                fatalError()
-            }
+            self
+                .lineLimit(lineLimit, reservesSpace: reservesSpace)
 
         case .partialRangeThrough(let lineLimit):
-            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
-                self
-                    .lineLimit(lineLimit)
-            } else {
-                fatalError()
-            }
+            self
+                .lineLimit(lineLimit)
 
         case .partialRangeFrom(let lineLimit):
-            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
-                self
-                    .lineLimit(lineLimit)
-            } else {
-                fatalError()
-            }
+            self
+                .lineLimit(lineLimit)
 
         case .closedRange(let lineLimit):
-            if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
-                self
-                    .lineLimit(lineLimit)
-            } else {
-                fatalError()
-            }
+            self
+                .lineLimit(lineLimit)
         }
     }
 }

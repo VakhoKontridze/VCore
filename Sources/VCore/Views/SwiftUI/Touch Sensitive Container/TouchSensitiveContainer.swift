@@ -39,7 +39,7 @@ import SwiftUI
 ///         )
 ///     }
 ///
-@available(tvOS 16.0, *)@available(tvOS, unavailable) // Doesn't follow HIG
+@available(tvOS, unavailable) // Doesn't follow HIG
 public struct TouchSensitiveContainer<Content>: View where Content: View {
     // MARK: Properties - UI Model
     private let uiModel: TouchSensitiveContainerUIModel

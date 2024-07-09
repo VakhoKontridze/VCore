@@ -37,7 +37,6 @@ public struct TextLineLimitType {
     }
     
     /// Fixed line limit with reserved space.
-    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public static func spaceReserved(
         lineLimit: Int,
         reservesSpace: Bool
@@ -51,7 +50,6 @@ public struct TextLineLimitType {
     }
     
     /// Partial range (through) line limit.
-    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public static func partialRangeThrough(
         lineLimit: PartialRangeThrough<Int>
     ) -> Self {
@@ -63,7 +61,6 @@ public struct TextLineLimitType {
     }
 
     /// Partial range (from) line limit.
-    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public static func partialRangeFrom(
         lineLimit: PartialRangeFrom<Int>
     ) -> Self {
@@ -75,7 +72,6 @@ public struct TextLineLimitType {
     }
 
     /// Closed range line limit.
-    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
     public static func closedRange(
         lineLimit: ClosedRange<Int>
     ) -> Self {

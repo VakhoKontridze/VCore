@@ -1,5 +1,26 @@
 # Change Log
 
+### 7.0.0(100)
+
+General
+
+- Minimum SDK version has been increased to `iOS` `16.0`, `macOS `13.0`, `tvOS `16.0`, `watchOS `9.0`
+- Minimum `Swift` language version has been increased to `6.0`
+- Previously deprecated symbols have been removed
+
+Views
+
+- `HVStack` has been removed, as it's obsoleted by `Layout`
+
+Models
+
+- `RectCorner` has been removed, as it's obsoleted by `View.clipShape(.rect(...))` and `UnevenRoundedRectangle`
+
+Extensions
+
+- `View.cornerRadius(_:corners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
+- `View.cornerRadius(_:uiCorners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
+
 ### [6.5.0(99)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.0) — *2024 07 09*
 
 Extra - XCode Templates
@@ -91,6 +112,7 @@ General
 
 - Package now partially supports `visionOS` `1.0`
 - Colors are overhauled to better support other platforms
+- Previously deprecated symbols have been removed
 
 Views
 
@@ -244,6 +266,7 @@ General
 
 - Minimum SDK version has been increased to `iOS` `15.0`, `macOS `12.0`, `tvOS `15.0`, `watchOS `8.0`
 - Minimum `Swift` language version has been increased to `5.9`
+- Previously deprecated symbols have been removed
 
 Views
 
@@ -663,6 +686,7 @@ Services and Managers
 General
 
 - Minimum `Swift` language version has been increased to `5.7`
+- Previously deprecated symbols have been removed
 
 Views
 
@@ -1222,6 +1246,7 @@ General
 - Framework is migrated from `XCFramework` to `Swift` Package
 - Package now partially supports `macOS` `10.15`, `tvOS` `13.0`, and `watchOS` `6.0`
 - Minimum `Swift` language version has been increased to `5.6`
+- Previously deprecated symbols have been removed
 
 Services and Managers
 
@@ -1344,6 +1369,7 @@ Extra - XCode Templates
 General
 
 - Minimum SDK version has been decreased to `iOS` `13.0`
+- Previously deprecated symbols have been removed
 
 Views
 

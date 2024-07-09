@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - Navigation Path Methods
-@available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
 extension NavigationPath {
     /// Adds the elements of a sequence or collection to the end of the path.
     ///
