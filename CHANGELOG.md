@@ -19,6 +19,7 @@ Models
 
 Extensions
 
+- `RectangleCornerRadii.init(_:)` initializer is added, that initializes `RectangleCornerRadii` with value
 - `View.cornerRadius(_:corners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `View.cornerRadius(_:uiCorners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
 
