@@ -16,7 +16,7 @@ extension View {
     ///             .lineLimit(type: .closedRange(lineLimit: 4...5))
     ///     }
     ///
-    @ViewBuilder 
+    @ViewBuilder
     public func lineLimit(
         type textLineLimitType: TextLineLimitType
     ) -> some View {
@@ -36,7 +36,7 @@ extension View {
                 fatalError()
             }
 
-        case .partialRangeFrom(let lineLimit):
+        case .partialRangeThrough(let lineLimit):
             if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
                 self
                     .lineLimit(lineLimit)
@@ -44,7 +44,7 @@ extension View {
                 fatalError()
             }
 
-        case .partialRangeThrough(let lineLimit):
+        case .partialRangeFrom(let lineLimit):
             if #available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *) {
                 self
                     .lineLimit(lineLimit)

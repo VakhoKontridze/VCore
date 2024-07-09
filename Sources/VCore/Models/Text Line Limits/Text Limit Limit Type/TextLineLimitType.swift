@@ -26,7 +26,9 @@ public struct TextLineLimitType {
     }
     
     /// Fixed line limit.
-    public static func fixed(lineLimit: Int?) -> Self {
+    public static func fixed(
+        lineLimit: Int?
+    ) -> Self {
         .init(
             .fixed(
                 lineLimit: lineLimit
@@ -36,7 +38,10 @@ public struct TextLineLimitType {
     
     /// Fixed line limit with reserved space.
     @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
-    public static func spaceReserved(lineLimit: Int, reservesSpace: Bool) -> Self {
+    public static func spaceReserved(
+        lineLimit: Int,
+        reservesSpace: Bool
+    ) -> Self {
         .init(
             .spaceReserved(
                 lineLimit: lineLimit,
@@ -45,29 +50,35 @@ public struct TextLineLimitType {
         )
     }
     
-    /// Partial range (from) line limit.
-    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
-    public static func partialRangeFrom(lineLimit: PartialRangeFrom<Int>) -> Self {
-        .init(
-            .partialRangeFrom(
-                lineLimit: lineLimit
-            )
-        )
-    }
-    
     /// Partial range (through) line limit.
     @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
-    public static func partialRangeThrough(lineLimit: PartialRangeThrough<Int>) -> Self {
+    public static func partialRangeThrough(
+        lineLimit: PartialRangeThrough<Int>
+    ) -> Self {
         .init(
             .partialRangeThrough(
                 lineLimit: lineLimit
             )
         )
     }
-    
+
+    /// Partial range (from) line limit.
+    @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
+    public static func partialRangeFrom(
+        lineLimit: PartialRangeFrom<Int>
+    ) -> Self {
+        .init(
+            .partialRangeFrom(
+                lineLimit: lineLimit
+            )
+        )
+    }
+
     /// Closed range line limit.
     @available(iOS 16.0, macOS 13.0, tvOS 16.0, watchOS 9.0, *)
-    public static func closedRange(lineLimit: ClosedRange<Int>) -> Self {
+    public static func closedRange(
+        lineLimit: ClosedRange<Int>
+    ) -> Self {
         .init(
             .closedRange(
                 lineLimit: lineLimit
@@ -80,9 +91,10 @@ public struct TextLineLimitType {
         case none
         case fixed(lineLimit: Int?)
         case spaceReserved(lineLimit: Int, reservesSpace: Bool)
-        case partialRangeFrom(lineLimit: PartialRangeFrom<Int>)
         //case partialRangeUpTo(lineLimit: PartialRangeUpTo<Int>) // Not supported natively
         case partialRangeThrough(lineLimit: PartialRangeThrough<Int>)
+        case partialRangeFrom(lineLimit: PartialRangeFrom<Int>)
+        //case range(lineLimit: Range<Int>) // Not supported natively
         case closedRange(lineLimit: ClosedRange<Int>)
     }
 }
