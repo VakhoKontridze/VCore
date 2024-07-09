@@ -89,9 +89,7 @@ Extra - XCode Templates
 
 General
 
-- Package now partially supports `visionOS`
-- Minimum SDK version has been increased to `iOS` `15.0`, `macOS `12.0`, `tvOS `15.0`, `watchOS `8.0`
-- Minimum `Swift` language version has been increased to `5.8`
+- Package now partially supports `visionOS` `1.0`
 - Colors are overhauled to better support other platforms
 
 Views
@@ -245,7 +243,7 @@ Extensions
 General
 
 - Minimum SDK version has been increased to `iOS` `15.0`, `macOS `12.0`, `tvOS `15.0`, `watchOS `8.0`
-- Minimum `Swift` language version has been increased to `5.8`
+- Minimum `Swift` language version has been increased to `5.9`
 
 Views
 
@@ -1222,7 +1220,7 @@ Other
 General
 
 - Framework is migrated from `XCFramework` to `Swift` Package
-- Package now partially supports `macOS`, `tvOS`, and `watchOS`
+- Package now partially supports `macOS` `10.15`, `tvOS` `13.0`, and `watchOS` `6.0`
 - Minimum `Swift` language version has been increased to `5.6`
 
 Services and Managers
