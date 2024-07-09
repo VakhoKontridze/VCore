@@ -90,6 +90,8 @@ Extra - XCode Templates
 General
 
 - Package now partially supports `visionOS`
+- Minimum SDK version has been increased to `iOS` `15.0`, `macOS `12.0`, `tvOS `15.0`, `watchOS `8.0`
+- Minimum `Swift` language version has been increased to `5.8`
 - Colors are overhauled to better support other platforms
 
 Views
@@ -239,6 +241,11 @@ Extensions
 - `Publisher.assignWeak(to:on:)` method is added, that assigns each element from `Publisher` to a property of an object with a weak retain cycle
 
 ### [5.0.0(85)](https://github.com/VakhoKontridze/VCore/releases/tag/5.0.0) — *2023 10 08*
+
+General
+
+- Minimum SDK version has been increased to `iOS` `15.0`, `macOS `12.0`, `tvOS `15.0`, `watchOS `8.0`
+- Minimum `Swift` language version has been increased to `5.8`
 
 Views
 
@@ -455,6 +462,10 @@ Extensions
 
 ### [4.7.0(74)](https://github.com/VakhoKontridze/VCore/releases/tag/4.7.0) — *2023 04 09*
 
+General
+
+- Minimum `Swift` language version has been increased to `5.8`
+
 Views
 
 - `SwiftUIBaseButton` is renamed to `SwiftUIGestureBaseButton`
@@ -564,7 +575,7 @@ Models
 
 Services and Managers
 
-- `LocalizationService` is removed from `Extra`, and added to Package as `LocalizationManager`
+- `LocalizationService` is removed from `Extra`, and added to package as `LocalizationManager`
 - `MultiPartFormDataBuilder` is renamed to `MultipartFormDataBuilder` 
 
 Extensions
@@ -651,6 +662,10 @@ Services and Managers
 
 ### [4.0.0(63)](https://github.com/VakhoKontridze/VCore/releases/tag/4.0.0) — *2022 09 14*
 
+General
+
+- Minimum `Swift` language version has been increased to `5.7`
+
 Views
 
 - `CapsuleUIView` and `CapsuleUIImageView` will now round corners based on width, if width is less than height
@@ -705,7 +720,7 @@ API
 
 Extra - XCode Templates
 
-- Project now includes templates for `SwiftUI`
+- Package now includes templates for `SwiftUI`
 
 Other
 
@@ -1206,8 +1221,9 @@ Other
 
 General
 
-- Project is migrated from `XCFramework` to `Swift` Package
-- Project now partially supports `macOS`, `tvOS`, and `watchOS`
+- Framework is migrated from `XCFramework` to `Swift` Package
+- Package now partially supports `macOS`, `tvOS`, and `watchOS`
+- Minimum `Swift` language version has been increased to `5.6`
 
 Services and Managers
 
@@ -1329,7 +1345,7 @@ Extra - XCode Templates
 
 General
 
-- Framework now supports `iOS` `13.0`
+- Minimum SDK version has been decreased to `iOS` `13.0`
 
 Views
 
@@ -1397,7 +1413,7 @@ Extensions
 
 Extra
 
-- Framework now contains additional files under `Extra`
+- Package now contains additional files under `Extra`
 - `LocalizationService` is added to `Extra`
 - XCode Templates are added to `Extra`
 
