@@ -104,28 +104,7 @@ public enum LayoutDirectionOmni: CaseIterable {
         }
     }
     
-    // MARK: Stacks
-    /// Creates `View` with `HStack` or `VStack`.
-    ///
-    /// For `leftToRight` or `rightToLeft`, `HStack` will be used.
-    /// For `topToBottom` or `bottomToTop`, `VStack` will be used.
-    public func stackView<Content>(
-        alignmentHorizontal: HorizontalAlignment = .center,
-        alignmentVertical: VerticalAlignment = .center,
-        spacing: CGFloat? = nil,
-        @ViewBuilder content: @escaping () -> Content
-    ) -> some View
-        where Content: View
-    {
-        HVStack(
-            alignmentHorizontal: alignmentHorizontal,
-            alignmentVertical: alignmentVertical,
-            spacing: spacing,
-            isHorizontal: isHorizontal,
-            content: content
-        )
-    }
-    
+    // MARK: Stack Layout
     /// Creates stack `Layout` based on axis of direction.
     ///
     /// For `leftToRight` or `rightToLeft`, `HStackLayout` will be used.
