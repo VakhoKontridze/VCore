@@ -96,7 +96,7 @@ final class EnvironmentValueGenerationMacroTests: XCTestCase {
                     }
 
                     private struct value_EnvironmentKey: EnvironmentKey {
-                        static let defaultValue: Int? = nil
+                        static let defaultValue: Int?
                     }
                 }
                 """,

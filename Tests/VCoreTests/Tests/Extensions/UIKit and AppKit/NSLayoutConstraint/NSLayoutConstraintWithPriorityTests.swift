@@ -16,7 +16,7 @@ final class NSLayoutConstraintWithPriorityTests: XCTestCase {
     func testLayoutPriority() {
         let view: UIView = .init()
         
-        var constraint: NSLayoutConstraint? = nil
+        var constraint: NSLayoutConstraint?
         NSLayoutConstraint.activate([
             view.widthAnchor.constraint(equalToConstant: 100)
                 .withPriority(.required)
@@ -29,7 +29,7 @@ final class NSLayoutConstraintWithPriorityTests: XCTestCase {
     func testConstant() {
         let view: UIView = .init()
         
-        var constraint: NSLayoutConstraint? = nil
+        var constraint: NSLayoutConstraint?
         NSLayoutConstraint.activate([
             view.widthAnchor.constraint(equalToConstant: 100)
                 .withPriority(500)

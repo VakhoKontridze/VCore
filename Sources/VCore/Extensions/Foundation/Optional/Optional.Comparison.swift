@@ -12,7 +12,7 @@ extension Optional {
     /// Returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`.
     ///
     ///     let a: String? = "Lorem ipsum"
-    ///     let b: String? = nil
+    ///     let b: String?
     ///
     ///     a.isOptionalLess(
     ///         than: b,
@@ -40,7 +40,7 @@ extension Optional where Wrapped: Comparable {
     /// Returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`.
     ///
     ///     let a: Int? = 10
-    ///     let b: Int? = nil
+    ///     let b: Int?
     ///
     ///     a.isOptionalLess(than: b, order: .nilIsLess) // false
     ///
@@ -61,7 +61,7 @@ extension Optional where Wrapped: Comparable {
     /// Returns a `Bool` indicating whether current value is greater than that of the second argument with given the `OptionalComparisonNilOrder`.
     ///
     ///     let a: Int? = 10
-    ///     let b: Int? = nil
+    ///     let b: Int?
     ///
     ///     a.isOptionalGreater(than: b, order: .nilIsLess) // true
     ///
@@ -76,7 +76,7 @@ extension Optional where Wrapped: Comparable {
     ///
     ///
     ///     let a: Int? = 10
-    ///     let b: Int? = nil
+    ///     let b: Int?
     ///
     ///     a.isOptionalLessThanOrEqual(than: b, order: .nilIsLess) // false
     ///
@@ -90,7 +90,7 @@ extension Optional where Wrapped: Comparable {
     /// Returns a `Bool` indicating whether current value is greater than or equal to the second value, given the `OptionalComparisonNilOrder`.
     ///
     ///     let a: Int? = 10
-    ///     let b: Int? = nil
+    ///     let b: Int?
     ///
     ///     a.isOptionalLessThanOrEqual(than: b, order: .nilIsLess) // true
     ///

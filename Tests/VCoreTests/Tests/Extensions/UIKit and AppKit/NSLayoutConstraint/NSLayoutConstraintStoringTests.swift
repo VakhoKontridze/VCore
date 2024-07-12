@@ -16,7 +16,7 @@ final class NSLayoutConstraintStoringTests: XCTestCase {
     func test() {
         let view: UIView = .init()
         
-        var constraint: NSLayoutConstraint? = nil
+        var constraint: NSLayoutConstraint?
         NSLayoutConstraint.activate([
             view.widthAnchor.constraint(equalToConstant: 100)
                 .storing(in: &constraint)
