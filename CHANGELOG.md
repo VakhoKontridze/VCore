@@ -24,6 +24,10 @@ Extensions
 - `View.cornerRadius(_:corners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `View.cornerRadius(_:uiCorners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
 
+Macros
+
+- `CaseDetection` macro is removed
+
 ### [6.5.0(99)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.0) — *2024 07 09*
 
 Extra - XCode Templates

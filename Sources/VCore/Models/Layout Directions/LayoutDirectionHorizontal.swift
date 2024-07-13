@@ -11,7 +11,6 @@ import SwiftUI
 /// Horizontal directional layout in which content can be laid out.
 ///
 /// Unlike `SwiftUI.LayoutDirection`, `LayoutDirectionHorizontal` is exhaustive.
-@CaseDetection
 public enum LayoutDirectionHorizontal: Int, CaseIterable {
     // MARK: Cases
     /// Left-to-right direction.
