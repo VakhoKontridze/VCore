@@ -62,11 +62,8 @@ public struct PresentationHostLayerUIModel {
     /// Enumeration that represents frame.
     public enum Frame {
         // MARK: Cases
-        /// Automatic frame that is inferred from context.
-        case automatic
-
         /// Fixed frame.
-        case fixed(CGSize)
+        case fixed(size: CGSize, alignment: Alignment, offset: CGSize)
 
         /// Infinite frame.
         case infinite

@@ -62,14 +62,19 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
             dimmingView
             modalsView
         })
-        .applyModifier({
+        .applyModifier({ view in
             switch uiModel.frame {
-            case .automatic:
-                $0
-            case .fixed(let size):
-                $0.frame(size: size)
+            case .fixed(let size, let alignment, let offset):
+                ZStack(content: {
+                    view
+                        .frame(size: size)
+                        .offset(offset)
+                })
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
+
             case .infinite:
-                $0.frame(maxWidth: .infinity, maxHeight: .infinity)
+                view
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         })
         .applyModifier({
@@ -104,9 +109,19 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     private func modalView(
         modal: ModalData
     ) -> some View {
-        modal.view()
-            .environment(\.presentationHostPresentationMode, modal.presentationMode)
-            .onFirstAppear(perform: { modal.presentationMode.presentSubject.send() })
+        Color.clear
+            .overlay(content: {
+                GeometryReader(content: { proxy in
+                    ZStack(content: {
+                        modal.view()
+                            .environment(\.presentationHostGeometrySize, proxy.size)
+                            .environment(\.presentationHostPresentationMode, modal.presentationMode)
+                            .onFirstAppear(perform: { modal.presentationMode.presentSubject.send() })
+                    })
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .clipped()
+                })
+            })
     }
 
     // MARK: Actions

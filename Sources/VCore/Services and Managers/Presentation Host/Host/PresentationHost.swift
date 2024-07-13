@@ -54,6 +54,7 @@ extension View {
     ///     }
     ///
     ///     struct SomeModal<Content>: View where Content: View {
+    ///         @Environment(\.presentationHostGeometrySize) private var containerSize: CGSize
     ///         @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
     ///
     ///         @Binding private var isPresented: Bool
@@ -78,7 +79,7 @@ extension View {
     ///             })
     ///             .frame(dimension: 300)
     ///
-    ///             .opacity(isPresentedInternally ? 1 : 0)
+    ///             .offset(y: isPresentedInternally ? 0 : (containerSize.height + 300)/2)
     ///
     ///             .onReceive(presentationMode.presentPublisher, perform: animateIn)
     ///             .onReceive(presentationMode.dismissPublisher, perform: animateOut)
@@ -316,6 +317,7 @@ extension View {
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 private struct SomeModal<Content>: View where Content: View {
+    @Environment(\.presentationHostGeometrySize) private var containerSize: CGSize
     @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
 
     @Binding private var isPresented: Bool
@@ -368,7 +370,7 @@ private struct SomeModal<Content>: View where Content: View {
         })
         .frame(dimension: dimension)
 
-        .opacity(isPresentedInternally ? 1 : 0)
+        .offset(y: isPresentedInternally ? 0 : (containerSize.height + dimension)/2)
 
         .onReceive(presentationMode.presentPublisher, perform: animateIn)
         .onReceive(presentationMode.dismissPublisher, perform: animateOut)
