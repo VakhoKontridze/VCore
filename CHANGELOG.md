@@ -17,6 +17,12 @@ Models
 
 - `RectCorner` has been removed, as it's obsoleted by `View.clipShape(.rect(...))` and `UnevenRoundedRectangle`
 
+Services and Managers - Presentation Host
+
+- Presentation Host API overhauled. It now works on overlay principle, and not modal `UIViewController` presentation.
+- Presentation Host API now supports all platforms
+- Configuration with interactive modal and pass through dimming view is not possible
+
 Extensions
 
 - `RectangleCornerRadii.init(_:)` initializer is added, that initializes `RectangleCornerRadii` with value

@@ -300,7 +300,10 @@ Versions with different majors are not directly compatible. When a new major is 
         watchOS 9.0<br>
         visionOS 1.0
     </td>
-    <td>New SDK.</td>
+    <td>
+        New SDK.<br>
+        API changes.
+    </td>
   </tr>
   
   <tr>

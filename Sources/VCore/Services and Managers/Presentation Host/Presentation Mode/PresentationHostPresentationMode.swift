@@ -9,26 +9,41 @@ import Foundation
 import Combine
 
 // MARK: - Presentation Host Presentation Mode
-/// Object embedded in environment of modals presented via Presentation Host.
-///
-/// Contains `Publisher`s for detecting modal lifecycle changes.
-@available(macOS, unavailable)
-@available(tvOS, unavailable)
-@available(watchOS, unavailable)
-@available(visionOS, unavailable)
+/// Presentation mode object embedded in environment of modals presented via Presentation Host.
 public struct PresentationHostPresentationMode {
     // MARK: Properties - General
     /// Modal identifier.
     public let id: String
 
     // MARK: Properties - Present
+    let presentSubject: PassthroughSubject<Void, Never> = .init()
+
     /// Emits notification when modal should be internally presented.
-    public let presentPublisher: AnyPublisher<Void, Never>
+    public var presentPublisher: AnyPublisher<Void, Never> { presentSubject.eraseToAnyPublisher() }
 
     // MARK: Properties - Dismiss
+    let dismissSubject: PassthroughSubject<Void, Never> = .init()
+
     /// Emits notification when modal should be internally dismissed.
-    public let dismissPublisher: AnyPublisher<Void, Never>
+    public var dismissPublisher: AnyPublisher<Void, Never> { dismissSubject.eraseToAnyPublisher() }
 
     /// Completion block that should be called when internal animations conclude, to remove modal from the view hierarchy.
     public let dismissCompletion: () -> Void
+
+    // MARK: Properties - Misc
+    let dimmingViewTapActionSubject: PassthroughSubject<Void, Never> = .init()
+
+    /// Emits notification when dimming view is tapped.
+    ///
+    /// Will only be called if `PresentationHostLayerUIModel.dimmingViewTapAction` is set to `sendActionToTopmostModal`.
+    public var dimmingViewTapActionPublisher: AnyPublisher<Void, Never> { dimmingViewTapActionSubject.eraseToAnyPublisher() }
+
+    // MARK: Initializers
+    init(
+        id: String,
+        dismissCompletion: @escaping () -> Void
+    ) {
+        self.id = id
+        self.dismissCompletion = dismissCompletion
+    }
 }
