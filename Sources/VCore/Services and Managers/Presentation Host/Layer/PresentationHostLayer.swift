@@ -111,16 +111,21 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
 
     // MARK: Actions
     private func didReceiveInternalPresentRequest(
-        data: PresentationHostInternalPresentationMode.PresentationData
+        presentationData: PresentationHostInternalPresentationMode.PresentationData
     ) {
         let modal: ModalData = .init(
-            id: data.id,
-            view: data.view,
+            id: presentationData.id,
+            view: presentationData.view,
             presentationMode: PresentationHostPresentationMode(
-                id: data.id,
+                id: presentationData.id,
                 dismissCompletion: {
-                    modals.removeAll(where: { $0.id == data.id })
-                    PresentationHostDataSourceCache.shared.remove(key: data.id)
+                    let completion: (() -> Void)? = modals.first(where: { $0.id == presentationData.id })?
+                        .dismissCompletion
+
+                    modals.removeAll(where: { $0.id == presentationData.id })
+                    PresentationHostDataSourceCache.shared.remove(key: presentationData.id)
+
+                    completion?()
                 }
             )
         )
@@ -128,22 +133,25 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
         guard !modals.contains(where: { $0.id == modal.id }) else { return }
 
         modals.append(modal)
+
+        presentationData.completion()
     }
 
     private func didReceiveInternalUpdateRequest(
-        data: PresentationHostInternalPresentationMode.UpdateData
+        updateData: PresentationHostInternalPresentationMode.UpdateData
     ) {
-        guard let index: Int = modals.firstIndex(where: { $0.id == data.id }) else { return }
+        guard let index: Int = modals.firstIndex(where: { $0.id == updateData.id }) else { return }
 
-        modals[index].view = data.view
+        modals[index].view = updateData.view
     }
 
     private func didReceiveInternalDismissRequest(
-        data: PresentationHostInternalPresentationMode.DismissData
+        dismissData: PresentationHostInternalPresentationMode.DismissData
     ) {
-        guard let modal: ModalData = modals.first(where: { $0.id == data.id }) else { return }
+        guard let index: Int = modals.firstIndex(where: { $0.id == dismissData.id }) else { return }
 
-        modal.presentationMode.dismissSubject.send()
+        modals[index].dismissCompletion = dismissData.completion
+        modals[index].presentationMode.dismissSubject.send()
     }
 
     // MARK: Modal Data
@@ -151,5 +159,6 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
         let id: String
         var view: () -> AnyView
         let presentationMode: PresentationHostPresentationMode
+        var dismissCompletion: (() -> Void)?
     }
 }

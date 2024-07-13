@@ -110,6 +110,8 @@ extension View {
         id: String,
         uiModel: PresentationHostUIModel = .init(),
         isPresented: Binding<Bool>,
+        onPresent presentHandler: (() -> Void)? = nil,
+        onDismiss dismissHandler: (() -> Void)? = nil,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View
         where Content: View
@@ -121,6 +123,8 @@ extension View {
                     id: id,
                     uiModel: uiModel,
                     isPresented: isPresented,
+                    onPresent: presentHandler,
+                    onDismiss: dismissHandler,
                     content: content
                 )
             )
@@ -136,6 +140,9 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
 
     @Binding private var isPresented: Bool
 
+    private let presentHandler: (() -> Void)?
+    private let dismissHandler: (() -> Void)?
+
     private let modalContent: () -> ModalContent
 
     @ObservedObject private var internalPresentationMode: PresentationHostInternalPresentationMode
@@ -146,11 +153,15 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
         id: String,
         uiModel: PresentationHostUIModel,
         isPresented: Binding<Bool>,
+        onPresent presentHandler: (() -> Void)?,
+        onDismiss dismissHandler: (() -> Void)?,
         @ViewBuilder content modalContent: @escaping () -> ModalContent
     ) {
         self.id = id
         self._isPresented = isPresented
         self.uiModel = uiModel
+        self.presentHandler = presentHandler
+        self.dismissHandler = dismissHandler
         self.modalContent = modalContent
         self._internalPresentationMode = ObservedObject(
             wrappedValue: PresentationHostInternalPresentationModeRegistrar.shared.resolve(layerID: layerID)
@@ -204,7 +215,8 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
         internalPresentationMode.presentPublisher.send(
             PresentationHostInternalPresentationMode.PresentationData(
                 id: id,
-                view: { modalContent().eraseToAnyView() }
+                view: { modalContent().eraseToAnyView() },
+                completion: { presentHandler?() }
             )
         )
     }
@@ -221,7 +233,8 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
     private func dismissModal() {
         internalPresentationMode.dismissPublisher.send(
             PresentationHostInternalPresentationMode.DismissData(
-                id: id
+                id: id,
+                completion: { dismissHandler?() }
             )
         )
     }

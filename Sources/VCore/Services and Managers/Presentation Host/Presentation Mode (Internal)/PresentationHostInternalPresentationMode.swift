@@ -15,6 +15,7 @@ final class PresentationHostInternalPresentationMode: ObservableObject {
     struct PresentationData: Identifiable {
         let id: String
         let view: () -> AnyView
+        let completion: () -> Void
     }
 
     let updatePublisher: PassthroughSubject<UpdateData, Never> = .init()
@@ -26,6 +27,7 @@ final class PresentationHostInternalPresentationMode: ObservableObject {
     let dismissPublisher: PassthroughSubject<DismissData, Never> = .init()
     struct DismissData {
         let id: String
+        let completion: () -> Void
     }
 
     // MARK: Initializers
