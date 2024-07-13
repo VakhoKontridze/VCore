@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Access Level Modifier Keyword
 /// Enumeration that represent access level modifier.
-public enum AccessLevelModifierKeyword: String {
+public enum AccessLevelModifierKeyword: String, CaseIterable {
     /// Open.
     case `open` = "open"
 

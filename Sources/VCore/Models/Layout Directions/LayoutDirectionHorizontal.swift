@@ -12,7 +12,7 @@ import SwiftUI
 ///
 /// Unlike `SwiftUI.LayoutDirection`, `LayoutDirectionHorizontal` is exhaustive.
 @CaseDetection
-public enum LayoutDirectionHorizontal: CaseIterable {
+public enum LayoutDirectionHorizontal: Int, CaseIterable {
     // MARK: Cases
     /// Left-to-right direction.
     case leftToRight
@@ -21,7 +21,7 @@ public enum LayoutDirectionHorizontal: CaseIterable {
     case rightToLeft
     
     // MARK: Properties
-    /// Indicates if layout direction is reversed, such as `rightToLeft`.
+    /// Indicates if layout direction is reversed.
     public var isReversed: Bool {
         switch self {
         case .leftToRight: false

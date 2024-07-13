@@ -20,7 +20,7 @@ final class OptionalComparisonTests: XCTestCase {
     
     // MARK: Tests
     func testIsLessClosure() {
-        let a: String?
+        let a: String? = nil
         let b: String? = "Lorem ipsum"
         let c: String? = "z"
 

@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 // MARK: - Generic State (Off, On, Indeterminate, Pressed)
-/// Enumeration that represents state, such as `off`, `on`, `indeterminate`, `pressed` (`off`), `pressed` (`on`)` and `pressed` (`indeterminate`).
+/// Enumeration that represents state.
 ///
 /// Used for mapping state to `GenericStateModel_OffOnIndeterminatePressed`, with `value(for:)` method.
 public enum GenericState_OffOnIndeterminatePressed: Int, CaseIterable {

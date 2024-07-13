@@ -10,7 +10,7 @@
 import Foundation
 
 // MARK: - Infinite Scrolling Pagination State
-/// Enumeration that represents state, such as `loading`, `canPaginate`, or `cannotPaginate`.
+/// Enumeration that represents state.
 public enum InfiniteScrollingPaginationState: Int, CaseIterable {
     /// Indicates that `UIActivityIndicator` is visible and additional pagination cannot occur.
     case loading

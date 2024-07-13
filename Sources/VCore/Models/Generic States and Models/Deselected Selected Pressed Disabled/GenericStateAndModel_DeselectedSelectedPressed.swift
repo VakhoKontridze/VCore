@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 // MARK: - Generic State (Deselected, Selected, Pressed)
-/// Enumeration that represents state, such as `deselected`, `selected`, `pressed` (`deselected`), or `pressed` (`selected`).
+/// Enumeration that represents state.
 ///
 /// Used for mapping state to `GenericStateModel_DeselectedSelectedPressed`, with `value(for:)` method.
 public enum GenericState_DeselectedSelectedPressed: Int, CaseIterable {

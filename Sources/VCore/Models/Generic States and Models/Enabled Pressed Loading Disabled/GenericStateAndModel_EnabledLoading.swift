@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 // MARK: - Genetic State (Enabled, Loading)
-/// Enumeration that represents state, such as `enabled` or `loading`.
+/// Enumeration that represents state.
 ///
 /// Used for mapping state to `GenericStateModel_EnabledLoading`, with `value(for:)` method.
 public enum GenericState_EnabledLoading: Int, CaseIterable {

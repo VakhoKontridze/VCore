@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 // MARK: - Genetic State (Enabled, Focused)
-/// Enumeration that represents state, such as `enabled` or `focused`.
+/// Enumeration that represents state.
 ///
 /// Used for mapping state to `GenericStateModel_EnabledFocused`, with `value(for:)` method.
 public enum GenericState_EnabledFocused: Int, CaseIterable {

@@ -12,7 +12,7 @@ import SwiftUI
 ///
 /// Unlike `SwiftUI.LayoutDirection`, `LayoutDirectionVertical` only supports vertical layouts.
 @CaseDetection
-public enum LayoutDirectionVertical: CaseIterable {
+public enum LayoutDirectionVertical: Int, CaseIterable {
     // MARK: Cases
     /// Bottom-to-top direction.
     case topToBottom
@@ -21,7 +21,7 @@ public enum LayoutDirectionVertical: CaseIterable {
     case bottomToTop
     
     // MARK: Properties
-    /// Indicates if layout direction is reversed, such as `bottomToTop`.
+    /// Indicates if layout direction is reversed.
     public var isReversed: Bool {
         switch self {
         case .topToBottom: false

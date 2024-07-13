@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 // MARK: - Genetic State (Collapsed, Expanded)
-/// Enumeration that represents state, such as `collapsed` or `expanded`.
+/// Enumeration that represents state.
 ///
 /// Used for mapping state to `GenericStateModel_CollapsedExpanded`, with `value(for:)` method.
 public enum GenericState_CollapsedExpanded: Int, CaseIterable {

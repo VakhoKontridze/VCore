@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - Text Line Type
-/// Model that represents text line, such as `singleLine` or `multiLine`.
+/// Model that represents text line.
 public struct TextLineType {
     // MARK: Properties
     private let storage: Storage
