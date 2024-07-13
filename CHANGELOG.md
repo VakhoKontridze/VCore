@@ -4,7 +4,7 @@
 
 General
 
-- Minimum SDK version has been increased to `iOS` `16.0`, `macOS` `13.0`, `tvOS` `16.0`, `watchOS` `9.0`
+- Minimum SDK version has been increased to `iOS` `16.0`, `macOS` `13.0`, `tvOS` `16.0`, and `watchOS` `9.0`
 - Minimum `Swift` language version has been increased to `6.0`
 - Previously deprecated symbols have been removed
 
@@ -277,7 +277,7 @@ Extensions
 
 General
 
-- Minimum SDK version has been increased to `iOS` `15.0`, `macOS` `12.0`, `tvOS` `15.0`, `watchOS` `8.0`
+- Minimum SDK version has been increased to `iOS` `15.0`, `macOS` `12.0`, `tvOS` `15.0`, and `watchOS` `8.0`
 - Minimum `Swift` language version has been increased to `5.9`
 - Previously deprecated symbols have been removed
 
@@ -558,7 +558,7 @@ Models
 - `OldValueCache` property wrapper is added that stores value and caches old value
 - `Clamped` property wrapper now conforms to `DynamicProperty`
 - `stackView(alignmentHor:alignmentVer:spacing:content:)` method is added to `LayoutDirectionOmni`
-- `TextLineType` and `TextLineLimitType` are now exposed to APIs below `iOS` `16.0`, `macOS` `13.0`, `tvOS` `16.0`, `watchOS` `9.0`
+- `TextLineType` and `TextLineLimitType` are now exposed to APIs below `iOS` `16.0`, `macOS` `13.0`, `tvOS` `16.0`, and `watchOS` `9.0`
 
 Extensions
 
