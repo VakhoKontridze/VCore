@@ -36,6 +36,9 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
 
     @ObservedObject private var internalPresentationMode: PresentationHostInternalPresentationMode
 
+    @State private var safeAreaInsets: EdgeInsets?
+    @State private var didReadSafeAreaInsetsSubject: PassthroughSubject<Void, Never> = .init() // Delays presentation until environment is read
+
     // MARK: Initializers
     init(
         layerID: String?,
@@ -50,11 +53,27 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     // MARK: Body
     func body(content: Content) -> some View {
         content
+            .getSafeAreaInsets({
+                safeAreaInsets = $0
+
+                didReadSafeAreaInsetsSubject.send()
+                didReadSafeAreaInsetsSubject.send(completion: .finished)
+            })
+
             .overlay(content: { layerView })
 
-            .onReceive(internalPresentationMode.presentPublisher, perform: didReceiveInternalPresentRequest)
-            .onReceive(internalPresentationMode.updatePublisher, perform: didReceiveInternalUpdateRequest)
-            .onReceive(internalPresentationMode.dismissPublisher, perform: didReceiveInternalDismissRequest)
+            .onReceive(
+                internalPresentationMode.presentPublisher.combineLatest(didReadSafeAreaInsetsSubject),
+                perform: { (data, _) in didReceiveInternalPresentRequest(data) }
+            )
+            .onReceive(
+                internalPresentationMode.updatePublisher.combineLatest(didReadSafeAreaInsetsSubject),
+                perform:  { (data, _) in didReceiveInternalUpdateRequest(data) }
+            )
+            .onReceive(
+                internalPresentationMode.dismissPublisher.combineLatest(didReadSafeAreaInsetsSubject),
+                perform: { (data, _) in didReceiveInternalDismissRequest(data) }
+            )
     }
 
     private var layerView: some View {
@@ -111,6 +130,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
             content: { proxy in
                 modal.view()
                     .environment(\.presentationHostContainerSize, proxy.size)
+                    .environment(\.presentationHostSafeAreaInsets, safeAreaInsets!) // Force-unwrap
                     .environment(\.presentationHostPresentationMode, modal.presentationMode)
             }
         )
@@ -119,7 +139,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
 
     // MARK: Actions
     private func didReceiveInternalPresentRequest(
-        presentationData: PresentationHostInternalPresentationMode.PresentationData
+        _ presentationData: PresentationHostInternalPresentationMode.PresentationData
     ) {
         guard !modals.contains(where: { $0.id == presentationData.id }) else { return }
 
@@ -138,7 +158,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     }
 
     private func didReceiveInternalUpdateRequest(
-        updateData: PresentationHostInternalPresentationMode.UpdateData
+        _ updateData: PresentationHostInternalPresentationMode.UpdateData
     ) {
         guard let index: Int = modals.firstIndex(where: { $0.id == updateData.id }) else { return }
 
@@ -147,7 +167,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     }
 
     private func didReceiveInternalDismissRequest(
-        dismissData: PresentationHostInternalPresentationMode.DismissData
+        _ dismissData: PresentationHostInternalPresentationMode.DismissData
     ) {
         guard let modal: ModalData = modals.first(where: { $0.id == dismissData.id }) else { return }
 
