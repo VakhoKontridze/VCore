@@ -86,6 +86,10 @@ extension View {
     ///             .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: didTapDimmingView)
     ///         }
     ///
+    ///         private func didTapDimmingView() {
+    ///             isPresented = false
+    ///         }
+    ///
     ///         private func animateIn() {
     ///             withAnimation(
     ///                 .easeInOut(duration: 0.3),
@@ -101,10 +105,6 @@ extension View {
     ///                 { isPresentedInternally = false },
     ///                 completion: completion
     ///             )
-    ///         }
-    ///
-    ///         private func didTapDimmingView() {
-    ///             isPresented = false
     ///         }
     ///     }
     ///     
@@ -381,6 +381,10 @@ private struct SomeModal<Content>: View where Content: View {
         .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: didTapDimmingView)
     }
 
+    private func didTapDimmingView() {
+        isPresented = false
+    }
+
     private func animateIn() {
         withAnimation(
             .easeInOut(duration: 0.3),
@@ -396,10 +400,6 @@ private struct SomeModal<Content>: View where Content: View {
             { isPresentedInternally = false },
             completion: completion
         )
-    }
-
-    private func didTapDimmingView() {
-        isPresented = false
     }
 }
 
