@@ -18,8 +18,6 @@ import Foundation
 ///             case male
 ///             case female
 ///         }
-///
-///         static let all: Self = [.male, .female]
 ///     }
 ///
 ///     let genders: Gender = [...]

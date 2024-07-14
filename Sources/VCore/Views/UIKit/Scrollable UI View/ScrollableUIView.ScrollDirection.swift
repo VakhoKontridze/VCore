@@ -14,15 +14,10 @@ extension ScrollableUIView {
     /// Scroll Direction.
     @OptionSetRepresentation<Int>
     public struct ScrollDirection {
-        // MARK: Options
         private enum Options: Int {
             case horizontal
             case vertical
         }
-
-        // MARK: Options Initializers
-        /// Horizontal and vertical scroll directions.
-        public static var allRegions: Self { [.horizontal, .vertical] }
     }
 }
 

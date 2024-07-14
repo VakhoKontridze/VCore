@@ -75,6 +75,25 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             )
         }
 
+        do {
+            var string: String = ""
+
+            string.append("\(expansionData.accessLevelModifier) static let all: Self = [")
+            string.append("\n")
+
+            for (i, optionEnumCase) in optionEnumCases.enumerated() {
+                string.append(".\(optionEnumCase.name)")
+                if i != optionEnumCases.count-1 { string.append(",") }
+
+                string.append("\n")
+            }
+
+            string.append("]")
+            string.append("\n")
+
+            result.append("\(raw: string)")
+        }
+
         return result
     }
 

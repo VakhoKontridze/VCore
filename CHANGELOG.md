@@ -32,6 +32,7 @@ Extensions
 
 Macros
 
+- `OptionSetRepresentation` macro will now generate `all` member
 - `CaseDetection` macro is removed
 
 ### [6.5.0(99)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.0) — *2024 07 09*

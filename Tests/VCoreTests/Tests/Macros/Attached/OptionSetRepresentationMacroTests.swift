@@ -29,8 +29,6 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                     case male
                     case female
                 }
-
-                static let all: Self = [.male, .female]
             }
             """,
             expandedSource: 
@@ -40,8 +38,6 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                         case male
                         case female
                     }
-
-                    static let all: Self = [.male, .female]
 
                     internal typealias RawValue = Int
 
@@ -58,6 +54,11 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                     internal static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
 
                     internal static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
+
+                    internal static let all: Self = [
+                        .male,
+                        .female
+                    ]
                 }
 
                 extension Gender: OptionSet {
@@ -124,6 +125,11 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                     public static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
 
                     public static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
+
+                    public static let all: Self = [
+                        .male,
+                        .female
+                    ]
                 }
 
                 extension Gender: OptionSet {
@@ -165,6 +171,11 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                     fileprivate static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
 
                     fileprivate static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
+
+                    fileprivate static let all: Self = [
+                        .male,
+                        .female
+                    ]
                 }
 
                 extension Gender: OptionSet {
@@ -252,6 +263,11 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                     internal static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
 
                     internal static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
+
+                    internal static let all: Self = [
+                        .male,
+                        .female
+                    ]
                 }
                 """,
             macros: macros
@@ -290,6 +306,11 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                     internal static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
 
                     internal static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
+
+                    internal static let all: Self = [
+                        .male,
+                        .female
+                    ]
                 }
 
                 extension Gender: OptionSet {
