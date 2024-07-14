@@ -8,8 +8,6 @@
 import SwiftUI
 
 // MARK: - View Safe Area Margins
-@available(macOS, unavailable)
-@available(watchOS, unavailable)
 extension View { // TODO: iOS 17.0 - Remove, as it's obsoleted by `safeAreaPadding(...)`
     /// Adds padding equal to safe area insets to specific edges of the `View`.
     ///
