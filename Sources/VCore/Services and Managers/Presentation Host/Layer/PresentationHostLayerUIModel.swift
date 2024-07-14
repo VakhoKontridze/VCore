@@ -30,24 +30,15 @@ public struct PresentationHostLayerUIModel {
     /// Dimming view will appear if at least on modal is presented.
     public var dimmingViewColor: Color = {
 #if os(iOS)
-        return Color.dynamic(
-            Color(red: 100/255, green: 100/255, blue: 100/255, opacity: 0.3),
-            Color.black.opacity(0.4)
-        )
+        Color.dynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
 #elseif os(macOS)
-        return Color.dynamic(
-            Color(red: 100/255, green: 100/255, blue: 100/255, opacity: 0.3),
-            Color.black.opacity(0.4)
-        )
+        Color.dynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
 #elseif os(tvOS)
-        return Color.dynamic(
-            Color(red: 100/255, green: 100/255, blue: 100/255, opacity: 0.3),
-            Color.black.opacity(0.4)
-        )
+        Color.dynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
 #elseif os(watchOS)
         Color.black.opacity(0.4)
 #elseif os(visionOS)
-        Color(red: 100/255, green: 100/255, blue: 100/255, opacity: 0.3)
+        Color(100, 100, 100, 0.3)
 #endif
     }()
 
