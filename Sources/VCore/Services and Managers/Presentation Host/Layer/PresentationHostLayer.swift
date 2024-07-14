@@ -110,7 +110,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
             alignment: modal.uiModel.alignment,
             content: { proxy in
                 modal.view()
-                    .environment(\.presentationHostGeometrySize, proxy.size)
+                    .environment(\.presentationHostContainerSize, proxy.size)
                     .environment(\.presentationHostPresentationMode, modal.presentationMode)
             }
         )
