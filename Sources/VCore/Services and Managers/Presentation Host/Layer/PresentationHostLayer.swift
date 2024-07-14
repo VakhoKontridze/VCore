@@ -109,11 +109,14 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     private func modalView(
         modal: ModalData
     ) -> some View {
-        NonInvasiveGeometryReader(content: { proxy in
-            modal.view()
-                .environment(\.presentationHostGeometrySize, proxy.size)
-                .environment(\.presentationHostPresentationMode, modal.presentationMode)
-        })
+        NonInvasiveGeometryReader(
+            alignment: modal.uiModel.alignment,
+            content: { proxy in
+                modal.view()
+                    .environment(\.presentationHostGeometrySize, proxy.size)
+                    .environment(\.presentationHostPresentationMode, modal.presentationMode)
+            }
+        )
         .onFirstAppear(perform: { modal.presentationMode.presentSubject.send() })
     }
 
@@ -125,6 +128,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
 
         let modal: ModalData = .init(
             id: presentationData.id,
+            uiModel: presentationData.uiModel,
             view: presentationData.view,
             presentationMode: PresentationHostPresentationMode(
                 id: presentationData.id
@@ -141,6 +145,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     ) {
         guard let index: Int = modals.firstIndex(where: { $0.id == updateData.id }) else { return }
 
+        modals[index].uiModel = updateData.uiModel
         modals[index].view = updateData.view
     }
 
@@ -160,6 +165,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     // MARK: Modal Data
     private struct ModalData: Identifiable {
         let id: String
+        var uiModel: PresentationHostUIModel
         var view: () -> AnyView
         let presentationMode: PresentationHostPresentationMode
     }
@@ -170,12 +176,15 @@ private struct NonInvasiveGeometryReader<Content>: View
     where Content: View
 {
     // MARK: Properties
+    private let alignment: Alignment
     private let content: (GeometryProxy) -> Content
 
     // MARK: Initializers
     init(
+        alignment: Alignment,
         @ViewBuilder content: @escaping (GeometryProxy) -> Content
     ) {
+        self.alignment = alignment
         self.content = content
     }
 
@@ -187,7 +196,7 @@ private struct NonInvasiveGeometryReader<Content>: View
                     ZStack(content: {
                         content(proxy)
                     })
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
                     .clipped() // Prevents content from going out of bounds
                 })
             })

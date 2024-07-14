@@ -14,6 +14,7 @@ final class PresentationHostInternalPresentationMode: ObservableObject {
     let presentPublisher: PassthroughSubject<PresentationData, Never> = .init()
     struct PresentationData: Identifiable {
         let id: String
+        let uiModel: PresentationHostUIModel
         let view: () -> AnyView
         let completion: () -> Void
     }
@@ -21,6 +22,7 @@ final class PresentationHostInternalPresentationMode: ObservableObject {
     let updatePublisher: PassthroughSubject<UpdateData, Never> = .init()
     struct UpdateData {
         let id: String
+        let uiModel: PresentationHostUIModel
         let view: () -> AnyView
     }
 

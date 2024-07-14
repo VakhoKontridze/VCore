@@ -218,6 +218,7 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
         internalPresentationMode.presentPublisher.send(
             PresentationHostInternalPresentationMode.PresentationData(
                 id: id,
+                uiModel: uiModel,
                 view: { modalContent().eraseToAnyView() },
                 completion: { presentHandler?() }
             )
@@ -228,6 +229,7 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
         internalPresentationMode.updatePublisher.send(
             PresentationHostInternalPresentationMode.UpdateData(
                 id: id,
+                uiModel: uiModel,
                 view: { modalContent().eraseToAnyView() }
             )
         )
