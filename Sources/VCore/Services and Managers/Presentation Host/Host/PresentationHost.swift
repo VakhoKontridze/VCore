@@ -26,7 +26,7 @@ extension View {
     ///             )
     ///         })
     ///         .frame(maxWidth: .infinity, maxHeight: .infinity)
-    ///         .presentationHostLayer()
+    ///         .presentationHostLayer() // Or declare in `App` on a `WindowScene`-level
     ///     }
     ///
     ///     extension View {
@@ -94,7 +94,7 @@ extension View {
     ///         }
     ///
     ///         private func animateOut() {
-    ///            withAnimation(
+    ///             withAnimation(
     ///                 .easeInOut(duration: 0.3),
     ///                 { isPresentedInternally = false },
     ///                 completion: presentationMode.dismissCompletion

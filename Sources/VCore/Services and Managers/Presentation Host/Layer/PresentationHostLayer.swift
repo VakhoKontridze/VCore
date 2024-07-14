@@ -109,19 +109,12 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     private func modalView(
         modal: ModalData
     ) -> some View {
-        Color.clear
-            .overlay(content: {
-                GeometryReader(content: { proxy in
-                    ZStack(content: {
-                        modal.view()
-                            .environment(\.presentationHostGeometrySize, proxy.size)
-                            .environment(\.presentationHostPresentationMode, modal.presentationMode)
-                            .onFirstAppear(perform: { modal.presentationMode.presentSubject.send() })
-                    })
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-                    .clipped()
-                })
-            })
+        NonInvasiveGeometryReader(content: { proxy in
+            modal.view()
+                .environment(\.presentationHostGeometrySize, proxy.size)
+                .environment(\.presentationHostPresentationMode, modal.presentationMode)
+        })
+        .onFirstAppear(perform: { modal.presentationMode.presentSubject.send() })
     }
 
     // MARK: Actions
@@ -175,5 +168,34 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
         var view: () -> AnyView
         let presentationMode: PresentationHostPresentationMode
         var dismissCompletion: (() -> Void)?
+    }
+}
+
+// MARK: - Non-Invasive Geometry Reader
+private struct NonInvasiveGeometryReader<Content>: View
+    where Content: View
+{
+    // MARK: Properties
+    private let content: (GeometryProxy) -> Content
+
+    // MARK: Initializers
+    init(
+        @ViewBuilder content: @escaping (GeometryProxy) -> Content
+    ) {
+        self.content = content
+    }
+
+    // MARK: Body
+    var body: some View {
+        Color.clear
+            .overlay(content: {
+                GeometryReader(content: { proxy in
+                    ZStack(content: {
+                        content(proxy)
+                    })
+                    .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    .clipped() // Prevents content from going out of bounds
+                })
+            })
     }
 }
