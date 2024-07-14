@@ -24,7 +24,12 @@ extension View {
         _ action: @escaping (UIInterfaceOrientation) -> Void
     ) -> some View {
         self
-            .background(content: { InterfaceOrientationReaderView(completion: action) })
+            .background(content: {
+                InterfaceOrientationReaderView(
+                    completion: action
+                )
+                .allowsHitTesting(false) // Avoids blocking gestures
+            })
     }
 }
 

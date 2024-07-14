@@ -33,6 +33,7 @@ extension View {
                         )
                         .onPreferenceChange(FramePreferenceKey.self, perform: action)
                 })
+                .allowsHitTesting(false) // Avoids blocking gestures
             })
     }
 
@@ -59,6 +60,7 @@ extension View {
                         )
                         .onPreferenceChange(FramePreferenceKey.self, perform: action)
                 })
+                .allowsHitTesting(false) // Avoids blocking gestures
             })
     }
 }

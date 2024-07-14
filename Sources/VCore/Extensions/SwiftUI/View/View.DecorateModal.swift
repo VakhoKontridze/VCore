@@ -50,6 +50,7 @@ extension View {
                 ModalDecoratorView(
                     decorate: decorate
                 )
+                .allowsHitTesting(false) // Avoids blocking gestures
             })
     }
 }

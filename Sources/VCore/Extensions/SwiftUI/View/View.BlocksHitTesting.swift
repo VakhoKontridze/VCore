@@ -22,7 +22,8 @@ extension View {
         self
             .overlay(content: {
                 if flag {
-                    Color.clear.contentShape(.rect)
+                    Color.clear
+                        .contentShape(.rect)
                 }
             })
     }

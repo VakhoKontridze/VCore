@@ -59,6 +59,7 @@ private struct RotationEffectWithFrameViewModifier: ViewModifier {
                             size = proxy.size
                         })
                 })
+                .allowsHitTesting(false) // Avoids blocking gestures
             })
             .frame(size: bounds.size)
     }

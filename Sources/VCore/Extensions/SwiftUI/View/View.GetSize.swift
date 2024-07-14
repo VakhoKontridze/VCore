@@ -31,6 +31,7 @@ extension View {
                         )
                         .onPreferenceChange(SizePreferenceKey.self, perform: action)
                 })
+                .allowsHitTesting(false) // Avoids blocking gestures
             })
     }
 }

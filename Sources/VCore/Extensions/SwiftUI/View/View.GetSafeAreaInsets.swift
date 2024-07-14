@@ -31,6 +31,7 @@ extension View {
                         )
                         .onPreferenceChange(SafeAreaInsetsPreferenceKey.self, perform: action)
                 })
+                .allowsHitTesting(false) // Avoids blocking gestures
             })
     }
 }

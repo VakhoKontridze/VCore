@@ -33,6 +33,7 @@ extension View {
                         )
                         .onPreferenceChange(BoundsPreferenceKey.self, perform: action)
                 })
+                .allowsHitTesting(false) // Avoids blocking gestures
             })
     }
 }

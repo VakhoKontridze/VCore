@@ -48,6 +48,7 @@ extension View {
                             value: proxy.size
                         )
                 })
+                .allowsHitTesting(false) // Avoids blocking gestures
             })
     }
 }

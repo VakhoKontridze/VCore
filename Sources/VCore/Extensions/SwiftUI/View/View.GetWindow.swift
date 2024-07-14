@@ -24,7 +24,12 @@ extension View {
         _ action: @escaping (UIWindow) -> Void
     ) -> some View {
         self
-            .background(content: { WindowReaderView(completion: action) })
+            .background(content: {
+                WindowReaderView(
+                    completion: action
+                )
+                .allowsHitTesting(false) // Avoids blocking gestures
+            })
     }
 }
 
