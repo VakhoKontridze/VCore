@@ -25,7 +25,7 @@ Services and Managers - Presentation Host
 
 Extensions
 
-- `RectangleCornerRadii.init(_:)` initializer is added, that initializes `RectangleCornerRadii` with value
+- `RectangleCornerRadii` initializers are added, that initialize `RectangleCornerRadii` with various configurations
 - `View.dynamicTypeSize(type:)` method is added, that sets `DynamicTypeSize` based on `DynamicTypeSizeType`.
 - `View.cornerRadius(_:corners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `View.cornerRadius(_:uiCorners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`

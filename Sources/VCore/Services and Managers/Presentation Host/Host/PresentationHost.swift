@@ -56,6 +56,7 @@ extension View {
     ///     struct SomeModal<Content>: View where Content: View {
     ///         @Environment(\.presentationHostContainerSize) private var containerSize: CGSize
     ///         @Environment(\.presentationHostSafeAreaInsets) private var safeAreaInsets: EdgeInsets
+    ///
     ///         @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
     ///
     ///         @Binding private var isPresented: Bool
@@ -324,6 +325,7 @@ extension View {
 private struct SomeModal<Content>: View where Content: View {
     @Environment(\.presentationHostContainerSize) private var containerSize: CGSize
     @Environment(\.presentationHostSafeAreaInsets) private var safeAreaInsets: EdgeInsets
+    
     @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
 
     @Binding private var isPresented: Bool
