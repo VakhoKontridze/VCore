@@ -93,11 +93,13 @@ extension View {
     ///             )
     ///         }
     ///
-    ///         private func animateOut() {
+    ///         private func animateOut(
+    ///             completion: @escaping () -> Void
+    ///         ) {
     ///             withAnimation(
     ///                 .easeInOut(duration: 0.3),
     ///                 { isPresentedInternally = false },
-    ///                 completion: presentationMode.dismissCompletion
+    ///                 completion: completion
     ///             )
     ///         }
     ///
@@ -384,11 +386,13 @@ private struct SomeModal<Content>: View where Content: View {
         )
     }
 
-    private func animateOut() {
+    private func animateOut(
+        completion: @escaping () -> Void
+    ) {
         withAnimation(
             .easeInOut(duration: 0.3),
             { isPresentedInternally = false },
-            completion: presentationMode.dismissCompletion
+            completion: completion
         )
     }
 

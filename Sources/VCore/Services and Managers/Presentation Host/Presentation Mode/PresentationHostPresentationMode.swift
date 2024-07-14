@@ -22,13 +22,12 @@ public struct PresentationHostPresentationMode {
     public var presentPublisher: AnyPublisher<Void, Never> { presentSubject.eraseToAnyPublisher() }
 
     // MARK: Properties - Dismiss
-    let dismissSubject: PassthroughSubject<Void, Never> = .init()
+    let dismissSubject: PassthroughSubject</*completion:*/() -> Void, Never> = .init()
 
     /// Emits notification when modal should be internally dismissed.
-    public var dismissPublisher: AnyPublisher<Void, Never> { dismissSubject.eraseToAnyPublisher() }
-
-    /// Completion block that should be called when internal animations conclude, to remove modal from the view hierarchy.
-    public let dismissCompletion: () -> Void
+    ///
+    /// `Publisher` passes a completion block that must be called when animation finishes.
+    public var dismissPublisher: AnyPublisher</*completion:*/() -> Void, Never> { dismissSubject.eraseToAnyPublisher() }
 
     // MARK: Properties - Misc
     let dimmingViewTapActionSubject: PassthroughSubject<Void, Never> = .init()
@@ -40,10 +39,8 @@ public struct PresentationHostPresentationMode {
 
     // MARK: Initializers
     init(
-        id: String,
-        dismissCompletion: @escaping () -> Void
+        id: String
     ) {
         self.id = id
-        self.dismissCompletion = dismissCompletion
     }
 }

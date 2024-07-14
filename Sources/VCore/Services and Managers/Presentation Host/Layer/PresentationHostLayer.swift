@@ -121,24 +121,15 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     private func didReceiveInternalPresentRequest(
         presentationData: PresentationHostInternalPresentationMode.PresentationData
     ) {
+        guard !modals.contains(where: { $0.id == presentationData.id }) else { return }
+
         let modal: ModalData = .init(
             id: presentationData.id,
             view: presentationData.view,
             presentationMode: PresentationHostPresentationMode(
-                id: presentationData.id,
-                dismissCompletion: {
-                    let completion: (() -> Void)? = modals.first(where: { $0.id == presentationData.id })?
-                        .dismissCompletion
-
-                    modals.removeAll(where: { $0.id == presentationData.id })
-                    PresentationHostDataSourceCache.shared.remove(key: presentationData.id)
-
-                    completion?()
-                }
+                id: presentationData.id
             )
         )
-
-        guard !modals.contains(where: { $0.id == modal.id }) else { return }
 
         modals.append(modal)
 
@@ -156,10 +147,14 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     private func didReceiveInternalDismissRequest(
         dismissData: PresentationHostInternalPresentationMode.DismissData
     ) {
-        guard let index: Int = modals.firstIndex(where: { $0.id == dismissData.id }) else { return }
+        guard let modal: ModalData = modals.first(where: { $0.id == dismissData.id }) else { return }
 
-        modals[index].dismissCompletion = dismissData.completion
-        modals[index].presentationMode.dismissSubject.send()
+        modal.presentationMode.dismissSubject.send(/*completion: */{
+            modals.removeAll(where: { $0.id == dismissData.id })
+            PresentationHostDataSourceCache.shared.remove(key: dismissData.id)
+
+            dismissData.completion()
+        })
     }
 
     // MARK: Modal Data
@@ -167,7 +162,6 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
         let id: String
         var view: () -> AnyView
         let presentationMode: PresentationHostPresentationMode
-        var dismissCompletion: (() -> Void)?
     }
 }
 
