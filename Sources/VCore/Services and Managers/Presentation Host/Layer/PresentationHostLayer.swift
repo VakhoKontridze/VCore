@@ -77,12 +77,9 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         })
-        .applyModifier({
-            if let ignoredSafeArea = uiModel.ignoredSafeArea {
-                $0.ignoresSafeArea(ignoredSafeArea.regions, edges: ignoredSafeArea.edges)
-            } else {
-                $0
-            }
+        .applyIfLet(uiModel.ignoredSafeArea, transform: {
+            $0
+                .ignoresSafeArea($1.regions, edges: $1.edges)
         })
     }
 
