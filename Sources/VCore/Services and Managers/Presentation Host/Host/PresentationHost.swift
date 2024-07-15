@@ -262,7 +262,7 @@ private struct ContentView: View {
     var body: some View {
         let backgroundColor: Color? = {
 #if os(visionOS)
-            Color.white
+            Color.clear
 #else
             nil
 #endif

@@ -28,19 +28,7 @@ public struct PresentationHostLayerUIModel {
     /// Shared dimming view color in the layer.
     ///
     /// Dimming view will appear if at least on modal is presented.
-    public var dimmingViewColor: Color = {
-#if os(iOS)
-        Color.dynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
-#elseif os(macOS)
-        Color.dynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
-#elseif os(tvOS)
-        Color.dynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
-#elseif os(watchOS)
-        Color.black.opacity(0.4)
-#elseif os(visionOS)
-        Color(100, 100, 100, 0.3)
-#endif
-    }()
+    public var dimmingViewColor: Color = .platformDynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
 
     /// Dimming view tap action. Set to `default`.
     public var dimmingViewTapAction: DimmingViewTapAction = .default
