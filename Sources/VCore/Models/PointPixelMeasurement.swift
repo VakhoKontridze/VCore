@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-// MARK: - Point Pixel Measurement
+// MARK: - Point/Pixel Measurement
 /// Display measurement that represents points or pixels.
 public enum PointPixelMeasurement: Equatable, Hashable {
     // MARK: Cases
@@ -18,7 +18,7 @@ public enum PointPixelMeasurement: Equatable, Hashable {
     case pixels(Int)
 
     // MARK: Mapping
-    /// Converts value to points based on scale.
+    /// Converts pixels to points based on scale.
     public func toPoints(scale: CGFloat) -> CGFloat {
         switch self {
         case .points(let value): value

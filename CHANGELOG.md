@@ -15,6 +15,7 @@ Views
 
 Models
 
+- `AbsoluteFractionMeasurement` is added, that represents absolute or fractional values
 - `RectCorner` has been removed, as it's obsoleted by `View.clipShape(.rect(...))` and `UnevenRoundedRectangle`
 
 Services and Managers - Presentation Host
@@ -298,7 +299,7 @@ Models
 
 - `CastingError` is added to represents failed casting
 - `EnvironmentValues.safeAreaInsets` are added that retrieve safe areas from `UIApplication.shared.firstWindowInSingleSceneApp`
-- `PointPixelMeasurement` is added that represents points or pixels
+- `PointPixelMeasurement` is added, that represents points or pixels
 - `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
 - `delay` is added to `BasicAnimation`
 - JSON request headers are renamed to JSON request header fields
