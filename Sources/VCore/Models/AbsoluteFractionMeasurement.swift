@@ -20,20 +20,20 @@ public enum AbsoluteFractionMeasurement: Equatable, Hashable {
     // MARK: Mapping
     /// Converts fractional to absolute dimension.
     public func toAbsolute(
-        in containerDimension: CGFloat
+        dimension: CGFloat
     ) -> CGFloat {
         switch self {
         case .absolute(let value): value
-        case .fraction(let value): value * containerDimension
+        case .fraction(let value): value * dimension
         }
     }
 
     /// Converts absolute to fractional dimension.
     public func toFractions(
-        in containerDimension: CGFloat
+        dimension: CGFloat
     ) -> CGFloat {
         switch self {
-        case .absolute(let value): value / containerDimension
+        case .absolute(let value): value / dimension
         case .fraction(let value): value
         }
     }
