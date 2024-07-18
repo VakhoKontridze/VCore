@@ -29,7 +29,7 @@ public enum AbsoluteFractionMeasurement: Equatable, Hashable {
     }
 
     /// Converts absolute to fractional dimension.
-    public func toFractions(
+    public func toFraction(
         dimension: CGFloat
     ) -> CGFloat {
         switch self {
