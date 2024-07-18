@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - UI Layout Guide Type
-/// Enumeration that represents `UILayoutGuide`.
+/// Model that represents `UILayoutGuide`.
 public enum UILayoutGuideType {
     // MARK: Cases
     /// Layout guide representing the view’s margins.

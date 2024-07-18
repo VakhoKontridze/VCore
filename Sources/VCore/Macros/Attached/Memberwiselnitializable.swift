@@ -42,7 +42,7 @@ public macro MemberwiseInitializable(
 )
 
 // MARK: - Memberwise Initializable Parameter Default Value
-/// Enumeration that represents parameter default value.
+/// Default parameter value in `MemberwiseInitializable`.
 public enum MemberwiseInitializableParameterDefaultValue {
     /// Value.
     case value(Any?)

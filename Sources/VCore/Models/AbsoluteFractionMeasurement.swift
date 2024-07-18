@@ -8,7 +8,7 @@
 import CoreGraphics
 
 // MARK: - Absolute/Fraction Measurement
-/// Length measurement that represents absolute or fractional values.
+/// Length measurement represented in absolute or fractional values.
 public enum AbsoluteFractionMeasurement: Equatable, Hashable {
     // MARK: Cases
     /// Absolute measurement.

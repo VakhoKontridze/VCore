@@ -38,7 +38,7 @@ public struct PresentationHostLayerUIModel {
     public init() {}
 
     // MARK: Frame
-    /// Enumeration that represents frame.
+    /// Frame.
     public enum Frame {
         // MARK: Cases
         /// Fixed frame.
@@ -66,7 +66,7 @@ public struct PresentationHostLayerUIModel {
     }
 
     // MARK: Dimming View Tap Action
-    /// Enumeration that represents dimming view tap action.
+    /// Dimming view tap action.
     public enum DimmingViewTapAction: Int, CaseIterable {
         // MARK: Cases
         /// None.
