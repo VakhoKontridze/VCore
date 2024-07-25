@@ -19,6 +19,7 @@ extension View {
     ///     }
     ///
     public func getSafeAreaInsets(
+        ignoredKeyboardSafeAreaEdges: Edge.Set = [],
         _ action: @escaping (EdgeInsets) -> Void
     ) -> some View {
         self
@@ -31,6 +32,7 @@ extension View {
                         )
                         .onPreferenceChange(SafeAreaInsetsPreferenceKey.self, perform: action)
                 })
+                .ignoresSafeArea(.keyboard, edges: ignoredKeyboardSafeAreaEdges)
                 .allowsHitTesting(false) // Avoids blocking gestures
             })
     }

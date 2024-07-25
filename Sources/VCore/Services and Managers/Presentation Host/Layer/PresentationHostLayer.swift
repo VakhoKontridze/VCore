@@ -70,7 +70,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     // MARK: Body
     func body(content: Content) -> some View {
         content
-            .getSafeAreaInsets({
+            .getSafeAreaInsets(ignoredKeyboardSafeAreaEdges: .all, {
                 safeAreaInsets = $0
 
                 didReadSafeAreaInsetsSubject.send()
