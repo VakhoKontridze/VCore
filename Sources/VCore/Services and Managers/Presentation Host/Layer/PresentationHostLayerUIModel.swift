@@ -52,7 +52,7 @@ public struct PresentationHostLayerUIModel {
         public static var `default`: Self { .infinite }
     }
 
-    // MARK: Ignores Safe Area
+    // MARK: Ignored Safe Area
     /// Ignored safe areas.
     @MemberwiseInitializable(
         comment: "/// Initializes `IgnoredSafeArea` with regions and edges."
