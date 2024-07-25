@@ -91,7 +91,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Chan
 
                 return systemKeyboardHeight + additionalOffset
 
-            case .offsetByObscuredSubviewHeight(let additionalOffset):
+            case .offsetByObscuredViewHeight(let additionalOffset):
                 guard let screen: UIScreen = notification.object as? UIScreen else { return nil } // Will never fail
 
                 guard let window: UIWindow = screen.window else { return nil } // Will never fail
@@ -136,7 +136,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Chan
             case .offsetByKeyboardHeight:
                 return 0
 
-            case .offsetByObscuredSubviewHeight:
+            case .offsetByObscuredViewHeight:
                 return 0
             }
         }()

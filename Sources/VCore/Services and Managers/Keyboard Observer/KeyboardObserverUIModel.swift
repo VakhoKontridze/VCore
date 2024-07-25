@@ -58,7 +58,7 @@ public struct KeyboardObserverUIModel {
 
         /// Offsets container by the specified value.
         public static func offset(
-            _ offset: CGFloat
+            offset: CGFloat
         ) -> Self {
             .init(
                 .offset(
@@ -82,19 +82,19 @@ public struct KeyboardObserverUIModel {
         }
 
         /// Offsets container to un-obscure first responder view, if needed.
-        public static func offsetByObscuredSubviewHeight(
+        public static func offsetByObscuredViewHeight(
             additionalOffset: CGFloat
         ) -> Self {
             .init(
-                .offsetByObscuredSubviewHeight(
+                .offsetByObscuredViewHeight(
                     additionalOffset: additionalOffset
                 )
             )
         }
 
-        /// Default instance. Set to `offsetByObscuredSubviewHeight`.
+        /// Default instance. Set to `offsetByObscuredViewHeight`.
         public static var `default`: Self {
-            .offsetByObscuredSubviewHeight(
+            .offsetByObscuredViewHeight(
                 additionalOffset: 20
             )
         }
@@ -104,7 +104,7 @@ public struct KeyboardObserverUIModel {
             case none
             case offset(offset: CGFloat)
             case offsetByKeyboardHeight(additionalOffset: CGFloat)
-            case offsetByObscuredSubviewHeight(additionalOffset: CGFloat)
+            case offsetByObscuredViewHeight(additionalOffset: CGFloat)
         }
     }
 }
