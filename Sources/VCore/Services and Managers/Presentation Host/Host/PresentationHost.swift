@@ -138,18 +138,23 @@ extension View {
 
 // MARK: - Presentation Host View Modifier
 private struct PresentationHostViewModifier<ModalContent>: ViewModifier where ModalContent: View {
-    // MARK: Properties
+    // MARK: Properties - ID
     private let id: String
 
+    // MARK: Properties - UI Model
     private let uiModel: PresentationHostUIModel
 
+    // MARK: Properties - State
     @Binding private var isPresented: Bool
 
+    // MARK: Properties - Actions
     private let presentHandler: (() -> Void)?
     private let dismissHandler: (() -> Void)?
 
+    // MARK: Properties - Content
     private let modalContent: () -> ModalContent
 
+    // MARK: Properties - Presentation Mode
     @ObservedObject private var internalPresentationMode: PresentationHostInternalPresentationMode
 
     // MARK: Initializers

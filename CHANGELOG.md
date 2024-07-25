@@ -18,6 +18,10 @@ Models
 - `AbsoluteFractionMeasurement` is added, that represents absolute or fractional values
 - `RectCorner` has been removed, as it's obsoleted by `View.clipShape(.rect(...))` and `UnevenRoundedRectangle`
 
+Services and Managers
+
+- `KeyboardObserver` is added, that observes changes in keyboard frame
+
 Services and Managers - Presentation Host
 
 - Presentation Host API overhauled. It now works on overlay principle, and not modal `UIViewController` presentation.
@@ -30,6 +34,7 @@ Extensions
 - `View.dynamicTypeSize(type:)` method is added, that sets `DynamicTypeSize` based on `DynamicTypeSizeType`.
 - `View.cornerRadius(_:corners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `View.cornerRadius(_:uiCorners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
+- `EnvironmentValues.safeAreaInsets` is removed
 
 Macros
 
@@ -298,7 +303,7 @@ Views
 Models
 
 - `CastingError` is added to represents failed casting
-- `EnvironmentValues.safeAreaInsets` are added that retrieve safe areas from `UIApplication.shared.firstWindowInSingleSceneApp`
+- `EnvironmentValues.safeAreaInsets` are added that retrieves safe areas from `UIApplication.shared.firstWindowInSingleSceneApp`
 - `PointPixelMeasurement` is added, that represents points or pixels
 - `AtomicNumber` and `LockedAtomicNumber` as introduced as generic abstractions of `AtomicInteger` and `LockedAtomicInteger`
 - `delay` is added to `BasicAnimation`

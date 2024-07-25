@@ -157,6 +157,7 @@ extension UIView {
             guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return } // Will never fail
 
             let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalBoundsMaxY - containerViewY
+            
             let obscuredHeight: CGFloat = max(0, systemKeyboardHeight + additionalOffset - viewDistanceToBottom)
 
             UIView.animateKeyboardResponsiveness(

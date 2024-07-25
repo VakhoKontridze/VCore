@@ -29,13 +29,21 @@ extension View {
 
 // MARK: - Presentation Host Layer View Modifier
 private struct PresentationHostLayerViewModifier: ViewModifier {
-    // MARK: Properties
+    // MARK: Properties - UI Model
     private let uiModel: PresentationHostLayerUIModel
 
+    // MARK: Properties - Modals
     @State private var modals: [ModalData] = []
 
+    // MARK: Properties - Presentation Mode
     @ObservedObject private var internalPresentationMode: PresentationHostInternalPresentationMode
 
+    // MARK: Properties - Keyboard Responsiveness
+#if os(iOS)
+    @StateObject private var keyboardObserver: KeyboardObserver
+#endif
+
+    // MARK: Properties - Safe Area
     @State private var safeAreaInsets: EdgeInsets?
     @State private var didReadSafeAreaInsetsSubject: PassthroughSubject<Void, Never> = .init() // Delays presentation until environment is read
 
@@ -45,9 +53,18 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
         uiModel: PresentationHostLayerUIModel
     ) {
         self.uiModel = uiModel
+        
         self._internalPresentationMode = ObservedObject(
             wrappedValue: PresentationHostInternalPresentationModeRegistrar.shared.resolve(layerID: layerID)
         )
+
+#if os(iOS)
+        self._keyboardObserver = StateObject(
+            wrappedValue: KeyboardObserver(
+                uiModel: uiModel.keyboardObserverSubUIModel
+            )
+        )
+#endif
     }
 
     // MARK: Body
@@ -96,10 +113,17 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
                     .frame(maxWidth: .infinity, maxHeight: .infinity)
             }
         })
-        .applyIfLet(uiModel.ignoredSafeArea, transform: {
+
+        // Must be written last
+        .applyModifier({
+#if os(iOS)
             $0
-                .ignoresSafeArea($1.regions, edges: $1.edges)
+                .offset(y: -keyboardObserver.offset)
+#else
+            $0
+#endif
         })
+        .ignoresSafeArea()
     }
 
     @ViewBuilder

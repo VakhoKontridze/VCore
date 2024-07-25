@@ -16,14 +16,6 @@ public struct PresentationHostLayerUIModel {
     /// Changing this property conditionally will cause view state to be reset.
     public var frame: Frame = .default
 
-    /// Ignored safe area. Set to `container` regions and `all` edges.
-    ///
-    /// Changing this property conditionally will cause view state to be reset.
-    public var ignoredSafeArea: IgnoredSafeArea? = .init(
-        regions: .container,
-        edges: .all
-    )
-
     // MARK: Properties - Dimming View
     /// Shared dimming view color in the layer.
     ///
@@ -32,6 +24,20 @@ public struct PresentationHostLayerUIModel {
 
     /// Dimming view tap action. Set to `default`.
     public var dimmingViewTapAction: DimmingViewTapAction = .default
+
+    // MARK: Properties - Keyboard Responsiveness
+#if os(iOS)
+    /// Keyboard responsiveness strategy. Set to `default`.
+    ///
+    /// Changing this property conditionally will cause view state to be reset.
+    public var keyboardResponsivenessStrategy: KeyboardObserverUIModel.KeyboardResponsivenessStrategy = .default
+
+    var keyboardObserverSubUIModel: KeyboardObserverUIModel {
+        var uiModel: KeyboardObserverUIModel = .init()
+        uiModel.keyboardResponsivenessStrategy = keyboardResponsivenessStrategy
+        return uiModel
+    }
+#endif
 
     // MARK: Initializers
     /// Initializes UI model with default values.
