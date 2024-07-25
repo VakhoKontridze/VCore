@@ -27,16 +27,8 @@ public struct PresentationHostLayerUIModel {
 
     // MARK: Properties - Keyboard Responsiveness
 #if os(iOS)
-    /// Keyboard responsiveness strategy. Set to `default`.
-    ///
-    /// Changing this property conditionally will cause view state to be reset.
-    public var keyboardResponsivenessStrategy: KeyboardObserverUIModel.KeyboardResponsivenessStrategy = .default
-
-    var keyboardObserverSubUIModel: KeyboardObserverUIModel {
-        var uiModel: KeyboardObserverUIModel = .init()
-        uiModel.keyboardResponsivenessStrategy = keyboardResponsivenessStrategy
-        return uiModel
-    }
+    /// Model for customizing keyboard responsiveness.
+    public var keyboardObserverSubUIModel: KeyboardObserverUIModel = .init()
 #endif
 
     // MARK: Initializers
