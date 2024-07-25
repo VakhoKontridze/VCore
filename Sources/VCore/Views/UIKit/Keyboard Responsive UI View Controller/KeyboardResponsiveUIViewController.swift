@@ -62,19 +62,13 @@ import UIKit
 @available(tvOS, unavailable)
 open class KeyboardResponsiveUIViewController: UIViewController {
     // MARK: Properties
-    /// Indicates, if `KeyboardResponsiveViewController` should call
-    /// `keyboardWillShow(_:)` and `keyboardWillHide(_:)` methods,
-    /// even if keyboard is already shown or hidden.
-    /// Set to `true`.
+    /// Indicates, if `keyboardWillShow(_:)` and `keyboardWillHide(_:)` are called, when keyboard is already shown or hidden. Set to `true`.
     open var notifiesWhenKeyboardIsAlreadyShownOrHidden: Bool = true
     
     /// Indicates if keyboard is currently shown.
     private(set) open var keyboardIsShown: Bool = false
     
-    /// Indicates, if `KeyboardResponsiveViewController` should call
-    /// `keyboardWillShow(_:)` and `keyboardWillHide(_:)` methods,
-    /// even if `KeyboardResponsiveViewController` is not visible.
-    /// Set to `false`.
+    /// Indicates, if `keyboardWillShow(_:)` and `keyboardWillHide(_:)` are called, when `KeyboardResponsiveUIViewController` is not visible. Set to `false`.
     open var notifiesWhenViewControllerIsNotVisible: Bool = false
     
     // MARK: Lifecycle
@@ -104,10 +98,14 @@ open class KeyboardResponsiveUIViewController: UIViewController {
         )
     }
     
-    // MARK: Observers
+    // MARK: Actions
     /// Posted immediately prior to the display of the keyboard.
     open func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {}
-    
+
+    /// Posted immediately prior to the dismissal of the keyboard.
+    open func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {}
+
+    // MARK: Observers
     private func keyboardWillShow(notification: Notification) {
         if !notifiesWhenKeyboardIsAlreadyShownOrHidden {
             guard !keyboardIsShown else { return }
@@ -120,9 +118,6 @@ open class KeyboardResponsiveUIViewController: UIViewController {
         
         keyboardWillShow(SystemKeyboardInfo(notification: notification))
     }
-    
-    /// Posted immediately prior to the dismissal of the keyboard.
-    open func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {}
     
     private func keyboardWillHide(notification: Notification) {
         if !notifiesWhenKeyboardIsAlreadyShownOrHidden {

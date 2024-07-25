@@ -21,8 +21,8 @@ open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIVi
     /// In case of `UIScrollView`, content view can be used.
     open lazy var keyboardResponsivenessContainerView: UIView = view // Doesn't cause retain cycle
 
-    /// Keyboard safe area margin from first responder view to keyboard. Set to `20`.
-    open var keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin: CGFloat = 20
+    /// Additional offset from first responder view to keyboard. Set to `20`.
+    open var keyboardResponsivenessFirstResponderAdditionalOffset: CGFloat = 20
 
     // MARK: Keyboard Responsiveness
     open override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
@@ -35,7 +35,7 @@ open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIVi
             firstResponderView: firstResponderSubview,
             containerView: keyboardResponsivenessContainerView,
             systemKeyboardInfo: systemKeyboardInfo,
-            keyboardSafeAreMargin: keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin
+            additionalOffset: keyboardResponsivenessFirstResponderAdditionalOffset
         )
     }
     
@@ -49,7 +49,7 @@ open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIVi
             firstResponderView: firstResponderSubview,
             containerView: keyboardResponsivenessContainerView,
             systemKeyboardInfo: systemKeyboardInfo,
-            keyboardSafeAreMargin: keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin
+            additionalOffset: keyboardResponsivenessFirstResponderAdditionalOffset
         )
     }
 }
