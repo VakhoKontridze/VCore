@@ -163,6 +163,7 @@ extension UIScreen {
     }
 }
 
+@available(tvOS, unavailable)
 extension SystemKeyboardInfo {
     fileprivate var toSwiftUIAnimation: Animation {
         if animationOptions.contains(.curveLinear) {
