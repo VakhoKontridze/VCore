@@ -14,7 +14,7 @@ import SwiftUI
 )
 public struct EdgeInsets_TopBottom: Equatable, Hashable {
     // MARK: Properties
-    /// Top inset value.
+    /// Top value.
     public var top: CGFloat
     
     /// Bottom inset  value.

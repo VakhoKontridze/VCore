@@ -14,23 +14,11 @@ import SwiftUI
 )
 public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
     // MARK: Properties
-    /// Horizontal inset value.
+    /// Horizontal value.
     public var horizontal: CGFloat
     
-    /// Vertical inset  value.
+    /// Vertical value.
     public var vertical: CGFloat
-    
-    /// Leading inset value.
-    public var leading: CGFloat { horizontal }
-    
-    /// Trailing inset value.
-    public var trailing: CGFloat { horizontal }
-    
-    /// Top inset value.
-    public var top: CGFloat { vertical }
-    
-    /// Bottom inset value.
-    public var bottom: CGFloat { vertical }
     
     // MARK: Initializers
     /// Initializes `EdgeInsets_HorizontalVertical` with value.
@@ -49,6 +37,53 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
     
     /// Initializes `EdgeInsets_HorizontalVertical` with zero values.
     public static var zero: Self { .init() }
+
+    // MARK: Mapping
+    /// Converts `EdgeInsets_HorizontalVertical` to `EdgeInsets`.
+    public var toEdgeInsets: EdgeInsets {
+        .init(
+            top: vertical,
+            leading: horizontal,
+            bottom: vertical,
+            trailing: horizontal
+        )
+    }
+
+    /// Converts `EdgeInsets_HorizontalVertical` to `NSDirectionalEdgeInsets`.
+    public var toNSDirectionalEdgeInsets: NSDirectionalEdgeInsets {
+        .init(
+            top: vertical,
+            leading: horizontal,
+            bottom: vertical,
+            trailing: horizontal
+        )
+    }
+
+#if canImport(UIKit)
+
+    /// Converts `EdgeInsets_HorizontalVertical` to `UIEdgeInsets`.
+    public var toUIEdgeInsets: UIEdgeInsets {
+        .init(
+            top: vertical,
+            left: horizontal,
+            bottom: vertical,
+            right: horizontal
+        )
+    }
+
+#elseif canImport(AppKit)
+
+    /// Converts `EdgeInsets_HorizontalVertical` to `NSEdgeInsets`.
+    public var toNSEdgeInsets: NSEdgeInsets {
+        .init(
+            top: vertical,
+            left: horizontal,
+            bottom: vertical,
+            right: horizontal
+        )
+    }
+
+#endif
 
     // MARK: Map
     /// Returns `EdgeInsets_HorizontalVertical`  containing the results of mapping the given closure over the values.

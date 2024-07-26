@@ -14,10 +14,10 @@ import SwiftUI
 )
 public struct EdgeInsets_LeadingTrailing: Equatable, Hashable {
     // MARK: Properties
-    /// Leading inset value.
+    /// Leading value.
     public var leading: CGFloat
     
-    /// Trailing inset value.
+    /// Trailing value.
     public var trailing: CGFloat
     
     /// Sum of `leading` and `trailing` values.

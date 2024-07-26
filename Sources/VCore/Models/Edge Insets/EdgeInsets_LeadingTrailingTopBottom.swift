@@ -14,16 +14,16 @@ import SwiftUI
 )
 public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
     // MARK: Properties
-    /// Leading inset value.
+    /// Leading value.
     public var leading: CGFloat
     
-    /// Trailing inset value.
+    /// Trailing value.
     public var trailing: CGFloat
     
-    /// Top inset value.
+    /// Top value.
     public var top: CGFloat
     
-    /// Bottom inset value.
+    /// Bottom value.
     public var bottom: CGFloat
     
     /// Sum of `leading` and `trailing` values.
@@ -110,8 +110,8 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
     public static var zero: Self { .init() }
 
     // MARK: Mapping
-    /// Converts `EdgeInsets_TopBottom` to `EdgeInsets`.
-    var toEdgeInsets: EdgeInsets {
+    /// Converts `EdgeInsets_LeadingTrailingTopBottom` to `EdgeInsets`.
+    public var toEdgeInsets: EdgeInsets {
         .init(
             top: top,
             leading: leading,
@@ -120,8 +120,8 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
         )
     }
 
-    /// Converts `EdgeInsets_TopBottom` to `NSDirectionalEdgeInsets`.
-    var toNSDirectionalEdgeInsets: NSDirectionalEdgeInsets {
+    /// Converts `EdgeInsets_LeadingTrailingTopBottom` to `NSDirectionalEdgeInsets`.
+    public var toNSDirectionalEdgeInsets: NSDirectionalEdgeInsets {
         .init(
             top: top,
             leading: leading,
@@ -132,8 +132,8 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
 
 #if canImport(UIKit)
 
-    /// Converts `EdgeInsets_TopBottom` to `UIEdgeInsets`.
-    var toUIEdgeInsets: UIEdgeInsets {
+    /// Converts `EdgeInsets_LeadingTrailingTopBottom` to `UIEdgeInsets`.
+    public var toUIEdgeInsets: UIEdgeInsets {
         .init(
             top: top,
             left: leading,
@@ -144,8 +144,8 @@ public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
 
 #elseif canImport(AppKit)
 
-    /// Converts `EdgeInsets_TopBottom` to `NSEdgeInsets`.
-    var toNSEdgeInsets: NSEdgeInsets {
+    /// Converts `EdgeInsets_LeadingTrailingTopBottom` to `NSEdgeInsets`.
+    public var toNSEdgeInsets: NSEdgeInsets {
         .init(
             top: top,
             left: leading,
