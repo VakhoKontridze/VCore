@@ -13,6 +13,7 @@ import Combine
 // MARK: - Keyboard Observer
 /// Object that observes changes in keyboard frame.
 @available(tvOS, unavailable)
+@available(visionOS, unavailable)
 public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Convert to `Observable`
     // MARK: Properties - UI Model
     private let uiModel: KeyboardObserverUIModel
@@ -153,6 +154,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
 }
 
 // MARK: - Helpers
+@available(visionOS, unavailable)
 extension UIScreen {
     fileprivate var window: UIWindow? {
         UIApplication.shared
