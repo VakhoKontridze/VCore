@@ -13,7 +13,7 @@ import Combine
 // MARK: - Keyboard Observer
 /// Object that observes changes in keyboard frame.
 @available(tvOS, unavailable)
-public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Change to Observable
+public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Convert to `Observable`
     // MARK: Properties - UI Model
     private let uiModel: KeyboardObserverUIModel
 
@@ -79,7 +79,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Chan
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
         
         let offset: CGFloat? = {
-            switch uiModel.keyboardResponsivenessStrategy.storage {
+            switch uiModel.keyboardResponsivenessStrategy {
             case .none:
                 return nil
 
@@ -126,7 +126,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Chan
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
 
         let offset: CGFloat? = {
-            switch uiModel.keyboardResponsivenessStrategy.storage {
+            switch uiModel.keyboardResponsivenessStrategy {
             case .none:
                 return nil
 

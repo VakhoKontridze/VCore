@@ -37,74 +37,29 @@ public struct KeyboardObserverUIModel {
 
     // MARK: Keyboard Responsiveness Strategy
     /// Keyboard responsiveness strategy.
-    public struct KeyboardResponsivenessStrategy {
-        // MARK: Properties
-        let storage: Storage
-
-        // MARK: Initializers
-        init(
-            _ storage: Storage
-        ) {
-            self.storage = storage
-        }
-
-        // MARK: Initializers
+    public enum KeyboardResponsivenessStrategy {
+        // MARK: Cases
         /// None.
-        public static var none: Self {
-            .init(
-                .none
-            )
-        }
+        case `none`
 
         /// Offsets container by the specified value.
-        public static func offset(
-            offset: CGFloat
-        ) -> Self {
-            .init(
-                .offset(
-                    offset: offset
-                )
-            )
-        }
+        case offset(offset: CGFloat)
 
         /// Offsets container by the keyboard height, plus the specified value.
         ///
         /// Using a positive value (`keyboard height + value > keyboard height`)
         /// may cause visuals gaps between bottom of the modal and the keyboard.
-        public static func offsetByKeyboardHeight(
-            additionalOffset: CGFloat
-        ) -> Self {
-            .init(
-                .offsetByKeyboardHeight(
-                    additionalOffset: additionalOffset
-                )
-            )
-        }
+        case offsetByKeyboardHeight(additionalOffset: CGFloat)
 
         /// Offsets container to un-obscure first responder view, if needed.
-        public static func offsetByObscuredViewHeight(
-            additionalOffset: CGFloat
-        ) -> Self {
-            .init(
-                .offsetByObscuredViewHeight(
-                    additionalOffset: additionalOffset
-                )
-            )
-        }
+        case offsetByObscuredViewHeight(additionalOffset: CGFloat)
 
+        // MARK: Initializers
         /// Default instance. Set to `offsetByObscuredViewHeight`.
         public static var `default`: Self {
             .offsetByObscuredViewHeight(
                 additionalOffset: 20
             )
-        }
-
-        // MARK: Storage
-        enum Storage {
-            case none
-            case offset(offset: CGFloat)
-            case offsetByKeyboardHeight(additionalOffset: CGFloat)
-            case offsetByObscuredViewHeight(additionalOffset: CGFloat)
         }
     }
 }
