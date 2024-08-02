@@ -1,6 +1,6 @@
 # Change Log
 
-### 6.5.1
+### [6.5.1(100)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.1) — *2024 08 02*
 
 Other
 
