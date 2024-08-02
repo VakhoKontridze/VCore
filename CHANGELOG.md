@@ -1,6 +1,6 @@
 # Change Log
 
-### 7.0.0(100)
+### 7.0.0(101)
 
 General
 
@@ -40,6 +40,12 @@ Macros
 
 - `OptionSetRepresentation` macro will now generate `all` member
 - `CaseDetection` macro is removed
+
+### [6.5.1(100)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.1) — *2024 08 02*
+
+Other
+
+- Build issues caused by unsafe flags are fixed
 
 ### [6.5.0(99)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.0) — *2024 07 09*
 
