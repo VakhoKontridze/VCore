@@ -1,5 +1,11 @@
 # Change Log
 
+### 6.5.1
+
+Other
+
+- Build issues caused by unsafe flags are fixed
+
 ### [6.5.0(99)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.0) — *2024 07 09*
 
 Extra - XCode Templates
