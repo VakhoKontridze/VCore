@@ -4,19 +4,19 @@
 
 General
 
-- Minimum SDK version has been increased to `iOS` `16.0`, `macOS` `13.0`, `tvOS` `16.0`, and `watchOS` `9.0`
-- Minimum `Swift` language version has been increased to `6.0`
-- Previously deprecated symbols have been removed
+- Minimum SDK version is increased to `iOS` `16.0`, `macOS` `13.0`, `tvOS` `16.0`, and `watchOS` `9.0`
+- Minimum `Swift` language version is increased to `6.0`
+- Previously deprecated symbols are removed
 
 Views
 
-- `HVStack` has been removed, as it's obsoleted by `Layout`
+- `HVStack` is removed, as it's obsoleted by `Layout`
 - `View.navigationLink(isActive:destination)` is removed, as it's obsoleted by `View.navigationDestination(isPresented:destination:)`
 
 Models
 
 - `AbsoluteFractionMeasurement` is added, that represents absolute or fractional values
-- `RectCorner` has been removed, as it's obsoleted by `View.clipShape(.rect(...))` and `UnevenRoundedRectangle`
+- `RectCorner` is removed, as it's obsoleted by `View.clipShape(.rect(...))` and `UnevenRoundedRectangle`
 
 Services and Managers
 
@@ -32,8 +32,8 @@ Extensions
 
 - `RectangleCornerRadii` initializers are added, that initialize `RectangleCornerRadii` with various configurations
 - `View.dynamicTypeSize(type:)` method is added, that sets `DynamicTypeSize` based on `DynamicTypeSizeType`.
-- `View.cornerRadius(_:corners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
-- `View.cornerRadius(_:uiCorners:)` has been removed, as it's obsoleted by `UnevenRoundedRectangle`
+- `View.cornerRadius(_:corners:)` is removed, as it's obsoleted by `UnevenRoundedRectangle`
+- `View.cornerRadius(_:uiCorners:)` is removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `EnvironmentValues.safeAreaInsets` is removed
 
 Macros
@@ -62,7 +62,7 @@ Services and Managers
 Macros
 
 - `CKGCodingKey` is renamed to `CKGProperty`
-- `CKGCodingKeyIgnored` macro has been removed. `CodingKeysGeneration` macro will ignore all properties not marked with `CKGProperty`.
+- `CKGCodingKeyIgnored` macro is removed. `CodingKeysGeneration` macro will ignore all properties not marked with `CKGProperty`.
 - `accessLevelModifier` parameter will now be inherited from type, instead of defaulting to `internal` in `CaseDetection`, `CodingKeysGeneration`, `MemberwiseInitializable`, and `OptionSetRepresentation`
 
 ### [6.3.0(97)](https://github.com/VakhoKontridze/VCore/releases/tag/6.3.0) — *2024 05 23*
@@ -138,7 +138,7 @@ General
 
 - Package now partially supports `visionOS` `1.0`
 - Colors are overhauled to better support other platforms
-- Previously deprecated symbols have been removed
+- Previously deprecated symbols are removed
 
 Views
 
@@ -165,7 +165,7 @@ Services and Managers - Localization Manager
 
 Helpers
 
-- JSON type casting helpers have been removed due to ambiguous API
+- JSON type casting helpers are removed due to ambiguous API
 
 Extensions
 
@@ -180,7 +180,7 @@ Extensions
 
 Global Functions
 
-- `VCoreLogError(...)` and `VCoreLogWarning(...)` functions have been removed in favor of native `Logger` API
+- `VCoreLogError(...)` and `VCoreLogWarning(...)` functions are removed in favor of native `Logger` API
 
 - Due to ambiguous API, `color(_:hex:)` macro (with `String`) will no longer accept non-`6` digit code, and instead would take `opacity` parameter
 
@@ -290,9 +290,9 @@ Extensions
 
 General
 
-- Minimum SDK version has been increased to `iOS` `15.0`, `macOS` `12.0`, `tvOS` `15.0`, and `watchOS` `8.0`
-- Minimum `Swift` language version has been increased to `5.9`
-- Previously deprecated symbols have been removed
+- Minimum SDK version is increased to `iOS` `15.0`, `macOS` `12.0`, `tvOS` `15.0`, and `watchOS` `8.0`
+- Minimum `Swift` language version is increased to `5.9`
+- Previously deprecated symbols are removed
 
 Views
 
@@ -330,7 +330,7 @@ Services and Managers - Presentation Host
 
 - Presentation Host now handles keyboard responsiveness by offering `KeyboardResponsivenessStrategy`
 - Presentation Host can now present modals, if `isPresented` is set to `true` during the `State` initialization
-- `presentationHostGeometryReaderSize` and `presentationHostGeometryReaderSafeAreaInsets` values have been added to Presentation Host's environment for accurately reading modal's size and safe area insets without `UIScreen.main`
+- `presentationHostGeometryReaderSize` and `presentationHostGeometryReaderSafeAreaInsets` values are added to Presentation Host's environment for accurately reading modal's size and safe area insets without `UIScreen.main`
 
 Services and Managers - JSON Encoder Service
 
@@ -467,7 +467,7 @@ Extensions
 
 Extra - XCode Templates
 
-- XCode templates have been revised to allow for better naming
+- XCode templates are revised to allow for better naming
 
 ### [4.8.4(79)](https://github.com/VakhoKontridze/VCore/releases/tag/4.8.4) — *2023 04 24*
 
@@ -511,7 +511,7 @@ Extensions
 
 General
 
-- Minimum `Swift` language version has been increased to `5.8`
+- Minimum `Swift` language version is increased to `5.8`
 
 Views
 
@@ -602,7 +602,7 @@ Extensions
 - `Numeric.withOppositeSign()` and `Numeric.withOppositeSign(if:)` methods are added
 - `Range.reversedArray(if:)` and `ClosedRange.reversedArray(if:)` methods are added returns `Array` with reversed elements on a condition
 - `clamp` and `clamped` methods now support `BinaryInteger`
-- Half-open range clamped methods have been restricted to `BinaryInteger`s
+- Half-open range clamped methods are restricted to `BinaryInteger`s
 
 ### [4.4.1(70)](https://github.com/VakhoKontridze/VCore/releases/tag/4.4.1) — *2023 02 10*
 
@@ -711,8 +711,8 @@ Services and Managers
 
 General
 
-- Minimum `Swift` language version has been increased to `5.7`
-- Previously deprecated symbols have been removed
+- Minimum `Swift` language version is increased to `5.7`
+- Previously deprecated symbols are removed
 
 Views
 
@@ -951,7 +951,7 @@ Views
 
 Helpers
 
-- `UIView` helper `NSLayoutConstraint` API has been updated
+- `UIView` helper `NSLayoutConstraint` API is updated
 
 Extensions
 
@@ -1175,7 +1175,7 @@ Helpers
 Extensions
 
 - `UIApplication.rootViewController` and `UIApplication.rootView` properties are added to complement `UIApplication.rootWindow`
-- `UIRectCorner` has been extended to support additional corners
+- `UIRectCorner` is extended to support additional corners
 
 Extra - XCode Templates
 
@@ -1271,8 +1271,8 @@ General
 
 - Framework is migrated from `XCFramework` to `Swift` Package
 - Package now partially supports `macOS` `10.15`, `tvOS` `13.0`, and `watchOS` `6.0`
-- Minimum `Swift` language version has been increased to `5.6`
-- Previously deprecated symbols have been removed
+- Minimum `Swift` language version is increased to `5.6`
+- Previously deprecated symbols are removed
 
 Services and Managers
 
@@ -1394,8 +1394,8 @@ Extra - XCode Templates
 
 General
 
-- Minimum SDK version has been decreased to `iOS` `13.0`
-- Previously deprecated symbols have been removed
+- Minimum SDK version is decreased to `iOS` `13.0`
+- Previously deprecated symbols are removed
 
 Views
 
