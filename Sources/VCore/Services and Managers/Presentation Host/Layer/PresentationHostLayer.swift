@@ -122,11 +122,12 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
                 $0
                     .offset(y: -keyboardObserver.offset)
                     .animation(keyboardObserver.animation, value: keyboardObserver.offset)
+                    .withDisabledKeyboardResponsiveness()
 #else
                 $0
+                    .ignoresSafeArea()
 #endif
             })
-            .withDisabledKeyboardResponsiveness()
         }
     }
 
