@@ -14,7 +14,7 @@ final class AbsoluteFractionMeasurementTests: XCTestCase {
     func testPointsConversion() {
         let measurement: AbsoluteFractionMeasurement = .absolute(300)
 
-        let value: CGFloat = measurement.toFractions(dimension: 600)
+        let value: CGFloat = measurement.toFraction(dimension: 600)
 
         XCTAssertEqual(value, 0.5)
     }
