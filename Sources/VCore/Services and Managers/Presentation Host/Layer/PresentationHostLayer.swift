@@ -93,52 +93,54 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
             )
     }
 
+    @ViewBuilder
     private var layerView: some View {
-        ZStack(content: {
-            dimmingView
-            modalsView
-        })
-        .applyModifier({ view in
-            switch uiModel.frame {
-            case .fixed(let size, let alignment, let offset):
-                ZStack(content: {
+        if let topMostModal: ModalData = modals.last { // Same as checking `!modals.isEmpty`
+            ZStack(content: {
+                dimmingView(topMostModal: topMostModal)
+                modalsView
+            })
+            .applyModifier({ view in
+                switch uiModel.frame {
+                case .fixed(let size, let alignment, let offset):
+                    ZStack(content: {
+                        view
+                            .frame(size: size)
+                            .offset(offset)
+                    })
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
+
+                case .infinite:
                     view
-                        .frame(size: size)
-                        .offset(offset)
-                })
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                }
+            })
 
-            case .infinite:
-                view
-                    .frame(maxWidth: .infinity, maxHeight: .infinity)
-            }
-        })
-
-        // Must be written last
-        .applyModifier({
+            // Must be written last
+            .applyModifier({
 #if os(iOS)
-            $0
-                .offset(y: -keyboardObserver.offset)
-                .animation(keyboardObserver.animation, value: keyboardObserver.offset)
+                $0
+                    .offset(y: -keyboardObserver.offset)
+                    .animation(keyboardObserver.animation, value: keyboardObserver.offset)
 #else
-            $0
+                $0
 #endif
-        })
-        .ignoresSafeArea()
+            })
+            .withDisabledKeyboardResponsiveness()
+        }
     }
 
-    @ViewBuilder
-    private var dimmingView: some View {
-        if let topMostModal: ModalData = modals.last { // Same as checking `!modals.isEmpty`
-            uiModel.dimmingViewColor
-                .contentShape(.rect)
-                .allowsHitTesting(uiModel.dimmingViewTapAction.allowsHitTesting)
-                .onTapGesture(perform: {
-                    if uiModel.dimmingViewTapAction == .sendActionToTopmostModal {
-                        topMostModal.presentationMode.dimmingViewTapActionSubject.send()
-                    }
-                })
-        }
+    private func dimmingView(
+        topMostModal: ModalData
+    ) -> some View {
+        uiModel.dimmingViewColor
+            .contentShape(.rect)
+            .allowsHitTesting(uiModel.dimmingViewTapAction.allowsHitTesting)
+            .onTapGesture(perform: {
+                if uiModel.dimmingViewTapAction == .sendActionToTopmostModal {
+                    topMostModal.presentationMode.dimmingViewTapActionSubject.send()
+                }
+            })
     }
 
     private var modalsView: some View {

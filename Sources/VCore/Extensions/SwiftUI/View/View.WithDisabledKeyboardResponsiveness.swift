@@ -55,6 +55,7 @@ private struct KeyboardResponsivenessDisablingView<Content>: UIViewControllerRep
     // MARK: View Controller Representable
     func makeUIViewController(context: Context) -> some UIViewController {
         let hostingController: UIHostingController = .init(rootView: content())
+        hostingController.view.backgroundColor = .clear
         hostingController.overrideBehaviors([.disablesSafeAreaInsets, .disablesKeyboardAvoidance])
 
         DispatchQueue.main.async(execute: { self.hostingController = hostingController })
