@@ -12,6 +12,23 @@ import Combine
 
 // MARK: - Keyboard Observer
 /// Object that observes changes in keyboard frame.
+///
+///     @StateObject private var keyboardObserver: KeyboardObserver = .init()
+///     @State private var text: String = ""
+///
+///     var body: some View {
+///         ZStack(content: {
+///             TextField("", text: $text)
+///                 .textFieldStyle(.roundedBorder)
+///                 .padding()
+///         })
+///         .frame(maxHeight: .infinity, alignment: .bottom)
+///
+///         .offset(y: -keyboardObserver.offset)
+///         .animation(keyboardObserver.animation, value: keyboardObserver.offset)
+///         .withDisabledKeyboardResponsiveness(regions: .keyboard)
+///     }
+///
 @available(tvOS, unavailable)
 @available(visionOS, unavailable)
 public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Convert to `Observable`
@@ -22,9 +39,18 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
     /// Offset.
     @Published private(set) public var offset: CGFloat = 0
 
-    // MARK: Properties - Cancellables
-    private var debounceTimer: Timer?
+    // `UIResponder.keyboardWillShowNotification` is usually called twice, as input accessory view is attached later.
+    // During animations, `offset` is modified. But if event fires immediately second time, calculation will be invalid.
+    // To combat this, a debouncing, delayed timer can be used to animate offset using `withAnimation(_:_:)`. But, it's not ideal UX-wise.
+    // Additionally, `withAnimation(_:_:)` doesn't work properly with `offset(x:y:)` modifier, which is needed for keyboard avoidance.
+    // Both of this problems can be fixed by using a cached, stable offset, and animation view using `animation(_:value:)` modifier.
+    private var offsetStable: CGFloat = 0
 
+    // MARK: Properties - Animation
+    /// Animation.
+    @Published private(set) public var animation: Animation? = SystemKeyboardInfo().toSwiftUIAnimation
+
+    // MARK: Properties - Cancellables
     private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: Initializers
@@ -40,38 +66,12 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
     private func addSubscriptions() {
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillShowNotification)
-            .sink(receiveValue: { [weak self] notification in
-                guard let self else { return }
-
-                debounceTimer?.invalidate()
-                debounceTimer = Timer.scheduledTimer(
-                    withTimeInterval: uiModel.appearAnimationDebounceDelay,
-                    repeats: false,
-                    block: { [weak self] _ in
-                        guard let self else { return }
-
-                        keyboardWillShow(notification: notification)
-                    }
-                )
-            })
+            .sink(receiveValue: { [weak self] in self?.keyboardWillShow(notification: $0) })
             .store(in: &subscriptions)
 
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillHideNotification)
-            .sink(receiveValue: { [weak self] notification in
-                guard let self else { return }
-
-                debounceTimer?.invalidate()
-                debounceTimer = Timer.scheduledTimer(
-                    withTimeInterval: uiModel.disappearAnimationDebounceDelay,
-                    repeats: false,
-                    block: { [weak self] _ in
-                        guard let self else { return }
-
-                        keyboardWillHide(notification: notification)
-                    }
-                )
-            })
+            .sink(receiveValue: { [weak self] in self?.keyboardWillHide(notification: $0) })
             .store(in: &subscriptions)
     }
 
@@ -101,7 +101,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
                 guard let firstResponderView: UIView = window.childFirstResponderView else { return nil } // Will never fail
                 let viewGlobalBoundsMaxY: CGFloat = firstResponderView.convert(firstResponderView.bounds, to: firstResponderView.window).maxY
 
-                let currentOffset: CGFloat = self.offset
+                let currentOffset: CGFloat = self.offsetStable
 
                 guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return nil } // Will never fail
 
@@ -114,11 +114,12 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
         }()
 
         if let offset {
-            Task(operation: { @MainActor in
-                withAnimation(
-                    systemKeyboardInfo.toSwiftUIAnimation,
-                    { self.offset = offset }
-                )
+            self.offset = offset
+            self.animation = systemKeyboardInfo.toSwiftUIAnimation
+
+            Task(operation: {
+                try? await Task.sleep(seconds: systemKeyboardInfo.nonZeroAnimationDuration)
+                self.offsetStable = offset
             })
         }
     }
@@ -143,11 +144,12 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
         }()
 
         if let offset {
-            Task(operation: { @MainActor in
-                withAnimation(
-                    systemKeyboardInfo.toSwiftUIAnimation,
-                    { self.offset = offset }
-                )
+            self.offset = offset
+            self.animation = systemKeyboardInfo.toSwiftUIAnimation
+
+            Task(operation: {
+                try? await Task.sleep(seconds: systemKeyboardInfo.nonZeroAnimationDuration)
+                self.offsetStable = offset
             })
         }
     }
@@ -168,17 +170,19 @@ extension UIScreen {
 @available(tvOS, unavailable)
 extension SystemKeyboardInfo {
     fileprivate var toSwiftUIAnimation: Animation {
-        if animationOptions.contains(.curveLinear) {
-            Animation.linear(duration: nonZeroAnimationDuration)
-        } else if animationOptions.contains(.curveEaseIn) {
-            Animation.easeIn(duration: nonZeroAnimationDuration)
-        } else if animationOptions.contains(.curveEaseOut) {
-            Animation.easeOut(duration: nonZeroAnimationDuration)
-        } else if animationOptions.contains(.curveEaseInOut) {
-            Animation.easeInOut(duration: nonZeroAnimationDuration)
-        } else {
-            Animation.linear(duration: nonZeroAnimationDuration)
-        }
+//        if animationOptions.contains(.curveLinear) {
+//            Animation.linear(duration: nonZeroAnimationDuration)
+//        } else if animationOptions.contains(.curveEaseIn) {
+//            Animation.easeIn(duration: nonZeroAnimationDuration)
+//        } else if animationOptions.contains(.curveEaseOut) {
+//            Animation.easeOut(duration: nonZeroAnimationDuration)
+//        } else if animationOptions.contains(.curveEaseInOut) {
+//            Animation.easeInOut(duration: nonZeroAnimationDuration)
+//        } else {
+//            Animation.linear(duration: nonZeroAnimationDuration)
+//        }
+
+        Animation.easeOut(duration: nonZeroAnimationDuration) // Looks best
     }
 }
 

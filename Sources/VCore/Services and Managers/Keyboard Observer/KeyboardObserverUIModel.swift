@@ -19,18 +19,6 @@ public struct KeyboardObserverUIModel {
     /// Changing this property conditionally will cause view state to be reset.
     public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy = .default
 
-    /// Appear animation debounce delay. Set to `0.1`.
-    ///
-    /// System might call keyboard lifecycle methods in quick succession, which can result in janky animation.
-    /// This property debounces a scheduled animation, and retrieves updated parameters, if needed.
-    public var appearAnimationDebounceDelay: TimeInterval = 0.1
-
-    /// Disappear animation debounce delay. Set to `0`.
-    ///
-    /// System might call keyboard lifecycle methods in quick succession, which can result in janky animation.
-    /// This property debounces a scheduled animation, and retrieves updated parameters, if needed.
-    public var disappearAnimationDebounceDelay: TimeInterval = 0
-
     // MARK: Initializers
     /// Initializes UI model with default values.
     public init() {}

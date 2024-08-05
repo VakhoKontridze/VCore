@@ -12,6 +12,13 @@ import Combine
 
 // MARK: - Device Orientation Observer (Observable Object)
 /// Observer that detects changes in device orientation.
+///
+///     @StateObject private var deviceOrientationObserver: DeviceOrientationObserverOO = .init()
+///
+///     var body: some View {
+///         Text(deviceOrientationObserver.deviceOrientation.isLandscape ? "Landscape" : "Portrait")
+///     }
+///
 public final class DeviceOrientationObserverOO: ObservableObject { // TODO: iOS 17.0 - Remove, as it's obsoleted
     // MARK: Properties
     /// The physical orientation of the device.

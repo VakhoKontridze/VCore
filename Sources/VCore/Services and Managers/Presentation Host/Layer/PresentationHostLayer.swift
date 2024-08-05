@@ -119,6 +119,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
 #if os(iOS)
             $0
                 .offset(y: -keyboardObserver.offset)
+                .animation(keyboardObserver.animation, value: keyboardObserver.offset)
 #else
             $0
 #endif

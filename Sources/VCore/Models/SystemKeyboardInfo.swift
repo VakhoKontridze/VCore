@@ -26,7 +26,7 @@ public struct SystemKeyboardInfo {
     // MARK: Initializers
     /// Initializes `SystemKeyboardInfo` with parameters.
     public init(
-        frame: CGRect,
+        frame: CGRect?,
         animationDuration: TimeInterval,
         animationOptions: UIView.AnimationOptions
     ) {
@@ -34,19 +34,50 @@ public struct SystemKeyboardInfo {
         self.animationDuration = animationDuration
         self.animationOptions = animationOptions
     }
-    
+
+    init() {
+        self.init(
+            frame: nil,
+            animationDuration: Self.defaultAnimationDuration,
+            animationOptions: Self.defaultAnimationOptions
+        )
+    }
+
     /// Initializes `SystemKeyboardInfo` with `Notification`.
-    public init(notification: Notification) {
-        self.frame =
-            notification.userInfo?.rect(key: UIResponder.keyboardFrameEndUserInfoKey)
-        
-        self.animationDuration =
-            notification.userInfo?.double(key: UIResponder.keyboardAnimationDurationUserInfoKey) ??
-            Self.defaultAnimationDuration
-        
-        self.animationOptions =
-            (notification.userInfo?.uInt(key: UIResponder.keyboardAnimationCurveUserInfoKey)).map({ UIView.AnimationOptions(rawValue: $0) }) ??
-            Self.defaultAnimationOptions
+    public init(
+        notification: Notification
+    ) {
+        self.frame = {
+            guard
+                let rect: CGRect = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? CGRect
+            else {
+                return nil
+            }
+
+            return rect
+        }()
+
+        self.animationDuration = {
+            guard
+                let timeInterval: TimeInterval = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? TimeInterval
+            else {
+                return Self.defaultAnimationDuration
+            }
+
+            return timeInterval
+        }()
+
+        self.animationOptions = {
+            guard
+                let uInt: UInt = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt
+            else {
+                return Self.defaultAnimationOptions
+            }
+
+            let animationOptions: UIView.AnimationOptions = .init(rawValue: uInt)
+
+            return animationOptions
+        }()
     }
     
     // MARK: Default Values
@@ -58,7 +89,7 @@ public struct SystemKeyboardInfo {
     public static var defaultAnimationDuration: TimeInterval { 0.25 }
     
     /// Default animation options. Set to `curveEaseInOut`.
-    public static var defaultAnimationOptions: UIView.AnimationOptions { .init(rawValue: 7) }
+    public static var defaultAnimationOptions: UIView.AnimationOptions { .curveEaseInOut }
 
     // MARK: Other Values
     /// Non-zero animation duration.
@@ -71,21 +102,6 @@ public struct SystemKeyboardInfo {
         } else {
             Self.defaultAnimationDuration
         }
-    }
-}
-
-// MARK: - Helpers
-extension Dictionary where Key == AnyHashable, Value == Any {
-    fileprivate func uInt(key: String) -> UInt? {
-        (self[key] as? NSNumber)?.uintValue
-    }
-    
-    fileprivate func double(key: String) -> Double? {
-        (self[key] as? NSNumber)?.doubleValue
-    }
-    
-    fileprivate func rect(key: String) -> CGRect? {
-        (self[key] as? NSValue)?.cgRectValue
     }
 }
 

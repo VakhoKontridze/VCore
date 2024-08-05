@@ -12,6 +12,13 @@ import Combine
 
 // MARK: - Device Orientation Observer
 /// Observer that detects changes in device orientation.
+///
+///     @State private var deviceOrientationObserver: DeviceOrientationObserver = .init()
+///
+///     var body: some View {
+///         Text(deviceOrientationObserver.deviceOrientation.isLandscape ? "Landscape" : "Portrait")
+///     }
+///
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 @Observable
 public final class DeviceOrientationObserver {

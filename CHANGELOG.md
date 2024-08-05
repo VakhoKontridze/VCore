@@ -32,6 +32,7 @@ Extensions
 
 - `RectangleCornerRadii` initializers are added, that initialize `RectangleCornerRadii` with various configurations
 - `View.dynamicTypeSize(type:)` method is added, that sets `DynamicTypeSize` based on `DynamicTypeSizeType`.
+- `View.withDisabledKeyboardResponsiveness(regions:edges:)` method is added, that disables keyboard avoidance using `UIHostingController.overrideBehaviors(_:)` API
 - `View.cornerRadius(_:corners:)` is removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `View.cornerRadius(_:uiCorners:)` is removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `EnvironmentValues.safeAreaInsets` is removed
