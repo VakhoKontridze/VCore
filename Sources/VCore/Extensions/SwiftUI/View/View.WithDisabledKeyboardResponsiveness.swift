@@ -11,7 +11,7 @@ import SwiftUI
 
 // MARK: - View with Disabled Keyboard Responsiveness
 extension View {
-    /// Disables keyboard avoidance using `UIHostingController.overrideBehaviors(_:)` API.
+    /// Disables keyboard responsiveness using `UIHostingController.overrideBehaviors(_:)` API.
     ///
     ///     @StateObject private var keyboardObserver: KeyboardObserver = .init()
     ///     @State private var text: String = ""
