@@ -24,6 +24,7 @@ extension View {
     ///         })
     ///         .frame(maxHeight: .infinity, alignment: .bottom)
     ///
+    ///         // Must be written last
     ///         .offset(y: -keyboardObserver.offset)
     ///         .animation(keyboardObserver.animation, value: keyboardObserver.offset)
     ///         .withDisabledKeyboardResponsiveness(regions: .keyboard)
