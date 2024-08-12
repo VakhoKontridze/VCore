@@ -50,6 +50,9 @@ let package: Package = .init(
             exclude: [
                 "../../Documentation",
                 "../../Extra"
+            ],
+            resources: [
+                .process("Resources")
             ]
         ),
         .testTarget(

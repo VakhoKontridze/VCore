@@ -1,6 +1,6 @@
 # Change Log
 
-### 7.0.0(101)
+### 7.0.0(102)
 
 General
 
@@ -41,6 +41,12 @@ Macros
 
 - `OptionSetRepresentation` macro will now generate `all` member
 - `CaseDetection` macro is removed
+
+### [6.5.2(101)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.2) — *2024 08 12*
+
+Other
+
+- Privacy Manifest is added
 
 ### [6.5.1(100)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.1) — *2024 08 02*
 
