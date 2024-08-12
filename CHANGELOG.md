@@ -1,5 +1,11 @@
 # Change Log
 
+### 6.5.2(101)
+
+Other
+
+- Privacy Manifest is added
+
 ### [6.5.1(100)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.1) — *2024 08 02*
 
 Other
