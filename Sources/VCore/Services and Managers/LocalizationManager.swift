@@ -112,15 +112,16 @@ public final class LocalizationManager { // TODO: iOS 17.0 - Convert to `Observa
     }
 
     private lazy var _currentLocale: Locale = {
-        guard
+        if
             let _currentLocaleUserDefaults,
             validateLocaleIsAdded(_currentLocaleUserDefaults)
-        else {
+        {
+            return _currentLocaleUserDefaults
+
+        } else {
             _currentLocaleUserDefaults = defaultLocale
             return defaultLocale
         }
-
-        return _currentLocaleUserDefaults
     }()
 
     /// Current `Locale`.
