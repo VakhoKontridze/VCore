@@ -52,7 +52,7 @@ Other
 
 Other
 
-- Build issues caused by unsafe flags are fixed
+- Build issue caused by unsafe flags in `Swift` settings is fixed
 
 ### [6.5.0(99)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.0) — *2024 07 09*
 
@@ -137,7 +137,7 @@ Macros
 
 Extra - XCode Templates
 
-- XCode templates now support Swift Packages
+- XCode templates now support `Swift` Packages
 
 ### [6.0.0(91)](https://github.com/VakhoKontridze/VCore/releases/tag/6.0.0) — *2024 02 18*
 
@@ -652,7 +652,7 @@ API
 
 Extra - Documentation
 
-- Swift style guide is added
+- `Swift` style guide is added
 
 Other
 
