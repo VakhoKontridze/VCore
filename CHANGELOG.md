@@ -26,7 +26,7 @@ Services and Managers - Presentation Host
 
 - Presentation Host API overhauled. It now works on overlay principle, and not modal `UIViewController` presentation.
 - Presentation Host API now supports all platforms
-- Configuration with interactive modal and pass through dimming view is not possible
+- Configuration with interactive modal and pass through dimming view is now possible
 
 Extensions
 
