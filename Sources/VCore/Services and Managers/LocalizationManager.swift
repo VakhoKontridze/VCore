@@ -12,7 +12,7 @@ import OSLog
 // MARK: - Localization Manager
 /// Object that manages localization without interfacing with identifiers and `UserDefaults`.
 ///
-/// You can localize `String`s with a simple extension:
+/// You can localize `String`s with a simple `extension`:
 ///
 ///     extension String {
 ///         var localized: String {

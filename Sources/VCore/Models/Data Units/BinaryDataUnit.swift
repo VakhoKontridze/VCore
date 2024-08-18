@@ -49,7 +49,7 @@ public enum BinaryDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, Ca
     public var id: Int { rawValue }
 }
 
-// MARK: - Bytes to Binary Data Unit
+// MARK: - Double + Binary Bytes Converted to Binary Data Unit
 extension Double {
     /// Converts bytes to binary data unit.
     ///

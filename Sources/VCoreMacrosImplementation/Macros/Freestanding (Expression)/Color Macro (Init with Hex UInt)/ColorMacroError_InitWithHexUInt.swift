@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Color Macro Error (Init with Hex UInt)
+// MARK: - Color Macro Error (Init with Hex U Int)
 struct ColorMacroError_InitWithHexUInt: Error, CustomStringConvertible {
     // MARK: Properties
     let description: String

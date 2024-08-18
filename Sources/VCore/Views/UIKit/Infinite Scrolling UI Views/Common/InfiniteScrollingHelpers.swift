@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Scroll Detection
+// MARK: - Infinte Scrolling Helpers
 extension UIScrollView {
     func didScrollToBottom(offset: CGFloat) -> Bool {
         guard contentOffset.y > 0 else { return false }

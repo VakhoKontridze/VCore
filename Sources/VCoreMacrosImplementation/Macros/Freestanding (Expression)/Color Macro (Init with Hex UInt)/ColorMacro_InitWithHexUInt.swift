@@ -10,7 +10,7 @@ import SwiftSyntax
 import SwiftSyntaxMacros
 import VCoreShared
 
-// MARK: - Color Macro (Init with Hex UInt)
+// MARK: - Color Macro (Init with Hex U Int)
 struct ColorMacro_InitWithHexUInt: ExpressionMacro {
     static func expansion(
         of node: some FreestandingMacroExpansionSyntax,

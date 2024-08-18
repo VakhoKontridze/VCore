@@ -49,7 +49,7 @@ public enum DecimalDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, C
     public var id: Int { rawValue }
 }
 
-// MARK: - Bytes to Decimal Data Unit
+// MARK: - Double + Decimal Bytes Converted to Decimal Data Unit
 extension Double {
     /// Converts bytes to decimal data unit.
     ///

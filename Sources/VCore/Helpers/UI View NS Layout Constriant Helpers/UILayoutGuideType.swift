@@ -32,11 +32,11 @@ public enum UILayoutGuideType {
     /// such as `UITrackingLayoutGuide` and `UIKeyboardLayoutGuide`.
     ///
     ///     extension UIView {
-    ///         var someOtherLayoutGuide: UILayoutGuide { ... }
+    ///         var someLayoutGuide: UILayoutGuide { ... }
     ///     }
     ///
     ///     extension UILayoutGuideType {
-    ///         static var someOther: Self { .custom({ $0.someOtherLayoutGuide })
+    ///         static var someLayoutGuide: Self { .custom({ $0.someLayoutGuide })
     ///     }
     ///
     ///     view.constraintLeading(
