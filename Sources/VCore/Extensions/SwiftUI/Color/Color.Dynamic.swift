@@ -20,11 +20,11 @@ extension Color {
         _ dark: Color
     ) -> Self {
 #if canImport(UIKit)
-        .init(
+        Color(
             uiColor: UIColor.dynamic(UIColor(light), UIColor(dark))
         )
 #elseif canImport(AppKit)
-        .init(
+        Color(
             nsColor: NSColor.dynamic(NSColor(light), NSColor(dark))
         )
 #endif

@@ -5,11 +5,11 @@
 //  Created by Vakhtang Kontridze on 06.08.24.
 //
 
-#if canImport(UIKit) && !os(watchOS)
-
 import SwiftUI
 
 // MARK: - View with Disabled Keyboard Responsiveness
+@available(macOS, unavailable)
+@available(watchOS, unavailable)
 extension View {
     /// Disables keyboard responsiveness using `UIHostingController.overrideBehaviors(_:)` API.
     ///
@@ -30,14 +30,21 @@ extension View {
     ///         .withDisabledKeyboardResponsiveness(regions: .keyboard)
     ///     }
     ///
+    @ViewBuilder
     public func withDisabledKeyboardResponsiveness(
         regions: SafeAreaRegions = .all,
         edges: Edge.Set = .all
     ) -> some View {
+#if canImport(UIKit) && !os(watchOS)
         KeyboardResponsivenessDisablingView(content: { self })
             .ignoresSafeArea(regions, edges: edges)
+#else
+        fatalError()
+#endif
     }
 }
+
+#if canImport(UIKit) && !os(watchOS)
 
 // MARK: - Keyboard Responsiveness Disabling View
 private struct KeyboardResponsivenessDisablingView<Content>: UIViewControllerRepresentable where Content: View {

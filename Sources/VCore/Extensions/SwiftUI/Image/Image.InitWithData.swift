@@ -18,6 +18,7 @@ extension Image {
     ///
     public init(data: Data) {
 #if canImport(UIKit)
+
         guard
             let uiImage: UIImage = .init(data: data)
         else {
@@ -26,7 +27,9 @@ extension Image {
         }
         
         self.init(uiImage: uiImage)
+
 #elseif canImport(AppKit)
+
         guard
             let nsImage: NSImage = .init(data: data)
         else {
@@ -35,6 +38,7 @@ extension Image {
         }
         
         self.init(nsImage: nsImage)
+
 #endif
     }
 }

@@ -47,6 +47,7 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
     
     // MARK: Initializers
 #if canImport(UIKit) && !os(watchOS)
+
     init(state: UIGestureRecognizer.State) {
         self = {
             switch state {
@@ -62,7 +63,9 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
             }
         }()
     }
+
 #elseif canImport(AppKit)
+
     init(state: NSGestureRecognizer.State) {
         self = {
             switch state {
@@ -78,5 +81,6 @@ public enum GestureBaseButtonGestureState: Int, CaseIterable {
             }
         }()
     }
+    
 #endif
 }

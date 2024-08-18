@@ -135,8 +135,9 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `loading` and delegate method is called.
     /// Network call or persistent storage fetch request can be made.
     /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
-    open var paginationState: PaginationState = .canPaginate { didSet { setActivityIndicatorState() } }
-    
+    open var paginationState: PaginationState = .canPaginate 
+        { didSet { setActivityIndicatorState() } }
+
     /// Offset that needs to be dragged vertically up for pagination to occur. Set to `20`.
     open var paginationOffset: CGFloat = 20
     

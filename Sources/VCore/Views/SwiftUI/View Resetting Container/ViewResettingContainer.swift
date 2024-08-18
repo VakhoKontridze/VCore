@@ -74,8 +74,6 @@ public struct ViewResettingContainer<Content>: View where Content: View {
 // MARK: - Preview
 #if DEBUG
 
-#if !(os(macOS) || os(watchOS) || os(visionOS))
-
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
     struct ContentView: View {
@@ -90,21 +88,21 @@ public struct ViewResettingContainer<Content>: View where Content: View {
         @Environment(\.viewResetter) private var viewResetter: ViewResetter!
 
         var body: some View {
-            ScrollView(content: {
-                Color.accentColor
-                    .frame(height: UIScreen.main.bounds.size.height)
+            GeometryReader(content: { proxy in
+                ScrollView(content: {
+                    Color.accentColor
+                        .frame(height: proxy.size.height)
 
-                Button(
-                    "Reset",
-                    action: viewResetter.trigger
-                )
+                    Button(
+                        "Reset",
+                        action: viewResetter.trigger
+                    )
+                })
             })
         }
     }
 
     return ContentView()
 })
-
-#endif
 
 #endif

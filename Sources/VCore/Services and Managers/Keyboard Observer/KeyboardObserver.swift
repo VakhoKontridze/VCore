@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 25.07.24.
 //
 
-#if canImport(UIKit) && !os(watchOS)
-
 import SwiftUI
 import Combine
 
@@ -30,7 +28,9 @@ import Combine
 ///         .withDisabledKeyboardResponsiveness(regions: .keyboard)
 ///     }
 ///
+@available(macOS, unavailable)
 @available(tvOS, unavailable)
+@available(watchOS, unavailable)
 @available(visionOS, unavailable)
 public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Convert to `Observable`
     // MARK: Properties - UI Model
@@ -49,7 +49,13 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
 
     // MARK: Properties - Animation
     /// Animation.
-    @Published private(set) public var animation: Animation? = SystemKeyboardInfo().toSwiftUIAnimation
+    @Published private(set) public var animation: Animation? = {
+#if canImport(UIKit) && !os(watchOS)
+        SystemKeyboardInfo().toSwiftUIAnimation
+#else
+        fatalError() // Not supported
+#endif
+    }()
 
     // MARK: Properties - Cancellables
     private var subscriptions: Set<AnyCancellable> = []
@@ -65,6 +71,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
 
     // MARK: Subscriptions
     private func addSubscriptions() {
+#if canImport(UIKit) && !os(watchOS)
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillShowNotification)
             .sink(receiveValue: { [weak self] in self?.keyboardWillShow(notification: $0) })
@@ -74,9 +81,11 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
             .publisher(for: UIResponder.keyboardWillHideNotification)
             .sink(receiveValue: { [weak self] in self?.keyboardWillHide(notification: $0) })
             .store(in: &subscriptions)
+#endif
     }
 
     // MARK: Keyboard Management
+#if canImport(UIKit) && !os(watchOS)
     private func keyboardWillShow(notification: Notification) {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
         
@@ -154,9 +163,12 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
             })
         }
     }
+#endif
 }
 
 // MARK: - Helpers
+#if canImport(UIKit) && !os(watchOS)
+
 @available(visionOS, unavailable)
 extension UIScreen {
     fileprivate var window: UIWindow? {

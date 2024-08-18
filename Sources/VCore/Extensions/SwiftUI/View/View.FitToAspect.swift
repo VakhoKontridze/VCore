@@ -36,6 +36,7 @@ extension View {
     let size: CGSize = .init(width: 150, height: 200)
 
 #if canImport(UIKit)
+
     guard
         let uiImage: UIImage = .init(
             size: size,
@@ -51,7 +52,9 @@ extension View {
         return EmptyView()
     }
     let image: Image = .init(uiImage: uiImage)
+
 #elseif canImport(AppKit)
+
     guard
         let nsImage: NSImage = .init(
             size: size,
@@ -61,6 +64,7 @@ extension View {
         return EmptyView()
     }
     let image: Image = .init(nsImage: nsImage)
+
 #endif
 
     return image

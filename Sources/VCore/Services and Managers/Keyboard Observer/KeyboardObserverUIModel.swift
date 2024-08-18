@@ -5,13 +5,14 @@
 //  Created by Vakhtang Kontridze on 25.07.24.
 //
 
-#if canImport(UIKit) && !os(watchOS)
-
 import SwiftUI
 
 // MARK: - Keyboard Observer UI Model
 /// Model that describes UI.
+@available(macOS, unavailable)
 @available(tvOS, unavailable)
+@available(watchOS, unavailable)
+@available(visionOS, unavailable)
 public struct KeyboardObserverUIModel {
     // MARK: Properties
     /// Keyboard responsiveness strategy. Set to `default`.
@@ -51,5 +52,3 @@ public struct KeyboardObserverUIModel {
         }
     }
 }
-
-#endif
