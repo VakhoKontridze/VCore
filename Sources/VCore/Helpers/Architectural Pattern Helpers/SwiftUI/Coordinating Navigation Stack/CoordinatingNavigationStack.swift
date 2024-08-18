@@ -86,59 +86,57 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
 // MARK: - Preview
 #if DEBUG
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    ContentView()
-})
-
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ContentView: View {
-    var body: some View {
-        CoordinatingNavigationStack(root: {
-            HomeView()
-        })
-    }
-}
-
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct HomeView: View {
-    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
-
-    var body: some View {
-        Button(
-            "Navigate",
-            action: { navigationStackCoordinator.path.append(DestinationParameters()) }
-        )
-        .applyModifier({
-#if !(os(macOS) || os(tvOS))
-            $0.inlineNavigationTitle("Home")
-#else
-            $0
-#endif
-        })
-        .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
-    }
-}
-
-private struct DestinationParameters: Hashable {}
-
-private struct DestinationView: View {
-    private let parameters: DestinationParameters
-
-    init(parameters: DestinationParameters) {
-        self.parameters = parameters
+    struct ContentView: View {
+        var body: some View {
+            CoordinatingNavigationStack(root: {
+                HomeView()
+            })
+        }
     }
 
-    var body: some View {
-        Text("Destination")
+    struct HomeView: View {
+        @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
+
+        var body: some View {
+            Button(
+                "Navigate",
+                action: { navigationStackCoordinator.path.append(DestinationParameters()) }
+            )
             .applyModifier({
 #if !(os(macOS) || os(tvOS))
-                $0.inlineNavigationTitle("Destination")
+                $0.inlineNavigationTitle("Home")
 #else
                 $0
 #endif
             })
+            .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
+        }
     }
-}
+
+    struct DestinationParameters: Hashable {}
+
+    struct DestinationView: View {
+        private let parameters: DestinationParameters
+
+        init(parameters: DestinationParameters) {
+            self.parameters = parameters
+        }
+
+        var body: some View {
+            Text("Destination")
+                .applyModifier({
+#if !(os(macOS) || os(tvOS))
+                    $0.inlineNavigationTitle("Destination")
+#else
+                    $0
+#endif
+                })
+        }
+    }
+
+    return ContentView()
+})
 
 #endif

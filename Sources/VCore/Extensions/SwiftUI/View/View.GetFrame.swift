@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - View Get Frame
 extension View {
-    /// Retrieves bounds from `View`.
+    /// Retrieves `CGRect` from `View`.
     ///
     ///     @State private var frame: CGRect = .init()
     ///
@@ -18,9 +18,8 @@ extension View {
     ///             .getFrame(in: .global, { frame = $0 })
     ///     }
     ///
-    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
     public func getFrame(
-        in coordinateSpace: some CoordinateSpaceProtocol,
+        in coordinateSpace: CoordinateSpace,
         _ action: @escaping (CGRect) -> Void
     ) -> some View {
         self
@@ -37,7 +36,7 @@ extension View {
             })
     }
 
-    /// Retrieves `CGRect` from `View`.
+    /// Retrieves bounds from `View`.
     ///
     ///     @State private var frame: CGRect = .init()
     ///
@@ -46,8 +45,9 @@ extension View {
     ///             .getFrame(in: .global, { frame = $0 })
     ///     }
     ///
-    public func getFrame( // TODO: iOS 17.0 - Remove, as it's obsoleted
-        in coordinateSpace: CoordinateSpace,
+    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+    public func getFrame(
+        in coordinateSpace: some CoordinateSpaceProtocol,
         _ action: @escaping (CGRect) -> Void
     ) -> some View {
         self

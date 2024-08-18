@@ -109,7 +109,7 @@ extension View {
     ///             )
     ///         }
     ///     }
-    ///     
+    ///
     public func presentationHost<Content>(
         layerID: String? = nil,
         id: String,
@@ -255,51 +255,50 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
 // MARK: - Preview
 #if DEBUG
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
-#Preview(body: {
-    ContentView()
-})
-
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ContentView: View {
-    @State private var isPresented: Bool = true
+#Preview(body: {
+    struct ContentView: View {
+        @State private var isPresented: Bool = true
 
-    var body: some View {
-        let backgroundColor: Color? = {
+        var body: some View {
+            let backgroundColor: Color? = {
 #if os(visionOS)
-            Color.clear
+                Color.clear
 #else
-            nil
+                nil
 #endif
-        }()
+            }()
 
-        let contentColor: Color = {
+            let contentColor: Color = {
 #if os(tvOS)
-            Color.blue
+                Color.blue
 #elseif os(watchOS)
-            Color.blue
+                Color.blue
 #else
-            Color.accentColor
+                Color.accentColor
 #endif
-        }()
+            }()
 
-        return ZStack(content: {
-            backgroundColor
+            return ZStack(content: {
+                backgroundColor
 
-            Button(
-                "Present",
-                action: { isPresented = true }
-            )
-            .someModal(
-                id: "some_modal",
-                isPresented: $isPresented,
-                content: { contentColor }
-            )
-        })
-        .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .presentationHostLayer()
+                Button(
+                    "Present",
+                    action: { isPresented = true }
+                )
+                .someModal(
+                    id: "some_modal",
+                    isPresented: $isPresented,
+                    content: { contentColor }
+                )
+            })
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .presentationHostLayer()
+        }
     }
-}
+
+    return ContentView()
+})
 
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension View {
@@ -309,7 +308,7 @@ extension View {
         isPresented: Binding<Bool>,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View
-        where Content: View
+    where Content: View
     {
         self
             .presentationHost(
@@ -330,7 +329,7 @@ extension View {
 private struct SomeModal<Content>: View where Content: View {
     @Environment(\.presentationHostContainerSize) private var containerSize: CGSize
     @Environment(\.presentationHostSafeAreaInsets) private var safeAreaInsets: EdgeInsets
-    
+
     @Environment(\.presentationHostPresentationMode) private var presentationMode: PresentationHostPresentationMode!
 
     @Binding private var isPresented: Bool

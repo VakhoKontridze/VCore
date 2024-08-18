@@ -129,21 +129,21 @@ extension UIViewController {
 // MARK: - Preview
 #if DEBUG
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    ViewController()
-})
+    final class ViewController: UIViewController, UIActivityIndicatorViewable {
+        private(set) lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
 
-private final class ViewController: UIViewController, UIActivityIndicatorViewable {
-    private(set) lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+        override func viewDidLoad() {
+            super.viewDidLoad()
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.addSubview(activityIndicator)
-        startActivityIndicatorAnimation()
+            view.addSubview(activityIndicator)
+            startActivityIndicatorAnimation()
+        }
     }
-}
+
+    return ViewController()
+})
 
 #endif
 

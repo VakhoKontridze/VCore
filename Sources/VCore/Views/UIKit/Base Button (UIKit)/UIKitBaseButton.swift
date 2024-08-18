@@ -211,7 +211,7 @@ open class UIKitBaseButton: UIView {
 
 #if !os(tvOS)
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: Move into macro when nested macro expansions are supported
 #Preview(body: {
     SomeButton(
         action: {},

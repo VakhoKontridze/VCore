@@ -205,84 +205,84 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 // MARK: - Preview
 #if DEBUG
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    ViewController()
-})
-
-private final class ViewController: 
-    UIViewController,
-    UICollectionViewDelegate, UICollectionViewDataSource
-{
-    private lazy var collectionView: UICollectionView = {
-        let layout: CarouselUICollectionViewFlowLayout = .init(
-            itemSize: .init(inset: inset, height: nil),
-            spacing: spacing
-        )
-
-        let collectionView: UICollectionView = .init(
-            frame: .zero,
-            collectionViewLayout: layout
-        )
-
-        collectionView.translatesAutoresizingMaskIntoConstraints = false
-
-        collectionView.showsHorizontalScrollIndicator = false
+    final class ViewController:
+        UIViewController,
+        UICollectionViewDelegate, UICollectionViewDataSource
+    {
+        private lazy var collectionView: UICollectionView = {
+            let layout: CarouselUICollectionViewFlowLayout = .init(
+                itemSize: .init(inset: inset, height: nil),
+                spacing: spacing
+            )
+            
+            let collectionView: UICollectionView = .init(
+                frame: .zero,
+                collectionViewLayout: layout
+            )
+            
+            collectionView.translatesAutoresizingMaskIntoConstraints = false
+            
+            collectionView.showsHorizontalScrollIndicator = false
 #if !os(tvOS)
-        collectionView.isPagingEnabled = false
+            collectionView.isPagingEnabled = false
 #endif
-
-        collectionView.delegate = self
-        collectionView.dataSource = self
-
-        collectionView.register(
-            UICollectionViewCell.self,
-            forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self)
-        )
-
-        return collectionView
-    }()
-
-    private let spacing: CGFloat = 20
-    private let inset: CGFloat = 40
-
-    private var data: [UIColor] = Array(repeating: [.red, .green, .blue], count: 3).flatMap { $0 }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
+            
+            collectionView.delegate = self
+            collectionView.dataSource = self
+            
+            collectionView.register(
+                UICollectionViewCell.self,
+                forCellWithReuseIdentifier: String(describing: UICollectionViewCell.self)
+            )
+            
+            return collectionView
+        }()
+        
+        private let spacing: CGFloat = 20
+        private let inset: CGFloat = 40
+        
+        private var data: [UIColor] = Array(repeating: [.red, .green, .blue], count: 3).flatMap { $0 }
+        
+        override func viewDidLoad() {
+            super.viewDidLoad()
+            
 #if !(os(tvOS) || os(watchOS))
-        view.backgroundColor = UIColor.systemBackground
+            view.backgroundColor = UIColor.systemBackground
 #endif
-
-        view.addSubview(collectionView)
-
-        NSLayoutConstraint.activate([
-            collectionView.constraintHeight(to: nil, constant: 100),
-            collectionView.constraintLeading(to: view),
-            collectionView.constraintTrailing(to: view),
-            collectionView.constraintCenterY(to: view)
-        ])
-
-        collectionView.reloadData()
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        data.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: UICollectionViewCell.self), for: indexPath)
-        cell.contentView.backgroundColor = data[indexPath.row]
-        return cell
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        if let carouselFlowLayout = collectionView.collectionViewLayout as? CarouselUICollectionViewFlowLayout {
-            print(carouselFlowLayout.indexOfCenterItem(inDeceleratedEndedScrollView: scrollView))
+            
+            view.addSubview(collectionView)
+            
+            NSLayoutConstraint.activate([
+                collectionView.constraintHeight(to: nil, constant: 100),
+                collectionView.constraintLeading(to: view),
+                collectionView.constraintTrailing(to: view),
+                collectionView.constraintCenterY(to: view)
+            ])
+            
+            collectionView.reloadData()
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+            data.count
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: UICollectionViewCell.self), for: indexPath)
+            cell.contentView.backgroundColor = data[indexPath.row]
+            return cell
+        }
+        
+        func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            if let carouselFlowLayout = collectionView.collectionViewLayout as? CarouselUICollectionViewFlowLayout {
+                print(carouselFlowLayout.indexOfCenterItem(inDeceleratedEndedScrollView: scrollView))
+            }
         }
     }
-}
+    
+    return ViewController()
+})
 
 #endif
 

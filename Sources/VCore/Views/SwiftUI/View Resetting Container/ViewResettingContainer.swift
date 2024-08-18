@@ -76,36 +76,34 @@ public struct ViewResettingContainer<Content>: View where Content: View {
 
 #if !(os(macOS) || os(watchOS) || os(visionOS))
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: iOS 17.0 - Move all type declaration within the macro
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    ContentView()
+    struct ContentView: View {
+        var body: some View {
+            ViewResettingContainer(content: {
+                ChildView()
+            })
+        }
+    }
+
+    struct ChildView: View {
+        @Environment(\.viewResetter) private var viewResetter: ViewResetter!
+
+        var body: some View {
+            ScrollView(content: {
+                Color.accentColor
+                    .frame(height: UIScreen.main.bounds.size.height)
+
+                Button(
+                    "Reset",
+                    action: viewResetter.trigger
+                )
+            })
+        }
+    }
+
+    return ContentView()
 })
-
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ContentView: View {
-    var body: some View {
-        ViewResettingContainer(content: {
-            ChildView()
-        })
-    }
-}
-
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-private struct ChildView: View {
-    @Environment(\.viewResetter) private var viewResetter: ViewResetter!
-
-    var body: some View {
-        ScrollView(content: {
-            Color.accentColor
-                .frame(height: UIScreen.main.bounds.size.height)
-
-            Button(
-                "Reset",
-                action: viewResetter.trigger
-            )
-        })
-    }
-}
 
 #endif
 
