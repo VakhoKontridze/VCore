@@ -24,7 +24,7 @@ import SwiftUI
 ///             Text("Lorem ipsum")
 ///                 .padding()
 ///         })
-///         .onSimultaneousTapGesture(perform: { ... })
+///         .onSimultaneousTapGesture(perform: ...)
 ///     }
 ///
 /// `TouchSensitiveContainer` optionally takes `action` parameters.

@@ -13,7 +13,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .onFirstAppear(perform: { ... })
+    ///             .onFirstAppear(perform: ...)
     ///     }
     ///
     public func onFirstAppear(

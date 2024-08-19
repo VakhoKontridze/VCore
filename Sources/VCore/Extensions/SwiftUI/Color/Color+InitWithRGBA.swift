@@ -5,10 +5,12 @@
 //  Created by Vakhtang Kontridze on 14.07.24.
 //
 
+// Internal use only
+
 import SwiftUI
 
 // MARK: - Color + Init with RGBA
-extension Color { // Internal use only
+extension Color {
     init(
         _ red: CGFloat,
         _ green: CGFloat,

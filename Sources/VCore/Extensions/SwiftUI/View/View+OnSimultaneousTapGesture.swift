@@ -13,7 +13,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         SomeViewWithExistingGestures()
-    ///             .onSimultaneousTapGesture(perform: { ... })
+    ///             .onSimultaneousTapGesture(perform: ...)
     ///     }
     ///
     public func onSimultaneousTapGesture(
