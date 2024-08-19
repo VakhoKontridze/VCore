@@ -33,6 +33,7 @@ Extensions
 - `RectangleCornerRadii` initializers are added, that initialize `RectangleCornerRadii` with various configurations
 - `View.dynamicTypeSize(type:)` method is added, that sets `DynamicTypeSize` based on `DynamicTypeSizeType`
 - `View.withDisabledKeyboardResponsiveness(regions:edges:)` method is added, that disables keyboard avoidance using `UIHostingController.overrideBehaviors(_:)` API
+- `UIViewController.dismissKeyboardOnOutsideTap` functionality is transferred to `UIView`
 - `View.cornerRadius(_:corners:)` is removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `View.cornerRadius(_:uiCorners:)` is removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `EnvironmentValues.safeAreaInsets` is removed
@@ -289,7 +290,7 @@ Extensions
 - `Array.appending(_:)` and `Array.appending(contentsOf:)` method are added, that return `Array` with elements appended at the end
 - `Array.prepending(_:)` and `Array.prepending(contentsOf:)` method are added, that return `Array` with elements appended at the beginning
 - `View.getNestedSize(_:)` method is added, that returns `CGSize` of the nested `View`
-- `View.eraseToAnyView()` method is added, that erases `View` type
+- `View.eraseToAnyView` method is added, that erases `View` type
 - `UIHostingController.overrideBehaviors(_:)` method is added, that overrides select behaviors
 - `Publisher.assignWeak(to:on:)` method is added, that assigns each element from `Publisher` to a property of an object with a weak retain cycle
 
@@ -372,7 +373,7 @@ Extensions
 - `View.getSafeAreaInsets(_:)` method is added that retrieves `EdgeInsets` from `View`
 - `View.getInterfaceOrientation(_:)` method is added that retrieves `UIInterfaceOrientation` from `View`
 - `UIApplication.sendResignFirstResponderAction` method is added
-- `Bool.toggled()` method is added that returns `Bool` with a toggled value
+- `Bool.toggled` method is added that returns `Bool` with a toggled value
 - Several `String` extensions are now exposed to `StringProtocol`
 - `Data.nonEmpty` property is added, that returns non-empty `Data`, or `nil`
 - `URLRequest.addHTTPHeaderFields(_:)`, `URLRequest.addHTTPHeaderFields(json:)`, and `URLRequest.addHTTPHeaderFields(object:)` methods are added, that add values to header fields
@@ -538,7 +539,7 @@ Models
 - `KeychainStorage` property wrapper no longer requires enclosing `class` to conform to `ObservableObject`
 - `projectedValue` is added to `Clamped` property wrapper
 - `projectedValue` is added to `OldValueCache` property wrapper
-- `reversed()` method is added to layout directions that returns reversed dimension
+- `reversed` method is added to layout directions that returns reversed dimension
 - `alignment` and `edge` are added to layout directions
 - `axis` is added to `LayoutDirectionOmni`
 - `withReversedLeftAndRightCorners(_:)` method is added to `RectCorner` that reversed left and right corners if condition is met
@@ -604,9 +605,9 @@ Models
 Extensions
 
 - `Collection.allMatch(_:)` method is added that matches pairs with predicate
-- `CGSize.withReversedDimensions()` and `CGSize.withReversedDimensions(if:)` methods are added
+- `CGSize.withReversedDimensions` and `CGSize.withReversedDimensions(if:)` methods are added
 - `Array.reversed(if:)` method is added that reverses elements on a condition
-- `Numeric.withOppositeSign()` and `Numeric.withOppositeSign(if:)` methods are added
+- `Numeric.withOppositeSign` and `Numeric.withOppositeSign(if:)` methods are added
 - `Range.reversedArray(if:)` and `ClosedRange.reversedArray(if:)` methods are added returns `Array` with reversed elements on a condition
 - `clamp` and `clamped` methods now support `BinaryInteger`
 - Half-open range clamped methods are restricted to `BinaryInteger`s
@@ -759,7 +760,7 @@ Helpers - Architectural Pattern Helpers
 Extensions
 
 - `NavigationPath.append(contentsOf:)` method is added
-- `NavigationPath.removeAll()` method is added
+- `NavigationPath.removeAll` method is added
 - `SwiftUIFirstAppearLifecycleManager` is removed
 - `CALayerCornerCurve` parameter is added to `UIView.roundCornersAndApplyShadow(cornerRadius:color:radius:offset)`
 - `View.fitToAspect(_:contentMode)` method is added
@@ -820,7 +821,7 @@ Helpers - Architectural Pattern Helpers
 Extensions
 
 - `Array.firstIndexAndElement(where:)` is expanded to `Collection`
-- `UIView.removeSubviews()` is renamed to `UIView.removeSubviewsFromSuperview()`
+- `UIView.removeSubviews` is renamed to `UIView.removeSubviewsFromSuperview`
 
 ### [3.18.4(57)](https://github.com/VakhoKontridze/VCore/releases/tag/3.18.4) — *2022 07 25*
 
@@ -871,7 +872,7 @@ Helpers - Architectural Pattern Helpers
 
 Extensions
 
-- `UIStackView.removeArrangedSubviewsFromSuperview()` is added
+- `UIStackView.removeArrangedSubviewsFromSuperview` is added
 
 ### [3.17.0(52)](https://github.com/VakhoKontridze/VCore/releases/tag/3.17.0) — *2022 07 23*
 
@@ -1000,7 +1001,7 @@ Views
 
 Extensions
 
-- `UIView.addSubviews(_:)` and `UIView.removeSubviews()` methods are added
+- `UIView.addSubviews(_:)` and `UIView.removeSubviews` methods are added
 - Issue with `UIStackView.addArrangedSubviews(_:)` is fixed
 - `UIStackView.addArrangedSubviews(_:)` method is added that takes variadic `UIView`s
 
@@ -1049,7 +1050,7 @@ Models
 
 Extensions
 
-- Missing deprecated name for `UIViewController.dismissKeyboardOnOutsideTap()` is added
+- Missing deprecated name for `UIViewController.dismissKeyboardOnOutsideTap` is added
 
 ### [3.10.0(35)](https://github.com/VakhoKontridze/VCore/releases/tag/3.10.0) — *2022 07 04*
 
@@ -1292,13 +1293,13 @@ Services and Managers - Network Client
 
 Helpers
 
-- `EdgeInsets` objects now support `SwiftUI`'s `.padding()` modifiers
+- `EdgeInsets` objects now support `SwiftUI`'s `.padding(...)` modifiers
 - `JSONTypeCasts` now support `Character`
 - Issue when casting `Float` to `Double` in `JSONTypeCasts` is fixed
  
 Extensions
 
-- `width` parameter can now be passed to `UILabel.multiLineHeight()` method
+- `width` parameter can now be passed to `UILabel.multiLineHeight` method
 - `FloatingPoint.bound(in:step:)` is renamed to `clamp`
 - `NSObject.nsObjectName` is deprecated in favor of native `String(describing:)` method
 - Various extensions are added
@@ -1463,7 +1464,7 @@ Helpers - Architectural Pattern Helpers
 Extensions
 
 - `UILabel.singleLineNaturalHeightConstant` property is renamed to `singleLineHeight`
-- `UITableView.removeExtraSeparators()` and `UITableView.removeExtraAndLastSeparators()` are deprecated, as they have no effect
+- `UITableView.removeExtraSeparators` and `UITableView.removeExtraAndLastSeparators` are deprecated, as they have no effect
 - `UIScreen.rootView` are deprecated in favor of `UIApplication.AppRootWindow` file under `Extra`
 - `UIScreen.safeAreaInsets` are deprecated
 - Various extensions are added
