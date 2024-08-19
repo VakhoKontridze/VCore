@@ -1,6 +1,6 @@
 //
 //  CollectionAllMatchTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 21.02.23.
 //

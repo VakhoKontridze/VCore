@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-// MARK: - Extension
+// MARK: - Double + Rounded
 extension Double {
     /// Returns `String` from `Double` with specified min and max fractions.
     ///

@@ -1,6 +1,6 @@
 //
 //  CodingKeysGenerationMacroTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 08.01.24.
 //

@@ -1,6 +1,6 @@
 //
 //  CollectionNonEmptyTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 17.11.23.
 //

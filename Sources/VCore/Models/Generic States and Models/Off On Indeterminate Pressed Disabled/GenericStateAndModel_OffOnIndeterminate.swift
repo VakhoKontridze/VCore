@@ -47,7 +47,7 @@ public enum GenericState_OffOnIndeterminate: Int, CaseIterable {
     }
 }
 
-// MARK: - Binding Initializer
+// MARK: - Binding + Initializer
 extension Binding where Value == GenericState_OffOnIndeterminate {
     /// Initializes `GenericState_OOI` with `Bool`.
     public init(isOn: Binding<Bool>) {

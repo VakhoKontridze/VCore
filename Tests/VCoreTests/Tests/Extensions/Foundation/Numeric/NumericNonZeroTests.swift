@@ -1,6 +1,6 @@
 //
 //  NumericNonZeroTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 26.11.23.
 //

@@ -1,6 +1,6 @@
 //
 //  PointPixelMeasurementTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 06.08.23.
 //

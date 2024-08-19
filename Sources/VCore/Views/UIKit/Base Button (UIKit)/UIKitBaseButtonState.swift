@@ -9,7 +9,7 @@
 
 import Foundation
 
-// MARK: - UIKit Base Button State
+// MARK: - UI Kit Base Button State
 /// Enumeration that represents state.
 @available(tvOS, unavailable)
 public enum UIKitBaseButtonState: Int, CaseIterable {
@@ -47,7 +47,7 @@ public enum UIKitBaseButtonState: Int, CaseIterable {
     }
 }
 
-// MARK: - UIKit Base Button Internal State
+// MARK: - UI Kit Base Button Internal State
 /// Enumeration that represents state.
 @available(tvOS, unavailable)
 public enum UIKitBaseButtonInternalState: Int, CaseIterable {

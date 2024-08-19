@@ -1,5 +1,5 @@
 //
-//  NSLayoutConstraintAttributeHorizontal.swift
+//  NSLayoutConstraintAttribute+Horizontal.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 07.07.22.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Horizontal Attribute
+// MARK: - NS Layout Constraint Attribute + Horizontal
 extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual horizontal representation that should be used to get the value for the constraint.
     public enum Horizontal: Int, CaseIterable {
@@ -43,7 +43,7 @@ extension NSLayoutConstraint.Attribute {
     }
 }
 
-// MARK: - Constraints
+// MARK: - UI View + Constraints
 extension UIView {
     /// Constraints `UIView`'s `DimensionAttribute.leading` to another `UIView`'s `HorizontalAttribute`,
     /// with given `relation`, `constant`, `multiplier`, and `priority`.

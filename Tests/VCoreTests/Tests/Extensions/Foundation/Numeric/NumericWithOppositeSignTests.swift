@@ -1,6 +1,6 @@
 //
 //  NumericWithOppositeSignTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 25.02.23.
 //

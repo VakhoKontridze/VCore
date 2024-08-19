@@ -1,6 +1,6 @@
 //
 //  CollectionSafeSubscriptTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 05.05.22.
 //

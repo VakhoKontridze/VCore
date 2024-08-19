@@ -1,5 +1,5 @@
 //
-//  DynamicTypeSizeTypeExtension.swift
+//  View+DynamicTypeSizeTye.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 09.07.24.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Dynamic Type Size Type Extension
+// MARK: - View + Dynamic Type Size Type
 extension View {
     /// Sets `DynamicTypeSize` based on `DynamicTypeSizeType`.
     ///

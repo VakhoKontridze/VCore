@@ -1,5 +1,5 @@
 //
-//  NSLayoutConstraintAttributeDimension.swift
+//  NSLayoutConstraintAttribute+Dimension.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 07.07.22.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Dimension Attribute
+// MARK: - NS Layout Constraint Attribute + Dimension
 extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual dimension representation that should be used to get the value for the constraint.
     public enum Dimension: Int, CaseIterable {
@@ -31,7 +31,7 @@ extension NSLayoutConstraint.Attribute {
     }
 }
 
-// MARK: - Constraints
+// MARK: - UI View + Constraints
 extension UIView {
     /// Constraints `UIView`'s `DimensionAttribute.width` to another `UIView`'s `DimensionAttribute`,
     /// with given `relation`, `constant`, `multiplier`, and `priority`.

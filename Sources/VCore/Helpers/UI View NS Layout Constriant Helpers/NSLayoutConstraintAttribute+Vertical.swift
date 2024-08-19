@@ -1,5 +1,5 @@
 //
-//  NSLayoutConstraintAttributeVertical.swift
+//  NSLayoutConstraintAttribute+Vertical.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 07.07.22.
@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - Vertical Attribute
+// MARK: - NS Layout Constraint Attribute + Vertical
 extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual vertical representation that should be used to get the value for the constraint.
     public enum Vertical: Int, CaseIterable {
@@ -43,7 +43,7 @@ extension NSLayoutConstraint.Attribute {
     }
 }
 
-// MARK: - Constraints
+// MARK: - UI View + Constraints
 extension UIView {
     /// Constraints `UIView`'s `DimensionAttribute.top` to another `UIView`'s `VerticalAttribute`,
     /// with given `relation`, `constant`, `multiplier`, and `priority`.

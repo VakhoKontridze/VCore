@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - SwiftUI Base Button
+// MARK: - Swift UI Base Button
 /// `SwiftUI` `View` that can be used as a base for all interactive views and buttons.
 ///
 /// `SwiftUIBaseButton` can be used as a basis for all interactive UI components.

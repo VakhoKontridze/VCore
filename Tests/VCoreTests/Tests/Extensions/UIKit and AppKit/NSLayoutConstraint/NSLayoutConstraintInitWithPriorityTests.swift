@@ -1,6 +1,6 @@
 //
 //  NSLayoutConstraintInitWithPriorityTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 13.07.22.
 //

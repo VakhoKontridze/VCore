@@ -1,5 +1,5 @@
 //
-//  NavigationStackCoordinatorEnvironmentValue.swift
+//  EnvironmentValues+NavigationStackCoordinatorOO.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 07.08.22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Navigation Stack Coordinator Environment Value (Observable Object)
+// MARK: - Environment Values + Navigation Stack Coordinator (Observable Object)
 extension EnvironmentValues {
     /// `NavigationStackCoordinatorOO` of the `View` associated with the environment.
     ///

@@ -1,5 +1,5 @@
 //
-//  PresentationHostLayer.swift
+//  View+PresentationHostLayer.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10.07.24.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-// MARK: - Extension
+// MARK: - View + Presentation Host Layer
 extension View {
     /// Injects a Presentation Host layer in view hierarchy for modal presentation.
     ///

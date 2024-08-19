@@ -1,6 +1,6 @@
 //
 //  CGPointMovedTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 06.09.23.
 //

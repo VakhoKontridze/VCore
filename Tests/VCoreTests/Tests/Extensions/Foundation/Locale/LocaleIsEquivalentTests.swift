@@ -1,6 +1,6 @@
 //
 //  LocaleIsEquivalentTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 03.02.23.
 //

@@ -1,6 +1,6 @@
 //
 //  StringProtocolReplacedTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 11.12.23.
 //

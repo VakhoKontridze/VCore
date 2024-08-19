@@ -1,5 +1,5 @@
 //
-//  ResponderChainToolbarExtension.swift
+//  View+ResponderChainToolbar.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 24.05.23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Responder Chain Toolbar Extension
+// MARK: - View + Responder Chain Toolbar
 @available(tvOS, unavailable) // No `ToolbarItemPlacement.keyboard`
 @available(watchOS, unavailable) // No `ToolbarItemPlacement.keyboard`
 @available(visionOS, unavailable) // No `ToolbarItemPlacement.keyboard`

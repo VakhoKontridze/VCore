@@ -1,6 +1,6 @@
 //
 //  EnvironmentValueGenerationMacroTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 19.04.24.
 //

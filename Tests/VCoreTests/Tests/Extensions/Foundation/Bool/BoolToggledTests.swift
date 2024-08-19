@@ -1,6 +1,6 @@
 //
 //  BoolToggledTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 03.09.23.
 //

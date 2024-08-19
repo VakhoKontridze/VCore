@@ -43,7 +43,7 @@ public enum GenericState_DeselectedSelected: Int, CaseIterable {
     }
 }
 
-// MARK: - Binding Initializer
+// MARK: - Binding + Initializer
 extension Binding where Value == GenericState_DeselectedSelected {
     /// Initializes `GenericState_DeselectedSelected` with `Bool`.
     public init(isSelected: Binding<Bool>) {

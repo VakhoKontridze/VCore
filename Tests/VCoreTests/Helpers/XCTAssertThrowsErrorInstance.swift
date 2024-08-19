@@ -1,6 +1,6 @@
 //
 //  XCTAssertThrowsErrorInstance.swift
-//  VCoreTests
+//  VCoreTestsTests
 //
 //  Created by Vakhtang Kontridze on 07.02.24.
 //

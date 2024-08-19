@@ -1,6 +1,6 @@
 //
 //  ImageInitWithDataTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 10.03.23.
 //

@@ -474,7 +474,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
 // MARK: - Helpers
 extension StringProtocol {
-    // Not moved to share package
+    // Not moved to shared package
     fileprivate var nonEmpty: Self? {
         guard !isEmpty else { return nil }
         return self

@@ -1,5 +1,5 @@
 //
-//  PlainListDecoration.swift
+//  View+PlainListDecoration.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 27.11.23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Plain List Decoration
+// MARK: - View + Plain List Decoration
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 extension View {

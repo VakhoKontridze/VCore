@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - UIKit Base Button Gesture Recognizer
+// MARK: - UI Kit Base Button Gesture Recognizer
 @available(tvOS, unavailable)
 final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureRecognizerDelegate {
     // MARK: Properties

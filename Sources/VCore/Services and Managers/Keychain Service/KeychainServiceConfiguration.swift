@@ -62,7 +62,7 @@ public struct KeychainServiceConfiguration {
     }
 }
     
-// MARK: - Get Query
+// MARK: - Keychain Service Configuration + Get Query
 extension KeychainServiceConfiguration {
     /// Get query.
     ///
@@ -101,7 +101,7 @@ extension KeychainServiceConfiguration {
     }
 }
     
-// MARK: - Set Query
+// MARK: - Keychain Service Configuration + Set Query
 extension KeychainServiceConfiguration {
     /// Set query.
     ///
@@ -139,7 +139,7 @@ extension KeychainServiceConfiguration {
     }
 }
 
-// MARK: - Delete Query
+// MARK: - Keychain Service Configuration + Delete Query
 extension KeychainServiceConfiguration {
     /// Delete query.
     ///

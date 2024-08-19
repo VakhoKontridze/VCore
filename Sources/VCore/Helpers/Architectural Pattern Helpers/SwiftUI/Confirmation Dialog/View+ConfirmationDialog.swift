@@ -1,5 +1,5 @@
 //
-//  AlertExtension.swift
+//  View + Confirmation Dialog.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 02.10.22.
@@ -7,43 +7,51 @@
 
 import SwiftUI
 
-// MARK: - Alert Extension
+// MARK: - View + Confirmation Dialog
 extension View {
-    /// Presents `Alert` when `parameters` is non-`nil`.
+    /// Presents `ConfirmationDialog` when `ConfirmationDialogParameters` is non-`nil`.
     ///
-    ///     @State private var parameters: AlertParameters?
+    ///     @State private var parameters: ConfirmationDialogParameters?
     ///
     ///     var body: some View {
     ///         Button(
     ///             "Present",
     ///             action: {
-    ///                 parameters = AlertParameters(
+    ///                 parameters = ConfirmationDialogParameters(
     ///                     title: "Lorem Ipsum",
     ///                     message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
     ///                     actions: {
-    ///                         AlertButton(action: { print("Confirmed") }, title: "Confirm")
-    ///                         AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
+    ///                         ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
+    ///                         ConfirmationDialogButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
     ///                     }
     ///                 )
     ///             }
     ///         )
-    ///         .alert(parameters: $parameters)
+    ///         .confirmationDialog(parameters: $parameters)
     ///     }
     ///
-    public func alert(
-        parameters: Binding<AlertParameters?>
+    public func confirmationDialog(
+        parameters: Binding<ConfirmationDialogParameters?>
     ) -> some View {
-        self.alert(
+        self.confirmationDialog(
             parameters.wrappedValue?.title ?? "",
             isPresented: Binding(
                 get: { parameters.wrappedValue != nil },
                 set: { if !$0 { parameters.wrappedValue = nil } }
             ),
+            titleVisibility: {
+                switch (parameters.wrappedValue?.title, parameters.wrappedValue?.message) {
+                case (nil, nil): .hidden
+                case (nil, _?): .visible
+                case (_?, nil): .visible
+                case (_?, _?): .visible
+                }
+            }(),
             actions: {
-                if let buttons: [any AlertButtonProtocol] = parameters.wrappedValue?.buttons() {
+                if let buttons: [any ConfirmationDialogButtonProtocol] = parameters.wrappedValue?.buttons() {
                     ForEach(
                         buttons.enumeratedArray(),
-                        id: \.offset, // Native `View.alert(...)` doesn't react to changes
+                        id: \.offset, // Native `View.confirmationDialog(...)` doesn't react to changes
                         content: { (_, button) in
                             button.makeBody(animateOutHandler: { completion in
                                 completion?()
@@ -66,23 +74,23 @@ extension View {
 
 #Preview(body: {
     struct ContentView: View {
-        @State private var parameters: AlertParameters?
+        @State private var parameters: ConfirmationDialogParameters?
 
         var body: some View {
             Button(
                 "Present",
                 action: {
-                    parameters = AlertParameters(
+                    parameters = ConfirmationDialogParameters(
                         title: "Lorem Ipsum",
                         message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
                         actions: {
-                            AlertButton(action: {}, title: "Confirm")
-                            AlertButton(role: .cancel, action: {}, title: "Cancel")
+                            ConfirmationDialogButton(action: {}, title: "Confirm")
+                            ConfirmationDialogButton(role: .cancel, action: {}, title: "Cancel")
                         }
                     )
                 }
             )
-            .alert(parameters: $parameters)
+            .confirmationDialog(parameters: $parameters)
         }
     }
 

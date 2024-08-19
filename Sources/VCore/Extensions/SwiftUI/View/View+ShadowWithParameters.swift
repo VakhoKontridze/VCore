@@ -30,7 +30,7 @@ extension View {
     }
 }
 
-// MARK: - SwiftUI Drop Shadow Parameters
+// MARK: - Swift UI Drop Shadow Parameters
 /// Model that can be used to apply shadow to `View`.
 @MemberwiseInitializable(
     comment: "/// Initializes `SwiftUIDropShadowParameters` with parameters."

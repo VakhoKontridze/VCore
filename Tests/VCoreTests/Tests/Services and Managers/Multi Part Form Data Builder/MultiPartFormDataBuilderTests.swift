@@ -1,6 +1,6 @@
 //
 //  MultipartFormDataBuilderTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 15.05.22.
 //

@@ -1,5 +1,5 @@
 //
-//  StringIsUserDefaultsKey.swift
+//  StringIsUserDefaultsKeyTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 06.05.22.

@@ -1,6 +1,6 @@
 //
 //  SetInsertSequenceTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 18.12.23.
 //

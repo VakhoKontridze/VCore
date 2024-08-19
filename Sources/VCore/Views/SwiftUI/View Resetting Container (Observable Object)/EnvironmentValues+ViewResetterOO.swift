@@ -1,5 +1,5 @@
 //
-//  ViewResetterEnvironmentValue.swift
+//  EnvironmentValues+ViewResetterOO.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 23.09.23.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - View Resetter Environment Value (Observable Object)
+// MARK: - Environment Values + View Resetter (Observable Object)
 extension EnvironmentValues {
     /// `ViewResetterOO` of the `View` associated with the environment.
     ///

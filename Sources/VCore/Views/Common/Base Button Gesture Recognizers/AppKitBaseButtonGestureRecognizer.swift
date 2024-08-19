@@ -9,7 +9,7 @@
 
 import AppKit
 
-// MARK: - AppKit Base Button Gesture Recognizer
+// MARK: - App Kit Base Button Gesture Recognizer
 final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRecognizerDelegate {
     // MARK: Properties
     override var state: NSGestureRecognizer.State {

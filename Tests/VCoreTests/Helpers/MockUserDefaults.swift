@@ -1,13 +1,13 @@
 //
 //  MockUserDefaults.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 10.05.22.
 //
 
 import Foundation
 
-// MARK: - Instance
+// MARK: - User Defaults + Mock
 extension UserDefaults {
     static let mock: UserDefaults = MockUserDefaults()
 }

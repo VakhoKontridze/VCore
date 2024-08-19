@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - SwiftUI Base Button Style
+// MARK: - Swift UI Base Button Style
 struct SwiftUIBaseButtonStyle<Label>: ButtonStyle where Label: View {
     // MARK: Properties
     private let uiModel: SwiftUIBaseButtonUIModel

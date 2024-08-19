@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - SwiftUI Gesture Base Button
+// MARK: - Swift UI Gesture Base Button
 /// `SwiftUI` `View` that can be used as a base for all interactive views and buttons.
 ///
 /// `SwiftUIGestureBaseButton` can be used as a basis for all interactive UI components.

@@ -1,6 +1,6 @@
 //
 //  ArrayAppendingTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 11.11.23.
 //

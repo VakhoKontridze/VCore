@@ -1,5 +1,5 @@
 //
-//  ResultNoSuccessNoFailure.swift
+//  ResultNoSuccessNoFailureTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 08.06.22.

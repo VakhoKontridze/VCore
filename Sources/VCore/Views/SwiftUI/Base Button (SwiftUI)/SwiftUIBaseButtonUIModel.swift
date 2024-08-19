@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - SwiftUI Base Button UI Model
+// MARK: - Swift UI Base Button UI Model
 /// Model that describes UI.
 public struct SwiftUIBaseButtonUIModel {
     // MARK: Properties

@@ -9,7 +9,7 @@
 
 import UIKit
 
-// MARK: - UIKit Base Button
+// MARK: - UI Kit Base Button
 /// `UIKit` `UIView` that can be used as a base for all interactive views and buttons.
 ///
 /// `UIKitBaseButton` can be used as a basis for all interactive UI components.

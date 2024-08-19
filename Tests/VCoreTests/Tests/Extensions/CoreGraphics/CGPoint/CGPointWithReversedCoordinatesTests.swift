@@ -1,6 +1,6 @@
 //
 //  CGPointWithReversedCoordinatesTests.swift
-//  VCore
+//  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 02.04.23.
 //

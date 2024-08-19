@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-// MARK: - Keyboard Animation - Custom
+// MARK: - UIView + Animate Keyboard Responsiveness
 @available(tvOS, unavailable)
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo`.
@@ -75,7 +75,7 @@ extension UIView {
     }
 }
 
-// MARK: - Keyboard Animation - Un-Obscuring First Responder View
+// MARK: - UIView + Animate Keyboard Responsiveness - Un-Obscuring First Responder View
 @available(tvOS, unavailable)
 extension UIView {
     /// Animates changes to `UIView` using `SystemKeyboardInfo` to un-obscure first responder view, if needed.

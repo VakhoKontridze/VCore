@@ -1,5 +1,5 @@
 //
-//  ProgressViewExtension.swift
+//  View+ProgressView.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 02.10.22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Progress View Extension
+// MARK: - View + Progress View
 extension View {
     /// Presents `ProgressView` when `parameters` is non-`nil`.
     ///
