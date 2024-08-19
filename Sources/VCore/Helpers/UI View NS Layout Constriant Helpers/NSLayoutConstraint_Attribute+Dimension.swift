@@ -1,5 +1,5 @@
 //
-//  NSLayoutConstraintAttribute+Dimension.swift
+//  NSLayoutConstraint_Attribute+Dimension.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 07.07.22.

@@ -1,5 +1,5 @@
 //
-//  AttributeSyntaxArguments+TypeCasts.swift
+//  AttributeSyntax_Arguments+TypeCasts.swift
 //  VCoreMacrosImplementation
 //
 //  Created by Vakhtang Kontridze on 08.01.24.

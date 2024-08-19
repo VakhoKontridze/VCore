@@ -1,5 +1,5 @@
 //
-//  NSLayoutConstraintAttribute+Horizontal.swift
+//  NSLayoutConstraint_Attribute+Horizontal.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 07.07.22.
