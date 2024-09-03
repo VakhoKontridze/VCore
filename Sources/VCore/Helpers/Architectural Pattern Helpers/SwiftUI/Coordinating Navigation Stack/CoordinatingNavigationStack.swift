@@ -43,7 +43,11 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         path navigationPath: @escaping @autoclosure () -> NavigationPath,
         @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
     ) {
-        self._navigationStackCoordinator = State(wrappedValue: NavigationStackCoordinator(path: navigationPath()))
+        self._navigationStackCoordinator = State(
+            wrappedValue: NavigationStackCoordinator(
+                path: navigationPath()
+            )
+        )
         self.root = root
     }
 
@@ -52,7 +56,11 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         path navigationPath: @escaping @autoclosure () -> NavigationPath,
         @ViewBuilder root: @escaping () -> Root
     ) {
-        self._navigationStackCoordinator = State(wrappedValue: NavigationStackCoordinator(path: navigationPath()))
+        self._navigationStackCoordinator = State(
+            wrappedValue: NavigationStackCoordinator(
+                path: navigationPath()
+            )
+        )
         self.root = { _ in root() }
     }
 
@@ -61,7 +69,11 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     public init(
         @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root
     ) {
-        self._navigationStackCoordinator = State(wrappedValue: NavigationStackCoordinator(path: NavigationPath()))
+        self._navigationStackCoordinator = State(
+            wrappedValue: NavigationStackCoordinator(
+                path: NavigationPath()
+            )
+        )
         self.root = root
     }
 
@@ -69,7 +81,11 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     public init(
         @ViewBuilder root: @escaping () -> Root
     ) {
-        self._navigationStackCoordinator = State(wrappedValue: NavigationStackCoordinator(path: NavigationPath()))
+        self._navigationStackCoordinator = State(
+            wrappedValue: NavigationStackCoordinator(
+                path: NavigationPath()
+            )
+        )
         self.root = { _ in root() }
     }
 
