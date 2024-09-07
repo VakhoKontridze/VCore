@@ -9,7 +9,7 @@ import Foundation
 import OSLog
 
 // MARK: - Keychain Service
-/// Service objects that performs `Data` get, set, and delete operations to keychain.
+/// Service object that performs get, set, and delete Keychain operations.
 ///
 /// Object contains default instance `default`.
 ///
@@ -30,7 +30,7 @@ open class KeychainService {
     open lazy var jsonDecoder: JSONDecoder = .init()
 
     // MARK: Properties - Singleton
-    /// Default instance of `KeychainService`.
+    /// Default instance of `KeychainService` that uses `default` configuration.
     public static let `default`: KeychainService = .init(
         configuration: .default
     )
@@ -45,7 +45,7 @@ open class KeychainService {
 
     // MARK: Operations
     /// Returns `Data` associated with the key.
-    open func get(
+    open func getData(
         key: String
     ) throws -> Data {
         let query: [String: Any] = configuration.getQuery.build(key: key)
@@ -54,45 +54,45 @@ open class KeychainService {
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &valueObject)
 
         guard status == noErr else {
-            throw KeychainServiceError(.failedToGet) // Nothing should be logged if data simply isn't there
+            throw KeychainServiceError(.failedToGet) // Error shouldn't be logged if data simply isn't there
         }
 
         guard
             let data: Data = valueObject as? Data
         else {
-            let fromType: String = .init(describing: type(of: valueObject))
-            Logger.keychainService.error("Failed to cast '\(fromType)' to 'Data' in 'KeychainService.get(key:)'")
-            throw CastingError(from: fromType, to: "Data")
+            let fromType: AnyObject?.Type = type(of: valueObject)
+            Logger.keychainService.error("Failed to cast '\(fromType)' to 'Data' in 'KeychainService.getData(key:)'")
+            throw CastingError(from: "\(fromType)", to: "Data")
         }
 
         return data
     }
 
-    /// Sets `Data` with key.
-    open func set(
+    /// Sets `Data` with the key.
+    open func setData(
         key: String,
         value: Data
     ) throws {
-        try? delete(key: key, logsError: false)
+        try? deleteData(key: key, logsError: false)
 
         let query: [String: Any] = configuration.setQuery.build(key: key, value: value)
 
         let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
 
         guard status == noErr else {
-            Logger.keychainService.error("Failed to set 'Data' with key '\(key)' in 'KeychainService.set(key:value:)': 'OSStatus' '\(status)'")
+            Logger.keychainService.error("Failed to set 'Data' with key '\(key)' in 'KeychainService.setData(key:value:)': 'OSStatus' '\(status)'")
             throw KeychainServiceError(.failedToSet)
         }
     }
 
     /// Deletes `Data` associated with the key.
-    open func delete(
+    open func deleteData(
         key: String
     ) throws {
-        try delete(key: key, logsError: true)
+        try deleteData(key: key, logsError: true)
     }
 
-    private func delete(
+    private func deleteData(
         key: String,
         logsError: Bool
     ) throws {
@@ -113,7 +113,7 @@ open class KeychainService {
     ) throws -> Value
         where Value: Decodable
     {
-        let data: Data = try get(key: key)
+        let data: Data = try getData(key: key)
 
         let value: Value
         do {
@@ -127,7 +127,7 @@ open class KeychainService {
         return value
     }
 
-    /// Sets `Codable` with key.
+    /// Sets `Codable` with the key.
     open func setCodable<Value>(
         key: String,
         value: Value
@@ -142,26 +142,26 @@ open class KeychainService {
             throw KeychainServiceError(.failedToSet)
         }
 
-        try set(key: key, value: data)
+        try setData(key: key, value: data)
     }
 
     /// Deletes `Codable` associated with the key.
     open func deleteCodable(
         key: String
     ) throws {
-        try delete(key: key)
+        try deleteData(key: key)
     }
 
     // MARK: Subscript
     open subscript(_ key: String) -> Data? {
         get {
-            try? get(key: key)
+            try? getData(key: key)
         }
         set {
             if let newValue {
-                try? set(key: key, value: newValue)
+                try? setData(key: key, value: newValue)
             } else {
-                try? delete(key: key)
+                try? deleteData(key: key)
             }
         }
     }
