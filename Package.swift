@@ -1,4 +1,4 @@
-// swift-tools-version: 5.10
+// swift-tools-version: 6.0
 
 import PackageDescription
 import CompilerPluginSupport
@@ -24,7 +24,7 @@ let package: Package = .init(
     ],
 
     dependencies: [
-        .package(url: "https://github.com/apple/swift-syntax.git", from: "510.0.0") // FIXME: Update
+        .package(url: "https://github.com/apple/swift-syntax.git", from: "600.0.0")
     ],
 
     targets: [
