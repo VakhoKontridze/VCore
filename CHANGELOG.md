@@ -20,7 +20,7 @@ Models
 
 Services and Managers
 
-- `UserDefaultsService` is added, that performs get, set, and delete `UserDefaults` operations. This is particularly useful with lack of support for property wrappers when using `Observable` framework.
+- `UserDefaultsService` is added, that performs get, set, and delete `UserDefaults` operations. This is particularly useful with a lack of support for property wrappers within the `Observable` framework.
 - `KeyboardObserver` is added, that observes changes in keyboard frame
 
 Services and Managers - Presentation Host
