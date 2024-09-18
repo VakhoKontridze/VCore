@@ -28,6 +28,7 @@ import UIKit
 ///         )
 ///     )
 ///
+@MainActor
 public struct UIAlertParameters {
     // MARK: Properties
     /// Title.

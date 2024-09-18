@@ -15,7 +15,6 @@ struct Plugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         // Attached
         CodingKeysGenerationMacro.self, CKGPropertyMacro.self,
-        EnvironmentValueGenerationMacro.self,
         MemberwiseInitializableMacro.self,
         OptionSetRepresentationMacro.self,
         UninitializableMacro.self,

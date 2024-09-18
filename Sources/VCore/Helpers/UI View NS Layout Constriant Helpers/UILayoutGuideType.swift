@@ -49,6 +49,7 @@ public enum UILayoutGuideType {
     
     // MARK: Properties
     /// Converts `UILayoutGuideType` to `UILayoutGuide` within the context of an `UIView`.
+    @MainActor
     public func toLayoutGuide(in view: UIView) -> UILayoutGuide {
         switch self {
         case .margins:

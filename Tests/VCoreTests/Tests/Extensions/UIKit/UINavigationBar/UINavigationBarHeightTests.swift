@@ -12,6 +12,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
+@MainActor
 final class UINavigationBarHeightTests: XCTestCase {
     func test() {
         let height: CGFloat = UINavigationBar.height

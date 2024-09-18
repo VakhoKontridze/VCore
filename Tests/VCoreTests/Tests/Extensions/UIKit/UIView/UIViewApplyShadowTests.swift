@@ -12,6 +12,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
+@MainActor
 final class UIViewApplyShadowTests: XCTestCase {
     func testShadow() {
         let view: UIView = .init()

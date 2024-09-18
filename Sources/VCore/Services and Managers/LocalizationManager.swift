@@ -55,7 +55,7 @@ import OSLog
 ///         return ContentView()
 ///     })
 ///
-public final class LocalizationManager { // TODO: iOS 17.0 - Convert to `Observable` and remove `Combine`
+public final class LocalizationManager: @unchecked Sendable { // TODO: iOS 17.0 - Convert to `Observable` and remove `Combine`
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
     public static let shared: LocalizationManager = .init()
@@ -80,11 +80,15 @@ public final class LocalizationManager { // TODO: iOS 17.0 - Convert to `Observa
     /// Default `Locale` that will be retrieved in the absence of current value.
     public var defaultLocale: Locale {
         get {
-            _defaultLocale
+            lock.withLock({
+                _defaultLocale
+            })
         }
         set {
-            _defaultLocale = newValue
-            _ = validateLocaleIsAdded(newValue)
+            lock.withLock({
+                _defaultLocale = newValue
+                _ = validateLocaleIsAdded(newValue)
+            })
         }
     }
 
@@ -127,23 +131,30 @@ public final class LocalizationManager { // TODO: iOS 17.0 - Convert to `Observa
     /// Current `Locale`.
     public var currentLocale: Locale {
         get {
-            _currentLocale
+            lock.withLock({
+                _currentLocale
+            })
         }
         set {
-            guard newValue != _currentLocale else { return }
+            lock.withLock({
+                guard newValue != _currentLocale else { return }
 
-            _currentLocale = newValue
-            _currentLocaleUserDefaults = newValue
+                _currentLocale = newValue
+                _currentLocaleUserDefaults = newValue
 
-            _ = validateLocaleIsAdded(newValue)
+                _ = validateLocaleIsAdded(newValue)
 
-            currentLocaleChangePublisher.send(newValue)
+                currentLocaleChangePublisher.send(newValue)
+            })
         }
     }
 
     // MARK: Properties - Publisher
     /// `Publisher` that emits when current `Locale` changes.
     public let currentLocaleChangePublisher: PassthroughSubject<Locale, Never> = .init()
+    
+    // MARK: Properties - Lock
+    private let lock: NSLock = .init()
 
     // MARK: Initializers
     private init() {}

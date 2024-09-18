@@ -21,7 +21,7 @@ public struct KeychainServiceError: VCoreError, Equatable {
     
     // MARK: Code
     /// Error code.
-    public enum Code: Int, Equatable {
+    public enum Code: Int, Equatable, Sendable {
         /// Indicates that get operation has failed.
         case failedToGet
         

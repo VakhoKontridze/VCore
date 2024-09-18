@@ -32,6 +32,7 @@ import Combine
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 @available(visionOS, unavailable)
+@MainActor
 public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Convert to `Observable`
     // MARK: Properties - UI Model
     private let uiModel: KeyboardObserverUIModel
@@ -86,6 +87,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
 
     // MARK: Keyboard Management
 #if canImport(UIKit) && !os(watchOS)
+    
     private func keyboardWillShow(notification: Notification) {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
         
@@ -163,6 +165,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
             })
         }
     }
+    
 #endif
 }
 

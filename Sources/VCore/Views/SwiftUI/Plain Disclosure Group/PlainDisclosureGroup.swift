@@ -127,7 +127,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
             DisclosureGroup(
                 isExpanded: Binding(
                     get: { isExpanded.wrappedValue },
-                    set: expandCollapseFromInternalAction
+                    set: { expandCollapseFromInternalAction(newValue: $0) }
                 ),
                 content: content,
                 label: { Spacer().frame(height: nativeLabelHeight) }

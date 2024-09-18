@@ -8,6 +8,7 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import UIKit
+import Combine
 
 // MARK: - Keyboard Responsive UI View Controller
 /// Keyboard Responsive `UIViewController` that handles keyboard notifications.
@@ -61,7 +62,7 @@ import UIKit
 ///
 @available(tvOS, unavailable)
 open class KeyboardResponsiveUIViewController: UIViewController {
-    // MARK: Properties
+    // MARK: Properties - Flags
     /// Indicates, if `keyboardWillShow(_:)` and `keyboardWillHide(_:)` are called, when keyboard is already shown or hidden. Set to `true`.
     open var notifiesWhenKeyboardIsAlreadyShownOrHidden: Bool = true
     
@@ -70,6 +71,9 @@ open class KeyboardResponsiveUIViewController: UIViewController {
     
     /// Indicates, if `keyboardWillShow(_:)` and `keyboardWillHide(_:)` are called, when `KeyboardResponsiveUIViewController` is not visible. Set to `false`.
     open var notifiesWhenViewControllerIsNotVisible: Bool = false
+    
+    // MARK: Properties - Cancellables
+    private var subscriptions: Set<AnyCancellable> = []
     
     // MARK: Lifecycle
     open override func viewDidLoad() {
@@ -83,19 +87,15 @@ open class KeyboardResponsiveUIViewController: UIViewController {
     }
     
     private func addKeyboardFrameChangNotificationObserver() {
-        NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardWillShowNotification,
-            object: nil,
-            queue: nil,
-            using: { [weak self] in self?.keyboardWillShow(notification: $0) }
-        )
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink(receiveValue: { [weak self] in self?.keyboardWillShow(notification: $0) })
+            .store(in: &subscriptions)
         
-        NotificationCenter.default.addObserver(
-            forName: UIResponder.keyboardWillHideNotification,
-            object: nil,
-            queue: nil,
-            using: { [weak self] in self?.keyboardWillHide(notification: $0) }
-        )
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink(receiveValue: { [weak self] in self?.keyboardWillHide(notification: $0) })
+            .store(in: &subscriptions)
     }
     
     // MARK: Actions

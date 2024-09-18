@@ -11,6 +11,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
+@MainActor
 final class PublisherAssignWeakTests: XCTestCase {
     // MARK: Test Data
     private final class SomeClass {

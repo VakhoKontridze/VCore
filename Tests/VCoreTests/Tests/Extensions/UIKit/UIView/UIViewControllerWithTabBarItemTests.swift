@@ -12,6 +12,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
+@MainActor
 final class UIViewControllerWithTabBarItemTests: XCTestCase {
     func test() {
         let tabBarItem: UITabBarItem = .init(

@@ -13,6 +13,7 @@ import UIKit
 /// Object that supports input and can represent a responder in `ResponderChainUIToolbarManager`.
 ///
 /// `UITextField` and `UITextView` automatically conform to this `protocol`.
+@MainActor
 public protocol ResponderChainUIToolbarResponder: AnyObject {
     /// Custom input accessory `UIView` to display when the responder becomes the first responder.
     var inputAccessoryView: UIView? { get set }

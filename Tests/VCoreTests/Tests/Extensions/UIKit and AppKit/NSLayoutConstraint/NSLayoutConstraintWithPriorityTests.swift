@@ -12,6 +12,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
+@MainActor
 final class NSLayoutConstraintWithPriorityTests: XCTestCase {
     func testLayoutPriority() {
         let view: UIView = .init()

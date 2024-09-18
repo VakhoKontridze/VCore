@@ -40,6 +40,7 @@ import UIKit
 ///         }
 ///     }
 ///
+@MainActor
 public protocol UIAlertViewable {
     /// Presents `UIAlert` with parameters
     func presentAlert(parameters: UIAlertParameters)

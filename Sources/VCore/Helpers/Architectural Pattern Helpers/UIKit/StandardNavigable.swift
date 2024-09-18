@@ -82,6 +82,7 @@ import UIKit
 ///         }
 ///     }
 ///
+@MainActor
 public protocol StandardNavigable {
     /// Pushes a `UIViewController` onto the receiver’s stack and updates the display.
     func push(_ viewController: UIViewController, animated: Bool)

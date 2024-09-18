@@ -40,6 +40,7 @@ import UIKit
 ///         )
 ///     }
 ///
+@MainActor
 public protocol UIActivityIndicatorViewable {
     /// `UIActivityIndicator`.
     var activityIndicator: UIActivityIndicatorView { get }

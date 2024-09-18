@@ -21,18 +21,15 @@ import SwiftUI
 @propertyWrapper 
 public struct Clamped<Value>: DynamicProperty {
     // MARK: Properties
-    @State private var fieldValue: Value
+    private let storage: State<Value>
 
     public var wrappedValue: Value {
-        get { fieldValue }
-        nonmutating set { fieldValue = transformation(newValue) }
+        get { storage.wrappedValue }
+        nonmutating set { storage.wrappedValue = transformation(newValue) }
     }
     
     public var projectedValue: Binding<Value> {
-        .init(
-            get: { wrappedValue },
-            set: { wrappedValue = $0 }
-        )
+        storage.projectedValue
     }
     
     private let transformation: (Value) -> Value
@@ -42,7 +39,7 @@ public struct Clamped<Value>: DynamicProperty {
         wrappedValue: Value,
         transformation: @escaping (Value) -> Value
     ) {
-        self._fieldValue = State(wrappedValue: transformation(wrappedValue))
+        self.storage = State(wrappedValue: wrappedValue)
         self.transformation = transformation
     }
 

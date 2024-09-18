@@ -21,7 +21,9 @@ extension Binding {
     public func unwrappedBinding<T>(
         default defaultValue: T
     ) -> Binding<T>
-        where Value == Optional<T>
+        where
+            Value == Optional<T>,
+            T: Sendable
     {
         .init(
             get: { wrappedValue ?? defaultValue },

@@ -31,6 +31,7 @@ Services and Managers - Presentation Host
 
 Extensions
 
+- `DispatchSemaphore.withLock(_:)` method is added, that executes a block of code with a lock, similar to `NSLock`
 - `RectangleCornerRadii` initializers are added, that initialize `RectangleCornerRadii` with various configurations
 - `View.dynamicTypeSize(type:)` method is added, that sets `DynamicTypeSize` based on `DynamicTypeSizeType`
 - `View.withDisabledKeyboardResponsiveness(regions:edges:)` method is added, that disables keyboard avoidance using `UIHostingController.overrideBehaviors(_:)` API
@@ -38,11 +39,13 @@ Extensions
 - `View.cornerRadius(_:corners:)` is removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `View.cornerRadius(_:uiCorners:)` is removed, as it's obsoleted by `UnevenRoundedRectangle`
 - `EnvironmentValues.safeAreaInsets` is removed
+- `withContinuousObservationTracking(of:on:execute:)` method is removed
 
 Macros
 
 - `OptionSetRepresentation` macro will now generate `all` member
 - `CaseDetection` macro is removed
+- `EnvironmentValueGeneration` is removed, as it's obsoleted by `Entry`
 
 ### [6.5.2(101)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.2) — *2024 08 12*
 

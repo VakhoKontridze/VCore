@@ -12,6 +12,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
+@MainActor
 final class CGRectToNSLayoutConstraintsTests: XCTestCase {
     // MARK: Test Data
     private let superview: UIView = .init(

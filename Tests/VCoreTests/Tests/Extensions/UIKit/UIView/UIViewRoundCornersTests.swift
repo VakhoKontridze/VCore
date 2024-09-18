@@ -12,6 +12,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
+@MainActor
 final class UIViewRoundCornersTests: XCTestCase {
     func test() {
         let corners: CACornerMask = .layerAllCorners

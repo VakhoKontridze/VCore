@@ -19,6 +19,7 @@ import Combine
 ///         Text(deviceOrientationObserver.deviceOrientation.isLandscape ? "Landscape" : "Portrait")
 ///     }
 ///
+@MainActor
 public final class DeviceOrientationObserverOO: ObservableObject { // TODO: iOS 17.0 - Remove, as it's obsoleted
     // MARK: Properties
     /// The physical orientation of the device.

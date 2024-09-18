@@ -14,6 +14,7 @@ import AppKit
 #endif
 
 // MARK: - Gesture Base Button Model
+@MainActor
 final class GestureBaseButtonModel {
     // MARK: Properties
     private let outOfBoundsMaxOffsetToRegisterGesture: CGFloat = 10
@@ -24,7 +25,9 @@ final class GestureBaseButtonModel {
     private let stateSetter: (GestureRecognizerState) -> Void
     
     // MARK: Initializers
-    init(stateSetter: @escaping (GestureRecognizerState) -> Void) {
+    init(
+        stateSetter: @escaping (GestureRecognizerState) -> Void
+    ) {
         self.stateSetter = stateSetter
     }
     

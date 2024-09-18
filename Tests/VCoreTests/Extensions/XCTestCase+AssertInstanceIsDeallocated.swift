@@ -10,9 +10,10 @@ import XCTest
 
 // MARK: - XC Test + Assert Instance Is Deallocated
 extension XCTestCase {
+    @MainActor
     func assertInstanceIsDeallocated(
         _ instance: AnyObject,
-        _ message: @escaping @autoclosure () -> String = "",
+        _ message: @escaping @autoclosure @Sendable () -> String = "",
         file: StaticString = #filePath,
         line: UInt = #line
     ) {

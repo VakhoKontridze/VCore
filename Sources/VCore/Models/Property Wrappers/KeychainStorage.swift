@@ -32,32 +32,30 @@ import Combine
 @propertyWrapper
 public struct KeychainStorage<Value>: DynamicProperty {
     // MARK: Properties
-    @ObservedObject private var storage: ObservableContainerOO<Value> // No need for `StateObject`
-    private let valueSetter: (Value) -> Void
+    private let storage: State<Value>
 
     public var wrappedValue: Value {
         get {
-            storage.value
+            storage.wrappedValue
         }
         nonmutating set {
-            storage.value = newValue
+            storage.wrappedValue = newValue
             valueSetter(newValue)
         }
     }
     
     public var projectedValue: Binding<Value> {
-        .init(
-            get: { wrappedValue },
-            set: { wrappedValue = $0 }
-        )
+        storage.projectedValue
     }
+    
+    private let valueSetter: (Value) -> Void
     
     // MARK: Initializers
     fileprivate init(
         initialValue: Value,
         valueSetter: @escaping (Value) -> Void
     ) {
-        self.storage = ObservableContainerOO(value: initialValue)
+        self.storage = State(wrappedValue: initialValue)
         self.valueSetter = valueSetter
     }
 

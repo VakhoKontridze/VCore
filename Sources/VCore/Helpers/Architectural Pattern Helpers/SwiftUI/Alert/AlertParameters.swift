@@ -29,6 +29,7 @@ import SwiftUI
 ///         .alert(parameters: $parameters)
 ///     }
 ///
+@MainActor
 public struct AlertParameters {
     // MARK: Properties
     /// Title.

@@ -12,6 +12,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
+@MainActor
 final class NSLayoutConstraintStoringTests: XCTestCase {
     func test() {
         let view: UIView = .init()

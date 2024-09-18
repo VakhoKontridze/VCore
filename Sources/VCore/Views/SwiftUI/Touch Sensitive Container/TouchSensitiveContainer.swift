@@ -126,7 +126,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
         if let delay = delay.nonZero {
             DispatchQueue.main.asyncAfter(
                 deadline: .now() + delay,
-                execute: block
+                execute: { block() }
             )
         } else {
             block()

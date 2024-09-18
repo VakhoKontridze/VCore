@@ -135,20 +135,25 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
 
     struct DestinationView: View {
         private let parameters: DestinationParameters
+        
+        @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
 
         init(parameters: DestinationParameters) {
             self.parameters = parameters
         }
 
         var body: some View {
-            Text("Destination")
-                .applyModifier({
+            Button(
+                "Go Back",
+                action: { navigationStackCoordinator.path.removeLast() }
+            )
+            .applyModifier({
 #if !(os(macOS) || os(tvOS))
-                    $0.inlineNavigationTitle("Destination")
+                $0.inlineNavigationTitle("Destination")
 #else
-                    $0
+                $0
 #endif
-                })
+            })
         }
     }
 

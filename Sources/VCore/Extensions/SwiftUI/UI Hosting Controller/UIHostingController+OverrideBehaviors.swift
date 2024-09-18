@@ -17,7 +17,7 @@ import OSLog
 // MARK: - Overridable UI Hosting Controller Behavior
 /// `UIHostingController` behavior overriding option.
 @OptionSetRepresentation<Int>
-public struct OverridableUIHostingControllerBehavior {
+public struct OverridableUIHostingControllerBehavior: Sendable {
     private enum Options: Int {
         case disablesSafeAreaInsets
         case disablesKeyboardAvoidance

@@ -12,6 +12,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
+@MainActor
 final class UIStackViewConfigureTests: XCTestCase {
     func testConfigure() {
         let stackView: UIStackView = .init()

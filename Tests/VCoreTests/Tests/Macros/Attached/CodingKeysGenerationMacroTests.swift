@@ -178,7 +178,8 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                 struct SomeStruct: Encodable {
 
                     internal enum CodingKeys: String, CodingKey {
-                    }}
+                    }
+                }
                 """,
             macros: macros
         )

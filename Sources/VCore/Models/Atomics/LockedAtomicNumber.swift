@@ -16,11 +16,14 @@ import Foundation
 ///         idGenerator.getAndIncrement()
 ///     }
 ///
-public final class LockedAtomicNumber<Number> where Number: Numeric {
-    // MARK: Properties
-    private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
-
+public final class LockedAtomicNumber<Number>: @unchecked Sendable
+    where Number: Numeric
+{
+    // MARK: Proeprties - Value
     private var value: Number
+    
+    // MARK: Properties - Semaphore
+    private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
 
     // MARK: Initializers
     /// Initializes `LockedAtomicNumber` with an initial value.
@@ -31,27 +34,24 @@ public final class LockedAtomicNumber<Number> where Number: Numeric {
     // MARK: Accessors
     /// Gets current value.
     public func get() -> Number {
-        dispatchSemaphore.wait()
-        defer { dispatchSemaphore.signal() }
-
-        return value
+        dispatchSemaphore.withLock({
+            value
+        })
     }
 
     // MARK: Mutators
     /// Sets current value to a given value.
     public func set(_ newValue: Number) {
-        dispatchSemaphore.wait()
-        defer { dispatchSemaphore.signal() }
-
-        value = newValue
+        dispatchSemaphore.withLock({
+            value = newValue
+        })
     }
 
     /// Adds a given value to current value
     public func add(_ valueToAdd: Number) {
-        dispatchSemaphore.wait()
-        defer { dispatchSemaphore.signal() }
-
-        value += valueToAdd
+        dispatchSemaphore.withLock({
+            value += valueToAdd
+        })
     }
 
     /// Adds `1` to current value.
@@ -67,20 +67,18 @@ public final class LockedAtomicNumber<Number> where Number: Numeric {
     // MARK: Get and Pre-Mutators
     /// Sets current value to a given value, and returns it.
     public func setAndGet(_ newValue: Number) -> Number {
-        dispatchSemaphore.wait()
-        defer { dispatchSemaphore.signal() }
-
-        value = newValue
-        return newValue
+        dispatchSemaphore.withLock({
+            value = newValue
+            return newValue
+        })
     }
 
     /// Adds a given value to current value, and returns it.
     public func addAndGet(_ valueToAdd: Number) -> Number {
-        dispatchSemaphore.wait()
-        defer { dispatchSemaphore.signal() }
-
-        value += valueToAdd
-        return value
+        dispatchSemaphore.withLock({
+            value += valueToAdd
+            return value
+        })
     }
 
     /// Adds `1` to current value, and returns it.
@@ -96,22 +94,20 @@ public final class LockedAtomicNumber<Number> where Number: Numeric {
     // MARK: Get and Post-Mutators
     /// Returns current value, and sets it to a given value.
     public func getAndSet(_ newValue: Number) -> Number {
-        dispatchSemaphore.wait()
-        defer { dispatchSemaphore.signal() }
-
-        let currentValue = value
-        value = newValue
-        return currentValue
+        dispatchSemaphore.withLock({
+            let currentValue = value
+            value = newValue
+            return currentValue
+        })
     }
 
     /// Returns current value, and adds a given value to it.
     public func getAndAdd(_ valueToAdd: Number) -> Number {
-        dispatchSemaphore.wait()
-        defer { dispatchSemaphore.signal() }
-
-        let currentValue = value
-        value += valueToAdd
-        return currentValue
+        dispatchSemaphore.withLock({
+            let currentValue = value
+            value += valueToAdd
+            return currentValue
+        })
     }
 
     /// Returns current value, and adds `1` to it.

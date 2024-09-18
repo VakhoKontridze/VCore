@@ -40,6 +40,7 @@ import UIKit
 ///         }
 ///     }
 ///
+@MainActor
 public protocol UIActionSheetViewable {
     /// Presents `UIActionSheet` with parameters
     func presentActionSheet(parameters: UIActionSheetParameters)

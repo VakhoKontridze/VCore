@@ -9,6 +9,7 @@ import SwiftUI
 
 // MARK: - Confirmation Dialog Button Convertible
 /// Type that allows for conversion to `ConfirmationDialogButtonProtocol`.
+@MainActor
 public protocol ConfirmationDialogButtonConvertible {
     /// Converts self to `ConfirmationDialogButtonProtocol` `Array`.
     func toButtons() -> [any ConfirmationDialogButtonProtocol]

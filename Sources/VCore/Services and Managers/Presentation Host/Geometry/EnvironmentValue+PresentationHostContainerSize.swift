@@ -10,5 +10,5 @@ import SwiftUI
 // MARK: - Environment Values + Presentation Host Container Size
 extension EnvironmentValues {
     /// Presentation Host's container size associated with the environment.
-    @EnvironmentValueGeneration public var presentationHostContainerSize: CGSize = .zero
+    @Entry public var presentationHostContainerSize: CGSize = .zero
 }

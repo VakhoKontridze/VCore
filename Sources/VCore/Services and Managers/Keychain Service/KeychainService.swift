@@ -14,26 +14,50 @@ import OSLog
 /// Object contains default instance `default`.
 ///
 /// For error codes, refer to [documentation](https://developer.apple.com/documentation/security/1542001-security_framework_result_codes).
-open class KeychainService {
-    // MARK: Properties - Configuration
-    /// Configuration.
-    open var configuration: KeychainServiceConfiguration
-
-    /// `JSONEncoder`.
-    ///
-    /// Used in `Codable` methods.
-    open lazy var jsonEncoder: JSONEncoder = .init()
-
-    /// `JSONDecoder`.
-    ///
-    /// Used in `Codable` methods.
-    open lazy var jsonDecoder: JSONDecoder = .init()
-
+open class KeychainService: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Default instance of `KeychainService` that uses `default` configuration.
     public static let `default`: KeychainService = .init(
         configuration: .default
     )
+    
+    // MARK: Properties - Configuration
+    private var _configuration: KeychainServiceConfiguration
+    
+    /// Configuration.
+    open var configuration: KeychainServiceConfiguration {
+        @storageRestrictions(initializes: _configuration)
+        init(initialValue) {
+            _configuration = initialValue
+        }
+        get { lock.withLock({ _configuration }) }
+        set { lock.withLock({ _configuration = newValue }) }
+    }
+
+    // MARK: Properties - JSON Encoder
+    private lazy var _jsonEncoder: JSONEncoder = .init()
+    
+    /// `JSONEncoder`.
+    ///
+    /// Used in `Codable` methods.
+    open var jsonEncoder: JSONEncoder {
+        get { lock.withLock({ _jsonEncoder }) }
+        set { lock.withLock({ _jsonEncoder = newValue }) }
+    }
+
+    // MARK: Properties - JSON Decoder
+    private lazy var _jsonDecoder: JSONDecoder = .init()
+    
+    /// `JSONDecoder`.
+    ///
+    /// Used in `Codable` methods.
+    open var jsonDecoder: JSONDecoder {
+        get { lock.withLock({ _jsonDecoder }) }
+        set { lock.withLock({ _jsonDecoder = newValue }) }
+    }
+    
+    // MARK: Properties - Lock
+    private let lock: NSLock = .init()
 
     // MARK: Initializers
     /// Initializes `KeychainService` with `KeychainServiceConfiguration`.

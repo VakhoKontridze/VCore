@@ -11,5 +11,5 @@ import SwiftUI
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension EnvironmentValues {
     /// `NavigationStackCoordinator` of the `View` associated with the environment.
-    @EnvironmentValueGeneration public var navigationStackCoordinator: NavigationStackCoordinator?
+    @Entry public var navigationStackCoordinator: NavigationStackCoordinator?
 }

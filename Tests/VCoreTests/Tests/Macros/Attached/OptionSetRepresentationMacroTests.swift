@@ -95,7 +95,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @OptionSetRepresentation<Int>
-            public struct Gender {
+            public struct Gender: Sendable {
                 private enum Options: Int {
                     case male
                     case female
@@ -104,7 +104,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
             """,
             expandedSource: 
                 """
-                public struct Gender {
+                public struct Gender: Sendable {
                     private enum Options: Int {
                         case male
                         case female

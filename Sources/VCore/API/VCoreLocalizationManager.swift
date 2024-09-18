@@ -16,15 +16,22 @@ import Foundation
 ///
 ///     VCoreLocalizationManager.shared.localizationProvider = SomeLocalizationProvider()
 ///
-/// Alternately, consider using `VCoreHumanReadableLocalizationProvider`
-/// that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable `String`s.
-public final class VCoreLocalizationManager {
-    // MARK: Properties
+public final class VCoreLocalizationManager: @unchecked Sendable {
+    // MARK: Properties - Singleton
     /// Shared instance of `VCoreLocalizationManager`.
     public static let shared: VCoreLocalizationManager = .init()
     
+    // MARK: Properties - Localization
+    private var _localizationProvider: any VCoreLocalizationProvider = DefaultVCoreLocalizationProvider()
+    
     /// Localization provider. Set to `DefaultVCoreLocalizationProvider`.
-    public var localizationProvider: any VCoreLocalizationProvider = DefaultVCoreLocalizationProvider()
+    public var localizationProvider: any VCoreLocalizationProvider {
+        get { lock.withLock({ _localizationProvider }) }
+        set { lock.withLock({ _localizationProvider = newValue }) }
+    }
+    
+    // MARK: Properties - Lock
+    private let lock: NSLock = .init()
     
     // MARK: Initializers
     private init() {}

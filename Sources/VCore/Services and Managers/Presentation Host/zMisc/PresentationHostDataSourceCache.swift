@@ -41,12 +41,16 @@ import SwiftUI
 ///         }
 ///     }
 ///
-public final class PresentationHostDataSourceCache {
-    // MARK: Properties
+public final class PresentationHostDataSourceCache: @unchecked Sendable {
+    // MARK: Properties - Singleton
     /// Shared instance of `PresentationHostDataSourceCache`.
     public static let shared: PresentationHostDataSourceCache = .init()
     
+    // MARK: Properties - Storage
     private var storage: [String: Any] = [:]
+    
+    // MARK: Properties - Lock
+    private let lock: NSLock = .init()
     
     // MARK: Initializers
     private init() {}
@@ -54,16 +58,22 @@ public final class PresentationHostDataSourceCache {
     // MARK: Operations
     /// Returns data from key.
     public func get(key: String) -> Any? {
-        storage[key]
+        lock.withLock({
+            storage[key]
+        })
     }
     
     /// Sets data with key.
     public func set(key: String, value: Any) {
-        storage[key] = value
+        lock.withLock({
+            storage[key] = value
+        })
     }
     
     /// Deletes data with key.
     public func remove(key: String) {
-        storage.removeValue(forKey: key)
+        _ = lock.withLock({
+            storage.removeValue(forKey: key)
+        })
     }
 }

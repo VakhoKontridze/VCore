@@ -11,6 +11,7 @@ import UIKit
 
 // MARK: - UI Alert Button Convertible
 /// Type that allows for conversion to `UIAlertButtonProtocol`.
+@MainActor
 public protocol UIAlertButtonConvertible {
     /// Converts self to `UIAlertButtonProtocol` `Array`.
     func toButtons() -> [any UIAlertButtonProtocol]

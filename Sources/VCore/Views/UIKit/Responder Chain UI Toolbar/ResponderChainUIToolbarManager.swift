@@ -41,6 +41,7 @@ import UIKit
 ///         }
 ///     }
 ///
+@MainActor
 open class ResponderChainUIToolbarManager {
     // MARK: Properties
     /// Managed `ResponderChainUIToolbarResponderParameters`s.

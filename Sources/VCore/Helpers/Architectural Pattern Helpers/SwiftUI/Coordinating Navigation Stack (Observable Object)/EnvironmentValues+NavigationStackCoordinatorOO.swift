@@ -12,5 +12,5 @@ extension EnvironmentValues {
     /// `NavigationStackCoordinatorOO` of the `View` associated with the environment.
     ///
     /// Since `NavigationStackCoordinatorOO` is a reference type, `View` updates won't be triggered.
-    @EnvironmentValueGeneration public var navigationStackCoordinatorOO: NavigationStackCoordinatorOO?
+    @Entry public var navigationStackCoordinatorOO: NavigationStackCoordinatorOO?
 }

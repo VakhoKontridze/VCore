@@ -12,26 +12,50 @@ import OSLog
 /// Service object that performs get, set, and delete `UserDefaults` operations.
 ///
 /// Object contains default instance `default`.
-open class UserDefaultsService {
-    // MARK: Properties - Configuration
-    /// `UserDefaults` store.
-    open var userDefaults: UserDefaults
-
-    /// `JSONEncoder`.
-    ///
-    /// Used in `Codable` methods.
-    open lazy var jsonEncoder: JSONEncoder = .init()
-    
-    /// `JSONDecoder`.
-    ///
-    /// Used in `Codable` methods.
-    open lazy var jsonDecoder: JSONDecoder = .init()
-
+open class UserDefaultsService: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Default instance of `UserDefaultsService` that uses `standard` `UserDefaults`.
     public static let `default`: UserDefaultsService = .init(
         userDefaults: .standard
     )
+    
+    // MARK: Properties - UserDefaults
+    private var _userDefaults: UserDefaults
+    
+    /// `UserDefaults` store.
+    open var userDefaults: UserDefaults {
+        @storageRestrictions(initializes: _userDefaults)
+        init(initialValue) {
+            _userDefaults = initialValue
+        }
+        get { lock.withLock({ _userDefaults }) }
+        set { lock.withLock({ _userDefaults = newValue }) }
+    }
+
+    // MARK: Properties - JSON Encoder
+    private lazy var _jsonEncoder: JSONEncoder = .init()
+    
+    /// `JSONEncoder`.
+    ///
+    /// Used in `Codable` methods.
+    open var jsonEncoder: JSONEncoder {
+        get { lock.withLock({ _jsonEncoder }) }
+        set { lock.withLock({ _jsonEncoder = newValue }) }
+    }
+
+    // MARK: Properties - JSON Decoder
+    private lazy var _jsonDecoder: JSONDecoder = .init()
+    
+    /// `JSONDecoder`.
+    ///
+    /// Used in `Codable` methods.
+    open var jsonDecoder: JSONDecoder {
+        get { lock.withLock({ _jsonDecoder }) }
+        set { lock.withLock({ _jsonDecoder = newValue }) }
+    }
+    
+    // MARK: Properties - Lock
+    private let lock: NSLock = .init()
 
     // MARK: Initializers
     /// Initializes `UserDefaultsService` with `UserDefaults`.

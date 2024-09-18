@@ -130,7 +130,7 @@ extension BasicAnimation {
 public func withBasicAnimation<Result>( // TODO: iOS 17.0 - Remove
     _ animation: BasicAnimation?,
     body: () throws -> Result,
-    completion: (() -> Void)?
+    completion: (@Sendable () -> Void)?
 ) rethrows -> Result {
     let result: Result = try withAnimation(animation?.toSwiftUIAnimation, body)
     

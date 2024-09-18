@@ -10,5 +10,5 @@ import SwiftUI
 // MARK: - Environment Values + Presentation Host Presentation Mode
 extension EnvironmentValues {
     /// Presentation Host's presentation mode of the `View` associated with the environment.
-    @EnvironmentValueGeneration public var presentationHostPresentationMode: PresentationHostPresentationMode?
+    @Entry public var presentationHostPresentationMode: PresentationHostPresentationMode?
 }

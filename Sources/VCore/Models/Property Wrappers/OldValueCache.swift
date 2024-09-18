@@ -13,7 +13,7 @@ import SwiftUI
 ///     @OldValueCache private var value: Int = 0
 ///
 ///     var body: some View {
-///         Button("Test", action: {
+///         Button("Increment", action: {
 ///             print(value, _value.wrappedValueOld) // 0, nil
 ///             value += 1
 ///             print(value, _value.wrappedValueOld) // 1, 0
@@ -22,32 +22,36 @@ import SwiftUI
 ///
 @propertyWrapper
 public struct OldValueCache<Value>: DynamicProperty {
-    // MARK: Properties
-    /// Old value.
-    @State private var fieldValue: Value
+    // MARK: Properties - Store
+    private let storage: State<Value>
+    private let storageOld: State<Value?>
     
+    // MARK: Properties - Current
     public var wrappedValue: Value {
         get {
-            fieldValue
+            storage.wrappedValue
         }
         nonmutating set {
-            wrappedValueOld = fieldValue
-            fieldValue = newValue
+            storageOld.wrappedValue = storage.wrappedValue
+            storage.wrappedValue = newValue
         }
     }
 
     public var projectedValue: Binding<Value> {
-        .init(
-            get: { wrappedValue },
-            set: { wrappedValue = $0 }
-        )
+        storage.projectedValue
     }
     
-    @State private(set) public var wrappedValueOld: Value?
+    // MARK: Properties - Old
+    /// Old value.
+    public var wrappedValueOld: Value? {
+        get { storageOld.wrappedValue }
+        nonmutating set { storageOld.wrappedValue = newValue }
+    }
     
     // MARK: Initializers
     /// Initializes `OldValueCache`.
     public init(wrappedValue: Value) {
-        self._fieldValue = State(wrappedValue: wrappedValue)
+        self.storage = State(wrappedValue: wrappedValue)
+        self.storageOld = State(wrappedValue: nil)
     }
 }
