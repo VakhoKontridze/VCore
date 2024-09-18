@@ -133,7 +133,12 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
                 .structDeclaration
                 .inheritanceClause?
                 .inheritedTypes,
-            inheritedTypes.contains(where: { $0.trimmedDescription == "OptionSet" })
+            inheritedTypes.contains(where: { inheritedType in
+                inheritedType
+                    .trimmedDescription
+                    .replacingOccurrences(of: ",", with: "")
+                == "OptionSet"
+            })
         {
             return []
 

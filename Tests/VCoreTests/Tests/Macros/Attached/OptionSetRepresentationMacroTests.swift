@@ -230,48 +230,95 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
     }
 
     func testAlreadyConformsToOptionSet() {
-        assertMacroExpansion(
-            """
-            @OptionSetRepresentation<Int>
-            struct Gender: OptionSet {
-                private enum Options: Int {
-                    case male
-                    case female
-                }
-            }
-            """,
-            expandedSource: 
+        do {
+            assertMacroExpansion(
                 """
+                @OptionSetRepresentation<Int>
                 struct Gender: OptionSet {
                     private enum Options: Int {
                         case male
                         case female
                     }
-
-                    internal typealias RawValue = Int
-
-                    internal let rawValue: RawValue
-
-                    internal init() {
-                        self.rawValue = 0
-                    }
-
-                    internal init(rawValue: RawValue) {
-                        self.rawValue = rawValue
-                    }
-
-                    internal static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
-
-                    internal static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
-
-                    internal static let all: Self = [
-                        .male,
-                        .female
-                    ]
                 }
                 """,
-            macros: macros
-        )
+                expandedSource:
+                    """
+                    struct Gender: OptionSet {
+                        private enum Options: Int {
+                            case male
+                            case female
+                        }
+
+                        internal typealias RawValue = Int
+
+                        internal let rawValue: RawValue
+
+                        internal init() {
+                            self.rawValue = 0
+                        }
+
+                        internal init(rawValue: RawValue) {
+                            self.rawValue = rawValue
+                        }
+
+                        internal static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
+
+                        internal static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
+
+                        internal static let all: Self = [
+                            .male,
+                            .female
+                        ]
+                    }
+                    """,
+                macros: macros
+            )
+        }
+        
+        do {
+            assertMacroExpansion(
+                """
+                @OptionSetRepresentation<Int>
+                struct Gender: OptionSet, Foo {
+                    private enum Options: Int {
+                        case male
+                        case female
+                    }
+                }
+                """,
+                expandedSource:
+                    """
+                    struct Gender: OptionSet, Foo {
+                        private enum Options: Int {
+                            case male
+                            case female
+                        }
+
+                        internal typealias RawValue = Int
+
+                        internal let rawValue: RawValue
+
+                        internal init() {
+                            self.rawValue = 0
+                        }
+
+                        internal init(rawValue: RawValue) {
+                            self.rawValue = rawValue
+                        }
+
+                        internal static let male: Self = .init(rawValue: 1 << Options.male.rawValue)
+
+                        internal static let female: Self = .init(rawValue: 1 << Options.female.rawValue)
+
+                        internal static let all: Self = [
+                            .male,
+                            .female
+                        ]
+                    }
+                    """,
+                macros: macros
+            )
+        }
     }
 
     func testSameLineCases() {
