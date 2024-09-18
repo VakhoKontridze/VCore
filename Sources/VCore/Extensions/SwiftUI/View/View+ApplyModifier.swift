@@ -17,11 +17,11 @@ extension View {
     ///         var body: some View {
     ///             SomeView()
     ///                 .applyModifier({
-    ///     #if !(os(tvOS) || os(watchOS))
-    ///                     $0.listRowSeparator(.hidden)
-    ///     #else
-    ///                     $0
-    ///     #endif
+    ///                     if #available(iOS 99.0, *) {
+    ///                         $0.someModifier()
+    ///                     } else {
+    ///                         $0
+    ///                     }
     ///                 })
     ///         }
     ///     }

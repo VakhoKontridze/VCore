@@ -117,17 +117,13 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
             })
 
             // Must be written last
-            .applyModifier({
 #if os(iOS)
-                $0
-                    .offset(y: -keyboardObserver.offset)
-                    .animation(keyboardObserver.animation, value: keyboardObserver.offset)
-                    .withDisabledKeyboardResponsiveness()
+            .offset(y: -keyboardObserver.offset)
+            .animation(keyboardObserver.animation, value: keyboardObserver.offset)
+            .withDisabledKeyboardResponsiveness()
 #else
-                $0
-                    .ignoresSafeArea()
+            .ignoresSafeArea()
 #endif
-            })
         }
     }
 

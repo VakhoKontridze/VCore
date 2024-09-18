@@ -81,13 +81,9 @@ public struct SecurableTextField: View {
                     placeholder: Text("Lorem ipsum"),
                     text: $text
                 )
-                .applyModifier({
 #if !(os(tvOS) || os(watchOS))
-                    $0.textFieldStyle(.roundedBorder)
-#else
-                    $0
+                .textFieldStyle(.roundedBorder)
 #endif
-                })
 
                 Button("Toggle", action: { isSecure.toggle() })
             })

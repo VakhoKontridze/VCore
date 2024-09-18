@@ -205,13 +205,9 @@ public struct PlainDisclosureGroup<Label, Content>: View
                             .frame(height: 300)
                     }
                 )
-                .applyModifier({
 #if os(macOS)
-                    $0.frame(dimension: 480)
-#else
-                    $0
+                .frame(dimension: 480)
 #endif
-                })
                 .padding()
             })
         }

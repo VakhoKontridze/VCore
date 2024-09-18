@@ -120,13 +120,9 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
                 "Navigate",
                 action: { navigationStackCoordinator.path.append(DestinationParameters()) }
             )
-            .applyModifier({
 #if !(os(macOS) || os(tvOS))
-                $0.inlineNavigationTitle("Home")
-#else
-                $0
+            .inlineNavigationTitle("Home")
 #endif
-            })
             .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
         }
     }
@@ -147,13 +143,9 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
                 "Go Back",
                 action: { navigationStackCoordinator.path.removeLast() }
             )
-            .applyModifier({
 #if !(os(macOS) || os(tvOS))
-                $0.inlineNavigationTitle("Destination")
-#else
-                $0
+            .inlineNavigationTitle("Destination")
 #endif
-            })
         }
     }
 
