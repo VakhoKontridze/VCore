@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - V Core Localization Manager
+// MARK: - VCore Localization Manager
 /// Object that manages localization in the package.
 ///
 /// `localizationProvider` in `shared` instance can be set to override the localized values.
@@ -37,7 +37,7 @@ public final class VCoreLocalizationManager: @unchecked Sendable {
     private init() {}
 }
 
-// MARK: - V Core Localization Provider
+// MARK: - VCore Localization Provider
 /// Localization provider in package.
 ///
 /// Alternately, consider using `VCoreHumanReadableLocalizationProvider`

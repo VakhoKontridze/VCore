@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - V Core Error
+// MARK: - VCore Error
 /// An error that occurs in `VCore`.
 public protocol VCoreError: LocalizedError, CustomNSError {
     /// Error domain.
