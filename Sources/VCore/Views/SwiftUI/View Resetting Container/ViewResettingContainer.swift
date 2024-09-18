@@ -91,7 +91,7 @@ public struct ViewResettingContainer<Content>: View where Content: View {
             GeometryReader(content: { proxy in
                 ScrollView(content: {
                     Color.accentColor
-                        .frame(height: proxy.size.height)
+                        .frame(height: proxy.size.height * 1.2)
 
                     Button(
                         "Reset",
