@@ -16,7 +16,7 @@ extension View {
     ///     @State private var interfaceOrientation: UIInterfaceOrientation = .unknown
     ///
     ///     var body: some View {
-    ///         Color.accentColor
+    ///         Text(interfaceOrientation.isLandscape ? "Landscape" : "Portrait")
     ///             .getInterfaceOrientation({ interfaceOrientation = $0 })
     ///     }
     ///
@@ -76,7 +76,9 @@ private final class _InterfaceOrientationReaderViewController: UIViewController 
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
 
-        DispatchQueue.main.async(execute: notify)
+        Task(operation: { @MainActor in
+            notify()
+        })
     }
 
     // MARK: Content Container

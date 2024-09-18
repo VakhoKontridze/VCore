@@ -30,7 +30,7 @@ struct SwiftUIGestureBaseButton_AppKit: NSViewRepresentable {
     func makeNSView(context: Context) -> NSView {
         let view: NSView = .init(frame: .zero)
         
-        DispatchQueue.main.async(execute: {
+        Task(operation: { @MainActor in
             let gestureRecognizer: AppKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
             self.gestureRecognizer = gestureRecognizer
             

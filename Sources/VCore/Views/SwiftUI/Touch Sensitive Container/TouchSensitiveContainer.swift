@@ -124,10 +124,10 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
         block: @escaping () -> Void
     ) {
         if let delay = delay.nonZero {
-            DispatchQueue.main.asyncAfter(
-                deadline: .now() + delay,
-                execute: { block() }
-            )
+            Task(operation: { @MainActor in
+                try? await Task.sleep(seconds: delay)
+                block()
+            })
         } else {
             block()
         }

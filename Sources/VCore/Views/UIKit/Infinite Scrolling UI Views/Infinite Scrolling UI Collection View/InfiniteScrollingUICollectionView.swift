@@ -343,7 +343,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         }
 
         func collectionViewDidScrollToBottom(sender infiniteScrollingCollectionView: InfiniteScrollingUICollectionView) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [weak self] in
                 guard let self else { return }
 
                 data.append(contentsOf: page)

@@ -22,6 +22,8 @@ final class GestureBaseButtonModel {
     private var centerLocationOnSuperViewInitial: CGPoint?
     private let centerLocationMaxOffsetToRegisterGesture: CGFloat = 5
     
+    // In views that implement `GestureBaseButtonModel`, property setter isn't called,
+    // when the `state` is set to `possible`. So, it needs to be manualy trigerred.
     private let stateSetter: (GestureRecognizerState) -> Void
     
     // MARK: Initializers
@@ -92,9 +94,8 @@ final class GestureBaseButtonModel {
     }
     
     private func setStateToPossibleOnNextRunLoop() {
-        DispatchQueue.main.async(execute: {
-            // This is set automatically in the next runLoop, but setter isn't called
-            self.stateSetter(.possible)
+        Task(operation: { @MainActor in
+            stateSetter(.possible)
         })
     }
     

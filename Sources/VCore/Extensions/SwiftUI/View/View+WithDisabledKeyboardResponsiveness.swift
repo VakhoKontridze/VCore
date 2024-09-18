@@ -64,7 +64,9 @@ private struct KeyboardResponsivenessDisablingView<Content>: UIViewControllerRep
         hostingController.view.backgroundColor = .clear
         hostingController.overrideBehaviors([.disablesSafeAreaInsets, .disablesKeyboardAvoidance])
 
-        DispatchQueue.main.async(execute: { self.hostingController = hostingController })
+        Task(operation: { @MainActor in
+            self.hostingController = hostingController
+        })
 
         return hostingController
     }
