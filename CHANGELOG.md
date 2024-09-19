@@ -1,6 +1,6 @@
 # Change Log
 
-### 7.0.0(102)
+### [7.0.0(102)](https://github.com/VakhoKontridze/VCore/releases/tag/7.0.0) — *2024 09 20*
 
 General
 
