@@ -37,14 +37,12 @@ public func isLess<T, each Property: Comparable>(
     by keyPaths: repeat KeyPath<T, each Property>
 ) -> Bool {
     for keyPath in repeat each keyPaths {
-        print(lhs[keyPath: keyPath], rhs[keyPath: keyPath])
-        
-        guard lhs[keyPath: keyPath] < rhs[keyPath: keyPath] else {
-            return false
+        if lhs[keyPath: keyPath] != rhs[keyPath: keyPath] {
+            return lhs[keyPath: keyPath] < rhs[keyPath: keyPath]
         }
     }
     
-    return true
+    return false
 }
 
 // MARK: - Is Less than or Equal to by KeyPath
@@ -57,13 +55,7 @@ public func isLessThanOrEqual<T, each Property: Comparable>(
     to rhs: T,
     by keyPaths: repeat KeyPath<T, each Property>
 ) -> Bool {
-    for keyPath in repeat each keyPaths {
-        guard lhs[keyPath: keyPath] <= rhs[keyPath: keyPath] else {
-            return false
-        }
-    }
-    
-    return true
+    !isLess(rhs, than: lhs, by: repeat each keyPaths)
 }
 
 // MARK: - Is Greater than by KeyPath
@@ -76,13 +68,7 @@ public func isGreater<T, each Property: Comparable>(
     than rhs: T,
     by keyPaths: repeat KeyPath<T, each Property>
 ) -> Bool {
-    for keyPath in repeat each keyPaths {
-        guard lhs[keyPath: keyPath] > rhs[keyPath: keyPath] else {
-            return false
-        }
-    }
-    
-    return true
+    isLess(rhs, than: lhs, by: repeat each keyPaths)
 }
 
 // MARK: - Is Greater than or Equal to by KeyPath
@@ -95,11 +81,5 @@ public func isGreaterThanOrEqual<T, each Property: Comparable>(
     to rhs: T,
     by keyPaths: repeat KeyPath<T, each Property>
 ) -> Bool {
-    for keyPath in repeat each keyPaths {
-        guard lhs[keyPath: keyPath] >= rhs[keyPath: keyPath] else {
-            return false
-        }
-    }
-    
-    return true
+    !isLess(lhs, than: rhs, by: repeat each keyPaths)
 }

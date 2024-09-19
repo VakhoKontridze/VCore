@@ -41,7 +41,7 @@ final class KeyPathEqualityAndCompraisonTests: XCTestCase {
         XCTAssertTrue(
             isLess(
                 Object(),
-                than: Object(a: 1, b: 1, c: 1),
+                than: Object(c: 1),
                 by: \.a, \.b, \.c
             )
         )
@@ -85,7 +85,7 @@ final class KeyPathEqualityAndCompraisonTests: XCTestCase {
         XCTAssertTrue(
             isGreater(
                 Object(),
-                than: Object(a: -1, b: -1, c: -1),
+                than: Object(c: -1),
                 by: \.a, \.b, \.c
             )
         )
