@@ -30,32 +30,37 @@ import Combine
 ///     @KeychainStorage("AccessToken", keychainService: .someCustomConfiguration) var accessToken: String?
 ///
 @propertyWrapper
-public struct KeychainStorage<Value>: DynamicProperty {
+public struct KeychainStorage<Value>: DynamicProperty, Sendable
+    where Value: Sendable
+{
     // MARK: Properties
-    private let storage: State<Value>
+    @State private var storage: Value
 
     public var wrappedValue: Value {
         get {
-            storage.wrappedValue
+            storage
         }
         nonmutating set {
-            storage.wrappedValue = newValue
+            storage = newValue
             valueSetter(newValue)
         }
     }
     
     public var projectedValue: Binding<Value> {
-        storage.projectedValue
+        .init(
+            get: { wrappedValue },
+            set: { wrappedValue = $0 }
+        )
     }
     
-    private let valueSetter: (Value) -> Void
+    private let valueSetter: @Sendable (Value) -> Void
     
     // MARK: Initializers
     fileprivate init(
         initialValue: Value,
-        valueSetter: @escaping (Value) -> Void
+        valueSetter: @escaping @Sendable (Value) -> Void
     ) {
-        self.storage = State(wrappedValue: initialValue)
+        self._storage = State(wrappedValue: initialValue)
         self.valueSetter = valueSetter
     }
 

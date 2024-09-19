@@ -21,37 +21,42 @@ import SwiftUI
 ///     }
 ///
 @propertyWrapper
-public struct OldValueCache<Value>: DynamicProperty {
+public struct OldValueCache<Value>: DynamicProperty, Sendable
+    where Value: Sendable
+{
     // MARK: Properties - Store
-    private let storage: State<Value>
-    private let storageOld: State<Value?>
+    @State private var storage: Value
+    @State private var storageOld: Value?
     
     // MARK: Properties - Current
     public var wrappedValue: Value {
         get {
-            storage.wrappedValue
+            storage
         }
         nonmutating set {
-            storageOld.wrappedValue = storage.wrappedValue
-            storage.wrappedValue = newValue
+            storageOld = storage
+            storage = newValue
         }
     }
 
     public var projectedValue: Binding<Value> {
-        storage.projectedValue
+        .init(
+            get: { wrappedValue },
+            set: { wrappedValue = $0 }
+        )
     }
     
     // MARK: Properties - Old
     /// Old value.
     public var wrappedValueOld: Value? {
-        get { storageOld.wrappedValue }
-        nonmutating set { storageOld.wrappedValue = newValue }
+        get { storageOld }
+        nonmutating set { storageOld = newValue }
     }
     
     // MARK: Initializers
     /// Initializes `OldValueCache`.
     public init(wrappedValue: Value) {
-        self.storage = State(wrappedValue: wrappedValue)
-        self.storageOld = State(wrappedValue: nil)
+        self._storage = State(wrappedValue: wrappedValue)
+        self._storageOld = State(wrappedValue: nil)
     }
 }

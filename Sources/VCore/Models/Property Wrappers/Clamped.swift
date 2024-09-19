@@ -19,27 +19,32 @@ import SwiftUI
 ///     @Clamped(1...10, step: 3) private var c: Double = 11 // 10.0
 ///
 @propertyWrapper 
-public struct Clamped<Value>: DynamicProperty {
+public struct Clamped<Value>: DynamicProperty, Sendable
+    where Value: Sendable
+{
     // MARK: Properties
-    private let storage: State<Value>
+    @State private var storage: Value
 
     public var wrappedValue: Value {
-        get { storage.wrappedValue }
-        nonmutating set { storage.wrappedValue = transformation(newValue) }
+        get { storage }
+        nonmutating set { storage = transformation(newValue) }
     }
     
     public var projectedValue: Binding<Value> {
-        storage.projectedValue
+        .init(
+            get: { wrappedValue },
+            set: { wrappedValue = $0 }
+        )
     }
     
-    private let transformation: (Value) -> Value
+    private let transformation: @Sendable (Value) -> Value
     
     // MARK: Initializers
     fileprivate init(
         wrappedValue: Value,
-        transformation: @escaping (Value) -> Value
+        transformation: @escaping @Sendable (Value) -> Value
     ) {
-        self.storage = State(wrappedValue: wrappedValue)
+        self._storage = State(wrappedValue: wrappedValue)
         self.transformation = transformation
     }
 
