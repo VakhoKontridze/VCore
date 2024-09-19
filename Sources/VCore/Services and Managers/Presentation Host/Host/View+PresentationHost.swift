@@ -81,6 +81,8 @@ extension View {
     ///             })
     ///             .frame(dimension: 300)
     ///
+    ///             .clipped() // Fixes issues with keyboard
+    ///
     ///             .offset(y: isPresentedInternally ? 0 : (containerSize.height + 300)/2)
     ///
     ///             .onReceive(presentationMode.presentPublisher, perform: animateIn)
@@ -381,6 +383,8 @@ private struct SomeModal<Content>: View where Content: View {
                 .padding()
         })
         .frame(dimension: dimension)
+        
+        .clipped() // Fixes issues with keyboard
 
         .offset(y: isPresentedInternally ? 0 : (containerSize.height + dimension)/2)
 

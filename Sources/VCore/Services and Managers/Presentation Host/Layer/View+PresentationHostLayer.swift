@@ -120,7 +120,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
 #if os(iOS)
             .offset(y: -keyboardObserver.offset)
             .animation(keyboardObserver.animation, value: keyboardObserver.offset)
-            .withDisabledKeyboardResponsiveness()
+            .ignoresSafeArea() // Using `withDisabledKeyboardResponsiveness` here disables click-through behavior
 #else
             .ignoresSafeArea()
 #endif
