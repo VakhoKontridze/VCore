@@ -82,6 +82,7 @@ public struct BasicAnimation {
 
 import QuartzCore
 
+@available(watchOS, unavailable)
 extension BasicAnimation {
     /// Converts `BasicAnimation` to `CAMediaTimingFunction`.
     public var toCAMediaTimingFunction: CAMediaTimingFunction {
