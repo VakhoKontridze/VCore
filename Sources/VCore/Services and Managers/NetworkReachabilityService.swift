@@ -25,13 +25,13 @@ import OSLog
 ///         .sink(receiveValue: { [weak self] in self?.dismissNoNetworkConnectionScreen() })
 ///         .store(in: &subscriptions)
 ///
-public final class NetworkReachabilityService: @unchecked Sendable { // TODO: iOS 17.0 - Convert to `Observable` and remove `Combine`
+public final class NetworkReachabilityService: ObservableObject, @unchecked Sendable { // TODO: iOS 17.0 - Convert to `Observable` and remove `Combine`
     // MARK: Properties - Singleton
     /// Shared instance of `NetworkReachabilityService`.
     public static let shared: NetworkReachabilityService = .init()
     
     // MARK: Properties - Status
-    private var _status: NWPath.Status?
+    @Published private var _status: NWPath.Status?
     
     /// Network connection status.
     private(set) public var status: NWPath.Status? {
@@ -78,18 +78,20 @@ public final class NetworkReachabilityService: @unchecked Sendable { // TODO: iO
     
     // MARK: Status
     private func statusChanged(_ path: NWPath) {
-        let oldStatus = status
-        status = path.status
-        
-        if status != oldStatus || !didCheckStatusForTheFirstTime {
-            didCheckStatusForTheFirstTime = true
+        Task(operation: { @MainActor in
+            let oldStatus = status
+            status = path.status
             
-            switch isConnectedToNetwork {
-            case nil: break
-            case false?: disconnectedPublisher.send()
-            case true?: connectedPublisher.send()
+            if status != oldStatus || !didCheckStatusForTheFirstTime {
+                didCheckStatusForTheFirstTime = true
+                
+                switch isConnectedToNetwork {
+                case nil: break
+                case false?: disconnectedPublisher.send()
+                case true?: connectedPublisher.send()
+                }
             }
-        }
+        })
     }
 }
 
