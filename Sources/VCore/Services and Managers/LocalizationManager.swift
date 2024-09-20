@@ -102,7 +102,7 @@ public final class LocalizationManager: ObservableObject, @unchecked Sendable { 
                 _ = Self.validateLocaleIsAdded(newValue)
 
                 _currentLocale = newValue
-                Self.setCurrentLocaleToUserDefaults(locale: newValue)
+                Self.setCurrentLocaleToUserDefaults(newValue)
                 currentLocaleChangePublisher.send(newValue)
             })
         }
@@ -138,7 +138,7 @@ public final class LocalizationManager: ObservableObject, @unchecked Sendable { 
 
             } else {
                 let currentLocale: Locale = _defaultLocale
-                Self.setCurrentLocaleToUserDefaults(locale: currentLocale)
+                Self.setCurrentLocaleToUserDefaults(currentLocale)
                 return currentLocale
             }
         }()
@@ -159,13 +159,9 @@ public final class LocalizationManager: ObservableObject, @unchecked Sendable { 
     }
     
     private static func setCurrentLocaleToUserDefaults(
-        locale: Locale?
+        _ locale: Locale
     ) {
-        if let locale {
-            UserDefaults.standard.set([locale.identifier], forKey: "AppleLanguages")
-        } else {
-            UserDefaults.standard.removeObject(forKey: "AppleLanguages")
-        }
+        UserDefaults.standard.set([locale.identifier], forKey: "AppleLanguages")
     }
 
     // MARK: Localization
