@@ -1,6 +1,6 @@
 # Change Log
 
-### 7.0.1(103)
+### [7.0.1(103)](https://github.com/VakhoKontridze/VCore/releases/tag/7.0.1) — *2024 09 20*
 
 Services and Managers
 
