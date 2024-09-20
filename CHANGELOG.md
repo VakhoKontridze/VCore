@@ -4,9 +4,9 @@
 
 Services and Managers
 
-- `LocalizationManager` not conforms to `ObservableObject`
+- `LocalizationManager` now conforms to `ObservableObject`
 - Deadlock in `LocalizationManager` is fixed
-- `NetworkReachabilityService` not conforms to `ObservableObject`
+- `NetworkReachabilityService` now conforms to `ObservableObject`
 - Issue with `Combine` publishers in `NetworkReachabilityService` is fixed
 
 ### [7.0.0(102)](https://github.com/VakhoKontridze/VCore/releases/tag/7.0.0) — *2024 09 20*
