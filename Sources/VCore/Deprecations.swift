@@ -6,3 +6,11 @@
 //
 
 import SwiftUI
+
+// MARK: - Localization Manager
+extension LocalizationManager {
+    @available(*, deprecated, message: "Use `static` property instead")
+    public var locales: [Locale] {
+        Self.locales
+    }
+}

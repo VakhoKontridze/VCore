@@ -22,9 +22,11 @@ import OSLog
 ///
 /// You can create a simple localization picker, although it would require relaunch for `Bundle` to be updated:
 ///
+///     @ObservedObject private var localizationManager: LocalizationManager = .shared
+///
 ///     VStack(content: {
 ///         ForEach(
-///             LocalizationManager.shared.locales.sorted(by: { (lhs, rhs) in
+///             LocalizationManager.locales.sorted(by: { (lhs, rhs) in
 ///                 lhs.displayNameNative
 ///                     .isOptionalLess(
 ///                         than: rhs.displayNameNative,
@@ -36,11 +38,11 @@ import OSLog
 ///             content: { locale in
 ///                 Button(
 ///                     action: {
-///                         LocalizationManager.shared.currentLocale = locale
+///                         localizationManager.currentLocale = locale
 ///                     },
 ///                     label: {
 ///                         Text(locale.displayNameNative?.capitalized ?? locale.identifier)
-///                             .fontWeight(LocalizationManager.shared.currentLocale == locale ? .bold : .regular)
+///                             .fontWeight(localizationManager.currentLocale == locale ? .bold : .regular)
 ///                     }
 ///                 )
 ///             }
@@ -55,27 +57,18 @@ import OSLog
 ///         return ContentView()
 ///     })
 ///
-public final class LocalizationManager: @unchecked Sendable { // TODO: iOS 17.0 - Convert to `Observable` and remove `Combine`
+public final class LocalizationManager: ObservableObject, @unchecked Sendable { // TODO: iOS 17.0 - Convert to `Observable` and remove `Combine`
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
     public static let shared: LocalizationManager = .init()
 
     // MARK: Properties - Locales
     /// `Locale`s.
-    public let locales: [Locale] = Bundle.main.localizations
+    public static let locales: [Locale] = Bundle.main.localizations
         .map({ Locale(identifier: $0) })
 
     // MARK: Properties - Default Locale
-    private var _defaultLocale: Locale = {
-        guard 
-            let identifier: String = Bundle.main.preferredLocalizations.first
-        else {
-            Logger.localizationManager.critical("Default localization is not selected in 'Bundle.main'")
-            fatalError()
-        }
-
-        return Locale(identifier: identifier)
-    }()
+    @Published private var _defaultLocale: Locale
 
     /// Default `Locale` that will be retrieved in the absence of current value.
     public var defaultLocale: Locale {
@@ -86,47 +79,15 @@ public final class LocalizationManager: @unchecked Sendable { // TODO: iOS 17.0 
         }
         set {
             lock.withLock({
+                _ = Self.validateLocaleIsAdded(newValue)
+                
                 _defaultLocale = newValue
-                _ = validateLocaleIsAdded(newValue)
             })
         }
     }
 
     // MARK: Properties - Current Locale
-    private var _currentLocaleUserDefaults: Locale? {
-        get {
-            guard
-                let identifier: String = (UserDefaults.standard.object(forKey: "AppleLanguages") as? [String])?.first,
-                let locale: Locale = locales.first(where: { $0.isEquivalent(to: Locale(identifier: identifier)) }) // Region code may be attached
-            else {
-                return nil
-            }
-
-            UserDefaults.standard.set([locale.identifier], forKey: "AppleLanguages") // Strips region code
-
-            return locale
-        }
-        set {
-            if let newValue {
-                UserDefaults.standard.set([newValue.identifier], forKey: "AppleLanguages")
-            } else {
-                UserDefaults.standard.removeObject(forKey: "AppleLanguages")
-            }
-        }
-    }
-
-    private lazy var _currentLocale: Locale = {
-        if
-            let _currentLocaleUserDefaults,
-            validateLocaleIsAdded(_currentLocaleUserDefaults)
-        {
-            return _currentLocaleUserDefaults
-
-        } else {
-            _currentLocaleUserDefaults = defaultLocale
-            return defaultLocale
-        }
-    }()
+    @Published private var _currentLocale: Locale
 
     /// Current `Locale`.
     public var currentLocale: Locale {
@@ -138,12 +99,10 @@ public final class LocalizationManager: @unchecked Sendable { // TODO: iOS 17.0 
         set {
             lock.withLock({
                 guard newValue != _currentLocale else { return }
+                _ = Self.validateLocaleIsAdded(newValue)
 
                 _currentLocale = newValue
-                _currentLocaleUserDefaults = newValue
-
-                _ = validateLocaleIsAdded(newValue)
-
+                Self.setCurrentLocaleToUserDefaults(locale: newValue)
                 currentLocaleChangePublisher.send(newValue)
             })
         }
@@ -154,10 +113,60 @@ public final class LocalizationManager: @unchecked Sendable { // TODO: iOS 17.0 
     public let currentLocaleChangePublisher: PassthroughSubject<Locale, Never> = .init()
     
     // MARK: Properties - Lock
-    private let lock: NSLock = .init()
+    private let lock: NSRecursiveLock = .init()
 
     // MARK: Initializers
-    private init() {}
+    private init() {
+        let _defaultLocale: Locale = {
+            guard
+                let identifier: String = Bundle.main.preferredLocalizations.first
+            else {
+                Logger.localizationManager.critical("Default localization is not selected in 'Bundle.main'")
+                fatalError()
+            }
+
+            return Locale(identifier: identifier)
+        }()
+        self._defaultLocale = _defaultLocale
+        
+        self._currentLocale = {
+            if
+                let currentLocaleUserDefaults: Locale = Self.getCurrentLocaleFromUserDefaults(),
+                Self.validateLocaleIsAdded(currentLocaleUserDefaults)
+            {
+                return currentLocaleUserDefaults
+
+            } else {
+                let currentLocale: Locale = _defaultLocale
+                Self.setCurrentLocaleToUserDefaults(locale: currentLocale)
+                return currentLocale
+            }
+        }()
+    }
+    
+    // MARK: User Defaults
+    private static func getCurrentLocaleFromUserDefaults() -> Locale? {
+        guard
+            let identifier: String = (UserDefaults.standard.object(forKey: "AppleLanguages") as? [String])?.first,
+            let locale: Locale = Self.locales.first(where: { $0.isEquivalent(to: Locale(identifier: identifier)) }) // Region code may be attached
+        else {
+            return nil
+        }
+
+        UserDefaults.standard.set([locale.identifier], forKey: "AppleLanguages") // Strips region code
+
+        return locale
+    }
+    
+    private static func setCurrentLocaleToUserDefaults(
+        locale: Locale?
+    ) {
+        if let locale {
+            UserDefaults.standard.set([locale.identifier], forKey: "AppleLanguages")
+        } else {
+            UserDefaults.standard.removeObject(forKey: "AppleLanguages")
+        }
+    }
 
     // MARK: Localization
     /// Returns localized `String` from the given table and `Bundle`.
@@ -177,8 +186,8 @@ public final class LocalizationManager: @unchecked Sendable { // TODO: iOS 17.0 
     }
 
     // MARK: Validation
-    private func validateLocaleIsAdded(_ locale: Locale) -> Bool {
-        guard locales.contains(locale) else {
+    private static func validateLocaleIsAdded(_ locale: Locale) -> Bool {
+        guard Self.locales.contains(locale) else {
             Logger.localizationManager.warning("Localization '\(locale.identifier)' is not added to 'Bundle.main'")
             return false
         }

@@ -1,5 +1,11 @@
 # Change Log
 
+### 7.0.1(103)
+
+Services and Managers
+
+- Deadlock in `LocalizationManager` is fixed
+
 ### [7.0.0(102)](https://github.com/VakhoKontridze/VCore/releases/tag/7.0.0) — *2024 09 20*
 
 General
