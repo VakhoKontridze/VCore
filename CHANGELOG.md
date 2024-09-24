@@ -1,5 +1,11 @@
 # Change Log
 
+### 7.1.0(104)
+
+Extensions
+
+- `TaskGroup.childTaskValues(isolation:)` and `ThrowingTaskGroup.childTaskValues(isolation:)` methods are added, that collect and return child task values
+
 ### [7.0.1(103)](https://github.com/VakhoKontridze/VCore/releases/tag/7.0.1) — *2024 09 20*
 
 Services and Managers
