@@ -13,17 +13,15 @@ extension View {
     ///
     /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
-    ///     struct ContentView: View {
-    ///         var body: some View {
-    ///             SomeView()
-    ///                 .applyModifier({
-    ///                     if #available(iOS 99.0, *) {
-    ///                         $0.someModifier()
-    ///                     } else {
-    ///                         $0
-    ///                     }
-    ///                 })
-    ///         }
+    ///     var body: some View {
+    ///         SomeView()
+    ///             .applyModifier({
+    ///                 if #available(iOS 99.0, *) {
+    ///                     $0.someModifier()
+    ///                 } else {
+    ///                     $0
+    ///                 }
+    ///             })
     ///     }
     ///
     public func applyModifier<Content>(

@@ -64,29 +64,24 @@ extension View {
 // MARK: - Preview
 #if DEBUG
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    struct ContentView: View {
-        @State private var parameters: AlertParameters?
+    @Previewable @State var parameters: AlertParameters?
 
-        var body: some View {
-            Button(
-                "Present",
-                action: {
-                    parameters = AlertParameters(
-                        title: "Lorem Ipsum",
-                        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-                        actions: {
-                            AlertButton(action: {}, title: "Confirm")
-                            AlertButton(role: .cancel, action: {}, title: "Cancel")
-                        }
-                    )
+    Button(
+        "Present",
+        action: {
+            parameters = AlertParameters(
+                title: "Lorem Ipsum",
+                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                actions: {
+                    AlertButton(action: {}, title: "Confirm")
+                    AlertButton(role: .cancel, action: {}, title: "Cancel")
                 }
             )
-            .alert(parameters: $parameters)
         }
-    }
-
-    return ContentView()
+    )
+    .alert(parameters: $parameters)
 })
 
 #endif

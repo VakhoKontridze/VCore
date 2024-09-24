@@ -61,44 +61,39 @@ extension View {
 // MARK: - Preview
 #if DEBUG
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    struct ContentView: View {
-        @State private var count: Int = 0
+    @Previewable @State var count: Int = 0
 
-        var body: some View {
-            Text(
-                AttributedString(
-                    string: "Lorem <a>ipsum</a> dolor sit <b>amet</b>: \(count)",
-                    attributeContainers: [
-                        "a": {
-                            var container: AttributeContainer = .init()
-                            container.foregroundColor = .green
-                            container.font = .body.bold()
-                            container.link = #url("a")
-                            return container
-                        }(),
-                        "b": {
-                            var container: AttributeContainer = .init()
-                            container.foregroundColor = .red
-                            container.font = .body.bold()
-                            container.link = #url("b")
-                            return container
-                        }()
-                    ]
-                )
-            )
-            .addOpenURLAction({
-                switch $0 {
-                case #url("a"): count += 1
-                case #url("b"): count -= 1
-                default: break
-                }
-            })
-            .padding(.horizontal)
-         }
-    }
-
-    return ContentView()
+    Text(
+        AttributedString(
+            string: "Lorem <a>ipsum</a> dolor sit <b>amet</b>: \(count)",
+            attributeContainers: [
+                "a": {
+                    var container: AttributeContainer = .init()
+                    container.foregroundColor = .green
+                    container.font = .body.bold()
+                    container.link = #url("a")
+                    return container
+                }(),
+                "b": {
+                    var container: AttributeContainer = .init()
+                    container.foregroundColor = .red
+                    container.font = .body.bold()
+                    container.link = #url("b")
+                    return container
+                }()
+            ]
+        )
+    )
+    .addOpenURLAction({
+        switch $0 {
+        case #url("a"): count += 1
+        case #url("b"): count -= 1
+        default: break
+        }
+    })
+    .padding(.horizontal)
 })
 
 #endif

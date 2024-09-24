@@ -38,7 +38,7 @@ import SwiftUI
 #Preview(body: {
     let font: UIFont = .systemFont(ofSize: 17)
 
-    return VStack(content: {
+    VStack(content: {
         Text("Lorem ipsum")
             .font(Font(font))
 

@@ -133,24 +133,19 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
 
 #if !(os(tvOS) || os(watchOS))
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    struct ContentView: View {
-        @State private var isPressed: Bool = false
+    @Previewable @State var isPressed: Bool = false
 
-        var body: some View {
-            SwiftUIGestureBaseButton(
-                onStateChange: { state in
-                    isPressed = state.didRecognizePress
-                },
-                label: {
-                    Text("Lorem Ipsum")
-                        .opacity(isPressed ? 0.3 : 1)
-                }
-            )
+    SwiftUIGestureBaseButton(
+        onStateChange: { state in
+            isPressed = state.didRecognizePress
+        },
+        label: {
+            Text("Lorem Ipsum")
+                .opacity(isPressed ? 0.3 : 1)
         }
-    }
-
-    return ContentView()
+    )
 })
 
 #endif

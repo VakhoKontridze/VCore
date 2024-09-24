@@ -38,16 +38,10 @@ extension View {
 #if DEBUG
 
 #Preview(body: {
-    struct ContentView: View {
-        @State private var parameters: ProgressViewParameters = .init()
+    let parameters: ProgressViewParameters = .init()
 
-        var body: some View {
-            Color.clear
-                .progressView(parameters: parameters)
-        }
-    }
-
-    return ContentView()
+    Color.clear
+        .progressView(parameters: parameters)
 })
 
 #endif

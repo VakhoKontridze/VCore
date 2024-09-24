@@ -144,36 +144,31 @@ extension UIView {
 
 #if !(os(watchOS) || os(visionOS))
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    struct ContentView: View {
-        @State private var isPresented: Bool = false
+    @Previewable @State var isPresented: Bool = false
 
-        var body: some View {
-            Button("Present", action: { isPresented = true })
-                .fullScreenCover(
-                    isPresented: $isPresented,
-                    content: {
-                        Color.accentColor
-                            .ignoresSafeArea()
-                            .onTapGesture(perform: { isPresented = false })
-                            .decorateModal({ (modalSuperView, transitionView) in
-                                if
-                                    let modalSuperView,
-                                    let displayCornerRadius: CGFloat = modalSuperView.window?.screen.displayCornerRadius
-                                {
-                                    modalSuperView.roundCorners(.layerMinYCorners, by: displayCornerRadius)
-                                }
+    Button("Present", action: { isPresented = true })
+        .fullScreenCover(
+            isPresented: $isPresented,
+            content: {
+                Color.accentColor
+                    .ignoresSafeArea()
+                    .onTapGesture(perform: { isPresented = false })
+                    .decorateModal({ (modalSuperView, transitionView) in
+                        if
+                            let modalSuperView,
+                            let displayCornerRadius: CGFloat = modalSuperView.window?.screen.displayCornerRadius
+                        {
+                            modalSuperView.roundCorners(.layerMinYCorners, by: displayCornerRadius)
+                        }
 
-                                if let transitionView {
-                                    transitionView.backgroundColor = .gray.withAlphaComponent(0.16)
-                                }
-                            })
-                    }
-                )
-        }
-    }
-
-    return ContentView()
+                        if let transitionView {
+                            transitionView.backgroundColor = .gray.withAlphaComponent(0.16)
+                        }
+                    })
+            }
+        )
 })
 
 #endif

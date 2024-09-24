@@ -75,17 +75,12 @@ private struct TouchDownTouchUpInteractionRecognizerViewModifier: ViewModifier {
 
 #if !os(tvOS)
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    struct ContentView: View {
-        @State private var isPressed: Bool = false
+    @Previewable @State var isPressed: Bool = false
 
-        var body: some View {
-            Text(isPressed ? "Recognized" : "Standby")
-                .onTouchInteraction(minimumDistance: 0, perform: { isPressed = $0 })
-        }
-    }
-
-    return ContentView()
+    Text(isPressed ? "Recognized" : "Standby")
+        .onTouchInteraction(minimumDistance: 0, perform: { isPressed = $0 })
 })
 
 #endif

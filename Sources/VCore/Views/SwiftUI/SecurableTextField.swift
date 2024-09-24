@@ -69,29 +69,24 @@ public struct SecurableTextField: View {
 // MARK: - Preview
 #if DEBUG
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    struct ContentView: View {
-        @State private var isSecure: Bool = false
-        @State private var text: String = "Lorem ipsum"
+    @Previewable @State var isSecure: Bool = false
+    @Previewable @State var text: String = "Lorem ipsum"
 
-        var body: some View {
-            VStack(content: {
-                SecurableTextField(
-                    isSecure: isSecure,
-                    placeholder: Text("Lorem ipsum"),
-                    text: $text
-                )
+    VStack(content: {
+        SecurableTextField(
+            isSecure: isSecure,
+            placeholder: Text("Lorem ipsum"),
+            text: $text
+        )
 #if !(os(tvOS) || os(watchOS))
-                .textFieldStyle(.roundedBorder)
+        .textFieldStyle(.roundedBorder)
 #endif
 
-                Button("Toggle", action: { isSecure.toggle() })
-            })
-            .padding()
-        }
-    }
-
-    return ContentView()
+        Button("Toggle", action: { isSecure.toggle() })
+    })
+    .padding()
 })
 
 #endif

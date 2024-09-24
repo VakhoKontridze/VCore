@@ -14,38 +14,36 @@ import SwiftUI
 extension View {
     /// Inserts toolbar that managed focus navigation in responder chain.
     ///
-    ///     struct ContentView: View {
-    ///         @State private var firstName: String = ""
-    ///         @State private var lastName: String = ""
+    ///     @State private var firstName: String = ""
+    ///     @State private var lastName: String = ""
     ///
-    ///         @FocusState private var focusedInput: FocusedInput?
+    ///     @FocusState private var focusedInput: FocusedInput?
     ///
-    ///         public var body: some View {
-    ///             VStack(content: {
-    ///                 TextField("First name", text: $firstName)
-    ///                     .focused($focusedInput, equals: .firstName)
-    ///                     .responderChainToolbar(
-    ///                         focus: $focusedInput,
-    ///                         equals: .firstName,
-    ///                         inResponderChain: [.firstName, .lastName]
-    ///                     )
+    ///     var body: some View {
+    ///         VStack(content: {
+    ///             TextField("First name", text: $firstName)
+    ///                 .focused($focusedInput, equals: .firstName)
+    ///                 .responderChainToolbar(
+    ///                     focus: $focusedInput,
+    ///                     equals: .firstName,
+    ///                     inResponderChain: [.firstName, .lastName]
+    ///                 )
     ///
-    ///                 TextField("Last name", text: $lastName)
-    ///                     .focused($focusedInput, equals: .lastName)
-    ///                     .responderChainToolbar(
-    ///                         focus: $focusedInput,
-    ///                         equals: .lastName,
-    ///                         inResponderChain: [.firstName, .lastName]
-    ///                     )
-    ///             })
-    ///             .padding()
-    ///             .textFieldStyle(.roundedBorder)
-    ///         }
+    ///             TextField("Last name", text: $lastName)
+    ///                 .focused($focusedInput, equals: .lastName)
+    ///                 .responderChainToolbar(
+    ///                     focus: $focusedInput,
+    ///                     equals: .lastName,
+    ///                     inResponderChain: [.firstName, .lastName]
+    ///                 )
+    ///         })
+    ///         .padding()
+    ///         .textFieldStyle(.roundedBorder)
+    ///     }
     ///
-    ///         private enum FocusedInput: CaseIterable {
-    ///             case firstName
-    ///             case lastName
-    ///         }
+    ///     private enum FocusedInput: CaseIterable {
+    ///         case firstName
+    ///         case lastName
     ///     }
     ///
     /// Alternately, use second method that takes `CaseIterable` as a parameter and omits `inResponderChain` argument.
@@ -130,25 +128,23 @@ extension View {
     ///         case lastName
     ///     }
     ///
-    ///     struct ContentView: View {
-    ///         @State private var firstName: String = ""
-    ///         @State private var lastName: String = ""
+    ///     @State private var firstName: String = ""
+    ///     @State private var lastName: String = ""
     ///
-    ///         @FocusState private var focusedInput: FocusedInput?
+    ///     @FocusState private var focusedInput: FocusedInput?
     ///
-    ///         public var body: some View {
-    ///             VStack(content: {
-    ///                 TextField("First name", text: $firstName)
-    ///                     .focused($focusedInput, equals: .firstName)
-    ///                     .responderChainToolbar(focus: $focusedInput, equals: .firstName)
+    ///     var body: some View {
+    ///         VStack(content: {
+    ///             TextField("First name", text: $firstName)
+    ///                 .focused($focusedInput, equals: .firstName)
+    ///                 .responderChainToolbar(focus: $focusedInput, equals: .firstName)
     ///
-    ///                 TextField("Last name", text: $lastName)
-    ///                     .focused($focusedInput, equals: .lastName)
-    ///                     .responderChainToolbar(focus: $focusedInput, equals: .lastName)
-    ///             })
-    ///             .padding()
-    ///             .textFieldStyle(.roundedBorder)
-    ///         }
+    ///             TextField("Last name", text: $lastName)
+    ///                 .focused($focusedInput, equals: .lastName)
+    ///                 .responderChainToolbar(focus: $focusedInput, equals: .lastName)
+    ///         })
+    ///         .padding()
+    ///         .textFieldStyle(.roundedBorder)
     ///     }
     ///
     public func responderChainToolbar<Value>(

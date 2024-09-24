@@ -72,29 +72,24 @@ extension View {
 // MARK: - Preview
 #if DEBUG
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    struct ContentView: View {
-        @State private var parameters: ConfirmationDialogParameters?
+    @Previewable @State var parameters: ConfirmationDialogParameters?
 
-        var body: some View {
-            Button(
-                "Present",
-                action: {
-                    parameters = ConfirmationDialogParameters(
-                        title: "Lorem Ipsum",
-                        message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-                        actions: {
-                            ConfirmationDialogButton(action: {}, title: "Confirm")
-                            ConfirmationDialogButton(role: .cancel, action: {}, title: "Cancel")
-                        }
-                    )
+    Button(
+        "Present",
+        action: {
+            parameters = ConfirmationDialogParameters(
+                title: "Lorem Ipsum",
+                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+                actions: {
+                    ConfirmationDialogButton(action: {}, title: "Confirm")
+                    ConfirmationDialogButton(role: .cancel, action: {}, title: "Cancel")
                 }
             )
-            .confirmationDialog(parameters: $parameters)
         }
-    }
-
-    return ContentView()
+    )
+    .confirmationDialog(parameters: $parameters)
 })
 
 #endif

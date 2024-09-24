@@ -87,30 +87,28 @@ import SwiftUI
 ///         }
 ///     }
 ///
-///     struct ContentView: View {
-///         @State var selection: RGBColor = .red
+///     @State var selection: RGBColor = .red
 ///
-///         var body: some View {
-///             VStack(content: {
-///                 SomeCustomPicker(
-///                     selection: $selection,
-///                     data: [.red, .green, .blue],
-///                     id: \.rawValue,
-///                     content: { Text(String(describing: $0).capitalized) }
-///                 )
+///     var body: some View {
+///         VStack(content: {
+///             SomeCustomPicker(
+///                 selection: $selection,
+///                 data: [.red, .green, .blue],
+///                 id: \.rawValue,
+///                 content: { Text(String(describing: $0).capitalized) }
+///             )
 ///
-///                 SomeCustomPicker(
-///                     selection: $selection,
-///                     data: [.red, .green, .blue],
-///                     content: { Text(String(describing: $0).capitalized) }
-///                 )
+///             SomeCustomPicker(
+///                 selection: $selection,
+///                 data: [.red, .green, .blue],
+///                 content: { Text(String(describing: $0).capitalized) }
+///             )
 ///
-///                 SomeCustomPicker(
-///                     selection: $selection
-///                 )
-///             })
-///             .padding()
-///         }
+///             SomeCustomPicker(
+///                 selection: $selection
+///             )
+///         })
+///         .padding()
 ///     }
 ///
 public protocol StringRepresentable {

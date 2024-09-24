@@ -67,27 +67,22 @@ private struct NestedSizePreferenceKey: PreferenceKey {
 
 #if !os(macOS)
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    struct ContentView: View {
-        @State private var height: CGFloat = 0
+    @Previewable @State var height: CGFloat = 0
 
-        var body: some View {
-            TabView(content: {
-                ForEach(0..<3, id: \.self, content: { i in
-                    Text("Page \(i+1)")
-                        .nestedSizeTargetLayout()
-                })
-            })
-            .tabViewStyle(.page(indexDisplayMode: .never))
-            .background(content: { Color.gray })
+    TabView(content: {
+        ForEach(0..<3, id: \.self, content: { i in
+            Text("Page \(i+1)")
+                .nestedSizeTargetLayout()
+        })
+    })
+    .tabViewStyle(.page(indexDisplayMode: .never))
+    .background(content: { Color.gray })
 
-            .getNestedSize({ height = max($0.height, 1) }) // `1` creates a non-zero buffer before height calculates
-            .frame(height: height)
-            .padding()
-        }
-    }
-
-    return ContentView()
+    .getNestedSize({ height = max($0.height, 1) }) // `1` creates a non-zero buffer before height calculates
+    .frame(height: height)
+    .padding()
 })
 
 #endif

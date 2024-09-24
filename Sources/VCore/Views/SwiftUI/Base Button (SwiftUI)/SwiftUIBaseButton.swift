@@ -106,7 +106,8 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
     ContentView()
 })
 
-private struct ContentView: View { // TODO: Move into macro when nested macro expansions are supported
+// Preview macro doesn’t support nested macro expansions
+private struct ContentView: View {
     let colors: GenericStateModel_EnabledPressedDisabled<Color> = .init(
         enabled: Color.primary,
         pressed: Color.secondary,

@@ -179,41 +179,36 @@ public struct PlainDisclosureGroup<Label, Content>: View
 
 #if !(os(tvOS) || os(watchOS) || os(visionOS))
 
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
-    struct ContentView: View {
-        @State private var isExpanded: Bool = true
+    @Previewable @State var isExpanded: Bool = true
 
-        var body: some View {
-            ZStack(content: {
+    ZStack(content: {
 #if os(iOS)
-                Color(uiColor: UIColor.secondarySystemBackground)
-                    .ignoresSafeArea()
+        Color(uiColor: UIColor.secondarySystemBackground)
+            .ignoresSafeArea()
 #elseif os(macOS)
-                Color.clear
+        Color.clear
 #endif
 
-                PlainDisclosureGroup(
-                    isExpanded: $isExpanded,
-                    label: {
-                        Text("Lorem Ipsum")
-                            .frame(maxWidth: .infinity)
-                            .padding(5)
-                            .allowsHitTesting(false)
-                    },
-                    content: {
-                        Color.accentColor
-                            .frame(height: 300)
-                    }
-                )
+        PlainDisclosureGroup(
+            isExpanded: $isExpanded,
+            label: {
+                Text("Lorem Ipsum")
+                    .frame(maxWidth: .infinity)
+                    .padding(5)
+                    .allowsHitTesting(false)
+            },
+            content: {
+                Color.accentColor
+                    .frame(height: 300)
+            }
+        )
 #if os(macOS)
-                .frame(dimension: 480)
+        .frame(dimension: 480)
 #endif
-                .padding()
-            })
-        }
-    }
-
-    return ContentView()
+        .padding()
+    })
 })
 
 #endif

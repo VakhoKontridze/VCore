@@ -211,7 +211,7 @@ open class UIKitBaseButton: UIView {
 
 #if !os(tvOS)
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) // TODO: Move into macro when nested macro expansions are supported
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
     SomeButton(
         action: {},
@@ -219,6 +219,7 @@ open class UIKitBaseButton: UIView {
     )
 })
 
+// Preview macro doesn’t support nested macro expansions
 private struct SomeButtonUIModel {
     var titleColors: StateColors = .init(
         enabled: UIColor.label,

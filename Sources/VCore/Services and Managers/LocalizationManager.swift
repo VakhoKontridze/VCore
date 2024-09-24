@@ -54,7 +54,7 @@ import OSLog
 ///     #Preview(body: {
 ///         LocalizationManager.shared.currentLocale = Locale(identifier: "es")
 ///
-///         return ContentView()
+///         ContentView()
 ///     })
 ///
 public final class LocalizationManager: ObservableObject, @unchecked Sendable { // TODO: iOS 17.0 - Convert to `Observable` and remove `Combine`
