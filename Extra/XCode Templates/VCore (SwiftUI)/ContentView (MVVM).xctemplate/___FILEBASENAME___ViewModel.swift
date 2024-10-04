@@ -12,6 +12,9 @@ final class ___VARIABLE_productName___ViewModel {
     @ObservationIgnored var navigationStackCoordinator: NavigationStackCoordinator!
     var alertParameters: AlertParameters?
     private(set) var progressViewParameters: ProgressViewParameters?
+    
+    // MARK: Properties - Model Injection
+    // ...
 
     // MARK: Properties - Data
     // ...

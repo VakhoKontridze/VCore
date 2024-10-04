@@ -11,6 +11,12 @@ struct ___VARIABLE_productName___View: View {
     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
     @State private var alertParameters: AlertParameters?
     @State private var progressViewParameters: ProgressViewParameters?
+    
+    // MARK: Properties - Model Injection
+    // ...
+    
+    // MARK: Properties - UI Model
+    // ...
 
     // MARK: Properties - Data
     // ...
@@ -34,7 +40,7 @@ struct ___VARIABLE_productName___View: View {
         })
         .onFirstAppear(perform: didLoad)
 
-        .inlineNavigationTitle("___VARIABLE_productName___".localized)
+        .inlineNavigationTitle("___VARIABLE_productName___")
 
         .alert(parameters: $alertParameters)
         .progressView(parameters: progressViewParameters)
@@ -50,13 +56,7 @@ struct ___VARIABLE_productName___View: View {
     }
 
     // MARK: Lifecycle
-    func didLoad() {
-        // ...
-    }
-
-    // MARK: UI Model
-    @Uninitializable
-    private struct UIModel {
+    private func didLoad() {
         // ...
     }
 }

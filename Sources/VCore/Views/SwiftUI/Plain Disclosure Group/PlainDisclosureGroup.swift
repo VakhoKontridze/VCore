@@ -52,6 +52,19 @@ public struct PlainDisclosureGroup<Label, Content>: View
     // MARK: Properties - UI Model
     private let uiModel: PlainDisclosureGroupUIModel
     
+    @State private var labelHeight: CGFloat = 0
+
+    private var nativeLabelHeight: CGFloat {
+        let target: CGFloat = labelHeight - uiModel.systemDisclosureGroupPadding
+        let system: CGFloat = uiModel.systemDisclosureGroupContentHeight
+
+        return max(target, system)
+    }
+
+    private var nativeLabelMaskHeight: CGFloat {
+        nativeLabelHeight + uiModel.systemDisclosureGroupPadding
+    }
+    
     // MARK: Properties - State
     @State private var _isExpanded_internal: Bool
     @Binding private var _isExpanded_external: Bool
@@ -76,20 +89,6 @@ public struct PlainDisclosureGroup<Label, Content>: View
     // MARK: Properties - Label and Content
     private let label: () -> Label
     private let content: () -> Content
-    
-    // MARK: Properties - Frame
-    @State private var labelHeight: CGFloat = 0
-
-    private var nativeLabelHeight: CGFloat {
-        let target: CGFloat = labelHeight - uiModel.systemDisclosureGroupPadding
-        let system: CGFloat = uiModel.systemDisclosureGroupContentHeight
-
-        return max(target, system)
-    }
-
-    private var nativeLabelMaskHeight: CGFloat {
-        nativeLabelHeight + uiModel.systemDisclosureGroupPadding
-    }
 
     // MARK: Initializers
     /// Initializes `PlainDisclosureGroup` with label and content.

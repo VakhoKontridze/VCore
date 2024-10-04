@@ -9,6 +9,9 @@ struct ___VARIABLE_productName___View: View {
     @State private var viewModel: ___VARIABLE_productName___ViewModel
 
     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
+    
+    // MARK: Properties - UI Model
+    // ...
 
     // MARK: Properties - ???
     // ...
@@ -29,7 +32,7 @@ struct ___VARIABLE_productName___View: View {
             viewModel.didLoad()
         })
 
-        .inlineNavigationTitle("___VARIABLE_productName___".localized)
+        .inlineNavigationTitle("___VARIABLE_productName___")
 
         .alert(parameters: $viewModel.alertParameters)
         .progressView(parameters: viewModel.progressViewParameters)
@@ -42,12 +45,6 @@ struct ___VARIABLE_productName___View: View {
     
     private var contentView: some View {
         EmptyView()
-    }
-
-    // MARK: UI Model
-    @Uninitializable
-    private struct UIModel {
-        // ...
     }
 }
 
