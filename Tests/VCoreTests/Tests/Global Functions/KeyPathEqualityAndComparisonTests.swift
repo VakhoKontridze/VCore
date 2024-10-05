@@ -1,5 +1,5 @@
 //
-//  KeyPathEqualityAndCompraisonTests.swift
+//  KeyPathEqualityAndComparisonTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 18.06.22.
@@ -10,7 +10,7 @@ import XCTest
 @testable import VCore
 
 // MARK: - Tests
-final class KeyPathEqualityAndCompraisonTests: XCTestCase {
+final class KeyPathEqualityAndComparisonTests: XCTestCase {
     // MARK: Test Data
     private struct Object {
         var a: Int = 0

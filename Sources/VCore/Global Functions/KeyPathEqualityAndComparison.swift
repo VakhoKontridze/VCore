@@ -1,5 +1,5 @@
 //
-//  KeyPathEqualityAndCompraison.swift
+//  KeyPathEqualityAndComparison.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 18.06.22.
