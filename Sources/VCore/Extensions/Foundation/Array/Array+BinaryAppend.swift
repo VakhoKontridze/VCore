@@ -17,7 +17,7 @@ extension Array {
     ///
     @discardableResult 
     mutating public func binaryAppend(
-        _ item: Element,
+        _ element: Element,
         by areInIncreasingOrder: (Element, Element) throws -> Bool
     ) rethrows -> Int {
         var start: Int = 0
@@ -26,15 +26,28 @@ extension Array {
         while start <= end {
             let mid: Int = (start + end) / 2
 
-            if try areInIncreasingOrder(self[mid], item) {
+            if try areInIncreasingOrder(self[mid], element) {
                 start += 1
             } else {
                 end -= 1
             }
         }
 
-        insert(item, at: start)
+        insert(element, at: start)
 
         return start
+    }
+    
+    /// Insert element in appropriate place using a binary append algorithm.
+    ///
+    ///     var objects: [SomeClass] = [...]
+    ///     let index: Int = numbers.binaryAppend(newObject, by: \.value)
+    ///
+    @discardableResult
+    mutating public func binaryAppend(
+        _ element: Element,
+        by keyPath: KeyPath<Element, some Comparable>
+    ) -> Int {
+        binaryAppend(element, by: { $0[keyPath: keyPath] < $1[keyPath: keyPath] })
     }
 }

@@ -5,6 +5,7 @@
 Extensions
 
 - `TaskGroup.childTaskValues(isolation:)` and `ThrowingTaskGroup.childTaskValues(isolation:)` methods are added, that collect and return child task values
+- Secondary `Array.binaryAppend(_:by:)` method is added, that takes `KeyPath` as a predicate
 
 ### [7.0.1(103)](https://github.com/VakhoKontridze/VCore/releases/tag/7.0.1) — *2024 09 20*
 
