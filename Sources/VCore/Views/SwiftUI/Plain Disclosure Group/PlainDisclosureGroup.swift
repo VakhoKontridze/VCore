@@ -44,7 +44,7 @@ import SwiftUI
 @available(tvOS, unavailable) // No `DisclosureGroup`
 @available(watchOS, unavailable) // No `DisclosureGroup`
 @available(visionOS, unavailable) // Doesn't follow HIG
-public struct PlainDisclosureGroup<Label, Content>: View
+public struct PlainDisclosureGroup<Label, Content>: View, Sendable
     where
         Label: View,
         Content: View

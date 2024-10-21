@@ -37,7 +37,7 @@ import SwiftUI
 ///         }
 ///     }
 ///
-public struct ViewResettingContainerOO<Content>: View where Content: View { // TODO: iOS 17.0 - Remove, as it's obsoleted
+public struct ViewResettingContainerOO<Content>: View, Sendable where Content: View { // TODO: iOS 17.0 - Remove, as it's obsoleted
     // MARK: Properties
     @StateObject private var viewResetter: ViewResetterOO = .init()
     private let content: (ViewResetterOO) -> Content

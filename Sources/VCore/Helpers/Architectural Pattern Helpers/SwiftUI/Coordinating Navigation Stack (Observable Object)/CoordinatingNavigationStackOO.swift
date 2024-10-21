@@ -31,7 +31,7 @@ import SwiftUI
 ///         }
 ///     }
 ///
-public struct CoordinatingNavigationStackOO<Root>: View where Root: View { // TODO: iOS 17.0 - Remove, as it's obsoleted
+public struct CoordinatingNavigationStackOO<Root>: View, Sendable where Root: View { // TODO: iOS 17.0 - Remove, as it's obsoleted
     // MARK: Properties
     @StateObject private var navigationStackCoordinator: NavigationStackCoordinatorOO
     private let root: (NavigationStackCoordinatorOO) -> Root

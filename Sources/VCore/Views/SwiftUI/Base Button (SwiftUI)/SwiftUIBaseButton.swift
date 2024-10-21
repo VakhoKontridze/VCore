@@ -66,7 +66,7 @@ import SwiftUI
 ///         )
 ///     }
 ///
-public struct SwiftUIBaseButton<Label>: View where Label: View {
+public struct SwiftUIBaseButton<Label>: View, Sendable where Label: View {
     // MARK: Properties
     private let uiModel: SwiftUIBaseButtonUIModel
     private let action: () -> Void

@@ -38,7 +38,7 @@ import SwiftUI
 ///     }
 ///
 @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-public struct ViewResettingContainer<Content>: View where Content: View {
+public struct ViewResettingContainer<Content>: View, Sendable where Content: View {
     // MARK: Properties
     @State private var viewResetter: ViewResetter = .init()
     private let content: (ViewResetter) -> Content

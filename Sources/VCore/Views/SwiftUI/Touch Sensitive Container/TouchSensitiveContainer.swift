@@ -40,7 +40,7 @@ import SwiftUI
 ///     }
 ///
 @available(tvOS, unavailable) // Doesn't follow HIG
-public struct TouchSensitiveContainer<Content>: View where Content: View {
+public struct TouchSensitiveContainer<Content>: View, Sendable where Content: View {
     // MARK: Properties - UI Model
     private let uiModel: TouchSensitiveContainerUIModel
 
