@@ -88,6 +88,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
     // MARK: Keyboard Management
 #if canImport(UIKit) && !os(watchOS)
     
+    @MainActor // Needed, despite `MainActor` declared on class-level
     private func keyboardWillShow(notification: Notification) {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
         
@@ -136,6 +137,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
         }
     }
 
+    @MainActor // Needed, despite `MainActor` declared on class-level
     private func keyboardWillHide(notification: Notification) {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
 
