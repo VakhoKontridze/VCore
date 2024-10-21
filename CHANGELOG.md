@@ -8,7 +8,7 @@ General
 
 Models
 
-- Issue with `KeychainStorage` not retaining value when nested under `ObservableObject` is fixed
+- `PublishedKeychainStorage` is added that can be used in `ObservableObject`s
 - `Clamped` property wrapper is deprecated
 - `OldValueCache` property wrapper is deprecated
 
