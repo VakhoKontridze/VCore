@@ -16,7 +16,7 @@ import AppKit
 /// Enumeration that represents state.
 ///
 /// Used for mapping state to `GenericStateModel_CollapsedExpandedDisabled`, with `value(for:)` method.
-public enum GenericState_CollapsedExpandedDisabled: Int, CaseIterable {
+public enum GenericState_CollapsedExpandedDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Collapsed.
     case collapsed
@@ -131,6 +131,9 @@ public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
 extension GenericStateModel_CollapsedExpandedDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_CollapsedExpandedDisabled: Hashable where Value: Hashable {}
+
+// MARK: Sendable
+extension GenericStateModel_CollapsedExpandedDisabled: Sendable where Value: Sendable {}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_CollapsedExpandedDisabled {

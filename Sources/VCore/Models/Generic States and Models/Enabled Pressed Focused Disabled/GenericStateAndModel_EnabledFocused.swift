@@ -16,7 +16,7 @@ import AppKit
 /// Enumeration that represents state.
 ///
 /// Used for mapping state to `GenericStateModel_EnabledFocused`, with `value(for:)` method.
-public enum GenericState_EnabledFocused: Int, CaseIterable {
+public enum GenericState_EnabledFocused: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -102,6 +102,9 @@ public struct GenericStateModel_EnabledFocused<Value> {
 extension GenericStateModel_EnabledFocused: Equatable where Value: Equatable {}
 
 extension GenericStateModel_EnabledFocused: Hashable where Value: Hashable {}
+
+// MARK: Sendable
+extension GenericStateModel_EnabledFocused: Sendable where Value: Sendable {}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_EnabledFocused {

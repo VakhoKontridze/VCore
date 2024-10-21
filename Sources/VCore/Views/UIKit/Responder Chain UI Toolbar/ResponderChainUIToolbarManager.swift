@@ -42,10 +42,18 @@ import UIKit
 ///     }
 ///
 @MainActor
-open class ResponderChainUIToolbarManager {
-    // MARK: Properties
+open class ResponderChainUIToolbarManager: @unchecked Sendable {
+    // MARK: Properties - Storage
+    private var _responderParameters: [ResponderChainUIToolbarResponderParameters] = []
+    
     /// Managed `ResponderChainUIToolbarResponderParameters`s.
-    private(set) open var responderParameters: [ResponderChainUIToolbarResponderParameters] = []
+    private(set) open var responderParameters: [ResponderChainUIToolbarResponderParameters] {
+        get { lock.withLock({ _responderParameters }) }
+        set { lock.withLock({ _responderParameters = newValue }) }
+    }
+    
+    // MARK: Properties - Lock
+    private let lock: NSLock = .init()
 
     // MARK: Initializers
     /// Initializes `ResponderChainUIToolbarManager`.

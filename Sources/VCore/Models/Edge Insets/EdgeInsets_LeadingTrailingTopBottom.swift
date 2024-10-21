@@ -12,7 +12,7 @@ import SwiftUI
 @MemberwiseInitializable(
     comment: "/// Initializes `EdgeInsets_LeadingTrailingTopBottom` with values."
 )
-public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable {
+public struct EdgeInsets_LeadingTrailingTopBottom: Equatable, Hashable, Sendable {
     // MARK: Properties
     /// Leading value.
     public var leading: CGFloat

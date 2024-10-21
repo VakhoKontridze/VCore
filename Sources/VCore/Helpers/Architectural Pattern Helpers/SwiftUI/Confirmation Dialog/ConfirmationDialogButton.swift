@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Confirmation Dialog Button
 /// `ConfirmationDialog` button.
-public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
+public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol, Sendable {
     // MARK: Properties
     private var isEnabled: Bool = true
     private let role: ButtonRole?

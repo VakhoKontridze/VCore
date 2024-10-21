@@ -26,7 +26,7 @@ import SwiftUI
 ///         completion: { ... }
 ///     )
 ///
-public struct BasicAnimation {
+public struct BasicAnimation: Sendable {
     // MARK: Properties
     /// Animation curve.
     public var curve: AnimationCurve
@@ -51,7 +51,7 @@ public struct BasicAnimation {
     
     // MARK: Animation Curve
     /// Animation curve.
-    public enum AnimationCurve: Int, Equatable, Hashable, CaseIterable {
+    public enum AnimationCurve: Int, Equatable, Hashable, Sendable, CaseIterable {
         /// Linear.
         case linear
         

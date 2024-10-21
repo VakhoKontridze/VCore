@@ -12,7 +12,7 @@ import SwiftUI
 @MemberwiseInitializable(
     comment: "/// Initializes `EdgeInsets_TopBottom` with values."
 )
-public struct EdgeInsets_TopBottom: Equatable, Hashable {
+public struct EdgeInsets_TopBottom: Equatable, Hashable, Sendable {
     // MARK: Properties
     /// Top value.
     public var top: CGFloat

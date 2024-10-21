@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - UI Layout Guide Type
 /// Model that represents `UILayoutGuide`.
-public enum UILayoutGuideType {
+public enum UILayoutGuideType: Sendable {
     // MARK: Cases
     /// Layout guide representing the view’s margins.
     case margins
@@ -45,7 +45,7 @@ public enum UILayoutGuideType {
     ///         ...
     ///     )
     ///
-    case custom((UIView) -> UILayoutGuide)
+    case custom(@Sendable (UIView) -> UILayoutGuide)
     
     // MARK: Properties
     /// Converts `UILayoutGuideType` to `UILayoutGuide` within the context of an `UIView`.

@@ -11,7 +11,7 @@ import SwiftUI
 /// Model that describes UI.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-public struct PlainListUIModel {
+public struct PlainListUIModel: Sendable {
     // MARK: Properties
     /// Row background color.
     public var rowBackgroundColor: Color = .clear

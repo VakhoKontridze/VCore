@@ -12,7 +12,7 @@ import Foundation
 // MARK: - UI Kit Base Button State
 /// Enumeration that represents state.
 @available(tvOS, unavailable)
-public enum UIKitBaseButtonState: Int, CaseIterable {
+public enum UIKitBaseButtonState: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -50,7 +50,7 @@ public enum UIKitBaseButtonState: Int, CaseIterable {
 // MARK: - UI Kit Base Button Internal State
 /// Enumeration that represents state.
 @available(tvOS, unavailable)
-public enum UIKitBaseButtonInternalState: Int, CaseIterable {
+public enum UIKitBaseButtonInternalState: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled

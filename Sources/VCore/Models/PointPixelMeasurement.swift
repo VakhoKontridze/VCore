@@ -9,7 +9,7 @@ import CoreGraphics
 
 // MARK: - Point/Pixel Measurement
 /// Display measurement represented in points or pixels.
-public enum PointPixelMeasurement: Equatable, Hashable {
+public enum PointPixelMeasurement: Equatable, Hashable, Sendable {
     // MARK: Cases
     /// Point measurement.
     case points(CGFloat)

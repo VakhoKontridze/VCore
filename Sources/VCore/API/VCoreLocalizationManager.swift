@@ -55,7 +55,7 @@ public protocol VCoreLocalizationProvider {
 
 // MARK: - Default VCore Localization Provider
 /// Defaults VCore localization provider.
-public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider {
+public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider, Sendable {
     // MARK: Initializers
     /// Initializes `DefaultVCoreLocalizationProvider`.
     public init() {}

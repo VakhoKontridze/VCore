@@ -20,22 +20,10 @@ import Foundation
 ///         )
 ///     }
 ///
-public enum ResultNoSuccessNoFailure {
+public enum ResultNoSuccessNoFailure: Equatable, Sendable {
     /// Success.
     case success
     
     /// Failure.
     case failure
-}
-
-// MARK: Equatable
-extension ResultNoSuccessNoFailure: Equatable {
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        switch (lhs, rhs) {
-        case (.failure, .failure): true
-        case (.failure, .success): false
-        case (.success, .failure): false
-        case (.success, .success): true
-        }
-    }
 }

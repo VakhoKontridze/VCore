@@ -16,7 +16,7 @@ import OSLog
 /// Enumeration that represents state.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-public enum GestureBaseButtonGestureState: Int, CaseIterable {
+public enum GestureBaseButtonGestureState: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Indicates that interaction is possible. This is a default state.
     case possible

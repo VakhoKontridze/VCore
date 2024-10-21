@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - UI Action Sheet Button
 /// `UIActionSheetController` button.
-public struct UIActionSheetButton: UIActionSheetButtonProtocol {
+public struct UIActionSheetButton: UIActionSheetButtonProtocol, Sendable {
     // MARK: Properties
     /// Indicates if button is enabled.
     public var isEnabled: Bool

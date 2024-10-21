@@ -13,7 +13,7 @@ import SwiftUI
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 @available(visionOS, unavailable)
-public struct KeyboardObserverUIModel {
+public struct KeyboardObserverUIModel: Sendable {
     // MARK: Properties
     /// Keyboard responsiveness strategy. Set to `default`.
     ///
@@ -26,7 +26,7 @@ public struct KeyboardObserverUIModel {
 
     // MARK: Keyboard Responsiveness Strategy
     /// Keyboard responsiveness strategy.
-    public enum KeyboardResponsivenessStrategy {
+    public enum KeyboardResponsivenessStrategy: Sendable {
         // MARK: Cases
         /// None.
         case `none`

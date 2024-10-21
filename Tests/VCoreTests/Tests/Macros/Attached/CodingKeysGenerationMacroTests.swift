@@ -49,14 +49,14 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            public struct SomeStruct: Encodable {
+            public struct SomeStruct: Sendable, Encodable {
                 @CKGProperty("one") public let one: Int
                 @CKGProperty("two") public let two: String
             }
             """,
             expandedSource: 
                 """
-                public struct SomeStruct: Encodable {
+                public struct SomeStruct: Sendable, Encodable {
                     @CKGProperty("one") public let one: Int
                     @CKGProperty("two") public let two: String
 

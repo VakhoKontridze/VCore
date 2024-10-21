@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Casting Error
 /// Error that occurs during casting.
-public struct CastingError: VCoreError, Equatable {
+public struct CastingError: VCoreError, Equatable, Sendable {
     // MARK: Properties
     private let fromType: String
     private let toType: String

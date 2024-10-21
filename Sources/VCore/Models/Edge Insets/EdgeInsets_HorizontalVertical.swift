@@ -12,7 +12,7 @@ import SwiftUI
 @MemberwiseInitializable(
     comment: "/// Initializes `EdgeInsets_HorizontalVertical` with values."
 )
-public struct EdgeInsets_HorizontalVertical: Equatable, Hashable {
+public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
     // MARK: Properties
     /// Horizontal value.
     public var horizontal: CGFloat

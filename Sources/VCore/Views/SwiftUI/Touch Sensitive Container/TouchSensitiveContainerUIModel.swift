@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - Touch Sensitive Container UI Model
 /// Model that describes UI.
 @available(tvOS, unavailable)
-public struct TouchSensitiveContainerUIModel {
+public struct TouchSensitiveContainerUIModel: Sendable {
     // MARK: Properties - Body
     /// Number of taps required to trigger the action. Set to `1`.
     public var tapCount: Int = 1

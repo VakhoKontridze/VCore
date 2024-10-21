@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Dynamic Type Size Type
 /// Model that represents `DynamicTypeSize`.
-public struct DynamicTypeSizeType {
+public struct DynamicTypeSizeType: Sendable {
     // MARK: Properties
     let storage: Storage
 

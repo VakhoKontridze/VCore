@@ -13,7 +13,7 @@ import Foundation
 /// `rawValue` defines the `magnitude`.
 ///
 /// Only defines officially recognized units.
-public enum BinaryDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, CaseIterable {
+public enum BinaryDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, Sendable, CaseIterable {
     // MARK: Cases
     /// Byte (1024^0 or 2^0).
     case B = 0

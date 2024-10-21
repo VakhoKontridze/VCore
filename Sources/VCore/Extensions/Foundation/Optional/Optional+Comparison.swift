@@ -104,7 +104,7 @@ extension Optional where Wrapped: Comparable {
 
 // MARK: - Optional Comparison Nil Order
 /// Constants that indicate sort order within optionals.
-public enum OptionalComparisonNilOrder: Int, CaseIterable {
+public enum OptionalComparisonNilOrder: Int, Sendable, CaseIterable {
     /// Indicates that `nil` is less than wrapped value.
     case nilIsLess
     

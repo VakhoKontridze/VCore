@@ -12,7 +12,7 @@ import UIKit
 // MARK: - System Keyboard Info
 /// Contains information about software keyboard, that can be used during animations.
 @available(tvOS, unavailable)
-public struct SystemKeyboardInfo {
+public struct SystemKeyboardInfo: Sendable {
     // MARK: Properties
     /// Keyboard’s frame at the end of its animation.
     public var frame: CGRect?

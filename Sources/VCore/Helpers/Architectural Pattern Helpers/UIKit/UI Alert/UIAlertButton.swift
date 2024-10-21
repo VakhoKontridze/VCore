@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - UI Alert Button
 /// `UIAlertController` button.
-public struct UIAlertButton: UIAlertButtonProtocol {
+public struct UIAlertButton: UIAlertButtonProtocol, Sendable {
     // MARK: Properties
     /// Indicates if button is enabled.
     public var isEnabled: Bool

@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - User Defaults Service Error
 /// An error that occurs during the operations in `UserDefaultsService`.
-public struct UserDefaultsServiceError: VCoreError, Equatable {
+public struct UserDefaultsServiceError: VCoreError, Equatable, Sendable {
     // MARK: Properties
     private let code: Code
 

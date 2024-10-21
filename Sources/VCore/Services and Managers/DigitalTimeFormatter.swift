@@ -25,7 +25,7 @@ import Foundation
 ///     formatter.string(from: 905048) // "10:11:24:08"
 ///     formatter.string(from: 8553600) // "99:00:00:00"
 ///
-public struct DigitalTimeFormatter {
+public struct DigitalTimeFormatter: Sendable {
     // MARK: Properties - Delimiter
     /// Component delimiter. Set to `:`.
     public var delimiter: String = ":"

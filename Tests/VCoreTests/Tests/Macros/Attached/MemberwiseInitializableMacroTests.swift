@@ -330,13 +330,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            public struct SomeStruct {
+            public struct SomeStruct: Sendable {
                 public let a: Int
             }
             """,
             expandedSource:
                 """
-                public struct SomeStruct {
+                public struct SomeStruct: Sendable {
                     public let a: Int
 
                     public init(

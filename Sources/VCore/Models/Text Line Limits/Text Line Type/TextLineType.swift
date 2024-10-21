@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Text Line Type
 /// Model that represents text line.
-public struct TextLineType {
+public struct TextLineType: Sendable {
     // MARK: Properties
     private let storage: Storage
     

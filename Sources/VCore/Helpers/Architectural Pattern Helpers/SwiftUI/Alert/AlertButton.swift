@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Alert Button
 /// `Alert` button.
-public struct AlertButton: AlertButtonProtocol {
+public struct AlertButton: AlertButtonProtocol, Sendable {
     // MARK: Properties
     private var isEnabled: Bool = true
     private let role: ButtonRole?

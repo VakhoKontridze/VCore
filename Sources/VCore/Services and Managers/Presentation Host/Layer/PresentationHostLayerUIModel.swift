@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Presentation Host Layer UI Model
 /// Model that describes UI.
-public struct PresentationHostLayerUIModel {
+public struct PresentationHostLayerUIModel: Sendable {
     // MARK: Properties - Global
     /// Frame. Set to `default`.
     ///
@@ -37,7 +37,7 @@ public struct PresentationHostLayerUIModel {
 
     // MARK: Frame
     /// Frame.
-    public enum Frame {
+    public enum Frame: Sendable {
         // MARK: Cases
         /// Fixed frame.
         case fixed(size: CGSize, alignment: Alignment, offset: CGSize)
@@ -55,7 +55,7 @@ public struct PresentationHostLayerUIModel {
     @MemberwiseInitializable(
         comment: "/// Initializes `IgnoredSafeArea` with regions and edges."
     )
-    public struct IgnoredSafeArea {
+    public struct IgnoredSafeArea: Sendable {
         /// Regions.
         public let regions: SafeAreaRegions
 
@@ -65,7 +65,7 @@ public struct PresentationHostLayerUIModel {
 
     // MARK: Dimming View Tap Action
     /// Dimming view tap action.
-    public enum DimmingViewTapAction: Int, CaseIterable {
+    public enum DimmingViewTapAction: Int, Sendable, CaseIterable {
         // MARK: Cases
         /// None.
         case none

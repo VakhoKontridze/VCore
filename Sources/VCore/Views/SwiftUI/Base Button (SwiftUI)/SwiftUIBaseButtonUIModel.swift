@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Swift UI Base Button UI Model
 /// Model that describes UI.
-public struct SwiftUIBaseButtonUIModel {
+public struct SwiftUIBaseButtonUIModel: Sendable {
     // MARK: Properties
     /// Indicates if button animates state change. Set to `true`.
     ///

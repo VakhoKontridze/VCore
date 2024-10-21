@@ -16,7 +16,7 @@ import AppKit
 /// Enumeration that represents state.
 ///
 /// Used for mapping state to `GenericStateModel_OffOnIndeterminateDisabled`, with `value(for:)` method.
-public enum GenericState_OffOnIndeterminateDisabled: Int, CaseIterable {
+public enum GenericState_OffOnIndeterminateDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -153,6 +153,9 @@ public struct GenericStateModel_OffOnIndeterminateDisabled<Value> {
 extension GenericStateModel_OffOnIndeterminateDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_OffOnIndeterminateDisabled: Hashable where Value: Hashable {}
+
+// MARK: Sendable
+extension GenericStateModel_OffOnIndeterminateDisabled: Sendable where Value: Sendable {}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_OffOnIndeterminateDisabled {

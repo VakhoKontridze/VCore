@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Responder Chain UI Toolbar UI Model
 /// Model that describes UI.
-public struct ResponderChainUIToolbarUIModel {
+public struct ResponderChainUIToolbarUIModel: Sendable {
     // MARK: Properties - Toolbar
     /// Toolbar style. Set to `default`.
     public var style: UIBarStyle = .default

@@ -11,7 +11,7 @@ import SwiftUI
 /// Model that describes UI.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-public struct PlainDisclosureGroupUIModel {
+public struct PlainDisclosureGroupUIModel: Sendable {
     // MARK: Properties - Global
     /// Content height in system disclosure group which includes the chevron button. Set to `14`.
     ///

@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Inner Shadow UI View UI Model
 /// Model that describes UI.
-public struct InnerShadowUIViewUIModel {
+public struct InnerShadowUIViewUIModel: Sendable {
     // MARK: Properties
     /// Shadow color.
     public var shadowColor: UIColor = .black.withAlphaComponent(0.1)

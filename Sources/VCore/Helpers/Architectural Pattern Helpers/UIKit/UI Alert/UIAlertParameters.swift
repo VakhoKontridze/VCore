@@ -29,7 +29,7 @@ import UIKit
 ///     )
 ///
 @MainActor
-public struct UIAlertParameters {
+public struct UIAlertParameters: Sendable {
     // MARK: Properties
     /// Title.
     public var title: String?

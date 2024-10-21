@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Keychain Service Error
 /// An error that occurs during the operations in `KeychainService`.
-public struct KeychainServiceError: VCoreError, Equatable {
+public struct KeychainServiceError: VCoreError, Equatable, Sendable {
     // MARK: Properties
     private let code: Code
     

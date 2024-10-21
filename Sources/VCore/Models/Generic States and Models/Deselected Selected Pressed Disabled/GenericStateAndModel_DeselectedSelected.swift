@@ -16,7 +16,7 @@ import AppKit
 /// Enumeration that represents state.
 ///
 /// Used for mapping state to `GenericStateModel_DeselectedSelected`, with `value(for:)` method.
-public enum GenericState_DeselectedSelected: Int, CaseIterable {
+public enum GenericState_DeselectedSelected: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Deselected.
     case deselected
@@ -147,6 +147,9 @@ public struct GenericStateModel_DeselectedSelected<Value> {
 extension GenericStateModel_DeselectedSelected: Equatable where Value: Equatable {}
 
 extension GenericStateModel_DeselectedSelected: Hashable where Value: Hashable {}
+
+// MARK: Sendable
+extension GenericStateModel_DeselectedSelected: Sendable where Value: Sendable {}
 
 // MARK: - State-Model Mapping
 extension GenericStateModel_DeselectedSelected {

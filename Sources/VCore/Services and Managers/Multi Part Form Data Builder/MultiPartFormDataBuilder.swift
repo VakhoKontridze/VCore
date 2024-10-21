@@ -50,7 +50,7 @@ import Foundation
 ///
 ///     ...
 ///
-public struct MultipartFormDataBuilder {
+public struct MultipartFormDataBuilder: Sendable {
     // MARK: Properties
     /// Boundary.
     ///

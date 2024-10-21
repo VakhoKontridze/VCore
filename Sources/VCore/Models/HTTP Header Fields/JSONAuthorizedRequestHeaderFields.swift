@@ -20,7 +20,7 @@ import Foundation
 ///     )
 ///
 @CodingKeysGeneration
-public struct JSONAuthorizedRequestHeaderFields: Encodable {
+public struct JSONAuthorizedRequestHeaderFields: Sendable, Encodable {
     // MARK: Properties
     /// Accept. Set to `application/json`.
     @CKGProperty("Accept") public let accept: String = "application/json"

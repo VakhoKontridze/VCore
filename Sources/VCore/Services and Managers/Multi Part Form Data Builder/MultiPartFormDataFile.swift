@@ -79,7 +79,7 @@ extension Dictionary: AnyMultipartFormDataFile where Key == String, Value == Opt
 ///         ]
 ///     ]
 ///
-public struct MultipartFormDataFile {
+public struct MultipartFormDataFile: Sendable {
     // MARK: Properties
     /// File name.
     ///

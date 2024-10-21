@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Presentation Host UIModel
 /// Model that describes UI.
-public struct PresentationHostUIModel {
+public struct PresentationHostUIModel: Sendable {
     // MARK: Properties
     /// Alignment of modal in the layer. Set to `center`.
     public var alignment: Alignment = .center

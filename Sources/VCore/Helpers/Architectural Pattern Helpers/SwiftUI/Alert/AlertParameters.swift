@@ -30,7 +30,7 @@ import SwiftUI
 ///     }
 ///
 @MainActor
-public struct AlertParameters {
+public struct AlertParameters: Sendable {
     // MARK: Properties
     /// Title.
     public var title: String?

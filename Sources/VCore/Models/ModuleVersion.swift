@@ -14,7 +14,7 @@ import Foundation
 ///
 ///     ModuleVersion(string: Bundle.main.version)?.description // 1.0
 ///
-public struct ModuleVersion: Equatable, Hashable, Identifiable, Comparable, CustomStringConvertible {
+public struct ModuleVersion: Equatable, Hashable, Comparable, Identifiable, Sendable, CustomStringConvertible {
     // MARK: Properties
     /// Major version according to the semantic versioning standard.
     public var major: Int

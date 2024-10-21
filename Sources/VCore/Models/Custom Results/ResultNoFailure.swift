@@ -70,3 +70,6 @@ extension ResultNoFailure: Equatable where Success: Equatable {
         }
     }
 }
+
+// MARK: Sendable
+extension ResultNoFailure: Sendable where Success: Sendable {}

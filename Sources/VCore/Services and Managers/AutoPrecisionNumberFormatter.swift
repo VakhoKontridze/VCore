@@ -32,7 +32,7 @@ extension Double {
 ///     let formatter: AutoPrecisionNumberFormatter = .init(maxFractions: 2)
 ///     let rounded: String = formatter.string(from: 3.1415) // "3.14"
 ///
-public struct AutoPrecisionNumberFormatter {
+public struct AutoPrecisionNumberFormatter: Sendable {
     // MARK: Properties
     /// Minimum number of fractions. Set to `0`.
     public var minFractions: Int
