@@ -14,6 +14,7 @@ public protocol AlertButtonProtocol: AlertButtonConvertible {
     typealias Body = AnyView
 
     /// Creates a `View` that represents the body of a button.
+    @MainActor
     func makeBody(
         animateOutHandler: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> Body

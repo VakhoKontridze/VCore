@@ -14,13 +14,13 @@ public struct AlertButton: AlertButtonProtocol, Sendable {
     private var isEnabled: Bool = true
     private let role: ButtonRole?
     private let title: String
-    private let action: (() -> Void)?
+    private let action: (@Sendable () -> Void)?
     
     // MARK: Initializers
     /// Initializes `AlertButton`.
     public init(
         role: ButtonRole? = nil,
-        action: (() -> Void)?,
+        action: (@Sendable () -> Void)?,
         title: String
     ) {
         self.role = role

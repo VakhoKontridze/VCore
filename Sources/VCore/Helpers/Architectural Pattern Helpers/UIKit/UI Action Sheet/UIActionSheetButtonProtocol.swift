@@ -13,6 +13,7 @@ import UIKit
 /// `UIActionSheetController` button protocol.
 public protocol UIActionSheetButtonProtocol: UIActionSheetButtonConvertible {
     /// Converts `UIActionSheetButtonProtocol` to `UIAlertAction`.
+    @MainActor
     func makeBody() -> UIAlertAction
 }
 

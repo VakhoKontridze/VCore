@@ -29,8 +29,7 @@ import SwiftUI
 ///         .alert(parameters: $parameters)
 ///     }
 ///
-@MainActor
-public struct AlertParameters: Sendable {
+public struct AlertParameters {
     // MARK: Properties
     /// Title.
     public var title: String?
@@ -62,7 +61,7 @@ public struct AlertParameters: Sendable {
     public init(
         title: String?,
         message: String?,
-        completion: (() -> Void)?,
+        completion: (@Sendable () -> Void)?,
         attributes: [String: Any?] = [:]
     ) {
         self.init(
@@ -82,7 +81,7 @@ public struct AlertParameters: Sendable {
     /// Initializes `AlertParameters` with error and "ok" action.
     public init(
         error: any Error,
-        completion: (() -> Void)?,
+        completion: (@Sendable () -> Void)?,
         attributes: [String: Any?] = [:]
     ) {
         self.init(

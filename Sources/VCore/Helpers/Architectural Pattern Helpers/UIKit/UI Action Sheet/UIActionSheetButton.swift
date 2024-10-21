@@ -23,7 +23,7 @@ public struct UIActionSheetButton: UIActionSheetButtonProtocol, Sendable {
     public var title: String
     
     /// Action.
-    public var action: (() -> Void)?
+    public var action: (@Sendable () -> Void)?
     
     // MARK: Initializers
     /// Initializes `UIActionSheetButton`.
@@ -31,7 +31,7 @@ public struct UIActionSheetButton: UIActionSheetButtonProtocol, Sendable {
         isEnabled: Bool = true,
         style: UIAlertAction.Style = .default,
         title: String,
-        action: (() -> Void)?
+        action: (@Sendable () -> Void)?
     ) {
         self.isEnabled = isEnabled
         self.style = style

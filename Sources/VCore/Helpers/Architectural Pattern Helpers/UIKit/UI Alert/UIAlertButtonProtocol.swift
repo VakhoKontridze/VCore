@@ -13,6 +13,7 @@ import UIKit
 /// `UIAlertController` button protocol.
 public protocol UIAlertButtonProtocol: UIAlertButtonConvertible {
     /// Converts `UIAlertButtonProtocol` to `UIAlertAction`.
+    @MainActor
     func makeBody() -> UIAlertAction
 }
 

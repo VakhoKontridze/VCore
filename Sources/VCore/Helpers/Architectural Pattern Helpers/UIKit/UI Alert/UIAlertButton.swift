@@ -23,7 +23,7 @@ public struct UIAlertButton: UIAlertButtonProtocol, Sendable {
     public var title: String
     
     /// Action.
-    public var action: (() -> Void)?
+    public var action: (@Sendable () -> Void)?
     
     // MARK: Initializers
     /// Initializes `UIAlertButton`.
@@ -31,7 +31,7 @@ public struct UIAlertButton: UIAlertButtonProtocol, Sendable {
         isEnabled: Bool = true,
         style: UIAlertAction.Style = .default,
         title: String,
-        action: (() -> Void)?
+        action: (@Sendable () -> Void)?
     ) {
         self.isEnabled = isEnabled
         self.style = style
