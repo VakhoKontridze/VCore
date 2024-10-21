@@ -114,18 +114,11 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
         }
     }
     
-    @discardableResult
     private static func set(
         _ keychainService: KeychainService,
         _ key: String,
         _ newValue: Value
-    ) -> Bool {
-        do {
-            try keychainService.setCodable(key: key, value: newValue)
-            return true
-            
-        } catch {
-            return false
-        }
+    ) {
+        try? keychainService.setCodable(key: key, value: newValue)
     }
 }

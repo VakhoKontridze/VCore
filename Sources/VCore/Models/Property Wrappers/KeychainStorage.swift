@@ -45,9 +45,8 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
             storage
         }
         nonmutating set {
-            if Self.set(keychainService, key, newValue) {
-                storage = newValue
-            }
+            storage = newValue
+            Self.set(keychainService, key, newValue)
         }
     }
     
@@ -101,18 +100,11 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
         }
     }
     
-    @discardableResult
     private static func set(
         _ keychainService: KeychainService,
         _ key: String,
         _ newValue: Value
-    ) -> Bool {
-        do {
-            try keychainService.setCodable(key: key, value: newValue)
-            return true
-            
-        } catch {
-            return false
-        }
+    ) {
+        try? keychainService.setCodable(key: key, value: newValue)
     }
 }
