@@ -9,28 +9,12 @@ import SwiftUI
 import Combine
 
 // MARK: - Published Keychain Storage
-/// Property wrapper type that reflects a value from key chain and invalidates a view on a change in value in that key chain.
+/// Property wrapper type that reflects a value from key chain and invalidates a view on a change in value in that Keychain.
 ///
 ///     final class SomeClass: ObservableObject {
 ///         @PublishedKeychainStorage("AccessToken") var accessToken: String?
 ///     }
-///
-/// Alternately, a `KeychainServiceConfiguration` can be passed to customize queries.
-///
-///     extension KeychainServiceConfiguration {
-///         static let someCustomConfiguration: Self = ...
-///     }
-///
-///     @PublishedKeychainStorage("AccessToken", configuration: .someCustomConfiguration) var accessToken: String?
-///
-/// Or, a reference to an instance of `KeychainService` can be used.
-///
-///     extension KeychainService {
-///         static let someCustomConfiguration: KeychainService = ...
-///     }
-///
-///     @PublishedKeychainStorage("AccessToken", keychainService: .someCustomConfiguration) var accessToken: String?
-///
+///     
 @propertyWrapper
 public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
     where Value: Sendable & Codable
