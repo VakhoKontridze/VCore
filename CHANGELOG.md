@@ -6,6 +6,12 @@ General
 
 - Most `public` and `open` types now conform to `Sendable` `protocol`
 
+Models
+
+- Issue with `KeychainStorage` not retaining value when nested under `ObservableObject` is fixed
+- `Clamped` property wrapper is deprecated
+- `OldValueCache` property wrapper is deprecated
+
 Extensions
 
 - `TaskGroup.childTaskValues(isolation:)` and `ThrowingTaskGroup.childTaskValues(isolation:)` methods are added, that collect and return child task values

@@ -29,19 +29,20 @@ import Combine
 ///
 ///     @KeychainStorage("AccessToken", keychainService: .someCustomConfiguration) var accessToken: String?
 ///
+@MainActor
 @propertyWrapper
 public struct KeychainStorage<Value>: DynamicProperty, Sendable
     where Value: Sendable
 {
     // MARK: Properties
-    @State private var storage: Value
+    @ObservedObject private var storage: Box<Value>
 
     public var wrappedValue: Value {
         get {
-            storage
+            storage.value
         }
         nonmutating set {
-            storage = newValue
+            storage.value = newValue
             valueSetter(newValue)
         }
     }
@@ -60,17 +61,17 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
         initialValue: Value,
         valueSetter: @escaping @Sendable (Value) -> Void
     ) {
-        self._storage = State(wrappedValue: initialValue)
+        self._storage = ObservedObject(wrappedValue: Box(value: initialValue))
         self.valueSetter = valueSetter
     }
 
     // MARK: Initializers - Codable
-    /// Initializes `KeychainStorage` from `Codable`.
+    /// Initializes `KeychainStorage` with `Codable` value.
     public init(
         wrappedValue defaultValue: Value,
         _ key: String,
         keychainService: KeychainService = .default
-    ) 
+    )
         where Value: Codable
     {
         self.init(
@@ -79,7 +80,7 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
         )
     }
 
-    /// Initializes `KeychainStorage` from `Optional` `Codable`.
+    /// Initializes `KeychainStorage` with `Optional` `Codable` value.
     public init(
         _ key: String,
         keychainService: KeychainService = .default
@@ -112,5 +113,16 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
                 observableObjectPublisher.send()
             }
         }
+    }
+}
+
+// MARK: - Box
+fileprivate final class Box<Value>: ObservableObject {
+    // MARK: Properties
+    @Published var value: Value
+    
+    // MARK: Initializers
+    init(value: Value) {
+        self.value = value
     }
 }
