@@ -1,12 +1,10 @@
 # Change Log
 
-### 7.2.0(105)
+### 7.1.0(104)
 
 General
 
 - Most `public` and `open` types now conform to `Sendable` `protocol`
-
-### 7.1.0(104)
 
 Extensions
 
