@@ -38,7 +38,7 @@ import UIKit
 ///         view2.bottomAnchor.constraint(equalTo: scrollableView.contentView.bottomAnchor)
 ///     ])
 ///
-open class ScrollableUIView: UIView {
+open class ScrollableUIView: UIView, Sendable {
     // MARK: Subviews
     /// `UIScrollView`.
     open var scrollView: UIScrollView = {

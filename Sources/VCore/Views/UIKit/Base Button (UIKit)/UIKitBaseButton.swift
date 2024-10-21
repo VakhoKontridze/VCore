@@ -130,7 +130,7 @@ import UIKit
 ///     )
 ///
 @available(tvOS, unavailable)
-open class UIKitBaseButton: UIView {
+open class UIKitBaseButton: UIView, Sendable {
     // MARK: Properties
     private lazy var gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: { [weak self] gestureState in
         guard let self else { return }

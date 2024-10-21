@@ -123,7 +123,7 @@ import OSLog
 ///         }
 ///     }
 ///
-open class InfiniteScrollingUICollectionView: UICollectionView {
+open class InfiniteScrollingUICollectionView: UICollectionView, Sendable {
     // MARK: Subviews
     private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
     

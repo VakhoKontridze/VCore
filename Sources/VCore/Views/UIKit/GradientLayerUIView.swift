@@ -33,7 +33,7 @@ import UIKit
 ///         }
 ///     }
 ///
-open class GradientLayerUIView: UIView {
+open class GradientLayerUIView: UIView, Sendable {
     // MARK: Subviews
     open var gradientLayer: CAGradientLayer = .init()
 

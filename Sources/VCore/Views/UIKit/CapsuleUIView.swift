@@ -13,7 +13,7 @@ import UIKit
 /// `UIView` that rounds corners to capsule.
 ///
 /// If width is greater than height, half of height will be taken as corner radius. If not, otherwise.
-open class CapsuleUIView: UIView {
+open class CapsuleUIView: UIView, Sendable {
     // MARK: Lifecycle
     open override func layoutSubviews() {
         super.layoutSubviews()

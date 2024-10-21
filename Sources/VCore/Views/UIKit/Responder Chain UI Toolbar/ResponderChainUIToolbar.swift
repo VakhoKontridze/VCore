@@ -51,7 +51,7 @@ import UIKit
 ///     }
 ///
 /// Alternately, consider using `ResponderChainUIToolbarManager`
-open class ResponderChainUIToolbar: UIToolbar {
+open class ResponderChainUIToolbar: UIToolbar, Sendable {
     // MARK: Subviews
     /// Button that focuses responder that's up in responder chain.
     open lazy var arrowUpButton: UIBarButtonItem = .init(

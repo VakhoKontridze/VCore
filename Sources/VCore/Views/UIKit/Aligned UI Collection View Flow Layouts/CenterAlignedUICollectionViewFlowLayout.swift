@@ -13,7 +13,7 @@ import UIKit
 /// Layout object that organizes items into a grid with a center alignment.
 ///
 /// Requires `UICollectionViewDelegateFlowLayout` to be set via `delegate`.
-open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
+open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout, Sendable {
     // MARK: Properties
     private var itemLayoutAttributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     
