@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 // MARK: - Keychain Storage
-/// Property wrapper type that reflects a value from key chain and invalidates a view on a change in value in that Keychain.
+/// Property wrapper type that reflects a value from Keychain and invalidates a view on a change in value in that Keychain.
 ///
 ///     @KeychainStorage("AccessToken") var accessToken: String?
 ///
@@ -29,8 +29,8 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
             storage
         }
         nonmutating set {
-            storage = newValue
             Self.set(keychainService, key, newValue)
+            storage = newValue
         }
     }
     
@@ -56,7 +56,7 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
         self._storage = State(wrappedValue: initialValue)
     }
 
-    /// Initializes `KeychainStorage` with `Optional` value.
+    /// Initializes `KeychainStorage`.
     public init(
         _ key: String,
         keychainService: KeychainService = .default
@@ -68,6 +68,22 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
             key,
             keychainService: keychainService
         )
+    }
+    
+    // MARK: Observable Object Support
+    public static subscript<EnclosingSelf>(
+        _enclosingInstance instance: EnclosingSelf,
+        wrapped wrappedKeyPath: ReferenceWritableKeyPath<EnclosingSelf, Value>,
+        storage storageKeyPath: ReferenceWritableKeyPath<EnclosingSelf, Self>
+    ) -> Value
+        where EnclosingSelf: AnyObject
+    {
+        get {
+            fatalError("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
+        }
+        set {
+            fatalError("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
+        }
     }
     
     // MARK: Get & Set

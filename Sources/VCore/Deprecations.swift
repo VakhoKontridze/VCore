@@ -37,7 +37,6 @@ public struct Clamped<Value>: DynamicProperty, Sendable
         self.transformation = transformation
     }
 
-    /// Initializes `Clamped` with range.
     public init(
         wrappedValue: Value,
         _ range: ClosedRange<Value>,

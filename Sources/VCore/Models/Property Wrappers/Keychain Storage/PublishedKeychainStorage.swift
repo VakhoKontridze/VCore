@@ -9,12 +9,12 @@ import SwiftUI
 import Combine
 
 // MARK: - Published Keychain Storage
-/// Property wrapper type that reflects a value from key chain and invalidates a view on a change in value in that Keychain.
+/// Property wrapper type that reflects a value from Keychain and invalidates a view on a change in value in that Keychain.
 ///
 ///     final class SomeClass: ObservableObject {
 ///         @PublishedKeychainStorage("AccessToken") var accessToken: String?
 ///     }
-///     
+///
 @propertyWrapper
 public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
     where Value: Sendable & Codable
@@ -24,14 +24,21 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
     private let key: String
     private let defaultValue: Value
 
-    @available(*, unavailable, message: "'@PublishedKeychainStorage' is only available on properties of classes")
+    @PublishedPropertyWrapperState private var storage: PublishedPropertyWrapperStorage<Value>
+    
+    @available(*, unavailable, message: "'PublishedKeychainStorage' is only available on properties of 'class'es. Use 'KeychainStorage' instead.")
     public var wrappedValue: Value {
         get { fatalError() }
         nonmutating set { fatalError() }
     }
     
+    public var projectedValue: PublishedPropertyWrapperPublisher<Value> {
+        mutating get { storage.projectedValue }
+        set { storage.projectedValue = newValue }
+    }
+    
     // MARK: Initializers
-    /// Initializes `KeychainStorage` with value.
+    /// Initializes `PublishedKeychainStorage` with value.
     public init(
         wrappedValue defaultValue: Value,
         _ key: String,
@@ -40,9 +47,14 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
         self.keychainService = keychainService
         self.key = key
         self.defaultValue = defaultValue
+        
+        let initialValue: Value = Self.get(keychainService, key, defaultValue)
+        self._storage = PublishedPropertyWrapperState(
+            wrappedValue: PublishedPropertyWrapperStorage.value(initialValue)
+        )
     }
 
-    /// Initializes `KeychainStorage` with `Optional` value.
+    /// Initializes `PublishedKeychainStorage`.
     public init(
         _ key: String,
         keychainService: KeychainService = .default
@@ -55,26 +67,29 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
             keychainService: keychainService
         )
     }
-
+    
     // MARK: Observable Object Support
-    public static subscript<T>(
-        _enclosingInstance instance: T,
-        wrapped wrappedKeyPath: ReferenceWritableKeyPath<T, Value>,
-        storage storageKeyPath: ReferenceWritableKeyPath<T, Self>
-    ) -> Value {
+    public static subscript<EnclosingSelf>(
+        _enclosingInstance instance: EnclosingSelf,
+        wrapped wrappedKeyPath: ReferenceWritableKeyPath<EnclosingSelf, Value>,
+        storage storageKeyPath: ReferenceWritableKeyPath<EnclosingSelf, Self>
+    ) -> Value
+        where EnclosingSelf: AnyObject
+    {
         get {
-            let keychainService: KeychainService = instance[keyPath: storageKeyPath].keychainService
-            let key: String = instance[keyPath: storageKeyPath].key
-            let defaultValue: Value = instance[keyPath: storageKeyPath].defaultValue
-            
-            return Self.get(keychainService, key, defaultValue)
+            instance[keyPath: storageKeyPath].storage.value
         }
         set {
+            // Keychain
             let keychainService: KeychainService = instance[keyPath: storageKeyPath].keychainService
             let key: String = instance[keyPath: storageKeyPath].key
             
             Self.set(keychainService, key, newValue)
             
+            // Storage
+            instance[keyPath: storageKeyPath].storage.update(newValue)
+            
+            // Observable Object Publisher
             if
                 let instance = instance as? any ObservableObject,
                 let observableObjectPublisher = (instance.objectWillChange as any Publisher) as? ObservableObjectPublisher
