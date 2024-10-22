@@ -20,7 +20,6 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
     // MARK: Properties
     private let keychainService: KeychainService
     private let key: String
-    private let defaultValue: Value
     
     @State private var storage: Value
 
@@ -29,7 +28,7 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
             storage
         }
         nonmutating set {
-            Self.set(keychainService, key, newValue)
+            try? keychainService.setCodable(key: key, value: newValue)
             storage = newValue
         }
     }
@@ -50,9 +49,8 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
     ) {
         self.keychainService = keychainService
         self.key = key
-        self.defaultValue = defaultValue
         
-        let initialValue: Value = Self.get(keychainService, key, defaultValue)
+        let initialValue: Value = (try? keychainService.getCodable(key: key)) ?? defaultValue
         self._storage = State(wrappedValue: initialValue)
     }
 
@@ -84,27 +82,5 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
         set {
             fatalError("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
         }
-    }
-    
-    // MARK: Get & Set
-    private static func get(
-        _ keychainService: KeychainService,
-        _ key: String,
-        _ defaultValue: Value
-    ) -> Value {
-        if let value: Value = try? keychainService.getCodable(key: key) {
-            return value
-            
-        } else {
-            return defaultValue
-        }
-    }
-    
-    private static func set(
-        _ keychainService: KeychainService,
-        _ key: String,
-        _ newValue: Value
-    ) {
-        try? keychainService.setCodable(key: key, value: newValue)
     }
 }

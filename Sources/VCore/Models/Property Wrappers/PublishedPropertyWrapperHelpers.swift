@@ -1,5 +1,5 @@
 //
-//  PropertyWrapperHelpers.swift
+//  PublishedPropertyWrapperHelpers.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 22.10.24.
@@ -8,9 +8,9 @@
 import Foundation
 import Combine
 
-// MARK: - State
+// MARK: - Box
 @propertyWrapper
-final class PublishedPropertyWrapperState<Value>: @unchecked Sendable {
+final class PublishedPropertyWrapperBox<Value>: @unchecked Sendable {
     // MARK: Properties - Value
     private var _wrappedValue: PublishedPropertyWrapperStorage<Value>
     
@@ -51,7 +51,8 @@ enum PublishedPropertyWrapperStorage<Value> {
         }
     }
     
-    var projectedValue: PublishedPropertyWrapperPublisher<Value> {
+    // Converts `value` to `publisher`, if needed
+    var publisher: PublishedPropertyWrapperPublisher<Value> {
         mutating get {
             switch self {
             case .value(let value):
@@ -64,12 +65,14 @@ enum PublishedPropertyWrapperStorage<Value> {
             }
         }
         set {
+            // `newValue` isn't used here
+            
             switch self {
             case .value(let value):
                 let publisher: PublishedPropertyWrapperPublisher = .init(value)
                 self = .publisher(publisher)
                 
-            case .publisher(let publisher):
+            case .publisher:
                 break
             }
         }
@@ -78,7 +81,8 @@ enum PublishedPropertyWrapperStorage<Value> {
     mutating func update(_ newValue: Value) {
         switch self {
         case .value:
-            self = .publisher(PublishedPropertyWrapperPublisher(newValue))
+            let publisher: PublishedPropertyWrapperPublisher = .init(value)
+            self = .publisher(publisher)
             
         case .publisher(let publisher):
             publisher.subject.value = newValue

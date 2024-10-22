@@ -22,9 +22,8 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
     // MARK: Properties
     private let keychainService: KeychainService
     private let key: String
-    private let defaultValue: Value
 
-    @PublishedPropertyWrapperState private var storage: PublishedPropertyWrapperStorage<Value>
+    @PublishedPropertyWrapperBox private var storage: PublishedPropertyWrapperStorage<Value>
     
     @available(*, unavailable, message: "'PublishedKeychainStorage' is only available on properties of 'class'es. Use 'KeychainStorage' instead.")
     public var wrappedValue: Value {
@@ -33,8 +32,8 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
     }
     
     public var projectedValue: PublishedPropertyWrapperPublisher<Value> {
-        mutating get { storage.projectedValue }
-        set { storage.projectedValue = newValue }
+        mutating get { storage.publisher }
+        set { storage.publisher = newValue }
     }
     
     // MARK: Initializers
@@ -46,12 +45,9 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
     ) {
         self.keychainService = keychainService
         self.key = key
-        self.defaultValue = defaultValue
         
-        let initialValue: Value = Self.get(keychainService, key, defaultValue)
-        self._storage = PublishedPropertyWrapperState(
-            wrappedValue: PublishedPropertyWrapperStorage.value(initialValue)
-        )
+        let initialValue: Value = (try? keychainService.getCodable(key: key)) ?? defaultValue
+        self._storage = PublishedPropertyWrapperBox(wrappedValue: .value(initialValue))
     }
 
     /// Initializes `PublishedKeychainStorage`.
@@ -84,7 +80,7 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
             let keychainService: KeychainService = instance[keyPath: storageKeyPath].keychainService
             let key: String = instance[keyPath: storageKeyPath].key
             
-            Self.set(keychainService, key, newValue)
+            try? keychainService.setCodable(key: key, value: newValue)
             
             // Storage
             instance[keyPath: storageKeyPath].storage.update(newValue)
@@ -97,27 +93,5 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
                 observableObjectPublisher.send()
             }
         }
-    }
-    
-    // MARK: Get & Set
-    private static func get(
-        _ keychainService: KeychainService,
-        _ key: String,
-        _ defaultValue: Value
-    ) -> Value {
-        if let value: Value = try? keychainService.getCodable(key: key) {
-            return value
-            
-        } else {
-            return defaultValue
-        }
-    }
-    
-    private static func set(
-        _ keychainService: KeychainService,
-        _ key: String,
-        _ newValue: Value
-    ) {
-        try? keychainService.setCodable(key: key, value: newValue)
     }
 }
