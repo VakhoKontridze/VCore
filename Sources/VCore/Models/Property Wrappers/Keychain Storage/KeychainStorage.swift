@@ -18,8 +18,7 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
     where Value: Sendable & Codable
 {
     // MARK: Properties
-    private let keychainService: KeychainService
-    private let key: String
+    private let valueSetter: @Sendable (Value) -> Void
     
     @State private var storage: Value
 
@@ -28,7 +27,7 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
             storage
         }
         nonmutating set {
-            try? keychainService.setCodable(key: key, value: newValue)
+            valueSetter(newValue)
             storage = newValue
         }
     }
@@ -47,8 +46,7 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
         _ key: String,
         keychainService: KeychainService = .default
     ) {
-        self.keychainService = keychainService
-        self.key = key
+        self.valueSetter = { try? keychainService.setCodable(key: key, value: $0) }
         
         let initialValue: Value = (try? keychainService.getCodable(key: key)) ?? defaultValue
         self._storage = State(wrappedValue: initialValue)

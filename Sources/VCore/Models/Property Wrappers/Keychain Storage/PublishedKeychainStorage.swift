@@ -20,8 +20,7 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
     where Value: Sendable & Codable
 {
     // MARK: Properties
-    private let keychainService: KeychainService
-    private let key: String
+    private let valueSetter: @Sendable (Value) -> Void
 
     @PublishedPropertyWrapperBox private var storage: PublishedPropertyWrapperStorage<Value>
     
@@ -43,8 +42,7 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
         _ key: String,
         keychainService: KeychainService = .default
     ) {
-        self.keychainService = keychainService
-        self.key = key
+        self.valueSetter = { try? keychainService.setCodable(key: key, value: $0) }
         
         let initialValue: Value = (try? keychainService.getCodable(key: key)) ?? defaultValue
         self._storage = PublishedPropertyWrapperBox(wrappedValue: .value(initialValue))
@@ -76,16 +74,10 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
             instance[keyPath: storageKeyPath].storage.value
         }
         set {
-            // Keychain
-            let keychainService: KeychainService = instance[keyPath: storageKeyPath].keychainService
-            let key: String = instance[keyPath: storageKeyPath].key
+            instance[keyPath: storageKeyPath].valueSetter(newValue)
             
-            try? keychainService.setCodable(key: key, value: newValue)
-            
-            // Storage
             instance[keyPath: storageKeyPath].storage.update(newValue)
             
-            // Observable Object Publisher
             if
                 let instance = instance as? any ObservableObject,
                 let observableObjectPublisher = (instance.objectWillChange as any Publisher) as? ObservableObjectPublisher
