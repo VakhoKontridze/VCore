@@ -1,6 +1,6 @@
 # Change Log
 
-### 7.1.1(105)
+### [7.1.1(105)](https://github.com/VakhoKontridze/VCore/releases/tag/7.1.1) — *2024 10 24*
 
 Models
 
