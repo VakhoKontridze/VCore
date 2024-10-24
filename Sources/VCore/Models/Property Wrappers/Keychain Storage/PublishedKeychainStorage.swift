@@ -5,6 +5,9 @@
 //  Created by Vakhtang Kontridze on 22.10.24.
 //
 
+// https://stackoverflow.com/q/63993196/11627169
+// https://github.com/OpenCombine/OpenCombine/blob/master/Sources/OpenCombine/Published.swift
+
 import SwiftUI
 import Combine
 
@@ -32,7 +35,6 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
     
     public var projectedValue: PublishedPropertyWrapperPublisher<Value> {
         mutating get { storage.publisher }
-        set { storage.publisher = newValue }
     }
     
     // MARK: Initializers

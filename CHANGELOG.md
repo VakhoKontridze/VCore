@@ -1,5 +1,11 @@
 # Change Log
 
+### 7.1.1(105)
+
+Models
+
+- Issue with data persistence when mutating `PublishedKeychainStorage` via `ObservableObject` is fixed
+
 ### [7.1.0(104)](https://github.com/VakhoKontridze/VCore/releases/tag/7.1.0) — *2024 10 24*
 
 General
