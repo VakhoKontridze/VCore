@@ -15,9 +15,19 @@ public protocol ConfirmationDialogButtonConvertible {
 }
 
 extension Array: ConfirmationDialogButtonConvertible where Element == any ConfirmationDialogButtonProtocol {
-    public func toButtons() -> [any ConfirmationDialogButtonProtocol] { self }
+    public func toButtons() -> [any ConfirmationDialogButtonProtocol] {
+        self
+    }
+}
+
+extension Never: ConfirmationDialogButtonConvertible {
+    public func toButtons() -> [any ConfirmationDialogButtonProtocol] {
+        fatalError()
+    }
 }
 
 extension EmptyView: ConfirmationDialogButtonConvertible {
-    nonisolated public func toButtons() -> [any ConfirmationDialogButtonProtocol] { [] }
+    nonisolated public func toButtons() -> [any ConfirmationDialogButtonProtocol] {
+        []
+    }
 }

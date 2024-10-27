@@ -21,5 +21,7 @@ public protocol ConfirmationDialogButtonProtocol: ConfirmationDialogButtonConver
 }
 
 extension ConfirmationDialogButtonProtocol {
-    public func toButtons() -> [any ConfirmationDialogButtonProtocol] { [self] }
+    public func toButtons() -> [any ConfirmationDialogButtonProtocol] {
+        [self]
+    }
 }

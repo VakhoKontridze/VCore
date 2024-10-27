@@ -21,5 +21,7 @@ public protocol AlertButtonProtocol: AlertButtonConvertible {
 }
 
 extension AlertButtonProtocol {
-    public func toButtons() -> [any AlertButtonProtocol] { [self] }
+    public func toButtons() -> [any AlertButtonProtocol] {
+        [self]
+    }
 }

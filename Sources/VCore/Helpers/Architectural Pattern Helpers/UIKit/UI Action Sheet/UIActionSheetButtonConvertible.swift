@@ -17,7 +17,15 @@ public protocol UIActionSheetButtonConvertible {
 }
 
 extension Array: UIActionSheetButtonConvertible where Element == any UIActionSheetButtonProtocol {
-    public func toButtons() -> [any UIActionSheetButtonProtocol] { self }
+    public func toButtons() -> [any UIActionSheetButtonProtocol] {
+        self
+    }
+}
+
+extension Never: UIActionSheetButtonConvertible {
+    public func toButtons() -> [any UIActionSheetButtonProtocol] {
+        fatalError()
+    }
 }
 
 #endif

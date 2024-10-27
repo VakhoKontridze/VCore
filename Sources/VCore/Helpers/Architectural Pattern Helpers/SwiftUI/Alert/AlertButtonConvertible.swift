@@ -15,9 +15,19 @@ public protocol AlertButtonConvertible {
 }
 
 extension Array: AlertButtonConvertible where Element == any AlertButtonProtocol {
-    public func toButtons() -> [any AlertButtonProtocol] { self }
+    public func toButtons() -> [any AlertButtonProtocol] {
+        self
+    }
+}
+
+extension Never: AlertButtonConvertible {
+    public func toButtons() -> [any AlertButtonProtocol] {
+        fatalError()
+    }
 }
 
 extension EmptyView: AlertButtonConvertible {
-    nonisolated public func toButtons() -> [any AlertButtonProtocol] { [] }
+    nonisolated public func toButtons() -> [any AlertButtonProtocol] {
+        []
+    }
 }

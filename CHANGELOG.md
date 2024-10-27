@@ -1,5 +1,14 @@
 # Change Log
 
+### 7.1.2(106)
+
+Helpers - Architectural Pattern Helpers
+
+- `AlertButtonConvertible` conformance is added to `Never`
+- `ConfirmationDialogButtonConvertible` conformance is added to `Never`
+- `UIAlertButtonConvertible` conformance is added to `Never`
+- `UIActionSheetButtonConvertible` conformance is added to `Never`
+
 ### [7.1.1(105)](https://github.com/VakhoKontridze/VCore/releases/tag/7.1.1) — *2024 10 24*
 
 Models

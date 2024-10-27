@@ -17,7 +17,15 @@ public protocol UIAlertButtonConvertible {
 }
 
 extension Array: UIAlertButtonConvertible where Element == any UIAlertButtonProtocol {
-    public func toButtons() -> [any UIAlertButtonProtocol] { self }
+    public func toButtons() -> [any UIAlertButtonProtocol] {
+        self
+    }
+}
+
+extension Never: UIAlertButtonConvertible {
+    public func toButtons() -> [any UIAlertButtonProtocol] {
+        fatalError()
+    }
 }
 
 #endif
