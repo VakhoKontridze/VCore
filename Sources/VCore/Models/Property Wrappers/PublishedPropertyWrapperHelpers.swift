@@ -79,6 +79,7 @@ enum PublishedPropertyWrapperStorage<Value> {
 }
 
 // MARK: - Publisher
+/// Publisher for properties in published property wrappers.
 public struct PublishedPropertyWrapperPublisher<Value>: Publisher {
     // MARK: Properties
     public typealias Output = Value
