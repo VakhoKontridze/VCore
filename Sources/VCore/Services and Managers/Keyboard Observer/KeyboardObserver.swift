@@ -88,7 +88,6 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
     // MARK: Keyboard Management
 #if canImport(UIKit) && !os(watchOS)
     
-    @MainActor // Needed, despite `MainActor` declared on class-level
     private func keyboardWillShow(notification: Notification) {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
         
@@ -127,17 +126,16 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
         }()
 
         if let offset {
-            self.offset = offset
-            self.animation = systemKeyboardInfo.toSwiftUIAnimation
-
             Task(operation: { @MainActor in
+                self.offset = offset
+                self.animation = systemKeyboardInfo.toSwiftUIAnimation
+                
                 try? await Task.sleep(seconds: systemKeyboardInfo.nonZeroAnimationDuration)
                 self.offsetStable = offset
             })
         }
     }
 
-    @MainActor // Needed, despite `MainActor` declared on class-level
     private func keyboardWillHide(notification: Notification) {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
 
@@ -158,10 +156,10 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
         }()
 
         if let offset {
-            self.offset = offset
-            self.animation = systemKeyboardInfo.toSwiftUIAnimation
-
             Task(operation: { @MainActor in
+                self.offset = offset
+                self.animation = systemKeyboardInfo.toSwiftUIAnimation
+                
                 try? await Task.sleep(seconds: systemKeyboardInfo.nonZeroAnimationDuration)
                 self.offsetStable = offset
             })
