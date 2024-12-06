@@ -23,6 +23,8 @@ public struct PresentationHostLayerUIModel: Sendable {
     public var dimmingViewColor: Color = .platformDynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
 
     /// Dimming view tap action. Set to `default`.
+    ///
+    /// Dimming view will appear if at least on modal is presented.
     public var dimmingViewTapAction: DimmingViewTapAction = .default
 
     // MARK: Properties - Keyboard Responsiveness
@@ -48,19 +50,6 @@ public struct PresentationHostLayerUIModel: Sendable {
         // MARK: Initializers
         /// Default value. Set to `infinite`.
         public static var `default`: Self { .infinite }
-    }
-
-    // MARK: Ignored Safe Area
-    /// Ignored safe areas.
-    @MemberwiseInitializable(
-        comment: "/// Initializes `IgnoredSafeArea` with regions and edges."
-    )
-    public struct IgnoredSafeArea: Sendable {
-        /// Regions.
-        public let regions: SafeAreaRegions
-
-        /// Edges.
-        public let edges: Edge.Set
     }
 
     // MARK: Dimming View Tap Action
