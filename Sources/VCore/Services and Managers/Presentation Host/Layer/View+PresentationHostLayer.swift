@@ -95,9 +95,9 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
 
     @ViewBuilder
     private var layerView: some View {
-        if let topMostModal: ModalData = modals.last { // Same as checking `!modals.isEmpty`
+        if !modals.isEmpty {
             ZStack(content: {
-                dimmingView(topMostModal: topMostModal)
+                visualDimmingView
                 modalsView
             })
             .applyModifier({ view in
@@ -127,10 +127,19 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
         }
     }
 
-    private func dimmingView(
+    private var visualDimmingView: some View {
+        uiModel.dimmingViewColor
+            .allowsHitTesting(false)
+    }
+
+    // `visualDimmingView` should not be handling gestures.
+    // If two modals are presented, where top-most one is smaller,
+    // the larger one behind it would be hiding most of interactive portion of the view.
+    // So, it's better to insert `interactiveDimmingView` behind top-most modal.
+    private func interactiveDimmingView(
         topMostModal: ModalData
     ) -> some View {
-        uiModel.dimmingViewColor
+        Color.clear
             .contentShape(.rect)
             .allowsHitTesting(uiModel.dimmingViewTapAction.allowsHitTesting)
             .onTapGesture(perform: {
@@ -141,14 +150,27 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     }
 
     private var modalsView: some View {
-        ForEach(modals, content: { modal in
-            modalView(modal: modal)
-        })
+        ForEach(
+            modals.enumeratedArray(),
+            id: \.element.id,
+            content: { (i, modal) in
+                modalView(
+                    isTopMost: i == modals.count - 1,
+                    modal: modal
+                )
+            }
+        )
     }
 
+    @ViewBuilder
     private func modalView(
+        isTopMost: Bool,
         modal: ModalData
     ) -> some View {
+        if isTopMost {
+            interactiveDimmingView(topMostModal: modal)
+        }
+        
         NonInvasiveGeometryReader(
             alignment: modal.uiModel.alignment,
             content: { proxy in
