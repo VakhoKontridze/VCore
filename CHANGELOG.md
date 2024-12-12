@@ -1,6 +1,6 @@
 # Change Log
 
-### 7.2.0(106)
+### [7.2.0(106)](https://github.com/VakhoKontridze/VCore/releases/tag/7.2.0) — *2024 12 22*
 
 Services and Managers - Presentation Host
 
