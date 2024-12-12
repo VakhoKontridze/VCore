@@ -4,7 +4,7 @@
 
 Services and Managers - Presentation Host
 
-- `preferredDimmingViewColor` is added to `PresentationHostUIModel`, that will override a shared dimming view color, when only current modal is presented
+- `preferredDimmingViewColor` is added to `PresentationHostUIModel`, that overrides a shared dimming view color, when only current modal is presented
 
 Helpers - Architectural Pattern Helpers
 

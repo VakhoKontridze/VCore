@@ -15,7 +15,7 @@ public struct PresentationHostUIModel: Sendable {
     public var alignment: Alignment = .center
     
     // MARK: Properties - Dimming View
-    /// Preferred dimming color, that will be override a shared color from `PresentationHostLayerUIModel`, when only this modal is presented.
+    /// Preferred dimming color, that overrides a shared color from `PresentationHostLayerUIModel`, when only this modal is presented.
     public var preferredDimmingViewColor: Color?
 
     // MARK: Properties - Misc
