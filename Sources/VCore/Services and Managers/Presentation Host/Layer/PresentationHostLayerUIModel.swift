@@ -20,6 +20,7 @@ public struct PresentationHostLayerUIModel: Sendable {
     /// Shared dimming view color in the layer.
     ///
     /// Dimming view will appear if at least on modal is presented.
+    /// If only one modal is presented, this property will be overridden by `preferredDimmingViewColor` from `PresentationHostUIModel`.
     public var dimmingViewColor: Color = .platformDynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
 
     /// Dimming view tap action. Set to `default`.

@@ -10,10 +10,15 @@ import SwiftUI
 // MARK: - Presentation Host UIModel
 /// Model that describes UI.
 public struct PresentationHostUIModel: Sendable {
-    // MARK: Properties
+    // MARK: Properties - Frame
     /// Alignment of modal in the layer. Set to `center`.
     public var alignment: Alignment = .center
+    
+    // MARK: Properties - Dimming View
+    /// Preferred dimming color, that will be override a shared color from `PresentationHostLayerUIModel`, when only this modal is presented.
+    public var preferredDimmingViewColor: Color?
 
+    // MARK: Properties - Misc
     /// Indicates if modal is dismissed when host disappears. Set to `true`.
     public var dismissesModalWhenHostDisappears: Bool = true
 

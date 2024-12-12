@@ -128,7 +128,20 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     }
 
     private var visualDimmingView: some View {
-        uiModel.dimmingViewColor
+        let color: Color = {
+            if
+                let topMostModal: ModalData = modals.last,
+                modals.count == 1,
+                let color: Color = topMostModal.uiModel.preferredDimmingViewColor
+            {
+                color
+                
+            } else {
+                uiModel.dimmingViewColor
+            }
+        }()
+        
+        return color
             .allowsHitTesting(false)
     }
 
