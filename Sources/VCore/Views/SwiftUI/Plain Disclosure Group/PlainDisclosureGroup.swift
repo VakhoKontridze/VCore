@@ -142,7 +142,7 @@ public struct PlainDisclosureGroup<Label, Content>: View, Sendable
     private var labelView: some View {
         label()
             .frame(maxWidth: .infinity)
-            .getHeight(assignOn: $labelHeight)
+            .getHeight(assignTo: $labelHeight)
             .background(content: {
                 Color.clear
                     .contentShape(.rect)

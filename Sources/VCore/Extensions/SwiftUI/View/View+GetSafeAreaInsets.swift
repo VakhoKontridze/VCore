@@ -43,12 +43,12 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getSafeAreaInsets(assignOn: $safeAreaInsets)
+    ///             .getSafeAreaInsets(assignTo: $safeAreaInsets)
     ///     }
     ///
     public func getSafeAreaInsets(
         ignoredKeyboardSafeAreaEdges: Edge.Set = [],
-        assignOn binding: Binding<EdgeInsets>
+        assignTo binding: Binding<EdgeInsets>
     ) -> some View {
         self
             .getSafeAreaInsets(

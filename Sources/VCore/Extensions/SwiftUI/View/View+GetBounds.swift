@@ -43,13 +43,13 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getBounds(of: .global, assignOn: $bounds)
+    ///             .getBounds(of: .global, assignTo: $bounds)
     ///     }
     ///
     @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
     public func getBounds(
         of coordinateSpace: NamedCoordinateSpace,
-        assignOn binding: Binding<CGRect?>
+        assignTo binding: Binding<CGRect?>
     ) -> some View {
         self
             .getBounds(

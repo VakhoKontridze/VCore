@@ -41,11 +41,11 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getSize(assignOn: $size)
+    ///             .getSize(assignTo: $size)
     ///     }
     ///
     public func getSize(
-        assignOn binding: Binding<CGSize>
+        assignTo binding: Binding<CGSize>
     ) -> some View {
         self
             .getSize({ binding.wrappedValue = $0 })
@@ -57,11 +57,11 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getWidth(assignOn: $width)
+    ///             .getWidth(assignTo: $width)
     ///     }
     ///
     public func getWidth(
-        assignOn binding: Binding<CGFloat>
+        assignTo binding: Binding<CGFloat>
     ) -> some View {
         self
             .getSize({ binding.wrappedValue = $0.width })
@@ -73,11 +73,11 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getHeight(assignOn: $height)
+    ///             .getHeight(assignTo: $height)
     ///     }
     ///
     public func getHeight(
-        assignOn binding: Binding<CGFloat>
+        assignTo binding: Binding<CGFloat>
     ) -> some View {
         self
             .getSize({ binding.wrappedValue = $0.height })

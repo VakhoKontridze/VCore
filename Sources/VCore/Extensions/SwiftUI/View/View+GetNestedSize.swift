@@ -41,7 +41,7 @@ extension View {
     ///
     /// For more info, refer to `View.getNestedSize(_:)` method.
     public func getNestedSize(
-        assignOn binding: Binding<CGSize>
+        assignTo binding: Binding<CGSize>
     ) -> some View {
         self
             .getNestedSize({ binding.wrappedValue = $0 })

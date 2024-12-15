@@ -42,12 +42,12 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getFrame(in: .global, assignOn: $frame)
+    ///             .getFrame(in: .global, assignTo: $frame)
     ///     }
     ///
     public func getFrame(
         in coordinateSpace: CoordinateSpace,
-        assignOn binding: Binding<CGRect>
+        assignTo binding: Binding<CGRect>
     ) -> some View {
         self
             .getFrame(
@@ -93,12 +93,12 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getFrame(in: .global, assignOn: $frame)
+    ///             .getFrame(in: .global, assignTo: $frame)
     ///     }
     ///
     public func getFrame(
         in coordinateSpace: some CoordinateSpaceProtocol,
-        assignOn binding: Binding<CGRect>
+        assignTo binding: Binding<CGRect>
     ) -> some View {
         self
             .getFrame(
