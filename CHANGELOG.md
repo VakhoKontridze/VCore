@@ -1,5 +1,11 @@
 # Change Log
 
+### 7.3.0(107)
+
+Extensions
+
+- Due to `View.onPreferenceChange(_:perform:)` taking `@Sendable` closure as of `XCode` `16.2`, several secondary methods have been added, to avoid assigning retrieved values to a captured `Binding`: `View.getBounds(of:assignOn:)`, `View.getFrame(in:assignOn:)`, `View.getNestedSize(assignOn:)`, `View.getSafeAreaInsets(ignoredKeyboardSafeAreaEdges:assignOn:)`, `View.getSize(assignOn:)`, `View.getWidth(assignOn:)`, `View.getHeight(assignOn:)`
+
 ### [7.2.0(106)](https://github.com/VakhoKontridze/VCore/releases/tag/7.2.0) — *2024 12 12*
 
 Services and Managers - Presentation Host

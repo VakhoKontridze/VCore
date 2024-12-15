@@ -7,15 +7,15 @@
 
 import SwiftUI
 
-// MARK: - View + Get Frame
+// MARK: - View + Get Frame - Coordinate Space
 extension View {
-    /// Retrieves `CGRect` from `View`.
+    /// Retrieves frame from `View`.
     ///
     ///     @State private var frame: CGRect = .init()
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getFrame(in: .global, { frame = $0 })
+    ///             .getFrame(in: .global, { [$frame] in $frame.wrappedValue = $0 })
     ///     }
     ///
     public func getFrame(
@@ -35,17 +35,40 @@ extension View {
                 .allowsHitTesting(false) // Avoids blocking gestures
             })
     }
-
-    /// Retrieves bounds from `View`.
+    
+    /// Retrieves frame from `View` and assigns it on a `Binding`.
     ///
     ///     @State private var frame: CGRect = .init()
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getFrame(in: .global, { frame = $0 })
+    ///             .getFrame(in: .global, assignOn: $frame)
     ///     }
     ///
-    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+    public func getFrame(
+        in coordinateSpace: CoordinateSpace,
+        assignOn binding: Binding<CGRect>
+    ) -> some View {
+        self
+            .getFrame(
+                in: coordinateSpace,
+                { binding.wrappedValue = $0 }
+            )
+    }
+}
+ 
+// MARK: - View + Get Frame - Coordinate Space Protocol
+@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+extension View {
+    /// Retrieves frame from `View`.
+    ///
+    ///     @State private var frame: CGRect = .init()
+    ///
+    ///     var body: some View {
+    ///         Color.accentColor
+    ///             .getFrame(in: .global, { [$frame] in $frame.wrappedValue = $0 })
+    ///     }
+    ///
     public func getFrame(
         in coordinateSpace: some CoordinateSpaceProtocol,
         _ action: @escaping @Sendable (CGRect) -> Void
@@ -62,6 +85,26 @@ extension View {
                 })
                 .allowsHitTesting(false) // Avoids blocking gestures
             })
+    }
+    
+    /// Retrieves frame from `View` and assigns it on a `Binding`.
+    ///
+    ///     @State private var frame: CGRect = .init()
+    ///
+    ///     var body: some View {
+    ///         Color.accentColor
+    ///             .getFrame(in: .global, assignOn: $frame)
+    ///     }
+    ///
+    public func getFrame(
+        in coordinateSpace: some CoordinateSpaceProtocol,
+        assignOn binding: Binding<CGRect>
+    ) -> some View {
+        self
+            .getFrame(
+                in: coordinateSpace,
+                { binding.wrappedValue = $0 }
+            )
     }
 }
 

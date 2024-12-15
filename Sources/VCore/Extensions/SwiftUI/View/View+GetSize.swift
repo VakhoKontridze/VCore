@@ -9,13 +9,13 @@ import SwiftUI
 
 // MARK: - View + Get Size
 extension View {
-    /// Retrieves `CGSize` from `View`.
+    /// Retrieves size from `View`.
     ///
     ///     @State private var size: CGSize = .zero
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getSize({ size = $0 })
+    ///             .getSize({ [$size] in $size.wrappedValue = $0 })
     ///     }
     ///
     public func getSize(
@@ -33,6 +33,54 @@ extension View {
                 })
                 .allowsHitTesting(false) // Avoids blocking gestures
             })
+    }
+    
+    /// Retrieves size from `View` and assigns on a `Binding`.
+    ///
+    ///     @State private var size: CGSize = .zero
+    ///
+    ///     var body: some View {
+    ///         Color.accentColor
+    ///             .getSize(assignOn: $size)
+    ///     }
+    ///
+    public func getSize(
+        assignOn binding: Binding<CGSize>
+    ) -> some View {
+        self
+            .getSize({ binding.wrappedValue = $0 })
+    }
+    
+    /// Retrieves width from `View` and assigns on a `Binding`.
+    ///
+    ///     @State private var width: CGFloat = 0
+    ///
+    ///     var body: some View {
+    ///         Color.accentColor
+    ///             .getWidth(assignOn: $width)
+    ///     }
+    ///
+    public func getWidth(
+        assignOn binding: Binding<CGFloat>
+    ) -> some View {
+        self
+            .getSize({ binding.wrappedValue = $0.width })
+    }
+    
+    /// Retrieves height from `View` and assigns on a `Binding`.
+    ///
+    ///     @State private var height: CGFloat = 0
+    ///
+    ///     var body: some View {
+    ///         Color.accentColor
+    ///             .getHeight(assignOn: $height)
+    ///     }
+    ///
+    public func getHeight(
+        assignOn binding: Binding<CGFloat>
+    ) -> some View {
+        self
+            .getSize({ binding.wrappedValue = $0.height })
     }
 }
 

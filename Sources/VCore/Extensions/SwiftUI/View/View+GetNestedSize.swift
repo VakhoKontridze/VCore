@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - View + Get Nested Size
 extension View {
-    /// Retrieves nested `CGSize` from child `View`.
+    /// Retrieves nested nested size from child `View`.
     ///
     /// Can be used for wrapping `TabView` to it's content.
     ///
@@ -25,7 +25,7 @@ extension View {
     ///         .tabViewStyle(.page(indexDisplayMode: .never))
     ///         .background(content: { Color.gray })
     ///
-    ///         .getNestedSize({ height = max($0.height, 1) }) // `1` creates a non-zero buffer before height calculates
+    ///         .getNestedSize({ [$height] in $height.wrappedValue = max($0.height, 1) }) // `1` creates a non-zero buffer before height calculates
     ///         .frame(height: height)
     ///         .padding()
     ///     }
@@ -36,7 +36,19 @@ extension View {
         self
             .onPreferenceChange(NestedSizePreferenceKey.self, perform: action)
     }
+    
+    /// Retrieves nested nested size from child `View` and assigns it on a `Binding`.
+    ///
+    /// For more info, refer to `View.getNestedSize(_:)` method.
+    public func getNestedSize(
+        assignOn binding: Binding<CGSize>
+    ) -> some View {
+        self
+            .getNestedSize({ binding.wrappedValue = $0 })
+    }
+}
 
+extension View {
     /// Configures `View` as a target layout for reading nested `CGSize` via `getNestedSize(_:)` method.
     public func nestedSizeTargetLayout() -> some View {
         self

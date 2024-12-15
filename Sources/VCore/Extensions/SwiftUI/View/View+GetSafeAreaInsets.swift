@@ -9,13 +9,13 @@ import SwiftUI
 
 // MARK: - View + Get Safe Area Insets
 extension View {
-    /// Retrieves `EdgeInsets` from `View`.
+    /// Retrieves safe are insets from `View`.
     ///
     ///     @State private var safeAreaInsets: EdgeInsets = .init()
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getSafeAreaInsets({ safeAreaInsets = $0 })
+    ///             .getSafeAreaInsets({ [$safeAreaInsets] in $safeAreaInsets.wrappedValue = $0 })
     ///     }
     ///
     public func getSafeAreaInsets(
@@ -35,6 +35,26 @@ extension View {
                 .ignoresSafeArea(.keyboard, edges: ignoredKeyboardSafeAreaEdges)
                 .allowsHitTesting(false) // Avoids blocking gestures
             })
+    }
+    
+    /// Retrieves safe are insets from `View` and assigns on a `Binding`.
+    ///
+    ///     @State private var safeAreaInsets: EdgeInsets = .init()
+    ///
+    ///     var body: some View {
+    ///         Color.accentColor
+    ///             .getSafeAreaInsets(assignOn: $safeAreaInsets)
+    ///     }
+    ///
+    public func getSafeAreaInsets(
+        ignoredKeyboardSafeAreaEdges: Edge.Set = [],
+        assignOn binding: Binding<EdgeInsets>
+    ) -> some View {
+        self
+            .getSafeAreaInsets(
+                ignoredKeyboardSafeAreaEdges: ignoredKeyboardSafeAreaEdges,
+                { binding.wrappedValue = $0 }
+            )
     }
 }
 
