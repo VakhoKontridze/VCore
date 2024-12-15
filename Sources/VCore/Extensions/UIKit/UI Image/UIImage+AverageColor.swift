@@ -69,13 +69,15 @@ extension UIImage {
 // MARK: - Preview
 #if DEBUG
 
+#if !targetEnvironment(macCatalyst)
+
 import SwiftUI
 
 #Preview(body: {
     guard
         let image: UIImage = .init(
             size: CGSize(dimension: 100),
-            color: UIColor.blend(.red, with: .blue)
+            color: UIColor.red.mix(with: .blue, by: 0.5)
         ),
         let averageColor: UIColor = image.averageColor
     else {
@@ -84,6 +86,8 @@ import SwiftUI
 
     return Color(uiColor: averageColor)
 })
+
+#endif
 
 #endif
 

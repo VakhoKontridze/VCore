@@ -8,11 +8,16 @@
 import SwiftUI
 
 // MARK: - Color + Blend
-extension Color {
+extension Color { // TODO: iOS 18.0 - Remove
     /// Blends two `Color`s together.
     ///
-    ///     let purple: Color = .blend(.red, with: .blue)
+    ///     let purple: Color = .red.mix(with: .blue, by: 0.5)
     ///
+    @available(iOS, deprecated: 18.0, message: "Use native 'mix(with:by:)' instead")
+    @available(macOS, deprecated: 15.0, message: "Use native 'mix(with:by:)' instead")
+    @available(tvOS, deprecated: 18.0, message: "Use native 'mix(with:by:)' instead")
+    @available(watchOS, deprecated: 11.0, message: "Use native 'mix(with:by:)' instead")
+    @available(visionOS, deprecated: 2.0, message: "Use native 'mix(with:by:)' instead")
     public static func blend(
         _ color1: Color,
         ratio1: CGFloat = 0.5,
@@ -21,50 +26,12 @@ extension Color {
     ) -> Color {
 #if canImport(UIKit)
         Color(
-            uiColor: UIColor.blend(
-                UIColor(color1),
-                ratio1: ratio1,
-                with: UIColor(color2),
-                ratio2: ratio2
-            )
+            uiColor: UIColor(color1).mix(with: UIColor(color2), by: ratio1/(ratio1 + ratio2))
         )
 #elseif canImport(AppKit)
         Color(
-            nsColor: NSColor.blend(
-                NSColor(color1),
-                ratio1: ratio1,
-                with: NSColor(color2),
-                ratio2: ratio2
-            )
+            nsColor: NSColor(color1).mix(with: NSColor(color2), by: ratio1/(ratio1 + ratio2))
         )
-#endif
-    }
-    
-    /// Lightens `Color` by value.
-    ///
-    /// `value` ranges from `0` to `1`.
-    ///
-    ///     let lightBlue: Color = .systemBlue.lighten(by: 0.1)
-    ///
-    public func lighten(by value: CGFloat) -> Color {
-#if canImport(UIKit)
-        Color(uiColor: UIColor(self).lighten(by: value))
-#elseif canImport(AppKit)
-        Color(nsColor: NSColor(self).lighten(by: value))
-#endif
-    }
-    
-    /// Darkens `Color` by value.
-    ///
-    /// `value` ranges from `0` to `1`
-    ///
-    ///     let darkBlue: Color = .systemBlue.darken(by: 0.1)
-    ///
-    public func darken(by value: CGFloat) -> Color {
-#if canImport(UIKit)
-        Color(uiColor: UIColor(self).darken(by: value))
-#elseif canImport(AppKit)
-        Color(nsColor: NSColor(self).darken(by: value))
 #endif
     }
 }

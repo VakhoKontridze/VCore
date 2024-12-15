@@ -108,3 +108,43 @@ extension LocalizationManager {
         Self.locales
     }
 }
+
+// MARK: - Extensions - UI Kit
+
+#if canImport(UIKit) && !targetEnvironment(macCatalyst)
+
+import UIKit
+
+extension UIColor {
+    @available(*, deprecated, message: "Use 'mix(with:by)' instead")
+    public static func blend(
+        _ color1: UIColor,
+        ratio1: CGFloat = 0.5,
+        with color2: UIColor,
+        ratio2: CGFloat = 0.5
+    ) -> UIColor {
+        color1.mix(with: color2, by: ratio1/(ratio1 + ratio2))
+    }
+}
+
+#endif
+
+// MARK: - Extensions - App Kit
+
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
+
+import AppKit
+
+extension NSColor {
+    @available(*, deprecated, message: "Use 'mix(with:by)' instead")
+    public static func blend(
+        _ color1: NSColor,
+        ratio1: CGFloat = 0.5,
+        with color2: NSColor,
+        ratio2: CGFloat = 0.5
+    ) -> NSColor {
+        color1.mix(with: color2, by: ratio1/(ratio1 + ratio2))
+    }
+}
+
+#endif
