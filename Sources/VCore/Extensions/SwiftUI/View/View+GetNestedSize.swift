@@ -31,7 +31,7 @@ extension View {
     ///     }
     ///
     public func getNestedSize(
-        _ action: @escaping (CGSize) -> Void
+        _ action: @escaping @Sendable (CGSize) -> Void
     ) -> some View {
         self
             .onPreferenceChange(NestedSizePreferenceKey.self, perform: action)
@@ -80,7 +80,7 @@ private struct NestedSizePreferenceKey: PreferenceKey {
     .tabViewStyle(.page(indexDisplayMode: .never))
     .background(content: { Color.gray })
 
-    .getNestedSize({ height = max($0.height, 1) }) // `1` creates a non-zero buffer before height calculates
+    .getNestedSize({ [$height] in $height.wrappedValue = max($0.height, 1) }) // `1` creates a non-zero buffer before height calculates
     .frame(height: height)
     .padding()
 })

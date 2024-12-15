@@ -21,7 +21,7 @@ extension View {
     @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
     public func getBounds(
         of coordinateSpace: NamedCoordinateSpace,
-        _ action: @escaping (CGRect?) -> Void
+        _ action: @escaping @Sendable (CGRect?) -> Void
     ) -> some View {
         self
             .background(content: {

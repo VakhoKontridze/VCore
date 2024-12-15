@@ -20,7 +20,7 @@ extension View {
     ///
     public func getSafeAreaInsets(
         ignoredKeyboardSafeAreaEdges: Edge.Set = [],
-        _ action: @escaping (EdgeInsets) -> Void
+        _ action: @escaping @Sendable (EdgeInsets) -> Void
     ) -> some View {
         self
             .background(content: {

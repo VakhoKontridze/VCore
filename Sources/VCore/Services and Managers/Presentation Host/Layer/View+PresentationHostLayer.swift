@@ -70,11 +70,13 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     // MARK: Body
     func body(content: Content) -> some View {
         content
-            .getSafeAreaInsets(ignoredKeyboardSafeAreaEdges: .all, {
-                safeAreaInsets = $0
-
-                didReadSafeAreaInsetsSubject.send()
-                didReadSafeAreaInsetsSubject.send(completion: .finished)
+            .getSafeAreaInsets(ignoredKeyboardSafeAreaEdges: .all, { [$safeAreaInsets] in
+                $safeAreaInsets.wrappedValue = $0
+                
+                Task(operation: { @MainActor in
+                    didReadSafeAreaInsetsSubject.send()
+                    didReadSafeAreaInsetsSubject.send(completion: .finished)
+                })
             })
 
             .overlay(content: { layerView })

@@ -20,7 +20,7 @@ extension View {
     ///
     public func getFrame(
         in coordinateSpace: CoordinateSpace,
-        _ action: @escaping (CGRect) -> Void
+        _ action: @escaping @Sendable (CGRect) -> Void
     ) -> some View {
         self
             .background(content: {
@@ -48,7 +48,7 @@ extension View {
     @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
     public func getFrame(
         in coordinateSpace: some CoordinateSpaceProtocol,
-        _ action: @escaping (CGRect) -> Void
+        _ action: @escaping @Sendable (CGRect) -> Void
     ) -> some View {
         self
             .background(content: {
