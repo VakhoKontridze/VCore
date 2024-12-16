@@ -23,11 +23,11 @@ extension View {
     ) -> some View {
         self
             .background(content: {
-                GeometryReader(content: { proxy in
+                GeometryReader(content: { geometryProxy in
                     Color.clear
                         .preference(
                             key: SizePreferenceKey.self,
-                            value: proxy.size
+                            value: geometryProxy.size
                         )
                         .onPreferenceChange(SizePreferenceKey.self, perform: action)
                 })

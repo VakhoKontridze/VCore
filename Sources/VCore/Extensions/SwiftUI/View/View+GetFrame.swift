@@ -24,11 +24,11 @@ extension View {
     ) -> some View {
         self
             .background(content: {
-                GeometryReader(content: { proxy in
+                GeometryReader(content: { geometryProxy in
                     Color.clear
                         .preference(
                             key: FramePreferenceKey.self,
-                            value: proxy.frame(in: coordinateSpace)
+                            value: geometryProxy.frame(in: coordinateSpace)
                         )
                         .onPreferenceChange(FramePreferenceKey.self, perform: action)
                 })
@@ -75,11 +75,11 @@ extension View {
     ) -> some View {
         self
             .background(content: {
-                GeometryReader(content: { proxy in
+                GeometryReader(content: { geometryProxy in
                     Color.clear
                         .preference(
                             key: FramePreferenceKey.self,
-                            value: proxy.frame(in: coordinateSpace)
+                            value: geometryProxy.frame(in: coordinateSpace)
                         )
                         .onPreferenceChange(FramePreferenceKey.self, perform: action)
                 })

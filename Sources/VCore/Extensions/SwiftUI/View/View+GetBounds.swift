@@ -25,11 +25,11 @@ extension View {
     ) -> some View {
         self
             .background(content: {
-                GeometryReader(content: { proxy in
+                GeometryReader(content: { geometryProxy in
                     Color.clear
                         .preference(
                             key: BoundsPreferenceKey.self,
-                            value: proxy.bounds(of: coordinateSpace)
+                            value: geometryProxy.bounds(of: coordinateSpace)
                         )
                         .onPreferenceChange(BoundsPreferenceKey.self, perform: action)
                 })

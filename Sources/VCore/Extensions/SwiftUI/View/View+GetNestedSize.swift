@@ -53,11 +53,11 @@ extension View {
     public func nestedSizeTargetLayout() -> some View {
         self
             .background(content: {
-                GeometryReader(content: { proxy in
+                GeometryReader(content: { geometryProxy in
                     Color.clear
                         .preference(
                             key: NestedSizePreferenceKey.self,
-                            value: proxy.size
+                            value: geometryProxy.size
                         )
                 })
                 .allowsHitTesting(false) // Avoids blocking gestures

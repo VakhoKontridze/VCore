@@ -88,10 +88,10 @@ public struct ViewResettingContainer<Content>: View, Sendable where Content: Vie
         @Environment(\.viewResetter) private var viewResetter: ViewResetter!
 
         var body: some View {
-            GeometryReader(content: { proxy in
+            GeometryReader(content: { geometryProxy in
                 ScrollView(content: {
                     Color.accentColor
-                        .frame(height: proxy.size.height * 1.2)
+                        .frame(height: geometryProxy.size.height * 1.2)
 
                     Button(
                         "Reset",

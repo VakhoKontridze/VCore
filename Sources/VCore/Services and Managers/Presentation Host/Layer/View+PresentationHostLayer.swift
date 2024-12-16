@@ -188,9 +188,9 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
         
         NonInvasiveGeometryReader(
             alignment: modal.uiModel.alignment,
-            content: { proxy in
+            content: { geometryProxy in
                 modal.view()
-                    .environment(\.presentationHostContainerSize, proxy.size)
+                    .environment(\.presentationHostContainerSize, geometryProxy.size)
                     .environment(\.presentationHostSafeAreaInsets, safeAreaInsets!) // Force-unwrap
                     .environment(\.presentationHostPresentationMode, modal.presentationMode)
             }
@@ -270,9 +270,9 @@ private struct NonInvasiveGeometryReader<Content>: View
     var body: some View {
         Color.clear
             .overlay(content: {
-                GeometryReader(content: { proxy in
+                GeometryReader(content: { geometryProxy in
                     ZStack(content: {
-                        content(proxy)
+                        content(geometryProxy)
                     })
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
                     .clipped() // Prevents content from going out of bounds

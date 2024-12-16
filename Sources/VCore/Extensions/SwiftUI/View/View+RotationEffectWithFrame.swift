@@ -53,10 +53,10 @@ private struct RotationEffectWithFrameViewModifier: ViewModifier {
         content
             .rotationEffect(angle)
             .background(content: {
-                GeometryReader(content: { proxy in
+                GeometryReader(content: { geometryProxy in
                     Color.clear
-                        .task(id: proxy.frame(in: .local), {
-                            size = proxy.size
+                        .task(id: geometryProxy.frame(in: .local), {
+                            size = geometryProxy.size
                         })
                 })
                 .allowsHitTesting(false) // Avoids blocking gestures

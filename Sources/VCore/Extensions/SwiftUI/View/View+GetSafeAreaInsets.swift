@@ -24,11 +24,11 @@ extension View {
     ) -> some View {
         self
             .background(content: {
-                GeometryReader(content: { proxy in
+                GeometryReader(content: { geometryProxy in
                     Color.clear
                         .preference(
                             key: SafeAreaInsetsPreferenceKey.self,
-                            value: proxy.safeAreaInsets
+                            value: geometryProxy.safeAreaInsets
                         )
                         .onPreferenceChange(SafeAreaInsetsPreferenceKey.self, perform: action)
                 })
