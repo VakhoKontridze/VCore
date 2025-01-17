@@ -1,6 +1,6 @@
 # Change Log
 
-### [7.3.0(107)](https://github.com/VakhoKontridze/VCore/releases/tag/7.3.0) — *2024 01 17*
+### [7.3.0(107)](https://github.com/VakhoKontridze/VCore/releases/tag/7.3.0) — *2025 01 17*
 
 Extensions
 
