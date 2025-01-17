@@ -49,7 +49,7 @@ extension View {
 }
 
 extension View {
-    /// Configures `View` as a target layout for reading nested `CGSize` via `getNestedSize(_:)` method.
+    /// Configures `View` as a target layout for reading nested size via `getNestedSize(_:)` method.
     public func nestedSizeTargetLayout() -> some View {
         self
             .background(content: {
