@@ -105,7 +105,7 @@ extension View {
                                 .foregroundStyle(uiModel.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: downButtonIsEnabled)))
                             }
 
-                            Spacer()
+                            Spacer() // No need to specify min value, as it's controlled by the operating system
 
                             if uiModel.hasDoneButton {
                                 Button(
