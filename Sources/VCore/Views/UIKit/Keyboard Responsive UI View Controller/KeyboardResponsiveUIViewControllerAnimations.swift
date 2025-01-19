@@ -150,13 +150,14 @@ extension UIView {
             guard let window: UIWindow = firstResponderView.window else { return } // Will never fail
             let windowHeight: CGFloat = window.frame.size.height
 
-            let viewGlobalBoundsMaxY: CGFloat = firstResponderView.convert(firstResponderView.bounds, to: firstResponderView.window).maxY
+            guard let firstResponderViewSuperView: UIView = firstResponderView.superview else { return } // Will never fail
+            let viewGlobalFrameMaxY: CGFloat = firstResponderViewSuperView.convert(firstResponderView.frame, to: nil).maxY
 
             let containerViewY: CGFloat = containerView.bounds.origin.y
 
             guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return } // Will never fail
 
-            let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalBoundsMaxY - containerViewY
+            let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalFrameMaxY - containerViewY
             
             let obscuredHeight: CGFloat = max(0, systemKeyboardHeight + additionalOffset - viewDistanceToBottom)
 
