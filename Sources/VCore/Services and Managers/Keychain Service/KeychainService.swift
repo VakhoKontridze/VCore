@@ -28,7 +28,7 @@ open class KeychainService: @unchecked Sendable {
     open var configuration: KeychainServiceConfiguration {
         @storageRestrictions(initializes: _configuration)
         init(initialValue) {
-            _configuration = initialValue
+            self._configuration = initialValue
         }
         get { lock.withLock({ _configuration }) }
         set { lock.withLock({ _configuration = newValue }) }

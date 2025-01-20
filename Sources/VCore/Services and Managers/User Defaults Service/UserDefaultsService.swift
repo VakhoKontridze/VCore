@@ -26,7 +26,7 @@ open class UserDefaultsService: @unchecked Sendable {
     open var userDefaults: UserDefaults {
         @storageRestrictions(initializes: _userDefaults)
         init(initialValue) {
-            _userDefaults = initialValue
+            self._userDefaults = initialValue
         }
         get { lock.withLock({ _userDefaults }) }
         set { lock.withLock({ _userDefaults = newValue }) }
