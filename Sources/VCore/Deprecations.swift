@@ -8,7 +8,7 @@
 import SwiftUI
 
 // MARK: - Clamped
-@available(*, deprecated, message: "Will be removed in `8.0`")
+@available(*, deprecated, message: "Will be removed in '8.0'")
 @propertyWrapper
 public struct Clamped<Value>: DynamicProperty, Sendable
     where Value: Sendable
@@ -65,7 +65,7 @@ public struct Clamped<Value>: DynamicProperty, Sendable
 }
 
 // MARK: - Old Value Cache
-@available(*, deprecated, message: "Will be removed in `8.0`")
+@available(*, deprecated, message: "Will be removed in '8.0'")
 @propertyWrapper
 public struct OldValueCache<Value>: DynamicProperty, Sendable
     where Value: Sendable
@@ -103,7 +103,7 @@ public struct OldValueCache<Value>: DynamicProperty, Sendable
 
 // MARK: - Localization Manager
 extension LocalizationManager {
-    @available(*, deprecated, message: "Use `static` property instead")
+    @available(*, deprecated, message: "Use 'static' property instead")
     public var locales: [Locale] {
         Self.locales
     }
