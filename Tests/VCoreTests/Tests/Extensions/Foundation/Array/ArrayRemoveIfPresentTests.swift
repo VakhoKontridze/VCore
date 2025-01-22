@@ -6,26 +6,29 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ArrayRemoveIfPresentTests: XCTestCase {
-    func testElement() {
+@Suite
+struct ArrayRemoveIfPresentTests {
+    @Test
+    func testRemoveElement() {
         let array: [Int] = [1, 2, 3]
 
         var filteredArray = array
         filteredArray.removeIfPresent(3)
 
-        XCTAssertEqual(filteredArray, [1, 2])
+        #expect(filteredArray == [1, 2])
     }
 
-    func testElements() {
+    @Test
+    func testRemoveElements() {
         let array: [Int] = [1, 2, 3]
 
         var filteredArray = array
         filteredArray.removeIfPresent(contentsOf: [2, 3])
 
-        XCTAssertEqual(filteredArray, [1])
+        #expect(filteredArray == [1])
     }
 }

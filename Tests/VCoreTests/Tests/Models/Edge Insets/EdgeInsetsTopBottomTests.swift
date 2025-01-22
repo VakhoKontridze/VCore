@@ -6,98 +6,67 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class EdgeInsetsTopBottomTests: XCTestCase {
+@Suite
+struct EdgeInsetsTopBottomTests {
     // MARK: Tests - Insets
-    func testInsetInset() {
-        let insets: EdgeInsets_TopBottom = .init(
-            top: 1,
-            bottom: 2
-        ).insetBy(inset: 10)
-
-        XCTAssertEqual(insets.top, 11)
-        XCTAssertEqual(insets.bottom, 12)
+    @Test
+    func testInsetAll() {
+        #expect(
+            EdgeInsets_TopBottom(top: 1, bottom: 2).insetBy(inset: 10) ==
+            EdgeInsets_TopBottom(top: 11, bottom: 12)
+        )
     }
     
+    @Test
     func testInsetTop() {
-        let insets: EdgeInsets_TopBottom = .init(
-            top: 1,
-            bottom: 2
-        ).insetBy(top: 10)
-
-        XCTAssertEqual(insets.top, 11)
-        XCTAssertEqual(insets.bottom, 2)
+        #expect(
+            EdgeInsets_TopBottom(top: 1, bottom: 2).insetBy(top: 10) ==
+            EdgeInsets_TopBottom(top: 11, bottom: 2)
+        )
     }
     
+    @Test
     func testInsetBottom() {
-        let insets: EdgeInsets_TopBottom = .init(
-            top: 1,
-            bottom: 2
-        ).insetBy(bottom: 10)
-
-        XCTAssertEqual(insets.top, 1)
-        XCTAssertEqual(insets.bottom, 12)
+        #expect(
+            EdgeInsets_TopBottom(top: 1, bottom: 2).insetBy(bottom: 10) ==
+            EdgeInsets_TopBottom(top: 1, bottom: 12)
+        )
     }
     
     // MARK: Tests - Operators
+    @Test
     func testAddition() {
-        let insets: EdgeInsets_TopBottom =
-            EdgeInsets_TopBottom(
-                top: 1,
-                bottom: 2
-            ) +
-            EdgeInsets_TopBottom(
-                top: 3,
-                bottom: 4
-            )
-        
-        XCTAssertEqual(insets.top, 4)
-        XCTAssertEqual(insets.bottom, 6)
-    }
-    
-    func testAdditionAssignment() {
-        var insets: EdgeInsets_TopBottom = .init(
-            top: 1,
-            bottom: 2
-        )
-        insets += EdgeInsets_TopBottom(
-            top: 3,
-            bottom: 4
+        #expect(
+            EdgeInsets_TopBottom(top: 1, bottom: 2) +
+            EdgeInsets_TopBottom(top: 3, bottom: 4) ==
+            EdgeInsets_TopBottom(top: 4, bottom: 6)
         )
         
-        XCTAssertEqual(insets.top, 4)
-        XCTAssertEqual(insets.bottom, 6)
+        do {
+            var insets: EdgeInsets_TopBottom = .init(top: 1, bottom: 2)
+            insets += EdgeInsets_TopBottom(top: 3, bottom: 4)
+            
+            #expect(insets == EdgeInsets_TopBottom(top: 4, bottom: 6))
+        }
     }
     
+    @Test
     func testSubtraction() {
-        let insets: EdgeInsets_TopBottom =
-            EdgeInsets_TopBottom(
-                top: 1,
-                bottom: 2
-            ) -
-            EdgeInsets_TopBottom(
-                top: 3,
-                bottom: 4
-            )
-        
-        XCTAssertEqual(insets.top, -2)
-        XCTAssertEqual(insets.bottom, -2)
-    }
-    
-    func testSubtractionAssignment() {
-        var insets: EdgeInsets_TopBottom = .init(
-            top: 1,
-            bottom: 2
-        )
-        insets -= EdgeInsets_TopBottom(
-            top: 3,
-            bottom: 4
+        #expect(
+            EdgeInsets_TopBottom(top: 1, bottom: 2) -
+            EdgeInsets_TopBottom(top: 3, bottom: 4) ==
+            EdgeInsets_TopBottom(top: -2, bottom: -2)
         )
         
-        XCTAssertEqual(insets.top, -2)
-        XCTAssertEqual(insets.bottom, -2)
+        do {
+            var insets: EdgeInsets_TopBottom = .init(top: 1, bottom: 2)
+            insets -= EdgeInsets_TopBottom(top: 3, bottom: 4)
+            
+            #expect(insets == EdgeInsets_TopBottom(top: -2, bottom: -2))
+        }
     }
 }

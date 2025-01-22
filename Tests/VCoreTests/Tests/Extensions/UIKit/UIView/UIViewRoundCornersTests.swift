@@ -7,29 +7,27 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
 @MainActor
-final class UIViewRoundCornersTests: XCTestCase {
+@Suite
+struct UIViewRoundCornersTests {
+    @Test
     func test() {
-        let corners: CACornerMask = .layerAllCorners
-        let cornerRadius: CGFloat = 10
-        let curve: CALayerCornerCurve = .circular
-        
         let view: UIView = .init()
         
         view.roundCorners(
-            corners,
-            by: cornerRadius,
-            curve: curve
+            .layerAllCorners,
+            by: 10,
+            curve: .circular
         )
         
-        XCTAssertEqual(view.layer.maskedCorners, corners)
-        XCTAssertEqual(view.layer.cornerRadius, cornerRadius)
-        XCTAssertEqual(view.layer.cornerCurve, curve)
+        #expect(view.layer.maskedCorners == .layerAllCorners)
+        #expect(view.layer.cornerRadius == 10)
+        #expect(view.layer.cornerCurve == .circular)
     }
 }
 

@@ -6,32 +6,35 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class LocaleIsEquivalentTests: XCTestCase {
+@Suite
+struct LocaleIsEquivalentTests {
     // MARK: Test Data
     private let regionIdentifier: String? = Locale.current.region?.identifier
-    private lazy var otherRegionIdentifier: String = regionIdentifier == "GB" ? "CA" : "GB"
+    private var otherRegionIdentifier: String { regionIdentifier == "GB" ? "CA" : "GB" }
 
     private let languageScriptIdentifier: String? = Locale.current.language.script?.identifier
-    private lazy var otherLanguageScriptIdentifier: String = languageScriptIdentifier == "JP" ? "CN" : "JP"
+    private var otherLanguageScriptIdentifier: String { languageScriptIdentifier == "JP" ? "CN" : "JP" }
 
     // MARK: Tests
+    @Test
     func testIsSameLocaleLanguageCode() {
         let lhs: Locale = .init(identifier: "en")
         let rhs: Locale = .init(identifier: "es")
         
-        XCTAssertFalse(lhs.isEquivalent(to: rhs))
+        #expect(!lhs.isEquivalent(to: rhs))
     }
     
+    @Test
     func testIsSameLocaleRegionIdentifier() {
         do {
             let lhs: Locale = .init(identifier: "en")
             let rhs: Locale = .init(identifier: "en_\(otherRegionIdentifier)")
 
-            XCTAssertFalse(lhs.isEquivalent(to: rhs))
+            #expect(!lhs.isEquivalent(to: rhs))
         }
         
         do {
@@ -39,17 +42,18 @@ final class LocaleIsEquivalentTests: XCTestCase {
                 let lhs: Locale = .init(identifier: "en")
                 let rhs: Locale = .init(identifier: "en_\(regionIdentifier)")
 
-                XCTAssertTrue(lhs.isEquivalent(to: rhs))
+                #expect(lhs.isEquivalent(to: rhs))
             }
         }
     }
     
+    @Test
     func testIsSameLocaleLanguageScriptIdentifier() {
         do {
             let lhs: Locale = .init(identifier: "zh_Hans")
             let rhs: Locale = .init(identifier: "zh_Hans-\(otherLanguageScriptIdentifier)")
 
-            XCTAssertFalse(lhs.isEquivalent(to: rhs))
+            #expect(!lhs.isEquivalent(to: rhs))
         }
         
         do {
@@ -57,7 +61,7 @@ final class LocaleIsEquivalentTests: XCTestCase {
                 let lhs: Locale = .init(identifier: "zh_Hans")
                 let rhs: Locale = .init(identifier: "zh_Hans-\(languageScriptIdentifier)")
 
-                XCTAssertTrue(lhs.isEquivalent(to: rhs))
+                #expect(lhs.isEquivalent(to: rhs))
             }
         }
     }

@@ -6,13 +6,15 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class NumericNonZeroTests: XCTestCase {
+@Suite
+struct NumericNonZeroTests {
+    @Test
     func test() {
-        XCTAssertNil(0.nonZero)
-        XCTAssertNotNil(1.nonZero)
+        #expect(0.nonZero == nil)
+        #expect(1.nonZero == 1)
     }
 }

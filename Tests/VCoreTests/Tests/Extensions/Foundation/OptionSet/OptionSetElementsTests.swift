@@ -6,11 +6,12 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class OptionSetElementsTests: XCTestCase {
+@Suite
+struct OptionSetElementsTests {
     // MARK: Test Data
     private struct Gender: OptionSet {
         static let male: Self = .init(rawValue: 1 << 0)
@@ -22,15 +23,10 @@ final class OptionSetElementsTests: XCTestCase {
     }
 
     // MARK: Tests
-    func testSingle() {
-        XCTAssertEqual(Gender.male.elements, [Gender.male])
-        XCTAssertEqual(Gender.female.elements, [Gender.female])
-    }
-    
-    func testMultiple() {
-        XCTAssertEqual(
-            Gender.all.elements,
-            [.male, .female]
-        )
+    @Test
+    func test() {
+        #expect(Gender.male.elements == [.male])
+        #expect(Gender.female.elements == [.female])
+        #expect(Gender.all.elements == [.male, .female])
     }
 }

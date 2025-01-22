@@ -6,13 +6,15 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class BoolToggledTests: XCTestCase {
+@Suite
+struct BoolToggledTests {
+    @Test
     func test() {
-        XCTAssertEqual(false.toggled(), true)
-        XCTAssertEqual(true.toggled(), false)
+        #expect(false.toggled() == true)
+        #expect(true.toggled() == false)
     }
 }

@@ -7,20 +7,21 @@
 
 #if canImport(UIKit) && !os(watchOS) // `UIImage.averageColor` doesn't work on watchOS
 
-import Foundation
-import OSLog
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class UIImageCroppedTests: XCTestCase {
-    func testSingleColorCroppedToRect() {
-        guard
-            let image: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red)
-        else {
-            Logger.uiImageCroppedTests.critical("Failed to generate test data")
-            fatalError()
-        }
+@Suite
+struct UIImageCroppedTests {
+    @Test
+    func testSingleColorCroppedToRect() throws {
+        let image: UIImage = try #require(
+            UIImage(
+                size: CGSize(dimension: 100),
+                color: UIColor.red
+            )
+        )
         
         let croppedImage: UIImage = image.cropped(
             to: CGRect(
@@ -29,45 +30,48 @@ final class UIImageCroppedTests: XCTestCase {
             )
         )
 
-        guard
-            let croppedImageAverageColor: UIColor = croppedImage.averageColor
-        else {
-            Logger.uiImageCroppedTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        let croppedImageAverageColor: UIColor = try #require(
+            croppedImage.averageColor
+        )
 
-        XCTAssertEqualColor(croppedImageAverageColor, UIColor.red)
+        #expect(croppedImageAverageColor == UIColor.red)
     }
     
-    func testSingleColorCroppedToSize() {
-        guard
-            let image: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red)
-        else {
-            Logger.uiImageCroppedTests.critical("Failed to generate test data")
-            fatalError()
-        }
+    @Test
+    func testSingleColorCroppedToSize() throws {
+        let image: UIImage = try #require(
+            UIImage(
+                size: CGSize(dimension: 100),
+                color: UIColor.red
+            )
+        )
 
         let croppedImage: UIImage = image.cropped(to: CGSize(dimension: 50))
 
-        guard
-            let croppedImageAverageColor: UIColor = croppedImage.averageColor
-        else {
-            Logger.uiImageCroppedTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        let croppedImageAverageColor: UIColor = try #require(
+            croppedImage.averageColor
+        )
 
-        XCTAssertEqualColor(croppedImageAverageColor, UIColor.red)
+        #expect(croppedImageAverageColor == UIColor.red)
     }
     
-    func testMultiColorCroppedToRect() {
-        guard
-            let image1: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red),
-            let image2: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.green),
-            let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)
-        else {
-            Logger.uiImageCroppedTests.critical("Failed to generate test data")
-            fatalError()
-        }
+    @Test
+    func testMultiColorCroppedToRect() throws {
+        let image1: UIImage = try #require(
+            UIImage(
+                size: CGSize(dimension: 100),
+                color: UIColor.red
+            )
+        )
+        let image2: UIImage = try #require(
+            UIImage(
+                size: CGSize(dimension: 100),
+                color: UIColor.blue
+            )
+        )
+        let mergedImage: UIImage = try #require(
+            .mergeHorizontally(image1, with: image2)
+        )
         
         let croppedImage: UIImage = mergedImage.cropped(
             to: CGRect(
@@ -76,14 +80,11 @@ final class UIImageCroppedTests: XCTestCase {
             )
         )
 
-        guard
-            let croppedImageAverageColor: UIColor = croppedImage.averageColor
-        else {
-            Logger.uiImageCroppedTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        let croppedImageAverageColor: UIColor = try #require(
+            croppedImage.averageColor
+        )
 
-        XCTAssertEqualColor(croppedImageAverageColor, UIColor.red)
+        #expect(croppedImageAverageColor == UIColor.red)
     }
 }
 

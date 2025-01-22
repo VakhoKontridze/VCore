@@ -6,40 +6,50 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class URLInitWithPathAndQueryParametersTests: XCTestCase {
-    func testFullDeclaration() {
+@Suite
+struct URLInitWithPathAndQueryParametersTests {
+    @Test
+    func testFullDeclaration() throws {
         let string: String = "https://example.com"
         let pathParameters: [String] = ["path", "to", "resource"]
         let queryParameters: [String: String] = ["key1": "value1", "key2": "value2"]
 
-        guard
-            let url: URL = .init(
+        let url: URL = try #require(
+            URL(
                 string: string,
                 pathParameters: pathParameters,
                 queryParameters: queryParameters
             )
-        else {
-            XCTFail()
-            return
-        }
+        )
 
-        XCTAssertEqual(
-            url.absoluteString,
-            oneOf: [
+        #expect(
+            [
                 "https://example.com/path/to/resource?key2=value2&key1=value1",
                 "https://example.com/path/to/resource?key1=value1&key2=value2"
             ]
+                .contains(url.absoluteString)
         )
-        XCTAssertEqual(url.scheme, "https")
-        XCTAssertEqual(url.host, "example.com")
-        XCTAssertEqual(url.path, "/path/to/resource")
-        XCTAssertEqual(url.query, oneOf: ["key1=value1&key2=value2", "key2=value2&key1=value1"])
+        
+        #expect(url.scheme == "https")
+        
+        #expect(url.host == "example.com")
+        
+        #expect(url.path == "/path/to/resource")
+        
+        #expect(
+            [
+                "key1=value1&key2=value2",
+                "key2=value2&key1=value1"
+            ]
+                .contains(url.query)
+        )
     }
 
+    @Test
     func testEmptyString() {
         let string: String = ""
         let pathParameters: [String] = ["path", "to", "resource"]
@@ -51,60 +61,42 @@ final class URLInitWithPathAndQueryParametersTests: XCTestCase {
             queryParameters: queryParameters
         )
 
-        XCTAssertNil(url)
+        #expect(url == nil)
     }
 
-//    func testInvalidString() {
-//        let string: String = "InvalidURL"
-//        let pathParameters: [String] = ["path", "to", "resource"]
-//        let queryParameters: [String: String] = ["key1": "value1", "key2": "value2"]
-//
-//        let url: URL? = .init(
-//            string: string,
-//            pathParameters: pathParameters,
-//            queryParameters: queryParameters
-//        )
-//
-//        XCTAssertNil(url)
-//    }
-
-    func testEmptyPathParameters() {
+    @Test
+    func testEmptyPathParameters() throws {
         let string: String = "https://example.com"
         let pathParameters: [String] = []
         let queryParameters: [String: String] = ["key": "value"]
 
-        guard
-            let url: URL = .init(
+        let url: URL = try #require(
+            URL(
                 string: string,
                 pathParameters: pathParameters,
                 queryParameters: queryParameters
             )
-        else {
-            XCTFail()
-            return
-        }
-
-        XCTAssertEqual(url.absoluteString, "https://example.com?key=value")
-        XCTAssertEqual(url.path, "")
+        )
+        
+        #expect(url.absoluteString == "https://example.com?key=value")
+        #expect(url.path == "")
     }
 
-    func testEmptyQueryParameters() {
+    @Test
+    func testEmptyQueryParameters() throws {
         let string: String = "https://example.com"
         let pathParameters: [String] = ["path", "to", "resource"]
         let queryParameters: [String: String] = [:]
 
-        guard
-            let url: URL = .init(
+        let url: URL = try #require(
+            URL(
                 string: string,
                 pathParameters: pathParameters,
                 queryParameters: queryParameters
             )
-        else {
-            XCTFail()
-            return
-        }
-
-        XCTAssertEqual(url.absoluteString, "https://example.com/path/to/resource")
-        XCTAssertEqual(url.query, nil)
+        )
+        
+        #expect(url.absoluteString == "https://example.com/path/to/resource")
+        #expect(url.query == nil)
     }
 }

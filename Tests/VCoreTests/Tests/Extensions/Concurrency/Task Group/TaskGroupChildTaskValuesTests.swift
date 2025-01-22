@@ -1,22 +1,24 @@
 //
-//  TaskGroupChildTaskValuesTest.swift
+//  TaskGroupChildTaskValuesTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 24.09.24.
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class TaskGroupChildTaskValuesTest: XCTestCase {
+@Suite
+struct TaskGroupChildTaskValuesTests {
     // MARK: Test Data
     private struct Item {
         let value: String
     }
     
     // MARK: Tests
+    @Test
     func testTaskGroup() async {
         let urls: [URL] = [
             #url("1"),
@@ -40,12 +42,13 @@ final class TaskGroupChildTaskValuesTest: XCTestCase {
                 .sorted(by: \.value)
         })
         
-        XCTAssertEqual(
-            items.map { $0.value },
+        #expect(
+            items.map { $0.value } ==
             ["1", "2", "3"]
         )
     }
     
+    @Test
     func testThrowingTaskGroup() async throws {
         let urls: [URL] = [
             #url("1"),
@@ -69,8 +72,8 @@ final class TaskGroupChildTaskValuesTest: XCTestCase {
                 .sorted(by: \.value)
         })
         
-        XCTAssertEqual(
-            items.map { $0.value },
+        #expect(
+            items.map { $0.value } ==
             ["1", "2", "3"]
         )
     }

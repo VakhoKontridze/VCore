@@ -8,29 +8,32 @@
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
 import AppKit
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class NSFontStylingTests: XCTestCase {
+@Suite
+struct NSFontStylingTests {
+    @Test
     func testItalic() throws {
         let font: NSFont = .systemFont(ofSize: 13)
-
-        let italicFont: NSFont = try XCTUnwrap(
+        
+        let italicFont: NSFont = try #require(
             font.withItalicStyling()
         )
 
-        XCTAssertTrue(italicFont.fontDescriptor.symbolicTraits.contains(.italic))
+        #expect(italicFont.fontDescriptor.symbolicTraits.contains(.italic))
     }
     
+    @Test
     func testBold() throws {
         let font: NSFont = .systemFont(ofSize: 13)
-
-        let boldFont: NSFont = try XCTUnwrap(
+        
+        let boldFont: NSFont = try #require(
             font.withBoldStyling()
         )
 
-        XCTAssertTrue(boldFont.fontDescriptor.symbolicTraits.contains(.bold))
+        #expect(boldFont.fontDescriptor.symbolicTraits.contains(.bold))
     }
 }
 

@@ -6,88 +6,71 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CGSizeScaledTests: XCTestCase {
-    // MARK: Tests - Up with Constant
+@Suite
+struct CGSizeScaledTests {
+    // MARK: Tests - Constant
+    @Test
     func testScaledUpWithConstant() {
-        let size: CGSize = .init(width: 3, height: 4)
-
-        let scaledSize: CGSize = size.scaledUp(withConstant: 1)
-
-        XCTAssertEqual(scaledSize.width, 4)
-        XCTAssertEqual(scaledSize.height, 5)
-    }
-
-    func testScaleUpWithConstant() {
-        let size: CGSize = .init(width: 3, height: 4)
-
-        var scaledSize: CGSize = size
-        scaledSize.scaleUp(withConstant: 1)
-
-        XCTAssertEqual(scaledSize.width, 4)
-        XCTAssertEqual(scaledSize.height, 5)
-    }
-
-    // MARK: Tests - Down with Constant
-    func testScaledDownWithConstant() {
-        let size: CGSize = .init(width: 3, height: 4)
-
-        let scaledSize: CGSize = size.scaledDown(withConstant: 1)
-
-        XCTAssertEqual(scaledSize.width, 2)
-        XCTAssertEqual(scaledSize.height, 3)
-    }
-
-    func testScaleDownWithConstant() {
-        let size: CGSize = .init(width: 3, height: 4)
-
-        var scaledSize: CGSize = size
-        scaledSize.scaleDown(withConstant: 1)
-
-        XCTAssertEqual(scaledSize.width, 2)
-        XCTAssertEqual(scaledSize.height, 3)
-    }
-
-    // MARK: Tests - Up with Multiplier
-    func testScaledUpWithMultiplier() {
-        let size: CGSize = .init(width: 3, height: 4)
-
-        let scaledSize: CGSize = size.scaledUp(withMultiplier: 2)
-
-        XCTAssertEqual(scaledSize.width, 6)
-        XCTAssertEqual(scaledSize.height, 8)
-    }
-
-    func testScaleUpWithMultiplier() {
-        let size: CGSize = .init(width: 3, height: 4)
-
-        var scaledSize: CGSize = size
-        scaledSize.scaleUp(withMultiplier: 2)
-
-        XCTAssertEqual(scaledSize.width, 6)
-        XCTAssertEqual(scaledSize.height, 8)
-    }
-
-    // MARK: Tests - Down with Multiplier
-    func testScaledDownWithMultiplier() {
-        let size: CGSize = .init(width: 3, height: 4)
-
-        let scaledSize: CGSize = size.scaledDown(withMultiplier: 2)
-
-        XCTAssertEqual(scaledSize.width, 1.5)
-        XCTAssertEqual(scaledSize.height, 2)
-    }
-
-    func testScaleDownWithMultiplier() {
-        let size: CGSize = .init(width: 3, height: 4)
+        #expect(
+            CGSize(width: 3, height: 4).scaledUp(withConstant: 1) ==
+            CGSize(width: 4, height: 5)
+        )
         
-        var scaledSize: CGSize = size
-        scaledSize.scaleDown(withMultiplier: 2)
-
-        XCTAssertEqual(scaledSize.width, 1.5)
-        XCTAssertEqual(scaledSize.height, 2)
+        do {
+            var size: CGSize = .init(width: 3, height: 4)
+            size.scaleUp(withConstant: 1)
+            
+            #expect(size == CGSize(width: 4, height: 5))
+        }
+    }
+    
+    @Test
+    func testScaledDownWithConstant() {
+        #expect(
+            CGSize(width: 3, height: 4).scaledDown(withConstant: 1) ==
+            CGSize(width: 2, height: 3)
+        )
+        
+        do {
+            var size: CGSize = .init(width: 3, height: 4)
+            size.scaleDown(withConstant: 1)
+            
+            #expect(size == CGSize(width: 2, height: 3))
+        }
+    }
+    
+    // MARK: Tests - Multiplier
+    @Test
+    func testScaledUpWithMultiplier() {
+        #expect(
+            CGSize(width: 3, height: 4).scaledUp(withMultiplier: 2) ==
+            CGSize(width: 6, height: 8)
+        )
+        
+        do {
+            var size: CGSize = .init(width: 3, height: 4)
+            size.scaleUp(withMultiplier: 2)
+            
+            #expect(size == CGSize(width: 6, height: 8))
+        }
+    }
+    
+    @Test
+    func testScaledDownWithMultiplier() {
+        #expect(
+            CGSize(width: 3, height: 4).scaledDown(withMultiplier: 2) ==
+            CGSize(width: 1.5, height: 2)
+        )
+        
+        do {
+            var size: CGSize = .init(width: 3, height: 4)
+            size.scaleDown(withMultiplier: 2)
+            
+            #expect(size == CGSize(width: 1.5, height: 2))
+        }
     }
 }

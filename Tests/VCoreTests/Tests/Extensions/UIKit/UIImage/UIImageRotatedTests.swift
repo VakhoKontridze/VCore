@@ -7,24 +7,32 @@
 
 #if canImport(UIKit) && !os(watchOS) // `UIImage.averageColor` doesn't work on watchOS
 
-import Foundation
-import OSLog
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class UIImageRotatedTests: XCTestCase {
+@Suite
+struct UIImageRotatedTests {
+    @Test
     func test() throws {
-        guard
-            let image1: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red),
-            let image2: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.green),
-            let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)
-        else {
-            Logger.uiImageRotatedTests.critical("Failed to generate test data")
-            fatalError()
-        }
-        
-        let rotatedImage: UIImage = try XCTUnwrap(
+        let image1: UIImage = try #require(
+            UIImage(
+                size: CGSize(dimension: 100),
+                color: UIColor.red
+            )
+        )
+        let image2: UIImage = try #require(
+            UIImage(
+                size: CGSize(dimension: 100),
+                color: UIColor.blue
+            )
+        )
+        let mergedImage: UIImage = try #require(
+            .mergeHorizontally(image1, with: image2)
+        )
+
+        let rotatedImage: UIImage = try #require(
             mergedImage.rotated(by: Measurement(value: 90, unit: .degrees))
         )
 
@@ -35,14 +43,11 @@ final class UIImageRotatedTests: XCTestCase {
             )
         )
         
-        guard
-            let croppedImageAverageColor: UIColor = croppedImage.averageColor
-        else {
-            Logger.uiImageRotatedTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        let croppedImageAverageColor: UIColor = try #require(
+            croppedImage.averageColor
+        )
 
-        XCTAssertEqualColor(croppedImageAverageColor, UIColor.red)
+        #expect(croppedImageAverageColor == UIColor.red)
     }
 }
 

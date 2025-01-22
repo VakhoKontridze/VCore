@@ -7,17 +7,17 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
 @MainActor
-final class UINavigationBarHeightTests: XCTestCase {
+@Suite
+struct UINavigationBarHeightTests {
+    @Test
     func test() {
-        let height: CGFloat = UINavigationBar.height
-
-        XCTAssertGreaterThan(height, 0)
+        #expect(UINavigationBar.height > 0)
     }
 }
 

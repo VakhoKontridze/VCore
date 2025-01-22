@@ -6,62 +6,47 @@
 //
 
 import Foundation
-import OSLog
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class JSONEncoderMethodsTests: XCTestCase {
+@Suite
+struct JSONEncoderMethodsTests {
     // MARK: Test Data
     private struct Object: Codable {
         let key: String?
     }
     
     // MARK: Tests
+    @Test
     func testAnyToData() throws {
         let json: [String: Any?] = ["key": "value"]
-        
         let data: Data = try JSONEncoder.encodeAnyToData(json)
 
-        guard
-            let json2: [String: Any?] = try? JSONDecoder.decodeJSONFromData(data)
-        else {
-            Logger.jsonEncoderMethodTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        let json2: [String: Any?] = try JSONDecoder.decodeJSONFromData(data)
 
-        XCTAssertEqual(json2["key"]?.toString, "value")
+        #expect(json2["key"]?.toString == "value")
     }
     
+    @Test
     func testObjectToJSON() throws {
         let object: Object = .init(key: "value")
-
         let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON(object)
 
-        guard
-            let object2: Object = try? JSONDecoder().decodeObjectFromJSON(json)
-        else {
-            Logger.jsonEncoderMethodTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        let object2: Object = try JSONDecoder().decodeObjectFromJSON(json)
 
-        XCTAssertEqual(object2.key, object.key)
+        #expect(object2.key == object.key)
     }
     
+    @Test
     func testObjectsToJSONArray() throws {
         let objects: [Object] = [.init(key: "value1"), .init(key: "value2")]
-
         let jsonArray: [[String: Any?]] = try JSONEncoder().encodeObjectToJSONArray(objects)
 
-        guard
-            let objects2: [Object] = try? JSONDecoder().decodeObjectFromJSONArray(jsonArray)
-        else {
-            Logger.jsonEncoderMethodTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        let objects2: [Object] = try JSONDecoder().decodeObjectFromJSONArray(jsonArray)
 
         for i in objects.indices {
-            XCTAssertEqual(objects2[i].key, objects[i].key)
+            #expect(objects2[i].key == objects[i].key)
         }
     }
 }

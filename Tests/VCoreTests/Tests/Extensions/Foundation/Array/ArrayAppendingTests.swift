@@ -6,24 +6,25 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ArrayAppendingTests: XCTestCase {
-    func testElement() {
-        let array: [Int] = [1, 2]
-
-        let appendedArray: [Int] = array.appending(3)
-
-        XCTAssertEqual(appendedArray, [1, 2, 3])
+@Suite
+struct ArrayAppendingTests {
+    @Test
+    func testAppendingElement() {
+        #expect(
+            [1, 2].appending(3) ==
+            [1, 2, 3]
+        )
     }
 
-    func testElements() {
-        let array: [Int] = [1, 2]
-
-        let appendedArray: [Int] = array.appending(contentsOf: [3, 4])
-
-        XCTAssertEqual(appendedArray, [1, 2, 3, 4])
+    @Test
+    func testAppendingElements() {
+        #expect(
+            [1, 2].appending(contentsOf: [3, 4]) ==
+            [1, 2, 3, 4]
+        )
     }
 }

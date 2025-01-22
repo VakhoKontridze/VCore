@@ -6,39 +6,45 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class StringProtocolNonEmptyTests: XCTestCase {
+@Suite
+struct StringProtocolNonEmptyTests {
+    @Test
     func testIsEmptyOrWhiteSpace() {
-        XCTAssertTrue("".isEmptyOrWhiteSpace)
-        XCTAssertTrue(" ".isEmptyOrWhiteSpace)
-        XCTAssertFalse("Lorem Ipsum".isEmptyOrWhiteSpace)
+        #expect("".isEmptyOrWhiteSpace)
+        #expect(" ".isEmptyOrWhiteSpace)
+        #expect(!"Lorem Ipsum".isEmptyOrWhiteSpace)
     }
     
+    @Test
     func testIsEmptyWhiteSpaceOrNewLines() {
-        XCTAssertTrue("".isEmptyWhiteSpaceOrNewLines)
-        XCTAssertTrue(" ".isEmptyWhiteSpaceOrNewLines)
-        XCTAssertTrue("\n".isEmptyWhiteSpaceOrNewLines)
-        XCTAssertFalse("Lorem Ipsum".isEmptyWhiteSpaceOrNewLines)
+        #expect("".isEmptyWhiteSpaceOrNewLines)
+        #expect(" ".isEmptyWhiteSpaceOrNewLines)
+        #expect("\n".isEmptyWhiteSpaceOrNewLines)
+        #expect(!"Lorem Ipsum".isEmptyWhiteSpaceOrNewLines)
     }
     
+    @Test
     func testNonEmpty() {
-        XCTAssertNil("".nonEmpty)
-        XCTAssertEqual("Lorem Ipsum".nonEmpty, "Lorem Ipsum")
+        #expect("".nonEmpty == nil)
+        #expect("Lorem Ipsum".nonEmpty == "Lorem Ipsum")
     }
     
+    @Test
     func testNonEmptyOrWhitespace() {
-        XCTAssertNil("".nonEmptyOrWhiteSpace)
-        XCTAssertNil(" ".nonEmptyOrWhiteSpace)
-        XCTAssertEqual("Lorem Ipsum".nonEmptyOrWhiteSpace, "Lorem Ipsum")
+        #expect("".nonEmptyOrWhiteSpace == nil)
+        #expect(" ".nonEmptyOrWhiteSpace == nil)
+        #expect("Lorem Ipsum".nonEmptyOrWhiteSpace == "Lorem Ipsum")
     }
     
+    @Test
     func testNonEmptyWhitespaceOrNewLines() {
-        XCTAssertNil("".nonEmptyWhiteSpaceOrNewLines)
-        XCTAssertNil(" ".nonEmptyWhiteSpaceOrNewLines)
-        XCTAssertNil("\n".nonEmptyWhiteSpaceOrNewLines)
-        XCTAssertEqual("Lorem Ipsum".nonEmptyWhiteSpaceOrNewLines, "Lorem Ipsum")
+        #expect("".nonEmptyWhiteSpaceOrNewLines == nil)
+        #expect(" ".nonEmptyWhiteSpaceOrNewLines == nil)
+        #expect("\n".nonEmptyWhiteSpaceOrNewLines == nil)
+        #expect("Lorem Ipsum".nonEmptyWhiteSpaceOrNewLines == "Lorem Ipsum")
     }
 }

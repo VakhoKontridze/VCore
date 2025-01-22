@@ -6,126 +6,140 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class AtomicNumberTests: XCTestCase {
+@Suite
+struct AtomicNumberTests {
     // MARK: Tests - Accessors
+    @Test
     func testGet() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
         
         let number1: Int = await atomicNumber.get()
-        XCTAssertEqual(number1, 10)
+        #expect(number1 == 10)
         
         let number2: Int = await atomicNumber.get()
-        XCTAssertEqual(number2, 10)
+        #expect(number2 == 10)
     }
 
-    // MARK: Tests - Mutators
+    @Test
     func testSet() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
         
         await atomicNumber.set(20)
         
         let number: Int = await atomicNumber.get()
-        XCTAssertEqual(number, 20)
+        #expect(number == 20)
     }
 
+    // MARK: Tests - Mutators
+    @Test
     func testAdd() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
 
         await atomicNumber.add(10)
 
         let number: Int = await atomicNumber.get()
-        XCTAssertEqual(number, 20)
+        #expect(number == 20)
     }
 
+    @Test
     func testIncrement() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
 
         await atomicNumber.increment()
 
         let number: Int = await atomicNumber.get()
-        XCTAssertEqual(number, 11)
+        #expect(number == 11)
     }
 
+    @Test
     func testDecrement() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
 
         await atomicNumber.decrement()
 
         let number: Int = await atomicNumber.get()
-        XCTAssertEqual(number, 9)
+        #expect(number == 9)
     }
 
     // MARK: Tests - Get and Pre-Mutators
+    @Test
     func testSetAndGet() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
         
         let number: Int = await atomicNumber.setAndGet(20)
-        XCTAssertEqual(number, 20)
+        #expect(number == 20)
     }
 
+    @Test
     func testAddAndGet() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
 
         let number: Int = await atomicNumber.addAndGet(10)
-        XCTAssertEqual(number, 20)
+        #expect(number == 20)
     }
     
+    @Test
     func testIncrementAndGet() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
         
         let number: Int = await atomicNumber.incrementAndGet()
-        XCTAssertEqual(number, 11)
+        #expect(number == 11)
     }
     
+    @Test
     func testDecrementAndGet() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
         
         let number: Int = await atomicNumber.decrementAndGet()
-        XCTAssertEqual(number, 9)
+        #expect(number == 9)
     }
 
     // MARK: Tests - Get and Post-Mutators
+    @Test
     func testGetAndSet() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
 
         let number1: Int = await atomicNumber.getAndSet(20)
-        XCTAssertEqual(number1, 10)
+        #expect(number1 == 10)
 
         let number2: Int = await atomicNumber.get()
-        XCTAssertEqual(number2, 20)
+        #expect(number2 == 20)
     }
 
+    @Test
     func testGetAndAdd() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
 
         let number1: Int = await atomicNumber.getAndAdd(10)
-        XCTAssertEqual(number1, 10)
+        #expect(number1 == 10)
 
         let number2: Int = await atomicNumber.get()
-        XCTAssertEqual(number2, 20)
+        #expect(number2 == 20)
     }
 
+    @Test
     func testGetAndIncrement() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
 
         let number1: Int = await atomicNumber.getAndIncrement()
-        XCTAssertEqual(number1, 10)
+        #expect(number1 == 10)
 
         let number2: Int = await atomicNumber.get()
-        XCTAssertEqual(number2, 11)
+        #expect(number2 == 11)
     }
 
+    @Test
     func testGetAndDecrement() async {
         let atomicNumber: AtomicInteger = .init(value: 10)
 
         let number1: Int = await atomicNumber.getAndDecrement()
-        XCTAssertEqual(number1, 10)
+        #expect(number1 == 10)
 
         let number2: Int = await atomicNumber.get()
-        XCTAssertEqual(number2, 9)
+        #expect(number2 == 9)
     }
 }

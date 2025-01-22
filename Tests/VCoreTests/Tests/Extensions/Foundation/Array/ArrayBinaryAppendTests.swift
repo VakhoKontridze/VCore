@@ -6,18 +6,20 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ArrayBinaryAppendTests: XCTestCase {
+@Suite
+struct ArrayBinaryAppendTests {
+    @Test
     func test() {
         let array: [Int] = [1, 2, 4, 5, 6]
 
         var appendedArray: [Int] = array
         let index: Int = appendedArray.binaryAppend(3, by: { $0 < $1 })
 
-        XCTAssertEqual(appendedArray, [1, 2, 3, 4, 5, 6])
-        XCTAssertEqual(index, 2)
+        #expect(appendedArray == [1, 2, 3, 4, 5, 6])
+        #expect(index == 2)
     }
 }

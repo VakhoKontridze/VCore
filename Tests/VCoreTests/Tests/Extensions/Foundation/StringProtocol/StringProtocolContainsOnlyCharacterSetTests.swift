@@ -6,20 +6,21 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class StringContainsOnlyCharacterSetTests: XCTestCase {
-    func test() {
-        XCTAssertTrue("0123456789".contains(only: .decimalDigits))
-        XCTAssertFalse("+0123456789".contains(only: .decimalDigits))
+@Suite
+struct StringContainsOnlyCharacterSetTests {
+    @Test
+    func testContainsOnlyCharacterSet() {
+        #expect("0123456789".contains(only: .decimalDigits))
+        #expect(!"+0123456789".contains(only: .decimalDigits))
     }
-}
-
-final class StringContainsOnlyCharacterSetsTests: XCTestCase {
-    func test() {
-        XCTAssertTrue("0123456789A".contains(only: [.decimalDigits, .letters]))
-        XCTAssertFalse("+0123456789A".contains(only: [.decimalDigits, .letters]))
+    
+    @Test
+    func testContainsOnlyCharacterSets() {
+        #expect("0123456789A".contains(only: [.decimalDigits, .letters]))
+        #expect(!"+0123456789A".contains(only: [.decimalDigits, .letters]))
     }
 }

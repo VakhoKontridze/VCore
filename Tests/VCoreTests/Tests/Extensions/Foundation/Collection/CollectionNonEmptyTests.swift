@@ -6,13 +6,15 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CollectionNonEmptyTests: XCTestCase {
+@Suite
+struct CollectionNonEmptyTests {
+    @Test
     func test() {
-        XCTAssertNil(Array<Int>().nonEmpty)
-        XCTAssertNotNil([1, 2, 3].nonEmpty)
+        #expect(Array<Int>().nonEmpty == nil)
+        #expect([1, 2, 3].nonEmpty == [1, 2, 3])
     }
 }

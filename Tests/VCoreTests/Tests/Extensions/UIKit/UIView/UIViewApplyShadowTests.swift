@@ -7,13 +7,15 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
 @MainActor
-final class UIViewApplyShadowTests: XCTestCase {
+@Suite
+struct UIViewApplyShadowTests {
+    @Test
     func testShadow() {
         let view: UIView = .init()
         
@@ -23,12 +25,13 @@ final class UIViewApplyShadowTests: XCTestCase {
             offset: CGSize(width: 0, height: 5)
         )
         
-        XCTAssertEqual(view.layer.shadowColor, UIColor.black.cgColor)
-        XCTAssertEqual(view.layer.shadowOpacity, 1)
-        XCTAssertEqual(view.layer.shadowRadius, 5)
-        XCTAssertEqual(view.layer.shadowOffset, CGSize(width: 0, height: 5))
+        #expect(view.layer.shadowColor == UIColor.black.cgColor)
+        #expect(view.layer.shadowOpacity == 1)
+        #expect(view.layer.shadowRadius == 5)
+        #expect(view.layer.shadowOffset == CGSize(width: 0, height: 5))
     }
     
+    @Test
     func testRoundCornersAndApplyShadow() {
         let view: UIView = .init()
         
@@ -39,11 +42,11 @@ final class UIViewApplyShadowTests: XCTestCase {
             offset: CGSize(width: 0, height: 5)
         )
         
-        XCTAssertEqual(view.layer.cornerRadius, 10)
-        XCTAssertEqual(view.layer.shadowColor, UIColor.black.cgColor)
-        XCTAssertEqual(view.layer.shadowOpacity, 1)
-        XCTAssertEqual(view.layer.shadowRadius, 5)
-        XCTAssertEqual(view.layer.shadowOffset, CGSize(width: 0, height: 5))
+        #expect(view.layer.cornerRadius == 10)
+        #expect(view.layer.shadowColor == UIColor.black.cgColor)
+        #expect(view.layer.shadowOpacity == 1)
+        #expect(view.layer.shadowRadius == 5)
+        #expect(view.layer.shadowOffset == CGSize(width: 0, height: 5))
     }
 }
 

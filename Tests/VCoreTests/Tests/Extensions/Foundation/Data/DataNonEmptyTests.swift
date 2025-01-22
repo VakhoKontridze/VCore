@@ -6,22 +6,23 @@
 //
 
 import Foundation
-import OSLog
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class DataNonEmptyTests: XCTestCase {
+@Suite
+struct DataNonEmptyTests {
+    @Test
     func testNil() {
-        XCTAssertNil(Data().nonEmpty)
+        #expect(Data().nonEmpty == nil)
     }
 
-    func testNotNil() {
-        guard let data: Data = "data".data(using: .utf8) else {
-            Logger.misc.critical("Failed to generate test data")
-            fatalError()
-        }
+    @Test
+    func testNotNil() throws {
+        let data: Data = try #require(
+            "data".data(using: .utf8)
+        )
 
-        XCTAssertNotNil(data.nonEmpty)
+        #expect(data.nonEmpty != nil)
     }
 }

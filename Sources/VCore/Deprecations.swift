@@ -109,8 +109,15 @@ extension LocalizationManager {
     }
 }
 
-// MARK: - Extensions - UI Kit
+// MARK: - Extensions - Foundation
+extension StringProtocol {
+    @available(*, deprecated, renamed: "contains(any:)")
+    public func contains(_ characterSets: [CharacterSet]) -> Bool {
+        contains(characterSets.unified)
+    }
+}
 
+// MARK: - Extensions - UI Kit
 #if canImport(UIKit) && !targetEnvironment(macCatalyst)
 
 import UIKit
@@ -130,7 +137,6 @@ extension UIColor {
 #endif
 
 // MARK: - Extensions - App Kit
-
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
 import AppKit

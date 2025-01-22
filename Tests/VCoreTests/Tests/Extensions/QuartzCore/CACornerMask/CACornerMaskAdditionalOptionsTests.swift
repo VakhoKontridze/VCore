@@ -8,14 +8,16 @@
 #if canImport(QuartzCore)
 
 import QuartzCore
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CACornerMaskAdditionalOptionsTests: XCTestCase {
+@Suite
+struct CACornerMaskAdditionalOptionsTests {
+    @Test
     func test() {
-        XCTAssertEqual(CACornerMask.layerMinXCorners.union(.layerMaxXCorners), .layerAllCorners)
-        XCTAssertEqual(CACornerMask.layerMinYCorners.union(.layerMaxYCorners), .layerAllCorners)
+        #expect(CACornerMask.layerMinXCorners.union(.layerMaxXCorners) == .layerAllCorners)
+        #expect(CACornerMask.layerMinYCorners.union(.layerMaxYCorners) == .layerAllCorners)
     }
 }
 

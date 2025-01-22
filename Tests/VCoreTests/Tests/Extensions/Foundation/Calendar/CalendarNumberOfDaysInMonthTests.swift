@@ -6,26 +6,25 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CalendarNumberOfDaysInMonthTests: XCTestCase {
-    func testNonLeapYearMonths() {
-        _testHelper(
-            year: 1970,
-            numberOfDaysInMonths: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        )
-    }
-    
-    func testLeapYearMonths() {
-        _testHelper(
-            year: 1972,
-            numberOfDaysInMonths: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
-        )
-    }
-    
-    private func _testHelper(
+@Suite
+struct CalendarNumberOfDaysInMonthTests {
+    @Test(
+        arguments: [
+            (
+                year: 1970,
+                numberOfDaysInMonths: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+            ),
+            (
+                year: 1972,
+                numberOfDaysInMonths: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
+            )
+        ]
+    )
+    func test(
         year: Int,
         numberOfDaysInMonths: [Int]
     ) {
@@ -39,8 +38,8 @@ final class CalendarNumberOfDaysInMonthTests: XCTestCase {
                 .current
                 .numberOfDaysInMonth(year: year, month: i)
             
-            XCTAssertEqual(numberOfDaysInMonth1, numberOfDaysInMonths[i-1])
-            XCTAssertEqual(numberOfDaysInMonth2, numberOfDaysInMonths[i-1])
+            #expect(numberOfDaysInMonth1 == numberOfDaysInMonths[i-1])
+            #expect(numberOfDaysInMonth2 == numberOfDaysInMonths[i-1])
         }
     }
 }

@@ -6,11 +6,12 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class OptionalComparisonTests: XCTestCase {
+@Suite
+struct OptionalComparisonTests {
     // MARK: Test Data
     // Data is stored to avoid casting
 
@@ -19,6 +20,7 @@ final class OptionalComparisonTests: XCTestCase {
     private let c: Int? = 20
     
     // MARK: Tests
+    @Test
     func testIsLessClosure() {
         let a: String? = nil
         let b: String? = "Lorem ipsum"
@@ -26,52 +28,56 @@ final class OptionalComparisonTests: XCTestCase {
 
         let comparison: (String, String) -> Bool = { (a, b) in a.compare(b, options: .caseInsensitive) == .orderedAscending }
 
-        XCTAssertTrue(a.isOptionalLess(than: b, order: .nilIsLess, comparison: comparison))
-        XCTAssertTrue(a.isOptionalLess(than: c, order: .nilIsLess, comparison: comparison))
-        XCTAssertTrue(b.isOptionalLess(than: c, order: .nilIsLess, comparison: comparison))
+        #expect(a.isOptionalLess(than: b, order: .nilIsLess, comparison: comparison))
+        #expect(a.isOptionalLess(than: c, order: .nilIsLess, comparison: comparison))
+        #expect(b.isOptionalLess(than: c, order: .nilIsLess, comparison: comparison))
 
-        XCTAssertFalse(a.isOptionalLess(than: b, order: .nilIsGreater, comparison: comparison))
-        XCTAssertFalse(a.isOptionalLess(than: c, order: .nilIsGreater, comparison: comparison))
-        XCTAssertTrue(b.isOptionalLess(than: c, order: .nilIsGreater, comparison: comparison))
+        #expect(!a.isOptionalLess(than: b, order: .nilIsGreater, comparison: comparison))
+        #expect(!a.isOptionalLess(than: c, order: .nilIsGreater, comparison: comparison))
+        #expect(b.isOptionalLess(than: c, order: .nilIsGreater, comparison: comparison))
     }
 
+    @Test
     func testIsLess() {
-        XCTAssertTrue(a.isOptionalLess(than: b, order: .nilIsLess))
-        XCTAssertTrue(a.isOptionalLess(than: c, order: .nilIsLess))
-        XCTAssertTrue(b.isOptionalLess(than: c, order: .nilIsLess))
+        #expect(a.isOptionalLess(than: b, order: .nilIsLess))
+        #expect(a.isOptionalLess(than: c, order: .nilIsLess))
+        #expect(b.isOptionalLess(than: c, order: .nilIsLess))
 
-        XCTAssertFalse(a.isOptionalLess(than: b, order: .nilIsGreater))
-        XCTAssertFalse(a.isOptionalLess(than: c, order: .nilIsGreater))
-        XCTAssertTrue(b.isOptionalLess(than: c, order: .nilIsGreater))
+        #expect(!a.isOptionalLess(than: b, order: .nilIsGreater))
+        #expect(!a.isOptionalLess(than: c, order: .nilIsGreater))
+        #expect(b.isOptionalLess(than: c, order: .nilIsGreater))
     }
 
+    @Test
     func testIsGreater() {
-        XCTAssertFalse(a.isOptionalGreater(than: b, order: .nilIsLess))
-        XCTAssertFalse(a.isOptionalGreater(than: c, order: .nilIsLess))
-        XCTAssertFalse(b.isOptionalGreater(than: c, order: .nilIsLess))
+        #expect(!a.isOptionalGreater(than: b, order: .nilIsLess))
+        #expect(!a.isOptionalGreater(than: c, order: .nilIsLess))
+        #expect(!b.isOptionalGreater(than: c, order: .nilIsLess))
         
-        XCTAssertTrue(a.isOptionalGreater(than: b, order: .nilIsGreater))
-        XCTAssertTrue(a.isOptionalGreater(than: c, order: .nilIsGreater))
-        XCTAssertFalse(b.isOptionalGreater(than: c, order: .nilIsGreater))
+        #expect(a.isOptionalGreater(than: b, order: .nilIsGreater))
+        #expect(a.isOptionalGreater(than: c, order: .nilIsGreater))
+        #expect(!b.isOptionalGreater(than: c, order: .nilIsGreater))
     }
     
+    @Test
     func testIsLessThanOrEqual() {
-        XCTAssertTrue(a.isOptionalLessThanOrEqual(to: b, order: .nilIsLess))
-        XCTAssertTrue(a.isOptionalLessThanOrEqual(to: c, order: .nilIsLess))
-        XCTAssertTrue(b.isOptionalLessThanOrEqual(to: c, order: .nilIsLess))
+        #expect(a.isOptionalLessThanOrEqual(to: b, order: .nilIsLess))
+        #expect(a.isOptionalLessThanOrEqual(to: c, order: .nilIsLess))
+        #expect(b.isOptionalLessThanOrEqual(to: c, order: .nilIsLess))
         
-        XCTAssertFalse(a.isOptionalLessThanOrEqual(to: b, order: .nilIsGreater))
-        XCTAssertFalse(a.isOptionalLessThanOrEqual(to: c, order: .nilIsGreater))
-        XCTAssertTrue(b.isOptionalLessThanOrEqual(to: c, order: .nilIsGreater))
+        #expect(!a.isOptionalLessThanOrEqual(to: b, order: .nilIsGreater))
+        #expect(!a.isOptionalLessThanOrEqual(to: c, order: .nilIsGreater))
+        #expect(b.isOptionalLessThanOrEqual(to: c, order: .nilIsGreater))
     }
     
+    @Test
     func testIsGreaterThanOrEqual() {
-        XCTAssertFalse(a.isOptionalGreaterThanOrEqual(to: b, order: .nilIsLess))
-        XCTAssertFalse(a.isOptionalGreaterThanOrEqual(to: c, order: .nilIsLess))
-        XCTAssertFalse(b.isOptionalGreaterThanOrEqual(to: c, order: .nilIsLess))
+        #expect(!a.isOptionalGreaterThanOrEqual(to: b, order: .nilIsLess))
+        #expect(!a.isOptionalGreaterThanOrEqual(to: c, order: .nilIsLess))
+        #expect(!b.isOptionalGreaterThanOrEqual(to: c, order: .nilIsLess))
         
-        XCTAssertTrue(a.isOptionalGreaterThanOrEqual(to: b, order: .nilIsGreater))
-        XCTAssertTrue(a.isOptionalGreaterThanOrEqual(to: c, order: .nilIsGreater))
-        XCTAssertFalse(b.isOptionalGreaterThanOrEqual(to: c, order: .nilIsGreater))
+        #expect(a.isOptionalGreaterThanOrEqual(to: b, order: .nilIsGreater))
+        #expect(a.isOptionalGreaterThanOrEqual(to: c, order: .nilIsGreater))
+        #expect(!b.isOptionalGreaterThanOrEqual(to: c, order: .nilIsGreater))
     }
 }

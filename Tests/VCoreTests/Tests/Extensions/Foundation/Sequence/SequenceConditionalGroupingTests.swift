@@ -6,29 +6,24 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class SequenceConditionalGroupingTests: XCTestCase {
+@Suite
+struct SequenceConditionalGroupingTests {
+    @Test
     func testPredicate() {
-        let array: [String] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"]
-        
-        let groupedArray: [[String]] = array.grouped(by: { $0.first == $1.first })
-        
-        XCTAssertEqual(
-            groupedArray,
+        #expect(
+            ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].grouped(by: { $0.first == $1.first }) ==
             [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
         )
     }
     
+    @Test
     func testKeyPath() {
-        let array: [String] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"]
-
-        let groupedArray: [[String]] = array.grouped(by: \.first)
-
-        XCTAssertEqual(
-            groupedArray,
+        #expect(
+            ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].grouped(by: \.first) ==
             [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
         )
     }

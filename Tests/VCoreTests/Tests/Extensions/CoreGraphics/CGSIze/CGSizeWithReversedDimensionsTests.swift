@@ -6,26 +6,27 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CGSizeWithReversedDimensionsTests: XCTestCase {
-    func testConditionalFalse() {
-        let size: CGSize = .init(width: 3, height: 4)
-
-        let reversedSize: CGSize = size.withReversedDimensions(false)
+@Suite
+struct CGSizeWithReversedDimensionsTests {
+    @Test
+    func test() {
+        #expect(
+            CGSize(width: 3, height: 4).withReversedDimensions(false) ==
+            CGSize(width: 3, height: 4)
+        )
         
-        XCTAssertEqual(reversedSize.width, 3)
-        XCTAssertEqual(reversedSize.height, 4)
-    }
-    
-    func testConditionalTrue() {
-        let size: CGSize = .init(width: 3, height: 4)
+        #expect(
+            CGSize(width: 3, height: 4).withReversedDimensions(true) ==
+            CGSize(width: 4, height: 3)
+        )
         
-        let reversedSize: CGSize = size.withReversedDimensions(true)
-        
-        XCTAssertEqual(reversedSize.width, 4)
-        XCTAssertEqual(reversedSize.height, 3)
+        #expect(
+            CGSize(width: 3, height: 4).withReversedDimensions() ==
+            CGSize(width: 4, height: 3)
+        )
     }
 }

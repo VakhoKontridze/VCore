@@ -6,21 +6,23 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class SessionManagerTests: XCTestCase {
-    // MARK: Tests
+@Suite
+struct SessionManagerTests {
+    @Test
     func testValidID() async {
         let sessionsManger: SessionManager = .init()
         
         let id: Int = await sessionsManger.generateNewID()
         let isValid: Bool = await sessionsManger.isValidID(id)
 
-        XCTAssertTrue(isValid)
+        #expect(isValid)
     }
     
+    @Test
     func testInvalidID() async {
         let sessionsManger: SessionManager = .init()
         
@@ -28,6 +30,6 @@ final class SessionManagerTests: XCTestCase {
         _ = await sessionsManger.generateNewID()
         let isValid: Bool = await sessionsManger.isValidID(id)
 
-        XCTAssertFalse(isValid)
+        #expect(!isValid)
     }
 }

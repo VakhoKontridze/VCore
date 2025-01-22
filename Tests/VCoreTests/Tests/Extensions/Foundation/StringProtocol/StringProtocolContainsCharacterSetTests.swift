@@ -6,22 +6,31 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class StringProtocolContainsCharacterSetTests: XCTestCase {
-    func test() {
-        XCTAssertTrue("0123456789".contains(.decimalDigits))
-        XCTAssertFalse("0123456789".contains(.symbols))
+@Suite
+struct StringProtocolContainsCharacterSetTests {
+    @Test
+    func testContainsCharacterSet() {
+        #expect("0123456789".contains(.decimalDigits))
+        #expect(!"0123456789".contains(.symbols))
     }
-}
-
-final class StringProtocolContainsCharacterSetsTests: XCTestCase {
-    func test() {
-        XCTAssertTrue("+0123456789".contains([.decimalDigits, .letters]))
-        XCTAssertTrue("0123456789A".contains([.decimalDigits, .letters]))
-        XCTAssertTrue("+0123456789A".contains([.decimalDigits, .letters]))
-        XCTAssertFalse("0123456789".contains([.symbols, .letters]))
+    
+    @Test
+    func testContainsCharacterSetsAny() {
+        #expect("+0123456789".contains(any: [.decimalDigits, .letters]))
+        #expect("0123456789A".contains(any: [.decimalDigits, .letters]))
+        #expect("+0123456789A".contains(any: [.decimalDigits, .letters]))
+        #expect(!"0123456789".contains(any: [.symbols, .letters]))
+    }
+    
+    @Test
+    func testContainsCharacterSetsAll() {
+        #expect(!"+0123456789".contains(all: [.decimalDigits, .letters]))
+        #expect("0123456789A".contains(all: [.decimalDigits, .letters]))
+        #expect("+0123456789A".contains(all: [.decimalDigits, .letters]))
+        #expect(!"0123456789".contains(all: [.symbols, .letters]))
     }
 }

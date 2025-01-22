@@ -6,15 +6,19 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class StringIsUserDefaultsKey: XCTestCase { // Can't be properly tested
+@Suite
+struct StringIsUserDefaultsKeyTests { // Can't be properly tested
+    @Test
     func test() {
+        let store: UserDefaults = .mock
         let key: String = "Key"
-        UserDefaults.mock.set(5, forKey: key)
+        
+        store.set(1, forKey: key)
 
-        XCTAssertTrue(key.isUserDefaultsKey(in: UserDefaults.mock))
+        #expect(key.isUserDefaultsKey(in: store))
     }
 }

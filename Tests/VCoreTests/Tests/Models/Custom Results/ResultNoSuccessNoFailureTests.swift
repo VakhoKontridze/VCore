@@ -6,27 +6,22 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ResultNoSuccessNoFailureTests: XCTestCase {
+@Suite
+struct ResultNoSuccessNoFailureTests {
     // MARK: Test Data
     private let resultS: ResultNoSuccessNoFailure = .success
     private let resultF: ResultNoSuccessNoFailure = .failure
     
     // MARK: Tests
-    func testEqualOperator() {
-        XCTAssertTrue(resultF == resultF)
-        XCTAssertFalse(resultF == resultS)
-        XCTAssertFalse(resultS == resultF)
-        XCTAssertTrue(resultS == resultS)
-    }
-    
-    func testNotEqualOperator() {
-        XCTAssertFalse(resultF != resultF)
-        XCTAssertTrue(resultF != resultS)
-        XCTAssertTrue(resultS != resultF)
-        XCTAssertFalse(resultS != resultS)
+    @Test
+    func testEquality() {
+        #expect(resultF == resultF)
+        #expect(resultF != resultS)
+        #expect(resultS != resultF)
+        #expect(resultS == resultS)
     }
 }

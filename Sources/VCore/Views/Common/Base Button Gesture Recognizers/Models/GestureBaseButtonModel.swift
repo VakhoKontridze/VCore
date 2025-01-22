@@ -120,8 +120,8 @@ final class GestureBaseButtonModel {
 // MARK: - Helpers
 extension CGPoint {
     fileprivate func equals(_ other: CGPoint, tolerance: CGFloat) -> Bool {
-        abs(x - other.x) < tolerance &&
-        abs(y - other.y) < tolerance
+        areEqual(x, other.x, tolerance: tolerance) &&
+        areEqual(y, other.y, tolerance: tolerance)
     }
 }
 

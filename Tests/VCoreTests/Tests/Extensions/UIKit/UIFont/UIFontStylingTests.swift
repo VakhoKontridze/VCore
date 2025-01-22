@@ -7,30 +7,33 @@
 
 #if canImport(UIKit)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class UIFontStylingTests: XCTestCase {
+@Suite
+struct NSFontStylingTests {
+    @Test
     func testItalic() throws {
         let font: UIFont = .systemFont(ofSize: 17)
-
-        let italicFont: UIFont = try XCTUnwrap(
+        
+        let italicFont: UIFont = try #require(
             font.withItalicStyling()
         )
 
-        XCTAssertTrue(italicFont.fontDescriptor.symbolicTraits.contains(.traitItalic))
+        #expect(italicFont.fontDescriptor.symbolicTraits.contains(.traitItalic))
     }
-
+    
+    @Test
     func testBold() throws {
         let font: UIFont = .systemFont(ofSize: 17)
-
-        let boldFont: UIFont = try XCTUnwrap(
+        
+        let boldFont: UIFont = try #require(
             font.withBoldStyling()
         )
 
-        XCTAssertTrue(boldFont.fontDescriptor.symbolicTraits.contains(.traitBold))
+        #expect(boldFont.fontDescriptor.symbolicTraits.contains(.traitBold))
     }
 }
 

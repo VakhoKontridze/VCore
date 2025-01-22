@@ -7,18 +7,20 @@
 
 #if canImport(UIKit)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class UIRectCornerAdditionalOptionsTests: XCTestCase {
+@Suite
+struct UIRectCornerAdditionalOptionsTests {
+    @Test
     func test() {
         // `rawValue` of `allCorners` is `18446744073709551615`
         let allCornersRawValue: UInt = UIRectCorner([.topLeft, .topRight, .bottomRight, .bottomLeft]).rawValue
         
-        XCTAssertEqual(UIRectCorner.leftCorners.union(.rightCorners).rawValue, allCornersRawValue)
-        XCTAssertEqual(UIRectCorner.topCorners.union(.bottomCorners).rawValue, allCornersRawValue)
+        #expect(UIRectCorner.leftCorners.union(.rightCorners).rawValue == allCornersRawValue)
+        #expect(UIRectCorner.topCorners.union(.bottomCorners).rawValue == allCornersRawValue)
     }
 }
 

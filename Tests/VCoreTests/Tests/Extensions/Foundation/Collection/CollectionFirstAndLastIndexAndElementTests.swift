@@ -5,40 +5,38 @@
 //  Created by Vakhtang Kontridze on 05.05.22.
 //
 
-import XCTest
+import Foundation
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CollectionFirstAndLastIndexAndElementTest: XCTestCase {
-    // MARK: Tests - First
-    func testFirstInvalidElement() {
+@Suite
+struct CollectionFirstAndLastIndexAndElementTests {
+    @Test
+    func testFirstIndexAndElement() {
         let numbers: [Int] = [1, 3, 5, 7]
-
-        XCTAssertNil(numbers.firstIndexAndElement(where: { $0 == 0 }))
+        
+        #expect(numbers.firstIndexAndElement(where: { $0 == 0 }) == nil)
+        
+        do {
+            let result: (index: Int, element: Int)? = numbers.firstIndexAndElement(where: { $0 * $0 >= 10 })
+            
+            #expect(result?.index == 2)
+            #expect(result?.element == 5)
+        }
     }
     
-    func testFirstValidElement() {
+    @Test
+    func testLastIndexAndElement() {
         let numbers: [Int] = [1, 3, 5, 7]
-
-        let data: (index: Int, element: Int)? = numbers.firstIndexAndElement(where: { $0 * $0 >= 10 })
         
-        XCTAssertEqual(data?.index, 2)
-        XCTAssertEqual(data?.element, 5)
-    }
+        #expect(numbers.lastIndexAndElement(where: { $0 == 0 }) == nil)
+        
+        do {
+            let result: (index: Int, element: Int)? = numbers.lastIndexAndElement(where: { $0 * $0 >= 10 })
 
-    // MARK: Tests - Last
-    func testLastInvalidElement() {
-        let numbers: [Int] = [1, 3, 5, 7]
-
-        XCTAssertNil(numbers.lastIndexAndElement(where: { $0 == 0 }))
-    }
-
-    func testLastValidElement() {
-        let numbers: [Int] = [1, 3, 5, 7]
-
-        let data: (index: Int, element: Int)? = numbers.lastIndexAndElement(where: { $0 * $0 >= 10 })
-
-        XCTAssertEqual(data?.index, 3)
-        XCTAssertEqual(data?.element, 7)
+            #expect(result?.index == 3)
+            #expect(result?.element == 7)
+        }
     }
 }

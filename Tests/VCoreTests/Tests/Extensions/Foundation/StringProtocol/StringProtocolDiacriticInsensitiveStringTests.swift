@@ -6,12 +6,14 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class StringProtocolDiacriticInsensitiveStringTests: XCTestCase {
+@Suite
+struct StringProtocolDiacriticInsensitiveStringTests {
+    @Test
     func test() {
-        XCTAssertEqual("À".diacriticInsensitiveString(), "A")
+        #expect("À".diacriticInsensitiveString() == "A")
     }
 }

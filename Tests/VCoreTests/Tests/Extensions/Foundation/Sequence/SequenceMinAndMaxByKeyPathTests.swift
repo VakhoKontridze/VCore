@@ -6,32 +6,27 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class SequenceMinAndMaxByKeyPathTests: XCTestCase {
+@Suite
+struct SequenceMinAndMaxByKeyPathTests {
     // MARK: Test Data
     private struct Object: Equatable {
         let value: Int
-
-        init(_ value: Int) { self.value = value }
     }
+    
+    private let array: [Object] = [
+        Object(value: 1),
+        Object(value: 2),
+        Object(value: 3)
+    ]
 
     // MARK: Tests
-    func testMin() {
-        let array: [Object] = [.init(1), .init(2), .init(3)]
-
-        let element: Object? = array.min(by: \.value)
-
-        XCTAssertEqual(element, Object(1))
-    }
-
-    func testMax() {
-        let array: [Object] = [.init(1), .init(2), .init(3)]
-
-        let element: Object? = array.max(by: \.value)
-
-        XCTAssertEqual(element, Object(3))
+    @Test
+    func test() {
+        #expect(array.min(by: \.value)?.value == 1)
+        #expect(array.max(by: \.value)?.value == 3)
     }
 }

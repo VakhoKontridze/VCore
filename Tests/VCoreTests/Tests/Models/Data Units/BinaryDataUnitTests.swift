@@ -6,22 +6,52 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class BinaryDataUnitTests: XCTestCase {
+@Suite
+struct BinaryDataUnitTests {
+    @Test
     func testConversion() {
-        XCTAssertEqual(BinaryDataUnit.convert(5, .GiB, to: .MiB), 5120)
-        XCTAssertEqual(BinaryDataUnit.convert(5120, .MiB, to: .GiB), 5)
+        #expect(
+            BinaryDataUnit.convert(5, .GiB, to: .MiB) ==
+            5120
+        )
+        
+        #expect(
+            BinaryDataUnit.convert(5120, .MiB, to: .GiB) ==
+            5
+        )
     }
     
+    @Test
     func testConversionToAnotherType() {
-        XCTAssertEqual(BinaryDataUnit.convert(5, .GiB, to: DecimalDataUnit.MB), 5368.70912, accuracy: pow(10, -6))
-        XCTAssertEqual(BinaryDataUnit.convert(5000, .MiB, to: DecimalDataUnit.GB), 5.24288, accuracy: pow(10, -6))
+        #expect(
+            areEqual(
+                BinaryDataUnit.convert(5, .GiB, to: DecimalDataUnit.MB),
+                5368.70912,
+                tolerance: pow(10, -5)
+            )
+        )
+        
+        #expect(
+            areEqual(
+                BinaryDataUnit.convert(5000, .MiB, to: DecimalDataUnit.GB),
+                5.24288,
+                tolerance: pow(10, -5)
+            )
+        )
     }
     
+    @Test
     func testDoubleExtension() {
-        XCTAssertEqual(5_000_000.binaryBytesConverted(to: .MiB), 4.76837, accuracy: pow(10, -5))
+        #expect(
+            areEqual(
+                5_000_000.binaryBytesConverted(to: .MiB),
+                4.76837,
+                tolerance: pow(10, -5)
+            )
+        )
     }
 }

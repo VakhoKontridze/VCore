@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - String Protocol + Contains Character Set
 extension StringProtocol {
-    /// Returns `Bool` indicating if `String` contains given `CharacterSet`.
+    /// Returns `Bool` indicating if `String` contains a `Character` from given `CharacterSet`.
     ///
     ///     let phoneNumber: String = "0123456789"
     ///     let flag: Bool = phoneNumber.contains(.decimalDigits) // true
@@ -24,12 +24,27 @@ extension StringProtocol {
 
 // MARK: - String Protocol + Contains Character Sets
 extension StringProtocol {
-    /// Returns `Bool` indicating if `String` contains given `CharacterSet`.
+    /// Returns `Bool` indicating if `String` contains a `Character` from any given `CharacterSet`s.
     ///
     ///     let phoneNumber: String = "+0123456789"
     ///     let flag: Bool = phoneNumber.contains([.decimalDigits, .symbols]) // true
     ///
-    public func contains(_ characterSets: [CharacterSet]) -> Bool {
+    public func contains(any characterSets: [CharacterSet]) -> Bool {
         contains(characterSets.unified)
+    }
+    
+    /// Returns `Bool` indicating if `String` contains a `Character` from all given `CharacterSet`s.
+    ///
+    ///     let phoneNumber: String = "+0123456789"
+    ///     let flag: Bool = phoneNumber.contains([.decimalDigits, .symbols]) // true
+    ///
+    public func contains(all characterSets: [CharacterSet]) -> Bool {
+        for characterSet in characterSets {
+            if !contains(characterSet) {
+                return false
+            }
+        }
+        
+        return true
     }
 }

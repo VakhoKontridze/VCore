@@ -6,26 +6,27 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CGPointWithReversedCoordinatesTests: XCTestCase {
-    func testConditionalFalse() {
-        let point: CGPoint = .init(x: 3, y: 4)
-
-        let reversedPoint: CGPoint = point.withReversedCoordinates(false)
+@Suite
+struct CGPointWithReversedCoordinatesTests {
+    @Test
+    func test() {
+        #expect(
+            CGPoint(x: 3, y: 4).withReversedCoordinates(false) ==
+            CGPoint(x: 3, y: 4)
+        )
         
-        XCTAssertEqual(reversedPoint.x, 3)
-        XCTAssertEqual(reversedPoint.y, 4)
-    }
-    
-    func testConditionalTrue() {
-        let point: CGPoint = .init(x: 3, y: 4)
-
-        let reversedPoint: CGPoint = point.withReversedCoordinates(true)
+        #expect(
+            CGPoint(x: 3, y: 4).withReversedCoordinates(true) ==
+            CGPoint(x: 4, y: 3)
+        )
         
-        XCTAssertEqual(reversedPoint.x, 4)
-        XCTAssertEqual(reversedPoint.y, 3)
+        #expect(
+            CGPoint(x: 3, y: 4).withReversedCoordinates() ==
+            CGPoint(x: 4, y: 3)
+        )
     }
 }

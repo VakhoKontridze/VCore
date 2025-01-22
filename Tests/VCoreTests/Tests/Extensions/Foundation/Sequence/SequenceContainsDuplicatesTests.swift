@@ -6,13 +6,15 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class SequenceContainsDuplicatesTests: XCTestCase {
+@Suite
+struct SequenceContainsDuplicatesTests {
+    @Test
     func test() {
-        XCTAssertFalse([1, 3, 5].containsDuplicates)
-        XCTAssertTrue([1, 1, 3, 5].containsDuplicates)
+        #expect(![1, 3, 5].containsDuplicates)
+        #expect([1, 1, 3, 5].containsDuplicates)
     }
 }

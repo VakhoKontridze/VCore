@@ -6,16 +6,17 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CharacterSetUnifiedTests: XCTestCase {
+@Suite
+struct CharacterSetUnifiedTests {
+    @Test
     func test() {
-        let characterSets: [CharacterSet] = [.init(charactersIn: "A"), .init(charactersIn: "B")]
-
-        let unifiedCharacterSet: CharacterSet = characterSets.unified
-        
-        XCTAssertEqual(unifiedCharacterSet, CharacterSet(charactersIn: "AB"))
+        #expect(
+            [CharacterSet(charactersIn: "A"), CharacterSet(charactersIn: "B")].unified ==
+            CharacterSet(charactersIn: "AB")
+        )
     }
 }

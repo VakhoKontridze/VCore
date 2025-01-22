@@ -5,15 +5,16 @@
 //  Created by Vakhtang Kontridze on 09.05.22.
 //
 
-#if canImport(UIKit) && !os(watchOS)
+#if canImport(UIKit) && !os(watchOS) // `UIView` doesn't exist on watchOS
 
 import UIKit
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
+@Suite
 @MainActor
-final class CGRectToNSLayoutConstraintsTests: XCTestCase {
+struct CGRectToNSLayoutConstraintsTests {
     // MARK: Test Data
     private let superview: UIView = .init(
         frame: CGRect(
@@ -28,51 +29,58 @@ final class CGRectToNSLayoutConstraintsTests: XCTestCase {
     )
     
     // MARK: Tests
+    @Test
     func testLeftConstraint() {
-        XCTAssertEqual(
-            viewRect.leftConstraintConstant,
+        #expect(
+            viewRect.leftConstraintConstant ==
             100
         )
     }
     
+    @Test
     func testRightConstraint() {
-        XCTAssertEqual(
-            viewRect.rightConstraintConstant(in: superview.frame.width),
+        #expect(
+            viewRect.rightConstraintConstant(in: superview.frame.width) ==
             50
         )
     }
     
+    @Test
     func testTopConstraint() {
-        XCTAssertEqual(
-            viewRect.topConstraintConstant,
+        #expect(
+            viewRect.topConstraintConstant ==
             100
         )
     }
     
+    @Test
     func testBottomConstraint() {
-        XCTAssertEqual(
-            viewRect.bottomConstraintConstant(in: superview.frame.height),
+        #expect(
+            viewRect.bottomConstraintConstant(in: superview.frame.height) ==
             100
         )
     }
     
+    @Test
     func testCenter() {
-        XCTAssertEqual(
-            viewRect.center,
+        #expect(
+            viewRect.center ==
             CGPoint(x: 175, y: 200)
         )
     }
     
+    @Test
     func testCenterX() {
-        XCTAssertEqual(
-            viewRect.centerX,
+        #expect(
+            viewRect.centerX ==
             175
         )
     }
     
+    @Test
     func testCenterY() {
-        XCTAssertEqual(
-            viewRect.centerY,
+        #expect(
+            viewRect.centerY ==
             200
         )
     }

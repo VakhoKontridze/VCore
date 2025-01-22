@@ -6,18 +6,20 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CollectionEnumeratedArrayTests: XCTestCase {
+@Suite
+struct CollectionEnumeratedArrayTests {
+    @Test
     func test() {
         let characters: [String] = ["A", "B", "C"]
         let enumeratedCharacters: [(offset: Int, element: String)] = characters.enumeratedArray()
 
         for (i, element) in characters.enumerated() {
-            XCTAssertEqual(enumeratedCharacters[i].offset, i)
-            XCTAssertEqual(enumeratedCharacters[i].element, element)
+            #expect(enumeratedCharacters[i].offset == i)
+            #expect(enumeratedCharacters[i].element == element)
         }
     }
 }

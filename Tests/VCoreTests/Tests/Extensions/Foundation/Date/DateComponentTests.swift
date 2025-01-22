@@ -6,35 +6,35 @@
 //
 
 import Foundation
-import OSLog
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class DateComponentTests: XCTestCase {
-    func testComponent() {
+@Suite
+struct DateComponentTests {
+    @Test
+    func testComponent() throws {
         let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)
         
-        guard let date: Date = Calendar.current.date(from: dateComponents) else {
-            Logger.misc.critical("Failed to generate test data")
-            fatalError()
-        }
+        let date: Date = try #require(
+            Calendar.current.date(from: dateComponents)
+        )
 
-        XCTAssertEqual(date.component(.year), dateComponents.year)
-        XCTAssertEqual(date.component(.month), dateComponents.month)
-        XCTAssertEqual(date.component(.day), dateComponents.day)
+        #expect(date.component(.year) == dateComponents.year)
+        #expect(date.component(.month) == dateComponents.month)
+        #expect(date.component(.day) == dateComponents.day)
     }
     
-    func testComponents() {
+    @Test
+    func testComponents() throws {
         let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)
         
-        guard let date: Date = Calendar.current.date(from: dateComponents) else {
-            Logger.misc.critical("Failed to generate test data")
-            fatalError()
-        }
+        let date: Date = try #require(
+            Calendar.current.date(from: dateComponents)
+        )
 
-        XCTAssertEqual(
-            date.components([.year, .month, .day]),
+        #expect(
+            date.components([.year, .month, .day]) ==
             dateComponents
         )
     }

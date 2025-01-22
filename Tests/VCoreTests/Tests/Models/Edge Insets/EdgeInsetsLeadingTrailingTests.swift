@@ -6,98 +6,67 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class EdgeInsetsLeadingTrailingTests: XCTestCase {
+@Suite
+struct EdgeInsetsLeadingTrailingTests {
     // MARK: Tests - Insets
-    func testInsetInset() {
-        let insets: EdgeInsets_LeadingTrailing = .init(
-            leading: 1,
-            trailing: 2
-        ).insetBy(inset: 10)
-
-        XCTAssertEqual(insets.leading, 11)
-        XCTAssertEqual(insets.trailing, 12)
+    @Test
+    func testInsetAll() {
+        #expect(
+            EdgeInsets_LeadingTrailing(leading: 1, trailing: 2).insetBy(inset: 10) ==
+            EdgeInsets_LeadingTrailing(leading: 11, trailing: 12)
+        )
     }
     
+    @Test
     func testInsetLeading() {
-        let insets: EdgeInsets_LeadingTrailing = .init(
-            leading: 1,
-            trailing: 2
-        ).insetBy(leading: 10)
-
-        XCTAssertEqual(insets.leading, 11)
-        XCTAssertEqual(insets.trailing, 2)
+        #expect(
+            EdgeInsets_LeadingTrailing(leading: 1, trailing: 2).insetBy(leading: 10) ==
+            EdgeInsets_LeadingTrailing(leading: 11, trailing: 2)
+        )
     }
     
+    @Test
     func testInsetTrailing() {
-        let insets: EdgeInsets_LeadingTrailing = .init(
-            leading: 1,
-            trailing: 2
-        ).insetBy(trailing: 10)
-
-        XCTAssertEqual(insets.leading, 1)
-        XCTAssertEqual(insets.trailing, 12)
+        #expect(
+            EdgeInsets_LeadingTrailing(leading: 1, trailing: 2).insetBy(trailing: 10) ==
+            EdgeInsets_LeadingTrailing(leading: 1, trailing: 12)
+        )
     }
     
     // MARK: Tests - Operators
+    @Test
     func testAddition() {
-        let insets: EdgeInsets_LeadingTrailing =
-            EdgeInsets_LeadingTrailing(
-                leading: 1,
-                trailing: 2
-            ) +
-            EdgeInsets_LeadingTrailing(
-                leading: 3,
-                trailing: 4
-            )
-        
-        XCTAssertEqual(insets.leading, 4)
-        XCTAssertEqual(insets.trailing, 6)
-    }
-    
-    func testAdditionAssignment() {
-        var insets: EdgeInsets_LeadingTrailing = .init(
-            leading: 1,
-            trailing: 2
-        )
-        insets += EdgeInsets_LeadingTrailing(
-            leading: 3,
-            trailing: 4
+        #expect(
+            EdgeInsets_LeadingTrailing(leading: 1, trailing: 2) +
+            EdgeInsets_LeadingTrailing(leading: 3, trailing: 4) ==
+            EdgeInsets_LeadingTrailing(leading: 4, trailing: 6)
         )
         
-        XCTAssertEqual(insets.leading, 4)
-        XCTAssertEqual(insets.trailing, 6)
+        do {
+            var insets: EdgeInsets_LeadingTrailing = .init(leading: 1, trailing: 2)
+            insets += EdgeInsets_LeadingTrailing(leading: 3, trailing: 4)
+            
+            #expect(insets == EdgeInsets_LeadingTrailing(leading: 4, trailing: 6))
+        }
     }
     
+    @Test
     func testSubtraction() {
-        let insets: EdgeInsets_LeadingTrailing =
-            EdgeInsets_LeadingTrailing(
-                leading: 1,
-                trailing: 2
-            ) -
-            EdgeInsets_LeadingTrailing(
-                leading: 3,
-                trailing: 4
-            )
-        
-        XCTAssertEqual(insets.leading, -2)
-        XCTAssertEqual(insets.trailing, -2)
-    }
-    
-    func testSubtractionAssignment() {
-        var insets: EdgeInsets_LeadingTrailing = .init(
-            leading: 1,
-            trailing: 2
-        )
-        insets -= EdgeInsets_LeadingTrailing(
-            leading: 3,
-            trailing: 4
+        #expect(
+            EdgeInsets_LeadingTrailing(leading: 1, trailing: 2) -
+            EdgeInsets_LeadingTrailing(leading: 3, trailing: 4) ==
+            EdgeInsets_LeadingTrailing(leading: -2, trailing: -2)
         )
         
-        XCTAssertEqual(insets.leading, -2)
-        XCTAssertEqual(insets.trailing, -2)
+        do {
+            var insets: EdgeInsets_LeadingTrailing = .init(leading: 1, trailing: 2)
+            insets -= EdgeInsets_LeadingTrailing(leading: 3, trailing: 4)
+            
+            #expect(insets == EdgeInsets_LeadingTrailing(leading: -2, trailing: -2))
+        }
     }
 }

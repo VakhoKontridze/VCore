@@ -6,45 +6,37 @@
 //
 
 import Foundation
-import OSLog
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class URLResponseIsSuccessHTTPStatusCodeTests: XCTestCase {
-    func testSuccess() {
-        guard
-            let urlResponse: HTTPURLResponse = .init(
+@Suite
+struct URLResponseIsSuccessHTTPStatusCodeTests {
+    @Test
+    func testSuccess() throws {
+        let urlResponse: HTTPURLResponse = try #require(
+            HTTPURLResponse(
                 url: #url("https://www.apple.com"),
                 statusCode: 200,
                 httpVersion: nil,
                 headerFields: nil
             )
-        else {
-            Logger.urlResponseIsSuccessHTTPStatusCodeTests.critical("Failed to generate test data")
-            fatalError()
-        }
-
-        let isSuccess: Bool = urlResponse.isSuccessHTTPStatusCode
-
-        XCTAssertTrue(isSuccess)
+        )
+        
+        #expect(urlResponse.isSuccessHTTPStatusCode)
     }
 
-    func testFailure() {
-        guard
-            let urlResponse: HTTPURLResponse = .init(
+    @Test
+    func testFailure() throws {
+        let urlResponse: HTTPURLResponse = try #require(
+            HTTPURLResponse(
                 url: #url("https://www.apple.com"),
                 statusCode: 404,
                 httpVersion: nil,
                 headerFields: nil
             )
-        else {
-            Logger.urlResponseIsSuccessHTTPStatusCodeTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        )
 
-        let isSuccess: Bool = urlResponse.isSuccessHTTPStatusCode
-
-        XCTAssertFalse(isSuccess)
+        #expect(!urlResponse.isSuccessHTTPStatusCode)
     }
 }

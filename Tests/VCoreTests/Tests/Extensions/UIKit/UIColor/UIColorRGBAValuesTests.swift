@@ -7,37 +7,33 @@
 
 #if canImport(UIKit)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class UIColorRGBAValuesTests: XCTestCase {
+@Suite
+struct UIColorRGBAValuesTests {
+    @Test
     func testValues() {
-        let color: UIColor = .init(red: 0.1, green: 0.2, blue: 0.3, alpha: 0.4)
-
-        let values = color.rgbaValues
-
-        XCTAssertEqual(values.red, 0.1)
-        XCTAssertEqual(values.green, 0.2)
-        XCTAssertEqual(values.blue, 0.3)
-        XCTAssertEqual(values.alpha, 0.4)
+        #expect(
+            UIColor(red: 0.1, green: 0.2, blue: 0.3, alpha: 0.4).rgbaValues ==
+            (0.1, 0.2, 0.3, 0.4)
+        )
     }
-
+    
+    @Test
     func testComponents() {
-        let color: UIColor = .init(red: 10.0/255, green: 20.0/255, blue: 30.0/255, alpha: 0.5)
-
-        let components = color.rgbaComponents
-
-        XCTAssertEqual(components.red, 10)
-        XCTAssertEqual(components.green, 20)
-        XCTAssertEqual(components.blue, 30)
-        XCTAssertEqual(components.alpha, 0.5)
+        #expect(
+            UIColor(red: 10.0/255, green: 20.0/255, blue: 30.0/255, alpha: 0.5).rgbaComponents ==
+            (10, 20, 30, 0.5)
+        )
     }
-
+    
+    @Test
     func testISRGBAEqual() {
-        XCTAssertTrue(UIColor.red.isRGBAEqual(to: .red))
-        XCTAssertFalse(UIColor.red.isRGBAEqual(to: .blue))
+        #expect(UIColor.red.isRGBAEqual(to: .red))
+        #expect(!UIColor.red.isRGBAEqual(to: .blue))
     }
 }
 

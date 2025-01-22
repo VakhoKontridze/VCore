@@ -7,19 +7,25 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
 @MainActor
-final class UIViewWithTranslatesAutoresizingMaskIntoConstraintsTests: XCTestCase {
+@Suite
+struct UIViewWithTranslatesAutoresizingMaskIntoConstraintsTests {
+    @Test
     func test() {
-        let view1: UILabel = .init().withTranslatesAutoresizingMaskIntoConstraints(false)
-        XCTAssertEqual(view1.translatesAutoresizingMaskIntoConstraints, false)
+        do {
+            let view: UILabel = .init().withTranslatesAutoresizingMaskIntoConstraints(false)
+            #expect(!view.translatesAutoresizingMaskIntoConstraints)
+        }
         
-        let view2: UILabel = .init().withTranslatesAutoresizingMaskIntoConstraints(true)
-        XCTAssertEqual(view2.translatesAutoresizingMaskIntoConstraints, true)
+        do {
+            let view: UILabel = .init().withTranslatesAutoresizingMaskIntoConstraints(true)
+            #expect(view.translatesAutoresizingMaskIntoConstraints)
+        }
     }
 }
 
