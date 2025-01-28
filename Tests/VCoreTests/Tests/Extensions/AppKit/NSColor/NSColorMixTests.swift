@@ -7,22 +7,22 @@
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import Foundation
-import XCTest
+import AppKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class NSColorMixTests: XCTestCase {
+@Suite
+struct NSColorMixTests {
+    @Test
     func test() {
         let color1: NSColor = .init(red: 1/3, green: 1/3, blue: 1/3, alpha: 1)
         let color2: NSColor = .init(red: 2/3, green: 2/3, blue: 2/3, alpha: 1)
-
-        let values = color1.mix(with: color2, by: 0.2).rgbaValues
-
-        XCTAssertEqual(values.red, 0.6)
-        XCTAssertEqual(values.green, 0.6)
-        XCTAssertEqual(values.blue, 0.6)
-        XCTAssertEqual(values.alpha, 1)
+        
+        #expect(
+            color1.mix(with: color2, by: 0.2) ==
+            NSColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+        )
     }
 }
 

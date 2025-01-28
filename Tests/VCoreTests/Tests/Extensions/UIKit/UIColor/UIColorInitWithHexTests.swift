@@ -7,58 +7,40 @@
 
 #if canImport(UIKit)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class UIColorInitWithHexTests: XCTestCase {
-    func test6Digit_String() throws {
-        let color: UIColor = try XCTUnwrap(
-            UIColor(hex: "#007AFF")
+@Suite
+final class UIColorInitWithHexTests {
+    @Test
+    func testString() throws {
+        #expect(
+            UIColor(hex: "#007AFF") ==
+            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
         )
 
-        XCTAssertEqualColor(
-            color,
+        #expect(
+            UIColor(hex: "#000000007AFF") == // +0(6)
+            nil
+        )
+
+        #expect(
+            UIColor(hex: "007AFF") ==
             UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
         )
     }
 
-    func testManyCharacters_String() {
-        let color: UIColor? = .init(hex: "#000000007AFF")
-
-        XCTAssertNil(color)
-    }
-
-    func testNoHashSymbol_String() throws {
-        let color: UIColor = try XCTUnwrap(
-            UIColor(hex: "007AFF")
-        )
-
-        XCTAssertEqualColor(
-            color,
+    @Test
+    func testUInt() throws {
+        #expect(
+            UIColor(hex: 0x007AFF) ==
             UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
         )
-    }
 
-    func test6Digit_UInt() throws {
-        let color: UIColor = try XCTUnwrap(
-            UIColor(hex: 0x007AFF)
-        )
-
-        XCTAssertEqualColor(
-            color,
-            UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
-        )
-    }
-
-    func testManyCharacters_UInt() throws {
-        let color: UIColor = try XCTUnwrap(
-            UIColor(hex: 0x000000007AFF) // +0(6)
-        )
-
-        XCTAssertEqualColor(
-            color,
+        #expect(
+            UIColor(hex: 0x000000007AFF) == // +0(6)
             UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
         )
     }

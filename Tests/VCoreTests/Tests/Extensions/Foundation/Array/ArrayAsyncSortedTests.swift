@@ -6,11 +6,13 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ArrayAsyncSortedTests: XCTestCase {
+@Suite
+struct ArrayAsyncSortedTests {
+    @Test
     func testSorted() async {
         let array: [String] = ["London", "Paris", "New York"]
 
@@ -19,9 +21,10 @@ final class ArrayAsyncSortedTests: XCTestCase {
             return lhs < rhs
         })
 
-        XCTAssertEqual(sortedArray, array.sorted())
+        #expect(sortedArray == array.sorted())
     }
 
+    @Test
     func testSorting() async {
         let array: [String] = ["London", "Paris", "New York"]
 
@@ -31,6 +34,6 @@ final class ArrayAsyncSortedTests: XCTestCase {
             return lhs < rhs
         })
 
-        XCTAssertEqual(sortedArray, array.sorted())
+        #expect(sortedArray == array.sorted())
     }
 }

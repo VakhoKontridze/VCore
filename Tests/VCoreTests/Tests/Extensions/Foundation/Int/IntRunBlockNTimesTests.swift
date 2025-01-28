@@ -6,26 +6,29 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class IntRunBlockNTimesTests: XCTestCase {
+@Suite
+struct IntRunBlockNTimesTests {
+    @Test
     func testBlock() {
         let number: Int = 5
         
         var sum: Int = 0
         number.times { sum += 1 }
         
-        XCTAssertEqual(sum, 5)
+        #expect(sum == 5)
     }
     
+    @Test
     func testBlockNumbered() {
         let number: Int = 5
         
         var sum: Int = 0
         number.times { sum += $0 }
         
-        XCTAssertEqual(sum, 10)
+        #expect(sum == 10)
     }
 }

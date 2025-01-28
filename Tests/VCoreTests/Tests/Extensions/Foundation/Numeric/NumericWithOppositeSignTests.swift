@@ -6,24 +6,16 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class NumericWithOppositeSignTests: XCTestCase {
-    func testConditionalFalse() {
-        let number: Int = 10
-
-        let reversedNumber: Int = number.withOppositeSign(false)
-
-        XCTAssertEqual(reversedNumber, 10)
-    }
-    
-    func testConditionalTrue() {
-        let number: Int = 10
-
-        let reversedNumber: Int = number.withOppositeSign(true)
-
-        XCTAssertEqual(reversedNumber, -10)
+@Suite
+struct NumericWithOppositeSignTests {
+    @Test
+    func test() {
+        #expect(10.withOppositeSign(false) == 10)
+        #expect(10.withOppositeSign(true) == -10)
+        #expect(10.withOppositeSign() == -10)
     }
 }

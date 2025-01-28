@@ -6,24 +6,16 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ClosedRangeReversedArrayOnConditionTests: XCTestCase {
-    func testFalse() {
-        let range: ClosedRange<Int> = 1...3
-
-        let reversedRange: [Int] = range.reversedArray(false)
-
-        XCTAssertEqual(reversedRange, [1, 2, 3])
-    }
-
-    func testTrue() {
-        let range: ClosedRange<Int> = 1...3
-
-        let reversedRange: [Int] = range.reversedArray(true)
-
-        XCTAssertEqual(reversedRange, [3, 2, 1])
+@Suite
+struct ClosedRangeReversedArrayOnConditionTests {
+    @Test
+    func test() {
+        #expect((1...3).reversedArray(false) == [1, 2, 3])
+        #expect((1...3).reversedArray(true) == [3, 2, 1])
+        #expect((1...3).reversedArray() == [3, 2, 1])
     }
 }

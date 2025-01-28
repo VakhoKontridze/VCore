@@ -6,13 +6,15 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class SequenceIsUniqueTests: XCTestCase {
+@Suite
+struct SequenceIsUniqueTests {
+    @Test
     func test() {
-        XCTAssertTrue([1, 3, 5].isUnique)
-        XCTAssertFalse([1, 1, 3, 5].isUnique)
+        #expect([1, 3, 5].isUnique)
+        #expect(![1, 1, 3, 5].isUnique)
     }
 }

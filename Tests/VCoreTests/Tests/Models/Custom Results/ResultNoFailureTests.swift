@@ -6,49 +6,52 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ResultNoFailureTests: XCTestCase {
+@Suite
+struct ResultNoFailureTests {
     // MARK: Test Data
     private let resultS: ResultNoFailure<Int> = .success(10)
     private let resultSModified: ResultNoFailure<Int> = .success(11)
     private let resultF: ResultNoFailure<Int> = .failure
     
     // MARK: Tests
+    @Test
     func testMap() {
-        XCTAssertEqual(resultS.map { $0 + 1 }, resultSModified)
-        XCTAssertEqual(resultF.map { $0 + 1 }, resultF)
+        #expect(resultS.map { $0 + 1 } == resultSModified)
+        #expect(resultF.map { $0 + 1 } == resultF)
     }
     
+    @Test
     func testFlatMap() {
-        XCTAssertEqual(resultS.flatMap { .success($0 + 1) }, resultSModified)
-        XCTAssertEqual(resultS.flatMap { _ in .failure }, resultF)
-        XCTAssertEqual(resultF.flatMap { .success($0 + 1) }, resultF)
-        XCTAssertEqual(resultF.flatMap { _ in .failure }, resultF)
+        #expect(resultS.flatMap { .success($0 + 1) } == resultSModified)
+        #expect(resultS.flatMap { _ in .failure } == resultF)
+        #expect(resultF.flatMap { .success($0 + 1) } == resultF)
+        #expect(resultF.flatMap { _ in .failure } == resultF)
     }
     
-    func testGet() {
-        XCTAssertEqual(try resultS.get(), 10)
-        XCTAssertThrowsError(try resultF.get())
-    }
-    
-    func testEqualOperator() {
-        XCTAssertTrue(resultF == resultF)
-        XCTAssertFalse(resultF == resultS)
-        XCTAssertFalse(resultS == resultF)
-        XCTAssertTrue(resultS == resultS)
+    @Test
+    func testGet() throws {
+        try #expect(
+            #require(try resultS.get()) ==
+            10
+        )
         
-        XCTAssertFalse(resultS == resultSModified)
+        #expect(
+            throws: (any Error).self,
+            performing: { try resultF.get() }
+        )
     }
     
-    func testNotEqualOperator() {
-        XCTAssertFalse(resultF != resultF)
-        XCTAssertTrue(resultF != resultS)
-        XCTAssertTrue(resultS != resultF)
-        XCTAssertFalse(resultS != resultS)
+    @Test
+    func testEquality() {
+        #expect(resultF == resultF)
+        #expect(resultF != resultS)
+        #expect(resultS != resultF)
+        #expect(resultS == resultS)
         
-        XCTAssertTrue(resultS != resultSModified)
+        #expect(resultS != resultSModified)
     }
 }

@@ -46,6 +46,9 @@ import Combine
 @Observable
 public final class PublishingObservationContainer<Value> {
     // MARK: Properties - Value
+    @ObservationIgnored private var _value: Value
+    
+    // `init` accessor cannot be used
     /// Value.
     @ObservationIgnored public var value: Value {
         get {
@@ -59,9 +62,13 @@ public final class PublishingObservationContainer<Value> {
 
             subject.send(newValue)
         }
+        _modify {
+            access(keyPath: \.value)
+            _$observationRegistrar.willSet(self, keyPath: \.value)
+            defer { _$observationRegistrar.didSet(self, keyPath: \.value) }
+            yield &_value
+        }
     }
-
-    @ObservationIgnored private var _value: Value
 
     // MARK: Properties - Notification
     @ObservationIgnored private let subject: PassthroughSubject<Value, Never> = .init()

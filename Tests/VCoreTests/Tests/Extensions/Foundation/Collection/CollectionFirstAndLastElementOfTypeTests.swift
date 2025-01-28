@@ -6,11 +6,12 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CollectionFirstAndLastElementOfTypeTests: XCTestCase {
+@Suite
+struct CollectionFirstAndLastElementOfTypeTests {
     // MARK: Test Data
     private protocol P {
         var value: Int { get }
@@ -28,21 +29,16 @@ final class CollectionFirstAndLastElementOfTypeTests: XCTestCase {
         S1(value: 6)
     ]
     
-    // MARK: Tests - First
-    func testFirst() {
-        XCTAssertEqual(array.firstElement(ofType: S1.self)?.value, 1)
+    // MARK: Tests
+    @Test
+    func testFirstElement() {
+        #expect(array.firstElement(ofType: S1.self)?.value == 1)
+        #expect(array.firstElement(ofType: S1.self, where: { $0.value > 1 })?.value == 2)
     }
 
-    func testFirstPredicate() {
-        XCTAssertEqual(array.firstElement(ofType: S1.self, where: { $0.value > 1 })?.value, 2)
-    }
-
-    // MARK: Tests - Last
-    func testLast() {
-        XCTAssertEqual(array.lastElement(ofType: S1.self)?.value, 6)
-    }
-
-    func testLastPredicate() {
-        XCTAssertEqual(array.lastElement(ofType: S1.self, where: { $0.value < 6 })?.value, 5)
+    @Test
+    func testLastElement() {
+        #expect(array.lastElement(ofType: S1.self)?.value == 6)
+        #expect(array.lastElement(ofType: S1.self, where: { $0.value < 6 })?.value == 5)
     }
 }

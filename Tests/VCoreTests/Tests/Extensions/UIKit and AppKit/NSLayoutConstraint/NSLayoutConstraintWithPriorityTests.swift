@@ -7,13 +7,15 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
 @MainActor
-final class NSLayoutConstraintWithPriorityTests: XCTestCase {
+@Suite
+struct NSLayoutConstraintWithPriorityTests {
+    @Test
     func testLayoutPriority() {
         let view: UIView = .init()
         
@@ -24,9 +26,10 @@ final class NSLayoutConstraintWithPriorityTests: XCTestCase {
                 .storing(in: &constraint)
         ])
         
-        XCTAssertEqual(constraint?.priority, UILayoutPriority.required)
+        #expect(constraint?.priority == .required)
     }
     
+    @Test
     func testConstant() {
         let view: UIView = .init()
         
@@ -37,8 +40,8 @@ final class NSLayoutConstraintWithPriorityTests: XCTestCase {
                 .storing(in: &constraint)
         ])
         
-        XCTAssertEqual(
-            (constraint?.priority.rawValue).map { CGFloat($0) },
+        #expect(
+            (constraint?.priority.rawValue).map { CGFloat($0) } ==
             500
         )
     }

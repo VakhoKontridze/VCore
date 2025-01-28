@@ -17,7 +17,7 @@ final class PublishedPropertyWrapperBox<Value>: @unchecked Sendable {
     var wrappedValue: PublishedPropertyWrapperStorage<Value> {
         @storageRestrictions(initializes: _wrappedValue)
         init(initialValue) {
-            _wrappedValue = initialValue
+            self._wrappedValue = initialValue
         }
         get { lock.withLock({ _wrappedValue }) }
         set { lock.withLock({ _wrappedValue = newValue }) }

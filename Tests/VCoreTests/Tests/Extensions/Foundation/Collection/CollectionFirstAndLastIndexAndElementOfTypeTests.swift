@@ -6,11 +6,12 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CollectionFirstAndLastIndexAndElementOfTypeTests: XCTestCase {
+@Suite
+struct CollectionFirstAndLastIndexAndElementOfTypeTests {
     // MARK: Test Data
     private protocol P {
         var value: Int { get }
@@ -28,33 +29,38 @@ final class CollectionFirstAndLastIndexAndElementOfTypeTests: XCTestCase {
         S1(value: 6)
     ]
 
-    // MARK: Tests - First
-    func testFirst() {
-        let data: (index: Int, element: S1)? = array.firstIndexAndElement(ofType: S1.self)
+    // MARK: Tests
+    @Test
+    func testFirstElementAndIndex() {
+        do {
+            let result: (index: Int, element: S1)? = array.firstIndexAndElement(ofType: S1.self)
 
-        XCTAssertEqual(data?.index, 0)
-        XCTAssertEqual(data?.element.value, 1)
+            #expect(result?.index == 0)
+            #expect(result?.element.value == 1)
+        }
+        
+        do {
+            let result: (index: Int, element: S1)? = array.firstIndexAndElement(ofType: S1.self, where: { $0.value > 1 })
+
+            #expect(result?.index == 1)
+            #expect(result?.element.value == 2)
+        }
     }
 
-    func testFirstPredicate() {
-        let data: (index: Int, element: S1)? = array.firstIndexAndElement(ofType: S1.self, where: { $0.value > 1 })
+    @Test
+    func testLastElementAndIndex() {
+        do {
+            let result: (index: Int, element: S1)? = array.lastIndexAndElement(ofType: S1.self)
 
-        XCTAssertEqual(data?.index, 1)
-        XCTAssertEqual(data?.element.value, 2)
-    }
+            #expect(result?.index == 5)
+            #expect(result?.element.value == 6)
+        }
+        
+        do {
+            let result: (index: Int, element: S1)? = array.lastIndexAndElement(ofType: S1.self, where: { $0.value < 6 })
 
-    // MARK: Tests - Last
-    func testLast() {
-        let data: (index: Int, element: S1)? = array.lastIndexAndElement(ofType: S1.self)
-
-        XCTAssertEqual(data?.index, 5)
-        XCTAssertEqual(data?.element.value, 6)
-    }
-
-    func testLastPredicate() {
-        let data: (index: Int, element: S1)? = array.lastIndexAndElement(ofType: S1.self, where: { $0.value < 6 })
-
-        XCTAssertEqual(data?.index, 4)
-        XCTAssertEqual(data?.element.value, 5)
+            #expect(result?.index == 4)
+            #expect(result?.element.value == 5)
+        }
     }
 }

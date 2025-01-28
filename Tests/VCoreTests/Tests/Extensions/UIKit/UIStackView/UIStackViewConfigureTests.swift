@@ -7,13 +7,15 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
 @MainActor
-final class UIStackViewConfigureTests: XCTestCase {
+@Suite
+struct UIStackViewConfigureTests {
+    @Test
     func testConfigure() {
         let stackView: UIStackView = .init()
         
@@ -24,12 +26,13 @@ final class UIStackViewConfigureTests: XCTestCase {
             spacing: 10
         )
         
-        XCTAssertEqual(stackView.axis, NSLayoutConstraint.Axis.vertical)
-        XCTAssertEqual(stackView.distribution, UIStackView.Distribution.equalSpacing)
-        XCTAssertEqual(stackView.alignment, UIStackView.Alignment.leading)
-        XCTAssertEqual(stackView.spacing, 10)
+        #expect(stackView.axis == .vertical)
+        #expect(stackView.distribution == .equalSpacing)
+        #expect(stackView.alignment == .leading)
+        #expect(stackView.spacing == 10)
     }
     
+    @Test
     func testInit() {
         let stackView: UIStackView = .init(
             axis: .vertical,
@@ -38,10 +41,10 @@ final class UIStackViewConfigureTests: XCTestCase {
             spacing: 10
         )
         
-        XCTAssertEqual(stackView.axis, NSLayoutConstraint.Axis.vertical)
-        XCTAssertEqual(stackView.distribution, UIStackView.Distribution.equalSpacing)
-        XCTAssertEqual(stackView.alignment, UIStackView.Alignment.leading)
-        XCTAssertEqual(stackView.spacing, 10)
+        #expect(stackView.axis == .vertical)
+        #expect(stackView.distribution == .equalSpacing)
+        #expect(stackView.alignment == .leading)
+        #expect(stackView.spacing == 10)
     }
 }
 

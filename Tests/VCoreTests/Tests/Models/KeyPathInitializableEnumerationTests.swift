@@ -6,11 +6,12 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class KeyPathInitializableEnumerationTests: XCTestCase {
+@Suite
+struct KeyPathInitializableEnumerationTests {
     // MARK: Test Data
     private enum Gender: KeyPathInitializableEnumeration {
         case male
@@ -25,10 +26,11 @@ final class KeyPathInitializableEnumerationTests: XCTestCase {
     }
     
     // MARK: Tests
+    @Test
     func test() {
-        XCTAssertNil(Gender(key: \.value, value: 0))
-        XCTAssertEqual(Gender(key: \.value, value: 1), Gender.male)
-        XCTAssertEqual(Gender(key: \.value, value: 2), Gender.female)
-        XCTAssertNil(Gender(key: \.value, value: 3))
+        #expect(Gender(key: \.value, value: 0) == nil)
+        #expect(Gender(key: \.value, value: 1) == Gender.male)
+        #expect(Gender(key: \.value, value: 2) == Gender.female)
+        #expect(Gender(key: \.value, value: 3) == nil)
     }
 }

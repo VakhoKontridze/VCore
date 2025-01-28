@@ -6,11 +6,12 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class KeyPathEqualityAndComparisonTests: XCTestCase {
+@Suite
+final class KeyPathEqualityAndComparisonTests {
     // MARK: Test Data
     private struct Object {
         var a: Int = 0
@@ -19,17 +20,18 @@ final class KeyPathEqualityAndComparisonTests: XCTestCase {
     }
     
     // MARK: Tests
+    @Test
     func testIsEqual() {
-        XCTAssertTrue(
-            VCore.isEqual(
+        #expect(
+            isEqual(
                 Object(),
                 to: Object(),
                 by: \.a, \.b, \.c
             )
         )
 
-        XCTAssertFalse(
-            VCore.isEqual(
+        #expect(
+            !isEqual(
                 Object(),
                 to: Object(c: 1),
                 by: \.a, \.b, \.c
@@ -37,8 +39,9 @@ final class KeyPathEqualityAndComparisonTests: XCTestCase {
         )
     }
     
+    @Test
     func testIsLess() {
-        XCTAssertTrue(
+        #expect(
             isLess(
                 Object(),
                 than: Object(c: 1),
@@ -46,8 +49,8 @@ final class KeyPathEqualityAndComparisonTests: XCTestCase {
             )
         )
         
-        XCTAssertFalse(
-            isLess(
+        #expect(
+            !isLess(
                 Object(),
                 than: Object(),
                 by: \.a, \.b, \.c
@@ -55,25 +58,26 @@ final class KeyPathEqualityAndComparisonTests: XCTestCase {
         )
     }
     
+    @Test
     func testIsLessThanOrEqual() {
-        XCTAssertTrue(
-            VCore.isLessThanOrEqual(
+        #expect(
+            isLessThanOrEqual(
                 Object(),
                 to: .init(c: 1),
                 by: \.a, \.b, \.c
             )
         )
         
-        XCTAssertTrue(
-            VCore.isLessThanOrEqual(
+        #expect(
+            isLessThanOrEqual(
                 Object(),
                 to: Object(),
                 by: \.a, \.b, \.c
             )
         )
         
-        XCTAssertFalse(
-            VCore.isLessThanOrEqual(
+        #expect(
+            !isLessThanOrEqual(
                 Object(),
                 to: .init(c: -1),
                 by: \.a, \.b, \.c
@@ -81,8 +85,9 @@ final class KeyPathEqualityAndComparisonTests: XCTestCase {
         )
     }
     
+    @Test
     func testIsGreater() {
-        XCTAssertTrue(
+        #expect(
             isGreater(
                 Object(),
                 than: Object(c: -1),
@@ -90,8 +95,8 @@ final class KeyPathEqualityAndComparisonTests: XCTestCase {
             )
         )
 
-        XCTAssertFalse(
-            isGreater(
+        #expect(
+            !isGreater(
                 Object(),
                 than: Object(),
                 by: \.a, \.b, \.c
@@ -99,25 +104,26 @@ final class KeyPathEqualityAndComparisonTests: XCTestCase {
         )
     }
     
+    @Test
     func testIsGreaterThanOrEqual() {
-        XCTAssertTrue(
-            VCore.isGreaterThanOrEqual(
+        #expect(
+            isGreaterThanOrEqual(
                 Object(),
                 to: Object(c: -1),
                 by: \.a, \.b, \.c
             )
         )
         
-        XCTAssertTrue(
-            VCore.isGreaterThanOrEqual(
+        #expect(
+            isGreaterThanOrEqual(
                 Object(),
                 to: Object(),
                 by: \.a, \.b, \.c
             )
         )
         
-        XCTAssertFalse(
-            VCore.isGreaterThanOrEqual(
+        #expect(
+            !isGreaterThanOrEqual(
                 Object(),
                 to: Object(c: 1),
                 by: \.a, \.b, \.c

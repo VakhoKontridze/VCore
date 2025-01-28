@@ -7,34 +7,35 @@
 
 #if canImport(UIKit)
 
-import Foundation
-import OSLog
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class UIImageCompressedTests: XCTestCase {
-    func testJPEG() throws {
-        guard
-            let image: UIImage = .init(size: CGSize(dimension: 100), color: UIColor.red),
-            let imageData: Data = image.jpegData(compressionQuality: 1)
-        else {
-            Logger.uiImageCompressedTests.critical("Failed to generate test data")
-            fatalError()
-        }
+@Suite
+struct UIImageCompressedTests {
+    @Test
+    func test() throws {
+        let image: UIImage = try #require(
+            UIImage(
+                size: CGSize(dimension: 100),
+                color: UIColor.red
+            )
+        )
+        
+        let imageData: Data = try #require(
+            image.jpegData(compressionQuality: 1)
+        )
 
-        let compressedImage: UIImage = try XCTUnwrap(
+        let compressedImage: UIImage = try #require(
             image.jpegCompressed(quality: 0.75)
         )
 
-        guard
-            let compressedImageData: Data = compressedImage.jpegData(compressionQuality: 1)
-        else {
-            Logger.uiImageCompressedTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        let compressedImageData: Data = try #require(
+            compressedImage.jpegData(compressionQuality: 1)
+        )
 
-        XCTAssertLessThan(compressedImageData.count, imageData.count)
+        #expect(compressedImageData.count < imageData.count)
     }
 }
 

@@ -111,13 +111,14 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
                 let windowHeight: CGFloat = window.frame.size.height
 
                 guard let firstResponderView: UIView = window.childFirstResponderView else { return nil } // Will never fail
-                let viewGlobalBoundsMaxY: CGFloat = firstResponderView.convert(firstResponderView.bounds, to: firstResponderView.window).maxY
+                guard let firstResponderViewSuperView: UIView = firstResponderView.superview else { return nil } // Will never fail
+                let viewGlobalFrameMaxY: CGFloat = firstResponderViewSuperView.convert(firstResponderView.frame, to: nil).maxY
 
                 let currentOffset: CGFloat = self.offsetStable
 
                 guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return nil } // Will never fail
 
-                let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalBoundsMaxY - currentOffset
+                let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalFrameMaxY - currentOffset
                 
                 let obscuredHeight: CGFloat = max(0, systemKeyboardHeight + additionalOffset - viewDistanceToBottom)
 

@@ -6,12 +6,14 @@
 //
 
 import SwiftUI
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
+@Suite
+struct AttributedStringInitWithAttributeContainersTests {
     // MARK: Tests - Valid
+    @Test
     func testPlainString() {
         test(
             string: "Lorem ipsum",
@@ -22,6 +24,7 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         )
     }
 
+    @Test
     func testSingleTag() {
         test(
             string: "Lorem <a>ipsum</a> dolor",
@@ -34,6 +37,7 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         )
     }
 
+    @Test
     func testMultipleTags() {
         test(
             string: "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit",
@@ -48,6 +52,7 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         )
     }
 
+    @Test
     func testStartingTag() {
         test(
             string: "<a>Lorem</a> ipsum dolor",
@@ -59,6 +64,7 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         )
     }
 
+    @Test
     func testEndingTag() {
         test(
             string: "Lorem <a>ipsum</a>",
@@ -70,42 +76,38 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         )
     }
 
+    @Test
     func testSpecialCharacters() {
-        do {
-            test(
-                string: "Lorem <a><</a>",
-                tagNames: ["a"],
-                result: [
-                    (nil, "Lorem "),
-                    ("a", "<")
-                ]
-            )
-        }
+        test(
+            string: "Lorem <a><</a>",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem "),
+                ("a", "<")
+            ]
+        )
 
-        do {
-            test(
-                string: "Lorem <a>></a>",
-                tagNames: ["a"],
-                result: [
-                    (nil, "Lorem "),
-                    ("a", ">")
-                ]
-            )
-        }
+        test(
+            string: "Lorem <a>></a>",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem "),
+                ("a", ">")
+            ]
+        )
 
-        do {
-            test(
-                string: "Lorem <a>/</a>",
-                tagNames: ["a"],
-                result: [
-                    (nil, "Lorem "),
-                    ("a", "/")
-                ]
-            )
-        }
+        test(
+            string: "Lorem <a>/</a>",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem "),
+                ("a", "/")
+            ]
+        )
     }
 
     // MARK: Tests - Invalid
+    @Test
     func testNestedTagsNotSupported() {
         test(
             string: "Lorem <a>ipsum <b>dolor</b> sit</a> amet",
@@ -118,28 +120,26 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         )
     }
 
+    @Test
     func testInvalidOpeningTag() {
-        do {
-            test(
-                string: "Lorem <a",
-                tagNames: ["a"],
-                result: [
-                    (nil, "Lorem <a")
-                ]
-            )
-        }
+        test(
+            string: "Lorem <a",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem <a")
+            ]
+        )
 
-        do {
-            test(
-                string: "Lorem <a ipsum</a> dolor",
-                tagNames: ["a"],
-                result: [
-                    (nil, "Lorem <a ipsum</a> dolor")
-                ]
-            )
-        }
+        test(
+            string: "Lorem <a ipsum</a> dolor",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem <a ipsum</a> dolor")
+            ]
+        )
     }
 
+    @Test
     func testSlashFoundInOpeningTag() {
         test(
             string: "Lorem </a>ipsum</a> dolor",
@@ -150,6 +150,7 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         )
     }
 
+    @Test
     func testOpeningTagNameNotFound() {
         test(
             string: "Lorem <> ipsum</a> dolor",
@@ -160,42 +161,38 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         )
     }
 
+    @Test
     func testInvalidClosingTag() {
-        do {
-            test(
-                string: "Lorem <a>ipsum</a",
-                tagNames: ["a"],
-                result: [
-                    (nil, "Lorem "),
-                    (nil, "ipsum</a")
-                ]
-            )
-        }
+        test(
+            string: "Lorem <a>ipsum</a",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem "),
+                (nil, "ipsum</a")
+            ]
+        )
 
-        do {
-            test(
-                string: "Lorem <a>ipsum</a dolor",
-                tagNames: ["a"],
-                result: [
-                    (nil, "Lorem "),
-                    (nil, "ipsum</a dolor")
-                ]
-            )
-        }
+        test(
+            string: "Lorem <a>ipsum</a dolor",
+            tagNames: ["a"],
+            result: [
+                (nil, "Lorem "),
+                (nil, "ipsum</a dolor")
+            ]
+        )
 
-        do {
-            test(
-                string: "> Lorem <a>ipsum</a> dolor",
-                tagNames: ["a"],
-                result: [
-                    (nil, "> Lorem "),
-                    ("a", "ipsum"),
-                    (nil, " dolor")
-                ]
-            )
-        }
+        test(
+            string: "> Lorem <a>ipsum</a> dolor",
+            tagNames: ["a"],
+            result: [
+                (nil, "> Lorem "),
+                ("a", "ipsum"),
+                (nil, " dolor")
+            ]
+        )
     }
 
+    @Test
     func testClosingTagSlashNotFound() {
         test(
             string: "Lorem <a>ipsum<a> dolor",
@@ -207,6 +204,7 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         )
     }
 
+    @Test
     func testClosingTagNameNotFound() {
         test(
             string: "Lorem <a>ipsum</> dolor",
@@ -224,8 +222,8 @@ final class AttributedStringInitWithAttributeContainersTests: XCTestCase {
         tagNames: [Character],
         result: [(Character?, String)]
     ) {
-        XCTAssertEqual(
-            testable(string.components(separatedByTagNames: tagNames)),
+        #expect(
+            testable(string.components(separatedByTagNames: tagNames)) ==
             testable(result)
         )
     }

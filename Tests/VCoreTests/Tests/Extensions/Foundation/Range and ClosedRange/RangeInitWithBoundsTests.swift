@@ -6,14 +6,14 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class RangeInitWithBoundsTests: XCTestCase {
+@Suite
+struct RangeInitWithBoundsTests {
+    @Test
     func test() {
-        let range: Range<Int> = .init(lower: 1, upper: 10)
-
-        XCTAssertEqual(range, 1..<10)
+        #expect(Range(lower: 1, upper: 10) == 1..<10)
     }
 }

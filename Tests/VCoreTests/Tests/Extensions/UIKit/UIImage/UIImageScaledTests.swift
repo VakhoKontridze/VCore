@@ -7,132 +7,119 @@
 
 #if canImport(UIKit)
 
-import Foundation
-import OSLog
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class UIImageScaledTests: XCTestCase {
+@Suite
+struct UIImageScaledTests {
+    @Test
     func testScaledToWidth() throws {
-        guard
-            let image: UIImage = .init(
+        let image: UIImage = try #require(
+            UIImage(
                 size: CGSize(width: 100, height: 200),
                 color: UIColor.red
             )
-        else {
-            Logger.uiImageScaledTests.critical("Failed to generate test data")
-            fatalError()
-        }
-
-        let scaledDownImage: UIImage = try XCTUnwrap(
+        )
+        
+        let scaledDownImage: UIImage = try #require(
             image.scaled(toWidth: 50)
         )
-        XCTAssertEqual(scaledDownImage.size, CGSize(width: 50, height: 100))
+        #expect(scaledDownImage.size == CGSize(width: 50, height: 100))
         
-        let scaledUpImage: UIImage = try XCTUnwrap(
+        let scaledUpImage: UIImage = try #require(
             image.scaled(toWidth: 200)
         )
-        XCTAssertEqual(scaledUpImage.size, CGSize(width: 200, height: 400))
+        #expect(scaledUpImage.size == CGSize(width: 200, height: 400))
     }
     
+    @Test
     func testScaledToHeight() throws {
-        guard
-            let image: UIImage = .init(
+        let image: UIImage = try #require(
+            UIImage(
                 size: CGSize(width: 200, height: 100),
                 color: UIColor.red
             )
-        else {
-            Logger.uiImageScaledTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        )
 
-        let scaledDownImage: UIImage = try XCTUnwrap(
+        let scaledDownImage: UIImage = try #require(
             image.scaled(toHeight: 50)
         )
-        XCTAssertEqual(scaledDownImage.size, CGSize(width: 100, height: 50))
+        #expect(scaledDownImage.size == CGSize(width: 100, height: 50))
         
-        let scaledUpImage: UIImage = try XCTUnwrap(
+        let scaledUpImage: UIImage = try #require(
             image.scaled(toHeight: 200)
         )
-        XCTAssertEqual(scaledUpImage.size, CGSize(width: 400, height: 200))
+        #expect(scaledUpImage.size == CGSize(width: 400, height: 200))
     }
     
+    @Test
     func testScaledDownToWidth() throws {
-        guard
-            let image: UIImage = .init(
+        let image: UIImage = try #require(
+            UIImage(
                 size: CGSize(width: 100, height: 200),
                 color: UIColor.red
             )
-        else {
-            Logger.uiImageScaledTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        )
 
-        let scaledImage: UIImage = try XCTUnwrap(
+        let scaledImage: UIImage = try #require(
             image.scaledDown(toWidth: 100)
         )
-        XCTAssertEqual(scaledImage.size, CGSize(width: 100, height: 200))
+        #expect(scaledImage.size == CGSize(width: 100, height: 200))
         
-        let scaledDownImage: UIImage = try XCTUnwrap(
+        let scaledDownImage: UIImage = try #require(
             image.scaledDown(toWidth: 50)
         )
-        XCTAssertEqual(scaledDownImage.size, CGSize(width: 50, height: 100))
+        #expect(scaledDownImage.size == CGSize(width: 50, height: 100))
     }
     
+    @Test
     func testScaledDownToHeight() throws {
-        guard
-            let image: UIImage = .init(
+        let image: UIImage = try #require(
+            UIImage(
                 size: CGSize(width: 200, height: 100),
                 color: UIColor.red
             )
-        else {
-            Logger.uiImageScaledTests.critical("Failed to generate test data")
-            fatalError()
-        }
-
-        let scaledImage: UIImage = try XCTUnwrap(
+        )
+        
+        let scaledImage: UIImage = try #require(
             image.scaledDown(toHeight: 100)
         )
-        XCTAssertEqual(scaledImage.size, CGSize(width: 200, height: 100))
+        #expect(scaledImage.size == CGSize(width: 200, height: 100))
         
-        let scaledDownImage: UIImage = try XCTUnwrap(
+        let scaledDownImage: UIImage = try #require(
             image.scaledDown(toHeight: 50)
         )
-        XCTAssertEqual(scaledDownImage.size, CGSize(width: 100, height: 50))
+        #expect(scaledDownImage.size == CGSize(width: 100, height: 50))
     }
     
+    @Test
     func testScaledDownToDimension() throws {
-        guard
-            let image1: UIImage = .init(
+        let image1: UIImage = try #require(
+            UIImage(
                 size: CGSize(width: 100, height: 200),
                 color: UIColor.red
             )
-        else {
-            Logger.uiImageScaledTests.critical("Failed to generate test data")
-            fatalError()
-        }
-
-        let scaledImageW: UIImage = try XCTUnwrap(
+        )
+        
+        let scaledImageW: UIImage = try #require(
             image1.scaledDown(toDimension: 50)
         )
-        XCTAssertEqual(scaledImageW.size, CGSize(width: 50, height: 100))
+        #expect(scaledImageW.size == CGSize(width: 50, height: 100))
         
 
-        guard
-            let image2: UIImage = .init(
+        let image2: UIImage = try #require(
+            UIImage(
                 size: CGSize(width: 200, height: 100),
                 color: UIColor.red
             )
-        else {
-            Logger.uiImageScaledTests.critical("Failed to generate test data")
-            fatalError()
-        }
+        )
 
-        let scaledImageH: UIImage = try XCTUnwrap(
+        let scaledImageH: UIImage = try #require(
             image2.scaledDown(toDimension: 50)
         )
-        XCTAssertEqual(scaledImageH.size, CGSize(width: 100, height: 50))
+        #expect(scaledImageH.size == CGSize(width: 100, height: 50))
     }
 }
 

@@ -6,25 +6,24 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ArrayRemovingDuplicatesTests: XCTestCase {
-    func testRemoving() {
-        let array: [Int] = [1, 1, 3, 5, 5]
+@Suite
+struct ArrayRemovingDuplicatesTests {
+    @Test
+    func test() {
+        #expect(
+            [1, 1, 3, 5, 5].removingDuplicates() ==
+            [1, 3, 5]
+        )
+        
+        do {
+            var array: [Int] = [1, 1, 3, 5, 5]
+            array.removeDuplicates()
 
-        let filteredArray: [Int] = array.removingDuplicates()
-
-        XCTAssertEqual(filteredArray, [1, 3, 5])
-    }
-    
-    func testRemove() {
-        let array: [Int] = [1, 1, 3, 5, 5]
-
-        var filteredArray: [Int] = array
-        filteredArray.removeDuplicates()
-
-        XCTAssertEqual(filteredArray, [1, 3, 5])
+            #expect(array == [1, 3, 5])
+        }
     }
 }

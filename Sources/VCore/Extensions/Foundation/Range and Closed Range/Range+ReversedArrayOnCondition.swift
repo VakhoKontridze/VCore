@@ -15,7 +15,7 @@ extension Range where Bound: FixedWidthInteger {
     ///         .reversedArray()
     ///
     public func reversedArray(
-        _ condition: Bool
+        _ condition: Bool = true
     ) -> [Bound] {
         Array(self).reversed(condition)
     }

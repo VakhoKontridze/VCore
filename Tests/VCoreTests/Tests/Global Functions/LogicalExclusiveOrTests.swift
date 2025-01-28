@@ -6,15 +6,17 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class LogicalExclusiveOrTests: XCTestCase {
+@Suite
+struct LogicalExclusiveOrTests {
+    @Test
     func test() {
-        XCTAssertEqual(false ^^ false, false)
-        XCTAssertEqual(false ^^ true, true)
-        XCTAssertEqual(true ^^ false, true)
-        XCTAssertEqual(true ^^ true, false)
+        #expect(!(false ^^ false))
+        #expect(false ^^ true)
+        #expect(true ^^ false)
+        #expect(!(true ^^ true))
     }
 }

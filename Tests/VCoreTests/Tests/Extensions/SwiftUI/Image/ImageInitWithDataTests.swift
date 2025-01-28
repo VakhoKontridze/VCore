@@ -6,45 +6,50 @@
 //
 
 import SwiftUI
-import OSLog
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ImageInitWithDataTests: XCTestCase {
-    func test() {
+@Suite
+struct ImageInitWithDataTests {
+    @Test
+    func test() throws {
 #if canImport(UIKit)
-        guard
-            let uiImage: UIImage = .init(
+        
+        let uiImage: UIImage = try #require(
+            UIImage(
                 size: CGSize(dimension: 100),
                 color: {
-#if !os(watchOS)
+    #if !os(watchOS)
                 UIColor.systemBlue
-#else
+    #else
                 UIColor.blue
-#endif
+    #endif
                 }()
-            ),
-            let data: Data = uiImage.jpegData(compressionQuality: 1)
-        else {
-            Logger.imageInitWithDataTests.critical("Failed to generate test data")
-            fatalError()
-        }
+            )
+        )
+        
+        let data: Data = try #require(
+            uiImage.jpegData(compressionQuality: 1)
+        )
 
-        let _: Image = .init(data: data) // Check that no crashes occur
+        let _: Image = .init(data: data) // Checks that no crashes occur
+
 #elseif canImport(AppKit)
-        guard
-            let nsImage: NSImage = .init(
+        
+        let nsImage: NSImage = try #require(
+            NSImage(
                 size: CGSize(dimension: 100),
                 color: NSColor.systemBlue
-            ),
-            let data: Data = nsImage.tiffRepresentation
-        else {
-            Logger.imageInitWithDataTests.critical("Failed to generate test data")
-            fatalError()
-        }
+            )
+        )
 
-        let _: Image = .init(data: data) // Check that no crashes occur
+        let data: Data = try #require(
+            nsImage.tiffRepresentation
+        )
+
+        let _: Image = .init(data: data) // Checks that no crashes occur
+
 #endif
     }
 }

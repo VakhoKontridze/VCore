@@ -6,21 +6,22 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class StringProtocolSubscriptTests: XCTestCase {
+@Suite
+struct StringProtocolSubscriptTests {
+    @Test
     func testGet() {
-        XCTAssertEqual("Lorem Ipsum"[0], "L")
+        #expect("Lorem Ipsum"[0] == "L")
     }
     
+    @Test
     func testSet() {
-        let string: String = "Lorem ipsum"
+        var string: String = "Lorem ipsum"
+        string[0] = "l"
 
-        var replacedString: String = string
-        replacedString[0] = "l"
-
-        XCTAssertEqual(replacedString, "lorem ipsum")
+        #expect(string == "lorem ipsum")
     }
 }

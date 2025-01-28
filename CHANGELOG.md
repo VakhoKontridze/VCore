@@ -1,6 +1,17 @@
 # Change Log
 
-### [7.3.0(107)](https://github.com/VakhoKontridze/VCore/releases/tag/7.3.0) — *2024 01 17*
+7.4.0(108)
+
+Global Functions
+
+- `areEqual(_:_:tolerance:)` function is added, that returns `Bool` indicating if values are equal within a given tolerance
+
+Extensions
+
+- `Range.reversedArray(_:)` and `ClosedRange.reversedArray(_:)` will now have a default value of `true`
+- `StringProtocol.contains(_:)` method that takes `CharacterSet` `Array` is replaced by `StringProtocol.contains(any:)` and `StringProtocol.contains(all:)`
+
+### [7.3.0(107)](https://github.com/VakhoKontridze/VCore/releases/tag/7.3.0) — *2025 01 17*
 
 Extensions
 

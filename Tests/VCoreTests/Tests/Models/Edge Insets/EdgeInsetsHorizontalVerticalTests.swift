@@ -6,98 +6,67 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class EdgeInsetsHorizontalVerticalTests: XCTestCase {
+@Suite
+struct EdgeInsetsHorizontalVerticalTests {
     // MARK: Tests - Insets
-    func testInsetInset() {
-        let insets: EdgeInsets_HorizontalVertical = .init(
-            horizontal: 1,
-            vertical: 2
-        ).insetBy(inset: 10)
-
-        XCTAssertEqual(insets.horizontal, 11)
-        XCTAssertEqual(insets.vertical, 12)
+    @Test
+    func testInsetAll() {
+        #expect(
+            EdgeInsets_HorizontalVertical(horizontal: 1, vertical: 2).insetBy(inset: 10) ==
+            EdgeInsets_HorizontalVertical(horizontal: 11, vertical: 12)
+        )
     }
     
+    @Test
     func testInsetHorizontal() {
-        let insets: EdgeInsets_HorizontalVertical = .init(
-            horizontal: 1,
-            vertical: 2
-        ).insetBy(horizontal: 10)
-
-        XCTAssertEqual(insets.horizontal, 11)
-        XCTAssertEqual(insets.vertical, 2)
+        #expect(
+            EdgeInsets_HorizontalVertical(horizontal: 1, vertical: 2).insetBy(horizontal: 10) ==
+            EdgeInsets_HorizontalVertical(horizontal: 11, vertical: 2)
+        )
     }
     
+    @Test
     func testInsetVertical() {
-        let insets: EdgeInsets_HorizontalVertical = .init(
-            horizontal: 1,
-            vertical: 2
-        ).insetBy(vertical: 10)
-
-        XCTAssertEqual(insets.horizontal, 1)
-        XCTAssertEqual(insets.vertical, 12)
+        #expect(
+            EdgeInsets_HorizontalVertical(horizontal: 1, vertical: 2).insetBy(vertical: 10) ==
+            EdgeInsets_HorizontalVertical(horizontal: 1, vertical: 12)
+        )
     }
     
     // MARK: Tests - Operators
+    @Test
     func testAddition() {
-        let insets: EdgeInsets_HorizontalVertical =
-            EdgeInsets_HorizontalVertical(
-                horizontal: 1,
-                vertical: 2
-            ) +
-            EdgeInsets_HorizontalVertical(
-                horizontal: 3,
-                vertical: 4
-            )
-        
-        XCTAssertEqual(insets.horizontal, 4)
-        XCTAssertEqual(insets.vertical, 6)
-    }
-    
-    func testAdditionAssignment() {
-        var insets: EdgeInsets_HorizontalVertical = .init(
-            horizontal: 1,
-            vertical: 2
-        )
-        insets += EdgeInsets_HorizontalVertical(
-            horizontal: 3,
-            vertical: 4
+        #expect(
+            EdgeInsets_HorizontalVertical(horizontal: 1, vertical: 2) +
+            EdgeInsets_HorizontalVertical(horizontal: 3, vertical: 4) ==
+            EdgeInsets_HorizontalVertical(horizontal: 4, vertical: 6)
         )
         
-        XCTAssertEqual(insets.horizontal, 4)
-        XCTAssertEqual(insets.vertical, 6)
+        do {
+            var insets: EdgeInsets_HorizontalVertical = .init(horizontal: 1, vertical: 2)
+            insets += EdgeInsets_HorizontalVertical(horizontal: 3, vertical: 4)
+            
+            #expect(insets == EdgeInsets_HorizontalVertical(horizontal: 4, vertical: 6))
+        }
     }
-    
+     
+    @Test
     func testSubtraction() {
-        let insets: EdgeInsets_HorizontalVertical =
-            EdgeInsets_HorizontalVertical(
-                horizontal: 1,
-                vertical: 2
-            ) -
-            EdgeInsets_HorizontalVertical(
-                horizontal: 3,
-                vertical: 4
-            )
-        
-        XCTAssertEqual(insets.horizontal, -2)
-        XCTAssertEqual(insets.vertical, -2)
-    }
-    
-    func testSubtractionAssignment() {
-        var insets: EdgeInsets_HorizontalVertical = .init(
-            horizontal: 1,
-            vertical: 2
-        )
-        insets -= EdgeInsets_HorizontalVertical(
-            horizontal: 3,
-            vertical: 4
+        #expect(
+            EdgeInsets_HorizontalVertical(horizontal: 1, vertical: 2) -
+            EdgeInsets_HorizontalVertical(horizontal: 3, vertical: 4) ==
+            EdgeInsets_HorizontalVertical(horizontal: -2, vertical: -2)
         )
         
-        XCTAssertEqual(insets.horizontal, -2)
-        XCTAssertEqual(insets.vertical, -2)
+        do {
+            var insets: EdgeInsets_HorizontalVertical = .init(horizontal: 1, vertical: 2)
+            insets -= EdgeInsets_HorizontalVertical(horizontal: 3, vertical: 4)
+            
+            #expect(insets == EdgeInsets_HorizontalVertical(horizontal: -2, vertical: -2))
+        }
     }
 }

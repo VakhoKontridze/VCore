@@ -6,88 +6,69 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CGPointMovedTests: XCTestCase {
-    // MARK: Tests - Left
-    func testMovedLeftWithConstant() {
-        let point: CGPoint = .init(x: 3, y: 4)
-
-        let movedPoint: CGPoint = point.movedLeft(withValue: 1)
-
-        XCTAssertEqual(movedPoint.x, 2)
-        XCTAssertEqual(movedPoint.y, 4)
+@Suite
+struct CGPointMovedTests {
+    @Test
+    func testMovedLeft() {
+        #expect(
+            CGPoint(x: 3, y: 4).movedLeft(withValue: 1) ==
+            CGPoint(x: 2, y: 4)
+        )
+        
+        do {
+            var point: CGPoint = .init(x: 3, y: 4)
+            point.moveLeft(withValue: 1)
+            
+            #expect(point == CGPoint(x: 2, y: 4))
+        }
+    }
+    
+    @Test
+    func testMovedRight() {
+        #expect(
+            CGPoint(x: 3, y: 4).movedRight(withValue: 1) ==
+            CGPoint(x: 4, y: 4)
+        )
+        
+        do {
+            var point: CGPoint = .init(x: 3, y: 4)
+            point.moveRight(withValue: 1)
+            
+            #expect(point == CGPoint(x: 4, y: 4))
+        }
     }
 
-    func testMoveLeftWithConstant() {
-        let point: CGPoint = .init(x: 3, y: 4)
-
-        var movedPoint: CGPoint = point
-        movedPoint.moveLeft(withValue: 1)
-
-        XCTAssertEqual(movedPoint.x, 2)
-        XCTAssertEqual(movedPoint.y, 4)
+    @Test
+    func testMovedUp() {
+        #expect(
+            CGPoint(x: 3, y: 4).movedUp(withValue: 1) ==
+            CGPoint(x: 3, y: 3)
+        )
+        
+        do {
+            var point: CGPoint = .init(x: 3, y: 4)
+            point.moveUp(withValue: 1)
+            
+            #expect(point == CGPoint(x: 3, y: 3))
+        }
     }
 
-    // MARK: Tests - Right
-    func testMovedRightWithConstant() {
-        let point: CGPoint = .init(x: 3, y: 4)
-
-        let movedPoint: CGPoint = point.movedRight(withValue: 1)
-
-        XCTAssertEqual(movedPoint.x, 4)
-        XCTAssertEqual(movedPoint.y, 4)
-    }
-
-    func testMoveRightWithConstant() {
-        let point: CGPoint = .init(x: 3, y: 4)
-
-        var movedPoint: CGPoint = point
-        movedPoint.moveRight(withValue: 1)
-
-        XCTAssertEqual(movedPoint.x, 4)
-        XCTAssertEqual(movedPoint.y, 4)
-    }
-
-    // MARK: Tests - Up
-    func testMovedUpWithConstant() {
-        let point: CGPoint = .init(x: 3, y: 4)
-
-        let movedPoint: CGPoint = point.movedUp(withValue: 1)
-
-        XCTAssertEqual(movedPoint.x, 3)
-        XCTAssertEqual(movedPoint.y, 3)
-    }
-
-    func testMoveUpWithConstant() {
-        let point: CGPoint = .init(x: 3, y: 4)
-
-        var movedPoint: CGPoint = point
-        movedPoint.moveUp(withValue: 1)
-
-        XCTAssertEqual(movedPoint.x, 3)
-        XCTAssertEqual(movedPoint.y, 3)
-    }
-
-    // MARK: Tests - Down
-    func testMovedDownWithConstant() {
-        let point: CGPoint = .init(x: 3, y: 4)
-
-        let movedPoint: CGPoint = point.movedDown(withValue: 1)
-
-        XCTAssertEqual(movedPoint.x, 3)
-        XCTAssertEqual(movedPoint.y, 5)
-    }
-
-    func testMoveDownWithConstant() {
-        let point: CGPoint = .init(x: 3, y: 4)
-
-        var movedPoint: CGPoint = point
-        movedPoint.moveDown(withValue: 1)
-
-        XCTAssertEqual(movedPoint.x, 3)
-        XCTAssertEqual(movedPoint.y, 5)
+    @Test
+    func testMovedDown() {
+        #expect(
+            CGPoint(x: 3, y: 4).movedDown(withValue: 1) ==
+            CGPoint(x: 3, y: 5)
+        )
+        
+        do {
+            var point: CGPoint = .init(x: 3, y: 4)
+            point.moveDown(withValue: 1)
+            
+            #expect(point == CGPoint(x: 3, y: 5))
+        }
     }
 }

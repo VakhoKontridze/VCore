@@ -7,32 +7,27 @@
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import Foundation
-import XCTest
+import AppKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class NSColorBlendTests: XCTestCase {
+@Suite
+struct NSColorLightenAndDarkenTests {
+    @Test
     func testLighten() {
-        let color: NSColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-
-        let values = color.lighten(by: 0.1).rgbaValues
-
-        XCTAssertEqual(values.red, 0.6)
-        XCTAssertEqual(values.green, 0.6)
-        XCTAssertEqual(values.blue, 0.6)
-        XCTAssertEqual(values.alpha, 1)
+        #expect(
+            NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1).lighten(by: 0.1) ==
+            NSColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
+        )
     }
 
+    @Test
     func testDarken() {
-        let color: NSColor = .init(red: 0.5, green: 0.5, blue: 0.5, alpha: 1)
-
-        let values = color.darken(by: 0.1).rgbaValues
-
-        XCTAssertEqual(values.red, 0.4)
-        XCTAssertEqual(values.green, 0.4)
-        XCTAssertEqual(values.blue, 0.4)
-        XCTAssertEqual(values.alpha, 1)
+        #expect(
+            NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1).darken(by: 0.1) ==
+            NSColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+        )
     }
 }
 

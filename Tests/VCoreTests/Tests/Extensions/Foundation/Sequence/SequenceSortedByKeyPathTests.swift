@@ -6,33 +6,39 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class SequenceSortedByKeyPathTests: XCTestCase {
+@Suite
+struct SequenceSortedByKeyPathTests {
     // MARK: Test Data
     private struct City: Equatable {
         let name: String
-        
-        init(_ name: String) { self.name = name }
     }
+    
+    private let array: [City] = [
+        City(name: "London"),
+        City(name: "Paris"),
+        City(name: "New York")
+    ]
+    
+    private let sortedArray: [City] = [
+        City(name: "London"),
+        City(name: "New York"),
+        City(name: "Paris")
+    ]
     
     // MARK: Tests
-    func testSort() {
-        let array: [City] = [.init("London"), .init("Paris"), .init("New York")]
-
-        var sortedArray: [City] = array
-        sortedArray.sort(by: \.name)
-
-        XCTAssertEqual(sortedArray, [City("London"), City("New York"), City("Paris")])
-    }
-    
-    func testSorted() {
-        let array: [City] = [.init("London"), .init("Paris"), .init("New York")]
-
-        let sortedArray: [City] = array.sorted(by: \.name)
-
-        XCTAssertEqual(sortedArray, [City("London"), City("New York"), City("Paris")])
+    @Test
+    func test() {
+        #expect(array.sorted(by: \.name) == sortedArray)
+        
+        do {
+            var array = array
+            array.sort(by: \.name)
+            
+            #expect(array == sortedArray)
+        }
     }
 }

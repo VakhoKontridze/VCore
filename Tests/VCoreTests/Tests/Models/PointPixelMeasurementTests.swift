@@ -6,24 +6,19 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class PointPixelMeasurementTests: XCTestCase {
-    func testPointsConversion() {
-        let measurement: PointPixelMeasurement = .pixels(3)
-
-        let value: CGFloat = measurement.toPoints(scale: 3)
-
-        XCTAssertEqual(value, 1)
+@Suite
+struct PointPixelMeasurementTests {
+    @Test
+    func testConvertPixelsToPoints() {
+        #expect(PointPixelMeasurement.pixels(3).toPoints(scale: 3) == 1)
     }
-
-    func testPixelsConversion() {
-        let measurement: PointPixelMeasurement = .points(1)
-
-        let value: Int = measurement.toPixels(scale: 3)
-
-        XCTAssertEqual(value, 3)
+    
+    @Test
+    func testConvertPointsToPixels() {
+        #expect(PointPixelMeasurement.points(1).toPixels(scale: 3) == 3)
     }
 }

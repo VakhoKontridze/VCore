@@ -6,22 +6,49 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class DecimalDataUnitTests: XCTestCase {
+@Suite
+struct DecimalDataUnitTests {
+    @Test
     func testConversion() {
-        XCTAssertEqual(DecimalDataUnit.convert(5, .GB, to: .MB), 5000)
-        XCTAssertEqual(DecimalDataUnit.convert(5000, .MB, to: .GB), 5)
+        #expect(
+            DecimalDataUnit.convert(5, .GB, to: .MB) ==
+            5000
+        )
+        
+        #expect(
+            DecimalDataUnit.convert(5000, .MB, to: .GB) ==
+            5
+        )
     }
     
+    @Test
     func testConversionToAnotherType() {
-        XCTAssertEqual(DecimalDataUnit.convert(5, .GB, to: BinaryDataUnit.MiB), 4768.37158, accuracy: pow(10, -5))
-        XCTAssertEqual(DecimalDataUnit.convert(5000, .MB, to: BinaryDataUnit.GiB), 4.65661, accuracy: pow(10, -5))
+        #expect(
+            areEqual(
+                DecimalDataUnit.convert(5, .GB, to: BinaryDataUnit.MiB),
+                4768.37158,
+                tolerance: pow(10, -5)
+            )
+        )
+        
+        #expect(
+            areEqual(
+                DecimalDataUnit.convert(5000, .MB, to: BinaryDataUnit.GiB),
+                4.65661,
+                tolerance: pow(10, -5)
+            )
+        )
     }
     
+    @Test
     func testDoubleExtension() {
-        XCTAssertEqual(5_000_000.decimalBytesConverted(to: .MB), 5)
+        #expect(
+            5_000_000.decimalBytesConverted(to: .MB) ==
+            5
+        )
     }
 }

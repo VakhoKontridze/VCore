@@ -6,25 +6,24 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class StringProtocolReplacedTests: XCTestCase {
-    func testReplaced() {
-        let string: String = "Lorem ipsum"
+@Suite
+struct StringProtocolReplacedTests {
+    @Test
+    func test() {
+        #expect(
+            "Lorem ipsum".replaced(at: 0, with: "l") ==
+            "lorem ipsum"
+        )
+        
+        do {
+            var string: String = "Lorem ipsum"
+            string.replace(at: 0, with: "l")
 
-        let replacedString: String = string.replaced(at: 0, with: "l")
-
-        XCTAssertEqual(replacedString, "lorem ipsum")
-    }
-
-    func testReplacing() {
-        let string: String = "Lorem ipsum"
-
-        var replacedString: String = string
-        replacedString.replace(at: 0, with: "l")
-
-        XCTAssertEqual(replacedString, "lorem ipsum")
+            #expect(string == "lorem ipsum")
+        }
     }
 }

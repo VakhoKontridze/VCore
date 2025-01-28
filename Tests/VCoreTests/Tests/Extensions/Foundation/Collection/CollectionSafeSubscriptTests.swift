@@ -6,28 +6,22 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CollectionSafeSubscriptTests: XCTestCase {
-    func testLowerOutOfBoundsSubscript() {
+@Suite
+struct CollectionSafeSubscriptTests {
+    @Test
+    func test() {
         let numbers: [Int] = [1, 3, 5]
 
-        XCTAssertNil(numbers[safe: -1])
-    }
-
-    func testValidSubscript() {
-        let numbers: [Int] = [1, 3, 5]
-
+        #expect(numbers[safe: -1] == nil)
+        
         for i in numbers.indices {
-            XCTAssertEqual(numbers[safe: i], numbers[i])
+            #expect(numbers[safe: i] == numbers[i])
         }
-    }
-
-    func testUpperOutOfBoundsSubscript() {
-        let numbers: [Int] = [1, 3, 5]
-
-        XCTAssertNil(numbers[safe: 3])
+        
+        #expect(numbers[safe: 3] == nil)
     }
 }

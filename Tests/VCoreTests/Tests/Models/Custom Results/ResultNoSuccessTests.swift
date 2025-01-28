@@ -6,11 +6,12 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ResultNoSuccessTests: XCTestCase {
+@Suite
+struct ResultNoSuccessTests {
     // MARK: Test Data
     private struct TestError: Error, Equatable {
         private let code: Int
@@ -28,33 +29,27 @@ final class ResultNoSuccessTests: XCTestCase {
     private let resultFModified: ResultNoSuccess<TestError> = .failure(.b)
     
     // MARK: Tests
+    @Test
     func testMapError() {
-        XCTAssertEqual(resultS.mapError { _ in .b }, resultS)
-        XCTAssertEqual(resultF.mapError { _ in .b }, resultFModified)
+        #expect(resultS.mapError { _ in .b } == resultS)
+        #expect(resultF.mapError { _ in .b } == resultFModified)
     }
     
+    @Test
     func testFlatMapError() {
-        XCTAssertEqual(resultS.flatMapError { _ in .success }, resultS)
-        XCTAssertEqual(resultS.flatMapError { _ in .failure(.b) }, resultS)
-        XCTAssertEqual(resultF.flatMapError { _ in .success }, resultS)
-        XCTAssertEqual(resultF.flatMapError { _ in .failure(.b) }, resultFModified)
+        #expect(resultS.flatMapError { _ in .success } == resultS)
+        #expect(resultS.flatMapError { _ in .failure(.b) } == resultS)
+        #expect(resultF.flatMapError { _ in .success } == resultS)
+        #expect(resultF.flatMapError { _ in .failure(.b) } == resultFModified)
     }
     
-    func testEqualOperator() {
-        XCTAssertTrue(resultF == resultF)
-        XCTAssertFalse(resultF == resultS)
-        XCTAssertFalse(resultS == resultF)
-        XCTAssertTrue(resultS == resultS)
+    @Test
+    func testEquality() {
+        #expect(resultF == resultF)
+        #expect(resultF != resultS)
+        #expect(resultS != resultF)
+        #expect(resultS == resultS)
         
-        XCTAssertFalse(resultF == resultFModified)
-    }
-    
-    func testNotEqualOperator() {
-        XCTAssertFalse(resultF != resultF)
-        XCTAssertTrue(resultF != resultS)
-        XCTAssertTrue(resultS != resultF)
-        XCTAssertFalse(resultS != resultS)
-        
-        XCTAssertTrue(resultF != resultFModified)
+        #expect(resultF != resultFModified)
     }
 }

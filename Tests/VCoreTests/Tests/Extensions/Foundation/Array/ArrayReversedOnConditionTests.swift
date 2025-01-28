@@ -6,44 +6,39 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class ArrayReversedOnConditionTests: XCTestCase {
-    // MARK: Tests - Reversed
+@Suite
+struct ArrayReversedOnConditionTests {
+    @Test
     func testReversedFalse() {
-        let array: [Int] = [1, 2, 3]
-
-        let reversedArray: [Int] = array.reversed(false)
-
-        XCTAssertEqual(reversedArray, [1, 2, 3])
+        #expect(
+            [1, 2, 3].reversed(false) ==
+            [1, 2, 3]
+        )
+        
+        do {
+            var array: [Int] = [1, 2, 3]
+            array.reverse(false)
+            
+            #expect(array == [1, 2, 3])
+        }
     }
     
+    @Test
     func testReversedTrue() {
-        let array: [Int] = [1, 2, 3]
-
-        let reversedArray: [Int] = array.reversed(true)
-
-        XCTAssertEqual(reversedArray, [3, 2, 1])
-    }
-
-    // MARK: Tests - Reverse
-    func testReverseFalse() {
-        let array: [Int] = [1, 2, 3]
-
-        var reversedArray: [Int] = array
-        reversedArray.reverse(false)
-
-        XCTAssertEqual(reversedArray, [1, 2, 3])
-    }
-
-    func testReverseTrue() {
-        let array: [Int] = [1, 2, 3]
-
-        var reversedArray: [Int] = array
-        reversedArray.reverse(true)
-
-        XCTAssertEqual(reversedArray, [3, 2, 1])
+        #expect(
+            [1, 2, 3].reversed(true) ==
+            [3, 2, 1]
+        )
+        
+        do {
+            var array: [Int] = [1, 2, 3]
+            array.reverse(true)
+            
+            #expect(array == [3, 2, 1])
+        }
     }
 }

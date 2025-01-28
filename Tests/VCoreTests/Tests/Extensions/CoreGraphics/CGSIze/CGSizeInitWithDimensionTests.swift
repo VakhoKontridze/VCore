@@ -6,17 +6,17 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CGSizeInitWithDimensionTests: XCTestCase {
+@Suite
+struct CGSizeInitWithDimensionTests {
+    @Test
     func test() {
-        let dimension: CGFloat = 100
-        
-        let size: CGSize = .init(dimension: dimension)
-        
-        XCTAssertEqual(size.width, dimension)
-        XCTAssertEqual(size.height, dimension)
+        #expect(
+            CGSize(dimension: 100) ==
+            CGSize(width: 100, height: 100)
+        )
     }
 }

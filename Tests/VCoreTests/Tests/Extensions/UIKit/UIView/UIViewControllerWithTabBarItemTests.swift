@@ -7,13 +7,15 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
 @MainActor
-final class UIViewControllerWithTabBarItemTests: XCTestCase {
+@Suite
+struct UIViewControllerWithTabBarItemTests {
+    @Test
     func test() {
         let tabBarItem: UITabBarItem = .init(
             title: "Lorem Ipsum",
@@ -26,7 +28,7 @@ final class UIViewControllerWithTabBarItemTests: XCTestCase {
         
         let viewController: UIViewController = .init().withTabBarItem(tabBarItem)
         
-        XCTAssertEqual(viewController.tabBarItem, tabBarItem)
+        #expect(viewController.tabBarItem == tabBarItem)
     }
 }
 

@@ -5,14 +5,18 @@
 //  Created by Vakhtang Kontridze on 15.05.22.
 //
 
-import Foundation
-import XCTest
+import SwiftUI
+import Testing
 @testable import VCore
 
 // No need to cover `NSImage`
 
 // MARK: - Tests
-final class MultipartFormDataBuilderTests: XCTestCase {
+@Suite(
+    .enabled(if: NetworkReachabilityService.shared.isConnectedToNetwork == true),
+    .timeLimit(.minutes(1))
+)
+struct MultipartFormDataBuilderTests {
     // MARK: Test Data
     private let imagePrefix: String = "data:image/jpeg;base64,"
 
@@ -22,12 +26,8 @@ final class MultipartFormDataBuilderTests: XCTestCase {
     }
 
     // MARK: Tests
+    @Test
     func test() async throws {
-        guard NetworkReachabilityService.shared.isConnectedToNetwork == true else {
-            print("Not connected to network. Skipping \(String(describing: Self.self)).\(#function).")
-            return
-        }
-
 #if canImport(UIKit)
         let profileImage: UIImage? = .init(size: CGSize(dimension: 100), color: UIColor.red)
 
@@ -81,24 +81,24 @@ final class MultipartFormDataBuilderTests: XCTestCase {
 
         let result: [String: Any?] = try JSONDecoder.decodeJSONFromData(data)
 
-        XCTAssertEqual(
-            result["form"]?.toJSON?["key"]?.toString,
+        #expect(
+            result["form"]?.toJSON?["key"]?.toString ==
             "value"
         )
 
 #if canImport(UIKit)
-        XCTAssertEqual(
-            result["files"]?.toJSON?["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
+        #expect(
+            result["files"]?.toJSON?["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: "") ==
             profileImage?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
         )
 
-        XCTAssertEqual(
-            result["files"]?.toJSON?["gallery[0]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
+        #expect(
+            result["files"]?.toJSON?["gallery[0]"]?.toString?.replacingOccurrences(of: imagePrefix, with: "") ==
             galleryImages?[0]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
         )
 
-        XCTAssertEqual(
-            result["files"]?.toJSON?["gallery[1]"]?.toString?.replacingOccurrences(of: imagePrefix, with: ""),
+        #expect(
+            result["files"]?.toJSON?["gallery[1]"]?.toString?.replacingOccurrences(of: imagePrefix, with: "") ==
             galleryImages?[1]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
         )
 #endif

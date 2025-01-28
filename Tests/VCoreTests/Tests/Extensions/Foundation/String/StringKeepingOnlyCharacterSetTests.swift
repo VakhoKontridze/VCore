@@ -6,45 +6,39 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class StringKeepingCharacterSetTests: XCTestCase {
-    func testKeeping() {
-        let string: String = "+0123456789"
+@Suite
+struct StringKeepingCharacterSetTests {
+    @Test
+    func testKeepingCharacterSet() {
+        #expect(
+            "+0123456789".keeping(only: .decimalDigits) ==
+            "0123456789"
+        )
 
-        let trimmedString: String = string.keeping(only: .decimalDigits)
+        do {
+            var string: String = "+0123456789"
+            string.keep(only: .decimalDigits)
 
-        XCTAssertEqual(trimmedString, "0123456789")
+            #expect(string == "0123456789")
+        }
     }
     
-    func testKeep() {
-        let string: String = "+0123456789"
+    @Test
+    func testKeepingCharacterSets() {
+        #expect(
+            "+0123456789A".keeping(only: [.decimalDigits, .symbols]) ==
+            "+0123456789"
+        )
+        
+        do {
+            var string: String = "+0123456789A"
+            string.keep(only: [.decimalDigits, .symbols])
 
-        var trimmedString: String = string
-        trimmedString.keep(only: .decimalDigits)
-
-        XCTAssertEqual(trimmedString, "0123456789")
-    }
-}
-
-// MARK: - Tests
-final class StringKeepingCharacterSetsTests: XCTestCase {
-    func testKeeping() {
-        let string: String = "+0123456789A"
-
-        let trimmedString: String = string.keeping(only: [.decimalDigits, .symbols])
-
-        XCTAssertEqual(trimmedString, "+0123456789")
-    }
-    
-    func testKeep() {
-        let string: String = "+0123456789A"
-
-        var trimmedString: String = string
-        trimmedString.keep(only: [.decimalDigits, .symbols])
-
-        XCTAssertEqual(trimmedString, "+0123456789")
+            #expect(string == "+0123456789")
+        }
     }
 }

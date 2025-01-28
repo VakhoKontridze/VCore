@@ -6,24 +6,19 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class AbsoluteFractionMeasurementTests: XCTestCase {
-    func testPointsConversion() {
-        let measurement: AbsoluteFractionMeasurement = .absolute(300)
-
-        let value: CGFloat = measurement.toFraction(dimension: 600)
-
-        XCTAssertEqual(value, 0.5)
+@Suite
+struct AbsoluteFractionMeasurementTests {
+    @Test
+    func testConvertAbsoluteToFraction() {
+        #expect(AbsoluteFractionMeasurement.absolute(300).toFraction(dimension: 600) == 0.5)
     }
-
-    func testPixelsConversion() {
-        let measurement: AbsoluteFractionMeasurement = .fraction(0.5)
-
-        let value: CGFloat = measurement.toAbsolute(dimension: 600)
-
-        XCTAssertEqual(value, 300)
+    
+    @Test
+    func testConvertFractionToAbsolute() {
+        #expect(AbsoluteFractionMeasurement.fraction(0.5).toAbsolute(dimension: 600) == 300)
     }
 }

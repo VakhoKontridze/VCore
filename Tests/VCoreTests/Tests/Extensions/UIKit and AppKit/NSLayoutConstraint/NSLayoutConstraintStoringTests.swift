@@ -7,13 +7,15 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
-import XCTest
+import UIKit
+import Testing
 @testable import VCore
 
 // MARK: - Tests
 @MainActor
-final class NSLayoutConstraintStoringTests: XCTestCase {
+@Suite
+struct NSLayoutConstraintStoringTests {
+    @Test
     func test() {
         let view: UIView = .init()
         
@@ -23,7 +25,7 @@ final class NSLayoutConstraintStoringTests: XCTestCase {
                 .storing(in: &constraint)
         ])
         
-        XCTAssertEqual(constraint?.constant, 100)
+        #expect(constraint?.constant == 100)
     }
 }
 

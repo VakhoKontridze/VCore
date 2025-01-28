@@ -6,24 +6,19 @@
 //
 
 import Foundation
-import XCTest
+import Testing
 @testable import VCore
 
 // MARK: - Tests
-final class CGSizeMinMaxDimensionsTests: XCTestCase {
+@Suite
+struct CGSizeMinMaxDimensionsTests {
+    @Test
     func testMin() {
-        let size: CGSize = .init(width: 3, height: 4)
-
-        let dimension: CGFloat = size.minDimension()
-
-        XCTAssertEqual(dimension, 3)
+        #expect(CGSize(width: 3, height: 4).minDimension() == 3)
     }
 
+    @Test
     func testMax() {
-        let size: CGSize = .init(width: 3, height: 4)
-
-        let dimension: CGFloat = size.maxDimension()
-
-        XCTAssertEqual(dimension, 4)
+        #expect(CGSize(width: 3, height: 4).maxDimension() == 4)
     }
 }
