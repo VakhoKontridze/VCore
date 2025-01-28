@@ -1,6 +1,6 @@
 # Change Log
 
-7.4.0(108)
+### [7.4.0(108)](https://github.com/VakhoKontridze/VCore/releases/tag/7.4.0) — *2025 01 28*
 
 Global Functions
 
@@ -10,6 +10,10 @@ Extensions
 
 - `Range.reversedArray(_:)` and `ClosedRange.reversedArray(_:)` will now have a default value of `true`
 - `StringProtocol.contains(_:)` method that takes `CharacterSet` `Array` is replaced by `StringProtocol.contains(any:)` and `StringProtocol.contains(all:)`
+
+Other
+
+- `Swift Syntax` dependency now points to updated remote repository
 
 ### [7.3.0(107)](https://github.com/VakhoKontridze/VCore/releases/tag/7.3.0) — *2025 01 17*
 
