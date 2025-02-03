@@ -1,5 +1,5 @@
 //
-//  ValuesAreEqualWithinToleranceTests.swift
+//  AreEqualWithinToleranceTests.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 22.01.25.
@@ -11,7 +11,7 @@ import Testing
 
 // MARK: - Tests
 @Suite
-struct ValuesAreEqualWithinToleranceTests {
+struct AreEqualWithinToleranceTests {
     @Test
     func test() {
         #expect(areEqual(3.14, 3.1415, tolerance: pow(10, 0))) // 1
