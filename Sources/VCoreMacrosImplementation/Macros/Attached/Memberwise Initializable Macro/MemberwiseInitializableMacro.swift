@@ -103,8 +103,14 @@ struct MemberwiseInitializableMacro: MemberMacro {
         }
 
         guard
-            let value: [String: String] = try parameter
-                .expression.as(DictionaryExprSyntax.self)?
+            let dictionaryExpression: DictionaryExprSyntax = parameter
+                .expression.as(DictionaryExprSyntax.self)
+        else {
+            throw MemberwiseInitializableMacroError.invalidExternalParameterNamesParameter
+        }
+        
+        guard
+            let value: [String: String] = try dictionaryExpression
                 .content.as(DictionaryElementListSyntax.self)?
                 .reduce(into: [:], { (result, element) in
                     guard
@@ -128,7 +134,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
                     result[key] = value
                 })
         else {
-            throw MemberwiseInitializableMacroError.invalidExternalParameterNamesParameter
+            return [:] // Default value
         }
 
         return value
@@ -145,10 +151,16 @@ struct MemberwiseInitializableMacro: MemberMacro {
         else {
             return [:] // Default value
         }
+        
+        guard
+            let dictionaryExpression: DictionaryExprSyntax = parameter
+                .expression.as(DictionaryExprSyntax.self)
+        else {
+            throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
+        }
 
         guard
-            let value: [String: MemberwiselnitializableParameterDefaultValue] = try parameter
-                .expression.as(DictionaryExprSyntax.self)?
+            let value: [String: MemberwiselnitializableParameterDefaultValue] = try dictionaryExpression
                 .content.as(DictionaryElementListSyntax.self)?
                 .reduce(into: [:], { (result, element) in
                     guard
@@ -205,7 +217,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
                     result[key] = value
                 })
         else {
-            throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
+            return [:] // Default value
         }
 
         return value
