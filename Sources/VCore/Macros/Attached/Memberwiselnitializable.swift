@@ -12,6 +12,9 @@ import Foundation
 ///
 /// If `accessLevelModifier` is `nil`, it will be inherited from the type.
 ///
+/// You can use `"*": .omit` wildcard in `parameterDefaultValues` to remove all default values from parameters.
+/// This is particularly useful when dealing with `Optional` properties, that by default, have `nil` values in initializer.
+///
 ///     @MemberwiseInitializable(
 ///         externalParameterNames: ["url": "_"]
 ///     )

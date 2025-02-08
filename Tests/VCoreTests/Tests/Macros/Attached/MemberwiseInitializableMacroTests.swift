@@ -536,6 +536,63 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             macros: macros
         )
     }
+    
+    func testParameterDefaultValuesParameter_WildCard() {
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable(
+                parameterDefaultValues: [
+                    "*": .omit
+                ]
+            )
+            struct SomeStruct {
+                var a: Int?
+                var b: Int? = 0
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    var a: Int?
+                    var b: Int? = 0
+
+                    internal init(
+                        a: Int?,
+                        b: Int?
+                    ) {
+                        self.a = a
+                        self.b = b
+                    }
+                }
+                """,
+            macros: macros
+        )
+        
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable(
+                parameterDefaultValues: [
+                    "*": .value(0)
+                ]
+            )
+            struct SomeStruct {
+                var a: Int?
+                var b: Int? = 0
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    var a: Int?
+                    var b: Int? = 0
+                }
+                """,
+            diagnostics: [
+                DiagnosticSpec(message: "'0' can not be used as a wildcard value", line: 1, column: 1)
+            ],
+            macros: macros
+        )
+    }
 
     func testExcludedParametersParameter() {
         assertMacroExpansion(

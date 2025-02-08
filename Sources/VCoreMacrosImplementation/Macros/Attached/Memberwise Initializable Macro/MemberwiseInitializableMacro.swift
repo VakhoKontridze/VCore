@@ -375,7 +375,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         let _isOptional: Bool // Derived value
         let _isFunctionType: Bool // Derived value
 
-        let defaultValue: String?
+        var defaultValue: String?
     }
     
     private static func parameters(
@@ -401,9 +401,11 @@ struct MemberwiseInitializableMacro: MemberMacro {
         
         // Ensures that incorrect properties aren't being used as parameters
         if
-            let name: String = externalParameterNamesStrings.keys.first(where: { name in
-                !parameters.contains(where: { $0.name == name })
-            })
+            let name: String = externalParameterNamesStrings
+                .keys
+                .first(where: { name in
+                    !parameters.contains(where: { $0.name == name })
+                })
         {
             let error: RawStringError = .init("Invalid 'externalParameterNames' parameter. '\(name)' is not a property of the declaration.")
             context.addDiagnostics(from: error, node: attribute)
@@ -411,9 +413,12 @@ struct MemberwiseInitializableMacro: MemberMacro {
         }
         
         if
-            let name: String = parameterDefaultValuesStrings.keys.first(where: { name in
-                !parameters.contains(where: { $0.name == name })
-            })
+            let name: String = parameterDefaultValuesStrings
+                .keys
+                .filter({ $0 != "*" })
+                .first(where: { name in
+                    !parameters.contains(where: { $0.name == name })
+                })
         {
             let error: RawStringError = .init("Invalid 'parameterDefaultValues' parameter. '\(name)' is not a property of the declaration.")
             context.addDiagnostics(from: error, node: attribute)
@@ -421,9 +426,10 @@ struct MemberwiseInitializableMacro: MemberMacro {
         }
         
         if
-            let name: String = excludedParametersStrings.first(where: { name in
-                !parameters.contains(where: { $0.name == name })
-            })
+            let name: String = excludedParametersStrings
+                .first(where: { name in
+                    !parameters.contains(where: { $0.name == name })
+                })
         {
             let error: RawStringError = .init("Invalid 'excludedParameters' parameter. '\(name)' is not a property of the declaration.")
             context.addDiagnostics(from: error, node: attribute)
@@ -432,6 +438,23 @@ struct MemberwiseInitializableMacro: MemberMacro {
         
         // Removes excluded parameters
         parameters.removeAll(where: { excludedParametersStrings.contains($0.name) })
+        
+        // Removes default values, if wildcard is used
+        if
+            let wildCardValue: MemberwiselnitializableParameterDefaultValue = parameterDefaultValuesStrings["*"]
+        {
+            switch wildCardValue {
+            case .value(let string):
+                let error: RawStringError = .init("'\(string)' can not be used as a wildcard value")
+                context.addDiagnostics(from: error, node: attribute)
+                throw error
+                
+            case .omit:
+                for i in parameters.indices {
+                    parameters[i].defaultValue = nil
+                }
+            }
+        }
         
         // Result
         return parameters
