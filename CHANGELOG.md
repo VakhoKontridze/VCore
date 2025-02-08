@@ -4,6 +4,7 @@
 
 Macros
 
+- Error diagnostics is improved
 - `MemberwiseInitializable` will no longer throw errors when empty `Dictionary` is used for `externalParameterNames` and `parameterDefaultValues` parameters
 
 ### [7.4.0(108)](https://github.com/VakhoKontridze/VCore/releases/tag/7.4.0) — *2025 01 28*

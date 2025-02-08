@@ -16,20 +16,28 @@ struct ColorMacro_InitWithHexString: ExpressionMacro {
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext
     ) throws -> ExprSyntax {
-        // Parameters
-        let colorSpaceString: String = try colorSpaceParameter(node: node)
-        let hex: String = try hexParameter(node: node)
-        let opacity: CGFloat = try opacityParameter(node: node)
-
+        // Macro parameters
+        let colorSpaceString: String = try colorSpaceParameter(
+            node: node
+        )
+        
+        let hex: String = try hexParameter(
+            node: node
+        )
+        
+        let opacity: CGFloat = try opacityParameter(
+            node: node
+        )
+        
         // RGB values
         guard
             let rgbValues = hex._hexColorRGBValues()
         else {
-            throw ColorMacroError_InitWithHexString.invalidHexParameter
+            throw RawStringError("Invalid 'hex' parameter")
         }
 
-        // Result
-        return 
+        // Macro expansion result
+        return
             """
             Color(
                 .\(raw: colorSpaceString),
@@ -59,7 +67,7 @@ struct ColorMacro_InitWithHexString: ExpressionMacro {
                 .baseName
                 .trimmedDescription
         else {
-            throw ColorMacroError_InitWithHexString.invalidColorSpaceParameter
+            throw RawStringError("Invalid 'colorSpace' parameter")
         }
 
         return value
@@ -73,7 +81,7 @@ struct ColorMacro_InitWithHexString: ExpressionMacro {
                 .arguments
                 .first(where: { $0.label?.trimmedDescription == "hex" })
         else {
-            throw ColorMacroError_InitWithHexString.invalidHexParameter
+            throw RawStringError("Invalid 'hex' parameter")
         }
 
         guard
@@ -81,7 +89,7 @@ struct ColorMacro_InitWithHexString: ExpressionMacro {
                 .expression.as(StringLiteralExprSyntax.self)?
                 .representedLiteralValue
         else {
-            throw ColorMacroError_InitWithHexString.invalidHexParameter
+            throw RawStringError("Invalid 'hex' parameter")
         }
 
         return value
@@ -106,7 +114,7 @@ struct ColorMacro_InitWithHexString: ExpressionMacro {
 
             let value: CGFloat = Double(valueString).map({ CGFloat($0) })
         else {
-            throw ColorMacroError_InitWithHexUInt.invalidOpacityParameter
+            throw RawStringError("Invalid 'opacity' parameter")
         }
 
         return value

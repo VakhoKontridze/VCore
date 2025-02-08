@@ -140,7 +140,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                 }
                 """,
             diagnostics: [
-                DiagnosticSpec(message: CodingKeysGenerationMacroError.canOnlyBeAppliedToVariables.description, line: 1, column: 1)
+                DiagnosticSpec(message: "'CKGProperty' macro can only be applied to variables", line: 3, column: 5)
             ],
             macros: macros
         )
@@ -161,7 +161,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                 }
                 """,
             diagnostics: [
-                DiagnosticSpec(message: CodingKeysGenerationMacroError.onePropertyAllowedPerLine.description, line: 1, column: 1)
+                DiagnosticSpec(message: "Only one property declaration is allowed per line", line: 3, column: 5)
             ],
             macros: macros
         )
@@ -219,7 +219,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                 }
                 """,
             diagnostics: [
-                DiagnosticSpec(message: CodingKeysGenerationMacroError.cannotBeAppliedToComputedProperties.description, line: 1, column: 1)
+                DiagnosticSpec(message: "'CKGProperty' macro can not be applied to computed properties", line: 3, column: 5)
             ],
             macros: macros
         )

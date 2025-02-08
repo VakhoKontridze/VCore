@@ -85,7 +85,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                 }
                 """,
             diagnostics: [
-                DiagnosticSpec(message: OptionSetRepresentationMacroError.canOnlyBeAppliedToStructs.description, line: 1, column: 1)
+                DiagnosticSpec(message: "'OptionSetRepresentation' macro can only be applied to 'struct's", line: 1, column: 1)
             ],
             macros: macros
         )
@@ -196,7 +196,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                 struct Gender {}
                 """,
             diagnostics: [
-                DiagnosticSpec(message: OptionSetRepresentationMacroError.optionsEnumNotFound.description,line: 1, column: 1)
+                DiagnosticSpec(message: "Options 'enum' listing all the options not found", line: 1, column: 1)
             ],
             macros: macros
         )
@@ -223,7 +223,7 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                 }
                 """,
             diagnostics: [
-                DiagnosticSpec(message: OptionSetRepresentationMacroError.optionsEnumRawTypeNotDeclared.description, line: 1, column: 1)
+                DiagnosticSpec(message: "Options 'enum' doesn't have a raw type", line: 3, column: 5)
             ],
             macros: macros
         )

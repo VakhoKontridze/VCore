@@ -58,7 +58,7 @@ final class ColorMacroTests_InitWithHexString: XCTestCase {
         )
     }
 
-    func testInvalidHexParameter() {
+    func testHexParameter() {
         assertMacroExpansion(
             """
             let color: Color = #color(hex: "#000000007AFF")
@@ -68,7 +68,7 @@ final class ColorMacroTests_InitWithHexString: XCTestCase {
                 let color: Color = #color(hex: "#000000007AFF")
                 """,
             diagnostics: [
-                DiagnosticSpec(message: ColorMacroError_InitWithHexString.invalidHexParameter.description, line: 1, column: 20)
+                DiagnosticSpec(message: "Invalid 'hex' parameter", line: 1, column: 20)
             ],
             macros: macros
         )

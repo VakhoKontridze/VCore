@@ -19,12 +19,17 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         providingMembersOf decl: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        // Expansion data
-        let expansionData: ExpansionData = try decodeExpansion(
-            attribute: attribute,
-            declaration: decl,
-            context: context
-        )
+        // Macro expansion data
+        let expansionData: ExpansionData
+        do {
+            expansionData = try decodeExpansion(
+                attribute: attribute,
+                declaration: decl,
+                context: context
+            )
+        } catch {
+            return []
+        }
 
         // `Option` `enum` cases
         let optionEnumCases: [EnumCaseElementSyntax] = expansionData
@@ -34,7 +39,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             .compactMap { $0.decl.as(EnumCaseDeclSyntax.self) }
             .flatMap { $0.elements } // Retrieves all cases from the same line
 
-        // Result
+        // Macro expansion result
         return memberResult(
             expansionData: expansionData,
             optionEnumCases: optionEnumCases
@@ -105,18 +110,20 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [ExtensionDeclSyntax] {
-        // Expansion data
-        guard
-            let expansionData: ExpansionData = try? decodeExpansion(
+        // Macro expansion data
+        let expansionData: ExpansionData
+        do {
+            expansionData = try decodeExpansion(
                 attribute: node,
                 declaration: declaration,
-                context: context
+                context: context,
+                diagnose: false // Diagnostics occur within `MemberMacro`
             )
-        else {
-            return [] // Errors are thrown from `MemberMacro`
+        } catch {
+            return []
         }
 
-        // Result
+        // Macro expansion result
         return extensionResult(
             type: type,
             expansionData: expansionData
@@ -162,16 +169,23 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
     private static func decodeExpansion(
         attribute: AttributeSyntax,
         declaration: some DeclGroupSyntax,
-        context: some MacroExpansionContext
+        context: some MacroExpansionContext,
+        diagnose: Bool = true
     ) throws -> ExpansionData {
-        // Parameters
-        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(attribute: attribute, declaration: declaration)
+        // Macro Parameters
+        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(
+            attribute: attribute,
+            declaration: declaration,
+            context: context
+        )
 
         // Limits declaration to `struct`s
         guard
             let structDeclaration: StructDeclSyntax = declaration.as(StructDeclSyntax.self)
         else {
-            throw OptionSetRepresentationMacroError.canOnlyBeAppliedToStructs
+            let error: RawStringError = .init("'OptionSetRepresentation' macro can only be applied to 'struct's")
+            if diagnose { context.addDiagnostics(from: error, node: declaration) }
+            throw error
         }
 
         // `Option` `enum` within the `struct`
@@ -189,7 +203,9 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
                 })?
                 .decl.as(EnumDeclSyntax.self)
         else {
-            throw OptionSetRepresentationMacroError.optionsEnumNotFound
+            let error: RawStringError = .init("Options 'enum' listing all the options not found")
+            if diagnose { context.addDiagnostics(from: error, node: declaration) }
+            throw error
         }
 
         // Raw type from `Option` `enum`
@@ -199,10 +215,12 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
                 .genericArgumentClause,
             let rawType: TypeSyntax = geneticArgument.arguments.first?.argument // Only one raw type
         else {
-            throw OptionSetRepresentationMacroError.optionsEnumRawTypeNotDeclared
+            let error: RawStringError = .init("Options 'enum' doesn't have a raw type")
+            if diagnose { context.addDiagnostics(from: error, node: optionsEnumDeclaration) }
+            throw error
         }
 
-        // Result
+        // Macro expansion result
         return ExpansionData(
             accessLevelModifier: accessLevelModifier,
             structDeclaration: structDeclaration,
@@ -211,10 +229,11 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         )
     }
 
-    // MARK: Parameters
+    // MARK: Macro Parameters
     private static func accessLevelModifierParameter(
         attribute: AttributeSyntax,
-        declaration: some DeclGroupSyntax
+        declaration: some DeclGroupSyntax,
+        context: some MacroExpansionContext
     ) throws -> AccessLevelModifierKeyword {
         guard
             let parameter: LabeledExprSyntax = attribute
@@ -241,7 +260,9 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
             let value: AccessLevelModifierKeyword = .init(rawValue: valueString)
         else {
-            throw OptionSetRepresentationMacroError.invalidAccessLevelModifierParameter
+            let error: RawStringError = .init("Invalid 'accessLevelModifier' parameter")
+            context.addDiagnostics(from: error, node: parameter)
+            throw error
         }
 
         return value

@@ -283,6 +283,27 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             macros: macros
         )
     }
+    
+    func testSameLineProperties() {
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable
+            struct SomeStruct {
+                var a, b: Int
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    var a, b: Int
+                }
+                """,
+            diagnostics: [
+                DiagnosticSpec(message: "Only one property declaration is allowed per line", line: 3, column: 5)
+            ],
+            macros: macros
+        )
+    }
 
     func testInvalidPropertyType() {
         assertMacroExpansion(
@@ -299,28 +320,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                 }
                 """,
             diagnostics: [
-                DiagnosticSpec(message: MemberwiseInitializableMacroError.invalidPropertyType.description, line: 1, column: 1)
-            ],
-            macros: macros
-        )
-    }
-
-    func testSameLineProperties() {
-        assertMacroExpansion(
-            """
-            @MemberwiseInitializable
-            struct SomeStruct {
-                var a, b: Int
-            }
-            """,
-            expandedSource:
-                """
-                struct SomeStruct {
-                    var a, b: Int
-                }
-                """,
-            diagnostics: [
-                DiagnosticSpec(message: MemberwiseInitializableMacroError.onePropertyAllowedPerLine.description, line: 1, column: 1)
+                DiagnosticSpec(message: "Invalid property type", line: 3, column: 5)
             ],
             macros: macros
         )
@@ -396,6 +396,29 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     }
                 }
                 """,
+            macros: macros
+        )
+        
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable(
+                externalParameterNames: [
+                    "b": "?"
+                ]
+            )
+            struct SomeStruct {
+                let a: Int
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    let a: Int
+                }
+                """,
+            diagnostics: [
+                DiagnosticSpec(message: "Invalid 'externalParameterNames' parameter. 'b' is not a property of the declaration.", line: 1, column: 1)
+            ],
             macros: macros
         )
     }
@@ -489,6 +512,29 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                 """,
             macros: macros
         )
+        
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable(
+                parameterDefaultValues: [
+                    "b": .omit
+                ]
+            )
+            struct SomeStruct {
+                let a: Int
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    let a: Int
+                }
+                """,
+            diagnostics: [
+                DiagnosticSpec(message: "Invalid 'parameterDefaultValues' parameter. 'b' is not a property of the declaration.", line: 1, column: 1)
+            ],
+            macros: macros
+        )
     }
 
     func testExcludedParametersParameter() {
@@ -515,6 +561,27 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     }
                 }
                 """,
+            macros: macros
+        )
+        
+        assertMacroExpansion(
+            """
+            @MemberwiseInitializable(
+                excludedParameters: ["b"]
+            )
+            struct SomeStruct {
+                let a: Int
+            }
+            """,
+            expandedSource:
+                """
+                struct SomeStruct {
+                    let a: Int
+                }
+                """,
+            diagnostics: [
+                DiagnosticSpec(message: "Invalid 'excludedParameters' parameter. 'b' is not a property of the declaration.", line: 1, column: 1)
+            ],
             macros: macros
         )
     }
@@ -590,7 +657,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                 enum SomeEnum {}
                 """,
             diagnostics: [
-                DiagnosticSpec(message: MemberwiseInitializableMacroError.cannotBeAppliedToEnums.description, line: 1, column: 1)
+                DiagnosticSpec(message: "'MemberwiseInitializable' macro cannot be applied to 'enum's", line: 1, column: 1)
             ],
             macros: macros
         )

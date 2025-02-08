@@ -18,26 +18,50 @@ struct CodingKeysGenerationMacro: MemberMacro {
         providingMembersOf declaration: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        // Parameters
-        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(attribute: node, declaration: declaration)
+        // Macro parameters
+        let accessLevelModifier: AccessLevelModifierKeyword
+        do {
+            accessLevelModifier = try accessLevelModifierParameter(
+                attribute: node,
+                declaration: declaration,
+                context: context
+            )
+        } catch {
+            return []
+        }
 
         // Properties
-        let properties: [PropertyData] = try declaration
-            .memberBlock
-            .members
-            .compactMap { try property(member: $0) }
+        var properties: [PropertyData] = []
+        for member in declaration.memberBlock.members {
+            do {
+                guard
+                    let property: PropertyData = try property(
+                        member: member,
+                        context: context
+                    )
+                else {
+                    continue
+                }
+                    
+                properties.append(property)
+                
+            } catch {
+                return []
+            }
+        }
 
-        // Result
+        // Macro expansion result
         return result(
             accessLevelModifier: accessLevelModifier,
             properties: properties
         )
     }
 
-    // MARK: Parameters
+    // MARK: Macro Parameters
     private static func accessLevelModifierParameter(
         attribute: AttributeSyntax,
-        declaration: some DeclGroupSyntax
+        declaration: some DeclGroupSyntax,
+        context: some MacroExpansionContext
     ) throws -> AccessLevelModifierKeyword {
         guard
             let parameter: LabeledExprSyntax = attribute
@@ -64,7 +88,9 @@ struct CodingKeysGenerationMacro: MemberMacro {
 
             let value: AccessLevelModifierKeyword = .init(rawValue: valueString)
         else {
-            throw CodingKeysGenerationMacroError.invalidAccessLevelModifierParameter
+            let error: RawStringError = .init("Invalid 'accessLevelModifier' parameter")
+            context.addDiagnostics(from: error, node: parameter)
+            throw error
         }
 
         return value
@@ -77,7 +103,8 @@ struct CodingKeysGenerationMacro: MemberMacro {
     }
 
     private static func property(
-        member: MemberBlockItemSyntax
+        member: MemberBlockItemSyntax,
+        context: some MacroExpansionContext
     ) throws -> PropertyData? {
         // `CKGProperty`
         guard
@@ -97,7 +124,9 @@ struct CodingKeysGenerationMacro: MemberMacro {
         guard
             let propertyDeclaration: VariableDeclSyntax = member.decl.as(VariableDeclSyntax.self)
         else {
-            throw CodingKeysGenerationMacroError.canOnlyBeAppliedToVariables
+            let error: RawStringError = .init("'CKGProperty' macro can only be applied to variables")
+            context.addDiagnostics(from: error, node: propertyMacro)
+            throw error
         }
 
         // Limits declaration to one property per line
@@ -105,14 +134,18 @@ struct CodingKeysGenerationMacro: MemberMacro {
             propertyDeclaration.bindings.count == 1,
             let propertyBinding: PatternBindingListSyntax.Element = propertyDeclaration.bindings.first
         else {
-            throw CodingKeysGenerationMacroError.onePropertyAllowedPerLine
+            let error: RawStringError = .init("Only one property declaration is allowed per line")
+            context.addDiagnostics(from: error, node: propertyMacro)
+            throw error
         }
 
         // Skips computed properties
         guard
             propertyBinding.accessorBlock == nil
         else {
-            throw CodingKeysGenerationMacroError.cannotBeAppliedToComputedProperties
+            let error: RawStringError = .init("'CKGProperty' macro can not be applied to computed properties")
+            context.addDiagnostics(from: error, node: propertyMacro)
+            throw error
         }
 
         // Property name
@@ -122,7 +155,9 @@ struct CodingKeysGenerationMacro: MemberMacro {
                 .identifier
                 .trimmedDescription
         else {
-            throw CodingKeysGenerationMacroError.invalidPropertyName
+            let error: RawStringError = .init("Invalid property name")
+            context.addDiagnostics(from: error, node: propertyMacro)
+            throw error
         }
 
         // Property key
@@ -132,7 +167,9 @@ struct CodingKeysGenerationMacro: MemberMacro {
                     .arguments?.as(LabeledExprListSyntax.self)?
                     .first // Only one argument, with no name
             else {
-                throw CodingKeysGenerationMacroError.invalidKey
+                let error: RawStringError = .init("Invalid coding key")
+                context.addDiagnostics(from: error, node: propertyMacro)
+                throw error
             }
 
             guard
@@ -143,7 +180,9 @@ struct CodingKeysGenerationMacro: MemberMacro {
                     .content
                     .trimmedDescription
             else {
-                throw CodingKeysGenerationMacroError.invalidKey
+                let error: RawStringError = .init("Invalid coding key")
+                context.addDiagnostics(from: error, node: propertyMacro)
+                throw error
             }
 
             return value

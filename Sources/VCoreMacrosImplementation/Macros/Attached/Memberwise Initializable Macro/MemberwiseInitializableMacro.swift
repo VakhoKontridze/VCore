@@ -19,34 +19,84 @@ struct MemberwiseInitializableMacro: MemberMacro {
         providingMembersOf declaration: some DeclGroupSyntax,
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
-        // Parameters
-        let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(attribute: node, declaration: declaration)
-        let externalParameterNamesStrings: [String: String] = try externalParameterNamesParameter(attribute: node)
-        let parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue] = try parameterDefaultValuesParameter(attribute: node)
-        let excludedParametersStrings: [String] = try excludedParametersParameter(attribute: node)
-        let comment: String? = try commentParameter(attribute: node)
+        // Macro parameters
+        let accessLevelModifier: AccessLevelModifierKeyword
+        do {
+            accessLevelModifier = try accessLevelModifierParameter(
+                attribute: node,
+                declaration: declaration,
+                context: context
+            )
+        } catch {
+            return []
+        }
+        
+        let externalParameterNamesStrings: [String: String]
+        do {
+            externalParameterNamesStrings = try externalParameterNamesParameter(
+                attribute: node,
+                context: context
+            )
+        } catch {
+            return []
+        }
+        
+        let parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue]
+        do {
+            parameterDefaultValuesStrings = try parameterDefaultValuesParameter(
+                attribute: node,
+                context: context
+            )
+        } catch {
+            return []
+        }
+        
+        
+        let excludedParametersStrings: [String]
+        do {
+            excludedParametersStrings = try excludedParametersParameter(
+                attribute: node,
+                context: context
+            )
+        } catch {
+            return []
+        }
+        
+        let comment: String?
+        do {
+            comment = try commentParameter(
+                attribute: node,
+                context: context
+            )
+        } catch {
+            return []
+        }
 
         // Skips `enum`s
         guard
             !declaration.is(EnumDeclSyntax.self)
         else {
-            throw MemberwiseInitializableMacroError.cannotBeAppliedToEnums
+            let error: RawStringError = .init("'MemberwiseInitializable' macro cannot be applied to 'enum's")
+            context.addDiagnostics(from: error, node: node)
+            return []
         }
 
         // Parameters
-        let parameters: [ParameterData] = try declaration
-            .memberBlock
-            .members
-            .compactMap { 
-                try parameter(
-                    externalParameterNamesStrings: externalParameterNamesStrings,
-                    parameterDefaultValuesStrings: parameterDefaultValuesStrings,
-                    excludedParametersStrings: excludedParametersStrings,
-                    member: $0
-                )
-            }
+        let parameters: [ParameterData]
+        do {
+            parameters = try Self.parameters(
+                externalParameterNamesStrings: externalParameterNamesStrings,
+                parameterDefaultValuesStrings: parameterDefaultValuesStrings,
+                excludedParametersStrings: excludedParametersStrings,
+                attribute: node,
+                declaration: declaration,
+                context: context
+            )
+        } catch {
+            return []
+        }
 
-        // Result
+        // Macro expansion result
         return result(
             accessLevelModifier: accessLevelModifier,
             parameters: parameters,
@@ -54,10 +104,11 @@ struct MemberwiseInitializableMacro: MemberMacro {
         )
     }
 
-    // MARK: Parameters
+    // MARK: Macro Parameters
     private static func accessLevelModifierParameter(
         attribute: AttributeSyntax,
-        declaration: some DeclGroupSyntax
+        declaration: some DeclGroupSyntax,
+        context: some MacroExpansionContext
     ) throws -> AccessLevelModifierKeyword {
         guard
             let parameter: LabeledExprSyntax = attribute
@@ -84,14 +135,17 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
             let value: AccessLevelModifierKeyword = .init(rawValue: valueString)
         else {
-            throw MemberwiseInitializableMacroError.invalidAccessLevelModifierParameter
+            let error: RawStringError = .init("Invalid 'accessLevelModifier' parameter")
+            context.addDiagnostics(from: error, node: parameter)
+            throw error
         }
 
         return value
     }
 
     private static func externalParameterNamesParameter(
-        attribute: AttributeSyntax
+        attribute: AttributeSyntax,
+        context: some MacroExpansionContext
     ) throws -> [String: String] {
         guard
             let parameter: LabeledExprSyntax = attribute
@@ -106,7 +160,9 @@ struct MemberwiseInitializableMacro: MemberMacro {
             let dictionaryExpression: DictionaryExprSyntax = parameter
                 .expression.as(DictionaryExprSyntax.self)
         else {
-            throw MemberwiseInitializableMacroError.invalidExternalParameterNamesParameter
+            let error: RawStringError = .init("Invalid 'externalParameterNames' parameter")
+            context.addDiagnostics(from: error, node: parameter)
+            throw error
         }
         
         guard
@@ -119,8 +175,14 @@ struct MemberwiseInitializableMacro: MemberMacro {
                             .segments
                             .first?.as(StringSegmentSyntax.self)?
                             .content
-                            .trimmedDescription,
-
+                            .trimmedDescription
+                    else {
+                        let error: RawStringError = .init("Invalid key")
+                        context.addDiagnostics(from: error, node: element)
+                        throw error
+                    }
+                    
+                    guard
                         let value: String = element
                             .value.as(StringLiteralExprSyntax.self)?
                             .segments
@@ -128,7 +190,9 @@ struct MemberwiseInitializableMacro: MemberMacro {
                             .content
                             .trimmedDescription
                     else {
-                        throw MemberwiseInitializableMacroError.invalidExternalParameterNamesParameter
+                        let error: RawStringError = .init("Invalid value")
+                        context.addDiagnostics(from: error, node: element)
+                        throw error
                     }
 
                     result[key] = value
@@ -141,7 +205,8 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
 
     private static func parameterDefaultValuesParameter(
-        attribute: AttributeSyntax
+        attribute: AttributeSyntax,
+        context: some MacroExpansionContext
     ) throws -> [String: MemberwiselnitializableParameterDefaultValue] {
         guard
             let parameter: LabeledExprSyntax = attribute
@@ -156,7 +221,9 @@ struct MemberwiseInitializableMacro: MemberMacro {
             let dictionaryExpression: DictionaryExprSyntax = parameter
                 .expression.as(DictionaryExprSyntax.self)
         else {
-            throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
+            let error: RawStringError = .init("Invalid 'parameterDefaultValues' parameter")
+            context.addDiagnostics(from: error, node: parameter)
+            throw error
         }
 
         guard
@@ -171,7 +238,9 @@ struct MemberwiseInitializableMacro: MemberMacro {
                             .content
                             .trimmedDescription
                     else {
-                        throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
+                        let error: RawStringError = .init("Invalid key")
+                        context.addDiagnostics(from: error, node: element)
+                        throw error
                     }
 
                     let value: MemberwiselnitializableParameterDefaultValue = try {
@@ -193,7 +262,9 @@ struct MemberwiseInitializableMacro: MemberMacro {
                                     .expression
                                     .trimmedDescription
                             else {
-                                throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
+                                let error: RawStringError = .init("Invalid value")
+                                context.addDiagnostics(from: error, node: element)
+                                throw error
                             }
 
                             return .value(value)
@@ -210,7 +281,9 @@ struct MemberwiseInitializableMacro: MemberMacro {
                             return .omit
 
                         } else {
-                            throw MemberwiseInitializableMacroError.invalidParameterDefaultValuesParameter
+                            let error: RawStringError = .init("Invalid value")
+                            context.addDiagnostics(from: error, node: element)
+                            throw error
                         }
                     }()
 
@@ -224,7 +297,8 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
 
     private static func excludedParametersParameter(
-        attribute: AttributeSyntax
+        attribute: AttributeSyntax,
+        context: some MacroExpansionContext
     ) throws -> [String] {
         guard
             let parameter: LabeledExprSyntax = attribute
@@ -248,20 +322,25 @@ struct MemberwiseInitializableMacro: MemberMacro {
                             .content
                             .trimmedDescription
                     else {
-                        throw MemberwiseInitializableMacroError.invalidExcludedParametersParameter
+                        let error: RawStringError = .init("Invalid value")
+                        context.addDiagnostics(from: error, node: element)
+                        throw error
                     }
 
                     return value
                 })
         else {
-            throw MemberwiseInitializableMacroError.invalidExcludedParametersParameter
+            let error: RawStringError = .init("Invalid 'excludedParameters' parameter")
+            context.addDiagnostics(from: error, node: parameter)
+            throw error
         }
 
         return value
     }
 
     private static func commentParameter(
-        attribute: AttributeSyntax
+        attribute: AttributeSyntax,
+        context: some MacroExpansionContext
     ) throws -> String? {
         guard
             let parameter: LabeledExprSyntax = attribute
@@ -277,7 +356,9 @@ struct MemberwiseInitializableMacro: MemberMacro {
                 .expression.as(StringLiteralExprSyntax.self)?
                 .representedLiteralValue
         else {
-            throw MemberwiseInitializableMacroError.invalidCommentParameter
+            let error: RawStringError = .init("Invalid 'comment' parameter")
+            context.addDiagnostics(from: error, node: parameter)
+            throw error
         }
 
         return value
@@ -296,12 +377,71 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
         let defaultValue: String?
     }
+    
+    private static func parameters(
+        externalParameterNamesStrings: [String: String],
+        parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue],
+        excludedParametersStrings: [String],
+        attribute: AttributeSyntax,
+        declaration: some DeclGroupSyntax,
+        context: some MacroExpansionContext
+    ) throws -> [ParameterData] {
+        // Parameters
+        var parameters: [ParameterData] = try declaration
+            .memberBlock
+            .members
+            .compactMap({
+                try parameter(
+                    externalParameterNamesStrings: externalParameterNamesStrings,
+                    parameterDefaultValuesStrings: parameterDefaultValuesStrings,
+                    member: $0,
+                    context: context
+                )
+            })
+        
+        // Ensures that incorrect properties aren't being used as parameters
+        if
+            let name: String = externalParameterNamesStrings.keys.first(where: { name in
+                !parameters.contains(where: { $0.name == name })
+            })
+        {
+            let error: RawStringError = .init("Invalid 'externalParameterNames' parameter. '\(name)' is not a property of the declaration.")
+            context.addDiagnostics(from: error, node: attribute)
+            throw error
+        }
+        
+        if
+            let name: String = parameterDefaultValuesStrings.keys.first(where: { name in
+                !parameters.contains(where: { $0.name == name })
+            })
+        {
+            let error: RawStringError = .init("Invalid 'parameterDefaultValues' parameter. '\(name)' is not a property of the declaration.")
+            context.addDiagnostics(from: error, node: attribute)
+            throw error
+        }
+        
+        if
+            let name: String = excludedParametersStrings.first(where: { name in
+                !parameters.contains(where: { $0.name == name })
+            })
+        {
+            let error: RawStringError = .init("Invalid 'excludedParameters' parameter. '\(name)' is not a property of the declaration.")
+            context.addDiagnostics(from: error, node: attribute)
+            throw error
+        }
+        
+        // Removes excluded parameters
+        parameters.removeAll(where: { excludedParametersStrings.contains($0.name) })
+        
+        // Result
+        return parameters
+    }
 
     private static func parameter(
         externalParameterNamesStrings: [String: String],
         parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue],
-        excludedParametersStrings: [String],
-        member: MemberBlockItemSyntax
+        member: MemberBlockItemSyntax,
+        context: some MacroExpansionContext
     ) throws -> ParameterData? {
         // Limits declaration to variables
         guard
@@ -315,7 +455,9 @@ struct MemberwiseInitializableMacro: MemberMacro {
             propertyDeclaration.bindings.count == 1,
             let propertyBinding: PatternBindingListSyntax.Element = propertyDeclaration.bindings.first
         else {
-            throw MemberwiseInitializableMacroError.onePropertyAllowedPerLine
+            let error: RawStringError = .init("Only one property declaration is allowed per line")
+            context.addDiagnostics(from: error, node: propertyDeclaration)
+            throw error
         }
 
         // Skips `lazy` properties
@@ -362,18 +504,13 @@ struct MemberwiseInitializableMacro: MemberMacro {
             }
         }()
 
-        // Skips excluded parameters
-        guard
-            !excludedParametersStrings.contains(propertyName)
-        else {
-            return nil
-        }
-
         // Property type
         guard
             let propertyType: String = propertyBinding.typeAnnotation?.type.trimmedDescription
         else {
-            throw MemberwiseInitializableMacroError.invalidPropertyType
+            let error: RawStringError = .init("Invalid property type")
+            context.addDiagnostics(from: error, node: propertyDeclaration)
+            throw error
         }
 
         // Function type flag

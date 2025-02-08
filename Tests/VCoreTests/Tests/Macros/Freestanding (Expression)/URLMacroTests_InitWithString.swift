@@ -33,7 +33,7 @@ final class URLMacroTests_InitWithString: XCTestCase {
         )
     }
 
-    func testInvalidStringURLParameter() {
+    func testStringURLParameter() {
         assertMacroExpansion(
             """
             let urlString: String = "https://example.com"
@@ -45,13 +45,11 @@ final class URLMacroTests_InitWithString: XCTestCase {
                 let url: URL = #url(urlString)
                 """,
             diagnostics: [
-                DiagnosticSpec(message: URLMacroError_InitWithString.invalidURLStringParameter.description, line: 2, column: 16)
+                DiagnosticSpec(message: "Invalid 'urlString' parameter", line: 2, column: 16)
             ],
             macros: macros
         )
-    }
 
-    func testMalformedURL() {
         assertMacroExpansion(
             """
             let url: URL = #url("https://example .com")
@@ -61,7 +59,7 @@ final class URLMacroTests_InitWithString: XCTestCase {
                 let url: URL = #url("https://example .com")
                 """,
             diagnostics: [
-                DiagnosticSpec(message: URLMacroError_InitWithString.malformedURL.description, line: 1, column: 16)
+                DiagnosticSpec(message: "Invalid 'urlString' parameter", line: 1, column: 16)
             ],
             macros: macros
         )
