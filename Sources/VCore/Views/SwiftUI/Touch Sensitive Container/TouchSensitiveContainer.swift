@@ -124,8 +124,9 @@ public struct TouchSensitiveContainer<Content>: View, Sendable where Content: Vi
         block: @escaping () -> Void
     ) {
         if let delay = delay.nonZero {
+            // No need to handle reentrancy and cancellation
             Task(operation: { @MainActor in
-                try? await Task.sleep(seconds: delay) // No need to handle reentrancy
+                try? await Task.sleep(seconds: delay)
                 block()
             })
         } else {

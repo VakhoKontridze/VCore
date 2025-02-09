@@ -127,11 +127,12 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
         }()
 
         if let offset {
+            // No need to handle reentrancy and cancellation
             Task(operation: { @MainActor in
                 self.offset = offset
                 self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
-                try? await Task.sleep(seconds: systemKeyboardInfo.nonZeroAnimationDuration) // No need to handle reentrancy
+                try? await Task.sleep(seconds: systemKeyboardInfo.nonZeroAnimationDuration)
                 
                 self.offsetStable = offset
             })
@@ -158,11 +159,12 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
         }()
 
         if let offset {
+            // No need to handle reentrancy and cancellation
             Task(operation: { @MainActor in
                 self.offset = offset
                 self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
-                try? await Task.sleep(seconds: systemKeyboardInfo.nonZeroAnimationDuration) // No need to handle reentrancy
+                try? await Task.sleep(seconds: systemKeyboardInfo.nonZeroAnimationDuration)
                 
                 self.offsetStable = offset
             })
