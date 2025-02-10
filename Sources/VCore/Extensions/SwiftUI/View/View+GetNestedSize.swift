@@ -39,7 +39,7 @@ extension View {
     
     /// Retrieves nested nested size from child `View` and assigns it on a `Binding`.
     ///
-    /// For more info, refer to `View.getNestedSize(_:)` method.
+    /// For additional info, refer to `View.getNestedSize(_:)` method.
     public func getNestedSize(
         assignTo binding: Binding<CGSize>
     ) -> some View {

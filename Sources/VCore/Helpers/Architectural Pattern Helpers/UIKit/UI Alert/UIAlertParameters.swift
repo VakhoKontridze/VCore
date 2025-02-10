@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - UI Alert Parameters
-/// Parameters for presenting an `UIAlert`.
+/// Parameters for presenting a `UIAlert`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are passed by`Presenter` to `View/Controller`
 /// In `MVVM` architecture, parameters are passed by`ViewModel` to `View/Controller`

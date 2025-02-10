@@ -10,7 +10,7 @@
 import UIKit
 
 // MARK: - UI Action Sheet Parameters
-/// Parameters for presenting an `UIActionSheet`.
+/// Parameters for presenting a `UIActionSheet`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are passed by`Presenter` to `View/Controller`
 /// In `MVVM` architecture, parameters are passed by`ViewModel` to `View/Controller`

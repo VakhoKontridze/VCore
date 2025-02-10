@@ -1,4 +1,4 @@
-# URLSession Examples
+# Network Requests with Gateways
 
 ## Table of Contents
 
@@ -9,7 +9,7 @@
 
 ## Intro
 
-This document provides examples of network requests made using `URLSession` following the principles of "Interactors and Gateways" as discussed elsewhere.
+This document provides examples of network requests made with gateways.
 
 ## Simple Request
 
@@ -54,7 +54,7 @@ struct GetPostGateway: GetPostGatewayProtocol {
 
 Request is initiated to retrieve a post with an ID of `1`:
 
-```
+```swift
 Task(operation: {
     do {
         let parameters: GetPostParameters = .init(id: 1)
@@ -117,7 +117,9 @@ func processURLSessionResponse(
     _ data: Data,
     _ response: URLResponse
 ) throws -> URLResponse {
-    if response.isSuccessHTTPStatusCode { return response }
+    if response.isSuccessHTTPStatusCode { 
+        return response 
+    }
 
     guard
         let code: Int = (response as? HTTPURLResponse)?.statusCode
@@ -219,7 +221,7 @@ Task(operation: {
 
 ## Request with Progress Observation
 
-Following gateway initiates a request to retrieve an `UIImage` with from an url, and communicate the download progress:
+Following gateway initiates a request to retrieve a `UIImage` with from an url, and communicate the download progress:
 
 ```swift
 protocol FetchImageGatewayProtocol {
@@ -259,7 +261,7 @@ struct FetchImageGateway: FetchImageGatewayProtocol {
             data.append(byte)
 
             let current: Int = data.count
-            let progress: Double = .init(current) / .init(totalBytes)
+            let progress: Double = Double(current) / Double(totalBytes)
 
             if
                 progress - progressPrevious > 0.01 ||
@@ -278,7 +280,7 @@ struct FetchImageGateway: FetchImageGatewayProtocol {
 }
 ```
 
-Request is initiated to retrieve an `UIImage` and print the download progress:
+Request is initiated to retrieve a `UIImage` and print the download progress:
 
 ```swift
 Task(operation: {

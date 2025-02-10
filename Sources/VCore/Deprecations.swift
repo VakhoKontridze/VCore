@@ -136,6 +136,21 @@ extension UIColor {
 
 #endif
 
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+extension UIApplication {
+    @available(*, deprecated, renamed: "topmostViewController")
+    public func topMostViewController(
+        inWindow window: UIWindow
+    ) -> UIViewController? {
+        topmostViewController(inWindow: window)
+    }
+}
+
+#endif
+
 // MARK: - Extensions - App Kit
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 

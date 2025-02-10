@@ -11,7 +11,7 @@ import UIKit
 import OSLog
 
 // MARK: - Parameters
-/// Protocol that allows parameter to configure an `UICollectionViewCell`.
+/// Protocol that allows parameter to configure a `UICollectionViewCell`.
 ///
 ///     protocol SomeViewable: AnyObject {}
 ///

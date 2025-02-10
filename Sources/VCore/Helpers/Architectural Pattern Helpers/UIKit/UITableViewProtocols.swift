@@ -11,7 +11,7 @@ import UIKit
 import OSLog
 
 // MARK: - Parameter
-/// Protocol that allows parameter to configure an `UITableViewCell`.
+/// Protocol that allows parameter to configure a `UITableViewCell`.
 ///
 ///     protocol SomeViewable: AnyObject {}
 ///

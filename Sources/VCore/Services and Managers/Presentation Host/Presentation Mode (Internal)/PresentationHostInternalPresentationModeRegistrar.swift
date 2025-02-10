@@ -12,7 +12,7 @@ final class PresentationHostInternalPresentationModeRegistrar: @unchecked Sendab
     // MARK: Properties - Singleton
     static let shared: PresentationHostInternalPresentationModeRegistrar = .init()
     
-    // MARK: Properties - Registrat
+    // MARK: Properties - Registrar
     private var registrar: [String?: PresentationHostInternalPresentationMode] = [
         nil: PresentationHostInternalPresentationMode()
     ]

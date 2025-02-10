@@ -76,7 +76,7 @@ public struct PresentationHostLayerUIModel: Sendable {
         }
 
         // MARK: Initializers
-        /// Default value. Set to `sendActionToTopMostModal`.
+        /// Default value. Set to `sendActionToTopmostModal`.
         public static var `default`: Self { .sendActionToTopmostModal }
     }
 }

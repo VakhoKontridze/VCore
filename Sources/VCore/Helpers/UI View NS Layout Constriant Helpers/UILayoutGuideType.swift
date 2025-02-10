@@ -48,7 +48,7 @@ public enum UILayoutGuideType: Sendable {
     case custom(@Sendable (UIView) -> UILayoutGuide)
     
     // MARK: Properties
-    /// Converts `UILayoutGuideType` to `UILayoutGuide` within the context of an `UIView`.
+    /// Converts `UILayoutGuideType` to `UILayoutGuide` within the context of a `UIView`.
     @MainActor
     public func toLayoutGuide(in view: UIView) -> UILayoutGuide {
         switch self {

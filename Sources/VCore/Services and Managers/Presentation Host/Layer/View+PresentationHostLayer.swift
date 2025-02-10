@@ -45,7 +45,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
 
     // MARK: Properties - Safe Area
     @State private var safeAreaInsets: EdgeInsets?
-    @State private var didReadSafeAreaInsetsSubject: PassthroughSubject<Void, Never> = .init() // Delays presentation until environment is read
+    @State private var didReadSafeAreaInsetsSubject: PassthroughSubject<Void, Never> = .init() // Delays presentation until environment value is read
 
     // MARK: Initializers
     init(
@@ -87,7 +87,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
             )
             .onReceive(
                 internalPresentationMode.updatePublisher.combineLatest(didReadSafeAreaInsetsSubject),
-                perform:  { (data, _) in didReceiveInternalUpdateRequest(data) }
+                perform: { (data, _) in didReceiveInternalUpdateRequest(data) }
             )
             .onReceive(
                 internalPresentationMode.dismissPublisher.combineLatest(didReadSafeAreaInsetsSubject),
@@ -133,8 +133,8 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
         let color: Color = {
             if
                 modals.count == 1,
-                let topMostModal: ModalData = modals.last,
-                let color: Color = topMostModal.uiModel.preferredDimmingViewColor
+                let topmostModal: ModalData = modals.last,
+                let color: Color = topmostModal.uiModel.preferredDimmingViewColor
             {
                 color
                 
@@ -150,16 +150,16 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     // `visualDimmingView` should not be handling gestures.
     // If two modals are presented, where top-most one is smaller,
     // the larger one behind it would be hiding most of interactive portion of the view.
-    // So, it's better to insert `interactiveDimmingView` behind top-most modal.
+    // So, it's better to insert `interactiveDimmingView` behind topmost modal.
     private func interactiveDimmingView(
-        topMostModal: ModalData
+        topmostModal: ModalData
     ) -> some View {
         Color.clear
             .contentShape(.rect)
             .allowsHitTesting(uiModel.dimmingViewTapAction.allowsHitTesting)
             .onTapGesture(perform: {
                 if uiModel.dimmingViewTapAction == .sendActionToTopmostModal {
-                    topMostModal.presentationMode.dimmingViewTapActionSubject.send()
+                    topmostModal.presentationMode.dimmingViewTapActionSubject.send()
                 }
             })
     }
@@ -170,7 +170,7 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
             id: \.element.id,
             content: { (i, modal) in
                 modalView(
-                    isTopMost: i == modals.count - 1,
+                    isTopmost: i == modals.count - 1,
                     modal: modal
                 )
             }
@@ -179,11 +179,11 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
 
     @ViewBuilder
     private func modalView(
-        isTopMost: Bool,
+        isTopmost: Bool,
         modal: ModalData
     ) -> some View {
-        if isTopMost {
-            interactiveDimmingView(topMostModal: modal)
+        if isTopmost {
+            interactiveDimmingView(topmostModal: modal)
         }
         
         NonInvasiveGeometryReader(

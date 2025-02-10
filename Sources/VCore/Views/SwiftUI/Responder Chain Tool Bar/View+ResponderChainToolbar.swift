@@ -12,7 +12,7 @@ import SwiftUI
 @available(watchOS, unavailable) // No `ToolbarItemPlacement.keyboard`
 @available(visionOS, unavailable) // No `ToolbarItemPlacement.keyboard`
 extension View {
-    /// Inserts toolbar that managed focus navigation in responder chain.
+    /// Inserts toolbar that manages focus navigation in responder chain.
     ///
     ///     @State private var firstName: String = ""
     ///     @State private var lastName: String = ""
@@ -121,7 +121,7 @@ extension View {
             })
     }
 
-    /// Inserts toolbar that managed focus navigation in responder chain.
+    /// Inserts toolbar that manages focus navigation in responder chain.
     ///
     ///     enum FocusedInput: CaseIterable {
     ///         case firstName

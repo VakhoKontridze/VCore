@@ -8,6 +8,10 @@ Macros
 - `MemberwiseInitializable` will no longer throw errors when empty `Dictionary` is used for `externalParameterNames` and `parameterDefaultValues` parameters
 - `"*": .omit` wildcard can now be used in `parameterDefaultValues` in `MemberwiseInitializable` to remove all default values from parameters
 
+Documentation
+
+- Presentation Host documentation is added
+
 ### [7.4.0(108)](https://github.com/VakhoKontridze/VCore/releases/tag/7.4.0) — *2025 01 28*
 
 Global Functions
@@ -735,7 +739,7 @@ API
 
 - `VCoreLocalizationService` is renamed to `VCoreLocalizationManager`
 
-Extra - Documentation
+Documentation
 
 - `Swift` style guide is added
 
@@ -1181,7 +1185,7 @@ Extensions
 
 ### [3.8.1(31)](https://github.com/VakhoKontridze/VCore/releases/tag/3.8.1) — *2022 06 25*
 
-Extra - Documentation
+Documentation
 
 - Duplicate CLEAN Gateway documentation is removed
 
@@ -1572,7 +1576,7 @@ Services and Managers - Network Service
 
 Helpers - Architectural Pattern Helpers
 
-- `ViewModel.uiAlertController` property can now be accessed to create an `UIAlertController`
+- `ViewModel.uiAlertController` property can now be accessed to create a `UIAlertController`
 
 ### [1.0.2(3)](https://github.com/VakhoKontridze/VCore/releases/tag/1.0.2) — *2021 10 08*
 

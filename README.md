@@ -11,7 +11,7 @@
 
 ## Description
 
-VCore is a Swift collection containing objects, functions, and extensions that I use for my projects.
+VCore is a Swift collection containing objects, functions, and extensions that I use in my projects.
 
 ## Structure
 
@@ -29,21 +29,25 @@ Package files are grouped as:
 
 - ***Global Functions***. Global functions. For instance, `FIXME(_:)` and `TODO(_:)`.
 
-- ***Macros***. Macros. For instance, `url(_:)`.
+- ***Macros***. Macros. For instance, `CodingKeysGeneration`.
 
 - ***API***. Objects used for interfacing from you app/package with `VCore`. For instance, `VCoreLocalizationManager`.
 
 Package incudes folder `Extra`, which contains:
 
-- ***XCode Templates***. Templates that can be used for accelerating workflow. Currently, templates cover scenes and gateways. For additional info, refer to documentation folder.
+- ***XCode Templates***. Templates that can be used for accelerating workflow.
 
 Project includes folder `Documentation`, which contains:
 
-- Swift style guide
-
-- Documentation of networking
+- Various documentation and style guides
 
 ## Showcase
+
+#### Presentation Host
+
+Manager that injects a presentation host in view hierarchy for modal presentation.
+
+For additional info, refer to "Presentation Host" documentation.
 
 #### Multipart/Form-Data Builder
 
@@ -96,9 +100,9 @@ let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for
 `KeychainService` that supports custom queries, and has a dedicated property wrapper:
 
 ```swift
-KeychainService.default.get(key: "SomeKey")
-KeychainService.default.set(key: "SomeKey", value: data)
-KeychainService.default.delete(key: "SomeKey")
+KeychainService.default.getData(key: "SomeKey")
+KeychainService.default.setData(key: "SomeKey", value: data)
+KeychainService.default.deleteData(key: "SomeKey")
 ```
 
 ```swift
@@ -136,56 +140,6 @@ var body: some View {
 }
 ```
 
-#### Various UIKit UIViews/UIViewControllers
-
-`KeyboardResponsiveUIViewController` that handles keyboard notifications:
-
-```swift
-final class ViewController: KeyboardResponsiveUIViewController {
-    private let textField: UITextField = ...
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        view.addsupview(textField)
-
-        NSLayoutConstraint.activate([
-            ...
-        ])
-    }
-
-    override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
-        super.keyboardWillShow(systemKeyboardInfo)
-
-        UIView.animateKeyboardResponsiveness(
-            systemKeyboardInfo: systemKeyboardInfo,
-            animations: { [weak self] in
-                guard let self else { return }
-                
-                guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return }
-
-                view.bounds.origin.y = systemKeyboardHeight
-                view.superview?.layoutIfNeeded()
-            }
-        )
-    }
-
-    override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
-        super.keyboardWillHide(systemKeyboardInfo)
-
-        UIView.animateKeyboardResponsiveness(
-            systemKeyboardInfo: systemKeyboardInfo,
-            animations: { [weak self] in
-                guard let self else { return }
-
-                view.bounds.origin.y = 0
-                view.superview?.layoutIfNeeded()
-            }
-        )
-    }
-}
-```
-
 #### Various Declarations
 
 `KeyPathInitializableEnumeration` that allows for initialization of an `enum` with a `KeyPath`:
@@ -216,7 +170,7 @@ Retrieving `CGSize` form `View`:
 var body: some View {
     VStack(content: {
         Color.accentColor
-            .getSize({ size = $0 })
+            .getSize(assignTo: $size)
     })
 }
 ```

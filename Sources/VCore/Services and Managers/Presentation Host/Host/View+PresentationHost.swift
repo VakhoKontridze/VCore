@@ -81,7 +81,11 @@ extension View {
     ///             })
     ///             .frame(dimension: 300)
     ///
-    ///             .clipped() // Fixes issues with keyboard
+    ///             .compositingGroup() // For shadow
+    ///             .shadow(
+    ///                 color: .black.opacity(0.15),
+    ///                 radius: 10
+    ///             )
     ///
     ///             .offset(y: isPresentedInternally ? 0 : (containerSize.height + 300)/2)
     ///
@@ -378,7 +382,11 @@ private struct SomeModal<Content>: View where Content: View {
         })
         .frame(dimension: dimension)
         
-        .clipped() // Fixes issues with keyboard
+        .compositingGroup() // For shadow
+        .shadow(
+            color: .black.opacity(0.15),
+            radius: 10
+        )
 
         .offset(y: isPresentedInternally ? 0 : (containerSize.height + dimension)/2)
 
