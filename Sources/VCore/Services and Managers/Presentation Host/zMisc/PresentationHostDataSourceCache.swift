@@ -15,27 +15,35 @@ import SwiftUI
 /// For additional info, refer to `View.presentationHost(...)`.
 ///
 ///     extension View {
-///         func someModal<T>(
+///         func someModal<Item, Content>(
 ///             layerID: String? = nil,
 ///             id: String,
-///             isPresented: Binding<Bool>,
-///             presenting data: T?,
-///             @ViewBuilder content: @escaping (T) -> some View
-///         ) -> some View {
-///             data.map { PresentationHostDataSourceCache.shared.set(key: id, value: $0) }
+///             item: Binding<Item?>,
+///             @ViewBuilder content: @escaping (Item) -> Content
+///         ) -> some View
+///             where Content: View
+///         {
+///             item.wrappedValue.map { PresentationHostDataSourceCache.shared.set(key: id, value: $0) }
+///
+///             let isPresented: Binding<Bool> = .init(
+///                 get: { item.wrappedValue != nil },
+///                 set: { if !$0 { item.wrappedValue = nil } }
+///             )
 ///
 ///             return self
 ///                 .presentationHost(
 ///                     layerID: layerID,
 ///                     id: id,
 ///                     isPresented: isPresented,
-///                     presenting: data,
 ///                     content: {
-///                         SomeModal(content: {
-///                             if let data = data ?? (PresentationHostDataSourceCache.shared.get(key: id) as? T) {
-///                                 content(data)
+///                         SomeModal<Content?>(
+///                             isPresented: isPresented,
+///                             content: {
+///                                 if let item = item.wrappedValue ?? PresentationHostDataSourceCache.shared.get(key: id) as? Item {
+///                                     content(item)
+///                                 }
 ///                             }
-///                         })
+///                         )
 ///                     }
 ///                 )
 ///         }

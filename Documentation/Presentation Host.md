@@ -651,6 +651,4 @@ extension View {
 }
 ```
 
-As `item` is `Optional`, it's `Binding` can be mapped to a `Bool`.
-
-One thing to keep in mind, is that Presentation Host doesn't require a capture list. Which means, that there will be a moment when `item` is set to `nil`. In order to avoid a blank content as modal is being animated out, `PresentationHostDataSourceCache` can be used to cache and retrieve data source. Cleanup is automatically done by Presentation Host when modal is dismissed to avoid memory leaks.
+One thing to keep in mind, is that Presentation Host doesn't require a capture list. Which means, that if `item` is set to `nil`, modal content will be blank when modal is being animated out. `PresentationHostDataSourceCache` can be used to cache and retrieve data sources. Cleanup is automatically performed when modal is dismissed to avoid memory leaks.
