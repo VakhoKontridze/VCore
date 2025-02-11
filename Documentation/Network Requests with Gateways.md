@@ -149,8 +149,7 @@ func processURLSessionData(
 ) throws -> Data {
     guard
         let json: [String: Any?] = try? JSONDecoder.decodeJSONFromData(data),
-        let dataObjectOpt: Any? = json["data"],
-        let dataObject: Any = dataObjectOpt,
+        let dataObject: Any = json["data"] ?? nil,
         let dataData: Data = try? JSONEncoder.encodeAnyToData(dataObject)
     else {
         throw URLError(.cannotDecodeContentData)
