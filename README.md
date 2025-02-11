@@ -2,14 +2,14 @@
 
 ## Table of Contents
 
-- [Description](#description)
+- [Intro](#intro)
 - [Structure](#structure)
 - [Showcase](#showcase)
 - [Installation](#installation)
 - [Compatibility](#compatibility)
 - [Contact](#contact)
 
-## Description
+## Intro
 
 VCore is a Swift collection containing objects, functions, and extensions that I use in my projects.
 
