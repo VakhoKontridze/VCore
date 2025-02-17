@@ -377,7 +377,7 @@ var body: some View {
         .presentationHostLayer(
             uiModel: {
                 var uiModel: PresentationHostLayerUIModel = .init()
-                uiModel.keyboardObserverSubUIModel.keyboardResponsivenessStrategy = ???
+                uiModel.keyboardObserverSubUIModel.keyboardResponsivenessStrategy = .offsetByObscuredViewHeight(additionalOffset: 20)
                 return uiModel
             }()
         )

@@ -5,24 +5,28 @@ import VCore
 
 // MARK: - ___VARIABLE_productName___ View
 struct ___VARIABLE_productName___View: View {
-    // MARK: Properties - Architecture
-    @State private var parameters: ___VARIABLE_productName___Parameters
-
-    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
-    @State private var alertParameters: AlertParameters?
-    @State private var progressViewParameters: ProgressViewParameters?
-    
     // MARK: Properties - Model Injection
+    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
+    
     // ...
     
     // MARK: Properties - UI Model
     // ...
-
-    // MARK: Properties - Data
-    // ...
-
+    
+    // MARK: Properties - Parameters
+    @State private var parameters: ___VARIABLE_productName___Parameters
+    
     // MARK: Properties - ???
     // ...
+    
+    // MARK: Properties - Progress & Alert & Error
+    private var progressViewParameters: ProgressViewParameters? {
+        let isVisible: Bool = false
+        
+        return isVisible ? ProgressViewParameters() : nil
+    }
+    
+    @State private var alertParameters: AlertParameters?
 
     // MARK: Properties - Cancellables
     // ...
@@ -42,8 +46,8 @@ struct ___VARIABLE_productName___View: View {
 
         .inlineNavigationTitle("___VARIABLE_productName___")
 
-        .alert(parameters: $alertParameters)
         .progressView(parameters: progressViewParameters)
+        .alert(parameters: $alertParameters)
     }
     
     private var backgroundView: some View {
@@ -59,6 +63,12 @@ struct ___VARIABLE_productName___View: View {
     private func didLoad() {
         // ...
     }
+    
+    // MARK: Actions
+    // ...
+    
+    // MARK: Requests
+    // ...
 }
 
 // MARK: - Preview

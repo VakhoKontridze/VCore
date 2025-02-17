@@ -55,7 +55,7 @@ private struct RotationEffectWithFrameViewModifier: ViewModifier {
             .background(content: {
                 GeometryReader(content: { geometryProxy in
                     Color.clear
-                        .task(id: geometryProxy.frame(in: .local), {
+                        .task(id: geometryProxy.frame(in: .local), { @MainActor in
                             size = geometryProxy.size
                         })
                 })

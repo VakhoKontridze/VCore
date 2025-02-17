@@ -4,10 +4,13 @@ import SwiftUI
 
 // MARK: - ___VARIABLE_productName___
 struct ___VARIABLE_productName___: View {
+    // MARK: Properties - Model Injection
+    // ...
+
     // MARK: Properties - UI Model
     private let uiModel: ___VARIABLE_productName___UIModel
 
-    // MARK: Properties - Data
+    // MARK: Properties - Parameters
     private let parameters: ___VARIABLE_productName___Parameters
 
     // MARK: Properties - ???
