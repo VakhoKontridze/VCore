@@ -2,6 +2,10 @@
 
 ### 7.5.0(109)
 
+Views
+
+- `isTapEnabled` property is added to `TouchSensitiveContainer`
+
 Macros
 
 - Error diagnostics is improved

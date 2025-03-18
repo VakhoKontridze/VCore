@@ -12,6 +12,9 @@ import SwiftUI
 @available(tvOS, unavailable)
 public struct TouchSensitiveContainerUIModel: Sendable {
     // MARK: Properties - Body
+    /// Indicates if tap is enabled. Set to `true`.
+    public var isTapEnabled: Bool = true
+    
     /// Number of taps required to trigger the action. Set to `1`.
     public var tapCount: Int = 1
 

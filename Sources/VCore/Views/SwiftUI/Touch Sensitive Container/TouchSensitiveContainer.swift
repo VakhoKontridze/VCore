@@ -109,6 +109,8 @@ public struct TouchSensitiveContainer<Content>: View, Sendable where Content: Vi
 
     // MARK: Actions
     private func didPerformInteraction() {
+        guard uiModel.isTapEnabled else { return }
+        
         isPressed = true
 
         executeWithDelay(
