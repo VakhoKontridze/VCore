@@ -47,11 +47,15 @@ Presentation Host is implemented in `SwiftUI`. Modals do not require a capture l
 
 Since implementation is written in `SwiftUI`, performance won't be as good as `UIKit` or `AppKit` solutions.
 
+#### Working Products
+
+For additional info on creating working components using Presentation Host, check out [VComponents](https://github.com/VakhoKontridze/VComponents) library.
+
 ## Usage Example
 
 #### Intro
 
-We can create a modal that slides up from the bottom of the screen and slides down when dismissed.
+As an example, we can create a modal that slides up from the bottom of the screen and slides down when dismissed.
 
 <img width="350" src="https://github.com/user-attachments/assets/82cd43ed-c275-4537-9ad3-c4030a767fc8">
 <img width="350" src="https://github.com/user-attachments/assets/55fa6766-f491-402b-bb66-c1db90234c17">
