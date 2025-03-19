@@ -127,26 +127,11 @@ public struct DigitalTimeFormatter: Sendable {
     private func extractTimeComponents(
         from seconds: Int
     ) -> (d: Int, h: Int, m: Int, s: Int) {
-        var remainingSeconds: Int = seconds
-
-        let resultD = remainingSeconds.quotientAndRemainder(dividingBy: 86_400)
-        var d: Int = resultD.quotient
-        remainingSeconds = resultD.remainder
-
-        let resultH = remainingSeconds.quotientAndRemainder(dividingBy: 3_600)
-        var h: Int = resultH.quotient
-        remainingSeconds = resultH.remainder
-
-        let resultM = remainingSeconds.quotientAndRemainder(dividingBy: 60)
-        var m: Int = resultM.quotient
-        remainingSeconds = resultM.remainder
-
-        var s: Int = remainingSeconds
-
-        if s == 60 { s = 0; m += 1 }
-        if m == 60 { m = 0; h += 1 }
-        if h == 24 { h = 0; d += 1 }
-
+        let d: Int = seconds / 86_400
+        let h: Int = (seconds % 86_400) / 3600
+        let m: Int = (seconds % 3600) / 60
+        let s: Int = seconds % 60
+        
         return (d, h, m, s)
     }
 }
