@@ -117,6 +117,90 @@ extension StringProtocol {
     }
 }
 
+// MARK: - Extensions - Swift UI
+
+extension View {
+    @available(*, deprecated, message: "Use 'getSize(_:)' instead")
+    public func getSize(
+        assignTo binding: Binding<CGSize>
+    ) -> some View {
+        self
+            .getSize({ binding.wrappedValue = $0 })
+    }
+    
+    @available(*, deprecated, message: "Use 'getSize(_:)' instead")
+    public func getWidth(
+        assignTo binding: Binding<CGFloat>
+    ) -> some View {
+        self
+            .getSize({ binding.wrappedValue = $0.width })
+    }
+    
+    @available(*, deprecated, message: "Use 'getSize(_:)' instead")
+    public func getHeight(
+        assignTo binding: Binding<CGFloat>
+    ) -> some View {
+        self
+            .getSize({ binding.wrappedValue = $0.height })
+    }
+}
+
+extension View {
+    @available(*, deprecated, message: "Use 'getBounds(of:_:)' instead")
+    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+    public func getBounds(
+        of coordinateSpace: NamedCoordinateSpace,
+        assignTo binding: Binding<CGRect?>
+    ) -> some View {
+        self
+            .getBounds(
+                of: coordinateSpace,
+                { binding.wrappedValue = $0 }
+            )
+    }
+}
+
+extension View {
+    @available(*, deprecated, message: "Use 'getFrame(in:_:)' instead")
+    public func getFrame(
+        in coordinateSpace: CoordinateSpace,
+        assignTo binding: Binding<CGRect>
+    ) -> some View {
+        self
+            .getFrame(
+                in: coordinateSpace,
+                { binding.wrappedValue = $0 }
+            )
+    }
+    
+    @available(*, deprecated, message: "Use 'getFrame(in:_:)' instead")
+    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
+    public func getFrame(
+        in coordinateSpace: some CoordinateSpaceProtocol,
+        assignTo binding: Binding<CGRect>
+    ) -> some View {
+        self
+            .getFrame(
+                in: coordinateSpace,
+                { binding.wrappedValue = $0 }
+            )
+    }
+}
+
+extension View {
+    @available(*, deprecated, message: "Use 'getSafeAreaInsets(ignoredKeyboardSafeAreaEdges:_:)' instead")
+    public func getSafeAreaInsets(
+        ignoredKeyboardSafeAreaEdges: Edge.Set = [],
+        assignTo binding: Binding<EdgeInsets>
+    ) -> some View {
+        self
+            .getSafeAreaInsets(
+                ignoredKeyboardSafeAreaEdges: ignoredKeyboardSafeAreaEdges,
+                { binding.wrappedValue = $0 }
+            )
+    }
+}
+
 // MARK: - Extensions - UI Kit
 #if canImport(UIKit) && !targetEnvironment(macCatalyst)
 

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - View + Get Frame - Coordinate Space
+// MARK: - View + Get Frame
 extension View {
     /// Retrieves frame from `View`.
     ///
@@ -15,102 +15,40 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getFrame(in: .global, { [$frame] in $frame.wrappedValue = $0 })
+    ///             .getFrame(in: .global, { frame = $0 })
     ///     }
     ///
     public func getFrame(
         in coordinateSpace: CoordinateSpace,
-        _ action: @escaping @Sendable (CGRect) -> Void
+        _ action: @escaping (CGRect) -> Void
     ) -> some View {
         self
-            .background(content: {
-                GeometryReader(content: { geometryProxy in
-                    Color.clear
-                        .preference(
-                            key: FramePreferenceKey.self,
-                            value: geometryProxy.frame(in: coordinateSpace)
-                        )
-                        .onPreferenceChange(FramePreferenceKey.self, perform: action)
-                })
-                .allowsHitTesting(false) // Avoids blocking gestures
-            })
-    }
-    
-    /// Retrieves frame from `View` and assigns it on a `Binding`.
-    ///
-    ///     @State private var frame: CGRect = .init()
-    ///
-    ///     var body: some View {
-    ///         Color.accentColor
-    ///             .getFrame(in: .global, assignTo: $frame)
-    ///     }
-    ///
-    public func getFrame(
-        in coordinateSpace: CoordinateSpace,
-        assignTo binding: Binding<CGRect>
-    ) -> some View {
-        self
-            .getFrame(
-                in: coordinateSpace,
-                { binding.wrappedValue = $0 }
+            .onGeometryChange(
+                for: CGRect.self,
+                of: { $0.frame(in: coordinateSpace) },
+                action: action
             )
     }
-}
- 
-// MARK: - View + Get Frame - Coordinate Space Protocol
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
-extension View {
+
     /// Retrieves frame from `View`.
     ///
     ///     @State private var frame: CGRect = .init()
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getFrame(in: .global, { [$frame] in $frame.wrappedValue = $0 })
+    ///             .getFrame(in: .global, { frame = $0 })
     ///     }
     ///
+    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
     public func getFrame(
         in coordinateSpace: some CoordinateSpaceProtocol,
-        _ action: @escaping @Sendable (CGRect) -> Void
+        _ action: @escaping (CGRect) -> Void
     ) -> some View {
         self
-            .background(content: {
-                GeometryReader(content: { geometryProxy in
-                    Color.clear
-                        .preference(
-                            key: FramePreferenceKey.self,
-                            value: geometryProxy.frame(in: coordinateSpace)
-                        )
-                        .onPreferenceChange(FramePreferenceKey.self, perform: action)
-                })
-                .allowsHitTesting(false) // Avoids blocking gestures
-            })
-    }
-    
-    /// Retrieves frame from `View` and assigns it on a `Binding`.
-    ///
-    ///     @State private var frame: CGRect = .init()
-    ///
-    ///     var body: some View {
-    ///         Color.accentColor
-    ///             .getFrame(in: .global, assignTo: $frame)
-    ///     }
-    ///
-    public func getFrame(
-        in coordinateSpace: some CoordinateSpaceProtocol,
-        assignTo binding: Binding<CGRect>
-    ) -> some View {
-        self
-            .getFrame(
-                in: coordinateSpace,
-                { binding.wrappedValue = $0 }
+            .onGeometryChange(
+                for: CGRect.self,
+                of: { $0.frame(in: coordinateSpace) },
+                action: action
             )
     }
-}
-
-// MARK: - Frame Preference Key
-private struct FramePreferenceKey: PreferenceKey {
-    static let defaultValue: CGRect = .init()
-
-    static func reduce(value: inout CGRect, nextValue: () -> CGRect) {}
 }

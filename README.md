@@ -170,7 +170,7 @@ Retrieving `CGSize` form `View`:
 var body: some View {
     VStack(content: {
         Color.accentColor
-            .getSize(assignTo: $size)
+            .getSize({ size = $0 })
     })
 }
 ```
