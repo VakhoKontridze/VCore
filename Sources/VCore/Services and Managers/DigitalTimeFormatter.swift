@@ -127,8 +127,8 @@ public struct DigitalTimeFormatter: Sendable {
     private func extractTimeComponents(
         from seconds: Int
     ) -> (d: Int, h: Int, m: Int, s: Int) {
-        let d: Int = seconds / 86_400
-        let h: Int = (seconds % 86_400) / 3600
+        let d: Int = seconds / 86400
+        let h: Int = (seconds % 86400) / 3600
         let m: Int = (seconds % 3600) / 60
         let s: Int = seconds % 60
         
