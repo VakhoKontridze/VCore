@@ -144,7 +144,7 @@ open class KeychainService: @unchecked Sendable {
             value = try jsonDecoder.decode(Value.self, from: data)
 
         } catch {
-            Logger.keychainService.error("Failed to decode '\(Value.self)' from 'Data` in 'KeychainService.getCodable(key:)': \(error)")
+            Logger.keychainService.error("Failed to decode '\(Value.self)' from 'Data' in 'KeychainService.getCodable(key:)': \(error)")
             throw KeychainServiceError(.failedToGet)
         }
 
@@ -162,7 +162,7 @@ open class KeychainService: @unchecked Sendable {
         do {
             data = try jsonEncoder.encode(value)
         } catch {
-            Logger.keychainService.error("Failed to encode '\(Value.self)' to 'Data` in 'KeychainService.setCodable(key:value:)': \(error)")
+            Logger.keychainService.error("Failed to encode '\(Value.self)' to 'Data' in 'KeychainService.setCodable(key:value:)': \(error)")
             throw KeychainServiceError(.failedToSet)
         }
 
