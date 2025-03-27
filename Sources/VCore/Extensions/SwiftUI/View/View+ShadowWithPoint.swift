@@ -1,5 +1,5 @@
 //
-//  View+ShadowWithCGPoint.swift
+//  View+ShadowWithPoint.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 18.08.22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - View + Shadow with CG Point
+// MARK: - View + Shadow with Point
 extension View {
     /// Adds a shadow to this view.
     ///
