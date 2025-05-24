@@ -34,8 +34,8 @@ struct ResultNoFailureTests {
     
     @Test
     func testGet() throws {
-        try #expect(
-            #require(try resultS.get()) ==
+        #expect(
+            try resultS.get() ==
             10
         )
         

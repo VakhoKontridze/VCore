@@ -17,6 +17,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
     static func expansion(
         of attribute: AttributeSyntax,
         providingMembersOf decl: some DeclGroupSyntax,
+        conformingTo protocols: [TypeSyntax],
         in context: some MacroExpansionContext
     ) throws -> [DeclSyntax] {
         // Macro expansion data
@@ -163,7 +164,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         let accessLevelModifier: AccessLevelModifierKeyword
         let structDeclaration: StructDeclSyntax
         let optionsEnumDeclaration: EnumDeclSyntax
-        let rawType: TypeSyntax
+        let rawType: GenericArgumentSyntax.Argument
     }
 
     private static func decodeExpansion(
@@ -213,7 +214,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             let geneticArgument: GenericArgumentClauseSyntax = attribute
                 .attributeName.as(IdentifierTypeSyntax.self)?
                 .genericArgumentClause,
-            let rawType: TypeSyntax = geneticArgument.arguments.first?.argument // Only one raw type
+            let rawType: GenericArgumentSyntax.Argument = geneticArgument.arguments.first?.argument // Only one raw type
         else {
             let error: RawStringError = .init("Options 'enum' doesn't have a raw type")
             if diagnose { context.addDiagnostics(from: error, node: optionsEnumDeclaration) }
