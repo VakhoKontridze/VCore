@@ -19,8 +19,17 @@ import Foundation
 public final class LockedAtomicNumber<Number>: @unchecked Sendable
     where Number: Numeric
 {
-    // MARK: Proeprties - Value
-    private var value: Number
+    // MARK: Properties - Value
+    private var _value: Number
+    
+    private var value: Number {
+        @storageRestrictions(initializes: _value)
+        init(initialValue) {
+            self._value = initialValue
+        }
+        get { dispatchSemaphore.withLock({ _value }) }
+        set { dispatchSemaphore.withLock({ _value = newValue }) }
+    }
     
     // MARK: Properties - Semaphore
     private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
@@ -34,24 +43,18 @@ public final class LockedAtomicNumber<Number>: @unchecked Sendable
     // MARK: Accessors
     /// Gets current value.
     public func get() -> Number {
-        dispatchSemaphore.withLock({
-            value
-        })
+        value
     }
 
     // MARK: Mutators
     /// Sets current value to a given value.
     public func set(_ newValue: Number) {
-        dispatchSemaphore.withLock({
-            value = newValue
-        })
+        value = newValue
     }
 
     /// Adds a given value to current value
     public func add(_ valueToAdd: Number) {
-        dispatchSemaphore.withLock({
-            value += valueToAdd
-        })
+        value += valueToAdd
     }
 
     /// Adds `1` to current value.
@@ -67,18 +70,14 @@ public final class LockedAtomicNumber<Number>: @unchecked Sendable
     // MARK: Get and Pre-Mutators
     /// Sets current value to a given value, and returns it.
     public func setAndGet(_ newValue: Number) -> Number {
-        dispatchSemaphore.withLock({
-            value = newValue
-            return newValue
-        })
+        value = newValue
+        return newValue
     }
 
     /// Adds a given value to current value, and returns it.
     public func addAndGet(_ valueToAdd: Number) -> Number {
-        dispatchSemaphore.withLock({
-            value += valueToAdd
-            return value
-        })
+        value += valueToAdd
+        return value
     }
 
     /// Adds `1` to current value, and returns it.
@@ -94,20 +93,16 @@ public final class LockedAtomicNumber<Number>: @unchecked Sendable
     // MARK: Get and Post-Mutators
     /// Returns current value, and sets it to a given value.
     public func getAndSet(_ newValue: Number) -> Number {
-        dispatchSemaphore.withLock({
-            let currentValue = value
-            value = newValue
-            return currentValue
-        })
+        let currentValue = value
+        value = newValue
+        return currentValue
     }
 
     /// Returns current value, and adds a given value to it.
     public func getAndAdd(_ valueToAdd: Number) -> Number {
-        dispatchSemaphore.withLock({
-            let currentValue = value
-            value += valueToAdd
-            return currentValue
-        })
+        let currentValue = value
+        value += valueToAdd
+        return currentValue
     }
 
     /// Returns current value, and adds `1` to it.

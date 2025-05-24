@@ -27,7 +27,7 @@ extension Never: ConfirmationDialogButtonConvertible {
 }
 
 extension EmptyView: ConfirmationDialogButtonConvertible {
-    nonisolated public func toButtons() -> [any ConfirmationDialogButtonProtocol] {
+    public func toButtons() -> [any ConfirmationDialogButtonProtocol] {
         []
     }
 }

@@ -14,12 +14,19 @@ extension DispatchSemaphore {
     ///     final class SomeClass: @unchecked Sendable {
     ///         private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
     ///
-    ///         private var value: Int = 0
+    ///         private var _value: Int
     ///
-    ///         func getValue() -> Int {
-    ///             dispatchSemaphore.withLock({
-    ///                 value
-    ///             })
+    ///         var value: Int {
+    ///             @storageRestrictions(initializes: _configuration)
+    ///             init(initialValue) {
+    ///                 self._configuration = initialValue
+    ///             }
+    ///             get { lock.withLock({ _value }) }
+    ///             set { lock.withLock({ _value = newValue }) }
+    ///         }
+    ///
+    ///         init(value: Int) {
+    ///             self.value = value
     ///         }
     ///     }
     ///

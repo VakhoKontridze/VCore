@@ -55,7 +55,12 @@ public final class PresentationHostDataSourceCache: @unchecked Sendable {
     public static let shared: PresentationHostDataSourceCache = .init()
     
     // MARK: Properties - Storage
-    private var storage: [String: Any] = [:]
+    private var _storage: [String: Any] = [:]
+    
+    private var storage: [String: Any] {
+        get { lock.withLock({ _storage }) }
+        set { lock.withLock({ _storage = newValue }) }
+    }
     
     // MARK: Properties - Lock
     private let lock: NSLock = .init()
@@ -66,22 +71,16 @@ public final class PresentationHostDataSourceCache: @unchecked Sendable {
     // MARK: Operations
     /// Returns data from key.
     public func get(key: String) -> Any? {
-        lock.withLock({
-            storage[key]
-        })
+        storage[key]
     }
     
     /// Sets data with key.
     public func set(key: String, value: Any) {
-        lock.withLock({
-            storage[key] = value
-        })
+        storage[key] = value
     }
     
     /// Deletes data with key.
     public func remove(key: String) {
-        _ = lock.withLock({
-            storage.removeValue(forKey: key)
-        })
+        storage.removeValue(forKey: key)
     }
 }

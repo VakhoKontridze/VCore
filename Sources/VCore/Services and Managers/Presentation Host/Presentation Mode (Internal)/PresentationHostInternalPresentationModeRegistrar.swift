@@ -13,9 +13,14 @@ final class PresentationHostInternalPresentationModeRegistrar: @unchecked Sendab
     static let shared: PresentationHostInternalPresentationModeRegistrar = .init()
     
     // MARK: Properties - Registrar
-    private var registrar: [String?: PresentationHostInternalPresentationMode] = [
+    private var _registrar: [String?: PresentationHostInternalPresentationMode] = [
         nil: PresentationHostInternalPresentationMode()
     ]
+    
+    private var registrar: [String?: PresentationHostInternalPresentationMode] {
+        get { lock.withLock({ _registrar }) }
+        set { lock.withLock({ _registrar = newValue }) }
+    }
     
     // MARK: Properties - Lock
     private let lock: NSLock = .init()
@@ -27,15 +32,13 @@ final class PresentationHostInternalPresentationModeRegistrar: @unchecked Sendab
     func resolve(
         layerID: String?
     ) -> PresentationHostInternalPresentationMode {
-        lock.withLock({
-            if let internalPresentationMode: PresentationHostInternalPresentationMode = registrar[layerID] {
-                return internalPresentationMode
+        if let internalPresentationMode: PresentationHostInternalPresentationMode = registrar[layerID] {
+            return internalPresentationMode
 
-            } else {
-                let internalPresentationMode: PresentationHostInternalPresentationMode = .init()
-                registrar[layerID] = internalPresentationMode
-                return internalPresentationMode
-            }
-        })
+        } else {
+            let internalPresentationMode: PresentationHostInternalPresentationMode = .init()
+            registrar[layerID] = internalPresentationMode
+            return internalPresentationMode
+        }
     }
 }

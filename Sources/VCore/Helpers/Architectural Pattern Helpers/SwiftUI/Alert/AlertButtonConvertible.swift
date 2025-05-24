@@ -27,7 +27,7 @@ extension Never: AlertButtonConvertible {
 }
 
 extension EmptyView: AlertButtonConvertible {
-    nonisolated public func toButtons() -> [any AlertButtonProtocol] {
+    public func toButtons() -> [any AlertButtonProtocol] {
         []
     }
 }

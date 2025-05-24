@@ -13,7 +13,7 @@ extension UserDefaults {
 }
 
 // MARK: - Mock User Defaults
-final class MockUserDefaults: UserDefaults, @unchecked Sendable {
+final class MockUserDefaults: UserDefaults {
     // MARK: Properties
     nonisolated(unsafe) private static var storage: [String: Any] = [:]
     

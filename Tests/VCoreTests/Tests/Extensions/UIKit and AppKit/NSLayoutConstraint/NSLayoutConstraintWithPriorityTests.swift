@@ -12,8 +12,8 @@ import Testing
 @testable import VCore
 
 // MARK: - Tests
-@MainActor
 @Suite
+@MainActor
 struct NSLayoutConstraintWithPriorityTests {
     @Test
     func testLayoutPriority() {
