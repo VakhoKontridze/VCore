@@ -267,7 +267,7 @@ var body: some View {
                 isPresented1 = true
 
                 Task(operation: { @MainActor in
-                    try? await Task.sleep(seconds: 1)
+                    try? await Task.sleep(for: .seconds(1))
                     isPresented2 = true
                 })
             }
@@ -304,7 +304,7 @@ var body: some View {
                 isPresented1 = true
                 
                 Task(operation: { @MainActor in
-                    try? await Task.sleep(seconds: 1)
+                    try? await Task.sleep(for: .seconds(1))
                     isPresented2 = true
                 })
             }
@@ -557,7 +557,7 @@ var body: some View {
                 isPresented1 = true
                 
                 Task(operation: { @MainActor in
-                    try? await Task.sleep(seconds: 1)
+                    try? await Task.sleep(for: .seconds(1))
                     isPresented2 = true
                 })
             }
@@ -590,7 +590,7 @@ var body: some View {
             isPresented1 = true
             
             Task(operation: { @MainActor in
-                try? await Task.sleep(seconds: 1)
+                try? await Task.sleep(for: .seconds(1))
                 isPresented2 = true
             })
         }

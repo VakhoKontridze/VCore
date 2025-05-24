@@ -253,3 +253,18 @@ extension NSColor {
 }
 
 #endif
+
+// MARK: - Extensions - Concurrency
+import OSLog
+
+extension Task where Success == Never, Failure == Never {
+    @available(*, deprecated, message: "Use 'Task.sleep(for:)' with 'seconds' instead")
+    public static func sleep(seconds duration: TimeInterval) async throws {
+        guard duration >= 0 else {
+            Logger.misc.critical("'duration' must be greater than or equal to '0' in 'Task.sleep(seconds:)'")
+            fatalError()
+        }
+        
+        try await sleep(nanoseconds: UInt64(duration * 1_000_000_000))
+    }
+}
