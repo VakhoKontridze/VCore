@@ -79,6 +79,7 @@ public actor SessionManager {
 ///         }
 ///     })
 ///
-@globalActor public final class GlobalSessionManager {
+@globalActor
+public final class GlobalSessionManager {
     public static let shared: SessionManager = .init()
 }
