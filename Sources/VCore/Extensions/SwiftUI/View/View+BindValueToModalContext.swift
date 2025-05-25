@@ -72,6 +72,6 @@ extension View {
     ///
     public func bindToModalContext(_ value: some Equatable) -> some View {
         self
-            .onChange(of: value, perform: { _ in })
+            .onChange(of: value, {})
     }
 }
