@@ -36,11 +36,11 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     @State private var modals: [ModalData] = []
 
     // MARK: Properties - Presentation Mode
-    @ObservedObject private var internalPresentationMode: PresentationHostInternalPresentationMode
+    @State private var internalPresentationMode: PresentationHostInternalPresentationMode
 
     // MARK: Properties - Keyboard Responsiveness
 #if os(iOS)
-    @StateObject private var keyboardObserver: KeyboardObserver
+    @State private var keyboardObserver: KeyboardObserver
 #endif
 
     // MARK: Properties - Safe Area
@@ -54,12 +54,12 @@ private struct PresentationHostLayerViewModifier: ViewModifier {
     ) {
         self.uiModel = uiModel
         
-        self._internalPresentationMode = ObservedObject(
+        self._internalPresentationMode = State(
             wrappedValue: PresentationHostInternalPresentationModeRegistrar.shared.resolve(layerID: layerID)
         )
 
 #if os(iOS)
-        self._keyboardObserver = StateObject(
+        self._keyboardObserver = State(
             wrappedValue: KeyboardObserver(
                 uiModel: uiModel.keyboardObserverSubUIModel
             )

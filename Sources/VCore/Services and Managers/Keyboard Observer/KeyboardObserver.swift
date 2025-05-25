@@ -11,7 +11,7 @@ import Combine
 // MARK: - Keyboard Observer
 /// Object that observes changes in keyboard frame.
 ///
-///     @StateObject private var keyboardObserver: KeyboardObserver = .init()
+///     @State private var keyboardObserver: KeyboardObserver = .init()
 ///     @State private var text: String = ""
 ///
 ///     var body: some View {
@@ -32,25 +32,26 @@ import Combine
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 @available(visionOS, unavailable)
+@Observable
 @MainActor
-public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Convert to `Observable`
+public final class KeyboardObserver {
     // MARK: Properties - UI Model
-    private let uiModel: KeyboardObserverUIModel
+    @ObservationIgnored private let uiModel: KeyboardObserverUIModel
 
     // MARK: Properties - Offset
     /// Offset.
-    @Published private(set) public var offset: CGFloat = 0
+    private(set) public var offset: CGFloat = 0
 
     // `UIResponder.keyboardWillShowNotification` is usually called twice, as input accessory view is attached later.
     // During animations, `offset` is modified. But if event fires immediately second time, calculation will be invalid.
     // To combat this, a debouncing, delayed timer can be used to animate offset using `withAnimation(_:_:)`. But, it's not ideal UX-wise.
     // Additionally, `withAnimation(_:_:)` doesn't work properly with `offset(x:y:)` modifier, which is needed for keyboard avoidance.
     // Both of this problems can be fixed by using a cached, stable offset, and animation view using `animation(_:value:)` modifier.
-    private var offsetStable: CGFloat = 0
+    @ObservationIgnored private var offsetStable: CGFloat = 0
 
     // MARK: Properties - Animation
     /// Animation.
-    @Published private(set) public var animation: Animation? = {
+    private(set) public var animation: Animation? = {
 #if canImport(UIKit) && !os(watchOS)
         SystemKeyboardInfo().toSwiftUIAnimation
 #else
@@ -59,7 +60,7 @@ public final class KeyboardObserver: ObservableObject { // TODO: iOS 17.0 - Conv
     }()
 
     // MARK: Properties - Cancellables
-    private var subscriptions: Set<AnyCancellable> = []
+    @ObservationIgnored private var subscriptions: Set<AnyCancellable> = []
 
     // MARK: Initializers
     public init(

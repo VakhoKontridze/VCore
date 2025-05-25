@@ -8,6 +8,30 @@ General
 - Minimum SDK version is increased to `iOS` `17.0`, `macOS` `14.0`, `tvOS` `17.0`, and `watchOS` `10.0`
 - Previously deprecated symbols are removed
 
+Views
+
+- `ViewResettingContainerOO` is removed, as it's obsoleted by `ViewResettingContainer`
+
+Models
+
+- `withBasicAnimation(_:body:completion:)` method is removed, as it's obsoleted by `withAnimation(_:completionCriteria:_:completion:)`
+- `ObservableContainerOO` is removed, as it's obsoleted by `ObservableContainer`
+- `DeviceOrientationObserverOO` is removed, as it's obsoleted by `DeviceOrientationObserver`
+
+Services and Managers
+
+- `KeyboardObserver` is now `Observable`
+- `LocalizationManager` is now `Observable`
+- `NetworkReachabilityService` is now `Observable`
+
+Extensions
+
+- `View.safeAreaMargins(edges:insets:)` is removed, as it's obsoleted by `View.safeAreaPaddings(edges:insets:)`
+
+Helpers - Architectural Pattern Helpers
+
+- `CoordinatingNavigationStackOO` is removed, as it's obsoleted by `CoordinatingNavigationStack`
+
 ### [7.5.2(111)](https://github.com/VakhoKontridze/VCore/releases/tag/7.5.2) — 2025 05 25
 
 General

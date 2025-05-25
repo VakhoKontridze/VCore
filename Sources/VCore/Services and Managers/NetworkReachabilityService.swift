@@ -6,32 +6,27 @@
 //
 
 import Foundation
-import Combine
 import Network
 import OSLog
 
 // MARK: - Network Reachability Service
 /// Network connection service that manages reachability.
 ///
-///     NetworkReachabilityService.shared.configure()
+///     @Bindable private var networkReachabilityService: NetworkReachabilityService = .shared
 ///
-///     NetworkReachabilityService.shared
-///         .connectedPublisher
-///         .sink(receiveValue: { [weak self] in self?.presentNoNetworkConnectionScreen() })
-///         .store(in: &subscriptions)
+///     var body: some View {
+///         Text(networkReachabilityService.isConnectedToNetwork != true ? "Not Connected" : "Connected")
+///     }
 ///
-///     NetworkReachabilityService.shared
-///         .disconnectedPublisher
-///         .sink(receiveValue: { [weak self] in self?.dismissNoNetworkConnectionScreen() })
-///         .store(in: &subscriptions)
-///
-public final class NetworkReachabilityService: ObservableObject, @unchecked Sendable { // TODO: iOS 17.0 - Convert to `Observable` and remove `Combine`
+@Observable
+@MainActor
+public final class NetworkReachabilityService: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Shared instance of `NetworkReachabilityService`.
     public static let shared: NetworkReachabilityService = .init()
     
     // MARK: Properties - Status
-    @Published private var _status: NWPath.Status?
+    private var _status: NWPath.Status?
     
     /// Network connection status.
     private(set) public var status: NWPath.Status? {
@@ -45,25 +40,22 @@ public final class NetworkReachabilityService: ObservableObject, @unchecked Send
     public var isConnectedToNetwork: Bool? { status?.isConnected }
     
     // MARK: Properties - Status Monitor
-    private lazy var statusMonitor: NWPathMonitor = {
+    @ObservationIgnored private lazy var statusMonitor: NWPathMonitor = {
         let monitor: NWPathMonitor = .init()
-        monitor.pathUpdateHandler = statusChanged
+        
+        monitor.pathUpdateHandler = { newValue in
+            Task(operation: { @MainActor in
+                self.status = newValue.status
+            })
+        }
+        
         return monitor
     }()
     
-    private let statusQueue: DispatchQueue = .init(label: "NetworkReachabilityService.StatusQueue")
-    
-    private var didCheckStatusForTheFirstTime: Bool = false
-
-    // MARK: Properties - Publishers
-    /// `Publisher` that emits when device connects to the network.
-    public let connectedPublisher: PassthroughSubject<Void, Never> = .init()
-
-    /// `Publisher` that emits when device disconnects from the network.
-    public let disconnectedPublisher: PassthroughSubject<Void, Never> = .init()
+    @ObservationIgnored private let statusQueue: DispatchQueue = .init(label: "NetworkReachabilityService.StatusQueue")
     
     // MARK: Properties - Lock
-    private let lock: NSLock = .init()
+    @ObservationIgnored private let lock: NSLock = .init()
 
     // MARK: Initializers
     private init() {
@@ -74,24 +66,6 @@ public final class NetworkReachabilityService: ObservableObject, @unchecked Send
     /// Configures `NetworkReachabilityService`.
     public func configure() {
         _ = Self.shared
-    }
-    
-    // MARK: Status
-    private func statusChanged(_ path: NWPath) {
-        Task(operation: { @MainActor in
-            let oldStatus = status
-            status = path.status
-            
-            if status != oldStatus || !didCheckStatusForTheFirstTime {
-                didCheckStatusForTheFirstTime = true
-                
-                switch isConnectedToNetwork {
-                case nil: break
-                case false?: disconnectedPublisher.send()
-                case true?: connectedPublisher.send()
-                }
-            }
-        })
     }
 }
 

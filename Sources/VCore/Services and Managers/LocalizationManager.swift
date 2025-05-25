@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import Combine
 import OSLog
 
 // MARK: - Localization Manager
@@ -14,6 +13,7 @@ import OSLog
 ///
 /// You can localize `String`s with a simple `extension`:
 ///
+///     @MainActor
 ///     extension String {
 ///         var localized: String {
 ///             LocalizationManager.shared.localize(self)
@@ -22,7 +22,7 @@ import OSLog
 ///
 /// You can create a simple localization picker, although it would require relaunch for `Bundle` to be updated:
 ///
-///     @ObservedObject private var localizationManager: LocalizationManager = .shared
+///     @Bindable private var localizationManager: LocalizationManager = .shared
 ///
 ///     VStack(content: {
 ///         ForEach(
@@ -57,18 +57,20 @@ import OSLog
 ///         ContentView()
 ///     })
 ///
-public final class LocalizationManager: ObservableObject, @unchecked Sendable { // TODO: iOS 17.0 - Convert to `Observable` and remove `Combine`
+@Observable
+@MainActor
+public final class LocalizationManager: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
     public static let shared: LocalizationManager = .init()
 
     // MARK: Properties - Locales
     /// `Locale`s.
-    public static let locales: [Locale] = Bundle.main.localizations
+    @ObservationIgnored public static let locales: [Locale] = Bundle.main.localizations
         .map({ Locale(identifier: $0) })
 
     // MARK: Properties - Default Locale
-    @Published private var _defaultLocale: Locale
+    private var _defaultLocale: Locale
 
     /// Default `Locale` that will be retrieved in the absence of current value.
     public var defaultLocale: Locale {
@@ -87,7 +89,7 @@ public final class LocalizationManager: ObservableObject, @unchecked Sendable { 
     }
 
     // MARK: Properties - Current Locale
-    @Published private var _currentLocale: Locale
+    private var _currentLocale: Locale
 
     /// Current `Locale`.
     public var currentLocale: Locale {
@@ -103,17 +105,12 @@ public final class LocalizationManager: ObservableObject, @unchecked Sendable { 
 
                 _currentLocale = newValue
                 Self.setCurrentLocaleToUserDefaults(newValue)
-                currentLocaleChangePublisher.send(newValue)
             })
         }
     }
-
-    // MARK: Properties - Publisher
-    /// `Publisher` that emits when current `Locale` changes.
-    public let currentLocaleChangePublisher: PassthroughSubject<Locale, Never> = .init()
     
     // MARK: Properties - Lock
-    private let lock: NSRecursiveLock = .init()
+    @ObservationIgnored private let lock: NSRecursiveLock = .init()
 
     // MARK: Initializers
     private init() {

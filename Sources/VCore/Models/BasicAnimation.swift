@@ -10,19 +10,11 @@ import SwiftUI
 // MARK: - Basic Animation
 /// Wrapper for `SwiftUI`'s native `Animation` that stores curve and duration.
 ///
-/// Duration can be used to asynchronously perform an action when animation finishes.
-/// To use completion handler, use global `withBasicAnimation(_:body:completion:)` function.
-///
-/// Another purpose of this model is to limit animations to basic curve and duration.
+/// Purpose of this model is to limit animations to basic curve and duration.
 ///
 ///     withAnimation(
 ///         BasicAnimation(curve: .easeIn, duration: 1).toSwiftUIAnimation,
-///         { ... }
-///     )
-///
-///     withBasicAnimation(
-///         BasicAnimation(curve: .easeIn, duration: 1),
-///         body: { ... },
+///         { ... },
 ///         completion: { ... }
 ///     )
 ///
@@ -114,32 +106,3 @@ extension BasicAnimation {
 }
 
 #endif
-
-// MARK: - Function
-/// Returns the result of recomputing the view's body with the provided `BasicAnimation`,
-/// and optionally calls a completion handler.
-///
-/// Completion handler is called using `asyncAfter`,
-/// scheduling with a deadline of `.now()` `+` animation duration.
-///
-///     withBasicAnimation(
-///         BasicAnimation(curve: .easeIn, duration: 1),
-///         body: { ... },
-///         completion: { ... }
-///     )
-///
-@MainActor
-public func withBasicAnimation<Result>( // TODO: iOS 17.0 - Remove
-    _ animation: BasicAnimation?,
-    body: () throws -> Result,
-    completion: (() -> Void)?
-) rethrows -> Result {
-    let result: Result = try withAnimation(animation?.toSwiftUIAnimation, body)
-    
-    DispatchQueue.main.asyncAfter(
-        deadline: DispatchTime.now() + (animation?.delay ?? 0) + (animation?.duration ?? 0),
-        execute: { completion?() }
-    )
-    
-    return result
-}

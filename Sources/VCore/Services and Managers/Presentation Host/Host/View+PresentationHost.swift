@@ -161,7 +161,7 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
     private let modalContent: () -> ModalContent
 
     // MARK: Properties - Presentation Mode
-    @ObservedObject private var internalPresentationMode: PresentationHostInternalPresentationMode
+    @State private var internalPresentationMode: PresentationHostInternalPresentationMode
 
     // MARK: Initializers
     init(
@@ -179,7 +179,7 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
         self.presentHandler = presentHandler
         self.dismissHandler = dismissHandler
         self.modalContent = modalContent
-        self._internalPresentationMode = ObservedObject(
+        self._internalPresentationMode = State(
             wrappedValue: PresentationHostInternalPresentationModeRegistrar.shared.resolve(layerID: layerID)
         )
     }

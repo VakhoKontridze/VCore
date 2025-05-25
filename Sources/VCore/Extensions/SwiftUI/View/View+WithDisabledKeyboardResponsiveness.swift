@@ -13,7 +13,7 @@ import SwiftUI
 extension View {
     /// Disables keyboard responsiveness using `UIHostingController.overrideBehaviors(_:)` API.
     ///
-    ///     @StateObject private var keyboardObserver: KeyboardObserver = .init()
+    ///     @State private var keyboardObserver: KeyboardObserver = .init()
     ///     @State private var text: String = ""
     ///
     ///     var body: some View {

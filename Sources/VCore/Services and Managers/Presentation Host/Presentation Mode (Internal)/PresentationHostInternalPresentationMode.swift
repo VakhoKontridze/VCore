@@ -9,7 +9,7 @@ import SwiftUI
 import Combine
 
 // MARK: - Presentation Host Internal Presentation Mode
-final class PresentationHostInternalPresentationMode: ObservableObject {
+struct PresentationHostInternalPresentationMode {
     // MARK: Properties
     let presentPublisher: PassthroughSubject<PresentationData, Never> = .init()
     struct PresentationData: Identifiable {
