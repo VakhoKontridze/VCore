@@ -17,6 +17,7 @@ Models
 - `withBasicAnimation(_:body:completion:)` method is removed, as it's obsoleted by `withAnimation(_:completionCriteria:_:completion:)`
 - `ObservableContainerOO` is removed, as it's obsoleted by `ObservableContainer`
 - `DeviceOrientationObserverOO` is removed, as it's obsoleted by `DeviceOrientationObserver`
+- `VCoreError` is replaced with `BaseErrorProtocol`
 
 Services and Managers
 

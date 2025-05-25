@@ -78,7 +78,7 @@ open class KeychainService: @unchecked Sendable {
         let status: OSStatus = SecItemCopyMatching(query as CFDictionary, &valueObject)
 
         guard status == noErr else {
-            throw KeychainServiceError(.failedToGet) // Error shouldn't be logged if data simply isn't there
+            throw KeychainServiceError.failedToGet // Error shouldn't be logged if data simply isn't there
         }
 
         guard
@@ -105,7 +105,7 @@ open class KeychainService: @unchecked Sendable {
 
         guard status == noErr else {
             Logger.keychainService.error("Failed to set 'Data' with key '\(key)' in 'KeychainService.setData(key:value:)': 'OSStatus' '\(status)'")
-            throw KeychainServiceError(.failedToSet)
+            throw KeychainServiceError.failedToSet
         }
     }
 
@@ -126,7 +126,7 @@ open class KeychainService: @unchecked Sendable {
 
         guard status == noErr else {
             if logsError { Logger.keychainService.error("Failed to delete 'Data' with key '\(key)' in 'KeychainService.delete(key:)': 'OSStatus' '\(status)'") }
-            throw KeychainServiceError(.failedToDelete)
+            throw KeychainServiceError.failedToDelete
         }
     }
 
@@ -145,7 +145,7 @@ open class KeychainService: @unchecked Sendable {
 
         } catch {
             Logger.keychainService.error("Failed to decode '\(Value.self)' from 'Data' in 'KeychainService.getCodable(key:)': \(error.localizedDescription)")
-            throw KeychainServiceError(.failedToGet)
+            throw KeychainServiceError.failedToGet
         }
 
         return value
@@ -163,7 +163,7 @@ open class KeychainService: @unchecked Sendable {
             data = try jsonEncoder.encode(value)
         } catch {
             Logger.keychainService.error("Failed to encode '\(Value.self)' to 'Data' in 'KeychainService.setCodable(key:value:)': \(error.localizedDescription)")
-            throw KeychainServiceError(.failedToSet)
+            throw KeychainServiceError.failedToSet
         }
 
         try setData(key: key, value: data)

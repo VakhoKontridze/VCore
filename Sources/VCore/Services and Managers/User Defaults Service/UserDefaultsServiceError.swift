@@ -9,42 +9,35 @@ import Foundation
 
 // MARK: - User Defaults Service Error
 /// An error that occurs during the operations in `UserDefaultsService`.
-public struct UserDefaultsServiceError: VCoreError, Equatable, Sendable {
+@MemberwiseInitializable(accessLevelModifier: .private)
+public struct UserDefaultsServiceError: BaseErrorProtocol, Sendable {
     // MARK: Properties
-    private let code: Code
-
-    // MARK: Initializers
-    /// Initializes `UserDefaultsServiceError` with the given error code.
-    public init(_ code: Code) {
-        self.code = code
+    public static let domain: String = "com.vcore.userdefaultsservice"
+    public let code: Int
+    public let description: String
+    
+    // MARK: Properties
+    /// Indicates that get operation has failed.
+    public static var failedToGet: Self {
+        .init(
+            code: 1,
+            description: "Data cannot be retrieved from 'UserDefaults'"
+        )
     }
 
-    // MARK: Code
-    /// Error code.
-    public enum Code: Int, Equatable, Sendable {
-        /// Indicates that get operation has failed.
-        case failedToGet
-
-        /// Indicates that set operation has failed.
-        case failedToSet
-
-        /// Indicates that delete operation has failed.
-        case failedToDelete
+    /// Indicates that set operation has failed.
+    public static var failedToSet: Self {
+        .init(
+            code: 2,
+            description: "Data cannot be set to 'UserDefaults'"
+        )
     }
 
-    // MARK: VCore Error
-    public var vCoreErrorCode: Int { code.rawValue }
-
-    public var vCoreErrorDescription: String {
-        switch code {
-        case .failedToGet: "Data cannot be retrieved from 'UserDefaults'"
-        case .failedToSet: "Data cannot be set to 'UserDefaults'"
-        case .failedToDelete: "Data cannot be deleted from 'UserDefaults'"
-        }
-    }
-
-    // MARK: Equatable
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.code == rhs.code
+    /// Indicates that delete operation has failed.
+    public static var failedToDelete: Self {
+        .init(
+            code: 3,
+            description: "Data cannot be deleted from 'UserDefaults'"
+        )
     }
 }

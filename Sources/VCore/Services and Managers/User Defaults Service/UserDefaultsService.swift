@@ -73,7 +73,7 @@ open class UserDefaultsService: @unchecked Sendable {
         guard
             let valueAny: Any = userDefaults.object(forKey: key)
         else {
-            throw UserDefaultsServiceError(.failedToGet) // Error shouldn't be logged if data simply isn't there
+            throw UserDefaultsServiceError.failedToGet // Error shouldn't be logged if data simply isn't there
         }
 
         guard
@@ -115,7 +115,7 @@ open class UserDefaultsService: @unchecked Sendable {
             let value: Value = .init(rawValue: rawValue)
         else {
             Logger.userDefaultsService.error("Failed to initialize '\(Value.self)' with 'rawValue' '\(String(describing: rawValue))' in 'UserDefaultsService.getRawRepresentable(key:)'")
-            throw UserDefaultsServiceError(.failedToGet)
+            throw UserDefaultsServiceError.failedToGet
         }
 
         return value
@@ -152,7 +152,7 @@ open class UserDefaultsService: @unchecked Sendable {
            value = try jsonDecoder.decode(Value.self, from: data)
         } catch {
             Logger.keychainService.error("Failed to decode '\(Value.self)' from 'Data' in 'UserDefaultsService.getCodable(key:)': \(error.localizedDescription)")
-            throw UserDefaultsServiceError(.failedToGet)
+            throw UserDefaultsServiceError.failedToGet
         }
 
         return value
@@ -170,7 +170,7 @@ open class UserDefaultsService: @unchecked Sendable {
             data = try jsonEncoder.encode(value)
         } catch {
             Logger.keychainService.error("Failed to encode '\(Value.self)' to 'Data' in 'UserDefaultsService.setCodable(key:value:)': \(error.localizedDescription)")
-            throw UserDefaultsServiceError(.failedToSet)
+            throw UserDefaultsServiceError.failedToSet
         }
 
         set(key: key, value: data)

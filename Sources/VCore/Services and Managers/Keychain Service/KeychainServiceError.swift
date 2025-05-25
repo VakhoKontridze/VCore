@@ -9,42 +9,35 @@ import Foundation
 
 // MARK: - Keychain Service Error
 /// An error that occurs during the operations in `KeychainService`.
-public struct KeychainServiceError: VCoreError, Equatable, Sendable {
+@MemberwiseInitializable(accessLevelModifier: .private)
+public struct KeychainServiceError: BaseErrorProtocol, Sendable {
     // MARK: Properties
-    private let code: Code
+    public static let domain: String = "com.vcore.keychainservice"
+    public let code: Int
+    public let description: String
     
     // MARK: Initializers
-    /// Initializes `KeychainServiceError` with the given error code.
-    public init(_ code: Code) {
-        self.code = code
+    /// Indicates that get operation has failed.
+    public static var failedToGet: Self {
+        .init(
+            code: 1,
+            description: "Data cannot be retrieved from 'Security' framework"
+        )
     }
     
-    // MARK: Code
-    /// Error code.
-    public enum Code: Int, Equatable, Sendable {
-        /// Indicates that get operation has failed.
-        case failedToGet
-        
-        /// Indicates that set operation has failed.
-        case failedToSet
-        
-        /// Indicates that delete operation has failed.
-        case failedToDelete
+    /// Indicates that set operation has failed.
+    public static var failedToSet: Self {
+        .init(
+            code: 2,
+            description: "Data cannot be set to 'Security' framework"
+        )
     }
-
-    // MARK: VCore Error
-    public var vCoreErrorCode: Int { code.rawValue }
-
-    public var vCoreErrorDescription: String {
-        switch code {
-        case .failedToGet: "Data cannot be retrieved from 'Security' framework"
-        case .failedToSet: "Data cannot be set to 'Security' framework"
-        case .failedToDelete: "Data cannot be deleted from 'Security' framework"
-        }
-    }
-
-    // MARK: Equatable
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.code == rhs.code
+    
+    /// Indicates that delete operation has failed.
+    public static var failedToDelete: Self {
+        .init(
+            code: 3,
+            description: "Data cannot be deleted from 'Security' framework"
+        )
     }
 }
