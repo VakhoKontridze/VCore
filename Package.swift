@@ -1,5 +1,5 @@
 // swift-tools-version: 6.1
-
+// FIXME: Replace with 6.2
 import PackageDescription
 import CompilerPluginSupport
 
@@ -7,10 +7,10 @@ let package: Package = .init(
     name: "VCore",
 
     platforms: [
-        .iOS(.v16),
-        .macOS(.v13),
-        .tvOS(.v16),
-        .watchOS(.v9),
+        .iOS(.v17),
+        .macOS(.v14),
+        .tvOS(.v17),
+        .watchOS(.v10),
         .visionOS(.v1)
     ],
 
