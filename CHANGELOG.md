@@ -1,5 +1,11 @@
 # Change Log
 
+### [7.5.1(110)](https://github.com/VakhoKontridze/VCore/releases/tag/7.5.1) — 2025 05 25
+
+Other
+
+- Bug fixes and improvements
+
 ### [7.5.0(109)](https://github.com/VakhoKontridze/VCore/releases/tag/7.5.0) — 2025 03 27
 
 Views
