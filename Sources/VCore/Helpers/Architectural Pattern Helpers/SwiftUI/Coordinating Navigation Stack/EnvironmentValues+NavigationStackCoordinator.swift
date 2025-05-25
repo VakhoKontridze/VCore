@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - Environment Values + Navigation Stack Coordinator
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension EnvironmentValues {
     /// `NavigationStackCoordinator` of the `View` associated with the environment.
     @Entry public var navigationStackCoordinator: NavigationStackCoordinator?

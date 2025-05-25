@@ -211,7 +211,6 @@ open class UIKitBaseButton: UIView, Sendable {
 
 #if !os(tvOS)
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
     SomeButton(
         action: {},

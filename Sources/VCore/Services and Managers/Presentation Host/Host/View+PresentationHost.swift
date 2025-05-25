@@ -189,33 +189,11 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
         updateModal()
 
         return content
-            .applyModifier({
-                if #available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *) {
-                    $0
-                        .onChange(of: isPresented, initial: true, { (_, newValue) in
-                            if newValue {
-                                presentModal()
-                            } else {
-                                dismissModal()
-                            }
-                        })
-
+            .onChange(of: isPresented, initial: true, { (_, newValue) in
+                if newValue {
+                    presentModal()
                 } else {
-                    $0
-                        .onFirstAppear(perform: {
-                            if isPresented {
-                                presentModal()
-                            } else {
-                                dismissModal()
-                            }
-                        })
-                        .onChange(of: isPresented, perform: { newValue in
-                            if newValue {
-                                presentModal()
-                            } else {
-                                dismissModal()
-                            }
-                        })
+                    dismissModal()
                 }
             })
             .onDisappear(perform: {
@@ -261,7 +239,6 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
 // MARK: - Preview
 #if DEBUG
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
     @Previewable @State var isPresented: Bool = true
 
@@ -300,7 +277,6 @@ private struct PresentationHostViewModifier<ModalContent>: ViewModifier where Mo
     .presentationHostLayer()
 })
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension View {
     fileprivate func someModal<Content>(
         layerID: String? = nil,
@@ -325,7 +301,6 @@ extension View {
     }
 }
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 private struct SomeModal<Content>: View where Content: View {
     @Environment(\.presentationHostContainerSize) private var containerSize: CGSize
     @Environment(\.presentationHostSafeAreaInsets) private var safeAreaInsets: EdgeInsets

@@ -31,7 +31,6 @@ import SwiftUI
 ///         }
 ///     }
 ///
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 public struct CoordinatingNavigationStack<Root>: View, Sendable where Root: View {
     // MARK: Properties
     @State private var navigationStackCoordinator: NavigationStackCoordinator
@@ -102,7 +101,6 @@ public struct CoordinatingNavigationStack<Root>: View, Sendable where Root: View
 // MARK: - Preview
 #if DEBUG
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
     struct ContentView: View {
         var body: some View {

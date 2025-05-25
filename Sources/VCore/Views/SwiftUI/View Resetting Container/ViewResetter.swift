@@ -11,7 +11,6 @@ import Foundation
 /// Object inside the environment of `ViewResettingContainer` to trigger view resets on demand.
 ///
 /// For additional info, refer to `ViewResettingContainer`.
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 @Observable
 @MainActor
 public final class ViewResetter {

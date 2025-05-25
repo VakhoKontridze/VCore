@@ -69,7 +69,6 @@ public struct SecurableTextField: View, Sendable {
 // MARK: - Preview
 #if DEBUG
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
     @Previewable @State var isSecure: Bool = false
     @Previewable @State var text: String = "Lorem ipsum"

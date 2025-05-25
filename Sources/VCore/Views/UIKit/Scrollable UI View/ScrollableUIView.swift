@@ -112,7 +112,6 @@ open class ScrollableUIView: UIView, Sendable {
 // MARK: - Preview
 #if DEBUG
 
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 #Preview(body: {
     let scrollableView: ScrollableUIView = .init()
     scrollableView.translatesAutoresizingMaskIntoConstraints = false

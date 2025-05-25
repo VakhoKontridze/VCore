@@ -8,7 +8,6 @@
 import SwiftUI
 
 // MARK: - View + Safe Area Paddings
-@available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
 extension View {
     /// Adds padding equal to safe area insets to specific edges of the `View`.
     ///

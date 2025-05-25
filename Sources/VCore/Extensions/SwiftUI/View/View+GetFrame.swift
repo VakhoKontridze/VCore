@@ -39,7 +39,6 @@ extension View {
     ///             .getFrame(in: .global, { frame = $0 })
     ///     }
     ///
-    @available(iOS 17.0, macOS 14.0, tvOS 17.0, watchOS 10.0, *)
     public func getFrame(
         in coordinateSpace: some CoordinateSpaceProtocol,
         _ action: @escaping (CGRect) -> Void
