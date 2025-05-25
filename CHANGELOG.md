@@ -1,5 +1,11 @@
 # Change Log
 
+### [7.5.2(110)](https://github.com/VakhoKontridze/VCore/releases/tag/7.5.2) — 2025 05 25
+
+General
+
+- Minimum `Swift` language version is increased to `6.1`
+
 ### [7.5.1(110)](https://github.com/VakhoKontridze/VCore/releases/tag/7.5.1) — 2025 05 25
 
 Other
@@ -97,8 +103,8 @@ Services and Managers
 
 General
 
-- Minimum SDK version is increased to `iOS` `16.0`, `macOS` `13.0`, `tvOS` `16.0`, and `watchOS` `9.0`
 - Minimum `Swift` language version is increased to `6.0`
+- Minimum SDK version is increased to `iOS` `16.0`, `macOS` `13.0`, `tvOS` `16.0`, and `watchOS` `9.0`
 - Previously deprecated symbols are removed
 
 Views
@@ -396,8 +402,8 @@ Extensions
 
 General
 
-- Minimum SDK version is increased to `iOS` `15.0`, `macOS` `12.0`, `tvOS` `15.0`, and `watchOS` `8.0`
 - Minimum `Swift` language version is increased to `5.9`
+- Minimum SDK version is increased to `iOS` `15.0`, `macOS` `12.0`, `tvOS` `15.0`, and `watchOS` `8.0`
 - Previously deprecated symbols are removed
 
 Views
@@ -1376,8 +1382,8 @@ Other
 General
 
 - Framework is migrated from `XCFramework` to `Swift` Package
-- Package now partially supports `macOS` `10.15`, `tvOS` `13.0`, and `watchOS` `6.0`
 - Minimum `Swift` language version is increased to `5.6`
+- Package now partially supports `macOS` `10.15`, `tvOS` `13.0`, and `watchOS` `6.0`
 - Previously deprecated symbols are removed
 
 Services and Managers
