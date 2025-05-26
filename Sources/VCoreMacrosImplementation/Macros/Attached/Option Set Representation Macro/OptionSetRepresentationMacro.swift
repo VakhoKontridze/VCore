@@ -177,7 +177,8 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         let accessLevelModifier: AccessLevelModifierKeyword = try accessLevelModifierParameter(
             attribute: attribute,
             declaration: declaration,
-            context: context
+            context: context,
+            diagnose: diagnose
         )
 
         // Limits declaration to `struct`s
@@ -234,7 +235,8 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
     private static func accessLevelModifierParameter(
         attribute: AttributeSyntax,
         declaration: some DeclGroupSyntax,
-        context: some MacroExpansionContext
+        context: some MacroExpansionContext,
+        diagnose: Bool
     ) throws -> AccessLevelModifierKeyword {
         guard
             let parameter: LabeledExprSyntax = attribute
@@ -262,7 +264,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             let value: AccessLevelModifierKeyword = .init(rawValue: valueString)
         else {
             let error: RawStringError = .init("Invalid 'accessLevelModifier' parameter")
-            context.addDiagnostics(from: error, node: parameter)
+            if diagnose { context.addDiagnostics(from: error, node: parameter) }
             throw error
         }
 
