@@ -9,7 +9,7 @@ import Foundation
 
 // MARK: - Alert Button Builder
 /// Custom parameter attribute that constructs views from closures.
-@resultBuilder 
+@resultBuilder
 public struct AlertButtonBuilder: Sendable {
     // MARK: Properties
     public typealias Component = any AlertButtonConvertible
