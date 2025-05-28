@@ -13,9 +13,7 @@ final class PresentationHostInternalPresentationModeRegistrar: @unchecked Sendab
     static let shared: PresentationHostInternalPresentationModeRegistrar = .init()
     
     // MARK: Properties - Registrar
-    private var _registrar: [String?: PresentationHostInternalPresentationMode] = [
-        nil: PresentationHostInternalPresentationMode()
-    ]
+    private var _registrar: [String?: PresentationHostInternalPresentationMode] = [:]
     
     private var registrar: [String?: PresentationHostInternalPresentationMode] {
         get { lock.withLock({ _registrar }) }
