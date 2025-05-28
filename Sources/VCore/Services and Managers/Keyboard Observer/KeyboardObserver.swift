@@ -25,7 +25,7 @@ import Combine
 ///         // Must be written last
 ///         .offset(y: -keyboardObserver.offset)
 ///         .animation(keyboardObserver.animation, value: keyboardObserver.offset)
-///         .withDisabledKeyboardResponsiveness(regions: .keyboard)
+///         .ignoresSafeArea(.keyboard)
 ///     }
 ///
 @available(macOS, unavailable)
