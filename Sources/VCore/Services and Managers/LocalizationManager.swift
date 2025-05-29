@@ -59,7 +59,7 @@ import OSLog
 ///
 @Observable
 @MainActor
-public final class LocalizationManager: @unchecked Sendable {
+public final class LocalizationManager {
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
     public static let shared: LocalizationManager = .init()
@@ -75,16 +75,12 @@ public final class LocalizationManager: @unchecked Sendable {
     /// Default `Locale` that will be retrieved in the absence of current value.
     public var defaultLocale: Locale {
         get {
-            lock.withLock({
-                _defaultLocale
-            })
+            _defaultLocale
         }
         set {
-            lock.withLock({
-                _ = Self.validateLocaleIsAdded(newValue)
-                
-                _defaultLocale = newValue
-            })
+            _ = Self.validateLocaleIsAdded(newValue)
+            
+            _defaultLocale = newValue
         }
     }
 
@@ -94,23 +90,16 @@ public final class LocalizationManager: @unchecked Sendable {
     /// Current `Locale`.
     public var currentLocale: Locale {
         get {
-            lock.withLock({
-                _currentLocale
-            })
+            _currentLocale
         }
         set {
-            lock.withLock({
-                guard newValue != _currentLocale else { return }
-                _ = Self.validateLocaleIsAdded(newValue)
+            guard newValue != _currentLocale else { return }
+            _ = Self.validateLocaleIsAdded(newValue)
 
-                _currentLocale = newValue
-                Self.setCurrentLocaleToUserDefaults(newValue)
-            })
+            _currentLocale = newValue
+            Self.setCurrentLocaleToUserDefaults(newValue)
         }
     }
-    
-    // MARK: Properties - Lock
-    @ObservationIgnored private let lock: NSRecursiveLock = .init()
 
     // MARK: Initializers
     private init() {
