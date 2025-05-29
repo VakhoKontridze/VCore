@@ -59,7 +59,7 @@ import OSLog
 ///
 @Observable
 @MainActor
-public final class LocalizationManager {
+public final class LocalizationManager: Sendable {
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
     public static let shared: LocalizationManager = .init()

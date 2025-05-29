@@ -20,7 +20,7 @@ import OSLog
 ///
 @Observable
 @MainActor
-public final class NetworkReachabilityService {
+public final class NetworkReachabilityService: Sendable {
     // MARK: Properties - Singleton
     /// Shared instance of `NetworkReachabilityService`.
     public static let shared: NetworkReachabilityService = .init()
