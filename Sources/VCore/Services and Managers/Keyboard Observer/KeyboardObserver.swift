@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Combine
+import OSLog
 
 // MARK: - Keyboard Observer
 /// Object that observes changes in keyboard frame.
@@ -101,23 +102,44 @@ public final class KeyboardObserver {
                 return offset
 
             case .offsetByKeyboardHeight(let additionalOffset):
-                guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return nil } // Will never fail
+                guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
+                    Logger.keyboardObserver.warning("Failed to retrieve system keyboard height from 'Notification': \(notification)")
+                    return nil
+                }
 
                 return systemKeyboardHeight + additionalOffset
 
             case .offsetByObscuredViewHeight(let additionalOffset):
-                guard let screen: UIScreen = notification.object as? UIScreen else { return nil } // Will never fail
+                guard let screen: UIScreen = notification.object as? UIScreen else {
+                    Logger.keyboardObserver.warning("Failed to retrieve 'UIScreen' from 'Notification': \(notification)")
+                    return nil
+                }
 
-                guard let window: UIWindow = screen.window else { return nil } // Will never fail
+                guard let window: UIWindow = screen.windows.first(where: { $0.isKeyWindow }) else {
+                    Logger.keyboardObserver.warning("Failed to retrieve key 'UIWindow' from 'UIScreen': \(screen)")
+                    return nil
+                }
+                
                 let windowHeight: CGFloat = window.frame.size.height
 
-                guard let firstResponderView: UIView = window.childFirstResponderView else { return nil } // Will never fail
-                guard let firstResponderViewSuperView: UIView = firstResponderView.superview else { return nil } // Will never fail
+                guard let firstResponderView: UIView = window.childFirstResponderView else {
+                    Logger.keyboardObserver.warning("Failed to retrieve child first responder 'UIView' from 'UIWindow': \(window)")
+                    return nil
+                }
+                
+                guard let firstResponderViewSuperView: UIView = firstResponderView.superview else {
+                    Logger.keyboardObserver.warning("Failed to retrieve superview from 'UIView': \(firstResponderView)")
+                    return nil
+                }
+                
                 let viewGlobalFrameMaxY: CGFloat = firstResponderViewSuperView.convert(firstResponderView.frame, to: nil).maxY
 
                 let currentOffset: CGFloat = self.offsetStable
 
-                guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return nil } // Will never fail
+                guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
+                    Logger.keyboardObserver.warning("Failed to retrieve system keyboard height from 'Notification': \(notification)")
+                    return nil
+                }
 
                 let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalFrameMaxY - currentOffset
                 
@@ -180,12 +202,11 @@ public final class KeyboardObserver {
 
 @available(visionOS, unavailable)
 extension UIScreen {
-    fileprivate var window: UIWindow? {
+    fileprivate var windows: [UIWindow] {
         UIApplication.shared
             .connectedScenes
             .compactMap { $0 as? UIWindowScene }
             .flatMap { $0.windows }
-            .first { $0.screen == self }
     }
 }
 

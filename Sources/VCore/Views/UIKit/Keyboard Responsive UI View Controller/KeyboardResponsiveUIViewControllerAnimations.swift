@@ -8,6 +8,7 @@
 #if canImport(UIKit) && !os(watchOS)
 
 import SwiftUI
+import OSLog
 
 // MARK: - UIView + Animate Keyboard Responsiveness
 @available(tvOS, unavailable)
@@ -147,15 +148,25 @@ extension UIView {
             )
             
         case true:
-            guard let window: UIWindow = firstResponderView.window else { return } // Will never fail
+            guard let window: UIWindow = firstResponderView.window else {
+                Logger.keyboardResponsiveUIViewController.warning("Failed to retrieve 'UIWindow' from 'UIView': \(firstResponderView)")
+                return
+            }
             let windowHeight: CGFloat = window.frame.size.height
 
-            guard let firstResponderViewSuperView: UIView = firstResponderView.superview else { return } // Will never fail
+            guard let firstResponderViewSuperView: UIView = firstResponderView.superview else {
+                Logger.keyboardResponsiveUIViewController.warning("Failed to retrieve superview from 'UIView': \(firstResponderView)")
+                return
+            }
+            
             let viewGlobalFrameMaxY: CGFloat = firstResponderViewSuperView.convert(firstResponderView.frame, to: nil).maxY
 
             let containerViewY: CGFloat = containerView.bounds.origin.y
 
-            guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return } // Will never fail
+            guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
+                Logger.keyboardResponsiveUIViewController.warning("Failed to retrieve system keyboard height from 'Notification'")
+                return
+            }
 
             let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalFrameMaxY - containerViewY
             
