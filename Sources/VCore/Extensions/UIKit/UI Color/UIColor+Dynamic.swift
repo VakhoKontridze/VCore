@@ -22,9 +22,6 @@ extension UIColor {
         _ light: UIColor,
         _ dark: UIColor
     ) -> UIColor {
-#if os(watchOS)
-        fatalError()
-#else
         .init(
             dynamicProvider: { traitCollection in
                 switch traitCollection.userInterfaceStyle {
@@ -37,7 +34,6 @@ extension UIColor {
                 }
             }
         )
-#endif
     }
 }
 

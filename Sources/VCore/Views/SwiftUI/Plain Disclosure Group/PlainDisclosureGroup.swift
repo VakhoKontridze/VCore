@@ -187,6 +187,8 @@ public struct PlainDisclosureGroup<Label, Content>: View, Sendable
             .ignoresSafeArea()
 #elseif os(macOS)
         Color.clear
+#else
+        fatalError() // Not supported
 #endif
 
         PlainDisclosureGroup(
