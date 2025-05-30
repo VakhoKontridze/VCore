@@ -24,9 +24,7 @@ Services and Managers
 - Fixed issue with `KeyboardObserver` failing to calculate offset when there are multiple `UIWindow`s
 - `KeyboardObserver` is now `Observable`
 - `LocalizationManager` is now `Observable`
-- `LocalizationManager` is no longer `MainActor`
 - `NetworkReachabilityService` is now `Observable`
-- `NetworkReachabilityService` is no longer `MainActor`
 
 Extensions
 

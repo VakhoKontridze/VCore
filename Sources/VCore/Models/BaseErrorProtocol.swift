@@ -21,7 +21,7 @@ import Foundation
 ///             description: "Lorem ipsum dolor sit amet"
 ///         )
 ///
-///         static func two(_ info: String) -> Self {
+///         static func secondError(_ info: String) -> Self {
 ///             .init(
 ///                 code: 2,
 ///                 description: "Lorem ipsum dolor sit amet '\(info)'"
