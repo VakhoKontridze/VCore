@@ -21,7 +21,7 @@ import Combine
 ///
 @Observable
 @MainActor
-public final class DeviceOrientationObserver {
+public final class DeviceOrientationObserver: Sendable {
     // MARK: Properties
     /// The physical orientation of the device.
     public var deviceOrientation: UIDeviceOrientation = DeviceOrientationObserver.getDeviceOrientation()

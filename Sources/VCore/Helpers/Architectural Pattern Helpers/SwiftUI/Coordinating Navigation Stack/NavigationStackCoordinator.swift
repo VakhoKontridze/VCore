@@ -33,7 +33,7 @@ import SwiftUI
 ///
 @Observable
 @MainActor
-public final class NavigationStackCoordinator {
+public final class NavigationStackCoordinator: Sendable {
     // MARK: Properties
     /// `NavigationPath`.
     public var path: NavigationPath

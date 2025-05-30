@@ -13,7 +13,7 @@ import Foundation
 /// For additional info, refer to `ViewResettingContainer`.
 @Observable
 @MainActor
-public final class ViewResetter {
+public final class ViewResetter: Sendable {
     // MARK: Properties
     private(set) var value: Int = 0
 

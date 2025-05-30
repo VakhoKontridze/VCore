@@ -35,7 +35,7 @@ import OSLog
 @available(visionOS, unavailable)
 @Observable
 @MainActor
-public final class KeyboardObserver {
+public final class KeyboardObserver: Sendable {
     // MARK: Properties - UI Model
     @ObservationIgnored private let uiModel: KeyboardObserverUIModel
 

@@ -45,7 +45,7 @@ import Combine
 ///
 @Observable
 @MainActor
-public final class PublishingObservationContainer<Value> {
+public final class PublishingObservationContainer<Value>: Sendable {
     // MARK: Properties - Value
     @ObservationIgnored private var _value: Value
     
