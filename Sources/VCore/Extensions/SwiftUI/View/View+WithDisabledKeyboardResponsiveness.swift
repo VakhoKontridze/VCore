@@ -34,11 +34,11 @@ extension View {
         regions: SafeAreaRegions = .all,
         edges: Edge.Set = .all
     ) -> some View {
-#if os(macOS) || os(tvOS)
-        fatalError() // Not supported
-#else
+#if !(os(macOS) || os(tvOS))
         KeyboardResponsivenessDisablingView(content: { self })
             .ignoresSafeArea(regions, edges: edges)
+#else
+        fatalError() // Not supported
 #endif
     }
 }
