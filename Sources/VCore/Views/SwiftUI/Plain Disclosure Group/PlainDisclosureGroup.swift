@@ -180,8 +180,8 @@ public struct PlainDisclosureGroup<Label, Content>: View, Sendable
 
 #Preview(body: {
     @Previewable @State var isExpanded: Bool = true
-
-    ZStack(content: {
+    
+    let backgroundView: some View = {
 #if os(iOS)
         Color(uiColor: UIColor.secondarySystemBackground)
             .ignoresSafeArea()
@@ -190,6 +190,10 @@ public struct PlainDisclosureGroup<Label, Content>: View, Sendable
 #else
         fatalError() // Not supported
 #endif
+    }()
+
+    ZStack(content: {
+        backgroundView
 
         PlainDisclosureGroup(
             isExpanded: $isExpanded,
