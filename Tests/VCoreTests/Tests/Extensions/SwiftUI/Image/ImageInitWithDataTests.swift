@@ -20,11 +20,11 @@ struct ImageInitWithDataTests {
             UIImage(
                 size: CGSize(dimension: 100),
                 color: {
-    #if !os(watchOS)
-                UIColor.systemBlue
-    #else
-                UIColor.blue
-    #endif
+#if os(watchOS)
+                    UIColor.blue
+#else
+                    UIColor.systemBlue
+#endif
                 }()
             )
         )

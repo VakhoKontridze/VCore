@@ -53,18 +53,22 @@ extension UIColor {
 // MARK: - Preview
 #if DEBUG
 
-#if !os(watchOS)
-
 import SwiftUI
 
 #Preview(body: {
+    let color: UIColor = {
+#if os(watchOS)
+        UIColor.blue
+#else
+        UIColor.systemBlue
+#endif
+    }()
+    
     VStack(content: {
-        Color(UIColor.systemBlue.lighten(by: 0.1))
-        Color(UIColor.systemBlue.darken(by: 0.1))
+        Color(color.lighten(by: 0.1))
+        Color(color.darken(by: 0.1))
     })
 })
-
-#endif
 
 #endif
 

@@ -27,7 +27,7 @@ struct ColorRGBAValuesTests {
     
     @Test
     func testComponents() {
-        let accuracy: Int = { // Colorspace conversion on `macOS` may cause issues
+        let accuracy: Int = { // Colorspace conversion on macOS may cause issues
 #if os(macOS)
             1
 #else
@@ -39,7 +39,7 @@ struct ColorRGBAValuesTests {
         
         let components = color.rgbaComponents
         
-        // Direct comparison gives color accuracy and floating-point issues on `macOS`, so equality with tolerance must be used
+        // Direct comparison gives color accuracy and floating-point issues on macOS, so equality with tolerance must be used
         #expect(areEqual(components.red, 10, tolerance: accuracy))
         #expect(areEqual(components.green, 20, tolerance: accuracy))
         #expect(areEqual(components.blue, 30, tolerance: accuracy))

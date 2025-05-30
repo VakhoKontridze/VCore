@@ -160,7 +160,7 @@ open class InfiniteScrollingUITableView: UITableView, Sendable {
 #endif
 
 // MARK: - Preview
-#if os(iOS) // `iOS`-only example
+#if os(iOS) // iOS-only example
 
 #Preview(body: {
     final class ViewController:

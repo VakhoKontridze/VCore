@@ -73,7 +73,7 @@ private struct TouchDownTouchUpInteractionRecognizerViewModifier: ViewModifier {
 // MARK: - Preview
 #if DEBUG
 
-#if !os(tvOS)
+#if !os(tvOS) // Redundant
 
 #Preview(body: {
     @Previewable @State var isPressed: Bool = false

@@ -18,13 +18,10 @@ extension View {
     ///             .inlineNavigationTitle("Home")
     ///     }
     ///
-    @ViewBuilder 
     public func inlineNavigationTitle(_ title: String) -> some View {
-#if !(os(macOS) || os(tvOS))
         self
             .navigationTitle(title)
             .navigationBarTitleDisplayMode(.inline)
-#endif
     }
 
     /// Configures the view’s title for purposes of navigation, using a `LocalizedStringKey` in a inline display mode.
@@ -34,12 +31,9 @@ extension View {
     ///             .inlineNavigationTitle("Home")
     ///     }
     ///
-    @ViewBuilder 
     public func inlineNavigationTitle(_ titleKey: LocalizedStringKey) -> some View {
-#if !(os(macOS) || os(tvOS))
         self
             .navigationTitle(titleKey)
             .navigationBarTitleDisplayMode(.inline)
-#endif
     }
 }

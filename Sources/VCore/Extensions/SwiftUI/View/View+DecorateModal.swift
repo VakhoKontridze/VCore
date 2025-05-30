@@ -142,7 +142,7 @@ extension UIView {
 // MARK: - Preview
 #if DEBUG
 
-#if !(os(watchOS) || os(visionOS))
+#if !os(visionOS) // `UIScreen.displayCornerRadius` not on visionOS
 
 #Preview(body: {
     @Previewable @State var isPresented: Bool = false
@@ -163,7 +163,7 @@ extension UIView {
                         }
 
                         if let transitionView {
-                            transitionView.backgroundColor = .gray.withAlphaComponent(0.16)
+                            transitionView.backgroundColor = UIColor.gray.withAlphaComponent(0.16)
                         }
                     })
             }

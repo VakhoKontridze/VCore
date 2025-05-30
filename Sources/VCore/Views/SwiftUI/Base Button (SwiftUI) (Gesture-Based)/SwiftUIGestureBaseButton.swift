@@ -131,7 +131,7 @@ public struct SwiftUIGestureBaseButton<Label>: View, Sendable where Label: View 
 // MARK: - Preview
 #if DEBUG
 
-#if !(os(tvOS) || os(watchOS))
+#if !(os(tvOS) || os(watchOS)) // Redundant
 
 #Preview(body: {
     @Previewable @State var isPressed: Bool = false

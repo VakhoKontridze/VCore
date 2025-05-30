@@ -41,10 +41,10 @@ extension View {
         let uiImage: UIImage = .init(
             size: size,
             color: {
-#if !os(watchOS)
-                UIColor.systemBlue
-#else
+#if os(watchOS)
                 UIColor.blue
+#else
+                UIColor.systemBlue
 #endif
             }()
         )

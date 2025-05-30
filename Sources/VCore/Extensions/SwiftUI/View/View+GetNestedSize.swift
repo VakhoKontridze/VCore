@@ -77,7 +77,7 @@ private struct NestedSizePreferenceKey: PreferenceKey {
 // MARK: - Preview
 #if DEBUG
 
-#if !os(macOS)
+#if !os(macOS) // No `PageTabViewStyle` on macOS
 
 #Preview(body: {
     @Previewable @State var height: CGFloat = 0

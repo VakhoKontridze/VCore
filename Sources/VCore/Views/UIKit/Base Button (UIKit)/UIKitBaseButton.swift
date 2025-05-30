@@ -209,7 +209,7 @@ open class UIKitBaseButton: UIView, Sendable {
 // MARK: - Preview
 #if DEBUG
 
-#if !os(tvOS)
+#if !os(tvOS) // Redundant
 
 #Preview(body: {
     SomeButton(

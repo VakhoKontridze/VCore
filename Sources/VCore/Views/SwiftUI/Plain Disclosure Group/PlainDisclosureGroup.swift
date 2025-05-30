@@ -176,7 +176,7 @@ public struct PlainDisclosureGroup<Label, Content>: View, Sendable
 // MARK: - Preview
 #if DEBUG
 
-#if !(os(tvOS) || os(watchOS) || os(visionOS))
+#if !(os(tvOS) || os(watchOS) || os(visionOS)) // Redundant
 
 #Preview(body: {
     @Previewable @State var isExpanded: Bool = true

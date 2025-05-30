@@ -69,8 +69,6 @@ extension UIImage {
 // MARK: - Preview
 #if DEBUG
 
-#if !targetEnvironment(macCatalyst)
-
 import SwiftUI
 
 #Preview(body: {
@@ -86,8 +84,6 @@ import SwiftUI
 
     return Color(uiColor: averageColor)
 })
-
-#endif
 
 #endif
 

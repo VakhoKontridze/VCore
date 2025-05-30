@@ -30,12 +30,13 @@ extension View {
     ///         .withDisabledKeyboardResponsiveness(regions: .keyboard)
     ///     }
     ///
-    @ViewBuilder
     public func withDisabledKeyboardResponsiveness(
         regions: SafeAreaRegions = .all,
         edges: Edge.Set = .all
     ) -> some View {
-#if canImport(UIKit) && !os(watchOS)
+#if os(macOS) || os(tvOS)
+        fatalError() // Not supported
+#else
         KeyboardResponsivenessDisablingView(content: { self })
             .ignoresSafeArea(regions, edges: edges)
 #endif

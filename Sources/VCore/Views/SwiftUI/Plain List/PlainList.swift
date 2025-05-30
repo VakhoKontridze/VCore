@@ -51,7 +51,7 @@ public struct PlainList<Content>: View, Sendable where Content: View {
 // MARK: - Preview
 #if DEBUG
 
-#if !(os(tvOS) || os(watchOS))
+#if !(os(tvOS) || os(watchOS)) // Redundant
 
 #Preview(body: {
     PlainList(content: {
