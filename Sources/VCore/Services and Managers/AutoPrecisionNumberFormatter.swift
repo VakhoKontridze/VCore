@@ -40,6 +40,12 @@ public struct AutoPrecisionNumberFormatter: Sendable {
     /// Maximum number of fractions.
     public var maxFractions: Int
     
+    private var numberFormatter: NumberFormatter = {
+        let numberFormatter: NumberFormatter = .init()
+        numberFormatter.numberStyle = .decimal
+        return numberFormatter
+    }()
+    
     // MARK: Initializers
     /// Initializes `AutoPrecisionNumberFormatter`.
     public init(
@@ -68,8 +74,6 @@ public struct AutoPrecisionNumberFormatter: Sendable {
             fatalError()
         }
         
-        let numberFormatter: NumberFormatter = .init()
-        numberFormatter.numberStyle = .decimal
         numberFormatter.minimumFractionDigits = minFractions
         numberFormatter.maximumFractionDigits = maxFractions
         
