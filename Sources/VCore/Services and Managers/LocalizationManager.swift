@@ -13,7 +13,6 @@ import OSLog
 ///
 /// You can localize `String`s with a simple `extension`:
 ///
-///     @MainActor
 ///     extension String {
 ///         var localized: String {
 ///             LocalizationManager.shared.localize(self)
@@ -58,8 +57,7 @@ import OSLog
 ///     })
 ///
 @Observable
-@MainActor
-public final class LocalizationManager: Sendable {
+public final class LocalizationManager: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
     public static let shared: LocalizationManager = .init()
@@ -75,12 +73,16 @@ public final class LocalizationManager: Sendable {
     /// Default `Locale` that will be retrieved in the absence of current value.
     public var defaultLocale: Locale {
         get {
-            _defaultLocale
+            lock.withLock({
+                _defaultLocale
+            })
         }
         set {
-            _ = Self.validateLocaleIsAdded(newValue)
-            
-            _defaultLocale = newValue
+            lock.withLock({
+                _ = Self.validateLocaleIsAdded(newValue)
+                
+                _defaultLocale = newValue
+            })
         }
     }
 
@@ -90,16 +92,23 @@ public final class LocalizationManager: Sendable {
     /// Current `Locale`.
     public var currentLocale: Locale {
         get {
-            _currentLocale
+            lock.withLock({
+                _currentLocale
+            })
         }
         set {
-            guard newValue != _currentLocale else { return }
-            _ = Self.validateLocaleIsAdded(newValue)
+            lock.withLock({
+                guard newValue != _currentLocale else { return }
+                _ = Self.validateLocaleIsAdded(newValue)
 
-            _currentLocale = newValue
-            Self.setCurrentLocaleToUserDefaults(newValue)
+                _currentLocale = newValue
+                Self.setCurrentLocaleToUserDefaults(newValue)
+            })
         }
     }
+    
+    // MARK: Properties - Lock
+    private let lock: NSRecursiveLock = .init()
 
     // MARK: Initializers
     private init() {

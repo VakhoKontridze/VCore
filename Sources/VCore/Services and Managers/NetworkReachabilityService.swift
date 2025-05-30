@@ -19,15 +19,19 @@ import OSLog
 ///     }
 ///
 @Observable
-@MainActor
-public final class NetworkReachabilityService: Sendable {
+public final class NetworkReachabilityService: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Shared instance of `NetworkReachabilityService`.
     public static let shared: NetworkReachabilityService = .init()
     
     // MARK: Properties - Status
+    private var _status: NWPath.Status?
+    
     /// Network connection status.
-    private(set) public var status: NWPath.Status?
+    private(set) public var status: NWPath.Status? {
+        get { lock.withLock({ _status }) }
+        set { lock.withLock({ _status = newValue }) }
+    }
     
     /// Indicates if device is connected to a network.
     ///
@@ -48,6 +52,9 @@ public final class NetworkReachabilityService: Sendable {
     }()
     
     @ObservationIgnored private let statusQueue: DispatchQueue = .init(label: "NetworkReachabilityService.StatusQueue")
+    
+    // MARK: Properties - Lock
+    private let lock: NSLock = .init()
 
     // MARK: Initializers
     private init() {
