@@ -19,7 +19,6 @@ extension Logger {
     static let keychainService: Self = .init(subsystem: "VCore", category: "KeychainService")
     static let userDefaultsService: Self = .init(subsystem: "VCore", category: "UserDefaultsService")
     static let localizationManager: Self = .init(subsystem: "VCore", category: "LocalizationManager")
-    static let presentationHost: Self = .init(subsystem: "VCore", category: "PresentationHost")
     static let networkReachabilityService: Self = .init(subsystem: "VCore", category: "NetworkReachabilityService")
 
     static let misc: Self = .init(subsystem: "VCore", category: "Misc")
