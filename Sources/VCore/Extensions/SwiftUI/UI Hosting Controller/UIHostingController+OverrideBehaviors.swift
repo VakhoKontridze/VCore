@@ -87,7 +87,7 @@ extension UIHostingController {
             return
         }
 
-        let block: @convention(block) (AnyObject) -> UIEdgeInsets = { _ in .zero }
+        let block: @convention(block) (UIView) -> UIEdgeInsets = { _ in .zero }
 
         class_addMethod(
             viewSubclass,
@@ -108,7 +108,7 @@ extension UIHostingController {
             return
         }
 
-        let block: @convention(block) (AnyObject, AnyObject) -> Void = { (_, _) in }
+        let block: @convention(block) (UIView, NSNotification) -> Void = { (_, _) in }
 
         class_addMethod(
             viewSubclass,

@@ -11,7 +11,7 @@ import SwiftUI
 /// Model that represents text line.
 public struct TextLineType: Sendable {
     // MARK: Properties
-    private let storage: Storage
+    let storage: Storage
     
     /// `TextAlignment`.
     public var textAlignment: TextAlignment? {
