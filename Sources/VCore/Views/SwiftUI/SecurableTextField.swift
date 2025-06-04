@@ -22,7 +22,7 @@ import SwiftUI
 ///         .textFieldStyle(.roundedBorder)
 ///     }
 ///     
-public struct SecurableTextField: View, Sendable {
+public struct SecurableTextField: View {
     // MARK: Properties
     private let isSecure: Bool
     

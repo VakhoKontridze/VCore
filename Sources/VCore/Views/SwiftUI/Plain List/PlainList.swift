@@ -21,7 +21,7 @@ import SwiftUI
 ///
 @available(tvOS, unavailable) // Doesn't follow HIG. Implementation doesn't fully work.
 @available(watchOS, unavailable) // Doesn't follow HIG. Implementation doesn't fully work.
-public struct PlainList<Content>: View, Sendable where Content: View {
+public struct PlainList<Content>: View where Content: View {
     // MARK: Properties
     private let uiModel: PlainListUIModel
     private let content: () -> Content

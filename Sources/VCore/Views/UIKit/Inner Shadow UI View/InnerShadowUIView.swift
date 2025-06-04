@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Inner Shadow UI View
 /// `UIView` that casts an inner shadow.
-open class InnerShadowUIView: UIView, Sendable {
+open class InnerShadowUIView: UIView {
     // MARK: Subviews
     /// Shape layer.
     open var shapeLayer: CAShapeLayer = {

@@ -91,7 +91,7 @@ import UIKit
 ///         }
 ///     }
 ///
-open class InfiniteScrollingUITableView: UITableView, Sendable {
+open class InfiniteScrollingUITableView: UITableView {
     // MARK: Properties
     /// Delegate.
     open weak var infiniteScrollingDelegate: (any InfiniteScrollingUITableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?

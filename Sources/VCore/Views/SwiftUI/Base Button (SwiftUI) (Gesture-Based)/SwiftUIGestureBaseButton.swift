@@ -77,7 +77,7 @@ import SwiftUI
 ///
 @available(tvOS, unavailable) // No `UIKitBaseButtonGestureRecognizer`
 @available(watchOS, unavailable) // No `UIKitBaseButtonGestureRecognizer`
-public struct SwiftUIGestureBaseButton<Label>: View, Sendable where Label: View {
+public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
     // MARK: Properties
     @Environment(\.isEnabled) private var isEnabled: Bool
     
