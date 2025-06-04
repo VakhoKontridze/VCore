@@ -43,6 +43,7 @@ public struct AlertButtonBuilder: Sendable {
     public static func buildLimitedAvailability(_ component: Component) -> Result {
         component.toButtons()
     }
+    
     public static func buildFinalResult(_ component: Component) -> Result {
         component.toButtons()
     }
