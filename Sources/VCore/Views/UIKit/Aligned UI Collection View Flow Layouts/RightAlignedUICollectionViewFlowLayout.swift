@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - Right Aligned UI Collection View Flow Layout
 /// Layout object that organizes items into a grid with a right alignment.
-open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout, Sendable {
+open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Item Attributes
     open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard

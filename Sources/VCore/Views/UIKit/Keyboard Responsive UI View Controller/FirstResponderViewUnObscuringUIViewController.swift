@@ -12,7 +12,7 @@ import UIKit
 // MARK: - First Responder View Un-Obscuring UI View Controller
 /// Subclass of  `KeyboardResponsiveUIViewController` that handles keyboard notifications by  un-obscuring first responder view, if needed.
 @available(tvOS, unavailable)
-open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIViewController, Sendable {
+open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIViewController {
     // MARK: Properties
     /// `UIView` on which offset animations will be applied. Set to `view`.
     ///

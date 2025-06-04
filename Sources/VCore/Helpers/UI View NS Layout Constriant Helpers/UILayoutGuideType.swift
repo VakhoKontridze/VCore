@@ -45,7 +45,7 @@ public enum UILayoutGuideType: Sendable {
     ///         ...
     ///     )
     ///
-    case custom(@Sendable (UIView) -> UILayoutGuide)
+    case custom(@MainActor (UIView) -> UILayoutGuide)
     
     // MARK: Properties
     /// Converts `UILayoutGuideType` to `UILayoutGuide` within the context of a `UIView`.

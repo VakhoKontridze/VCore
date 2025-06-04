@@ -53,7 +53,7 @@ import OSLog
 ///         collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20)
 ///     ])
 ///
-open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout, Sendable {
+open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Properties
     private let carouselItemSize: CarouselUICollectionViewFlowLayoutItemSize?
     private let spacing: CGFloat?

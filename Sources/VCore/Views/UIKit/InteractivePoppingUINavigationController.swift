@@ -13,7 +13,7 @@ import UIKit
 /// `UINavigationController` that conforms to `UIGestureRecognizerDelegate` via `interactivePopGestureRecognizer`,
 /// and handles interactive popping.
 @available(tvOS, unavailable)
-open class InteractivePoppingUINavigationController: UINavigationController, Sendable, UIGestureRecognizerDelegate {
+open class InteractivePoppingUINavigationController: UINavigationController, UIGestureRecognizerDelegate {
     // MARK: Lifecycle
     open override func viewDidLoad() {
         super.viewDidLoad()

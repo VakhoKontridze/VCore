@@ -61,7 +61,7 @@ import Combine
 ///     }
 ///
 @available(tvOS, unavailable)
-open class KeyboardResponsiveUIViewController: UIViewController, Sendable {
+open class KeyboardResponsiveUIViewController: UIViewController {
     // MARK: Properties - Flags
     /// Indicates, if `keyboardWillShow(_:)` and `keyboardWillHide(_:)` are called, when keyboard is already shown or hidden. Set to `true`.
     open var notifiesWhenKeyboardIsAlreadyShownOrHidden: Bool = true

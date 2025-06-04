@@ -12,8 +12,6 @@ import Foundation
 ///
 /// If `accessLevelModifier` is `nil`, it will be inherited from the type.
 ///
-/// If type is `public`, `Sendable` conformance must be added.
-///
 ///     @OptionSetRepresentation<Int>
 ///     struct Gender {
 ///         private enum Options: Int {
