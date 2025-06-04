@@ -63,7 +63,7 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         self.root = { _ in root() }
     }
 
-    // MARK: Initializers
+    // MARK: Initializers - No NavigationPath
     /// Initializes `CoordinatingNavigationStack`.
     public init(
         @ViewBuilder root: @escaping (NavigationStackCoordinator) -> Root

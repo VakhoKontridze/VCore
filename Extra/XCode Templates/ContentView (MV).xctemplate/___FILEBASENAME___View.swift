@@ -51,7 +51,7 @@ struct ___VARIABLE_productName___View: View {
     }
     
     private var backgroundView: some View {
-        Color(uiColor: .systemBackground)
+        Color(uiColor: UIColor.systemBackground)
             .ignoresSafeArea()
     }
     
