@@ -29,8 +29,8 @@ public final class NetworkReachabilityService: @unchecked Sendable {
     
     /// Network connection status.
     private(set) public var status: NWPath.Status? {
-        get { lock.withLock({ _status }) }
-        set { lock.withLock({ _status = newValue }) }
+        get { queue.sync(execute: { _status }) }
+        set { queue.sync(flags: .barrier, execute: { _status = newValue }) }
     }
     
     /// Indicates if device is connected to a network.
@@ -51,10 +51,15 @@ public final class NetworkReachabilityService: @unchecked Sendable {
         return monitor
     }()
     
-    @ObservationIgnored private let statusQueue: DispatchQueue = .init(label: "com.vakhtang-kontridze.vcore.network-reachability-service.status-queue")
+    // MARK: Properties - Queue
+    @ObservationIgnored private let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.network-reachability-service",
+        attributes: .concurrent
+    )
     
-    // MARK: Properties - Lock
-    private let lock: NSLock = .init()
+    @ObservationIgnored private let statusQueue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.network-reachability-service.status-queue"
+    )
 
     // MARK: Initializers
     private init() {

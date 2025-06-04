@@ -28,8 +28,8 @@ open class UserDefaultsService: @unchecked Sendable {
         init(initialValue) {
             self._userDefaults = initialValue
         }
-        get { lock.withLock({ _userDefaults }) }
-        set { lock.withLock({ _userDefaults = newValue }) }
+        get { queue.sync(execute: { _userDefaults }) }
+        set { queue.sync(flags: .barrier, execute: { _userDefaults = newValue }) }
     }
 
     // MARK: Properties - JSON Encoder
@@ -39,8 +39,8 @@ open class UserDefaultsService: @unchecked Sendable {
     ///
     /// Used in `Codable` methods.
     open var jsonEncoder: JSONEncoder {
-        get { lock.withLock({ _jsonEncoder }) }
-        set { lock.withLock({ _jsonEncoder = newValue }) }
+        get { queue.sync(execute: { _jsonEncoder }) }
+        set { queue.sync(flags: .barrier, execute: { _jsonEncoder = newValue }) }
     }
 
     // MARK: Properties - JSON Decoder
@@ -50,12 +50,15 @@ open class UserDefaultsService: @unchecked Sendable {
     ///
     /// Used in `Codable` methods.
     open var jsonDecoder: JSONDecoder {
-        get { lock.withLock({ _jsonDecoder }) }
-        set { lock.withLock({ _jsonDecoder = newValue }) }
+        get { queue.sync(execute: { _jsonDecoder }) }
+        set { queue.sync(flags: .barrier, execute: { _jsonDecoder = newValue }) }
     }
     
-    // MARK: Properties - Lock
-    private let lock: NSLock = .init()
+    // MARK: Properties - Queue
+    private let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.user-defaults-service",
+        attributes: .concurrent
+    )
 
     // MARK: Initializers
     /// Initializes `UserDefaultsService` with `UserDefaults`.

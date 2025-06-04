@@ -17,27 +17,28 @@ final class MockUserDefaults: UserDefaults {
     // MARK: Properties
     nonisolated(unsafe) private static var storage: [String: Any] = [:]
     
-    private let lock: NSLock = .init()
+    private static let queue: DispatchQueue = .init(label: "com.vakhtang-kontridze.vcore.mock-user-defaults", attributes: .concurrent)
 
     // MARK: Methods
-    override func object(forKey defaultName: String) -> Any? {
-        lock.withLock({
+    public override func object(forKey defaultName: String) -> Any? {
+        Self.queue.sync(execute: {
             Self.storage[defaultName]
         })
     }
 
-    override func set(_ value: Any?, forKey defaultName: String) {
-        lock.withLock({
+    public override func set(_ value: Any?, forKey defaultName: String) {
+        _ = Self.queue.sync(flags: .barrier, execute: {
             if let value {
                 Self.storage[defaultName] = value
             } else {
-                removeObject(forKey: defaultName)
+                // `removeObject(forKey:)` shouldn't be called, as it would deadlock
+                Self.storage.removeValue(forKey: defaultName)
             }
         })
     }
 
-    override func removeObject(forKey defaultName: String) {
-        _ = lock.withLock({
+    public override func removeObject(forKey defaultName: String) {
+        _ = Self.queue.sync(flags: .barrier, execute: {
             Self.storage.removeValue(forKey: defaultName)
         })
     }

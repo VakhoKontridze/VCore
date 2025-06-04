@@ -19,12 +19,15 @@ final class PublishedPropertyWrapperBox<Value>: @unchecked Sendable {
         init(initialValue) {
             self._wrappedValue = initialValue
         }
-        get { lock.withLock({ _wrappedValue }) }
-        set { lock.withLock({ _wrappedValue = newValue }) }
+        get { queue.sync(execute: { _wrappedValue }) }
+        set { queue.sync(flags: .barrier, execute: { _wrappedValue = newValue }) }
     }
     
-    // MARK: Properties - Lock
-    private let lock: NSLock = .init()
+    // MARK: Properties - Queue
+    private let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.published-property-wrapper-box",
+        attributes: .concurrent
+    )
     
     // MARK: Initializers
     init(

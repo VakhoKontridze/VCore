@@ -55,15 +55,14 @@ public final class PresentationHostDataSourceCache: @unchecked Sendable {
     public static let shared: PresentationHostDataSourceCache = .init()
     
     // MARK: Properties - Storage
-    private var _storage: [String: Any] = [:]
+    private var storage: [String: Any] = [:]
     
-    private var storage: [String: Any] {
-        get { lock.withLock({ _storage }) }
-        set { lock.withLock({ _storage = newValue }) }
-    }
-    
-    // MARK: Properties - Lock
-    private let lock: NSLock = .init()
+    // MARK: Properties - Queue
+    // Queue cannot be used on `storage` as dictionary write is both get and set
+    private let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.presentation-host-data-source-cache",
+        attributes: .concurrent
+    )
     
     // MARK: Initializers
     private init() {}
@@ -71,16 +70,22 @@ public final class PresentationHostDataSourceCache: @unchecked Sendable {
     // MARK: Operations
     /// Returns data from key.
     public func get(key: String) -> Any? {
-        storage[key]
+        queue.sync(execute: {
+            storage[key]
+        })
     }
     
     /// Sets data with key.
     public func set(key: String, value: Any) {
-        storage[key] = value
+        queue.sync(flags: .barrier, execute: {
+            storage[key] = value
+        })
     }
     
     /// Deletes data with key.
     public func remove(key: String) {
-        storage.removeValue(forKey: key)
+        _ = queue.sync(flags: .barrier, execute: {
+            storage.removeValue(forKey: key)
+        })
     }
 }

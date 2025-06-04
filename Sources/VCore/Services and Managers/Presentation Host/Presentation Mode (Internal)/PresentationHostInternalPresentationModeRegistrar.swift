@@ -13,15 +13,14 @@ final class PresentationHostInternalPresentationModeRegistrar: @unchecked Sendab
     static let shared: PresentationHostInternalPresentationModeRegistrar = .init()
     
     // MARK: Properties - Registrar
-    private var _registrar: [String?: PresentationHostInternalPresentationMode] = [:]
+    private var storage: [String?: PresentationHostInternalPresentationMode] = [:]
     
-    private var registrar: [String?: PresentationHostInternalPresentationMode] {
-        get { lock.withLock({ _registrar }) }
-        set { lock.withLock({ _registrar = newValue }) }
-    }
-    
-    // MARK: Properties - Lock
-    private let lock: NSLock = .init()
+    // MARK: Properties - Queue
+    // Queue cannot be used on properties as this method does both get and set operations
+    private let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.presentation-host-internal-presentation-mode-registrar",
+        attributes: .concurrent
+    )
 
     // MARK: Initializers
     private init() {}
@@ -30,13 +29,15 @@ final class PresentationHostInternalPresentationModeRegistrar: @unchecked Sendab
     func resolve(
         layerID: String?
     ) -> PresentationHostInternalPresentationMode {
-        if let internalPresentationMode: PresentationHostInternalPresentationMode = registrar[layerID] {
-            return internalPresentationMode
+        queue.sync(flags: .barrier, execute: {
+            if let internalPresentationMode: PresentationHostInternalPresentationMode = storage[layerID] {
+                return internalPresentationMode
 
-        } else {
-            let internalPresentationMode: PresentationHostInternalPresentationMode = .init()
-            registrar[layerID] = internalPresentationMode
-            return internalPresentationMode
-        }
+            } else {
+                let internalPresentationMode: PresentationHostInternalPresentationMode = .init()
+                storage[layerID] = internalPresentationMode
+                return internalPresentationMode
+            }
+        })
     }
 }

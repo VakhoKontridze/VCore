@@ -73,12 +73,12 @@ public final class LocalizationManager: @unchecked Sendable {
     /// Default `Locale` that will be retrieved in the absence of current value.
     public var defaultLocale: Locale {
         get {
-            lock.withLock({
+            queue.sync(execute: {
                 _defaultLocale
             })
         }
         set {
-            lock.withLock({
+            queue.sync(flags: .barrier, execute: {
                 _ = Self.validateLocaleIsAdded(newValue)
                 
                 _defaultLocale = newValue
@@ -92,12 +92,12 @@ public final class LocalizationManager: @unchecked Sendable {
     /// Current `Locale`.
     public var currentLocale: Locale {
         get {
-            lock.withLock({
+            queue.sync(execute: {
                 _currentLocale
             })
         }
         set {
-            lock.withLock({
+            queue.sync(flags: .barrier, execute: {
                 guard newValue != _currentLocale else { return }
                 _ = Self.validateLocaleIsAdded(newValue)
 
@@ -107,8 +107,11 @@ public final class LocalizationManager: @unchecked Sendable {
         }
     }
     
-    // MARK: Properties - Lock
-    private let lock: NSRecursiveLock = .init()
+    // MARK: Properties - Queue
+    @ObservationIgnored private let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.localization-manager",
+        attributes: .concurrent
+    )
 
     // MARK: Initializers
     private init() {
