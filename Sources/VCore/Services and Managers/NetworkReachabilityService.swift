@@ -51,7 +51,7 @@ public final class NetworkReachabilityService: @unchecked Sendable {
         return monitor
     }()
     
-    @ObservationIgnored private let statusQueue: DispatchQueue = .init(label: "NetworkReachabilityService.StatusQueue")
+    @ObservationIgnored private let statusQueue: DispatchQueue = .init(label: "com.vakhtang-kontridze.vcore.network-reachability-service.status-queue")
     
     // MARK: Properties - Lock
     private let lock: NSLock = .init()
