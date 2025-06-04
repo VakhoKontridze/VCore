@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - UI Alert Button
 /// `UIAlertController` button.
-public struct UIAlertButton: UIAlertButtonProtocol, Sendable {
+public struct UIAlertButton: UIAlertButtonProtocol {
     // MARK: Properties
     /// Indicates if button is enabled.
     public var isEnabled: Bool
@@ -23,7 +23,7 @@ public struct UIAlertButton: UIAlertButtonProtocol, Sendable {
     public var title: String
     
     /// Action.
-    public var action: (@Sendable () -> Void)?
+    public var action: (@MainActor () -> Void)?
     
     // MARK: Initializers
     /// Initializes `UIAlertButton`.
@@ -31,7 +31,7 @@ public struct UIAlertButton: UIAlertButtonProtocol, Sendable {
         isEnabled: Bool = true,
         style: UIAlertAction.Style = .default,
         title: String,
-        action: (@Sendable () -> Void)?
+        action: (@MainActor () -> Void)?
     ) {
         self.isEnabled = isEnabled
         self.style = style

@@ -11,7 +11,7 @@ import UIKit
 
 // MARK: - UI Action Sheet Button
 /// `UIActionSheetController` button.
-public struct UIActionSheetButton: UIActionSheetButtonProtocol, Sendable {
+public struct UIActionSheetButton: UIActionSheetButtonProtocol {
     // MARK: Properties
     /// Indicates if button is enabled.
     public var isEnabled: Bool
@@ -23,7 +23,7 @@ public struct UIActionSheetButton: UIActionSheetButtonProtocol, Sendable {
     public var title: String
     
     /// Action.
-    public var action: (@Sendable () -> Void)?
+    public var action: (@MainActor () -> Void)?
     
     // MARK: Initializers
     /// Initializes `UIActionSheetButton`.
@@ -31,7 +31,7 @@ public struct UIActionSheetButton: UIActionSheetButtonProtocol, Sendable {
         isEnabled: Bool = true,
         style: UIAlertAction.Style = .default,
         title: String,
-        action: (@Sendable () -> Void)?
+        action: (@MainActor () -> Void)?
     ) {
         self.isEnabled = isEnabled
         self.style = style

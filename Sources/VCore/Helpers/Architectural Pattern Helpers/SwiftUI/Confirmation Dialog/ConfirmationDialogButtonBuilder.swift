@@ -9,8 +9,8 @@ import Foundation
 
 // MARK: - Confirmation Dialog Button Builder
 /// Custom parameter attribute that constructs views from closures.
-@resultBuilder 
-public struct ConfirmationDialogButtonBuilder: Sendable {
+@resultBuilder
+public struct ConfirmationDialogButtonBuilder {
     // MARK: Properties
     public typealias Component = any ConfirmationDialogButtonConvertible
     public typealias Result = [any ConfirmationDialogButtonProtocol]

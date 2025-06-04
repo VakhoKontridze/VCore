@@ -11,8 +11,8 @@ import Foundation
 
 // MARK: - UI Action Sheet Button Builder
 /// Custom parameter attribute that constructs views from closures.
-@resultBuilder 
-public struct UIActionSheetButtonBuilder: Sendable {
+@resultBuilder
+public struct UIActionSheetButtonBuilder {
     // MARK: Properties
     public typealias Component = any UIActionSheetButtonConvertible
     public typealias Result = [any UIActionSheetButtonProtocol]

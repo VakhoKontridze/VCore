@@ -61,7 +61,7 @@ public struct AlertParameters {
     public init(
         title: String?,
         message: String?,
-        completion: (@Sendable () -> Void)?,
+        completion: (@MainActor () -> Void)?,
         attributes: [String: Any?] = [:]
     ) {
         self.init(
@@ -81,7 +81,7 @@ public struct AlertParameters {
     /// Initializes `AlertParameters` with error and "ok" action.
     public init(
         error: any Error,
-        completion: (@Sendable () -> Void)?,
+        completion: (@MainActor () -> Void)?,
         attributes: [String: Any?] = [:]
     ) {
         self.init(

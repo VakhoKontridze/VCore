@@ -9,18 +9,18 @@ import SwiftUI
 
 // MARK: - Alert Button
 /// `Alert` button.
-public struct AlertButton: AlertButtonProtocol, Sendable {
+public struct AlertButton: AlertButtonProtocol {
     // MARK: Properties
     private var isEnabled: Bool = true
     private let role: ButtonRole?
     private let title: String
-    private let action: (@Sendable () -> Void)?
+    private let action: (@MainActor () -> Void)?
     
     // MARK: Initializers
     /// Initializes `AlertButton`.
     public init(
         role: ButtonRole? = nil,
-        action: (@Sendable () -> Void)?,
+        action: (@MainActor () -> Void)?,
         title: String
     ) {
         self.role = role

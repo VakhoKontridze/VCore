@@ -31,7 +31,7 @@ extension View {
     ///     }
     ///
     public func getNestedSize(
-        _ action: @escaping @Sendable (CGSize) -> Void
+        _ action: @escaping (CGSize) -> Void
     ) -> some View {
         self
             .onPreferenceChange(NestedSizePreferenceKey.self, perform: action)
