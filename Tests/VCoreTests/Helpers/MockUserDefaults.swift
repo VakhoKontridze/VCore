@@ -17,7 +17,10 @@ final class MockUserDefaults: UserDefaults {
     // MARK: Properties
     nonisolated(unsafe) private static var storage: [String: Any] = [:]
     
-    private static let queue: DispatchQueue = .init(label: "com.vakhtang-kontridze.vcore.mock-user-defaults", attributes: .concurrent)
+    private static let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.mock-user-defaults",
+        attributes: .concurrent
+    )
 
     // MARK: Methods
     public override func object(forKey defaultName: String) -> Any? {
