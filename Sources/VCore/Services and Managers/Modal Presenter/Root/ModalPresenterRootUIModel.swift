@@ -1,26 +1,33 @@
 //
-//  PresentationHostLayerUIModel.swift
+//  ModalPresenterRootUIModel.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 11.07.24.
+//  Created by Vakhtang Kontridze on 28.05.25.
 //
 
 import SwiftUI
 
-// MARK: - Presentation Host Layer UI Model
+// MARK: - Modal Presenter Root UI Model
 /// Model that describes UI.
-public struct PresentationHostLayerUIModel: Sendable {
+public struct ModalPresenterRootUIModel: Sendable {
     // MARK: Properties - Global
+#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
+    /// Window level. Set to `normal`.
+    ///
+    /// Only used in `window` configuration.
+    public var windowLevel: UIWindow.Level = .normal
+#endif
+    
     /// Frame. Set to `default`.
     ///
     /// Changing this property conditionally will cause view state to be reset.
     public var frame: Frame = .default
 
     // MARK: Properties - Dimming View
-    /// Shared dimming view color in the layer.
+    /// Shared dimming view color in the root.
     ///
     /// Dimming view will appear if at least on modal is presented.
-    /// If only one modal is presented, this property will be overridden by `preferredDimmingViewColor` from `PresentationHostUIModel`.
+    /// If only one modal is presented, this property can be overridden by `preferredDimmingViewColor` from `ModalPresenterLinkUIModel`.
     public var dimmingViewColor: Color = .platformDynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
 
     /// Dimming view tap action. Set to `default`.
@@ -29,8 +36,10 @@ public struct PresentationHostLayerUIModel: Sendable {
     public var dimmingViewTapAction: DimmingViewTapAction = .default
 
     // MARK: Properties - Keyboard Responsiveness
-#if os(iOS)
+#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
     /// Model for customizing keyboard responsiveness.
+    ///
+    /// Changes made to this property conditionally will not be reflected.
     public var keyboardObserverSubUIModel: KeyboardObserverUIModel = .init()
 #endif
 
@@ -40,7 +49,7 @@ public struct PresentationHostLayerUIModel: Sendable {
 
     // MARK: Frame
     /// Frame.
-    public enum Frame: Sendable {
+    public enum Frame: Equatable, Sendable {
         // MARK: Cases
         /// Fixed frame.
         case fixed(size: CGSize, alignment: Alignment, offset: CGSize)
@@ -55,7 +64,7 @@ public struct PresentationHostLayerUIModel: Sendable {
 
     // MARK: Dimming View Tap Action
     /// Dimming view tap action.
-    public enum DimmingViewTapAction: Int, Sendable, CaseIterable {
+    public enum DimmingViewTapAction: Int, Equatable, Sendable, CaseIterable {
         // MARK: Cases
         /// None.
         case none

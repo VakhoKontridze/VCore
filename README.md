@@ -43,11 +43,11 @@ Project includes folder `Documentation`, which contains:
 
 ## Showcase
 
-#### Presentation Host
+#### Modal Presenter
 
-Manager that injects a presentation host in view hierarchy for modal presentation.
+Manager that allows for creating and presentation of custom modals.
 
-For additional info, refer to "Presentation Host" documentation.
+For additional info, refer to "Modal Presenter" documentation.
 
 #### Multipart/Form-Data Builder
 

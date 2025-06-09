@@ -26,6 +26,13 @@ Services and Managers
 - `LocalizationManager` is now `Observable`
 - `NetworkReachabilityService` is now `Observable`
 
+Services and Managers - Presentation Host
+
+- Presentation Host is renamed to Modal Presenter
+- Modal Presenter now has two presentation types, `overlay` and `window`. Previous presentation type is covered under `overlay`, while new `window` presents modal using a new `UIWindow`.
+- `View.presentationHostLayer(...)` is renamed to `View.modalPresenterRoot(...)`, and it takes `ModalPresenterRoot` as parameter
+- `View.presentationHost(...)` is renamed to `View.modalPresenterLink(...)`, and it takes `ModalPresenterLink` as parameter
+
 Extensions
 
 - `View.safeAreaMargins(edges:insets:)` is removed, as it's obsoleted by `View.safeAreaPaddings(edges:insets:)`

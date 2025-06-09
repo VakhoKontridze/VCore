@@ -1,5 +1,5 @@
 //
-//  PresentationHostPresentationMode.swift
+//  ModalPresenterPresentationMode.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 4/14/22.
@@ -8,12 +8,12 @@
 import Foundation
 import Combine
 
-// MARK: - Presentation Host Presentation Mode
-/// Presentation mode object embedded in environment of modals presented via Presentation Host.
-public struct PresentationHostPresentationMode {
+// MARK: - Modal Presenter Presentation Mode
+/// Presentation mode object embedded in environment of modals presented via Modal Presenter.
+public struct ModalPresenterPresentationMode {
     // MARK: Properties - General
-    /// Modal identifier.
-    public let id: String
+    /// Identifier.
+    public let linkID: String
 
     // MARK: Properties - Present
     let presentSubject: PassthroughSubject<Void, Never> = .init()
@@ -34,13 +34,13 @@ public struct PresentationHostPresentationMode {
 
     /// Emits notification when dimming view is tapped.
     ///
-    /// Will only be called if `PresentationHostLayerUIModel.dimmingViewTapAction` is set to `sendActionToTopmostModal`.
+    /// Will only be called if `ModalPresenterRootUIModel.dimmingViewTapAction` is set to `sendActionToTopmostModal`.
     public var dimmingViewTapActionPublisher: AnyPublisher<Void, Never> { dimmingViewTapActionSubject.eraseToAnyPublisher() }
 
     // MARK: Initializers
     init(
-        id: String
+        linkID: String
     ) {
-        self.id = id
+        self.linkID = linkID
     }
 }
