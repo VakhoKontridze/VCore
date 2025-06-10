@@ -32,7 +32,7 @@ public final class VCoreLocalizationManager: @unchecked Sendable {
     
     // MARK: Properties - Queue
     private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.vcomponents-localization-manager",
+        label: "com.vakhtang-kontridze.vcore.vcore-localization-manager",
         attributes: .concurrent
     )
     

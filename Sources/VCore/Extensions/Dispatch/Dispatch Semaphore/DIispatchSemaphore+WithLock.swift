@@ -1,5 +1,5 @@
 //
-//  DIspatchSemaphore+WithLock.swift
+//  DispatchSemaphore+WithLock.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 18.09.24.

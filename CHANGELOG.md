@@ -1,6 +1,6 @@
 # Change Log
 
-### [8.0.0(112)]
+### 8.0.0(112)
 
 General
 
@@ -18,6 +18,7 @@ Models
 - `ObservableContainerOO` is removed, as it's obsoleted by `ObservableContainer`
 - `DeviceOrientationObserverOO` is removed, as it's obsoleted by `DeviceOrientationObserver`
 - `VCoreError` is replaced with `BaseErrorProtocol`
+- `StringRepresentable` is removed
 
 Services and Managers
 
@@ -33,13 +34,17 @@ Services and Managers - Presentation Host
 - `View.presentationHostLayer(...)` is renamed to `View.modalPresenterRoot(...)`, and it takes `ModalPresenterRoot` as parameter
 - `View.presentationHost(...)` is renamed to `View.modalPresenterLink(...)`, and it takes `ModalPresenterLink` as parameter
 
+Helpers - Architectural Pattern Helpers
+
+- `CoordinatingNavigationStackOO` is removed, as it's obsoleted by `CoordinatingNavigationStack`
+
 Extensions
 
 - `View.safeAreaMargins(edges:insets:)` is removed, as it's obsoleted by `View.safeAreaPaddings(edges:insets:)`
 
-Helpers - Architectural Pattern Helpers
+Global Functions
 
-- `CoordinatingNavigationStackOO` is removed, as it's obsoleted by `CoordinatingNavigationStack`
+- Global exclusive or `^^` is removed
 
 ### [7.5.2(111)](https://github.com/VakhoKontridze/VCore/releases/tag/7.5.2) — 2025 05 25
 

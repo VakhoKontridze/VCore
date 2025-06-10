@@ -29,8 +29,8 @@ public struct SecurableTextField: View {
     private let placeholder: Text?
     @Binding private var text: String
     
-    @FocusState private var isTextFieldFocused
-    @FocusState private var isSecureFieldFocused
+    @FocusState private var isTextFieldFocused: Bool
+    @FocusState private var isSecureFieldFocused: Bool
     
     // MARK: Initializers
     /// Initializes `SecurableTextField` with text.

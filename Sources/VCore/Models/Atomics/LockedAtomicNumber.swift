@@ -27,12 +27,15 @@ public final class LockedAtomicNumber<Number>: @unchecked Sendable
         init(initialValue) {
             self._value = initialValue
         }
-        get { dispatchSemaphore.withLock({ _value }) }
-        set { dispatchSemaphore.withLock({ _value = newValue }) }
+        get { queue.sync(execute: { _value }) }
+        set { queue.sync(flags: .barrier, execute: { _value = newValue }) }
     }
     
-    // MARK: Properties - Semaphore
-    private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
+    // MARK: Properties - Queue
+    private let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.locked-atomic-number",
+        attributes: .concurrent
+    )
 
     // MARK: Initializers
     /// Initializes `LockedAtomicNumber` with an initial value.

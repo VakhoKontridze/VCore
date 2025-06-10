@@ -39,7 +39,7 @@ Package incudes folder `Extra`, which contains:
 
 Project includes folder `Documentation`, which contains:
 
-- Various documentation and style guides
+- Various documentation
 
 ## Showcase
 
