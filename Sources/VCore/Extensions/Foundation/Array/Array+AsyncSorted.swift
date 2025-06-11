@@ -13,10 +13,10 @@ extension Array {
     ///
     ///     let cities: [String] = ["London", "Paris", "New York"]
     ///
-    ///     let sortedCities: [String] = await cities.asyncSorted(by: { (lhs, rhs) in
+    ///     let sortedCities: [String] = await cities.asyncSorted { (lhs, rhs) in
     ///         try? await Task.sleep(nanoseconds: 1_000)
     ///         return lhs < rhs
-    ///     })
+    ///     }
     ///
     public func asyncSorted(
         by areInIncreasingOrder: (Element, Element) async throws -> Bool
@@ -32,10 +32,10 @@ extension Array {
     ///
     ///     var cities: [String] = ["London", "Paris", "New York"]
     ///
-    ///     await cities.asyncSort(by: { (lhs, rhs) in
+    ///     await cities.asyncSort { (lhs, rhs) in
     ///         try? await Task.sleep(nanoseconds: 1_000)
     ///         return lhs < rhs
-    ///     })
+    ///     }
     ///
     mutating public func asyncSort(
         by areInIncreasingOrder: (Element, Element) async throws -> Bool

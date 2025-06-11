@@ -61,11 +61,11 @@ extension Color {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
-    VStack(content: {
+#Preview {
+    VStack {
         Color(hex: "#007AFF")
         Color(hex: 0x007AFF)
-    })
-})
+    }
+}
 
 #endif

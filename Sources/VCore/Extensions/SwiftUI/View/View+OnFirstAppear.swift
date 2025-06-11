@@ -41,11 +41,11 @@ private struct OnFirstAppearModifier: ViewModifier {
     // MARK: Body
     func body(content: Content) -> some View {
         content
-            .onAppear(perform: {
+            .onAppear {
                 if !didAppearForTheFirstTime {
                     didAppearForTheFirstTime = true
                     action?()
                 }
-            })
+            }
     }
 }

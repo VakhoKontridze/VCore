@@ -29,8 +29,8 @@ public final class NetworkReachabilityService: @unchecked Sendable {
     
     /// Network connection status.
     private(set) public var status: NWPath.Status? {
-        get { queue.sync(execute: { _status }) }
-        set { queue.sync(flags: .barrier, execute: { _status = newValue }) }
+        get { queue.sync { _status } }
+        set { queue.sync(flags: .barrier) { _status = newValue } }
     }
     
     /// Indicates if device is connected to a network.
@@ -43,9 +43,9 @@ public final class NetworkReachabilityService: @unchecked Sendable {
         let monitor: NWPathMonitor = .init()
         
         monitor.pathUpdateHandler = { newValue in
-            Task(operation: { @MainActor in
+            Task { @MainActor in
                 self.status = newValue.status
-            })
+            }
         }
         
         return monitor

@@ -19,15 +19,17 @@ extension View {
     ///     @State private var isPresented: Bool = false
     ///
     ///     var body: some View {
-    ///         VStack(content: {
-    ///             Button("Present", action: { isPresented = true })
+    ///         VStack {
+    ///             Button("Present") {
+    ///                 isPresented = true
+    ///             }
     ///
     ///             Toggle("Lorem Ipsum", isOn: $isOn)
-    ///         })
+    ///         }
     ///         .padding()
-    ///         .sheet(isPresented: $isPresented, content: {
+    ///         .sheet(isPresented: $isPresented) {
     ///             Text(String(isOn)) // Displays "false"
-    ///         })
+    ///         }
     ///     }
     ///
     /// One solution lies in using `View.sheet(item:content:)` to bind value to modal:
@@ -41,15 +43,17 @@ extension View {
     ///     @State private var isOn: Bool = false
     ///
     ///     var body: some View {
-    ///         VStack(content: {
-    ///             Button("Present", action: { presentedSheet = Sheet(isOn: isOn) })
+    ///         VStack {
+    ///             Button("Present") {
+    ///                 presentedSheet = Sheet(isOn: isOn)
+    ///             }
     ///
     ///             Toggle("Lorem Ipsum", isOn: $isOn)
-    ///         })
+    ///         }
     ///         .padding()
-    ///         .sheet(item: $presentedSheet, content: { sheet in
+    ///         .sheet(item: $presentedSheet) { sheet in
     ///             Text(String(sheet.isOn)) // Displays "true"
-    ///         })
+    ///         }
     ///     }
     ///
     /// Non-`Binding` modal can still be bound using this method:
@@ -58,20 +62,22 @@ extension View {
     ///     @State private var isPresented: Bool = false
     ///
     ///     var body: some View {
-    ///         VStack(content: {
-    ///             Button("Present", action: { isPresented = true })
+    ///         VStack {
+    ///             Button("Present") {
+    ///                 isPresented = true
+    ///             }
     ///
     ///             Toggle("Lorem Ipsum", isOn: $isOn)
-    ///         })
+    ///         }
     ///         .padding()
     ///         .bindToModalContext(isOn)
-    ///         .sheet(isPresented: $isPresented, content: {
+    ///         .sheet(isPresented: $isPresented) {
     ///             Text(String(isOn)) // Displays "true"
-    ///         })
+    ///         }
     ///     }
     ///
     public func bindToModalContext(_ value: some Equatable) -> some View {
         self
-            .onChange(of: value, {})
+            .onChange(of: value) {}
     }
 }

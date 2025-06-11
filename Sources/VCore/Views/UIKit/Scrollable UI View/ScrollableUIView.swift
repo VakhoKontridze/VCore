@@ -112,7 +112,7 @@ open class ScrollableUIView: UIView {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     let scrollableView: ScrollableUIView = .init()
     scrollableView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -141,7 +141,7 @@ open class ScrollableUIView: UIView {
     ])
 
     return scrollableView
-})
+}
 
 #endif
 

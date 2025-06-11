@@ -67,12 +67,12 @@ open class GradientLayerUIView: UIView {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     let view: GradientLayerUIView = .init()
     view.gradientLayer.colors = [UIColor.red, UIColor.blue].map { $0.cgColor }
 
     return view
-})
+}
 
 #endif
 

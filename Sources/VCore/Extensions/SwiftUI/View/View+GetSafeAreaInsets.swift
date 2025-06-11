@@ -15,7 +15,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getSafeAreaInsets({ safeAreaInsets = $0 })
+    ///             .getSafeAreaInsets { safeAreaInsets = $0 }
     ///     }
     ///
     public func getSafeAreaInsets(
@@ -23,7 +23,7 @@ extension View {
         _ action: @escaping (EdgeInsets) -> Void
     ) -> some View {
         self
-            .background(content: {
+            .background {
                 Color.clear
                     .ignoresSafeArea(.keyboard, edges: ignoredKeyboardSafeAreaEdges)
                     .onGeometryChange(
@@ -31,6 +31,6 @@ extension View {
                         of: { $0.safeAreaInsets },
                         action: action
                     )
-            })
+            }
     }
 }

@@ -14,12 +14,12 @@ extension View {
     /// Can be used to reverse effects of `ignoresSafeArea(_:edges:)` in nested view.
     ///
     ///     var body: some View {
-    ///         ZStack(content: {
+    ///         ZStack {
     ///             Color.gray
     ///
     ///             Color.accentColor
     ///                 .safeAreaPaddings(edges: .all, insets: EdgeInsets(UIDevice.safeAreaInsets))
-    ///         })
+    ///         }
     ///         .ignoresSafeArea()
     ///     }
     ///

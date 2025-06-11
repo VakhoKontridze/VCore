@@ -11,7 +11,7 @@ import SwiftUI
 extension View {
     /// Rotates `View`'s rendered output around the specified point, while adjusting the frame.
     ///
-    ///     HStack(spacing: 0, content: {
+    ///     HStack(spacing: 0) {
     ///         Text("Lorem")
     ///             .border(.red)
     ///
@@ -20,7 +20,7 @@ extension View {
     ///             .border(.blue)
     ///             .rotationEffectWithFrame(.degrees(-45))
     ///             .border(.green)
-    ///     })
+    ///     }
     ///     .border(.green)
     ///
     public func rotationEffectWithFrame(_ angle: Angle) -> some View {
@@ -52,15 +52,15 @@ private struct RotationEffectWithFrameViewModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .rotationEffect(angle)
-            .background(content: {
-                GeometryReader(content: { geometryProxy in
+            .background {
+                GeometryReader { geometryProxy in
                     Color.clear
-                        .task(id: geometryProxy.frame(in: .local), { @MainActor in
+                        .task(id: geometryProxy.frame(in: .local)) { @MainActor in
                             size = geometryProxy.size
-                        })
-                })
+                        }
+                }
                 .allowsHitTesting(false) // Avoids blocking gestures
-            })
+            }
             .frame(size: bounds.size)
     }
 }
@@ -68,8 +68,8 @@ private struct RotationEffectWithFrameViewModifier: ViewModifier {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
-    HStack(spacing: 0, content: {
+#Preview {
+    HStack(spacing: 0) {
         Text("Lorem")
             .border(.red)
 
@@ -78,8 +78,8 @@ private struct RotationEffectWithFrameViewModifier: ViewModifier {
             .border(.blue)
             .rotationEffectWithFrame(.degrees(-45))
             .border(.green)
-    })
+    }
     .border(.green)
-})
+}
 
 #endif

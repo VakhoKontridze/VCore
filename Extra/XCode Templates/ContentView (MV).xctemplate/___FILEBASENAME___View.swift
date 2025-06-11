@@ -38,10 +38,10 @@ struct ___VARIABLE_productName___View: View {
     
     // MARK: Body
     var body: some View {
-        ZStack(content: {
+        ZStack {
             backgroundView
             contentView
-        })
+        }
         .onFirstAppear(perform: didLoad)
 
         .inlineNavigationTitle("___VARIABLE_productName___")
@@ -77,10 +77,10 @@ struct ___VARIABLE_productName___View: View {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
-    CoordinatingNavigationStack(root: {
+#Preview {
+    CoordinatingNavigationStack {
         ___VARIABLE_productName___View(parameters: .mock)
-    })
-})
+    }
+}
 
 #endif

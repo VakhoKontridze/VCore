@@ -34,10 +34,10 @@ extension Color {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     Text("Lorem ipsum")
         .foregroundStyle(Color.platformDynamic(Color.black, Color.white))
         .padding()
-})
+}
 
 #endif

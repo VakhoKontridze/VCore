@@ -13,19 +13,16 @@ import SwiftUI
 ///     @State private var parameters: ConfirmationDialogParameters?
 ///
 ///     var body: some View {
-///         Button(
-///             "Present",
-///             action: {
-///                 parameters = ConfirmationDialogParameters(
-///                     title: "Lorem Ipsum",
-///                     message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-///                     actions: {
-///                         ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
-///                         ConfirmationDialogButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
-///                     }
-///                 )
-///             }
-///         )
+///         Button("Present") {
+///             parameters = ConfirmationDialogParameters(
+///                 title: "Lorem Ipsum",
+///                 message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+///                 actions: {
+///                     ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
+///                     ConfirmationDialogButton(action: { print("Cancelled") }, title: "Cancel", role: .cancel)
+///                 }
+///             )
+///         }
 ///         .confirmationDialog(parameters: $parameters)
 ///
 public struct ConfirmationDialogParameters {

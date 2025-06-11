@@ -71,44 +71,44 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
             .getSafeAreaInsets(ignoredKeyboardSafeAreaEdges: .all, didReadSafeAreaInsets)
 
             // UI
-            .overlay(content: { layerView })
+            .overlay { layerView }
         
             // Handling work
-            .onReceive(internalPresentationMode.presentSubject, perform: { workManager.addWork(.present($0)) })
-            .onReceive(internalPresentationMode.updateSubject, perform: { workManager.addWork(.update($0)) })
-            .onReceive(internalPresentationMode.dismissSubject, perform: { workManager.addWork(.dismiss($0)) })
-            .onChange(of: didReadEnvironment, { workManager.setEnabledStatus(to: $1) })
-            .onReceive(workManager.publisher, perform: { workType in
+            .onReceive(internalPresentationMode.presentSubject) { workManager.addWork(.present($0)) }
+            .onReceive(internalPresentationMode.updateSubject) { workManager.addWork(.update($0)) }
+            .onReceive(internalPresentationMode.dismissSubject) { workManager.addWork(.dismiss($0)) }
+            .onChange(of: didReadEnvironment) { workManager.setEnabledStatus(to: $1) }
+            .onReceive(workManager.publisher) { workType in
                 switch workType {
                 case .present(let data): didReceiveInternalPresentRequest(data)
                 case .update(let data): didReceiveInternalUpdateRequest(data)
                 case .dismiss(let data): didReceiveInternalDismissRequest(data)
                 }
-            })
+            }
     }
 
     @ViewBuilder
     private var layerView: some View {
         if !modals.isEmpty {
-            ZStack(content: {
+            ZStack {
                 visualDimmingView
                 modalsView
-            })
-            .applyModifier({ view in
+            }
+            .applyModifier { view in
                 switch uiModel.frame {
                 case .fixed(let size, let alignment, let offset):
-                    ZStack(content: {
+                    ZStack {
                         view
                             .frame(size: size)
                             .offset(offset)
-                    })
+                    }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
 
                 case .infinite:
                     view
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-            })
+            }
 
             // Must be written last
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
@@ -149,24 +149,23 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
         Color.clear
             .contentShape(.rect)
             .allowsHitTesting(uiModel.dimmingViewTapAction.allowsHitTesting)
-            .onTapGesture(perform: {
+            .onTapGesture {
                 if uiModel.dimmingViewTapAction == .sendActionToTopmostModal {
                     topmostModal.presentationMode.dimmingViewTapActionSubject.send()
                 }
-            })
+            }
     }
 
     private var modalsView: some View {
         ForEach(
             modals.enumeratedArray(),
-            id: \.element.id,
-            content: { (i, modal) in
-                modalView(
-                    isTopmost: i == modals.count - 1,
-                    modal: modal
-                )
-            }
-        )
+            id: \.element.id
+        ) { (i, modal) in
+            modalView(
+                isTopmost: i == modals.count - 1,
+                modal: modal
+            )
+        }
     }
 
     @ViewBuilder
@@ -178,16 +177,13 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
             interactiveDimmingView(topmostModal: modal)
         }
         
-        NonInvasiveGeometryReader(
-            alignment: modal.uiModel.alignment,
-            content: { geometryProxy in
-                modal.view()
-                    .environment(\.modalPresenterContainerSize, geometryProxy.size)
-                    .environment(\.modalPresenterSafeAreaInsets, safeAreaInsets)
-                    .environment(\.modalPresenterPresentationMode, modal.presentationMode)
-            }
-        )
-        .onFirstAppear(perform: { modal.presentationMode.presentSubject.send() })
+        NonInvasiveGeometryReader(alignment: modal.uiModel.alignment) { geometryProxy in
+            modal.view()
+                .environment(\.modalPresenterContainerSize, geometryProxy.size)
+                .environment(\.modalPresenterSafeAreaInsets, safeAreaInsets)
+                .environment(\.modalPresenterPresentationMode, modal.presentationMode)
+        }
+        .onFirstAppear { modal.presentationMode.presentSubject.send() }
     }
     
     // MARK: Actions - Internal
@@ -231,12 +227,12 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     ) {
         guard let modal: ModalPresenterRootModalData_Overlay = modals.first(where: { $0.id == dismissData.link.linkID }) else { return }
 
-        modal.presentationMode.dismissSubject.send(/*completion: */{
-            modals.removeAll(where: { $0.id == dismissData.link.linkID })
+        modal.presentationMode.dismissSubject.send /*completion: */{
+            modals.removeAll { $0.id == dismissData.link.linkID }
             
             ModalPresenterDataSourceCache.shared.remove(key: dismissData.link.linkID)
 
             dismissData.completion()
-        })
+        }
     }
 }

@@ -17,7 +17,7 @@ struct ArrayBinaryAppendTests {
         let array: [Int] = [1, 2, 4, 5, 6]
 
         var appendedArray: [Int] = array
-        let index: Int = appendedArray.binaryAppend(3, by: { $0 < $1 })
+        let index: Int = appendedArray.binaryAppend(3) { $0 < $1 }
 
         #expect(appendedArray == [1, 2, 3, 4, 5, 6])
         #expect(index == 2)

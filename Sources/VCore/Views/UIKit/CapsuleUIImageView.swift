@@ -29,7 +29,7 @@ open class CapsuleUIImageView: UIImageView {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     guard
         let image: UIImage = .init(
             size: CGSize(dimension: 100),
@@ -40,7 +40,7 @@ open class CapsuleUIImageView: UIImageView {
     }
 
     return CapsuleUIImageView(image: image)
-})
+}
 
 #endif
 

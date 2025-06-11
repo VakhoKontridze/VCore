@@ -112,14 +112,14 @@ import OSLog
 ///         func collectionViewDidScrollToBottom(
 ///             sender infiniteScrollingUICollectionView: InfiniteScrollingUICollectionView
 ///         ) {
-///             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [weak self] in
+///             DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
 ///                 guard let self else { return }
 ///
 ///                 data.append(contentsOf: Self.dataChunk)
 ///
 ///                 collectionView.paginationState = .canPaginate
 ///                 collectionView.reloadData()
-///             })
+///             }
 ///         }
 ///     }
 ///
@@ -263,7 +263,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
 // MARK: - Preview
 #if os(iOS) // iOS-only example
 
-#Preview(body: {
+#Preview {
     final class ViewController:
         UIViewController,
         UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
@@ -342,14 +342,14 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         }
 
         func collectionViewDidScrollToBottom(sender infiniteScrollingCollectionView: InfiniteScrollingUICollectionView) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
                 guard let self else { return }
 
                 data.append(contentsOf: page)
 
                 collectionView.paginationState = .canPaginate
                 collectionView.reloadData()
-            })
+            }
         }
 
         func collectionView(
@@ -362,6 +362,6 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     }
 
     return ViewController()
-})
+}
 
 #endif

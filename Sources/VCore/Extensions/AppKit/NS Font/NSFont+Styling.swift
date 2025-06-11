@@ -35,10 +35,10 @@ extension NSFont {
 
 import SwiftUI
 
-#Preview(body: {
+#Preview {
     let font: NSFont = .systemFont(ofSize: 13)
 
-    VStack(content: {
+    VStack {
         Text("Lorem ipsum")
             .font(Font(font))
 
@@ -51,9 +51,9 @@ import SwiftUI
             Text("Lorem ipsum")
                 .font(Font(font))
         }
-    })
+    }
     .padding()
-})
+}
 
 #endif
 

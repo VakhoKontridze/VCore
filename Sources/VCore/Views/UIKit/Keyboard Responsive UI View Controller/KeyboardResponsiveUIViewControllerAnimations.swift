@@ -34,31 +34,25 @@ extension UIView {
     ///             super.keyboardWillShow(systemKeyboardInfo)
     ///
     ///             UIView.animateKeyboardResponsiveness(
-    ///                 systemKeyboardInfo: systemKeyboardInfo,
-    ///                 animations: { [weak self] in
-    ///                     guard let self else { return }
+    ///                 systemKeyboardInfo: systemKeyboardInfo
+    ///             ) { [weak self] in
+    ///                 guard let self else { return }
     ///
-    ///                     guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return }
+    ///                 guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return }
     ///
-    ///                     view.bounds.origin.y = systemKeyboardHeight
-    ///                     view.superview?.layoutIfNeeded()
-    ///                 }
-    ///             )
+    ///                 view.bounds.origin.y = systemKeyboardHeight
+    ///                 view.superview?.layoutIfNeeded()
+    ///             }
     ///         }
-    ///
-    ///         override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
-    ///             super.keyboardWillHide(systemKeyboardInfo)
     ///
     ///             UIView.animateKeyboardResponsiveness(
-    ///                 systemKeyboardInfo: systemKeyboardInfo,
-    ///                 animations: { [weak self] in
-    ///                     guard let self else { return }
+    ///                 systemKeyboardInfo: systemKeyboardInfo
+    ///             ) { [weak self] in
+    ///                 guard let self else { return }
     ///
-    ///                     view.bounds.origin.y = 0
-    ///                     view.superview?.layoutIfNeeded()
-    ///                 }
-    ///             )
-    ///         }
+    ///                 view.bounds.origin.y = 0
+    ///                 view.superview?.layoutIfNeeded()
+    ///             }
     ///     }
     ///
     public class func animateKeyboardResponsiveness(

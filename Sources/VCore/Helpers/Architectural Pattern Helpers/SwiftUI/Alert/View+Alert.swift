@@ -14,19 +14,16 @@ extension View {
     ///     @State private var parameters: AlertParameters?
     ///
     ///     var body: some View {
-    ///         Button(
-    ///             "Present",
-    ///             action: {
-    ///                 parameters = AlertParameters(
-    ///                     title: "Lorem Ipsum",
-    ///                     message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    ///                     actions: {
-    ///                         AlertButton(action: { print("Confirmed") }, title: "Confirm")
-    ///                         AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
-    ///                     }
-    ///                 )
-    ///             }
-    ///         )
+    ///         Button("Present") {
+    ///             parameters = AlertParameters(
+    ///                 title: "Lorem Ipsum",
+    ///                 message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    ///                 actions: {
+    ///                     AlertButton(action: { print("Confirmed") }, title: "Confirm")
+    ///                     AlertButton(action: { print("Cancelled") }, title: "Cancel", role: .cancel)
+    ///                 }
+    ///             )
+    ///         }
     ///         .alert(parameters: $parameters)
     ///     }
     ///
@@ -44,12 +41,11 @@ extension View {
                     ForEach(
                         buttons.enumeratedArray(),
                         id: \.offset, // Native `View.alert(...)` doesn't react to changes
-                        content: { (_, button) in
-                            button.makeBody(animateOutHandler: { completion in
-                                completion?()
-                            })
+                    ) { (_, button) in
+                        button.makeBody { completion in
+                            completion?()
                         }
-                    )
+                    }
                 }
             },
             message: {
@@ -64,23 +60,20 @@ extension View {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     @Previewable @State var parameters: AlertParameters?
 
-    Button(
-        "Present",
-        action: {
-            parameters = AlertParameters(
-                title: "Lorem Ipsum",
-                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-                actions: {
-                    AlertButton(action: {}, title: "Confirm")
-                    AlertButton(role: .cancel, action: {}, title: "Cancel")
-                }
-            )
-        }
-    )
+    Button("Present") {
+        parameters = AlertParameters(
+            title: "Lorem Ipsum",
+            message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            actions: {
+                AlertButton(action: { print("Confirmed") }, title: "Confirm")
+                AlertButton(action: { print("Cancelled") }, title: "Cancel", role: .cancel)
+            }
+        )
+    }
     .alert(parameters: $parameters)
-})
+}
 
 #endif

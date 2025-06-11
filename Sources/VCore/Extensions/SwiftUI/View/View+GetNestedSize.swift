@@ -16,16 +16,16 @@ extension View {
     ///     @State private var height: CGFloat = 0
     ///
     ///     var body: some View {
-    ///         TabView(content: {
-    ///             ForEach(0..<3, id: \.self, content: { i in
+    ///         TabView {
+    ///             ForEach(0..<3, id: \.self) { i in
     ///                 Text("Page \(i+1)")
     ///                     .nestedSizeTargetLayout()
-    ///             })
-    ///         })
+    ///             }
+    ///         }
     ///         .tabViewStyle(.page(indexDisplayMode: .never))
-    ///         .background(content: { Color.gray })
+    ///         .background { Color.gray }
     ///
-    ///         .getNestedSize({ [$height] in $height.wrappedValue = max($0.height, 1) }) // `1` creates a non-zero buffer before height calculates
+    ///         .getNestedSize { [$height] in $height.wrappedValue = max($0.height, 1) }  // `1` creates a non-zero buffer before height calculates
     ///         .frame(height: height)
     ///         .padding()
     ///     }
@@ -44,7 +44,7 @@ extension View {
         assignTo binding: Binding<CGSize>
     ) -> some View {
         self
-            .getNestedSize({ binding.wrappedValue = $0 })
+            .getNestedSize { binding.wrappedValue = $0 }
     }
 }
 
@@ -52,16 +52,16 @@ extension View {
     /// Configures `View` as a target layout for reading nested size via `getNestedSize(_:)` method.
     public func nestedSizeTargetLayout() -> some View {
         self
-            .background(content: {
-                GeometryReader(content: { geometryProxy in
+            .background {
+                GeometryReader { geometryProxy in
                     Color.clear
                         .preference(
                             key: NestedSizePreferenceKey.self,
                             value: geometryProxy.size
                         )
-                })
+                }
                 .allowsHitTesting(false) // Avoids blocking gestures
-            })
+            }
     }
 }
 
@@ -79,22 +79,22 @@ private struct NestedSizePreferenceKey: PreferenceKey {
 
 #if !os(macOS) // No `PageTabViewStyle` on macOS
 
-#Preview(body: {
+#Preview {
     @Previewable @State var height: CGFloat = 0
 
-    TabView(content: {
-        ForEach(0..<3, id: \.self, content: { i in
+    TabView {
+        ForEach(0..<3, id: \.self) { i in
             Text("Page \(i+1)")
                 .nestedSizeTargetLayout()
-        })
-    })
+        }
+    }
     .tabViewStyle(.page(indexDisplayMode: .never))
-    .background(content: { Color.gray })
+    .background { Color.gray }
 
-    .getNestedSize({ [$height] in $height.wrappedValue = max($0.height, 1) }) // `1` creates a non-zero buffer before height calculates
+    .getNestedSize { [$height] in $height.wrappedValue = max($0.height, 1) } // `1` creates a non-zero buffer before height calculates
     .frame(height: height)
     .padding()
-})
+}
 
 #endif
 

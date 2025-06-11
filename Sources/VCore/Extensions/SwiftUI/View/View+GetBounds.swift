@@ -15,7 +15,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getBounds(of: .global, { bounds = $0 })
+    ///             .getBounds(of: .global) { bounds = $0 }
     ///     }
     ///
     public func getBounds(

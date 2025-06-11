@@ -94,9 +94,9 @@ final class GestureBaseButtonModel {
     }
     
     private func setStateToPossibleOnNextRunLoop() {
-        Task(operation: { @MainActor in
+        Task { @MainActor in
             stateSetter(.possible)
-        })
+        }
     }
     
     // MARK: Touch Detection

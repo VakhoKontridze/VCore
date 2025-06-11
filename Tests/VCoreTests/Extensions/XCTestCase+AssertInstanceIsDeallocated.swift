@@ -17,7 +17,7 @@ extension XCTestCase {
         file: StaticString = #filePath,
         line: UInt = #line
     ) {
-        addTeardownBlock({ [weak instance] in
+        addTeardownBlock { [weak instance] in
             XCTAssertNil(
                 instance,
                 String.combiningDebugItems(
@@ -27,6 +27,6 @@ extension XCTestCase {
                 file: file,
                 line: line
             )
-        })
+        }
     }
 }

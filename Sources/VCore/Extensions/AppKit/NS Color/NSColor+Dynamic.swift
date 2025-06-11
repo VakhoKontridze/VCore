@@ -20,25 +20,22 @@ extension NSColor {
         _ light: NSColor,
         _ dark: NSColor
     ) -> NSColor {
-        .init(
-            name: nil,
-            dynamicProvider: { appearance in
-                switch appearance.name {
-                case .aqua: return light
-                case .accessibilityHighContrastAqua: return light
-                case .accessibilityHighContrastVibrantLight: return light
+        .init(name: nil) { appearance in
+            switch appearance.name {
+            case .aqua: return light
+            case .accessibilityHighContrastAqua: return light
+            case .accessibilityHighContrastVibrantLight: return light
 
-                case .darkAqua: return dark
-                case .vibrantDark: return dark
-                case .accessibilityHighContrastDarkAqua: return dark
-                case .accessibilityHighContrastVibrantDark: return dark
+            case .darkAqua: return dark
+            case .vibrantDark: return dark
+            case .accessibilityHighContrastDarkAqua: return dark
+            case .accessibilityHighContrastVibrantDark: return dark
 
-                default:
-                    Logger.misc.fault("Unhandled 'NSAppearance' '\(appearance.debugDescription)' in 'NSColor.dynamic(_:_:)'")
-                    return light
-                }
+            default:
+                Logger.misc.fault("Unhandled 'NSAppearance' '\(appearance.debugDescription)' in 'NSColor.dynamic(_:_:)'")
+                return light
             }
-        )
+        }
     }
 }
 

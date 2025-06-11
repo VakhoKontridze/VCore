@@ -18,14 +18,14 @@ import Combine
 ///     @State private var viewModel: ViewModel = .init()
 ///
 ///     var body: some View {
-///         VStack(content: {
+///         VStack {
 ///             Text(String(viewModel.count.value))
 ///
-///             Button("Update", action: {
+///             Button("Update") {
 ///                 viewModel.count.value += 1
 ///                 viewModel.count.value += 1
-///             })
-///         })
+///             }
+///         }
 ///     }
 ///
 ///     @Observable
@@ -38,7 +38,7 @@ import Combine
 ///         init() {
 ///             count
 ///                 .publisher
-///                 .sink(receiveValue: { print($0) })
+///                 .sink { print($0) }
 ///                 .store(in: &subscriptions)
 ///         }
 ///     }
@@ -57,9 +57,9 @@ public final class PublishingObservationContainer<Value>: Sendable {
             return _value
         }
         set {
-            withMutation(keyPath: \.value, {
+            withMutation(keyPath: \.value) {
                 _value = newValue
-            })
+            }
 
             subject.send(newValue)
         }

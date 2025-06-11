@@ -20,7 +20,7 @@ extension View {
     ///     @FocusState private var focusedInput: FocusedInput?
     ///
     ///     var body: some View {
-    ///         VStack(content: {
+    ///         VStack {
     ///             TextField("First name", text: $firstName)
     ///                 .focused($focusedInput, equals: .firstName)
     ///                 .responderChainToolbar(
@@ -36,7 +36,7 @@ extension View {
     ///                     equals: .lastName,
     ///                     inResponderChain: [.firstName, .lastName]
     ///                 )
-    ///         })
+    ///         }
     ///         .padding()
     ///         .textFieldStyle(.roundedBorder)
     ///     }
@@ -56,8 +56,8 @@ extension View {
         where Value: Hashable
     {
         self
-            .toolbar(content: {
-                ToolbarItemGroup(placement: .keyboard, content: {
+            .toolbar {
+                ToolbarItemGroup(placement: .keyboard) {
                     if
                         binding.wrappedValue == value,
                         uiModel.hasButtons
@@ -88,7 +88,7 @@ extension View {
                         let upButtonIsEnabled: Bool = previousValue != nil
                         let downButtonIsEnabled: Bool = nextValue != nil
 
-                        Group(content: {
+                        Group {
                             if uiModel.hasNavigationButtons {
                                 Button(
                                     action: { binding.wrappedValue = previousValue },
@@ -108,17 +108,16 @@ extension View {
                             Spacer() // No need to specify min value, as it's controlled by the operating system
 
                             if uiModel.hasDoneButton {
-                                Button(
-                                    VCoreLocalizationManager.shared.localizationProvider.responderChainToolbarDoneButtonTitle,
-                                    action: { binding.wrappedValue = nil }
-                                )
+                                Button(VCoreLocalizationManager.shared.localizationProvider.responderChainToolbarDoneButtonTitle) {
+                                    binding.wrappedValue = nil
+                                }
                                 .foregroundStyle(uiModel.buttonColors.enabled)
                                 .font(uiModel.doneButtonFont)
                             }
-                        })
+                        }
                     }
-                })
-            })
+                }
+            }
     }
 
     /// Inserts toolbar that manages focus navigation in responder chain.
@@ -134,7 +133,7 @@ extension View {
     ///     @FocusState private var focusedInput: FocusedInput?
     ///
     ///     var body: some View {
-    ///         VStack(content: {
+    ///         VStack {
     ///             TextField("First name", text: $firstName)
     ///                 .focused($focusedInput, equals: .firstName)
     ///                 .responderChainToolbar(focus: $focusedInput, equals: .firstName)
@@ -142,7 +141,7 @@ extension View {
     ///             TextField("Last name", text: $lastName)
     ///                 .focused($focusedInput, equals: .lastName)
     ///                 .responderChainToolbar(focus: $focusedInput, equals: .lastName)
-    ///         })
+    ///         }
     ///         .padding()
     ///         .textFieldStyle(.roundedBorder)
     ///     }

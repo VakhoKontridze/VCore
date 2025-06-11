@@ -14,7 +14,7 @@ extension Color {
     ///     Text("Lorem ipsum")
     ///         .foregroundStyle(Color.primaryInverted)
     ///         .padding()
-    ///         .background(content: { Color.primary })
+    ///         .background { Color.primary }
     ///
     public static let primaryInverted: Color = .platformDynamic(Color.white, Color.black)
 }
@@ -22,8 +22,8 @@ extension Color {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
-    VStack(content: {
+#Preview {
+    VStack {
         Text("Lorem ipsum")
             .foregroundStyle(Color.primary)
             .padding()
@@ -31,8 +31,8 @@ extension Color {
         Text("Lorem ipsum")
             .foregroundStyle(Color.primaryInverted)
             .padding()
-            .background(content: { Color.primary })
-    })
-})
+            .background { Color.primary }
+    }
+}
 
 #endif

@@ -33,12 +33,12 @@ struct CollectionFirstAndLastIndexOfTypeTests {
     @Test
     func testFirstIndex() {
         #expect(array.firstIndex(ofType: S1.self) == 0)
-        #expect(array.firstIndex(ofType: S1.self, where: { $0.value > 1 }) == 1)
+        #expect(array.firstIndex(ofType: S1.self) { $0.value > 1 } == 1)
     }
 
     @Test
     func testLastIndex() {
         #expect(array.lastIndex(ofType: S1.self) == 5)
-        #expect(array.lastIndex(ofType: S1.self, where: { $0.value < 6 }) == 4)
+        #expect(array.lastIndex(ofType: S1.self) { $0.value < 6 } == 4)
     }
 }

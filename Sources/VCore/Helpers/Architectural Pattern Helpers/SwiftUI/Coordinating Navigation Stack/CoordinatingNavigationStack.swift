@@ -14,19 +14,18 @@ import SwiftUI
 /// Can be used to push or pop `View`s programmatically.
 ///
 ///     var body: some View {
-///         CoordinatingNavigationStack(root: {
+///         CoordinatingNavigationStack {
 ///             HomeView()
-///         })
+///         }
 ///     }
 ///
 ///     struct HomeView: View {
 ///         @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
 ///
 ///         var body: some View {
-///             Button(
-///                 "Navigate",
-///                 action: { navigationStackCoordinator.path.append(DestinationParameters()) }
-///             )
+///             Button("Navigate") {
+///                 navigationStackCoordinator.path.append(DestinationParameters())
+///             }
 ///             .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
 ///         }
 ///     }
@@ -90,10 +89,9 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
 
     // MARK: Body
     public var body: some View {
-        NavigationStack(
-            path: $navigationStackCoordinator.path,
-            root: { root(navigationStackCoordinator) }
-        )
+        NavigationStack(path: $navigationStackCoordinator.path) {
+            root(navigationStackCoordinator)
+        }
         .environment(\.navigationStackCoordinator, navigationStackCoordinator)
     }
 }
@@ -101,12 +99,12 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     struct ContentView: View {
         var body: some View {
-            CoordinatingNavigationStack(root: {
+            CoordinatingNavigationStack {
                 HomeView()
-            })
+            }
         }
     }
 
@@ -114,10 +112,9 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
 
         var body: some View {
-            Button(
-                "Navigate",
-                action: { navigationStackCoordinator.path.append(DestinationParameters()) }
-            )
+            Button("Navigate") {
+                navigationStackCoordinator.path.append(DestinationParameters())
+            }
 #if !(os(macOS) || os(tvOS))
             .inlineNavigationTitle("Home")
 #endif
@@ -137,10 +134,9 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         }
 
         var body: some View {
-            Button(
-                "Go Back",
-                action: { navigationStackCoordinator.path.removeLast() }
-            )
+            Button("Go Back") {
+                navigationStackCoordinator.path.removeLast()
+            }
 #if !(os(macOS) || os(tvOS))
             .inlineNavigationTitle("Destination")
 #endif
@@ -148,6 +144,6 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     }
 
     return ContentView()
-})
+}
 
 #endif

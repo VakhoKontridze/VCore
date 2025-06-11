@@ -130,12 +130,12 @@ private let strings: [String] = [
 ]
 
 var body: some View {
-    AlignedGridLayout(alignment: .center, spacing: 5).callAsFunction({
-        ForEach(strings, id: \.self, content: { string in
+    AlignedGridLayout(alignment: .center, spacing: 5) {
+        ForEach(strings, id: \.self) { string in
             Text(string)
-                .background(content: { Color.accentColor.opacity(0.5) })
-        })
-    })
+                .background { Color.accentColor.opacity(0.5) }
+        }
+    }
     .padding()
 }
 ```
@@ -168,10 +168,10 @@ Retrieving `CGSize` form `View`:
 @State private var size: CGSize = .zero
 
 var body: some View {
-    VStack(content: {
+    VStack {
         Color.accentColor
-            .getSize({ size = $0 })
-    })
+            .getSize { size = $0 }
+    }
 }
 ```
 

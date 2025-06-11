@@ -16,16 +16,16 @@ import SwiftUI
 /// In the following example, scrolling down and triggering reset causes content to be reset.
 ///
 ///     var body: some View {
-///         ViewResettingContainer(content: {
+///         ViewResettingContainer {
 ///             ChildView()
-///         })
+///         }
 ///     }
 ///
 ///     struct ChildView: View {
 ///         @Environment(\.viewResetter) private var viewResetter: ViewResetter!
 ///
 ///         var body: some View {
-///             ScrollView(content: {
+///             ScrollView {
 ///                 Color.accentColor
 ///                     .frame(height: UIScreen.main.bounds.size.height)
 ///
@@ -33,7 +33,7 @@ import SwiftUI
 ///                     "Reset",
 ///                     action: viewResetter.trigger
 ///                 )
-///             })
+///             }
 ///         }
 ///     }
 ///
@@ -59,13 +59,13 @@ public struct ViewResettingContainer<Content>: View where Content: View {
 
     // MARK: Body
     public var body: some View {
-        Group(content: {
+        Group {
             if viewResetter.value.isMultiple(of: 2) {
                 content(viewResetter)
             } else {
                 content(viewResetter)
             }
-        })
+        }
         .environment(\.viewResetter, viewResetter)
     }
 }
@@ -73,12 +73,12 @@ public struct ViewResettingContainer<Content>: View where Content: View {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     struct ContentView: View {
         var body: some View {
-            ViewResettingContainer(content: {
+            ViewResettingContainer {
                 ChildView()
-            })
+            }
         }
     }
 
@@ -86,8 +86,8 @@ public struct ViewResettingContainer<Content>: View where Content: View {
         @Environment(\.viewResetter) private var viewResetter: ViewResetter!
 
         var body: some View {
-            GeometryReader(content: { geometryProxy in
-                ScrollView(content: {
+            GeometryReader { geometryProxy in
+                ScrollView {
                     Color.accentColor
                         .frame(height: geometryProxy.size.height * 1.2)
 
@@ -95,12 +95,12 @@ public struct ViewResettingContainer<Content>: View where Content: View {
                         "Reset",
                         action: viewResetter.trigger
                     )
-                })
-            })
+                }
+            }
         }
     }
 
     return ContentView()
-})
+}
 
 #endif

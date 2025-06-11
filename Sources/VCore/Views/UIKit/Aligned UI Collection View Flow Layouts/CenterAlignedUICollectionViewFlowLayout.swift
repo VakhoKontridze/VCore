@@ -199,7 +199,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         sameRowItemAttributes: [UICollectionViewLayoutAttributes]
     ) -> CGFloat {
         let sumOfInteritemSpacings: CGFloat = interitemSpacing * CGFloat(sameRowItemAttributes.count - 1)
-        let sumOfItemWidths: CGFloat = sameRowItemAttributes.reduce(0, { $0 + $1.frame.size.width })
+        let sumOfItemWidths: CGFloat = sameRowItemAttributes.reduce(0) { $0 + $1.frame.size.width }
         let alignmentWidth: CGFloat = sumOfItemWidths + sumOfInteritemSpacings
         let centerAlignmentXOffset: CGFloat = (availableWidthForCells - alignmentWidth) / 2
         
@@ -217,11 +217,11 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     Preview_AlignedUICollectionViewFlowLayoutViewController(
         layout: CenterAlignedUICollectionViewFlowLayout()
     )
-})
+}
 
 #endif
 

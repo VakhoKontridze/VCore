@@ -28,15 +28,15 @@ struct ___VARIABLE_productName___: View {
     // MARK: Body
     var body: some View {
         EmptyView()
-            .background(content: { uiModel.backgroundColor })
+            .background { uiModel.backgroundColor }
     }
 }
 
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     ___VARIABLE_productName___(parameters: .mock)
-})
+}
 
 #endif

@@ -33,17 +33,13 @@ import SwiftUI
 ///                 .modalPresenterLink(
 ///                     link: link,
 ///                     isPresented: isPresented,
-///                     content: {
-///                         SomeModal<Content?>(
-///                             isPresented: isPresented,
-///                             content: {
-///                                 if let item = item.wrappedValue ?? ModalPresenterDataSourceCache.shared.get(key: id) as? Item {
-///                                     content(item)
-///                                 }
-///                             }
-///                         )
+///                 ) {
+///                     SomeModal<Content?>(isPresented: isPresented) {
+///                         if let item = item.wrappedValue ?? ModalPresenterDataSourceCache.shared.get(key: id) as? Item {
+///                             content(item)
+///                         }
 ///                     }
-///                 )
+///                 }
 ///         }
 ///     }
 ///

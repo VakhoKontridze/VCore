@@ -26,10 +26,10 @@ extension Collection {
         ofType type: T.Type,
         where predicate: ((T) throws -> Bool)? = nil
     ) rethrows -> T? {
-        try first(where: { element in
+        try first { element in
             guard let element = element as? T else { return false }
             return try predicate?(element) ?? true
-        }) as? T
+        } as? T
     }
 }
 
@@ -45,16 +45,16 @@ extension BidirectionalCollection {
     ///
     ///     let array: [any P] = [S()]
     ///
-    ///     let p1: S? = array.last(where: { $0 is S }) as? S
+    ///     let p1: S? = array.last { $0 is S } as? S
     ///     let p2: S? = array.lastElement(ofType: S.self)
     ///
     public func lastElement<T>(
         ofType type: T.Type,
         where predicate: ((T) throws -> Bool)? = nil
     ) rethrows -> T? {
-        try last(where: { element in
+        try last { element in
             guard let element = element as? T else { return false }
             return try predicate?(element) ?? true
-        }) as? T
+        } as? T
     }
 }

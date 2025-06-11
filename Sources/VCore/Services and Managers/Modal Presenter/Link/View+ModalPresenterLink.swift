@@ -14,17 +14,15 @@ extension View {
     ///     @State private var isPresented: Bool = true
     ///
     ///     var body: some View {
-    ///         ZStack(content: {
-    ///             Button(
-    ///                 "Present",
-    ///                 action: { isPresented = true }
-    ///             )
+    ///         ZStack {
+    ///             Button("Present") {
+    ///                 isPresented = true
+    ///             }
     ///             .someModal(
     ///                 link: .window(linkID: "some_modal"),
-    ///                 isPresented: $isPresented,
-    ///                 content: { Color.accentColor }
-    ///             )
-    ///         })
+    ///                 isPresented: $isPresented)
+    ///             ) { Color.accentColor }
+    ///         }
     ///         .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     ///         .modalPresenterRoot(root: .window()) // Or declare in `App` on a `WindowScene`-level
     ///     }
@@ -41,13 +39,12 @@ extension View {
     ///                 .modalPresenterLink(
     ///                     link: link,
     ///                     isPresented: isPresented,
-    ///                     content: {
-    ///                         SomeModal(
-    ///                             isPresented: isPresented,
-    ///                             content: content
-    ///                         )
-    ///                     }
-    ///                 )
+    ///                  ) {
+    ///                     SomeModal(
+    ///                         isPresented: isPresented,
+    ///                         content: content
+    ///                     )
+    ///                 }
     ///         }
     ///     }
     ///
@@ -71,12 +68,12 @@ extension View {
     ///         }
     ///
     ///         var body: some View {
-    ///             ZStack(content: {
+    ///             ZStack {
     ///                 Color(uiColor: UIColor.systemBackground)
     ///
     ///                 content()
     ///                     .padding()
-    ///             })
+    ///             }
     ///             .frame(dimension: 300)
     ///
     ///             .compositingGroup() // For shadow

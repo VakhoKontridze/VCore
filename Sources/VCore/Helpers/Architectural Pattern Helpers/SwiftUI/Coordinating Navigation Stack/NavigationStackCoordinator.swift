@@ -13,19 +13,18 @@ import SwiftUI
 /// Can be used to push or pop `View`s programmatically.
 ///
 ///     var body: some View {
-///         CoordinatingNavigationStack(root: {
+///         CoordinatingNavigationStack {
 ///             HomeView()
-///         })
+///         }
 ///     }
 ///
 ///     struct HomeView: View {
 ///         @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
 ///
 ///         var body: some View {
-///             Button(
-///                 "Navigate",
-///                 action: { navigationStackCoordinator.path.append(DestinationParameters()) }
-///             )
+///             Button("Navigate") {
+///                 navigationStackCoordinator.path.append(DestinationParameters())
+///             }
 ///             .inlineNavigationTitle("Home")
 ///             .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
 ///         }

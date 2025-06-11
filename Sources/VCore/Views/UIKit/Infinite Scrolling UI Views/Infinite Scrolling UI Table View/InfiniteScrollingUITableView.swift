@@ -80,14 +80,14 @@ import UIKit
 ///         }
 ///
 ///         func tableViewDidScrollToBottom(sender infiniteScrollingUITableView: InfiniteScrollingUITableView) {
-///             DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [weak self] in
+///             DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
 ///                 guard let self else { return }
 ///
 ///                 data.append(contentsOf: Self.dataChunk)
 ///
 ///                 tableView.paginationState = .canPaginate
 ///                 tableView.reloadData()
-///             })
+///             }
 ///         }
 ///     }
 ///
@@ -162,7 +162,7 @@ open class InfiniteScrollingUITableView: UITableView {
 // MARK: - Preview
 #if os(iOS) // iOS-only example
 
-#Preview(body: {
+#Preview {
     final class ViewController:
         UIViewController,
         UITableViewDelegate, UITableViewDataSource,
@@ -221,18 +221,18 @@ open class InfiniteScrollingUITableView: UITableView {
         }
 
         func tableViewDidScrollToBottom(sender infiniteScrollingUITableView: InfiniteScrollingUITableView) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3, execute: { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
                 guard let self else { return }
 
                 data.append(contentsOf: page)
 
                 tableView.paginationState = .canPaginate
                 tableView.reloadData()
-            })
+            }
         }
     }
 
     return ViewController()
-})
+}
 
 #endif

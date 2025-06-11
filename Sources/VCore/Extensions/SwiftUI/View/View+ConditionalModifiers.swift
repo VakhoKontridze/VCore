@@ -17,7 +17,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
-    ///             .applyIf(isRed, transform: { $0.foregroundStyle(.red) })
+    ///             .applyIf(isRed) { $0.foregroundStyle(.red) }
     ///     }
     ///
     @ViewBuilder 
@@ -40,18 +40,18 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
-    ///             .applyIf(
-    ///                 isError,
-    ///                 ifTransform: { $0.foregroundStyle(.red) },
-    ///                 elseTransform: { $0.fontWeight(.bold) }
-    ///             )
+    ///             .applyIf(isError) {
+    ///                 $0.foregroundStyle(.red)
+    ///             } else: {
+    ///                 $0.fontWeight(.bold)
+    ///             }
     ///     }
     ///
     @ViewBuilder 
     public func applyIf(
         _ condition: Bool,
         ifTransform: (Self) -> some View,
-        elseTransform: (Self) -> some View
+        else elseTransform: (Self) -> some View
     ) -> some View {
         if condition {
             ifTransform(self)
@@ -68,7 +68,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
-    ///             .applyIfLet(color, transform: { $0.foregroundStyle($1) })
+    ///             .applyIfLet(color) { $0.foregroundStyle($1) }
     ///     }
     ///
     @ViewBuilder 
@@ -91,18 +91,18 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text("Lorem Ipsum")
-    ///             .applyIfLet(
-    ///                 color,
-    ///                 ifTransform: { $0.foregroundStyle($1) },
-    ///                 elseTransform: { $0.fontWeight(.bold) }
-    ///             )
+    ///             .applyIfLet(color) {
+    ///                 $0.foregroundStyle($1)
+    ///             } else: {
+    ///                 $0.fontWeight(.bold)
+    ///             }
     ///     }
     ///
     @ViewBuilder 
     public func applyIfLet<Value>(
         _ value: Value?,
         ifTransform: (Self, Value) -> some View,
-        elseTransform: (Self) -> some View
+        else elseTransform: (Self) -> some View
     ) -> some View {
         if let value {
             ifTransform(self, value)

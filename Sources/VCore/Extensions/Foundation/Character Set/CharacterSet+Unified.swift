@@ -14,6 +14,6 @@ extension Array where Element == CharacterSet {
     ///     let unifiedCharacterSet: CharacterSet = [.decimalDigits, .letters, .symbols].unified
     ///
     public var unified: CharacterSet {
-        reduce(CharacterSet(), { $0.union($1) })
+        reduce(CharacterSet()) { $0.union($1) }
     }
 }

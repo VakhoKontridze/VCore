@@ -30,8 +30,8 @@ open class KeychainService: @unchecked Sendable {
         init(initialValue) {
             self._configuration = initialValue
         }
-        get { queue.sync(execute: { _configuration }) }
-        set { queue.sync(flags: .barrier, execute: { _configuration = newValue }) }
+        get { queue.sync { _configuration } }
+        set { queue.sync(flags: .barrier) { _configuration = newValue } }
     }
 
     // MARK: Properties - JSON Encoder
@@ -41,8 +41,8 @@ open class KeychainService: @unchecked Sendable {
     ///
     /// Used in `Codable` methods.
     open var jsonEncoder: JSONEncoder {
-        get { queue.sync(execute: { _jsonEncoder }) }
-        set { queue.sync(flags: .barrier, execute: { _jsonEncoder = newValue }) }
+        get { queue.sync { _jsonEncoder } }
+        set { queue.sync(flags: .barrier) { _jsonEncoder = newValue } }
     }
 
     // MARK: Properties - JSON Decoder
@@ -52,8 +52,8 @@ open class KeychainService: @unchecked Sendable {
     ///
     /// Used in `Codable` methods.
     open var jsonDecoder: JSONDecoder {
-        get { queue.sync(execute: { _jsonDecoder }) }
-        set { queue.sync(flags: .barrier, execute: { _jsonDecoder = newValue }) }
+        get { queue.sync { _jsonDecoder } }
+        set { queue.sync(flags: .barrier) { _jsonDecoder = newValue } }
     }
     
     // MARK: Properties - Queue

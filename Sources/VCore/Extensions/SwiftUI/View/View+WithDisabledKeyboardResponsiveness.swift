@@ -17,11 +17,11 @@ extension View {
     ///     @State private var text: String = ""
     ///
     ///     var body: some View {
-    ///         ZStack(content: {
+    ///         ZStack {
     ///             TextField("", text: $text)
     ///                 .textFieldStyle(.roundedBorder)
     ///                 .padding()
-    ///         })
+    ///         }
     ///         .frame(maxHeight: .infinity, alignment: .bottom)
     ///
     ///         // Must be written last
@@ -35,7 +35,7 @@ extension View {
         edges: Edge.Set = .all
     ) -> some View {
 #if !(os(macOS) || os(tvOS))
-        KeyboardResponsivenessDisablingView(content: { self })
+        KeyboardResponsivenessDisablingView { self }
             .ignoresSafeArea(regions, edges: edges)
 #else
         fatalError() // Not supported
@@ -65,9 +65,9 @@ private struct KeyboardResponsivenessDisablingView<Content>: UIViewControllerRep
         hostingController.view.backgroundColor = .clear
         hostingController.overrideBehaviors([.disablesSafeAreaInsets, .disablesKeyboardAvoidance])
 
-        Task(operation: { @MainActor in
+        Task { @MainActor in
             self.hostingController = hostingController
-        })
+        }
 
         return hostingController
     }

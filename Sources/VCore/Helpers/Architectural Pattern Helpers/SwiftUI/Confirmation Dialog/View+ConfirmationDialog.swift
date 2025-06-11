@@ -14,21 +14,18 @@ extension View {
     ///     @State private var parameters: ConfirmationDialogParameters?
     ///
     ///     var body: some View {
-    ///         Button(
-    ///             "Present",
-    ///             action: {
-    ///                 parameters = ConfirmationDialogParameters(
-    ///                     title: "Lorem Ipsum",
-    ///                     message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-    ///                     actions: {
-    ///                         ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
-    ///                         ConfirmationDialogButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
-    ///                     }
-    ///                 )
-    ///             }
-    ///         )
+    ///         Button("Present") {
+    ///             parameters = ConfirmationDialogParameters(
+    ///                 title: "Lorem Ipsum",
+    ///                 message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+    ///                 actions: {
+    ///                     ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
+    ///                     ConfirmationDialogButton(action: { print("Cancelled") }, title: "Cancel", role: .cancel)
+    ///                 }
+    ///             )
+    ///         }
     ///         .confirmationDialog(parameters: $parameters)
-    ///     }
+    ///      }
     ///
     public func confirmationDialog(
         parameters: Binding<ConfirmationDialogParameters?>
@@ -52,12 +49,11 @@ extension View {
                     ForEach(
                         buttons.enumeratedArray(),
                         id: \.offset, // Native `View.confirmationDialog(...)` doesn't react to changes
-                        content: { (_, button) in
-                            button.makeBody(animateOutHandler: { completion in
-                                completion?()
-                            })
+                    ) { (_, button) in
+                        button.makeBody { completion in
+                            completion?()
                         }
-                    )
+                    }
                 }
             },
             message: {
@@ -72,23 +68,20 @@ extension View {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     @Previewable @State var parameters: ConfirmationDialogParameters?
 
-    Button(
-        "Present",
-        action: {
-            parameters = ConfirmationDialogParameters(
-                title: "Lorem Ipsum",
-                message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-                actions: {
-                    ConfirmationDialogButton(action: {}, title: "Confirm")
-                    ConfirmationDialogButton(role: .cancel, action: {}, title: "Cancel")
-                }
-            )
-        }
-    )
+    Button("Present") {
+        parameters = ConfirmationDialogParameters(
+            title: "Lorem Ipsum",
+            message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+            actions: {
+                ConfirmationDialogButton(action: { print("Confirmed") }, title: "Confirm")
+                ConfirmationDialogButton(action: { print("Cancelled") }, title: "Cancel", role: .cancel)
+            }
+        )
+    }
     .confirmationDialog(parameters: $parameters)
-})
+}
 
 #endif

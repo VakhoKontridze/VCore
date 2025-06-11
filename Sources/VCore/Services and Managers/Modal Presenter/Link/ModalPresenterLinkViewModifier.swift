@@ -57,13 +57,13 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
         updateModal()
 
         return content
-            .onChange(of: isPresented, initial: true, { (_, newValue) in
+            .onChange(of: isPresented, initial: true) { (_, newValue) in
                 if newValue {
                     presentModal()
                 } else {
                     dismissModal()
                 }
-            })
+            }
             .onDisappear(perform: didDisappear)
     }
     
@@ -110,7 +110,7 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
 // MARK: - Preview
 #if DEBUG
 
-#Preview("Overlay", body: {
+#Preview("Overlay") {
     @Previewable @State var isPresented: Bool = true
 
     let backgroundColor: Color? = {
@@ -131,42 +131,38 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
 #endif
     }()
 
-    return ZStack(content: {
+    return ZStack {
         backgroundColor
 
-        Button(
-            "Present",
-            action: { isPresented = true }
-        )
+        Button("Present") {
+            isPresented = true
+        }
         .someModal(
             link: .overlay(linkID: "some_modal"),
-            isPresented: $isPresented,
-            content: { contentColor }
-        )
-    })
+            isPresented: $isPresented
+        ) { contentColor }
+    }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .modalPresenterRoot(root: .overlay())
-})
+}
 
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS)) // No `window` type
 
-#Preview("Window", body: {
+#Preview("Window") {
     @Previewable @State var isPresented: Bool = true
 
-    ZStack(content: {
-        Button(
-            "Present",
-            action: { isPresented = true }
-        )
+    ZStack {
+        Button("Present") {
+            isPresented = true
+        }
         .someModal(
             link: .window(linkID: "some_modal"),
-            isPresented: $isPresented,
-            content: { Color.accentColor }
-        )
-    })
+            isPresented: $isPresented
+        ) { Color.accentColor }
+    }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .modalPresenterRoot(root: .window())
-})
+}
 
 #endif
 
@@ -182,13 +178,12 @@ extension View {
             .modalPresenterLink(
                 link: link,
                 isPresented: isPresented,
-                content: {
-                    SomeModal(
-                        isPresented: isPresented,
-                        content: content
-                    )
-                }
-            )
+            ) {
+                SomeModal(
+                    isPresented: isPresented,
+                    content: content
+                )
+            }
     }
 }
 
@@ -240,12 +235,12 @@ private struct SomeModal<Content>: View where Content: View {
 #endif
         }()
 
-        return ZStack(content: {
+        return ZStack {
             backgroundColor
 
             content()
                 .padding()
-        })
+        }
         .frame(dimension: dimension)
         
         .compositingGroup() // For shadow

@@ -26,21 +26,21 @@ struct TaskGroupChildTaskValuesTests {
             #url("3")
         ]
         
-        let items: [Item] = await withTaskGroup(of: Item.self, body: { group in
+        let items: [Item] = await withTaskGroup(of: Item.self) { group in
             for url in urls {
-                group.addTask(operation: {
+                group.addTask {
                     try? await Task.sleep(for: .seconds(0.01))
                     
                     return Item(
                         value: url.absoluteString
                     )
-                })
+                }
             }
 
             return await group
                 .childTaskValues()
                 .sorted(by: \.value)
-        })
+        }
         
         #expect(
             items.map { $0.value } ==
@@ -56,21 +56,21 @@ struct TaskGroupChildTaskValuesTests {
             #url("3")
         ]
         
-        let items: [Item] = try await withThrowingTaskGroup(of: Item.self, body: { group in
+        let items: [Item] = try await withThrowingTaskGroup(of: Item.self) { group in
             for url in urls {
-                group.addTask(operation: {
+                group.addTask {
                     try await Task.sleep(for: .seconds(0.01))
                     
                     return Item(
                         value: url.absoluteString
                     )
-                })
+                }
             }
 
             return try await group
                 .childTaskValues()
                 .sorted(by: \.value)
-        })
+        }
         
         #expect(
             items.map { $0.value } ==

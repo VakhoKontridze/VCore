@@ -15,10 +15,10 @@ extension StringProtocol {
     ///     let flag: Bool = phoneNumber.contains(only: .decimalDigits) // true
     ///
     public func contains(only characterSet: CharacterSet) -> Bool {
-        !contains(where: { char in
+        !contains { char in
             guard let unicodeScalar: Unicode.Scalar = char.unicodeScalars.first else { return false }
             return !characterSet.contains(unicodeScalar)
-        })
+        }
     }
 }
 

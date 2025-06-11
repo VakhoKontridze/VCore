@@ -21,8 +21,8 @@ extension DispatchSemaphore {
     ///             init(initialValue) {
     ///                 self._configuration = initialValue
     ///             }
-    ///             get { lock.withLock({ _value }) }
-    ///             set { lock.withLock({ _value = newValue }) }
+    ///             get { lock.withLock { _value } }
+    ///             set { lock.withLock { _value = newValue } }
     ///         }
     ///
     ///         init(value: Int) {

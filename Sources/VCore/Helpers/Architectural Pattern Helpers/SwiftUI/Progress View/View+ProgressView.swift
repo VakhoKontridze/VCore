@@ -23,25 +23,25 @@ extension View {
     ) -> some View {
         self
             .blocksHitTesting(parameters?.isInteractionEnabled == false)
-            .overlay(content: {
+            .overlay {
                 if let parameters {
                     ProgressView()
                         .progressViewStyle(.circular)
                         .scaleEffect(parameters.scalingFactor ?? 1)
                         .tint(parameters.color)
                 }
-            })
+            }
     }
 }
 
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     let parameters: ProgressViewParameters = .init()
 
     Color.clear
         .progressView(parameters: parameters)
-})
+}
 
 #endif

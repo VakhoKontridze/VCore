@@ -110,20 +110,20 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
     public var body: some View {
 #if canImport(UIKit) && !os(watchOS)
         label()
-            .overlay(content: {
+            .overlay {
                 SwiftUIGestureBaseButton_UIKit(
                     isEnabled: isEnabled,
                     onStateChange: stateChangeHandler
                 )
-            })
+            }
 #elseif canImport(AppKit)
         label()
-            .overlay(content: {
+            .overlay {
                 SwiftUIGestureBaseButton_AppKit(
                     isEnabled: isEnabled,
                     onStateChange: stateChangeHandler
                 )
-            })
+            }
 #endif
     }
 }
@@ -133,7 +133,7 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
 
 #if !(os(tvOS) || os(watchOS)) // Redundant
 
-#Preview(body: {
+#Preview {
     @Previewable @State var isPressed: Bool = false
 
     SwiftUIGestureBaseButton(
@@ -145,7 +145,7 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
                 .opacity(isPressed ? 0.3 : 1)
         }
     )
-})
+}
 
 #endif
 

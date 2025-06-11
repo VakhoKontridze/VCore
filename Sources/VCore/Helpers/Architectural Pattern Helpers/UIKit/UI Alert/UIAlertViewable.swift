@@ -32,8 +32,8 @@ import UIKit
 ///                     title: "Lorem Ipsum",
 ///                     message: "Lorem ipsum dolor sit amet",
 ///                     actions: {
-///                         UIAlertButton(title: "Confirm", action: { print("Confirmed") })
-///                        UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///                         UIAlertButton(action: { print("Confirmed") }, title: "Confirm")
+///                         UIAlertButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
 ///                     }
 ///                 )
 ///             )
@@ -59,7 +59,7 @@ extension UIAlertViewable where Self: UIViewController {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     final class ViewController: UIViewController, UIAlertViewable {
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -69,7 +69,7 @@ extension UIAlertViewable where Self: UIViewController {
             button.setTitle("Present", for: .normal)
             button.setTitleColor(UIColor.systemBlue, for: .normal)
             button.addAction(
-                UIAction(handler: { [weak self] _ in self?.present() }),
+                UIAction { [weak self] _ in self?.present() },
                 for: .touchUpInside
             )
 
@@ -87,8 +87,8 @@ extension UIAlertViewable where Self: UIViewController {
                     title: "Lorem Ipsum",
                     message: "Lorem ipsum dolor sit amet",
                     actions: {
-                        UIAlertButton(title: "Confirm", action: { print("Confirmed") })
-                        UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+                        UIAlertButton(action: { print("Confirmed") }, title: "Confirm")
+                        UIAlertButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
                     }
                 )
             )
@@ -96,7 +96,7 @@ extension UIAlertViewable where Self: UIViewController {
     }
 
     return ViewController()
-})
+}
 
 #endif
 

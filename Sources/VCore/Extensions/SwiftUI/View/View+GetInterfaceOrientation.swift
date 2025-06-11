@@ -17,19 +17,19 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text(interfaceOrientation.isLandscape ? "Landscape" : "Portrait")
-    ///             .getInterfaceOrientation({ interfaceOrientation = $0 })
+    ///             .getInterfaceOrientation { interfaceOrientation = $0 }
     ///     }
     ///
     public func getInterfaceOrientation(
         _ action: @escaping (UIInterfaceOrientation) -> Void
     ) -> some View {
         self
-            .background(content: {
+            .background {
                 InterfaceOrientationReaderView(
                     completion: action
                 )
                 .allowsHitTesting(false) // Avoids blocking gestures
-            })
+            }
     }
 }
 
@@ -76,9 +76,9 @@ private final class _InterfaceOrientationReaderViewController: UIViewController 
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
 
-        Task(operation: { @MainActor in
+        Task { @MainActor in
             notify()
-        })
+        }
     }
 
     // MARK: Content Container

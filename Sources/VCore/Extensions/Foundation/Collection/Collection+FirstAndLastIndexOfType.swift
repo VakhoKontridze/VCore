@@ -26,10 +26,10 @@ extension Collection {
         ofType type: T.Type,
         where predicate: ((T) throws -> Bool)? = nil
     ) rethrows -> Index? {
-        try firstIndex(where: { element in
+        try firstIndex { element in
             guard let element = element as? T else { return false }
             return try predicate?(element) ?? true
-        })
+        }
     }
 }
 
@@ -52,9 +52,9 @@ extension BidirectionalCollection {
         ofType type: T.Type,
         where predicate: ((T) throws -> Bool)? = nil
     ) rethrows -> Index? {
-        try lastIndex(where: { element in
+        try lastIndex { element in
             guard let element = element as? T else { return false }
             return try predicate?(element) ?? true
-        })
+        }
     }
 }

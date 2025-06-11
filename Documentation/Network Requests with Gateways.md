@@ -55,7 +55,7 @@ struct GetPostGateway: GetPostGatewayProtocol {
 Request is initiated to retrieve a post with an ID of `1`:
 
 ```swift
-Task(operation: {
+Task {
     do {
         let parameters: GetPostParameters = .init(id: 1)
 
@@ -66,7 +66,7 @@ Task(operation: {
     } catch {
         print(error.localizedDescription)
     }
-})
+}
 ```
 
 ## Request with Data and Response Processing
@@ -204,7 +204,7 @@ struct EchoGateway: EchoGatewayProtocol {
 Request is initiated to echo a `String` "test":
 
 ```swift
-Task(operation: {
+Task {
     do {
         let parameters: EchoParameters = .init(value: "test")
 
@@ -215,7 +215,7 @@ Task(operation: {
     } catch {
         print(error.localizedDescription)
     }
-})
+}
 ```
 
 ## Request with Progress Observation
@@ -282,7 +282,7 @@ struct FetchImageGateway: FetchImageGatewayProtocol {
 Request is initiated to retrieve a `UIImage` and print the download progress:
 
 ```swift
-Task(operation: {
+Task {
     do {
         let url: String = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg"
         let parameters: FetchImageParameters = .init(url: url)
@@ -297,5 +297,5 @@ Task(operation: {
     } catch {
         print(error.localizedDescription)
     }
-})
+}
 ```

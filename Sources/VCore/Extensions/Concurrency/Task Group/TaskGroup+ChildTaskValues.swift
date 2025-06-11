@@ -11,15 +11,15 @@ import Foundation
 extension TaskGroup {
     /// Collects and returns child task values.
     ///
-    ///     let items: [Item] = await withTaskGroup(of: Item.self, body: { group in
+    ///     let items: [Item] = await withTaskGroup(of: Item.self) { group in
     ///         for url in urls {
-    ///             group.addTask(operation: {
+    ///             group.addTask {
     ///                 ...
-    ///             })
+    ///             }
     ///         }
     ///
     ///         return await group.childTaskValues()
-    ///     })
+    ///     }
     ///
     mutating public func childTaskValues(
         isolation: isolated (any Actor)? = #isolation
@@ -38,15 +38,15 @@ extension TaskGroup {
 extension ThrowingTaskGroup {
     /// Collects and returns child task values.
     ///
-    ///     let items: [Item] = try await withThrowingTaskGroup(of: Item.self, body: { group in
+    ///     let items: [Item] = try await withThrowingTaskGroup(of: Item.self) { group in
     ///         for url in urls {
-    ///             group.addTask(operation: {
+    ///             group.addTask {
     ///                 ...
-    ///             })
+    ///             }
     ///         }
     ///
     ///         return try await group.childTaskValues()
-    ///     })
+    ///     }
     ///
     mutating public func childTaskValues(
         isolation: isolated (any Actor)? = #isolation

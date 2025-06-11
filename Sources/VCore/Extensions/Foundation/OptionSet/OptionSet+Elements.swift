@@ -27,8 +27,8 @@ extension OptionSet where RawValue: FixedWidthInteger {
         var remainingBits: RawValue = rawValue
         var bitMask: RawValue = 1
         
-        let elements: AnySequence<Self> = .init({
-            AnyIterator({
+        let elements: AnySequence<Self> = .init {
+            AnyIterator {
                 while remainingBits != 0 {
                     defer { bitMask = bitMask &* 2 }
                     
@@ -39,8 +39,8 @@ extension OptionSet where RawValue: FixedWidthInteger {
                 }
                 
                 return nil
-            })
-        })
+            }
+        }
         
         return Array(elements)
     }

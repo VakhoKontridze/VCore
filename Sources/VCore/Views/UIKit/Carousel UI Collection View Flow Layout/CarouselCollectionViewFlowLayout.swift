@@ -205,7 +205,7 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     final class ViewController:
         UIViewController,
         UICollectionViewDelegate, UICollectionViewDataSource
@@ -281,7 +281,7 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     return ViewController()
-})
+}
 
 #endif
 

@@ -86,10 +86,10 @@ extension UILabel {
     /// For instance, this method can be called in `UIView`'s `layoutSubviews`.
     /// In some cases, `async` can also work.
     ///
-    ///     DispatchQueue.main.async(execute: {
+    ///     DispatchQueue.main.async {
     ///         let height: CGFloat = label // 40.66...
     ///             .multiLineHeight()
-    ///     })
+    ///     }
     ///
     /// Alternately, a predefined with value can be passed:
     ///

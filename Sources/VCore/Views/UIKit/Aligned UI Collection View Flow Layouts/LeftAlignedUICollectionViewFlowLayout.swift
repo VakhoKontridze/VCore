@@ -39,11 +39,11 @@ open class LeftAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     Preview_AlignedUICollectionViewFlowLayoutViewController(
         layout: LeftAlignedUICollectionViewFlowLayout()
     )
-})
+}
 
 #endif
 

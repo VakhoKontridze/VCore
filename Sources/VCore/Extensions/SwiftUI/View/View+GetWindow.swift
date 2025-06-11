@@ -15,21 +15,21 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getWindow({ window in
+    ///             .getWindow { window in
     ///                 ...
-    ///             })
+    ///             }
     ///     }
     ///
     public func getWindow(
         _ action: @escaping (UIWindow) -> Void
     ) -> some View {
         self
-            .background(content: {
+            .background {
                 WindowReaderView(
                     completion: action
                 )
                 .allowsHitTesting(false) // Avoids blocking gestures
-            })
+            }
     }
 }
 
@@ -76,9 +76,9 @@ private final class _WindowReaderView: UIView {
     override func didMoveToWindow() {
         super.didMoveToWindow()
 
-        Task(operation: { @MainActor in
+        Task { @MainActor in
             notify()
-        })
+        }
     }
 
     // MARK: Notification

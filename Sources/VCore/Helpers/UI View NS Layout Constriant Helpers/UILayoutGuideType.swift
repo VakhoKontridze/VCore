@@ -36,12 +36,12 @@ public enum UILayoutGuideType: Sendable {
     ///     }
     ///
     ///     extension UILayoutGuideType {
-    ///         static var someLayoutGuide: Self { .custom({ $0.someLayoutGuide })
+    ///         static var someLayoutGuide: Self { .custom({ $0.someLayoutGuide }) }
     ///     }
     ///
     ///     view.constraintLeading(
     ///         ...
-    ///         layoutGuide: .someOther,
+    ///         layoutGuide: .someLayoutGuide,
     ///         ...
     ///     )
     ///

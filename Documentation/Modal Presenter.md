@@ -25,17 +25,15 @@ Modal Presenter is available on all Apple platforms, and is heavily customizable
 @State private var isPresented: Bool = true
 
 var body: some View {
-    ZStack(content: {
-        Button(
-            "Present",
-            action: { isPresented = true }
-        )
+    ZStack {
+        Button("Present") {
+            isPresented = true
+        }
         .someModal(
             link: .window(linkID: "some_modal"),
-            isPresented: $isPresented,
-            content: { Color.accentColor }
-        )
-    })
+            isPresented: $isPresented
+        ) { Color.accentColor }
+    }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     .modalPresenterRoot(root: .window()) // Or declare in `App` on a `WindowScene`-level
 }
@@ -66,17 +64,15 @@ As an example, we can create a modal that slides up from the bottom of the scree
 @State private var isPresented: Bool = false
 
 var body: some View {
-    ZStack(content: { // [2]
-        Button(
-            "Present",
-            action: { isPresented = true }
-        )
+    ZStack { // [2]
+        Button("Present") { 
+            isPresented = true 
+        }
         .someModal( // [4]
             link: .window(linkID: "some_modal"), // [5]
-            isPresented: $isPresented,
-            content: { Color.accentColor }
-        )
-    })
+            isPresented: $isPresented
+        ) { Color.accentColor }
+    }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration // [3]
     .modalPresenterRoot(root: .window()) // [1]
 }
@@ -98,12 +94,12 @@ In general, root should be declared within `App`, on a `WindowScene` level for b
 @main 
 struct SomeApp: App {
     var body: some Scene {
-        WindowGroup(content: {
-            NavigationStack(root: {
+        WindowGroup {
+            NavigationStack {
                 ...
-            })
+            }
             .modalPresenterRoot(root: .window())
-        })
+        }
     }
 }
 ```
@@ -131,13 +127,12 @@ extension View {
                 isPresented: isPresented,
                 onPresent: { print("PRESENT") }, // [5]
                 onDismiss: { print("DISMISS") }, // [6]
-                content: {
-                    SomeModal(
-                        isPresented: isPresented,
-                        content: content
-                    )
-                }
-            )
+            ) {
+                SomeModal(
+                    isPresented: isPresented,
+                    content: content
+                )
+            }
     }
 }
 ```
@@ -175,12 +170,12 @@ struct SomeModal<Content>: View where Content: View {
     }
 
     var body: some View {
-        ZStack(content: {
+        ZStack {
             Color(uiColor: UIColor.systemBackground)
 
             content()
                 .padding()
-        })
+        }
         .frame(dimension: 300)
         
         .compositingGroup() // For shadow
@@ -260,29 +255,24 @@ Modals can be presented simultaneously within the same root.
 @State private var isPresented2: Bool = false
 
 var body: some View {
-    ZStack(content: {
-        Button(
-            "Present",
-            action: {
-                isPresented1 = true
+    ZStack {
+        Button("Present") {
+            isPresented1 = true
 
-                Task(operation: { @MainActor in
-                    try? await Task.sleep(for: .seconds(1))
-                    isPresented2 = true
-                })
+            Task { @MainActor in
+                try? await Task.sleep(for: .seconds(1))
+                isPresented2 = true
             }
-        )
+        }
         .someModal(
             link: .window(linkID: "some_modal_1"),
-            isPresented: $isPresented1,
-            content: { Color.red }
-        )
+            isPresented: $isPresented1
+        ) { Color.red }
         .someModal(
             link: .window(linkID: "some_modal_2"),
-            isPresented: $isPresented2,
-            content: { Color.blue }
-        )
-    })
+            isPresented: $isPresented2
+        ) { Color.blue }
+    }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     .modalPresenterRoot(root: .window())
 }
@@ -297,31 +287,27 @@ Modals can be nested and presented simultaneously within the same root.
 @State private var isPresented2: Bool = false
 
 var body: some View {
-    ZStack(content: {
-        Button(
-            "Present",
-            action: {
-                isPresented1 = true
+    ZStack {
+        Button("Present") {
+            isPresented1 = true
                 
-                Task(operation: { @MainActor in
-                    try? await Task.sleep(for: .seconds(1))
-                    isPresented2 = true
-                })
+            Task { @MainActor in
+                try? await Task.sleep(for: .seconds(1))
+                isPresented2 = true
             }
-        )
+        }
         .someModal(
             link: .window(linkID: "some_modal_1"),
-            isPresented: $isPresented1,
-            content: {
-                Color.red
-                    .someModal(
-                        link: .window(linkID: "some_modal_2"),
-                        isPresented: $isPresented2,
-                        content: { Color.blue }
-                    )
+            isPresented: $isPresented1
+        ) {
+            Color.red
+                .someModal(
+                    link: .window(linkID: "some_modal_2"),
+                    isPresented: $isPresented2
+                ) { Color.blue }
             }
-        )
-    })
+        }
+    }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     .modalPresenterRoot(root: .window())
 }
@@ -335,28 +321,26 @@ Root can be made click-through to allow background interactions behind the modal
 @State private var isPresented: Bool = false
 
 var body: some View {
-    ZStack(content: {
-        ScrollView(content: {
-            Button(
-                "Present",
-                action: { isPresented = true }
-            )
+    ZStack {
+        ScrollView {
+            Button("Present") { 
+                isPresented = true 
+            }
             
-            ForEach(0..<100, id: \.self, content: { i in
+            ForEach(0..<100, id: \.self) { i in
                 Text("\(i)")
                     .padding(.vertical, 5)
                     .frame(maxWidth: .infinity)
-            })
-        })
+            }
+        }
         .someModal(
             link: .window(linkID: "some_modal"),
             isPresented: $isPresented,
-            content: {
-                Color.accentColor
-                    .onTapGesture(perform: { isPresented = false })
-            }
-        )
-    })
+        ) {
+            Color.accentColor
+                .onTapGesture { isPresented = false }
+        }
+    }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     .modalPresenterRoot(
         root: .window(),
@@ -399,26 +383,24 @@ Default value of `keyboardResponsivenessStrategy` is `offsetByObscuredViewHeight
 @State private var text: String = "Lorem ipsum"
 
 var body: some View {
-    ZStack(content: {
-        Button(
-            "Present",
-            action: { isPresented = true }
-        )
+    ZStack {
+        Button("Present") { 
+            isPresented = true 
+        }
         .someModal(
             link: .window(linkID: "some_modal"),
-            isPresented: $isPresented,
-            content: {
-                ScrollView(content: {
-                    VStack(spacing: 20, content: {
-                        ForEach(0..<10, id: \.self, content: { _ in
-                            TextField("", text: $text)
-                                .textFieldStyle(.roundedBorder)
-                        })
-                    })
-                })
+            isPresented: $isPresented
+        ) {
+            ScrollView {
+                VStack(spacing: 20) {
+                    ForEach(0..<10, id: \.self) { _ in
+                        TextField("", text: $text)
+                            .textFieldStyle(.roundedBorder)
+                    }
+                }
             }
-        )
-    })
+        }
+    }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     .ignoresSafeArea(isPresented ? .keyboard : []) // Disables keyboard responsiveness for presenting root view
     .modalPresenterRoot(root: .window())
@@ -441,8 +423,7 @@ var body: some View {
         .someModal(
             link: .window(rootID: "containers". linkID: "some_modal"),
             isPresented: $isPresented,
-            content: { ... }
-        )
+        ) { ... }
 }
 ```
 
@@ -487,12 +468,12 @@ This method can be used in `App` on a `WindowScene`-level.
 @main 
 struct SomeApp: App {
     var body: some Scene {
-        WindowGroup(content: {
-            NavigationStack(root: {
+        WindowGroup {
+            NavigationStack {
                 ...
-            })
+            }
             .injectModalPresenterRoots()
-        })
+        }
     }
 }
 ```
@@ -500,13 +481,13 @@ struct SomeApp: App {
 This method can also be used for `SwiftUI` previews.
 
 ```swift
-#Preview(body: {
-    ZStack(content: {
+#Preview {
+    ZStack {
         ...
-    })
+    }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     .injectModalPresenterRoots()
-})
+}
 ```
 
 #### Compatibility with Apple's Native Modal API - Intro
@@ -522,32 +503,25 @@ In `overlay` configuration, roots are simple overlays, while native components a
 @State private var isPresented2: Bool = false
 
 var body: some View {
-    Button(
-        "Present",
-        action: {
-            isPresented1 = true
+    Button("Present") {
+        isPresented1 = true
             
-            Task(operation: { @MainActor in
-                try? await Task.sleep(for: .seconds(1))
-                isPresented2 = true
-            })
+        Task { @MainActor in
+            try? await Task.sleep(for: .seconds(1))
+            isPresented2 = true
         }
-    )
-    .sheet(
-        isPresented: $isPresented1,
-        content: {
-            ZStack(content: {
-                Color.red
-                    .someModal(
-                        link: .overlay(rootID: "containers_within_sheet", linkID: "custom_sheet"),
-                        isPresented: $isPresented2,
-                        content: { Color.blue }
-                    )
-            })
-            .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
-            .modalPresenterRoot(root: .overlay(rootID: "containers_within_sheet"))
+    }
+    .sheet(isPresented: $isPresented1) {
+        ZStack {
+            Color.red
+                .someModal(
+                    link: .overlay(rootID: "containers_within_sheet", linkID: "custom_sheet"),
+                    isPresented: $isPresented2
+                ) { Color.blue }
         }
-    )
+        .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
+        .modalPresenterRoot(root: .overlay(rootID: "containers_within_sheet"))
+    }
 }
 ```
 
@@ -560,30 +534,26 @@ In `window` configuration, new windows are stacked based on `windowLevel` parame
 @State private var isPresented2: Bool = false
 
 var body: some View {
-    ZStack(content: {
-        Button(
-            "Present",
-            action: {
-                isPresented1 = true
-                
-                Task(operation: { @MainActor in
-                    try? await Task.sleep(for: .seconds(1))
-                    isPresented2 = true
-                })
+    ZStack {
+        Button("Present") {
+            isPresented1 = true
+            
+            Task { @MainActor in
+                try? await Task.sleep(for: .seconds(1))
+                isPresented2 = true
             }
-        )
+        }
         .someModal(
             link: .window(linkID: "custom_sheet"),
             isPresented: $isPresented1,
-            content: {
-                Color.blue
-                    .sheet(
-                        isPresented: $isPresented2,
-                        content: { Color.red }
-                    )
+        ) {
+            Color.blue
+                .sheet(isPresented: $isPresented2) {
+                    Color.red
+                }
             }
         )
-    })
+    }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     .modalPresenterRoot(root: .window())
 }
@@ -612,18 +582,16 @@ extension View {
         return self
             .modalPresenterLink(
                 link: link,
-                isPresented: isPresented,
-                content: {
-                    SomeModal<Content?>(
-                        isPresented: isPresented,
-                        content: {
-                            if let item = item.wrappedValue ?? ModalPresenterDataSourceCache.shared.get(key: id) as? Item {
-                                content(item)
-                            }
-                        }
-                    )
+                isPresented: isPresented
+            ) {
+                SomeModal<Content?>(
+                    isPresented: isPresented,
+                ) {
+                    if let item = item.wrappedValue ?? ModalPresenterDataSourceCache.shared.get(key: id) as? Item {
+                        content(item)
+                    }
                 }
-            )
+            }
     }
 }
 ```

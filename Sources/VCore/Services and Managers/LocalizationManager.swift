@@ -23,38 +23,36 @@ import OSLog
 ///
 ///     @Bindable private var localizationManager: LocalizationManager = .shared
 ///
-///     VStack(content: {
+///     VStack {
 ///         ForEach(
-///             LocalizationManager.locales.sorted(by: { (lhs, rhs) in
+///             LocalizationManager.locales.sorted { (lhs, rhs) in
 ///                 lhs.displayNameNative
 ///                     .isOptionalLess(
 ///                         than: rhs.displayNameNative,
-///                         order: .nilIsGreater,
-///                         comparison: { $0.compare($1, options: .caseInsensitive) == .orderedAscending }
-///                     )
-///             }),
-///             id: \.identifier,
-///             content: { locale in
-///                 Button(
-///                     action: {
-///                         localizationManager.currentLocale = locale
-///                     },
-///                     label: {
-///                         Text(locale.displayNameNative?.capitalized ?? locale.identifier)
-///                             .fontWeight(localizationManager.currentLocale == locale ? .bold : .regular)
-///                     }
-///                 )
-///             }
-///         )
-///     })
+///                         order: .nilIsGreater
+///                     ) { $0.compare($1, options: .caseInsensitive) == .orderedAscending }
+///             },
+///             id: \.identifier
+///         ) { locale in
+///             Button(
+///                 action: {
+///                     localizationManager.currentLocale = locale
+///                 },
+///                 label: {
+///                     Text(locale.displayNameNative?.capitalized ?? locale.identifier)
+///                         .fontWeight(localizationManager.currentLocale == locale ? .bold : .regular)
+///                 }
+///             )
+///         }
+///     }
 ///
 /// You can also preview localization by overriding `currentLocale`:
 ///
-///     #Preview(body: {
+///     #Preview {
 ///         LocalizationManager.shared.currentLocale = Locale(identifier: "es")
 ///
 ///         ContentView()
-///     })
+///     }
 ///
 @Observable
 public final class LocalizationManager: @unchecked Sendable {
@@ -65,7 +63,7 @@ public final class LocalizationManager: @unchecked Sendable {
     // MARK: Properties - Locales
     /// `Locale`s.
     @ObservationIgnored public static let locales: [Locale] = Bundle.main.localizations
-        .map({ Locale(identifier: $0) })
+        .map { Locale(identifier: $0) }
 
     // MARK: Properties - Default Locale
     private var _defaultLocale: Locale
@@ -73,16 +71,16 @@ public final class LocalizationManager: @unchecked Sendable {
     /// Default `Locale` that will be retrieved in the absence of current value.
     public var defaultLocale: Locale {
         get {
-            queue.sync(execute: {
+            queue.sync {
                 _defaultLocale
-            })
+            }
         }
         set {
-            queue.sync(flags: .barrier, execute: {
+            queue.sync(flags: .barrier) {
                 _ = Self.validateLocaleIsAdded(newValue)
                 
                 _defaultLocale = newValue
-            })
+            }
         }
     }
 
@@ -92,18 +90,18 @@ public final class LocalizationManager: @unchecked Sendable {
     /// Current `Locale`.
     public var currentLocale: Locale {
         get {
-            queue.sync(execute: {
+            queue.sync {
                 _currentLocale
-            })
+            }
         }
         set {
-            queue.sync(flags: .barrier, execute: {
+            queue.sync(flags: .barrier) {
                 guard newValue != _currentLocale else { return }
                 _ = Self.validateLocaleIsAdded(newValue)
 
                 _currentLocale = newValue
                 Self.setCurrentLocaleToUserDefaults(newValue)
-            })
+            }
         }
     }
     

@@ -19,39 +19,38 @@ extension View {
     ///     @State private var isPresented: Bool = false
     ///
     ///     var body: some View {
-    ///         Button("Present", action: { isPresented = true })
-    ///             .fullScreenCover(
-    ///                 isPresented: $isPresented,
-    ///                 content: {
-    ///                     Color.accentColor
-    ///                         .ignoresSafeArea()
-    ///                         .onTapGesture(perform: { isPresented = false })
-    ///                         .decorateModal({ (modalSuperView, transitionView) in
-    ///                             if
-    ///                                 let modalSuperView,
-    ///                                 let displayCornerRadius: CGFloat = modalSuperView.window?.screen.displayCornerRadius
-    ///                             {
-    ///                                 modalSuperView.roundCorners(.layerMinYCorners, by: displayCornerRadius)
-    ///                             }
+    ///         Button("Present") {
+    ///             isPresented = true
+    ///         }
+    ///         .fullScreenCover(isPresented: $isPresented) {
+    ///             Color.accentColor
+    ///                 .ignoresSafeArea()
+    ///                 .onTapGesture { isPresented = false }
+    ///                 .decorateModal { (modalSuperView, transitionView) in
+    ///                     if
+    ///                         let modalSuperView,
+    ///                         let displayCornerRadius: CGFloat = modalSuperView.window?.screen.displayCornerRadius
+    ///                     {
+    ///                         modalSuperView.roundCorners(.layerMinYCorners, by: displayCornerRadius)
+    ///                     }
     ///
-    ///                             if let transitionView {
-    ///                                 transitionView.backgroundColor = .gray.withAlphaComponent(0.16)
-    ///                             }
-    ///                         })
+    ///                     if let transitionView {
+    ///                        transitionView.backgroundColor = .gray.withAlphaComponent(0.16)
+    ///                     }
     ///                 }
-    ///             )
+    ///             }
     ///     }
     ///
     public func decorateModal(
         _ decorate: @escaping (UIView?, UIView?) -> Void
     ) -> some View {
         self
-            .background(content: {
+            .background {
                 ModalDecoratorView(
                     decorate: decorate
                 )
                 .allowsHitTesting(false) // Avoids blocking gestures
-            })
+            }
     }
 }
 
@@ -106,10 +105,9 @@ private final class _ModalDecoratorView: UIView {
     
     // MARK: Setup
     private func setUp() {
-        let transitionViewChild: UIView? = Self.findSuperview(
-            ofView: self,
-            where: { $0.superview?.isUITransitionView ?? false }
-        )
+        let transitionViewChild: UIView? = Self.findSuperview(ofView: self) {
+            $0.superview?.isUITransitionView ?? false
+        }
         
         decorate(
             transitionViewChild,
@@ -144,31 +142,30 @@ extension UIView {
 
 #if !os(visionOS) // `UIScreen.displayCornerRadius` not on visionOS
 
-#Preview(body: {
+#Preview {
     @Previewable @State var isPresented: Bool = false
-
-    Button("Present", action: { isPresented = true })
-        .fullScreenCover(
-            isPresented: $isPresented,
-            content: {
-                Color.accentColor
-                    .ignoresSafeArea()
-                    .onTapGesture(perform: { isPresented = false })
-                    .decorateModal({ (modalSuperView, transitionView) in
-                        if
-                            let modalSuperView,
-                            let displayCornerRadius: CGFloat = modalSuperView.window?.screen.displayCornerRadius
-                        {
-                            modalSuperView.roundCorners(.layerMinYCorners, by: displayCornerRadius)
-                        }
-
-                        if let transitionView {
-                            transitionView.backgroundColor = UIColor.gray.withAlphaComponent(0.16)
-                        }
-                    })
+    
+    Button("Present") {
+        isPresented = true
+    }
+    .fullScreenCover(isPresented: $isPresented) {
+        Color.accentColor
+            .ignoresSafeArea()
+            .onTapGesture { isPresented = false }
+            .decorateModal { (modalSuperView, transitionView) in
+                if
+                    let modalSuperView,
+                    let displayCornerRadius: CGFloat = modalSuperView.window?.screen.displayCornerRadius
+                {
+                    modalSuperView.roundCorners(.layerMinYCorners, by: displayCornerRadius)
+                }
+                
+                if let transitionView {
+                    transitionView.backgroundColor = UIColor.gray.withAlphaComponent(0.16)
+                }
             }
-        )
-})
+    }
+}
 
 #endif
 

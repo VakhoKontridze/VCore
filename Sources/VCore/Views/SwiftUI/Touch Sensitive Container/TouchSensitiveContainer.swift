@@ -11,19 +11,19 @@ import SwiftUI
 /// `View` that detects and reacts to touch down and touch up interactions.
 ///
 ///     var body: some View {
-///         TouchSensitiveContainer(content: {
+///         TouchSensitiveContainer {
 ///             Text("Lorem ipsum")
 ///                 .padding()
-///         })
+///         }
 ///     }
 ///
 /// To resolve conflicts with external gestures, use `simultaneousGesture(_:)`.
 ///
 ///     var body: some View {
-///         TouchSensitiveContainer(content: {
+///         TouchSensitiveContainer {
 ///             Text("Lorem ipsum")
 ///                 .padding()
-///         })
+///         }
 ///         .onSimultaneousTapGesture(perform: ...)
 ///     }
 ///
@@ -86,7 +86,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     // MARK: Body
     public var body: some View {
         contentView
-            .background(content: { backgroundView })
+            .background { backgroundView }
     }
 
     @ViewBuilder 
@@ -113,10 +113,11 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
         
         isPressed = true
 
-        executeWithDelay(
-            uiModel.animationDelay,
-            block: { withAnimation(uiModel.animation, { isPressed = false }) }
-        )
+        executeWithDelay(uiModel.animationDelay) {
+            withAnimation(uiModel.animation) {
+                isPressed = false
+            }
+        }
 
         action?()
     }
@@ -127,10 +128,10 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     ) {
         if let delay = delay.nonZero {
             // No need to handle reentrancy and cancellation
-            Task(operation: { @MainActor in
+            Task { @MainActor in
                 try? await Task.sleep(for: .seconds(delay))
                 block()
-            })
+            }
         } else {
             block()
         }
@@ -142,13 +143,13 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
 
 #if !os(tvOS) // Redundant
 
-#Preview(body: {
-    TouchSensitiveContainer(content: {
+#Preview {
+    TouchSensitiveContainer {
         Text("Lorem ipsum")
             .allowsHitTesting(false)
             .padding()
-    })
-})
+    }
+}
 
 #endif
 

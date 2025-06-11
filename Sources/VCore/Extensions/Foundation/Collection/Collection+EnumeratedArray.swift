@@ -16,9 +16,10 @@ extension Collection {
     ///     var body: some View {
     ///         ForEach(
     ///             data.enumeratedArray(),
-    ///             id: \.element,
-    ///             content: { (i, element) in ... }
-    ///         )
+    ///             id: \.element
+    ///         ) { (i, element) in
+    ///             ...
+    ///         }
     ///     }
     ///
     public func enumeratedArray() -> Array<(offset: Int, element: Element)> {

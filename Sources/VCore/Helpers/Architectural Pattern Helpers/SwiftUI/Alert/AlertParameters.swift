@@ -13,19 +13,16 @@ import SwiftUI
 ///     @State private var parameters: AlertParameters?
 ///
 ///     var body: some View {
-///         Button(
-///             "Present",
-///             action: {
-///                 parameters = AlertParameters(
-///                     title: "Lorem Ipsum",
-///                     message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-///                     actions: {
-///                         AlertButton(action: { print("Confirmed") }, title: "Confirm")
-///                         AlertButton(role: .cancel, action: { print("Cancelled") }, title: "Cancel")
-///                     }
-///                 )
-///             }
-///         )
+///         Button("Present") {
+///             parameters = AlertParameters(
+///                 title: "Lorem Ipsum",
+///                 message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+///                 actions: {
+///                     AlertButton(action: { print("Confirmed") }, title: "Confirm")
+///                     AlertButton(action: { print("Cancelled") }, title: "Cancel", role: .cancel)
+///                 }
+///             )
+///         }
 ///         .alert(parameters: $parameters)
 ///     }
 ///
@@ -69,9 +66,9 @@ public struct AlertParameters {
             message: message,
             actions: {
                 AlertButton(
-                    role: .cancel,
                     action: completion,
-                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle
+                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle,
+                    role: .cancel
                 )
             },
             attributes: attributes
@@ -89,9 +86,9 @@ public struct AlertParameters {
             message: error.localizedDescription,
             actions: {
                 AlertButton(
-                    role: .cancel,
                     action: completion,
-                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle
+                    title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle,
+                    role: .cancel
                 )
             },
             attributes: attributes

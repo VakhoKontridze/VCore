@@ -39,10 +39,9 @@ struct ResultNoFailureTests {
             10
         )
         
-        #expect(
-            throws: (any Error).self,
-            performing: { try resultF.get() }
-        )
+        #expect(throws: (any Error).self) {
+            try resultF.get()
+        }
     }
     
     @Test

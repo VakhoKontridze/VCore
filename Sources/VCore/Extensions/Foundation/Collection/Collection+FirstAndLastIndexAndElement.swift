@@ -14,7 +14,7 @@ extension Collection {
     /// Used for avoiding accessing both index and element with built-in methods.
     ///
     ///     let numbers: [Int] = [1, 3, 5, 7]
-    ///     guard let (index, num): (Int, Int) = numbers.firstIndexAndElement(where: { $0 * $0 >= 10 }) else { return }
+    ///     guard let (index, num): (Int, Int) = numbers.firstIndexAndElement { $0 * $0 >= 10 } else { return }
     ///
     public func firstIndexAndElement(
         where predicate: (Element) throws -> Bool
@@ -34,7 +34,7 @@ extension BidirectionalCollection {
     /// Used for avoiding accessing both index and element with built-in methods.
     ///
     ///     let numbers: [Int] = [1, 3, 5, 7]
-    ///     guard let (index, num): (Int, Int) = numbers.lastIndexAndElement(where: { $0 * $0 >= 10 }) else { return }
+    ///     guard let (index, num): (Int, Int) = numbers.lastIndexAndElement { $0 * $0 >= 10 } else { return }
     ///
     public func lastIndexAndElement(
         where predicate: (Element) throws -> Bool

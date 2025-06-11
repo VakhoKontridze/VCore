@@ -15,13 +15,13 @@ extension View {
     ///
     ///     var body: some View {
     ///         SomeView()
-    ///             .applyModifier({
+    ///             .applyModifier {
     ///                 if #available(iOS 99.0, *) {
     ///                     $0.someModifier()
     ///                 } else {
     ///                     $0
     ///                 }
-    ///             })
+    ///             }
     ///     }
     ///
     public func applyModifier<Content>(

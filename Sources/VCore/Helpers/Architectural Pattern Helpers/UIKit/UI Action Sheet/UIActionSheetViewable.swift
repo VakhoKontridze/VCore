@@ -32,8 +32,8 @@ import UIKit
 ///                     title: "Lorem Ipsum",
 ///                     message: "Lorem ipsum dolor sit amet",
 ///                     actions: {
-///                         UIActionSheetButton(title: "Confirm", action: { print("Confirmed") })
-///                         UIActionSheetButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///                         UIActionSheetButton(action: { print("Confirmed") }, title: "Confirm")
+///                         UIActionSheetButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
 ///                     }
 ///                 )
 ///             )
@@ -59,7 +59,7 @@ extension UIActionSheetViewable where Self: UIViewController {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     final class ViewController: UIViewController, UIActionSheetViewable {
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -69,7 +69,7 @@ extension UIActionSheetViewable where Self: UIViewController {
             button.setTitle("Present", for: .normal)
             button.setTitleColor(UIColor.systemBlue, for: .normal)
             button.addAction(
-                UIAction(handler: { [weak self] _ in self?.present() }),
+                UIAction { [weak self] _ in self?.present() },
                 for: .touchUpInside
             )
 
@@ -87,8 +87,8 @@ extension UIActionSheetViewable where Self: UIViewController {
                     title: "Lorem Ipsum",
                     message: "Lorem ipsum dolor sit amet",
                     actions: {
-                        UIActionSheetButton(title: "Confirm", action: {})
-                        UIActionSheetButton(style: .cancel, title: "Cancel", action: {})
+                        UIActionSheetButton(action: { print("Confirmed") }, title: "Confirm")
+                        UIActionSheetButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
                     }
                 )
             )
@@ -96,7 +96,7 @@ extension UIActionSheetViewable where Self: UIViewController {
     }
 
     return ViewController()
-})
+}
 
 #endif
 

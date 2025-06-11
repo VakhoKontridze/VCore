@@ -12,29 +12,31 @@ extension View {
     /// Overlays clear `Rectangle` that blocks gestures if condition is met.
     ///
     ///     var body: some View {
-    ///         Button("Lorem Ipsum", action: doSomething)
-    ///             .blocksHitTesting(!isInteractionEnabled)
+    ///         Button("Lorem Ipsum") {
+    ///             ....
+    ///         }
+    ///         .blocksHitTesting(!isInteractionEnabled)
     ///     }
     ///
     public func blocksHitTesting(
         _ flag: Bool = true
     ) -> some View {
         self
-            .overlay(content: {
+            .overlay {
                 if flag {
                     Color.clear
                         .contentShape(.rect)
                 }
-            })
+            }
     }
 }
 
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
-    Button("Press", action: {})
+#Preview {
+    Button("Press") {}
         .blocksHitTesting()
-})
+}
 
 #endif

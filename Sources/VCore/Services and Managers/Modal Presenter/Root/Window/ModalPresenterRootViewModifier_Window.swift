@@ -73,23 +73,23 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
             .getSafeAreaInsets(ignoredKeyboardSafeAreaEdges: .all, didReadSafeAreaInsets)
 
             // Handling work
-            .onReceive(internalPresentationMode.presentSubject, perform: { workManager.addWork(.present($0)) })
-            .onReceive(internalPresentationMode.updateSubject, perform: { workManager.addWork(.update($0)) })
-            .onReceive(internalPresentationMode.dismissSubject, perform: { workManager.addWork(.dismiss($0)) })
-            .onChange(of: didReadEnvironment, { workManager.setEnabledStatus(to: $1) })
-            .onReceive(workManager.publisher, perform: { workType in
+            .onReceive(internalPresentationMode.presentSubject) { workManager.addWork(.present($0)) }
+            .onReceive(internalPresentationMode.updateSubject) { workManager.addWork(.update($0)) }
+            .onReceive(internalPresentationMode.dismissSubject) { workManager.addWork(.dismiss($0)) }
+            .onChange(of: didReadEnvironment) { workManager.setEnabledStatus(to: $1) }
+            .onReceive(workManager.publisher) { workType in
                 switch workType {
                 case .present(let data): didReceiveInternalPresentRequest(data)
                 case .update(let data): didReceiveInternalUpdateRequest(data)
                 case .dismiss(let data): didReceiveInternalDismissRequest(data)
                 }
-            })
+            }
         
             // Syncing UI Model
-            .onChange(of: _uiModel.frame, { model.uiModel.frame = $1 })
-            .onChange(of: _uiModel.dimmingViewColor, { model.uiModel.dimmingViewColor = $1 })
-            .onChange(of: _uiModel.dimmingViewTapAction, { model.uiModel.dimmingViewTapAction = $1 })
-            //.onChange(of: _uiModel.keyboardObserverSubUIModel, { model.uiModel.keyboardObserverSubUIModel = $1 }) // Has no effect
+            .onChange(of: _uiModel.frame) { model.uiModel.frame = $1 }
+            .onChange(of: _uiModel.dimmingViewColor) { model.uiModel.dimmingViewColor = $1 }
+            .onChange(of: _uiModel.dimmingViewTapAction) { model.uiModel.dimmingViewTapAction = $1 }
+            //.onChange(of: _uiModel.keyboardObserverSubUIModel) { model.uiModel.keyboardObserverSubUIModel = $1 } // Has no effect
     }
     
     // MARK: Actions - Internal
@@ -170,8 +170,8 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
     ) {
         guard let modal: ModalPresenterRootModalData_Window = model.modals.first(where: { $0.id == dismissData.link.linkID }) else { return }
 
-        modal.presentationMode.dismissSubject.send(/*completion: */{
-            model.modals.removeAll(where: { $0.id == dismissData.link.linkID })
+        modal.presentationMode.dismissSubject.send /*completion: */{
+            model.modals.removeAll { $0.id == dismissData.link.linkID }
                         
             ModalPresenterDataSourceCache.shared.remove(key: dismissData.link.linkID)
             
@@ -180,7 +180,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
             }
 
             dismissData.completion()
-        })
+        }
     }
 }
 

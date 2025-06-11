@@ -14,7 +14,7 @@ extension View {
     ///     Image("Image")
     ///         .resizable()
     ///         .fitToAspect(1, contentMode: .fit)
-    ///         .background(content: { Color.primary })
+    ///         .background { Color.primary }
     ///         .frame(dimension: 200)
     ///
     public func fitToAspect(
@@ -24,7 +24,7 @@ extension View {
         Color.clear
             .scaledToFill()
             .aspectRatio(aspectRatio, contentMode: .fit)
-            .overlay(content: { self.aspectRatio(nil, contentMode: contentMode) })
+            .overlay { self.aspectRatio(nil, contentMode: contentMode) }
             .clipShape(.rect)
     }
 }
@@ -32,7 +32,7 @@ extension View {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     let size: CGSize = .init(width: 150, height: 200)
 
 #if canImport(UIKit)
@@ -70,8 +70,8 @@ extension View {
     return image
         .resizable()
         .fitToAspect(1, contentMode: .fit)
-        .background(content: { Color.primary })
+        .background { Color.primary }
         .frame(dimension: 200)
-})
+}
 
 #endif

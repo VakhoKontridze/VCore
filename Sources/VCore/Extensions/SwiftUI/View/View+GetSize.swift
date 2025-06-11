@@ -15,7 +15,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getSize({ size = $0 })
+    ///             .getSize { size = $0 }
     ///     }
     ///
     public func getSize(

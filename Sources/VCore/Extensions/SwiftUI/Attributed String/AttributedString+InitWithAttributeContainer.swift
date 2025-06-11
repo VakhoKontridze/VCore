@@ -139,7 +139,7 @@ extension String {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     Text(
         AttributedString(
             string: "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit",
@@ -163,6 +163,6 @@ extension String {
     .foregroundStyle(.primary)
     .font(.body)
     .padding(.horizontal)
-})
+}
 
 #endif

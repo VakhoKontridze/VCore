@@ -19,8 +19,8 @@ final class PublishedPropertyWrapperBox<Value>: @unchecked Sendable {
         init(initialValue) {
             self._wrappedValue = initialValue
         }
-        get { queue.sync(execute: { _wrappedValue }) }
-        set { queue.sync(flags: .barrier, execute: { _wrappedValue = newValue }) }
+        get { queue.sync { _wrappedValue } }
+        set { queue.sync(flags: .barrier) { _wrappedValue = newValue } }
     }
     
     // MARK: Properties - Queue

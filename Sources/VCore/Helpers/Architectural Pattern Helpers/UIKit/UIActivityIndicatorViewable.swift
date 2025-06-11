@@ -28,16 +28,13 @@ import UIKit
 ///     func fetch() {
 ///         startActivityIndicatorAnimationAndDisableInteraction()
 ///
-///         URLSession.shared.dataTask(
-///             with: ...,
-///             completionHandler: { [weak self] (data, response, error) in
-///                 guard let self else { return }
+///         URLSession.shared.dataTask(with: ...) { [weak self] (data, response, error) in
+///             guard let self else { return }
 ///
-///                 stopActivityIndicatorAnimationAndEnableInteraction()
+///             stopActivityIndicatorAnimationAndEnableInteraction()
 ///
-///                 ...
-///             }
-///         )
+///             ...
+///         }
 ///     }
 ///
 @MainActor
@@ -130,7 +127,7 @@ extension UIViewController {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     final class ViewController: UIViewController, UIActivityIndicatorViewable {
         private(set) lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
 
@@ -143,7 +140,7 @@ extension UIViewController {
     }
 
     return ViewController()
-})
+}
 
 #endif
 

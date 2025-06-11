@@ -16,10 +16,10 @@ struct CollectionFirstAndLastIndexAndElementTests {
     func testFirstIndexAndElement() {
         let numbers: [Int] = [1, 3, 5, 7]
         
-        #expect(numbers.firstIndexAndElement(where: { $0 == 0 }) == nil)
+        #expect(numbers.firstIndexAndElement { $0 == 0 } == nil)
         
         do {
-            let result: (index: Int, element: Int)? = numbers.firstIndexAndElement(where: { $0 * $0 >= 10 })
+            let result: (index: Int, element: Int)? = numbers.firstIndexAndElement { $0 * $0 >= 10 }
             
             #expect(result?.index == 2)
             #expect(result?.element == 5)
@@ -30,10 +30,10 @@ struct CollectionFirstAndLastIndexAndElementTests {
     func testLastIndexAndElement() {
         let numbers: [Int] = [1, 3, 5, 7]
         
-        #expect(numbers.lastIndexAndElement(where: { $0 == 0 }) == nil)
+        #expect(numbers.lastIndexAndElement { $0 == 0 } == nil)
         
         do {
-            let result: (index: Int, element: Int)? = numbers.lastIndexAndElement(where: { $0 * $0 >= 10 })
+            let result: (index: Int, element: Int)? = numbers.lastIndexAndElement { $0 * $0 >= 10 }
 
             #expect(result?.index == 3)
             #expect(result?.element == 7)

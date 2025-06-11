@@ -14,9 +14,9 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text("Lorem ipsum")
-    ///             .onTouchInteraction(minimumDistance: 0, perform: { isActive in
+    ///             .onTouchInteraction(minimumDistance: 0) { isActive in
     ///                 ...
-    ///             })
+    ///             }
     ///     }
     ///
     public func onTouchInteraction(
@@ -56,16 +56,16 @@ private struct TouchDownTouchUpInteractionRecognizerViewModifier: ViewModifier {
         content
             .gesture(
                 DragGesture(minimumDistance: minimumDistance)
-                    .onChanged({ _ in
+                    .onChanged { _ in
                         if !isDragged {
                             isDragged = true
                             completion(true)
                         }
-                    })
-                    .onEnded({ _ in
+                    }
+                    .onEnded { _ in
                         isDragged = false
                         completion(false)
-                    })
+                    }
             )
     }
 }
@@ -75,12 +75,12 @@ private struct TouchDownTouchUpInteractionRecognizerViewModifier: ViewModifier {
 
 #if !os(tvOS) // Redundant
 
-#Preview(body: {
+#Preview {
     @Previewable @State var isPressed: Bool = false
 
     Text(isPressed ? "Recognized" : "Standby")
-        .onTouchInteraction(minimumDistance: 0, perform: { isPressed = $0 })
-})
+        .onTouchInteraction(minimumDistance: 0) { isPressed = $0 }
+}
 
 #endif
 

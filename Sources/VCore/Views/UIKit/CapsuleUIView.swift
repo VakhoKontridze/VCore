@@ -27,7 +27,7 @@ open class CapsuleUIView: UIView {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     let view: CapsuleUIView = .init()
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = UIColor.systemBlue
@@ -38,7 +38,7 @@ open class CapsuleUIView: UIView {
     ])
 
     return view
-})
+}
 
 #endif
 

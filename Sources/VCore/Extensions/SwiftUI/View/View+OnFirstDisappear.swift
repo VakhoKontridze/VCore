@@ -41,12 +41,12 @@ private struct OnFirstDisappearModifier: ViewModifier {
     // MARK: Body
     func body(content: Content) -> some View {
         content
-            .onDisappear(perform: {
+            .onDisappear {
                 if !didDisappearForTheFirstTime {
                     didDisappearForTheFirstTime = true
                     action?()
                 }
-            })
+            }
     }
 }
 

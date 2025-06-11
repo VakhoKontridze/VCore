@@ -36,7 +36,7 @@ import UIKit
 ///
 ///     final class SomeButton: UIView {
 ///         // Action is passed during configuration
-///         private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateUIModelChange() })
+///         private lazy var baseButton: UIKitBaseButton = .init { [weak self] in self?.configureFromStateUIModelChange() }
 ///             .withTranslatesAutoresizingMaskIntoConstraints(false)
 ///
 ///         private let titleLabel: UILabel = {
@@ -132,12 +132,12 @@ import UIKit
 @available(tvOS, unavailable)
 open class UIKitBaseButton: UIView {
     // MARK: Properties
-    private lazy var gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: { [weak self] gestureState in
+    private lazy var gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init { [weak self] gestureState in
         guard let self else { return }
         
         internalButtonState = .init(isEnabled: buttonState.isGestureEnabled, isPressed: gestureState.didRecognizeClick)
         stateChangeHandler(gestureState)
-    })
+    }
     
     /// Indicates if interaction is enabled.
     open var isEnabled: Bool {
@@ -172,9 +172,9 @@ open class UIKitBaseButton: UIView {
     convenience public init(
         action: @escaping () -> Void
     ) {
-        self.init(onStateChange: { gestureState in
+        self.init { gestureState in
             if gestureState.didRecognizeClick { action() }
-        })
+        }
     }
     
     @available(*, unavailable)
@@ -211,12 +211,12 @@ open class UIKitBaseButton: UIView {
 
 #if !os(tvOS) // Redundant
 
-#Preview(body: {
+#Preview {
     SomeButton(
         action: {},
         title: "Lorem Ipsum"
     )
-})
+}
 
 // Preview macro doesn’t support nested macro expansions
 private struct SomeButtonUIModel {
@@ -235,7 +235,7 @@ private typealias SomeButtonInternalState = GenericState_EnabledPressedDisabled
 
 private final class SomeButton: UIView {
     // Action is passed during configuration
-    private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateUIModelChange() })
+    private lazy var baseButton: UIKitBaseButton = .init { [weak self] in self?.configureFromStateUIModelChange() }
         .withTranslatesAutoresizingMaskIntoConstraints(false)
 
     private let titleLabel: UILabel = {

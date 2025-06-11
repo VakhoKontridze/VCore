@@ -102,9 +102,9 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     ContentView()
-})
+}
 
 // Preview macro doesn’t support nested macro expansions
 private struct ContentView: View {

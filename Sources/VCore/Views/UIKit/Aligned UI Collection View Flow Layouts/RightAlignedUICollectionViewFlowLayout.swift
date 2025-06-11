@@ -107,11 +107,11 @@ open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     Preview_AlignedUICollectionViewFlowLayoutViewController(
         layout: RightAlignedUICollectionViewFlowLayout()
     )
-})
+}
 
 #endif
 

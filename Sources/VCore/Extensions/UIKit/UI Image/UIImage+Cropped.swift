@@ -67,7 +67,7 @@ extension UIImage {
 
 import SwiftUI
 
-#Preview(body: {
+#Preview {
     guard
         let image: UIImage = .init(systemName: "swift")
     else {
@@ -81,7 +81,7 @@ import SwiftUI
         )
     )
 
-    return VStack(content: {
+    return VStack {
         Image(uiImage: image)
             .resizable()
             .frame(dimension: 100)
@@ -89,8 +89,8 @@ import SwiftUI
         Image(uiImage: croppedImage)
             .resizable()
             .frame(dimension: 100)
-    })
-})
+    }
+}
 
 #endif
 

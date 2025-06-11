@@ -27,8 +27,8 @@ public final class LockedAtomicNumber<Number>: @unchecked Sendable
         init(initialValue) {
             self._value = initialValue
         }
-        get { queue.sync(execute: { _value }) }
-        set { queue.sync(flags: .barrier, execute: { _value = newValue }) }
+        get { queue.sync { _value } }
+        set { queue.sync(flags: .barrier) { _value = newValue } }
     }
     
     // MARK: Properties - Queue

@@ -14,7 +14,7 @@ import Foundation
 ///
 ///     let sessionManager: SessionManager = .init()
 ///
-///     Task(operation: {
+///     Task {
 ///         do {
 ///             let sessionID: Int = await sessionManager.generateNewID()
 ///
@@ -28,7 +28,7 @@ import Foundation
 ///         } catch {
 ///             print(error.localizedDescription)
 ///         }
-///     })
+///     }
 ///
 public actor SessionManager {
     // MARK: Properties
@@ -63,7 +63,7 @@ public actor SessionManager {
 // MARK: - Global Session Manager
 /// Global instance of `SessionManager`.
 ///
-///     Task(operation: {
+///     Task {
 ///         do {
 ///             let sessionID: Int = await GlobalSessionManager.shared.generateNewID()
 ///
@@ -77,7 +77,7 @@ public actor SessionManager {
 ///         } catch {
 ///             print(error.localizedDescription)
 ///         }
-///     })
+///     }
 ///
 @globalActor
 public final class GlobalSessionManager {

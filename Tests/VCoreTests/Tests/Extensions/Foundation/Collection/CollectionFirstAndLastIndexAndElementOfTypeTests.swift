@@ -40,7 +40,7 @@ struct CollectionFirstAndLastIndexAndElementOfTypeTests {
         }
         
         do {
-            let result: (index: Int, element: S1)? = array.firstIndexAndElement(ofType: S1.self, where: { $0.value > 1 })
+            let result: (index: Int, element: S1)? = array.firstIndexAndElement(ofType: S1.self) { $0.value > 1 }
 
             #expect(result?.index == 1)
             #expect(result?.element.value == 2)
@@ -57,7 +57,7 @@ struct CollectionFirstAndLastIndexAndElementOfTypeTests {
         }
         
         do {
-            let result: (index: Int, element: S1)? = array.lastIndexAndElement(ofType: S1.self, where: { $0.value < 6 })
+            let result: (index: Int, element: S1)? = array.lastIndexAndElement(ofType: S1.self) { $0.value < 6 }
 
             #expect(result?.index == 4)
             #expect(result?.element.value == 5)

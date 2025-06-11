@@ -37,13 +37,13 @@ extension View {
     ///                 ]
     ///             )
     ///         )
-    ///         .addOpenURLAction({
+    ///         .addOpenURLAction {
     ///             switch $0 {
     ///             case #url("a"): count += 1
     ///             case #url("b"): count -= 1
     ///             default: break
     ///             }
-    ///         })
+    ///         }
     ///         .padding(.horizontal)
     ///      }
     ///
@@ -51,17 +51,17 @@ extension View {
         _ action: @escaping (URL) -> Void
     ) -> some View {
         self
-            .environment(\.openURL, OpenURLAction(handler: { url in
+            .environment(\.openURL, OpenURLAction { url in
                 action(url)
                 return .handled
-            }))
+            })
     }
 }
 
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     @Previewable @State var count: Int = 0
 
     Text(
@@ -85,14 +85,14 @@ extension View {
             ]
         )
     )
-    .addOpenURLAction({
+    .addOpenURLAction {
         switch $0 {
         case #url("a"): count += 1
         case #url("b"): count -= 1
         default: break
         }
-    })
+    }
     .padding(.horizontal)
-})
+}
 
 #endif

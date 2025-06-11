@@ -35,10 +35,10 @@ extension Publisher where Failure == Never {
     ) -> AnyCancellable 
         where Root: AnyObject
     {
-        sink(receiveValue: { [weak object] value in
+        sink { [weak object] value in
             guard let object else { return }
 
             object[keyPath: keyPath] = value
-        })
+        }
     }
 }

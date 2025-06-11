@@ -32,7 +32,7 @@ extension UIView {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     let view: UIView = .init()
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = UIColor.systemBlue
@@ -44,7 +44,7 @@ extension UIView {
     ])
 
     return view
-})
+}
 
 #endif
 

@@ -101,8 +101,8 @@ extension UIColor {
 
 import SwiftUI
 
-#Preview(body: {
-    VStack(content: {
+#Preview {
+    VStack {
         if let uiColor: UIColor = .init(hex: "#007AFF") {
             Color(uiColor: uiColor)
         }
@@ -110,8 +110,8 @@ import SwiftUI
         if let uiColor: UIColor = .init(hex: 0x007AFF) {
             Color(uiColor: uiColor)
         }
-    })
-})
+    }
+}
 
 #endif
 

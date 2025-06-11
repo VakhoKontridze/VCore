@@ -15,7 +15,7 @@ extension Sequence {
     /// In addition to similar behavior, allows for a custom logic to be written, as generating a specific key is not required.
     ///
     ///     let students: [String] = ["Kofi", "Abena", "Efua", "Kweku", "Akosua"]
-    ///     let studentsByLetter: [[String]] = students.grouped(by: { $0.first == $1.first })
+    ///     let studentsByLetter: [[String]] = students.grouped { $0.first == $1.first }
     ///
     ///     // [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
     ///
@@ -58,8 +58,8 @@ extension Sequence {
     ///     // [[Student(name: "Kofi"), Student(name: "Kweku")], [Student(name: "Abena"), Student(name: "Akosua")], [Student(name: "Efua")]]
     ///
     public func grouped(by keyPath: KeyPath<Element, some Equatable>) -> [[Element]] {
-        grouped(by: { (lhs, rhs) in
+        grouped { (lhs, rhs) in
             lhs[keyPath: keyPath] == rhs[keyPath: keyPath]
-        })
+        }
     }
 }

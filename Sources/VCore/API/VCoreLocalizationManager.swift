@@ -26,8 +26,8 @@ public final class VCoreLocalizationManager: @unchecked Sendable {
     
     /// Localization provider. Set to `DefaultVCoreLocalizationProvider`.
     public var localizationProvider: any VCoreLocalizationProvider {
-        get { queue.sync(execute: { _localizationProvider }) }
-        set { queue.sync(flags: .barrier, execute: { _localizationProvider = newValue }) }
+        get { queue.sync { _localizationProvider } }
+        set { queue.sync(flags: .barrier) { _localizationProvider = newValue } }
     }
     
     // MARK: Properties - Queue

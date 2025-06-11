@@ -27,14 +27,14 @@ struct NonInvasiveGeometryReader<Content>: View
     // MARK: Body
     var body: some View {
         Color.clear
-            .overlay(content: {
-                GeometryReader(content: { geometryProxy in
-                    ZStack(content: {
+            .overlay {
+                GeometryReader { geometryProxy in
+                    ZStack {
                         content(geometryProxy)
-                    })
+                    }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
                     .clipped() // Prevents content from going out of bounds
-                })
-            })
+                }
+            }
     }
 }

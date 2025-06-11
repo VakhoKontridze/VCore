@@ -33,31 +33,25 @@ import Combine
 ///             super.keyboardWillShow(systemKeyboardInfo)
 ///
 ///             UIView.animateKeyboardResponsiveness(
-///                 systemKeyboardInfo: systemKeyboardInfo,
-///                 animations: { [weak self] in
-///                     guard let self else { return }
+///                 systemKeyboardInfo: systemKeyboardInfo
+///             ) { [weak self] in
+///                 guard let self else { return }
 ///
-///                     guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return }
+///                 guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else { return }
 ///
-///                     view.bounds.origin.y = systemKeyboardHeight
-///                     view.superview?.layoutIfNeeded()
-///                 }
-///             )
+///                 view.bounds.origin.y = systemKeyboardHeight
+///                 view.superview?.layoutIfNeeded()
+///             }
 ///         }
-///
-///         override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
-///             super.keyboardWillHide(systemKeyboardInfo)
 ///
 ///             UIView.animateKeyboardResponsiveness(
-///                 systemKeyboardInfo: systemKeyboardInfo,
-///                 animations: { [weak self] in
-///                     guard let self else { return }
+///                 systemKeyboardInfo: systemKeyboardInfo
+///             ) { [weak self] in
+///                 guard let self else { return }
 ///
-///                     view.bounds.origin.y = 0
-///                     view.superview?.layoutIfNeeded()
-///                 }
-///             )
-///         }
+///                 view.bounds.origin.y = 0
+///                 view.superview?.layoutIfNeeded()
+///             }
 ///     }
 ///
 @available(tvOS, unavailable)
@@ -89,12 +83,12 @@ open class KeyboardResponsiveUIViewController: UIViewController {
     private func addKeyboardFrameChangNotificationObserver() {
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillShowNotification)
-            .sink(receiveValue: { [weak self] in self?.keyboardWillShow(notification: $0) })
+            .sink { [weak self] in self?.keyboardWillShow(notification: $0) }
             .store(in: &subscriptions)
         
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillHideNotification)
-            .sink(receiveValue: { [weak self] in self?.keyboardWillHide(notification: $0) })
+            .sink { [weak self] in self?.keyboardWillHide(notification: $0) }
             .store(in: &subscriptions)
     }
     

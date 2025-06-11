@@ -54,12 +54,12 @@ extension Image {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
-    VStack(spacing: 10, content: {
+#Preview {
+    VStack(spacing: 10) {
         Image(systemName: "shuffle")
         Image(systemNameAndDefault: "shuffle", weight: .bold)
-    })
-})
+    }
+}
 
 #endif
 

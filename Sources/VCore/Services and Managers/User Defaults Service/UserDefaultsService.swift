@@ -28,8 +28,8 @@ open class UserDefaultsService: @unchecked Sendable {
         init(initialValue) {
             self._userDefaults = initialValue
         }
-        get { queue.sync(execute: { _userDefaults }) }
-        set { queue.sync(flags: .barrier, execute: { _userDefaults = newValue }) }
+        get { queue.sync { _userDefaults } }
+        set { queue.sync(flags: .barrier) { _userDefaults = newValue } }
     }
 
     // MARK: Properties - JSON Encoder
@@ -39,8 +39,8 @@ open class UserDefaultsService: @unchecked Sendable {
     ///
     /// Used in `Codable` methods.
     open var jsonEncoder: JSONEncoder {
-        get { queue.sync(execute: { _jsonEncoder }) }
-        set { queue.sync(flags: .barrier, execute: { _jsonEncoder = newValue }) }
+        get { queue.sync { _jsonEncoder } }
+        set { queue.sync(flags: .barrier) { _jsonEncoder = newValue } }
     }
 
     // MARK: Properties - JSON Decoder
@@ -50,8 +50,8 @@ open class UserDefaultsService: @unchecked Sendable {
     ///
     /// Used in `Codable` methods.
     open var jsonDecoder: JSONDecoder {
-        get { queue.sync(execute: { _jsonDecoder }) }
-        set { queue.sync(flags: .barrier, execute: { _jsonDecoder = newValue }) }
+        get { queue.sync { _jsonDecoder } }
+        set { queue.sync(flags: .barrier) { _jsonDecoder = newValue } }
     }
     
     // MARK: Properties - Queue

@@ -22,8 +22,8 @@ import UIKit
 ///             title: "Lorem Ipsum",
 ///             message: "Lorem ipsum dolor sit amet",
 ///             actions: {
-///                 UIAlertButton(title: "Confirm", action: { print("Confirmed") })
-///                 UIAlertButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///                 UIAlertButton(action: { print("Confirmed") }, title: "Confirm")
+///                 UIAlertButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
 ///             }
 ///         )
 ///     )
@@ -62,9 +62,9 @@ public struct UIAlertParameters {
             message: message,
             actions: {
                 UIAlertButton(
-                    style: .cancel,
+                    action: completion,
                     title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle,
-                    action: completion
+                    style: .cancel
                 )
             }
         )
@@ -80,9 +80,9 @@ public struct UIAlertParameters {
             message: error.localizedDescription,
             actions: {
                 UIAlertButton(
-                    style: .cancel,
+                    action: completion,
                     title: VCoreLocalizationManager.shared.localizationProvider.alertOKButtonTitle,
-                    action: completion
+                    style: .cancel
                 )
             }
         )

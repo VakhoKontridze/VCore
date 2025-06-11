@@ -15,7 +15,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getFrame(in: .global, { frame = $0 })
+    ///             .getFrame(in: .global) { frame = $0 }
     ///     }
     ///
     public func getFrame(
@@ -36,7 +36,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getFrame(in: .global, { frame = $0 })
+    ///             .getFrame(in: .global) { frame = $0 }
     ///     }
     ///
     public func getFrame(

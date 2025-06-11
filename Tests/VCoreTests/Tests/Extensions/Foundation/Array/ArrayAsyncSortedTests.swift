@@ -16,10 +16,10 @@ struct ArrayAsyncSortedTests {
     func testSorted() async {
         let array: [String] = ["London", "Paris", "New York"]
 
-        let sortedArray: [String] = await array.asyncSorted(by: { (lhs, rhs) in
+        let sortedArray: [String] = await array.asyncSorted { (lhs, rhs) in
             try? await Task.sleep(nanoseconds: 1_000)
             return lhs < rhs
-        })
+        }
 
         #expect(sortedArray == array.sorted())
     }
@@ -29,10 +29,10 @@ struct ArrayAsyncSortedTests {
         let array: [String] = ["London", "Paris", "New York"]
 
         var sortedArray: [String] = array
-        await sortedArray.asyncSort(by: { (lhs, rhs) in
+        await sortedArray.asyncSort { (lhs, rhs) in
             try? await Task.sleep(nanoseconds: 1_000)
             return lhs < rhs
-        })
+        }
 
         #expect(sortedArray == array.sorted())
     }

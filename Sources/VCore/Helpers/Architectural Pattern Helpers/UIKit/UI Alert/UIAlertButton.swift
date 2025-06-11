@@ -16,36 +16,37 @@ public struct UIAlertButton: UIAlertButtonProtocol {
     /// Indicates if button is enabled.
     public var isEnabled: Bool
     
-    /// Style.
-    public var style: UIAlertAction.Style
+    /// Action.
+    public var action: (@MainActor () -> Void)?
     
     /// Title.
     public var title: String
     
-    /// Action.
-    public var action: (@MainActor () -> Void)?
+    /// Style.
+    public var style: UIAlertAction.Style
     
     // MARK: Initializers
     /// Initializes `UIAlertButton`.
     public init(
         isEnabled: Bool = true,
-        style: UIAlertAction.Style = .default,
+        action: (@MainActor () -> Void)?,
         title: String,
-        action: (@MainActor () -> Void)?
+        style: UIAlertAction.Style = .default
     ) {
         self.isEnabled = isEnabled
-        self.style = style
-        self.title = title
         self.action = action
+        self.title = title
+        self.style = style
     }
     
     // MARK: Button Protocol
     public func makeBody() -> UIAlertAction {
         let alertAction: UIAlertAction = .init(
             title: title,
-            style: style,
-            handler: { _ in action?() }
-        )
+            style: style
+        ) { _ in
+            action?()
+        }
         alertAction.isEnabled = isEnabled
 
         return alertAction

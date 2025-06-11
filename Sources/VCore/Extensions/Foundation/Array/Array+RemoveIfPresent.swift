@@ -15,7 +15,7 @@ extension Array where Element: Equatable {
     ///     array.removeIfPresent(3) // [1, 2]
     ///
     mutating public func removeIfPresent(_ element: Element) {
-        removeAll(where: { $0 == element })
+        removeAll { $0 == element }
     }
 
     /// Removes all the elements if they are present.
@@ -30,6 +30,6 @@ extension Array where Element: Equatable {
             S: Sequence,
             S.Element == Element
     {
-        removeAll(where: { elements.contains($0) })
+        removeAll { elements.contains($0) }
     }
 }

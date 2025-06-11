@@ -200,7 +200,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
                     else {
                         return false
                     }
-
+                    
                     return true
                 })?
                 .decl.as(EnumDeclSyntax.self)
@@ -245,11 +245,11 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
                 .first(where: { $0.label?.trimmedDescription == "accessLevelModifier" }),
             !parameter.expression.is(NilLiteralExprSyntax.self)
         else {
-            let inheritedValue: AccessLevelModifierKeyword? = .allCases.first(where: { aCase in
-                declaration.modifiers.contains(where: { modifier in
+            let inheritedValue: AccessLevelModifierKeyword? = .allCases.first { aCase in
+                declaration.modifiers.contains { modifier in
                     modifier.name.tokenKind.toKeywordAssociatedValue() == aCase.swiftSyntaxKeyword
-                })
-            })
+                }
+            }
 
             return inheritedValue ?? AccessLevelModifierKeyword.default
         }

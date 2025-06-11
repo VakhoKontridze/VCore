@@ -23,18 +23,16 @@ extension UIColor {
         _ dark: UIColor
     ) -> UIColor {
 #if !os(watchOS)
-        UIColor(
-            dynamicProvider: { traitCollection in
-                switch traitCollection.userInterfaceStyle {
-                case .unspecified: return light
-                case .light: return light
-                case .dark: return dark
-                @unknown default:
-                    Logger.misc.fault("Unhandled 'UIUserInterfaceStyle' '\(String(describing: traitCollection.userInterfaceStyle))' in 'UIColor.dynamic(_:_:)'")
-                    return light
-                }
+        UIColor  { traitCollection in
+            switch traitCollection.userInterfaceStyle {
+            case .unspecified: return light
+            case .light: return light
+            case .dark: return dark
+            @unknown default:
+                Logger.misc.fault("Unhandled 'UIUserInterfaceStyle' '\(String(describing: traitCollection.userInterfaceStyle))' in 'UIColor.dynamic(_:_:)'")
+                return light
             }
-        )
+        }
 #else
         fatalError() // Not supported
 #endif

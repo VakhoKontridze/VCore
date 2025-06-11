@@ -41,8 +41,7 @@ extension NSImage {
 import SwiftUI
 
 // MARK: - Preview
-
-#Preview(body: {
+#Preview {
     guard
         let image: NSImage = .init(
             size: CGSize(dimension: 100),
@@ -53,7 +52,7 @@ import SwiftUI
     }
 
     return Image(nsImage: image)
-})
+}
 
 #endif
 

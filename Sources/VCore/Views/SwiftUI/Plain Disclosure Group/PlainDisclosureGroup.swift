@@ -13,9 +13,9 @@ import SwiftUI
 ///     @State private var isExpanded: Bool = true
 ///
 ///     var body: some View {
-///         ZStack(content: {
+///         ZStack {
 ///             Color(uiColor: UIColor.secondarySystemBackground)
-///             .ignoresSafeArea()
+///                 .ignoresSafeArea()
 ///
 ///             PlainDisclosureGroup(
 ///                 isExpanded: $isExpanded,
@@ -26,19 +26,19 @@ import SwiftUI
 ///                         .allowsHitTesting(false)
 ///                 },
 ///                 content: {
-///                     ScrollView(content: {
-///                         LazyVStack(content: {
-///                             ForEach(0..<10, content: { num in
+///                     ScrollView {
+///                         LazyVStack {
+///                             ForEach(0..<10) { num in
 ///                                 Text(String(num))
 ///                                     .frame(maxWidth: .infinity, alignment: .leading)
 ///                                     .padding(.vertical, 5)
-///                             })
-///                         })
-///                     })
+///                             }
+///                         }
+///                     }
 ///                 }
 ///             )
 ///             .padding()
-///         })
+///         }
 ///     }
 ///
 @available(tvOS, unavailable) // No `DisclosureGroup`
@@ -122,7 +122,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
     
     // MARK: Body
     public var body: some View {
-        ZStack(alignment: .top, content: {
+        ZStack(alignment: .top) {
             DisclosureGroup(
                 isExpanded: Binding(
                     get: { isExpanded.wrappedValue },
@@ -131,39 +131,43 @@ public struct PlainDisclosureGroup<Label, Content>: View
                 content: content,
                 label: { Spacer().frame(height: nativeLabelHeight) }
             )
-            .mask({ nativeLabelViewMask })
+            .mask { nativeLabelViewMask }
             .animation(.default, value: isExpanded.wrappedValue)
             
             labelView
-        })
-        .background(content: { uiModel.backgroundColor })
+        }
+        .background { uiModel.backgroundColor }
     }
     
     private var labelView: some View {
         label()
             .frame(maxWidth: .infinity)
-            .getSize({ labelHeight = $0.height })
-            .background(content: {
+            .getSize { labelHeight = $0.height }
+            .background {
                 Color.clear
                     .contentShape(.rect)
                     .onTapGesture(perform: expandCollapseFromLabelTap)
-            })
+            }
     }
 
     private var nativeLabelViewMask: some View {
-        VStack(spacing: 0, content: {
+        VStack(spacing: 0) {
             Color.clear.frame(height: nativeLabelMaskHeight)
             Color.black
-        })
+        }
     }
 
     // MARK: Actions
     private func expandCollapseFromInternalAction(newValue: Bool) {
-        withAnimation(uiModel.expandCollapseAnimation, { isExpanded.wrappedValue = newValue })
+        withAnimation(uiModel.expandCollapseAnimation) {
+            isExpanded.wrappedValue = newValue
+        }
     }
     
     private func expandCollapseFromLabelTap() {
-        withAnimation(uiModel.expandCollapseAnimation, { isExpanded.wrappedValue.toggle() })
+        withAnimation(uiModel.expandCollapseAnimation) {
+            isExpanded.wrappedValue.toggle()
+        }
     }
     
     // MARK: State Management
@@ -178,7 +182,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
 
 #if !(os(tvOS) || os(watchOS) || os(visionOS)) // Redundant
 
-#Preview(body: {
+#Preview {
     @Previewable @State var isExpanded: Bool = true
     
     let backgroundView: some View = {
@@ -192,7 +196,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
 #endif
     }()
 
-    ZStack(content: {
+    ZStack {
         backgroundView
 
         PlainDisclosureGroup(
@@ -212,8 +216,8 @@ public struct PlainDisclosureGroup<Label, Content>: View
         .frame(dimension: 480)
 #endif
         .padding()
-    })
-})
+    }
+}
 
 #endif
 

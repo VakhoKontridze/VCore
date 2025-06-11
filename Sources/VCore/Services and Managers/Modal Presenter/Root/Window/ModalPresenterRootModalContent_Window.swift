@@ -24,25 +24,25 @@ struct ModalPresenterRootModalContent_Window: View {
     // MARK: Body
     var body: some View {
         if !model.modals.isEmpty {
-            ZStack(content: {
+            ZStack {
                 visualDimmingView
                 modalsView
-            })
-            .applyModifier({ view in
+            }
+            .applyModifier { view in
                 switch model.uiModel.frame {
                 case .fixed(let size, let alignment, let offset):
-                    ZStack(content: {
+                    ZStack {
                         view
                             .frame(size: size)
                             .offset(offset)
-                    })
+                    }
                     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: alignment)
 
                 case .infinite:
                     view
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
-            })
+            }
 
             // Must be written last
             .offset(y: -model.keyboardObserver.offset)
@@ -79,24 +79,23 @@ struct ModalPresenterRootModalContent_Window: View {
         Color.clear
             .contentShape(.rect)
             .allowsHitTesting(model.uiModel.dimmingViewTapAction.allowsHitTesting)
-            .onTapGesture(perform: {
+            .onTapGesture {
                 if model.uiModel.dimmingViewTapAction == .sendActionToTopmostModal {
                     topmostModal.presentationMode.dimmingViewTapActionSubject.send()
                 }
-            })
+            }
     }
 
     private var modalsView: some View {
         ForEach(
             model.modals.enumeratedArray(),
-            id: \.element.id,
-            content: { (i, modal) in
-                modalView(
-                    isTopmost: i == model.modals.count - 1,
-                    modal: modal
-                )
-            }
-        )
+            id: \.element.id
+        ) { (i, modal) in
+            modalView(
+                isTopmost: i == model.modals.count - 1,
+                modal: modal
+            )
+        }
     }
 
     @ViewBuilder
@@ -108,16 +107,13 @@ struct ModalPresenterRootModalContent_Window: View {
             interactiveDimmingView(topmostModal: modal)
         }
         
-        NonInvasiveGeometryReader(
-            alignment: modal.uiModel.alignment,
-            content: { geometryProxy in
-                modal.view()
-                    .environment(\.modalPresenterContainerSize, geometryProxy.size)
-                    .environment(\.modalPresenterSafeAreaInsets, model.safeAreaInsets)
-                    .environment(\.modalPresenterPresentationMode, modal.presentationMode)
-            }
-        )
-        .onFirstAppear(perform: { modal.presentationMode.presentSubject.send() })
+        NonInvasiveGeometryReader(alignment: modal.uiModel.alignment) { geometryProxy in
+            modal.view()
+                .environment(\.modalPresenterContainerSize, geometryProxy.size)
+                .environment(\.modalPresenterSafeAreaInsets, model.safeAreaInsets)
+                .environment(\.modalPresenterPresentationMode, modal.presentationMode)
+        }
+        .onFirstAppear { modal.presentationMode.presentSubject.send() }
     }
 }
 

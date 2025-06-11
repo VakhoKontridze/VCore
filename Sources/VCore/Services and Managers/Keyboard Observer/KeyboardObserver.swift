@@ -16,11 +16,11 @@ import OSLog
 ///     @State private var text: String = ""
 ///
 ///     var body: some View {
-///         ZStack(content: {
+///         ZStack {
 ///             TextField("", text: $text)
 ///                 .textFieldStyle(.roundedBorder)
 ///                 .padding()
-///         })
+///         }
 ///         .frame(maxHeight: .infinity, alignment: .bottom)
 ///
 ///         // Must be written last
@@ -77,12 +77,12 @@ public final class KeyboardObserver: Sendable {
 #if canImport(UIKit) && !os(watchOS)
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillShowNotification)
-            .sink(receiveValue: { [weak self] in self?.keyboardWillShow(notification: $0) })
+            .sink { [weak self] in self?.keyboardWillShow(notification: $0) }
             .store(in: &subscriptions)
 
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillHideNotification)
-            .sink(receiveValue: { [weak self] in self?.keyboardWillHide(notification: $0) })
+            .sink { [weak self] in self?.keyboardWillHide(notification: $0) }
             .store(in: &subscriptions)
 #endif
     }
@@ -151,14 +151,14 @@ public final class KeyboardObserver: Sendable {
 
         if let offset {
             // No need to handle reentrancy and cancellation
-            Task(operation: { @MainActor in
+            Task { @MainActor in
                 self.offset = offset
                 self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
                 try? await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
                 
                 self.offsetStable = offset
-            })
+            }
         }
     }
 
@@ -183,14 +183,14 @@ public final class KeyboardObserver: Sendable {
 
         if let offset {
             // No need to handle reentrancy and cancellation
-            Task(operation: { @MainActor in
+            Task { @MainActor in
                 self.offset = offset
                 self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
                 try? await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
                 
                 self.offsetStable = offset
-            })
+            }
         }
     }
     

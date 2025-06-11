@@ -36,9 +36,8 @@ extension NSImage {
 
         let thumbnail: NSImage = .init(
             size: size,
-            flipped: false,
-            drawingHandler: { _ in imageRepresentation.draw(in: frame) }
-        )
+            flipped: false
+        ) { _ in imageRepresentation.draw(in: frame) }
 
         return thumbnail
     }
@@ -49,7 +48,7 @@ extension NSImage {
 
 import SwiftUI
 
-#Preview(body: {
+#Preview {
     guard
         let image: NSImage = .init(systemSymbolName: "swift", accessibilityDescription: nil)
     else {
@@ -58,7 +57,7 @@ import SwiftUI
 
     let dimension: CGFloat = 128
 
-    return VStack(content: {
+    return VStack {
         Image(nsImage: image)
             .resizable()
             .scaledToFit()
@@ -70,9 +69,9 @@ import SwiftUI
                 .aspectRatio(1.2, contentMode: .fit)
                 .frame(dimension: dimension)
         }
-    })
+    }
     .padding()
-})
+}
 
 #endif
 

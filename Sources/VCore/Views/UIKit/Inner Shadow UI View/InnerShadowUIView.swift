@@ -80,7 +80,7 @@ open class InnerShadowUIView: UIView {
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     let view: InnerShadowUIView = .init(
         uiModel: {
             var uiModel: InnerShadowUIViewUIModel = .init()
@@ -97,7 +97,7 @@ open class InnerShadowUIView: UIView {
     ])
 
     return view
-})
+}
 
 #endif
 

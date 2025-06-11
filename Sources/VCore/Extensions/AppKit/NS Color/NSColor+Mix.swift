@@ -39,9 +39,9 @@ extension NSColor {
 
 import SwiftUI
 
-#Preview(body: {
+#Preview {
     Color(NSColor.red.mix(with: .blue, by: 0.5))
-})
+}
 
 #endif
 

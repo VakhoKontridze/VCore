@@ -17,12 +17,12 @@ import SwiftUI
 ///     ]
 ///
 ///     var body: some View {
-///         AlignedGridLayout(horizontalAlignment: .center, spacing: 5).callAsFunction({
-///             ForEach(strings, id: \.self, content: { string in
+///         AlignedGridLayout(horizontalAlignment: .center, spacing: 5) {
+///             ForEach(strings, id: \.self { string in
 ///                 Text(string)
-///                     .background(content: { Color.accentColor.opacity(0.5) })
-///             })
-///         })
+///                     .background { Color.accentColor.opacity(0.5) }
+///             }
+///         }
 ///         .padding()
 ///     }
 ///
@@ -31,43 +31,43 @@ import SwiftUI
 /// If content declared above is moved to `gridView(alignment:)` method, then they can be stacked.
 ///
 ///     var body: some View {
-///         VStack(content: {
+///         VStack {
 ///             gridView(alignment: .leading)
 ///             Divider()
 ///             gridView(alignment: .center)
 ///             Divider()
 ///             gridView(alignment: .trailing)
-///         })
+///         }
 ///     }
 ///
 /// `AlignedGridLayout` also supports vertical `ScrollView` + `VStack`/`HStack`.
 /// Layout will not break, since width can be calculated from the parent container, and height will wrap.
 ///
 ///     var body: some View {
-///         ScrollView(content: {
-///             VStack(content: {
+///         ScrollView {
+///             VStack {
 ///                 gridView(alignment: .leading)
 ///                 Divider()
 ///                 gridView(alignment: .center)
 ///                 Divider()
 ///                 gridView(alignment: .trailing)
-///             })
-///         })
+///             }
+///         }
 ///     }
 ///
 /// `AlignedGridLayout` also supports horizontal `ScrollView` + `VStack`/`HStack`.
 /// Without specifying an explicit width, layout will break, since width cannot be calculated from the parent container.
 ///
 ///     var body: some View {
-///         ScrollView(.horizontal, content: {
-///             HStack(content: {
+///         ScrollView(.horizontal) {
+///             HStack {
 ///                 gridView(alignment: .leading).frame(width: 300)
 ///                 Divider()
 ///                 gridView(alignment: .center).frame(width: 300)
 ///                 Divider()
 ///                 gridView(alignment: .trailing).frame(width: 300)
-///             })
-///         })
+///             }
+///         }
 ///     }
 ///
 public struct AlignedGridLayout: Layout {
@@ -248,67 +248,67 @@ public struct AlignedGridLayout: Layout {
 // MARK: - Preview
 #if DEBUG
 
-#Preview("VStack", body: {
-    VStack(content: {
+#Preview("VStack") {
+    VStack {
         Preview_Section(.leading)
         Divider()
         Preview_Section(.center)
         Divider()
         Preview_Section(.trailing)
-    })
-})
+    }
+}
 
-#Preview("HStack", body: {
-    HStack(content: {
+#Preview("HStack") {
+    HStack {
         Preview_Section(.leading)
         Divider()
         Preview_Section(.trailing)
-    })
-})
+    }
+}
 
-#Preview("Vertical Alignments", body: {
-    VStack(content: {
+#Preview("Vertical Alignments") {
+    VStack {
         Preview_Section(.center, verticalAlignment: .top, hasDifferentHeights: true)
         Divider()
         Preview_Section(.center, verticalAlignment: .center, hasDifferentHeights: true)
         Divider()
         Preview_Section(.center, verticalAlignment: .bottom, hasDifferentHeights: true)
-    })
-})
+    }
+}
 
-#Preview("Vertical ScrollView & VStack", body: {
-    ScrollView(content: {
-        VStack(content: {
+#Preview("Vertical ScrollView & VStack") {
+    ScrollView {
+        VStack {
             Preview_Section(.leading)
             Divider()
             Preview_Section(.center)
             Divider()
             Preview_Section(.trailing)
-        })
-    })
-})
+        }
+    }
+}
 
-#Preview("Vertical ScrollView & HStack", body: {
-    ScrollView(content: {
-        HStack(content: {
+#Preview("Vertical ScrollView & HStack") {
+    ScrollView {
+        HStack {
             Preview_Section(.leading)
             Divider()
             Preview_Section(.trailing)
-        })
-    })
-})
+        }
+    }
+}
 
-#Preview("Horizontal ScrollView & HStack", body: {
-    ScrollView(.horizontal, content: {
-        HStack(content: {
+#Preview("Horizontal ScrollView & HStack") {
+    ScrollView(.horizontal) {
+        HStack {
             Preview_Section(.leading).frame(width: 300)
             Divider()
             Preview_Section(.center).frame(width: 300)
             Divider()
             Preview_Section(.trailing).frame(width: 300)
-        })
-    })
-})
+        }
+    }
+}
 
 private struct Preview_Section: View {
     private let horizontalAlignment: HorizontalAlignment
@@ -337,21 +337,20 @@ private struct Preview_Section: View {
             horizontalAlignment: horizontalAlignment,
             verticalAlignment: verticalAlignment,
             spacing: 5
-        ).callAsFunction({
+        ) {
             ForEach(
                 data.enumeratedArray(),
                 id: \.element,
-                content: { (i, string) in
-                    Text(string)
-                        .padding(3)
-                        .padding(.vertical, hasDifferentHeights ? CGFloat(i % 3)*3 : 0)
-
-                        .background(content: { Color.accentColor.opacity(0.5) })
-
-                        .clipShape(.rect(cornerRadius: 5))
-                }
-            )
-        })
+            ) { (i, string) in
+                Text(string)
+                    .padding(3)
+                    .padding(.vertical, hasDifferentHeights ? CGFloat(i % 3)*3 : 0)
+                
+                    .background { Color.accentColor.opacity(0.5) }
+                
+                    .clipShape(.rect(cornerRadius: 5))
+            }
+        }
         .padding()
     }
 }

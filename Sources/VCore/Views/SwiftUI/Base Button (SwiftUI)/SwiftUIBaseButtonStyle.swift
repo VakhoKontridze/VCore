@@ -31,11 +31,11 @@ struct SwiftUIBaseButtonStyle<Label>: ButtonStyle where Label: View {
         let state: SwiftUIBaseButtonState = state(isPressed: configuration.isPressed)
 
         return label(state)
-            .background(content: { configuration.label })
-            .applyIf(!uiModel.animatesStateChange, transform: {
+            .background { configuration.label }
+            .applyIf(!uiModel.animatesStateChange) {
                 $0
                     .animation(nil, value: isEnabled)
                     .animation(nil, value: configuration.isPressed)
-            })
+            }
     }
 }

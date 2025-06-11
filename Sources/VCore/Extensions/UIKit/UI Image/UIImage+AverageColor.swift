@@ -71,7 +71,7 @@ extension UIImage {
 
 import SwiftUI
 
-#Preview(body: {
+#Preview {
     guard
         let image: UIImage = .init(
             size: CGSize(dimension: 100),
@@ -83,7 +83,7 @@ import SwiftUI
     }
 
     return Color(uiColor: averageColor)
-})
+}
 
 #endif
 

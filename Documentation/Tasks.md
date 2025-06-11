@@ -30,9 +30,9 @@ private func didTapButton() {
 }
 
 private func doSomething() {}
-    Task(operation: { @MainActor in
+    Task { @MainActor in
         await ...
-    })
+    }
 }
 ```
 
@@ -57,9 +57,9 @@ final class MusicPlayer {
         
         ... // Extracts data
         
-        Task(operation: { @MainActor in // Extracts album art
+        Task { @MainActor in // Extracts album art
             await ...
-        })
+        }
     }
 }
 ```
@@ -88,15 +88,12 @@ extension View {
                     set: { photoPickerItem in
                         guard let photoPickerItem else { return }
 
-                        photoPickerItem.loadTransferable(
-                            type: Data.self,
-                            completionHandler: { result in
-                                Task(operation: { @MainActor in
-                                    let data: Data? = try? result.get()
-                                    selectionHandler(data)
-                                })
+                        photoPickerItem.loadTransferable(type: Data.self) { result in
+                            Task { @MainActor in
+                                let data: Data? = try? result.get()
+                                selectionHandler(data)
                             }
-                        )
+                        }
                     }
                 )
             )
@@ -131,14 +128,14 @@ final class MusicPlayer {
         ... // Extracts data
         
         fetchAlbumArtTask?.cancel()
-        fetchAlbumArtTask = Task(operation: { @MainActor in 
+        fetchAlbumArtTask = Task { @MainActor in 
             defer { fetchAlbumArtTask = nil }
         
             let albumArt: Image = await ...
             guard !Task.isCancelled else { return }
             
             ... // Stores album art
-        })
+        }
     }
 }
 ```
@@ -161,7 +158,7 @@ final class HomeView {
 
     private func fetchData() {
         fetchDataTask?.cancel()
-        fetchDataTask = Task(operation: { @MainActor in 
+        fetchDataTask = Task { @MainActor in 
             let user: User = await ...
             guard !Task.isCancelled else { return }
             
@@ -170,7 +167,7 @@ final class HomeView {
             
             self.user = user
             self.items = items
-        })
+        }
     }
 }
 ```
@@ -204,11 +201,11 @@ struct HomeView: View {
     }
     
     private func fetchData() {
-        fetchDataTask = Task(operation: { @MainActor in
+        fetchDataTask = Task { @MainActor in
             defer { fetchDataTask = nil }
             
             await ...
-        })
+        }
     }
 }
 ```
@@ -228,11 +225,11 @@ struct HomeView: View {
     private func fetchData() {
         guard fetchDataTask == nil else { return }
     
-        fetchDataTask = Task(operation: { @MainActor in
+        fetchDataTask = Task( { @MainActor in
             defer { fetchDataTask = nil }
             
             await ...
-        })
+        }
     }
 }
 ```

@@ -47,14 +47,14 @@ extension URLComponents {
     ) {
         guard !newQueryItems.isEmpty else { return }
 
-        let newURLQueryItems: [URLQueryItem] = newQueryItems.compactMap({ (key, value) in
+        let newURLQueryItems: [URLQueryItem] = newQueryItems.compactMap { (key, value) in
             guard let value else { return nil }
 
             return URLQueryItem(
                 name: key,
                 value: value
             )
-        })
+        }
 
         guard !newURLQueryItems.isEmpty else { return }
 

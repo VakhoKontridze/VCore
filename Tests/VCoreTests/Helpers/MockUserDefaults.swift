@@ -24,25 +24,25 @@ final class MockUserDefaults: UserDefaults {
 
     // MARK: Methods
     public override func object(forKey defaultName: String) -> Any? {
-        Self.queue.sync(execute: {
+        Self.queue.sync  {
             Self.storage[defaultName]
-        })
+        }
     }
 
     public override func set(_ value: Any?, forKey defaultName: String) {
-        _ = Self.queue.sync(flags: .barrier, execute: {
+        _ = Self.queue.sync(flags: .barrier) {
             if let value {
                 Self.storage[defaultName] = value
             } else {
                 // `removeObject(forKey:)` shouldn't be called, as it would deadlock
                 Self.storage.removeValue(forKey: defaultName)
             }
-        })
+        }
     }
 
     public override func removeObject(forKey defaultName: String) {
-        _ = Self.queue.sync(flags: .barrier, execute: {
+        _ = Self.queue.sync(flags: .barrier) {
             Self.storage.removeValue(forKey: defaultName)
-        })
+        }
     }
 }

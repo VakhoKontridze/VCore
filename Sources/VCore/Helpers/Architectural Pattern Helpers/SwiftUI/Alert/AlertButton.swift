@@ -12,20 +12,20 @@ import SwiftUI
 public struct AlertButton: AlertButtonProtocol {
     // MARK: Properties
     private var isEnabled: Bool = true
-    private let role: ButtonRole?
-    private let title: String
     private let action: (@MainActor () -> Void)?
+    private let title: String
+    private let role: ButtonRole?
     
     // MARK: Initializers
     /// Initializes `AlertButton`.
     public init(
-        role: ButtonRole? = nil,
         action: (@MainActor () -> Void)?,
-        title: String
+        title: String,
+        role: ButtonRole? = nil
     ) {
-        self.role = role
-        self.title = title
         self.action = action
+        self.title = title
+        self.role = role
     }
 
     // MARK: Button Protocol
@@ -34,9 +34,10 @@ public struct AlertButton: AlertButtonProtocol {
     ) -> AnyView {
         Button(
             title,
-            role: role,
-            action: { animateOutHandler(/*completion: */action) }
-        )
+            role: role
+        ) {
+            animateOutHandler(/*completion: */action)
+        }
         .disabled(!isEnabled)
         .eraseToAnyView()
     }

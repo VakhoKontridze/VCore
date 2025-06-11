@@ -22,8 +22,8 @@ import UIKit
 ///             title: "Lorem Ipsum",
 ///             message: "Lorem ipsum dolor sit amet",
 ///             actions: {
-///                 UIActionSheetButton(title: "Confirm", action: { print("Confirmed") })
-///                 UIActionSheetButton(style: .cancel, title: "Cancel", action: { print("Cancelled") })
+///                 UIActionSheetButton(action: { print("Confirmed") }, title: "Confirm")
+///                 UIActionSheetButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
 ///             }
 ///         )
 ///     )

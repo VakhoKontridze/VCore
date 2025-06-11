@@ -55,12 +55,12 @@ extension NSColor {
 
 import SwiftUI
 
-#Preview(body: {
-    VStack(content: {
+#Preview {
+    VStack {
         Color(NSColor.systemBlue.lighten(by: 0.1))
         Color(NSColor.systemBlue.darken(by: 0.1))
-    })
-})
+    }
+}
 
 #endif
 

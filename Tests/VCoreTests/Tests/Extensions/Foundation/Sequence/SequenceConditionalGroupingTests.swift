@@ -15,7 +15,7 @@ struct SequenceConditionalGroupingTests {
     @Test
     func testPredicate() {
         #expect(
-            ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].grouped(by: { $0.first == $1.first }) ==
+            ["Kofi", "Abena", "Efua", "Kweku", "Akosua"].grouped { $0.first == $1.first } ==
             [["Kofi", "Kweku"], ["Abena", "Akosua"], ["Efua"]]
         )
     }

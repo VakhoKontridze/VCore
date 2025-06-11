@@ -46,7 +46,7 @@ public struct SecurableTextField: View {
     
     // MARK: Body
     public var body: some View {
-        ZStack(content: {
+        ZStack {
             TextField(
                 text: $text,
                 prompt: placeholder,
@@ -62,18 +62,18 @@ public struct SecurableTextField: View {
             )
             .focused($isSecureFieldFocused)
             .opacity(isSecure ? 1 : 0)
-        })
+        }
     }
 }
 
 // MARK: - Preview
 #if DEBUG
 
-#Preview(body: {
+#Preview {
     @Previewable @State var isSecure: Bool = false
     @Previewable @State var text: String = "Lorem ipsum"
 
-    VStack(content: {
+    VStack {
         SecurableTextField(
             isSecure: isSecure,
             placeholder: Text("Lorem ipsum"),
@@ -83,9 +83,11 @@ public struct SecurableTextField: View {
         .textFieldStyle(.roundedBorder)
 #endif
 
-        Button("Toggle", action: { isSecure.toggle() })
-    })
+        Button("Toggle") {
+            isSecure.toggle()
+        }
+    }
     .padding()
-})
+}
 
 #endif

@@ -31,12 +31,12 @@ struct SwiftUIGestureBaseButton_UIKit: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
         let view: UIView = .init(frame: .zero)
         
-        Task(operation: { @MainActor in
+        Task { @MainActor in
             let gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
             self.gestureRecognizer = gestureRecognizer
             
             view.addGestureRecognizer(gestureRecognizer)
-        })
+        }
         
         return view
     }

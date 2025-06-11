@@ -35,10 +35,10 @@ extension UIFont {
 
 import SwiftUI
 
-#Preview(body: {
+#Preview {
     let font: UIFont = .systemFont(ofSize: 17)
 
-    VStack(content: {
+    VStack {
         Text("Lorem ipsum")
             .font(Font(font))
 
@@ -51,9 +51,9 @@ import SwiftUI
             Text("Lorem ipsum")
                 .font(Font(font))
         }
-    })
+    }
     .padding()
-})
+}
 
 #endif
 

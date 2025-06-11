@@ -24,10 +24,10 @@ final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureReco
     }
     private var stateChangeHandler: (GestureBaseButtonGestureState) -> Void
     
-    private lazy var model: GestureBaseButtonModel = .init(stateSetter: { [weak self] state in
+    private lazy var model: GestureBaseButtonModel = .init { [weak self] state in
         guard let self else { return }
         self.state = state
-    })
+    }
     
     // MARK: Initializers
     init(
