@@ -17,7 +17,9 @@ extension Optional {
     ///     a.isOptionalLess(
     ///         than: b,
     ///         order: .nilIsLess
-    ///     ) { $0.compare($1, options: .caseInsensitive) == .orderedAscending } // false
+    ///     ) {
+    ///         $0.compare($1, options: .caseInsensitive) == .orderedAscending
+    ///     } // false
     ///
     public func isOptionalLess(
         than other: Self,
