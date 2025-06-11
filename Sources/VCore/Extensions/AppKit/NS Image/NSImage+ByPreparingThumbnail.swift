@@ -37,7 +37,9 @@ extension NSImage {
         let thumbnail: NSImage = .init(
             size: size,
             flipped: false
-        ) { _ in imageRepresentation.draw(in: frame) }
+        ) { _ in
+            imageRepresentation.draw(in: frame)
+        }
 
         return thumbnail
     }

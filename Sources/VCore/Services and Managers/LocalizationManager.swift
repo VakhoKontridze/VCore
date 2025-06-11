@@ -30,7 +30,9 @@ import OSLog
 ///                     .isOptionalLess(
 ///                         than: rhs.displayNameNative,
 ///                         order: .nilIsGreater
-///                     ) { $0.compare($1, options: .caseInsensitive) == .orderedAscending }
+///                     ) {
+///                         $0.compare($1, options: .caseInsensitive) == .orderedAscending
+///                     }
 ///             },
 ///             id: \.identifier
 ///         ) { locale in

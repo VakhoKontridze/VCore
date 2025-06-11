@@ -140,7 +140,9 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
         .someModal(
             link: .overlay(linkID: "some_modal"),
             isPresented: $isPresented
-        ) { contentColor }
+        ) {
+            contentColor
+        }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .modalPresenterRoot(root: .overlay())
@@ -158,7 +160,9 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
         .someModal(
             link: .window(linkID: "some_modal"),
             isPresented: $isPresented
-        ) { Color.accentColor }
+        ) {
+            Color.accentColor
+        }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .modalPresenterRoot(root: .window())

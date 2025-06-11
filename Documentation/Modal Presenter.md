@@ -32,7 +32,9 @@ var body: some View {
         .someModal(
             link: .window(linkID: "some_modal"),
             isPresented: $isPresented
-        ) { Color.accentColor }
+        ) { 
+            Color.accentColor 
+        }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     .modalPresenterRoot(root: .window()) // Or declare in `App` on a `WindowScene`-level
@@ -71,7 +73,9 @@ var body: some View {
         .someModal( // [4]
             link: .window(linkID: "some_modal"), // [5]
             isPresented: $isPresented
-        ) { Color.accentColor }
+        ) { 
+            Color.accentColor
+        }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration // [3]
     .modalPresenterRoot(root: .window()) // [1]
@@ -267,11 +271,15 @@ var body: some View {
         .someModal(
             link: .window(linkID: "some_modal_1"),
             isPresented: $isPresented1
-        ) { Color.red }
+        ) { 
+            Color.red 
+        }
         .someModal(
             link: .window(linkID: "some_modal_2"),
             isPresented: $isPresented2
-        ) { Color.blue }
+        ) { 
+            Color.blue 
+        }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     .modalPresenterRoot(root: .window())
@@ -304,7 +312,9 @@ var body: some View {
                 .someModal(
                     link: .window(linkID: "some_modal_2"),
                     isPresented: $isPresented2
-                ) { Color.blue }
+                ) { 
+                    Color.blue 
+                }
             }
         }
     }
@@ -423,7 +433,9 @@ var body: some View {
         .someModal(
             link: .window(rootID: "containers". linkID: "some_modal"),
             isPresented: $isPresented,
-        ) { ... }
+        ) { 
+            ... 
+        }
 }
 ```
 
@@ -517,7 +529,9 @@ var body: some View {
                 .someModal(
                     link: .overlay(rootID: "containers_within_sheet", linkID: "custom_sheet"),
                     isPresented: $isPresented2
-                ) { Color.blue }
+                ) { 
+                    Color.blue 
+                }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
         .modalPresenterRoot(root: .overlay(rootID: "containers_within_sheet"))

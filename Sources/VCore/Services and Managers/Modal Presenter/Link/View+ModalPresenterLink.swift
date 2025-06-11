@@ -21,7 +21,9 @@ extension View {
     ///             .someModal(
     ///                 link: .window(linkID: "some_modal"),
     ///                 isPresented: $isPresented)
-    ///             ) { Color.accentColor }
+    ///             ) {
+    ///                 Color.accentColor
+    ///             }
     ///         }
     ///         .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     ///         .modalPresenterRoot(root: .window()) // Or declare in `App` on a `WindowScene`-level
