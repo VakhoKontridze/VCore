@@ -87,10 +87,7 @@ struct ModalPresenterRootModalContent_Window: View {
     }
 
     private var modalsView: some View {
-        ForEach(
-            model.modals.enumeratedArray(),
-            id: \.element.id
-        ) { (i, modal) in
+        ForEach(model.modals.enumeratedArray(), id: \.element.id) { (i, modal) in
             modalView(
                 isTopmost: i == model.modals.count - 1,
                 modal: modal

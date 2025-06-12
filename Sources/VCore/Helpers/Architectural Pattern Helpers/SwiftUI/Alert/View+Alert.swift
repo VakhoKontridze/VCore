@@ -38,13 +38,11 @@ extension View {
             ),
             actions: {
                 if let buttons: [any AlertButtonProtocol] = parameters.wrappedValue?.buttons() {
-                    ForEach(
-                        buttons.enumeratedArray(),
-                        id: \.offset, // Native `View.alert(...)` doesn't react to changes
-                    ) { (_, button) in
-                        button.makeBody { completion in
+                    // Native `View.alert(...)` doesn't react to changes, so using `offset` as ID is okay
+                    ForEach(buttons.enumeratedArray(), id: \.offset) { (_, button) in
+                        button.makeBody(animateOutHandler: { completion in
                             completion?()
-                        }
+                        })
                     }
                 }
             },

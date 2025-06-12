@@ -14,10 +14,7 @@ extension Collection {
     /// Element can be used as id in `ForEach` without use of an explicit identifier.
     ///
     ///     var body: some View {
-    ///         ForEach(
-    ///             data.enumeratedArray(),
-    ///             id: \.element
-    ///         ) { (i, element) in
+    ///         ForEach(data.enumeratedArray(), id: \.element) { (i, element) in
     ///             ...
     ///         }
     ///     }

@@ -157,10 +157,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     }
 
     private var modalsView: some View {
-        ForEach(
-            modals.enumeratedArray(),
-            id: \.element.id
-        ) { (i, modal) in
+        ForEach(modals.enumeratedArray(), id: \.element.id) { (i, modal) in
             modalView(
                 isTopmost: i == modals.count - 1,
                 modal: modal

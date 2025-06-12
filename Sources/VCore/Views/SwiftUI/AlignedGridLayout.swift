@@ -338,10 +338,7 @@ private struct Preview_Section: View {
             verticalAlignment: verticalAlignment,
             spacing: 5
         ) {
-            ForEach(
-                data.enumeratedArray(),
-                id: \.element,
-            ) { (i, string) in
+            ForEach(data.enumeratedArray(), id: \.element) { (i, string) in
                 Text(string)
                     .padding(3)
                     .padding(.vertical, hasDifferentHeights ? CGFloat(i % 3)*3 : 0)
