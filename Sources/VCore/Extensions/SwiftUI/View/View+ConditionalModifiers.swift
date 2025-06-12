@@ -50,7 +50,7 @@ extension View {
     @ViewBuilder 
     public func applyIf(
         _ condition: Bool,
-        ifTransform: (Self) -> some View,
+        _ ifTransform: (Self) -> some View,
         else elseTransform: (Self) -> some View
     ) -> some View {
         if condition {
@@ -101,7 +101,7 @@ extension View {
     @ViewBuilder 
     public func applyIfLet<Value>(
         _ value: Value?,
-        ifTransform: (Self, Value) -> some View,
+        _ ifTransform: (Self, Value) -> some View,
         else elseTransform: (Self) -> some View
     ) -> some View {
         if let value {

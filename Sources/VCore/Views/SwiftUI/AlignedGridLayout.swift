@@ -20,7 +20,7 @@ import SwiftUI
 ///         AlignedGridLayout(horizontalAlignment: .center, spacing: 5) {
 ///             ForEach(strings, id: \.self { string in
 ///                 Text(string)
-///                     .background { Color.accentColor.opacity(0.5) }
+///                     .background(Color.accentColor.opacity(0.5))
 ///             }
 ///         }
 ///         .padding()
@@ -343,7 +343,7 @@ private struct Preview_Section: View {
                     .padding(3)
                     .padding(.vertical, hasDifferentHeights ? CGFloat(i % 3)*3 : 0)
                 
-                    .background { Color.accentColor.opacity(0.5) }
+                    .background(Color.accentColor.opacity(0.5))
                 
                     .clipShape(.rect(cornerRadius: 5))
             }

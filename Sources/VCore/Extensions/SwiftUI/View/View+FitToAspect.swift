@@ -14,7 +14,7 @@ extension View {
     ///     Image("Image")
     ///         .resizable()
     ///         .fitToAspect(1, contentMode: .fit)
-    ///         .background { Color.primary }
+    ///         .background(Color.primary)
     ///         .frame(dimension: 200)
     ///
     public func fitToAspect(
@@ -70,7 +70,7 @@ extension View {
     return image
         .resizable()
         .fitToAspect(1, contentMode: .fit)
-        .background { Color.primary }
+        .background(Color.primary)
         .frame(dimension: 200)
 }
 

@@ -14,7 +14,7 @@ extension Color {
     ///     Text("Lorem ipsum")
     ///         .foregroundStyle(Color.primaryInverted)
     ///         .padding()
-    ///         .background { Color.primary }
+    ///         .background(Color.primary)
     ///
     public static let primaryInverted: Color = .platformDynamic(Color.white, Color.black)
 }
@@ -31,7 +31,7 @@ extension Color {
         Text("Lorem ipsum")
             .foregroundStyle(Color.primaryInverted)
             .padding()
-            .background { Color.primary }
+            .background(Color.primary)
     }
 }
 

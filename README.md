@@ -133,7 +133,7 @@ var body: some View {
     AlignedGridLayout(alignment: .center, spacing: 5) {
         ForEach(strings, id: \.self) { string in
             Text(string)
-                .background { Color.accentColor.opacity(0.5) }
+                .background(Color.accentColor.opacity(0.5))
         }
     }
     .padding()

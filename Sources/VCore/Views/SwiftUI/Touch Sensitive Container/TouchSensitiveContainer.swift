@@ -86,7 +86,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     // MARK: Body
     public var body: some View {
         contentView
-            .background { backgroundView }
+            .background(backgroundView)
     }
 
     @ViewBuilder 

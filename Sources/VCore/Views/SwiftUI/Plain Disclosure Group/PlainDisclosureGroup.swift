@@ -136,7 +136,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
             
             labelView
         }
-        .background { uiModel.backgroundColor }
+        .background(uiModel.backgroundColor)
     }
     
     private var labelView: some View {

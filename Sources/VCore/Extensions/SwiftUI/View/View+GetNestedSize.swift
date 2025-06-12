@@ -23,7 +23,7 @@ extension View {
     ///             }
     ///         }
     ///         .tabViewStyle(.page(indexDisplayMode: .never))
-    ///         .background { Color.gray }
+    ///         .background(Color.gray)
     ///
     ///         .getNestedSize { [$height] in $height.wrappedValue = max($0.height, 1) }  // `1` creates a non-zero buffer before height calculates
     ///         .frame(height: height)
@@ -89,7 +89,7 @@ private struct NestedSizePreferenceKey: PreferenceKey {
         }
     }
     .tabViewStyle(.page(indexDisplayMode: .never))
-    .background { Color.gray }
+    .background(Color.gray)
 
     .getNestedSize { [$height] in $height.wrappedValue = max($0.height, 1) } // `1` creates a non-zero buffer before height calculates
     .frame(height: height)
