@@ -13,7 +13,7 @@ import Foundation
 /// If `accessLevelModifier` is `nil`, it will be inherited from the type.
 ///
 ///     @CodingKeysGeneration
-///     struct GetPostEntity: Decodable {
+///     struct GetPostGatewayOutput: Decodable {
 ///         @CKGProperty("id") let id: Int
 ///         @CKGProperty("userId") let userID: Int
 ///         @CKGProperty("title") let title: String

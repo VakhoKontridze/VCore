@@ -6,7 +6,7 @@ import Foundation
 
 // MARK: - Mock ___VARIABLE_productName___ Gateway
 struct Mock___VARIABLE_productName___Gateway: ___VARIABLE_productName___GatewayProtocol {
-    func fetch(with parameters: ___VARIABLE_productName___Parameters) async throws -> ___VARIABLE_productName___Entity {
+    func fetch(with input: ___VARIABLE_productName___GatewayInput) async throws -> ___VARIABLE_productName___GatewayOutput {
         .mock
     }
 }

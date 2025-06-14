@@ -3,9 +3,9 @@
 import Foundation
 import VCore
 
-// MARK: - ___VARIABLE_productName___ Entity
+// MARK: - ___VARIABLE_productName___ Gateway Output
 @CodingKeysGeneration
-struct ___VARIABLE_productName___Entity: Decodable {
+struct ___VARIABLE_productName___GatewayOutput: Decodable {
     // MARK: Properties
     // ...
 

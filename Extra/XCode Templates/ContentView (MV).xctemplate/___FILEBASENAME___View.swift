@@ -19,13 +19,14 @@ struct ___VARIABLE_productName___View: View {
     // MARK: Properties - ???
     // ...
     
-    // MARK: Properties - Progress & Alert & Error
+    // MARK: Properties - Progress
     private var progressViewParameters: ProgressViewParameters? {
         let isVisible: Bool = false
         
         return isVisible ? ProgressViewParameters() : nil
     }
     
+    // MARK: Properties - Alert
     @State private var alertParameters: AlertParameters?
 
     // MARK: Properties - Cancellables

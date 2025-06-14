@@ -13,19 +13,19 @@ This document provides examples of network requests made with gateways.
 
 ## Simple Request
 
-Following gateway initiates a straightforward request to retrieve a `GetPostEntity` object with an identifier specified by `GetPostParameters.id`:
+Following gateway initiates a straightforward request to retrieve a `GetPostGatewayOutput` object with an identifier specified by `GetPostGatewayInput.id`:
 
 ```swift
 protocol GetPostGatewayProtocol {
-    func fetch(with parameters: GetPostParameters) async throws -> GetPostEntity
+    func fetch(with input: GetPostGatewayInput) async throws -> GetPostGatewayOutput
 }
 
-struct GetPostParameters {
+struct GetPostGatewayInput {
     let id: Int
 }
 
 @CodingKeysGeneration
-struct GetPostEntity: Decodable {
+struct GetPostGatewayOutput: Decodable {
     @CKGProperty("id") let id: Int
     @CKGProperty("userId") let userID: Int
     @CKGProperty("title") let title: String
@@ -33,8 +33,8 @@ struct GetPostEntity: Decodable {
 }
 
 struct GetPostGateway: GetPostGatewayProtocol {
-    func fetch(with parameters: GetPostParameters) async throws -> GetPostEntity {
-        let urlString: String = "https://jsonplaceholder.typicode.com/posts/\(parameters.id)"
+    func fetch(with input: GetPostGatewayInput) async throws -> GetPostGatewayOutput {
+        let urlString: String = "https://jsonplaceholder.typicode.com/posts/\(input.id)"
         guard let url: URL = .init(string: urlString) else { throw URLError(.badURL) }
 
         var request: URLRequest = .init(url: url)
@@ -45,9 +45,9 @@ struct GetPostGateway: GetPostGatewayProtocol {
 
         guard response.isSuccessHTTPStatusCode else { throw URLError(.badServerResponse) }
 
-        let entity: GetPostEntity = try JSONDecoder().decode(GetPostEntity.self, from: data)
+        let output: GetPostGatewayOutput = try JSONDecoder().decode(GetPostGatewayOutput.self, from: data)
 
-        return entity
+        return output
     }
 }
 ```
@@ -57,11 +57,11 @@ Request is initiated to retrieve a post with an ID of `1`:
 ```swift
 Task {
     do {
-        let parameters: GetPostParameters = .init(id: 1)
+        let input: GetPostGatewayInput = .init(id: 1)
 
-        let entity: GetPostEntity = try await GetPostGateway().fetch(with: parameters)
+        let output: GetPostGatewayOutput = try await GetPostGateway().fetch(with: input)
 
-        dump(entity)
+        dump(output)
 
     } catch {
         print(error.localizedDescription)
@@ -86,7 +86,7 @@ Frequently, databases return their data or response objects in the form of neste
 
 #### Solution
 
-To reduce redundancy in code, still utilize Swift's built-in `JSONDecoder` without overcomplicating entity objects with excessive nesting, we can implement two methods:
+To reduce redundancy in code, still utilize Swift's built-in `JSONDecoder` without overcomplicating output objects with excessive nesting, we can implement two methods:
 
 - One method for handling the response object and mapping it to a throwable `Error` type
 - Another method for processing the data object and extracting the nested data component
@@ -161,40 +161,40 @@ func processURLSessionData(
 
 #### Gateway
 
-Following gateway initiates a request to echo a `String`, specified by `EchoParameters.value`. Within the `EchoGateway`, both `Data` and `URLResponse` are processed with methods defined above.
+Following gateway initiates a request to echo a `String`, specified by `EchoGatewayInput.value`. Within the `EchoGateway`, both `Data` and `URLResponse` are processed with methods defined above.
 
 ```swift
 protocol EchoGatewayProtocol {
-    func fetch(with parameters: EchoParameters) async throws -> EchoEntity
+    func fetch(with input: EchoGatewayInput) async throws -> EchoGatewayOutput
 }
 
 @CodingKeysGeneration
-struct EchoParameters: Encodable {
+struct EchoGatewayInput: Encodable {
     @CKGProperty("value") let value: String
 }
 
 @CodingKeysGeneration
-struct EchoEntity: Decodable {
+struct EchoGatewayOutput: Decodable {
     @CKGProperty("value") let value: String
 }
 
 struct EchoGateway: EchoGatewayProtocol {
-    func fetch(with parameters: EchoParameters) async throws -> EchoEntity {
+    func fetch(with input: EchoGatewayInput) async throws -> EchoGatewayOutput {
         let url: URL = #url("https://httpbin.org/post")
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = "POST"
         try request.addHTTPHeaderFields(object: JSONRequestHeaderFields())
-        request.httpBody = try JSONEncoder().encode(parameters).nonEmpty
+        request.httpBody = try JSONEncoder().encode(input).nonEmpty
 
         let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
 
         _ = try processURLSessionResponse(data, response)
 
         let processedData: Data = try processURLSessionData(data, response)
-        let entity: EchoEntity = try JSONDecoder().decode(EchoEntity.self, from: processedData)
+        let output: EchoGatewayOutput = try JSONDecoder().decode(EchoGatewayOutput.self, from: processedData)
 
-        return entity
+        return output
     }
 }
 ```
@@ -206,11 +206,11 @@ Request is initiated to echo a `String` "test":
 ```swift
 Task {
     do {
-        let parameters: EchoParameters = .init(value: "test")
+        let input: EchoGatewayInput = .init(value: "test")
 
-        let entity: EchoEntity = try await EchoGateway().fetch(with: parameters)
+        let output: EchoGatewayOutput = try await EchoGateway().fetch(with: input)
 
-        print(entity.value) // "test"
+        print(output.value) // "test"
 
     } catch {
         print(error.localizedDescription)
@@ -225,25 +225,25 @@ Following gateway initiates a request to retrieve a `UIImage` with from an url, 
 ```swift
 protocol FetchImageGatewayProtocol {
     func fetch(
-        with parameters: FetchImageParameters,
+        with input: FetchImageGatewayInput,
         onProgressChange progressHandler: (Double) -> Void
-    ) async throws -> FetchImageEntity
+    ) async throws -> FetchImageGatewayOutput
 }
 
-struct FetchImageParameters {
+struct FetchImageGatewayInput {
     let url: String
 }
 
-struct FetchImageEntity {
+struct FetchImageGatewayOutput {
     let image: UIImage?
 }
 
 struct FetchImageGateway: FetchImageGatewayProtocol {
     func fetch(
-        with parameters: FetchImageParameters,
+        with input: FetchImageGatewayInput,
         onProgressChange progressHandler: (Double) -> Void
-    ) async throws -> FetchImageEntity {
-        guard let url: URL = .init(string: parameters.url) else { throw URLError(.badURL) }
+    ) async throws -> FetchImageGatewayOutput {
+        guard let url: URL = .init(string: input.url) else { throw URLError(.badURL) }
 
         var request: URLRequest = .init(url: url)
         request.httpMethod = "GET"
@@ -272,9 +272,9 @@ struct FetchImageGateway: FetchImageGatewayProtocol {
         }
 
         guard let image: UIImage = .init(data: data) else { throw URLError(.cannotDecodeContentData) }
-        let entity: FetchImageEntity = .init(image: image)
+        let output: FetchImageGatewayOutput = .init(image: image)
 
-        return entity
+        return output
     }
 }
 ```
@@ -285,14 +285,14 @@ Request is initiated to retrieve a `UIImage` and print the download progress:
 Task {
     do {
         let url: String = "https://www.nasa.gov/sites/default/files/thumbnails/image/main_image_star-forming_region_carina_nircam_final-5mb.jpg"
-        let parameters: FetchImageParameters = .init(url: url)
+        let input: FetchImageGatewayInput = .init(url: url)
         
-        let entity: FetchImageEntity = try await FetchImageGateway().fetch(
-            with: parameters, 
+        let output: FetchImageGatewayOutput = try await FetchImageGateway().fetch(
+            with: input, 
             onProgressChange: { print($0) }
         )
 
-        print(entity.image)
+        print(output.image)
 
     } catch {
         print(error.localizedDescription)
