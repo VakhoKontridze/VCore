@@ -116,9 +116,9 @@ However, if it doesn't, corresponding status code and message are retrieved and 
 func processURLSessionResponse(
     _ data: Data,
     _ response: URLResponse
-) throws -> URLResponse {
+) {
     if response.isSuccessHTTPStatusCode { 
-        return response 
+        return
     }
 
     guard
@@ -189,7 +189,7 @@ struct EchoGateway: EchoGatewayProtocol {
 
         let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
 
-        _ = try processURLSessionResponse(data, response)
+        try processURLSessionResponse(data, response)
 
         let processedData: Data = try processURLSessionData(data, response)
         let output: EchoGatewayOutput = try JSONDecoder().decode(EchoGatewayOutput.self, from: processedData)
