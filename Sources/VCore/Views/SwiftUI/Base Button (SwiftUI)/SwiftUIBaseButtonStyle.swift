@@ -13,7 +13,7 @@ struct SwiftUIBaseButtonStyle<Label>: ButtonStyle where Label: View {
     private let uiModel: SwiftUIBaseButtonUIModel
     
     @Environment(\.isEnabled) private var isEnabled: Bool
-    private func state(isPressed: Bool) -> SwiftUIBaseButtonState { .init(isEnabled: isEnabled, isPressed: isPressed) }
+    private func internalState(_ isPressed: Bool) -> SwiftUIBaseButtonState { .init(isEnabled: isEnabled, isPressed: isPressed) }
     
     private let label: (GenericState_EnabledPressedDisabled) -> Label
     
@@ -28,7 +28,7 @@ struct SwiftUIBaseButtonStyle<Label>: ButtonStyle where Label: View {
     
     // MARK: Body
     func makeBody(configuration: Configuration) -> some View {
-        let state: SwiftUIBaseButtonState = state(isPressed: configuration.isPressed)
+        let state: SwiftUIBaseButtonState = internalState(configuration.isPressed)
 
         return label(state)
             .background { configuration.label }
