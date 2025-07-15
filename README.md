@@ -163,13 +163,30 @@ let value: SomeEnum? = .init(key: \.someProperty, value: 2)
 Retrieving `CGSize` form `View`:
 
 ```swift
-@State private var size: CGSize = .zero
-
 var body: some View {
-    VStack {
-        Color.accentColor
-            .getSize { size = $0 }
-    }
+    Text(
+        AttributedString(
+            string: "Lorem <a>ipsum dolor</a> sit amet, <b>consectetur adipiscing</b> elit",
+            attributeContainers: [
+                "a": {
+                    var container: AttributeContainer = .init()
+                    container.foregroundColor = .red
+                    container.font = .title.weight(.ultraLight)
+                    return container
+                }(),
+                "b": {
+                    var container: AttributeContainer = .init()
+                    container.foregroundColor = .blue
+                    container.font = .callout.weight(.bold)
+                    return container
+                }()
+            ]
+        )
+    )
+    .multilineTextAlignment(.center)
+    .foregroundStyle(.primary)
+    .font(.body)
+    .padding(.horizontal)
 }
 ```
 

@@ -142,7 +142,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
     private var labelView: some View {
         label()
             .frame(maxWidth: .infinity)
-            .getSize { labelHeight = $0.height }
+            .onGeometryChange(for: CGFloat.self, of: { $0.size.height }) { labelHeight = $0 }
             .background {
                 Color.clear
                     .contentShape(.rect)
