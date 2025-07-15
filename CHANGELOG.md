@@ -10,6 +10,7 @@ General
 
 Views
 
+- `CoordinatingNavigationStackOO` is removed, as it's obsoleted by `CoordinatingNavigationStack`
 - `ViewResettingContainerOO` is removed, as it's obsoleted by `ViewResettingContainer`
 
 Models
@@ -33,10 +34,6 @@ Services and Managers - Presentation Host
 - Modal Presenter now has two presentation types, `overlay` and `window`. Previous presentation type is covered under `overlay`, while new `window` presents modal using a new `UIWindow`.
 - `View.presentationHostLayer(...)` is renamed to `View.modalPresenterRoot(...)`, and it takes `ModalPresenterRoot` as parameter
 - `View.presentationHost(...)` is renamed to `View.modalPresenterLink(...)`, and it takes `ModalPresenterLink` as parameter
-
-Helpers - Architectural Pattern Helpers
-
-- `CoordinatingNavigationStackOO` is removed, as it's obsoleted by `CoordinatingNavigationStack`
 
 Extensions
 

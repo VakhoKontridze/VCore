@@ -23,8 +23,6 @@ Package files are grouped as:
 
 - ***Services and Managers***. Services, managers, and controllers. For instance, `MultiPartFormDataBuilder`.
 
-- ***Helpers***. Helper objects and methods. For instance, architectural pattern helpers.
-
 - ***Extensions***. Extensions.
 
 - ***Global Functions***. Global functions. For instance, `FIXME(_:)` and `TODO(_:)`.
