@@ -15,6 +15,7 @@ import SwiftUI
 ///     var body: some View {
 ///         CoordinatingNavigationStack {
 ///             HomeView()
+///                 .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
 ///         }
 ///     }
 ///
@@ -26,7 +27,6 @@ import SwiftUI
 ///                 navigationStackCoordinator.path.append(DestinationParameters())
 ///             }
 ///             .inlineNavigationTitle("Home")
-///             .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
 ///         }
 ///     }
 ///

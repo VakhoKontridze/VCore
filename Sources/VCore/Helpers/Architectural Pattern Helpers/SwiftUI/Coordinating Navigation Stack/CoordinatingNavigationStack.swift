@@ -16,6 +16,7 @@ import SwiftUI
 ///     var body: some View {
 ///         CoordinatingNavigationStack {
 ///             HomeView()
+///                 .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
 ///         }
 ///     }
 ///
@@ -26,7 +27,6 @@ import SwiftUI
 ///             Button("Navigate") {
 ///                 navigationStackCoordinator.path.append(DestinationParameters())
 ///             }
-///             .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
 ///         }
 ///     }
 ///
@@ -104,6 +104,7 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
         var body: some View {
             CoordinatingNavigationStack {
                 HomeView()
+                    .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
             }
         }
     }
@@ -118,7 +119,6 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
 #if !(os(macOS) || os(tvOS))
             .inlineNavigationTitle("Home")
 #endif
-            .navigationDestination(for: DestinationParameters.self, destination: DestinationView.init)
         }
     }
 
