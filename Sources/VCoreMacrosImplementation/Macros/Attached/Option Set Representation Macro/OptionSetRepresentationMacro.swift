@@ -125,16 +125,20 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         }
 
         // Macro expansion result
-        return extensionResult(
+        return try extensionResult(
             type: type,
-            expansionData: expansionData
+            expansionData: expansionData,
+            context: context,
+            diagnose: false // Diagnostics occur within `MemberMacro`
         )
     }
 
     private static func extensionResult(
         type: some TypeSyntaxProtocol,
-        expansionData: ExpansionData
-    ) -> [ExtensionDeclSyntax] {
+        expansionData: ExpansionData,
+        context: some MacroExpansionContext,
+        diagnose: Bool
+    ) throws -> [ExtensionDeclSyntax] {
         // Skips conformance, if it already exits
         if
             let inheritedTypes: InheritedTypeListSyntax = expansionData
@@ -155,7 +159,16 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
             result.append("extension \(raw: type): OptionSet {}") // Works, even if type is nested
 
-            return result.compactMap { $0.as(ExtensionDeclSyntax.self) }
+            return try result
+                .map { member in
+                    guard let result: ExtensionDeclSyntax = member.as(ExtensionDeclSyntax.self) else {
+                        let error: RawStringError = .init("Failed to generate macro expansion")
+                        if diagnose { context.addDiagnostics(from: error, node: type) }
+                        throw error
+                    }
+                    
+                    return result
+                }
         }
     }
 
