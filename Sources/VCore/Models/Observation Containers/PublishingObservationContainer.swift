@@ -5,11 +5,11 @@
 //  Created by Vakhtang Kontridze on 18.04.24.
 //
 
-import SwiftUI
+import Foundation
 import Combine
 
 // MARK: - Publishing Observation Container
-/// `Observable` container triggers a `Publisher` when a value changes.
+/// `Observable` container that triggers a `Publisher` when a value changes.
 ///
 /// This container can be used inside non-`View` contexts, such as ViewModels,
 /// where continuous observation is not possible. Unlike recursive `withObservationTracking(_:onChange:)`,
@@ -63,12 +63,6 @@ public final class PublishingObservationContainer<Value>: Sendable {
 
             subject.send(newValue)
         }
-        _modify {
-            access(keyPath: \.value)
-            _$observationRegistrar.willSet(self, keyPath: \.value)
-            defer { _$observationRegistrar.didSet(self, keyPath: \.value) }
-            yield &_value
-        }
     }
 
     // MARK: Properties - Notification
@@ -79,9 +73,49 @@ public final class PublishingObservationContainer<Value>: Sendable {
 
     // MARK: Initializers
     /// Initializes `PublishingObservationContainer` with value.
-    public init(
-        _ value: Value
-    ) {
+    public init(_ value: Value) {
         self._value = value
     }
 }
+
+// MARK: - Preview
+#if DEBUG
+
+import SwiftUI
+
+#Preview {
+    ContentView()
+}
+
+// Macros aren't allowed in Preview macro
+private struct ContentView: View {
+    @State private var viewModel: ViewModel = .init()
+
+    var body: some View {
+        VStack {
+            Text(String(viewModel.count.value))
+
+            Button("Update") {
+                viewModel.count.value += 1
+                viewModel.count.value += 1
+            }
+        }
+    }
+}
+
+@Observable
+@MainActor
+private final class ViewModel {
+    let count: PublishingObservationContainer<Int> = .init(0)
+
+    @ObservationIgnored private var subscriptions: Set<AnyCancellable> = []
+
+    init() {
+        count
+            .publisher
+            .sink { print($0) }
+            .store(in: &subscriptions)
+    }
+}
+
+#endif

@@ -218,7 +218,7 @@ open class UIKitBaseButton: UIView {
     )
 }
 
-// Preview macro doesn’t support nested macro expansions
+// Macros aren't allowed in Preview macro
 private struct SomeButtonUIModel {
     var titleColors: StateColors = .init(
         enabled: UIColor.label,

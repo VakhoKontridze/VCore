@@ -1,0 +1,150 @@
+//
+//  AsyncStreamingObservationContainer.swift
+//  VCore
+//
+//  Created by Vakhtang Kontridze on 15.07.25.
+//
+
+import Foundation
+
+// MARK: - Async Streaming Observation Container
+/// `Observable` container that triggers a `AsyncStream` when a value changes.
+///
+/// This container can be used inside non-`View` contexts, such as ViewModels,
+/// where continuous observation is not possible. Unlike recursive `withObservationTracking(_:onChange:)`,
+/// this container allows for multiple updates in a short timespan.
+///
+///     @State private var viewModel: ViewModel = .init()
+///
+///     var body: some View {
+///         VStack {
+///             Text(String(viewModel.count.value))
+///
+///             Button("Update") {
+///                 viewModel.count.value += 1
+///                 viewModel.count.value += 1
+///             }
+///         }
+///     }
+///
+///     @Observable
+///     @MainActor
+///     final class ViewModel {
+///         let count: AsyncStreamingObservationContainer<Int> = .init(0)
+///
+///         init() {
+///             Task { @MainActor in
+///                 for await value in count.asyncStream {
+///                     print(value)
+///                 }
+///             }
+///         }
+///     }
+///
+@Observable
+@MainActor
+public final class AsyncStreamingObservationContainer<Value>: Sendable where Value: Sendable {
+    // MARK: Properties - Value
+    @ObservationIgnored private var _value: Value
+    
+    // `init` accessor cannot be used
+    /// Value.
+    @ObservationIgnored public var value: Value {
+        get {
+            access(keyPath: \.value)
+            return _value
+        }
+        set {
+            withMutation(keyPath: \.value) {
+                _value = newValue
+            }
+
+            for continuation in continuations {
+                continuation.continuation.yield(newValue)
+            }
+        }
+    }
+
+    // MARK: Properties - Async Stream
+    @ObservationIgnored private var continuations: [ContinuationHolder<Value>] = []
+
+    /// AsyncStream` that emits values on each change.
+    @ObservationIgnored public var asyncStream: AsyncStream<Value> {
+        .init { continuation in
+            let continuationHolder: ContinuationHolder = .init(continuation)
+            continuations.append(continuationHolder)
+            
+            continuation.onTermination = { [weak self, continuationHolder] _ in
+                guard let self else { return }
+                
+                Task { @MainActor in
+                    continuations.removeAll { $0 === continuationHolder }
+                }
+            }
+        }
+    }
+
+    // MARK: Initializers
+    /// Initializes `AsyncStreamingObservationContainer` with value.
+    public init(_ value: Value) {
+        self._value = value
+    }
+    
+    deinit {
+        for continuation in continuations {
+            continuation.continuation.finish()
+        }
+    }
+}
+
+// MARK: - Continuation Holder
+private final class ContinuationHolder<Value>: Sendable {
+    // MARK: Properties
+    let continuation: AsyncStream<Value>.Continuation
+
+    // MARK: Initializers
+    init(_ continuation: AsyncStream<Value>.Continuation) {
+        self.continuation = continuation
+    }
+}
+
+// MARK: - Preview
+#if DEBUG
+
+import SwiftUI
+
+#Preview {
+    ContentView()
+}
+
+// Macros aren't allowed in Preview macro
+private struct ContentView: View {
+    @State private var viewModel: ViewModel = .init()
+
+    var body: some View {
+        VStack {
+            Text(String(viewModel.count.value))
+
+            Button("Update") {
+                viewModel.count.value += 1
+                viewModel.count.value += 1
+            }
+        }
+    }
+}
+
+@Observable
+@MainActor
+private final class ViewModel {
+    let count: AsyncStreamingObservationContainer<Int> = .init(0)
+
+    init() {
+        Task { @MainActor in
+            for await value in count.asyncStream {
+                print(value)
+            }
+        }
+    }
+}
+
+#endif

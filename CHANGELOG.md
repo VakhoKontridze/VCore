@@ -15,6 +15,7 @@ Views
 
 Models
 
+- `AsyncStreamingObservationContainer` is added, that triggers an `AsyncStream` when a value changes
 - `withBasicAnimation(_:body:completion:)` method is removed, as it's obsoleted by `withAnimation(_:completionCriteria:_:completion:)`
 - `ObservableContainerOO` is removed, as it's obsoleted by `ObservableContainer`
 - `DeviceOrientationObserverOO` is removed, as it's obsoleted by `DeviceOrientationObserver`
@@ -257,7 +258,7 @@ Services and Managers
 
 Models
 
-- `PublishingObservationContainer` is added, that triggers a `Publisher` when a value changes.
+- `PublishingObservationContainer` is added, that triggers a `Publisher` when a value changes
 - Conformance to `Comparable` `protocol` is removed from `GenericStateModel` due to ambiguous API
 
 Services and Managers
