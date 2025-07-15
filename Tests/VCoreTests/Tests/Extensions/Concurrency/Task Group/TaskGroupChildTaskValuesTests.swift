@@ -26,7 +26,7 @@ struct TaskGroupChildTaskValuesTests {
             #url("3")
         ]
         
-        let items: [Item] = await withTaskGroup(of: Item.self) { group in
+        let items: [Item] = await withTaskGroup { group in
             for url in urls {
                 group.addTask {
                     try? await Task.sleep(for: .seconds(0.01))
@@ -56,7 +56,7 @@ struct TaskGroupChildTaskValuesTests {
             #url("3")
         ]
         
-        let items: [Item] = try await withThrowingTaskGroup(of: Item.self) { group in
+        let items: [Item] = try await withThrowingTaskGroup { group in
             for url in urls {
                 group.addTask {
                     try await Task.sleep(for: .seconds(0.01))

@@ -26,11 +26,7 @@ extension View {
             .background {
                 Color.clear
                     .ignoresSafeArea(.keyboard, edges: ignoredKeyboardSafeAreaEdges)
-                    .onGeometryChange(
-                        for: EdgeInsets.self,
-                        of: { $0.safeAreaInsets },
-                        action: action
-                    )
+                    .onGeometryChange(of: { $0.safeAreaInsets }, action: action)
             }
     }
 }

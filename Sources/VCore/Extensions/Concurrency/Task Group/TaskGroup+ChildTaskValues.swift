@@ -11,7 +11,7 @@ import Foundation
 extension TaskGroup {
     /// Collects and returns child task values.
     ///
-    ///     let items: [Item] = await withTaskGroup(of: Item.self) { group in
+    ///     let items: [Item] = await withTaskGroup { group in
     ///         for url in urls {
     ///             group.addTask {
     ///                 ...
@@ -38,7 +38,7 @@ extension TaskGroup {
 extension ThrowingTaskGroup {
     /// Collects and returns child task values.
     ///
-    ///     let items: [Item] = try await withThrowingTaskGroup(of: Item.self) { group in
+    ///     let items: [Item] = try await withThrowingTaskGroup { group in
     ///         for url in urls {
     ///             group.addTask {
     ///                 ...
