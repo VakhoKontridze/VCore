@@ -250,40 +250,40 @@ public struct AlignedGridLayout: Layout {
 
 #Preview("VStack") {
     VStack {
-        Preview_Section(.leading)
+        GridSection(.leading)
         Divider()
-        Preview_Section(.center)
+        GridSection(.center)
         Divider()
-        Preview_Section(.trailing)
+        GridSection(.trailing)
     }
 }
 
 #Preview("HStack") {
     HStack {
-        Preview_Section(.leading)
+        GridSection(.leading)
         Divider()
-        Preview_Section(.trailing)
+        GridSection(.trailing)
     }
 }
 
 #Preview("Vertical Alignments") {
     VStack {
-        Preview_Section(.center, verticalAlignment: .top, hasDifferentHeights: true)
+        GridSection(.center, verticalAlignment: .top, hasDifferentHeights: true)
         Divider()
-        Preview_Section(.center, verticalAlignment: .center, hasDifferentHeights: true)
+        GridSection(.center, verticalAlignment: .center, hasDifferentHeights: true)
         Divider()
-        Preview_Section(.center, verticalAlignment: .bottom, hasDifferentHeights: true)
+        GridSection(.center, verticalAlignment: .bottom, hasDifferentHeights: true)
     }
 }
 
 #Preview("Vertical ScrollView & VStack") {
     ScrollView {
         VStack {
-            Preview_Section(.leading)
+            GridSection(.leading)
             Divider()
-            Preview_Section(.center)
+            GridSection(.center)
             Divider()
-            Preview_Section(.trailing)
+            GridSection(.trailing)
         }
     }
 }
@@ -291,9 +291,9 @@ public struct AlignedGridLayout: Layout {
 #Preview("Vertical ScrollView & HStack") {
     ScrollView {
         HStack {
-            Preview_Section(.leading)
+            GridSection(.leading)
             Divider()
-            Preview_Section(.trailing)
+            GridSection(.trailing)
         }
     }
 }
@@ -301,16 +301,16 @@ public struct AlignedGridLayout: Layout {
 #Preview("Horizontal ScrollView & HStack") {
     ScrollView(.horizontal) {
         HStack {
-            Preview_Section(.leading).frame(width: 300)
+            GridSection(.leading).frame(width: 300)
             Divider()
-            Preview_Section(.center).frame(width: 300)
+            GridSection(.center).frame(width: 300)
             Divider()
-            Preview_Section(.trailing).frame(width: 300)
+            GridSection(.trailing).frame(width: 300)
         }
     }
 }
 
-private struct Preview_Section: View {
+private struct GridSection: View {
     private let horizontalAlignment: HorizontalAlignment
     private let verticalAlignment: VerticalAlignment
     private let hasDifferentHeights: Bool

@@ -1,5 +1,5 @@
 //
-//  Preview_AlignedUICollectionViewFlowLayoutViewController.swift
+//  AlignedUICollectionViewFlowLayoutViewController.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 22.01.24.
@@ -12,7 +12,7 @@
 import UIKit
 
 // MARK: - Aligned UI Collection View Flow Layout View Controller
-final class Preview_AlignedUICollectionViewFlowLayoutViewController:
+final class AlignedUICollectionViewFlowLayoutViewController:
     UIViewController,
     UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
     UICollectionViewDataSource
@@ -43,8 +43,8 @@ final class Preview_AlignedUICollectionViewFlowLayoutViewController:
         collectionView.dataSource = self
 
         collectionView.register(
-            Preview_AlignedUICollectionViewCell.self,
-            forCellWithReuseIdentifier: Preview_AlignedUICollectionViewCell.dequeueID
+            AlignedUICollectionViewCell.self,
+            forCellWithReuseIdentifier: AlignedUICollectionViewCell.dequeueID
         )
 
         collectionView.register(
@@ -147,8 +147,8 @@ final class Preview_AlignedUICollectionViewFlowLayoutViewController:
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Preview_AlignedUICollectionViewCell.dequeueID, for: indexPath)
-                as? Preview_AlignedUICollectionViewCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlignedUICollectionViewCell.dequeueID, for: indexPath)
+                as? AlignedUICollectionViewCell
         else {
             fatalError()
         }
@@ -160,7 +160,7 @@ final class Preview_AlignedUICollectionViewFlowLayoutViewController:
 }
 
 // MARK: - Aligned UI Collection View Cell
-private final class Preview_AlignedUICollectionViewCell: UICollectionViewCell {
+private final class AlignedUICollectionViewCell: UICollectionViewCell {
     // MARK: Properties
     private var widthConstraint: NSLayoutConstraint?
 

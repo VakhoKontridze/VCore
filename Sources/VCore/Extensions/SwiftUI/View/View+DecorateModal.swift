@@ -106,7 +106,7 @@ private final class _ModalDecoratorView: UIView {
     // MARK: Setup
     private func setUp() {
         let transitionViewChild: UIView? = Self.findSuperview(ofView: self) {
-            $0.superview?.isUITransitionView ?? false
+            $0.superview?.isUITransitionView == true
         }
         
         decorate(

@@ -40,7 +40,7 @@ open class LeftAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 #if DEBUG
 
 #Preview {
-    Preview_AlignedUICollectionViewFlowLayoutViewController(
+    AlignedUICollectionViewFlowLayoutViewController(
         layout: LeftAlignedUICollectionViewFlowLayout()
     )
 }

@@ -218,7 +218,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 #if DEBUG
 
 #Preview {
-    Preview_AlignedUICollectionViewFlowLayoutViewController(
+    AlignedUICollectionViewFlowLayoutViewController(
         layout: CenterAlignedUICollectionViewFlowLayout()
     )
 }
