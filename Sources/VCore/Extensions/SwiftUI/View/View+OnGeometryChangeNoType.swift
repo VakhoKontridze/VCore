@@ -1,5 +1,5 @@
 //
-//  View+OnGeometryChangeAdditionalMethods.swift
+//  View+OnGeometryChangeNoType.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 16.07.25.
@@ -7,9 +7,15 @@
 
 import SwiftUI
 
-// MARK: - View + On Geometry Change Additional Methods
+// MARK: - View + On Geometry Change No Type
 extension View {
     /// Adds an action to be performed when a value, created from a `GeometryProxy`, changes.
+    ///
+    ///     var body: some View {
+    ///         Text("Lorem ipsum")
+    ///             .onGeometryChange(of: { $0.size.width }) { print($0) }
+    ///     }
+    ///
     public func onGeometryChange<T>(
         of transform: @escaping @Sendable (GeometryProxy) -> T,
         action: @escaping (T) -> Void
@@ -27,6 +33,12 @@ extension View {
     }
 
     /// Adds an action to be performed when a value, created from a `GeometryProxy`, changes.
+    ///
+    ///     var body: some View {
+    ///         Text("Lorem ipsum")
+    ///             .onGeometryChange(of: { $0.frame(in: .global) }) { print($0) }
+    ///     }
+    ///
     @available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 10.0, *)
     public func onGeometryChange<T>(
         of transform: @escaping @Sendable (GeometryProxy) -> T,
