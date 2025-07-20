@@ -38,6 +38,7 @@ Services and Managers - Presentation Host
 
 Extensions
 
+- `View.applyModifier(_:)` is renamed to `View.apply(_:)`
 - `View.safeAreaMargins(edges:insets:)` is removed, as it's obsoleted by `View.safeAreaPaddings(edges:insets:)`
 - `View.getBounds(of:_:)` is removed, as it's obsoleted by `View.onGeometryChange(for:of:_:)`
 - `View.getFrame(in:_:)` is removed, as it's obsoleted by `View.onGeometryChange(for:of:_:)`

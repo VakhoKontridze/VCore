@@ -1,15 +1,38 @@
 //
-//  View+ConditionalModifiers.swift
+//  View+Apply.swift
 //  VCore
 //
-//  Created by Vakhtang Kontridze on 10/6/21.
+//  Created by Vakhtang Kontridze on 23.03.23.
 //
 
 import SwiftUI
 
-// MARK: - View + Conditional Modifiers
+// MARK: - View + Apply
 extension View {
-    /// Applies modifier and transforms `View` if condition is met.
+    /// Applies a transformation to a `View`.
+    ///
+    /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
+    ///
+    ///     var body: some View {
+    ///         SomeView()
+    ///             .apply {
+    ///                 if #available(iOS 99.0, *) {
+    ///                     $0.someModifier()
+    ///                 } else {
+    ///                     $0
+    ///                 }
+    ///             }
+    ///     }
+    ///
+    public func apply<Content>(
+        @ViewBuilder _ transform: (Self) -> Content
+    ) -> some View
+        where Content: View
+    {
+        transform(self)
+    }
+    
+    /// Applies a transformation to a `View` if condition is met.
     ///
     /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
@@ -20,7 +43,7 @@ extension View {
     ///             .applyIf(isRed) { $0.foregroundStyle(.red) }
     ///     }
     ///
-    @ViewBuilder 
+    @ViewBuilder
     public func applyIf(
         _ condition: Bool,
         transform: (Self) -> some View
@@ -32,7 +55,7 @@ extension View {
         }
     }
     
-    /// Applies modifier and transforms `View` if condition is met, or applies alternate modifier.
+    /// Applies a transformation to a `View` if condition is met.
     ///
     /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
@@ -47,7 +70,7 @@ extension View {
     ///             }
     ///     }
     ///
-    @ViewBuilder 
+    @ViewBuilder
     public func applyIf(
         _ condition: Bool,
         _ ifTransform: (Self) -> some View,
@@ -60,7 +83,7 @@ extension View {
         }
     }
     
-    /// Applies modifier and transforms `View` if value is non-`nil`.
+    /// Applies a transformation to a `View` if condition is met.
     ///
     /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
@@ -71,7 +94,7 @@ extension View {
     ///             .applyIfLet(color) { $0.foregroundStyle($1) }
     ///     }
     ///
-    @ViewBuilder 
+    @ViewBuilder
     public func applyIfLet<Value>(
         _ value: Value?,
         transform: (Self, Value) -> some View
@@ -83,7 +106,7 @@ extension View {
         }
     }
     
-    /// Applies modifier and transforms `View` if value is non-`nil`, or applies alternate modifier.
+    /// Applies a transformation to a `View` if condition is met.
     ///
     /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
@@ -98,7 +121,7 @@ extension View {
     ///             }
     ///     }
     ///
-    @ViewBuilder 
+    @ViewBuilder
     public func applyIfLet<Value>(
         _ value: Value?,
         _ ifTransform: (Self, Value) -> some View,

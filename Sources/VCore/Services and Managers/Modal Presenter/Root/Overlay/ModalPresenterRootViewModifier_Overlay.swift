@@ -94,7 +94,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
                 visualDimmingView
                 modalsView
             }
-            .applyModifier { view in
+            .apply { view in
                 switch uiModel.frame {
                 case .fixed(let size, let alignment, let offset):
                     ZStack {

@@ -28,7 +28,7 @@ struct ModalPresenterRootModalContent_Window: View {
                 visualDimmingView
                 modalsView
             }
-            .applyModifier { view in
+            .apply { view in
                 switch model.uiModel.frame {
                 case .fixed(let size, let alignment, let offset):
                     ZStack {
