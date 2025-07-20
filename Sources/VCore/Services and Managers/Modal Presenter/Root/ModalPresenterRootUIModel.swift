@@ -9,7 +9,7 @@ import SwiftUI
 
 // MARK: - Modal Presenter Root UI Model
 /// Model that describes UI.
-public struct ModalPresenterRootUIModel: Sendable {
+public struct ModalPresenterRootUIModel: Equatable, Sendable {
     // MARK: Properties - Global
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
     /// Window level. Set to `normal`.

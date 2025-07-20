@@ -86,10 +86,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
             }
         
             // Syncing UI Model
-            .onChange(of: _uiModel.frame) { model.uiModel.frame = $1 }
-            .onChange(of: _uiModel.dimmingViewColor) { model.uiModel.dimmingViewColor = $1 }
-            .onChange(of: _uiModel.dimmingViewTapAction) { model.uiModel.dimmingViewTapAction = $1 }
-            //.onChange(of: _uiModel.keyboardObserverSubUIModel) { model.uiModel.keyboardObserverSubUIModel = $1 } // Has no effect
+            .onChange(of: _uiModel) { model.uiModel = $1 }
     }
     
     // MARK: Actions - Internal
