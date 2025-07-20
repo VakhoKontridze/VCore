@@ -13,11 +13,11 @@ import Testing
 @Suite
 struct ArrayAsyncSortedTests {
     @Test
-    func testSorted() async {
+    func testSorted() async throws {
         let array: [String] = ["London", "Paris", "New York"]
 
-        let sortedArray: [String] = await array.asyncSorted { (lhs, rhs) in
-            try? await Task.sleep(nanoseconds: 1_000)
+        let sortedArray: [String] = try await array.asyncSorted { (lhs, rhs) in
+            try await Task.sleep(nanoseconds: 1_000)
             return lhs < rhs
         }
 
@@ -25,12 +25,12 @@ struct ArrayAsyncSortedTests {
     }
 
     @Test
-    func testSorting() async {
+    func testSorting() async throws {
         let array: [String] = ["London", "Paris", "New York"]
 
         var sortedArray: [String] = array
-        await sortedArray.asyncSort { (lhs, rhs) in
-            try? await Task.sleep(nanoseconds: 1_000)
+        try await sortedArray.asyncSort { (lhs, rhs) in
+            try await Task.sleep(nanoseconds: 1_000)
             return lhs < rhs
         }
 

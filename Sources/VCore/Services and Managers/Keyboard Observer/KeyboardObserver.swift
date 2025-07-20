@@ -155,7 +155,7 @@ public final class KeyboardObserver: Sendable {
                 self.offset = offset
                 self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
-                try? await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
+                try await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
                 
                 self.offsetStable = offset
             }
@@ -187,7 +187,7 @@ public final class KeyboardObserver: Sendable {
                 self.offset = offset
                 self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
-                try? await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
+                try await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
                 
                 self.offsetStable = offset
             }

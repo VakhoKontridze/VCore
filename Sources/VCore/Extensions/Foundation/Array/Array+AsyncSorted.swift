@@ -13,8 +13,8 @@ extension Array {
     ///
     ///     let cities: [String] = ["London", "Paris", "New York"]
     ///
-    ///     let sortedCities: [String] = await cities.asyncSorted { (lhs, rhs) in
-    ///         try? await Task.sleep(nanoseconds: 1_000)
+    ///     let sortedCities: [String] = try await cities.asyncSorted { (lhs, rhs) in
+    ///         try await Task.sleep(nanoseconds: 1_000)
     ///         return lhs < rhs
     ///     }
     ///
@@ -32,8 +32,8 @@ extension Array {
     ///
     ///     var cities: [String] = ["London", "Paris", "New York"]
     ///
-    ///     await cities.asyncSort { (lhs, rhs) in
-    ///         try? await Task.sleep(nanoseconds: 1_000)
+    ///     try await cities.asyncSort { (lhs, rhs) in
+    ///         try await Task.sleep(nanoseconds: 1_000)
     ///         return lhs < rhs
     ///     }
     ///
