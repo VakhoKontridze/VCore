@@ -70,6 +70,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
         content
             // Reading environment
             .getWindow(didReadWindow)
+            .getPlatformInterfaceOrientation { model.interfaceOrientation = $0 }
             .getSafeAreaInsets(ignoredKeyboardSafeAreaEdges: .all, didReadSafeAreaInsets)
 
             // Handling work

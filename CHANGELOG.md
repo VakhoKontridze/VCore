@@ -17,6 +17,7 @@ Views
 Models
 
 - `AsyncStreamingObservationContainer` is added, that triggers an `AsyncStream` when a value changes
+- `PlatformInterfaceOrientation` is added
 - `withBasicAnimation(_:body:completion:)` method is removed, as it's obsoleted by `withAnimation(_:completionCriteria:_:completion:)`
 - `ObservableContainerOO` is removed, as it's obsoleted by `ObservableContainer`
 - `DeviceOrientationObserverOO` is removed, as it's obsoleted by `DeviceOrientationObserver`
@@ -35,11 +36,13 @@ Services and Managers - Presentation Host
 
 - Presentation Host is renamed to Modal Presenter
 - Modal Presenter now has two presentation types, `overlay` and `window`. Previous presentation type is covered under `overlay`, while new `window` presents modal using a new `UIWindow`.
+- Modal Presenter will now pass `PlatformInterfaceOrientation` via the environment
 - `View.presentationHostLayer(...)` is renamed to `View.modalPresenterRoot(...)`, and it takes `ModalPresenterRoot` as parameter
 - `View.presentationHost(...)` is renamed to `View.modalPresenterLink(...)`, and it takes `ModalPresenterLink` as parameter
 
 Extensions
 
+- `View.getPlatformInterfaceOrientation(_:)` method is added that retrieves `PlatformInterfaceOrientation` from `View`
 - `View.applyModifier(_:)` is renamed to `View.apply(_:)`
 - `View.safeAreaMargins(edges:insets:)` is removed, as it's obsoleted by `View.safeAreaPaddings(edges:insets:)`
 - `View.getBounds(of:_:)` is removed, as it's obsoleted by `View.onGeometryChange(for:of:_:)`

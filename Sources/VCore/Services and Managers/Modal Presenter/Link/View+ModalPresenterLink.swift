@@ -51,6 +51,7 @@ extension View {
     ///     }
     ///
     ///     struct SomeModal<Content>: View where Content: View {
+    ///         @Environment(\.modalPresenterInterfaceOrientation) private var interfaceOrientation: PlatformInterfaceOrientation
     ///         @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize
     ///         @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets
     ///

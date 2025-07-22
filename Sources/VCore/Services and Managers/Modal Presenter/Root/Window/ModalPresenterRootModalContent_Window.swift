@@ -106,6 +106,7 @@ struct ModalPresenterRootModalContent_Window: View {
         
         NonInvasiveGeometryReader(alignment: modal.appearance.alignment) { geometryProxy in
             modal.view()
+                .environment(\.modalPresenterInterfaceOrientation, model.interfaceOrientation)
                 .environment(\.modalPresenterContainerSize, geometryProxy.size)
                 .environment(\.modalPresenterSafeAreaInsets, model.safeAreaInsets)
                 .environment(\.modalPresenterPresentationMode, modal.presentationMode)

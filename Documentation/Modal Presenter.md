@@ -155,13 +155,14 @@ Modal can be linked using `modalPresenterLink(...)` API [3]. It takes `link` as 
 
 ```swift
 struct SomeModal<Content>: View where Content: View {
-    @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize // [1]
-    @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets // [2]
+    @Environment(\.modalPresenterInterfaceOrientation) private var interfaceOrientation: PlatformInterfaceOrientation // [1]
+    @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize // [2]
+    @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets // [3]
 
-    @Environment(\.modalPresenterPresentationMode) private var presentationMode: ModalPresenterPresentationMode! // [3]
+    @Environment(\.modalPresenterPresentationMode) private var presentationMode: ModalPresenterPresentationMode! // [4]
 
-    @Binding private var isPresented: Bool [4]
-    @State private var isPresentedInternally: Bool = false [5]
+    @Binding private var isPresented: Bool [5]
+    @State private var isPresentedInternally: Bool = false [6]
 
     private let content: () -> Content
 
@@ -188,21 +189,21 @@ struct SomeModal<Content>: View where Content: View {
             radius: 10
         )
 
-        .offset(y: isPresentedInternally ? 0 : (containerSize.height + 300)/2) // [11]
+        .offset(y: isPresentedInternally ? 0 : (containerSize.height + 300)/2) // [12]
 
-        .onReceive(presentationMode.presentPublisher, perform: animateIn) // [6]
-        .onReceive(presentationMode.dismissPublisher, perform: animateOut) // [8]
-        .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: didTapDimmingView) // [12]
+        .onReceive(presentationMode.presentPublisher, perform: animateIn) // [7]
+        .onReceive(presentationMode.dismissPublisher, perform: animateOut) // [9]
+        .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: didTapDimmingView) // [13]
     }
 
     private func didTapDimmingView() {
-        isPresented = false // [13]
+        isPresented = false // [14]
     }
 
     private func animateIn() {
         withAnimation(
             .easeInOut(duration: 0.3),
-            { isPresentedInternally = true } // [7]
+            { isPresentedInternally = true } // [8]
         )
     }
 
@@ -211,8 +212,8 @@ struct SomeModal<Content>: View where Content: View {
     ) {
        withAnimation(
             .easeInOut(duration: 0.3),
-            { isPresentedInternally = false }, // [9]
-            completion: completion // [10]
+            { isPresentedInternally = false }, // [10]
+            completion: completion // [11]
         )
     }
 }
@@ -222,33 +223,35 @@ struct SomeModal<Content>: View where Content: View {
 
 Modal frame and lifecycle are managed by the root, and several values are placed within the environment.
 
-If `window` `root` type is used, modal will have the real estate of the entire screen. But if `overlay` is used, there's no guarantee. Instead, model will be constrained to the root. It both cases, container size can be retrieved from the environment [1].
+Interface orientation can be retrieved via the environment [1].
 
-Root disables all container safe area insets for better frame handling, so safe area insets must be inserted manually, if needed. Values must be retrieved via the environment [2], as they cannot be read using a `GeometryReader`.
+If `window` `root` type is used, modal will have the real estate of the entire screen. But if `overlay` is used, there's no guarantee. Instead, model will be constrained to the root. It both cases, container size can be retrieved from the environment [2].
 
-`ModalPresenterPresentationMode` [3] must be used to manage presentation and dismissal events.
+Root disables all container safe area insets for better frame handling, so safe area insets must be inserted manually, if needed. Values must be retrieved via the environment [3], as they cannot be read using a `GeometryReader`.
+
+`ModalPresenterPresentationMode` [4] must be used to manage presentation and dismissal events.
 
 #### Modal Implementation: Presentation States
 
 Modal Presenter differentiates between two types of presentation states—internal and external.
 
-External presentation refers to `isPresented` flag [4], which is passed to `someModal(...)` from the presenting root view. While internal presentation refers to `isPresentedInternally` flag [5].
+External presentation refers to `isPresented` flag [5], which is passed to `someModal(...)` from the presenting root view. While internal presentation refers to `isPresentedInternally` flag [6].
 
-When Modal Presenter detects `isPresented` as `true`, it triggers an event [6]. We can intercept it and animate modal content by setting `isPresentedInternally` to `true` [7].
+When Modal Presenter detects `isPresented` as `true`, it triggers an event [7]. We can intercept it and animate modal content by setting `isPresentedInternally` to `true` [8].
 
 All this could have been implemented with a single flag. Main purpose of this separation is to handle dismiss animations. Dismissing modal from within the component is straightforward. We can animate content out, and set `isPresented` to `false`. Problem arises when dismissing modal from the presenting root view. If `isPresented` is set to `false` before animations are allowed to occur, modal will be instantly removed from the view hierarchy.
 
-With two flags, when Modal Presenter detects `isPresented` as `false`, it triggers an event [8]. We can intercept it, and animate modal content by setting `isPresentedInternally` to `false` [9]. Even though `isPresented` was set to `false` from the presenting root view, modal still remains in the view hierarchy. Once animations finish, we can call the `completion` callback [10], so that the root can remove the modal from the view hierarchy.
+With two flags, when Modal Presenter detects `isPresented` as `false`, it triggers an event [9]. We can intercept it, and animate modal content by setting `isPresentedInternally` to `false` [10]. Even though `isPresented` was set to `false` from the presenting root view, modal still remains in the view hierarchy. Once animations finish, we can call the `completion` callback [11], so that the root can remove the modal from the view hierarchy.
 
 #### Modal Implementation: Animation
 
-With the presentation flags established, any animation can be implemented—offset, opacity, etc. In this example, a simple offset animation is used [11].
+With the presentation flags established, any animation can be implemented—offset, opacity, etc. In this example, a simple offset animation is used [12].
 
 #### Modal Implementation: Dimming View
 
 Most modals require a dimming view that dims the background and prevents background interactions. Dimming view can be implemented internally. However, if multiple modals are presented simultaneously, dimming views would stack and multiply.
 
-To avoid this, root itself contains a shared dimming view that gets inserted in view hierarchy when at least one modal is presented. It can be customized, or even hidden. By default, dimming view intercepts tap gestures and sends them to the topmost modal [12]. We can intercept it, and dismiss modal by setting `isPresented` to `false` [13].
+To avoid this, root itself contains a shared dimming view that gets inserted in view hierarchy when at least one modal is presented. It can be customized, or even hidden. By default, dimming view intercepts tap gestures and sends them to the topmost modal [13]. We can intercept it, and dismiss modal by setting `isPresented` to `false` [14].
 
 ## Simultaneous Presentation
 

@@ -16,6 +16,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     // MARK: Properties - Appearance
     private let appearance: ModalPresenterRootAppearance
     
+    @State private var interfaceOrientation: PlatformInterfaceOrientation = .initFromDeviceOrientation()
     @State private var safeAreaInsets: EdgeInsets! // Force-unwrap
     
     // MARK: Properties - Presentation Mode
@@ -68,6 +69,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     func body(content: Content) -> some View {
         content
             // Reading environment
+            .getPlatformInterfaceOrientation { interfaceOrientation = $0 }
             .getSafeAreaInsets(ignoredKeyboardSafeAreaEdges: .all, didReadSafeAreaInsets)
 
             // UI
@@ -176,6 +178,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
         
         NonInvasiveGeometryReader(alignment: modal.appearance.alignment) { geometryProxy in
             modal.view()
+                .environment(\.modalPresenterInterfaceOrientation, interfaceOrientation)
                 .environment(\.modalPresenterContainerSize, geometryProxy.size)
                 .environment(\.modalPresenterSafeAreaInsets, safeAreaInsets)
                 .environment(\.modalPresenterPresentationMode, modal.presentationMode)
