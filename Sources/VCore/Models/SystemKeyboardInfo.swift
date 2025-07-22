@@ -81,14 +81,14 @@ public struct SystemKeyboardInfo: Sendable {
     }
     
     // MARK: Default Values
-    /// Default animation duration. Set to `0.25`
+    /// Default animation duration.
     ///
     /// If keyboard is already shown, but first responder changes, animation duration returned by the `Notification` will be `0`.
     /// In that case, this value can be used to perform additional animation.
     /// Alternately, consider checking out `nonZeroAnimationDuration`.
     public static var defaultAnimationDuration: TimeInterval { 0.25 }
     
-    /// Default animation options. Set to `curveEaseInOut`.
+    /// Default animation options.
     public static var defaultAnimationOptions: UIView.AnimationOptions { .curveEaseInOut }
 
     // MARK: Other Values

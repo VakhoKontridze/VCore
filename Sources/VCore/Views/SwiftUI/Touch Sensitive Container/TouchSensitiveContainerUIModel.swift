@@ -12,10 +12,10 @@ import SwiftUI
 @available(tvOS, unavailable)
 public struct TouchSensitiveContainerUIModel: Sendable {
     // MARK: Properties - Body
-    /// Indicates if tap is enabled. Set to `true`.
+    /// Indicates if tap is enabled.
     public var isTapEnabled: Bool = true
     
-    /// Number of taps required to trigger the action. Set to `1`.
+    /// Number of taps required to trigger the action.
     public var tapCount: Int = 1
 
     // MARK: Properties - Background
@@ -57,16 +57,16 @@ public struct TouchSensitiveContainerUIModel: Sendable {
     }()
 
     // MARK: Properties - Content
-    /// Content opacities. Set to `(1, 1, 1)`.
+    /// Content opacities.
     public var contentOpacities: StateOpacities = .init(1)
 
     // MARK: Properties - Transition
-    /// Animation delay. Set to `0.05`.
+    /// Animation delay.
     ///
     /// Can be useful when using `List`s.
     public var animationDelay: TimeInterval = 0.01
 
-    /// Animation. Set to `easeOut` with duration `0.15`.
+    /// Animation.
     public var animation: Animation? = .easeOut(duration: 0.25)
 
     // MARK: Initializers

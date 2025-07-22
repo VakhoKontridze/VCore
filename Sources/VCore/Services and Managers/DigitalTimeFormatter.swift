@@ -27,28 +27,28 @@ import Foundation
 ///
 public struct DigitalTimeFormatter: Sendable {
     // MARK: Properties - Delimiter
-    /// Component delimiter. Set to `:`.
+    /// Component delimiter.
     public var delimiter: String = ":"
 
     // MARK: Properties - Digits
-    /// Indicates if hour component has two digits, if it's the most significant component. Set to `false`.
+    /// Indicates if hour component has two digits, if it's the most significant component.
     public var hourComponentHasTwoDigits: Bool = false
     
-    /// Indicates if minute component has two digits, if it's the most significant component. Set to `false`.
+    /// Indicates if minute component has two digits, if it's the most significant component.
     public var minuteComponentHasTwoDigits: Bool = false
     
-    /// Indicates if second component has two digits, if it's the most significant component. Set to `true`.
+    /// Indicates if second component has two digits, if it's the most significant component.
     ///
     /// `minuteComponentIsIncludedIfOnlySecondComponentIsIncluded` must be set to false.
     public var secondComponentHasTwoDigits: Bool = true
 
     // MARK: Properties - Misc
-    /// Indicates if empty significant components are included. Set to `false`.
+    /// Indicates if empty significant components are included.
     ///
     /// For instance, if hour, minute, and second components are present, and hour is `0`, `"MM:SS"` will be used instead of `"00:MM:SS"` if set to `false`.
     public var emptySignificantComponentsAreIncluded: Bool = false
     
-    /// Indicates if minute component is visible if only second component exists. Set to `true`.
+    /// Indicates if minute component is visible if only second component exists.
     public var minuteComponentIsIncludedIfOnlySecondComponentIsIncluded: Bool = true
 
     // MARK: Initializers

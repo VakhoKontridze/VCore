@@ -22,10 +22,10 @@ import Foundation
 @CodingKeysGeneration
 public struct JSONAuthorizedRequestHeaderFields: Sendable, Encodable {
     // MARK: Properties
-    /// Accept. Set to `application/json`.
+    /// Accept.
     @CKGProperty("Accept") public let accept: String = "application/json"
 
-    /// Content type. Set to `application/json`.
+    /// Content type.
     @CKGProperty("Content-Type") public let contentType: String = "application/json"
 
     /// Authorization.

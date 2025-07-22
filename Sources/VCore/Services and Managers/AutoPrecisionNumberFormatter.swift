@@ -34,7 +34,7 @@ extension Double {
 ///
 public struct AutoPrecisionNumberFormatter: Sendable {
     // MARK: Properties
-    /// Minimum number of fractions. Set to `0`.
+    /// Minimum number of fractions.
     public var minFractions: Int
     
     /// Maximum number of fractions.

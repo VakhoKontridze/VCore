@@ -23,14 +23,14 @@ public struct ResponderChainToolbarUIModel: Sendable {
     )
 
     // MARK: Properties - Buttons - Navigation
-    /// Indicates if toolbar has navigation buttons. Set to `true`.
+    /// Indicates if toolbar has navigation buttons.
     public var hasNavigationButtons: Bool = true
 
     // MARK: Properties - Buttons - Done
-    /// Indicates if toolbar has done button. Set to `true`.
+    /// Indicates if toolbar has done button.
     public var hasDoneButton: Bool = true
 
-    /// Done button font. Set to `semibold` `body`.
+    /// Done button font.
     public var doneButtonFont: Font = .body.weight(.semibold)
 
     // MARK: Initializers

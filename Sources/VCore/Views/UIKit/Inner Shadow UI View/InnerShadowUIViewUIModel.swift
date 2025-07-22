@@ -16,10 +16,10 @@ public struct InnerShadowUIViewUIModel: Sendable {
     /// Shadow color.
     public var shadowColor: UIColor = .black.withAlphaComponent(0.1)
 
-    /// Shadow color. Set to `5`.
+    /// Shadow color.
     public var shadowRadius: CGFloat = 5
 
-    /// Shadow color. Set to `5` width and `5` height.
+    /// Shadow color.
     public var shadowOffset: CGSize = .init(width: 5, height: 5)
     
     // MARK: Initializers

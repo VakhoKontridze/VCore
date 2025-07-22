@@ -11,7 +11,7 @@ import SwiftUI
 /// Model that describes UI.
 public struct ModalPresenterLinkUIModel: Sendable {
     // MARK: Properties - Frame
-    /// Alignment of modal in the root. Set to `center`.
+    /// Alignment of modal in the root.
     public var alignment: Alignment = .center
     
     // MARK: Properties - Dimming View
@@ -19,7 +19,7 @@ public struct ModalPresenterLinkUIModel: Sendable {
     public var preferredDimmingViewColor: Color?
 
     // MARK: Properties - Misc
-    /// Indicates if modal is dismissed when link disappears. Set to `true`.
+    /// Indicates if modal is dismissed when link disappears.
     public var dismissesModalWhenLinkDisappears: Bool = true
 
     // MARK: Initializers

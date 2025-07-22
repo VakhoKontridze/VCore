@@ -12,8 +12,6 @@ import UIKit
 // MARK: - Capsule UI Image View
 /// `UIImageView` that rounds corners to capsule.
 ///
-/// `clipsToBounds` is set to `true`, and `layer.maskedCorners` is set to `layerAllCorners`.
-///
 /// If width is greater than height, half of height will be taken as corner radius. If not, otherwise.
 open class CapsuleUIImageView: UIImageView {
     // MARK: Lifecycle

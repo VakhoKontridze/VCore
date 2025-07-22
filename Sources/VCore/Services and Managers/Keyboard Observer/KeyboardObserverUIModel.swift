@@ -15,7 +15,7 @@ import SwiftUI
 @available(visionOS, unavailable)
 public struct KeyboardObserverUIModel: Equatable, Sendable {
     // MARK: Properties
-    /// Keyboard responsiveness strategy. Set to `default`.
+    /// Keyboard responsiveness strategy.
     ///
     /// Changing this property conditionally will cause view state to be reset.
     public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy = .default
@@ -44,7 +44,7 @@ public struct KeyboardObserverUIModel: Equatable, Sendable {
         case offsetByObscuredViewHeight(additionalOffset: CGFloat)
 
         // MARK: Initializers
-        /// Default instance. Set to `offsetByObscuredViewHeight`.
+        /// Default instance.
         public static var `default`: Self {
             .offsetByObscuredViewHeight(
                 additionalOffset: 20

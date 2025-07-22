@@ -13,7 +13,7 @@ import SwiftUI
 @available(watchOS, unavailable)
 public struct PlainDisclosureGroupUIModel: Sendable {
     // MARK: Properties - Global
-    /// Content height in system disclosure group which includes the chevron button. Set to `14`.
+    /// Content height in system disclosure group which includes the chevron button.
     ///
     /// Value is used during the frame calculations, and must be provided.
     ///
@@ -22,7 +22,7 @@ public struct PlainDisclosureGroupUIModel: Sendable {
     /// In future OS releases, this value may change.
     public var systemDisclosureGroupContentHeight: CGFloat = 14
 
-    /// Padding in system disclosure group. Set to `8`.
+    /// Padding in system disclosure group.
     ///
     /// Value is used during the frame calculations, and must be provided.
     ///
@@ -46,7 +46,7 @@ public struct PlainDisclosureGroupUIModel: Sendable {
     }()
 
     // MARK: Properties - Transition
-    /// Expand and collapse animation. Set to `default`.
+    /// Expand and collapse animation.
     public var expandCollapseAnimation: Animation? = .default
 
     // MARK: Initializers

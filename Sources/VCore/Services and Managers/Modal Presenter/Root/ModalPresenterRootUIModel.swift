@@ -12,13 +12,13 @@ import SwiftUI
 public struct ModalPresenterRootUIModel: Equatable, Sendable {
     // MARK: Properties - Global
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
-    /// Window level. Set to `normal`.
+    /// Window level.
     ///
     /// Only used in `window` configuration.
     public var windowLevel: UIWindow.Level = .normal
 #endif
     
-    /// Frame. Set to `default`.
+    /// Frame.
     ///
     /// Changing this property conditionally will cause view state to be reset.
     public var frame: Frame = .default
@@ -30,7 +30,7 @@ public struct ModalPresenterRootUIModel: Equatable, Sendable {
     /// If only one modal is presented, this property can be overridden by `preferredDimmingViewColor` from `ModalPresenterLinkUIModel`.
     public var dimmingViewColor: Color = .platformDynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
 
-    /// Dimming view tap action. Set to `default`.
+    /// Dimming view tap action.
     ///
     /// Dimming view will appear if at least on modal is presented.
     public var dimmingViewTapAction: DimmingViewTapAction = .default
@@ -58,7 +58,7 @@ public struct ModalPresenterRootUIModel: Equatable, Sendable {
         case infinite
 
         // MARK: Initializers
-        /// Default value. Set to `infinite`.
+        /// Default value.
         public static var `default`: Self { .infinite }
     }
 
@@ -85,7 +85,7 @@ public struct ModalPresenterRootUIModel: Equatable, Sendable {
         }
 
         // MARK: Initializers
-        /// Default value. Set to `sendActionToTopmostModal`.
+        /// Default value.
         public static var `default`: Self { .sendActionToTopmostModal }
     }
 }

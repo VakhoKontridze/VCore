@@ -11,7 +11,7 @@ import SwiftUI
 /// Model that describes UI.
 public struct SwiftUIBaseButtonUIModel: Sendable {
     // MARK: Properties
-    /// Indicates if button animates state change. Set to `true`.
+    /// Indicates if button animates state change.
     ///
     /// Changing this property conditionally will cause view state to be reset.
     public var animatesStateChange: Bool = true

@@ -13,13 +13,13 @@ import UIKit
 /// Model that describes UI.
 public struct ResponderChainUIToolbarUIModel: Sendable {
     // MARK: Properties - Toolbar
-    /// Toolbar style. Set to `default`.
+    /// Toolbar style.
     public var style: UIBarStyle = .default
 
-    /// Indicates if toolbar is translucent. Set to `true`.
+    /// Indicates if toolbar is translucent.
     public var isTranslucent: Bool = true
 
-    /// Toolbar tint color. Set to `nil`.
+    /// Toolbar tint color.
     ///
     /// When value is `nil`, default color will be used.
     public var toolbarColor: UIColor?
@@ -27,17 +27,17 @@ public struct ResponderChainUIToolbarUIModel: Sendable {
     // MARK: Properties - Buttons
     var hasButtons: Bool { hasNavigationButtons || hasDoneButton }
 
-    /// Button tint color. Set to `nil`.
+    /// Button tint color.
     ///
     /// When value is `nil`, default color will be used.
     public var buttonColor: UIColor?
 
     // MARK: Properties - Buttons - Navigation
-    /// Indicates if toolbar has navigation buttons. Set to `true`.
+    /// Indicates if toolbar has navigation buttons.
     public var hasNavigationButtons: Bool = true
 
     // MARK: Properties - Buttons - Done
-    /// Indicates if toolbar has done button. Set to `true`.
+    /// Indicates if toolbar has done button.
     public var hasDoneButton: Bool = true
 
     // MARK: Initializers

@@ -57,13 +57,13 @@ import Combine
 @available(tvOS, unavailable)
 open class KeyboardResponsiveUIViewController: UIViewController {
     // MARK: Properties - Flags
-    /// Indicates, if `keyboardWillShow(_:)` and `keyboardWillHide(_:)` are called, when keyboard is already shown or hidden. Set to `true`.
+    /// Indicates, if `keyboardWillShow(_:)` and `keyboardWillHide(_:)` are called, when keyboard is already shown or hidden.
     open var notifiesWhenKeyboardIsAlreadyShownOrHidden: Bool = true
     
     /// Indicates if keyboard is currently shown.
     private(set) open var keyboardIsShown: Bool = false
     
-    /// Indicates, if `keyboardWillShow(_:)` and `keyboardWillHide(_:)` are called, when `KeyboardResponsiveUIViewController` is not visible. Set to `false`.
+    /// Indicates, if `keyboardWillShow(_:)` and `keyboardWillHide(_:)` are called, when `KeyboardResponsiveUIViewController` is not visible.
     open var notifiesWhenViewControllerIsNotVisible: Bool = false
     
     // MARK: Properties - Cancellables

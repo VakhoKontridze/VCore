@@ -103,7 +103,7 @@ open class InfiniteScrollingUITableView: UITableView {
     open var paginationState: PaginationState = .canPaginate 
         { didSet { setActivityIndicatorState() } }
 
-    /// Offset that needs to be dragged vertically up for pagination to occur. Set to `20`.
+    /// Offset that needs to be dragged vertically up for pagination to occur.
     open var paginationOffset: CGFloat = 20
     
     private var isFirstLayoutSubviews: Bool = false
