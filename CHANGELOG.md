@@ -11,6 +11,7 @@ General
 
 Views
 
+- `ContentWrappingSheetContainerView` is added, that can be used to to wrap content within sheet
 - `CoordinatingNavigationStackOO` is removed, as it's obsoleted by `CoordinatingNavigationStack`
 - `ViewResettingContainerOO` is removed, as it's obsoleted by `ViewResettingContainer`
 
