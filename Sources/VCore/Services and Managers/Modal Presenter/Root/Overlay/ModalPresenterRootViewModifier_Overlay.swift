@@ -13,8 +13,8 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     // MARK: Properties - Root
     private let root: ModalPresenterRoot
     
-    // MARK: Properties - UI Model
-    private let uiModel: ModalPresenterRootUIModel
+    // MARK: Properties - Appearance
+    private let appearance: ModalPresenterRootAppearance
     
     @State private var safeAreaInsets: EdgeInsets! // Force-unwrap
     
@@ -41,11 +41,11 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     // MARK: Initializers
     init(
         root: ModalPresenterRoot,
-        uiModel: ModalPresenterRootUIModel
+        appearance: ModalPresenterRootAppearance
     ) {
         self.root = root
         
-        self.uiModel = uiModel
+        self.appearance = appearance
         
         self._internalPresentationMode = State(
             wrappedValue: ModalPresenterInternalPresentationModeRegistrar.shared.resolve(
@@ -58,7 +58,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
         self._keyboardObserver = State(
             wrappedValue: KeyboardObserver(
-                uiModel: uiModel.keyboardObserverSubUIModel
+                keyboardResponsivenessStrategy: appearance.keyboardResponsivenessStrategy
             )
         )
 #endif
@@ -95,7 +95,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
                 modalsView
             }
             .apply { view in
-                switch uiModel.frame {
+                switch appearance.frame {
                 case .fixed(let size, let alignment, let offset):
                     ZStack {
                         view
@@ -126,12 +126,12 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
             if
                 modals.count == 1,
                 let topmostModal: ModalPresenterRootModalData_Overlay = modals.last,
-                let color: Color = topmostModal.uiModel.preferredDimmingViewColor
+                let color: Color = topmostModal.appearance.preferredDimmingViewColor
             {
                 color
                 
             } else {
-                uiModel.dimmingViewColor
+                appearance.dimmingViewColor
             }
         }()
         
@@ -148,9 +148,9 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     ) -> some View {
         Color.clear
             .contentShape(.rect)
-            .allowsHitTesting(uiModel.dimmingViewTapAction.allowsHitTesting)
+            .allowsHitTesting(appearance.dimmingViewTapAction.allowsHitTesting)
             .onTapGesture {
-                if uiModel.dimmingViewTapAction == .sendActionToTopmostModal {
+                if appearance.dimmingViewTapAction == .sendActionToTopmostModal {
                     topmostModal.presentationMode.dimmingViewTapActionSubject.send()
                 }
             }
@@ -174,7 +174,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
             interactiveDimmingView(topmostModal: modal)
         }
         
-        NonInvasiveGeometryReader(alignment: modal.uiModel.alignment) { geometryProxy in
+        NonInvasiveGeometryReader(alignment: modal.appearance.alignment) { geometryProxy in
             modal.view()
                 .environment(\.modalPresenterContainerSize, geometryProxy.size)
                 .environment(\.modalPresenterSafeAreaInsets, safeAreaInsets)
@@ -198,7 +198,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
 
         let modal: ModalPresenterRootModalData_Overlay = .init(
             id: presentationData.link.linkID,
-            uiModel: presentationData.uiModel,
+            appearance: presentationData.appearance,
             view: presentationData.view,
             presentationMode: ModalPresenterPresentationMode(
                 linkID: presentationData.link.linkID
@@ -215,7 +215,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     ) {
         guard let index: Int = modals.firstIndex(where: { $0.id == updateData.link.linkID }) else { return }
 
-        modals[index].uiModel = updateData.uiModel
+        modals[index].appearance = updateData.appearance
         modals[index].view = updateData.view
     }
 

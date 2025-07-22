@@ -23,16 +23,16 @@ import SwiftUI
 @available(watchOS, unavailable) // Doesn't follow HIG. Implementation doesn't fully work.
 public struct PlainList<Content>: View where Content: View {
     // MARK: Properties
-    private let uiModel: PlainListUIModel
+    private let appearance: PlainListAppearance
     private let content: () -> Content
 
     // MARK: Initializers
     /// Initializes `PlainList` with content.
     public init(
-        uiModel: PlainListUIModel = .init(),
+        appearance: PlainListAppearance = .init(),
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
         self.content = content
     }
 
@@ -41,7 +41,7 @@ public struct PlainList<Content>: View where Content: View {
         List {
             content()
                 .removingListContentDecoration()
-                .listRowBackground(uiModel.rowBackgroundColor)
+                .listRowBackground(appearance.rowBackgroundColor)
         }
         .removingListDecoration()
         .listStyle(.plain)

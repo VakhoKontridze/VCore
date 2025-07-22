@@ -15,7 +15,7 @@ extension View {
     @ViewBuilder
     public func modalPresenterRoot(
         root: ModalPresenterRoot,
-        uiModel: ModalPresenterRootUIModel = .init()
+        appearance: ModalPresenterRootAppearance = .init()
     ) -> some View {
         switch root.storage {
         case .overlay:
@@ -23,7 +23,7 @@ extension View {
                 .modifier(
                     ModalPresenterRootViewModifier_Overlay(
                         root: root,
-                        uiModel: uiModel
+                        appearance: appearance
                     )
                 )
             
@@ -33,7 +33,7 @@ extension View {
                 .modifier(
                     ModalPresenterRootViewModifier_Window(
                         root: root,
-                        uiModel: uiModel,
+                        appearance: appearance,
                     )
                 )
 #else

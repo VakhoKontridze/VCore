@@ -48,7 +48,7 @@ extension View {
     ///
     /// Alternately, use second method that takes `CaseIterable` as a parameter and omits `inResponderChain` argument.
     public func responderChainToolbar<Value>(
-        uiModel: ResponderChainToolbarUIModel = .init(),
+        appearance: ResponderChainToolbarAppearance = .init(),
         focus binding: FocusState<Value?>.Binding,
         equals value: Value,
         inResponderChain responderChain: [Value]
@@ -60,7 +60,7 @@ extension View {
                 ToolbarItemGroup(placement: .keyboard) {
                     if
                         binding.wrappedValue == value,
-                        uiModel.hasButtons
+                        appearance.hasButtons
                     {
                         let previousValue: Value? = {
                             guard
@@ -89,30 +89,30 @@ extension View {
                         let downButtonIsEnabled: Bool = nextValue != nil
 
                         Group {
-                            if uiModel.hasNavigationButtons {
+                            if appearance.hasNavigationButtons {
                                 Button(
                                     action: { binding.wrappedValue = previousValue },
                                     label: { Image(systemName: "chevron.up") }
                                 )
                                 .disabled(!upButtonIsEnabled)
-                                .foregroundStyle(uiModel.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: upButtonIsEnabled)))
+                                .foregroundStyle(appearance.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: upButtonIsEnabled)))
 
                                 Button(
                                     action: { binding.wrappedValue = nextValue },
                                     label: { Image(systemName: "chevron.down") }
                                 )
                                 .disabled(!downButtonIsEnabled)
-                                .foregroundStyle(uiModel.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: downButtonIsEnabled)))
+                                .foregroundStyle(appearance.buttonColors.value(for: GenericState_EnabledDisabled(isEnabled: downButtonIsEnabled)))
                             }
 
                             Spacer() // No need to specify min value, as it's controlled by the operating system
 
-                            if uiModel.hasDoneButton {
+                            if appearance.hasDoneButton {
                                 Button(VCoreLocalizationManager.shared.localizationProvider.responderChainToolbarDoneButtonTitle) {
                                     binding.wrappedValue = nil
                                 }
-                                .foregroundStyle(uiModel.buttonColors.enabled)
-                                .font(uiModel.doneButtonFont)
+                                .foregroundStyle(appearance.buttonColors.enabled)
+                                .font(appearance.doneButtonFont)
                             }
                         }
                     }
@@ -147,7 +147,7 @@ extension View {
     ///     }
     ///
     public func responderChainToolbar<Value>(
-        uiModel: ResponderChainToolbarUIModel = .init(),
+        appearance: ResponderChainToolbarAppearance = .init(),
         focus binding: FocusState<Value?>.Binding,
         equals value: Value
     ) -> some View
@@ -155,7 +155,7 @@ extension View {
     {
         self
             .responderChainToolbar(
-                uiModel: uiModel,
+                appearance: appearance,
                 focus: binding,
                 equals: value,
                 inResponderChain: Array(Value.allCases)

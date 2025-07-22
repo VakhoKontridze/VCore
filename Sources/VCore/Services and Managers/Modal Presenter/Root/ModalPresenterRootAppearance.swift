@@ -1,5 +1,5 @@
 //
-//  ModalPresenterRootUIModel.swift
+//  ModalPresenterRootAppearance.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 28.05.25.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-// MARK: - Modal Presenter Root UI Model
-/// Model that describes UI.
-public struct ModalPresenterRootUIModel: Equatable, Sendable {
+// MARK: - Modal Presenter Root Appearance
+/// Model that describes appearance.
+public struct ModalPresenterRootAppearance: Equatable, Sendable {
     // MARK: Properties - Global
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
     /// Window level.
@@ -27,7 +27,7 @@ public struct ModalPresenterRootUIModel: Equatable, Sendable {
     /// Shared dimming view color in the root.
     ///
     /// Dimming view will appear if at least on modal is presented.
-    /// If only one modal is presented, this property can be overridden by `preferredDimmingViewColor` from `ModalPresenterLinkUIModel`.
+    /// If only one modal is presented, this property can be overridden by `preferredDimmingViewColor` from `ModalPresenterLinkAppearance`.
     public var dimmingViewColor: Color = .platformDynamic(Color(100, 100, 100, 0.3), Color.black.opacity(0.4))
 
     /// Dimming view tap action.
@@ -37,14 +37,14 @@ public struct ModalPresenterRootUIModel: Equatable, Sendable {
 
     // MARK: Properties - Keyboard Responsiveness
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
-    /// Model for customizing keyboard responsiveness.
+    /// Keyboard responsiveness strategy.
     ///
     /// Changes made to this property conditionally will not be reflected.
-    public var keyboardObserverSubUIModel: KeyboardObserverUIModel = .init()
+    public var keyboardResponsivenessStrategy: KeyboardObserver.KeyboardResponsivenessStrategy = .default
 #endif
 
     // MARK: Initializers
-    /// Initializes UI model with default values.
+    /// Initializes appearance with default values.
     public init() {}
 
     // MARK: Frame

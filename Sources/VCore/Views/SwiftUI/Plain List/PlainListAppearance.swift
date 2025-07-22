@@ -1,5 +1,5 @@
 //
-//  PlainListUIModel.swift
+//  PlainListAppearance.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 27.11.23.
@@ -7,16 +7,16 @@
 
 import SwiftUI
 
-// MARK: - Plain List UI Model
-/// Model that describes UI.
+// MARK: - Plain List Appearance
+/// Model that describes appearance.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-public struct PlainListUIModel: Sendable {
+public struct PlainListAppearance: Sendable {
     // MARK: Properties
     /// Row background color.
     public var rowBackgroundColor: Color = .clear
 
     // MARK: Initializers
-    /// Initializes UI model with default values.
+    /// Initializes appearance with default values.
     public init() {}
 }

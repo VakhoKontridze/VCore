@@ -1,5 +1,5 @@
 //
-//  PlainDisclosureGroupUIModel.swift
+//  PlainDisclosureGroupAppearance.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 22.06.22.
@@ -7,11 +7,11 @@
 
 import SwiftUI
 
-// MARK: - Plain Disclosure Group UI Model
-/// Model that describes UI.
+// MARK: - Plain Disclosure Group Appearance
+/// Model that describes appearance.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-public struct PlainDisclosureGroupUIModel: Sendable {
+public struct PlainDisclosureGroupAppearance: Sendable {
     // MARK: Properties - Global
     /// Content height in system disclosure group which includes the chevron button.
     ///
@@ -50,6 +50,6 @@ public struct PlainDisclosureGroupUIModel: Sendable {
     public var expandCollapseAnimation: Animation? = .default
 
     // MARK: Initializers
-    /// Initializes UI model with default values.
+    /// Initializes appearance with default values.
     public init() {}
 }

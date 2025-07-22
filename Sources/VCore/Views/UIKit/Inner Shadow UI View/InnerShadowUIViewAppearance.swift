@@ -1,5 +1,5 @@
 //
-//  InnerShadowUIViewUIModel.swift
+//  InnerShadowUIViewAppearance.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 13.07.22.
@@ -9,9 +9,9 @@
 
 import UIKit
 
-// MARK: - Inner Shadow UI View UI Model
-/// Model that describes UI.
-public struct InnerShadowUIViewUIModel: Sendable {
+// MARK: - Inner Shadow UI View Appearance
+/// Model that describes appearance.
+public struct InnerShadowUIViewAppearance: Sendable {
     // MARK: Properties
     /// Shadow color.
     public var shadowColor: UIColor = .black.withAlphaComponent(0.1)
@@ -23,7 +23,7 @@ public struct InnerShadowUIViewUIModel: Sendable {
     public var shadowOffset: CGSize = .init(width: 5, height: 5)
     
     // MARK: Initializers
-    /// Initializes UI model with default values.
+    /// Initializes appearance with default values.
     public init() {}
 }
 

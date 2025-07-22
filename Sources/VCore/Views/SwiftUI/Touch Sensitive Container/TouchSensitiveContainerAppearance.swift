@@ -1,5 +1,5 @@
 //
-//  TouchSensitiveContainerUIModel.swift
+//  TouchSensitiveContainerAppearance.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 17.09.23.
@@ -7,10 +7,10 @@
 
 import SwiftUI
 
-// MARK: - Touch Sensitive Container UI Model
-/// Model that describes UI.
+// MARK: - Touch Sensitive Container Appearance
+/// Model that describes appearance.
 @available(tvOS, unavailable)
-public struct TouchSensitiveContainerUIModel: Sendable {
+public struct TouchSensitiveContainerAppearance: Sendable {
     // MARK: Properties - Body
     /// Indicates if tap is enabled.
     public var isTapEnabled: Bool = true
@@ -70,7 +70,7 @@ public struct TouchSensitiveContainerUIModel: Sendable {
     public var animation: Animation? = .easeOut(duration: 0.25)
 
     // MARK: Initializers
-    /// Initializes UI model with default values.
+    /// Initializes appearance with default values.
     public init() {}
 
     // MARK: State Colors

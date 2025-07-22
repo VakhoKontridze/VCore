@@ -36,10 +36,12 @@ import OSLog
 @Observable
 @MainActor
 public final class KeyboardObserver: Sendable {
-    // MARK: Properties - UI Model
-    @ObservationIgnored private let uiModel: KeyboardObserverUIModel
-
-    // MARK: Properties - Offset
+    // MARK: Properties
+    /// Keyboard responsiveness strategy.
+    ///
+    /// Changing this property conditionally will cause view state to be reset.
+    public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy
+    
     /// Offset.
     private(set) public var offset: CGFloat = 0
 
@@ -50,7 +52,6 @@ public final class KeyboardObserver: Sendable {
     // Both of this problems can be fixed by using a cached, stable offset, and animation view using `animation(_:value:)` modifier.
     @ObservationIgnored private var offsetStable: CGFloat = 0
 
-    // MARK: Properties - Animation
     /// Animation.
     private(set) public var animation: Animation? = {
 #if canImport(UIKit) && !os(watchOS)
@@ -65,11 +66,39 @@ public final class KeyboardObserver: Sendable {
 
     // MARK: Initializers
     public init(
-        uiModel: KeyboardObserverUIModel = .init()
+        keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy = .default
     ) {
-        self.uiModel = uiModel
-
+        self.keyboardResponsivenessStrategy = keyboardResponsivenessStrategy
+        
         addSubscriptions()
+    }
+    
+    // MARK: Keyboard Responsiveness Strategy
+    /// Keyboard responsiveness strategy.
+    public enum KeyboardResponsivenessStrategy: Equatable, Sendable {
+        // MARK: Cases
+        /// None.
+        case `none`
+
+        /// Offsets container by the specified value.
+        case offset(offset: CGFloat)
+
+        /// Offsets container by the keyboard height, plus the specified value.
+        ///
+        /// Using a positive value (`keyboard height + value > keyboard height`)
+        /// may cause visuals gaps between bottom of the modal and the keyboard.
+        case offsetByKeyboardHeight(additionalOffset: CGFloat)
+
+        /// Offsets container to un-obscure first responder view, if needed.
+        case offsetByObscuredViewHeight(additionalOffset: CGFloat)
+
+        // MARK: Initializers
+        /// Default instance.
+        public static var `default`: Self {
+            .offsetByObscuredViewHeight(
+                additionalOffset: 20
+            )
+        }
     }
 
     // MARK: Subscriptions
@@ -94,7 +123,7 @@ public final class KeyboardObserver: Sendable {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
         
         let offset: CGFloat? = {
-            switch uiModel.keyboardResponsivenessStrategy {
+            switch keyboardResponsivenessStrategy {
             case .none:
                 return nil
 
@@ -166,7 +195,7 @@ public final class KeyboardObserver: Sendable {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
 
         let offset: CGFloat? = {
-            switch uiModel.keyboardResponsivenessStrategy {
+            switch keyboardResponsivenessStrategy {
             case .none:
                 return nil
 

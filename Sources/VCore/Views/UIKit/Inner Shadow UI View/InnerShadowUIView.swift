@@ -22,20 +22,20 @@ open class InnerShadowUIView: UIView {
     }()
     
     // MARK: Properties
-    /// Model that describes UI.
+    /// Model that describes appearance.
     ///
-    /// To change current UI model, use `configure(uiModel)` method.
-    private(set) var uiModel: InnerShadowUIViewUIModel
+    /// To change current appearance, use `configure(appearance:)` method.
+    private(set) var appearance: InnerShadowUIViewAppearance
     
     // MARK: Initializers
     /// Initializes `InnerShadowUIView`.
     public init(
-        uiModel: InnerShadowUIViewUIModel = .init()
+        appearance: InnerShadowUIViewAppearance = .init()
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
         super.init(frame: .zero)
         setUp()
-        configure(uiModel: uiModel)
+        configure(appearance: appearance)
     }
     
     @available(*, unavailable)
@@ -66,14 +66,14 @@ open class InnerShadowUIView: UIView {
         layer.addSublayer(shapeLayer)
     }
     
-    // MARK: Configuration - UI Model
-    /// Configures `InnerShadowUIView` with `InnerShadowUIViewUIModel`.
-    open func configure(uiModel: InnerShadowUIViewUIModel) {
-        self.uiModel = uiModel
+    // MARK: Configuration - Appearance
+    /// Configures `InnerShadowUIView` with `InnerShadowUIViewAppearance`.
+    open func configure(appearance: InnerShadowUIViewAppearance) {
+        self.appearance = appearance
         
-        shapeLayer.shadowColor = uiModel.shadowColor.cgColor
-        shapeLayer.shadowRadius = uiModel.shadowRadius
-        shapeLayer.shadowOffset = uiModel.shadowOffset
+        shapeLayer.shadowColor = appearance.shadowColor.cgColor
+        shapeLayer.shadowRadius = appearance.shadowRadius
+        shapeLayer.shadowOffset = appearance.shadowOffset
     }
 }
 
@@ -82,10 +82,10 @@ open class InnerShadowUIView: UIView {
 
 #Preview {
     let view: InnerShadowUIView = .init(
-        uiModel: {
-            var uiModel: InnerShadowUIViewUIModel = .init()
-            uiModel.shadowColor = UIColor.systemBlue
-            return uiModel
+        appearance: {
+            var appearance: InnerShadowUIViewAppearance = .init()
+            appearance.shadowColor = UIColor.systemBlue
+            return appearance
         }()
     )
     view.translatesAutoresizingMaskIntoConstraints = false

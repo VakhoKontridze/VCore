@@ -16,8 +16,8 @@ public struct ResponderChainUIToolbarResponderParameters {
     /// `ResponderChainUIToolbarResponder`.
     public var responder: any ResponderChainUIToolbarResponder
 
-    /// Toolbar ui model.
-    public var toolBarUIModel: ResponderChainUIToolbarUIModel
+    /// Toolbar appearance.
+    public var toolBarAppearance: ResponderChainUIToolbarAppearance
 
     /// Toolbar size.
     public var toolBarSize: CGSize
@@ -26,11 +26,11 @@ public struct ResponderChainUIToolbarResponderParameters {
     /// Initializes `ResponderChainUIToolbarResponderParameters` with `ResponderChainUIToolbarResponder` and it's UI customization.
     public init(
         responder: ResponderChainUIToolbarResponder,
-        toolBarUIModel: ResponderChainUIToolbarUIModel = .init(),
+        toolBarAppearance: ResponderChainUIToolbarAppearance = .init(),
         toolBarSize: CGSize
     ) {
         self.responder = responder
-        self.toolBarUIModel = toolBarUIModel
+        self.toolBarAppearance = toolBarAppearance
         self.toolBarSize = toolBarSize
     }
 }

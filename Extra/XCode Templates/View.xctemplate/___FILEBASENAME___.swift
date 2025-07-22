@@ -7,8 +7,8 @@ struct ___VARIABLE_productName___: View {
     // MARK: Properties - Model Injection
     // ...
 
-    // MARK: Properties - UI Model
-    private let uiModel: ___VARIABLE_productName___UIModel
+    // MARK: Properties - Appearance
+    private let appearance: ___VARIABLE_productName___Appearance
 
     // MARK: Properties - Parameters
     private let parameters: ___VARIABLE_productName___Parameters
@@ -18,17 +18,17 @@ struct ___VARIABLE_productName___: View {
 
     // MARK: Initializers
     init(
-        uiModel: ___VARIABLE_productName___UIModel = .init(),
+        appearance: ___VARIABLE_productName___Appearance = .init(),
         parameters: ___VARIABLE_productName___Parameters
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
         self.parameters = parameters
     }
     
     // MARK: Body
     var body: some View {
         EmptyView()
-            .background(uiModel.backgroundColor)
+            .background(appearance.backgroundColor)
     }
 }
 

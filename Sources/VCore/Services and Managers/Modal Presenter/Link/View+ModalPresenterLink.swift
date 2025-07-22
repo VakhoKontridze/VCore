@@ -115,7 +115,7 @@ extension View {
     ///
     public func modalPresenterLink<Content>(
         link: ModalPresenterLink,
-        uiModel: ModalPresenterLinkUIModel = .init(),
+        appearance: ModalPresenterLinkAppearance = .init(),
         isPresented: Binding<Bool>,
         onPresent presentHandler: (() -> Void)? = nil,
         onDismiss dismissHandler: (() -> Void)? = nil,
@@ -127,7 +127,7 @@ extension View {
             .modifier(
                 ModalPresenterLinkViewModifier(
                     link: link,
-                    uiModel: uiModel,
+                    appearance: appearance,
                     isPresented: isPresented,
                     onPresent: presentHandler,
                     onDismiss: dismissHandler,

@@ -14,7 +14,7 @@ struct ModalPresenterInternalPresentationMode {
     let presentSubject: PassthroughSubject<PresentationData, Never> = .init()
     struct PresentationData {
         let link: ModalPresenterLink
-        let uiModel: ModalPresenterLinkUIModel
+        let appearance: ModalPresenterLinkAppearance
         let view: () -> AnyView
         let completion: () -> Void
     }
@@ -22,7 +22,7 @@ struct ModalPresenterInternalPresentationMode {
     let updateSubject: PassthroughSubject<UpdateData, Never> = .init()
     struct UpdateData {
         let link: ModalPresenterLink
-        let uiModel: ModalPresenterLinkUIModel
+        let appearance: ModalPresenterLinkAppearance
         let view: () -> AnyView
     }
 

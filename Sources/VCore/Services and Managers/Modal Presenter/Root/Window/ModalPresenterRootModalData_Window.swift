@@ -12,7 +12,7 @@ import SwiftUI
 // MARK: - Modal Presenter Root Modal Data (Window)
 struct ModalPresenterRootModalData_Window: Identifiable {
     let id: String
-    var uiModel: ModalPresenterLinkUIModel
+    var appearance: ModalPresenterLinkAppearance
     var view: () -> AnyView
     let presentationMode: ModalPresenterPresentationMode
 }

@@ -12,8 +12,8 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
     // MARK: Properties - Link
     private let link: ModalPresenterLink
     
-    // MARK: Properties - UI Model
-    private let uiModel: ModalPresenterLinkUIModel
+    // MARK: Properties - Appearance
+    private let appearance: ModalPresenterLinkAppearance
 
     // MARK: Properties - State
     @Binding private var isPresented: Bool
@@ -31,14 +31,14 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
     // MARK: Initializers
     init(
         link: ModalPresenterLink,
-        uiModel: ModalPresenterLinkUIModel,
+        appearance: ModalPresenterLinkAppearance,
         isPresented: Binding<Bool>,
         onPresent presentHandler: (() -> Void)?,
         onDismiss dismissHandler: (() -> Void)?,
         @ViewBuilder content modalContent: @escaping () -> ModalContent
     ) {
         self.link = link
-        self.uiModel = uiModel
+        self.appearance = appearance
         self._isPresented = isPresented
         self.presentHandler = presentHandler
         self.dismissHandler = dismissHandler
@@ -69,7 +69,7 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
     
     // MARK: Lifecycle
     private func didDisappear() {
-        if uiModel.dismissesModalWhenLinkDisappears {
+        if appearance.dismissesModalWhenLinkDisappears {
             isPresented = false
             dismissModal() // Needed, despite setting flag to `false`
         }
@@ -80,7 +80,7 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
         internalPresentationMode.presentSubject.send(
             ModalPresenterInternalPresentationMode.PresentationData(
                 link: link,
-                uiModel: uiModel,
+                appearance: appearance,
                 view: { modalContent().eraseToAnyView() },
                 completion: { presentHandler?() }
             )
@@ -91,7 +91,7 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
         internalPresentationMode.updateSubject.send(
             ModalPresenterInternalPresentationMode.UpdateData(
                 link: link,
-                uiModel: uiModel,
+                appearance: appearance,
                 view: { modalContent().eraseToAnyView() }
             )
         )

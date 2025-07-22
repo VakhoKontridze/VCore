@@ -1,5 +1,5 @@
 //
-//  SwiftUIBaseButtonUIModel.swift
+//  SwiftUIBaseButtonAppearance.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 29.03.23.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-// MARK: - Swift UI Base Button UI Model
-/// Model that describes UI.
-public struct SwiftUIBaseButtonUIModel: Sendable {
+// MARK: - Swift UI Base Button Appearance
+/// Model that describes appearance.
+public struct SwiftUIBaseButtonAppearance: Sendable {
     // MARK: Properties
     /// Indicates if button animates state change.
     ///
@@ -17,6 +17,6 @@ public struct SwiftUIBaseButtonUIModel: Sendable {
     public var animatesStateChange: Bool = true
     
     // MARK: Initializers
-    /// Initializes UI model with default values.
+    /// Initializes appearance with default values.
     public init() {}
 }

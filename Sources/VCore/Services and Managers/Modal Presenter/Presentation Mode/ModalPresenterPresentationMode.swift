@@ -34,7 +34,7 @@ public struct ModalPresenterPresentationMode {
 
     /// Emits notification when dimming view is tapped.
     ///
-    /// Will only be called if `ModalPresenterRootUIModel.dimmingViewTapAction` is set to `sendActionToTopmostModal`.
+    /// Will only be called if `ModalPresenterRootAppearance.dimmingViewTapAction` is set to `sendActionToTopmostModal`.
     public var dimmingViewTapActionPublisher: AnyPublisher<Void, Never> { dimmingViewTapActionSubject.eraseToAnyPublisher() }
 
     // MARK: Initializers

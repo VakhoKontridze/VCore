@@ -14,7 +14,7 @@ import SwiftUI
 ///
 /// Model:
 ///
-///     struct SomeButtonUIModel {
+///     struct SomeButtonAppearance {
 ///         var titleColors: StateColors = .init(
 ///             enabled: Color.primary,
 ///             pressed: Color.secondary,
@@ -31,17 +31,17 @@ import SwiftUI
 /// Button:
 ///
 ///     struct SomeButton: View {
-///         private let uiModel: SomeButtonUIModel
+///         private let appearance: SomeButtonAppearance
 ///         private func internalState(_ baseButtonState: SwiftUIBaseButtonState) -> SomeButtonInternalState { baseButtonState }
 ///         private let action: () -> Void
 ///         private let title: String
 ///
 ///         init(
-///             uiModel: SomeButtonUIModel = .init(),
+///             appearance: SomeButtonAppearance = .init(),
 ///             action: @escaping () -> Void,
 ///             title: String
 ///         ) {
-///             self.uiModel = uiModel
+///             self.appearance = appearance
 ///             self.action = action
 ///             self.title = title
 ///         }
@@ -53,7 +53,7 @@ import SwiftUI
 ///                     let internalState: SomeButtonInternalState = internalState(baseButtonState)
 ///
 ///                     Text(title)
-///                         .foregroundStyle(uiModel.titleColors.value(for: internalState))
+///                         .foregroundStyle(appearance.titleColors.value(for: internalState))
 ///                 }
 ///             )
 ///         }
@@ -68,18 +68,18 @@ import SwiftUI
 ///
 public struct SwiftUIBaseButton<Label>: View where Label: View {
     // MARK: Properties
-    private let uiModel: SwiftUIBaseButtonUIModel
+    private let appearance: SwiftUIBaseButtonAppearance
     private let action: () -> Void
     private let label: (SwiftUIBaseButtonState) -> Label
     
     // MARK: Initializers
-    /// Initializes `SwiftUIBaseButtonUIModel` with action and label.
+    /// Initializes `SwiftUIBaseButtonAppearance` with action and label.
     public init(
-        uiModel: SwiftUIBaseButtonUIModel = .init(),
+        appearance: SwiftUIBaseButtonAppearance = .init(),
         action: @escaping () -> Void,
         @ViewBuilder label: @escaping (SwiftUIBaseButtonState) -> Label
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
         self.action = action
         self.label = label
     }
@@ -92,7 +92,7 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
         )
         .buttonStyle(
             SwiftUIBaseButtonStyle(
-                uiModel: uiModel,
+                appearance: appearance,
                 label: label
             )
         )

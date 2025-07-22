@@ -15,17 +15,17 @@ import SwiftUI
 @MainActor
 final class ModalPresenterRootModel_Window {
     // MARK: Properties
-    var uiModel: ModalPresenterRootUIModel
+    var appearance: ModalPresenterRootAppearance
     var modals: [ModalPresenterRootModalData_Window] = []
     var safeAreaInsets: EdgeInsets! // Force-unwrap
     var keyboardObserver: KeyboardObserver
     
     // MARK: Initializers
     init(
-        uiModel: ModalPresenterRootUIModel,
+        appearance: ModalPresenterRootAppearance,
         keyboardObserver: KeyboardObserver
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
         self.keyboardObserver = keyboardObserver
     }
 }

@@ -53,7 +53,7 @@ final class ModalPresenterRootWindow_Window: UIWindow {
         // and view type is `_UIHostingView<ModalPresenterRootModalContent_Window>`, we can pass touches through.
         // Otherwise, view is saved in the dictionary to enable normal touches.
         if
-            model.uiModel.dimmingViewTapAction == .passTapsThrough,
+            model.appearance.dimmingViewTapAction == .passTapsThrough,
             let eventTimestamp: TimeInterval = event?.timestamp
         {
             let viewType: String = .init(describing: type(of: view))

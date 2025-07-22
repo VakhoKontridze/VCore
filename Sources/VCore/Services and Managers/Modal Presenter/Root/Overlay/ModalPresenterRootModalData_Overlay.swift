@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - Modal Presenter Root Modal Data (Overlay)
 struct ModalPresenterRootModalData_Overlay: Identifiable {
     let id: String
-    var uiModel: ModalPresenterLinkUIModel
+    var appearance: ModalPresenterLinkAppearance
     var view: () -> AnyView
     let presentationMode: ModalPresenterPresentationMode
 }

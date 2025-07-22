@@ -14,7 +14,7 @@ import SwiftUI
 ///
 /// Model:
 ///
-///     struct SomeButtonUIModel {
+///     struct SomeButtonAppearance {
 ///         var titleColors: StateColors = .init(
 ///             enabled: Color.primary,
 ///             pressed: Color.secondary,
@@ -31,7 +31,7 @@ import SwiftUI
 /// Button:
 ///
 ///     struct SomeButton: View {
-///         private let uiModel: SomeButtonUIModel
+///         private let appearance: SomeButtonAppearance
 ///
 ///         @Environment(\.isEnabled) private var isEnabled: Bool
 ///         @State private var isPressed: Bool = false
@@ -42,11 +42,11 @@ import SwiftUI
 ///         private let title: String
 ///
 ///         init(
-///             uiModel: SomeButtonUIModel = .init(),
+///             appearance: SomeButtonAppearance = .init(),
 ///             action: @escaping () -> Void,
 ///             title: String
 ///         ) {
-///             self.uiModel = uiModel
+///             self.appearance = appearance
 ///             self.action = action
 ///             self.title = title
 ///         }
@@ -56,7 +56,7 @@ import SwiftUI
 ///                 onStateChange: stateChangeHandler,
 ///                 label: {
 ///                     Text(title)
-///                         .foregroundStyle(uiModel.titleColors.value(for: internalState))
+///                         .foregroundStyle(appearance.titleColors.value(for: internalState))
 ///                 }
 ///             )
 ///             .disabled(internalState == .disabled)

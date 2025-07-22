@@ -10,7 +10,7 @@ struct ___VARIABLE_productName___View: View {
     
     // ...
     
-    // MARK: Properties - UI Model
+    // MARK: Properties - Appearance
     // ...
     
     // MARK: Properties - Parameters

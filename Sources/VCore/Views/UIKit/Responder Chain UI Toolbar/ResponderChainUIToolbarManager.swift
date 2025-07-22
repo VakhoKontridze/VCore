@@ -75,7 +75,7 @@ open class ResponderChainUIToolbarManager: Sendable {
             let nextParameters: ResponderChainUIToolbarResponderParameters? = responderParameters[safe: i+1]
 
             let toolbar: ResponderChainUIToolbar = .init(
-                uiModel: parameters.toolBarUIModel,
+                appearance: parameters.toolBarAppearance,
                 size: parameters.toolBarSize,
                 arrowUpButtonAction: { _ = previousParameters?.responder.becomeFirstResponder() },
                 arrowDownButtonAction: { _ = nextParameters?.responder.becomeFirstResponder() },

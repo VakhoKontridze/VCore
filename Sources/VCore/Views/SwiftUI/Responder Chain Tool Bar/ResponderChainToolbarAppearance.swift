@@ -1,5 +1,5 @@
 //
-//  ResponderChainToolbarUIModel.swift
+//  ResponderChainToolbarAppearance.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 24.05.23.
@@ -7,12 +7,12 @@
 
 import SwiftUI
 
-// MARK: - Responder Chain Toolbar UI Model
-/// Model that describes UI.
+// MARK: - Responder Chain Toolbar Appearance
+/// Model that describes appearance.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 @available(visionOS, unavailable)
-public struct ResponderChainToolbarUIModel: Sendable {
+public struct ResponderChainToolbarAppearance: Sendable {
     // MARK: Properties - Buttons
     var hasButtons: Bool { hasNavigationButtons || hasDoneButton }
 
@@ -34,7 +34,7 @@ public struct ResponderChainToolbarUIModel: Sendable {
     public var doneButtonFont: Font = .body.weight(.semibold)
 
     // MARK: Initializers
-    /// Initializes UI model with default values.
+    /// Initializes appearance with default values.
     public init() {}
 
     // MARK: Button State Colors

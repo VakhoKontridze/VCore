@@ -16,8 +16,8 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
     // MARK: Properties - Root
     private let root: ModalPresenterRoot
     
-    // MARK: Properties - UI Model
-    private let _uiModel: ModalPresenterRootUIModel // Shouldn't be used directly
+    // MARK: Properties - Appearance
+    private let _appearance: ModalPresenterRootAppearance // Shouldn't be used directly
     
     @State private var window: UIWindow! // Force-unwrap
     
@@ -41,17 +41,17 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
     // MARK: Initializers
     init(
         root: ModalPresenterRoot,
-        uiModel: ModalPresenterRootUIModel
+        appearance: ModalPresenterRootAppearance
     ) {
         self.root = root
         
-        self._uiModel = uiModel
+        self._appearance = appearance
         
         self._model = State(
             wrappedValue: ModalPresenterRootModel_Window(
-                uiModel: uiModel,
+                appearance: appearance,
                 keyboardObserver: KeyboardObserver(
-                    uiModel: uiModel.keyboardObserverSubUIModel
+                    keyboardResponsivenessStrategy: appearance.keyboardResponsivenessStrategy
                 )
             )
         )
@@ -85,8 +85,8 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
                 }
             }
         
-            // Syncing UI Model
-            .onChange(of: _uiModel) { model.uiModel = $1 }
+            // Syncing appearance
+            .onChange(of: _appearance) { model.appearance = $1 }
     }
     
     // MARK: Actions - Internal
@@ -115,7 +115,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
         modalWindow.frame = window.frame
         modalWindow.backgroundColor = nil
         modalWindow.isUserInteractionEnabled = true
-        modalWindow.windowLevel = model.uiModel.windowLevel
+        modalWindow.windowLevel = model.appearance.windowLevel
         
         modalWindow.rootViewController = hostingController
         modalWindow.isHidden = true // This flag is used to control visibility
@@ -139,7 +139,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
 
         let modal: ModalPresenterRootModalData_Window = .init(
             id: presentationData.link.linkID,
-            uiModel: presentationData.uiModel,
+            appearance: presentationData.appearance,
             view: presentationData.view,
             presentationMode: ModalPresenterPresentationMode(
                 linkID: presentationData.link.linkID
@@ -158,7 +158,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
     ) {
         guard let index: Int = model.modals.firstIndex(where: { $0.id == updateData.link.linkID }) else { return }
 
-        model.modals[index].uiModel = updateData.uiModel
+        model.modals[index].appearance = updateData.appearance
         model.modals[index].view = updateData.view
     }
 

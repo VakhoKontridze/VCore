@@ -354,11 +354,11 @@ var body: some View {
     .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
     .modalPresenterRoot(
         root: .window(),
-        uiModel: {
-            var uiModel: ModalPresenterRootUIModel = .init()
-            uiModel.dimmingViewColor = Color.clear
-            uiModel.dimmingViewTapAction = .passTapsThrough
-            return uiModel
+        appearance: {
+            var appearance: ModalPresenterRootAppearance = .init()
+            appearance.dimmingViewColor = Color.clear
+            appearance.dimmingViewTapAction = .passTapsThrough
+            return appearance
         }()
     )
 }
@@ -368,17 +368,17 @@ var body: some View {
 
 #### Customization
 
-Keyboard responsiveness can be customized via `ModalPresenterRootUIModel`.
+Keyboard responsiveness can be customized via `ModalPresenterRootAppearance`.
 
 ```swift
 var body: some View {
     ...
         .modalPresenterRoot(
             root: .window(),
-            uiModel: {
-                var uiModel: ModalPresenterRootUIModel = .init()
-                uiModel.keyboardObserverSubUIModel.keyboardResponsivenessStrategy = .offsetByObscuredViewHeight(additionalOffset: 20)
-                return uiModel
+            appearance: {
+                var appearance: ModalPresenterRootAppearance = .init()
+                appearance.keyboardResponsivenessStrategy = .offsetByObscuredViewHeight(additionalOffset: 20)
+                return appearance
             }()
         )
 }
@@ -441,7 +441,7 @@ var body: some View {
 
 In `overlay` configuration, root that's injected after another one will always be on top, as `SwiftUI` overlays stack.
 
-In `window` configuration, root with higher `windowLevel` in UI model is presented at the top.
+In `window` configuration, root with higher `windowLevel` in Appearance is presented at the top.
 
 Generally speaking, we'd want containers, such as—sheets, side bars, and modals—to be at the bottom. Followed by alerts. And lastly, notifications and toasts.
 
@@ -463,11 +463,11 @@ extension View {
             )
             .modalPresenterRoot(
                 root: .window(rootID: "notifications"),
-                uiModel: {
-                    var uiModel: ModalPresenterRootUIModel = .init()
-                    uiModel.dimmingViewTapAction = .passTapsThrough
-                    uiModel.dimmingViewColor = Color.clear
-                    return uiModel
+                appearance: {
+                    var appearance: ModalPresenterRootAppearance = .init()
+                    appearance.dimmingViewTapAction = .passTapsThrough
+                    appearance.dimmingViewColor = Color.clear
+                    return appearance
                 }()
             )
     }

@@ -49,20 +49,20 @@ public struct PlainDisclosureGroup<Label, Content>: View
         Label: View,
         Content: View
 {
-    // MARK: Properties - UI Model
-    private let uiModel: PlainDisclosureGroupUIModel
+    // MARK: Properties - Appearance
+    private let appearance: PlainDisclosureGroupAppearance
     
     @State private var labelHeight: CGFloat = 0
 
     private var nativeLabelHeight: CGFloat {
-        let target: CGFloat = labelHeight - uiModel.systemDisclosureGroupPadding
-        let system: CGFloat = uiModel.systemDisclosureGroupContentHeight
+        let target: CGFloat = labelHeight - appearance.systemDisclosureGroupPadding
+        let system: CGFloat = appearance.systemDisclosureGroupContentHeight
 
         return max(target, system)
     }
 
     private var nativeLabelMaskHeight: CGFloat {
-        nativeLabelHeight + uiModel.systemDisclosureGroupPadding
+        nativeLabelHeight + appearance.systemDisclosureGroupPadding
     }
     
     // MARK: Properties - State
@@ -93,11 +93,11 @@ public struct PlainDisclosureGroup<Label, Content>: View
     // MARK: Initializers
     /// Initializes `PlainDisclosureGroup` with label and content.
     public init(
-        uiModel: PlainDisclosureGroupUIModel = .init(),
+        appearance: PlainDisclosureGroupAppearance = .init(),
         label: @escaping () -> Label,
         content: @escaping () -> Content
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
         self.__isExpanded_internal = State(wrappedValue: false)
         self.__isExpanded_external = .constant(false) // Doesn't matter
         self.stateManagement = .internal
@@ -107,12 +107,12 @@ public struct PlainDisclosureGroup<Label, Content>: View
     
     /// Initializes `PlainDisclosureGroup` with active state, label, and content.
     public init(
-        uiModel: PlainDisclosureGroupUIModel = .init(),
+        appearance: PlainDisclosureGroupAppearance = .init(),
         isExpanded: Binding<Bool>,
         label: @escaping () -> Label,
         content: @escaping () -> Content
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
         self.__isExpanded_internal = State(wrappedValue: false) // Doesn't matter
         self.__isExpanded_external = isExpanded
         self.stateManagement = .external
@@ -136,7 +136,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
             
             labelView
         }
-        .background(uiModel.backgroundColor)
+        .background(appearance.backgroundColor)
     }
     
     private var labelView: some View {
@@ -159,13 +159,13 @@ public struct PlainDisclosureGroup<Label, Content>: View
 
     // MARK: Actions
     private func expandCollapseFromInternalAction(newValue: Bool) {
-        withAnimation(uiModel.expandCollapseAnimation) {
+        withAnimation(appearance.expandCollapseAnimation) {
             isExpanded.wrappedValue = newValue
         }
     }
     
     private func expandCollapseFromLabelTap() {
-        withAnimation(uiModel.expandCollapseAnimation) {
+        withAnimation(appearance.expandCollapseAnimation) {
             isExpanded.wrappedValue.toggle()
         }
     }

@@ -29,7 +29,7 @@ struct ModalPresenterRootModalContent_Window: View {
                 modalsView
             }
             .apply { view in
-                switch model.uiModel.frame {
+                switch model.appearance.frame {
                 case .fixed(let size, let alignment, let offset):
                     ZStack {
                         view
@@ -56,12 +56,12 @@ struct ModalPresenterRootModalContent_Window: View {
             if
                 model.modals.count == 1,
                 let topmostModal: ModalPresenterRootModalData_Window = model.modals.last,
-                let color: Color = topmostModal.uiModel.preferredDimmingViewColor
+                let color: Color = topmostModal.appearance.preferredDimmingViewColor
             {
                 color
                 
             } else {
-                model.uiModel.dimmingViewColor
+                model.appearance.dimmingViewColor
             }
         }()
         
@@ -78,9 +78,9 @@ struct ModalPresenterRootModalContent_Window: View {
     ) -> some View {
         Color.clear
             .contentShape(.rect)
-            .allowsHitTesting(model.uiModel.dimmingViewTapAction.allowsHitTesting)
+            .allowsHitTesting(model.appearance.dimmingViewTapAction.allowsHitTesting)
             .onTapGesture {
-                if model.uiModel.dimmingViewTapAction == .sendActionToTopmostModal {
+                if model.appearance.dimmingViewTapAction == .sendActionToTopmostModal {
                     topmostModal.presentationMode.dimmingViewTapActionSubject.send()
                 }
             }
@@ -104,7 +104,7 @@ struct ModalPresenterRootModalContent_Window: View {
             interactiveDimmingView(topmostModal: modal)
         }
         
-        NonInvasiveGeometryReader(alignment: modal.uiModel.alignment) { geometryProxy in
+        NonInvasiveGeometryReader(alignment: modal.appearance.alignment) { geometryProxy in
             modal.view()
                 .environment(\.modalPresenterContainerSize, geometryProxy.size)
                 .environment(\.modalPresenterSafeAreaInsets, model.safeAreaInsets)

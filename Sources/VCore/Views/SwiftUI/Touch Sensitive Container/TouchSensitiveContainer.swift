@@ -41,8 +41,8 @@ import SwiftUI
 ///
 @available(tvOS, unavailable) // Doesn't follow HIG
 public struct TouchSensitiveContainer<Content>: View where Content: View {
-    // MARK: Properties - UI Model
-    private let uiModel: TouchSensitiveContainerUIModel
+    // MARK: Properties - Appearance
+    private let appearance: TouchSensitiveContainerAppearance
 
     // MARK: Properties - State
     @Environment(\.isEnabled) private var isEnabled: Bool
@@ -63,22 +63,22 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     // MARK: Initializers
     /// Initializes `TouchSensitiveContainer` with content.
     public init(
-        uiModel: TouchSensitiveContainerUIModel = .init(),
+        appearance: TouchSensitiveContainerAppearance = .init(),
         action: (() -> Void)? = nil,
         @ViewBuilder content: @escaping () -> Content
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
         self.action = action
         self.content = .content(content)
     }
 
     /// Initializes `TouchSensitiveContainer` with content.
     public init(
-        uiModel: TouchSensitiveContainerUIModel = .init(),
+        appearance: TouchSensitiveContainerAppearance = .init(),
         action: (() -> Void)? = nil,
         @ViewBuilder content: @escaping (TouchSensitiveContainerInternalState) -> Content
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
         self.action = action
         self.content = .contentWithState(content)
     }
@@ -94,7 +94,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
         switch content {
         case .content(let content):
             content()
-                .opacity(uiModel.contentOpacities.value(for: internalState))
+                .opacity(appearance.contentOpacities.value(for: internalState))
 
         case .contentWithState(let content):
             content(internalState)
@@ -102,19 +102,19 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     }
 
     private var backgroundView: some View {
-        uiModel.backgroundColors.value(for: internalState)
+        appearance.backgroundColors.value(for: internalState)
             .contentShape(.rect)
-            .onTapGesture(count: uiModel.tapCount, perform: didPerformInteraction)
+            .onTapGesture(count: appearance.tapCount, perform: didPerformInteraction)
     }
 
     // MARK: Actions
     private func didPerformInteraction() {
-        guard uiModel.isTapEnabled else { return }
+        guard appearance.isTapEnabled else { return }
         
         isPressed = true
 
-        executeWithDelay(uiModel.animationDelay) {
-            withAnimation(uiModel.animation) {
+        executeWithDelay(appearance.animationDelay) {
+            withAnimation(appearance.animation) {
                 isPressed = false
             }
         }

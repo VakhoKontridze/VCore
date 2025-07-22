@@ -1,5 +1,5 @@
 //
-//  ResponderChainUIToolbarUIModel.swift
+//  ResponderChainUIToolbarAppearance.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 24.05.23.
@@ -9,9 +9,9 @@
 
 import UIKit
 
-// MARK: - Responder Chain UI Toolbar UI Model
-/// Model that describes UI.
-public struct ResponderChainUIToolbarUIModel: Sendable {
+// MARK: - Responder Chain UI Toolbar Appearance
+/// Model that describes appearance.
+public struct ResponderChainUIToolbarAppearance: Sendable {
     // MARK: Properties - Toolbar
     /// Toolbar style.
     public var style: UIBarStyle = .default
@@ -41,7 +41,7 @@ public struct ResponderChainUIToolbarUIModel: Sendable {
     public var hasDoneButton: Bool = true
 
     // MARK: Initializers
-    /// Initializes UI model with default values.
+    /// Initializes appearance with default values.
     public init() {}
 }
 

@@ -84,10 +84,10 @@ open class ResponderChainUIToolbar: UIToolbar {
     )
 
     // MARK: Properties
-    /// Model that describes UI.
+    /// Model that describes appearance.
     ///
-    /// To change current UI model, use `configure(uiModel)` method.
-    private(set) public var uiModel: ResponderChainUIToolbarUIModel
+    /// To change current appearance, use `configure(appearance:)` method.
+    private(set) public var appearance: ResponderChainUIToolbarAppearance
 
     /// Action that runs when arrow up button is tapped.
     open var arrowUpButtonAction: (() -> Void)?
@@ -101,10 +101,10 @@ open class ResponderChainUIToolbar: UIToolbar {
     // MARK: Initializers
     /// Initializes `ResponderChainUIToolbar.
     public init(
-        uiModel: ResponderChainUIToolbarUIModel = .init(),
+        appearance: ResponderChainUIToolbarAppearance = .init(),
         size: CGSize
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
 
         super.init(
             frame: CGRect(
@@ -114,19 +114,19 @@ open class ResponderChainUIToolbar: UIToolbar {
         )
 
         setUp()
-        configure(uiModel: uiModel)
+        configure(appearance: appearance)
     }
 
     /// Initializes `ResponderChainUIToolbar` with actions.
     convenience public init(
-        uiModel: ResponderChainUIToolbarUIModel = .init(),
+        appearance: ResponderChainUIToolbarAppearance = .init(),
         size: CGSize,
         arrowUpButtonAction: (() -> Void)?,
         arrowDownButtonAction: (() -> Void)?,
         doneButtonAction: (() -> Void)?
     ) {
         self.init(
-            uiModel: uiModel,
+            appearance: appearance,
             size: size
         )
 
@@ -147,23 +147,23 @@ open class ResponderChainUIToolbar: UIToolbar {
     }
 
     // MARK: Configuration
-    /// Configures `ResponderChainUIToolbar` with `ResponderChainUIToolbarUIModel`.
-    open func configure(uiModel: ResponderChainUIToolbarUIModel) {
-        self.uiModel = uiModel
+    /// Configures `ResponderChainUIToolbar` with `ResponderChainUIToolbarAppearance`.
+    open func configure(appearance: ResponderChainUIToolbarAppearance) {
+        self.appearance = appearance
 
-        barStyle = uiModel.style
-        isTranslucent = uiModel.isTranslucent
-        barTintColor = uiModel.toolbarColor
+        barStyle = appearance.style
+        isTranslucent = appearance.isTranslucent
+        barTintColor = appearance.toolbarColor
 
         for button in [arrowUpButton, arrowDownButton, doneButton] {
-            button.tintColor = uiModel.buttonColor
+            button.tintColor = appearance.buttonColor
         }
 
         items = {
             var items: [UIBarButtonItem] = []
 
-            if uiModel.hasButtons {
-                if uiModel.hasNavigationButtons {
+            if appearance.hasButtons {
+                if appearance.hasNavigationButtons {
                     items.append(contentsOf: [
                         arrowUpButton,
                         arrowDownButton,
@@ -172,7 +172,7 @@ open class ResponderChainUIToolbar: UIToolbar {
 
                 items.append(spacer)
 
-                if uiModel.hasDoneButton {
+                if appearance.hasDoneButton {
                     items.append(doneButton)
                 }
             }

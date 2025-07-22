@@ -10,7 +10,7 @@ import SwiftUI
 // MARK: - Swift UI Base Button Style
 struct SwiftUIBaseButtonStyle<Label>: ButtonStyle where Label: View {
     // MARK: Properties
-    private let uiModel: SwiftUIBaseButtonUIModel
+    private let appearance: SwiftUIBaseButtonAppearance
     
     @Environment(\.isEnabled) private var isEnabled: Bool
     private func internalState(_ isPressed: Bool) -> SwiftUIBaseButtonState { .init(isEnabled: isEnabled, isPressed: isPressed) }
@@ -19,10 +19,10 @@ struct SwiftUIBaseButtonStyle<Label>: ButtonStyle where Label: View {
     
     // MARK: Initializers
     init(
-        uiModel: SwiftUIBaseButtonUIModel,
+        appearance: SwiftUIBaseButtonAppearance,
         @ViewBuilder label: @escaping (GenericState_EnabledPressedDisabled) -> Label
     ) {
-        self.uiModel = uiModel
+        self.appearance = appearance
         self.label = label
     }
     
@@ -32,7 +32,7 @@ struct SwiftUIBaseButtonStyle<Label>: ButtonStyle where Label: View {
 
         return label(state)
             .background { configuration.label }
-            .applyIf(!uiModel.animatesStateChange) {
+            .applyIf(!appearance.animatesStateChange) {
                 $0
                     .animation(nil, value: isEnabled)
                     .animation(nil, value: configuration.isPressed)
