@@ -14,7 +14,7 @@ import XCTest
 @MainActor
 final class PublisherAssignWeakTests: XCTestCase {
     // MARK: Test Data
-    private final class SomeClass {
+    private final class Service {
         var value: Int = 0
 
         private let publisher: PassthroughSubject<Int, Never> = .init()
@@ -33,7 +33,7 @@ final class PublisherAssignWeakTests: XCTestCase {
 
     // MARK: Tests
     func test() async {
-        let object: SomeClass = .init()
-        assertInstanceIsDeallocated(object)
+        let service: Service = .init()
+        assertInstanceIsDeallocated(service)
     }
 }

@@ -15,7 +15,7 @@ import SwiftUI
 /// For additional info, refer to `View.modalPresenterLink(...)`.
 ///
 ///     extension View {
-///         func someModal<Item, Content>(
+///         func modal<Item, Content>(
 ///             link: ModalPresenterLink,
 ///             item: Binding<Item?>,
 ///             @ViewBuilder content: @escaping (Item) -> Content
@@ -34,7 +34,7 @@ import SwiftUI
 ///                     link: link,
 ///                     isPresented: isPresented,
 ///                 ) {
-///                     SomeModal<Content?>(isPresented: isPresented) {
+///                     Modal<Content?>(isPresented: isPresented) {
 ///                         if let item = item.wrappedValue ?? ModalPresenterDataSourceCache.shared.get(key: id) as? Item {
 ///                             content(item)
 ///                         }

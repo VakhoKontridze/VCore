@@ -14,7 +14,7 @@ import Testing
 struct URLInitWithPathAndQueryParametersTests {
     @Test
     func testFullDeclaration() throws {
-        let string: String = "https://example.com"
+        let string: String = "https://website.com"
         let pathParameters: [String] = ["path", "to", "resource"]
         let queryParameters: [String: String] = ["key1": "value1", "key2": "value2"]
 
@@ -28,15 +28,15 @@ struct URLInitWithPathAndQueryParametersTests {
 
         #expect(
             [
-                "https://example.com/path/to/resource?key2=value2&key1=value1",
-                "https://example.com/path/to/resource?key1=value1&key2=value2"
+                "https://website.com/path/to/resource?key2=value2&key1=value1",
+                "https://website.com/path/to/resource?key1=value1&key2=value2"
             ]
                 .contains(url.absoluteString)
         )
         
         #expect(url.scheme == "https")
         
-        #expect(url.host == "example.com")
+        #expect(url.host == "website.com")
         
         #expect(url.path == "/path/to/resource")
         
@@ -66,7 +66,7 @@ struct URLInitWithPathAndQueryParametersTests {
 
     @Test
     func testEmptyPathParameters() throws {
-        let string: String = "https://example.com"
+        let string: String = "https://website.com"
         let pathParameters: [String] = []
         let queryParameters: [String: String] = ["key": "value"]
 
@@ -78,13 +78,13 @@ struct URLInitWithPathAndQueryParametersTests {
             )
         )
         
-        #expect(url.absoluteString == "https://example.com?key=value")
+        #expect(url.absoluteString == "https://website.com?key=value")
         #expect(url.path == "")
     }
 
     @Test
     func testEmptyQueryParameters() throws {
-        let string: String = "https://example.com"
+        let string: String = "https://website.com"
         let pathParameters: [String] = ["path", "to", "resource"]
         let queryParameters: [String: String] = [:]
 
@@ -96,7 +96,7 @@ struct URLInitWithPathAndQueryParametersTests {
             )
         )
         
-        #expect(url.absoluteString == "https://example.com/path/to/resource")
+        #expect(url.absoluteString == "https://website.com/path/to/resource")
         #expect(url.query == nil)
     }
 }

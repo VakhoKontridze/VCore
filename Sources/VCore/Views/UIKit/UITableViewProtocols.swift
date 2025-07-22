@@ -13,15 +13,15 @@ import OSLog
 // MARK: - Parameter
 /// Protocol that allows parameter to configure a `UITableViewCell`.
 ///
-///     protocol SomeViewable: AnyObject {}
+///     protocol HomeViewable: AnyObject {}
 ///
-///     protocol SomePresentable: UITableViewDelegable, UITableViewDataSourceable {}
+///     protocol HomePresentable: UITableViewDelegable, UITableViewDataSourceable {}
 ///
-///     final class SomeViewController:
-///         UIViewController, SomeViewable,
+///     final class HomeViewController:
+///         UIViewController, HomeViewable,
 ///         UITableViewDelegate, UITableViewDataSource
 ///     {
-///         var presenter: (any SomePresentable)!
+///         var presenter: (any HomePresentable)!
 ///
 ///         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 ///             presenter.tableViewDidSelectRow(section: indexPath.section, row: indexPath.row)
@@ -42,10 +42,10 @@ import OSLog
 ///         }
 ///     }
 ///
-///     final class SomePresenter<View>: SomePresentable
-///         where View: SomeViewable
+///     final class HomePresenter<View>: HomePresentable
+///         where View: HomeViewable
 ///     {
-///         unowned let view: SomeViewable
+///         unowned let view: HomeViewable
 ///
 ///         private var tableViewParameters: [[any UITableViewCellParameter]] = []
 ///

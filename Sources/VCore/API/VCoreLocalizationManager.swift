@@ -12,9 +12,9 @@ import Foundation
 ///
 /// `localizationProvider` in `shared` instance can be set to override the localized values.
 ///
-///     struct SomeLocalizationProvider: VCoreLocalizationProvider { ... }
+///     struct VCoreLocalizationProviderImplementation: VCoreLocalizationProvider { ... }
 ///
-///     VCoreLocalizationManager.shared.localizationProvider = SomeLocalizationProvider()
+///     VCoreLocalizationManager.shared.localizationProvider = VCoreLocalizationProviderImplementation()
 ///
 public final class VCoreLocalizationManager: @unchecked Sendable {
     // MARK: Properties - Singleton

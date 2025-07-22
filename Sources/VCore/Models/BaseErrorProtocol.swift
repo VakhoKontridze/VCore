@@ -11,20 +11,20 @@ import Foundation
 /// Base error protocol.
 ///
 ///     @MemberwiseInitializable(accessLevelModifier: .private)
-///     struct SomeError: BaseErrorProtocol, Equatable {
-///         static let domain: String = "com.example-app.some-error"
+///     struct ServiceError: BaseErrorProtocol, Equatable {
+///         static let domain: String = "com.app.service-error"
 ///         let code: Int
 ///         let description: String
 ///
-///         static let firstError: Self = .init(
+///         static let failedToGet: Self = .init(
 ///             code: 1,
-///             description: "Lorem ipsum dolor sit amet"
+///             description: "Data cannot be retrieved"
 ///         )
 ///
-///         static func secondError(_ info: String) -> Self {
+///         static func failedToSet(_ reason: String) -> Self {
 ///             .init(
 ///                 code: 2,
-///                 description: "Lorem ipsum dolor sit amet '\(info)'"
+///                 description: Data cannot be set, because '\(reason)'"
 ///             )
 ///         }
 ///

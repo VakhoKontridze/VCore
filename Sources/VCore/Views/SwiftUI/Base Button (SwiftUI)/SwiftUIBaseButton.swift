@@ -14,7 +14,7 @@ import SwiftUI
 ///
 /// Model:
 ///
-///     struct SomeButtonAppearance {
+///     struct PlainButtonAppearance {
 ///         var titleColors: StateColors = .init(
 ///             enabled: Color.primary,
 ///             pressed: Color.secondary,
@@ -26,18 +26,18 @@ import SwiftUI
 ///
 /// State:
 ///
-///     typealias SomeButtonInternalState = GenericState_EnabledPressedDisabled
+///     typealias PlainButtonInternalState = GenericState_EnabledPressedDisabled
 ///
 /// Button:
 ///
-///     struct SomeButton: View {
-///         private let appearance: SomeButtonAppearance
-///         private func internalState(_ baseButtonState: SwiftUIBaseButtonState) -> SomeButtonInternalState { baseButtonState }
+///     struct PlainButton: View {
+///         private let appearance: PlainButtonAppearance
+///         private func internalState(_ baseButtonState: SwiftUIBaseButtonState) -> PlainButtonInternalState { baseButtonState }
 ///         private let action: () -> Void
 ///         private let title: String
 ///
 ///         init(
-///             appearance: SomeButtonAppearance = .init(),
+///             appearance: PlainButtonAppearance = .init(),
 ///             action: @escaping () -> Void,
 ///             title: String
 ///         ) {
@@ -50,7 +50,7 @@ import SwiftUI
 ///             SwiftUIBaseButton(
 ///                 action: action,
 ///                 label: { baseButtonState in
-///                     let internalState: SomeButtonInternalState = internalState(baseButtonState)
+///                     let internalState: PlainButtonInternalState = internalState(baseButtonState)
 ///
 ///                     Text(title)
 ///                         .foregroundStyle(appearance.titleColors.value(for: internalState))
@@ -60,7 +60,7 @@ import SwiftUI
 ///     }
 ///
 ///     var body: some View {
-///         SomeButton(
+///         PlainButton(
 ///             action: { print("Clicked") },
 ///             title: "Lorem Ipsum"
 ///         )

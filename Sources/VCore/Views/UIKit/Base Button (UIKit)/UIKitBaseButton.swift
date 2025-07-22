@@ -16,7 +16,7 @@ import UIKit
 ///
 /// Model:
 ///
-///     struct SomeButtonAppearance {
+///     struct PlainButtonAppearance {
 ///         var titleColors: StateColors = .init(
 ///             enabled: UIColor.label,
 ///             pressed: UIColor.secondaryLabel,
@@ -28,13 +28,13 @@ import UIKit
 ///
 /// State:
 ///
-///     typealias SomeButtonState = GenericState_EnabledDisabled
+///     typealias PlainButtonState = GenericState_EnabledDisabled
 ///
-///     typealias SomeButtonInternalState = GenericState_EnabledPressedDisabled
+///     typealias PlainButtonInternalState = GenericState_EnabledPressedDisabled
 ///
 /// Button:
 ///
-///     final class SomeButton: UIView {
+///     final class PlainButton: UIView {
 ///         // Action is passed during configuration
 ///         private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateAppearanceChange() })
 ///             .withTranslatesAutoresizingMaskIntoConstraints(false)
@@ -46,18 +46,18 @@ import UIKit
 ///             return label
 ///         }()
 ///
-///         private var appearance: SomeButtonAppearance
+///         private var appearance: PlainButtonAppearance
 ///
 ///         var isEnabled: Bool {
 ///             get { internalState.isGestureEnabled }
-///             set { configure(state: SomeButtonState(isEnabled: newValue)) }
+///             set { configure(state: PlainButtonState(isEnabled: newValue)) }
 ///         }
-///         var state: SomeButtonState { .init(isEnabled: internalState.isGestureEnabled) }
-///         private var internalState: SomeButtonInternalState = .enabled
+///         var state: PlainButtonState { .init(isEnabled: internalState.isGestureEnabled) }
+///         private var internalState: PlainButtonInternalState = .enabled
 ///             { didSet { baseButton.isEnabled = internalState.isGestureEnabled } }
 ///
 ///         init(
-///             appearance: SomeButtonAppearance = .init(),
+///             appearance: PlainButtonAppearance = .init(),
 ///             action: @escaping () -> Void,
 ///             title: String
 ///         ) {
@@ -92,14 +92,14 @@ import UIKit
 ///             ])
 ///         }
 ///
-///         func configure(appearance: SomeButtonAppearance) {
+///         func configure(appearance: PlainButtonAppearance) {
 ///             self.appearance = appearance
 ///
 ///             configureFromStateAppearanceChange()
 ///         }
 ///
-///         func configure(state: SomeButtonState) {
-///             internalState = SomeButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: baseButton.internalButtonState == .pressed)
+///         func configure(state: PlainButtonState) {
+///             internalState = PlainButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: baseButton.internalButtonState == .pressed)
 ///
 ///             configureFromStateAppearanceChange()
 ///         }
@@ -108,7 +108,7 @@ import UIKit
 ///             baseButton.stateChangeHandler = { [weak self] gestureState in
 ///                 guard let self else { return }
 ///
-///                 internalState = SomeButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: gestureState.didRecognizePress)
+///                 internalState = PlainButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: gestureState.didRecognizePress)
 ///
 ///                 configureFromStateAppearanceChange()
 ///                 if gestureState.didRecognizeClick { action() }
@@ -124,7 +124,7 @@ import UIKit
 ///         }
 ///     }
 ///
-///     let button: SomeButton = .init(
+///     let button: PlainButton = .init(
 ///         action: { print("Clicked") },
 ///         title: "Lorem Ipsum"
 ///     )
@@ -212,14 +212,14 @@ open class UIKitBaseButton: UIView {
 #if !os(tvOS) // Redundant
 
 #Preview {
-    SomeButton(
+    PlainButton(
         action: {},
         title: "Lorem Ipsum"
     )
 }
 
 // Macros aren't allowed in Preview macro
-private struct SomeButtonAppearance {
+private struct PlainButtonAppearance {
     var titleColors: StateColors = .init(
         enabled: UIColor.label,
         pressed: UIColor.secondaryLabel,
@@ -229,11 +229,11 @@ private struct SomeButtonAppearance {
     typealias StateColors = GenericStateModel_EnabledPressedDisabled<UIColor>
 }
 
-private typealias SomeButtonState = GenericState_EnabledDisabled
+private typealias PlainButtonState = GenericState_EnabledDisabled
 
-private typealias SomeButtonInternalState = GenericState_EnabledPressedDisabled
+private typealias PlainButtonInternalState = GenericState_EnabledPressedDisabled
 
-private final class SomeButton: UIView {
+private final class PlainButton: UIView {
     // Action is passed during configuration
     private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateAppearanceChange() })
         .withTranslatesAutoresizingMaskIntoConstraints(false)
@@ -245,18 +245,18 @@ private final class SomeButton: UIView {
         return label
     }()
 
-    private var appearance: SomeButtonAppearance
+    private var appearance: PlainButtonAppearance
 
     var isEnabled: Bool {
         get { internalState.isGestureEnabled }
-        set { configure(state: SomeButtonState(isEnabled: newValue)) }
+        set { configure(state: PlainButtonState(isEnabled: newValue)) }
     }
-    var state: SomeButtonState { .init(isEnabled: internalState.isGestureEnabled) }
-    private var internalState: SomeButtonInternalState = .enabled
+    var state: PlainButtonState { .init(isEnabled: internalState.isGestureEnabled) }
+    private var internalState: PlainButtonInternalState = .enabled
         { didSet { baseButton.isEnabled = internalState.isGestureEnabled } }
 
     init(
-        appearance: SomeButtonAppearance = .init(),
+        appearance: PlainButtonAppearance = .init(),
         action: @escaping () -> Void,
         title: String
     ) {
@@ -291,14 +291,14 @@ private final class SomeButton: UIView {
         ])
     }
 
-    func configure(appearance: SomeButtonAppearance) {
+    func configure(appearance: PlainButtonAppearance) {
         self.appearance = appearance
 
         configureFromStateAppearanceChange()
     }
 
-    func configure(state: SomeButtonState) {
-        internalState = SomeButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: baseButton.internalButtonState == .pressed)
+    func configure(state: PlainButtonState) {
+        internalState = PlainButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: baseButton.internalButtonState == .pressed)
 
         configureFromStateAppearanceChange()
     }
@@ -307,7 +307,7 @@ private final class SomeButton: UIView {
         baseButton.stateChangeHandler = { [weak self] gestureState in
             guard let self else { return }
 
-            internalState = SomeButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: gestureState.didRecognizePress)
+            internalState = PlainButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: gestureState.didRecognizePress)
 
             configureFromStateAppearanceChange()
             if gestureState.didRecognizeClick { action() }

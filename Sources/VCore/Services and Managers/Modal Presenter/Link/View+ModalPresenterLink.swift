@@ -18,8 +18,8 @@ extension View {
     ///             Button("Present") {
     ///                 isPresented = true
     ///             }
-    ///             .someModal(
-    ///                 link: .window(linkID: "some_modal"),
+    ///             .modal(
+    ///                 link: .window(linkID: "modal"),
     ///                 isPresented: $isPresented)
     ///             ) {
     ///                 Color.accentColor
@@ -30,7 +30,7 @@ extension View {
     ///     }
     ///
     ///     extension View {
-    ///         func someModal<Content>(
+    ///         func modal<Content>(
     ///             link: ModalPresenterLink,
     ///             isPresented: Binding<Bool>,
     ///             @ViewBuilder content: @escaping () -> Content
@@ -42,7 +42,7 @@ extension View {
     ///                     link: link,
     ///                     isPresented: isPresented,
     ///                  ) {
-    ///                     SomeModal(
+    ///                     Modal(
     ///                         isPresented: isPresented,
     ///                         content: content
     ///                     )
@@ -50,7 +50,7 @@ extension View {
     ///         }
     ///     }
     ///
-    ///     struct SomeModal<Content>: View where Content: View {
+    ///     struct Modal<Content>: View where Content: View {
     ///         @Environment(\.modalPresenterInterfaceOrientation) private var interfaceOrientation: PlatformInterfaceOrientation
     ///         @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize
     ///         @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets

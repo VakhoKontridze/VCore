@@ -14,7 +14,7 @@ import SwiftUI
 ///
 /// Model:
 ///
-///     struct SomeButtonAppearance {
+///     struct PlainButtonAppearance {
 ///         var titleColors: StateColors = .init(
 ///             enabled: Color.primary,
 ///             pressed: Color.secondary,
@@ -26,23 +26,23 @@ import SwiftUI
 ///
 /// State:
 ///
-///     typealias SomeButtonInternalState = GenericState_EnabledPressedDisabled
+///     typealias PlainButtonInternalState = GenericState_EnabledPressedDisabled
 ///
 /// Button:
 ///
-///     struct SomeButton: View {
-///         private let appearance: SomeButtonAppearance
+///     struct PlainButton: View {
+///         private let appearance: PlainButtonAppearance
 ///
 ///         @Environment(\.isEnabled) private var isEnabled: Bool
 ///         @State private var isPressed: Bool = false
-///         private var internalState: SomeButtonInternalState { .init(isEnabled: isEnabled, isPressed: isPressed) }
+///         private var internalState: PlainButtonInternalState { .init(isEnabled: isEnabled, isPressed: isPressed) }
 ///
 ///         private let action: () -> Void
 ///
 ///         private let title: String
 ///
 ///         init(
-///             appearance: SomeButtonAppearance = .init(),
+///             appearance: PlainButtonAppearance = .init(),
 ///             action: @escaping () -> Void,
 ///             title: String
 ///         ) {
@@ -69,7 +69,7 @@ import SwiftUI
 ///     }
 ///
 ///     var body: some View {
-///         SomeButton(
+///         PlainButton(
 ///             action: { print("Clicked") },
 ///             title: "Lorem Ipsum"
 ///         )

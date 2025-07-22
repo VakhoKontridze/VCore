@@ -11,7 +11,7 @@ import Dispatch
 extension DispatchSemaphore {
     /// Executes a block of code with a lock, similar to `NSLock`.
     ///
-    ///     final class SomeClass: @unchecked Sendable {
+    ///     final class Service: @unchecked Sendable {
     ///         private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
     ///
     ///         private var _value: Int

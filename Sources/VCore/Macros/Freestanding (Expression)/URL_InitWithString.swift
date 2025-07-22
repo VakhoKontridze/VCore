@@ -10,7 +10,7 @@ import Foundation
 // MARK: - URL (Init with String)
 /// Returns non-optional `URL` from `String`, checked during the compile time.
 ///
-///     let url: URL = #url("https://example.com")
+///     let url: URL = #url("https://website.com")
 ///
 @freestanding(expression)
 public macro url(

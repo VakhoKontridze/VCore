@@ -27,7 +27,7 @@ import Foundation
 ///
 ///     let keychainService: KeychainService = .init(configuration: configuration)
 ///
-///     let data: Data? = keychainService.get(key: "SomeKey")
+///     let data: Data? = keychainService.get(key: "key")
 ///
 public struct KeychainServiceConfiguration {
     // MARK: Properties

@@ -14,10 +14,10 @@ extension View {
     /// This method should be used with caution, since any changes to the condition will cause view state to be reset.
     ///
     ///     var body: some View {
-    ///         SomeView()
+    ///         ContentView()
     ///             .apply {
     ///                 if #available(iOS 99.0, *) {
-    ///                     $0.someModifier()
+    ///                     $0.newFeature()
     ///                 } else {
     ///                     $0
     ///                 }

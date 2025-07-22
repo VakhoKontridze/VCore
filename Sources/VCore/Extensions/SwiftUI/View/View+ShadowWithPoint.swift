@@ -11,12 +11,14 @@ import SwiftUI
 extension View {
     /// Adds a shadow to this view.
     ///
-    ///     someView
-    ///         .shadow(
-    ///             color: Color.black.opacity(0.3),
-    ///             radius: 10,
-    ///             offset: CGPoint(x: 0, y: 10)
-    ///         )
+    ///     var body: some View {
+    ///         contentView
+    ///             .shadow(
+    ///                 color: Color.black.opacity(0.3),
+    ///                 radius: 10,
+    ///                 offset: CGPoint(x: 0, y: 10)
+    ///             )
+    ///     }
     ///
     public func shadow(
         color: Color = .init(.sRGBLinear, white: 0, opacity: 0.33),

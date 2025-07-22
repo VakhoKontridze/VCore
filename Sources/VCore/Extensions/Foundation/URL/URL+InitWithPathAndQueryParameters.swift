@@ -12,12 +12,12 @@ extension URL {
     /// Initializes `URL` with `String`, path parameters, and query parameters.
     ///
     ///     let url: URL = .init(
-    ///         string: "https://example.com",
+    ///         string: "https://website.com",
     ///         pathParameters: ["path", "to", "resource"],
     ///         queryParameters: ["key1": "value1", "key2": "value2"]
     ///     )!
     ///
-    ///     // "https://example.com/path/to/resource?key1=value1&key2=value2"
+    ///     // "https://website.com/path/to/resource?key1=value1&key2=value2"
     ///
     public init?(
         string: String,

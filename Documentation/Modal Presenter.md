@@ -29,8 +29,8 @@ var body: some View {
         Button("Present") {
             isPresented = true
         }
-        .someModal(
-            link: .window(linkID: "some_modal"),
+        .modal(
+            link: .window(linkID: "modal"),
             isPresented: $isPresented
         ) { 
             Color.accentColor 
@@ -70,8 +70,8 @@ var body: some View {
         Button("Present") { 
             isPresented = true 
         }
-        .someModal( // [4]
-            link: .window(linkID: "some_modal"), // [5]
+        .modal( // [4]
+            link: .window(linkID: "modal"), // [5]
             isPresented: $isPresented
         ) { 
             Color.accentColor
@@ -96,7 +96,7 @@ In general, root should be declared within `App`, on a `WindowScene` level for b
 
 ```swift
 @main 
-struct SomeApp: App {
+struct ExampleApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
@@ -118,7 +118,7 @@ All links require an identifier [5], which must be unique within a root.
 
 ```swift
 extension View {
-    func someModal<Content>(
+    func modal<Content>(
         link: ModalPresenterLink, // [1]
         isPresented: Binding<Bool>, // [2]
         @ViewBuilder content: @escaping () -> Content
@@ -132,7 +132,7 @@ extension View {
                 onPresent: { print("PRESENT") }, // [5]
                 onDismiss: { print("DISMISS") }, // [6]
             ) {
-                SomeModal(
+                Modal(
                     isPresented: isPresented,
                     content: content
                 )
@@ -154,7 +154,7 @@ Modal can be linked using `modalPresenterLink(...)` API [3]. It takes `link` as 
 #### Modal Implementation
 
 ```swift
-struct SomeModal<Content>: View where Content: View {
+struct Modal<Content>: View where Content: View {
     @Environment(\.modalPresenterInterfaceOrientation) private var interfaceOrientation: PlatformInterfaceOrientation // [1]
     @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize // [2]
     @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets // [3]
@@ -235,7 +235,7 @@ Root disables all container safe area insets for better frame handling, so safe 
 
 Modal Presenter differentiates between two types of presentation states—internal and external.
 
-External presentation refers to `isPresented` flag [5], which is passed to `someModal(...)` from the presenting root view. While internal presentation refers to `isPresentedInternally` flag [6].
+External presentation refers to `isPresented` flag [5], which is passed to `modal(...)` from the presenting root view. While internal presentation refers to `isPresentedInternally` flag [6].
 
 When Modal Presenter detects `isPresented` as `true`, it triggers an event [7]. We can intercept it and animate modal content by setting `isPresentedInternally` to `true` [8].
 
@@ -271,14 +271,14 @@ var body: some View {
                 isPresented2 = true
             }
         }
-        .someModal(
-            link: .window(linkID: "some_modal_1"),
+        .modal(
+            link: .window(linkID: "modal_1"),
             isPresented: $isPresented1
         ) { 
             Color.red 
         }
-        .someModal(
-            link: .window(linkID: "some_modal_2"),
+        .modal(
+            link: .window(linkID: "modal_2"),
             isPresented: $isPresented2
         ) { 
             Color.blue 
@@ -307,13 +307,13 @@ var body: some View {
                 isPresented2 = true
             }
         }
-        .someModal(
-            link: .window(linkID: "some_modal_1"),
+        .modal(
+            link: .window(linkID: "modal_1"),
             isPresented: $isPresented1
         ) {
             Color.red
-                .someModal(
-                    link: .window(linkID: "some_modal_2"),
+                .modal(
+                    link: .window(linkID: "modal_2"),
                     isPresented: $isPresented2
                 ) { 
                     Color.blue 
@@ -346,8 +346,8 @@ var body: some View {
                     .frame(maxWidth: .infinity)
             }
         }
-        .someModal(
-            link: .window(linkID: "some_modal"),
+        .modal(
+            link: .window(linkID: "modal"),
             isPresented: $isPresented,
         ) {
             Color.accentColor
@@ -400,8 +400,8 @@ var body: some View {
         Button("Present") { 
             isPresented = true 
         }
-        .someModal(
-            link: .window(linkID: "some_modal"),
+        .modal(
+            link: .window(linkID: "modal"),
             isPresented: $isPresented
         ) {
             ScrollView {
@@ -433,8 +433,8 @@ When multiple roots are used, links must specify the `rootID`.
 ```swift
 var body: some View {
     ...
-        .someModal(
-            link: .window(rootID: "containers". linkID: "some_modal"),
+        .modal(
+            link: .window(rootID: "containers". linkID: "modal"),
             isPresented: $isPresented,
         ) { 
             ... 
@@ -481,7 +481,7 @@ This method can be used in `App` on a `WindowScene`-level.
 
 ```swift
 @main 
-struct SomeApp: App {
+struct ExampleApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack {
@@ -529,7 +529,7 @@ var body: some View {
     .sheet(isPresented: $isPresented1) {
         ZStack {
             Color.red
-                .someModal(
+                .modal(
                     link: .overlay(rootID: "containers_within_sheet", linkID: "custom_sheet"),
                     isPresented: $isPresented2
                 ) { 
@@ -560,7 +560,7 @@ var body: some View {
                 isPresented2 = true
             }
         }
-        .someModal(
+        .modal(
             link: .window(linkID: "custom_sheet"),
             isPresented: $isPresented1,
         ) {
@@ -578,11 +578,11 @@ var body: some View {
 
 ## Presentation with Types
 
-A secondary `View.someModal(...)` method can be implemented to manage presentation with an item, `Error`, etc.
+A secondary `View.modal(...)` method can be implemented to manage presentation with an item, `Error`, etc.
 
 ```swift
 extension View {
-    func someModal<Item, Content>(
+    func modal<Item, Content>(
         link: ModalPresenterLink,
         item: Binding<Item?>,
         @ViewBuilder content: @escaping (Item) -> Content
@@ -601,7 +601,7 @@ extension View {
                 link: link,
                 isPresented: isPresented
             ) {
-                SomeModal<Content?>(
+                Modal<Content?>(
                     isPresented: isPresented,
                 ) {
                     if let item = item.wrappedValue ?? ModalPresenterDataSourceCache.shared.get(key: id) as? Item {

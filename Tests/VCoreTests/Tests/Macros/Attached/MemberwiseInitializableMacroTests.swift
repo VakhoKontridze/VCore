@@ -24,7 +24,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            struct SomeStruct {
+            struct Model {
                 let a1: Int
                 var a2: Int
                 let b1: Int = 0
@@ -33,7 +33,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a1: Int
                     var a2: Int
                     let b1: Int = 0
@@ -58,13 +58,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            struct SomeStruct {
+            struct Model {
                 var a: Int { 0 }
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     var a: Int { 0 }
 
                     internal init(
@@ -80,13 +80,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            struct SomeStruct {
+            struct Model {
                 lazy var a: Int = 0
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     lazy var a: Int = 0
 
                     internal init(
@@ -102,13 +102,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            struct SomeStruct {
+            struct Model {
                 static let a: Int = 0
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     static let a: Int = 0
 
                     internal init(
@@ -124,7 +124,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            struct SomeStruct {
+            struct Model {
                 let a1: Int?
                 let a2: Int? = 0
                 var b1: Int?
@@ -133,7 +133,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a1: Int?
                     let a2: Int? = 0
                     var b1: Int?
@@ -158,15 +158,15 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            struct SomeStruct {
-                @SomeWrapper var a: Int
+            struct Model {
+                @PropertyWrapper var a: Int
                 @ViewBuilder let b: () -> Void
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
-                    @SomeWrapper var a: Int
+                struct Model {
+                    @PropertyWrapper var a: Int
                     @ViewBuilder let b: () -> Void
 
                     internal init(
@@ -184,14 +184,14 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            class SomeClass {
+            class Model {
                 @objc let a: Int
                 dynamic let b: Int
             }
             """,
             expandedSource: 
                 """
-                class SomeClass {
+                class Model {
                     @objc let a: Int
                     dynamic let b: Int
 
@@ -212,7 +212,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            struct SomeStruct {
+            struct Model {
                 let a1: () -> Void
                 let a2: (() -> Void)?
 
@@ -233,7 +233,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a1: () -> Void
                     let a2: (() -> Void)?
 
@@ -288,13 +288,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            struct SomeStruct {
+            struct Model {
                 var a, b: Int
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     var a, b: Int
                 }
                 """,
@@ -309,13 +309,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            struct SomeStruct {
+            struct Model {
                 var a = 10
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     var a = 10
                 }
                 """,
@@ -330,13 +330,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            public struct SomeStruct: Sendable {
+            public struct Model: Sendable {
                 public let a: Int
             }
             """,
             expandedSource:
                 """
-                public struct SomeStruct: Sendable {
+                public struct Model: Sendable {
                     public let a: Int
 
                     public init(
@@ -352,13 +352,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable(accessLevelModifier: .fileprivate)
-            struct SomeStruct {
+            struct Model {
                 let a: Int
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a: Int
 
                     fileprivate init(
@@ -380,13 +380,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     "a": "_"
                 ]
             )
-            struct SomeStruct {
+            struct Model {
                 let a: Int
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a: Int
 
                     internal init(
@@ -406,13 +406,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     "b": "?"
                 ]
             )
-            struct SomeStruct {
+            struct Model {
                 let a: Int
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a: Int
                 }
                 """,
@@ -435,7 +435,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     "c": .value("")
                 ]
             )
-            struct SomeStruct {
+            struct Model {
                 let a1: Int
                 var a2: Int
                 
@@ -447,7 +447,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a1: Int
                     var a2: Int
                     
@@ -482,7 +482,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     "d": .omit,
                 ]
             )
-            struct SomeStruct {
+            struct Model {
                 var a: Int?
                 var b: Int?
                 var c: Int? = 1
@@ -491,7 +491,7 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     var a: Int?
                     var b: Int?
                     var c: Int? = 1
@@ -520,13 +520,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     "b": .omit
                 ]
             )
-            struct SomeStruct {
+            struct Model {
                 let a: Int
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a: Int
                 }
                 """,
@@ -545,14 +545,14 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     "*": .omit
                 ]
             )
-            struct SomeStruct {
+            struct Model {
                 var a: Int?
                 var b: Int? = 0
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     var a: Int?
                     var b: Int? = 0
 
@@ -575,14 +575,14 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     "*": .value(0)
                 ]
             )
-            struct SomeStruct {
+            struct Model {
                 var a: Int?
                 var b: Int? = 0
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     var a: Int?
                     var b: Int? = 0
                 }
@@ -600,14 +600,14 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             @MemberwiseInitializable(
                 excludedParameters: ["b"]
             )
-            struct SomeStruct {
+            struct Model {
                 var a: Int = 1
                 var b: Int = 1
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     var a: Int = 1
                     var b: Int = 1
 
@@ -626,13 +626,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             @MemberwiseInitializable(
                 excludedParameters: ["b"]
             )
-            struct SomeStruct {
+            struct Model {
                 let a: Int
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a: Int
                 }
                 """,
@@ -649,13 +649,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
             @MemberwiseInitializable(
                 comment: "///Lorem ipsum dolor ist amet."
             )
-            struct SomeStruct {
+            struct Model {
                 let a: Int
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a: Int
 
                     ///Lorem ipsum dolor ist amet.
@@ -679,13 +679,13 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
                     ///
                     """
             )
-            struct SomeStruct {
+            struct Model {
                 let a: Int
             }
             """#,
             expandedSource:
                 """
-                struct SomeStruct {
+                struct Model {
                     let a: Int
 
                     /// Lorem ipsum dolor ist amet.
@@ -707,11 +707,11 @@ final class MemberwiseInitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @MemberwiseInitializable
-            enum SomeEnum {}
+            enum Model {}
             """,
             expandedSource:
                 """
-                enum SomeEnum {}
+                enum Model {}
                 """,
             diagnostics: [
                 DiagnosticSpec(message: "'MemberwiseInitializable' macro cannot be applied to 'enum's", line: 1, column: 1)

@@ -40,8 +40,8 @@ extension Array {
     
     /// Insert element in appropriate place using a binary append algorithm.
     ///
-    ///     var objects: [SomeClass] = [...]
-    ///     let index: Int = numbers.binaryAppend(newObject, by: \.value)
+    ///     var items: [Item] = [...]
+    ///     let index: Int = items.binaryAppend(newItem, by: \.value)
     ///
     @discardableResult
     mutating public func binaryAppend(

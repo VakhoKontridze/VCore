@@ -98,7 +98,7 @@ For the illustration, `httpbin` API is used.
 Custom error can be introduced to perform mapping:
 
 ```swift
-struct SomeInternalError: LocalizedError {
+struct InternalError: LocalizedError {
     let code: Int
     let message: String
 }
@@ -134,7 +134,7 @@ func processURLSessionResponse(
         throw URLError(.cannotDecodeContentData)
     }
 
-    throw SomeInternalError(code: code, message: message)
+    throw InternalError(code: code, message: message)
 }
 ```
 

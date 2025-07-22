@@ -48,7 +48,7 @@ extension JSONDecoder {
     /// Decodes `Decodable` from `JSON`.
     ///
     ///     let json: [String: Any?] = ...
-    ///     let object: SomeClass = JSONDecoder().decodeObjectFromJSON(json)
+    ///     let item: Item = JSONDecoder().decodeObjectFromJSON(json)
     ///
     public func decodeObjectFromJSON<T>(
         _ json: [String: Any?],
@@ -66,7 +66,7 @@ extension JSONDecoder {
     /// Decodes `Decodable` from `JSON` `Array`.
     ///
     ///     let jsonArray: [[String: Any?]] = ...
-    ///     let object: SomeClass = JSONDecoder().decodeObjectFromJSONArray(jsonArray)
+    ///     let item: Item = JSONDecoder().decodeObjectFromJSONArray(jsonArray)
     ///
     public func decodeObjectFromJSONArray<T>(
         _ jsonArray: [[String: Any?]],

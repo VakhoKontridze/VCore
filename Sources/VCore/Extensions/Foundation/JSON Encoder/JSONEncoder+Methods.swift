@@ -29,7 +29,7 @@ extension JSONEncoder {
 
     /// Encodes `Encodable` to `JSON`.
     ///
-    ///     let object: SomeClass = ...
+    ///     let item: Item = ...
     ///     let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON(object)
     ///
     public func encodeObjectToJSON(
@@ -48,8 +48,8 @@ extension JSONEncoder {
 
     /// Encodes `Encodable` to `JSON` `Array`.
     ///
-    ///     let objects: [SomeClass] = ...
-    ///     let jsonArray: [[String: Any?]] = try JSONEncoder().encodeObjectToJSONArray(objects)
+    ///     let items: [Item] = ...
+    ///     let jsonArray: [[String: Any?]] = try JSONEncoder().encodeObjectToJSONArray(items)
     ///
     public func encodeObjectToJSONArray(
         _ objects: some Encodable,

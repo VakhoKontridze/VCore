@@ -10,19 +10,19 @@ import Foundation
 // MARK: - KeyPath Initializable Enumeration
 /// Enumeration that allows for dynamic lookup of a case with a given property `KeyPath` and value.
 ///
-///     enum SomeEnum: KeyPathInitializableEnumeration {
-///         case first
-///         case second
+///     enum Gender: KeyPathInitializableEnumeration {
+///         case male
+///         case female
 ///
-///         var someProperty: Int {
+///         var id: Int {
 ///             switch self {
-///             case .first: 1
-///             case .second: 2
+///             case .male: 1
+///             case .female: 2
 ///             }
 ///         }
 ///     }
 ///
-///     let value: SomeEnum? = .init(key: \.someProperty, value: 2)
+///     let gender: Gender? = .init(key: \.id, value: 2)
 ///
 public protocol KeyPathInitializableEnumeration: CaseIterable {
     init?<Property>(

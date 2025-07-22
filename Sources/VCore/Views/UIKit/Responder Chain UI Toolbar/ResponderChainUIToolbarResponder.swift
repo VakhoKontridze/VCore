@@ -15,7 +15,7 @@ import UIKit
 /// `UITextField` and `UITextView` automatically conform to this `protocol`.
 @MainActor
 public protocol ResponderChainUIToolbarResponder: AnyObject {
-    /// Custom input accessory `UIView` to display when the responder becomes the first responder.
+    /// Input accessory `UIView` to display when the responder becomes the first responder.
     var inputAccessoryView: UIView? { get set }
 
     /// Asks `UIKit` to make this object the first responder in its `UIWindow`.

@@ -17,8 +17,10 @@ extension View {
     ///         offset: CGPoint(x: 0, y: 10)
     ///     )
     ///
-    ///     someView
-    ///         .shadow(parameters: parameters)
+    ///     var body: some View {
+    ///         contentView
+    ///             .shadow(parameters: parameters)
+    ///     }
     ///
     public func shadow(parameters: SwiftUIDropShadowParameters) -> some View {
         self

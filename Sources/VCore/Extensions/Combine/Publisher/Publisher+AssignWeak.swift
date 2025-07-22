@@ -12,7 +12,7 @@ import Combine
 extension Publisher where Failure == Never {
     /// Assigns each element from `Publisher` to a property of an object with a weak retain cycle.
     ///
-    ///     final class SomeClass {
+    ///     final class Service {
     ///         var value: Int = 0
     ///
     ///         private let publisher: PassthroughSubject<Int, Never> = .init()

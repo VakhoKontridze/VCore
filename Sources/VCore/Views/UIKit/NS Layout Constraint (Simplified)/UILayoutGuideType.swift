@@ -32,16 +32,16 @@ public enum UILayoutGuideType: Sendable {
     /// such as `UITrackingLayoutGuide` and `UIKeyboardLayoutGuide`.
     ///
     ///     extension UIView {
-    ///         var someLayoutGuide: UILayoutGuide { ... }
+    ///         var customLayoutGuide: UILayoutGuide { ... }
     ///     }
     ///
     ///     extension UILayoutGuideType {
-    ///         static var someLayoutGuide: Self { .custom({ $0.someLayoutGuide }) }
+    ///         static var customLayoutGuide: Self { .custom({ $0.customLayoutGuide }) }
     ///     }
     ///
     ///     view.constraintLeading(
     ///         ...
-    ///         layoutGuide: .someLayoutGuide,
+    ///         layoutGuide: .customLayoutGuide,
     ///         ...
     ///     )
     ///

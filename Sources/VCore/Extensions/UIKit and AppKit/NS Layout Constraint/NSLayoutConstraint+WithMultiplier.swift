@@ -20,7 +20,7 @@ extension NSLayoutConstraint {
     /// Must be called after other `NSLayoutConstraint` modifiers.
     ///
     ///     NSLayoutConstraint.activate([
-    ///         view.widthAnchor.constraint(equalTo: someOtherView.widthAnchor)
+    ///         view.widthAnchor.constraint(equalTo: otherView.widthAnchor)
     ///             .withMultiplier(0.5)
     ///     ])
     ///

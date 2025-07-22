@@ -12,7 +12,7 @@ extension View {
     /// Attaches a gesture to the `View` to process simultaneously with tap gesture defined by the `View`.
     ///
     ///     var body: some View {
-    ///         SomeViewWithExistingGestures()
+    ///         ViewWithExistingGestures()
     ///             .onSimultaneousTapGesture(perform: ...)
     ///     }
     ///

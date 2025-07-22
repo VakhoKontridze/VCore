@@ -76,7 +76,7 @@ let (boundary, httpData): (String, Data) = try MultipartFormDataBuilder().build(
     files: files
 )
 
-let url: URL = #url("https://somewebsite.com/api/some_endpoint")
+let url: URL = #url("https://website.com/api/endpoint")
 
 var request: URLRequest = .init(url: url)
 request.httpMethod = "POST"
@@ -98,9 +98,9 @@ let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for
 `KeychainService` that supports custom queries, and has a dedicated property wrapper:
 
 ```swift
-KeychainService.default.getData(key: "SomeKey")
-KeychainService.default.setData(key: "SomeKey", value: data)
-KeychainService.default.deleteData(key: "SomeKey")
+KeychainService.default.getData(key: "key")
+KeychainService.default.setData(key: "key", value: data)
+KeychainService.default.deleteData(key: "key")
 ```
 
 ```swift
@@ -143,19 +143,19 @@ var body: some View {
 `KeyPathInitializableEnumeration` that allows for initialization of an `enum` with a `KeyPath`:
 
 ```swift
-enum SomeEnum: KeyPathInitializableEnumeration {
-    case first
-    case second
+enum Gender: KeyPathInitializableEnumeration {
+    case male
+    case female
 
-    var someProperty: Int {
+    var id: Int {
         switch self {
-        case .first: 1
-        case .second: 2
+        case .male: 1
+        case .female: 2
         }
     }
 }
 
-let value: SomeEnum? = .init(key: \.someProperty, value: 2)
+let gender: Gender? = .init(key: \.id, value: 2)
 ```
 
 #### Various Extensions

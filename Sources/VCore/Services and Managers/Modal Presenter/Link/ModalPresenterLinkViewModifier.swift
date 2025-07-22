@@ -137,8 +137,8 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
         Button("Present") {
             isPresented = true
         }
-        .someModal(
-            link: .overlay(linkID: "some_modal"),
+        .modal(
+            link: .overlay(linkID: "modal"),
             isPresented: $isPresented
         ) {
             contentColor
@@ -157,8 +157,8 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
         Button("Present") {
             isPresented = true
         }
-        .someModal(
-            link: .window(linkID: "some_modal"),
+        .modal(
+            link: .window(linkID: "modal"),
             isPresented: $isPresented
         ) {
             Color.accentColor
@@ -171,7 +171,7 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
 #endif
 
 extension View {
-    func someModal<Content>(
+    func modal<Content>(
         link: ModalPresenterLink,
         isPresented: Binding<Bool>,
         @ViewBuilder content: @escaping () -> Content
@@ -183,7 +183,7 @@ extension View {
                 link: link,
                 isPresented: isPresented,
             ) {
-                SomeModal(
+                Modal(
                     isPresented: isPresented,
                     content: content
                 )
@@ -191,7 +191,7 @@ extension View {
     }
 }
 
-private struct SomeModal<Content>: View where Content: View {
+private struct Modal<Content>: View where Content: View {
     @Environment(\.modalPresenterInterfaceOrientation) private var interfaceOrientation: PlatformInterfaceOrientation
     @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize
     @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets

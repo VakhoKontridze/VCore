@@ -24,14 +24,14 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            struct SomeStruct: Encodable {
+            struct Model: Encodable {
                 @CKGProperty("one") let one: Int
                 @CKGProperty("two") let two: String
             }
             """,
             expandedSource: 
                 """
-                struct SomeStruct: Encodable {
+                struct Model: Encodable {
                     @CKGProperty("one") let one: Int
                     @CKGProperty("two") let two: String
 
@@ -49,14 +49,14 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            public struct SomeStruct: Sendable, Encodable {
+            public struct Model: Sendable, Encodable {
                 @CKGProperty("one") public let one: Int
                 @CKGProperty("two") public let two: String
             }
             """,
             expandedSource: 
                 """
-                public struct SomeStruct: Sendable, Encodable {
+                public struct Model: Sendable, Encodable {
                     @CKGProperty("one") public let one: Int
                     @CKGProperty("two") public let two: String
 
@@ -72,14 +72,14 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration(accessLevelModifier: .private)
-            struct SomeStruct: Encodable {
+            struct Model: Encodable {
                 @CKGProperty("one") let one: Int
                 @CKGProperty("two") let two: String
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct: Encodable {
+                struct Model: Encodable {
                     @CKGProperty("one") let one: Int
                     @CKGProperty("two") let two: String
 
@@ -97,7 +97,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            struct SomeStruct: Encodable {
+            struct Model: Encodable {
                 @CKGProperty("one") let one: Int
                 var two: Int { one * 2 }
                 
@@ -108,7 +108,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
             """,
             expandedSource: 
                 """
-                struct SomeStruct: Encodable {
+                struct Model: Encodable {
                     @CKGProperty("one") let one: Int
                     var two: Int { one * 2 }
                     
@@ -129,13 +129,13 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            struct SomeStruct: Encodable {
+            struct Model: Encodable {
                 @CKGProperty("one") func one() {}
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct: Encodable {
+                struct Model: Encodable {
                     @CKGProperty("one") func one() {}
                 }
                 """,
@@ -150,13 +150,13 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            struct SomeStruct: Encodable {
+            struct Model: Encodable {
                 @CKGProperty("one+two") let one, two: Int
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct: Encodable {
+                struct Model: Encodable {
                     @CKGProperty("one+two") let one, two: Int
                 }
                 """,
@@ -171,11 +171,11 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion( // Compiler will handle errors
             """
             @CodingKeysGeneration
-            struct SomeStruct: Encodable {}
+            struct Model: Encodable {}
             """,
             expandedSource:
                 """
-                struct SomeStruct: Encodable {
+                struct Model: Encodable {
 
                     internal enum CodingKeys: String, CodingKey {
                     }
@@ -187,13 +187,13 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion( // Compiler will handle errors
             """
             @CodingKeysGeneration
-            struct SomeStruct: Encodable {
+            struct Model: Encodable {
                 let one: Int
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct: Encodable {
+                struct Model: Encodable {
                     let one: Int
 
                     internal enum CodingKeys: String, CodingKey {
@@ -208,13 +208,13 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @CodingKeysGeneration
-            struct SomeStruct: Encodable {
+            struct Model: Encodable {
                 @CKGProperty("one") var one: Int { 0 }
             }
             """,
             expandedSource:
                 """
-                struct SomeStruct: Encodable {
+                struct Model: Encodable {
                     @CKGProperty("one") var one: Int { 0 }
                 }
                 """,

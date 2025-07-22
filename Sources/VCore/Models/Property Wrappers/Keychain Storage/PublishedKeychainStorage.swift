@@ -14,7 +14,7 @@ import Combine
 // MARK: - Published Keychain Storage
 /// Property wrapper type that reflects a value from Keychain and invalidates a view on a change in value in that Keychain.
 ///
-///     final class SomeClass: ObservableObject {
+///     final class AuthenticationService: ObservableObject {
 ///         @PublishedKeychainStorage("AccessToken") var accessToken: String?
 ///     }
 ///

@@ -12,7 +12,7 @@ extension CGSize {
     /// Returns minimum of `width` and `height`.
     ///
     ///     var body: some View {
-    ///         someView
+    ///         contentView
     ///             .frame(dimension: screenSize.minDimension() * 0.5)
     ///     }
     ///
@@ -23,7 +23,7 @@ extension CGSize {
     /// Returns maximum of `width` and `height`.
     ///
     ///     var body: some View {
-    ///         someView
+    ///         contentView
     ///             .frame(dimension: screenSize.maxDimension() * 0.5)
     ///     }
     ///
