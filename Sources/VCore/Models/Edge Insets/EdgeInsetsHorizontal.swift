@@ -1,5 +1,5 @@
 //
-//  EdgeInsets_LeadingTrailing.swift
+//  EdgeInsetsHorizontal.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/1/21.
@@ -10,16 +10,17 @@ import SwiftUI
 // MARK: - Edge Insets (Leading, Trailing)
 /// Edge insets containing `leading` and `trailing` values.
 @MemberwiseInitializable(
-    comment: "/// Initializes `EdgeInsets_LeadingTrailing` with values."
+    comment: "/// Initializes `EdgeInsetsHorizontal` with values."
 )
-public struct EdgeInsets_LeadingTrailing: Equatable, Hashable, Sendable {
-    // MARK: Properties
+public struct EdgeInsetsHorizontal: Equatable, Hashable, Sendable {
+    // MARK: Properties - Base
     /// Leading value.
     public var leading: CGFloat
     
     /// Trailing value.
     public var trailing: CGFloat
     
+    // MARK: Properties - Derived
     /// Sum of `leading` and `trailing` values.
     public var horizontalSum: CGFloat { leading + trailing }
     
@@ -27,7 +28,7 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable, Sendable {
     public var horizontalAverage: CGFloat { (leading + trailing)/2 }
     
     // MARK: Initializers
-    /// Initializes `EdgeInsets_LeadingTrailing` with value.
+    /// Initializes `EdgeInsetsHorizontal` with value.
     public init(
         _ value: CGFloat
     ) {
@@ -35,7 +36,7 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable, Sendable {
         self.trailing = value
     }
     
-    /// Initializes `EdgeInsets_LeadingTrailing` with zero values.
+    /// Initializes `EdgeInsetsHorizontal` with zero values.
     public init() {
         self.leading = 0
         self.trailing = 0
@@ -45,7 +46,7 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable, Sendable {
     public static var zero: Self { .init() }
 
     // MARK: Map
-    /// Returns `EdgeInsets_LeadingTrailing`  containing the results of mapping the given closure over the values.
+    /// Returns `EdgeInsetsHorizontal`  containing the results of mapping the given closure over the values.
     public func map(
         _ transform: (CGFloat) throws -> CGFloat
     ) rethrows -> Self {
@@ -56,41 +57,41 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable, Sendable {
     }
 
     // MARK: Inset
-    /// Insets `EdgeInsets_LeadingTrailing` by a given value.
+    /// Insets `EdgeInsetsHorizontal` by a given value.
     public func insetBy(
         inset: CGFloat
-    ) -> EdgeInsets_LeadingTrailing {
+    ) -> EdgeInsetsHorizontal {
         .init(
             leading: leading + inset,
             trailing: trailing + inset
         )
     }
     
-    /// Insets `EdgeInsets_LeadingTrailing` by a given leading and trailing values.
+    /// Insets `EdgeInsetsHorizontal` by a given leading and trailing values.
     public func insetBy(
         leading leadingInset: CGFloat,
         trailing trailingInset: CGFloat
-    ) -> EdgeInsets_LeadingTrailing {
+    ) -> EdgeInsetsHorizontal {
         .init(
             leading: leading + leadingInset,
             trailing: trailing + leadingInset
         )
     }
     
-    /// Insets `EdgeInsets_LeadingTrailing` by a given leading value.
+    /// Insets `EdgeInsetsHorizontal` by a given leading value.
     public func insetBy(
         leading leadingInset: CGFloat
-    ) -> EdgeInsets_LeadingTrailing {
+    ) -> EdgeInsetsHorizontal {
         .init(
             leading: leading + leadingInset,
             trailing: trailing
         )
     }
     
-    /// Insets `EdgeInsets_LeadingTrailing` by a given trailing value.
+    /// Insets `EdgeInsetsHorizontal` by a given trailing value.
     public func insetBy(
         trailing trailingInset: CGFloat
-    ) -> EdgeInsets_LeadingTrailing {
+    ) -> EdgeInsetsHorizontal {
         .init(
             leading: leading,
             trailing: trailing + trailingInset
@@ -98,7 +99,7 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable, Sendable {
     }
     
     // MARK: Operators
-    /// Adds two `EdgeInsets_LeadingTrailing` by adding up individual edge insets.
+    /// Adds two `EdgeInsetsHorizontal` by adding up individual edge insets.
     public static func + (lhs: Self, rhs: Self) -> Self {
         .init(
             leading: lhs.leading + rhs.leading,
@@ -106,13 +107,13 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable, Sendable {
         )
     }
     
-    /// Adds right `EdgeInsets_LeadingTrailing` to the left one by adding individual edge insets.
+    /// Adds right `EdgeInsetsHorizontal` to the left one by adding individual edge insets.
     public static func += (lhs: inout Self, rhs: Self) {
         lhs.leading += rhs.leading
         lhs.trailing += rhs.trailing
     }
     
-    /// Subtracts two `EdgeInsets_LeadingTrailing` by subtracting up individual edge insets.
+    /// Subtracts two `EdgeInsetsHorizontal` by subtracting up individual edge insets.
     public static func - (lhs: Self, rhs: Self) -> Self {
         .init(
             leading: lhs.leading - rhs.leading,
@@ -120,7 +121,7 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable, Sendable {
         )
     }
     
-    /// Subtracts right `EdgeInsets_LeadingTrailing` to the left one by subtracting individual edge insets.
+    /// Subtracts right `EdgeInsetsHorizontal` to the left one by subtracting individual edge insets.
     public static func -= (lhs: inout Self, rhs: Self) {
         lhs.leading -= rhs.leading
         lhs.trailing -= rhs.trailing
@@ -129,9 +130,9 @@ public struct EdgeInsets_LeadingTrailing: Equatable, Hashable, Sendable {
 
 // MARK: - View + Padding
 extension View {
-    /// Adds a specific padding amount to each edge of `View` from `EdgeInsets_LeadingTrailing`.
+    /// Adds a specific padding amount to each edge of `View` from `EdgeInsetsHorizontal`.
     ///
-    ///     let insets: EdgeInsets_LeadingTrailing = .init(
+    ///     let insets: EdgeInsetsHorizontal = .init(
     ///         leading: 10,
     ///         trailing: 10
     ///     )
@@ -141,7 +142,7 @@ extension View {
     ///             .padding(insets)
     ///     }
     ///
-    public func padding(_ insets: EdgeInsets_LeadingTrailing) -> some View {
+    public func padding(_ insets: EdgeInsetsHorizontal) -> some View {
         self
             .padding(.leading, insets.leading)
             .padding(.trailing, insets.trailing)

@@ -1,5 +1,5 @@
 //
-//  EdgeInsets_TopBottom.swift
+//  EdgeInsetsVertical.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/1/21.
@@ -7,19 +7,20 @@
 
 import SwiftUI
 
-// MARK: - Edge Insets (Top, Bottom)
+// MARK: - Edge Insets (Vertical)
 /// Edge insets containing `top` and `bottom` values.
 @MemberwiseInitializable(
-    comment: "/// Initializes `EdgeInsets_TopBottom` with values."
+    comment: "/// Initializes `EdgeInsetsVertical` with values."
 )
-public struct EdgeInsets_TopBottom: Equatable, Hashable, Sendable {
-    // MARK: Properties
+public struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
+    // MARK: Properties - Base
     /// Top value.
     public var top: CGFloat
     
     /// Bottom inset  value.
     public var bottom: CGFloat
     
+    // MARK: Properties - Derived
     /// Sum of `top` and `bottom` values.
     public var verticalSum: CGFloat { top + bottom }
     
@@ -27,7 +28,7 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable, Sendable {
     public var verticalAverage: CGFloat { (top + bottom)/2 }
     
     // MARK: Initializers
-    /// Initializes `EdgeInsets_TopBottom` with value.
+    /// Initializes `EdgeInsetsVertical` with value.
     public init(
         _ value: CGFloat
     ) {
@@ -35,7 +36,7 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable, Sendable {
         self.bottom = value
     }
     
-    /// Initializes `EdgeInsets_TopBottom` with zero values.
+    /// Initializes `EdgeInsetsVertical` with zero values.
     public init() {
         self.top = 0
         self.bottom = 0
@@ -45,7 +46,7 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable, Sendable {
     public static var zero: Self { .init() }
 
     // MARK: Map
-    /// Returns `EdgeInsets_TopBottom`  containing the results of mapping the given closure over the values.
+    /// Returns `EdgeInsetsVertical`  containing the results of mapping the given closure over the values.
     public func map(
         _ transform: (CGFloat) throws -> CGFloat
     ) rethrows -> Self {
@@ -56,41 +57,41 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable, Sendable {
     }
 
     // MARK: Inset
-    /// Insets `EdgeInsets_TopBottom` by a given value.
+    /// Insets `EdgeInsetsVertical` by a given value.
     public func insetBy(
         inset: CGFloat
-    ) -> EdgeInsets_TopBottom {
+    ) -> EdgeInsetsVertical {
         .init(
             top: top + inset,
             bottom: bottom + inset
         )
     }
     
-    /// Insets `EdgeInsets_TopBottom` by a given top and bottom values.
+    /// Insets `EdgeInsetsVertical` by a given top and bottom values.
     public func insetBy(
         top topInset: CGFloat,
         bottom bottomInset: CGFloat
-    ) -> EdgeInsets_TopBottom {
+    ) -> EdgeInsetsVertical {
         .init(
             top: top + topInset,
             bottom: bottom + topInset
         )
     }
     
-    /// Insets `EdgeInsets_TopBottom` by a given top value.
+    /// Insets `EdgeInsetsVertical` by a given top value.
     public func insetBy(
         top topInset: CGFloat
-    ) -> EdgeInsets_TopBottom {
+    ) -> EdgeInsetsVertical {
         .init(
             top: top + topInset,
             bottom: bottom
         )
     }
     
-    /// Insets `EdgeInsets_TopBottom` by a given bottom value.
+    /// Insets `EdgeInsetsVertical` by a given bottom value.
     public func insetBy(
         bottom bottomInset: CGFloat
-    ) -> EdgeInsets_TopBottom {
+    ) -> EdgeInsetsVertical {
         .init(
             top: top,
             bottom: bottom + bottomInset
@@ -98,7 +99,7 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable, Sendable {
     }
     
     // MARK: Operators
-    /// Adds two `EdgeInsets_TopBottom` by adding up individual edge insets.
+    /// Adds two `EdgeInsetsVertical` by adding up individual edge insets.
     public static func + (lhs: Self, rhs: Self) -> Self {
         .init(
             top: lhs.top + rhs.top,
@@ -106,13 +107,13 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable, Sendable {
         )
     }
     
-    /// Adds right `EdgeInsets_TopBottom` to the left one by adding individual edge insets.
+    /// Adds right `EdgeInsetsVertical` to the left one by adding individual edge insets.
     public static func += (lhs: inout Self, rhs: Self) {
         lhs.top += rhs.top
         lhs.bottom += rhs.bottom
     }
     
-    /// Subtracts two `EdgeInsets_TopBottom` by subtracting up individual edge insets.
+    /// Subtracts two `EdgeInsetsVertical` by subtracting up individual edge insets.
     public static func - (lhs: Self, rhs: Self) -> Self {
         .init(
             top: lhs.top - rhs.top,
@@ -120,7 +121,7 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable, Sendable {
         )
     }
     
-    /// Subtracts right `EdgeInsets_TopBottom` to the left one by subtracting individual edge insets.
+    /// Subtracts right `EdgeInsetsVertical` to the left one by subtracting individual edge insets.
     public static func -= (lhs: inout Self, rhs: Self) {
         lhs.top -= rhs.top
         lhs.bottom -= rhs.bottom
@@ -129,9 +130,9 @@ public struct EdgeInsets_TopBottom: Equatable, Hashable, Sendable {
 
 // MARK: - View + Padding
 extension View {
-    /// Adds a specific padding amount to each edge of `View` from `EdgeInsets_TopBottom`.
+    /// Adds a specific padding amount to each edge of `View` from `EdgeInsetsVertical`.
     ///
-    ///     let insets: EdgeInsets_TopBottom = .init(
+    ///     let insets: EdgeInsetsVertical = .init(
     ///         top: 10,
     ///         bottom: 10
     ///     )
@@ -141,7 +142,7 @@ extension View {
     ///             .padding(insets)
     ///     }
     ///
-    public func padding(_ insets: EdgeInsets_TopBottom) -> some View {
+    public func padding(_ insets: EdgeInsetsVertical) -> some View {
         self
             .padding(.top, insets.top)
             .padding(.bottom, insets.bottom)

@@ -1,5 +1,5 @@
 //
-//  EdgeInsets_HorizontalVertical.swift
+//  EdgeInsetsAxis.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/1/21.
@@ -10,9 +10,9 @@ import SwiftUI
 // MARK: - Edge Insets (Horizontal, Vertical)
 /// Edge insets containing `horizontal` and `vertical` values.
 @MemberwiseInitializable(
-    comment: "/// Initializes `EdgeInsets_HorizontalVertical` with values."
+    comment: "/// Initializes `EdgeInsetsAxis` with values."
 )
-public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
+public struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
     // MARK: Properties
     /// Horizontal value.
     public var horizontal: CGFloat
@@ -21,7 +21,7 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
     public var vertical: CGFloat
     
     // MARK: Initializers
-    /// Initializes `EdgeInsets_HorizontalVertical` with value.
+    /// Initializes `EdgeInsetsAxis` with value.
     public init(
         _ value: CGFloat
     ) {
@@ -29,17 +29,17 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
         self.vertical = value
     }
     
-    /// Initializes `EdgeInsets_HorizontalVertical` with zero values.
+    /// Initializes `EdgeInsetsAxis` with zero values.
     public init() {
         self.horizontal = 0
         self.vertical = 0
     }
     
-    /// Initializes `EdgeInsets_HorizontalVertical` with zero values.
+    /// Initializes `EdgeInsetsAxis` with zero values.
     public static var zero: Self { .init() }
 
     // MARK: Mapping
-    /// Converts `EdgeInsets_HorizontalVertical` to `EdgeInsets`.
+    /// Converts `EdgeInsetsAxis` to `EdgeInsets`.
     public var toEdgeInsets: EdgeInsets {
         .init(
             top: vertical,
@@ -49,7 +49,7 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
         )
     }
 
-    /// Converts `EdgeInsets_HorizontalVertical` to `NSDirectionalEdgeInsets`.
+    /// Converts `EdgeInsetsAxis` to `NSDirectionalEdgeInsets`.
     public var toNSDirectionalEdgeInsets: NSDirectionalEdgeInsets {
         .init(
             top: vertical,
@@ -61,7 +61,7 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
 
 #if canImport(UIKit)
 
-    /// Converts `EdgeInsets_HorizontalVertical` to `UIEdgeInsets`.
+    /// Converts `EdgeInsetsAxis` to `UIEdgeInsets`.
     public var toUIEdgeInsets: UIEdgeInsets {
         .init(
             top: vertical,
@@ -73,7 +73,7 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
 
 #elseif canImport(AppKit)
 
-    /// Converts `EdgeInsets_HorizontalVertical` to `NSEdgeInsets`.
+    /// Converts `EdgeInsetsAxis` to `NSEdgeInsets`.
     public var toNSEdgeInsets: NSEdgeInsets {
         .init(
             top: vertical,
@@ -86,7 +86,7 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
 #endif
 
     // MARK: Map
-    /// Returns `EdgeInsets_HorizontalVertical`  containing the results of mapping the given closure over the values.
+    /// Returns `EdgeInsetsAxis`  containing the results of mapping the given closure over the values.
     public func map(
         _ transform: (CGFloat) throws -> CGFloat
     ) rethrows -> Self {
@@ -97,41 +97,41 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
     }
 
     // MARK: Inset
-    /// Insets `EdgeInsets_HorizontalVertical` by a given value.
+    /// Insets `EdgeInsetsAxis` by a given value.
     public func insetBy(
         inset: CGFloat
-    ) -> EdgeInsets_HorizontalVertical {
+    ) -> EdgeInsetsAxis {
         .init(
             horizontal: horizontal + inset,
             vertical: vertical + inset
         )
     }
     
-    /// Insets `EdgeInsets_HorizontalVertical` by a given horizontal and vertical values.
+    /// Insets `EdgeInsetsAxis` by a given horizontal and vertical values.
     public func insetBy(
         horizontal horizontalInset: CGFloat,
         vertical verticalInset: CGFloat
-    ) -> EdgeInsets_HorizontalVertical {
+    ) -> EdgeInsetsAxis {
         .init(
             horizontal: horizontal + horizontalInset,
             vertical: vertical + horizontalInset
         )
     }
     
-    /// Insets `EdgeInsets_HorizontalVertical` by a given horizontal value.
+    /// Insets `EdgeInsetsAxis` by a given horizontal value.
     public func insetBy(
         horizontal horizontalInset: CGFloat
-    ) -> EdgeInsets_HorizontalVertical {
+    ) -> EdgeInsetsAxis {
         .init(
             horizontal: horizontal + horizontalInset,
             vertical: vertical
         )
     }
     
-    /// Insets `EdgeInsets_HorizontalVertical` by a given vertical value.
+    /// Insets `EdgeInsetsAxis` by a given vertical value.
     public func insetBy(
         vertical verticalInset: CGFloat
-    ) -> EdgeInsets_HorizontalVertical {
+    ) -> EdgeInsetsAxis {
         .init(
             horizontal: horizontal,
             vertical: vertical + verticalInset
@@ -139,7 +139,7 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
     }
     
     // MARK: Operators
-    /// Adds two `EdgeInsets_HorizontalVertical` by adding up individual edge insets.
+    /// Adds two `EdgeInsetsAxis` by adding up individual edge insets.
     public static func + (lhs: Self, rhs: Self) -> Self {
         .init(
             horizontal: lhs.horizontal + rhs.horizontal,
@@ -147,21 +147,21 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
         )
     }
     
-    /// Adds right `EdgeInsets_HorizontalVertical` to the left one by adding individual edge insets.
+    /// Adds right `EdgeInsetsAxis` to the left one by adding individual edge insets.
     public static func += (lhs: inout Self, rhs: Self) {
         lhs.horizontal += rhs.horizontal
         lhs.vertical += rhs.vertical
     }
     
-    /// Subtracts two `EdgeInsets_HorizontalVertical` by subtracting up individual edge insets.
-    public static func - (lhs: Self, rhs: Self) -> EdgeInsets_HorizontalVertical {
+    /// Subtracts two `EdgeInsetsAxis` by subtracting up individual edge insets.
+    public static func - (lhs: Self, rhs: Self) -> EdgeInsetsAxis {
         .init(
             horizontal: lhs.horizontal - rhs.horizontal,
             vertical: lhs.vertical - rhs.vertical
         )
     }
     
-    /// Subtracts right `EdgeInsets_HorizontalVertical` to the left one by subtracting individual edge insets.
+    /// Subtracts right `EdgeInsetsAxis` to the left one by subtracting individual edge insets.
     public static func -= (lhs: inout Self, rhs: Self) {
         lhs.horizontal -= rhs.horizontal
         lhs.vertical -= rhs.vertical
@@ -170,9 +170,9 @@ public struct EdgeInsets_HorizontalVertical: Equatable, Hashable, Sendable {
 
 // MARK: - View + Padding
 extension View {
-    /// Adds a specific padding amount to each edge of `View` from `EdgeInsets_HorizontalVertical`.
+    /// Adds a specific padding amount to each edge of `View` from `EdgeInsetsAxis`.
     ///
-    ///     let insets: EdgeInsets_HorizontalVertical = .init(
+    ///     let insets: EdgeInsetsAxis = .init(
     ///         horizontal: 10,
     ///         vertical: 10
     ///     )
@@ -182,7 +182,7 @@ extension View {
     ///             .padding(insets)
     ///     }
     ///
-    public func padding(_ insets: EdgeInsets_HorizontalVertical) -> some View {
+    public func padding(_ insets: EdgeInsetsAxis) -> some View {
         self
             .padding(.leading, insets.horizontal)
             .padding(.trailing, insets.horizontal)

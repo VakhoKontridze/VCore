@@ -24,6 +24,11 @@ Models
 - `DeviceOrientationObserverOO` is removed, as it's obsoleted by `DeviceOrientationObserver`
 - `VCoreError` is replaced with `BaseErrorProtocol`
 - `StringRepresentable` is removed
+- `EdgeInsets_LeadingTrailingTopBottom` is removed in favor of `EdgeInsets`, and members are transferred as an extension
+- `EdgeInsets_LeadingTrailing` is renamed to `EdgeInsetsHorizontal`
+- `EdgeInsets_HorizontalVertical` is renamed to `EdgeInsetsAxis`
+- `EdgeInsets_TopBottom` is renamed to `EdgeInsetsVertical`
+- `LayoutDirectionHorizontal` is removed in favor of `LayoutDirection`, and members are transferred as an extension
 
 Services and Managers
 
