@@ -61,13 +61,13 @@ public struct TouchSensitiveContainerAppearance: Sendable {
     public var contentOpacities: StateOpacities = .init(1)
 
     // MARK: Properties - Transition
+    /// Animation.
+    public var animation: Animation? = .easeOut(duration: 0.25)
+    
     /// Animation delay.
     ///
     /// Can be useful when using `List`s.
     public var animationDelay: TimeInterval = 0.01
-
-    /// Animation.
-    public var animation: Animation? = .easeOut(duration: 0.25)
 
     // MARK: Initializers
     /// Initializes appearance with default values.

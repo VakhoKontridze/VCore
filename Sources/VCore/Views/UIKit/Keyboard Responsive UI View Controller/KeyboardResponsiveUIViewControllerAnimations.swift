@@ -128,20 +128,7 @@ extension UIView {
         additionalOffset: CGFloat = 20,
         completion: ((Bool) -> Void)? = nil
     ) {
-        switch keyboardWillShow {
-        case false:
-            UIView.animateKeyboardResponsiveness(
-                systemKeyboardInfo: systemKeyboardInfo,
-                animations: {
-                    containerView.bounds.origin.y = 0
-                    
-                    firstResponderView.superview?.layoutIfNeeded()
-                    containerView.superview?.layoutIfNeeded()
-                },
-                completion: completion
-            )
-            
-        case true:
+        if keyboardWillShow {
             guard let window: UIWindow = firstResponderView.window else {
                 Logger.keyboardResponsiveUIViewController.warning("Failed to retrieve 'UIWindow' from 'UIView': \(firstResponderView)")
                 return
@@ -170,6 +157,18 @@ extension UIView {
                 systemKeyboardInfo: systemKeyboardInfo,
                 animations: {
                     containerView.bounds.origin.y = obscuredHeight
+                    
+                    firstResponderView.superview?.layoutIfNeeded()
+                    containerView.superview?.layoutIfNeeded()
+                },
+                completion: completion
+            )
+            
+        } else {
+            UIView.animateKeyboardResponsiveness(
+                systemKeyboardInfo: systemKeyboardInfo,
+                animations: {
+                    containerView.bounds.origin.y = 0
                     
                     firstResponderView.superview?.layoutIfNeeded()
                     containerView.superview?.layoutIfNeeded()

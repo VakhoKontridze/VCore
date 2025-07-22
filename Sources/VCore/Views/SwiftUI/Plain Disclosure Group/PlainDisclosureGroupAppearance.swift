@@ -45,7 +45,7 @@ public struct PlainDisclosureGroupAppearance: Sendable {
 #endif
     }()
 
-    // MARK: Properties - Transition
+    // MARK: Properties - Transition - Expand/Collapse
     /// Expand and collapse animation.
     public var expandCollapseAnimation: Animation? = .default
 
