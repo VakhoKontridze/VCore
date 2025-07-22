@@ -41,9 +41,6 @@ public struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
         self.top = 0
         self.bottom = 0
     }
-    
-    /// Initializes `EdgeInsets_TB` with zero values.
-    public static var zero: Self { .init() }
 
     // MARK: Map
     /// Returns `EdgeInsetsVertical`  containing the results of mapping the given closure over the values.

@@ -98,9 +98,6 @@ extension EdgeInsets {
     }
 
 #endif
-    
-    /// Initializes `EdgeInsets` with zero values.
-    public static var zero: Self { .init() }
 
     // MARK: Mapping
     /// Converts `EdgeInsets` to `NSDirectionalEdgeInsets`.
@@ -261,30 +258,5 @@ extension EdgeInsets {
         lhs.trailing -= rhs.trailing
         lhs.top -= rhs.top
         lhs.bottom -= rhs.bottom
-    }
-}
-
-// MARK: - View + Padding
-extension View {
-    /// Adds a specific padding amount to each edge of `View` from `EdgeInsets`.
-    ///
-    ///     let insets: EdgeInsets = .init(
-    ///         leading: 10,
-    ///         trailing: 10,
-    ///         top: 10,
-    ///         bottom: 10
-    ///     )
-    ///
-    ///     var body: some View {
-    ///         Text("Lorem Ipsum")
-    ///             .padding(insets)
-    ///     }
-    ///
-    public func padding(_ insets: EdgeInsets) -> some View {
-        self
-            .padding(.leading, insets.leading)
-            .padding(.trailing, insets.trailing)
-            .padding(.top, insets.top)
-            .padding(.bottom, insets.bottom)
     }
 }

@@ -34,9 +34,6 @@ public struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
         self.horizontal = 0
         self.vertical = 0
     }
-    
-    /// Initializes `EdgeInsetsAxis` with zero values.
-    public static var zero: Self { .init() }
 
     // MARK: Mapping
     /// Converts `EdgeInsetsAxis` to `EdgeInsets`.

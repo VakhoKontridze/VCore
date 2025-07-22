@@ -41,9 +41,6 @@ public struct EdgeInsetsHorizontal: Equatable, Hashable, Sendable {
         self.leading = 0
         self.trailing = 0
     }
-    
-    /// Initializes `EdgeInsets_LT` with zero values.
-    public static var zero: Self { .init() }
 
     // MARK: Map
     /// Returns `EdgeInsetsHorizontal`  containing the results of mapping the given closure over the values.
