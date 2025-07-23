@@ -90,8 +90,8 @@ extension EdgeInsets {
     /// Initializes `EdgeInsets` with `NSEdgeInsets`.
     public init(_ nsEdgeInsets: NSEdgeInsets) {
         self.init(
-            leading: nsEdgeInsets.leading,
-            trailing: nsEdgeInsets.trailing,
+            leading: nsEdgeInsets.left,
+            trailing: nsEdgeInsets.right,
             top: nsEdgeInsets.top,
             bottom: nsEdgeInsets.bottom
         )
