@@ -15,7 +15,7 @@ import SwiftUI
 /// Model:
 ///
 ///     struct PlainButtonAppearance {
-///         var titleColors: StateColors = .init(
+///         var labelTextColors: StateColors = .init(
 ///             enabled: Color.primary,
 ///             pressed: Color.secondary,
 ///             disabled: Color.secondary
@@ -53,7 +53,7 @@ import SwiftUI
 ///                     let internalState: PlainButtonInternalState = internalState(baseButtonState)
 ///
 ///                     Text(title)
-///                         .foregroundStyle(appearance.titleColors.value(for: internalState))
+///                         .foregroundStyle(appearance.labelTextColors.value(for: internalState))
 ///                 }
 ///             )
 ///         }

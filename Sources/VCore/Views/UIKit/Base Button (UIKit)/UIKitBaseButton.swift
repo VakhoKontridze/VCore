@@ -17,7 +17,7 @@ import UIKit
 /// Model:
 ///
 ///     struct PlainButtonAppearance {
-///         var titleColors: StateColors = .init(
+///         var labelTextColors: StateColors = .init(
 ///             enabled: UIColor.label,
 ///             pressed: UIColor.secondaryLabel,
 ///             disabled: UIColor.secondaryLabel
@@ -120,7 +120,7 @@ import UIKit
 ///         }
 ///
 ///         private func configureFromStateAppearanceChange() {
-///             titleLabel.textColor = appearance.titleColors.value(for: internalState)
+///             titleLabel.textColor = appearance.labelTextColors.value(for: internalState)
 ///         }
 ///     }
 ///
@@ -220,7 +220,7 @@ open class UIKitBaseButton: UIView {
 
 // Macros aren't allowed in Preview macro
 private struct PlainButtonAppearance {
-    var titleColors: StateColors = .init(
+    var labelTextColors: StateColors = .init(
         enabled: UIColor.label,
         pressed: UIColor.secondaryLabel,
         disabled: UIColor.secondaryLabel
@@ -319,7 +319,7 @@ private final class PlainButton: UIView {
     }
 
     private func configureFromStateAppearanceChange() {
-        titleLabel.textColor = appearance.titleColors.value(for: internalState)
+        titleLabel.textColor = appearance.labelTextColors.value(for: internalState)
     }
 }
 
