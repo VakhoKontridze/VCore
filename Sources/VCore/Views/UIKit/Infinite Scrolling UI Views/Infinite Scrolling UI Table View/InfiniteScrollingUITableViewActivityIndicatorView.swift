@@ -15,19 +15,25 @@ final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
     private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
     
     // MARK: Properties
-    private typealias Appearance = InfiniteScrollingUITableViewActivityIndicatorViewAppearance
+    private let appearance: InfiniteScrollingUITableViewActivityIndicatorViewAppearance
     
     // MARK: Initializers
-    init(in tableView: UITableView) {
+    init(
+        appearance: InfiniteScrollingUITableViewActivityIndicatorViewAppearance = .init(),
+        tableView: UITableView
+    ) {
+        self.appearance = appearance
+        
         super.init(
             frame: CGRect(
                 origin: .zero,
                 size: CGSize(
                     width: tableView.frame.size.width,
-                    height: Appearance.height
+                    height: appearance.height
                 )
             )
         )
+        
         setUp()
     }
     

@@ -10,6 +10,8 @@
 import Foundation
 
 // MARK: - Infinite Scrolling UI Collection View Activity Indicator View Appearance
-typealias InfiniteScrollingUICollectionViewActivityIndicatorViewAppearance = InfiniteScrollingUITableViewActivityIndicatorViewAppearance
+struct InfiniteScrollingUICollectionViewActivityIndicatorViewAppearance {
+    var height: CGFloat = 100
+}
 
 #endif

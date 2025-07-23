@@ -10,9 +10,8 @@
 import UIKit
 
 // MARK: - Infinite Scrolling UI Table View Activity Indicator View Appearance
-@Uninitializable
 struct InfiniteScrollingUITableViewActivityIndicatorViewAppearance {
-    static var height: CGFloat { 100 }
+    var height: CGFloat = 100
 }
 
 #endif

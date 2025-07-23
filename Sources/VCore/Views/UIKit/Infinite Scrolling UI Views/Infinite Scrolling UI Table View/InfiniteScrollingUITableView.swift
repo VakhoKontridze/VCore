@@ -149,7 +149,7 @@ open class InfiniteScrollingUITableView: UITableView {
         switch paginationState {
         case .loading:
             guard frame.size.width != 0 else { return }
-            tableFooterView = InfiniteScrollingUITableViewActivityIndicatorView(in: self)
+            tableFooterView = InfiniteScrollingUITableViewActivityIndicatorView(tableView: self)
             
         case .canPaginate, .cannotPaginate:
             tableFooterView = nil
