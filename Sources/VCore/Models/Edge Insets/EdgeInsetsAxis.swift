@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Edge Insets (Horizontal, Vertical)
+// MARK: - Edge Insets (Axis)
 /// Edge insets containing `horizontal` and `vertical` values.
 @MemberwiseInitializable(
     comment: "/// Initializes `EdgeInsetsAxis` with values."

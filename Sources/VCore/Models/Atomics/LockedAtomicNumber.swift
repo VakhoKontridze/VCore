@@ -7,7 +7,7 @@
 
 import Foundation
 
-// MARK: - Atomic Number (Locked)
+// MARK: - Locked Atomic Number
 /// Thread-safe, automatically incremented `Number`.
 ///
 ///     let idGenerator: LockedAtomicNumber<Int> = .init()
@@ -119,7 +119,7 @@ public final class LockedAtomicNumber<Number>: @unchecked Sendable
     }
 }
 
-// MARK: - Atomic Integer (Locked)
+// MARK: - Locked Atomic Integer
 /// Thread-safe, automatically incremented `Int`.
 ///
 ///     let idGenerator: LockedAtomicInteger = .init()

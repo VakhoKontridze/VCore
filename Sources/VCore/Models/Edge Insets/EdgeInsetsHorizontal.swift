@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-// MARK: - Edge Insets (Leading, Trailing)
+// MARK: - Edge Insets (Horizontal)
 /// Edge insets containing `leading` and `trailing` values.
 @MemberwiseInitializable(
     comment: "/// Initializes `EdgeInsetsHorizontal` with values."
