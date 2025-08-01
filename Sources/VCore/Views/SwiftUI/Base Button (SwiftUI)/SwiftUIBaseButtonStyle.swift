@@ -8,17 +8,22 @@
 import SwiftUI
 
 struct SwiftUIBaseButtonStyle<Label>: ButtonStyle where Label: View {
-    // MARK: Properties
+    // MARK: Properties - Appearance
     private let appearance: SwiftUIBaseButtonAppearance
     
+    // MARK: Properties - State
     @Environment(\.isEnabled) private var isEnabled: Bool
-    private func internalState(_ isPressed: Bool) -> SwiftUIBaseButtonState {
+    
+    private func internalState(
+        _ isPressed: Bool
+    ) -> SwiftUIBaseButtonState {
         .init(
             isEnabled: isEnabled,
             isPressed: isPressed
         )
     }
     
+    // MARK: Properties - Label
     private let label: (GenericState_EnabledPressedDisabled) -> Label
     
     // MARK: Initializers

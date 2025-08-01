@@ -12,39 +12,33 @@ import OSLog
 
 /// Protocol that allows parameter to configure a `UITableViewCell`.
 ///
-///     protocol HomeViewable: AnyObject {}
-///
-///     protocol HomePresentable: UITableViewDelegable, UITableViewDataSourceable {}
-///
-///     final class HomeViewController:
-///         UIViewController, HomeViewable,
+///     final class ViewController:
+///         UIViewController,
 ///         UITableViewDelegate, UITableViewDataSource
 ///     {
-///         var presenter: (any HomePresentable)!
+///         var viewModel: ViewModel!
 ///
 ///         func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-///             presenter.tableViewDidSelectRow(section: indexPath.section, row: indexPath.row)
+///             viewModel.tableViewDidSelectRow(section: indexPath.section, row: indexPath.row)
 ///         }
 ///
 ///         func numberOfSections(in tableView: UITableView) -> Int {
-///             presenter.tableViewNumberOfSections
+///             viewModel.tableViewNumberOfSections
 ///         }
 ///
 ///         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-///             presenter.tableViewNumberOfRows(section: section)
+///             viewModel.tableViewNumberOfRows(section: section)
 ///         }
 ///
 ///         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 ///             tableView.dequeueAndConfigureReusableCell(
-///                 parameter: presenter.tableViewCellParameter(section: indexPath.section, row: indexPath.row)
+///                 parameter: viewModel.tableViewCellParameter(section: indexPath.section, row: indexPath.row)
 ///             )
 ///         }
 ///     }
 ///
-///     final class HomePresenter<View>: HomePresentable
-///         where View: HomeViewable
-///     {
-///         unowned let view: HomeViewable
+///     final class Presenter: UITableViewDelegable, UITableViewDataSourceable {
+///         unowned let view: ViewController
 ///
 ///         private var tableViewParameters: [[any UITableViewCellParameter]] = []
 ///
@@ -88,18 +82,12 @@ extension ConfigurableUITableViewCell {
 }
 
 /// Allows for the delegation of `UITableViewDelegate`.
-///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `Presenter`.
-/// in `MVVM` architecture, this `protocol` is conformed to by a `ViewModel`.
 public protocol UITableViewDelegable {
     /// Notifies that a `UITableViewCell` has been selected and section and row.
     func tableViewDidSelectRow(section: Int, row: Int)
 }
 
 /// Allows for the delegation of `UITableViewDataSource`.
-///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `Presenter`.
-/// in `MVVM` architecture, this `protocol` is conformed to by a `ViewModel`.
 public protocol UITableViewDataSourceable {
     /// Number of sections in `UITableView`.
     var tableViewNumberOfSections: Int { get }

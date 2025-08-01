@@ -12,44 +12,38 @@ import OSLog
 
 /// Protocol that allows parameter to configure a `UICollectionViewCell`.
 ///
-///     protocol HomeViewable: AnyObject {}
-///
-///     protocol HomePresentable: UICollectionViewDelegable, UICollectionViewDataSourceable {}
-///
-///     final class HomeViewController:
-///         UIViewController, HomeViewable,
+///     final classViewController:
+///         UIViewController,
 ///         UICollectionViewDelegate, UICollectionViewDataSource
 ///     {
-///         var presenter: (any HomePresentable)!
+///         var viewModel: ViewModel!
 ///
 ///         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-///             presenter.collectionViewDidSelectRow(section: indexPath.section, row: indexPath.row)
+///             viewModel.collectionViewDidSelectRow(section: indexPath.section, row: indexPath.row)
 ///         }
 ///
 ///         func numberOfSections(in collectionView: UICollectionView) -> Int {
-///             presenter.collectionViewNumberOfSections
+///             viewModel.collectionViewNumberOfSections
 ///         }
 ///
 ///         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-///             presenter.collectionViewNumberOfItems(section: section)
+///             viewModel.collectionViewNumberOfItems(section: section)
 ///         }
 ///
 ///         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
 ///             collectionView.dequeueAndConfigureReusableCell(
 ///                 indexPath: indexPath,
-///                 parameter: presenter.collectionViewCellParameter(section: indexPath.section, row: indexPath.row)
+///                 parameter: viewModel.collectionViewCellParameter(section: indexPath.section, row: indexPath.row)
 ///             )
 ///         }
 ///     }
 ///
-///     final class HomePresenter<View>: HomePresentable
-///         where View: HomeViewable
-///     {
-///         unowned let view: HomeViewable
+///     final class ViewModel: UICollectionViewDelegable, UICollectionViewDataSourceable {
+///         unowned let view: ViewController
 ///
 ///         private var collectionViewParameters: [[any UICollectionViewCellParameter]] = []
 ///
-///         init(view: View) {
+///         init(view: ViewController) {
 ///             self.view = view
 ///         }
 ///
@@ -89,18 +83,12 @@ extension ConfigurableUICollectionViewCell {
 }
 
 /// Allows for the delegation of `UICollectionViewDelegate`.
-///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `Presenter`.
-/// in `MVVM` architecture, this `protocol` is conformed to by a `ViewModel`.
 public protocol UICollectionViewDelegable {
     /// Notifies that a `UICollectionViewCell` has been selected and section and row.
     func collectionViewDidSelectRow(section: Int, row: Int)
 }
 
 /// Allows for the delegation of `UICollectionViewDataSource`.
-///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `Presenter`.
-/// in `MVVM` architecture, this `protocol` is conformed to by a `ViewModel`.
 public protocol UICollectionViewDataSourceable {
     /// Number of sections in `UICollectionView`
     var collectionViewNumberOfSections: Int { get }

@@ -10,23 +10,6 @@
 import UIKit
 
 /// Parameters for presenting a `UIAlert`.
-///
-/// In `MVP`, `VIP`, and `VIPER` architectures, parameters are passed by`Presenter` to `View/Controller`
-/// In `MVVM` architecture, parameters are passed by`ViewModel` to `View/Controller`
-///
-/// For usage example, refer to `UIAlertViewable`.
-///
-///     presentAlert(
-///         parameters: UIAlertParameters(
-///             title: "Lorem Ipsum",
-///             message: "Lorem ipsum dolor sit amet",
-///             actions: {
-///                 UIAlertButton(action: { print("Confirmed") }, title: "Confirm")
-///                 UIAlertButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
-///             }
-///         )
-///     )
-///
 public struct UIAlertParameters {
     // MARK: Properties
     /// Title.

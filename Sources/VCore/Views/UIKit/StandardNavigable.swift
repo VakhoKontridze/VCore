@@ -11,18 +11,15 @@ import UIKit
 
 /// Standard Navigable that allows for navigation via `UINavigationController`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed by a `View/Controller`.
-/// In `MVVM` architecture, this `protocol` is conformed to by a `View/Controller`.
-///
 ///     final class ViewController: UIViewController, StandardNavigable {
-///         var presenter: Presenter!
+///         var viewModel: ViewModel!
 ///
 ///         func didTapButton() {
-///             presenter.didTapButton()
+///             viewModel.didTapButton()
 ///         }
 ///     }
 ///
-///     final class Presenter {
+///     final class ViewModel {
 ///         unowned let view: ViewController
 ///         let router: Router
 ///
@@ -30,7 +27,8 @@ import UIKit
 ///             view: ViewController,
 ///             router: Router
 ///         ) {
-///             ...
+///             self.view = view
+///             self.router = router
 ///         }
 ///
 ///         func didTapButton() {
@@ -39,14 +37,14 @@ import UIKit
 ///     }
 ///
 ///     struct Router {
-///         let navigator: ViewController
+///         unowned let view: ViewController
 ///
 ///         init(navigator: ViewController) {
-///             ...
+///             self.view = view
 ///         }
 ///
 ///         func toDestination() {
-///             navigator.push(Destination())
+///             view.push(Destination())
 ///         }
 ///     }
 ///

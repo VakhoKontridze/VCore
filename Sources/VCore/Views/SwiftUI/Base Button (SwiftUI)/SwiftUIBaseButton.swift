@@ -31,8 +31,15 @@ import SwiftUI
 ///
 ///     struct PlainButton: View {
 ///         private let appearance: PlainButtonAppearance
-///         private func internalState(_ baseButtonState: SwiftUIBaseButtonState) -> PlainButtonInternalState { baseButtonState }
+///
+///         private func internalState(
+///             _ baseButtonState: SwiftUIBaseButtonState
+///         ) -> PlainButtonInternalState {
+///             baseButtonState
+///         }
+///
 ///         private let action: () -> Void
+///
 ///         private let title: String
 ///
 ///         init(

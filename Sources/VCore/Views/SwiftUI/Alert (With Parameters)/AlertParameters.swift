@@ -8,23 +8,6 @@
 import SwiftUI
 
 /// Parameters for presenting an `Alert`.
-///
-///     @State private var parameters: AlertParameters?
-///
-///     var body: some View {
-///         Button("Present") {
-///             parameters = AlertParameters(
-///                 title: "Lorem Ipsum",
-///                 message: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
-///                 actions: {
-///                     AlertButton(action: { print("Confirmed") }, title: "Confirm")
-///                     AlertButton(action: { print("Cancelled") }, title: "Cancel", role: .cancel)
-///                 }
-///             )
-///         }
-///         .alert(parameters: $parameters)
-///     }
-///
 public struct AlertParameters {
     // MARK: Properties
     /// Title.

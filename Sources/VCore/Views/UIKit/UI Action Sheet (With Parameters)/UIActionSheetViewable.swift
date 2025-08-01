@@ -11,18 +11,15 @@ import UIKit
 
 /// Protocol for presenting a `UIActionSheet`.
 ///
-/// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `View/Controller`.
-/// In `MVVM` architecture, this `protocol` is conformed to by a `View/Controller`.
-///
 ///     final class ViewController: UIViewController, UIActionSheetViewable {
-///         var presenter: Presenter!
+///         var viewModel: ViewModel!
 ///     }
 ///
-///     final class Presenter {
+///     final class ViewModel {
 ///         unowned let view: ViewController
 ///
 ///         init(view: ViewController) {
-///             ...
+///             self.view = view
 ///         }
 ///
 ///         func present() {

@@ -10,23 +10,6 @@
 import UIKit
 
 /// Parameters for presenting a `UIActionSheet`.
-///
-/// In `MVP`, `VIP`, and `VIPER` architectures, parameters are passed by`Presenter` to `View/Controller`
-/// In `MVVM` architecture, parameters are passed by`ViewModel` to `View/Controller`
-///
-/// For usage example, refer to `UIActionSheetViewable`.
-///
-///     presentActionSheet(
-///         parameters: UIActionSheetParameters(
-///             title: "Lorem Ipsum",
-///             message: "Lorem ipsum dolor sit amet",
-///             actions: {
-///                 UIActionSheetButton(action: { print("Confirmed") }, title: "Confirm")
-///                 UIActionSheetButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
-///             }
-///         )
-///     )
-///
 public struct UIActionSheetParameters {
     // MARK: Properties
     /// Title.
