@@ -229,7 +229,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
         modal.presentationMode.dismissSubject.send /*completion: */{
             modals.removeAll { $0.id == dismissData.link.linkID }
             
-            ModalPresenterDataSourceCache.shared.remove(key: dismissData.link.linkID)
+            ModalPresenterDataSourceCache.shared.remove(link: dismissData.link)
 
             dismissData.completion()
         }

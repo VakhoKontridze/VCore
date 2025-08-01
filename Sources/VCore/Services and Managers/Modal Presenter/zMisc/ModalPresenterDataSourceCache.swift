@@ -21,7 +21,7 @@ import SwiftUI
 ///         ) -> some View
 ///             where Content: View
 ///         {
-///             item.wrappedValue.map { ModalPresenterDataSourceCache.shared.set(key: id, value: $0) }
+///             item.wrappedValue.map { ModalPresenterDataSourceCache.shared.set(link: link, value: $0) }
 ///
 ///             let isPresented: Binding<Bool> = .init(
 ///                 get: { item.wrappedValue != nil },
@@ -34,7 +34,7 @@ import SwiftUI
 ///                     isPresented: isPresented,
 ///                 ) {
 ///                     Modal<Content?>(isPresented: isPresented) {
-///                         if let item = item.wrappedValue ?? ModalPresenterDataSourceCache.shared.get(key: id) as? Item {
+///                         if let item = item.wrappedValue ?? ModalPresenterDataSourceCache.shared.get(link: link) as? Item {
 ///                             content(item)
 ///                         }
 ///                     }
@@ -56,17 +56,27 @@ public final class ModalPresenterDataSourceCache: Sendable {
     
     // MARK: Operations
     /// Returns data from key.
-    public func get(key: String) -> Any? {
-        storage[key]
+    public func get(link: ModalPresenterLink) -> Any? {
+        storage[link.key]
     }
     
     /// Sets data with key.
-    public func set(key: String, value: Any) {
-        storage[key] = value
+    public func set(link: ModalPresenterLink, value: Any) {
+        storage[link.key] = value
     }
     
     /// Deletes data with key.
-    public func remove(key: String) {
-        storage.removeValue(forKey: key)
+    public func remove(link: ModalPresenterLink) {
+        storage.removeValue(forKey: link.key)
+    }
+}
+
+extension ModalPresenterLink {
+    fileprivate var key: String {
+        if let rootID {
+            "\(rootID)-\(linkID)"
+        } else {
+            linkID
+        }
     }
 }
