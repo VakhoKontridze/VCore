@@ -8,7 +8,6 @@
 import Foundation
 import SwiftSyntax
 
-// MARK: - Token Kind + Type Casts
 extension TokenKind {
     func toKeywordAssociatedValue() -> Keyword? {
         if case .keyword(let keyword) = self {

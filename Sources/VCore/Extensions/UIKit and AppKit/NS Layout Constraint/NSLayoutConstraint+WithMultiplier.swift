@@ -13,7 +13,6 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - NS Layout Constraint + With Multiplier
 extension NSLayoutConstraint {
     /// Modifies and returns constraint with a given priority.
     ///

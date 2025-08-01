@@ -9,7 +9,6 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct CollectionEnumeratedArrayTests {
     @Test

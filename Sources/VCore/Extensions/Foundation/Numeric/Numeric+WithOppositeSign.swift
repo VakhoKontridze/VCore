@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Numeric + With Opposite Sign
 extension Numeric {
     /// Returns `Numeric` value with opposite sign if condition is met.
     ///

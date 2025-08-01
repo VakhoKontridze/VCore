@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Multipart Form Data Builder + File Builder
 extension MultipartFormDataBuilder {
     struct FileBuilder {
         // MARK: Properties

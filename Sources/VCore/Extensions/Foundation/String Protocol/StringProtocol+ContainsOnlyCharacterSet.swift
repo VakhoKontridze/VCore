@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - String Protocol + Contains Only Character Set
 extension StringProtocol {
     /// Returns `Bool` indicating if `String` only contains given `CharacterSet`.
     ///
@@ -22,7 +21,6 @@ extension StringProtocol {
     }
 }
 
-// MARK: - String Protocol + Contains Only Character Sets
 extension StringProtocol {
     /// Returns `Bool` indicating if `String` only contains given `CharacterSet`.
     ///

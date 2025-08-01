@@ -10,7 +10,6 @@
 import UIKit
 import OSLog
 
-// MARK: - Infinite Scrolling UI Collection View
 /// `UICollectionView` that handles infinite scrolling.
 ///
 /// Contains property `paginationState`, controls pagination state.
@@ -112,7 +111,7 @@ import OSLog
 ///         func collectionViewDidScrollToBottom(
 ///             sender infiniteScrollingUICollectionView: InfiniteScrollingUICollectionView
 ///         ) {
-///             DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+///             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
 ///                 guard let self else { return }
 ///
 ///                 data.append(contentsOf: Self.dataChunk)
@@ -124,29 +123,38 @@ import OSLog
 ///     }
 ///
 open class InfiniteScrollingUICollectionView: UICollectionView {
-    // MARK: Subviews
-    private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+    // MARK: Properties - Appearance
+    private let appearance: InfiniteScrollingUICollectionViewAppearance
     
-    // MARK: Properties
-    /// Delegate.
-    open weak var infiniteScrollingDelegate: (any InfiniteScrollingUICollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
+    /// Offset that needs to be dragged vertically up for pagination to occur.
+    open var paginationOffset: CGFloat = 20
     
+    // MARK: Properties - State
     /// Controls pagination state.
     /// When insufficient data is loaded in`UICollectionView`, or when pagination occurs, property is set to `loading` and delegate method is called.
     /// Network call or persistent storage fetch request can be made.
     /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
-    open var paginationState: PaginationState = .canPaginate 
+    open var paginationState: PaginationState = .canPaginate
         { didSet { setActivityIndicatorState() } }
-
-    /// Offset that needs to be dragged vertically up for pagination to occur.
-    open var paginationOffset: CGFloat = 20
     
+    // MARK: Properties - Delegate
+    /// Delegate.
+    open weak var infiniteScrollingDelegate: (any InfiniteScrollingUICollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
+    
+    // MARK: Properties - Flags
     private var isFirstLayoutSubviews: Bool = false
     
-    private let appearance: InfiniteScrollingUICollectionViewActivityIndicatorViewAppearance = .init()
+    // MARK: Properties - Subviews
+    private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
     
     // MARK: Initializers
-    public override init(frame: CGRect, collectionViewLayout: UICollectionViewLayout) {
+    /// Initializes `InfiniteScrollingUICollectionView`.
+    public init(
+        appearance: InfiniteScrollingUICollectionViewAppearance = .init(),
+        frame: CGRect,
+        collectionViewLayout: UICollectionViewLayout
+    ) {
+        self.appearance = appearance
         super.init(frame: frame, collectionViewLayout: collectionViewLayout)
         setUp()
     }
@@ -190,7 +198,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         
         (collectionViewLayout as? UICollectionViewFlowLayout)?.footerReferenceSize = CGSize(
             width: bounds.size.width,
-            height: appearance.height
+            height: appearance.activityIndicatorContainerHeight
         )
     }
     
@@ -230,7 +238,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             origin: .zero,
             size: CGSize(
                 width: frame.size.width,
-                height: appearance.height
+                height: appearance.activityIndicatorContainerHeight
             )
         )
         
@@ -260,7 +268,6 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
 
 #endif
 
-// MARK: - Preview
 #if os(iOS) // iOS-only example
 
 #Preview {
@@ -270,6 +277,11 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         UICollectionViewDataSource,
         InfiniteScrollingUICollectionViewDelegate
     {
+        // MARK: Properties - Data
+        private lazy var data: [UIColor] = page
+        private var page: [UIColor] { [.red, .green, .blue, .systemPink, .yellow] }
+        
+        // MARK: Properties - Subviews
         private lazy var collectionView: InfiniteScrollingUICollectionView = {
             let layout: UICollectionViewFlowLayout = .init()
             layout.minimumLineSpacing = 0
@@ -292,9 +304,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             return collectionView
         }()
 
-        private lazy var data: [UIColor] = page
-        private var page: [UIColor] { [.red, .green, .blue, .systemPink, .yellow] }
-
+        // MARK: Lifecycle
         override func viewDidLoad() {
             super.viewDidLoad()
 
@@ -312,6 +322,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             collectionView.reloadData()
         }
 
+        // MARK: Properties
         func collectionView(
             _ collectionView: UICollectionView,
             layout collectionViewLayout: UICollectionViewLayout,
@@ -323,10 +334,12 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             )
         }
 
+        // MARK: Scroll View Delegate
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
             collectionView.detectPaginationFromScrollViewDidScroll(scrollView)
         }
 
+        // MARK: Collection View Data Source
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             data.count
         }
@@ -340,9 +353,18 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
 
             return cell
         }
-
+        
+        func collectionView(
+            _ collectionView: UICollectionView,
+            viewForSupplementaryElementOfKind kind: String,
+            at indexPath: IndexPath
+        ) -> UICollectionReusableView {
+            self.collectionView.viewForSupplementaryElement(kind: kind, at: indexPath)
+        }
+        
+        // MARK: Infinite Scrolling Table View Delegate
         func collectionViewDidScrollToBottom(sender infiniteScrollingCollectionView: InfiniteScrollingUICollectionView) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                 guard let self else { return }
 
                 data.append(contentsOf: page)
@@ -350,14 +372,6 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
                 collectionView.paginationState = .canPaginate
                 collectionView.reloadData()
             }
-        }
-
-        func collectionView(
-            _ collectionView: UICollectionView,
-            viewForSupplementaryElementOfKind kind: String,
-            at indexPath: IndexPath
-        ) -> UICollectionReusableView {
-            self.collectionView.viewForSupplementaryElement(kind: kind, at: indexPath)
         }
     }
 

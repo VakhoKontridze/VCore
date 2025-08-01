@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Locked Atomic Number
 /// Thread-safe, automatically incremented `Number`.
 ///
 ///     let idGenerator: LockedAtomicNumber<Int> = .init()
@@ -117,21 +116,4 @@ public final class LockedAtomicNumber<Number>: @unchecked Sendable
     public func getAndDecrement() -> Number {
         getAndAdd(-1)
     }
-}
-
-// MARK: - Locked Atomic Integer
-/// Thread-safe, automatically incremented `Int`.
-///
-///     let idGenerator: LockedAtomicInteger = .init()
-///
-///     func generateID() -> Int {
-///         idGenerator.getAndIncrement()
-///     }
-///
-/// For shared instance, refer to `shared`.
-public typealias LockedAtomicInteger = LockedAtomicNumber<Int>
-
-extension LockedAtomicInteger {
-    /// Shared instance of `LockedAtomicNumber`.
-    public static let shared: LockedAtomicNumber = .init()
 }

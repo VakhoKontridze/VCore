@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Keychain Service Error
 /// An error that occurs during the operations in `KeychainService`.
 @MemberwiseInitializable(accessLevelModifier: .private)
 public struct KeychainServiceError: BaseErrorProtocol, Sendable {

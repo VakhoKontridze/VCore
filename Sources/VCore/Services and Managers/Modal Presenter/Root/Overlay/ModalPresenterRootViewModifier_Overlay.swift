@@ -8,7 +8,6 @@
 import SwiftUI
 import Combine
 
-// MARK: - Modal Presenter Root View Modifier (Overlay)
 struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     // MARK: Properties - Root
     private let root: ModalPresenterRoot

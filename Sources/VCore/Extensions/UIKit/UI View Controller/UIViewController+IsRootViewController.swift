@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI View Controller + Is Root View Controller
 extension UIViewController {
     /// Indicates if `UIViewController` is `rootViewController` inside `UINavigationController`.
     ///

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Alert Button
 /// `UIAlertController` button.
 public struct UIAlertButton: UIAlertButtonProtocol {
     // MARK: Properties

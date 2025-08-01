@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Get Safe Area Insets
 extension View {
     /// Retrieves safe are insets from `View`.
     ///

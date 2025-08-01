@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Color + RGBA Values
 extension UIColor {
     /// Returns RGBA values of `UIColor`.
     ///

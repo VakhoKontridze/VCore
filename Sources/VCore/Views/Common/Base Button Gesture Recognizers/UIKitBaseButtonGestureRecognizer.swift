@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Kit Base Button Gesture Recognizer
 @available(tvOS, unavailable)
 final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureRecognizerDelegate {
     // MARK: Properties
@@ -89,7 +88,6 @@ final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureReco
     }
 }
 
-// MARK: - Helpers
 extension UIView {
     fileprivate var centerLocationOnSuperView: CGPoint? {
         superview?.convert(center, to: nil)

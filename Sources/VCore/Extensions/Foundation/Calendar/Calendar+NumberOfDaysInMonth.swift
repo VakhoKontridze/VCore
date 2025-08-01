@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Calendar + Number of Days in Month
 extension Calendar {
     /// Returns number of days in a month for the given date.
     ///

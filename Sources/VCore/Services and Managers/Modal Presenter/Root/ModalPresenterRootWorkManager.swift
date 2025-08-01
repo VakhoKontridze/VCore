@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-// MARK: - Modal Presenter Root Work Manager
 // When work is received in Modal Presenter root (such as present, update, or dismiss)
 // they have to be buffered before important data is read from the environment.
 // In addition, it provides serialization.

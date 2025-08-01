@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-// MARK: - Modal Presenter Presentation Mode
 /// Presentation mode object embedded in environment of modals presented via Modal Presenter.
 public struct ModalPresenterPresentationMode {
     // MARK: Properties - General

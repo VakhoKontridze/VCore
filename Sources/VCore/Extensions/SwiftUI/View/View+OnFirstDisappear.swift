@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + On First Disappear
 extension View {
     /// Adds an action to perform before `View` disappears for the first time.
     ///
@@ -24,7 +23,6 @@ extension View {
     }
 }
 
-// MARK: - On First Disappear Modifier
 private struct OnFirstDisappearModifier: ViewModifier {
     // MARK: Properties
     private let action: (() -> Void)?

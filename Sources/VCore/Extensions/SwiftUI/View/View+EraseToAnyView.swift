@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Erase to Any View
 extension View {
     /// Wraps `View` with a type eraser.
     ///

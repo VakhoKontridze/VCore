@@ -9,7 +9,6 @@
 
 import AppKit
 
-// MARK: - NS Font + Styling
 extension NSFont {
     /// Returns `NSFont` with italic styling.
     ///
@@ -30,7 +29,6 @@ extension NSFont {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 import SwiftUI

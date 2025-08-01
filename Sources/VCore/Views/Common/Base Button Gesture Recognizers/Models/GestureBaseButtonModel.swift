@@ -13,7 +13,6 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - Gesture Base Button Model
 @MainActor
 final class GestureBaseButtonModel {
     // MARK: Properties
@@ -117,7 +116,6 @@ final class GestureBaseButtonModel {
     }
 }
 
-// MARK: - Helpers
 extension CGPoint {
     fileprivate func equals(_ other: CGPoint, tolerance: CGFloat) -> Bool {
         areEqual(x, other.x, tolerance: tolerance) &&

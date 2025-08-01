@@ -9,7 +9,6 @@
 
 import AppKit
 
-// MARK: - App Kit Base Button Gesture Recognizer
 final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRecognizerDelegate {
     // MARK: Properties
     override var state: NSGestureRecognizer.State {
@@ -89,7 +88,6 @@ final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRec
     }
 }
 
-// MARK: - Helpers
 extension NSView {
     fileprivate var centerLocationOnSuperView: CGPoint? {
         superview?.convert(center, to: nil)

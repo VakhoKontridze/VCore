@@ -10,7 +10,6 @@
 import SwiftUI
 import Combine
 
-// MARK: - Device Orientation Observer
 /// Observer that detects changes in device orientation.
 ///
 ///     @State private var deviceOrientationObserver: DeviceOrientationObserver = .init()

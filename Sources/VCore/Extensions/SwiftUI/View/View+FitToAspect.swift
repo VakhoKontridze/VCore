@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Fit to Aspect
 extension View {
     /// Constrains `View`'s dimensions to the specified aspect ratio without stretching it.
     ///
@@ -29,7 +28,6 @@ extension View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

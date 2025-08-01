@@ -8,7 +8,6 @@
 import Foundation
 import VCoreShared
 
-// MARK: - String + Removing Reserved Keyword Backticks
 extension String {
     func removingReservedKeywordBackticks() -> String {
         _removing(CharacterSet(arrayLiteral: "`"))

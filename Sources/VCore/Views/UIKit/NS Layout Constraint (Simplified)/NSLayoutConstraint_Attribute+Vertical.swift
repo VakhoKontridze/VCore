@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - NS Layout Constraint Attribute + Vertical
 extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual vertical representation that should be used to get the value for the constraint.
     public enum Vertical: Int, Sendable, CaseIterable {
@@ -43,7 +42,6 @@ extension NSLayoutConstraint.Attribute {
     }
 }
 
-// MARK: - UI View + Constraints
 extension UIView {
     /// Constraints `UIView`'s `DimensionAttribute.top` to another `UIView`'s `VerticalAttribute`,
     /// with given `relation`, `constant`, `multiplier`, and `priority`.

@@ -9,14 +9,8 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct TaskGroupChildTaskValuesTests {
-    // MARK: Test Data
-    private struct Item {
-        let value: String
-    }
-    
     // MARK: Tests
     @Test
     func testTaskGroup() async {
@@ -76,5 +70,10 @@ struct TaskGroupChildTaskValuesTests {
             items.map { $0.value } ==
             ["1", "2", "3"]
         )
+    }
+    
+    // MARK: Item
+    private struct Item {
+        let value: String
     }
 }

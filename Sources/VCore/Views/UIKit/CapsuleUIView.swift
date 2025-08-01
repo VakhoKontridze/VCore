@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Capsule View
 /// `UIView` that rounds corners to capsule.
 ///
 /// If width is greater than height, half of height will be taken as corner radius. If not, otherwise.
@@ -24,7 +23,6 @@ open class CapsuleUIView: UIView {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Infinite Scrolling UI Table View
 /// `UITableView` that handles infinite scrolling.
 ///
 /// Contains property `paginationState`, controls pagination state.
@@ -80,7 +79,7 @@ import UIKit
 ///         }
 ///
 ///         func tableViewDidScrollToBottom(sender infiniteScrollingUITableView: InfiniteScrollingUITableView) {
-///             DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+///             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
 ///                 guard let self else { return }
 ///
 ///                 data.append(contentsOf: Self.dataChunk)
@@ -92,21 +91,39 @@ import UIKit
 ///     }
 ///
 open class InfiniteScrollingUITableView: UITableView {
-    // MARK: Properties
-    /// Delegate.
-    open weak var infiniteScrollingDelegate: (any InfiniteScrollingUITableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?
+    // MARK: Properties - Appearance
+    private let appearance: InfiniteScrollingUITableViewAppearance
     
+    // MARK: Properties - State
     /// Controls pagination state.
     /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `loading` and delegate method is called.
     /// Network call or persistent storage fetch request can be made.
     /// Once finished, property must be set to either `canPaginate`, or `cannotPaginate`, depending on the existence of further data.
-    open var paginationState: PaginationState = .canPaginate 
+    open var paginationState: PaginationState = .canPaginate
         { didSet { setActivityIndicatorState() } }
-
-    /// Offset that needs to be dragged vertically up for pagination to occur.
-    open var paginationOffset: CGFloat = 20
     
+    // MARK: Properties - Delegate
+    /// Delegate.
+    open weak var infiniteScrollingDelegate: (any InfiniteScrollingUITableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?
+    
+    // MARK: Properties - Flags
     private var isFirstLayoutSubviews: Bool = false
+    
+    // MARK: Initializers
+    /// Initializes `InfiniteScrollingUITableView`.
+    public init(
+        appearance: InfiniteScrollingUITableViewAppearance = .init(),
+        frame: CGRect = .zero,
+        style: UITableView.Style = .plain
+    ) {
+        self.appearance = appearance
+        super.init(frame: frame, style: style)
+    }
+    
+    @available(*, unavailable)
+    required public init?(coder: NSCoder) {
+        fatalError()
+    }
     
     // MARK: Lifecycle
     open override func layoutSubviews() {
@@ -124,7 +141,7 @@ open class InfiniteScrollingUITableView: UITableView {
     // MARK: Detection
     /// Detects pagination on scroll.
     open func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard scrollView.didScrollToBottom(offset: paginationOffset) else { return }
+        guard scrollView.didScrollToBottom(offset: appearance.paginationOffset) else { return }
         
         paginate()
     }
@@ -149,7 +166,11 @@ open class InfiniteScrollingUITableView: UITableView {
         switch paginationState {
         case .loading:
             guard frame.size.width != 0 else { return }
-            tableFooterView = InfiniteScrollingUITableViewActivityIndicatorView(tableView: self)
+            
+            tableFooterView = InfiniteScrollingUITableViewActivityIndicatorView(
+                appearance: appearance,
+                tableView: self
+            )
             
         case .canPaginate, .cannotPaginate:
             tableFooterView = nil
@@ -159,7 +180,6 @@ open class InfiniteScrollingUITableView: UITableView {
 
 #endif
 
-// MARK: - Preview
 #if os(iOS) // iOS-only example
 
 #Preview {
@@ -168,6 +188,7 @@ open class InfiniteScrollingUITableView: UITableView {
         UITableViewDelegate, UITableViewDataSource,
         InfiniteScrollingUITableViewDelegate
     {
+        // MARK: Subviews
         private lazy var tableView: InfiniteScrollingUITableView = {
             let tableView: InfiniteScrollingUITableView = .init()
 
@@ -182,9 +203,11 @@ open class InfiniteScrollingUITableView: UITableView {
             return tableView
         }()
 
+        // MARK: Properties
         private lazy var data: [String] = page
         private var page: [String] = (1...5).map { String($0) }
 
+        // MARK: Lifecycle
         override func viewDidLoad() {
             super.viewDidLoad()
 
@@ -202,10 +225,12 @@ open class InfiniteScrollingUITableView: UITableView {
             tableView.reloadData()
         }
 
+        // MARK: Scroll View Delegate
         func scrollViewDidScroll(_ scrollView: UIScrollView) {
             tableView.detectPaginationFromScrollViewDidScroll(scrollView)
         }
 
+        // MARK: Table View Delegate
         func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
             data.count
         }
@@ -220,8 +245,9 @@ open class InfiniteScrollingUITableView: UITableView {
             return cell
         }
 
+        // MARK: Infinite Scrolling Table View Delegate
         func tableViewDidScrollToBottom(sender infiniteScrollingUITableView: InfiniteScrollingUITableView) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 3) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
                 guard let self else { return }
 
                 data.append(contentsOf: page)

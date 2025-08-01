@@ -9,7 +9,6 @@
 
 import SwiftUI
 
-// MARK: - Modal Presenter Root Modal Content (Window)
 struct ModalPresenterRootModalContent_Window: View {
     // MARK: Properties
     private let model: ModalPresenterRootModel_Window

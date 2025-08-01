@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Edge Insets (Axis)
 /// Edge insets containing `horizontal` and `vertical` values.
 @MemberwiseInitializable(
     comment: "/// Initializes `EdgeInsetsAxis` with values."
@@ -165,7 +164,6 @@ public struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
     }
 }
 
-// MARK: - View + Padding
 extension View {
     /// Adds a specific padding amount to each edge of `View` from `EdgeInsetsAxis`.
     ///

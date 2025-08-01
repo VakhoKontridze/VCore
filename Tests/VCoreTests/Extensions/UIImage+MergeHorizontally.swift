@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Image + Merge Horizontally
 extension UIImage {
     // Doesn't consider positioning. Only used for testing purposes,
     // when `lhs.size` equals `rhs.size`.

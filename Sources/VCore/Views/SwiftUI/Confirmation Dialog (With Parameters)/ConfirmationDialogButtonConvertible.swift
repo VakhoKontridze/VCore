@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Confirmation Dialog Button Convertible
 /// Type that allows for conversion to `ConfirmationDialogButtonProtocol`.
 public protocol ConfirmationDialogButtonConvertible {
     /// Converts self to `ConfirmationDialogButtonProtocol` `Array`.

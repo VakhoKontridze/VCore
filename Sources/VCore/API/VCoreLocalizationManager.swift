@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - VCore Localization Manager
 /// Object that manages localization in the package.
 ///
 /// `localizationProvider` in `shared` instance can be set to override the localized values.
@@ -40,7 +39,6 @@ public final class VCoreLocalizationManager: @unchecked Sendable {
     private init() {}
 }
 
-// MARK: - VCore Localization Provider
 /// Localization provider in package.
 ///
 /// Alternately, consider using `VCoreHumanReadableLocalizationProvider`
@@ -56,7 +54,6 @@ public protocol VCoreLocalizationProvider {
     var responderChainToolbarDoneButtonTitle: String { get }
 }
 
-// MARK: - Default VCore Localization Provider
 /// Defaults VCore localization provider.
 public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider, Sendable {
     // MARK: Initializers

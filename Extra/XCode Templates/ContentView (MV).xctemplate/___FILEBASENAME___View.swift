@@ -3,7 +3,6 @@
 import SwiftUI
 import VCore
 
-// MARK: - ___VARIABLE_productName___ View
 struct ___VARIABLE_productName___View: View {
     // MARK: Properties - Model Injection
     @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
@@ -75,7 +74,6 @@ struct ___VARIABLE_productName___View: View {
     // ...
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

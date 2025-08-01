@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Task Group + Child Task Values
 extension TaskGroup {
     /// Collects and returns child task values.
     ///
@@ -34,7 +33,6 @@ extension TaskGroup {
     }
 }
 
-// MARK: - Throwing Task Group + Child Task Values
 extension ThrowingTaskGroup {
     /// Collects and returns child task values.
     ///

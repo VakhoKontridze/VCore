@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Sequence + Min and Max by KeyPath
 extension Sequence {
     /// Returns the minimum element in the `Sequence`, using the given `KeyPath` as the comparison between elements.
     ///

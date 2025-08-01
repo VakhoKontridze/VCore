@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Modal Presenter Root
 extension View {
     /// Injects Modal Presenter root in view hierarchy for modal presentation.
     ///

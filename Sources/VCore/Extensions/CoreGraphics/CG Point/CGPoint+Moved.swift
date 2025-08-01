@@ -7,7 +7,6 @@
 
 import CoreGraphics
 
-// MARK: - CG Point + Moved Left
 extension CGPoint {
     /// Returns `CGPoint` moved left with a given constant.
     ///
@@ -35,7 +34,6 @@ extension CGPoint {
     }
 }
 
-// MARK: - CG Point + Moved Right
 extension CGPoint {
     /// Returns `CGPoint` moved right with a given constant.
     ///
@@ -64,7 +62,6 @@ extension CGPoint {
 }
 
 
-// MARK: - CG Point + Moved Up
 extension CGPoint {
     /// Returns `CGPoint` moved up with a given constant.
     ///
@@ -92,7 +89,6 @@ extension CGPoint {
     }
 }
 
-// MARK: - CG Point + Moved Down
 extension CGPoint {
     /// Returns `CGPoint` moved down with a given constant.
     ///

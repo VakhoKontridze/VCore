@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Numeric + Non-Zero
 extension Numeric {
     /// Returns non-zero sized `Numeric`, or `nil`.
     ///

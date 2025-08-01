@@ -10,7 +10,6 @@
 import UIKit
 import Combine
 
-// MARK: - Keyboard Responsive UI View Controller
 /// Keyboard Responsive `UIViewController` that handles keyboard notifications.
 ///
 /// Subclass, and override `keyboardWillShow` and `keyboardWillHide` methods, to observe keyboard notifications.

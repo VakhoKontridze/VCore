@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - _ Memberwise Initializable Parameter Default Value
 enum MemberwiselnitializableParameterDefaultValue {
     case value(String)
     case omit

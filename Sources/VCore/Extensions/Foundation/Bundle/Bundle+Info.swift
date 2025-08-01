@@ -7,9 +7,8 @@
 
 import Foundation
 
-// MARK: - Bundle + Info
 extension Bundle {
-    /// App display name.
+    /// Name.
     ///
     ///     let name: String? = Bundle.main.name
     ///
@@ -17,7 +16,7 @@ extension Bundle {
         object(forInfoDictionaryKey: "CFBundleName") as? String
     }
 
-    /// App display name.
+    /// Display name.
     ///
     ///     let displayName: String? = Bundle.main.displayName
     ///
@@ -25,7 +24,7 @@ extension Bundle {
         object(forInfoDictionaryKey: "CFBundleDisplayName") as? String
     }
 
-    /// App version.
+    /// Version.
     ///
     ///     let version: String? = Bundle.main.version
     ///
@@ -33,7 +32,7 @@ extension Bundle {
         object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }
     
-    /// App build number.
+    /// Build number.
     ///
     ///     let buildNumber: String? = Bundle.main.buildNumber
     ///

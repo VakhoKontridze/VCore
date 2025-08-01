@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Plain Disclosure Group
 /// Plain expandable container component that draws a background, and hosts content.
 ///
 ///     @State private var isExpanded: Bool = true
@@ -177,7 +176,6 @@ public struct PlainDisclosureGroup<Label, Content>: View
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #if !(os(tvOS) || os(watchOS) || os(visionOS)) // Redundant

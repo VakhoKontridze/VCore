@@ -9,7 +9,6 @@ import Foundation
 import SwiftSyntax
 import SwiftSyntaxMacros
 
-// MARK: - URL Macro (Init with String)
 struct URLMacro_InitWithString: ExpressionMacro {
     static func expansion(
         of node: some FreestandingMacroExpansionSyntax,

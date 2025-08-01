@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Swift UI Base Button
 /// `SwiftUI` `View` that can be used as a base for all interactive views and buttons.
 ///
 /// `SwiftUIBaseButton` can be used as a basis for all interactive UI components.
@@ -99,7 +98,6 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {
@@ -108,12 +106,14 @@ public struct SwiftUIBaseButton<Label>: View where Label: View {
 
 // Macros aren't allowed in Preview macro
 private struct ContentView: View {
+    // MARK: Properties
     let colors: GenericStateModel_EnabledPressedDisabled<Color> = .init(
         enabled: Color.primary,
         pressed: Color.secondary,
         disabled: Color.secondary
     )
 
+    // MARK: Body
     var body: some View {
         SwiftUIBaseButton(
             action: {},

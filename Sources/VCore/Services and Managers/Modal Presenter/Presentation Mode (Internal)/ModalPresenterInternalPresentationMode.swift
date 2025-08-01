@@ -8,7 +8,6 @@
 import SwiftUI
 import Combine
 
-// MARK: - Modal Presenter Internal Presentation Mode
 struct ModalPresenterInternalPresentationMode {
     // MARK: Properties
     let presentSubject: PassthroughSubject<PresentationData, Never> = .init()

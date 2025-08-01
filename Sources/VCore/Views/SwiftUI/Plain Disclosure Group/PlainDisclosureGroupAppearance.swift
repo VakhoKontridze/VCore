@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Plain Disclosure Group Appearance
 /// Model that describes appearance.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)

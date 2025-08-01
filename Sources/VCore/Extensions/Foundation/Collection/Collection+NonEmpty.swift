@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Collection + Non-Empty
 extension Collection {
     /// Returns non-empty `Collection`, or `nil`.
     ///

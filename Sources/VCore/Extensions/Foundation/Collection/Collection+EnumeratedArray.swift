@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Collection + Enumerated Array
 extension Collection {
     /// Enumerated a `Collection` as a tuple of offset and element.
     ///

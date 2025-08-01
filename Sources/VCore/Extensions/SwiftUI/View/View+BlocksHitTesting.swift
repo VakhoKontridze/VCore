@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Blocks Hit Testing
 extension View {
     /// Overlays clear `Rectangle` that blocks gestures if condition is met.
     ///
@@ -18,20 +17,22 @@ extension View {
     ///         .blocksHitTesting(!isInteractionEnabled)
     ///     }
     ///
-    public func blocksHitTesting(
-        _ flag: Bool = true
-    ) -> some View {
+    public func blocksHitTesting<S>(
+        _ flag: Bool = true,
+        shape: S = .rect
+    ) -> some View
+        where S: Shape
+    {
         self
             .overlay {
                 if flag {
                     Color.clear
-                        .contentShape(.rect)
+                        .contentShape(shape)
                 }
             }
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Responder Chain Toolbar Appearance
 /// Model that describes appearance.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Environment Values + Modal Presenter Presentation Mode
 extension EnvironmentValues {
     /// Modal Presenter's presentation mode of the `View` associated with the environment.
     @Entry public var modalPresenterPresentationMode: ModalPresenterPresentationMode?

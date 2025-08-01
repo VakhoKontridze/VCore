@@ -9,7 +9,6 @@
 
 import AppKit
 
-// MARK: - NS Image + By Preparing Thumbnail
 extension NSImage {
     /// Returns a new thumbnail `NSImage` at the specified `CGSize`.
     ///
@@ -45,7 +44,6 @@ extension NSImage {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 import SwiftUI

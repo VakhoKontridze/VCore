@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI View + Apply Shadow
 extension UIView {
     /// Applies shadow to `UIView`.
     ///
@@ -56,7 +55,6 @@ extension UIView {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Image + Init with UI Color
 extension UIImage {
     /// Initializes `UIImage` with `CGSize` and `UIColor`.
     ///

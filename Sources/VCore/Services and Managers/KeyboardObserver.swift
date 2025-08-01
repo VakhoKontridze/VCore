@@ -9,7 +9,6 @@ import SwiftUI
 import Combine
 import OSLog
 
-// MARK: - Keyboard Observer
 /// Object that observes changes in keyboard frame.
 ///
 ///     @State private var keyboardObserver: KeyboardObserver = .init()
@@ -226,7 +225,6 @@ public final class KeyboardObserver: Sendable {
 #endif
 }
 
-// MARK: - Helpers
 #if canImport(UIKit) && !os(watchOS)
 
 @available(visionOS, unavailable)

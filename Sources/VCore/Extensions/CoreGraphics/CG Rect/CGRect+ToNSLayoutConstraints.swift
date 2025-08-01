@@ -7,7 +7,6 @@
 
 import CoreGraphics
 
-// MARK: - CG Rect + To NS Layout Constraints
 extension CGRect {
     /// Converts rect to constant usable for creating left constraint.
     ///

@@ -8,7 +8,6 @@
 import Foundation
 import OSLog
 
-// MARK: - Double + Rounded
 extension Double {
     /// Returns `String` from `Double` with specified min and max fractions.
     ///
@@ -23,7 +22,6 @@ extension Double {
     }
 }
 
-// MARK: - Auto Precision Number Formatter
 /// Auto Precision Number Formatter.
 ///
 /// Rounds number to fractions specified by `min` and `max`.

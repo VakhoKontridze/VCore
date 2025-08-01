@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Platform Interface Orientation
 /// Platform interface orientation.
 public enum PlatformInterfaceOrientation {
     // MARK: Cases
@@ -46,7 +45,6 @@ public enum PlatformInterfaceOrientation {
 #endif
 }
 
-// MARK: - View + Get Platform Interface Orientation
 extension View {
     /// Retrieves `PlatformInterfaceOrientation` from `View`.
     ///

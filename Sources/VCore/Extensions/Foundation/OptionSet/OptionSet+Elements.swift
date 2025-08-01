@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Option Set + Elements
 extension OptionSet where RawValue: FixedWidthInteger {
     /// Returns all elements in `OptionSet`.
     ///

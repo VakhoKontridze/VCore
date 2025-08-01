@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Responder Chain UI Toolbar Manager
 /// Object that manages focus navigation in the responder chain.
 ///
 ///     final class ViewController: UIViewController {
@@ -68,7 +67,7 @@ open class ResponderChainUIToolbarManager: Sendable {
         reloadData()
     }
 
-    // MARK: Configuration - Reload Data
+    // MARK: Reload Data
     private func reloadData() {
         for (i, parameters) in responderParameters.enumerated() {
             let previousParameters: ResponderChainUIToolbarResponderParameters? = responderParameters[safe: i-1]

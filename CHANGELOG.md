@@ -14,6 +14,8 @@ Views
 - `ContentWrappingSheetContainerView` is added, that can be used to to wrap content within sheet
 - `CoordinatingNavigationStackOO` is removed, as it's obsoleted by `CoordinatingNavigationStack`
 - `ViewResettingContainerOO` is removed, as it's obsoleted by `ViewResettingContainer`
+- `InfiniteScrollingTableView` now has it's own Appearance. `paginationOffset` has been moved from the view itself to Appearance.
+- `InfiniteScrollingCollectionView` now has it's own Appearance
 
 Models
 

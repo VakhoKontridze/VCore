@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-// MARK: - Box
 @propertyWrapper
 final class PublishedPropertyWrapperBox<Value>: @unchecked Sendable {
     // MARK: Properties - Value
@@ -37,7 +36,6 @@ final class PublishedPropertyWrapperBox<Value>: @unchecked Sendable {
     }
 }
 
-// MARK: - Storage
 enum PublishedPropertyWrapperStorage<Value> {
     // MARK: Cases
     case value(Value)
@@ -81,7 +79,6 @@ enum PublishedPropertyWrapperStorage<Value> {
     }
 }
 
-// MARK: - Publisher
 /// Publisher for properties in published property wrappers.
 public struct PublishedPropertyWrapperPublisher<Value>: Publisher {
     // MARK: Properties

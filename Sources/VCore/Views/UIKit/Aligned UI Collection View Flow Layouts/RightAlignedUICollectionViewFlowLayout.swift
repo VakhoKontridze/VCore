@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Right Aligned UI Collection View Flow Layout
 /// Layout object that organizes items into a grid with a right alignment.
 open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Item Attributes
@@ -104,7 +103,6 @@ open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

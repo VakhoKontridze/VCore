@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Inner Shadow UI View Appearance
 /// Model that describes appearance.
 public struct InnerShadowUIViewAppearance: Sendable {
     // MARK: Properties

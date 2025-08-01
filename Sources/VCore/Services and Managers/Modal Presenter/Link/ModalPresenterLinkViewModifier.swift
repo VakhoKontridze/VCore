@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Modal Presenter Link View Modifier
 struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalContent: View {
     // MARK: Properties - Link
     private let link: ModalPresenterLink
@@ -107,7 +106,6 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview("Overlay") {
@@ -192,17 +190,21 @@ extension View {
 }
 
 private struct Modal<Content>: View where Content: View {
+    // MARK: Properties - Appearance
     @Environment(\.modalPresenterInterfaceOrientation) private var interfaceOrientation: PlatformInterfaceOrientation
     @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize
     @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets
 
     @Environment(\.modalPresenterPresentationMode) private var presentationMode: ModalPresenterPresentationMode!
 
+    // MARK: Properties - Presentation API
     @Binding private var isPresented: Bool
     @State private var isPresentedInternally: Bool = false
 
+    // MARK: Properties - Content
     private let content: () -> Content
 
+    // MARK: Initializers
     init(
         isPresented: Binding<Bool>,
         @ViewBuilder content: @escaping () -> Content
@@ -211,6 +213,7 @@ private struct Modal<Content>: View where Content: View {
         self.content = content
     }
 
+    // MARK: Body
     var body: some View {
         let backgroundColor: Color = {
 #if os(iOS)

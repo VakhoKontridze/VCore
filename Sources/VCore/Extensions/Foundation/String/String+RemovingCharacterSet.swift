@@ -8,7 +8,6 @@
 import Foundation
 import VCoreShared
 
-// MARK: - String + Removing Character Set
 extension String {
     /// Returns `String` with `CharacterSet`, that don't match the criteria, filtered out.
     ///
@@ -29,7 +28,6 @@ extension String {
     }
 }
 
-// MARK: - String + Removing Character Sets
 extension String {
     /// Returns `String` with `CharacterSet`, that don't match the criteria, filtered out.
     ///

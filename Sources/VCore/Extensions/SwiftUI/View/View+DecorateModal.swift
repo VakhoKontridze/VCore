@@ -9,7 +9,6 @@
 
 import SwiftUI
 
-// MARK: - View + Decorate Modal
 extension View {
     /// Retrieves modal's top-most superview and `UITransitionView` for customization.
     ///
@@ -54,7 +53,6 @@ extension View {
     }
 }
 
-// MARK: - Modal Decorator View
 private struct ModalDecoratorView: UIViewRepresentable {
     // MARK: Properties
     private let decorate: (UIView?, UIView?) -> Void
@@ -76,7 +74,6 @@ private struct ModalDecoratorView: UIViewRepresentable {
     func updateUIView(_ uiView: _ModalDecoratorView, context: Context) {}
 }
 
-// MARK: - _ Modal Decorator View
 private final class _ModalDecoratorView: UIView {
     // MARK: Properties
     private let decorate: (UIView?, UIView?) -> Void
@@ -130,14 +127,12 @@ private final class _ModalDecoratorView: UIView {
     }
 }
 
-// MARK: - Helpers
 extension UIView {
     fileprivate var isUITransitionView: Bool {
         String(describing: type(of: self)) == "UITransitionView"
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #if !os(visionOS) // `UIScreen.displayCornerRadius` not on visionOS

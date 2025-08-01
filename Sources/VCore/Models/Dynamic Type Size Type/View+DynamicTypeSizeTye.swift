@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Dynamic Type Size Type
 extension View {
     /// Sets `DynamicTypeSize` based on `DynamicTypeSizeType`.
     ///

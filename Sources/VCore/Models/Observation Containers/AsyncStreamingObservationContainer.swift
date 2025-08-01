@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Async Streaming Observation Container
 /// `Observable` container that triggers a `AsyncStream` when a value changes.
 ///
 /// This container can be used inside non-`View` contexts, such as ViewModels,
@@ -97,7 +96,6 @@ public final class AsyncStreamingObservationContainer<Value>: Sendable where Val
     }
 }
 
-// MARK: - Continuation Holder
 private final class ContinuationHolder<Value>: Sendable {
     // MARK: Properties
     let continuation: AsyncStream<Value>.Continuation
@@ -108,7 +106,6 @@ private final class ContinuationHolder<Value>: Sendable {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 import SwiftUI
@@ -119,8 +116,10 @@ import SwiftUI
 
 // Macros aren't allowed in Preview macro
 private struct ContentView: View {
+    // MARK: Properties
     @State private var viewModel: ViewModel = .init()
 
+    // MARK: Body
     var body: some View {
         VStack {
             Text(String(viewModel.count.value))
@@ -136,8 +135,10 @@ private struct ContentView: View {
 @Observable
 @MainActor
 private final class ViewModel {
+    // MARK: Properties
     let count: AsyncStreamingObservationContainer<Int> = .init(0)
 
+    // MARK: Initializers
     init() {
         Task { @MainActor in
             for await value in count.asyncStream {

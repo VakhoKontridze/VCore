@@ -9,7 +9,6 @@ import Foundation
 import SwiftSyntax
 import SwiftSyntaxMacros
 
-// MARK: - Uninitializable Macro
 struct UninitializableMacro: MemberMacro {
     static func expansion(
         of node: AttributeSyntax,

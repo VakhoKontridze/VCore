@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Stack View + Configure
 extension UIStackView {
     /// Configures`UIStackView` with axis, distribution, alignment, and spacing.
     ///

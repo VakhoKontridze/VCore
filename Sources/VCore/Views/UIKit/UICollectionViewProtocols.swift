@@ -10,7 +10,6 @@
 import UIKit
 import OSLog
 
-// MARK: - Parameters
 /// Protocol that allows parameter to configure a `UICollectionViewCell`.
 ///
 ///     protocol HomeViewable: AnyObject {}
@@ -76,7 +75,6 @@ public protocol UICollectionViewCellParameter {
     var reuseID: String { get }
 }
 
-// MARK: - Cell
 /// Protocol that allows `UICollectionViewCell` to be configured using a parameter.
 public protocol ConfigurableUICollectionViewCell: UICollectionViewCell {
     /// `UICollectionViewCell` reuse ID.
@@ -90,7 +88,6 @@ extension ConfigurableUICollectionViewCell {
     public static var reuseID: String { .init(describing: self) }
 }
 
-// MARK: - Collection View
 /// Allows for the delegation of `UICollectionViewDelegate`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `Presenter`.
@@ -115,7 +112,6 @@ public protocol UICollectionViewDataSourceable {
     func collectionViewCellParameter(section: Int, row: Int) -> any UICollectionViewCellParameter
 }
 
-// MARK: - Registering
 extension UICollectionView {
     /// Registers `ConfigurableUICollectionViewCell` for reuse in a `UICollectionView`.
     public func register(_ cells: any ConfigurableUICollectionViewCell.Type...) {
@@ -123,7 +119,6 @@ extension UICollectionView {
     }
 }
 
-// MARK: - Dequeueing and Configuring
 extension UICollectionView {
     /// Dequeues and configures a reusable cell in `UICollectionView`.
     public func dequeueAndConfigureReusableCell(

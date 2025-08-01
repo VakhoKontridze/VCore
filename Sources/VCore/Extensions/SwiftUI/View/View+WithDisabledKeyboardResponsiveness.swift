@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + With Disabled Keyboard Responsiveness
 @available(macOS, unavailable)
 @available(watchOS, unavailable)
 extension View {
@@ -45,7 +44,6 @@ extension View {
 
 #if canImport(UIKit) && !os(watchOS)
 
-// MARK: - Keyboard Responsiveness Disabling View
 private struct KeyboardResponsivenessDisablingView<Content>: UIViewControllerRepresentable where Content: View {
     // MARK: Properties
     private let content: () -> Content

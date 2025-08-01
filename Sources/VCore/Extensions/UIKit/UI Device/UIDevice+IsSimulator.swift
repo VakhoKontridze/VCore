@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Device + Is Simulator
 extension UIDevice {
     /// Indicates if device is simulator.
     ///

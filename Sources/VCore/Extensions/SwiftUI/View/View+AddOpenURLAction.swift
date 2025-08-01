@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Add Open URL Action
 extension View {
     /// Inserts `OpenURLAction` in the `Environment`.
     ///
@@ -58,7 +57,6 @@ extension View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

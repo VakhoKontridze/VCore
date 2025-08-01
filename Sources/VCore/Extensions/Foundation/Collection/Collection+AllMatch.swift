@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Collection + All Match
 extension Collection {
     /// Returns `Bool` indicating whether every element of a sequence satisfies a given comparison predicate.
     ///

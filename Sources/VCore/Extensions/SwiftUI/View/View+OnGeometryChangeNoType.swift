@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + On Geometry Change No Type
 extension View {
     /// Adds an action to be performed when a value, created from a `GeometryProxy`, changes.
     ///

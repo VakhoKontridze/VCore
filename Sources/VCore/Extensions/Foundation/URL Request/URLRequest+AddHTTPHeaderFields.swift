@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - URL Request + Add HTTP Header Fields
 extension URLRequest {
     /// Adds `Dictionary` of `String` to `String` to the header fields.
     ///

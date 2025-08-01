@@ -7,7 +7,6 @@
 
 import Dispatch
 
-// MARK: - Dispatch Semaphore + With Lock
 extension DispatchSemaphore {
     /// Executes a block of code with a lock, similar to `NSLock`.
     ///

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Device + Safe Area Insets
 extension UIDevice {
     /// Safe area insets in `UIApplication.shared.firstWindowInSingleSceneApp`.
     ///

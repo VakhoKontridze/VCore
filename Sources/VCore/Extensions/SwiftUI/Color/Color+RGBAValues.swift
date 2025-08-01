@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - RGBA + Values
 extension Color {
     /// Returns RGBA values of `Color`.
     ///

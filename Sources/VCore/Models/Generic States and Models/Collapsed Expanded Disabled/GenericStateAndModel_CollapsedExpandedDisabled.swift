@@ -12,10 +12,7 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - Genetic State (Collapsed, Expanded, Disabled)
 /// Enumeration that represents state.
-///
-/// Used for mapping state to `GenericStateModel_CollapsedExpandedDisabled`, with `value(for:)` method.
 public enum GenericState_CollapsedExpandedDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Collapsed.
@@ -58,10 +55,7 @@ public enum GenericState_CollapsedExpandedDisabled: Int, Sendable, CaseIterable 
     }
 }
 
-// MARK: - Generic State Model (Collapsed, Expanded, Disabled)
-/// Value group containing generic `collapsed`, `expanded`, and `disabled` values.
-///
-/// Used for mapping `GenericState_CollapsedExpandedDisabled` to model, with `value(for:)` method.
+/// Group containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_CollapsedExpandedDisabled` with values."
 )
@@ -127,17 +121,14 @@ public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
     }
 }
 
-// MARK: Equatable, Hashable
 extension GenericStateModel_CollapsedExpandedDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_CollapsedExpandedDisabled: Hashable where Value: Hashable {}
 
-// MARK: Sendable
 extension GenericStateModel_CollapsedExpandedDisabled: Sendable where Value: Sendable {}
 
-// MARK: - State-Model Mapping
 extension GenericStateModel_CollapsedExpandedDisabled {
-    /// Maps `GenericState_CollapsedExpandedDisabled` to `GenericStateModel_CollapsedExpandedDisabled`.
+    /// Maps state to model.
     public func value(for state: GenericState_CollapsedExpandedDisabled) -> Value {
         switch state {
         case .collapsed: collapsed

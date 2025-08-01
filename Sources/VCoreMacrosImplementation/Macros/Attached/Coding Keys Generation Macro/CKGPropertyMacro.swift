@@ -9,7 +9,6 @@ import Foundation
 import SwiftSyntax
 import SwiftSyntaxMacros
 
-// MARK: - Coding Keys Generation Property Macro
 struct CKGPropertyMacro: PeerMacro {
     static func expansion(
         of node: AttributeSyntax,

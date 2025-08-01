@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Color + Lighten and Darken
 extension Color {
     /// Lightens `Color` by a fraction.
     ///

@@ -10,7 +10,6 @@
 import UIKit
 import OSLog
 
-// MARK: - Parameter
 /// Protocol that allows parameter to configure a `UITableViewCell`.
 ///
 ///     protocol HomeViewable: AnyObject {}
@@ -75,7 +74,6 @@ public protocol UITableViewCellParameter {
     var reuseID: String { get }
 }
 
-// MARK: - Cell
 /// Protocol that allows `UITableViewCell` to be configured using a parameter.
 public protocol ConfigurableUITableViewCell: UITableViewCell {
     /// `UITableViewCell` reuse ID.
@@ -89,7 +87,6 @@ extension ConfigurableUITableViewCell {
     public static var reuseID: String { .init(describing: self) }
 }
 
-// MARK: - Table View
 /// Allows for the delegation of `UITableViewDelegate`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `Presenter`.
@@ -114,7 +111,6 @@ public protocol UITableViewDataSourceable {
     func tableViewCellParameter(section: Int, row: Int) -> any UITableViewCellParameter
 }
 
-// MARK: - Registering
 extension UITableView {
     /// Registers `ConfigurableUITableViewCell` for reuse in a `UITableView`.
     public func register(_ cells: any ConfigurableUITableViewCell.Type...) {
@@ -122,7 +118,6 @@ extension UITableView {
     }
 }
 
-// MARK: - Dequeueing and Configuring
 extension UITableView {
     /// Dequeues and configures a reusable cell in `UITableView`.
     public func dequeueAndConfigureReusableCell(

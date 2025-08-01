@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Character Set + Unified
 extension Array where Element == CharacterSet {
     /// Returns a union of the CharacterSet `Array`s.
     ///

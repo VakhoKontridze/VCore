@@ -11,7 +11,6 @@ import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 import SwiftDiagnostics
 
-// MARK: - Option Set Representation Macro
 struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
     // MARK: Member Macro
     static func expansion(

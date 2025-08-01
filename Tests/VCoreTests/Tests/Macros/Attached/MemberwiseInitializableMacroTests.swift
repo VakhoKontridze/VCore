@@ -14,9 +14,8 @@ import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 @testable import VCoreMacrosImplementation
 
-// MARK: - Tests
 final class MemberwiseInitializableMacroTests: XCTestCase {
-    // MARK: Test Data
+    // MARK: Properties
     private let macros: [String: Macro.Type] = ["MemberwiseInitializable": MemberwiseInitializableMacro.self]
 
     // MARK: Tests

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Navigation Stack Coordinator
 /// Object that stores `NavigationPath` for coordinating with `CoordinatingNavigationStack`.
 ///
 /// Can be used to push or pop `View`s programmatically.

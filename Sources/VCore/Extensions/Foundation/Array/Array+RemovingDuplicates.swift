@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Array + Removing Duplicates
 extension Array where Element: Equatable {
     /// Returns a sequence with only the unique elements of this sequence, in the
     /// order of the first occurrence of each unique element.

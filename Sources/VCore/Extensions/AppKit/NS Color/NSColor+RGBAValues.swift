@@ -10,7 +10,6 @@
 import AppKit
 import OSLog
 
-// MARK: - NS Color + RGBA Values
 extension NSColor {
     /// Returns RGBA values of `NSColor`.
     ///

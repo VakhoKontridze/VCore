@@ -12,10 +12,7 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - Genetic State (Enabled, Loading)
 /// Enumeration that represents state.
-///
-/// Used for mapping state to `GenericStateModel_EnabledLoading`, with `value(for:)` method.
 public enum GenericState_EnabledLoading: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -34,10 +31,7 @@ public enum GenericState_EnabledLoading: Int, Sendable, CaseIterable {
     }
 }
 
-// MARK: - Generic State Model (Enabled, Loading)
-/// Value group containing generic `enabled`  and `loading` values.
-///
-/// Used for mapping `GenericState_EnabledLoading` to model, with `value(for:)` method.
+/// Group containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_EnabledLoading` with values."
 )
@@ -98,17 +92,14 @@ public struct GenericStateModel_EnabledLoading<Value> {
     }
 }
 
-// MARK: Equatable, Hashable
 extension GenericStateModel_EnabledLoading: Equatable where Value: Equatable {}
 
 extension GenericStateModel_EnabledLoading: Hashable where Value: Hashable {}
 
-// MARK: Sendable
 extension GenericStateModel_EnabledLoading: Sendable where Value: Sendable {}
 
-// MARK: - State-Model Mapping
 extension GenericStateModel_EnabledLoading {
-    /// Maps `GenericState_EnabledLoading` to `GenericStateModel_EnabledLoading`.
+    /// Maps state to model.
     public func value(for state: GenericState_EnabledLoading) -> Value {
         switch state {
         case .enabled: enabled

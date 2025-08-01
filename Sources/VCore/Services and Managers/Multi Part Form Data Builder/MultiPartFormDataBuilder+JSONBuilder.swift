@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Multipart Form Data Builder + JSON Builder
 extension MultipartFormDataBuilder {
     struct JSONBuilder {
         // MARK: Properties

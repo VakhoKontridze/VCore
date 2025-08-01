@@ -8,7 +8,6 @@
 import Foundation
 import OSLog
 
-// MARK: - Double + Rounded to Precision
 extension Double {
     /// Rounds `Double` with precision.
     ///

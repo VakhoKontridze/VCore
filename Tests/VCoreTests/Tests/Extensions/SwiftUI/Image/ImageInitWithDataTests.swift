@@ -9,7 +9,6 @@ import SwiftUI
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct ImageInitWithDataTests {
     @Test

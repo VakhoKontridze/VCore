@@ -9,21 +9,9 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct ResultNoSuccessTests {
-    // MARK: Test Data
-    private struct TestError: Error, Equatable {
-        private let code: Int
-        
-        static var a: Self { .init(code: 1) }
-        static var b: Self { .init(code: 2) }
-
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            lhs.code == rhs.code
-        }
-    }
-    
+    // MARK: Properties
     private let resultS: ResultNoSuccess<TestError> = .success
     private let resultF: ResultNoSuccess<TestError> = .failure(.a)
     private let resultFModified: ResultNoSuccess<TestError> = .failure(.b)
@@ -51,5 +39,20 @@ struct ResultNoSuccessTests {
         #expect(resultS == resultS)
         
         #expect(resultF != resultFModified)
+    }
+    
+    // MARK: Test Error
+    private struct TestError: Error, Equatable {
+        // MARK: Properties
+        private let code: Int
+        
+        // MARK: Initializers
+        static var a: Self { .init(code: 1) }
+        static var b: Self { .init(code: 2) }
+
+        // MARK: Equatable
+        static func == (lhs: Self, rhs: Self) -> Bool {
+            lhs.code == rhs.code
+        }
     }
 }

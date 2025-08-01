@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Bind Value to Modal Context
 extension View {
     /// Binds value to modal context by applying an empty `onChange` modifier to the value.
     ///

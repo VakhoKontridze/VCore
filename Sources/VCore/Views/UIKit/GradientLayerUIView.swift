@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Gradient Layer UI View
 /// `UIView` that automatically resizes `CAGradientLayer` to it's `bounds`.
 ///
 ///     final class ViewController: UIViewController {
@@ -34,10 +33,12 @@ import UIKit
 ///     }
 ///
 open class GradientLayerUIView: UIView {
-    // MARK: Subviews
+    // MARK: Properties - Subviews
+    /// Gradient layer.
     open var gradientLayer: CAGradientLayer = .init()
 
     // MARK: Initializers
+    /// Initializes `GradientLayerUIView`.
     public init() {
         super.init(frame: .zero)
         setUp()
@@ -64,7 +65,6 @@ open class GradientLayerUIView: UIView {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

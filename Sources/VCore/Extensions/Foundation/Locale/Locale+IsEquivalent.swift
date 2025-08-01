@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Locale + Is Equivalent
 extension Locale {
     /// Returns `Bool` indicated if two `Locale`s are equivalent.
     ///

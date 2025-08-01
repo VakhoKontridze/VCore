@@ -9,7 +9,6 @@
 
 import QuartzCore
 
-// MARK: - CA Corner Mask + Additional Options
 @available(watchOS, unavailable)
 extension CACornerMask {
     /// Top corners.

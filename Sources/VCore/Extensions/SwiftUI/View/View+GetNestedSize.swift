@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Get Nested Size
 extension View {
     /// Retrieves nested nested size from child `View`.
     ///
@@ -65,7 +64,6 @@ extension View {
     }
 }
 
-// MARK: - Nested Size Preference Key
 private struct NestedSizePreferenceKey: PreferenceKey {
     static let defaultValue: CGSize = .zero
 
@@ -74,7 +72,6 @@ private struct NestedSizePreferenceKey: PreferenceKey {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #if !os(macOS) // No `PageTabViewStyle` on macOS

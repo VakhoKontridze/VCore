@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Coordinating Navigation Stack
 /// `NavigationStack` that manages `NavigationPath` for representing content in the stack.
 ///
 /// `View` embeds `NavigationStackCoordinator` in the environment that can be used to by contents in the stack.
@@ -96,11 +95,11 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {
     struct ContentView: View {
+        // MARK: Body
         var body: some View {
             CoordinatingNavigationStack {
                 HomeView()
@@ -110,8 +109,10 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     }
 
     struct HomeView: View {
+        // MARK: Properties
         @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
 
+        // MARK: Body
         var body: some View {
             Button("Navigate") {
                 navigationStackCoordinator.path.append(DestinationParameters())
@@ -125,14 +126,17 @@ public struct CoordinatingNavigationStack<Root>: View where Root: View {
     struct DestinationParameters: Hashable {}
 
     struct DestinationView: View {
-        private let parameters: DestinationParameters
-        
+        // MARK: Properties
         @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
+        
+        private let parameters: DestinationParameters
 
+        // MARK: Initializers
         init(parameters: DestinationParameters) {
             self.parameters = parameters
         }
 
+        // MARK: Body
         var body: some View {
             Button("Go Back") {
                 navigationStackCoordinator.path.removeLast()

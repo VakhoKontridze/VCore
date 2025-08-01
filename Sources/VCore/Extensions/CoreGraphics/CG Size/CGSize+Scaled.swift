@@ -7,7 +7,6 @@
 
 import CoreGraphics
 
-// MARK: - CG Size + Scaled Up with Constant
 extension CGSize {
     /// Returns `CGSize` scaled up with a given constant.
     ///
@@ -36,7 +35,6 @@ extension CGSize {
     }
 }
 
-// MARK: - CG Size + Scaled Down with Constant
 extension CGSize {
     /// Returns `CGSize` scaled down with a given constant.
     ///
@@ -65,7 +63,6 @@ extension CGSize {
     }
 }
 
-// MARK: - CG Size + Scaled Up with Multiplier
 extension CGSize {
     /// Returns `CGSize` scaled up with a given multiplier.
     ///
@@ -94,7 +91,6 @@ extension CGSize {
     }
 }
 
-// MARK: - CG Size + Scaled Down with Multiplier
 extension CGSize {
     /// Returns `CGSize` scaled down with a given multiplier.
     ///

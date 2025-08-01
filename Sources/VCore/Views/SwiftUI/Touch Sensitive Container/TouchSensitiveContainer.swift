@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Touch Sensitive Container
 /// `View` that detects and reacts to touch down and touch up interactions.
 ///
 ///     var body: some View {
@@ -69,7 +68,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     ) {
         self.appearance = appearance
         self.action = action
-        self.content = .content(content)
+        self.content = .content(builder: content)
     }
 
     /// Initializes `TouchSensitiveContainer` with content.
@@ -80,7 +79,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     ) {
         self.appearance = appearance
         self.action = action
-        self.content = .contentWithState(content)
+        self.content = .contentWithState(builder: content)
     }
 
     // MARK: Body
@@ -92,12 +91,12 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     @ViewBuilder 
     private var contentView: some View {
         switch content {
-        case .content(let content):
-            content()
+        case .content(let builder):
+            builder()
                 .opacity(appearance.contentOpacities.value(for: internalState))
 
-        case .contentWithState(let content):
-            content(internalState)
+        case .contentWithState(let builder):
+            builder(internalState)
         }
     }
 
@@ -138,7 +137,6 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #if !os(tvOS) // Redundant

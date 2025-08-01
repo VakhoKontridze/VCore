@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - ConfirmationDialog Parameters
 /// Parameters for presenting a `ConfirmationDialog`.
 ///
 ///     @State private var parameters: ConfirmationDialogParameters?

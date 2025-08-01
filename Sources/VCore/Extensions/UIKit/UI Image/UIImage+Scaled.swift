@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Image + Scaled
 extension UIImage {
     /// Scales `UIImage` to specified width.
     ///
@@ -54,7 +53,6 @@ extension UIImage {
     }
 }
 
-// MARK: - UI Image + Scaled Down
 extension UIImage {
     /// Returns `UIImage` scaled down to specified width, if new width is smaller.
     ///

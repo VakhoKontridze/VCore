@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Access Level Modifier Keyword
 /// Access level modifier.
 public enum AccessLevelModifierKeyword: String, Sendable, CaseIterable {
     /// Open.

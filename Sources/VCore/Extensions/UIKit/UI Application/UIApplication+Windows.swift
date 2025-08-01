@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Application + Windows
 extension UIApplication {
     /// Returns first `UIWindow` in a single-scene application.
     ///

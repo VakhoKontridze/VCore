@@ -10,7 +10,6 @@
 import AppKit
 import OSLog
 
-// MARK: - NS Color + Dynamic
 extension NSColor {
     /// Creates `NSColor` that generates it's color data dynamically.
     ///

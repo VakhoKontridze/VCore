@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Digital Time Formatter
 /// Digital time formatter that formats seconds to day, hour, minute, and second format.
 ///
 /// Formatter can be customized by setting flags to change behavior, such as component visibility or delimiter.

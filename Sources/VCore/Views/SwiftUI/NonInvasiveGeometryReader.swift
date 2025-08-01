@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Non-Invasive Geometry Reader
 struct NonInvasiveGeometryReader<Content>: View
     where Content: View
 {
@@ -17,7 +16,7 @@ struct NonInvasiveGeometryReader<Content>: View
 
     // MARK: Initializers
     init(
-        alignment: Alignment,
+        alignment: Alignment = .center,
         @ViewBuilder content: @escaping (GeometryProxy) -> Content
     ) {
         self.alignment = alignment

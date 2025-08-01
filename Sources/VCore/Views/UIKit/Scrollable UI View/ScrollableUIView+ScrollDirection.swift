@@ -9,7 +9,6 @@
 
 import Foundation
 
-// MARK: - Scrollable UI View + Scroll Direction
 extension ScrollableUIView {
     /// Scroll Direction.
     @OptionSetRepresentation<Int>

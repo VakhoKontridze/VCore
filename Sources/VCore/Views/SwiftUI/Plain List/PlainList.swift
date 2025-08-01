@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Plain List
 /// Container that presents rows of data arranged in a single column.
 ///
 ///     PlainList {
@@ -48,7 +47,6 @@ public struct PlainList<Content>: View where Content: View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #if !(os(tvOS) || os(watchOS)) // Redundant

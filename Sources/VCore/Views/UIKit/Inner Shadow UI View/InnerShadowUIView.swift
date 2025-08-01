@@ -9,10 +9,15 @@
 
 import UIKit
 
-// MARK: - Inner Shadow UI View
 /// `UIView` that casts an inner shadow.
 open class InnerShadowUIView: UIView {
-    // MARK: Subviews
+    // MARK: Properties - Appearance
+    /// Model that describes appearance.
+    ///
+    /// To change current appearance, use `configure(appearance:)` method.
+    private(set) var appearance: InnerShadowUIViewAppearance
+    
+    // MARK: Properties - Subviews
     /// Shape layer.
     open var shapeLayer: CAShapeLayer = {
         let shapeLayer: CAShapeLayer = .init()
@@ -20,12 +25,6 @@ open class InnerShadowUIView: UIView {
         shapeLayer.fillRule = .evenOdd
         return shapeLayer
     }()
-    
-    // MARK: Properties
-    /// Model that describes appearance.
-    ///
-    /// To change current appearance, use `configure(appearance:)` method.
-    private(set) var appearance: InnerShadowUIViewAppearance
     
     // MARK: Initializers
     /// Initializes `InnerShadowUIView`.
@@ -77,7 +76,6 @@ open class InnerShadowUIView: UIView {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

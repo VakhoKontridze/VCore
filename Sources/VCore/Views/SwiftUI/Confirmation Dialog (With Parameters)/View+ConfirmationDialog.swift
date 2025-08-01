@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Confirmation Dialog
 extension View {
     /// Presents `ConfirmationDialog` when `ConfirmationDialogParameters` is non-`nil`.
     ///
@@ -63,7 +62,6 @@ extension View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

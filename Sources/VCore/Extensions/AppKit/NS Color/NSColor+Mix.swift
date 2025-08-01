@@ -9,7 +9,6 @@
 
 import AppKit
 
-// MARK: - NS Color + Mix
 extension NSColor {
     /// Mixes two `NSColor`s together.
     ///
@@ -34,7 +33,6 @@ extension NSColor {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 import SwiftUI

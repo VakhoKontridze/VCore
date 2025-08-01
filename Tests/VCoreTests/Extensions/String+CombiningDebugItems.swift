@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - String + Combining Debug Items
 extension String {
     static func combiningDebugItems(
         _ items: Any...

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View Resetting Container
 /// `View` that resets content on demand.
 ///
 /// Can be used to trigger reload on an app level.
@@ -70,11 +69,11 @@ public struct ViewResettingContainer<Content>: View where Content: View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {
     struct ContentView: View {
+        // MARK: Body
         var body: some View {
             ViewResettingContainer {
                 ChildView()
@@ -83,8 +82,10 @@ public struct ViewResettingContainer<Content>: View where Content: View {
     }
 
     struct ChildView: View {
+        // MARK: Properties
         @Environment(\.viewResetter) private var viewResetter: ViewResetter!
 
+        // MARK: Body
         var body: some View {
             GeometryReader { geometryProxy in
                 ScrollView {

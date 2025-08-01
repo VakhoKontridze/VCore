@@ -7,7 +7,6 @@
 
 import CoreGraphics
 
-// MARK: - CG Point + With Reversed Coordinates
 extension CGPoint {
     /// Returns `CGPoint` with reversed `x` and `y`.
     ///

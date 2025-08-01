@@ -9,7 +9,6 @@
 
 import SwiftUI
 
-// MARK: - View + Get Interface Orientation
 extension View {
     /// Retrieves `UIInterfaceOrientation` from `View`.
     ///
@@ -33,7 +32,6 @@ extension View {
     }
 }
 
-// MARK: - Interface Orientation Reader View
 private struct InterfaceOrientationReaderView: UIViewControllerRepresentable {
     // MARK: Properties
     private let completion: (UIInterfaceOrientation) -> Void
@@ -53,7 +51,6 @@ private struct InterfaceOrientationReaderView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: _InterfaceOrientationReaderViewController, context: Context) {}
 }
 
-// MARK: - _ Interface Orientation Reader View Controller
 private final class _InterfaceOrientationReaderViewController: UIViewController {
     // MARK: Properties
     private let completion: (UIInterfaceOrientation) -> Void

@@ -9,7 +9,6 @@
 
 import SwiftUI
 
-// MARK: - Modal Presenter Root Model (Window)
 // Allows data to be shared between `ViewModifier` and `ModalContent` without re-setting `UIHostingController`'s `rootView`.
 @Observable
 @MainActor

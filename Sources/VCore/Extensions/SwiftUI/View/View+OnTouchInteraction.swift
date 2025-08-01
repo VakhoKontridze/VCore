@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + On Touch Interaction
 @available(tvOS, unavailable)
 extension View {
     /// Adds an action to perform when `View` recognizes a touch down or touch up interaction.
@@ -33,7 +32,6 @@ extension View {
     }
 }
 
-// MARK: - Touch Down & Touch Up Interaction Recognizer View Modifiable
 @available(tvOS, unavailable)
 private struct TouchDownTouchUpInteractionRecognizerViewModifier: ViewModifier {
     // MARK: Properties
@@ -70,7 +68,6 @@ private struct TouchDownTouchUpInteractionRecognizerViewModifier: ViewModifier {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #if !os(tvOS) // Redundant

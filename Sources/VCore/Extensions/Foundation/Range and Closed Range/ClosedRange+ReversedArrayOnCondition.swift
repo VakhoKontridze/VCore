@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Closed Range + Reversed Array on Condition
 extension ClosedRange where Bound: FixedWidthInteger {
     /// Returns reversed `Array` from `ClosedRange` if condition is met.
     ///

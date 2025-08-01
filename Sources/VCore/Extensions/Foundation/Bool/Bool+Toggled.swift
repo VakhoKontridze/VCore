@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Bool + Toggled
 extension Bool {
     /// Returns `Bool` with a toggled value.
     ///

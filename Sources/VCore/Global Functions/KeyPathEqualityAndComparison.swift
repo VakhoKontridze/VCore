@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Is Equal by KeyPath
 /// Returns a `Bool` value indicating whether the value of the first argument is equal to that of the second argument with given `KeyPath`s.
 ///
 ///     isEqual(objectA, to: objectB, by: \.a, \.b)
@@ -26,7 +25,6 @@ public func isEqual<T, each Property: Equatable>(
     return true
 }
 
-// MARK: - Is Less than by KeyPath
 /// Returns a `Bool` value indicating whether the value of the first argument is less than that of the second argument with given `KeyPath`s.
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b)
@@ -45,7 +43,6 @@ public func isLess<T, each Property: Comparable>(
     return false
 }
 
-// MARK: - Is Less than or Equal to by KeyPath
 /// Returns a `Bool` value indicating whether the value of the first argument is less than or equal to that of the second argument with given `KeyPath`s.
 ///
 ///     isLessThanOrEqual(objectA, to: objectB, by: \.a, \.b)
@@ -58,7 +55,6 @@ public func isLessThanOrEqual<T, each Property: Comparable>(
     !isLess(rhs, than: lhs, by: repeat each keyPaths)
 }
 
-// MARK: - Is Greater than by KeyPath
 /// Returns a `Bool` value indicating whether the value of the first argument is greater than that of the second argument with given `KeyPath`s.
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b)
@@ -71,7 +67,6 @@ public func isGreater<T, each Property: Comparable>(
     isLess(rhs, than: lhs, by: repeat each keyPaths)
 }
 
-// MARK: - Is Greater than or Equal to by KeyPath
 /// Returns a `Bool` value indicating whether the value of the first argument is greater than or equal to that of the second argument with given `KeyPath`s.
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b)

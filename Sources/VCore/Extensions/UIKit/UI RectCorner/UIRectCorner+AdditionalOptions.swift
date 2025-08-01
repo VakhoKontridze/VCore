@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Rect Corner + Additional Options
 extension UIRectCorner {
     /// Top corners of the rectangle.
     ///

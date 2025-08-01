@@ -10,7 +10,6 @@
 import UIKit
 import OSLog
 
-// MARK: - Carousel UI Collection View Flow Layout
 /// Layout object that organizes items into a grid with a flowing carousel alignment.
 ///
 /// Item size should be set via property `itemSize` property.
@@ -202,7 +201,6 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {
@@ -210,6 +208,14 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         UIViewController,
         UICollectionViewDelegate, UICollectionViewDataSource
     {
+        // MARK: Properties - Appearance
+        private let spacing: CGFloat = 20
+        private let inset: CGFloat = 40
+        
+        // MARK: Properties - Data
+        private var data: [UIColor] = Array(repeating: [.red, .green, .blue], count: 3).flatMap { $0 }
+        
+        // MARK: Properties - Subviews
         private lazy var collectionView: UICollectionView = {
             let layout: CarouselUICollectionViewFlowLayout = .init(
                 itemSize: .init(inset: inset, height: nil),
@@ -239,11 +245,7 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             return collectionView
         }()
         
-        private let spacing: CGFloat = 20
-        private let inset: CGFloat = 40
-        
-        private var data: [UIColor] = Array(repeating: [.red, .green, .blue], count: 3).flatMap { $0 }
-        
+        // MARK: Lifecycle
         override func viewDidLoad() {
             super.viewDidLoad()
             
@@ -263,6 +265,14 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             collectionView.reloadData()
         }
         
+        // MARK: Scroll View Delegate
+        func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
+            if let carouselFlowLayout = collectionView.collectionViewLayout as? CarouselUICollectionViewFlowLayout {
+                print(carouselFlowLayout.indexOfCenterItem(inDeceleratedEndedScrollView: scrollView))
+            }
+        }
+        
+        // MARK: Collection View Data Source
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
             data.count
         }
@@ -271,12 +281,6 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: UICollectionViewCell.self), for: indexPath)
             cell.contentView.backgroundColor = data[indexPath.row]
             return cell
-        }
-        
-        func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-            if let carouselFlowLayout = collectionView.collectionViewLayout as? CarouselUICollectionViewFlowLayout {
-                print(carouselFlowLayout.indexOfCenterItem(inDeceleratedEndedScrollView: scrollView))
-            }
         }
     }
     

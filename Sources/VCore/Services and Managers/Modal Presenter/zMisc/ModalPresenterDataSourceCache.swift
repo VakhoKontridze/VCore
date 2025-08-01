@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Modal Presenter Data Source Cache
 /// Caches data for Modal Presenter, for when presenting model may become `nil`.
 ///
 /// Can be used to ensure that last content is visible instead of blank screen, when data is set to `nil` and modal is being dismissed.

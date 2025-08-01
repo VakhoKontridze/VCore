@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Process Info + Is Preview
 extension ProcessInfo {
     /// Indicates if process is running for previews.
     ///

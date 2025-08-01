@@ -9,14 +9,8 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct JSONEncoderMethodsTests {
-    // MARK: Test Data
-    private struct Object: Codable {
-        let key: String?
-    }
-    
     // MARK: Tests
     @Test
     func testAnyToData() throws {
@@ -49,9 +43,13 @@ struct JSONEncoderMethodsTests {
             #expect(objects2[i].key == objects[i].key)
         }
     }
+    
+    // MARK: Object
+    private struct Object: Codable {
+        let key: String?
+    }
 }
 
-// MARK: - Helpers
 extension Optional where Wrapped == Any {
     fileprivate var toString: String? {
         self as? String

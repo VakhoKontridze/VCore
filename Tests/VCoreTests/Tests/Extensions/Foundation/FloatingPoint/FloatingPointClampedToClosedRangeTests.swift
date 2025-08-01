@@ -9,7 +9,6 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct FloatingPointClampedToClosedRangeTests {
     // MARK: Tests - Closed Range

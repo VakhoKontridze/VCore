@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Alert Button Protocol
 /// `UIAlertController` button protocol.
 public protocol UIAlertButtonProtocol: UIAlertButtonConvertible {
     /// Converts `UIAlertButtonProtocol` to `UIAlertAction`.

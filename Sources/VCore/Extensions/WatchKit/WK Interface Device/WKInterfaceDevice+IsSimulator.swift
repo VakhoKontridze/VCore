@@ -9,7 +9,6 @@
 
 import WatchKit
 
-// MARK: - WK Interface Device + Is Simulator
 extension WKInterfaceDevice {
     /// Indicates if device is simulator.
     ///

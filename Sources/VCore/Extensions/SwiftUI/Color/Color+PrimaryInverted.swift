@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Color + Primary Inverted
 extension Color {
     /// `Color` that can be used for inverted primary content.
     ///
@@ -19,7 +18,6 @@ extension Color {
     public static let primaryInverted: Color = .platformDynamic(Color.white, Color.black)
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

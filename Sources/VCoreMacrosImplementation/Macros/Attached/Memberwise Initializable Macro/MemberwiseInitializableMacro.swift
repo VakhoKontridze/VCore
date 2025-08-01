@@ -11,7 +11,6 @@ import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 import SwiftDiagnostics
 
-// MARK: - Memberwise Initializable Macro
 struct MemberwiseInitializableMacro: MemberMacro {
     // MARK: Member Macro
     static func expansion(
@@ -645,7 +644,6 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
 }
 
-// MARK: - Helpers
 extension StringProtocol {
     // Not moved to shared package
     fileprivate var nonEmpty: Self? {

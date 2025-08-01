@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Closed Range + Bound Range
 extension ClosedRange where Bound: AdditiveArithmetic {
     /// Difference between `upperBound` and `lowerBound`.
     ///

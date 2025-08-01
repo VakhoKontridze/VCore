@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Sequence + Sorted by KeyPath
 extension Sequence {
     /// Returns the elements of a `Sequence`, sorted using the given `KeyPath` as the comparison between elements.
     ///

@@ -9,17 +9,9 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct CollectionFirstAndLastIndexOfTypeTests {
-    // MARK: Test Data
-    private protocol P {
-        var value: Int { get }
-    }
-
-    private struct S1: P { let value: Int }
-    private struct S2: P { let value: Int }
-
+    // MARK: Properties
     private let array: [any P] = [
         S1(value: 1),
         S1(value: 2),
@@ -40,5 +32,18 @@ struct CollectionFirstAndLastIndexOfTypeTests {
     func testLastIndex() {
         #expect(array.lastIndex(ofType: S1.self) == 5)
         #expect(array.lastIndex(ofType: S1.self) { $0.value < 6 } == 4)
+    }
+    
+    // MARK: Types
+    private protocol P {
+        var value: Int { get }
+    }
+
+    private struct S1: P {
+        let value: Int
+    }
+    
+    private struct S2: P {
+        let value: Int
     }
 }

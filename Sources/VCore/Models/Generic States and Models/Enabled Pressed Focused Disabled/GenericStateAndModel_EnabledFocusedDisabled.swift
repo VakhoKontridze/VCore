@@ -12,10 +12,7 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - Genetic State (Enabled, Focused, Disabled)
 /// Enumeration that represents state.
-///
-/// Used for mapping state to `GenericStateModel_EnabledFocusedDisabled`, with `value(for:)` method.
 public enum GenericState_EnabledFocusedDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
@@ -48,10 +45,7 @@ public enum GenericState_EnabledFocusedDisabled: Int, Sendable, CaseIterable {
     }
 }
 
-// MARK: - Generic State Model (Enabled, Focused, Disabled)
-/// Value group containing generic `enabled`, `focused`, and `disabled` values.
-///
-/// Used for mapping `GenericState_EnabledFocusedDisabled` to model, with `value(for:)` method.
+/// Group containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_EnabledFocusedDisabled` with values."
 )
@@ -127,17 +121,14 @@ public struct GenericStateModel_EnabledFocusedDisabled<Value> {
     }
 }
 
-// MARK: Equatable, Hashable
 extension GenericStateModel_EnabledFocusedDisabled: Equatable where Value: Equatable {}
 
 extension GenericStateModel_EnabledFocusedDisabled: Hashable where Value: Hashable {}
 
-// MARK: Sendable
 extension GenericStateModel_EnabledFocusedDisabled: Sendable where Value: Sendable {}
 
-// MARK: - State-Model Mapping
 extension GenericStateModel_EnabledFocusedDisabled {
-    /// Maps `GenericState_EnabledFocusedDisabled` to `GenericStateModel_EnabledFocusedDisabled`.
+    /// Maps state to model.
     public func value(for state: GenericState_EnabledFocusedDisabled) -> Value {
         switch state {
         case .enabled: enabled

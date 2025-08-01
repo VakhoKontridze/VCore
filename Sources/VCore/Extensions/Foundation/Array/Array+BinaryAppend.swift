@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Array + Binary Append
 extension Array {
     /// Insert element in appropriate place using a binary append algorithm.
     ///

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Option Set Representation
 /// Adds an `OptionSet` from `struct` that contains a nested `Options` `enum`.
 ///
 /// If `accessLevelModifier` is `nil`, it will be inherited from the type.

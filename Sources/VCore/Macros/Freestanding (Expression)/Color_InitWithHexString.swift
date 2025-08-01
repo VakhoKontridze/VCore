@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Color (Init with Hex String)
 /// Returns non-optional `Color` from `String`, checked during the compile time.
 ///
 /// `hex` parameter must have `6` characters.

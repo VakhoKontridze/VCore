@@ -8,7 +8,6 @@
 import SwiftUI
 import VCoreShared
 
-// MARK: - Color + Init with Hex - String
 extension Color {
     /// Initializes `UIColor` with a hex `String`.
     ///
@@ -33,7 +32,6 @@ extension Color {
     }
 }
 
-// MARK: - Color + Init with Hex - U Int
 extension Color {
     /// Initializes `UIColor` with a hex `UInt`
     ///
@@ -58,7 +56,6 @@ extension Color {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

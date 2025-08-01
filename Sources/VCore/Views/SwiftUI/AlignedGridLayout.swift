@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Aligned Grid Layout
 /// Vertical container that justifies collection of views with an alignment.
 ///
 ///     private let strings: [String] = [
@@ -245,7 +244,6 @@ public struct AlignedGridLayout: Layout {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview("VStack") {
@@ -311,6 +309,7 @@ public struct AlignedGridLayout: Layout {
 }
 
 private struct GridSection: View {
+    // MARK: Properties
     private let horizontalAlignment: HorizontalAlignment
     private let verticalAlignment: VerticalAlignment
     private let hasDifferentHeights: Bool
@@ -322,6 +321,7 @@ private struct GridSection: View {
         "October", "November", "December"
     ]
 
+    // MARK: Initializers
     init(
         _ horizontalAlignment: HorizontalAlignment,
         verticalAlignment: VerticalAlignment = .center,
@@ -332,6 +332,7 @@ private struct GridSection: View {
         self.hasDifferentHeights = hasDifferentHeights
     }
 
+    // MARK: Body
     var body: some View {
         AlignedGridLayout(
             horizontalAlignment: horizontalAlignment,

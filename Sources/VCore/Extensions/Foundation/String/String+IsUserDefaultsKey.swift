@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - String + Is User Defaults Key
 extension String {
     /// Checks if value of this key is stored in `UserDefaults`.
     ///

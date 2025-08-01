@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - System Keyboard Info
 /// Contains information about software keyboard, that can be used during animations.
 @available(tvOS, unavailable)
 public struct SystemKeyboardInfo: Sendable {

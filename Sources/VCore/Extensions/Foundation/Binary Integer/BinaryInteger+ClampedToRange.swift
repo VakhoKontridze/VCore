@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Binary Integer + Clamped to Range
 extension BinaryInteger {
     /// Clamps value to range.
     ///
@@ -48,7 +47,6 @@ extension BinaryInteger {
 }
 
 
-// MARK: - Binary Integer + Clamped to Closed Range
 extension BinaryInteger {
     /// Clamps value to range.
     ///

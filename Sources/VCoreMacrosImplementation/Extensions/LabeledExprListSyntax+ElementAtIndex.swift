@@ -8,7 +8,6 @@
 import Foundation
 import SwiftSyntax
 
-// MARK: - Labeled Expr List Syntax + Element at Index
 extension LabeledExprListSyntax {
     func element(at index: Int) -> Element? {
         let index: SyntaxChildrenIndex = self.index(startIndex, offsetBy: index)

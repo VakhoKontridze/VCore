@@ -7,16 +7,13 @@
 
 import Foundation
 
-// MARK: - User Defaults Service Error
 /// An error that occurs during the operations in `UserDefaultsService`.
 @MemberwiseInitializable(accessLevelModifier: .private)
 public struct UserDefaultsServiceError: BaseErrorProtocol, Sendable {
-    // MARK: Properties
     public static let domain: String = "com.vcore.userdefaultsservice"
     public let code: Int
     public let description: String
     
-    // MARK: Properties
     /// Indicates that get operation has failed.
     public static var failedToGet: Self {
         .init(

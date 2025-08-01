@@ -9,7 +9,6 @@
 
 import SwiftUI
 
-// MARK: - Swift UI Gesture Base Button (App Kit)
 struct SwiftUIGestureBaseButton_AppKit: NSViewRepresentable {
     // MARK: Properties
     private let isEnabled: Bool

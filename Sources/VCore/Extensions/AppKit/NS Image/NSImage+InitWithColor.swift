@@ -9,7 +9,6 @@
 
 import AppKit
 
-// MARK: - NS Image + Init with Color
 extension NSImage {
     /// Initializes `UIImage` with `CGSize` and `NSColor`.
     ///
@@ -40,7 +39,6 @@ extension NSImage {
 
 import SwiftUI
 
-// MARK: - Preview
 #Preview {
     guard
         let image: NSImage = .init(

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - View Resetter
 /// Object inside the environment of `ViewResettingContainer` to trigger view resets on demand.
 ///
 /// For additional info, refer to `ViewResettingContainer`.

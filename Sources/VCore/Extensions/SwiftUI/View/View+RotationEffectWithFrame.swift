@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Rotation Effect with Frame
 extension View {
     /// Rotates `View`'s rendered output around the specified point, while adjusting the frame.
     ///
@@ -28,7 +27,6 @@ extension View {
     }
 }
 
-// MARK: - Rotation Effect with Frame View Modifier
 private struct RotationEffectWithFrameViewModifier: ViewModifier {
     // MARK: Properties
     private let angle: Angle
@@ -65,7 +63,6 @@ private struct RotationEffectWithFrameViewModifier: ViewModifier {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI View + Dismiss Keyboard on Outside Tap
 extension UIView {
     /// Dismisses keyboard on outside tap, by resigning the first responder.
     ///

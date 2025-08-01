@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Progress View
 extension View {
     /// Presents `ProgressView` when `parameters` is non-`nil`.
     ///
@@ -34,7 +33,6 @@ extension View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

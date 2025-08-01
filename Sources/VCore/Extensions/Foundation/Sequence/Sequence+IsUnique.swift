@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Sequence + Is Unique
 extension Sequence where Element: Hashable {
     /// Indicates if sequence doesn't contain duplicate elements.
     ///

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Screen + Display Corner Radius
 extension UIScreen {
     /// The corner radius of the display.
     ///

@@ -11,7 +11,6 @@ import QuartzCore
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct CACornerMaskAdditionalOptionsTests {
     @Test

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - String + Removing Character Set
 extension String {
     package func _removing(_ characterSet: CharacterSet) -> String {
         filter { char in

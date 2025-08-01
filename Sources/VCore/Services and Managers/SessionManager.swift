@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Session Manager
 /// Session manager that works with `AtomicInteger` to manage sessions with unique identifiers.
 ///
 /// For shared instance, refer to `GlobalSessionManager`.
@@ -60,7 +59,6 @@ public actor SessionManager {
     }
 }
 
-// MARK: - Global Session Manager
 /// Global instance of `SessionManager`.
 ///
 ///     Task {

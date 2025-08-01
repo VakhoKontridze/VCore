@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Responder Chain Toolbar
 @available(tvOS, unavailable) // No `ToolbarItemPlacement.keyboard`
 @available(watchOS, unavailable) // No `ToolbarItemPlacement.keyboard`
 @available(visionOS, unavailable) // No `ToolbarItemPlacement.keyboard`

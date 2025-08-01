@@ -8,7 +8,6 @@
 import SwiftUI
 import OSLog
 
-// MARK: - Attributed String + Init with Attribute Containers
 extension AttributedString {
     /// Initializes `AttributedString` with child `AttributedString` components created from mapping tag names to `AttributeContainer`s.
     ///
@@ -64,7 +63,6 @@ extension AttributedString {
     }
 }
 
-// MARK: - String + Components Separated by Tags
 extension String {
     /*fileprivate*/ func components(
         separatedByTagNames tagNames: [Character]
@@ -136,7 +134,6 @@ extension String {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

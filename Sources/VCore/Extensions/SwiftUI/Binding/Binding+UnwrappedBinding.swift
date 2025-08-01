@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Binding + Unwrapped Binding
 extension Binding {
     /// Returns `Binding` wrapper for an `Optional` `Binding` with a default value for getter.
     ///

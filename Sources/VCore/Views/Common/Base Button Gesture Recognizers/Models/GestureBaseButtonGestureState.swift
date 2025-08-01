@@ -12,7 +12,6 @@ import AppKit
 #endif
 import OSLog
 
-// MARK: - Gesture Base Button Gesture State
 /// Enumeration that represents state.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)

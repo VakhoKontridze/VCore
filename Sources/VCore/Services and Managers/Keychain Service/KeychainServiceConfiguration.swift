@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Keychain Service Configuration
 /// Configuration for `KeychainService`.
 ///
 /// Can be used to customize queries:
@@ -62,7 +61,6 @@ public struct KeychainServiceConfiguration {
     }
 }
     
-// MARK: - Keychain Service Configuration + Get Query
 extension KeychainServiceConfiguration {
     /// Get query.
     ///
@@ -101,7 +99,6 @@ extension KeychainServiceConfiguration {
     }
 }
     
-// MARK: - Keychain Service Configuration + Set Query
 extension KeychainServiceConfiguration {
     /// Set query.
     ///
@@ -139,7 +136,6 @@ extension KeychainServiceConfiguration {
     }
 }
 
-// MARK: - Keychain Service Configuration + Delete Query
 extension KeychainServiceConfiguration {
     /// Delete query.
     ///

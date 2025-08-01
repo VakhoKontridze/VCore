@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Base Error Protocol
 /// Base error protocol.
 ///
 ///     @MemberwiseInitializable(accessLevelModifier: .private)

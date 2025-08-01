@@ -8,7 +8,6 @@
 import Foundation
 import XCTest
 
-// MARK: - XC Test + Assert Instance Is Deallocated
 extension XCTestCase {
     @MainActor
     func assertInstanceIsDeallocated(

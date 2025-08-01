@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - String Protocol + Contains Character Set
 extension StringProtocol {
     /// Returns `Bool` indicating if `String` contains a `Character` from given `CharacterSet`.
     ///
@@ -22,7 +21,6 @@ extension StringProtocol {
     }
 }
 
-// MARK: - String Protocol + Contains Character Sets
 extension StringProtocol {
     /// Returns `Bool` indicating if `String` contains a `Character` from any given `CharacterSet`s.
     ///

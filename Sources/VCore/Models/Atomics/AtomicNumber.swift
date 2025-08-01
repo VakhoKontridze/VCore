@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Atomic Number
 /// Thread-safe, automatically incremented `Numeric`.
 ///
 ///     let idGenerator: AtomicNumber<Int> = .init()
@@ -100,28 +99,4 @@ public actor AtomicNumber<Number> where Number: Numeric {
     public func getAndDecrement() -> Number {
         getAndAdd(-1)
     }
-}
-
-// MARK: - Atomic Integer
-/// Thread-safe, automatically incremented `Int`.
-///
-///     let idGenerator: AtomicInteger = .init()
-///
-///     func generateID() async -> Int {
-///         await idGenerator.getAndIncrement()
-///     }
-///
-/// For shared instance, refer to `GlobalAtomicInteger`.
-public typealias AtomicInteger = AtomicNumber<Int>
-
-// MARK: - Global Atomic Integer
-/// Global instance of `AtomicInteger`.
-///
-///     func generateID() async -> Int {
-///         await GlobalAtomicInteger.shared.getAndIncrement()
-///     }
-///
-@globalActor
-public final class GlobalAtomicInteger {
-    public static let shared: AtomicInteger = .init()
 }

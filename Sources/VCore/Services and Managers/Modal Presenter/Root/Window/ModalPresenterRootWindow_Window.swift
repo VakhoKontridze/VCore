@@ -9,7 +9,6 @@
 
 import SwiftUI
 
-// MARK: - Modal Presenter Root Window (Window)
 // https://developer.apple.com/forums/thread/762292?answerId=803885022
 // https://medium.com/@adarsh.ranjan/fixing-tap-interactions-in-ios-18-understanding-and-resolving-the-root-view-hit-testing-issue-37c6c858e2d4
 final class ModalPresenterRootWindow_Window: UIWindow {
@@ -99,7 +98,6 @@ final class ModalPresenterRootWindow_Window: UIWindow {
     }
 }
 
-// MARK: - Modal Presenter Touch Event and View Dictionary
 private final class ModalPresenterTouchEventAndViewDictionary {
     // MARK: Properties
     private let cache: NSCache<NSNumber, NSString> = {

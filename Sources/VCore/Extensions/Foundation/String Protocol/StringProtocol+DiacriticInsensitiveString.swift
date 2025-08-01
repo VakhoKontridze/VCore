@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - String Protocol + Diacritic Insensitive String
 extension StringProtocol {
     /// Returns a diacritic-insensitive `String`.
     ///

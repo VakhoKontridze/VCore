@@ -11,7 +11,6 @@ import AppKit
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct NSFontStylingTests {
     @Test

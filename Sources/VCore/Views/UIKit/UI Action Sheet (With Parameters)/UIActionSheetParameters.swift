@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Action Sheet Parameters
 /// Parameters for presenting a `UIActionSheet`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are passed by`Presenter` to `View/Controller`
@@ -52,7 +51,6 @@ public struct UIActionSheetParameters {
     }
 }
 
-// MARK: - Factory
 extension UIAlertController {
     /// Initializes `UIAlertController` with `UIActionSheetParameters`.
     convenience public init(parameters: UIActionSheetParameters) {

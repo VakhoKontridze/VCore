@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Result with No Success and No Failure
 /// Represents either Success or Failure.
 ///
 /// Can be used to represent a result type that has no associated Success or Failure types to it.

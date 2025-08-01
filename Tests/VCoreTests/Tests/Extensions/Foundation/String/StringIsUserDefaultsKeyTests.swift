@@ -9,7 +9,6 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct StringIsUserDefaultsKeyTests { // Can't be properly tested
     @Test

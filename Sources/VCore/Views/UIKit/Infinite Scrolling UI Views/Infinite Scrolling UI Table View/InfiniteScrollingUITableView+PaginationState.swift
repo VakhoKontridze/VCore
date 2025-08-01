@@ -9,7 +9,6 @@
 
 import Foundation
 
-// MARK: - Infinite Scrolling UI Table View + Pagination State
 extension InfiniteScrollingUITableView {
     /// Enumeration that represents state.
     public typealias PaginationState = InfiniteScrollingPaginationState

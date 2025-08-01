@@ -9,17 +9,8 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct CaseIterableCasesTests {
-    // MARK: Test Data
-    private enum CardinalDirection: CaseIterable {
-        case north
-        case east
-        case south
-        case west
-    }
-
     // MARK: Tests
     @Test
     func testOffset() {
@@ -41,5 +32,13 @@ struct CaseIterableCasesTests {
     func testNext() {
         #expect(CardinalDirection.south.nextCase == .west)
         #expect(CardinalDirection.west.nextCase == nil)
+    }
+    
+    // MARK: Cardinal Direction
+    private enum CardinalDirection: CaseIterable {
+        case north
+        case east
+        case south
+        case west
     }
 }

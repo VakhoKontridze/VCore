@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Sheet Content Wrapping Container View
 /// Container view that can be used to to wrap content within sheet.
 ///
 ///     @State var isPresented: Bool = true
@@ -68,7 +67,6 @@ public struct SheetContentWrappingContainerView<Content>: View where Content: Vi
     }
 }
 
-// MARK: Preview
 #if DEBUG
 
 #Preview {

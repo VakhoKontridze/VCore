@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Int + Run Block "n" Times
 extension Int {
     /// Runs block by specified times.
     ///

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Kit Base Button
 /// `UIKit` `UIView` that can be used as a base for all interactive views and buttons.
 ///
 /// `UIKitBaseButton` can be used as a basis for all interactive UI components.
@@ -206,7 +205,6 @@ open class UIKitBaseButton: UIView {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #if !os(tvOS) // Redundant
@@ -220,12 +218,14 @@ open class UIKitBaseButton: UIView {
 
 // Macros aren't allowed in Preview macro
 private struct PlainButtonAppearance {
+    // MARK: Properties
     var labelTextColors: StateColors = .init(
         enabled: UIColor.label,
         pressed: UIColor.secondaryLabel,
         disabled: UIColor.secondaryLabel
     )
 
+    // MARK: State Colors
     typealias StateColors = GenericStateModel_EnabledPressedDisabled<UIColor>
 }
 
@@ -234,6 +234,19 @@ private typealias PlainButtonState = GenericState_EnabledDisabled
 private typealias PlainButtonInternalState = GenericState_EnabledPressedDisabled
 
 private final class PlainButton: UIView {
+    // MARK: Properties - Appearance
+    private var appearance: PlainButtonAppearance
+    
+    // MARK: Properties - State
+    var isEnabled: Bool {
+        get { internalState.isGestureEnabled }
+        set { configure(state: PlainButtonState(isEnabled: newValue)) }
+    }
+    var state: PlainButtonState { .init(isEnabled: internalState.isGestureEnabled) }
+    private var internalState: PlainButtonInternalState = .enabled
+        { didSet { baseButton.isEnabled = internalState.isGestureEnabled } }
+    
+    // MARK: Properties - Subviews
     // Action is passed during configuration
     private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateAppearanceChange() })
         .withTranslatesAutoresizingMaskIntoConstraints(false)
@@ -245,16 +258,7 @@ private final class PlainButton: UIView {
         return label
     }()
 
-    private var appearance: PlainButtonAppearance
-
-    var isEnabled: Bool {
-        get { internalState.isGestureEnabled }
-        set { configure(state: PlainButtonState(isEnabled: newValue)) }
-    }
-    var state: PlainButtonState { .init(isEnabled: internalState.isGestureEnabled) }
-    private var internalState: PlainButtonInternalState = .enabled
-        { didSet { baseButton.isEnabled = internalState.isGestureEnabled } }
-
+    // MARK: Initializers
     init(
         appearance: PlainButtonAppearance = .init(),
         action: @escaping () -> Void,
@@ -273,6 +277,7 @@ private final class PlainButton: UIView {
         fatalError()
     }
 
+    // MARK: Setup
     private func setUp() {
         addSubview(baseButton)
         addSubview(titleLabel)
@@ -291,6 +296,7 @@ private final class PlainButton: UIView {
         ])
     }
 
+    // MARK: Configuration
     func configure(appearance: PlainButtonAppearance) {
         self.appearance = appearance
 

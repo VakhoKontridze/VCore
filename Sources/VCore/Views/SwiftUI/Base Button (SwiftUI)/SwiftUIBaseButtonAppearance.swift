@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Swift UI Base Button Appearance
 /// Model that describes appearance.
 public struct SwiftUIBaseButtonAppearance: Sendable {
     // MARK: Properties

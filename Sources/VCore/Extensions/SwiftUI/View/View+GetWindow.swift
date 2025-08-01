@@ -9,7 +9,6 @@
 
 import SwiftUI
 
-// MARK: - View + Get Window
 extension View {
     /// Retrieves `UIWindow` from `View`.
     ///
@@ -33,7 +32,6 @@ extension View {
     }
 }
 
-// MARK: - Window Reader View
 private struct WindowReaderView: UIViewRepresentable {
     // MARK: Properties
     private let completion: (UIWindow) -> Void
@@ -53,7 +51,6 @@ private struct WindowReaderView: UIViewRepresentable {
     func updateUIView(_ uiView: _WindowReaderView, context: Context) {}
 }
 
-// MARK: - _ Window Reader View
 private final class _WindowReaderView: UIView {
     // MARK: Properties
     private let completion: (UIWindow) -> Void

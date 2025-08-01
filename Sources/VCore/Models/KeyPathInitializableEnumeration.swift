@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - KeyPath Initializable Enumeration
 /// Enumeration that allows for dynamic lookup of a case with a given property `KeyPath` and value.
 ///
 ///     enum Gender: KeyPathInitializableEnumeration {

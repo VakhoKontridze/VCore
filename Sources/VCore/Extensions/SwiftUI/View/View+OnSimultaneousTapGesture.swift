@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + On Simultaneous Tap Gesture
 extension View {
     /// Attaches a gesture to the `View` to process simultaneously with tap gesture defined by the `View`.
     ///

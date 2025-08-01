@@ -8,7 +8,6 @@
 import Foundation
 import OSLog
 
-// MARK: - User Defaults Service
 /// Service object that performs get, set, and delete `UserDefaults` operations.
 ///
 /// Object contains default instance `default`.

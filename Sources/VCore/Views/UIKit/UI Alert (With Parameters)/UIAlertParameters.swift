@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Alert Parameters
 /// Parameters for presenting a `UIAlert`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, parameters are passed by`Presenter` to `View/Controller`
@@ -89,7 +88,6 @@ public struct UIAlertParameters {
     }
 }
 
-// MARK: - Factory
 extension UIAlertController {
     /// Initializes `UIAlertController` with `UIAlertParameters`.
     convenience public init(parameters: UIAlertParameters) {

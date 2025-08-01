@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Raw String Error
 struct RawStringError: Error, CustomStringConvertible {
     // MARK: Properties
     let description: String

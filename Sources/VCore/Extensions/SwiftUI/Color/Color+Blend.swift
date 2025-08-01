@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Color + Blend
 extension Color { // TODO: iOS 18.0 - Remove
     /// Blends two `Color`s together.
     ///

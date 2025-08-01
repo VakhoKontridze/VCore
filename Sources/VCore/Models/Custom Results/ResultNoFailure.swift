@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Result with No Failure
 /// Represents either Success or Failure, including an associated value in success case.
 ///
 /// Can be used to represent a result type that has no associated Failure type to it.
@@ -59,7 +58,6 @@ public enum ResultNoFailure<Success> {
     }
 }
 
-// MARK: Equatable
 extension ResultNoFailure: Equatable where Success: Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
@@ -71,5 +69,4 @@ extension ResultNoFailure: Equatable where Success: Equatable {
     }
 }
 
-// MARK: Sendable
 extension ResultNoFailure: Sendable where Success: Sendable {}

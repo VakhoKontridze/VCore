@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Progress View Parameters
 /// Parameters for presenting an `ProgressView`.
 ///
 ///     @State private var parameters: ProgressViewParameters = .init()

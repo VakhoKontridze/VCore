@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Application + Send Resign First Responder Action
 extension UIApplication {
     /// Sends `UIResponder.resignFirstResponder` selector to `UIApplication`.
     ///

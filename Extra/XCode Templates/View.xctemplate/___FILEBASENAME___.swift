@@ -2,7 +2,6 @@
 
 import SwiftUI
 
-// MARK: - ___VARIABLE_productName___
 struct ___VARIABLE_productName___: View {
     // MARK: Properties - Model Injection
     // ...
@@ -32,7 +31,6 @@ struct ___VARIABLE_productName___: View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

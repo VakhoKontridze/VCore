@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Touch Sensitive Container Appearance
 /// Model that describes appearance.
 @available(tvOS, unavailable)
 public struct TouchSensitiveContainerAppearance: Sendable {

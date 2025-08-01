@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Locale + Display Name
 extension Locale {
     /// Returns the display name for the given locale component value.
     ///

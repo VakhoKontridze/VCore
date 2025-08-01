@@ -8,7 +8,6 @@
 import Foundation
 import OSLog
 
-// MARK: - Keychain Service
 /// Service object that performs get, set, and delete Keychain operations.
 ///
 /// Object contains default instance `default`.

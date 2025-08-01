@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Atomic Container
 /// Thread-safe container.
 ///
 ///     let accountBalance: AtomicContainer<Double> = .init(value: 100)

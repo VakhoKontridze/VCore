@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Case Iterable + Cases
 extension CaseIterable where Self: Hashable {
     /// Returns a `case` with specified distance from the current `case`.
     ///

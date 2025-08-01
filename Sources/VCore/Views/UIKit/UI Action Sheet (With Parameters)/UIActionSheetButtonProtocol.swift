@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Action Sheet Button Protocol
 /// `UIActionSheetController` button protocol.
 public protocol UIActionSheetButtonProtocol: UIActionSheetButtonConvertible {
     /// Converts `UIActionSheetButtonProtocol` to `UIAlertAction`.

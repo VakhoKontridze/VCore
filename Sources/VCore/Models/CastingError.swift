@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Casting Error
 /// Error that occurs during casting.
 @MemberwiseInitializable(accessLevelModifier: .private)
 public struct CastingError: BaseErrorProtocol, Sendable {

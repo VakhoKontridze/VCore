@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Collection + Safe Subscript
 extension Collection {
     /// Accesses the element at the specified position, but returns `nil` if out of bounds.
     ///

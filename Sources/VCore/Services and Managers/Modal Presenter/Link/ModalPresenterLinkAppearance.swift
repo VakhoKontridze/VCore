@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Modal Presenter Link Appearance
 /// Model that describes appearance.
 public struct ModalPresenterLinkAppearance: Sendable {
     // MARK: Properties - Frame

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - JSON Encoder + Methods
 extension JSONEncoder {
     /// Encodes `Any?` to `Data`.
     ///

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Collection + Random Elements
 extension Collection {
     /// Returns random elements from the collection up to specified count.
     ///

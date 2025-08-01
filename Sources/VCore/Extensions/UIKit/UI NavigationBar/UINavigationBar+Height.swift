@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Navigation Bar + Height
 extension UINavigationBar {
     /// Navigation bar height.
     ///

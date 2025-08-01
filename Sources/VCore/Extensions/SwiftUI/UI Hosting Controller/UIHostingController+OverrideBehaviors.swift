@@ -14,7 +14,6 @@
 import SwiftUI
 import OSLog
 
-// MARK: - Overridable UI Hosting Controller Behavior
 /// `UIHostingController` behavior overriding option.
 @OptionSetRepresentation<Int>
 public struct OverridableUIHostingControllerBehavior: Sendable {
@@ -24,7 +23,6 @@ public struct OverridableUIHostingControllerBehavior: Sendable {
     }
 }
 
-// MARK: - UI Hosting Controller + Override Behavior
 extension UIHostingController {
     /// Overrides default `UIHostingController` behaviors, indicated by `OverridableUIHostingControllerBehavior`.
     ///

@@ -8,7 +8,6 @@
 import Foundation
 import SwiftSyntax
 
-// MARK: - Attribute Syntax Arguments + Type Casts
 extension AttributeSyntax.Arguments {
     func toArgumentListGetAssociatedValue() -> LabeledExprListSyntax? {
         if case .argumentList(let labeledExprListSyntax) = self {

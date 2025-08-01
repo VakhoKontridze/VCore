@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Environment Values + Modal Presenter Container Size
 extension EnvironmentValues {
     /// Modal Presenter's container size associated with the environment.
     @Entry public var modalPresenterContainerSize: CGSize = .zero

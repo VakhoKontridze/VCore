@@ -9,10 +9,9 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct ResultNoSuccessNoFailureTests {
-    // MARK: Test Data
+    // MARK: Properties
     private let resultS: ResultNoSuccessNoFailure = .success
     private let resultF: ResultNoSuccessNoFailure = .failure
     

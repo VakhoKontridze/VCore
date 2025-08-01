@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI View Controller + With Tab Bar Item
 extension UIViewController {
     /// Adds `UITabBarItem` to `UIViewController` and returns it.
     ///

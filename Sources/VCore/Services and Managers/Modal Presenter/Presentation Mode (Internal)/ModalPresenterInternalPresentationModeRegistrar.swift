@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Modal Presenter Internal Presentation Mode Registrar
 @MainActor
 final class ModalPresenterInternalPresentationModeRegistrar {
     // MARK: Properties - Singleton

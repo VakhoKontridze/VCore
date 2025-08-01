@@ -14,9 +14,8 @@ import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 @testable import VCoreMacrosImplementation
 
-// MARK: - Tests
 final class ColorMacroTests_InitWithHexString: XCTestCase {
-    // MARK: Test Data
+    // MARK: Properties
     private let macros: [String: Macro.Type] = ["color": ColorMacro_InitWithHexString.self]
 
     // MARK: Tests

@@ -9,10 +9,9 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct LocaleIsEquivalentTests {
-    // MARK: Test Data
+    // MARK: Properties
     private let regionIdentifier: String? = Locale.current.region?.identifier
     private var otherRegionIdentifier: String { regionIdentifier == "GB" ? "CA" : "GB" }
 

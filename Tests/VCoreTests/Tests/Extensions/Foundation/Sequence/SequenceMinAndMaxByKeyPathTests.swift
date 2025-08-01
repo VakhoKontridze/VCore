@@ -9,14 +9,9 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct SequenceMinAndMaxByKeyPathTests {
-    // MARK: Test Data
-    private struct Object: Equatable {
-        let value: Int
-    }
-    
+    // MARK: Properties
     private let array: [Object] = [
         Object(value: 1),
         Object(value: 2),
@@ -28,5 +23,10 @@ struct SequenceMinAndMaxByKeyPathTests {
     func test() {
         #expect(array.min(by: \.value)?.value == 1)
         #expect(array.max(by: \.value)?.value == 3)
+    }
+    
+    // MARK: Object
+    private struct Object: Equatable {
+        let value: Int
     }
 }

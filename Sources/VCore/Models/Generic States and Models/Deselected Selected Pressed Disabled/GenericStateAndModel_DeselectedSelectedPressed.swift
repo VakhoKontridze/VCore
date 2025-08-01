@@ -12,10 +12,7 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - Generic State (Deselected, Selected, Pressed)
 /// Enumeration that represents state.
-///
-/// Used for mapping state to `GenericStateModel_DeselectedSelectedPressed`, with `value(for:)` method.
 public enum GenericState_DeselectedSelectedPressed: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Deselected.
@@ -51,10 +48,7 @@ public enum GenericState_DeselectedSelectedPressed: Int, Sendable, CaseIterable 
     }
 }
 
-// MARK: - Generic State Model (Deselected, Selected, Pressed)
-/// Value group containing `deselected`, `selected`, `pressed` (`deselected`), and `pressed` (`selected`).
-///
-/// Used for mapping `GenericState_DeselectedSelectedPressed` to model, with `value(for:)` method.
+/// Group containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_DeselectedSelectedPressed` with values."
 )
@@ -136,17 +130,14 @@ public struct GenericStateModel_DeselectedSelectedPressed<Value> {
     }
 }
 
-// MARK: Equatable, Hashable
 extension GenericStateModel_DeselectedSelectedPressed: Equatable where Value: Equatable {}
 
 extension GenericStateModel_DeselectedSelectedPressed: Hashable where Value: Hashable {}
 
-// MARK: Sendable
 extension GenericStateModel_DeselectedSelectedPressed: Sendable where Value: Sendable {}
 
-// MARK: - State-Model Mapping
 extension GenericStateModel_DeselectedSelectedPressed {
-    /// Maps `GenericState_DeselectedSelectedPressed` to `GenericStateModel_DeselectedSelectedPressed`.
+    /// Maps state to model.
     public func value(for state: GenericState_DeselectedSelectedPressed) -> Value {
         switch state {
         case .deselected: deselected

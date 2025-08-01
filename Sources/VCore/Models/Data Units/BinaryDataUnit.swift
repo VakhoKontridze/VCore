@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Binary Data Unit
 /// Binary data unit with a ISO/IEC `80000` base of  `1024`.
 ///
 /// `rawValue` defines the `magnitude`.
@@ -49,7 +48,6 @@ public enum BinaryDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, Se
     public var id: Int { rawValue }
 }
 
-// MARK: - Double + Binary Bytes Converted to Binary Data Unit
 extension Double {
     /// Converts bytes to binary data unit.
     ///

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Action Sheet Button
 /// `UIActionSheetController` button.
 public struct UIActionSheetButton: UIActionSheetButtonProtocol {
     // MARK: Properties

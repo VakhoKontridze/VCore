@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Range + Reversed Array on Condition
 extension Range where Bound: FixedWidthInteger {
     /// Returns reversed `Array` from `Range` if condition is met.
     ///

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Image + Average Color
 extension UIImage {
     /// Returns average `UIColor`.
     ///
@@ -66,7 +65,6 @@ extension UIImage {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 import SwiftUI

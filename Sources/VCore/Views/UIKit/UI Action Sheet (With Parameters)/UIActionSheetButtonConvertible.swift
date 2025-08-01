@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Action Sheet Button Convertible
 /// Type that allows for conversion to `UIActionSheetButtonProtocol`.
 public protocol UIActionSheetButtonConvertible {
     /// Converts self to `UIActionSheetButtonProtocol` `Array`.

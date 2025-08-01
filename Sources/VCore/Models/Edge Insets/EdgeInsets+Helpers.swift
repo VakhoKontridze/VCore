@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Edge Insets
 extension EdgeInsets {
     // MARK: Properties - Derived
     /// Sum of `leading` and `trailing` values.

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Responder Chain UI Toolbar
 /// Toolbar that handles focus navigation in the responder chain.
 ///
 ///     final class ViewController: UIViewController {
@@ -52,7 +51,23 @@ import UIKit
 ///
 /// Alternately, consider using `ResponderChainUIToolbarManager`
 open class ResponderChainUIToolbar: UIToolbar {
-    // MARK: Subviews
+    // MARK: Properties - Appearance
+    /// Model that describes appearance.
+    ///
+    /// To change current appearance, use `configure(appearance:)` method.
+    private(set) public var appearance: ResponderChainUIToolbarAppearance
+
+    // MARK: Properties - Actions
+    /// Action that runs when arrow up button is tapped.
+    open var arrowUpButtonAction: (() -> Void)?
+
+    /// Action that runs when arrow down button is tapped.
+    open var arrowDownButtonAction: (() -> Void)?
+
+    /// Action that runs when done button is tapped.
+    open var doneButtonAction: (() -> Void)?
+    
+    // MARK: Properties - Subviews
     /// Button that focuses responder that's up in responder chain.
     open lazy var arrowUpButton: UIBarButtonItem = .init(
         image: UIImage(systemName: "chevron.up"),
@@ -82,21 +97,6 @@ open class ResponderChainUIToolbar: UIToolbar {
         target: self,
         action: #selector(didTapDoneButton)
     )
-
-    // MARK: Properties
-    /// Model that describes appearance.
-    ///
-    /// To change current appearance, use `configure(appearance:)` method.
-    private(set) public var appearance: ResponderChainUIToolbarAppearance
-
-    /// Action that runs when arrow up button is tapped.
-    open var arrowUpButtonAction: (() -> Void)?
-
-    /// Action that runs when arrow down button is tapped.
-    open var arrowDownButtonAction: (() -> Void)?
-
-    /// Action that runs when done button is tapped.
-    open var doneButtonAction: (() -> Void)?
 
     // MARK: Initializers
     /// Initializes `ResponderChainUIToolbar.

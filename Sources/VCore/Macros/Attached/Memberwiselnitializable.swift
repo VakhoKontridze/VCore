@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Memberwise Initializable
 /// Generates memberwise initializer.
 ///
 /// If `accessLevelModifier` is `nil`, it will be inherited from the type.
@@ -44,7 +43,6 @@ public macro MemberwiseInitializable(
     type: "MemberwiseInitializableMacro"
 )
 
-// MARK: - Memberwise Initializable Parameter Default Value
 /// Default parameter value in `MemberwiseInitializable`.
 public enum MemberwiseInitializableParameterDefaultValue {
     /// Value.

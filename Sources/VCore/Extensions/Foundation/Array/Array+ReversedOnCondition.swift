@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Array + Reversed on Condition
 extension Array {
     /// Returns reversed `Array` if condition is met.
     ///

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Array + Remove If Present
 extension Array where Element: Equatable {
     /// Removes the element if it is present.
     ///

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Application + Topmost ViewController
 extension UIApplication {
     /// Returns topmost `UIViewController` in a `UIWindow`.
     public func topmostViewController(

@@ -12,10 +12,7 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - Generic State (Off, On, Pressed)
 /// Enumeration that represents state.
-///
-/// Used for mapping state to `GenericStateModel_OffOnPressed`, with `value(for:)` method.
 public enum GenericState_OffOnPressed: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Off.
@@ -51,10 +48,7 @@ public enum GenericState_OffOnPressed: Int, Sendable, CaseIterable {
     }
 }
 
-// MARK: - Generic State Model (Off, On, Pressed)
-/// Value group containing `off`, `on`, `pressed` (`off`), and `pressed` (`on`).
-///
-/// Used for mapping `GenericState_OffOnPressed` to model, with `value(for:)` method.
+/// Group containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_OffOnPressed` with values."
 )
@@ -136,17 +130,14 @@ public struct GenericStateModel_OffOnPressed<Value> {
     }
 }
 
-// MARK: Equatable, Hashable
 extension GenericStateModel_OffOnPressed: Equatable where Value: Equatable {}
 
 extension GenericStateModel_OffOnPressed: Hashable where Value: Hashable {}
 
-// MARK: Sendable
 extension GenericStateModel_OffOnPressed: Sendable where Value: Sendable {}
 
-// MARK: - State-Model Mapping
 extension GenericStateModel_OffOnPressed {
-    /// Maps `GenericState_OffOnPressed` to `GenericStateModel_OffOnPressed`.
+    /// Maps state to model.
     public func value(for state: GenericState_OffOnPressed) -> Value {
         switch state {
         case .off: off

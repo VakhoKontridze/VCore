@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Uninitializable
 /// Adds `private` initializer to declaration, preventing object creation.
 ///
 /// Can be used to simplify declarations of simple objects containing various constants.

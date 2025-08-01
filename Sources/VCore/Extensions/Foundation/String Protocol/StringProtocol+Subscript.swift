@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - String Protocol + Subscript
 extension StringProtocol {
     /// Accesses the element at the specified position.
     ///

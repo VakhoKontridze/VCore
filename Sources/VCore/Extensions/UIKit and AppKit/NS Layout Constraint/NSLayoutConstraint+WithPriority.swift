@@ -13,7 +13,6 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - NS Layout Constraint + With Priority
 extension NSLayoutConstraint {
 #if canImport(UIKit)
     /// Modifies and returns constraint with a given priority.

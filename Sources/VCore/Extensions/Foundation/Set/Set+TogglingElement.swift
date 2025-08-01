@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Set + Toggling Element
 extension Set {
     /// Returns set with element toggled, i.e., removed if it's present, and inserted if not.
     ///

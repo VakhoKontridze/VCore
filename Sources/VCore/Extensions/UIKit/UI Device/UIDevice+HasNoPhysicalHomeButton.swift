@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Device + Has No Physical Home Button
 @available(tvOS, unavailable)
 extension UIDevice {
     /// Indicates if device has no physical home button.

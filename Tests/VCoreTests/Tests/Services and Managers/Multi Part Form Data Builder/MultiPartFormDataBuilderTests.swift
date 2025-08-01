@@ -11,19 +11,13 @@ import Testing
 
 // No need to cover `NSImage`
 
-// MARK: - Tests
 @Suite(
     .enabled(if: NetworkReachabilityService.shared.isConnectedToNetwork == true),
     .timeLimit(.minutes(1))
 )
 struct MultipartFormDataBuilderTests {
-    // MARK: Test Data
+    // MARK: Properties
     private let imagePrefix: String = "data:image/jpeg;base64,"
-
-    @CodingKeysGeneration
-    private struct JSONPart: Encodable {
-        @CKGProperty("key") let key: String
-    }
 
     // MARK: Tests
     @Test
@@ -103,9 +97,14 @@ struct MultipartFormDataBuilderTests {
         )
 #endif
     }
+    
+    // MARK: JSON Part
+    @CodingKeysGeneration
+    private struct JSONPart: Encodable {
+        @CKGProperty("key") let key: String
+    }
 }
 
-// MARK: - Helpers
 extension Optional where Wrapped == Any {
     fileprivate var toString: String? {
         self as? String

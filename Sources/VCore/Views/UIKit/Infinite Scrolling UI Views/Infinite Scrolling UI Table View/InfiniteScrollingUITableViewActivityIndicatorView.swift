@@ -9,17 +9,16 @@
 
 import UIKit
 
-// MARK: - Infinite Scrolling UI Table View Activity Indicator
 final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
-    // MARK: Subviews
-    private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+    // MARK: Properties - Appearance
+    private let appearance: InfiniteScrollingUITableViewAppearance
     
-    // MARK: Properties
-    private let appearance: InfiniteScrollingUITableViewActivityIndicatorViewAppearance
+    // MARK: Properties - Subviews
+    private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
     
     // MARK: Initializers
     init(
-        appearance: InfiniteScrollingUITableViewActivityIndicatorViewAppearance = .init(),
+        appearance: InfiniteScrollingUITableViewAppearance = .init(),
         tableView: UITableView
     ) {
         self.appearance = appearance
@@ -29,7 +28,7 @@ final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
                 origin: .zero,
                 size: CGSize(
                     width: tableView.frame.size.width,
-                    height: appearance.height
+                    height: appearance.activityIndicatorContainerHeight
                 )
             )
         )

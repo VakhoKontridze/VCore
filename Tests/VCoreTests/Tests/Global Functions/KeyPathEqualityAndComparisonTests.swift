@@ -9,16 +9,8 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 final class KeyPathEqualityAndComparisonTests {
-    // MARK: Test Data
-    private struct Object {
-        var a: Int = 0
-        var b: Int = 0
-        var c: Int = 0
-    }
-    
     // MARK: Tests
     @Test
     func testIsEqual() {
@@ -129,5 +121,12 @@ final class KeyPathEqualityAndComparisonTests {
                 by: \.a, \.b, \.c
             )
         )
+    }
+    
+    // MARK: Object
+    private struct Object {
+        var a: Int = 0
+        var b: Int = 0
+        var c: Int = 0
     }
 }

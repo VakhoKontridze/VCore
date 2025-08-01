@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Securable Text Field
 /// Input component that displays an editable text interface with toggle-able text.
 ///
 ///     @State private var isSecure: Bool = false
@@ -66,7 +65,6 @@ public struct SecurableTextField: View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

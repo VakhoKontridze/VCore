@@ -9,7 +9,6 @@
 
 import AppKit
 
-// MARK: - NS Color + Lighten and Darken
 extension NSColor {
     /// Lightens `NSColor` by a fraction.
     ///
@@ -50,7 +49,6 @@ extension NSColor {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 import SwiftUI

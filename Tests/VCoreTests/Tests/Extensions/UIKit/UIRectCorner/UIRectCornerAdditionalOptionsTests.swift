@@ -11,7 +11,6 @@ import UIKit
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct UIRectCornerAdditionalOptionsTests {
     @Test

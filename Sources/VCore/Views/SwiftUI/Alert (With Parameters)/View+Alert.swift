@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Alert
 extension View {
     /// Presents `Alert` when `parameters` is non-`nil`.
     ///
@@ -55,7 +54,6 @@ extension View {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

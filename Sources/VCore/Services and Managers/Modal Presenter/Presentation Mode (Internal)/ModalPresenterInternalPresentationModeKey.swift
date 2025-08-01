@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Modal Presenter Internal Presentation Mode Key
 struct ModalPresenterInternalPresentationModeKey {
     // MARK: Properties
     let value: String

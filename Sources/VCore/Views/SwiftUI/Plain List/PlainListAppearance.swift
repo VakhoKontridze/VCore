@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Plain List Appearance
 /// Model that describes appearance.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)

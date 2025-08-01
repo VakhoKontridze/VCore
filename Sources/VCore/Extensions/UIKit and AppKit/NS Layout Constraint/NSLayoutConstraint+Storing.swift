@@ -13,7 +13,6 @@ import UIKit
 import AppKit
 #endif
 
-// MARK: - NS Layout Constraint + Storing
 extension NSLayoutConstraint {
     /// Allows for the storing of a layout constraint, while using it in `NSLayoutConstraint.activate(_:)`.
     ///

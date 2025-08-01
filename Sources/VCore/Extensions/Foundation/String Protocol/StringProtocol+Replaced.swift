@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - String Protocol + Replaced
 extension StringProtocol {
     /// Returns `String` with an element replaced at index.
     ///

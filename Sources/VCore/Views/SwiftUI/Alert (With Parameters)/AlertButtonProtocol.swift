@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Alert Button Protocol
 /// `Alert` button protocol.
 public protocol AlertButtonProtocol: AlertButtonConvertible {
     /// Body type.

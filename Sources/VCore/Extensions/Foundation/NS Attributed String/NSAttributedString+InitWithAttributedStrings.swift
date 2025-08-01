@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - NS Attributed String + Init with Attributed Strings
 extension NSAttributedString {
     /// Initializes `NSAttributedString` with child `NSAttributedString` components.
     ///

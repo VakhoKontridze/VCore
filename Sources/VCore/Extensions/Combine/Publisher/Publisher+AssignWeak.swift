@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-// MARK: - Publisher + Assign Weak
 extension Publisher where Failure == Never {
     /// Assigns each element from `Publisher` to a property of an object with a weak retain cycle.
     ///

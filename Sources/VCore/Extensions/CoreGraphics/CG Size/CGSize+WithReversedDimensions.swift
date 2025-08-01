@@ -7,7 +7,6 @@
 
 import CoreGraphics
 
-// MARK: - CG Size + With Reversed Dimensions
 extension CGSize {
     /// Returns `CGSize` with reversed `width` and `height` if condition is met..
     ///

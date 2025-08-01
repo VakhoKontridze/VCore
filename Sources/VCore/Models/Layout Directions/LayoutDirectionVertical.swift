@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Layout Direction Vertical
 /// Vertical directional layout in which content can be laid out.
 ///
 /// Unlike `SwiftUI.LayoutDirection`, `LayoutDirectionVertical` only supports vertical layouts.

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Layout Guide Type
 /// Model that represents `UILayoutGuide`.
 public enum UILayoutGuideType: Sendable {
     // MARK: Cases

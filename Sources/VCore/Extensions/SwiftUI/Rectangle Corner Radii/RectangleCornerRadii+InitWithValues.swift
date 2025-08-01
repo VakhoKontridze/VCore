@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Rectangle Corner Radii + Init with Values - Value
 extension RectangleCornerRadii {
     /// Initializes `RectangleCornerRadii` with value.
     public init(
@@ -22,7 +21,6 @@ extension RectangleCornerRadii {
     }
 }
 
-// MARK: - Rectangle Corner Radii + Init with Values - Horizontal
 extension RectangleCornerRadii {
     /// Initializes `RectangleCornerRadii` with leading and trailing values.
     public init(
@@ -58,7 +56,6 @@ extension RectangleCornerRadii {
     }
 }
 
-// MARK: - Rectangle Corner Radii + Init with Values - Vertical
 extension RectangleCornerRadii {
     /// Initializes `RectangleCornerRadii` with top and bottom values.
     public init(

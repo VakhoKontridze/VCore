@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Collection + First Index of Type
 extension Collection {
     /// Returns the first index of `Collection`that is a type `T`.
     ///
@@ -33,7 +32,6 @@ extension Collection {
     }
 }
 
-// MARK: - Bidirectional Collection + Last Index of Type
 extension BidirectionalCollection {
     /// Returns the last index of `Collection`that is a type `T`.
     ///

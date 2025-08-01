@@ -14,9 +14,8 @@ import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 @testable import VCoreMacrosImplementation
 
-// MARK: - Tests
 final class URLMacroTests_InitWithString: XCTestCase {
-    // MARK: Test Data
+    // MARK: Properties
     private let macros: [String: Macro.Type] = ["url": URLMacro_InitWithString.self]
 
     // MARK: Tests

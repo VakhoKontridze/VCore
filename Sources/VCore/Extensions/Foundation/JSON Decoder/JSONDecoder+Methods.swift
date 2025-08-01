@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - JSON Decoder + Methods
 extension JSONDecoder {
     /// Decodes `JSON` from `Data`.
     ///

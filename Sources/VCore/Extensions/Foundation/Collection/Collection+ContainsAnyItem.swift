@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Collection + Contains Any Item
 extension Collection where Element: Hashable {
     /// Returns a `Bool` indicating whether `Collection` contains any element from other `Collection`.
     ///

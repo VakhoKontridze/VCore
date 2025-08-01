@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Stack View + Remove Arranged Subviews
 extension UIStackView {
     /// Removes all `UIView`s from arranged subviews, but keeps as subviews.
     ///

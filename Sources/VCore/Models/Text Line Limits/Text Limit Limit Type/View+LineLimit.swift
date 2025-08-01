@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Line Limit
 extension View {
     /// Sets line limit based on `TextLineLimitType`.
     ///

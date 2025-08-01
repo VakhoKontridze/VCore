@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Confirmation Dialog Button Protocol
 /// `ConfirmationDialog` button protocol.
 public protocol ConfirmationDialogButtonProtocol: ConfirmationDialogButtonConvertible {
     /// Body type.

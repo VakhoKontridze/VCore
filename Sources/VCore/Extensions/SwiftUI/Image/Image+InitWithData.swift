@@ -8,7 +8,6 @@
 import SwiftUI
 import OSLog
 
-// MARK: - Image + Init with Data
 extension Image {
     /// Initializes and returns the `Image` with the specified `Data`.
     ///

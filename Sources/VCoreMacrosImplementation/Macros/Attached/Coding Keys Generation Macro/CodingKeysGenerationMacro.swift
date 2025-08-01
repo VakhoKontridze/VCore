@@ -10,7 +10,6 @@ import SwiftSyntax
 import SwiftSyntaxMacros
 import VCoreShared
 
-// MARK: - Coding Keys Generation Macro
 struct CodingKeysGenerationMacro: MemberMacro {
     // MARK: Member Macro
     static func expansion(

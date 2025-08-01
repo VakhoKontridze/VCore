@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Closed Range + Init with Bounds
 extension ClosedRange {
     /// Initializes `ClosedRange` with lower and upper bounds.
     ///

@@ -9,7 +9,6 @@ import Foundation
 import Network
 import OSLog
 
-// MARK: - Network Reachability Service
 /// Network connection service that manages reachability.
 ///
 ///     @Bindable private var networkReachabilityService: NetworkReachabilityService = .shared
@@ -73,7 +72,6 @@ public final class NetworkReachabilityService: @unchecked Sendable {
     }
 }
 
-// MARK: - Helpers
 extension NWPath.Status {
     fileprivate var isConnected: Bool {
         switch self {

@@ -7,7 +7,6 @@
 
 import CoreGraphics
 
-// MARK: - CG Size + Min and Max Dimensions
 extension CGSize {
     /// Returns minimum of `width` and `height`.
     ///

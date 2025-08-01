@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Are Equal Within Tolerance
 /// Returns `Bool` indicating if values are equal within a given tolerance.
 ///
 ///     areEqual(3.14, 3.1415, tolerance: pow(10, -2)) // true

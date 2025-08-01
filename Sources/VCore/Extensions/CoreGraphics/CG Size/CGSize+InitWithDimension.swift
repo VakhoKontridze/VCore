@@ -7,7 +7,6 @@
 
 import CoreGraphics
 
-// MARK: - CG Size + Init with Dimension
 extension CGSize {
     /// Initializes `CGSize` with dimension.
     ///

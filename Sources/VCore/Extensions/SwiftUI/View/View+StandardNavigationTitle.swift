@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Inline Navigation Title
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
 extension View {

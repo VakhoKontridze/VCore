@@ -10,7 +10,6 @@ import SwiftSyntax
 import SwiftSyntaxMacros
 import VCoreShared
 
-// MARK: - Color Macro (Init with Hex String)
 struct ColorMacro_InitWithHexString: ExpressionMacro {
     static func expansion(
         of node: some FreestandingMacroExpansionSyntax,

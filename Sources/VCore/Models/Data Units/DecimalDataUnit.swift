@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Decimal Data Unit
 /// Decimal data unit with a metric base of  `1000`.
 ///
 /// `rawValue` defines the `magnitude`.
@@ -49,7 +48,6 @@ public enum DecimalDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, S
     public var id: Int { rawValue }
 }
 
-// MARK: - Double + Decimal Bytes Converted to Decimal Data Unit
 extension Double {
     /// Converts bytes to decimal data unit.
     ///

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - String + Hex Color RGB Values
 extension String {
     package func _hexColorRGBValues() -> (red: CGFloat, green: CGFloat, blue: CGFloat)? {
         var string: String = trimmingCharacters(in: .whitespacesAndNewlines)

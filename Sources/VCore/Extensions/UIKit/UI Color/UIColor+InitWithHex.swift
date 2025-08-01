@@ -10,7 +10,6 @@
 import UIKit
 import VCoreShared
 
-// MARK: - UI Color + Init with Hex - String
 extension UIColor {
     /// Initializes `UIColor` with a hex `String`.
     ///
@@ -53,7 +52,6 @@ extension UIColor {
     }
 }
 
-// MARK: - UI Color + Init with Hex - U Int
 extension UIColor {
     /// Initializes `UIColor` with a hex `UInt`.
     ///
@@ -96,7 +94,6 @@ extension UIColor {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 import SwiftUI

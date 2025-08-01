@@ -11,7 +11,6 @@ import SwiftUI
 import Combine
 import OSLog
 
-// MARK: - Modal Presenter Root View Modifier (Window)
 struct ModalPresenterRootViewModifier_Window: ViewModifier {
     // MARK: Properties - Root
     private let root: ModalPresenterRoot

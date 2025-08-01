@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Alert Button
 /// `Alert` button.
 public struct AlertButton: AlertButtonProtocol {
     // MARK: Properties

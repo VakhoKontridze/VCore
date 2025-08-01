@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - JSON Request Header Fields
 /// JSON request header fields that pass `application/json` as `accept` and `application/json` as `contentType`.
 ///
 /// Can be used in `URLRequest`.

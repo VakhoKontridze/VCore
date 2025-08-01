@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - URL Response + Is Success HTTP Status Code
 extension URLResponse {
     /// Checks that response `HTTP` code is successful.
     ///

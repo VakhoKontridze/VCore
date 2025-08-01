@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Set + Insert Sequence
 extension Set {
     /// Inserts the given `Sequence` in the `Set` if they are not already present.
     ///

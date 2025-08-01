@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Multipart Form Data Builder
 /// Builder that generates boundary `String` and generated `Data` for network requests.
 ///
 ///     let json: [String: Any?] = [
@@ -112,7 +111,6 @@ public struct MultipartFormDataBuilder: Sendable {
     }
 }
 
-// MARK: - Helpers
 extension Data {
     mutating func appendString(_ string: String) throws {
         guard let data: Data = string.data(using: .utf8) else {

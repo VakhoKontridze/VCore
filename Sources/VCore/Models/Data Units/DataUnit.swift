@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Data Unit
 /// Unit of digital information.
 public protocol DataUnit {
     /// Unit base.

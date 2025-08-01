@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Range + Init with Bounds
 extension Range {
     /// Initializes `Range` with lower and upper bounds.
     ///

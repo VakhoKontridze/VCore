@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Alert Viewable
 /// Protocol for presenting a `UIAlert`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `View/Controller`.
@@ -56,11 +55,11 @@ extension UIAlertViewable where Self: UIViewController {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {
     final class ViewController: UIViewController, UIAlertViewable {
+        // MARK: Lifecycle
         override func viewDidLoad() {
             super.viewDidLoad()
 
@@ -69,7 +68,7 @@ extension UIAlertViewable where Self: UIViewController {
             button.setTitle("Present", for: .normal)
             button.setTitleColor(UIColor.systemBlue, for: .normal)
             button.addAction(
-                UIAction { [weak self] _ in self?.present() },
+                UIAction { [weak self] _ in self?.didTapPresentButton() },
                 for: .touchUpInside
             )
 
@@ -81,7 +80,8 @@ extension UIAlertViewable where Self: UIViewController {
             ])
         }
 
-        private func present() {
+        // MARK: Actions
+        private func didTapPresentButton() {
             presentAlert(
                 parameters: UIAlertParameters(
                     title: "Lorem Ipsum",

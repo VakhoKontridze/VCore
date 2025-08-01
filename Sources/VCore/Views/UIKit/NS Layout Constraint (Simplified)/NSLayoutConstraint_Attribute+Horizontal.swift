@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - NS Layout Constraint Attribute + Horizontal
 extension NSLayoutConstraint.Attribute {
     /// Part of the object’s visual horizontal representation that should be used to get the value for the constraint.
     public enum Horizontal: Int, Sendable, CaseIterable {
@@ -43,7 +42,6 @@ extension NSLayoutConstraint.Attribute {
     }
 }
 
-// MARK: - UI View + Constraints
 extension UIView {
     /// Constraints `UIView`'s `DimensionAttribute.leading` to another `UIView`'s `HorizontalAttribute`,
     /// with given `relation`, `constant`, `multiplier`, and `priority`.

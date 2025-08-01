@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Apply
 extension View {
     /// Applies a transformation to a `View`.
     ///

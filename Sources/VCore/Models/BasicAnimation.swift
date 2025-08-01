@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Basic Animation
 /// Wrapper for `SwiftUI`'s native `Animation` that stores curve and duration.
 ///
 /// Purpose of this model is to limit animations to basic curve and duration.
@@ -69,7 +68,6 @@ public struct BasicAnimation: Sendable {
     }
 }
 
-// MARK: - Casting
 #if canImport(QuartzCore)
 
 import QuartzCore

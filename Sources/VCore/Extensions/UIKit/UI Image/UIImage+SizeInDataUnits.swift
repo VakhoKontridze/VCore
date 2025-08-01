@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Image + Size in Decimal Data Units
 extension UIImage {
     /// Returns `UIImage` size in kilobytes.
     ///
@@ -28,7 +27,6 @@ extension UIImage {
     }
 }
 
-// MARK: - UI Image + Size in Binary Data Units
 extension UIImage {
     /// Returns `UIImage` size in kibibytes.
     ///

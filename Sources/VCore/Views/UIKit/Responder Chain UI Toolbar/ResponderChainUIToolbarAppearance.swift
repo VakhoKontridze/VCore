@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Responder Chain UI Toolbar Appearance
 /// Model that describes appearance.
 public struct ResponderChainUIToolbarAppearance: Sendable {
     // MARK: Properties - Toolbar

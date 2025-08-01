@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Label + Line Heights
 extension UILabel {
     /// Calculates and returns single-line natural height constant.
     ///

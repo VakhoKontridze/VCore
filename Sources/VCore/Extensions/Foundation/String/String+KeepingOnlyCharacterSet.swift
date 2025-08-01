@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - String + Keeping Only Character Set
 extension String {
     /// Returns `String` with `CharacterSet`, that don't match the criteria, filtered out.
     ///
@@ -31,7 +30,6 @@ extension String {
     }
 }
 
-// MARK: - String + Keeping Only Character Sets
 extension String {
     /// Returns `String` with `CharacterSet`, that don't match the criteria, filtered out.
     ///

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - URL + Init with Path and Query Parameters
 extension URL {
     /// Initializes `URL` with `String`, path parameters, and query parameters.
     ///
@@ -40,7 +39,6 @@ extension URL {
     }
 }
 
-// MARK: - Helpers
 extension URLComponents {
     fileprivate mutating func addQueryItems(
         _ newQueryItems: [String: String?]

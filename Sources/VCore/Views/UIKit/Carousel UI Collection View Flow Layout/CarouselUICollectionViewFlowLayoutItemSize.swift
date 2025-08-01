@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Carousel UI Collection View Flow Layout Item Size
 /// Size of item in `CarouselUICollectionViewFlowLayout`.
 ///
 /// Alternate API to `itemSize`.

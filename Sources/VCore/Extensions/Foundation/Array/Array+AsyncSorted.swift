@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Array + Async Sorted
 extension Array {
     /// Returns the elements of a sequence, sorted asynchronously.
     ///

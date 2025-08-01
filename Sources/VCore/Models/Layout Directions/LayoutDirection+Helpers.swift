@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-// MARK: - Layout Direction
 extension LayoutDirection {
+    // MARK: Properties
     /// Indicates if layout direction is reversed.
     public var isReversed: Bool {
         switch self {

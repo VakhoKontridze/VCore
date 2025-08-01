@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Activity Indicator Viewable
 /// Protocol for presenting a `UIActivityIndicatorView` and controlling user interaction.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed to by a `View/Controller`.
@@ -95,7 +94,6 @@ extension UIActivityIndicatorViewable where Self: UIViewController {
     }
 }
 
-// MARK: - Factory
 extension UIView {
     /// Creates `UIActivityIndicatorView`.
     public func initActivityIndicator(
@@ -124,13 +122,14 @@ extension UIViewController {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {
     final class ViewController: UIViewController, UIActivityIndicatorViewable {
+        // MARK: Properties - Subviews
         private(set) lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
 
+        // MARK: Lifecycle
         override func viewDidLoad() {
             super.viewDidLoad()
 

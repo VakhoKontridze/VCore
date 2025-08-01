@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-// MARK: - Publishing Observation Container
 /// `Observable` container that triggers a `Publisher` when a value changes.
 ///
 /// This container can be used inside non-`View` contexts, such as ViewModels,
@@ -78,7 +77,6 @@ public final class PublishingObservationContainer<Value>: Sendable {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 import SwiftUI
@@ -89,8 +87,10 @@ import SwiftUI
 
 // Macros aren't allowed in Preview macro
 private struct ContentView: View {
+    // MARK: Properties
     @State private var viewModel: ViewModel = .init()
 
+    // MARK: Body
     var body: some View {
         VStack {
             Text(String(viewModel.count.value))
@@ -106,10 +106,12 @@ private struct ContentView: View {
 @Observable
 @MainActor
 private final class ViewModel {
+    // MARK: Properties
     let count: PublishingObservationContainer<Int> = .init(0)
 
     @ObservationIgnored private var subscriptions: Set<AnyCancellable> = []
 
+    // MARK: Initializers
     init() {
         count
             .publisher

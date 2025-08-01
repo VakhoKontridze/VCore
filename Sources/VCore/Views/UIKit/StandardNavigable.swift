@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Standard Navigable
 /// Standard Navigable that allows for navigation via `UINavigationController`.
 ///
 /// In `MVP`, `VIP`, and `VIPER` architectures, this `protocol` is conformed by a `View/Controller`.

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI View + Child First Responder
 extension UIView {
     /// Returns child first responder `UIResponder` from `UIView`'s subviews.
     ///
@@ -36,7 +35,6 @@ extension UIView {
     }
 }
 
-// MARK: - Helpers
 extension UIResponder {
     fileprivate func toView() -> UIView? {
         if let viewController = self as? UIViewController {

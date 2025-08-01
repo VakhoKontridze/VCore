@@ -10,30 +10,32 @@ import Combine
 import XCTest
 @testable import VCore
 
-// MARK: - Tests
 @MainActor
 final class PublisherAssignWeakTests: XCTestCase {
-    // MARK: Test Data
+    // MARK: Tests
+    func test() async {
+        let service: Service = .init()
+        assertInstanceIsDeallocated(service)
+    }
+    
+    // MARK: Service
     private final class Service {
+        // MARK: Properties
         var value: Int = 0
 
         private let publisher: PassthroughSubject<Int, Never> = .init()
         private var subscriptions: Set<AnyCancellable> = []
 
+        // MARK: Initializers
         init() {
             addSubscriptions()
         }
 
+        // MARK: Subscriptions
         private func addSubscriptions() {
             publisher
                 .assignWeak(to: \.value, on: self)
                 .store(in: &subscriptions)
         }
-    }
-
-    // MARK: Tests
-    func test() async {
-        let service: Service = .init()
-        assertInstanceIsDeallocated(service)
     }
 }

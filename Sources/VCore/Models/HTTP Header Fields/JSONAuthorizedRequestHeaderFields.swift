@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - JSON Authorized Request Header Fields
 /// Authorized JSON request header fields that pass `application/json` as `accept`, `application/json` as `contentType`, and `authorization` as `Bearer \(token)`.
 ///
 /// Can be used in `URLRequest`.

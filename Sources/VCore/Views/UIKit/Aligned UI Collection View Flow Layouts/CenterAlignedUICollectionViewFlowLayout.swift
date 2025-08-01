@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Center Aligned UI Collection View Flow Layout
 /// Layout object that organizes items into a grid with a center alignment.
 ///
 /// Requires `UICollectionViewDelegateFlowLayout` to be set via `delegate`.
@@ -214,7 +213,6 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

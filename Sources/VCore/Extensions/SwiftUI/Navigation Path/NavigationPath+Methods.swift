@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Navigation Path + Methods
 extension NavigationPath {
     /// Adds the elements of a sequence or collection to the end of the path.
     ///

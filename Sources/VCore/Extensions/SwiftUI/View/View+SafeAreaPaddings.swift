@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Safe Area Paddings
 extension View {
     /// Adds padding equal to safe area insets to specific edges of the `View`.
     ///

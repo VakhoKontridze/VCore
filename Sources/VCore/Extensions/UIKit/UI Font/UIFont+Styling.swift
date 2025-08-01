@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Font + Styling
 extension UIFont {
     /// Returns `UIFont` with italic styling.
     ///
@@ -30,7 +29,6 @@ extension UIFont {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 import SwiftUI

@@ -9,7 +9,6 @@
 
 import Foundation
 
-// MARK: - Responder Chain UI Toolbar Responder Parameters
 /// Parameter object that wraps `ResponderChainUIToolbarResponder` and it's UI customization.
 public struct ResponderChainUIToolbarResponderParameters {
     // MARK: Properties

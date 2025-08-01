@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Responder Chain UI Toolbar Responder
 /// Object that supports input and can represent a responder in `ResponderChainUIToolbarManager`.
 ///
 /// `UITextField` and `UITextView` automatically conform to this `protocol`.

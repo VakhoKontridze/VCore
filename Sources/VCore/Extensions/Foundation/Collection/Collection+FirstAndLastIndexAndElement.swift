@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Collection + First Index and Element
 extension Collection {
     /// Returns first index and element of `Collection` that satisfies the given predicate.
     ///
@@ -27,7 +26,6 @@ extension Collection {
     }
 }
 
-// MARK: - Bidirectional Collection + Last Index and Element
 extension BidirectionalCollection {
     /// Returns first last and element of `BidirectionalCollection` that satisfies the given predicate.
     ///

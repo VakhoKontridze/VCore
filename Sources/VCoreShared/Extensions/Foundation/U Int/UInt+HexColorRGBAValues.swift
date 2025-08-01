@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - U Int + Hex Color RGB Values
 extension UInt {
     package func _hexColorRGBValues() -> (red: CGFloat, green: CGFloat, blue: CGFloat)? {
         let red: CGFloat = CGFloat((self & 0xFF0000) >> 16) / 255

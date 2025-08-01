@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Alert Button Convertible
 /// Type that allows for conversion to `UIAlertButtonProtocol`.
 public protocol UIAlertButtonConvertible {
     /// Converts self to `UIAlertButtonProtocol` `Array`.

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Optional + Comparison
 extension Optional {
     /// Returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`.
     ///
@@ -102,7 +101,6 @@ extension Optional where Wrapped: Comparable {
     }
 }
 
-// MARK: - Optional Comparison Nil Order
 /// Constants that indicate sort order within optionals.
 public enum OptionalComparisonNilOrder: Int, Sendable, CaseIterable {
     /// Indicates that `nil` is less than wrapped value.

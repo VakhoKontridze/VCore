@@ -11,13 +11,15 @@
 
 import UIKit
 
-// MARK: - Aligned UI Collection View Flow Layout View Controller
 final class AlignedUICollectionViewFlowLayoutViewController:
     UIViewController,
     UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
     UICollectionViewDataSource
 {
-    // MARK: Subviews
+    // MARK: Properties - Data
+    private var data: [UIColor] = [[UIColor]](repeating: [.red, .green, .blue], count: 10).flatMap { $0 }.shuffled()
+    
+    // MARK: Properties - Subviews
     private lazy var collectionView: UICollectionView = {
         do {
             layout.headerReferenceSize = CGSize(width: 0, height: 10)
@@ -61,9 +63,7 @@ final class AlignedUICollectionViewFlowLayoutViewController:
         return collectionView
     }()
 
-    // MARK: Properties
     private let layout: UICollectionViewFlowLayout
-    private var data: [UIColor] = [[UIColor]].init(repeating: [.red, .green, .blue], count: 10).flatMap { $0 }.shuffled()
 
     // MARK: Initializers
     init(layout: UICollectionViewFlowLayout) {
@@ -159,7 +159,6 @@ final class AlignedUICollectionViewFlowLayoutViewController:
     }
 }
 
-// MARK: - Aligned UI Collection View Cell
 private final class AlignedUICollectionViewCell: UICollectionViewCell {
     // MARK: Properties
     private var widthConstraint: NSLayoutConstraint?

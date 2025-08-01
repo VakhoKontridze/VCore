@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Keychain Storage
 /// Property wrapper type that reflects a value from Keychain and invalidates a view on a change in value in that Keychain.
 ///
 ///     @KeychainStorage("AccessToken") var accessToken: String?

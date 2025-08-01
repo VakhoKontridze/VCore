@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Sequence + Conditional Grouping
 extension Sequence {
     /// Groups elements of a `Sequence` by a given predicate.
     ///

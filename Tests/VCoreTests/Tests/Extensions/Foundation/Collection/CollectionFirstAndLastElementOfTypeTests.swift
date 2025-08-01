@@ -9,17 +9,9 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct CollectionFirstAndLastElementOfTypeTests {
-    // MARK: Test Data
-    private protocol P {
-        var value: Int { get }
-    }
-    
-    private struct S1: P { let value: Int }
-    private struct S2: P { let value: Int }
-
+    // MARK: Properties
     private let array: [any P] = [
         S1(value: 1),
         S1(value: 2),
@@ -40,5 +32,18 @@ struct CollectionFirstAndLastElementOfTypeTests {
     func testLastElement() {
         #expect(array.lastElement(ofType: S1.self)?.value == 6)
         #expect(array.lastElement(ofType: S1.self) { $0.value < 6 }?.value == 5)
+    }
+    
+    // MARK: Types
+    private protocol P {
+        var value: Int { get }
+    }
+    
+    private struct S1: P {
+        let value: Int
+    }
+    
+    private struct S2: P {
+        let value: Int
     }
 }

@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Coding Keys Generation
 /// Adds `CodingKeys` to a declaration.
 ///
 /// If `accessLevelModifier` is `nil`, it will be inherited from the type.
@@ -38,7 +37,6 @@ public macro CodingKeysGeneration(
     type: "CodingKeysGenerationMacro"
 )
 
-// MARK: - Coding Keys Generation Coding Key
 /// Attaches custom `Codable` key to a property.
 ///
 /// For additional info, refer to `CodingKeysGeneration`.

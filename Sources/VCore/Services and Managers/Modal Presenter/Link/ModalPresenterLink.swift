@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Modal Presenter Link
 /// Modal Presenter link.
 public struct ModalPresenterLink: Sendable {
     // MARK: Properties

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Alert Button Convertible
 /// Type that allows for conversion to `AlertButtonProtocol`.
 public protocol AlertButtonConvertible {
     /// Converts self to `AlertButtonProtocol` `Array`.

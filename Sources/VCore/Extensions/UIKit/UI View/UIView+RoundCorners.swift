@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI View + Round Corners
 extension UIView {
     /// Rounds corners.
     ///
@@ -29,7 +28,6 @@ extension UIView {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

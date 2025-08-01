@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Date + Components
 extension Date {
     /// Returns the value for one component, using the calendar time zone.
     ///

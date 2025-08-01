@@ -8,22 +8,27 @@
 import Foundation
 import OSLog
 
-// MARK: - Logger + Instances
 extension Logger {
-    // MARK: Properties Views
-    static let baseButtonGestureRecognizer: Self = .init(subsystem: "VCore", category: "BaseButtonGestureRecognizer")
-    static let carouselCollectionViewFlowLayout: Self = .init(subsystem: "VCore", category: "CarouselCollectionViewFlowLayout")
-    static let infiniteScrollingUICollectionView: Self = .init(subsystem: "VCore", category: "InfiniteScrollingUICollectionView")
-    static let keyboardResponsiveUIViewController: Self = .init(subsystem: "VCore", category: "KeyboardResponsiveUIViewController")
+    // MARK: Properties - Views
+    static let baseButtonGestureRecognizer: Self = .init("BaseButtonGestureRecognizer")
+    static let carouselCollectionViewFlowLayout: Self = .init("CarouselCollectionViewFlowLayout")
+    static let infiniteScrollingUICollectionView: Self = .init("InfiniteScrollingUICollectionView")
+    static let keyboardResponsiveUIViewController: Self = .init("KeyboardResponsiveUIViewController")
     
-    // MARK: Properties Services & Managers
-    static let keyboardObserver: Self = .init(subsystem: "VCore", category: "KeyboardObserver")
-    static let keychainService: Self = .init(subsystem: "VCore", category: "KeychainService")
-    static let localizationManager: Self = .init(subsystem: "VCore", category: "LocalizationManager")
-    static let modalPresenter: Self = .init(subsystem: "VCore", category: "ModalPresenter")
-    static let networkReachabilityService: Self = .init(subsystem: "VCore", category: "NetworkReachabilityService")
-    static let userDefaultsService: Self = .init(subsystem: "VCore", category: "UserDefaultsService")
+    // MARK: Properties - Services & Managers
+    static let keyboardObserver: Self = .init("KeyboardObserver")
+    static let keychainService: Self = .init("KeychainService")
+    static let localizationManager: Self = .init("LocalizationManager")
+    static let modalPresenter: Self = .init("ModalPresenter")
+    static let networkReachabilityService: Self = .init("NetworkReachabilityService")
+    static let userDefaultsService: Self = .init("UserDefaultsService")
 
-    // MARK: Properties Misc
-    static let misc: Self = .init(subsystem: "VCore", category: "Misc")
+    // MARK: Properties - Misc
+    static let misc: Self = .init("Misc")
+}
+
+extension Logger {
+    fileprivate init(_ category: String) {
+        self.init(subsystem: "VCore", category: category)
+    }
 }

@@ -11,11 +11,10 @@ import UIKit
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 @MainActor
 struct CGRectToNSLayoutConstraintsTests {
-    // MARK: Test Data
+    // MARK: Properties
     private let superview: UIView = .init(
         frame: CGRect(
             origin: .zero,

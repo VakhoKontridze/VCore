@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Date + Age
 extension Date {
     /// Returns age as integer from given date to current time.
     ///

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Text Line Limit Type
 /// Model that represents line limit type.
 public struct TextLineLimitType: Sendable {
     // MARK: Properties

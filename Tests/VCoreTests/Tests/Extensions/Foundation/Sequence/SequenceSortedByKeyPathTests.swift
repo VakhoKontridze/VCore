@@ -9,14 +9,9 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct SequenceSortedByKeyPathTests {
-    // MARK: Test Data
-    private struct City: Equatable {
-        let name: String
-    }
-    
+    // MARK: Properties
     private let array: [City] = [
         City(name: "London"),
         City(name: "Paris"),
@@ -40,5 +35,10 @@ struct SequenceSortedByKeyPathTests {
             
             #expect(array == sortedArray)
         }
+    }
+    
+    // MARK: City
+    private struct City: Equatable {
+        let name: String
     }
 }

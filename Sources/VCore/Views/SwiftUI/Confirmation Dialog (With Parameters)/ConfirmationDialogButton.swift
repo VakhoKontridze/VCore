@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Confirmation Dialog Button
 /// `ConfirmationDialog` button.
 public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
     // MARK: Properties

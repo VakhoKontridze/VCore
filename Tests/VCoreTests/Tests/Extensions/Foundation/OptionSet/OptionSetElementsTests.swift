@@ -9,10 +9,17 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct OptionSetElementsTests {
-    // MARK: Test Data
+    // MARK: Tests
+    @Test
+    func test() {
+        #expect(Gender.male.elements == [.male])
+        #expect(Gender.female.elements == [.female])
+        #expect(Gender.all.elements == [.male, .female])
+    }
+    
+    // MARK: Gender
     private struct Gender: OptionSet {
         static let male: Self = .init(rawValue: 1 << 0)
         static let female: Self = .init(rawValue: 1 << 1)
@@ -20,13 +27,5 @@ struct OptionSetElementsTests {
         static var all: Self { [.male, .female] }
 
         let rawValue: Int
-    }
-
-    // MARK: Tests
-    @Test
-    func test() {
-        #expect(Gender.male.elements == [.male])
-        #expect(Gender.female.elements == [.female])
-        #expect(Gender.all.elements == [.male, .female])
     }
 }

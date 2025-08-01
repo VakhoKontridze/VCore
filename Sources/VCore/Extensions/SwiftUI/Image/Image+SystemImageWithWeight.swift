@@ -9,7 +9,6 @@
 
 import SwiftUI
 
-// MARK: - Image + System Image with Weight
 extension Image {
     /// Creates a system symbol image with weight.
     ///
@@ -51,7 +50,6 @@ extension Image {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

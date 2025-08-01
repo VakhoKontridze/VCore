@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Modal Presenter Root Appearance
 /// Model that describes appearance.
 public struct ModalPresenterRootAppearance: Equatable, Sendable {
     // MARK: Properties - Global

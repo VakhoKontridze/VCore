@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI View + Remove Subviews
 extension UIView {
     /// Removes all `UIView`s from superview.
     ///

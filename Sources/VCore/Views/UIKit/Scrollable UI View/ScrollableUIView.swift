@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - Scrollable UI View
 /// `UIView` that allows the scrolling and zooming of its contained views.
 ///
 /// `ScrollableUIView` is a wrapper that handles subviews and constraints between `UIScrollView` and content `UIView`.
@@ -39,7 +38,10 @@ import UIKit
 ///     ])
 ///
 open class ScrollableUIView: UIView {
-    // MARK: Subviews
+    // MARK: Properties - Appearance
+    private var scrollDirection: ScrollDirection
+    
+    // MARK: Properties - Subviews
     /// `UIScrollView`.
     open var scrollView: UIScrollView = {
         let scrollView: UIScrollView = .init()
@@ -54,9 +56,6 @@ open class ScrollableUIView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
-    
-    // MARK: Properties
-    private var scrollDirection: ScrollDirection
     
     // MARK: Initializers
     /// Initializes `ScrollableUIView`.
@@ -109,7 +108,6 @@ open class ScrollableUIView: UIView {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 #Preview {

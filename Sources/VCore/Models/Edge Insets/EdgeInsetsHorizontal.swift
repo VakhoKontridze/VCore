@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - Edge Insets (Horizontal)
 /// Edge insets containing `leading` and `trailing` values.
 @MemberwiseInitializable(
     comment: "/// Initializes `EdgeInsetsHorizontal` with values."
@@ -125,7 +124,6 @@ public struct EdgeInsetsHorizontal: Equatable, Hashable, Sendable {
     }
 }
 
-// MARK: - View + Padding
 extension View {
     /// Adds a specific padding amount to each edge of `View` from `EdgeInsetsHorizontal`.
     ///

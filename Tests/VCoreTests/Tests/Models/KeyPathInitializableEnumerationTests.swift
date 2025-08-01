@@ -9,22 +9,8 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct KeyPathInitializableEnumerationTests {
-    // MARK: Test Data
-    private enum Gender: KeyPathInitializableEnumeration {
-        case male
-        case female
-
-        var value: Int {
-            switch self {
-            case .male: 1
-            case .female: 2
-            }
-        }
-    }
-    
     // MARK: Tests
     @Test
     func test() {
@@ -32,5 +18,20 @@ struct KeyPathInitializableEnumerationTests {
         #expect(Gender(key: \.value, value: 1) == Gender.male)
         #expect(Gender(key: \.value, value: 2) == Gender.female)
         #expect(Gender(key: \.value, value: 3) == nil)
+    }
+    
+    // MARK: Gender
+    private enum Gender: KeyPathInitializableEnumeration {
+        // MARK: Cases
+        case male
+        case female
+
+        // MARK: Properties
+        var value: Int {
+            switch self {
+            case .male: 1
+            case .female: 2
+            }
+        }
     }
 }

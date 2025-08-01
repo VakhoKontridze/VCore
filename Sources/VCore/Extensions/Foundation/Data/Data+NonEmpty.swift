@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Data + Non-Empty
 extension Data {
     /// Returns non-zero sized `Data`, or `nil`.
     ///

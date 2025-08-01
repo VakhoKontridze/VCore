@@ -9,10 +9,9 @@ import Foundation
 import Testing
 @testable import VCore
 
-// MARK: - Tests
 @Suite
 struct OptionalComparisonTests {
-    // MARK: Test Data
+    // MARK: Properties
     // Data is stored to avoid casting
 
     private let a: Int? = nil

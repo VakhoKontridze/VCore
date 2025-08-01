@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Plain List Decoration
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 extension View {

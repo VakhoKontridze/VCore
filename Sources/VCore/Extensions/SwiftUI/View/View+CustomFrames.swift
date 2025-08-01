@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Custom Frames
 extension View {
     /// Positions `View` within an invisible frame with the specified dimension.
     ///

@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + On First Appear
 extension View {
     /// Adds an action to perform before `View` appears for the first time.
     ///
@@ -24,7 +23,6 @@ extension View {
     }
 }
 
-// MARK: - On First Appear Modifier
 private struct OnFirstAppearModifier: ViewModifier {
     // MARK: Properties
     private let action: (() -> Void)?

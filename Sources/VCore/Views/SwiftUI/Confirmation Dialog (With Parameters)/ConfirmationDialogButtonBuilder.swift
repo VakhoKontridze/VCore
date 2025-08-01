@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Confirmation Dialog Button Builder
 /// Custom parameter attribute that constructs views from closures.
 @resultBuilder
 public struct ConfirmationDialogButtonBuilder {

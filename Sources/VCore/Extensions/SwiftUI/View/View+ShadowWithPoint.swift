@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-// MARK: - View + Shadow with Point
 extension View {
     /// Adds a shadow to this view.
     ///

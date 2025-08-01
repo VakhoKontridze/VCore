@@ -7,7 +7,6 @@
 
 import Foundation
 
-// MARK: - Multipart Form Data Authorized Request Header Fields
 /// JSON request header fields that pass `application/json` as `accept`, `multipart/form-data; boundary=\(boundary)` as `contentType`, and `authorization` as `Bearer \(token)`.
 ///
 /// Can be used in `URLRequest` with `MultipartFormDataBuilder`.

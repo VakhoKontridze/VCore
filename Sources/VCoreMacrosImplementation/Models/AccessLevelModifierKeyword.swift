@@ -8,7 +8,6 @@
 import Foundation
 import SwiftSyntax
 
-// MARK: - Access Level Modifier Keyword
 enum AccessLevelModifierKeyword: String, CaseIterable {
     // MARK: Cases
     case `open` = "open"

@@ -9,7 +9,6 @@
 
 import UIKit
 
-// MARK: - UI Image + Cropped
 extension UIImage {
     /// Returns `UIImage` cropped with rect.
     ///
@@ -62,7 +61,6 @@ extension UIImage {
     }
 }
 
-// MARK: - Preview
 #if DEBUG
 
 import SwiftUI
