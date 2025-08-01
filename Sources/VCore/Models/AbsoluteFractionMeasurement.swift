@@ -15,6 +15,12 @@ public enum AbsoluteFractionMeasurement: Equatable, Hashable, Sendable {
 
     /// Fraction measurement.
     case fraction(CGFloat)
+    
+    // MARK: Initializers
+    /// Initializes `AbsoluteFractionMeasurement` with `0` value.
+    public static var zero: Self {
+        .absolute(0)
+    }
 
     // MARK: Mapping
     /// Converts fractional to absolute dimension.
