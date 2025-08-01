@@ -70,15 +70,6 @@ extension KeychainServiceConfiguration {
         /// Query.
         public var query: [String: Any]
         
-        // MARK: Initializers
-        /// Initializes `GetQuery` with query.
-        public init(query: [String: Any]) {
-            self.query = query
-        }
-        
-        /// Default instance of `GetQuery`, that uses `defaultQuery`.
-        public static var `default`: Self { .init(query: defaultQuery) }
-        
         /// Default query.
         public static var defaultQuery: [String: Any] {
             [
@@ -88,6 +79,15 @@ extension KeychainServiceConfiguration {
                 kSecMatchLimit as String: kSecMatchLimitOne
             ]
         }
+        
+        // MARK: Initializers
+        /// Initializes `GetQuery` with query.
+        public init(query: [String: Any]) {
+            self.query = query
+        }
+        
+        /// Default instance of `GetQuery`, that uses `defaultQuery`.
+        public static var `default`: Self { .init(query: defaultQuery) }
         
         // MARK: Building
         /// Builds query with key.
@@ -108,6 +108,14 @@ extension KeychainServiceConfiguration {
         /// Query.
         public var query: [String: Any]
         
+        /// Default query.
+        public static var defaultQuery: [String: Any] {
+            [
+                kSecClass as String: kSecClassGenericPassword as String,
+                kSecAttrSynchronizable as String: kCFBooleanTrue as Any
+            ]
+        }
+        
         // MARK: Initializers
         /// Initializes `SetQuery` with query.
         public init(query: [String: Any]) {
@@ -116,14 +124,6 @@ extension KeychainServiceConfiguration {
         
         /// Default instance of `SetQuery`, that uses `defaultQuery`.
         public static var `default`: Self { .init(query: defaultQuery) }
-        
-        /// Default query.
-        public static var defaultQuery: [String: Any] {
-            [
-                kSecClass as String: kSecClassGenericPassword as String,
-                kSecAttrSynchronizable as String: kCFBooleanTrue as Any
-            ]
-        }
         
         // MARK: Building
         /// Builds query with key and data.
@@ -145,6 +145,14 @@ extension KeychainServiceConfiguration {
         /// Query.
         public var query: [String: Any]
         
+        /// Default query.
+        public static var defaultQuery: [String: Any] {
+            [
+                kSecClass as String: kSecClassGenericPassword as String,
+                kSecAttrSynchronizable as String: kCFBooleanTrue as Any
+            ]
+        }
+        
         // MARK: Initializers
         /// Initializes `DeleteQuery` with query.
         public init(query: [String: Any]) {
@@ -153,14 +161,6 @@ extension KeychainServiceConfiguration {
         
         /// Default instance of `DeleteQuery`, that uses `defaultQuery`.
         public static var `default`: Self { .init(query: defaultQuery) }
-        
-        /// Default query.
-        public static var defaultQuery: [String: Any] {
-            [
-                kSecClass as String: kSecClassGenericPassword as String,
-                kSecAttrSynchronizable as String: kCFBooleanTrue as Any
-            ]
-        }
         
         // MARK: Building
         /// Builds query with key.
