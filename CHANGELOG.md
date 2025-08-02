@@ -20,6 +20,7 @@ Views
 Models
 
 - `AsyncStreamingObservationContainer` is added, that triggers an `AsyncStream` when a value changes
+- `SensoryFeedbackTrigger` is added, that allows for the trigger of sensory feedback without specifying underlying triggering types
 - `PlatformInterfaceOrientation` is added
 - `withBasicAnimation(_:body:completion:)` method is removed, as it's obsoleted by `withAnimation(_:completionCriteria:_:completion:)`
 - `ObservableContainerOO` is removed, as it's obsoleted by `ObservableContainer`
