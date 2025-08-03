@@ -96,7 +96,7 @@ public struct DynamicTypeSizeType: Equatable, Sendable {
         case closedRange(range: ClosedRange<DynamicTypeSize>)
         
         // MARK: Equatable
-        static func == (lhs: Storage, rhs: Storage) -> Bool {
+        static func == (lhs: Self, rhs: Self) -> Bool {
             switch (lhs, rhs) {
             case (.fixed(let lhsSize), .fixed(let rhsSize)):
                 lhsSize == rhsSize

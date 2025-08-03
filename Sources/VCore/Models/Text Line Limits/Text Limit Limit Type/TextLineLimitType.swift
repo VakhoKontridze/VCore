@@ -94,7 +94,7 @@ public struct TextLineLimitType: Equatable, Sendable {
         case closedRange(range: ClosedRange<Int>)
         
         // MARK: Equatable
-        static func == (lhs: Storage, rhs: Storage) -> Bool {
+        static func == (lhs: Self, rhs: Self) -> Bool {
             switch (lhs, rhs) {
             case (.none, .none):
                 true
