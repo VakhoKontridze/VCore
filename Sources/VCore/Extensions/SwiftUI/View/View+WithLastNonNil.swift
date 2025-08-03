@@ -46,7 +46,7 @@ extension View {
     ///
     public func withLastNonNil<Item, Content>(
         _ item: Item?,
-        content: @escaping (Self, Item?) -> Content
+        @ViewBuilder content: @escaping (Self, Item?) -> Content
     ) -> some View
         where
             Item: Equatable,
@@ -78,7 +78,7 @@ private struct LastNonNilCachingView<Item, Root, Content>: View
     init(
         item: Item?,
         root: Root,
-        content: @escaping (Root, Item?) -> Content
+        @ViewBuilder content: @escaping (Root, Item?) -> Content
     ) {
         self.root = root
         self.item = item
