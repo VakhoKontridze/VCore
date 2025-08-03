@@ -94,11 +94,12 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
             ZStack {
                 visualDimmingView
                 
-                if let topmostModal: ModalPresenterRootModalData_Overlay = modals.last {
-                    interactiveDimmingView(modal: topmostModal)
-                }
-                
-                ForEach(modals) { modal in
+                ForEach(modals.enumeratedArray(), id: \.element.id) { (i, modal) in
+                    let isTopmostModal: Bool = i == modals.count - 1
+                    if isTopmostModal {
+                        interactiveDimmingView(modal: modal)
+                    }
+                    
                     ModalPresenterRootModalView_Overlay(
                         onlyFocusedModalIsKeyboardResponsive: appearance.onlyFocusedModalIsKeyboardResponsive,
                         interfaceOrientation: interfaceOrientation,

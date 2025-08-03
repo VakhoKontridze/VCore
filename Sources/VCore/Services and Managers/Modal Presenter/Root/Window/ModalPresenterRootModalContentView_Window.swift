@@ -26,11 +26,12 @@ struct ModalPresenterRootModalContentView_Window: View {
             ZStack {
                 visualDimmingView
                 
-                if let topmostModal: ModalPresenterRootModalData_Window = model.modals.last {
-                    interactiveDimmingView(modal: topmostModal)
-                }
-                
-                ForEach(model.modals) { modal in
+                ForEach(model.modals.enumeratedArray(), id: \.element.id) { (i, modal) in
+                    let isTopmostModal: Bool = i == model.modals.count - 1
+                    if isTopmostModal {
+                        interactiveDimmingView(modal: modal)
+                    }
+                    
                     ModalPresenterRootModalView_Window(
                         onlyFocusedModalIsKeyboardResponsive: model.appearance.onlyFocusedModalIsKeyboardResponsive,
                         interfaceOrientation: model.interfaceOrientation,
