@@ -8,7 +8,7 @@
 import CoreGraphics
 
 extension CGSize {
-    /// Returns `CGSize` with reversed `width` and `height` if condition is met..
+    /// Returns `CGSize` with reversed `width` and `height` if condition is met.
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
     ///         .withReversedDimensions() // 4x3
