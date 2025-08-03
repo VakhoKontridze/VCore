@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that represents line limit type.
-public struct TextLineLimitType: Sendable {
+public struct TextLineLimitType: Equatable, Sendable {
     // MARK: Properties
     let storage: Storage
     
@@ -82,7 +82,8 @@ public struct TextLineLimitType: Sendable {
     }
 
     // MARK: Storage
-    enum Storage {
+    enum Storage: Equatable {
+        // MARK: Cases
         case none
         case fixed(lineLimit: Int?)
         case fixedSpaceReserved(lineLimit: Int, reservesSpace: Bool)
@@ -91,5 +92,32 @@ public struct TextLineLimitType: Sendable {
         case partialRangeFrom(range: PartialRangeFrom<Int>)
         //case range(range: Range<Int>) // Not supported natively
         case closedRange(range: ClosedRange<Int>)
+        
+        // MARK: Equatable
+        static func == (lhs: Storage, rhs: Storage) -> Bool {
+            switch (lhs, rhs) {
+            case (.none, .none):
+                true
+                
+            case (.fixed(let lhs), .fixed(let rhs)):
+                lhs == rhs
+            
+            case (.fixedSpaceReserved(let lhsLimit, let lhsReserves), .fixedSpaceReserved(let rhsLimit, let rhsReserves)):
+                lhsLimit == rhsLimit &&
+                lhsReserves == rhsReserves
+            
+            case (.partialRangeThrough(let lhs), .partialRangeThrough(let rhs)):
+                lhs.upperBound == rhs.upperBound
+            
+            case (.partialRangeFrom(let lhs), .partialRangeFrom(let rhs)):
+                lhs.lowerBound == rhs.lowerBound
+            
+            case (.closedRange(let lhs), .closedRange(let rhs)):
+                lhs == rhs
+            
+            default:
+                false
+            }
+        }
     }
 }

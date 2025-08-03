@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that represents text line.
-public struct TextLineType: Sendable {
+public struct TextLineType: Equatable, Sendable {
     // MARK: Properties
     let storage: Storage
     
@@ -107,7 +107,7 @@ public struct TextLineType: Sendable {
     }
 
     // MARK: Storage
-    enum Storage {
+    enum Storage: Equatable {
         case singleLine
         case multiLine(alignment: TextAlignment, textLineLimitType: TextLineLimitType)
     }

@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that represents `DynamicTypeSize`.
-public struct DynamicTypeSizeType: Sendable {
+public struct DynamicTypeSizeType: Equatable, Sendable {
     // MARK: Properties
     let storage: Storage
 
@@ -86,12 +86,40 @@ public struct DynamicTypeSizeType: Sendable {
     }
 
     // MARK: Storage
-    enum Storage {
+    enum Storage: Equatable {
+        // MARK: Cases
         case fixed(size: DynamicTypeSize)
         case partialRangeUpTo(range: PartialRangeUpTo<DynamicTypeSize>)
         case partialRangeThrough(range: PartialRangeThrough<DynamicTypeSize>)
         case partialRangeFrom(range: PartialRangeFrom<DynamicTypeSize>)
         case range(range: Range<DynamicTypeSize>)
         case closedRange(range: ClosedRange<DynamicTypeSize>)
+        
+        // MARK: Equatable
+        static func == (lhs: Storage, rhs: Storage) -> Bool {
+            switch (lhs, rhs) {
+            case (.fixed(let lhsSize), .fixed(let rhsSize)):
+                lhsSize == rhsSize
+                
+            case (.partialRangeUpTo(let lhs), .partialRangeUpTo(let rhs)):
+                lhs.upperBound == rhs.upperBound
+                
+            case (.partialRangeThrough(let lhs), .partialRangeThrough(let rhs)):
+                lhs.upperBound == rhs.upperBound
+                
+            case (.partialRangeFrom(let lhs), .partialRangeFrom(let rhs)):
+                lhs.lowerBound == rhs.lowerBound
+                
+            case (.range(let lhs), .range(let rhs)):
+                lhs.lowerBound == rhs.lowerBound &&
+                lhs.upperBound == rhs.upperBound
+                
+            case (.closedRange(let lhs), .closedRange(let rhs)):
+                lhs == rhs
+                
+            default:
+                false
+            }
+        }
     }
 }
