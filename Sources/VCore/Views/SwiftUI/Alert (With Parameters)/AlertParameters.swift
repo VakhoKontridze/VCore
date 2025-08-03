@@ -36,7 +36,7 @@ public struct AlertParameters {
         self.attributes = attributes
     }
     
-    /// Initializes `AlertParameters` with "ok" action.
+    /// Initializes `AlertParameters` with action.
     public init(
         title: String?,
         message: String?,
@@ -57,7 +57,7 @@ public struct AlertParameters {
         )
     }
     
-    /// Initializes `AlertParameters` with error and "ok" action.
+    /// Initializes `AlertParameters` with error and action.
     public init(
         error: any Error,
         completion: (@MainActor () -> Void)?,

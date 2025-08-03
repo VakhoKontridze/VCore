@@ -33,7 +33,7 @@ public struct UIAlertParameters {
         self.buttons = buttons
     }
     
-    /// Initializes `UIAlertParameters` with "ok" action.
+    /// Initializes `UIAlertParameters` with action.
     public init(
         title: String?,
         message: String,
@@ -52,7 +52,7 @@ public struct UIAlertParameters {
         )
     }
     
-    /// Initializes `UIAlertParameters` with error and "ok" action.
+    /// Initializes `UIAlertParameters` with error and action.
     public init(
         error: any Error,
         completion: (@MainActor () -> Void)?
