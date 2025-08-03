@@ -10,7 +10,7 @@
 import Foundation
 
 /// Model that describes appearance
-public struct InfiniteScrollingUICollectionViewAppearance {
+public struct InfiniteScrollingUICollectionViewAppearance: Equatable, Sendable {
     // MARK: Properties
     /// Activity indicator container height.
     public var activityIndicatorContainerHeight: CGFloat = 100

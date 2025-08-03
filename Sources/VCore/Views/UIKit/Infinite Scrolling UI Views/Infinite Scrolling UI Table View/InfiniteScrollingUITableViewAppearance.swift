@@ -10,7 +10,7 @@
 import UIKit
 
 /// Model that describes appearance
-public struct InfiniteScrollingUITableViewAppearance {
+public struct InfiniteScrollingUITableViewAppearance: Equatable, Sendable {
     // MARK: Properties
     /// Offset that needs to be dragged vertically up for pagination to occur.
     public var paginationOffset: CGFloat = 20

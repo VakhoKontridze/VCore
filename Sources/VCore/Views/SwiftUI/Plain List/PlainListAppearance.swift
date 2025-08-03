@@ -10,7 +10,7 @@ import SwiftUI
 /// Model that describes appearance.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-public struct PlainListAppearance: Sendable {
+public struct PlainListAppearance: Equatable, Sendable {
     // MARK: Properties
     /// Row background color.
     public var rowBackgroundColor: Color = .clear

@@ -10,7 +10,7 @@
 import UIKit
 
 /// Model that describes appearance.
-public struct InnerShadowUIViewAppearance: Sendable {
+public struct InnerShadowUIViewAppearance: Equatable, Sendable {
     // MARK: Properties
     /// Shadow color.
     public var shadowColor: UIColor = .black.withAlphaComponent(0.1)

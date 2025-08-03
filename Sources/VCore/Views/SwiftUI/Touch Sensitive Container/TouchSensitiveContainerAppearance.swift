@@ -9,7 +9,7 @@ import SwiftUI
 
 /// Model that describes appearance.
 @available(tvOS, unavailable)
-public struct TouchSensitiveContainerAppearance: Sendable {
+public struct TouchSensitiveContainerAppearance: Equatable, Sendable {
     // MARK: Properties - Body
     /// Indicates if tap is enabled.
     public var isTapEnabled: Bool = true
