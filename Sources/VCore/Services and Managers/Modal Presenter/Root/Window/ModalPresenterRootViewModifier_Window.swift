@@ -101,7 +101,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
         }
         
         let hostingController: UIHostingController = .init(
-            rootView: ModalPresenterRootModalContent_Window(
+            rootView: ModalPresenterRootModalContentView_Window(
                 model: model
             )
         )

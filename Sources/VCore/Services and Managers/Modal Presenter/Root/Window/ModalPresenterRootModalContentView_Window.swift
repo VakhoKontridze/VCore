@@ -1,5 +1,5 @@
 //
-//  ModalPresenterRootModalContent_Window.swift
+//  ModalPresenterRootModalContentView_Window.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 29.05.25.
@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-struct ModalPresenterRootModalContent_Window: View {
+struct ModalPresenterRootModalContentView_Window: View {
     // MARK: Properties
     private let model: ModalPresenterRootModel_Window
     
@@ -25,7 +25,20 @@ struct ModalPresenterRootModalContent_Window: View {
         if !model.modals.isEmpty {
             ZStack {
                 visualDimmingView
-                modalsView
+                
+                if let topmostModal: ModalPresenterRootModalData_Window = model.modals.last {
+                    interactiveDimmingView(modal: topmostModal)
+                }
+                
+                ForEach(model.modals) { modal in
+                    ModalPresenterRootModalView_Window(
+                        onlyFocusedModalIsKeyboardResponsive: model.appearance.onlyFocusedModalIsKeyboardResponsive,
+                        interfaceOrientation: model.interfaceOrientation,
+                        safeAreaInsets: model.safeAreaInsets,
+                        keyboardObserver: model.keyboardObserver,
+                        modal: modal
+                    )
+                }
             }
             .apply { view in
                 switch model.appearance.frame {
@@ -43,10 +56,9 @@ struct ModalPresenterRootModalContent_Window: View {
                 }
             }
 
-            // Must be written last
-            .offset(y: -model.keyboardObserver.offset)
-            .animation(model.keyboardObserver.animation, value: model.keyboardObserver.offset)
-            .ignoresSafeArea() // Using `withDisabledKeyboardResponsiveness` here disables click-through behavior
+            // Keyboard is handled individually per modal, but this must be written at the top level.
+            // Using `withDisabledKeyboardResponsiveness` here disables click-through behavior
+            .ignoresSafeArea()
         }
     }
 
@@ -73,44 +85,16 @@ struct ModalPresenterRootModalContent_Window: View {
     // the larger one behind it would be hiding most of interactive portion of the view.
     // So, it's better to insert `interactiveDimmingView` behind topmost modal.
     private func interactiveDimmingView(
-        topmostModal: ModalPresenterRootModalData_Window
+        modal: ModalPresenterRootModalData_Window
     ) -> some View {
         Color.clear
             .contentShape(.rect)
             .allowsHitTesting(model.appearance.dimmingViewTapAction.allowsHitTesting)
             .onTapGesture {
                 if model.appearance.dimmingViewTapAction == .sendActionToTopmostModal {
-                    topmostModal.presentationMode.dimmingViewTapActionSubject.send()
+                    modal.presentationMode.dimmingViewTapActionSubject.send()
                 }
             }
-    }
-
-    private var modalsView: some View {
-        ForEach(model.modals.enumeratedArray(), id: \.element.id) { (i, modal) in
-            modalView(
-                isTopmost: i == model.modals.count - 1,
-                modal: modal
-            )
-        }
-    }
-
-    @ViewBuilder
-    private func modalView(
-        isTopmost: Bool,
-        modal: ModalPresenterRootModalData_Window
-    ) -> some View {
-        if isTopmost {
-            interactiveDimmingView(topmostModal: modal)
-        }
-        
-        NonInvasiveGeometryReader(alignment: modal.appearance.alignment) { geometryProxy in
-            modal.view()
-                .environment(\.modalPresenterInterfaceOrientation, model.interfaceOrientation)
-                .environment(\.modalPresenterContainerSize, geometryProxy.size)
-                .environment(\.modalPresenterSafeAreaInsets, model.safeAreaInsets)
-                .environment(\.modalPresenterPresentationMode, modal.presentationMode)
-        }
-        .onFirstAppear { modal.presentationMode.presentSubject.send() }
     }
 }
 

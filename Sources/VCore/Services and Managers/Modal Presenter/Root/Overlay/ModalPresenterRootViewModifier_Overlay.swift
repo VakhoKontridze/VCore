@@ -93,7 +93,20 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
         if !modals.isEmpty {
             ZStack {
                 visualDimmingView
-                modalsView
+                
+                if let topmostModal: ModalPresenterRootModalData_Overlay = modals.last {
+                    interactiveDimmingView(modal: topmostModal)
+                }
+                
+                ForEach(modals) { modal in
+                    ModalPresenterRootModalView_Overlay(
+                        onlyFocusedModalIsKeyboardResponsive: appearance.onlyFocusedModalIsKeyboardResponsive,
+                        interfaceOrientation: interfaceOrientation,
+                        safeAreaInsets: safeAreaInsets,
+                        keyboardObserver: keyboardObserver,
+                        modal: modal
+                    )
+                }
             }
             .apply { view in
                 switch appearance.frame {
@@ -110,15 +123,10 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
             }
-
-            // Must be written last
-#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
-            .offset(y: -keyboardObserver.offset)
-            .animation(keyboardObserver.animation, value: keyboardObserver.offset)
-            .ignoresSafeArea() // Using `withDisabledKeyboardResponsiveness` here disables click-through behavior
-#else
+            
+            // Keyboard is handled individually per modal, but this must be written at the top level.
+            // Using `withDisabledKeyboardResponsiveness` here disables click-through behavior
             .ignoresSafeArea()
-#endif
         }
     }
 
@@ -145,44 +153,16 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     // the larger one behind it would be hiding most of interactive portion of the view.
     // So, it's better to insert `interactiveDimmingView` behind topmost modal.
     private func interactiveDimmingView(
-        topmostModal: ModalPresenterRootModalData_Overlay
+        modal: ModalPresenterRootModalData_Overlay
     ) -> some View {
         Color.clear
             .contentShape(.rect)
             .allowsHitTesting(appearance.dimmingViewTapAction.allowsHitTesting)
             .onTapGesture {
                 if appearance.dimmingViewTapAction == .sendActionToTopmostModal {
-                    topmostModal.presentationMode.dimmingViewTapActionSubject.send()
+                    modal.presentationMode.dimmingViewTapActionSubject.send()
                 }
             }
-    }
-
-    private var modalsView: some View {
-        ForEach(modals.enumeratedArray(), id: \.element.id) { (i, modal) in
-            modalView(
-                isTopmost: i == modals.count - 1,
-                modal: modal
-            )
-        }
-    }
-
-    @ViewBuilder
-    private func modalView(
-        isTopmost: Bool,
-        modal: ModalPresenterRootModalData_Overlay
-    ) -> some View {
-        if isTopmost {
-            interactiveDimmingView(topmostModal: modal)
-        }
-        
-        NonInvasiveGeometryReader(alignment: modal.appearance.alignment) { geometryProxy in
-            modal.view()
-                .environment(\.modalPresenterInterfaceOrientation, interfaceOrientation)
-                .environment(\.modalPresenterContainerSize, geometryProxy.size)
-                .environment(\.modalPresenterSafeAreaInsets, safeAreaInsets)
-                .environment(\.modalPresenterPresentationMode, modal.presentationMode)
-        }
-        .onFirstAppear { modal.presentationMode.presentSubject.send() }
     }
     
     // MARK: Actions - Internal

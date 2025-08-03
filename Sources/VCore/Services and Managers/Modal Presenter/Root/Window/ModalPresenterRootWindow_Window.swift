@@ -56,7 +56,7 @@ final class ModalPresenterRootWindow_Window: UIWindow {
             let eventTimestamp: TimeInterval = event?.timestamp
         {
             let viewType: String = .init(describing: type(of: view))
-            let targetViewTypeFragment: String = .init(describing: ModalPresenterRootModalContent_Window.self)
+            let targetViewTypeFragment: String = .init(describing: ModalPresenterRootModalContentView_Window.self)
             
             if touchEventAndTouchViewDictionary.get(key: eventTimestamp) == nil {
                 if viewType.contains(targetViewTypeFragment) {

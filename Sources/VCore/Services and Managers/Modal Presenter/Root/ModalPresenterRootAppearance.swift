@@ -41,6 +41,9 @@ public struct ModalPresenterRootAppearance: Equatable, Sendable {
     /// Changes made to this property conditionally will not be reflected.
     public var keyboardResponsivenessStrategy: KeyboardObserver.KeyboardResponsivenessStrategy = .default
 #endif
+    
+    /// Indicates if only the modal with focused modal is keyboard responsive.
+    public var onlyFocusedModalIsKeyboardResponsive: Bool = true
 
     // MARK: Initializers
     /// Initializes appearance with default values.
