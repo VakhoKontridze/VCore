@@ -46,6 +46,7 @@ Services and Managers - Presentation Host
 - Presentation Host is renamed to Modal Presenter
 - Modal Presenter now has two presentation types, `overlay` and `window`. Previous presentation type is covered under `overlay`, while new `window` presents modal using a new `UIWindow`.
 - Modal Presenter will now pass `PlatformInterfaceOrientation` via the environment
+- `ModalPresenterDataSourceCache` is replaced with `View.withLastNonNil(_:content:)`
 - `View.presentationHostLayer(...)` is renamed to `View.modalPresenterRoot(...)`, and it takes `ModalPresenterRoot` as parameter
 - `View.presentationHost(...)` is renamed to `View.modalPresenterLink(...)`, and it takes `ModalPresenterLink` as parameter
 

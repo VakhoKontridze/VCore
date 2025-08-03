@@ -587,30 +587,32 @@ extension View {
         item: Binding<Item?>,
         @ViewBuilder content: @escaping (Item) -> Content
     ) -> some View
-        where Content: View
+        where
+            Item: Equatable,
+            Content: View
     {
-        item.wrappedValue.map { ModalPresenterDataSourceCache.shared.set(link: link, value: $0) }
-
         let isPresented: Binding<Bool> = .init(
             get: { item.wrappedValue != nil },
             set: { if !$0 { item.wrappedValue = nil } }
         )
-        
+
+
         return self
-            .modalPresenterLink(
-                link: link,
-                isPresented: isPresented
-            ) {
-                Modal<Content?>(
-                    isPresented: isPresented,
-                ) {
-                    if let item = item.wrappedValue ?? ModalPresenterDataSourceCache.shared.get(link: link) as? Item {
-                        content(item)
+            .withLastNonNil(item.wrappedValue) { (view, item) in
+                view
+                    .modalPresenterLink(
+                        link: link,
+                        isPresented: isPresented,
+                    ) {
+                        Modal<Content?>(isPresented: isPresented) {
+                            if let item {
+                                content(item)
+                            }
+                        }
                     }
-                }
             }
     }
 }
 ```
 
-One thing to keep in mind, is that Modal Presenter doesn't require a capture list. Which means, that if `item` is set to `nil`, content will be blank when modal is being animated out. `ModalPresenterDataSourceCache` can be used to cache and retrieve data sources. Cleanup is automatically performed when modal is dismissed to avoid memory leaks.
+One thing to keep in mind, is that Modal Presenter doesn't require a capture list. Which means, that if `item` is set to `nil`, content will be blank when modal is being animated out. `View.withLastNonNil(_:content:)` can be used to cache and retrieve data sources.

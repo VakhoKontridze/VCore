@@ -169,8 +169,6 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
 
         modal.presentationMode.dismissSubject.send /*completion: */{
             model.modals.removeAll { $0.id == dismissData.link.linkID }
-                        
-            ModalPresenterDataSourceCache.shared.remove(link: dismissData.link)
             
             if model.modals.isEmpty {
                 window.isHidden = true
