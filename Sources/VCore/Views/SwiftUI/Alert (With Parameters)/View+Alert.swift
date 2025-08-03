@@ -29,28 +29,29 @@ extension View {
     public func alert(
         parameters: Binding<AlertParameters?>
     ) -> some View {
-        self.alert(
-            parameters.wrappedValue?.title ?? "",
-            isPresented: Binding(
-                get: { parameters.wrappedValue != nil },
-                set: { if !$0 { parameters.wrappedValue = nil } }
-            ),
-            actions: {
-                if let buttons: [any AlertButtonProtocol] = parameters.wrappedValue?.buttons() {
-                    // Native `View.alert(...)` doesn't react to changes, so using `offset` as ID is okay
-                    ForEach(buttons.enumeratedArray(), id: \.offset) { (_, button) in
-                        button.makeBody(animateOutHandler: { completion in
-                            completion?()
-                        })
+        self
+            .alert(
+                parameters.wrappedValue?.title ?? "",
+                isPresented: Binding(
+                    get: { parameters.wrappedValue != nil },
+                    set: { if !$0 { parameters.wrappedValue = nil } }
+                ),
+                actions: {
+                    if let buttons: [any AlertButtonProtocol] = parameters.wrappedValue?.buttons() {
+                        // Native `View.alert(...)` doesn't react to changes, so using `offset` as ID is okay
+                        ForEach(buttons.enumeratedArray(), id: \.offset) { (_, button) in
+                            button.makeBody(animateOutHandler: { completion in
+                                completion?()
+                            })
+                        }
+                    }
+                },
+                message: {
+                    if let message: String = parameters.wrappedValue?.message {
+                        Text(message)
                     }
                 }
-            },
-            message: {
-                if let message: String = parameters.wrappedValue?.message {
-                    Text(message)
-                }
-            }
-        )
+            )
     }
 }
 
