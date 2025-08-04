@@ -100,6 +100,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
                         interactiveDimmingView(modal: modal)
                     }
                     
+#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
                     ModalPresenterRootModalView_Overlay(
                         onlyFocusedModalIsKeyboardResponsive: appearance.onlyFocusedModalIsKeyboardResponsive,
                         interfaceOrientation: interfaceOrientation,
@@ -107,6 +108,14 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
                         keyboardObserver: keyboardObserver,
                         modal: modal
                     )
+#else
+                    ModalPresenterRootModalView_Overlay(
+                        onlyFocusedModalIsKeyboardResponsive: appearance.onlyFocusedModalIsKeyboardResponsive,
+                        interfaceOrientation: interfaceOrientation,
+                        safeAreaInsets: safeAreaInsets,
+                        modal: modal
+                    )
+#endif
                 }
             }
             .apply { view in

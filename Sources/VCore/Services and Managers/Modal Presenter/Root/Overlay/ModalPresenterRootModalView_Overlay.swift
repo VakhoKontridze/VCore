@@ -14,10 +14,13 @@ struct ModalPresenterRootModalView_Overlay: View {
     private let safeAreaInsets: EdgeInsets
     
     // MARK: Properties - Keyboard Responsiveness
+#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
     private let keyboardObserver: KeyboardObserver
+#endif
     
     @FocusState private var isFocused: Bool
     
+#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
     private var keyboardOffset: CGFloat {
         if onlyFocusedModalIsKeyboardResponsive {
             if isFocused {
@@ -29,11 +32,13 @@ struct ModalPresenterRootModalView_Overlay: View {
             keyboardObserver.offset
         }
     }
+#endif
     
     // MARK: Properties - Modal
     private let modal: ModalPresenterRootModalData_Overlay
     
     // MARK: Initializers
+#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
     init(
         onlyFocusedModalIsKeyboardResponsive: Bool,
         interfaceOrientation: PlatformInterfaceOrientation,
@@ -47,6 +52,19 @@ struct ModalPresenterRootModalView_Overlay: View {
         self.keyboardObserver = keyboardObserver
         self.modal = modal
     }
+#else
+    init(
+        onlyFocusedModalIsKeyboardResponsive: Bool,
+        interfaceOrientation: PlatformInterfaceOrientation,
+        safeAreaInsets: EdgeInsets,
+        modal: ModalPresenterRootModalData_Overlay
+    ) {
+        self.onlyFocusedModalIsKeyboardResponsive = onlyFocusedModalIsKeyboardResponsive
+        self.interfaceOrientation = interfaceOrientation
+        self.safeAreaInsets = safeAreaInsets
+        self.modal = modal
+    }
+#endif
     
     // MARK: Body
     var body: some View {
