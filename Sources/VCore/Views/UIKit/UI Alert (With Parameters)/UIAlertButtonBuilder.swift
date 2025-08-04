@@ -47,6 +47,7 @@ public struct UIAlertButtonBuilder {
     
     // MARK: Types
     public typealias Component = any UIAlertButtonConvertible
+    
     public typealias Result = [any UIAlertButtonProtocol]
 }
 

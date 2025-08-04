@@ -103,5 +103,6 @@ public struct PublishedPropertyWrapperPublisher<Value>: Publisher {
     
     // MARK: Types
     public typealias Output = Value
+    
     public typealias Failure = Never
 }

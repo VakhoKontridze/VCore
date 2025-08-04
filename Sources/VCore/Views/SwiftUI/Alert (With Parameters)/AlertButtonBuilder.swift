@@ -45,5 +45,6 @@ public struct AlertButtonBuilder {
     
     // MARK: Types
     public typealias Component = any AlertButtonConvertible
+    
     public typealias Result = [any AlertButtonProtocol]
 }

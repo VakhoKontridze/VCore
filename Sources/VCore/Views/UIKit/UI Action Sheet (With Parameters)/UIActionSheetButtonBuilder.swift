@@ -47,6 +47,7 @@ public struct UIActionSheetButtonBuilder {
     
     // MARK: Types
     public typealias Component = any UIActionSheetButtonConvertible
+    
     public typealias Result = [any UIActionSheetButtonProtocol]
 }
 

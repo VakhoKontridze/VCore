@@ -45,5 +45,6 @@ public struct ConfirmationDialogButtonBuilder {
     
     // MARK: Types
     public typealias Component = any ConfirmationDialogButtonConvertible
+    
     public typealias Result = [any ConfirmationDialogButtonProtocol]
 }
