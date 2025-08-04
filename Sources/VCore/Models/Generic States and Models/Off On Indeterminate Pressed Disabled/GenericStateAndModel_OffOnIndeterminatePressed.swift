@@ -57,7 +57,7 @@ public enum GenericState_OffOnIndeterminatePressed: Int, Sendable, CaseIterable 
     }
 }
 
-/// Group containing generic state-bound values.
+/// Model containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_OffOnIndeterminatePressed` with values."
 )

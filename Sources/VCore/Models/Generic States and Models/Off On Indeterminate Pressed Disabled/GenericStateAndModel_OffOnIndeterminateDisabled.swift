@@ -61,7 +61,7 @@ public enum GenericState_OffOnIndeterminateDisabled: Int, Sendable, CaseIterable
     }
 }
 
-/// Group containing generic state-bound values.
+/// Model containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_OffOnIndeterminateDisabled` with values."
 )

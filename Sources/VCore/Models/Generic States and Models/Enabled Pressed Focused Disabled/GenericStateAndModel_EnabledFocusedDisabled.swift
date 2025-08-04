@@ -45,7 +45,7 @@ public enum GenericState_EnabledFocusedDisabled: Int, Sendable, CaseIterable {
     }
 }
 
-/// Group containing generic state-bound values.
+/// Model containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_EnabledFocusedDisabled` with values."
 )

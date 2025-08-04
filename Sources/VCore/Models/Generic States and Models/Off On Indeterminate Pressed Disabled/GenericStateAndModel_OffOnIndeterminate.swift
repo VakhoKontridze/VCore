@@ -54,7 +54,7 @@ extension Binding where Value == GenericState_OffOnIndeterminate {
     }
 }
 
-/// Group containing generic state-bound values.
+/// Model containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_OffOnIndeterminate` with values."
 )

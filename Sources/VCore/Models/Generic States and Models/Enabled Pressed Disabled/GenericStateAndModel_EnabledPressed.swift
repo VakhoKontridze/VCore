@@ -31,7 +31,7 @@ public enum GenericState_EnabledPressed: Int, Sendable, CaseIterable {
     }
 }
 
-/// Group containing generic state-bound values.
+/// Model containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_EnabledPressed` with values."
 )

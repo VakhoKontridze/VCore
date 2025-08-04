@@ -37,6 +37,6 @@ public struct ResponderChainToolbarAppearance: Equatable, Sendable {
     public init() {}
 
     // MARK: Types
-    /// Model that contains colors for button component states.
+    /// State-bound colors.
     public typealias ButtonStateColors = GenericStateModel_EnabledDisabled<Color>
 }

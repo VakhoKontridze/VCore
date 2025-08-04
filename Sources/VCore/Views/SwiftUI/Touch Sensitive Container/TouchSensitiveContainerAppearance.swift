@@ -73,9 +73,9 @@ public struct TouchSensitiveContainerAppearance: Equatable, Sendable {
     public init() {}
 
     // MARK: Types
-    /// Model that contains colors for component states.
+    /// State-bound colors.
     public typealias StateColors = GenericStateModel_EnabledPressedDisabled<Color>
 
-    /// Model that contains colors for component opacities.
+    /// State-bound opacities.
     public typealias StateOpacities = GenericStateModel_EnabledPressedDisabled<CGFloat>
 }

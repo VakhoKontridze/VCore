@@ -48,7 +48,7 @@ public enum GenericState_DeselectedSelectedPressed: Int, Sendable, CaseIterable 
     }
 }
 
-/// Group containing generic state-bound values.
+/// Model containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_DeselectedSelectedPressed` with values."
 )

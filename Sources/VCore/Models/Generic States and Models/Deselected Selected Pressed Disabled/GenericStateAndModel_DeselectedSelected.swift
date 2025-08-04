@@ -50,7 +50,7 @@ extension Binding where Value == GenericState_DeselectedSelected {
     }
 }
 
-/// Group containing generic state-bound values.
+/// Model containing generic state-bound values.
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_DeselectedSelected` with values."
 )
