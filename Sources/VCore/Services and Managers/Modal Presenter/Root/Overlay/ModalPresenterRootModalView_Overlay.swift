@@ -15,12 +15,11 @@ struct ModalPresenterRootModalView_Overlay: View {
     
     // MARK: Properties - Keyboard Responsiveness
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
+    
     private let keyboardObserver: KeyboardObserver
-#endif
     
     @FocusState private var isFocused: Bool
     
-#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
     private var keyboardOffset: CGFloat {
         if onlyFocusedModalIsKeyboardResponsive {
             if isFocused {
@@ -32,6 +31,7 @@ struct ModalPresenterRootModalView_Overlay: View {
             keyboardObserver.offset
         }
     }
+    
 #endif
     
     // MARK: Properties - Modal
@@ -75,7 +75,9 @@ struct ModalPresenterRootModalView_Overlay: View {
                 .environment(\.modalPresenterSafeAreaInsets, safeAreaInsets)
                 .environment(\.modalPresenterPresentationMode, modal.presentationMode)
             
+#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
                 .focused($isFocused)
+#endif
         }
         .onFirstAppear { modal.presentationMode.presentSubject.send() }
         
