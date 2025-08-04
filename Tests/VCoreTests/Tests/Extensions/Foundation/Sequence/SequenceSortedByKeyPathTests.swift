@@ -37,7 +37,7 @@ struct SequenceSortedByKeyPathTests {
         }
     }
     
-    // MARK: City
+    // MARK: Types
     private struct City: Equatable {
         let name: String
     }

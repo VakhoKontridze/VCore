@@ -123,7 +123,7 @@ final class KeyPathEqualityAndComparisonTests {
         )
     }
     
-    // MARK: Object
+    // MARK: Types
     private struct Object {
         var a: Int = 0
         var b: Int = 0

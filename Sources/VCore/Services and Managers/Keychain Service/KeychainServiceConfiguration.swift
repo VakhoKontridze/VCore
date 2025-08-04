@@ -59,9 +59,8 @@ public struct KeychainServiceConfiguration {
             deleteQuery: .default
         )
     }
-}
-    
-extension KeychainServiceConfiguration {
+
+    // MARK: Types
     /// Get query.
     ///
     /// Declared query shouldn't contain `kSecAttrAccount`, since it is passed in `build(key:)` method.
@@ -97,9 +96,7 @@ extension KeychainServiceConfiguration {
             return query
         }
     }
-}
-    
-extension KeychainServiceConfiguration {
+
     /// Set query.
     ///
     /// Declared query shouldn't contain `kSecAttrAccount` and `kSecValueData`, since they are passed in `build(key:data:)` method.
@@ -134,9 +131,7 @@ extension KeychainServiceConfiguration {
             return query
         }
     }
-}
 
-extension KeychainServiceConfiguration {
     /// Delete query.
     ///
     /// Declared query shouldn't contain `kSecAttrAccount`, since it is passed in `build(key:)` method.

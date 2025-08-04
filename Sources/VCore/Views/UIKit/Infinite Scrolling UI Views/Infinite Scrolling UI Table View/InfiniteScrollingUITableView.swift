@@ -176,6 +176,10 @@ open class InfiniteScrollingUITableView: UITableView {
             tableFooterView = nil
         }
     }
+    
+    // MARK: Types
+    /// Enumeration that represents state.
+    public typealias PaginationState = InfiniteScrollingPaginationState
 }
 
 #endif

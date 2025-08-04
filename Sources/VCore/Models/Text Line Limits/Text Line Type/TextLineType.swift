@@ -106,7 +106,7 @@ public struct TextLineType: Equatable, Sendable {
         )
     }
 
-    // MARK: Storage
+    // MARK: Types
     enum Storage: Equatable {
         case singleLine
         case multiLine(alignment: TextAlignment, textLineLimitType: TextLineLimitType)

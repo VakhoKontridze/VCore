@@ -171,14 +171,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         }
     }
 
-    // MARK: Expansion Data
-    private struct ExpansionData {
-        let accessLevelModifier: AccessLevelModifierKeyword
-        let structDeclaration: StructDeclSyntax
-        let optionsEnumDeclaration: EnumDeclSyntax
-        let rawType: GenericArgumentSyntax.Argument
-    }
-
+    // MARK: Data
     private static func decodeExpansion(
         attribute: AttributeSyntax,
         declaration: some DeclGroupSyntax,
@@ -281,5 +274,13 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         }
 
         return value
+    }
+    
+    // MARK: Types
+    private struct ExpansionData {
+        let accessLevelModifier: AccessLevelModifierKeyword
+        let structDeclaration: StructDeclSyntax
+        let optionsEnumDeclaration: EnumDeclSyntax
+        let rawType: GenericArgumentSyntax.Argument
     }
 }

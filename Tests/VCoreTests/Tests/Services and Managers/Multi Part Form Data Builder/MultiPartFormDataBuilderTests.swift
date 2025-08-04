@@ -98,7 +98,7 @@ struct MultipartFormDataBuilderTests {
 #endif
     }
     
-    // MARK: JSON Part
+    // MARK: Types
     @CodingKeysGeneration
     private struct JSONPart: Encodable {
         @CKGProperty("key") let key: String

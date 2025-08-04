@@ -53,7 +53,7 @@ public struct ModalPresenterRoot: Sendable {
         )
     }
     
-    // MARK: Storage
+    // MARK: Types
     enum Storage {
         case overlay(rootID: String?)
         

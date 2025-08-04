@@ -25,7 +25,7 @@ struct SequenceMinAndMaxByKeyPathTests {
         #expect(array.max(by: \.value)?.value == 3)
     }
     
-    // MARK: Object
+    // MARK: Types
     private struct Object: Equatable {
         let value: Int
     }

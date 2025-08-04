@@ -71,34 +71,6 @@ public final class KeyboardObserver: Sendable {
         
         addSubscriptions()
     }
-    
-    // MARK: Keyboard Responsiveness Strategy
-    /// Keyboard responsiveness strategy.
-    public enum KeyboardResponsivenessStrategy: Equatable, Sendable {
-        // MARK: Cases
-        /// None.
-        case `none`
-
-        /// Offsets container by the specified value.
-        case offset(offset: CGFloat)
-
-        /// Offsets container by the keyboard height, plus the specified value.
-        ///
-        /// Using a positive value (`keyboard height + value > keyboard height`)
-        /// may cause visuals gaps between bottom of the modal and the keyboard.
-        case offsetByKeyboardHeight(additionalOffset: CGFloat)
-
-        /// Offsets container to un-obscure first responder view, if needed.
-        case offsetByObscuredViewHeight(additionalOffset: CGFloat)
-
-        // MARK: Initializers
-        /// Default instance.
-        public static var `default`: Self {
-            .offsetByObscuredViewHeight(
-                additionalOffset: 20
-            )
-        }
-    }
 
     // MARK: Subscriptions
     private func addSubscriptions() {
@@ -223,6 +195,34 @@ public final class KeyboardObserver: Sendable {
     }
     
 #endif
+    
+    // MARK: Types
+    /// Keyboard responsiveness strategy.
+    public enum KeyboardResponsivenessStrategy: Equatable, Sendable {
+        // MARK: Cases
+        /// None.
+        case `none`
+
+        /// Offsets container by the specified value.
+        case offset(offset: CGFloat)
+
+        /// Offsets container by the keyboard height, plus the specified value.
+        ///
+        /// Using a positive value (`keyboard height + value > keyboard height`)
+        /// may cause visuals gaps between bottom of the modal and the keyboard.
+        case offsetByKeyboardHeight(additionalOffset: CGFloat)
+
+        /// Offsets container to un-obscure first responder view, if needed.
+        case offsetByObscuredViewHeight(additionalOffset: CGFloat)
+
+        // MARK: Initializers
+        /// Default instance.
+        public static var `default`: Self {
+            .offsetByObscuredViewHeight(
+                additionalOffset: 20
+            )
+        }
+    }
 }
 
 #if canImport(UIKit) && !os(watchOS)

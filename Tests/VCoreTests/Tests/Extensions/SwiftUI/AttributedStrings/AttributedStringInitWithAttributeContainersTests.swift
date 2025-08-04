@@ -233,6 +233,7 @@ struct AttributedStringInitWithAttributeContainersTests {
         values.map { Wrapper(tagName: $0, substring: $1) }
     }
 
+    // MARK: Types
     private struct Wrapper: Equatable {
         let tagName: Character?
         let substring: String

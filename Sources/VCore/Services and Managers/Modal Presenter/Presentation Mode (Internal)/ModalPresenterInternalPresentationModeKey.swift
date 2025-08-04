@@ -66,7 +66,7 @@ struct ModalPresenterInternalPresentationModeKey {
         )
     }
     
-    // MARK: Type
+    // MARK: Types
     private enum Type_ {
         case overlay
         case window

@@ -11,6 +11,13 @@ import Combine
 struct ModalPresenterInternalPresentationMode {
     // MARK: Properties
     let presentSubject: PassthroughSubject<PresentationData, Never> = .init()
+    let updateSubject: PassthroughSubject<UpdateData, Never> = .init()
+    let dismissSubject: PassthroughSubject<DismissData, Never> = .init()
+
+    // MARK: Initializers
+    init() {}
+    
+    // MARK: Types
     struct PresentationData {
         let link: ModalPresenterLink
         let appearance: ModalPresenterLinkAppearance
@@ -18,19 +25,14 @@ struct ModalPresenterInternalPresentationMode {
         let completion: () -> Void
     }
 
-    let updateSubject: PassthroughSubject<UpdateData, Never> = .init()
     struct UpdateData {
         let link: ModalPresenterLink
         let appearance: ModalPresenterLinkAppearance
         let view: () -> AnyView
     }
-
-    let dismissSubject: PassthroughSubject<DismissData, Never> = .init()
+    
     struct DismissData {
         let link: ModalPresenterLink
         let completion: () -> Void
     }
-
-    // MARK: Initializers
-    init() {}
 }

@@ -82,9 +82,6 @@ enum PublishedPropertyWrapperStorage<Value> {
 /// Publisher for properties in published property wrappers.
 public struct PublishedPropertyWrapperPublisher<Value>: Publisher {
     // MARK: Properties
-    public typealias Output = Value
-    public typealias Failure = Never
-    
     let subject: CurrentValueSubject<Value, Never>
     
     // MARK: Initializers
@@ -103,4 +100,8 @@ public struct PublishedPropertyWrapperPublisher<Value>: Publisher {
     {
         subject.subscribe(subscriber)
     }
+    
+    // MARK: Types
+    public typealias Output = Value
+    public typealias Failure = Never
 }

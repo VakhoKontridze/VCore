@@ -65,7 +65,7 @@ public struct ModalPresenterLink: Sendable {
         )
     }
     
-    // MARK: Storage
+    // MARK: Types
     enum Storage: Sendable {
         case overlay(rootID: String?, linkID: String)
         

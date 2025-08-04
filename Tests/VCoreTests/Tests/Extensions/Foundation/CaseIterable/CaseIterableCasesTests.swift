@@ -34,7 +34,7 @@ struct CaseIterableCasesTests {
         #expect(CardinalDirection.west.nextCase == nil)
     }
     
-    // MARK: Cardinal Direction
+    // MARK: Types
     private enum CardinalDirection: CaseIterable {
         case north
         case east

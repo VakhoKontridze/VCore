@@ -10,10 +10,6 @@ import Foundation
 /// Custom parameter attribute that constructs views from closures.
 @resultBuilder
 public struct ConfirmationDialogButtonBuilder {
-    // MARK: Properties
-    public typealias Component = any ConfirmationDialogButtonConvertible
-    public typealias Result = [any ConfirmationDialogButtonProtocol]
-    
     // MARK: Build Blocks
     public static func buildBlock() -> Result {
         []
@@ -46,4 +42,8 @@ public struct ConfirmationDialogButtonBuilder {
     public static func buildFinalResult(_ component: Component) -> Result {
         component.toButtons()
     }
+    
+    // MARK: Types
+    public typealias Component = any ConfirmationDialogButtonConvertible
+    public typealias Result = [any ConfirmationDialogButtonProtocol]
 }

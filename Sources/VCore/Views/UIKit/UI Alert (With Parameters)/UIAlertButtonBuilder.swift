@@ -12,10 +12,6 @@ import Foundation
 /// Custom parameter attribute that constructs views from closures.
 @resultBuilder
 public struct UIAlertButtonBuilder {
-    // MARK: Properties
-    public typealias Component = any UIAlertButtonConvertible
-    public typealias Result = [any UIAlertButtonProtocol]
-    
     // MARK: Build Blocks
     public static func buildBlock() -> Result {
         []
@@ -48,6 +44,10 @@ public struct UIAlertButtonBuilder {
     public static func buildFinalResult(_ component: Component) -> Result {
         component.toButtons()
     }
+    
+    // MARK: Types
+    public typealias Component = any UIAlertButtonConvertible
+    public typealias Result = [any UIAlertButtonProtocol]
 }
 
 #endif

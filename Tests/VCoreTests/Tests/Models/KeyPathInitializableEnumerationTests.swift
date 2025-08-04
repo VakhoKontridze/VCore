@@ -20,7 +20,7 @@ struct KeyPathInitializableEnumerationTests {
         #expect(Gender(key: \.value, value: 3) == nil)
     }
     
-    // MARK: Gender
+    // MARK: Types
     private enum Gender: KeyPathInitializableEnumeration {
         // MARK: Cases
         case male

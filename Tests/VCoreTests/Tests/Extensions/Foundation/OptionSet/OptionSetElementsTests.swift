@@ -19,7 +19,7 @@ struct OptionSetElementsTests {
         #expect(Gender.all.elements == [.male, .female])
     }
     
-    // MARK: Gender
+    // MARK: Types
     private struct Gender: OptionSet {
         static let male: Self = .init(rawValue: 1 << 0)
         static let female: Self = .init(rawValue: 1 << 1)

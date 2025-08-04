@@ -81,7 +81,7 @@ public struct TextLineLimitType: Equatable, Sendable {
         )
     }
 
-    // MARK: Storage
+    // MARK: Types
     enum Storage: Equatable {
         // MARK: Cases
         case none

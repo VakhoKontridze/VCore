@@ -97,11 +97,6 @@ struct CodingKeysGenerationMacro: MemberMacro {
     }
 
     // MARK: Data
-    private struct PropertyData {
-        let name: String
-        let key: String
-    }
-
     private static func property(
         member: MemberBlockItemSyntax,
         context: some MacroExpansionContext
@@ -220,5 +215,11 @@ struct CodingKeysGenerationMacro: MemberMacro {
         }
 
         return result
+    }
+    
+    // MARK: Types
+    private struct PropertyData {
+        let name: String
+        let key: String
     }
 }

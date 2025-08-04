@@ -44,7 +44,7 @@ struct JSONEncoderMethodsTests {
         }
     }
     
-    // MARK: Object
+    // MARK: Types
     private struct Object: Codable {
         let key: String?
     }

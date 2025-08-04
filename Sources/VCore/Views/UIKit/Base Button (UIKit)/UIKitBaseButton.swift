@@ -225,7 +225,7 @@ private struct PlainButtonAppearance {
         disabled: UIColor.secondaryLabel
     )
 
-    // MARK: State Colors
+    // MARK: Types
     typealias StateColors = GenericStateModel_EnabledPressedDisabled<UIColor>
 }
 

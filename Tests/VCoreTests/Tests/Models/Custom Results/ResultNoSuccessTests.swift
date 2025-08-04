@@ -41,7 +41,7 @@ struct ResultNoSuccessTests {
         #expect(resultF != resultFModified)
     }
     
-    // MARK: Test Error
+    // MARK: Types
     private struct TestError: Error, Equatable {
         // MARK: Properties
         private let code: Int

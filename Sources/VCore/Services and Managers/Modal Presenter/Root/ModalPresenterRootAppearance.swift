@@ -49,7 +49,7 @@ public struct ModalPresenterRootAppearance: Equatable, Sendable {
     /// Initializes appearance with default values.
     public init() {}
 
-    // MARK: Frame
+    // MARK: Types
     /// Frame.
     public enum Frame: Equatable, Sendable {
         // MARK: Cases
@@ -64,7 +64,6 @@ public struct ModalPresenterRootAppearance: Equatable, Sendable {
         public static var `default`: Self { .infinite }
     }
 
-    // MARK: Dimming View Tap Action
     /// Dimming view tap action.
     public enum DimmingViewTapAction: Int, Equatable, Sendable, CaseIterable {
         // MARK: Cases

@@ -40,7 +40,18 @@ public struct BasicAnimation: Sendable {
         self.delay = delay
     }
     
-    // MARK: Animation Curve
+    // MARK: Mapping
+    /// Converts `BasicAnimation` to `SwiftUI.Animation`.
+    public var toSwiftUIAnimation: Animation {
+        switch curve {
+        case .linear: Animation.linear(duration: duration).delay(delay)
+        case .easeIn: Animation.easeIn(duration: duration).delay(delay)
+        case .easeOut: Animation.easeOut(duration: duration).delay(delay)
+        case .easeInOut: Animation.easeInOut(duration: duration).delay(delay)
+        }
+    }
+    
+    // MARK: Types
     /// Animation curve.
     public enum AnimationCurve: Int, Equatable, Hashable, Sendable, CaseIterable {
         /// Linear.
@@ -54,17 +65,6 @@ public struct BasicAnimation: Sendable {
         
         /// Ease in and out.
         case easeInOut
-    }
-    
-    // MARK: Mapping
-    /// Converts `BasicAnimation` to `SwiftUI.Animation`.
-    public var toSwiftUIAnimation: Animation {
-        switch curve {
-        case .linear: Animation.linear(duration: duration).delay(delay)
-        case .easeIn: Animation.easeIn(duration: duration).delay(delay)
-        case .easeOut: Animation.easeOut(duration: duration).delay(delay)
-        case .easeInOut: Animation.easeInOut(duration: duration).delay(delay)
-        }
     }
 }
 

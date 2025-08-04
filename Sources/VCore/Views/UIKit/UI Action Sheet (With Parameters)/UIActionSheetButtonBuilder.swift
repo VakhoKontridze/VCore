@@ -12,10 +12,6 @@ import Foundation
 /// Custom parameter attribute that constructs views from closures.
 @resultBuilder
 public struct UIActionSheetButtonBuilder {
-    // MARK: Properties
-    public typealias Component = any UIActionSheetButtonConvertible
-    public typealias Result = [any UIActionSheetButtonProtocol]
-    
     // MARK: Build Blocks
     public static func buildBlock() -> Result {
         []
@@ -48,6 +44,10 @@ public struct UIActionSheetButtonBuilder {
     public static func buildFinalResult(_ component: Component) -> Result {
         component.toButtons()
     }
+    
+    // MARK: Types
+    public typealias Component = any UIActionSheetButtonConvertible
+    public typealias Result = [any UIActionSheetButtonProtocol]
 }
 
 #endif

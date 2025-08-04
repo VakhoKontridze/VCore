@@ -264,6 +264,10 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             activityIndicator.stopAnimating()
         }
     }
+    
+    // MARK: Types
+    /// Enumeration that represents state.
+    public typealias PaginationState = InfiniteScrollingPaginationState
 }
 
 #endif

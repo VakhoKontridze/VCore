@@ -32,13 +32,6 @@ final class GestureBaseButtonModel {
         self.stateSetter = stateSetter
     }
     
-    // MARK: Gesture Recognizer State
-#if canImport(UIKit)
-    typealias GestureRecognizerState = UIGestureRecognizer.State
-#elseif canImport(AppKit)
-    typealias GestureRecognizerState = NSGestureRecognizer.State
-#endif
-    
     // MARK: Touches
     func began(
         centerLocationOnSuperView: CGPoint?
@@ -114,6 +107,13 @@ final class GestureBaseButtonModel {
             tolerance: centerLocationMaxOffsetToRegisterGesture
         )
     }
+    
+    // MARK: Types
+#if canImport(UIKit)
+    typealias GestureRecognizerState = UIGestureRecognizer.State
+#elseif canImport(AppKit)
+    typealias GestureRecognizerState = NSGestureRecognizer.State
+#endif
 }
 
 extension CGPoint {

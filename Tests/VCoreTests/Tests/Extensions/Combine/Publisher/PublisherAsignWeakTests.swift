@@ -18,7 +18,7 @@ final class PublisherAssignWeakTests: XCTestCase {
         assertInstanceIsDeallocated(service)
     }
     
-    // MARK: Service
+    // MARK: Types
     private final class Service {
         // MARK: Properties
         var value: Int = 0

@@ -85,7 +85,7 @@ public struct DynamicTypeSizeType: Equatable, Sendable {
         )
     }
 
-    // MARK: Storage
+    // MARK: Types
     enum Storage: Equatable {
         // MARK: Cases
         case fixed(size: DynamicTypeSize)

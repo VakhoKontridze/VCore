@@ -365,19 +365,6 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
 
     // MARK: Data
-    private struct ParameterData {
-        let attributes: String?
-
-        let externalName: String?
-        let name: String
-
-        let type: String
-        let _isOptional: Bool // Derived value
-        let _isFunctionType: Bool // Derived value
-
-        var defaultValue: String?
-    }
-    
     private static func parameters(
         externalParameterNamesStrings: [String: String],
         parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue],
@@ -641,6 +628,20 @@ struct MemberwiseInitializableMacro: MemberMacro {
         }
 
         return result
+    }
+    
+    // MARK: Types
+    private struct ParameterData {
+        let attributes: String?
+
+        let externalName: String?
+        let name: String
+
+        let type: String
+        let _isOptional: Bool // Derived value
+        let _isFunctionType: Bool // Derived value
+
+        var defaultValue: String?
     }
 }
 

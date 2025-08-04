@@ -72,7 +72,7 @@ struct TaskGroupChildTaskValuesTests {
         )
     }
     
-    // MARK: Item
+    // MARK: Types
     private struct Item {
         let value: String
     }
