@@ -76,18 +76,6 @@ struct CoordinatingNavigationStack<Root>: View where Root: View {
 extension EnvironmentValues {
     @Entry var navigationPath: NavigationCoordinator.Path?
 }
-
-extension Array {
-    @discardableResult
-    mutating func removeLastIf(
-        _ element: Element
-    ) -> Element?
-        where Element: Equatable
-    {
-        guard element == last else { return nil }
-        return removeLast()
-    }
-}
 ```
 
 #### Root and Route
@@ -159,7 +147,7 @@ struct InfoView: View {
             Text(parameters.text)
             
             Button("Go Back") {
-                navigationPath.stack.removeLastIf(.info(parameters))
+                navigationPath.stack.removeLast()
             }
         }
     }
