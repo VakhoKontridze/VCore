@@ -476,7 +476,7 @@ Views
 - Responders in `ResponderChainToolBarManager` can now be initialized with custom `CGSize` and `ResponderChainToolBarUIModel`s
 - `keyboardResponsivenessFirstResponderViewKeyboardSafeAreaMargin` is added to `FirstResponderViewUnObscuringUIViewController`
 - `CarouselCollectionViewFlowLayout` is renamed to `CarouselUICollectionViewFlowLayout`
-- `CoordinatingNavigationStack` is converted to `Observable`, and `ObservableObject`-based version is renamed to `CoordinatingNavigationStackOO`
+- `CoordinatingNavigationStack` is removed for more free-form composition. For more info, refer to "Coordinated Navigation" documentation.
 - `ViewResettingContainer` is converted to `Observable`, and `ObservableObject`-based version is renamed to `ViewResettingContainerOO`
 - `AlignedGridView` is renamed to `AlignedGridLayout`
 - `AlignedGridLayout` now takes `VerticalAlignment` as a parameter
