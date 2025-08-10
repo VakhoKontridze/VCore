@@ -224,7 +224,7 @@ Other
 
 ### [6.5.0(99)](https://github.com/VakhoKontridze/VCore/releases/tag/6.5.0) — 2024 07 09
 
-Extra - XCode Templates
+Extra - File Templates
 
 - `SwiftUI` MV template is added
 
@@ -255,7 +255,7 @@ Extensions
 - `Optional.isOptionalLess(than:order:comparison:)` method is added, that returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`
 - `Image.init(systemNameAndDefault:weight:)` initializer is added, as a non-throwing counterpart to the existing initializer
 
-Extra - XCode Templates
+Extra - File Templates
 
 - `UIKit` XCode templates are removed
 - Completion-based Gateway XCode template is removed
@@ -303,7 +303,7 @@ Macros
 
 - `CodingKeysGeneration` macro will no longer generate `CodingKeys`, if property list is not provided
 
-Extra - XCode Templates
+Extra - File Templates
 
 - XCode templates now support `Swift` Packages
 
@@ -427,7 +427,7 @@ Extensions
 - `NSImage.init(size:color)` initializer is added, that initializes `NSImage` with `CGSize` and `NSColor`
 - `NSImage.byPreparingThumbnail(ofSize:)` method is added, that returns a thumbnail
 
-Extra - XCode Templates
+Extra - File Templates
 
 - `SwiftUI` XCode templates are updated for `iOS` `17.0`
 
@@ -640,7 +640,7 @@ Extensions
 - `Image.init?(systemName:weight:)` initializer is added
 - `Collection.randomElements(_:)` method is added that returns random elements up to specified count.
 
-Extra - XCode Templates
+Extra - File Templates
 
 - XCode templates are revised to allow for better naming
 
@@ -941,7 +941,7 @@ API
 
 - `keychainServiceErrorDescription(_:)` is added to `VCoreLocalizationProvider`
 
-Extra - XCode Templates
+Extra - File Templates
 
 - Package now includes templates for `SwiftUI`
 
@@ -1150,13 +1150,13 @@ Extensions
 
 ### [3.13.2(44)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.2) — 2022 07 12
 
-Extra - XCode Templates
+Extra - File Templates
 
 - `UIColor`s in `UIKit` XCode templates are no longer optional
 
 ### [3.13.1(43)](https://github.com/VakhoKontridze/VCore/releases/tag/3.13.1) — 2022 07 11
 
-Extra - XCode Templates
+Extra - File Templates
 
 - Routers in `UIKit` XCode templates are fixed
 
@@ -1245,7 +1245,7 @@ Other
 
 ### [3.9.2(34)](https://github.com/VakhoKontridze/VCore/releases/tag/3.9.2) — 2022 06 29
 
-Extra - XCode Templates
+Extra - File Templates
 
 - Missing Package import is added to `async` Gateway XCode template
 
@@ -1295,7 +1295,7 @@ Global Functions
 
 - `KeyPath` equality and comparison functions are added, that equate and compare objects by up to six properties
 
-Extra - XCode Templates
+Extra - File Templates
 
 - `async` Gateway now contains a mock object for previews in `SwiftUI`
 
@@ -1320,7 +1320,7 @@ API
 - `VCoreHumanReadableLocalizationProvider` is added, that automatically localized errors, and only exposes human-readable strings
 - `DefaultVCoreLocalizationProvider` can now be initialized
 
-Extra - XCode Templates
+Extra - File Templates
 
 - Background colors of `UIKit` views are now set to `UIColor.systemBackground`
 - Issue with method signature in completion-based Gateway is fixed
@@ -1352,7 +1352,7 @@ Extensions
 - `UIApplication.rootViewController` and `UIApplication.rootView` properties are added to complement `UIApplication.rootWindow`
 - `UIRectCorner` is extended to support additional corners
 
-Extra - XCode Templates
+Extra - File Templates
 
 - Templates now implement existential `any`
 
@@ -1507,7 +1507,7 @@ Helpers - Architectural Pattern Helpers
 
 - Typo in `UIActivityIndicatorViewable` methods are fixed
 
-Extra - XCode Templates
+Extra - File Templates
 
 - `UITableViewCell` and `UICollectionViewCell` background colors are now set directly to cell, and not to `contentView`
 - `with` argument label is added to `Gateway.fetch(_:completion:)`
@@ -1521,7 +1521,7 @@ Extensions
 - `minimumScaleFactor` parameter is added to `UILabel` configuration method and initializer
 - `FloatingPoint.fixedInRange(_:step:)` function is renamed to `bound` 
 
-Extra - XCode Templates
+Extra - File Templates
 
 - `UIView` (Dynamic Model) templates now have a default parameter value for model in initializers
 
@@ -1548,20 +1548,20 @@ Extensions
 - `KeyPath` sort method `Sequence.sort(by:)` is added
 - Conditional and `KeyPath` grouping methods `Sequence.grouped(by:)` are added
 
-Extra - XCode Templates
+Extra - File Templates
 
 - `UIViewController` `Factory` is fixed
 - `with` parameter labels are removed from configuration methods
 
 ### [2.0.2(11)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.2) — 2021 12 29
 
-Extra - XCode Templates
+Extra - File Templates
 
 - Issues with `UITableViewCellDataSourceable` methods are fixed
 
 ### [2.0.1(10)](https://github.com/VakhoKontridze/VCore/releases/tag/2.0.1) — 2021 12 29
 
-Extra - XCode Templates
+Extra - File Templates
 
 - `UITableViewCell` initializer is fixed
 

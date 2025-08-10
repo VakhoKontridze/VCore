@@ -4,16 +4,16 @@ import SwiftUI
 import VCore
 
 struct ___VARIABLE_productName___View: View {
-    // MARK: Properties - Model Injection
-    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
-    
-    // ...
-    
     // MARK: Properties - Appearance
     // ...
     
     // MARK: Properties - Parameters
     @State private var parameters: ___VARIABLE_productName___Parameters
+
+    // MARK: Properties - Dependencies
+    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
+
+    // ...
     
     // MARK: Properties - ???
     // ...

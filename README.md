@@ -33,7 +33,7 @@ Package files are grouped as:
 
 Package incudes folder `Extra`, which contains:
 
-- ***XCode Templates***. Templates that can be used for accelerating workflow.
+- ***File Templates***. File templates that can be used for accelerating workflow.
 
 Project includes folder `Documentation`, which contains:
 
