@@ -17,7 +17,7 @@ final class ModalPresenterRootModel_Window {
     var appearance: ModalPresenterRootAppearance
     var modals: [ModalPresenterRootModalData_Window] = []
     var interfaceOrientation: PlatformInterfaceOrientation = .initFromDeviceOrientation()
-    var safeAreaInsets: EdgeInsets! // Force-unwrap
+    var safeAreaInsets: EdgeInsets! // Unsafe
     var keyboardObserver: KeyboardObserver
     
     // MARK: Initializers

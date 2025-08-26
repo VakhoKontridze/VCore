@@ -21,7 +21,7 @@ extension Array: AlertButtonConvertible where Element == any AlertButtonProtocol
 
 extension Never: AlertButtonConvertible {
     public func toButtons() -> [any AlertButtonProtocol] {
-        fatalError()
+        fatalError() // Unsafe (intentional)
     }
 }
 

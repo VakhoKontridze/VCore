@@ -10,10 +10,15 @@ import OSLog
 
 extension Logger {
     // MARK: Properties - Views
+    static let alignedGridLayout: Self = .init("AlignedGridLayout")
     static let baseButtonGestureRecognizer: Self = .init("BaseButtonGestureRecognizer")
     static let carouselCollectionViewFlowLayout: Self = .init("CarouselCollectionViewFlowLayout")
     static let infiniteScrollingUICollectionView: Self = .init("InfiniteScrollingUICollectionView")
     static let keyboardResponsiveUIViewController: Self = .init("KeyboardResponsiveUIViewController")
+    
+    // MARK: Properties - Models
+    static let keychainStorage: Self = .init("KeychainStorage")
+    static let publishedKeychainStorage: Self = .init("PublishedKeychainStorage")
     
     // MARK: Properties - Services & Managers
     static let keyboardObserver: Self = .init("KeyboardObserver")

@@ -23,7 +23,7 @@ extension Array: UIAlertButtonConvertible where Element == any UIAlertButtonProt
 
 extension Never: UIAlertButtonConvertible {
     public func toButtons() -> [any UIAlertButtonProtocol] {
-        fatalError()
+        fatalError() // Unsafe (intentional)
     }
 }
 

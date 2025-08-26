@@ -33,11 +33,11 @@ extension View {
         regions: SafeAreaRegions = .all,
         edges: Edge.Set = .all
     ) -> some View {
-#if !(os(macOS) || os(tvOS))
+#if !(os(macOS) || os(watchOS))
         KeyboardResponsivenessDisablingView { self }
             .ignoresSafeArea(regions, edges: edges)
 #else
-        fatalError() // Not supported
+        fatalError()
 #endif
     }
 }

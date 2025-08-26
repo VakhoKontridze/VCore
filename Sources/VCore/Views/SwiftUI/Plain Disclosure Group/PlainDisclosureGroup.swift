@@ -190,7 +190,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
 #elseif os(macOS)
         Color.clear
 #else
-        fatalError() // Not supported
+        fatalError()
 #endif
     }()
 

@@ -23,7 +23,7 @@ struct TaskGroupChildTaskValuesTests {
         let items: [Item] = await withTaskGroup { group in
             for url in urls {
                 group.addTask {
-                    try! await Task.sleep(for: .seconds(0.01)) // Force-unwrap
+                    try! await Task.sleep(for: .seconds(0.01)) // Unsafe
                     
                     return Item(
                         value: url.absoluteString

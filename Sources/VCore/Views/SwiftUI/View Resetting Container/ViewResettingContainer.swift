@@ -21,17 +21,16 @@ import SwiftUI
 ///     }
 ///
 ///     struct ChildView: View {
-///         @Environment(\.viewResetter) private var viewResetter: ViewResetter!
+///         @Environment(\.viewResetter) private var viewResetter: ViewResetter?
 ///
 ///         var body: some View {
 ///             ScrollView {
 ///                 Color.accentColor
 ///                     .frame(height: UIScreen.main.bounds.size.height)
 ///
-///                 Button(
-///                     "Reset",
-///                     action: viewResetter.trigger
-///                 )
+///                 Button("Reset") {
+///                     viewResetter?.trigger()
+///                 }
 ///             }
 ///         }
 ///     }
@@ -83,7 +82,7 @@ public struct ViewResettingContainer<Content>: View where Content: View {
 
     struct ChildView: View {
         // MARK: Properties
-        @Environment(\.viewResetter) private var viewResetter: ViewResetter!
+        @Environment(\.viewResetter) private var viewResetter: ViewResetter?
 
         // MARK: Body
         var body: some View {
@@ -92,10 +91,9 @@ public struct ViewResettingContainer<Content>: View where Content: View {
                     Color.accentColor
                         .frame(height: geometryProxy.size.height * 1.2)
 
-                    Button(
-                        "Reset",
-                        action: viewResetter.trigger
-                    )
+                    Button("Reset") {
+                        viewResetter?.trigger()
+                    }
                 }
             }
         }

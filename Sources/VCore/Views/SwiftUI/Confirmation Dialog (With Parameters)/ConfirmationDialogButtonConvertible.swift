@@ -21,7 +21,7 @@ extension Array: ConfirmationDialogButtonConvertible where Element == any Confir
 
 extension Never: ConfirmationDialogButtonConvertible {
     public func toButtons() -> [any ConfirmationDialogButtonProtocol] {
-        fatalError()
+        fatalError() // Unsafe (intentional)
     }
 }
 

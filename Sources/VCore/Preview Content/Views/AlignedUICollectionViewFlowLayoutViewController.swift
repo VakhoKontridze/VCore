@@ -137,7 +137,7 @@ final class AlignedUICollectionViewFlowLayoutViewController:
             return view
 
         default:
-            fatalError()
+            fatalError() // Unsafe (DEBUG)
         }
     }
 
@@ -150,7 +150,7 @@ final class AlignedUICollectionViewFlowLayoutViewController:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlignedUICollectionViewCell.dequeueID, for: indexPath)
                 as? AlignedUICollectionViewCell
         else {
-            fatalError()
+            fatalError() // Unsafe (DEBUG)
         }
 
         cell.configure(color: data[indexPath.row])
@@ -184,7 +184,7 @@ private final class AlignedUICollectionViewCell: UICollectionViewCell {
     // MARK: Configuration
     func configure(color: UIColor) {
         contentView.backgroundColor = color.withAlphaComponent(0.3)
-        widthConstraint?.constant = .random(in: 20...100)
+        widthConstraint?.constant = CGFloat.random(in: 20...100)
     }
 }
 

@@ -30,7 +30,7 @@ public struct TouchSensitiveContainerAppearance: Equatable, Sendable {
 #elseif os(visionOS)
             Color.clear
 #else
-            fatalError() // Not supported
+            fatalError()
 #endif
         }()
 
@@ -44,7 +44,7 @@ public struct TouchSensitiveContainerAppearance: Equatable, Sendable {
 #elseif os(visionOS)
             Color(uiColor: UIColor.systemFill)
 #else
-            fatalError() // Not supported
+            fatalError()
 #endif
         }()
 

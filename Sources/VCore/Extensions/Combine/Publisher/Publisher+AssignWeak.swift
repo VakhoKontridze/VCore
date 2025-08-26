@@ -15,7 +15,7 @@ extension Publisher where Failure == Never {
     ///         var value: Int = 0
     ///
     ///         private let publisher: PassthroughSubject<Int, Never> = .init()
-    ///         private var subscriptions: Set<AnyCancellable> = []
+    ///         private var cancellables: Set<AnyCancellable> = []
     ///
     ///         init() {
     ///             addSubscriptions()
@@ -24,7 +24,7 @@ extension Publisher where Failure == Never {
     ///         private func addSubscriptions() {
     ///             publisher
     ///                 .assignWeak(to: \.value, on: self)
-    ///                 .store(in: &subscriptions)
+    ///                 .store(in: &cancellables)
     ///         }
     ///     }
     ///

@@ -24,7 +24,7 @@ final class PublisherAssignWeakTests: XCTestCase {
         var value: Int = 0
 
         private let publisher: PassthroughSubject<Int, Never> = .init()
-        private var subscriptions: Set<AnyCancellable> = []
+        private var cancellables: Set<AnyCancellable> = []
 
         // MARK: Initializers
         init() {
@@ -35,7 +35,7 @@ final class PublisherAssignWeakTests: XCTestCase {
         private func addSubscriptions() {
             publisher
                 .assignWeak(to: \.value, on: self)
-                .store(in: &subscriptions)
+                .store(in: &cancellables)
         }
     }
 }

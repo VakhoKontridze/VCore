@@ -32,13 +32,13 @@ import Combine
 ///     final class ViewModel {
 ///         let count: PublishingObservationContainer<Int> = .init(0)
 ///
-///         @ObservationIgnored private var subscriptions: Set<AnyCancellable> = []
+///         @ObservationIgnored private var cancellables: Set<AnyCancellable> = []
 ///
 ///         init() {
 ///             count
 ///                 .publisher
 ///                 .sink { print($0) }
-///                 .store(in: &subscriptions)
+///                 .store(in: &cancellables)
 ///         }
 ///     }
 ///
@@ -109,14 +109,14 @@ private final class ViewModel {
     // MARK: Properties
     let count: PublishingObservationContainer<Int> = .init(0)
 
-    @ObservationIgnored private var subscriptions: Set<AnyCancellable> = []
+    @ObservationIgnored private var cancellables: Set<AnyCancellable> = []
 
     // MARK: Initializers
     init() {
         count
             .publisher
             .sink { print($0) }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
     }
 }
 

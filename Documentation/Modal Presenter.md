@@ -459,15 +459,26 @@ extension View {
     func injectModalPresenterRoots() -> some View {
         self
             .modalPresenterRoot(
-                root: .window(rootID: "containers")
+                root: .window(rootID: "containers"),
+                appearance: {
+                    var appearance: ModalPresenterRootAppearance = .init()
+                    appearance.windowLevel = UIWindow.Level.normal + 1
+                    return appearance
+                }()
             )
             .modalPresenterRoot(
-                root: .window(rootID: "alerts")
+                root: .window(rootID: "alerts"),
+                appearance: {
+                    var appearance: ModalPresenterRootAppearance = .init()
+                    appearance.windowLevel = UIWindow.Level.normal + 2
+                    return appearance
+                }()
             )
             .modalPresenterRoot(
                 root: .window(rootID: "notifications"),
                 appearance: {
                     var appearance: ModalPresenterRootAppearance = .init()
+                    appearance.windowLevel = UIWindow.Level.normal + 3
                     appearance.dimmingViewTapAction = .passTapsThrough
                     appearance.dimmingViewColor = Color.clear
                     return appearance

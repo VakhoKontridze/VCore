@@ -119,7 +119,7 @@ public final class LocalizationManager: @unchecked Sendable {
                 let identifier: String = Bundle.main.preferredLocalizations.first
             else {
                 Logger.localizationManager.critical("Default localization is not selected in 'Bundle.main'")
-                fatalError()
+                fatalError() // Unsafe
             }
 
             return Locale(identifier: identifier)

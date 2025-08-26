@@ -18,7 +18,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
     // MARK: Properties - Appearance
     private let _appearance: ModalPresenterRootAppearance // Shouldn't be used directly
     
-    @State private var window: UIWindow! // Force-unwrap
+    @State private var window: UIWindow! // Unsafe
     
     // MARK: Properties - Presentation Mode
     @State private var internalPresentationMode: ModalPresenterInternalPresentationMode
@@ -93,9 +93,9 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
     private func didReadWindow(_ window: UIWindow) {
         guard let windowScene: UIWindowScene = window.windowScene else {
             if let rootID: String = root.rootID {
-                Logger.modalPresenter.warning("Failed to extract 'UIWindowScene' from 'UIWindow' in Modal Presenter root with ID '\(rootID)'")
+                Logger.modalPresenter.critical("Failed to extract 'UIWindowScene' from 'UIWindow' in Modal Presenter root with ID '\(rootID)'")
             } else {
-                Logger.modalPresenter.warning("Failed to extract 'UIWindowScene' from 'UIWindow' in Modal Presenter root")
+                Logger.modalPresenter.critical("Failed to extract 'UIWindowScene' from 'UIWindow' in Modal Presenter root")
             }
             return
         }

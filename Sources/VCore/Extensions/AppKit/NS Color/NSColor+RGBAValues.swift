@@ -20,19 +20,22 @@ extension NSColor {
     ///     // (0.0, 0.4..., 1.0, 1.0)
     ///
     public var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-        guard
-            let calibratedColor: NSColor = usingColorSpace(.deviceRGB)
-        else {
-            Logger.misc.critical("Failed to calibrate 'NSColor' '\(self.debugDescription)' with 'NSColorSpace.deviceRGB'")
-            fatalError()
-        }
+        let color: NSColor = {
+            if let calibratedColor: NSColor = usingColorSpace(.deviceRGB) {
+                return calibratedColor
+                
+            } else {
+                Logger.misc.error("Failed to calibrate 'NSColor' '\(self.debugDescription)' with 'NSColorSpace.deviceRGB'")
+                return self
+            }
+        }()
 
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
         
-        calibratedColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 
         return (
             red: red,

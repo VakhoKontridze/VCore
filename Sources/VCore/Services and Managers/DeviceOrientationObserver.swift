@@ -25,7 +25,7 @@ public final class DeviceOrientationObserver: Sendable {
     /// The physical orientation of the device.
     public var deviceOrientation: UIDeviceOrientation = DeviceOrientationObserver.getDeviceOrientation()
 
-    @ObservationIgnored private var subscription: AnyCancellable?
+    @ObservationIgnored private var cancellable: AnyCancellable?
 
     // MARK: Initializers
     /// Initializes `DeviceOrientationObserver`.
@@ -35,7 +35,7 @@ public final class DeviceOrientationObserver: Sendable {
 
     // MARK: Subscriptions
     private func addSubscriptions() {
-        subscription = NotificationCenter.default
+        cancellable = NotificationCenter.default
             .publisher(for: UIDevice.orientationDidChangeNotification)
             .compactMap { _ in Self.getDeviceOrientation() }
             .assignWeak(to: \.deviceOrientation, on: self)

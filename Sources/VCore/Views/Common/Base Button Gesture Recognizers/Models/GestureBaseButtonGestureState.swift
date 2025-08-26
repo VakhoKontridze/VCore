@@ -50,15 +50,29 @@ public enum GestureBaseButtonGestureState: Int, Sendable, CaseIterable {
     init(state: UIGestureRecognizer.State) {
         self = {
             switch state {
-            case .possible: return .possible
-            case .began: return .began
-            case .changed: fatalError() // Not used
-            case .ended: return .ended
-            case .cancelled: return .cancelled
-            case .failed: fatalError() // Not used
+            case .possible:
+                return .possible
+            
+            case .began:
+                return .began
+            
+            case .changed:
+                Logger.baseButtonGestureRecognizer.fault("'changed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
+                return .possible
+            
+            case .ended:
+                return .ended
+            
+            case .cancelled:
+                return .cancelled
+            
+            case .failed:
+                Logger.baseButtonGestureRecognizer.fault("'failed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
+                return .possible
+            
             @unknown default:
-                Logger.baseButtonGestureRecognizer.critical("Unhandled 'UIGestureRecognizer.State' '\(String(describing: state))' in 'GestureBaseButtonGestureState.init(state:)'")
-                fatalError()
+                Logger.baseButtonGestureRecognizer.fault("Unhandled 'UIGestureRecognizer.State' '\(String(describing: state))' in 'GestureBaseButtonGestureState.init(state:)'")
+                return .possible
             }
         }()
     }
@@ -68,15 +82,29 @@ public enum GestureBaseButtonGestureState: Int, Sendable, CaseIterable {
     init(state: NSGestureRecognizer.State) {
         self = {
             switch state {
-            case .possible: return .possible
-            case .began: return .began
-            case .changed: fatalError() // Not used
-            case .ended: return .ended
-            case .cancelled: return .cancelled
-            case .failed: fatalError() // Not used
+            case .possible:
+                return .possible
+            
+            case .began:
+                return .began
+            
+            case .changed:
+                Logger.baseButtonGestureRecognizer.fault("'changed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
+                return .possible
+            
+            case .ended:
+                return .ended
+            
+            case .cancelled:
+                return .cancelled
+            
+            case .failed:
+                Logger.baseButtonGestureRecognizer.fault("'failed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
+                return .possible
+            
             @unknown default:
-                Logger.baseButtonGestureRecognizer.critical("Unhandled 'NSGestureRecognizer.State' '\(String(describing: state))' in 'GestureBaseButtonGestureState.init(state:)'")
-                fatalError()
+                Logger.baseButtonGestureRecognizer.fault("Unhandled 'NSGestureRecognizer.State' '\(String(describing: state))' in 'GestureBaseButtonGestureState.init(state:)'")
+                return .possible
             }
         }()
     }

@@ -40,7 +40,7 @@ public struct PlainDisclosureGroupAppearance: Equatable, Sendable {
 #elseif os(macOS)
         Color.clear
 #else
-        fatalError() // Not supported
+        fatalError()
 #endif
     }()
 

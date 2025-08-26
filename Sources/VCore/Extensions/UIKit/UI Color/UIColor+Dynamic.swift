@@ -33,7 +33,7 @@ extension UIColor {
             }
         }
 #else
-        fatalError() // Not supported
+        fatalError()
 #endif
     }
 }

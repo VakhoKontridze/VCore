@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// Vertical container that justifies collection of views with an alignment.
 ///
@@ -169,9 +170,14 @@ public struct AlignedGridLayout: Layout {
                     origin.x = boundOrigin.x
 
                     let biggestHeightInGridRow: CGFloat = {
-                        var heights: [CGFloat] = rects[gridRowIndex].map { $0.size.height }
-                        heights.append(size.height)
-                        return heights.max()! // Force-unwrap
+                        let heights: [CGFloat] = rects[gridRowIndex].map { $0.size.height }
+                    
+                        if let maxHeight: CGFloat = heights.max() {
+                            return max(maxHeight, size.height)
+                            
+                        } else {
+                            return size.height
+                        }
                     }()
                     origin.moveDown(withValue: biggestHeightInGridRow + spacingVertical)
                 }
@@ -204,10 +210,12 @@ public struct AlignedGridLayout: Layout {
                 for j in rects[i].indices {
                     let offset: CGFloat = {
                         switch horizontalAlignment {
-                        case .leading: 0
-                        case .center: remainingRowSpacings[i]/2
-                        case .trailing: remainingRowSpacings[i]
-                        default: fatalError()
+                        case .leading: return 0
+                        case .center: return remainingRowSpacings[i]/2
+                        case .trailing: return remainingRowSpacings[i]
+                        default:
+                            Logger.alignedGridLayout.fault("Unhandled 'HorizontalAlignment' '\(String(describing: horizontalAlignment))' in 'AlignedGridLayout'")
+                            return remainingRowSpacings[i]/2
                         }
                     }()
 
@@ -228,10 +236,12 @@ public struct AlignedGridLayout: Layout {
                 for j in rects[i].indices {
                     let offset: CGFloat = {
                         switch verticalAlignment {
-                        case .top: 0
-                        case .center: (maxHeight - rects[i][j].size.height)/2
-                        case .bottom: maxHeight - rects[i][j].size.height
-                        default: fatalError()
+                        case .top: return 0
+                        case .center: return (maxHeight - rects[i][j].size.height)/2
+                        case .bottom: return maxHeight - rects[i][j].size.height
+                        default:
+                            Logger.alignedGridLayout.fault("Unhandled 'HorizontalAlignment' '\(String(describing: horizontalAlignment))' in 'AlignedGridLayout'")
+                            return (maxHeight - rects[i][j].size.height)/2
                         }
                     }()
 

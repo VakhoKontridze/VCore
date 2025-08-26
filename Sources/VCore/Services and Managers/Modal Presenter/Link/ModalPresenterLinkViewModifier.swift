@@ -195,7 +195,7 @@ private struct Modal<Content>: View where Content: View {
     @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize
     @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets
 
-    @Environment(\.modalPresenterPresentationMode) private var presentationMode: ModalPresenterPresentationMode!
+    @Environment(\.modalPresenterPresentationMode) private var presentationMode: ModalPresenterPresentationMode! // Unsafe
 
     // MARK: Properties - Presentation API
     @Binding private var isPresented: Bool

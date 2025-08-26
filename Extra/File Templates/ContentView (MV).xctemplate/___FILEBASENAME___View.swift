@@ -11,7 +11,7 @@ struct ___VARIABLE_productName___View: View {
     @State private var parameters: ___VARIABLE_productName___Parameters
 
     // MARK: Properties - Dependencies
-    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator!
+    @Environment(\.navigationStackCoordinator) private var navigationStackCoordinator: NavigationStackCoordinator?
 
     // ...
     
@@ -28,7 +28,7 @@ struct ___VARIABLE_productName___View: View {
     // MARK: Properties - Alert
     @State private var alertParameters: AlertParameters?
 
-    // MARK: Properties - Cancellables
+    // MARK: Properties - Subscriptions
     // ...
 
     // MARK: Initializers

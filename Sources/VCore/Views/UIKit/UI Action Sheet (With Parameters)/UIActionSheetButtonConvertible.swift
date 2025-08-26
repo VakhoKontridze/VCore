@@ -23,7 +23,7 @@ extension Array: UIActionSheetButtonConvertible where Element == any UIActionShe
 
 extension Never: UIActionSheetButtonConvertible {
     public func toButtons() -> [any UIActionSheetButtonProtocol] {
-        fatalError()
+        fatalError() // Unsafe (intentional)
     }
 }
 

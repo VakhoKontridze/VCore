@@ -27,7 +27,7 @@ struct URLMacro_InitWithString: ExpressionMacro {
         }
 
         // Macro expansion result
-        return "URL(string: \(urlStringExpression))!" // Force-unwrap
+        return "URL(string: \(urlStringExpression))!" // Checked in advance
     }
 
     private static func urlStringParameter(

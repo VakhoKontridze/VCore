@@ -128,13 +128,13 @@ extension UIView {
     ) {
         if keyboardWillShow {
             guard let window: UIWindow = firstResponderView.window else {
-                Logger.keyboardResponsiveUIViewController.warning("Failed to retrieve 'UIWindow' from 'UIView': \(firstResponderView)")
+                Logger.keyboardResponsiveUIViewController.error("Failed to retrieve 'UIWindow' from 'UIView': \(firstResponderView)")
                 return
             }
             let windowHeight: CGFloat = window.frame.size.height
 
             guard let firstResponderViewSuperView: UIView = firstResponderView.superview else {
-                Logger.keyboardResponsiveUIViewController.warning("Failed to retrieve superview from 'UIView': \(firstResponderView)")
+                Logger.keyboardResponsiveUIViewController.error("Failed to retrieve superview from 'UIView': \(firstResponderView)")
                 return
             }
             
@@ -143,7 +143,7 @@ extension UIView {
             let containerViewY: CGFloat = containerView.bounds.origin.y
 
             guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
-                Logger.keyboardResponsiveUIViewController.warning("Failed to retrieve system keyboard height from 'Notification'")
+                Logger.keyboardResponsiveUIViewController.error("Failed to retrieve system keyboard height from 'Notification'")
                 return
             }
 

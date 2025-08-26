@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import OSLog
 
 /// Property wrapper type that reflects a value from Keychain and invalidates a view on a change in value in that Keychain.
 ///
@@ -65,6 +66,7 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
     }
     
     // MARK: Observable Object Support
+    @available(*, unavailable, message: "'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
     public static subscript<EnclosingSelf>(
         _enclosingInstance instance: EnclosingSelf,
         wrapped wrappedKeyPath: ReferenceWritableKeyPath<EnclosingSelf, Value>,
@@ -73,10 +75,12 @@ public struct KeychainStorage<Value>: DynamicProperty, Sendable
         where EnclosingSelf: AnyObject
     {
         get {
-            fatalError("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
+            Logger.keychainStorage.critical("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
+            fatalError() // Unsafe
         }
         set {
-            fatalError("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
+            Logger.keychainStorage.critical("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
+            fatalError() // Unsafe
         }
     }
 }

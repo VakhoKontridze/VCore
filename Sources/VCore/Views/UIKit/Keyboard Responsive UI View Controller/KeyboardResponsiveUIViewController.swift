@@ -65,8 +65,8 @@ open class KeyboardResponsiveUIViewController: UIViewController {
     /// Indicates, if `keyboardWillShow(_:)` and `keyboardWillHide(_:)` are called, when `KeyboardResponsiveUIViewController` is not visible.
     open var notifiesWhenViewControllerIsNotVisible: Bool = false
     
-    // MARK: Properties - Cancellables
-    private var subscriptions: Set<AnyCancellable> = []
+    // MARK: Properties - Subscriptions
+    private var cancellables: Set<AnyCancellable> = []
     
     // MARK: Lifecycle
     open override func viewDidLoad() {
@@ -83,12 +83,12 @@ open class KeyboardResponsiveUIViewController: UIViewController {
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillShowNotification)
             .sink { [weak self] in self?.keyboardWillShow(notification: $0) }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
         
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillHideNotification)
             .sink { [weak self] in self?.keyboardWillHide(notification: $0) }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
     }
     
     // MARK: Actions

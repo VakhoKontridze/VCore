@@ -59,17 +59,17 @@ public struct AutoPrecisionNumberFormatter: Sendable {
     public func string(from number: Double) -> String? {
         guard minFractions >= 0 else {
             Logger.misc.critical("'minFractions' must be greater then or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
-            fatalError()
+            return nil
         }
 
         guard maxFractions >= 0 else {
             Logger.misc.critical("'maxFractions' must be greater then or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
-            fatalError()
+            return nil
         }
 
         guard maxFractions >= minFractions else {
             Logger.misc.critical("'maxFractions' must be greater then or equal to 'minFractions' in 'AutoPrecisionNumberFormatter.string(from:)'")
-            fatalError()
+            return nil
         }
         
         numberFormatter.minimumFractionDigits = minFractions

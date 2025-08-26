@@ -19,5 +19,5 @@ public func TODO(
     var string: String = "TODO not implemented"
     message.map { string += ": \($0)" }
 
-    fatalError(string)
+    fatalError(string) // Unsafe (intentional)
 }

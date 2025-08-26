@@ -18,25 +18,23 @@ extension Image {
     public init(data: Data) {
 #if canImport(UIKit)
 
-        guard
-            let uiImage: UIImage = .init(data: data)
-        else {
-            Logger.misc.critical("Failed to initialize 'UIImage' from 'Data' in 'Image.init(data:)'")
-            fatalError()
+        if let uiImage: UIImage = .init(data: data) {
+            self.init(uiImage: uiImage)
+            
+        } else {
+            Logger.misc.error("Failed to initialize 'UIImage' from 'Data' in 'Image.init(data:)'")
+            self.init(uiImage: UIImage())
         }
-        
-        self.init(uiImage: uiImage)
 
 #elseif canImport(AppKit)
 
-        guard
-            let nsImage: NSImage = .init(data: data)
-        else {
-            Logger.misc.critical("Failed to initialize 'NSImage' from 'Data' in 'Image.init(data:)'")
-            fatalError()
+        if let nsImage: NSImage = .init(data: data) {
+            self.init(nsImage: nsImage)
+            
+        } else {
+            Logger.misc.error("Failed to initialize 'NSImage' from 'Data' in 'Image.init(data:)'")
+            self.init(nsImage: NSImage())
         }
-        
-        self.init(nsImage: nsImage)
 
 #endif
     }

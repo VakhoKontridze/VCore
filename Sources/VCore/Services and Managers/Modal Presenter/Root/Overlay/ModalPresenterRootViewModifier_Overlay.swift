@@ -16,7 +16,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     private let appearance: ModalPresenterRootAppearance
     
     @State private var interfaceOrientation: PlatformInterfaceOrientation = .initFromDeviceOrientation()
-    @State private var safeAreaInsets: EdgeInsets! // Force-unwrap
+    @State private var safeAreaInsets: EdgeInsets! // Unsafe
     
     // MARK: Properties - Presentation Mode
     @State private var internalPresentationMode: ModalPresenterInternalPresentationMode

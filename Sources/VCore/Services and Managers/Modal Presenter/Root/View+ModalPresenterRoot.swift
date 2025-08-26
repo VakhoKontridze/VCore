@@ -36,7 +36,7 @@ extension View {
                     )
                 )
 #else
-            fatalError() // Not supported
+            fatalError()
 #endif
         }
     }

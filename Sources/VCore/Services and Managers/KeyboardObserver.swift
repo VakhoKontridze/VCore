@@ -37,8 +37,6 @@ import OSLog
 public final class KeyboardObserver: Sendable {
     // MARK: Properties
     /// Keyboard responsiveness strategy.
-    ///
-    /// Changing this property conditionally will cause view state to be reset.
     public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy
     
     /// Offset.
@@ -56,12 +54,12 @@ public final class KeyboardObserver: Sendable {
 #if canImport(UIKit) && !os(watchOS)
         SystemKeyboardInfo().toSwiftUIAnimation
 #else
-        fatalError() // Not supported
+        fatalError()
 #endif
     }()
 
-    // MARK: Properties - Cancellables
-    @ObservationIgnored private var subscriptions: Set<AnyCancellable> = []
+    // MARK: Properties - Subscriptions
+    @ObservationIgnored private var cancellables: Set<AnyCancellable> = []
 
     // MARK: Initializers
     public init(
@@ -78,12 +76,12 @@ public final class KeyboardObserver: Sendable {
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillShowNotification)
             .sink { [weak self] in self?.keyboardWillShow(notification: $0) }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
 
         NotificationCenter.default
             .publisher(for: UIResponder.keyboardWillHideNotification)
             .sink { [weak self] in self?.keyboardWillHide(notification: $0) }
-            .store(in: &subscriptions)
+            .store(in: &cancellables)
 #endif
     }
 
@@ -103,7 +101,7 @@ public final class KeyboardObserver: Sendable {
 
             case .offsetByKeyboardHeight(let additionalOffset):
                 guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
-                    Logger.keyboardObserver.warning("Failed to retrieve system keyboard height from 'Notification': \(notification)")
+                    Logger.keyboardObserver.error("Failed to retrieve system keyboard height from 'Notification': \(notification)")
                     return nil
                 }
 
@@ -111,24 +109,24 @@ public final class KeyboardObserver: Sendable {
 
             case .offsetByObscuredViewHeight(let additionalOffset):
                 guard let screen: UIScreen = notification.object as? UIScreen else {
-                    Logger.keyboardObserver.warning("Failed to retrieve 'UIScreen' from 'Notification': \(notification)")
+                    Logger.keyboardObserver.error("Failed to retrieve 'UIScreen' from 'Notification': \(notification)")
                     return nil
                 }
 
                 guard let window: UIWindow = screen.windows.first(where: { $0.isKeyWindow }) else {
-                    Logger.keyboardObserver.warning("Failed to retrieve key 'UIWindow' from 'UIScreen': \(screen)")
+                    Logger.keyboardObserver.error("Failed to retrieve key 'UIWindow' from 'UIScreen': \(screen)")
                     return nil
                 }
                 
                 let windowHeight: CGFloat = window.frame.size.height
 
                 guard let firstResponderView: UIView = window.childFirstResponderView else {
-                    Logger.keyboardObserver.warning("Failed to retrieve child first responder 'UIView' from 'UIWindow': \(window)")
+                    Logger.keyboardObserver.error("Failed to retrieve child first responder 'UIView' from 'UIWindow': \(window)")
                     return nil
                 }
                 
                 guard let firstResponderViewSuperView: UIView = firstResponderView.superview else {
-                    Logger.keyboardObserver.warning("Failed to retrieve superview from 'UIView': \(firstResponderView)")
+                    Logger.keyboardObserver.error("Failed to retrieve superview from 'UIView': \(firstResponderView)")
                     return nil
                 }
                 
@@ -137,7 +135,7 @@ public final class KeyboardObserver: Sendable {
                 let currentOffset: CGFloat = self.offsetStable
 
                 guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
-                    Logger.keyboardObserver.warning("Failed to retrieve system keyboard height from 'Notification': \(notification)")
+                    Logger.keyboardObserver.error("Failed to retrieve system keyboard height from 'Notification': \(notification)")
                     return nil
                 }
 
@@ -217,11 +215,7 @@ public final class KeyboardObserver: Sendable {
 
         // MARK: Initializers
         /// Default instance.
-        public static var `default`: Self {
-            .offsetByObscuredViewHeight(
-                additionalOffset: 20
-            )
-        }
+        public static var `default`: Self { .offsetByObscuredViewHeight(additionalOffset: 20) }
     }
 }
 

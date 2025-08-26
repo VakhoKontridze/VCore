@@ -92,7 +92,7 @@ struct HomeParameters: Hashable {
 }
 
 struct HomeView: View {
-    @Environment(\.navigationPath) private var navigationPath: NavigationCoordinator.Path!
+    @Environment(\.navigationPath) private var navigationPath: NavigationCoordinator.Path?
     private let parameters: HomeParameters
     
     init(parameters: HomeParameters) {
@@ -101,7 +101,7 @@ struct HomeView: View {
     
     var body: some View {
         Button("Navigate") {
-            navigationPath.stack.append(.info(InfoParameters(text: "Lorem ipsum")))
+            navigationPath.stack?.append(.info(InfoParameters(text: "Lorem ipsum")))
         }
     }
 }
@@ -135,7 +135,7 @@ struct InfoParameters: Hashable {
 }
 
 struct InfoView: View {
-    @Environment(\.navigationPath) private var navigationPath: NavigationCoordinator.Path!
+    @Environment(\.navigationPath) private var navigationPath: NavigationCoordinator.Path?
     private let parameters: InfoParameters
     
     init( parameters: InfoParameters) {
@@ -147,7 +147,7 @@ struct InfoView: View {
             Text(parameters.text)
             
             Button("Go Back") {
-                navigationPath.stack.removeLast()
+                navigationPath.stack?.removeLast()
             }
         }
     }

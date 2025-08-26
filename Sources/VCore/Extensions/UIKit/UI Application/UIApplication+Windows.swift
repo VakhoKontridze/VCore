@@ -12,8 +12,6 @@ import UIKit
 extension UIApplication {
     /// Returns first `UIWindow` in a single-scene application.
     ///
-    /// This property assumes, that `supportsMultipleScenes` is `false`.
-    ///
     ///     let window: UIWindow? = UIApplication.shared.firstWindowInSingleSceneApp
     ///
     public var firstWindowInSingleSceneApp: UIWindow? {
@@ -25,8 +23,6 @@ extension UIApplication {
     
     /// Returns first key `UIWindow` in a single-scene application.
     ///
-    /// This property assumes, that `supportsMultipleScenes` is `false`.
-    ///
     ///     let window: UIWindow? = UIApplication.shared.firstKeyWindowInSingleSceneApp
     ///
     public var firstKeyWindowInSingleSceneApp: UIWindow? {
@@ -37,8 +33,6 @@ extension UIApplication {
     }
     
     /// Returns key active `UIWindow` in a single-scene application.
-    ///
-    /// This property assumes, that `supportsMultipleScenes` is `false`.
     ///
     ///     let window: UIWindow? = UIApplication.shared.firstKeyActiveWindowInSingleSceneApp
     ///

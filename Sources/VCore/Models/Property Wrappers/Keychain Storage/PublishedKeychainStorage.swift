@@ -9,6 +9,7 @@
 // https://github.com/OpenCombine/OpenCombine/blob/master/Sources/OpenCombine/Published.swift
 
 import SwiftUI
+import OSLog
 import Combine
 
 /// Property wrapper type that reflects a value from Keychain and invalidates a view on a change in value in that Keychain.
@@ -28,8 +29,14 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
     
     @available(*, unavailable, message: "'PublishedKeychainStorage' is only available on properties of 'class'es. Use 'KeychainStorage' instead.")
     public var wrappedValue: Value {
-        get { fatalError() }
-        nonmutating set { fatalError() }
+        get {
+            Logger.publishedKeychainStorage.critical("'PublishedKeychainStorage' is only available on properties of 'class'es. Use 'KeychainStorage' instead.")
+            fatalError() // Unsafe
+        }
+        nonmutating set {
+            Logger.publishedKeychainStorage.critical("'PublishedKeychainStorage' is only available on properties of 'class'es. Use 'KeychainStorage' instead.")
+            fatalError() // Unsafe
+        }
     }
     
     public var projectedValue: PublishedPropertyWrapperPublisher<Value> {
