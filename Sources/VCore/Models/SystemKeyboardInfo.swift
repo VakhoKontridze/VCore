@@ -95,7 +95,7 @@ public struct SystemKeyboardInfo: Sendable {
     ///
     /// If keyboard is already shown, but first responder changes, animation duration returned by the `Notification` will be `0`.
     /// In that case, this value can be used to perform additional animation.
-    public var nonZeroAnimationDuration: CGFloat {
+    public var nonZeroAnimationDuration: TimeInterval {
         if animationDuration != 0 {
             animationDuration
         } else {
