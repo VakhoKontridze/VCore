@@ -233,18 +233,20 @@ extension UIScreen {
 
 @available(tvOS, unavailable)
 extension SystemKeyboardInfo {
+    fileprivate init() {
+        self.init(
+            frame: nil,
+            animationDuration: Self.defaultAnimationDuration,
+            animationOptions: Self.defaultAnimationOptions
+        )
+    }
+    
     fileprivate var toSwiftUIAnimation: Animation {
-        if animationOptions.contains(.curveLinear) {
-            Animation.linear(duration: nonZeroAnimationDuration)
-        } else if animationOptions.contains(.curveEaseIn) {
-            Animation.easeIn(duration: nonZeroAnimationDuration)
-        } else if animationOptions.contains(.curveEaseOut) {
-            Animation.easeOut(duration: nonZeroAnimationDuration)
-        } else if animationOptions.contains(.curveEaseInOut) {
-            Animation.easeInOut(duration: nonZeroAnimationDuration)
-        } else {
-            Animation.linear(duration: nonZeroAnimationDuration)
-        }
+        Animation.timingCurve(
+            0.25, 0.10, // p1
+            0.25, 1.00, // p2
+            duration: nonZeroAnimationDuration
+        )
     }
 }
 

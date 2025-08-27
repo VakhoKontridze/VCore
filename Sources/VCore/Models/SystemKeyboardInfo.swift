@@ -34,14 +34,6 @@ public struct SystemKeyboardInfo: Sendable {
         self.animationOptions = animationOptions
     }
 
-    init() {
-        self.init(
-            frame: nil,
-            animationDuration: Self.defaultAnimationDuration,
-            animationOptions: Self.defaultAnimationOptions
-        )
-    }
-
     /// Initializes `SystemKeyboardInfo` with `Notification`.
     public init(
         notification: Notification
@@ -68,12 +60,12 @@ public struct SystemKeyboardInfo: Sendable {
 
         self.animationOptions = {
             guard
-                let uInt: UInt = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt
+                let animationCurveInt: UInt = notification.userInfo?[UIResponder.keyboardAnimationCurveUserInfoKey] as? UInt
             else {
                 return Self.defaultAnimationOptions
             }
 
-            let animationOptions: UIView.AnimationOptions = .init(rawValue: uInt)
+            let animationOptions: UIView.AnimationOptions = .init(rawValue: animationCurveInt << 16)
 
             return animationOptions
         }()
@@ -88,7 +80,7 @@ public struct SystemKeyboardInfo: Sendable {
     public static var defaultAnimationDuration: TimeInterval { 0.25 }
     
     /// Default animation options.
-    public static var defaultAnimationOptions: UIView.AnimationOptions { .curveEaseInOut }
+    public static var defaultAnimationOptions: UIView.AnimationOptions { .init(rawValue: 7 << 16) }
 
     // MARK: Other Values
     /// Non-zero animation duration.
