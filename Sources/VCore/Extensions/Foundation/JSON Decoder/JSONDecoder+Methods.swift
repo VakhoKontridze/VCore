@@ -11,16 +11,16 @@ extension JSONDecoder {
     /// Decodes `JSON` from `Data`.
     ///
     ///     let data: Data = ...
-    ///     let json: [String: Any?] = JSONDecoder.decodeJSONFromData(data)
+    ///     let json: [String: Any] = JSONDecoder.decodeJSONFromData(data)
     ///
     public static func decodeJSONFromData(
         _ data: Data,
         optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
-    ) throws -> [String: Any?] {
+    ) throws -> [String: Any] {
         let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: options)
 
-        guard let json = jsonObject as? [String: Any?] else {
-            throw CastingError(from: "Any", to: "[String: Any?]")
+        guard let json = jsonObject as? [String: Any] else {
+            throw CastingError(from: "Any", to: "[String: Any]")
         }
 
         return json
@@ -29,16 +29,16 @@ extension JSONDecoder {
     /// Decodes `JSON` `Array` from `Data`.
     ///
     ///     let data: Data = ...
-    ///     let jsonArray: [[String: Any?]] = JSONDecoder.decodeJSONArrayFromData(data)
+    ///     let jsonArray: [[String: Any]] = JSONDecoder.decodeJSONArrayFromData(data)
     ///
     public static func decodeJSONArrayFromData(
         _ data: Data,
         optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
-    ) throws -> [[String: Any?]] {
+    ) throws -> [[String: Any]] {
         let jsonObject: Any = try JSONSerialization.jsonObject(with: data, options: options)
 
-        guard let jsonArray = jsonObject as? [[String: Any?]] else {
-            throw CastingError(from: "Any", to: "[[String: Any?]]")
+        guard let jsonArray = jsonObject as? [[String: Any]] else {
+            throw CastingError(from: "Any", to: "[[String: Any]]")
         }
 
         return jsonArray
@@ -46,11 +46,11 @@ extension JSONDecoder {
 
     /// Decodes `Decodable` from `JSON`.
     ///
-    ///     let json: [String: Any?] = ...
+    ///     let json: [String: Any] = ...
     ///     let item: Item = JSONDecoder().decodeObjectFromJSON(json)
     ///
     public func decodeObjectFromJSON<T>(
-        _ json: [String: Any?],
+        _ json: [String: Any],
         optionsJSONToData options: JSONSerialization.WritingOptions = []
     ) throws -> T
         where T: Decodable
@@ -64,11 +64,11 @@ extension JSONDecoder {
     
     /// Decodes `Decodable` from `JSON` `Array`.
     ///
-    ///     let jsonArray: [[String: Any?]] = ...
+    ///     let jsonArray: [[String: Any]] = ...
     ///     let item: Item = JSONDecoder().decodeObjectFromJSONArray(jsonArray)
     ///
     public func decodeObjectFromJSONArray<T>(
-        _ jsonArray: [[String: Any?]],
+        _ jsonArray: [[String: Any]],
         optionsJSONArrayToData options: JSONSerialization.WritingOptions = []
     ) throws -> T
         where T: Decodable

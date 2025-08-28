@@ -9,7 +9,7 @@ import Foundation
 
 /// Builder that generates boundary `String` and generated `Data` for network requests.
 ///
-///     let json: [String: Any?] = [
+///     let json: [String: Any] = [
 ///         "key": "value"
 ///     ]
 ///
@@ -71,7 +71,7 @@ public struct MultipartFormDataBuilder: Sendable {
     // MARK: Building
     /// Builds and returns boundary `String` and `Data` that can be sent over network.
     public func build(
-        json: [String: Any?],
+        json: [String: Any],
         files: [String: (some AnyMultipartFormDataFile)?]
     ) throws -> (boundary: String, data: Data) {
         var data: Data = .init()
@@ -88,7 +88,7 @@ public struct MultipartFormDataBuilder: Sendable {
         files: [String: (some AnyMultipartFormDataFile)?],
         optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
-        let json: [String: Any?] = try JSONDecoder.decodeJSONFromData(
+        let json: [String: Any] = try JSONDecoder.decodeJSONFromData(
             data,
             optionsDataToJSONObject: optionsDataToJSONObject
         )
@@ -102,7 +102,7 @@ public struct MultipartFormDataBuilder: Sendable {
         files: [String: (some AnyMultipartFormDataFile)?],
         optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
-        let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON(
+        let json: [String: Any] = try JSONEncoder().encodeObjectToJSON(
             object,
             optionsDataToJSONObject: optionsDataToJSONObject
         )

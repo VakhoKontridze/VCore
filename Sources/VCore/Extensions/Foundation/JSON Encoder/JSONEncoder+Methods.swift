@@ -8,36 +8,30 @@
 import Foundation
 
 extension JSONEncoder {
-    /// Encodes `Any?` to `Data`.
+    /// Encodes `Any` to `Data`.
     ///
-    ///     let any: Any? = ...
+    ///     let any: Any = ...
     ///     let data: Data = try JSONEncoder.encodeAnyToData(any)
     ///
     public static func encodeAnyToData(
-        _ any: Any?,
+        _ any: Any,
         optionsAnyToData options: JSONSerialization.WritingOptions = []
     ) throws -> Data {
-        guard let any else {
-            throw CastingError(from: "Any?", to: "Any")
-        }
-
-        let data: Data = try JSONSerialization.data(withJSONObject: any, options: options)
-
-        return data
+        try JSONSerialization.data(withJSONObject: any, options: options)
     }
 
     /// Encodes `Encodable` to `JSON`.
     ///
     ///     let item: Item = ...
-    ///     let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON(object)
+    ///     let json: [String: Any] = try JSONEncoder().encodeObjectToJSON(object)
     ///
     public func encodeObjectToJSON(
         _ object: some Encodable,
         optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
-    ) throws -> [String: Any?] {
+    ) throws -> [String: Any] {
         let data: Data = try encode(object)
         
-        let json: [String: Any?] = try JSONDecoder.decodeJSONFromData(
+        let json: [String: Any] = try JSONDecoder.decodeJSONFromData(
             data,
             optionsDataToJSONObject: options
         )
@@ -48,15 +42,15 @@ extension JSONEncoder {
     /// Encodes `Encodable` to `JSON` `Array`.
     ///
     ///     let items: [Item] = ...
-    ///     let jsonArray: [[String: Any?]] = try JSONEncoder().encodeObjectToJSONArray(items)
+    ///     let jsonArray: [[String: Any]] = try JSONEncoder().encodeObjectToJSONArray(items)
     ///
     public func encodeObjectToJSONArray(
         _ objects: some Encodable,
         optionsDataToJSONObject options: JSONSerialization.ReadingOptions = []
-    ) throws -> [[String: Any?]] {
+    ) throws -> [[String: Any]] {
         let data: Data = try encode(objects)
 
-        let jsonArray: [[String: Any?]] = try JSONDecoder.decodeJSONArrayFromData(
+        let jsonArray: [[String: Any]] = try JSONDecoder.decodeJSONArrayFromData(
             data,
             optionsDataToJSONObject: options
         )

@@ -46,7 +46,7 @@ public macro MemberwiseInitializable(
 /// Default parameter value in `MemberwiseInitializable`.
 public enum MemberwiseInitializableParameterDefaultValue {
     /// Value.
-    case value(Any?)
+    case value(Any)
 
     /// Omitted value.
     case omit

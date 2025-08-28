@@ -116,7 +116,7 @@ However, if it doesn't, corresponding status code and message are retrieved and 
 func processURLSessionResponse(
     _ data: Data,
     _ response: URLResponse
-) {
+) throws {
     if response.isSuccessHTTPStatusCode { 
         return
     }
@@ -128,8 +128,8 @@ func processURLSessionResponse(
     }
 
     guard
-        let json: [String: Any?] = try? JSONDecoder.decodeJSONFromData(data),
-        let message: String = json["message"]?.toString
+        let json: [String: Any] = try? JSONDecoder.decodeJSONFromData(data),
+        let message: String = json["message"] as? String
     else {
         throw URLError(.cannotDecodeContentData)
     }
@@ -148,7 +148,7 @@ func processURLSessionData(
     _ response: URLResponse
 ) throws -> Data {
     guard
-        let json: [String: Any?] = try? JSONDecoder.decodeJSONFromData(data),
+        let json: [String: Any] = try? JSONDecoder.decodeJSONFromData(data),
         let dataObject: Any = json["data"] ?? nil,
         let dataData: Data = try? JSONEncoder.encodeAnyToData(dataObject)
     else {

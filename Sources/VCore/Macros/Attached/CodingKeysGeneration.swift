@@ -18,7 +18,7 @@ import Foundation
 ///         @CKGProperty("title") let title: String
 ///         @CKGProperty("body") let body: String
 ///
-///         var attributes: [String: Any?] = [:]
+///         var attributes: [String: Any] = [:]
 ///     }
 ///
 ///     // Generates

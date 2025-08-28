@@ -14,18 +14,18 @@ struct JSONEncoderMethodsTests {
     // MARK: Tests
     @Test
     func testAnyToData() throws {
-        let json: [String: Any?] = ["key": "value"]
+        let json: [String: Any] = ["key": "value"]
         let data: Data = try JSONEncoder.encodeAnyToData(json)
 
-        let json2: [String: Any?] = try JSONDecoder.decodeJSONFromData(data)
+        let json2: [String: Any] = try JSONDecoder.decodeJSONFromData(data)
 
-        #expect(json2["key"]?.toString == "value")
+        #expect(json2["key"] as? String == "value")
     }
     
     @Test
     func testObjectToJSON() throws {
         let object: Object = .init(key: "value")
-        let json: [String: Any?] = try JSONEncoder().encodeObjectToJSON(object)
+        let json: [String: Any] = try JSONEncoder().encodeObjectToJSON(object)
 
         let object2: Object = try JSONDecoder().decodeObjectFromJSON(json)
 
@@ -35,7 +35,7 @@ struct JSONEncoderMethodsTests {
     @Test
     func testObjectsToJSONArray() throws {
         let objects: [Object] = [.init(key: "value1"), .init(key: "value2")]
-        let jsonArray: [[String: Any?]] = try JSONEncoder().encodeObjectToJSONArray(objects)
+        let jsonArray: [[String: Any]] = try JSONEncoder().encodeObjectToJSONArray(objects)
 
         let objects2: [Object] = try JSONDecoder().decodeObjectFromJSONArray(jsonArray)
 
@@ -47,11 +47,5 @@ struct JSONEncoderMethodsTests {
     // MARK: Types
     private struct Object: Codable {
         let key: String?
-    }
-}
-
-extension Optional where Wrapped == Any {
-    fileprivate var toString: String? {
-        self as? String
     }
 }

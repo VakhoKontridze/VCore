@@ -23,16 +23,16 @@ extension MultipartFormDataBuilder {
         
         // MARK: Build
         func build(
-            json: [String: Any?]
+            json: [String: Any]
         ) throws -> Data {
             var data: Data = .init()
             
             for (key, value) in json {
                 switch value {
-                case let array as [Any?]:
+                case let array as [Any]:
                     try appendArray(key: key, array: array, to: &data)
                     
-                case let json as [String: Any?]:
+                case let json as [String: Any]:
                     try appendJSON(key: key, json: json, to: &data)
                     
                 default:
@@ -45,11 +45,9 @@ extension MultipartFormDataBuilder {
         
         private func appendElement(
             key: String,
-            element: Any?,
+            element: Any,
             to data: inout Data
         ) throws {
-            guard let element else { return }
-
             let value: String = .init(describing: element)
 
             try data.appendString("--\(boundary)\(lineBreak)")
@@ -59,17 +57,17 @@ extension MultipartFormDataBuilder {
         
         private func appendJSON(
             key: String,
-            json: [String: Any?],
+            json: [String: Any],
             to data: inout Data
         ) throws {
             for element in json {
                 let elementKey: String = "\(key)[\(element.key)]"
                 
                 switch element.value {
-                case let array as [Any?]:
+                case let array as [Any]:
                     try appendArray(key: elementKey, array: array, to: &data)
                     
-                case let json as [String: Any?]:
+                case let json as [String: Any]:
                     try appendJSON(key: elementKey, json: json, to: &data)
                     
                 default:
@@ -80,17 +78,17 @@ extension MultipartFormDataBuilder {
         
         private func appendArray(
             key: String,
-            array: [Any?],
+            array: [Any],
             to data: inout Data
         ) throws {
             for (i, element) in array.enumerated() {
                 let elementKey: String = "\(key)[\(i)]"
                 
                 switch element {
-                case let array as [[String: Any?]]:
+                case let array as [[String: Any]]:
                     try appendArray(key: elementKey, array: array, to: &data)
                     
-                case let json as [String: Any?]:
+                case let json as [String: Any]:
                     try appendJSON(key: elementKey, json: json, to: &data)
                     
                 default:

@@ -52,7 +52,7 @@ For additional info, refer to "Modal Presenter" documentation.
 `MultipartFormDataBuilder` with a `Dictionary`-based file API:
 
 ```swift
-let json: [String: Any?] = [
+let json: [String: Any] = [
     "key": "value"
 ]
 
@@ -212,7 +212,7 @@ struct GetPostGatewayOutput: Decodable {
     @CKGProperty("title") let title: String
     @CKGProperty("body") let body: String
     
-    var attributes: [String: Any?] = [:]
+    var attributes: [String: Any] = [:]
 }
 
 // Generates

@@ -29,11 +29,9 @@ extension URLRequest {
     ///     request.addHTTPHeaderFields(json: ["key": "value"])
     ///
     mutating public func addHTTPHeaderFields(
-        json httpHeaderFields: [String: Any?]
+        json httpHeaderFields: [String: Any]
     ) {
         for (key, value) in httpHeaderFields {
-            guard let value else { continue }
-
             let valueStr: String = .init(describing: value)
 
             addValue(valueStr, forHTTPHeaderField: key)

@@ -73,26 +73,26 @@ struct MultipartFormDataBuilderTests {
 
         let data: Data = try await URLSession.shared.data(for: request).0
 
-        let result: [String: Any?] = try JSONDecoder.decodeJSONFromData(data)
+        let result: [String: Any] = try JSONDecoder.decodeJSONFromData(data)
 
         #expect(
-            result["form"]?.toJSON?["key"]?.toString ==
+            (result["form"] as? [String: Any])?["key"] as? String ==
             "value"
         )
 
 #if canImport(UIKit)
         #expect(
-            result["files"]?.toJSON?["profile"]?.toString?.replacingOccurrences(of: imagePrefix, with: "") ==
+            ((result["files"] as? [String: Any])?["profile"] as? String)?.replacingOccurrences(of: imagePrefix, with: "") ==
             profileImage?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
         )
 
         #expect(
-            result["files"]?.toJSON?["gallery[0]"]?.toString?.replacingOccurrences(of: imagePrefix, with: "") ==
+            ((result["files"] as? [String: Any])?["gallery[0]"] as? String)?.replacingOccurrences(of: imagePrefix, with: "") ==
             galleryImages?[0]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
         )
 
         #expect(
-            result["files"]?.toJSON?["gallery[1]"]?.toString?.replacingOccurrences(of: imagePrefix, with: "") ==
+            ((result["files"] as? [String: Any])?["gallery[1]"] as? String)?.replacingOccurrences(of: imagePrefix, with: "") ==
             galleryImages?[1]?.jpegData(compressionQuality: 0.25)?.base64EncodedString()
         )
 #endif
@@ -102,15 +102,5 @@ struct MultipartFormDataBuilderTests {
     @CodingKeysGeneration
     private struct JSONPart: Encodable {
         @CKGProperty("key") let key: String
-    }
-}
-
-extension Optional where Wrapped == Any {
-    fileprivate var toString: String? {
-        self as? String
-    }
-
-    fileprivate var toJSON: [String: Any?]? {
-        self as? [String: Any?]
     }
 }

@@ -14,29 +14,29 @@ struct JSONDecoderMethodsTests {
     // MARK: Tests
     @Test
     func testDataToJSON() throws {
-        let json: [String: Any?] = ["key": "value"]
+        let json: [String: Any] = ["key": "value"]
         let jsonData: Data = try JSONEncoder.encodeAnyToData(json)
 
-        let json2: [String: Any?] = try JSONDecoder.decodeJSONFromData(jsonData)
+        let json2: [String: Any] = try JSONDecoder.decodeJSONFromData(jsonData)
 
-        #expect(json2["key"]?.toString == json["key"]?.toString)
+        #expect(json2["key"] as? String == json["key"] as? String)
     }
     
     @Test
     func testDataToJSONArray() throws {
-        let json: [String: Any?] = ["key": "value"]
-        let jsonArray: [[String: Any?]] = [json]
+        let json: [String: Any] = ["key": "value"]
+        let jsonArray: [[String: Any]] = [json]
         let jsonArrayData = try JSONEncoder.encodeAnyToData(jsonArray)
 
-        let jsonArray2: [[String: Any?]] = try JSONDecoder.decodeJSONArrayFromData(jsonArrayData)
+        let jsonArray2: [[String: Any]] = try JSONDecoder.decodeJSONArrayFromData(jsonArrayData)
         
-        #expect(jsonArray2[0]["key"]?.toString == jsonArray[0]["key"]?.toString)
+        #expect(jsonArray2[0]["key"] as? String == jsonArray[0]["key"] as? String)
     }
     
     @Test
     func testJSONToObject() throws {
         let object: Object = .init(key: "value")
-        let objectJSON: [String: Any?] = try JSONEncoder().encodeObjectToJSON(object)
+        let objectJSON: [String: Any] = try JSONEncoder().encodeObjectToJSON(object)
 
         let objects2: Object = try JSONDecoder().decodeObjectFromJSON(objectJSON)
 
@@ -46,7 +46,7 @@ struct JSONDecoderMethodsTests {
     @Test
     func testJSONArrayToObjects() throws {
         let objects: [Object] = [.init(key: "value1"), .init(key: "value2")]
-        let objectsJSONArray: [[String: Any?]] = try JSONEncoder().encodeObjectToJSONArray(objects)
+        let objectsJSONArray: [[String: Any]] = try JSONEncoder().encodeObjectToJSONArray(objects)
 
         let objects2: [Object] = try JSONDecoder().decodeObjectFromJSONArray(objectsJSONArray)
 
@@ -58,11 +58,5 @@ struct JSONDecoderMethodsTests {
     // MARK: Types
     private struct Object: Codable {
         let key: String?
-    }
-}
-
-extension Optional where Wrapped == Any {
-    fileprivate var toString: String? {
-        self as? String
     }
 }

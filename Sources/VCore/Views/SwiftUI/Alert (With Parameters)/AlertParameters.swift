@@ -20,7 +20,7 @@ public struct AlertParameters {
     public var buttons: () -> [any AlertButtonProtocol]
 
     /// Attributes.
-    public var attributes: [String: Any?]
+    public var attributes: [String: Any]
 
     // MARK: Parameters
     /// Initializes `AlertParameters`.
@@ -28,7 +28,7 @@ public struct AlertParameters {
         title: String?,
         message: String?,
         @AlertButtonBuilder actions buttons: @escaping () -> [any AlertButtonProtocol],
-        attributes: [String: Any?] = [:]
+        attributes: [String: Any] = [:]
     ) {
         self.title = title
         self.message = message
@@ -41,7 +41,7 @@ public struct AlertParameters {
         title: String?,
         message: String?,
         completion: (@MainActor () -> Void)?,
-        attributes: [String: Any?] = [:]
+        attributes: [String: Any] = [:]
     ) {
         self.init(
             title: title,
@@ -61,7 +61,7 @@ public struct AlertParameters {
     public init(
         error: any Error,
         completion: (@MainActor () -> Void)?,
-        attributes: [String: Any?] = [:]
+        attributes: [String: Any] = [:]
     ) {
         self.init(
             title: VCoreLocalizationManager.shared.localizationProvider.alertErrorTitle,

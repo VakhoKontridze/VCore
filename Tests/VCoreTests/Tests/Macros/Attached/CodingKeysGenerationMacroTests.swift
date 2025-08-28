@@ -100,7 +100,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                 @CKGProperty("one") let one: Int
                 var two: Int { one * 2 }
                 
-                var attributes: [String: Any?] = [:]
+                var attributes: [String: Any] = [:]
 
                 func foo() {}
             }
@@ -111,7 +111,7 @@ final class CodingKeysGenerationMacroTests: XCTestCase {
                     @CKGProperty("one") let one: Int
                     var two: Int { one * 2 }
                     
-                    var attributes: [String: Any?] = [:]
+                    var attributes: [String: Any] = [:]
 
                     func foo() {}
 
