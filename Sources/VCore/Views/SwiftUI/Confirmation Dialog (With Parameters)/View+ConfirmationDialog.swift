@@ -1,5 +1,5 @@
 //
-//  View + Confirmation Dialog.swift
+//  View+ConfirmationDialog.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 02.10.22.
