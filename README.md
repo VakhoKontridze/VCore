@@ -170,14 +170,14 @@ var body: some View {
             attributeContainers: [
                 "a": {
                     var container: AttributeContainer = .init()
-                    container.foregroundColor = .red
-                    container.font = .title.weight(.ultraLight)
+                    container.foregroundColor = Color.red
+                    container.font = Font.title.weight(.ultraLight)
                     return container
                 }(),
                 "b": {
                     var container: AttributeContainer = .init()
-                    container.foregroundColor = .blue
-                    container.font = .callout.weight(.bold)
+                    container.foregroundColor = Color.blue
+                    container.font = Font.callout.weight(.bold)
                     return container
                 }()
             ]
