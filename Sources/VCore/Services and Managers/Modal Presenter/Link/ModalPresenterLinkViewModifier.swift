@@ -250,6 +250,7 @@ private struct Modal<Content>: View where Content: View {
                 .padding()
         }
         .frame(dimension: dimension)
+        .clipped()
         
         .compositingGroup() // For shadow
         .shadow(

@@ -58,6 +58,7 @@ Extensions
 - `View.getBounds(of:_:)` is removed, as it's obsoleted by `View.onGeometryChange(for:of:_:)`
 - `View.getFrame(in:_:)` is removed, as it's obsoleted by `View.onGeometryChange(for:of:_:)`
 - `View.getSize(_:)` is removed, as it's obsoleted by `View.onGeometryChange(for:of:_:)`
+- `View.withDisabledKeyboardResponsiveness(regions:edges:)` and `UIHostingController.overrideBehaviors(_:)` are removed, as they broke in `iOS` `26.0`, and are generally unsafe to use
 
 Global Functions
 

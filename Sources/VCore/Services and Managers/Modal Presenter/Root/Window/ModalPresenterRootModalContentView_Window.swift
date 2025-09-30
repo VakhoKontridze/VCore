@@ -58,7 +58,6 @@ struct ModalPresenterRootModalContentView_Window: View {
             }
 
             // Keyboard is handled individually per modal, but this must be written at the top level.
-            // Using `withDisabledKeyboardResponsiveness` here disables click-through behavior
             .ignoresSafeArea()
         }
     }

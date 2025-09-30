@@ -83,8 +83,8 @@ struct ModalPresenterRootModalView_Overlay: View {
         
         // Must be written last
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
-        .offset(y: -keyboardOffset)
         .animation(keyboardObserver.animation, value: keyboardOffset)
+        .offset(y: -keyboardOffset)
 #endif
     }
 }

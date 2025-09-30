@@ -19,11 +19,11 @@ import OSLog
 ///             TextField("", text: $text)
 ///                 .textFieldStyle(.roundedBorder)
 ///                 .padding()
+///                 .offset(y: -keyboardObserver.offset)
 ///         }
 ///         .frame(maxHeight: .infinity, alignment: .bottom)
 ///
 ///         // Must be written last
-///         .offset(y: -keyboardObserver.offset)
 ///         .animation(keyboardObserver.animation, value: keyboardObserver.offset)
 ///         .ignoresSafeArea(.keyboard)
 ///     }
@@ -147,7 +147,10 @@ public final class KeyboardObserver: Sendable {
             }
         }()
 
-        if let offset {
+        if
+            let offset,
+            offset != self.offset
+        {
             // No need to handle reentrancy and cancellation
             Task { @MainActor in
                 self.offset = offset
@@ -179,7 +182,10 @@ public final class KeyboardObserver: Sendable {
             }
         }()
 
-        if let offset {
+        if
+            let offset,
+            offset != self.offset
+        {
             // No need to handle reentrancy and cancellation
             Task { @MainActor in
                 self.offset = offset

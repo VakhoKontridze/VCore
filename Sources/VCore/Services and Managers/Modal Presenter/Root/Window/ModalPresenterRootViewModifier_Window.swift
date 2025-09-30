@@ -106,7 +106,6 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
             )
         )
         hostingController.view.backgroundColor = nil
-        hostingController.overrideBehaviors([.disablesSafeAreaInsets, .disablesKeyboardAvoidance])
         
         let modalWindow: ModalPresenterRootWindow_Window = .init(
             windowScene: windowScene,

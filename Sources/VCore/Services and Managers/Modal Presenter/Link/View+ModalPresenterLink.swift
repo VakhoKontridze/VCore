@@ -77,6 +77,7 @@ extension View {
     ///                     .padding()
     ///             }
     ///             .frame(dimension: 300)
+    ///             .clipped()
     ///
     ///             .compositingGroup() // For shadow
     ///             .shadow(
