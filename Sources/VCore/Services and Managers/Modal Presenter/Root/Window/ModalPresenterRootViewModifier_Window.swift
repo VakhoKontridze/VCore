@@ -68,12 +68,12 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
     func body(content: Content) -> some View {
         content
             // Reading environment
-            .onMoveToWindow(action: onReadWindow)
+            .onMoveToWindow(action: onMoveToWindow)
             .onPlatformInterfaceOrientationChange { model.interfaceOrientation = $0 }
             .background {
                 Color.clear
                     .ignoresSafeArea(.keyboard)
-                    .onGeometryChange(of: { $0.safeAreaInsets }, action: onReadSafeAreaInsets)
+                    .onGeometryChange(of: { $0.safeAreaInsets }, action: onSafeAreaInsetsChange)
             }
 
             // Handling work
@@ -94,7 +94,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
     }
     
     // MARK: Actions - Internal
-    private func onReadWindow(_ window: UIWindow) {
+    private func onMoveToWindow(_ window: UIWindow) {
         guard let windowScene: UIWindowScene = window.windowScene else {
             if let rootID: String = root.rootID {
                 Logger.modalPresenter.critical("Failed to extract 'UIWindowScene' from 'UIWindow' in Modal Presenter root with ID '\(rootID)'")
@@ -128,7 +128,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
         didReadWindow = true
     }
     
-    private func onReadSafeAreaInsets(_ safeAreaInsets: EdgeInsets) {
+    private func onSafeAreaInsetsChange(_ safeAreaInsets: EdgeInsets) {
         model.safeAreaInsets = safeAreaInsets
         
         didReadSafeAreaInsets = true

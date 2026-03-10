@@ -72,7 +72,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
             .background {
                 Color.clear
                     .ignoresSafeArea(.keyboard)
-                    .onGeometryChange(of: { $0.safeAreaInsets }, action: onReadSafeAreaInsets)
+                    .onGeometryChange(of: { $0.safeAreaInsets }, action: onSafeAreaInsetsChange)
             }
 
             // UI
@@ -179,7 +179,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     }
     
     // MARK: Actions - Internal
-    private func onReadSafeAreaInsets(_ safeAreaInsets: EdgeInsets) {
+    private func onSafeAreaInsetsChange(_ safeAreaInsets: EdgeInsets) {
         self.safeAreaInsets = safeAreaInsets
         
         didReadSafeAreaInsets = true
