@@ -170,8 +170,7 @@ private final class AlignedUICollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
         NSLayoutConstraint.activate([
-            contentView.widthAnchor.constraint(equalToConstant: 0)
-                .withPriority(.defaultLow)
+            contentView.widthAnchor.constraint(equalToConstant: 0).withPriority(.defaultLow)
                 .storing(in: &widthConstraint),
             contentView.heightAnchor.constraint(equalToConstant: 32)
         ])

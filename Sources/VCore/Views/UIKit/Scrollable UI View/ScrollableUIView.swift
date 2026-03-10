@@ -98,10 +98,8 @@ open class ScrollableUIView: UIView {
             scrollView.topAnchor.constraint(equalTo: topAnchor),
             scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
-                .withPriority(widthConstraintPriority),
-            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-                .withPriority(heightConstraintPriority),
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).withPriority(widthConstraintPriority),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor).withPriority(heightConstraintPriority),
             contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
             contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
             contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),

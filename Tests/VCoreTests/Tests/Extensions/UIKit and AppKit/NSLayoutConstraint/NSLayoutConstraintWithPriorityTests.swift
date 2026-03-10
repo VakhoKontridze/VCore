@@ -20,8 +20,7 @@ struct NSLayoutConstraintWithPriorityTests {
         
         var constraint: NSLayoutConstraint?
         NSLayoutConstraint.activate([
-            view.widthAnchor.constraint(equalToConstant: 100)
-                .withPriority(.required)
+            view.widthAnchor.constraint(equalToConstant: 100).withPriority(.required)
                 .storing(in: &constraint)
         ])
         
@@ -34,8 +33,7 @@ struct NSLayoutConstraintWithPriorityTests {
         
         var constraint: NSLayoutConstraint?
         NSLayoutConstraint.activate([
-            view.widthAnchor.constraint(equalToConstant: 100)
-                .withPriority(500)
+            view.widthAnchor.constraint(equalToConstant: 100).withPriority(500)
                 .storing(in: &constraint)
         ])
         

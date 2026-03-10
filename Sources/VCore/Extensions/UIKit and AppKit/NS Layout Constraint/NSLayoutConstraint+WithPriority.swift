@@ -18,8 +18,7 @@ extension NSLayoutConstraint {
     /// Modifies and returns constraint with a given priority.
     ///
     ///     NSLayoutConstraint.activate([
-    ///         view.widthAnchor.constraint(equalToConstant: 100)
-    ///             .withPriority(.defaultHigh)
+    ///         view.widthAnchor.constraint(equalToConstant: 100).withPriority(.defaultHigh)
     ///     ])
     ///
     public func withPriority(_ priority: UILayoutPriority?) -> NSLayoutConstraint {
@@ -32,8 +31,7 @@ extension NSLayoutConstraint {
     /// Modifies and returns constraint with a given priority.
     ///
     ///     NSLayoutConstraint.activate([
-    ///         view.widthAnchor.constraint(equalToConstant: 100)
-    ///             .withPriority(.defaultHigh)
+    ///         view.widthAnchor.constraint(equalToConstant: 100).withPriority(.defaultHigh)
     ///     ])
     ///
     public func withPriority(_ priority: Priority?) -> NSLayoutConstraint {
@@ -45,8 +43,7 @@ extension NSLayoutConstraint {
     /// Modifies and returns constraint with a given priority value.
     ///
     ///     NSLayoutConstraint.activate([
-    ///         view.widthAnchor.constraint(equalToConstant: 100)
-    ///             .withPriority(500)
+    ///         view.widthAnchor.constraint(equalToConstant: 100).withPriority(500)
     ///     ])
     ///
     public func withPriority(_ value: CGFloat?) -> NSLayoutConstraint {
