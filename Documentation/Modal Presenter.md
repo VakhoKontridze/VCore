@@ -192,8 +192,8 @@ struct Modal<Content>: View where Content: View {
 
         .offset(y: isPresentedInternally ? 0 : (containerSize.height + 300)/2) // [12]
 
-        .onReceive(presentationMode.presentPublisher, perform: animateIn) // [7]
-        .onReceive(presentationMode.dismissPublisher, perform: animateOut) // [9]
+        .onReceive(presentationMode.presentPublisher, perform: onPresent) // [7]
+        .onReceive(presentationMode.dismissPublisher, perform: onDismiss) // [9]
         .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: onDimmingViewTap) // [13]
     }
 
@@ -201,14 +201,14 @@ struct Modal<Content>: View where Content: View {
         isPresented = false // [14]
     }
 
-    private func animateIn() {
+    private func onPresent() {
         withAnimation(
             .easeInOut(duration: 0.3),
             { isPresentedInternally = true } // [8]
         )
     }
 
-    private func animateOut(
+    private func onDismiss(
         completion: @escaping () -> Void
     ) {
        withAnimation(

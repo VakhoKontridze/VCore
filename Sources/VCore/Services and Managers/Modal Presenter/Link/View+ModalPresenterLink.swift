@@ -87,8 +87,8 @@ extension View {
     ///
     ///             .offset(y: isPresentedInternally ? 0 : (containerSize.height + 300)/2)
     ///
-    ///             .onReceive(presentationMode.presentPublisher, perform: animateIn)
-    ///             .onReceive(presentationMode.dismissPublisher, perform: animateOut)
+    ///             .onReceive(presentationMode.presentPublisher, perform: onPresent)
+    ///             .onReceive(presentationMode.dismissPublisher, perform: onDismiss)
     ///             .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: onDimmingViewTap)
     ///         }
     ///
@@ -96,14 +96,14 @@ extension View {
     ///             isPresented = false
     ///         }
     ///
-    ///         private func animateIn() {
+    ///         private func onPresent() {
     ///             withAnimation(
     ///                 .easeInOut(duration: 0.3),
     ///                 { isPresentedInternally = true }
     ///             )
     ///         }
     ///
-    ///         private func animateOut(
+    ///         private func onDismiss(
     ///             completion: @escaping () -> Void
     ///         ) {
     ///             withAnimation(
