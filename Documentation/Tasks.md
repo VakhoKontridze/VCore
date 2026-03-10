@@ -74,7 +74,7 @@ There are cases when reetrancy doesn't have to be considered. Such as switching 
 extension View {
     func galleryPhotoPicker(
         isPresented: Binding<Bool>,
-        onSelect selectionHandler: @escaping @Sendable (Data?) -> Void
+        onSelect: @escaping @Sendable (Data?) -> Void
     ) -> some View {
         self
             .photosPicker(
@@ -87,7 +87,7 @@ extension View {
                         photoPickerItem.loadTransferable(type: Data.self) { result in
                             Task { @MainActor in
                                 let data: Data? = try? result.get()
-                                selectionHandler(data)
+                                onSelect(data)
                             }
                         }
                     }

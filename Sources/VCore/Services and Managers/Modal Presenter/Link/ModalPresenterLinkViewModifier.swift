@@ -18,8 +18,8 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
     @Binding private var isPresented: Bool
 
     // MARK: Properties - Actions
-    private let presentHandler: (() -> Void)?
-    private let dismissHandler: (() -> Void)?
+    private let onPresent: (() -> Void)?
+    private let onDismiss: (() -> Void)?
 
     // MARK: Properties - Content
     private let modalContent: () -> ModalContent
@@ -32,15 +32,15 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
         link: ModalPresenterLink,
         appearance: ModalPresenterLinkAppearance,
         isPresented: Binding<Bool>,
-        onPresent presentHandler: (() -> Void)?,
-        onDismiss dismissHandler: (() -> Void)?,
+        onPresent: (() -> Void)?,
+        onDismiss: (() -> Void)?,
         @ViewBuilder content modalContent: @escaping () -> ModalContent
     ) {
         self.link = link
         self.appearance = appearance
         self._isPresented = isPresented
-        self.presentHandler = presentHandler
-        self.dismissHandler = dismissHandler
+        self.onPresent = onPresent
+        self.onDismiss = onDismiss
         self.modalContent = modalContent
         self._internalPresentationMode = State(
             wrappedValue: ModalPresenterInternalPresentationModeRegistrar.shared.resolve(
@@ -81,7 +81,7 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
                 link: link,
                 appearance: appearance,
                 view: { modalContent().eraseToAnyView() },
-                completion: { presentHandler?() }
+                completion: { onPresent?() }
             )
         )
     }
@@ -100,7 +100,7 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
         internalPresentationMode.dismissSubject.send(
             ModalPresenterInternalPresentationMode.DismissData(
                 link: link,
-                completion: { dismissHandler?() }
+                completion: { onDismiss?() }
             )
         )
     }

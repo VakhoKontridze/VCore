@@ -13,17 +13,17 @@ import SwiftUI
 struct SwiftUIGestureBaseButton_UIKit: UIViewRepresentable {
     // MARK: Properties
     private let isEnabled: Bool
-    private let stateChangeHandler: (GestureBaseButtonGestureState) -> Void
+    private let onStateChange: (GestureBaseButtonGestureState) -> Void
     
     @State private var gestureRecognizer: UIKitBaseButtonGestureRecognizer?
     
     // MARK: Initializers
     init(
         isEnabled: Bool,
-        onStateChange stateChangeHandler: @escaping (GestureBaseButtonGestureState) -> Void
+        onStateChange: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
         self.isEnabled = isEnabled
-        self.stateChangeHandler = stateChangeHandler
+        self.onStateChange = onStateChange
     }
     
     // MARK: Representable
@@ -31,7 +31,7 @@ struct SwiftUIGestureBaseButton_UIKit: UIViewRepresentable {
         let view: UIView = .init(frame: .zero)
         
         Task { @MainActor in
-            let gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: stateChangeHandler)
+            let gestureRecognizer: UIKitBaseButtonGestureRecognizer = .init(onStateChange: onStateChange)
             self.gestureRecognizer = gestureRecognizer
             
             view.addGestureRecognizer(gestureRecognizer)
@@ -43,7 +43,7 @@ struct SwiftUIGestureBaseButton_UIKit: UIViewRepresentable {
     func updateUIView(_ uiView: UIView, context: Context) {
         guard let gestureRecognizer else { return }
         
-        gestureRecognizer.setStateChangeHandler(to: stateChangeHandler)
+        gestureRecognizer.setOnStateChange(to: onStateChange)
         gestureRecognizer.isEnabled = isEnabled
     }
 }

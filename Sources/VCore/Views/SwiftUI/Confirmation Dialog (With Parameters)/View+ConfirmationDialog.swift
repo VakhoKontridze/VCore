@@ -48,7 +48,7 @@ extension View {
                     if let buttons: [any ConfirmationDialogButtonProtocol] = parameters.wrappedValue?.buttons() {
                         // Native `View.alert(...)` doesn't react to changes, so using `offset` as ID is okay
                         ForEach(buttons.enumeratedArray(), id: \.offset) { (_, button) in
-                            button.makeBody(animateOutHandler: { completion in
+                            button.makeBody(animateOut: { completion in
                                 completion?()
                             })
                         }

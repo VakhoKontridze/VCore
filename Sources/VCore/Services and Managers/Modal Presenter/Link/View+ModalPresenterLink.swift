@@ -118,8 +118,8 @@ extension View {
         link: ModalPresenterLink,
         appearance: ModalPresenterLinkAppearance = .init(),
         isPresented: Binding<Bool>,
-        onPresent presentHandler: (() -> Void)? = nil,
-        onDismiss dismissHandler: (() -> Void)? = nil,
+        onPresent: (() -> Void)? = nil,
+        onDismiss: (() -> Void)? = nil,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View
         where Content: View
@@ -130,8 +130,8 @@ extension View {
                     link: link,
                     appearance: appearance,
                     isPresented: isPresented,
-                    onPresent: presentHandler,
-                    onDismiss: dismissHandler,
+                    onPresent: onPresent,
+                    onDismiss: onDismiss,
                     content: content
                 )
             )

@@ -18,10 +18,10 @@ final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureReco
             guard newValue != .changed else { return } // Not used
             
             super.state = newValue
-            stateChangeHandler(GestureBaseButtonGestureState(state: newValue))
+            onStateChange(GestureBaseButtonGestureState(state: newValue))
         }
     }
-    private var stateChangeHandler: (GestureBaseButtonGestureState) -> Void
+    private var onStateChange: (GestureBaseButtonGestureState) -> Void
     
     private lazy var model: GestureBaseButtonModel = .init(
         stateSetter: { [weak self] in self?.state = $0 }
@@ -29,9 +29,9 @@ final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureReco
     
     // MARK: Initializers
     init(
-        onStateChange stateChangeHandler: @escaping (GestureBaseButtonGestureState) -> Void
+        onStateChange: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
-        self.stateChangeHandler = stateChangeHandler
+        self.onStateChange = onStateChange
         
         super.init(target: nil, action: nil)
         
@@ -39,10 +39,10 @@ final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureReco
     }
     
     // MARK: Configuration
-    func setStateChangeHandler(
-        to stateChangeHandler: @escaping (GestureBaseButtonGestureState) -> Void
+    func setOnStateChange(
+        to onStateChange: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
-        self.stateChangeHandler = stateChangeHandler
+        self.onStateChange = onStateChange
     }
     
     // MARK: Touches

@@ -149,7 +149,7 @@ Then, a method of presentation is needed to manage modal lifecycle. `Bool` is th
 
 Then, we can declare parameters that are needed for the contents of the modal.
 
-Modal can be linked using `modalPresenterLink(...)` API [3]. It takes `link` as parameter [4]. It also handles present and dismiss lifecycle event handlers [5] [6].
+Modal can be linked using `modalPresenterLink(...)` API [3]. It takes `link` as parameter [4]. It also handles present and dismiss lifecycle event actions [5] [6].
 
 #### Modal Implementation
 

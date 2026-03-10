@@ -226,7 +226,7 @@ Following gateway initiates a request to retrieve a `UIImage` with from an url, 
 protocol FetchImageGatewayProtocol {
     func fetch(
         with input: FetchImageGatewayInput,
-        onProgressChange progressHandler: (Double) -> Void
+        onProgressChange: (Double) -> Void
     ) async throws -> FetchImageGatewayOutput
 }
 
@@ -241,7 +241,7 @@ struct FetchImageGatewayOutput {
 struct FetchImageGateway: FetchImageGatewayProtocol {
     func fetch(
         with input: FetchImageGatewayInput,
-        onProgressChange progressHandler: (Double) -> Void
+        onProgressChange: (Double) -> Void
     ) async throws -> FetchImageGatewayOutput {
         guard let url: URL = .init(string: input.url) else { throw URLError(.badURL) }
 
@@ -266,7 +266,7 @@ struct FetchImageGateway: FetchImageGatewayProtocol {
                 progress - progressPrevious > 0.01 ||
                 progress == 1
             {
-                progressHandler(progress)
+                onProgressChange(progress)
                 progressPrevious = progress
             }
         }

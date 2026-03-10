@@ -107,7 +107,7 @@ import UIKit
 ///         }
 ///
 ///         func configure(action: @escaping () -> Void) {
-///             baseButton.stateChangeHandler = { [weak self] gestureState in
+///             baseButton.onStateChange = { [weak self] gestureState in
 ///                 guard let self else { return }
 ///
 ///                 internalState = PlainButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: gestureState.didRecognizePress)
@@ -138,7 +138,7 @@ open class UIKitBaseButton: UIView {
         guard let self else { return }
         
         internalButtonState = .init(isEnabled: buttonState.isGestureEnabled, isPressed: gestureState.didRecognizeClick)
-        stateChangeHandler(gestureState)
+        onStateChange(gestureState)
     })
     
     /// Indicates if interaction is enabled.
@@ -158,15 +158,15 @@ open class UIKitBaseButton: UIView {
     /// Internal button state.
     private(set) open var internalButtonState: UIKitBaseButtonInternalState = .default
     
-    /// State change handler.
-    open var stateChangeHandler: (GestureBaseButtonGestureState) -> Void
+    /// State change action.
+    open var onStateChange: (GestureBaseButtonGestureState) -> Void
     
     // MARK: Initializers
-    /// Initializes `UIKitBaseButton` with state change handler.
+    /// Initializes `UIKitBaseButton` with state change action.
     public init(
-        onStateChange stateChangeHandler: @escaping (GestureBaseButtonGestureState) -> Void
+        onStateChange: @escaping (GestureBaseButtonGestureState) -> Void
     ) {
-        self.stateChangeHandler = stateChangeHandler
+        self.onStateChange = onStateChange
         super.init(frame: .zero)
     }
     
@@ -316,7 +316,7 @@ private final class PlainButton: UIView {
     }
 
     func configure(action: @escaping () -> Void) {
-        baseButton.stateChangeHandler = { [weak self] gestureState in
+        baseButton.onStateChange = { [weak self] gestureState in
             guard let self else { return }
 
             internalState = PlainButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: gestureState.didRecognizePress)

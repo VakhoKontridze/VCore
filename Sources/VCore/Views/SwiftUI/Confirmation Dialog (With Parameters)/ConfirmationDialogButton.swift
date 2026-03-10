@@ -29,13 +29,13 @@ public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
 
     // MARK: Button Protocol
     public func makeBody(
-        animateOutHandler: @escaping (/*completion*/ (() -> Void)?) -> Void
+        animateOut: @escaping (/*completion*/ (() -> Void)?) -> Void
     ) -> AnyView {
         Button(
             title,
             role: role
         ) {
-            animateOutHandler(/*completion: */action)
+            animateOut(/*completion: */action)
         }
         .disabled(!isEnabled)
         .eraseToAnyView()
