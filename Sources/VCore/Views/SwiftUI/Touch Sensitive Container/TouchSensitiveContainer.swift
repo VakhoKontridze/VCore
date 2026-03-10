@@ -128,7 +128,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
         if let delay = delay.nonZero {
             // No need to handle reentrancy and cancellation
             Task { @MainActor in
-                try await Task.sleep(for: .seconds(delay))
+                try? await Task.sleep(for: .seconds(delay))
                 block()
             }
         } else {
