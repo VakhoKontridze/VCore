@@ -111,23 +111,14 @@ private final class ContinuationHolder<Value>: Sendable {
 import SwiftUI
 
 #Preview {
-    ContentView()
-}
+    @Previewable @State var viewModel: ViewModel = .init()
 
-// Macros aren't allowed in Preview macro
-private struct ContentView: View {
-    // MARK: Properties
-    @State private var viewModel: ViewModel = .init()
+    VStack {
+        Text(String(viewModel.count.value))
 
-    // MARK: Body
-    var body: some View {
-        VStack {
-            Text(String(viewModel.count.value))
-
-            Button("Update") {
-                viewModel.count.value += 1
-                viewModel.count.value += 1
-            }
+        Button("Update") {
+            viewModel.count.value += 1
+            viewModel.count.value += 1
         }
     }
 }
