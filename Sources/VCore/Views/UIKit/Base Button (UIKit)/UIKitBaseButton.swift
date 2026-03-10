@@ -35,8 +35,11 @@ import UIKit
 ///
 ///     final class PlainButton: UIView {
 ///         // Action is passed during configuration
-///         private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateAppearanceChange() })
-///             .withTranslatesAutoresizingMaskIntoConstraints(false)
+///         private lazy var baseButton: UIKitBaseButton = {
+///             let button: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateAppearanceChange() })
+///             button.translatesAutoresizingMaskIntoConstraints = false
+///             return button
+///         }()
 ///
 ///         private let titleLabel: UILabel = {
 ///             let label: UILabel = .init()
@@ -248,8 +251,11 @@ private final class PlainButton: UIView {
     
     // MARK: Properties - Subviews
     // Action is passed during configuration
-    private lazy var baseButton: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateAppearanceChange() })
-        .withTranslatesAutoresizingMaskIntoConstraints(false)
+    private lazy var baseButton: UIKitBaseButton = {
+        let button: UIKitBaseButton = .init(action: { [weak self] in self?.configureFromStateAppearanceChange() })
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
 
     private let titleLabel: UILabel = {
         let label: UILabel = .init()

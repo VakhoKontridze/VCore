@@ -60,6 +60,7 @@ Extensions
 - `View.getSize(_:)` is removed, as it's obsoleted by `View.onGeometryChange(for:of:_:)`
 - `View.withDisabledKeyboardResponsiveness(regions:edges:)` and `UIHostingController.overrideBehaviors(_:)` are removed, as they broke in `iOS` `26.0`, and are generally unsafe to use
 - `Array.asyncSorted(by:)` and `Array.asyncSort(by:)` methods are removed
+- `UIView.withTranslatesAutoresizingMaskIntoConstraints(_:)` method is removed
 
 Global Functions
 
