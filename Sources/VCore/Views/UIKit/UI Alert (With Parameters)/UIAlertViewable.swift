@@ -65,7 +65,7 @@ extension UIAlertViewable where Self: UIViewController {
             button.setTitle("Present", for: .normal)
             button.setTitleColor(UIColor.systemBlue, for: .normal)
             button.addAction(
-                UIAction { [weak self] _ in self?.didTapPresentButton() },
+                UIAction { [weak self] _ in self?.onPresent() },
                 for: .touchUpInside
             )
 
@@ -78,7 +78,7 @@ extension UIAlertViewable where Self: UIViewController {
         }
 
         // MARK: Actions
-        private func didTapPresentButton() {
+        private func onPresent() {
             presentAlert(
                 parameters: UIAlertParameters(
                     title: "Lorem Ipsum",

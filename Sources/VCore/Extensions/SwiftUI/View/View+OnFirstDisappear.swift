@@ -27,7 +27,7 @@ private struct OnFirstDisappearModifier: ViewModifier {
     // MARK: Properties
     private let action: (() -> Void)?
 
-    @State private var didDisappearForTheFirstTime: Bool = false
+    @State private var didDisappear: Bool = false
 
     // MARK: Initializers
     init(
@@ -40,8 +40,8 @@ private struct OnFirstDisappearModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .onDisappear {
-                if !didDisappearForTheFirstTime {
-                    didDisappearForTheFirstTime = true
+                if !didDisappear {
+                    didDisappear = true
                     action?()
                 }
             }

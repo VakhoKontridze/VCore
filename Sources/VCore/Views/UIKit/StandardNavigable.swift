@@ -14,8 +14,8 @@ import UIKit
 ///     final class ViewController: UIViewController, StandardNavigable {
 ///         var viewModel: ViewModel!
 ///
-///         func didTapButton() {
-///             viewModel.didTapButton()
+///         func onContinue() {
+///             viewModel.doSomething()
 ///         }
 ///     }
 ///
@@ -31,7 +31,7 @@ import UIKit
 ///             self.router = router
 ///         }
 ///
-///         func didTapButton() {
+///         func doSomething() {
 ///             router.toDestination()
 ///         }
 ///     }

@@ -52,10 +52,10 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text(interfaceOrientation.isLandscape ? "Landscape" : "Portrait")
-    ///             .getPlatformInterfaceOrientation { interfaceOrientation = $0 }
+    ///             .onPlatformInterfaceOrientationChange { interfaceOrientation = $0 }
     ///     }
     ///
-    public func getPlatformInterfaceOrientation(
+    public func onPlatformInterfaceOrientationChange(
         _ action: @escaping (PlatformInterfaceOrientation) -> Void
     ) -> some View {
 #if os(macOS) || os(tvOS) || os(watchOS) || os(visionOS)
@@ -63,7 +63,7 @@ extension View {
             .onFirstAppear { action(.portrait) }
 #else
         self
-            .getInterfaceOrientation { action(PlatformInterfaceOrientation(uiIInterfaceOrientation: $0)) }
+            .onInterfaceOrientationChange { action(PlatformInterfaceOrientation(uiIInterfaceOrientation: $0)) }
 #endif
     }
 }

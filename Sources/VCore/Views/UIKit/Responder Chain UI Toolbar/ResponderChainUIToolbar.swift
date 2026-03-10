@@ -59,13 +59,13 @@ open class ResponderChainUIToolbar: UIToolbar {
 
     // MARK: Properties - Actions
     /// Action that runs when arrow up button is tapped.
-    open var arrowUpButtonAction: (() -> Void)?
+    open var onUp: (() -> Void)?
 
     /// Action that runs when arrow down button is tapped.
-    open var arrowDownButtonAction: (() -> Void)?
+    open var onDown: (() -> Void)?
 
     /// Action that runs when done button is tapped.
-    open var doneButtonAction: (() -> Void)?
+    open var onDone: (() -> Void)?
     
     // MARK: Properties - Subviews
     /// Button that focuses responder that's up in responder chain.
@@ -73,7 +73,7 @@ open class ResponderChainUIToolbar: UIToolbar {
         image: UIImage(systemName: "chevron.up"),
         style: .plain,
         target: self,
-        action: #selector(didTapArrowUpButton)
+        action: #selector(onUp_Selector)
     )
 
     /// Button that focuses responder that's down in responder chain.
@@ -81,7 +81,7 @@ open class ResponderChainUIToolbar: UIToolbar {
         image: UIImage(systemName: "chevron.down"),
         style: .plain,
         target: self,
-        action: #selector(didTapArrowDownButton)
+        action: #selector(onDown_Selector)
     )
 
     private lazy var spacer: UIBarButtonItem = .init(
@@ -95,7 +95,7 @@ open class ResponderChainUIToolbar: UIToolbar {
         title: VCoreLocalizationManager.shared.localizationProvider.responderChainToolbarDoneButtonTitle,
         style: .done,
         target: self,
-        action: #selector(didTapDoneButton)
+        action: #selector(onDone_Selector)
     )
 
     // MARK: Initializers
@@ -121,18 +121,18 @@ open class ResponderChainUIToolbar: UIToolbar {
     convenience public init(
         appearance: ResponderChainUIToolbarAppearance = .init(),
         size: CGSize,
-        arrowUpButtonAction: (() -> Void)?,
-        arrowDownButtonAction: (() -> Void)?,
-        doneButtonAction: (() -> Void)?
+        onUp: (() -> Void)?,
+        onDown: (() -> Void)?,
+        onDone: (() -> Void)?
     ) {
         self.init(
             appearance: appearance,
             size: size
         )
 
-        self.arrowUpButtonAction = arrowUpButtonAction
-        self.arrowDownButtonAction = arrowDownButtonAction
-        self.doneButtonAction = doneButtonAction
+        self.onUp = onUp
+        self.onDown = onDown
+        self.onDone = onDone
     }
 
     @available(*, unavailable)
@@ -184,20 +184,20 @@ open class ResponderChainUIToolbar: UIToolbar {
     // MARK: Actions
     /// Selector that runs when arrow up button is tapped.
     @objc 
-    open func didTapArrowUpButton(sender: UIBarButtonItem) -> Void {
-        arrowUpButtonAction?()
+    open func onUp_Selector(sender: UIBarButtonItem) -> Void {
+        onUp?()
     }
 
     /// Selector that runs when arrow down button is tapped.
     @objc 
-    open func didTapArrowDownButton(sender: UIBarButtonItem) -> Void {
-        arrowDownButtonAction?()
+    open func onDown_Selector(sender: UIBarButtonItem) -> Void {
+        onDown?()
     }
 
     /// Selector that runs when done button is tapped.
     @objc 
-    open func didTapDoneButton(sender: UIBarButtonItem) -> Void {
-        doneButtonAction?()
+    open func onDone_Selector(sender: UIBarButtonItem) -> Void {
+        onDone?()
     }
 }
 

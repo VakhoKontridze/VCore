@@ -1,5 +1,5 @@
 //
-//  View+GetInterfaceOrientation.swift
+//  View+OnInterfaceOrientationChange.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 06.08.23.
@@ -10,22 +10,22 @@
 import SwiftUI
 
 extension View {
-    /// Retrieves `UIInterfaceOrientation` from `View`.
+    /// Adds an action to be performed when `UIInterfaceOrientation` changes.
     ///
     ///     @State private var interfaceOrientation: UIInterfaceOrientation = .unknown
     ///
     ///     var body: some View {
     ///         Text(interfaceOrientation.isLandscape ? "Landscape" : "Portrait")
-    ///             .getInterfaceOrientation { interfaceOrientation = $0 }
+    ///             .onInterfaceOrientationChange { interfaceOrientation = $0 }
     ///     }
     ///
-    public func getInterfaceOrientation(
-        _ action: @escaping (UIInterfaceOrientation) -> Void
+    public func onInterfaceOrientationChange(
+        action: @escaping (UIInterfaceOrientation) -> Void
     ) -> some View {
         self
             .background {
                 InterfaceOrientationReaderView(
-                    completion: action
+                    onChange: action
                 )
                 .allowsHitTesting(false) // Avoids blocking gestures
             }
@@ -34,18 +34,20 @@ extension View {
 
 private struct InterfaceOrientationReaderView: UIViewControllerRepresentable {
     // MARK: Properties
-    private let completion: (UIInterfaceOrientation) -> Void
+    private let onChange: (UIInterfaceOrientation) -> Void
 
     // MARK: Initializers
     init(
-        completion: @escaping  (UIInterfaceOrientation) -> Void
+        onChange: @escaping  (UIInterfaceOrientation) -> Void
     ) {
-        self.completion = completion
+        self.onChange = onChange
     }
 
     // MARK: View Controller Representable
     func makeUIViewController(context: Context) -> _InterfaceOrientationReaderViewController {
-        .init(completion: completion)
+        .init(
+            onChange: onChange
+        )
     }
 
     func updateUIViewController(_ uiViewController: _InterfaceOrientationReaderViewController, context: Context) {}
@@ -53,14 +55,14 @@ private struct InterfaceOrientationReaderView: UIViewControllerRepresentable {
 
 private final class _InterfaceOrientationReaderViewController: UIViewController {
     // MARK: Properties
-    private let completion: (UIInterfaceOrientation) -> Void
+    private let onChange: (UIInterfaceOrientation) -> Void
     private var lastInterfaceOrientation: UIInterfaceOrientation?
 
     // MARK: Initializers
     init(
-        completion: @escaping (UIInterfaceOrientation) -> Void
+        onChange: @escaping (UIInterfaceOrientation) -> Void
     ) {
-        self.completion = completion
+        self.onChange = onChange
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -100,7 +102,7 @@ private final class _InterfaceOrientationReaderViewController: UIViewController 
             return
         }
 
-        completion(interfaceOrientation)
+        onChange(interfaceOrientation)
 
         lastInterfaceOrientation = interfaceOrientation
     }

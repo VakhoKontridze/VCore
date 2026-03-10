@@ -62,6 +62,9 @@ Extensions
 - `View.withDisabledKeyboardResponsiveness(regions:edges:)` and `UIHostingController.overrideBehaviors(_:)` are removed, as they broke in `iOS` `26.0`, and are generally unsafe to use
 - `Array.asyncSorted(by:)` and `Array.asyncSort(by:)` methods are removed
 - `UIView.withTranslatesAutoresizingMaskIntoConstraints(_:)` method is removed
+- `View.getInterfaceOrientation(_:)` is renamed to `View.onInterfaceOrientationChange(action:)`
+- `View.getNestedSize(_:)` is renamed to `View.onNestedSizeChange(action:)`
+- `View.getWindow(_:)` is renamed to `View.onMoveToWindow(action:)`
 
 Global Functions
 

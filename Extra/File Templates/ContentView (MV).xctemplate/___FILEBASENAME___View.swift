@@ -42,7 +42,7 @@ struct ___VARIABLE_productName___View: View {
             backgroundView
             contentView
         }
-        .onFirstAppear(perform: didLoad)
+        .onFirstAppear(perform: onLoad)
 
         .inlineNavigationTitle("___VARIABLE_productName___")
 
@@ -60,7 +60,7 @@ struct ___VARIABLE_productName___View: View {
     }
 
     // MARK: Lifecycle
-    private func didLoad() {
+    private func onLoad() {
         // ...
     }
     

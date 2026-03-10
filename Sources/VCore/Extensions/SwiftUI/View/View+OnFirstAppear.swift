@@ -27,7 +27,7 @@ private struct OnFirstAppearModifier: ViewModifier {
     // MARK: Properties
     private let action: (() -> Void)?
 
-    @State private var didAppearForTheFirstTime: Bool = false
+    @State private var didAppear: Bool = false
 
     // MARK: Initializers
     init(
@@ -40,8 +40,8 @@ private struct OnFirstAppearModifier: ViewModifier {
     func body(content: Content) -> some View {
         content
             .onAppear {
-                if !didAppearForTheFirstTime {
-                    didAppearForTheFirstTime = true
+                if !didAppear {
+                    didAppear = true
                     action?()
                 }
             }

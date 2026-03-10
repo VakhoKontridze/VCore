@@ -103,11 +103,11 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     private var backgroundView: some View {
         appearance.backgroundColors.value(for: internalState)
             .contentShape(.rect)
-            .onTapGesture(count: appearance.tapCount, perform: didPerformInteraction)
+            .onTapGesture(count: appearance.tapCount, perform: onTapGesture)
     }
 
     // MARK: Actions
-    private func didPerformInteraction() {
+    private func onTapGesture() {
         guard appearance.isTapEnabled else { return }
         
         isPressed = true

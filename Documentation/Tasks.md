@@ -20,16 +20,12 @@ Methods inside views should be synchronous so that they are easier to call from 
 ```swift
 var body: some View {
     Button(
-        "Lorem ipsum",
-        action: didTapButton
+        "Do Something",
+        action: onDoSomething
     )
 }
 
-private func didTapButton() {
-    doSomething()
-}
-
-private func doSomething() {}
+private func onDoSomething() {}
     Task { @MainActor in
         await ...
     }
@@ -191,16 +187,12 @@ struct HomeView: View {
     var body: some View {
         Button(
             "Fetch Data",
-            action: didTapFetchDataButton
+            action: onFetch
         )
         .disabled(!isFetchDataButtonEnabled)
     }
     
-    private func didTapFetchDataButton() {
-        fetchData()
-    }
-    
-    private func fetchData() {
+    private func onFetch() {
         fetchDataTask = Task { @MainActor in
             defer { fetchDataTask = nil }
             

@@ -1,5 +1,5 @@
 //
-//  View+GetWindow.swift
+//  View+OnMoveToWindow.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 06.08.23.
@@ -14,18 +14,18 @@ extension View {
     ///
     ///     var body: some View {
     ///         Color.accentColor
-    ///             .getWindow { window in
+    ///             .onMoveToWindow { window in
     ///                 ...
     ///             }
     ///     }
     ///
-    public func getWindow(
-        _ action: @escaping (UIWindow) -> Void
+    public func onMoveToWindow(
+        action: @escaping (UIWindow) -> Void
     ) -> some View {
         self
             .background {
                 WindowReaderView(
-                    completion: action
+                    onMoveToWindow: action
                 )
                 .allowsHitTesting(false) // Avoids blocking gestures
             }
@@ -34,18 +34,20 @@ extension View {
 
 private struct WindowReaderView: UIViewRepresentable {
     // MARK: Properties
-    private let completion: (UIWindow) -> Void
+    private let onMoveToWindow: (UIWindow) -> Void
 
     // MARK: Initializers
     init(
-        completion: @escaping  (UIWindow) -> Void
+        onMoveToWindow: @escaping  (UIWindow) -> Void
     ) {
-        self.completion = completion
+        self.onMoveToWindow = onMoveToWindow
     }
 
     // MARK: View Representable
     func makeUIView(context: Context) -> _WindowReaderView {
-        .init(completion: completion)
+        .init(
+            onMoveToWindow: onMoveToWindow
+        )
     }
 
     func updateUIView(_ uiView: _WindowReaderView, context: Context) {}
@@ -53,14 +55,14 @@ private struct WindowReaderView: UIViewRepresentable {
 
 private final class _WindowReaderView: UIView {
     // MARK: Properties
-    private let completion: (UIWindow) -> Void
+    private let onMoveToWindow: (UIWindow) -> Void
     private var lastWindowIdentifier: ObjectIdentifier?
 
     // MARK: Initializers
     init(
-        completion: @escaping (UIWindow) -> Void
+        onMoveToWindow: @escaping (UIWindow) -> Void
     ) {
-        self.completion = completion
+        self.onMoveToWindow = onMoveToWindow
         super.init(frame: .zero)
     }
 
@@ -85,7 +87,7 @@ private final class _WindowReaderView: UIView {
 
         guard identifier != lastWindowIdentifier else { return }
 
-        completion(window)
+        onMoveToWindow(window)
 
         lastWindowIdentifier = identifier
     }

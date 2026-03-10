@@ -63,11 +63,11 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
                     dismissModal()
                 }
             }
-            .onDisappear(perform: didDisappear)
+            .onDisappear(perform: onDisappear)
     }
     
     // MARK: Lifecycle
-    private func didDisappear() {
+    private func onDisappear() {
         if appearance.dismissesModalWhenLinkDisappears {
             isPresented = false
             dismissModal() // Needed, despite setting flag to `false`
@@ -262,10 +262,10 @@ private struct Modal<Content>: View where Content: View {
 
         .onReceive(presentationMode.presentPublisher, perform: animateIn)
         .onReceive(presentationMode.dismissPublisher, perform: animateOut)
-        .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: didTapDimmingView)
+        .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: onDimmingViewTap)
     }
 
-    private func didTapDimmingView() {
+    private func onDimmingViewTap() {
         isPresented = false
     }
 

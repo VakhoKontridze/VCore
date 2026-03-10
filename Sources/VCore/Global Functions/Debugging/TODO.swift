@@ -9,7 +9,7 @@ import Foundation
 
 /// Calls `fatalError` because feature is not implemented.
 ///
-///     func didTapContinueButton() {
+///     func doSomething() {
 ///         TODO()
 ///     }
 ///

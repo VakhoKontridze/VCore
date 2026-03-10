@@ -1,5 +1,5 @@
 //
-//  View+GetNestedSize.swift
+//  View+OnNestedSizeChange.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 12.10.23.
@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-    /// Retrieves nested nested size from child `View`.
+    /// Adds an action to be performed when size from nested child changed.
     ///
     /// Can be used for wrapping `TabView` to it's content.
     ///
@@ -24,13 +24,13 @@ extension View {
     ///         .tabViewStyle(.page(indexDisplayMode: .never))
     ///         .background(Color.gray)
     ///
-    ///         .getNestedSize { [$height] in $height.wrappedValue = max($0.height, 1) }  // `1` creates a non-zero buffer before height calculates
+    ///         .onNestedSizeChange { [$height] in $height.wrappedValue = max($0.height, 1) }  // `1` creates a non-zero buffer before height calculates
     ///         .frame(height: height)
     ///         .padding()
     ///     }
     ///
-    public func getNestedSize(
-        _ action: @escaping (CGSize) -> Void
+    public func onNestedSizeChange(
+        action: @escaping (CGSize) -> Void
     ) -> some View {
         self
             .onPreferenceChange(NestedSizePreferenceKey.self, perform: action)
@@ -39,11 +39,11 @@ extension View {
     /// Retrieves nested nested size from child `View` and assigns it on a `Binding`.
     ///
     /// For additional info, refer to `View.getNestedSize(_:)` method.
-    public func getNestedSize(
+    public func onNestedSizeChange(
         assignTo binding: Binding<CGSize>
     ) -> some View {
         self
-            .getNestedSize { binding.wrappedValue = $0 }
+            .onNestedSizeChange { binding.wrappedValue = $0 }
     }
 }
 
@@ -88,7 +88,7 @@ private struct NestedSizePreferenceKey: PreferenceKey {
     .tabViewStyle(.page(indexDisplayMode: .never))
     .background(Color.gray)
 
-    .getNestedSize { [$height] in $height.wrappedValue = max($0.height, 1) } // `1` creates a non-zero buffer before height calculates
+    .onNestedSizeChange { [$height] in $height.wrappedValue = max($0.height, 1) } // `1` creates a non-zero buffer before height calculates
     .frame(height: height)
     .padding()
 }

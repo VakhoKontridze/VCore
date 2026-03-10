@@ -68,9 +68,13 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
     func body(content: Content) -> some View {
         content
             // Reading environment
-            .getWindow(didReadWindow)
-            .getPlatformInterfaceOrientation { model.interfaceOrientation = $0 }
-            .getSafeAreaInsets(ignoredKeyboardSafeAreaEdges: .all, didReadSafeAreaInsets)
+            .onMoveToWindow(action: onReadWindow)
+            .onPlatformInterfaceOrientationChange { model.interfaceOrientation = $0 }
+            .background {
+                Color.clear
+                    .ignoresSafeArea(.keyboard)
+                    .onGeometryChange(of: { $0.safeAreaInsets }, action: onReadSafeAreaInsets)
+            }
 
             // Handling work
             .onReceive(internalPresentationMode.presentSubject) { workManager.addWork(.present($0)) }
@@ -79,9 +83,9 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
             .onChange(of: didReadEnvironment) { workManager.setEnabledStatus(to: $1) }
             .onReceive(workManager.publisher) { workType in
                 switch workType {
-                case .present(let data): didReceiveInternalPresentRequest(data)
-                case .update(let data): didReceiveInternalUpdateRequest(data)
-                case .dismiss(let data): didReceiveInternalDismissRequest(data)
+                case .present(let data): onReceiveInternalPresentRequest(data)
+                case .update(let data): onReceiveInternalUpdateRequest(data)
+                case .dismiss(let data): onReceiveInternalDismissRequest(data)
                 }
             }
         
@@ -90,7 +94,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
     }
     
     // MARK: Actions - Internal
-    private func didReadWindow(_ window: UIWindow) {
+    private func onReadWindow(_ window: UIWindow) {
         guard let windowScene: UIWindowScene = window.windowScene else {
             if let rootID: String = root.rootID {
                 Logger.modalPresenter.critical("Failed to extract 'UIWindowScene' from 'UIWindow' in Modal Presenter root with ID '\(rootID)'")
@@ -124,14 +128,14 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
         didReadWindow = true
     }
     
-    private func didReadSafeAreaInsets(_ safeAreaInsets: EdgeInsets) {
+    private func onReadSafeAreaInsets(_ safeAreaInsets: EdgeInsets) {
         model.safeAreaInsets = safeAreaInsets
         
         didReadSafeAreaInsets = true
     }
 
     // MARK: Actions - Presentation
-    private func didReceiveInternalPresentRequest(
+    private func onReceiveInternalPresentRequest(
         _ presentationData: ModalPresenterInternalPresentationMode.PresentationData
     ) {
         guard !model.modals.contains(where: { $0.id == presentationData.link.linkID }) else { return }
@@ -152,7 +156,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
         presentationData.completion()
     }
 
-    private func didReceiveInternalUpdateRequest(
+    private func onReceiveInternalUpdateRequest(
         _ updateData: ModalPresenterInternalPresentationMode.UpdateData
     ) {
         guard let index: Int = model.modals.firstIndex(where: { $0.id == updateData.link.linkID }) else { return }
@@ -161,7 +165,7 @@ struct ModalPresenterRootViewModifier_Window: ViewModifier {
         model.modals[index].view = updateData.view
     }
 
-    private func didReceiveInternalDismissRequest(
+    private func onReceiveInternalDismissRequest(
         _ dismissData: ModalPresenterInternalPresentationMode.DismissData
     ) {
         guard let modal: ModalPresenterRootModalData_Window = model.modals.first(where: { $0.id == dismissData.link.linkID }) else { return }

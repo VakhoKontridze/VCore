@@ -194,10 +194,10 @@ struct Modal<Content>: View where Content: View {
 
         .onReceive(presentationMode.presentPublisher, perform: animateIn) // [7]
         .onReceive(presentationMode.dismissPublisher, perform: animateOut) // [9]
-        .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: didTapDimmingView) // [13]
+        .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: onDimmingViewTap) // [13]
     }
 
-    private func didTapDimmingView() {
+    private func onDimmingViewTap() {
         isPresented = false // [14]
     }
 

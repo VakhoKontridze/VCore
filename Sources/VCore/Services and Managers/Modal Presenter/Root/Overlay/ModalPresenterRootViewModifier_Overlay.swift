@@ -68,8 +68,12 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     func body(content: Content) -> some View {
         content
             // Reading environment
-            .getPlatformInterfaceOrientation { interfaceOrientation = $0 }
-            .getSafeAreaInsets(ignoredKeyboardSafeAreaEdges: .all, didReadSafeAreaInsets)
+            .onPlatformInterfaceOrientationChange { interfaceOrientation = $0 }
+            .background {
+                Color.clear
+                    .ignoresSafeArea(.keyboard)
+                    .onGeometryChange(of: { $0.safeAreaInsets }, action: onReadSafeAreaInsets)
+            }
 
             // UI
             .overlay { layerView }
@@ -81,9 +85,9 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
             .onChange(of: didReadEnvironment) { workManager.setEnabledStatus(to: $1) }
             .onReceive(workManager.publisher) { workType in
                 switch workType {
-                case .present(let data): didReceiveInternalPresentRequest(data)
-                case .update(let data): didReceiveInternalUpdateRequest(data)
-                case .dismiss(let data): didReceiveInternalDismissRequest(data)
+                case .present(let data): onReceiveInternalPresentRequest(data)
+                case .update(let data): onReceiveInternalUpdateRequest(data)
+                case .dismiss(let data): onReceiveInternalDismissRequest(data)
                 }
             }
     }
@@ -175,14 +179,14 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     }
     
     // MARK: Actions - Internal
-    private func didReadSafeAreaInsets(_ safeAreaInsets: EdgeInsets) {
+    private func onReadSafeAreaInsets(_ safeAreaInsets: EdgeInsets) {
         self.safeAreaInsets = safeAreaInsets
         
         didReadSafeAreaInsets = true
     }
 
     // MARK: Actions - Presentation
-    private func didReceiveInternalPresentRequest(
+    private func onReceiveInternalPresentRequest(
         _ presentationData: ModalPresenterInternalPresentationMode.PresentationData
     ) {
         guard !modals.contains(where: { $0.id == presentationData.link.linkID }) else { return }
@@ -201,7 +205,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
         presentationData.completion()
     }
 
-    private func didReceiveInternalUpdateRequest(
+    private func onReceiveInternalUpdateRequest(
         _ updateData: ModalPresenterInternalPresentationMode.UpdateData
     ) {
         guard let index: Int = modals.firstIndex(where: { $0.id == updateData.link.linkID }) else { return }
@@ -210,7 +214,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
         modals[index].view = updateData.view
     }
 
-    private func didReceiveInternalDismissRequest(
+    private func onReceiveInternalDismissRequest(
         _ dismissData: ModalPresenterInternalPresentationMode.DismissData
     ) {
         guard let modal: ModalPresenterRootModalData_Overlay = modals.first(where: { $0.id == dismissData.link.linkID }) else { return }

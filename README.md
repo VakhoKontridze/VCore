@@ -195,7 +195,7 @@ var body: some View {
 Function that calls `fatalError` because feature is not implemented: 
 
 ```swift
-func didTapContinueButton() {
+func doSomething() {
     FIXME()
 }
 ```
