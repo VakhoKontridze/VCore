@@ -89,10 +89,10 @@ extension View {
     ///
     ///             .onReceive(presentationMode.presentPublisher, perform: onPresent)
     ///             .onReceive(presentationMode.dismissPublisher, perform: onDismiss)
-    ///             .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: onDimmingViewTap)
+    ///             .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: onTapDimmingView)
     ///         }
     ///
-    ///         private func onDimmingViewTap() {
+    ///         private func onTapDimmingView() {
     ///             isPresented = false
     ///         }
     ///
