@@ -19,7 +19,7 @@ public struct SystemKeyboardInfo: Sendable {
     /// Duration of the keyboard animation in seconds.
     public var animationDuration: TimeInterval
     
-    /// Animation curve that the system uses to animate the keyboard onto or off the screen.
+    /// Animation options that the system uses to animate the keyboard onto or off the screen.
     public var animationOptions: UIView.AnimationOptions
     
     // MARK: Initializers
