@@ -24,10 +24,10 @@ import UIKit
 ///             view.addSubview(gradientView)
 ///
 ///             NSLayoutConstraint.activate([
-///                 gradientView.constraintLeading(to: view, constant: 20),
-///                 gradientView.constraintTrailing(to: view, constant: -20),
-///                 gradientView.constraintTop(to: view, constant: 20),
-///                 gradientView.constraintBottom(to: view, constant: -20)
+///                 gradientView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+///                 gradientView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+///                 gradientView.topAnchor.constraint(equalTo: view.topAnchor, constant: 20),
+///                 gradientView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -20)
 ///             ])
 ///         }
 ///     }

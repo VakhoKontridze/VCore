@@ -317,10 +317,10 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             view.addSubview(collectionView)
 
             NSLayoutConstraint.activate([
-                collectionView.constraintLeading(to: view),
-                collectionView.constraintTrailing(to: view),
-                collectionView.constraintTop(to: view, layoutGuide: .safeArea),
-                collectionView.constraintBottom(to: view)
+                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
 
             collectionView.reloadData()

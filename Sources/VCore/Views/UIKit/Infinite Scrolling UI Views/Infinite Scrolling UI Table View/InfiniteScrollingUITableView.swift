@@ -220,10 +220,10 @@ open class InfiniteScrollingUITableView: UITableView {
             view.addSubview(tableView)
 
             NSLayoutConstraint.activate([
-                tableView.constraintLeading(to: view),
-                tableView.constraintTrailing(to: view),
-                tableView.constraintTop(to: view, layoutGuide: .safeArea),
-                tableView.constraintBottom(to: view)
+                tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+                tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
             ])
 
             tableView.reloadData()

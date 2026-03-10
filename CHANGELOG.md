@@ -16,6 +16,7 @@ Views
 - `ViewResettingContainerOO` is removed, as it's obsoleted by `ViewResettingContainer`
 - `InfiniteScrollingTableView` now has it's own Appearance. `paginationOffset` has been moved from the view itself to Appearance.
 - `InfiniteScrollingCollectionView` now has it's own Appearance
+- `NSLayoutConstraint` helpers have been removed
 
 Models
 

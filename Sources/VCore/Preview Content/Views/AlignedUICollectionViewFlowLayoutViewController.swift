@@ -86,10 +86,10 @@ final class AlignedUICollectionViewFlowLayoutViewController:
 
         view.addSubview(collectionView)
         NSLayoutConstraint.activate([
-            collectionView.constraintLeading(to: view, constant: 20),
-            collectionView.constraintTrailing(to: view, constant: -20),
-            collectionView.constraintTop(to: view, layoutGuide: .safeArea, constant: 20),
-            collectionView.constraintBottom(to: view, layoutGuide: .safeArea, constant: -20)
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: -20),
         ])
 
         collectionView.reloadData()
@@ -170,9 +170,10 @@ private final class AlignedUICollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
 
         NSLayoutConstraint.activate([
-            contentView.constraintWidth(to: nil, priority: .defaultLow)
+            contentView.widthAnchor.constraint(equalToConstant: 0)
+                .withPriority(.defaultLow)
                 .storing(in: &widthConstraint),
-            contentView.constraintHeight(to: nil, constant: 32)
+            contentView.heightAnchor.constraint(equalToConstant: 32)
         ])
     }
 

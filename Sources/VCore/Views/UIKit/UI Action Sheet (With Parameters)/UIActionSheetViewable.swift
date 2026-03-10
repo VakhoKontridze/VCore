@@ -72,8 +72,8 @@ extension UIActionSheetViewable where Self: UIViewController {
             view.addSubview(button)
 
             NSLayoutConstraint.activate([
-                button.constraintCenterX(to: view),
-                button.constraintCenterY(to: view)
+                button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                button.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
         }
 

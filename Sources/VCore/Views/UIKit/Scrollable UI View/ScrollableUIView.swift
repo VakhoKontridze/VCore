@@ -93,17 +93,19 @@ open class ScrollableUIView: UIView {
         let heightConstraintPriority: UILayoutPriority? = scrollDirection.contains(.vertical) ? .defaultLow : nil
         
         NSLayoutConstraint.activate([
-            scrollView.constraintLeading(to: self),
-            scrollView.constraintTrailing(to: self),
-            scrollView.constraintTop(to: self),
-            scrollView.constraintBottom(to: self),
+            scrollView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            scrollView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            scrollView.topAnchor.constraint(equalTo: topAnchor),
+            scrollView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
-            contentView.constraintWidth(to: scrollView, priority: widthConstraintPriority),
-            contentView.constraintHeight(to: scrollView, priority: heightConstraintPriority),
-            contentView.constraintLeading(to: scrollView),
-            contentView.constraintTrailing(to: scrollView),
-            contentView.constraintTop(to: scrollView),
-            contentView.constraintBottom(to: scrollView)
+            contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor)
+                .withPriority(widthConstraintPriority),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+                .withPriority(heightConstraintPriority),
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor)
         ])
     }
 }
@@ -126,16 +128,16 @@ open class ScrollableUIView: UIView {
     scrollableView.contentView.addSubview(view2)
 
     NSLayoutConstraint.activate([
-        view1.constraintHeight(to: nil, constant: 500),
-        view1.constraintLeading(to: scrollableView.contentView),
-        view1.constraintTrailing(to: scrollableView.contentView),
-        view1.constraintTop(to: scrollableView.contentView),
+        view1.heightAnchor.constraint(equalToConstant: 500),
+        view1.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor),
+        view1.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor),
+        view1.topAnchor.constraint(equalTo: scrollableView.contentView.topAnchor),
 
-        view2.constraintHeight(to: nil, constant: 500),
-        view2.constraintLeading(to: scrollableView.contentView),
-        view2.constraintTrailing(to: scrollableView.contentView),
-        view2.constraintTop(to: view1, attribute: .bottom, constant: 20),
-        view2.constraintBottom(to: scrollableView.contentView)
+        view2.heightAnchor.constraint(equalToConstant: 500),
+        view2.leadingAnchor.constraint(equalTo: scrollableView.contentView.leadingAnchor),
+        view2.trailingAnchor.constraint(equalTo: scrollableView.contentView.trailingAnchor),
+        view2.topAnchor.constraint(equalTo: view1.bottomAnchor, constant: 20),
+        view2.bottomAnchor.constraint(equalTo: scrollableView.contentView.bottomAnchor)
     ])
 
     return scrollableView

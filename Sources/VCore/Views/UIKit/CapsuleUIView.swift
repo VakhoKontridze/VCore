@@ -31,8 +31,8 @@ open class CapsuleUIView: UIView {
     view.backgroundColor = UIColor.systemBlue
 
     NSLayoutConstraint.activate([
-        view.constraintWidth(to: nil, constant: 100),
-        view.constraintHeight(to: nil, constant: 100)
+        view.widthAnchor.constraint(equalToConstant: 200),
+        view.heightAnchor.constraint(equalToConstant: 100)
     ])
 
     return view

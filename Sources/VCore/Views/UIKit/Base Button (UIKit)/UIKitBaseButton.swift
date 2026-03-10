@@ -81,12 +81,12 @@ import UIKit
 ///             addSubview(titleLabel)
 ///
 ///             NSLayoutConstraint.activate([
-///                 baseButton.leadingAnchor.constraint(equalTo: leadingAnchor),
+///                 baseButton.leadingAnchor.constraint(equalTo: leftAnchor),
 ///                 baseButton.trailingAnchor.constraint(equalTo: trailingAnchor),
 ///                 baseButton.topAnchor.constraint(equalTo: topAnchor),
 ///                 baseButton.bottomAnchor.constraint(equalTo: bottomAnchor),
 ///
-///                 titleLabel.constraintHeight(to: nil, constant: titleLabel.singleLineHeight),
+///                 titleLabel.heightAnchor.constraint(equalToConstant: titleLabel.singleLineHeight),
 ///                 titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
 ///                 titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 ///                 titleLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -289,16 +289,16 @@ private final class PlainButton: UIView {
         addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
-            baseButton.constraintLeading(to: self),
-            baseButton.constraintTrailing(to: self),
-            baseButton.constraintTop(to: self),
-            baseButton.constraintBottom(to: self),
+            baseButton.leadingAnchor.constraint(equalTo: leftAnchor),
+            baseButton.trailingAnchor.constraint(equalTo: trailingAnchor),
+            baseButton.topAnchor.constraint(equalTo: topAnchor),
+            baseButton.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            titleLabel.constraintHeight(to: nil, constant: titleLabel.singleLineHeight),
-            titleLabel.constraintLeading(to: self),
-            titleLabel.constraintTrailing(to: self),
-            titleLabel.constraintTop(to: self),
-            titleLabel.constraintBottom(to: self)
+            titleLabel.heightAnchor.constraint(equalToConstant: titleLabel.singleLineHeight),
+            titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
+            titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            titleLabel.topAnchor.constraint(equalTo: topAnchor),
+            titleLabel.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
 

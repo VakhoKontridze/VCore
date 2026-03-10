@@ -261,10 +261,10 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             view.addSubview(collectionView)
             
             NSLayoutConstraint.activate([
-                collectionView.constraintHeight(to: nil, constant: 100),
-                collectionView.constraintLeading(to: view),
-                collectionView.constraintTrailing(to: view),
-                collectionView.constraintCenterY(to: view)
+                collectionView.heightAnchor.constraint(equalToConstant: 100),
+                collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+                collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+                collectionView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
             ])
             
             collectionView.reloadData()

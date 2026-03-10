@@ -22,8 +22,8 @@ extension NSLayoutConstraint {
     ///             .withPriority(.defaultHigh)
     ///     ])
     ///
-    public func withPriority(_ priority: UILayoutPriority) -> NSLayoutConstraint {
-        self.priority = priority
+    public func withPriority(_ priority: UILayoutPriority?) -> NSLayoutConstraint {
+        priority.map { self.priority = $0 }
         return self
     }
 #endif
@@ -36,8 +36,8 @@ extension NSLayoutConstraint {
     ///             .withPriority(.defaultHigh)
     ///     ])
     ///
-    public func withPriority(_ priority: Priority) -> NSLayoutConstraint {
-        self.priority = priority
+    public func withPriority(_ priority: Priority?) -> NSLayoutConstraint {
+        priority.map { self.priority = $0 }
         return self
     }
 #endif
@@ -49,11 +49,11 @@ extension NSLayoutConstraint {
     ///             .withPriority(500)
     ///     ])
     ///
-    public func withPriority(_ value: CGFloat) -> NSLayoutConstraint {
+    public func withPriority(_ value: CGFloat?) -> NSLayoutConstraint {
 #if canImport(UIKit)
-        self.priority = UILayoutPriority(Float(value))
+        value.map { self.priority = UILayoutPriority(Float($0)) }
 #elseif canImport(AppKit)
-        self.priority = Priority(Float(value))
+        value.map { self.priority = Priority(Float($0)) }
 #endif
         
         return self
