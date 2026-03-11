@@ -65,6 +65,7 @@ Extensions
 - `View.getInterfaceOrientation(_:)` is renamed to `View.onInterfaceOrientationChange(action:)`
 - `View.getNestedSize(_:)` is renamed to `View.onNestedSizeChange(action:)`
 - `View.getWindow(_:)` is renamed to `View.onMoveToWindow(action:)`
+- `JSONDecoder.decode(from:)` method is added
 
 Global Functions
 
