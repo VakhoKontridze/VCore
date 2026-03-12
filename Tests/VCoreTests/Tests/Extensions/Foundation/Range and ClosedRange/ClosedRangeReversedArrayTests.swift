@@ -1,5 +1,5 @@
 //
-//  ClosedRangeReversedArrayOnConditionTests.swift
+//  ClosedRangeReversedArrayTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 05.08.23.

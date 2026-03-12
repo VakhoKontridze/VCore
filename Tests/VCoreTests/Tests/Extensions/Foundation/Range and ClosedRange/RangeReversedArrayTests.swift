@@ -1,5 +1,5 @@
 //
-//  RangeReversedArrayOnConditionTests.swift
+//  RangeReversedArrayTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 25.02.23.
