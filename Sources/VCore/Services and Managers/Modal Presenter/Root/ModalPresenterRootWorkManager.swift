@@ -50,8 +50,8 @@ final class ModalPresenterRootWorkManager {
     
     // MARK: Types
     enum Work {
-        case present(ModalPresenterInternalPresentationMode.PresentationData)
-        case update(ModalPresenterInternalPresentationMode.UpdateData)
-        case dismiss(ModalPresenterInternalPresentationMode.DismissData)
+        case present(ModalPresenterInternalContext.PresentationData)
+        case update(ModalPresenterInternalContext.UpdateData)
+        case dismiss(ModalPresenterInternalContext.DismissData)
     }
 }

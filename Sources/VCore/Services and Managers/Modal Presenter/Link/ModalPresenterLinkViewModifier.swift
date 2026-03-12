@@ -24,8 +24,8 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
     // MARK: Properties - Content
     private let modalContent: () -> ModalContent
 
-    // MARK: Properties - Presentation Mode
-    @State private var internalPresentationMode: ModalPresenterInternalPresentationMode
+    // MARK: Properties - Context
+    @State private var internalContext: ModalPresenterInternalContext
 
     // MARK: Initializers
     init(
@@ -42,9 +42,9 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
         self.onPresent = onPresent
         self.onDismiss = onDismiss
         self.modalContent = modalContent
-        self._internalPresentationMode = State(
-            wrappedValue: ModalPresenterInternalPresentationModeRegistrar.shared.resolve(
-                key: ModalPresenterInternalPresentationModeKey(
+        self._internalContext = State(
+            wrappedValue: ModalPresenterInternalContextRegistrar.shared.resolve(
+                key: ModalPresenterInternalContextKey(
                     link: link
                 )
             )
@@ -76,8 +76,8 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
 
     // MARK: Actions
     private func presentModal() {
-        internalPresentationMode.presentSubject.send(
-            ModalPresenterInternalPresentationMode.PresentationData(
+        internalContext.presentSubject.send(
+            ModalPresenterInternalContext.PresentationData(
                 link: link,
                 appearance: appearance,
                 view: { modalContent().eraseToAnyView() },
@@ -87,8 +87,8 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
     }
 
     private func updateModal() {
-        internalPresentationMode.updateSubject.send(
-            ModalPresenterInternalPresentationMode.UpdateData(
+        internalContext.updateSubject.send(
+            ModalPresenterInternalContext.UpdateData(
                 link: link,
                 appearance: appearance,
                 view: { modalContent().eraseToAnyView() }
@@ -97,8 +97,8 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
     }
 
     private func dismissModal() {
-        internalPresentationMode.dismissSubject.send(
-            ModalPresenterInternalPresentationMode.DismissData(
+        internalContext.dismissSubject.send(
+            ModalPresenterInternalContext.DismissData(
                 link: link,
                 completion: { onDismiss?() }
             )
@@ -108,7 +108,7 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
 
 #if DEBUG
 
-#Preview("Overlay") {
+#Preview {
     @Previewable @State var isPresented: Bool = true
 
     let backgroundColor: Color? = {
@@ -136,37 +136,15 @@ struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalCon
             isPresented = true
         }
         .modal(
-            link: .overlay(linkID: "modal"),
+            link: ModalPresenterLink(linkID: "modal"),
             isPresented: $isPresented
         ) {
             contentColor
         }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .modalPresenterRoot(root: .overlay())
+    .modalPresenterRoot()
 }
-
-#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS)) // No `window` type
-
-#Preview("Window") {
-    @Previewable @State var isPresented: Bool = true
-
-    ZStack {
-        Button("Present") {
-            isPresented = true
-        }
-        .modal(
-            link: .window(linkID: "modal"),
-            isPresented: $isPresented
-        ) {
-            Color.accentColor
-        }
-    }
-    .frame(maxWidth: .infinity, maxHeight: .infinity)
-    .modalPresenterRoot(root: .window())
-}
-
-#endif
 
 extension View {
     func modal<Content>(
@@ -191,11 +169,7 @@ extension View {
 
 private struct Modal<Content>: View where Content: View {
     // MARK: Properties - Appearance
-    @Environment(\.modalPresenterInterfaceOrientation) private var interfaceOrientation: PlatformInterfaceOrientation
-    @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize
-    @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets
-
-    @Environment(\.modalPresenterPresentationMode) private var presentationMode: ModalPresenterPresentationMode! // Unsafe
+    @Environment(ModalPresenterContext.self) private var modalPresenterContext: ModalPresenterContext
 
     // MARK: Properties - Presentation API
     @Binding private var isPresented: Bool
@@ -258,11 +232,11 @@ private struct Modal<Content>: View where Content: View {
             radius: 10
         )
 
-        .offset(y: isPresentedInternally ? 0 : (containerSize.height + dimension)/2)
+        .offset(y: isPresentedInternally ? 0 : (modalPresenterContext.containerSize.height + dimension)/2)
 
-        .onReceive(presentationMode.presentPublisher, perform: onPresent)
-        .onReceive(presentationMode.dismissPublisher, perform: onDismiss)
-        .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: onTapDimmingView)
+        .onReceive(modalPresenterContext.presentPublisher, perform: onPresent)
+        .onReceive(modalPresenterContext.dismissPublisher, perform: onDismiss)
+        .onReceive(modalPresenterContext.dimmingViewTapActionPublisher, perform: onTapDimmingView)
     }
 
     private func onTapDimmingView() {

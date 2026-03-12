@@ -11,33 +11,16 @@ extension View {
     /// Injects Modal Presenter root in view hierarchy for modal presentation.
     ///
     /// For additional info, refer to `View.modalPresenterLink(...)`.
-    @ViewBuilder
     public func modalPresenterRoot(
-        root: ModalPresenterRoot,
+        root: ModalPresenterRoot = .init(),
         appearance: ModalPresenterRootAppearance = .init()
     ) -> some View {
-        switch root.storage {
-        case .overlay:
-            self
-                .modifier(
-                    ModalPresenterRootViewModifier_Overlay(
-                        root: root,
-                        appearance: appearance
-                    )
+        self
+            .modifier(
+                ModalPresenterRootViewModifier(
+                    root: root,
+                    appearance: appearance
                 )
-            
-        case .window:
-#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
-            self
-                .modifier(
-                    ModalPresenterRootViewModifier_Window(
-                        root: root,
-                        appearance: appearance,
-                    )
-                )
-#else
-            fatalError()
-#endif
-        }
+            )
     }
 }

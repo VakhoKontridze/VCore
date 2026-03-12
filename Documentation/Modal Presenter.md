@@ -15,7 +15,7 @@
 
 #### Description
 
-Modal Presenter is a manager that allows for creating and presentation of custom modals.
+Modal Presenter is a manager that allows for creation and presentation of custom modals.
 
 Modal Presenter can be used to create custom modals that behave similar to native modals, such as `View.sheet(...)`, `View.fullScreenCover(...)`, `View.alert(...)`, etc.
 
@@ -30,14 +30,14 @@ var body: some View {
             isPresented = true
         }
         .modal(
-            link: .window(linkID: "modal"),
+            link: ModalPresenterLink(linkID: "modal"),
             isPresented: $isPresented
         ) { 
             Color.accentColor 
         }
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
-    .modalPresenterRoot(root: .window()) // Or declare in `App` on a `WindowScene`-level
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .modalPresenterRoot() // Or declare in `App` on a `WindowScene`-level
 }
 ```
 
@@ -71,28 +71,24 @@ var body: some View {
             isPresented = true 
         }
         .modal( // [4]
-            link: .window(linkID: "modal"), // [5]
+            link: ModalPresenterLink(linkID: "modal"), // [5]
             isPresented: $isPresented
         ) { 
             Color.accentColor
         }
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration // [3]
-    .modalPresenterRoot(root: .window()) // [1]
+    .frame(maxWidth: .infinity, maxHeight: .infinity) // [3]
+    .modalPresenterRoot() // [1]
 }
 ```
 
 Model Presenter API has two parts—root and link.
 
-For Modal Presenter to present, update, and dismiss modals, a root must be inserted in view hierarchy [1]. One root can have multiple modal links, even at the same time. There are two types of roots—`overlay` and `window`.
-
-- `overlay` presents modals over current `SwiftUI` context using `View.overlay(...)` modifier. Which means that modals cannot go beyond the frame of the root.
-
-- `window` presents modals in a new `UIWindow`.
+For Modal Presenter to present, update, and dismiss modals, a root must be inserted in view hierarchy [1]. One root can have multiple modal links, even at the same time. Root presents modals over current `SwiftUI` context using `View.overlay(...)` modifier. Which means that modals cannot go beyond the frame of the root.
 
 You can also have multiple roots, each serving a different purpose. For additional info, refer to "Multiple Roots" section.
 
-In general, root should be declared within `App`, on a `WindowScene` level for better organization and access. For `overlay` root configuration, this also guarantees a maximum frame for all modals.
+In general, root should be declared within `App`, on a `WindowScene` level for better organization and access. This guarantees a maximum frame for all modals.
 
 ```swift
 @main 
@@ -102,13 +98,13 @@ struct ExampleApp: App {
             NavigationStack {
                 ...
             }
-            .modalPresenterRoot(root: .window())
+            .modalPresenterRoot()
         }
     }
 }
 ```
 
-However, roots can also be scoped to a specific view as well. One such example would be a `SwiftUI` preview. In this case, it's best to wrap the root view under a container [2] and apply a maximum frame [3], if `overlay` configuration is used.
+However, roots can also be scoped to a specific view as well. One such example would be a `SwiftUI` preview. In this case, it's best to wrap the root view under a container [2] and apply a maximum frame [3].
 
 Once modal API is created (shown below), it can be called [4] similar to native `View.sheet(...)`.
 
@@ -120,17 +116,17 @@ All links require an identifier [5], which must be unique within a root.
 extension View {
     func modal<Content>(
         link: ModalPresenterLink, // [1]
-        isPresented: Binding<Bool>, // [2]
+        isPresented: Binding<Bool>,
         @ViewBuilder content: @escaping () -> Content
     ) -> some View
         where Content: View
     {
         self
-            .modalPresenterLink( // [3]
-                link: link, // [4]
+            .modalPresenterLink( // [2]
+                link: link, // [3]
                 isPresented: isPresented,
-                onPresent: { print("PRESENT") }, // [5]
-                onDismiss: { print("DISMISS") }, // [6]
+                onPresent: { print("PRESENT") }, // [4]
+                onDismiss: { print("DISMISS") }, // [5]
             ) {
                 Modal(
                     isPresented: isPresented,
@@ -149,20 +145,16 @@ Then, a method of presentation is needed to manage modal lifecycle. `Bool` is th
 
 Then, we can declare parameters that are needed for the contents of the modal.
 
-Modal can be linked using `modalPresenterLink(...)` API [3]. It takes `link` as parameter [4]. It also handles present and dismiss lifecycle event actions [5] [6].
+Modal can be linked using `modalPresenterLink(...)` API [2]. It takes `link` as parameter [3]. It also handles present and dismiss lifecycle event actions [4] [5].
 
 #### Modal Implementation
 
 ```swift
 struct Modal<Content>: View where Content: View {
-    @Environment(\.modalPresenterInterfaceOrientation) private var interfaceOrientation: PlatformInterfaceOrientation // [1]
-    @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize // [2]
-    @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets // [3]
+    @Environment(ModalPresenterContext.self) private var modalPresenterContext: ModalPresenterContext // [1]
 
-    @Environment(\.modalPresenterPresentationMode) private var presentationMode: ModalPresenterPresentationMode! // [4]
-
-    @Binding private var isPresented: Bool [5]
-    @State private var isPresentedInternally: Bool = false [6]
+    @Binding private var isPresented: Bool [2]
+    @State private var isPresentedInternally: Bool = false [3]
 
     private let content: () -> Content
 
@@ -190,21 +182,21 @@ struct Modal<Content>: View where Content: View {
             radius: 10
         )
 
-        .offset(y: isPresentedInternally ? 0 : (containerSize.height + 300)/2) // [12]
+        .offset(y: isPresentedInternally ? 0 : (modalPresenterContext.containerSize.height + 300)/2) // [9]
 
-        .onReceive(presentationMode.presentPublisher, perform: onPresent) // [7]
-        .onReceive(presentationMode.dismissPublisher, perform: onDismiss) // [9]
-        .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: onTapDimmingView) // [13]
+        .onReceive(modalPresenterContext.presentPublisher, perform: onPresent) // [4]
+        .onReceive(modalPresenterContext.dismissPublisher, perform: onDismiss) // [6]
+        .onReceive(modalPresenterContext.dimmingViewTapActionPublisher, perform: onTapDimmingView) // [10]
     }
 
     private func onTapDimmingView() {
-        isPresented = false // [14]
+        isPresented = false // [11]
     }
 
     private func onPresent() {
         withAnimation(
             .easeInOut(duration: 0.3),
-            { isPresentedInternally = true } // [8]
+            { isPresentedInternally = true } // [5]
         )
     }
 
@@ -213,8 +205,8 @@ struct Modal<Content>: View where Content: View {
     ) {
        withAnimation(
             .easeInOut(duration: 0.3),
-            { isPresentedInternally = false }, // [10]
-            completion: completion // [11]
+            { isPresentedInternally = false }, // [7]
+            completion: completion // [8]
         )
     }
 }
@@ -226,33 +218,33 @@ Modal frame and lifecycle are managed by the root, and several values are placed
 
 Interface orientation can be retrieved via the environment [1].
 
-If `window` `root` type is used, modal will have the real estate of the entire screen. But if `overlay` is used, there's no guarantee. Instead, model will be constrained to the root. It both cases, container size can be retrieved from the environment [2].
+Model size will be constrained to the root. Size can be retrieved from the environment [1].
 
-Root disables all container safe area insets for better frame handling, so safe area insets must be inserted manually, if needed. Values must be retrieved via the environment [3], as they cannot be read using a `GeometryReader`.
+Root disables all container safe area insets for better frame handling, so safe area insets must be inserted manually, if needed. Values must be retrieved via the environment [1], as they cannot be read using a `GeometryReader`.
 
-`ModalPresenterPresentationMode` [4] must be used to manage presentation and dismissal events.
+`ModalPresenterContext` [1] must be used to manage presentation and dismissal events.
 
 #### Modal Implementation: Presentation States
 
 Modal Presenter differentiates between two types of presentation states—internal and external.
 
-External presentation refers to `isPresented` flag [5], which is passed to `modal(...)` from the presenting root view. While internal presentation refers to `isPresentedInternally` flag [6].
+External presentation refers to `isPresented` flag [2], which is passed to `modal(...)` from the presenting root view. While internal presentation refers to `isPresentedInternally` flag [3].
 
-When Modal Presenter detects `isPresented` as `true`, it triggers an event [7]. We can intercept it and animate modal content by setting `isPresentedInternally` to `true` [8].
+When Modal Presenter detects `isPresented` as `true`, it triggers an event [4]. We can intercept it and animate modal content by setting `isPresentedInternally` to `true` [5].
 
 All this could have been implemented with a single flag. Main purpose of this separation is to handle dismiss animations. Dismissing modal from within the component is straightforward. We can animate content out, and set `isPresented` to `false`. Problem arises when dismissing modal from the presenting root view. If `isPresented` is set to `false` before animations are allowed to occur, modal will be instantly removed from the view hierarchy.
 
-With two flags, when Modal Presenter detects `isPresented` as `false`, it triggers an event [9]. We can intercept it, and animate modal content by setting `isPresentedInternally` to `false` [10]. Even though `isPresented` was set to `false` from the presenting root view, modal still remains in the view hierarchy. Once animations finish, we can call the `completion` callback [11], so that the root can remove the modal from the view hierarchy.
+With two flags, when Modal Presenter detects `isPresented` as `false`, it triggers an event [6]. We can intercept it, and animate modal content by setting `isPresentedInternally` to `false` [7]. Even though `isPresented` was set to `false` from the presenting root view, modal still remains in the view hierarchy. Once animations finish, we can call the `completion` callback [8], so that the root can remove the modal from the view hierarchy.
 
 #### Modal Implementation: Animation
 
-With the presentation flags established, any animation can be implemented—offset, opacity, etc. In this example, a simple offset animation is used [12].
+With the presentation flags established, any animation can be implemented—offset, opacity, etc. In this example, a simple offset animation is used [9].
 
 #### Modal Implementation: Dimming View
 
 Most modals require a dimming view that dims the background and prevents background interactions. Dimming view can be implemented internally. However, if multiple modals are presented simultaneously, dimming views would stack and multiply.
 
-To avoid this, root itself contains a shared dimming view that gets inserted in view hierarchy when at least one modal is presented. It can be customized, or even hidden. By default, dimming view intercepts tap gestures and sends them to the topmost modal [13]. We can intercept it, and dismiss modal by setting `isPresented` to `false` [14].
+To avoid this, root itself contains a shared dimming view that gets inserted in view hierarchy when at least one modal is presented. It can be customized, or even hidden. By default, dimming view intercepts tap gestures and sends them to the topmost modal [10]. We can intercept it, and dismiss modal by setting `isPresented` to `false` [11].
 
 ## Simultaneous Presentation
 
@@ -273,20 +265,20 @@ var body: some View {
             }
         }
         .modal(
-            link: .window(linkID: "modal_1"),
+            link: ModalPresenterLink(linkID: "modal_1"),
             isPresented: $isPresented1
         ) { 
             Color.red 
         }
         .modal(
-            link: .window(linkID: "modal_2"),
+            link: ModalPresenterLink(linkID: "modal_2"),
             isPresented: $isPresented2
         ) { 
             Color.blue 
         }
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
-    .modalPresenterRoot(root: .window())
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .modalPresenterRoot()
 }
 ```
 
@@ -309,12 +301,12 @@ var body: some View {
             }
         }
         .modal(
-            link: .window(linkID: "modal_1"),
+            link: ModalPresenterLink(linkID: "modal_1"),
             isPresented: $isPresented1
         ) {
             Color.red
                 .modal(
-                    link: .window(linkID: "modal_2"),
+                    link: ModalPresenterLink(linkID: "modal_2"),
                     isPresented: $isPresented2
                 ) { 
                     Color.blue 
@@ -322,8 +314,8 @@ var body: some View {
             }
         }
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
-    .modalPresenterRoot(root: .window())
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
+    .modalPresenterRoot()
 }
 ```
 
@@ -348,16 +340,15 @@ var body: some View {
             }
         }
         .modal(
-            link: .window(linkID: "modal"),
+            link: ModalPresenterLink(linkID: "modal"),
             isPresented: $isPresented,
         ) {
             Color.accentColor
                 .onTapGesture { isPresented = false }
         }
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
     .modalPresenterRoot(
-        root: .window(),
         appearance: {
             var appearance: ModalPresenterRootAppearance = .init()
             appearance.dimmingViewColor = Color.clear
@@ -378,7 +369,6 @@ Keyboard responsiveness can be customized via `ModalPresenterRootAppearance`.
 var body: some View {
     ...
         .modalPresenterRoot(
-            root: .window(),
             appearance: {
                 var appearance: ModalPresenterRootAppearance = .init()
                 appearance.keyboardResponsivenessStrategy = .offsetByObscuredViewHeight(additionalOffset: 20)
@@ -402,7 +392,7 @@ var body: some View {
             isPresented = true 
         }
         .modal(
-            link: .window(linkID: "modal"),
+            link: ModalPresenterLink(linkID: "modal"),
             isPresented: $isPresented
         ) {
             ScrollView {
@@ -415,9 +405,9 @@ var body: some View {
             }
         }
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
     .ignoresSafeArea(isPresented ? .keyboard : []) // Disables keyboard responsiveness for presenting root view
-    .modalPresenterRoot(root: .window())
+    .modalPresenterRoot()
 }
 ```
 
@@ -435,7 +425,7 @@ When multiple roots are used, links must specify the `rootID`.
 var body: some View {
     ...
         .modal(
-            link: .window(rootID: "containers". linkID: "modal"),
+            link: ModalPresenterLink(rootID: "containers". linkID: "modal"),
             isPresented: $isPresented,
         ) { 
             ... 
@@ -443,9 +433,7 @@ var body: some View {
 }
 ```
 
-In `overlay` configuration, root that's injected after another one will always be on top, as `SwiftUI` overlays stack.
-
-In `window` configuration, root with higher `windowLevel` in Appearance is presented at the top.
+Root that's injected after another one will always be on top, as `SwiftUI` overlays stack.
 
 Generally speaking, we'd want containers, such as—sheets, side bars, and modals—to be at the bottom. Followed by alerts. And lastly, notifications and toasts.
 
@@ -460,26 +448,15 @@ extension View {
     func injectModalPresenterRoots() -> some View {
         self
             .modalPresenterRoot(
-                root: .window(rootID: "containers"),
-                appearance: {
-                    var appearance: ModalPresenterRootAppearance = .init()
-                    appearance.windowLevel = UIWindow.Level.normal + 1
-                    return appearance
-                }()
+                root: ModalPresenterRoot(rootID: "containers")
             )
             .modalPresenterRoot(
-                root: .window(rootID: "alerts"),
-                appearance: {
-                    var appearance: ModalPresenterRootAppearance = .init()
-                    appearance.windowLevel = UIWindow.Level.normal + 2
-                    return appearance
-                }()
+                root: ModalPresenterRoot(rootID: "alerts")
             )
             .modalPresenterRoot(
-                root: .window(rootID: "notifications"),
+                root: ModalPresenterRoot(rootID: "notifications"),
                 appearance: {
                     var appearance: ModalPresenterRootAppearance = .init()
-                    appearance.windowLevel = UIWindow.Level.normal + 3
                     appearance.dimmingViewTapAction = .passTapsThrough
                     appearance.dimmingViewColor = Color.clear
                     return appearance
@@ -512,18 +489,16 @@ This method can also be used for `SwiftUI` previews.
     ZStack {
         ...
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
+    .frame(maxWidth: .infinity, maxHeight: .infinity)
     .injectModalPresenterRoots()
 }
 ```
 
-#### Compatibility with Apple's Native Modal API - Intro
+#### Compatibility with Apple's Native Modal API
 
 Modal Presenter API isn't inherently compatible with Apple's native API.
 
-#### Compatibility with Apple's Native Modal API - Overlay Configuration
-
-In `overlay` configuration, roots are simple overlays, while native components are presented over current context. This means that native components will always be on top. However, this can be changed by using roots that are scoped to specific views, and presenting Modal Presenter components from within.
+Roots are simple overlays, while native components are presented over current context. This means that native components will always be on top. However, this can be changed by using roots that are scoped to specific views, and presenting Modal Presenter components from within.
 
 ```swift
 @State private var isPresented1: Bool = false
@@ -542,49 +517,17 @@ var body: some View {
         ZStack {
             Color.red
                 .modal(
-                    link: .overlay(rootID: "containers_within_sheet", linkID: "custom_sheet"),
+                    link: ModalPresenterLink(rootID: "containers_within_sheet", linkID: "custom_sheet"),
                     isPresented: $isPresented2
                 ) { 
                     Color.blue 
                 }
         }
-        .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
-        .modalPresenterRoot(root: .overlay(rootID: "containers_within_sheet"))
-    }
-}
-```
-
-#### Compatibility with Apple's Native Modal API - Window Configuration
-
-In `window` configuration, new windows are stacked based on `windowLevel` parameter, while native components are presented over current context. This means that Modal Presenter components will almost always be on top. However, this can be changed by presenting native components from Modal Presenter components.
-
-```swift
-@State private var isPresented1: Bool = false
-@State private var isPresented2: Bool = false
-
-var body: some View {
-    ZStack {
-        Button("Present") {
-            isPresented1 = true
-            
-            Task { @MainActor in
-                try? await Task.sleep(for: .seconds(1))
-                isPresented2 = true
-            }
-        }
-        .modal(
-            link: .window(linkID: "custom_sheet"),
-            isPresented: $isPresented1,
-        ) {
-            Color.blue
-                .sheet(isPresented: $isPresented2) {
-                    Color.red
-                }
-            }
+        .frame(maxWidth: .infinity, maxHeight: .infinity)
+        .modalPresenterRoot(
+            root: ModalPresenterRoot(rootID: "containers_within_sheet")
         )
     }
-    .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
-    .modalPresenterRoot(root: .window())
 }
 ```
 

@@ -1,14 +1,15 @@
 //
-//  ModalPresenterInternalPresentationMode.swift
+//  ModalPresenterInternalContext.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 10.07.24.
 //
 
 import SwiftUI
+import Observation
 import Combine
 
-struct ModalPresenterInternalPresentationMode {
+final class ModalPresenterInternalContext {
     // MARK: Properties
     let presentSubject: PassthroughSubject<PresentationData, Never> = .init()
     let updateSubject: PassthroughSubject<UpdateData, Never> = .init()

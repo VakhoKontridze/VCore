@@ -1,21 +1,21 @@
 //
-//  ModalPresenterRootModalView_Window.swift
+//  ModalPresenterRootModalView.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.08.25.
 //
 
-#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
-
 import SwiftUI
 
-struct ModalPresenterRootModalView_Window: View {
+struct ModalPresenterRootModalView: View {
     // MARK: Properties - Appearance
     private let onlyFocusedModalIsKeyboardResponsive: Bool
     private let interfaceOrientation: PlatformInterfaceOrientation
     private let safeAreaInsets: EdgeInsets
     
     // MARK: Properties - Keyboard Responsiveness
+#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
+    
     private let keyboardObserver: KeyboardObserver
     
     @FocusState private var isFocused: Bool
@@ -32,16 +32,19 @@ struct ModalPresenterRootModalView_Window: View {
         }
     }
     
+#endif
+    
     // MARK: Properties - Modal
-    private let modal: ModalPresenterRootModalData_Window
+    private let modal: ModalPresenterRootModalData
     
     // MARK: Initializers
+#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
     init(
         onlyFocusedModalIsKeyboardResponsive: Bool,
         interfaceOrientation: PlatformInterfaceOrientation,
         safeAreaInsets: EdgeInsets,
         keyboardObserver: KeyboardObserver,
-        modal: ModalPresenterRootModalData_Window
+        modal: ModalPresenterRootModalData
     ) {
         self.onlyFocusedModalIsKeyboardResponsive = onlyFocusedModalIsKeyboardResponsive
         self.interfaceOrientation = interfaceOrientation
@@ -49,19 +52,35 @@ struct ModalPresenterRootModalView_Window: View {
         self.keyboardObserver = keyboardObserver
         self.modal = modal
     }
+#else
+    init(
+        onlyFocusedModalIsKeyboardResponsive: Bool,
+        interfaceOrientation: PlatformInterfaceOrientation,
+        safeAreaInsets: EdgeInsets,
+        modal: ModalPresenterRootModalData
+    ) {
+        self.onlyFocusedModalIsKeyboardResponsive = onlyFocusedModalIsKeyboardResponsive
+        self.interfaceOrientation = interfaceOrientation
+        self.safeAreaInsets = safeAreaInsets
+        self.modal = modal
+    }
+#endif
     
     // MARK: Body
     var body: some View {
         NonInvasiveGeometryReader(alignment: modal.appearance.alignment) { geometryProxy in
             modal.view()
-                .environment(\.modalPresenterInterfaceOrientation, interfaceOrientation)
-                .environment(\.modalPresenterContainerSize, geometryProxy.size)
-                .environment(\.modalPresenterSafeAreaInsets, safeAreaInsets)
-                .environment(\.modalPresenterPresentationMode, modal.presentationMode)
+                .environment(modal.context)
             
+                .onChange(of: interfaceOrientation, initial: true) { modal.context.interfaceOrientation = $1 }
+                .onChange(of: geometryProxy.size, initial: true) { modal.context.containerSize = $1 }
+                .onChange(of: safeAreaInsets, initial: true) { modal.context.safeAreaInsets = $1 }
+            
+#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
                 .focused($isFocused)
+#endif
         }
-        .onFirstAppear { modal.presentationMode.presentSubject.send() }
+        .onFirstAppear { modal.context.presentSubject.send() }
         
         // Must be written last
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
@@ -70,6 +89,3 @@ struct ModalPresenterRootModalView_Window: View {
 #endif
     }
 }
-
-
-#endif

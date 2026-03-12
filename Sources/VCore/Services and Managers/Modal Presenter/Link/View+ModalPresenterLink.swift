@@ -18,14 +18,14 @@ extension View {
     ///                 isPresented = true
     ///             }
     ///             .modal(
-    ///                 link: .window(linkID: "modal"),
+    ///                 link: ModalPresenterLink(linkID: "modal"),
     ///                 isPresented: $isPresented)
     ///             ) {
     ///                 Color.accentColor
     ///             }
     ///         }
     ///         .frame(maxWidth: .infinity, maxHeight: .infinity) // For `overlay` configuration
-    ///         .modalPresenterRoot(root: .window()) // Or declare in `App` on a `WindowScene`-level
+    ///         .modalPresenterRoot() // Or declare in `App` on a `WindowScene`-level
     ///     }
     ///
     ///     extension View {
@@ -50,11 +50,7 @@ extension View {
     ///     }
     ///
     ///     struct Modal<Content>: View where Content: View {
-    ///         @Environment(\.modalPresenterInterfaceOrientation) private var interfaceOrientation: PlatformInterfaceOrientation
-    ///         @Environment(\.modalPresenterContainerSize) private var containerSize: CGSize
-    ///         @Environment(\.modalPresenterSafeAreaInsets) private var safeAreaInsets: EdgeInsets
-    ///
-    ///         @Environment(\.modalPresenterPresentationMode) private var presentationMode: ModalPresenterPresentationMode!
+    ///         @Environment(ModalPresenterContext.self) private var modalPresenterContext: ModalPresenterContext
     ///
     ///         @Binding private var isPresented: Bool
     ///         @State private var isPresentedInternally: Bool = false
@@ -85,11 +81,11 @@ extension View {
     ///                 radius: 10
     ///             )
     ///
-    ///             .offset(y: isPresentedInternally ? 0 : (containerSize.height + 300)/2)
+    ///             .offset(y: isPresentedInternally ? 0 : (modalPresenterContext.containerSize.height + 300)/2)
     ///
-    ///             .onReceive(presentationMode.presentPublisher, perform: onPresent)
-    ///             .onReceive(presentationMode.dismissPublisher, perform: onDismiss)
-    ///             .onReceive(presentationMode.dimmingViewTapActionPublisher, perform: onTapDimmingView)
+    ///             .onReceive(modalPresenterContext.presentPublisher, perform: onPresent)
+    ///             .onReceive(modalPresenterContext.dismissPublisher, perform: onDismiss)
+    ///             .onReceive(modalPresenterContext.dimmingViewTapActionPublisher, perform: onTapDimmingView)
     ///         }
     ///
     ///         private func onTapDimmingView() {

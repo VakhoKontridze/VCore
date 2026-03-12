@@ -1,5 +1,5 @@
 //
-//  ModalPresenterRootViewModifier_Overlay.swift
+//  ModalPresenterRootViewModifier.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 28.05.25.
@@ -8,7 +8,7 @@
 import SwiftUI
 import Combine
 
-struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
+struct ModalPresenterRootViewModifier: ViewModifier {
     // MARK: Properties - Root
     private let root: ModalPresenterRoot
     
@@ -16,10 +16,10 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     private let appearance: ModalPresenterRootAppearance
     
     @State private var interfaceOrientation: PlatformInterfaceOrientation = .initFromDeviceOrientation()
-    @State private var safeAreaInsets: EdgeInsets! // Unsafe
+    @State private var safeAreaInsets: EdgeInsets = .init()
     
-    // MARK: Properties - Presentation Mode
-    @State private var internalPresentationMode: ModalPresenterInternalPresentationMode
+    // MARK: Properties - Context
+    @State private var internalContext: ModalPresenterInternalContext
     
     // MARK: Properties - Work Manager
     @State private var workManager: ModalPresenterRootWorkManager = .init()
@@ -31,7 +31,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     }
 
     // MARK: Properties - Modals
-    @State private var modals: [ModalPresenterRootModalData_Overlay] = []
+    @State private var modals: [ModalPresenterRootModalData] = []
 
     // MARK: Properties - Keyboard Responsiveness
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
@@ -47,9 +47,9 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
         
         self.appearance = appearance
         
-        self._internalPresentationMode = State(
-            wrappedValue: ModalPresenterInternalPresentationModeRegistrar.shared.resolve(
-                key: ModalPresenterInternalPresentationModeKey(
+        self._internalContext = State(
+            wrappedValue: ModalPresenterInternalContextRegistrar.shared.resolve(
+                key: ModalPresenterInternalContextKey(
                     root: root
                 )
             )
@@ -79,9 +79,9 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
             .overlay { layerView }
         
             // Handling work
-            .onReceive(internalPresentationMode.presentSubject) { workManager.addWork(.present($0)) }
-            .onReceive(internalPresentationMode.updateSubject) { workManager.addWork(.update($0)) }
-            .onReceive(internalPresentationMode.dismissSubject) { workManager.addWork(.dismiss($0)) }
+            .onReceive(internalContext.presentSubject) { workManager.addWork(.present($0)) }
+            .onReceive(internalContext.updateSubject) { workManager.addWork(.update($0)) }
+            .onReceive(internalContext.dismissSubject) { workManager.addWork(.dismiss($0)) }
             .onChange(of: didReadEnvironment) { workManager.setEnabledStatus(to: $1) }
             .onReceive(workManager.publisher) { workType in
                 switch workType {
@@ -105,7 +105,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
                     }
                     
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
-                    ModalPresenterRootModalView_Overlay(
+                    ModalPresenterRootModalView(
                         onlyFocusedModalIsKeyboardResponsive: appearance.onlyFocusedModalIsKeyboardResponsive,
                         interfaceOrientation: interfaceOrientation,
                         safeAreaInsets: safeAreaInsets,
@@ -113,7 +113,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
                         modal: modal
                     )
 #else
-                    ModalPresenterRootModalView_Overlay(
+                    ModalPresenterRootModalView(
                         onlyFocusedModalIsKeyboardResponsive: appearance.onlyFocusedModalIsKeyboardResponsive,
                         interfaceOrientation: interfaceOrientation,
                         safeAreaInsets: safeAreaInsets,
@@ -147,7 +147,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
         let color: Color = {
             if
                 modals.count == 1,
-                let topmostModal: ModalPresenterRootModalData_Overlay = modals.last,
+                let topmostModal: ModalPresenterRootModalData = modals.last,
                 let color: Color = topmostModal.appearance.preferredDimmingViewColor
             {
                 color
@@ -166,14 +166,14 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     // the larger one behind it would be hiding most of interactive portion of the view.
     // So, it's better to insert `interactiveDimmingView` behind topmost modal.
     private func interactiveDimmingView(
-        modal: ModalPresenterRootModalData_Overlay
+        modal: ModalPresenterRootModalData
     ) -> some View {
         Color.clear
             .contentShape(.rect)
             .allowsHitTesting(appearance.dimmingViewTapAction.allowsHitTesting)
             .onTapGesture {
                 if appearance.dimmingViewTapAction == .sendActionToTopmostModal {
-                    modal.presentationMode.dimmingViewTapActionSubject.send()
+                    modal.context.dimmingViewTapActionSubject.send()
                 }
             }
     }
@@ -187,16 +187,16 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
 
     // MARK: Actions - Presentation
     private func onReceiveInternalPresentRequest(
-        _ presentationData: ModalPresenterInternalPresentationMode.PresentationData
+        _ presentationData: ModalPresenterInternalContext.PresentationData
     ) {
         guard !modals.contains(where: { $0.id == presentationData.link.linkID }) else { return }
 
-        let modal: ModalPresenterRootModalData_Overlay = .init(
+        let modal: ModalPresenterRootModalData = .init(
             id: presentationData.link.linkID,
             appearance: presentationData.appearance,
             view: presentationData.view,
-            presentationMode: ModalPresenterPresentationMode(
-                linkID: presentationData.link.linkID
+            context: ModalPresenterContext(
+                link: presentationData.link
             )
         )
 
@@ -206,7 +206,7 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     }
 
     private func onReceiveInternalUpdateRequest(
-        _ updateData: ModalPresenterInternalPresentationMode.UpdateData
+        _ updateData: ModalPresenterInternalContext.UpdateData
     ) {
         guard let index: Int = modals.firstIndex(where: { $0.id == updateData.link.linkID }) else { return }
 
@@ -215,11 +215,11 @@ struct ModalPresenterRootViewModifier_Overlay: ViewModifier {
     }
 
     private func onReceiveInternalDismissRequest(
-        _ dismissData: ModalPresenterInternalPresentationMode.DismissData
+        _ dismissData: ModalPresenterInternalContext.DismissData
     ) {
-        guard let modal: ModalPresenterRootModalData_Overlay = modals.first(where: { $0.id == dismissData.link.linkID }) else { return }
+        guard let modal: ModalPresenterRootModalData = modals.first(where: { $0.id == dismissData.link.linkID }) else { return }
 
-        modal.presentationMode.dismissSubject.send /*completion: */{
+        modal.context.dismissSubject.send /*completion: */{
             modals.removeAll { $0.id == dismissData.link.linkID }
 
             dismissData.completion()

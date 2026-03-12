@@ -10,13 +10,6 @@ import SwiftUI
 /// Model that describes appearance.
 public struct ModalPresenterRootAppearance: Equatable, Sendable {
     // MARK: Properties - Global
-#if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
-    /// Window level.
-    ///
-    /// Only used in `window` configuration.
-    public var windowLevel: UIWindow.Level = .normal
-#endif
-    
     /// Frame.
     ///
     /// Changing this property conditionally will cause view state to be reset.
