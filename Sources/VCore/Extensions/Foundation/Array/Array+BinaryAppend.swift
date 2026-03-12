@@ -26,9 +26,9 @@ extension Array {
             let mid: Int = (start + end) / 2
 
             if try areInIncreasingOrder(self[mid], element) {
-                start += 1
+                start = mid + 1
             } else {
-                end -= 1
+                end = mid - 1
             }
         }
 

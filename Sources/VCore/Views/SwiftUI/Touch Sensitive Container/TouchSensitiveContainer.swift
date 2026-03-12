@@ -58,6 +58,9 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
 
     // MARK: Properties - Content
     private let content: TouchSensitiveContainerContent<Content>
+    
+    // MARK: Properties - Subscriptions
+    @State private var executeWithDelayTask: Task<Void, Never>?
 
     // MARK: Initializers
     /// Initializes `TouchSensitiveContainer` with content.
@@ -126,11 +129,16 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
         block: @escaping () -> Void
     ) {
         if let delay = delay.nonZero {
-            // No need to handle reentrancy and cancellation
-            Task { @MainActor in
+            executeWithDelayTask?.cancel()
+            executeWithDelayTask = Task { @MainActor in
+                defer { executeWithDelayTask = nil }
+                
                 try? await Task.sleep(for: .seconds(delay))
+                guard !Task.isCancelled else { return }
+                
                 block()
             }
+            
         } else {
             block()
         }

@@ -14,7 +14,7 @@ import AppKit
 #endif
 
 extension NSLayoutConstraint {
-    /// Modifies and returns constraint with a given priority.
+    /// Modifies and returns muliplier with a given priority.
     ///
     /// Must be called after other `NSLayoutConstraint` modifiers.
     ///

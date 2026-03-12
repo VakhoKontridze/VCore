@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 22.05.24.
 //
 
+#if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
+
 import Foundation
 import SwiftSyntax
 import SwiftSyntaxBuilder
@@ -652,3 +654,5 @@ extension StringProtocol {
         return self
     }
 }
+
+#endif

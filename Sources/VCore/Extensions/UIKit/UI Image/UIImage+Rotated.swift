@@ -19,17 +19,16 @@ extension UIImage {
         let radians: CGFloat = .init(angle.converted(to: .radians).value)
         
         let newRect: CGRect = {
-            var newRect: CGRect = .init(origin: .zero, size: size)
+            let rotatedRect: CGRect = CGRect(origin: .zero, size: size)
                 .applying(CGAffineTransform(rotationAngle: radians))
             
-            newRect = CGRect(
-                x: newRect.origin.x,
-                y: newRect.origin.y,
-                width: newRect.width,
-                height: newRect.height
+            return CGRect(
+                origin: .zero,
+                size: CGSize(
+                    width: abs(rotatedRect.width),
+                    height: abs(rotatedRect.height)
+                )
             )
-            
-            return newRect
         }()
         
         UIGraphicsBeginImageContextWithOptions(newRect.size, false, scale)

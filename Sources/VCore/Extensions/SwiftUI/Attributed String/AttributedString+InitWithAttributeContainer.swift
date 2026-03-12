@@ -105,7 +105,7 @@ extension String {
 
             } else if
                 isInsideTag,
-                index + 3 < count,
+                index + 4 <= count,
                 self[index] == "<",
                 self[index+1] == "/",
                 self[index+2] == currentTagName,

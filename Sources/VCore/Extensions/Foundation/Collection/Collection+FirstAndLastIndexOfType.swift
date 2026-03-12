@@ -33,7 +33,7 @@ extension Collection {
 }
 
 extension BidirectionalCollection {
-    /// Returns the last index of `Collection`that is a type `T`.
+    /// Returns the last index of `BidirectionalCollection`that is a type `T`.
     ///
     /// In the following example, `p1` and `p2` are equivalent.
     ///

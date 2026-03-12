@@ -16,12 +16,12 @@ extension DispatchSemaphore {
     ///         private var _value: Int
     ///
     ///         var value: Int {
-    ///             @storageRestrictions(initializes: _configuration)
+    ///             @storageRestrictions(initializes: _value)
     ///             init(initialValue) {
-    ///                 self._configuration = initialValue
+    ///                 self._value = initialValue
     ///             }
-    ///             get { lock.withLock { _value } }
-    ///             set { lock.withLock { _value = newValue } }
+    ///             get { dispatchSemaphore.withLock { _value } }
+    ///             set { dispatchSemaphore.withLock { _value = newValue } }
     ///         }
     ///
     ///         init(value: Int) {

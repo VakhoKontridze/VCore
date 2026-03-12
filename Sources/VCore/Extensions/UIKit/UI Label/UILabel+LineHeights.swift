@@ -101,7 +101,7 @@ extension UILabel {
         let label: UILabel = {
             let label: UILabel = .init()
             
-            label.text = text ?? self.text ?? "A"
+            label.text = text?.nonEmpty ?? self.text?.nonEmpty ?? "A"
             
             label.font = font
             label.textAlignment = textAlignment

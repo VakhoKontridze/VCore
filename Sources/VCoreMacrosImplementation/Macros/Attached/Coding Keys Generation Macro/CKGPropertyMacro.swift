@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 02.03.24.
 //
 
+#if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
+
 import Foundation
 import SwiftSyntax
 import SwiftSyntaxMacros
@@ -18,3 +20,5 @@ struct CKGPropertyMacro: PeerMacro {
         []
     }
 }
+
+#endif

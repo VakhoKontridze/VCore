@@ -78,7 +78,7 @@ extension UIImage {
         return scaled(toHeight: newHeight)
     }
     
-    /// Returns `UIImage` scaled down, by scaling smaller side to specified dimension.
+    /// Returns `UIImage` scaled down, by scaling larger side to specified dimension.
     ///
     ///     let image: UIImage = .init(named: "Image")!
     ///     let scaledDownImage: UIImage? = image.scaledDown(toDimension: 500)

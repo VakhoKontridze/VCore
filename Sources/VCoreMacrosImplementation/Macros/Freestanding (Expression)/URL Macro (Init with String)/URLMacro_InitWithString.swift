@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 07.01.24.
 //
 
+#if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
+
 import Foundation
 import SwiftSyntax
 import SwiftSyntaxMacros
@@ -52,3 +54,5 @@ struct URLMacro_InitWithString: ExpressionMacro {
         return (value, parameter.expression)
     }
 }
+
+#endif

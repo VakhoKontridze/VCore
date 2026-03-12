@@ -27,7 +27,7 @@ extension Collection {
 }
 
 extension BidirectionalCollection {
-    /// Returns first last and element of `BidirectionalCollection` that satisfies the given predicate.
+    /// Returns first last index and element of `BidirectionalCollection` that satisfies the given predicate.
     ///
     /// Used for avoiding accessing both index and element with built-in methods.
     ///

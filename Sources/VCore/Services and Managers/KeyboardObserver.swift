@@ -59,6 +59,9 @@ public final class KeyboardObserver: Sendable {
     }()
 
     // MARK: Properties - Subscriptions
+    private var keyboardShowTask: Task<Void, Never>?
+    private var keyboardHideTask: Task<Void, Never>?
+    
     @ObservationIgnored private var cancellables: Set<AnyCancellable> = []
 
     // MARK: Initializers
@@ -108,13 +111,8 @@ public final class KeyboardObserver: Sendable {
                 return systemKeyboardHeight + additionalOffset
 
             case .offsetByObscuredViewHeight(let additionalOffset):
-                guard let screen: UIScreen = notification.object as? UIScreen else {
+                guard let window: UIWindow = keyWindow(from: notification) else {
                     Logger.keyboardObserver.error("Failed to retrieve 'UIScreen' from 'Notification': \(notification)")
-                    return nil
-                }
-
-                guard let window: UIWindow = screen.windows.first(where: { $0.isKeyWindow }) else {
-                    Logger.keyboardObserver.error("Failed to retrieve key 'UIWindow' from 'UIScreen': \(screen)")
                     return nil
                 }
                 
@@ -151,12 +149,17 @@ public final class KeyboardObserver: Sendable {
             let offset,
             offset != self.offset
         {
-            // No need to handle reentrancy and cancellation
-            Task { @MainActor in
+            keyboardShowTask?.cancel()
+            keyboardHideTask?.cancel()
+            
+            keyboardShowTask = Task { @MainActor in
+                defer { keyboardShowTask = nil }
+
                 self.offset = offset
                 self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
                 try? await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
+                guard !Task.isCancelled else { return }
                 
                 self.offsetStable = offset
             }
@@ -186,18 +189,48 @@ public final class KeyboardObserver: Sendable {
             let offset,
             offset != self.offset
         {
-            // No need to handle reentrancy and cancellation
-            Task { @MainActor in
+            keyboardShowTask?.cancel()
+            keyboardHideTask?.cancel()
+            
+            keyboardHideTask = Task { @MainActor in
+                defer { keyboardHideTask = nil }
+                
                 self.offset = offset
                 self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
                 try? await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
+                guard !Task.isCancelled else { return }
                 
                 self.offsetStable = offset
             }
         }
     }
     
+#endif
+    
+    // MARK: Helpers
+    
+#if canImport(UIKit) && !os(watchOS)
+    
+    private func keyWindow(
+        from notification: Notification
+    ) -> UIWindow? {
+        guard
+            let screen: UIScreen = notification.object as? UIScreen
+        else {
+            return nil
+        }
+        
+        return UIApplication.shared
+            .connectedScenes
+            .compactMap { $0 as? UIWindowScene }
+            .flatMap { $0.windows }
+            .first {
+                $0.isKeyWindow &&
+                $0.screen == screen
+            }
+    }
+
 #endif
     
     // MARK: Types
@@ -226,16 +259,6 @@ public final class KeyboardObserver: Sendable {
 }
 
 #if canImport(UIKit) && !os(watchOS)
-
-@available(visionOS, unavailable)
-extension UIScreen {
-    fileprivate var windows: [UIWindow] {
-        UIApplication.shared
-            .connectedScenes
-            .compactMap { $0 as? UIWindowScene }
-            .flatMap { $0.windows }
-    }
-}
 
 @available(tvOS, unavailable)
 extension SystemKeyboardInfo {

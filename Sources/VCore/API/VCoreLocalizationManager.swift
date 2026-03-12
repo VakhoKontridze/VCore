@@ -62,7 +62,7 @@ public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider, Senda
     
     // MARK: VCore Localization Provider
     public var alertErrorTitle: String { "Something Went Wrong" }
-    public var alertOKButtonTitle: String { "Ok" }
+    public var alertOKButtonTitle: String { "OK" }
 
     public var responderChainToolbarDoneButtonTitle: String { "Done" }
 }

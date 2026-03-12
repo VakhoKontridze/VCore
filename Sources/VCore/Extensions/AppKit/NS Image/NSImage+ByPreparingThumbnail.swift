@@ -18,14 +18,9 @@ extension NSImage {
     public func byPreparingThumbnail(
         ofSize size: CGSize
     ) -> NSImage? {
-        let frame: NSRect = .init(
-            origin: CGPoint.zero,
-            size: size
-        )
-
         guard
-            let imageRepresentation: NSImageRep = bestRepresentation(
-                for: frame,
+            let cgImage: CGImage = cgImage(
+                forProposedRect: nil,
                 context: nil,
                 hints: nil
             )
@@ -36,8 +31,16 @@ extension NSImage {
         let thumbnail: NSImage = .init(
             size: size,
             flipped: false
-        ) { _ in
-            imageRepresentation.draw(in: frame)
+        ) { frame in
+            guard
+                let context: CGContext = NSGraphicsContext.current?.cgContext
+            else {
+                return false
+            }
+            context.interpolationQuality = .high
+            context.draw(cgImage, in: frame)
+            
+            return true
         }
 
         return thumbnail

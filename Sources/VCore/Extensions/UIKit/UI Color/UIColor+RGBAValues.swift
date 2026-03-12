@@ -8,6 +8,7 @@
 #if canImport(UIKit)
 
 import UIKit
+import OSLog
 
 extension UIColor {
     /// Returns RGBA values of `UIColor`.
@@ -19,12 +20,16 @@ extension UIColor {
     ///     // (0.0, 0.4..., 1.0, 1.0)
     ///
     public var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+        let color: UIColor = resolvedColor(with: .init(userInterfaceStyle: .light))
+        
         var red: CGFloat = 0
         var green: CGFloat = 0
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
         
-        getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        if !color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+            Logger.misc.error("Failed to get RGBA values from 'UIColor' '\(self.debugDescription)'")
+        }
         
         return (
             red: red,

@@ -35,7 +35,9 @@ extension NSColor {
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
         
-        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        if !color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
+            Logger.misc.error("Failed to get RGBA values from 'NSColor' '\(self.debugDescription)'")
+        }
 
         return (
             red: red,
@@ -45,7 +47,7 @@ extension NSColor {
         )
     }
     
-    /// Returns RGBA components of `UIColor`.
+    /// Returns RGBA components of `NSColor`.
     ///
     /// `red`, `green`, and `blue` values range from `0` to `255`.
     /// `alpha` value ranges from `0` to `1`.

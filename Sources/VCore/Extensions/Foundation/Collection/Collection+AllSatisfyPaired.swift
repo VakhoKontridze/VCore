@@ -20,16 +20,16 @@ extension Collection {
     public func allSatisfy(
         _ predicate: (Element, Element) throws -> Bool
     ) rethrows -> Bool {
-        for (i, a) in self.enumerated() {
-            for (j, b) in self.enumerated() {
-                guard i != j else { continue }
-                
-                if try !predicate(a, b) {
+        let indices: [Index] = indices.map { $0 }
+
+        for i in 0..<indices.count {
+            for j in (i+1)..<indices.count {
+                if try !predicate(self[indices[i]], self[indices[j]]) {
                     return false
                 }
             }
         }
-        
+
         return true
     }
 }

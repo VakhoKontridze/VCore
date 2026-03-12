@@ -50,8 +50,8 @@ extension Color {
     ///
     /// On `macOS`, method may return slightly incorrect values due to `deviceRGB` colorspace calibration.
     ///
-    ///     let color1: UIColor = .red
-    ///     let color2: UIColor = .red
+    ///     let color1: Color = .red
+    ///     let color2: Color = .red
     ///     let isEqual: Bool = color1.isRGBAEqual(to: color2) // true
     ///
     public func isRGBAEqual(to otherColor: Color) -> Bool {

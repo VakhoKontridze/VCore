@@ -16,7 +16,7 @@ extension Sequence {
     ///
     ///     let items: [Item] = ...
     ///
-    ///     let max: Object? = items.min(by: \.value)
+    ///     let max: Item? = items.min(by: \.value)
     ///
     public func min(
         by keyPath: KeyPath<Element, some Comparable>
@@ -32,7 +32,7 @@ extension Sequence {
     ///
     ///     let items: [Item] = ...
     ///
-    ///     let max: Object? = items.max(by: \.value)
+    ///     let min: Item? = items.max(by: \.value)
     ///
     public func max(
         by keyPath: KeyPath<Element, some Comparable>

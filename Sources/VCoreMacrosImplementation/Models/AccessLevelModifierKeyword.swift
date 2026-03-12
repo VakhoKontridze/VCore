@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 23.05.24.
 //
 
+#if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
+
 import Foundation
 import SwiftSyntax
 
@@ -32,3 +34,5 @@ enum AccessLevelModifierKeyword: String, CaseIterable {
     // MARK: Initializers
     static var `default`: Self { .internal }
 }
+
+#endif

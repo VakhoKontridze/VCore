@@ -9,7 +9,7 @@ import SwiftUI
 import VCoreShared
 
 extension Color {
-    /// Initializes `UIColor` with a hex `String`.
+    /// Initializes `Color` with a hex `String`.
     ///
     /// `hex` parameter must have `6` characters.
     ///
@@ -33,9 +33,9 @@ extension Color {
 }
 
 extension Color {
-    /// Initializes `UIColor` with a hex `UInt`
+    /// Initializes `Color` with a hex `UInt`
     ///
-    /// `hex` parameter must have `6` characters.
+    /// `hex` parameter must have `6` digits.
     ///
     ///     let color: Color? = .init(hex: 0x007AFF)
     ///

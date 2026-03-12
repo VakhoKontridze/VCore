@@ -22,11 +22,24 @@ extension UIImage {
     ///     )
     ///
     public func cropped(to newRect: CGRect) -> UIImage {
-        guard
-            newRect.size.width <= size.width,
-            newRect.size.height <= size.height,
+        let normalizedImage: UIImage = {
+            guard imageOrientation != .up else { return self }
             
-            let croppedImage: CGImage = cgImage?.cropping(
+            UIGraphicsBeginImageContextWithOptions(size, false, scale)
+            defer { UIGraphicsEndImageContext() }
+            
+            draw(in: CGRect(origin: .zero, size: size))
+            
+            let normalizedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext() ?? self
+            
+            return normalizedImage
+        }()
+        
+        guard
+            newRect.size.width <= normalizedImage.size.width,
+            newRect.size.height <= normalizedImage.size.height,
+            
+            let croppedImage: CGImage = normalizedImage.cgImage?.cropping(
                 to: newRect.applying(
                     CGAffineTransform(
                         scaleX: scale,
@@ -41,7 +54,7 @@ extension UIImage {
         return UIImage(
             cgImage: croppedImage,
             scale: scale,
-            orientation: imageOrientation
+            orientation: .up
         )
     }
     

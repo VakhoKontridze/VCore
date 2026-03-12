@@ -26,7 +26,7 @@ extension Array {
     /// Reverses `Array` if condition is met.
     ///
     ///     var array: [String] = ["London", "Paris", "New York"]
-    ///     array.reversed(reversesOrder)
+    ///     array.reverse(reversesOrder)
     ///
     mutating public func reverse(
         _ condition: Bool

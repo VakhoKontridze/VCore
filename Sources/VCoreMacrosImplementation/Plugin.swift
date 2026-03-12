@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 07.01.24.
 //
 
+#if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
+
 import Foundation
 import SwiftCompilerPlugin
 import SwiftSyntaxMacros
@@ -27,3 +29,5 @@ struct Plugin: CompilerPlugin {
         URLMacro_InitWithString.self
     ]
 }
+
+#endif

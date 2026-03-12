@@ -23,7 +23,7 @@ extension JSONEncoder {
     /// Encodes `Encodable` to `JSON`.
     ///
     ///     let item: Item = ...
-    ///     let json: [String: Any] = try JSONEncoder().encodeObjectToJSON(object)
+    ///     let json: [String: Any] = try JSONEncoder().encodeObjectToJSON(item)
     ///
     public func encodeObjectToJSON(
         _ object: some Encodable,

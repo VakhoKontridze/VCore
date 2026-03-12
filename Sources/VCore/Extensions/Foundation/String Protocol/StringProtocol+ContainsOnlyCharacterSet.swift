@@ -15,8 +15,9 @@ extension StringProtocol {
     ///
     public func contains(only characterSet: CharacterSet) -> Bool {
         !contains { char in
-            guard let unicodeScalar: Unicode.Scalar = char.unicodeScalars.first else { return false }
-            return !characterSet.contains(unicodeScalar)
+            char.unicodeScalars.allSatisfy { unicodeScalar in
+                !characterSet.contains(unicodeScalar)
+            }
         }
     }
 }

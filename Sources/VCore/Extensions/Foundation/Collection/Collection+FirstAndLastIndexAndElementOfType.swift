@@ -39,7 +39,7 @@ extension Collection {
 }
 
 extension BidirectionalCollection {
-    /// Returns last index and element of `Collection` that is a type `T`.
+    /// Returns last index and element of `BidirectionalCollection` that is a type `T`.
     ///
     /// Used for avoiding accessing both index and element with built-in methods.
     ///

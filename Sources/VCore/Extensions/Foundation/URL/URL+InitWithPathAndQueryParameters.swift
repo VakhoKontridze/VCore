@@ -13,15 +13,18 @@ extension URL {
     ///     let url: URL = .init(
     ///         string: "https://website.com",
     ///         pathParameters: ["path", "to", "resource"],
-    ///         queryParameters: ["key1": "value1", "key2": "value2"]
+    ///         queryParameters: [
+    ///             ("key1", "value1"),
+    ///             ("key2", "value2")
+    ///         ]
     ///     )!
     ///
-    ///     // "https://website.com/path/to/resource?key1=value1&key2=value2"
+    ///     "https://website.com/path/to/resource?key1=value1&key2=value2"
     ///
     public init?(
         string: String,
         pathParameters: [String],
-        queryParameters: [String: String]
+        queryParameters: [(key: String, value: String)]
     ) {
         var string = string
         if string.hasSuffix("/") { _ = string.removeLast() }
@@ -41,20 +44,13 @@ extension URL {
 
 extension URLComponents {
     fileprivate mutating func addQueryItems(
-        _ newQueryItems: [String: String?]
+        _ newQueryItems: [(key: String, value: String)]
     ) {
         guard !newQueryItems.isEmpty else { return }
 
-        let newURLQueryItems: [URLQueryItem] = newQueryItems.compactMap { (key, value) in
-            guard let value else { return nil }
-
-            return URLQueryItem(
-                name: key,
-                value: value
-            )
+        let newURLQueryItems: [URLQueryItem] = newQueryItems.map { (key, value) in
+            URLQueryItem(name: key, value: value)
         }
-
-        guard !newURLQueryItems.isEmpty else { return }
 
         if queryItems == nil {
             queryItems = newURLQueryItems

@@ -91,7 +91,7 @@ extension Optional where Wrapped: Comparable {
     ///     let a: Int? = 10
     ///     let b: Int?
     ///
-    ///     a.isOptionalLessThanOrEqual(than: b, order: .nilIsLess) // true
+    ///     a.isOptionalGreaterThanOrEqual(than: b, order: .nilIsLess) // true
     ///
     public func isOptionalGreaterThanOrEqual(
         to other: Self,

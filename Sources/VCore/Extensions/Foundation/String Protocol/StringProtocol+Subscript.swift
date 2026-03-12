@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import OSLog
 
 extension StringProtocol {
     /// Accesses the element at the specified position.
@@ -15,9 +16,19 @@ extension StringProtocol {
     ///
     public subscript(_ i: Int) -> Element {
         get {
-            self[index(startIndex, offsetBy: i)]
-        } 
+            guard i >= 0 && i < count else {
+                Logger.misc.critical("Index \(i) out of bounds")
+                fatalError() // Unsafe
+            }
+            
+            return self[index(startIndex, offsetBy: i)]
+        }
         set {
+            guard i >= 0 && i < count else {
+                Logger.misc.critical("Index \(i) out of bounds")
+                fatalError() // Unsafe
+            }
+            
             replace(at: i, with: newValue)
         }
     }

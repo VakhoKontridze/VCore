@@ -15,8 +15,9 @@ extension String {
     ///
     public func keeping(only characterSet: CharacterSet) -> String {
         filter { char in
-            guard let unicodeScalar: Unicode.Scalar = char.unicodeScalars.first else { return false }
-            return characterSet.contains(unicodeScalar)
+            char.unicodeScalars.allSatisfy { unicodeScalar in
+                characterSet.contains(unicodeScalar)
+            }
         }
     }
     

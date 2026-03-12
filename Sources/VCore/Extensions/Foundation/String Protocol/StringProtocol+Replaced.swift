@@ -14,13 +14,14 @@ extension StringProtocol {
     ///     let replacedString: String = string.replaced(at: 0, with: "l") // "lorem ipsum"
     ///
     public func replaced(at i: Int, with element: Element) -> Self {
-        "\(prefix(i))\(element)\(dropFirst(i+1))"
+        guard i >= 0, i < count else { return self }
+        return "\(prefix(i))\(element)\(dropFirst(i+1))"
     }
 
     /// Replaces an element at index.
     ///
     ///     var string: String = "Lorem ipsum"
-    ///     string.replacing(at: 0, with: "l") // "lorem ipsum"
+    ///     string.replace(at: 0, with: "l") // "lorem ipsum"
     ///
     mutating public func replace(at i: Int, with element: Element) {
         self = replaced(at: i, with: element)

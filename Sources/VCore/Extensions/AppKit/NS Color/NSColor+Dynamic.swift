@@ -20,20 +20,8 @@ extension NSColor {
         _ dark: NSColor
     ) -> NSColor {
         .init(name: nil) { appearance in
-            switch appearance.name {
-            case .aqua: return light
-            case .accessibilityHighContrastAqua: return light
-            case .accessibilityHighContrastVibrantLight: return light
-
-            case .darkAqua: return dark
-            case .vibrantDark: return dark
-            case .accessibilityHighContrastDarkAqua: return dark
-            case .accessibilityHighContrastVibrantDark: return dark
-
-            default:
-                Logger.misc.fault("Unhandled 'NSAppearance' '\(appearance.debugDescription)' in 'NSColor.dynamic(_:_:)'")
-                return light
-            }
+            let resolved: NSAppearance.Name? = appearance.bestMatch(from: [.aqua, .darkAqua])
+            return resolved == .darkAqua ? dark : light
         }
     }
 }

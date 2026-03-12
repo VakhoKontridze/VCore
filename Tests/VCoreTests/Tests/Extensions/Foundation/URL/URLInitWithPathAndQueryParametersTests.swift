@@ -15,7 +15,10 @@ struct URLInitWithPathAndQueryParametersTests {
     func testFullDeclaration() throws {
         let string: String = "https://website.com"
         let pathParameters: [String] = ["path", "to", "resource"]
-        let queryParameters: [String: String] = ["key1": "value1", "key2": "value2"]
+        let queryParameters: [(key: String, value: String)] = [
+            ("key1", "value1"),
+            ("key2", "value2")
+        ]
 
         let url: URL = try #require(
             URL(
@@ -52,7 +55,10 @@ struct URLInitWithPathAndQueryParametersTests {
     func testEmptyString() {
         let string: String = ""
         let pathParameters: [String] = ["path", "to", "resource"]
-        let queryParameters: [String: String] = ["key1": "value1", "key2": "value2"]
+        let queryParameters: [(key: String, value: String)] = [
+            ("key1", "value1"),
+            ("key2", "value2")
+        ]
 
         let url: URL? = .init(
             string: string,
@@ -67,7 +73,7 @@ struct URLInitWithPathAndQueryParametersTests {
     func testEmptyPathParameters() throws {
         let string: String = "https://website.com"
         let pathParameters: [String] = []
-        let queryParameters: [String: String] = ["key": "value"]
+        let queryParameters: [(key: String, value: String)] = [("key", "value")]
 
         let url: URL = try #require(
             URL(
@@ -85,7 +91,7 @@ struct URLInitWithPathAndQueryParametersTests {
     func testEmptyQueryParameters() throws {
         let string: String = "https://website.com"
         let pathParameters: [String] = ["path", "to", "resource"]
-        let queryParameters: [String: String] = [:]
+        let queryParameters: [(key: String, value: String)] = []
 
         let url: URL = try #require(
             URL(

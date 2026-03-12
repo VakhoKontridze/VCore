@@ -22,7 +22,7 @@ extension CGPoint {
         )
     }
 
-    /// Moves left `CGPoint` with a given constant.
+    /// Moves `CGPoint` left with a given constant.
     ///
     ///     var size: CGPoint = .init(x: 3, y: 4)
     ///     size.moveLeft(withValue: 1) // 2x4
@@ -49,7 +49,7 @@ extension CGPoint {
         )
     }
 
-    /// Moves left `CGPoint` with a given constant.
+    /// Moves `CGPoint` right with a given constant.
     ///
     ///     var size: CGPoint = .init(x: 3, y: 4)
     ///     size.moveRight(withValue: 1) // 4x4
@@ -77,7 +77,7 @@ extension CGPoint {
         )
     }
 
-    /// Moves up `CGPoint` with a given constant.
+    /// Moves `CGPoint` up with a given constant.
     ///
     ///     var size: CGPoint = .init(x: 3, y: 4)
     ///     size.moveUp(withValue: 1) // 3x3
@@ -104,7 +104,7 @@ extension CGPoint {
         )
     }
 
-    /// Moves up `CGPoint` with a given constant.
+    /// Moves `CGPoint` down with a given constant.
     ///
     ///     var size: CGPoint = .init(x: 3, y: 4)
     ///     size.moveDown(withValue: 1) // 3x5

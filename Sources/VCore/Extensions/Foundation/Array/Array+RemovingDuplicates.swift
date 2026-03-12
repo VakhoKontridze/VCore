@@ -34,3 +34,27 @@ extension Array where Element: Equatable {
         self = removingDuplicates()
     }
 }
+
+extension Array where Element: Hashable {
+    /// Returns a sequence with only the unique elements of this sequence, in the
+    /// order of the first occurrence of each unique element.
+    ///
+    ///     let numbers: [Int] = [1, 1, 3, 5, 5]
+    ///     let uniqueNumbers: [Int] = numbers.removingDuplicates() // [1, 3, 5]
+    ///
+    public func removingDuplicates() -> [Element] {
+        var encountered: Set<Element> = []
+        
+        return filter { encountered.insert($0).inserted }
+    }
+
+    /// Removes duplicates from sequence and keep unique elements, in the
+    /// order of the first occurrence of each unique element.
+    ///
+    ///     var numbers: [Int] = [1, 1, 3, 5, 5]
+    ///     numbers.removeDuplicates() // [1, 3, 5]
+    ///
+    mutating public func removeDuplicates() {
+        self = removingDuplicates()
+    }
+}

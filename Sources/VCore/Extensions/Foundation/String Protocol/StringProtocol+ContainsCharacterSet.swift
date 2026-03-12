@@ -15,8 +15,9 @@ extension StringProtocol {
     ///
     public func contains(_ characterSet: CharacterSet) -> Bool {
         contains { char in
-            guard let unicodeScalar: Unicode.Scalar = char.unicodeScalars.first else { return false }
-            return characterSet.contains(unicodeScalar)
+            char.unicodeScalars.allSatisfy { unicodeScalar in
+                characterSet.contains(unicodeScalar)
+            }
         }
     }
 }
@@ -25,7 +26,7 @@ extension StringProtocol {
     /// Returns `Bool` indicating if `String` contains a `Character` from any given `CharacterSet`s.
     ///
     ///     let phoneNumber: String = "+0123456789"
-    ///     let flag: Bool = phoneNumber.contains([.decimalDigits, .symbols]) // true
+    ///     let flag: Bool = phoneNumber.contains(any: [.decimalDigits, .symbols]) // true
     ///
     public func contains(any characterSets: [CharacterSet]) -> Bool {
         contains(characterSets.unified)
@@ -34,7 +35,7 @@ extension StringProtocol {
     /// Returns `Bool` indicating if `String` contains a `Character` from all given `CharacterSet`s.
     ///
     ///     let phoneNumber: String = "+0123456789"
-    ///     let flag: Bool = phoneNumber.contains([.decimalDigits, .symbols]) // true
+    ///     let flag: Bool = phoneNumber.contains(all: [.decimalDigits, .symbols]) // true
     ///
     public func contains(all characterSets: [CharacterSet]) -> Bool {
         for characterSet in characterSets {

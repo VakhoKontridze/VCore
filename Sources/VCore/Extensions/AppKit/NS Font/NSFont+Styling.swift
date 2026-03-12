@@ -12,20 +12,26 @@ import AppKit
 extension NSFont {
     /// Returns `NSFont` with italic styling.
     ///
-    ///     let systemFont: UIFont = .systemFont(ofSize: 13)
-    ///     let italicSystemFont: UIFont? = systemFont.withItalicStyling()
+    ///     let systemFont: NSFont = .systemFont(ofSize: 13)
+    ///     let italicSystemFont: NSFont? = systemFont.withItalicStyling()
     ///
     public func withItalicStyling() -> NSFont? {
-        .init(descriptor: fontDescriptor.withSymbolicTraits(.italic), size: 0)
+        .init(
+            descriptor: fontDescriptor.withSymbolicTraits(.italic),
+            size: 0
+        )
     }
 
     /// Returns `NSFont` with bold styling.
     ///
-    ///     let systemFont: UIFont = .systemFont(ofSize: 13)
-    ///     let boldSystemFont: UIFont? = systemFont.withBoldStyling()
+    ///     let systemFont: NSFont = .systemFont(ofSize: 13)
+    ///     let boldSystemFont: NSFont? = systemFont.withBoldStyling()
     ///
     public func withBoldStyling() -> NSFont? {
-        .init(descriptor: fontDescriptor.withSymbolicTraits(.bold), size: 0)
+        .init(
+            descriptor: fontDescriptor.withSymbolicTraits(.bold),
+            size: 0
+        )
     }
 }
 

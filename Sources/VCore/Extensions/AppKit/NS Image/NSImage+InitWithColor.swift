@@ -10,9 +10,9 @@
 import AppKit
 
 extension NSImage {
-    /// Initializes `UIImage` with `CGSize` and `NSColor`.
+    /// Initializes `NSImage` with `CGSize` and `NSColor`.
     ///
-    ///     let image: UIImage = .init(
+    ///     let image: NSImage = .init(
     ///         size: CGSize(dimension: 100),
     ///         color: NSColor.systemBlue
     ///     )!

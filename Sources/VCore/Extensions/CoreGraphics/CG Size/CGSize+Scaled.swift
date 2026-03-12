@@ -22,7 +22,7 @@ extension CGSize {
         )
     }
 
-    /// Scales up `CGSize` with a given constant.
+    /// Scales `CGSize` up with a given constant.
     ///
     ///     var size: CGSize = .init(width: 3, height: 4)
     ///     size.scaleUp(withConstant: 1) // 4x5
@@ -50,7 +50,7 @@ extension CGSize {
         )
     }
 
-    /// Scales up `CGSize` with a given constant.
+    /// Scales `CGSize` down with a given constant.
     ///
     ///     var size: CGSize = .init(width: 3, height: 4)
     ///     size.scaleDown(withConstant: 1) // 2x3
@@ -78,7 +78,7 @@ extension CGSize {
         )
     }
 
-    /// Scales up `CGSize` with a given multiplier.
+    /// Scales `CGSize` up with a given multiplier.
     ///
     ///     var size: CGSize = .init(width: 3, height: 4)
     ///     size.scaleUp(withMultiplier: 2) // 6x8
@@ -106,7 +106,7 @@ extension CGSize {
         )
     }
 
-    /// Scales down `CGSize` with a given multiplier.
+    /// Scales `CGSize` down with a given multiplier.
     ///
     ///     var size: CGSize = .init(width: 3, height: 4)
     ///     size.scaleDown(withMultiplier: 2) // 1.5x2

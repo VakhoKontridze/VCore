@@ -11,14 +11,14 @@ import OSLog
 extension Double {
     /// Rounds `Double` with precision.
     ///
-    ///     let rounded1: Double? = 3.1415.rounded(fractions: 2) // 3.14
+    ///     let rounded1: Double = 3.1415.rounded(fractions: 2) // 3.14
     ///
-    ///     let rounded2: Double? = 3.1415.rounded(fractions: 3) // 3.142
+    ///     let rounded2: Double = 3.1415.rounded(fractions: 3) // 3.142
     ///
-    public func rounded(fractions: Int) -> Double? {
+    public func rounded(fractions: Int) -> Double {
         guard fractions >= 0 else {
             Logger.misc.critical("'fractions' must be greater than or equal to '0' in 'Double.rounded(fractions:)'")
-            return nil
+            fatalError() // Unsafe
         }
         
         let power: Double = pow(10, Double(fractions))
@@ -34,6 +34,6 @@ extension Double {
     ///     num2.round(fractions: 3) // 3.142
     ///
     mutating public func round(fractions: Int) {
-        rounded(fractions: fractions).map { self = $0 }
+        self = rounded(fractions: fractions)
     }
 }

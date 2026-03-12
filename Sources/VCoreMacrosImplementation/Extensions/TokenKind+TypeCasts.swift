@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 19.04.24.
 //
 
+#if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
+
 import Foundation
 import SwiftSyntax
 
@@ -17,3 +19,5 @@ extension TokenKind {
         }
     }
 }
+
+#endif

@@ -18,7 +18,7 @@ extension View {
 
     /// Wraps `View` with a type eraser.
     ///
-    ///     Color.accentColor.eraseToAnyView()
+    ///     Color.accentColor.eraseToAnyViewErasing()
     ///
     public func eraseToAnyViewErasing() -> AnyView {
         .init(erasing: self)

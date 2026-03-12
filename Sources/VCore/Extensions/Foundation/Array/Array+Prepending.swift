@@ -19,7 +19,7 @@ extension Array {
     /// Adds a new element at the beginning of the `Array`.
     ///
     ///     var numbers: [Int] = [2, 3]
-    ///     let index: Int = numbers.prepend(1)
+    ///     numbers.prepend(1)
     ///     // [1, 2, 3]
     ///
     mutating public func prepend(_ newElement: Element) {
@@ -45,7 +45,7 @@ extension Array {
     /// Adds the elements of a `Sequence` to the beginning of the `Array`.
     ///
     ///     var numbers: [Int] = [3, 4]
-    ///     let index: Int = numbers.prepend(contentsOf: [1, 2])
+    ///     numbers.prepend(contentsOf: [1, 2])
     ///     // [1, 2, 3, 4]
     ///
     mutating public func prepend<S>(
