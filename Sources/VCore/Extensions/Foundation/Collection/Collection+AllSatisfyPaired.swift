@@ -1,5 +1,5 @@
 //
-//  Collection+AllMatch.swift
+//  Collection+AllSatisfyPaired.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 21.02.23.
@@ -14,10 +14,10 @@ extension Collection {
     ///
     ///     let array: [Int] = [1, 2, 3]
     ///
-    ///     array.allMatch { abs($0 - $1) <= 1 } // false
-    ///     array.allMatch { abs($0 - $1) <= 2 } // true
+    ///     array.allSatisfy { abs($0 - $1) <= 1 } // false
+    ///     array.allSatisfy { abs($0 - $1) <= 2 } // true
     ///
-    public func allMatch(
+    public func allSatisfy(
         _ predicate: (Element, Element) throws -> Bool
     ) rethrows -> Bool {
         for (i, a) in self.enumerated() {

@@ -60,7 +60,11 @@ extension View {
     ) -> some View {
 #if os(macOS) || os(tvOS) || os(watchOS) || os(visionOS)
         self
-            .onFirstAppear { action(.portrait) }
+            .onAppear { isFirst in
+                if isFirst {
+                    action(.portrait)
+                }
+            }
 #else
         self
             .onInterfaceOrientationChange { action(PlatformInterfaceOrientation(uiIInterfaceOrientation: $0)) }

@@ -1,5 +1,5 @@
 //
-//  ClosedRange+ReversedArrayOnCondition.swift
+//  ClosedRange+ReversedArray.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 05.08.23.

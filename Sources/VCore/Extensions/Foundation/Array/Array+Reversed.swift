@@ -1,5 +1,5 @@
 //
-//  Array+ReversedOnCondition.swift
+//  Array+Reversed.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 25.02.23.

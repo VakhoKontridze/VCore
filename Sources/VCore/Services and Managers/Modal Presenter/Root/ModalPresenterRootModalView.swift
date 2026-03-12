@@ -80,7 +80,11 @@ struct ModalPresenterRootModalView: View {
                 .focused($isFocused)
 #endif
         }
-        .onFirstAppear { modal.context.presentSubject.send() }
+        .onAppear { isFirst in
+            if isFirst {
+                modal.context.presentSubject.send()
+            }
+        }
         
         // Must be written last
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))

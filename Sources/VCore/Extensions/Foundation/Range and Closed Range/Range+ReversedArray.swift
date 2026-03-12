@@ -1,5 +1,5 @@
 //
-//  Range+ReversedArrayOnCondition.swift
+//  Range+ReversedArray.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 25.02.23.

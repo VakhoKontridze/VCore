@@ -64,7 +64,12 @@ Extensions
 - `View.getInterfaceOrientation(_:)` is renamed to `View.onInterfaceOrientationChange(action:)`
 - `View.getNestedSize(_:)` is renamed to `View.onNestedSizeChange(action:)`
 - `View.getWindow(_:)` is renamed to `View.onMoveToWindow(action:)`
+- `Array.removeIfPresent(_:)` and `Array.removeIfPresent(contentsOf:)` methods are removed
+- `View.onFirstAppear(_:)` is replaced with `View.onAppear(_:)` that passes `Bool`
+- `View.onFirstDisappear(_:)` is removed
 - `JSONDecoder.decode(from:)` method is added
+- `Collection.allMatch(_:)` is renamed to `Collection.allSatisfy(_:)`
+- `Collection.containsAnyItem(fromCollection:)` method is removed
 
 Global Functions
 
