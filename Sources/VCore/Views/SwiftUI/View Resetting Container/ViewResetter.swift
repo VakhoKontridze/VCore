@@ -10,8 +10,8 @@ import Foundation
 /// Object inside the environment of `ViewResettingContainer` to trigger view resets on demand.
 ///
 /// For additional info, refer to `ViewResettingContainer`.
-@Observable
 @MainActor
+@Observable
 public final class ViewResetter: Sendable {
     // MARK: Properties
     private(set) var value: Int = 0
@@ -22,7 +22,7 @@ public final class ViewResetter: Sendable {
     // MARK: Trigger
     /// Triggers reset inside `ViewResettingContainer`.
     public func trigger() {
-        value += 1
+        value &+= 1
     }
 
     // MARK: Callable Object

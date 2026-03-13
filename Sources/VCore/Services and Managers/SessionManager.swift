@@ -49,7 +49,7 @@ public actor SessionManager {
     
     /// Increments and returns new ID.
     public func generateNewID() -> Int {
-        id += 1
+        id &+= 1
         return id
     }
     
@@ -77,7 +77,11 @@ public actor SessionManager {
 ///         }
 ///     }
 ///
-@globalActor
-public final class GlobalSessionManager {
+public final class GlobalSessionManager { // No `@globalActor` needed
+    // MARK: Properties
+    /// Shared instance of `SessionManager`.
     public static let shared: SessionManager = .init()
+    
+    // MARK: Initializers
+    private init() {}
 }

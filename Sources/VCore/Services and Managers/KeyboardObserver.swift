@@ -32,8 +32,8 @@ import OSLog
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 @available(visionOS, unavailable)
-@Observable
 @MainActor
+@Observable
 public final class KeyboardObserver: Sendable {
     // MARK: Properties
     /// Keyboard responsiveness strategy.

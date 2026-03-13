@@ -153,7 +153,7 @@ open class UserDefaultsService: @unchecked Sendable {
         do {
            value = try jsonDecoder.decode(Value.self, from: data)
         } catch {
-            Logger.keychainService.error("Failed to decode '\(Value.self)' from 'Data' in 'UserDefaultsService.getCodable(key:)': \(error.localizedDescription)")
+            Logger.userDefaultsService.error("Failed to decode '\(Value.self)' from 'Data' in 'UserDefaultsService.getCodable(key:)': \(error.localizedDescription)")
             throw UserDefaultsServiceError.failedToGet
         }
 
@@ -171,7 +171,7 @@ open class UserDefaultsService: @unchecked Sendable {
         do {
             data = try jsonEncoder.encode(value)
         } catch {
-            Logger.keychainService.error("Failed to encode '\(Value.self)' to 'Data' in 'UserDefaultsService.setCodable(key:value:)': \(error.localizedDescription)")
+            Logger.userDefaultsService.error("Failed to encode '\(Value.self)' to 'Data' in 'UserDefaultsService.setCodable(key:value:)': \(error.localizedDescription)")
             throw UserDefaultsServiceError.failedToSet
         }
 

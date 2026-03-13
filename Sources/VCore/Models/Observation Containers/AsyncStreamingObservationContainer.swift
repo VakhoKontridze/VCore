@@ -26,8 +26,8 @@ import Foundation
 ///         }
 ///     }
 ///
-///     @Observable
 ///     @MainActor
+///     @Observable
 ///     final class ViewModel {
 ///         let count: AsyncStreamingObservationContainer<Int> = .init(0)
 ///
@@ -40,8 +40,8 @@ import Foundation
 ///         }
 ///     }
 ///
-@Observable
 @MainActor
+@Observable
 public final class AsyncStreamingObservationContainer<Value>: Sendable where Value: Sendable {
     // MARK: Properties - Value
     @ObservationIgnored private var _value: Value
@@ -123,8 +123,8 @@ import SwiftUI
     }
 }
 
-@Observable
 @MainActor
+@Observable
 private final class ViewModel {
     // MARK: Properties
     let count: AsyncStreamingObservationContainer<Int> = .init(0)

@@ -89,27 +89,24 @@ public struct DigitalTimeFormatter: Sendable {
             }
         }
 
-        if s >= 0 {
-            if emptySignificantComponentsAreIncluded {
-                return String(format: "0\(delimiter)00\(delimiter)00\(delimiter)%02d", s)
-            }
+        // if seconds >= 0 { // Checked at the top
+        if emptySignificantComponentsAreIncluded {
+            return String(format: "0\(delimiter)00\(delimiter)00\(delimiter)%02d", s)
+        }
 
-            if minuteComponentIsIncludedIfOnlySecondComponentIsIncluded {
-                if minuteComponentHasTwoDigits {
-                    return String(format: "00\(delimiter)%02d", s)
-                } else {
-                    return String(format: "0\(delimiter)%02d", s)
-                }
-            }
-
-            if secondComponentHasTwoDigits {
-                return String(format: "%02d", s)
+        if minuteComponentIsIncludedIfOnlySecondComponentIsIncluded {
+            if minuteComponentHasTwoDigits {
+                return String(format: "00\(delimiter)%02d", s)
             } else {
-                return String(format: "%d", s)
+                return String(format: "0\(delimiter)%02d", s)
             }
         }
 
-        return nil
+        if secondComponentHasTwoDigits {
+            return String(format: "%02d", s)
+        } else {
+            return String(format: "%d", s)
+        }
     }
 
     /// Returns `String` from seconds with specified format.

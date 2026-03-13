@@ -18,8 +18,8 @@ import Combine
 ///         Text(deviceOrientationObserver.deviceOrientation.isLandscape ? "Landscape" : "Portrait")
 ///     }
 ///
-@Observable
 @MainActor
+@Observable
 public final class DeviceOrientationObserver: Sendable {
     // MARK: Properties
     /// The physical orientation of the device.

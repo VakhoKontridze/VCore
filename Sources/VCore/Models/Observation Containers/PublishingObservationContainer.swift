@@ -27,8 +27,8 @@ import Combine
 ///         }
 ///     }
 ///
-///     @Observable
 ///     @MainActor
+///     @Observable
 ///     final class ViewModel {
 ///         let count: PublishingObservationContainer<Int> = .init(0)
 ///
@@ -42,8 +42,8 @@ import Combine
 ///         }
 ///     }
 ///
-@Observable
 @MainActor
+@Observable
 public final class PublishingObservationContainer<Value>: Sendable {
     // MARK: Properties - Value
     @ObservationIgnored private var _value: Value
@@ -94,8 +94,8 @@ import SwiftUI
     }
 }
 
-@Observable
 @MainActor
+@Observable
 private final class ViewModel {
     // MARK: Properties
     let count: PublishingObservationContainer<Int> = .init(0)

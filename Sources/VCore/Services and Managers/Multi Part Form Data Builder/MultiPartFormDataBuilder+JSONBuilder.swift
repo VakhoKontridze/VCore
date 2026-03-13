@@ -48,7 +48,16 @@ extension MultipartFormDataBuilder {
             element: Any,
             to data: inout Data
         ) throws {
-            let value: String = .init(describing: element)
+            let value: String = {
+                switch element {
+                case let bool as Bool: bool ? "true" : "false" // Must be checked before numbers to avoid `NSNumber` bridging
+                case let string as String: string
+                case let int as Int: String(int)
+                case let double as Double: String(double)
+                case let float as Float: String(float)
+                default: String(describing: element)
+                }
+            }()
 
             try data.appendString("--\(boundary)\(lineBreak)")
             try data.appendString("Content-Disposition: form-data; name=\"\(key)\"\(lineBreak)\(lineBreak)")

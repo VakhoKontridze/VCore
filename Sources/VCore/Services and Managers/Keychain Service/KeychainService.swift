@@ -99,14 +99,30 @@ open class KeychainService: @unchecked Sendable {
         key: String,
         value: Data
     ) throws {
-        try? deleteData(key: key, logsError: false)
+        // `deleteQuery` is reused here as a lookup query, since it contains only the necessary attributes
+        let updateQuery: [String: Any] = configuration.deleteQuery.build(key: key)
+        let updateAttributes: [String: Any] = [kSecValueData as String: value]
+        let updateStatus: OSStatus = SecItemUpdate(updateQuery as CFDictionary, updateAttributes as CFDictionary)
 
-        let query: [String: Any] = configuration.setQuery.build(key: key, value: value)
+        // Item existed and was updated successfully
+        if updateStatus == noErr {
+            return
 
-        let status: OSStatus = SecItemAdd(query as CFDictionary, nil)
+        // Item doesn't exist, so it will be added
+        } else if updateStatus == errSecItemNotFound {
+            let setQuery: [String: Any] = configuration.setQuery.build(key: key, value: value)
+            let setStatus: OSStatus = SecItemAdd(setQuery as CFDictionary, nil)
 
-        guard status == noErr else {
-            Logger.keychainService.error("Failed to set 'Data' with key '\(key)' in 'KeychainService.setData(key:value:)': 'OSStatus' '\(status)'")
+            guard setStatus == noErr else {
+                Logger.keychainService.error("Failed to set 'Data' with key '\(key)' in 'KeychainService.setData(key:value:)': 'OSStatus' '\(setStatus)'")
+                throw KeychainServiceError.failedToSet
+            }
+            
+            return
+
+        // Failed to update item
+        } else {
+            Logger.keychainService.error("Failed to update 'Data' with key '\(key)' in 'KeychainService.setData(key:value:)': 'OSStatus' '\(updateStatus)'")
             throw KeychainServiceError.failedToSet
         }
     }
