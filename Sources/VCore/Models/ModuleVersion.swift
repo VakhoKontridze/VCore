@@ -73,12 +73,12 @@ public struct ModuleVersion: Equatable, Hashable, Comparable, Identifiable, Send
         }
     }
     
-    // MARK: Description
-    /// Textual representation.
-    public func description(showsEmptyPatchVersionAsZero: Bool = false) -> String {
-        if showsEmptyPatchVersionAsZero {
+    // MARK: Version String
+    /// Version string.
+    public func versionString(showsPatch: Bool = false) -> String {
+        if showsPatch {
             "\(major).\(minor).\(patchUnwrapped)"
-        } else if let patch = patch {
+        } else if let patch {
             "\(major).\(minor).\(patch)"
         } else {
             "\(major).\(minor)"
@@ -91,7 +91,7 @@ public struct ModuleVersion: Equatable, Hashable, Comparable, Identifiable, Send
     }
     
     // MARK: Identifiable
-    public var id: String { description }
+    public var id: String { versionString() }
     
     // MARK: Comparable
     public static func < (lhs: Self, rhs: Self) -> Bool {
@@ -100,6 +100,6 @@ public struct ModuleVersion: Equatable, Hashable, Comparable, Identifiable, Send
 
     // MARK: Custom String Convertible
     public var description: String {
-        description()
+        versionString()
     }
 }

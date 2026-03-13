@@ -126,9 +126,9 @@ public struct GenericStateModel_OffOn<Value> {
 
     // MARK: Map
     /// Returns `GenericStateModel_OffOn`  containing the results of mapping the given closure over the values.
-    public func map(
-        _ transform: (Value) throws -> Value
-    ) rethrows -> Self {
+    public func map<NewValue>(
+        _ transform: (Value) throws -> NewValue
+    ) rethrows -> GenericStateModel_OffOn<NewValue> {
         .init(
             off: try transform(off),
             on: try transform(on)

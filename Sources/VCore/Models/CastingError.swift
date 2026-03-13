@@ -26,4 +26,9 @@ public struct CastingError: BaseErrorProtocol, Sendable {
             description: "Failed to cast '\(fromType)' to '\(toType)'"
         )
     }
+    
+    // MARK: Equatable
+    public static func == (lhs: Self, rhs: Self) -> Bool {
+        lhs.description == rhs.description
+    }
 }

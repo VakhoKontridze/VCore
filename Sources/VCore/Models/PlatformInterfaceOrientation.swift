@@ -33,9 +33,9 @@ public enum PlatformInterfaceOrientation {
 
 #if !(os(macOS) || os(tvOS) || os(watchOS) || os(visionOS))
     /// Initializes `PlatformInterfaceOrientation` from interface orientation.
-    public init(uiIInterfaceOrientation: UIInterfaceOrientation) {
+    public init(uiInterfaceOrientation: UIInterfaceOrientation) {
         self = {
-            if uiIInterfaceOrientation.isLandscape {
+            if uiInterfaceOrientation.isLandscape {
                 .landscape
             } else {
                 .portrait
@@ -67,7 +67,7 @@ extension View {
             }
 #else
         self
-            .onInterfaceOrientationChange { action(PlatformInterfaceOrientation(uiIInterfaceOrientation: $0)) }
+            .onInterfaceOrientationChange { action(PlatformInterfaceOrientation(uiInterfaceOrientation: $0)) }
 #endif
     }
 }

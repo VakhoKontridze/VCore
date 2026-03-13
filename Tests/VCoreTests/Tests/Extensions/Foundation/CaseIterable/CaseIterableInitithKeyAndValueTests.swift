@@ -1,5 +1,5 @@
 //
-//  KeyPathInitializableEnumerationTests.swift
+//  CaseIterableInitithKeyAndValueTests.swift
 //  VCoreTests
 //
 //  Created by Vakhtang Kontridze on 10.05.22.
@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct KeyPathInitializableEnumerationTests {
+struct CaseIterableInitithKeyAndValueTests {
     // MARK: Tests
     @Test
     func test() {
@@ -21,7 +21,7 @@ struct KeyPathInitializableEnumerationTests {
     }
     
     // MARK: Types
-    private enum Gender: KeyPathInitializableEnumeration {
+    private enum Gender: CaseIterable {
         // MARK: Cases
         case male
         case female

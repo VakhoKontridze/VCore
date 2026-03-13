@@ -68,14 +68,7 @@ enum PublishedPropertyWrapperStorage<Value> {
     }
     
     mutating func update(_ newValue: Value) {
-        switch self {
-        case .value:
-            let publisher: PublishedPropertyWrapperPublisher = .init(newValue)
-            self = .publisher(publisher)
-            
-        case .publisher(let publisher):
-            publisher.subject.value = newValue
-        }
+        publisher.subject.value = newValue
     }
 }
 

@@ -24,6 +24,6 @@ public struct JSONRequestHeaderFields: Sendable, Encodable {
     @CKGProperty("Content-Type") public let contentType: String = "application/json"
 
     // MARK: Initializers
-    /// initializes `JSONRequestHeaderFields`.
+    /// Initializes `JSONRequestHeaderFields`.
     public init() {}
 }

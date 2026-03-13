@@ -110,7 +110,7 @@ public struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
     ) -> EdgeInsetsAxis {
         .init(
             horizontal: horizontal + horizontalInset,
-            vertical: vertical + horizontalInset
+            vertical: vertical + verticalInset
         )
     }
     

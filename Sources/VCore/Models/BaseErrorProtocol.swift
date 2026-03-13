@@ -23,7 +23,7 @@ import Foundation
 ///         static func failedToSet(_ reason: String) -> Self {
 ///             .init(
 ///                 code: 2,
-///                 description: Data cannot be set, because '\(reason)'"
+///                 description: "Data cannot be set, because '\(reason)'"
 ///             )
 ///         }
 ///

@@ -16,7 +16,7 @@ import Foundation
 ///     }
 ///
 public final class LockedAtomicNumber<Number>: @unchecked Sendable
-    where Number: Numeric
+    where Number: SignedNumeric
 {
     // MARK: Properties - Value
     private var _value: Number
@@ -72,14 +72,18 @@ public final class LockedAtomicNumber<Number>: @unchecked Sendable
     // MARK: Get and Pre-Mutators
     /// Sets current value to a given value, and returns it.
     public func setAndGet(_ newValue: Number) -> Number {
-        value = newValue
-        return newValue
+        queue.sync(flags: .barrier) {
+            _value = newValue
+            return _value
+        }
     }
 
     /// Adds a given value to current value, and returns it.
     public func addAndGet(_ valueToAdd: Number) -> Number {
-        value += valueToAdd
-        return value
+        queue.sync(flags: .barrier) {
+            _value += valueToAdd
+            return _value
+        }
     }
 
     /// Adds `1` to current value, and returns it.
@@ -95,16 +99,20 @@ public final class LockedAtomicNumber<Number>: @unchecked Sendable
     // MARK: Get and Post-Mutators
     /// Returns current value, and sets it to a given value.
     public func getAndSet(_ newValue: Number) -> Number {
-        let currentValue = value
-        value = newValue
-        return currentValue
+        queue.sync(flags: .barrier) {
+            let currentValue = _value
+            _value = newValue
+            return currentValue
+        }
     }
 
     /// Returns current value, and adds a given value to it.
     public func getAndAdd(_ valueToAdd: Number) -> Number {
-        let currentValue = value
-        value += valueToAdd
-        return currentValue
+        queue.sync(flags: .barrier) {
+            let currentValue = _value
+            _value += valueToAdd
+            return currentValue
+        }
     }
 
     /// Returns current value, and adds `1` to it.

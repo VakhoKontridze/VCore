@@ -81,10 +81,10 @@ public struct GenericStateModel_EnabledLoading<Value> {
 #endif
 
     // MARK: Map
-    /// Returns `GenericStateModel_EnabledPressedLoading`  containing the results of mapping the given closure over the values.
-    public func map(
-        _ transform: (Value) throws -> Value
-    ) rethrows -> Self {
+    /// Returns `GenericStateModel_EnabledLoading`  containing the results of mapping the given closure over the values.
+    public func map<NewValue>(
+        _ transform: (Value) throws -> NewValue
+    ) rethrows -> GenericStateModel_EnabledLoading<NewValue> {
         .init(
             enabled: try transform(enabled),
             loading: try transform(loading)

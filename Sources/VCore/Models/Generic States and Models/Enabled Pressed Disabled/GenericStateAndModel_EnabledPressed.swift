@@ -82,9 +82,9 @@ public struct GenericStateModel_EnabledPressed<Value> {
 
     // MARK: Map
     /// Returns `GenericStateModel_EnabledPressed`  containing the results of mapping the given closure over the values.
-    public func map(
-        _ transform: (Value) throws -> Value
-    ) rethrows -> Self {
+    public func map<NewValue>(
+        _ transform: (Value) throws -> NewValue
+    ) rethrows -> GenericStateModel_EnabledPressed<NewValue> {
         .init(
             enabled: try transform(enabled),
             pressed: try transform(pressed)

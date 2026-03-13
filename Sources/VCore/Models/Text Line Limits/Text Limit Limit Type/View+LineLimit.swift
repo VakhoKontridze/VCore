@@ -12,7 +12,7 @@ extension View {
     ///
     ///     var body: some View {
     ///         Text("Lorem ipsum")
-    ///             .lineLimit(type: .closedRange(lineLimit: 4...5))
+    ///             .lineLimit(type: .closedRange(4...5))
     ///     }
     ///
     @ViewBuilder

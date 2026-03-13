@@ -81,10 +81,10 @@ public struct GenericStateModel_EnabledFocused<Value> {
 #endif
 
     // MARK: Map
-    /// Returns `GenericStateModel_EnabledPressedFocused`  containing the results of mapping the given closure over the values.
-    public func map(
-        _ transform: (Value) throws -> Value
-    ) rethrows -> Self {
+    /// Returns `GenericStateModel_EnabledFocused`  containing the results of mapping the given closure over the values.
+    public func map<NewValue>(
+        _ transform: (Value) throws -> NewValue
+    ) rethrows -> GenericStateModel_EnabledFocused<NewValue> {
         .init(
             enabled: try transform(enabled),
             focused: try transform(focused)

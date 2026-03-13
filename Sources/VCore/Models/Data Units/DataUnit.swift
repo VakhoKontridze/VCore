@@ -17,6 +17,8 @@ public protocol DataUnit {
     /// Magnitude of `base` in data unit.
     ///
     /// Has a default implementation is `Int` `RawRepresentable` `enum`s, which returns `rawValue`.
+    ///
+    /// Must be a non-negative value.
     var magnitude: Int { get }
     
     /// Number of bytes in data unit.

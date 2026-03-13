@@ -128,9 +128,9 @@ public struct GenericStateModel_DeselectedSelectedPressedDisabled<Value> {
 
     // MARK: Map
     /// Returns `GenericStateModel_DeselectedSelectedPressedDisabled`  containing the results of mapping the given closure over the values.
-    public func map(
-        _ transform: (Value) throws -> Value
-    ) rethrows -> Self {
+    public func map<NewValue>(
+        _ transform: (Value) throws -> NewValue
+    ) rethrows -> GenericStateModel_DeselectedSelectedPressedDisabled<NewValue> {
         .init(
             deselected: try transform(deselected),
             selected: try transform(selected),

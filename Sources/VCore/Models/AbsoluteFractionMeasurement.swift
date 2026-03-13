@@ -38,8 +38,15 @@ public enum AbsoluteFractionMeasurement: Equatable, Hashable, Sendable {
         dimension: CGFloat
     ) -> CGFloat {
         switch self {
-        case .absolute(let value): value / dimension
-        case .fraction(let value): value
+        case .absolute(let value):
+            if dimension == 0 {
+                0
+            } else {
+                value / dimension
+            }
+        
+        case .fraction(let value):
+            value
         }
     }
 }

@@ -18,10 +18,10 @@ public enum LayoutDirectionOmni: Int, Sendable, CaseIterable {
     /// Right-to-left direction.
     case rightToLeft
     
-    /// Bottom-to-top direction.
-    case topToBottom
-    
     /// Top-to-bottom direction.
+    case topToBottom
+
+    /// Bottom-to-top direction.
     case bottomToTop
     
     // MARK: Properties

@@ -32,7 +32,7 @@ public struct MultipartFormDataAuthorizedRequestHeaderFields: Sendable, Encodabl
     @CKGProperty("Authorization") public let authorization: String
 
     // MARK: Initializers
-    /// Initializes `MultipartFormDataRequestHeaderFields` with boundary and token.
+    /// Initializes `MultipartFormDataAuthorizedRequestHeaderFields` with boundary and token.
     public init(boundary: String, token: String) {
         self.contentType = "multipart/form-data; boundary=\(boundary)"
         self.authorization = "Bearer \(token)"

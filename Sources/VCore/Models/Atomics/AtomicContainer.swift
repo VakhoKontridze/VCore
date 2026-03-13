@@ -12,7 +12,7 @@ import Foundation
 ///     let accountBalance: AtomicContainer<Double> = .init(value: 100)
 ///
 ///     func deposit(_ amount: Double) async {
-///         await accountBalance.setValue(to: accountBalance.value + amount)
+///         await accountBalance.modify { $0 += amount }
 ///     }
 ///
 public actor AtomicContainer<Value> {
@@ -28,7 +28,12 @@ public actor AtomicContainer<Value> {
     
     // MARK: Mutators
     /// Sets wrapped value to specified value.
-    public func setValue(to value: Value) async {
+    public func setValue(to value: Value) {
         self.value = value
+    }
+    
+    /// Modifies wrapped value.
+    public func modify(_ transform: (inout Value) -> Void) {
+        transform(&value)
     }
 }

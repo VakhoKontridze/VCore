@@ -147,9 +147,9 @@ public struct GenericStateModel_OffOnIndeterminatePressedDisabled<Value> {
 
     // MARK: Map
     /// Returns `GenericStateModel_OffOnIndeterminatePressedDisabled`  containing the results of mapping the given closure over the values.
-    public func map(
-        _ transform: (Value) throws -> Value
-    ) rethrows -> Self {
+    public func map<NewValue>(
+        _ transform: (Value) throws -> NewValue
+    ) rethrows -> GenericStateModel_OffOnIndeterminatePressedDisabled<NewValue> {
         .init(
             off: try transform(off),
             on: try transform(on),

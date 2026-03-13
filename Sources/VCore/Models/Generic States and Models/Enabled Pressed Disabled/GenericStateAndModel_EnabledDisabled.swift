@@ -124,9 +124,9 @@ public struct GenericStateModel_EnabledDisabled<Value> {
 
     // MARK: Map
     /// Returns `GenericStateModel_EnabledDisabled`  containing the results of mapping the given closure over the values.
-    public func map(
-        _ transform: (Value) throws -> Value
-    ) rethrows -> Self {
+    public func map<NewValue>(
+        _ transform: (Value) throws -> NewValue
+    ) rethrows -> GenericStateModel_EnabledDisabled<NewValue> {
         .init(
             enabled: try transform(enabled),
             disabled: try transform(disabled)

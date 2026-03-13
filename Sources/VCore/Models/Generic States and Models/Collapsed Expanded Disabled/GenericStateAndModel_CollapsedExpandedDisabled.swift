@@ -110,9 +110,9 @@ public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
 
     // MARK: Map
     /// Returns `GenericStateModel_CollapsedExpandedDisabled`  containing the results of mapping the given closure over the values.
-    public func map(
-        _ transform: (Value) throws -> Value
-    ) rethrows -> Self {
+    public func map<NewValue>(
+        _ transform: (Value) throws -> NewValue
+    ) rethrows -> GenericStateModel_CollapsedExpandedDisabled<NewValue> {
         .init(
             collapsed: try transform(collapsed),
             expanded: try transform(expanded),

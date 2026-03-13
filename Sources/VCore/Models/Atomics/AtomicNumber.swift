@@ -15,7 +15,7 @@ import Foundation
 ///         await idGenerator.getAndIncrement()
 ///     }
 ///
-public actor AtomicNumber<Number> where Number: Numeric {
+public actor AtomicNumber<Number> where Number: SignedNumeric {
     // MARK: Properties
     private var value: Number
     

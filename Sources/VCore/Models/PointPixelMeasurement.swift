@@ -20,8 +20,15 @@ public enum PointPixelMeasurement: Equatable, Hashable, Sendable {
     /// Converts pixels to points based on scale.
     public func toPoints(scale: CGFloat) -> CGFloat {
         switch self {
-        case .points(let value): value
-        case .pixels(let value): CGFloat(value) / scale
+        case .points(let value):
+            value
+        
+        case .pixels(let value):
+            if scale == 0 {
+                0
+            } else {
+                CGFloat(value) / scale
+            }
         }
     }
 

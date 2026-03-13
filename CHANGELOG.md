@@ -70,6 +70,7 @@ Extensions
 - `JSONDecoder.decode(from:)` method is added
 - `Collection.allMatch(_:)` is renamed to `Collection.allSatisfy(_:)`
 - `Collection.containsAnyItem(fromCollection:)` method is removed
+- `KeyPathInitializableEnumeration` is replaced with an extension
 
 Global Functions
 

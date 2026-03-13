@@ -70,7 +70,7 @@ public struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
     ) -> EdgeInsetsVertical {
         .init(
             top: top + topInset,
-            bottom: bottom + topInset
+            bottom: bottom + bottomInset
         )
     }
     

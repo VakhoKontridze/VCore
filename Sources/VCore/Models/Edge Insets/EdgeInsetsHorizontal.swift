@@ -70,7 +70,7 @@ public struct EdgeInsetsHorizontal: Equatable, Hashable, Sendable {
     ) -> EdgeInsetsHorizontal {
         .init(
             leading: leading + leadingInset,
-            trailing: trailing + leadingInset
+            trailing: trailing + trailingInset
         )
     }
     

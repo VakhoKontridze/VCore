@@ -51,7 +51,7 @@ public enum BinaryDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, Se
 extension Double {
     /// Converts bytes to binary data unit.
     ///
-    ///     let kibibytes: Double = 1024.binaryBytesConverted(to: .kB) // 1
+    ///     let kibibytes: Double = 1024.binaryBytesConverted(to: .KiB) // 1
     ///
     public func binaryBytesConverted(to dataUnit: BinaryDataUnit) -> Double {
         BinaryDataUnit.convert(self, .B, to: dataUnit)

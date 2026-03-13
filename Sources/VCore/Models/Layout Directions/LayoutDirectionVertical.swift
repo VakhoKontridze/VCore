@@ -12,10 +12,10 @@ import SwiftUI
 /// Unlike `SwiftUI.LayoutDirection`, `LayoutDirectionVertical` only supports vertical layouts.
 public enum LayoutDirectionVertical: Int, Sendable, CaseIterable {
     // MARK: Cases
-    /// Bottom-to-top direction.
+    /// Top-to-bottom direction.
     case topToBottom
     
-    /// Top-to-bottom direction.
+    /// Bottom-to-top direction.
     case bottomToTop
     
     // MARK: Properties
@@ -53,7 +53,7 @@ public enum LayoutDirectionVertical: Int, Sendable, CaseIterable {
         }
     }
     
-    /// Converts `LayoutDirectionVertical` to `Edge.Set`.
+    /// Converts `LayoutDirectionVertical` to `Edge`.
     public var toEdgeSet: Edge {
         switch self {
         case .topToBottom: .top

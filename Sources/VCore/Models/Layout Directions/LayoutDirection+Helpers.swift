@@ -29,7 +29,7 @@ extension LayoutDirection {
     }
 
     // MARK: Mapping
-    /// Converts `LayoutDirectionHorizontal` to `Alignment`.
+    /// Converts `LayoutDirection` to `Alignment`.
     public var toAlignment: Alignment {
         switch self {
         case .leftToRight: .leading
@@ -38,7 +38,7 @@ extension LayoutDirection {
         }
     }
     
-    /// Converts `LayoutDirectionHorizontal` to `Edge`.
+    /// Converts `LayoutDirection` to `Edge`.
     public var toEdge: Edge {
         switch self {
         case .leftToRight: .leading
@@ -47,7 +47,7 @@ extension LayoutDirection {
         }
     }
     
-    /// Converts `LayoutDirectionHorizontal` to `Edge.Set`.
+    /// Converts `LayoutDirection` to `Edge.Set`.
     public var toEdgeSet: Edge.Set {
         switch self {
         case .leftToRight: .leading
