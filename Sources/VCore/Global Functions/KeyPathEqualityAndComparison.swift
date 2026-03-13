@@ -35,8 +35,11 @@ public func isLess<T, each Property: Comparable>(
     by keyPaths: repeat KeyPath<T, each Property>
 ) -> Bool {
     for keyPath in repeat each keyPaths {
-        if lhs[keyPath: keyPath] != rhs[keyPath: keyPath] {
-            return lhs[keyPath: keyPath] < rhs[keyPath: keyPath]
+        let lhs = lhs[keyPath: keyPath]
+        let rhs = rhs[keyPath: keyPath]
+        
+        if lhs != rhs {
+            return lhs < rhs
         }
     }
     
