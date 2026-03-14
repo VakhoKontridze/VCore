@@ -85,7 +85,7 @@ final class GestureBaseButtonModel {
     }
     
     private func setStateToPossibleOnNextRunLoop() {
-        Task { @MainActor in
+        Task {
             stateSetter(.possible)
         }
     }

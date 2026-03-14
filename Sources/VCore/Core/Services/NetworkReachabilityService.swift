@@ -52,12 +52,8 @@ public nonisolated final class NetworkReachabilityService: @unchecked Sendable {
 
     // MARK: Initializers
     private init() {
-        // `lazy` doesn't work on `nonsolated` properties, so this must be set here
-        statusMonitor.pathUpdateHandler = { newValue in
-            Task { @MainActor in
-                self.status = newValue.status
-            }
-        }
+        // `lazy` doesn't work on `nonisolated` properties, so this must be set here
+        statusMonitor.pathUpdateHandler = { [weak self] in self?.status = $0.status }
         
         statusMonitor.start(queue: statusQueue)
     }
