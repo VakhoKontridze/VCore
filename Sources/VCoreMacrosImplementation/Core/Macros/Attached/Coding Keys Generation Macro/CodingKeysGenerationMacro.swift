@@ -109,7 +109,7 @@ nonisolated struct CodingKeysGenerationMacro: MemberMacro {
         declaration.modifiers.contains { $0.name.tokenKind == .keyword(.nonisolated) }
     }
 
-    // MARK: Data
+    // MARK: Parameters
     private static func property(
         member: MemberBlockItemSyntax,
         context: some MacroExpansionContext

@@ -174,7 +174,7 @@ nonisolated struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         }
     }
 
-    // MARK: Data
+    // MARK: Parameters
     private static func decodeExpansion(
         attribute: AttributeSyntax,
         declaration: some DeclGroupSyntax,

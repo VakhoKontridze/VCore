@@ -366,7 +366,7 @@ nonisolated struct MemberwiseInitializableMacro: MemberMacro {
         return value
     }
 
-    // MARK: Data
+    // MARK: Parameters
     private static func parameters(
         externalParameterNamesStrings: [String: String],
         parameterDefaultValuesStrings: [String: MemberwiseInitializableParameterDefaultValue],
