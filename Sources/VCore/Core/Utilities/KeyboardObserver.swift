@@ -129,7 +129,7 @@ public final class KeyboardObserver {
                 
                 let viewGlobalFrameMaxY: CGFloat = firstResponderViewSuperView.convert(firstResponderView.frame, to: nil).maxY
 
-                let currentOffset: CGFloat = self.offsetStable
+                let currentOffset: CGFloat = offsetStable
 
                 guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
                     Logger.keyboardObserver.error("Failed to retrieve system keyboard height from 'Notification': \(notification)")
