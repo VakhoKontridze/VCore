@@ -127,7 +127,7 @@ private final class _ModalDecoratorView: UIView {
     }
 }
 
-extension UIView {
+nonisolated extension UIView {
     fileprivate var isUITransitionView: Bool {
         String(describing: type(of: self)) == "UITransitionView"
     }

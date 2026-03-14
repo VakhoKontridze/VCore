@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CaseIterableInitithKeyAndValueTests {
+nonisolated struct CaseIterableInitithKeyAndValueTests {
     // MARK: Tests
     @Test
     func test() {
@@ -21,7 +21,7 @@ struct CaseIterableInitithKeyAndValueTests {
     }
     
     // MARK: Types
-    private enum Gender: CaseIterable {
+    private nonisolated enum Gender: CaseIterable {
         // MARK: Cases
         case male
         case female

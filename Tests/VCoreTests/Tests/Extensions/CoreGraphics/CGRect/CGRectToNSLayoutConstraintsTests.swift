@@ -12,7 +12,6 @@ import Testing
 @testable import VCore
 
 @Suite
-@MainActor
 struct CGRectToNSLayoutConstraintsTests {
     // MARK: Properties
     private let superview: UIView = .init(

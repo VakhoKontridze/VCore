@@ -40,7 +40,6 @@ import UIKit
 ///         }
 ///     }
 ///
-@MainActor
 open class ResponderChainUIToolbarManager {
     // MARK: Properties - Storage
     /// Managed `ResponderChainUIToolbarResponderParameters`s.

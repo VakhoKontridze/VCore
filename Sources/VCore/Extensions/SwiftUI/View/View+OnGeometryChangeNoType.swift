@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Adds an action to be performed when a value, created from a `GeometryProxy`, changes.
     ///
     ///     var body: some View {
@@ -16,7 +16,7 @@ extension View {
     ///     }
     ///
     public func onGeometryChange<T>(
-        of transform: @escaping @Sendable (GeometryProxy) -> T,
+        of transform: @Sendable @escaping (GeometryProxy) -> T,
         action: @escaping (T) -> Void
     ) -> some View
         where
@@ -40,7 +40,7 @@ extension View {
     ///
     @available(iOS 18.0, macOS 15.0, tvOS 18.0, watchOS 10.0, *)
     public func onGeometryChange<T>(
-        of transform: @escaping @Sendable (GeometryProxy) -> T,
+        of transform: @Sendable @escaping (GeometryProxy) -> T,
         action: @escaping (T, T) -> Void
     ) -> some View
         where

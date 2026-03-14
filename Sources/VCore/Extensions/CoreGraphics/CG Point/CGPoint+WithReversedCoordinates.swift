@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-extension CGPoint {
+nonisolated extension CGPoint {
     /// Returns `CGPoint` with reversed `x` and `y`.
     ///
     ///     let coordinates: CGPoint = .init(x: 100, y: 200)

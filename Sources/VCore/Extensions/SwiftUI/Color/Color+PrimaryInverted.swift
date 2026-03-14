@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color {
+nonisolated extension Color {
     /// `Color` that can be used for inverted primary content.
     ///
     ///     Text("Lorem ipsum")

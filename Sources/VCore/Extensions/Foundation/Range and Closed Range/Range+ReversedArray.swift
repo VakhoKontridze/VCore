@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Range where Bound: FixedWidthInteger {
+nonisolated extension Range where Bound: FixedWidthInteger {
     /// Returns reversed `Array` from `Range` if condition is met.
     ///
     ///     let number: [Int] = 1..<3 // [2, 1]

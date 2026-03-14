@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension ClosedRange {
+nonisolated extension ClosedRange {
     /// Initializes `ClosedRange` with lower and upper bounds.
     ///
     ///     let range: ClosedRange<Int> = .init(lower: 1, upper: 10)

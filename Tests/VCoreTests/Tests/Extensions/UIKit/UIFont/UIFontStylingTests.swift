@@ -12,7 +12,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct NSFontStylingTests {
+nonisolated struct NSFontStylingTests {
     @Test
     func testItalic() throws {
         let font: UIFont = .systemFont(ofSize: 17)

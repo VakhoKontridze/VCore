@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Adds an action to be performed when size from nested child changed.
     ///
     /// Can be used for wrapping `TabView` to it's content.
@@ -47,7 +47,7 @@ extension View {
     }
 }
 
-extension View {
+nonisolated extension View {
     /// Configures `View` as a target layout for reading nested size via `getNestedSize(_:)` method.
     public func nestedSizeTargetLayout() -> some View {
         self
@@ -64,7 +64,7 @@ extension View {
     }
 }
 
-private struct NestedSizePreferenceKey: PreferenceKey {
+private nonisolated struct NestedSizePreferenceKey: PreferenceKey {
     static let defaultValue: CGSize = .zero
 
     static func reduce(value: inout CGSize, nextValue: () -> CGSize) {

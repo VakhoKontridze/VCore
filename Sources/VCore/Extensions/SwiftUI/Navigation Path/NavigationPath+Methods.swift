@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension NavigationPath {
+nonisolated extension NavigationPath {
     /// Adds the elements of a sequence or collection to the end of the path.
     ///
     ///     var path: NavigationPath = .init()

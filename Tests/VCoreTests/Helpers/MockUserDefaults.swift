@@ -7,11 +7,11 @@
 
 import Foundation
 
-extension UserDefaults {
+nonisolated extension UserDefaults {
     nonisolated(unsafe) static let mock: UserDefaults = MockUserDefaults()
 }
 
-final class MockUserDefaults: UserDefaults {
+nonisolated final class MockUserDefaults: UserDefaults {
     // MARK: Properties
     private var storage: [String: Any] = [:]
 

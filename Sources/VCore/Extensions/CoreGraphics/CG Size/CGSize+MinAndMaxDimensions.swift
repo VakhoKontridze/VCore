@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-extension CGSize {
+nonisolated extension CGSize {
     /// Returns minimum of `width` and `height`.
     ///
     ///     var body: some View {

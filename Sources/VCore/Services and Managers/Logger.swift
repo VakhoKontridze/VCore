@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-extension Logger {
+nonisolated extension Logger {
     // MARK: Properties - Views
     static let alignedGridLayout: Self = .init("AlignedGridLayout")
     static let baseButtonGestureRecognizer: Self = .init("BaseButtonGestureRecognizer")
@@ -32,7 +32,7 @@ extension Logger {
     static let misc: Self = .init("Misc")
 }
 
-extension Logger {
+nonisolated extension Logger {
     fileprivate init(_ category: String) {
         self.init(subsystem: "VCore", category: category)
     }

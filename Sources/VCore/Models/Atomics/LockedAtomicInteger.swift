@@ -18,7 +18,7 @@ import Foundation
 /// For shared instance, refer to `shared`.
 public typealias LockedAtomicInteger = LockedAtomicNumber<Int>
 
-extension LockedAtomicInteger {
+nonisolated extension LockedAtomicInteger {
     /// Shared instance of `LockedAtomicNumber`.
     public static let shared: LockedAtomicNumber = .init()
 }

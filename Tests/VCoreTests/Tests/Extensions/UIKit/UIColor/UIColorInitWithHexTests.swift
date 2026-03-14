@@ -12,7 +12,7 @@ import Testing
 @testable import VCore
 
 @Suite
-final class UIColorInitWithHexTests {
+nonisolated final class UIColorInitWithHexTests {
     @Test
     func testString() throws {
         #expect(

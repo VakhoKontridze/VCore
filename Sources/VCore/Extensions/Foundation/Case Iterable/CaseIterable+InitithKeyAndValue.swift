@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension CaseIterable {
+nonisolated extension CaseIterable {
     /// Initializes an enumeration with a given property `KeyPath` and value.
     ///
     ///     enum Gender: CaseIterable {

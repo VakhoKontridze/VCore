@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Set {
+nonisolated extension Set {
     /// Inserts the given `Sequence` in the `Set` if they are not already present.
     ///
     ///     var set: Set<Int> = [1, 2]

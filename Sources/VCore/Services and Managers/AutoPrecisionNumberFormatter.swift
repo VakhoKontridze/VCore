@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-extension Double {
+nonisolated extension Double {
     /// Returns `String` from `Double` with specified min and max fractions.
     ///
     ///     let rounded: String = 3.1415.rounded(maxFractions: 2) // "3.14"
@@ -30,7 +30,7 @@ extension Double {
 ///     let formatter: AutoPrecisionNumberFormatter = .init(maxFractions: 2)
 ///     let rounded: String = formatter.string(from: 3.1415) // "3.14"
 ///
-public struct AutoPrecisionNumberFormatter: Sendable {
+public nonisolated struct AutoPrecisionNumberFormatter: Sendable {
     // MARK: Properties
     /// Minimum number of fractions.
     public var minFractions: Int

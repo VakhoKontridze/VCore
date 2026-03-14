@@ -9,7 +9,7 @@
 
 import WatchKit
 
-extension WKInterfaceDevice {
+nonisolated extension WKInterfaceDevice {
     /// Indicates if device is simulator.
     ///
     ///     let isSimulator: Bool = WKInterfaceDevice.isSimulator

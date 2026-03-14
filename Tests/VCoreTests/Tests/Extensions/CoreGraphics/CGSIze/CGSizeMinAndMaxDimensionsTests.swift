@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CGSizeMinMaxDimensionsTests {
+nonisolated struct CGSizeMinMaxDimensionsTests {
     @Test
     func testMin() {
         #expect(CGSize(width: 3, height: 4).minDimension() == 3)

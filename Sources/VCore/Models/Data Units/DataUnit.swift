@@ -8,7 +8,7 @@
 import Foundation
 
 /// Unit of digital information.
-public protocol DataUnit {
+public nonisolated protocol DataUnit {
     /// Unit base.
     ///
     /// For instance, in decimal byte units, `1000`, in binary byte units, `1024`.
@@ -52,7 +52,7 @@ public protocol DataUnit {
     ) -> Double
 }
 
-extension DataUnit {
+nonisolated extension DataUnit {
     public var bytes: Double {
         pow(Double(Self.base), Double(magnitude))
     }
@@ -80,6 +80,6 @@ extension DataUnit {
     }
 }
 
-extension DataUnit where Self: RawRepresentable, RawValue == Int {
+nonisolated extension DataUnit where Self: RawRepresentable, RawValue == Int {
     public var magnitude: Int { rawValue }
 }

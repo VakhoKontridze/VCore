@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CaseIterableCasesTests {
+nonisolated struct CaseIterableCasesTests {
     // MARK: Tests
     @Test
     func testOffset() {
@@ -35,7 +35,7 @@ struct CaseIterableCasesTests {
     }
     
     // MARK: Types
-    private enum CardinalDirection: CaseIterable {
+    private nonisolated enum CardinalDirection: CaseIterable {
         case north
         case east
         case south

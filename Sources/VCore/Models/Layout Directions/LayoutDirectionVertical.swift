@@ -10,7 +10,7 @@ import SwiftUI
 /// Vertical directional layout in which content can be laid out.
 ///
 /// Unlike `SwiftUI.LayoutDirection`, `LayoutDirectionVertical` only supports vertical layouts.
-public enum LayoutDirectionVertical: Int, Sendable, CaseIterable {
+public nonisolated enum LayoutDirectionVertical: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Top-to-bottom direction.
     case topToBottom

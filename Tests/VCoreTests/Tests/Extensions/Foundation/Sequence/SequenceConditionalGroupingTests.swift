@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct SequenceConditionalGroupingTests {
+nonisolated struct SequenceConditionalGroupingTests {
     @Test
     func testPredicate() {
         #expect(

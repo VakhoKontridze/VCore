@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension ClosedRange where Bound: AdditiveArithmetic {
+nonisolated extension ClosedRange where Bound: AdditiveArithmetic {
     /// Difference between `upperBound` and `lowerBound`.
     ///
     ///     let boundRange: Double = (3...10).boundRange // 7.0

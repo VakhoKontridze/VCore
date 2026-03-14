@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CollectionEnumeratedArrayTests {
+nonisolated struct CollectionEnumeratedArrayTests {
     @Test
     func test() {
         let characters: [String] = ["A", "B", "C"]

@@ -40,7 +40,7 @@ public struct AlertParameters {
     public init(
         title: String?,
         message: String?,
-        completion: (@MainActor () -> Void)?,
+        completion: (() -> Void)? = nil,
         attributes: [String: Any] = [:]
     ) {
         self.init(
@@ -60,7 +60,7 @@ public struct AlertParameters {
     /// Initializes `AlertParameters` with error and action.
     public init(
         error: any Error,
-        completion: (@MainActor () -> Void)?,
+        completion: (() -> Void)? = nil,
         attributes: [String: Any] = [:]
     ) {
         self.init(

@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct AbsoluteFractionMeasurementTests {
+nonisolated struct AbsoluteFractionMeasurementTests {
     @Test
     func testConvertAbsoluteToFraction() {
         #expect(AbsoluteFractionMeasurement.absolute(300).toFraction(dimension: 600) == 0.5)

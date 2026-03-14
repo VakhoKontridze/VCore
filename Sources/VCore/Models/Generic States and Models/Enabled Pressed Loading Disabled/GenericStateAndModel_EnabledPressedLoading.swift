@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public enum GenericState_EnabledPressedLoading: Int, Sendable, CaseIterable {
+public nonisolated enum GenericState_EnabledPressedLoading: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -48,7 +48,7 @@ public enum GenericState_EnabledPressedLoading: Int, Sendable, CaseIterable {
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_EnabledPressedLoading` with values."
 )
-public struct GenericStateModel_EnabledPressedLoading<Value> {
+public nonisolated struct GenericStateModel_EnabledPressedLoading<Value> {
     // MARK: Properties
     /// Enabled value.
     public var enabled: Value
@@ -119,13 +119,13 @@ public struct GenericStateModel_EnabledPressedLoading<Value> {
     }
 }
 
-extension GenericStateModel_EnabledPressedLoading: Equatable where Value: Equatable {}
+nonisolated extension GenericStateModel_EnabledPressedLoading: Equatable where Value: Equatable {}
 
-extension GenericStateModel_EnabledPressedLoading: Hashable where Value: Hashable {}
+nonisolated extension GenericStateModel_EnabledPressedLoading: Hashable where Value: Hashable {}
 
-extension GenericStateModel_EnabledPressedLoading: Sendable where Value: Sendable {}
+nonisolated extension GenericStateModel_EnabledPressedLoading: Sendable where Value: Sendable {}
 
-extension GenericStateModel_EnabledPressedLoading {
+nonisolated extension GenericStateModel_EnabledPressedLoading {
     /// Maps state to model.
     public func value(for state: GenericState_EnabledPressedLoading) -> Value {
         switch state {

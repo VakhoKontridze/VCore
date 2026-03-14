@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct MultipartFormDataFileTests {
+nonisolated struct MultipartFormDataFileTests {
     @Test
     func testFilename() {
         do {

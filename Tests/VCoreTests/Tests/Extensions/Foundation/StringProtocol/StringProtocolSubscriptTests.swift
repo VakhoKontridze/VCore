@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct StringProtocolSubscriptTests {
+nonisolated struct StringProtocolSubscriptTests {
     @Test
     func testGet() {
         #expect("Lorem Ipsum"[0] == "L")

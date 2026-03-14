@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CGPointWithReversedCoordinatesTests {
+nonisolated struct CGPointWithReversedCoordinatesTests {
     @Test
     func test() {
         #expect(

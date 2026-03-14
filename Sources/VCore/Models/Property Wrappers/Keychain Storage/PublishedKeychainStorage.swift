@@ -19,11 +19,9 @@ import Combine
 ///     }
 ///
 @propertyWrapper
-public struct PublishedKeychainStorage<Value>: DynamicProperty, Sendable
-    where Value: Sendable & Codable
-{
+public struct PublishedKeychainStorage<Value>: DynamicProperty where Value: Codable {
     // MARK: Properties
-    private let valueSetter: @Sendable (Value) -> Void
+    private let valueSetter: (Value) -> Void
 
     @PublishedPropertyWrapperBox private var storage: PublishedPropertyWrapperStorage<Value>
     

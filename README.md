@@ -206,7 +206,7 @@ Macro that adds `CodingKeys` to a declaration:
 
 ```swift
 @CodingKeysGeneration
-struct GetPostGatewayOutput: Decodable {
+nonisolated struct GetPostGatewayOutput: Decodable {
     @CKGProperty("id") let id: Int
     @CKGProperty("userId") let userID: Int
     @CKGProperty("title") let title: String
@@ -216,7 +216,7 @@ struct GetPostGatewayOutput: Decodable {
 }
 
 // Generates
-internal enum CodingKeys: String, CodingKey {
+internal nonsiolated enum CodingKeys: String, CodingKey {
     case id = "id"
     case userID = "userId"
     case title = "title"

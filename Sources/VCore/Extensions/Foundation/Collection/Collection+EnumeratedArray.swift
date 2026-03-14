@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Collection {
+nonisolated extension Collection {
     /// Enumerated a `Collection` as a tuple of offset and element.
     ///
     /// Element can be used as id in `ForEach` without use of an explicit identifier.

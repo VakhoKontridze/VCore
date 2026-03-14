@@ -9,7 +9,7 @@
 
 import AppKit
 
-extension NSColor {
+nonisolated extension NSColor {
     /// Lightens `NSColor` by a fraction.
     ///
     ///     let lightBlue: NSColor = .systemBlue.lighten(by: 0.1)

@@ -77,7 +77,7 @@ public actor SessionManager {
 ///         }
 ///     }
 ///
-public final class GlobalSessionManager { // No `@globalActor` needed
+public nonisolated final class GlobalSessionManager { // No `@globalActor` needed
     // MARK: Properties
     /// Shared instance of `SessionManager`.
     public static let shared: SessionManager = .init()

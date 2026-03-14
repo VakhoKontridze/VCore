@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct BinaryIntegerClampedToRangeTests {
+nonisolated struct BinaryIntegerClampedToRangeTests {
     // MARK: Tests - Range
     @Test
     func testClampedToRange() {

@@ -13,7 +13,7 @@ import UIKit
 import AppKit
 #endif
 
-extension NSLayoutConstraint {
+nonisolated extension NSLayoutConstraint {
     /// Allows for the storing of a layout constraint, while using it in `NSLayoutConstraint.activate(_:)`.
     ///
     ///     var tableViewLeadingConstraint: NSLayoutConstraint!

@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct SequenceIsUniqueTests {
+nonisolated struct SequenceIsUniqueTests {
     @Test
     func test() {
         #expect([1, 3, 5].isUnique)

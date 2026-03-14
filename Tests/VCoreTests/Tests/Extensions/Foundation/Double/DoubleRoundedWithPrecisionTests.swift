@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct DoubleRoundedWithPrecisionTests {
+nonisolated struct DoubleRoundedWithPrecisionTests {
     @Test
     func testRounded() {
         #expect(3.1415.rounded(fractions: 0) == 3)

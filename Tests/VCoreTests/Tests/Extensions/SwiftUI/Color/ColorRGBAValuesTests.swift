@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ColorRGBAValuesTests {
+nonisolated struct ColorRGBAValuesTests {
     @Test
     func testValues() {
         let color: Color = .init(red: 0.1, green: 0.2, blue: 0.3, opacity: 0.4)

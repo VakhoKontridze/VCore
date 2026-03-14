@@ -12,7 +12,7 @@ import OSLog
 ///
 /// You can localize `String`s with a simple `extension`:
 ///
-///     extension String {
+///     nonisolated extension String {
 ///         var localized: String {
 ///             LocalizationManager.shared.localize(self)
 ///         }
@@ -56,7 +56,7 @@ import OSLog
 ///     }
 ///
 @Observable
-public final class LocalizationManager: @unchecked Sendable {
+public final class LocalizationManager {
     // MARK: Properties - Singleton
     /// Shared instance of `LocalizationManager`.
     public static let shared: LocalizationManager = .init()
@@ -72,16 +72,12 @@ public final class LocalizationManager: @unchecked Sendable {
     /// Default `Locale` that will be retrieved in the absence of current value.
     public var defaultLocale: Locale {
         get {
-            queue.sync {
-                _defaultLocale
-            }
+            _defaultLocale
         }
         set {
-            queue.sync(flags: .barrier) {
-                _ = Self.validateLocaleIsAdded(newValue)
-                
-                _defaultLocale = newValue
-            }
+            _ = Self.validateLocaleIsAdded(newValue)
+            
+            _defaultLocale = newValue
         }
     }
 
@@ -91,26 +87,16 @@ public final class LocalizationManager: @unchecked Sendable {
     /// Current `Locale`.
     public var currentLocale: Locale {
         get {
-            queue.sync {
-                _currentLocale
-            }
+            _currentLocale
         }
         set {
-            queue.sync(flags: .barrier) {
-                guard newValue != _currentLocale else { return }
-                _ = Self.validateLocaleIsAdded(newValue)
+            guard newValue != _currentLocale else { return }
+            _ = Self.validateLocaleIsAdded(newValue)
 
-                _currentLocale = newValue
-                Self.setCurrentLocaleToUserDefaults(newValue)
-            }
+            _currentLocale = newValue
+            Self.setCurrentLocaleToUserDefaults(newValue)
         }
     }
-    
-    // MARK: Properties - Queue
-    @ObservationIgnored private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.localization-manager",
-        attributes: .concurrent
-    )
 
     // MARK: Initializers
     private init() {

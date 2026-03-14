@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ArrayBinaryAppendTests {
+nonisolated struct ArrayBinaryAppendTests {
     @Test
     func test() {
         let array: [Int] = [1, 2, 4, 5, 6]

@@ -12,7 +12,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct UIImageScaledTests {
+nonisolated struct UIImageScaledTests {
     @Test
     func testScaledToWidth() throws {
         let image: UIImage = try #require(

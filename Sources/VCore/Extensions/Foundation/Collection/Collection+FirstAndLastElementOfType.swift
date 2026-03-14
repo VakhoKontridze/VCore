@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Collection {
+nonisolated extension Collection {
     /// Returns the first element of `Collection`that is a type `T`.
     ///
     /// In the following example, `p1` and `p2` are equivalent.
@@ -32,7 +32,7 @@ extension Collection {
     }
 }
 
-extension BidirectionalCollection {
+nonisolated extension BidirectionalCollection {
     /// Returns the last element of `Collection`that is a type `T`.
     ///
     /// In the following example, `p1` and `p2` are equivalent.

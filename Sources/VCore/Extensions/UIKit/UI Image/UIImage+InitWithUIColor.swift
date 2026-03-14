@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIImage {
+nonisolated extension UIImage {
     /// Initializes `UIImage` with `CGSize` and `UIColor`.
     ///
     ///     let image: UIImage = .init(

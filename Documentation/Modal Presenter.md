@@ -259,7 +259,7 @@ var body: some View {
         Button("Present") {
             isPresented1 = true
 
-            Task { @MainActor in
+            Task {
                 try? await Task.sleep(for: .seconds(1))
                 isPresented2 = true
             }
@@ -295,7 +295,7 @@ var body: some View {
         Button("Present") {
             isPresented1 = true
                 
-            Task { @MainActor in
+            Task {
                 try? await Task.sleep(for: .seconds(1))
                 isPresented2 = true
             }
@@ -508,7 +508,7 @@ var body: some View {
     Button("Present") {
         isPresented1 = true
             
-        Task { @MainActor in
+        Task {
             try? await Task.sleep(for: .seconds(1))
             isPresented2 = true
         }

@@ -15,7 +15,7 @@ import Foundation
 ///         idGenerator.getAndIncrement()
 ///     }
 ///
-public final class LockedAtomicNumber<Number>: @unchecked Sendable
+public nonisolated final class LockedAtomicNumber<Number>: @unchecked Sendable
     where Number: SignedNumeric
 {
     // MARK: Properties - Value

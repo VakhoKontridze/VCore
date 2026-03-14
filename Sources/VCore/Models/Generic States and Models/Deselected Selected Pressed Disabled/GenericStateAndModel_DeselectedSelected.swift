@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public enum GenericState_DeselectedSelected: Int, Sendable, CaseIterable {
+public nonisolated enum GenericState_DeselectedSelected: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Deselected.
     case deselected
@@ -40,7 +40,7 @@ public enum GenericState_DeselectedSelected: Int, Sendable, CaseIterable {
     }
 }
 
-extension Binding where Value == GenericState_DeselectedSelected {
+nonisolated extension Binding where Value == GenericState_DeselectedSelected {
     /// Initializes `GenericState_DeselectedSelected` with `Bool`.
     public init(isSelected: Binding<Bool>) {
         self.init(
@@ -54,7 +54,7 @@ extension Binding where Value == GenericState_DeselectedSelected {
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_DeselectedSelected` with values."
 )
-public struct GenericStateModel_DeselectedSelected<Value> {
+public nonisolated struct GenericStateModel_DeselectedSelected<Value> {
     // MARK: Properties
     /// Deselected value.
     public var deselected: Value
@@ -136,13 +136,13 @@ public struct GenericStateModel_DeselectedSelected<Value> {
     }
 }
 
-extension GenericStateModel_DeselectedSelected: Equatable where Value: Equatable {}
+nonisolated extension GenericStateModel_DeselectedSelected: Equatable where Value: Equatable {}
 
-extension GenericStateModel_DeselectedSelected: Hashable where Value: Hashable {}
+nonisolated extension GenericStateModel_DeselectedSelected: Hashable where Value: Hashable {}
 
-extension GenericStateModel_DeselectedSelected: Sendable where Value: Sendable {}
+nonisolated extension GenericStateModel_DeselectedSelected: Sendable where Value: Sendable {}
 
-extension GenericStateModel_DeselectedSelected {
+nonisolated extension GenericStateModel_DeselectedSelected {
     /// Maps state to model.
     public func value(for state: GenericState_DeselectedSelected) -> Value {
         switch state {

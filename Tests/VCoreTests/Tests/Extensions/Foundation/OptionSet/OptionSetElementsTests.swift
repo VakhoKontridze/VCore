@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct OptionSetElementsTests {
+nonisolated struct OptionSetElementsTests {
     // MARK: Tests
     @Test
     func test() {
@@ -20,7 +20,7 @@ struct OptionSetElementsTests {
     }
     
     // MARK: Types
-    private struct Gender: OptionSet {
+    private nonisolated struct Gender: OptionSet {
         static let male: Self = .init(rawValue: 1 << 0)
         static let female: Self = .init(rawValue: 1 << 1)
 

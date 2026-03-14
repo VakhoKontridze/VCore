@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension NSAttributedString {
+nonisolated extension NSAttributedString {
     /// Initializes `NSAttributedString` with child `NSAttributedString` components.
     ///
     ///     let label: UILabel = .init()

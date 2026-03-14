@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct StringProtocolContainsCharacterSetTests {
+nonisolated struct StringProtocolContainsCharacterSetTests {
     @Test
     func testContainsCharacterSet() {
         #expect("0123456789".contains(.decimalDigits))

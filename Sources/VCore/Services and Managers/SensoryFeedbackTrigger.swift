@@ -8,7 +8,6 @@
 import SwiftUI
 
 /// Allows for the trigger of sensory feedback without specifying underlying triggering types.
-@MainActor
 @Observable // Needed for trigger to work
 public final class SensoryFeedbackTrigger {
     // MARK: Properties

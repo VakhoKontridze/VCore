@@ -10,7 +10,7 @@
 import Foundation
 import SwiftSyntax
 
-enum AccessLevelModifierKeyword: String, CaseIterable {
+nonisolated enum AccessLevelModifierKeyword: String, CaseIterable {
     // MARK: Cases
     case `open` = "open"
     case `public` = "public"

@@ -12,7 +12,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ColorInitWithHexTests {
+nonisolated struct ColorInitWithHexTests {
     @Test
     func test() {
         #expect(

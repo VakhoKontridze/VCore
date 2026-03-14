@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ArrayPrependingTests {
+nonisolated struct ArrayPrependingTests {
     @Test
     func testPrependingElement() {
         #expect(

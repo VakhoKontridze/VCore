@@ -14,7 +14,7 @@ import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 @testable import VCoreMacrosImplementation
 
-final class UninitializableMacroTests: XCTestCase {
+nonisolated final class UninitializableMacroTests: XCTestCase {
     // MARK: Properties
     private let macros: [String: Macro.Type] = ["Uninitializable": UninitializableMacro.self]
 
@@ -23,13 +23,13 @@ final class UninitializableMacroTests: XCTestCase {
         assertMacroExpansion(
             """
             @Uninitializable
-            struct AppConstants {
+            nonisolated struct AppConstants {
                 static let apiKey: String = "..."
             }
             """,
             expandedSource:
                 """
-                struct AppConstants {
+                nonisolated struct AppConstants {
                     static let apiKey: String = "..."
 
                     private init() {

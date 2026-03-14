@@ -11,7 +11,7 @@ import Foundation
 ///
 ///     isEqual(objectA, to: objectB, by: \.a, \.b)
 ///
-public func isEqual<T, each Property: Equatable>(
+public nonisolated func isEqual<T, each Property: Equatable>(
     _ lhs: T,
     to rhs: T,
     by keyPaths: repeat KeyPath<T, each Property>
@@ -29,7 +29,7 @@ public func isEqual<T, each Property: Equatable>(
 ///
 ///     isLess(objectA, than: objectB, by: \.a, \.b)
 ///
-public func isLess<T, each Property: Comparable>(
+public nonisolated func isLess<T, each Property: Comparable>(
     _ lhs: T,
     than rhs: T,
     by keyPaths: repeat KeyPath<T, each Property>
@@ -50,7 +50,7 @@ public func isLess<T, each Property: Comparable>(
 ///
 ///     isLessThanOrEqual(objectA, to: objectB, by: \.a, \.b)
 ///
-public func isLessThanOrEqual<T, each Property: Comparable>(
+public nonisolated func isLessThanOrEqual<T, each Property: Comparable>(
     _ lhs: T,
     to rhs: T,
     by keyPaths: repeat KeyPath<T, each Property>
@@ -62,7 +62,7 @@ public func isLessThanOrEqual<T, each Property: Comparable>(
 ///
 ///     isGreater(objectA, than: objectB, by: \.a, \.b)
 ///
-public func isGreater<T, each Property: Comparable>(
+public nonisolated func isGreater<T, each Property: Comparable>(
     _ lhs: T,
     than rhs: T,
     by keyPaths: repeat KeyPath<T, each Property>
@@ -74,7 +74,7 @@ public func isGreater<T, each Property: Comparable>(
 ///
 ///     isGreaterThanOrEqual(objectA, to: objectB, by: \.a, \.b)
 ///
-public func isGreaterThanOrEqual<T, each Property: Comparable>(
+public nonisolated func isGreaterThanOrEqual<T, each Property: Comparable>(
     _ lhs: T,
     to rhs: T,
     by keyPaths: repeat KeyPath<T, each Property>

@@ -18,7 +18,7 @@ import OSLog
 ///     }
 ///
 @Observable
-public final class NetworkReachabilityService: @unchecked Sendable {
+public nonisolated final class NetworkReachabilityService: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Shared instance of `NetworkReachabilityService`.
     public static let shared: NetworkReachabilityService = .init()
@@ -38,17 +38,7 @@ public final class NetworkReachabilityService: @unchecked Sendable {
     public var isConnectedToNetwork: Bool? { status?.isConnected }
     
     // MARK: Properties - Status Monitor
-    @ObservationIgnored private lazy var statusMonitor: NWPathMonitor = {
-        let monitor: NWPathMonitor = .init()
-        
-        monitor.pathUpdateHandler = { newValue in
-            Task { @MainActor in
-                self.status = newValue.status
-            }
-        }
-        
-        return monitor
-    }()
+    @ObservationIgnored private let statusMonitor: NWPathMonitor = .init()
     
     // MARK: Properties - Queue
     @ObservationIgnored private let queue: DispatchQueue = .init(
@@ -62,6 +52,13 @@ public final class NetworkReachabilityService: @unchecked Sendable {
 
     // MARK: Initializers
     private init() {
+        // `lazy` doesn't work on `nonsolated` properties, so this must be set here
+        statusMonitor.pathUpdateHandler = { newValue in
+            Task { @MainActor in
+                self.status = newValue.status
+            }
+        }
+        
         statusMonitor.start(queue: statusQueue)
     }
     
@@ -72,7 +69,7 @@ public final class NetworkReachabilityService: @unchecked Sendable {
     }
 }
 
-extension NWPath.Status {
+nonisolated extension NWPath.Status {
     fileprivate var isConnected: Bool {
         switch self {
         case .satisfied: return true

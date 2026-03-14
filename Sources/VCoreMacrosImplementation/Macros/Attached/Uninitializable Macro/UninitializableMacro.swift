@@ -11,7 +11,7 @@ import Foundation
 import SwiftSyntax
 import SwiftSyntaxMacros
 
-struct UninitializableMacro: MemberMacro {
+nonisolated struct UninitializableMacro: MemberMacro {
     static func expansion(
         of node: AttributeSyntax,
         providingMembersOf declaration: some DeclGroupSyntax,

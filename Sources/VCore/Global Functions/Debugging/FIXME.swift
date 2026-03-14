@@ -13,7 +13,7 @@ import Foundation
 ///         FIXME()
 ///     }
 ///
-public func FIXME(
+public nonisolated func FIXME(
     _ message: String? = nil
 ) -> Never {
     var string: String = "FIXME not implemented"

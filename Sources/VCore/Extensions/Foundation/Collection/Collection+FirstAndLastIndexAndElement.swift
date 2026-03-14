@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Collection {
+nonisolated extension Collection {
     /// Returns first index and element of `Collection` that satisfies the given predicate.
     ///
     /// Used for avoiding accessing both index and element with built-in methods.
@@ -26,7 +26,7 @@ extension Collection {
     }
 }
 
-extension BidirectionalCollection {
+nonisolated extension BidirectionalCollection {
     /// Returns first last index and element of `BidirectionalCollection` that satisfies the given predicate.
     ///
     /// Used for avoiding accessing both index and element with built-in methods.

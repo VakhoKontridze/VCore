@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension String {
+nonisolated extension String {
     package func _removing(_ characterSet: CharacterSet) -> String {
         filter { char in
             char.unicodeScalars.allSatisfy { unicodeScalar in

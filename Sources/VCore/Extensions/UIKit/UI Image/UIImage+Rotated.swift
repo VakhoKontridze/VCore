@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIImage {
+nonisolated extension UIImage {
     /// Returns `UIImage` rotated by angle.
     ///
     ///     let image: UIImage = .init(named: "Image")!

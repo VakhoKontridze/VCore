@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension String {
+nonisolated extension String {
     /// Checks if value of this key is stored in `UserDefaults`.
     ///
     ///     "key".isUserDefaultsKey()

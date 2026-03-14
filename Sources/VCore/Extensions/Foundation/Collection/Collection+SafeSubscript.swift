@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Collection {
+nonisolated extension Collection {
     /// Accesses the element at the specified position, but returns `nil` if out of bounds.
     ///
     ///     let numbers: [Int] = [1, 3, 5]

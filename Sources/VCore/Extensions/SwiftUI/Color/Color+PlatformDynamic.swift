@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color {
+nonisolated extension Color {
     /// Creates `Color` that generates it's color data dynamically for each platform.
     ///
     ///     let color: Color = .dynamic(Color.black, Color.white)

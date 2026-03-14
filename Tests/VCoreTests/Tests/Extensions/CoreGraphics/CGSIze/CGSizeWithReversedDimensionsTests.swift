@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CGSizeWithReversedDimensionsTests {
+nonisolated struct CGSizeWithReversedDimensionsTests {
     @Test
     func test() {
         #expect(

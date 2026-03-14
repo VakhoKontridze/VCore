@@ -8,7 +8,7 @@
 import Foundation
 import Combine
 
-extension Publisher where Failure == Never {
+nonisolated extension Publisher where Failure == Never {
     /// Assigns each element from `Publisher` to a property of an object with a weak retain cycle.
     ///
     ///     final class Service {

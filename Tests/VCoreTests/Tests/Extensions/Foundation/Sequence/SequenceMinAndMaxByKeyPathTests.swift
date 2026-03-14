@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct SequenceMinAndMaxByKeyPathTests {
+nonisolated struct SequenceMinAndMaxByKeyPathTests {
     // MARK: Properties
     private let array: [Object] = [
         Object(value: 1),
@@ -26,7 +26,7 @@ struct SequenceMinAndMaxByKeyPathTests {
     }
     
     // MARK: Types
-    private struct Object: Equatable {
+    private nonisolated struct Object: Equatable {
         let value: Int
     }
 }

@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct DigitalTimeFormatterTests {
+nonisolated struct DigitalTimeFormatterTests {
     @Test
     func testAllComponents() {
         let formatter: DigitalTimeFormatter = .init()

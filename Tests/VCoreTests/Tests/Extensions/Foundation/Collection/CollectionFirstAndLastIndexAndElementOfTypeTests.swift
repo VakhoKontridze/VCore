@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CollectionFirstAndLastIndexAndElementOfTypeTests {
+nonisolated struct CollectionFirstAndLastIndexAndElementOfTypeTests {
     // MARK: Properties
     private let array: [any P] = [
         S1(value: 1),
@@ -57,15 +57,15 @@ struct CollectionFirstAndLastIndexAndElementOfTypeTests {
     }
     
     // MARK: Types
-    private protocol P {
+    private nonisolated protocol P {
         var value: Int { get }
     }
 
-    private struct S1: P {
+    private nonisolated struct S1: P {
         let value: Int
     }
     
-    private struct S2: P {
+    private nonisolated struct S2: P {
         let value: Int
     }
 }

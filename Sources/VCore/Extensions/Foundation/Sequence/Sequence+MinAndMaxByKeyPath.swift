@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Sequence {
+nonisolated extension Sequence {
     /// Returns the minimum element in the `Sequence`, using the given `KeyPath` as the comparison between elements.
     ///
     ///     struct Item {

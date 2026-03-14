@@ -10,7 +10,7 @@
 import AppKit
 import OSLog
 
-extension NSColor {
+nonisolated extension NSColor {
     /// Returns RGBA values of `NSColor`.
     ///
     /// `red`, `green`, and `blue` values range from `0` to `1`.

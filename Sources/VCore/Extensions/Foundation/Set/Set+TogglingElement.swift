@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Set {
+nonisolated extension Set {
     /// Returns set with element toggled, i.e., removed if it's present, and inserted if not.
     ///
     ///     let numbers1: Set<Int> = [1, 3, 5]

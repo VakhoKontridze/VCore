@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that describes appearance.
-public struct ModalPresenterRootAppearance: Equatable, Sendable {
+public struct ModalPresenterRootAppearance: Equatable {
     // MARK: Properties - Global
     /// Frame.
     ///
@@ -44,7 +44,7 @@ public struct ModalPresenterRootAppearance: Equatable, Sendable {
 
     // MARK: Types
     /// Frame.
-    public enum Frame: Equatable, Sendable {
+    public nonisolated enum Frame: Equatable, Sendable {
         // MARK: Cases
         /// Fixed frame.
         case fixed(size: CGSize, alignment: Alignment, offset: CGSize)
@@ -58,7 +58,7 @@ public struct ModalPresenterRootAppearance: Equatable, Sendable {
     }
 
     /// Dimming view tap action.
-    public enum DimmingViewTapAction: Int, Equatable, Sendable, CaseIterable {
+    public nonisolated enum DimmingViewTapAction: Int, Equatable, Sendable, CaseIterable {
         // MARK: Cases
         /// None.
         case none

@@ -12,14 +12,14 @@ import Foundation
 /// Can be used to represent a result type that has no associated Failure type to it.
 /// For instance, a network request that doesn't return an error.
 ///
-///     struct UpdateUserDataGateway {
+///     nonisolated struct UpdateUserDataGateway {
 ///         func fetch(
 ///             parameters: UpdateUserDataGatewayInput,
 ///             completion: (ResultNoFailure<UpdateUserGatewayOutput>) -> Void
 ///         )
 ///     }
 ///
-public enum ResultNoFailure<Success> {
+public nonisolated enum ResultNoFailure<Success> {
     // MARK: Cases
     /// Success, storing a `Success` value.
     case success(Success)
@@ -58,7 +58,7 @@ public enum ResultNoFailure<Success> {
     }
 }
 
-extension ResultNoFailure: Equatable where Success: Equatable {
+nonisolated extension ResultNoFailure: Equatable where Success: Equatable {
     public static func == (lhs: Self, rhs: Self) -> Bool {
         switch (lhs, rhs) {
         case (.failure, .failure): true
@@ -69,4 +69,4 @@ extension ResultNoFailure: Equatable where Success: Equatable {
     }
 }
 
-extension ResultNoFailure: Sendable where Success: Sendable {}
+nonisolated extension ResultNoFailure: Sendable where Success: Sendable {}

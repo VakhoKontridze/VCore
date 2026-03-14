@@ -12,7 +12,7 @@ import SwiftSyntax
 import SwiftSyntaxMacros
 import VCoreShared
 
-struct CodingKeysGenerationMacro: MemberMacro {
+nonisolated struct CodingKeysGenerationMacro: MemberMacro {
     // MARK: Member Macro
     static func expansion(
         of node: AttributeSyntax,
@@ -31,6 +31,10 @@ struct CodingKeysGenerationMacro: MemberMacro {
         } catch {
             return []
         }
+        
+        let isNonIsolated: Bool = isNonIsolated(
+            declaration: declaration
+        )
 
         // Properties
         var properties: [PropertyData] = []
@@ -55,6 +59,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
         // Macro expansion result
         return result(
             accessLevelModifier: accessLevelModifier,
+            isNonIsolated: isNonIsolated,
             properties: properties
         )
     }
@@ -96,6 +101,12 @@ struct CodingKeysGenerationMacro: MemberMacro {
         }
 
         return value
+    }
+    
+    private static func isNonIsolated(
+        declaration: some DeclGroupSyntax
+    ) -> Bool {
+        declaration.modifiers.contains { $0.name.tokenKind == .keyword(.nonisolated) }
     }
 
     // MARK: Data
@@ -195,14 +206,17 @@ struct CodingKeysGenerationMacro: MemberMacro {
     // MARK: Result
     private static func result(
         accessLevelModifier: AccessLevelModifierKeyword,
+        isNonIsolated: Bool,
         properties: [PropertyData]
     ) -> [DeclSyntax] {
         var result: [DeclSyntax] = []
+        
+        let prefix: String = "\(accessLevelModifier)\(isNonIsolated ? " nonisolated" : "") "
 
         do {
             var string: String = ""
 
-            string.append("\(accessLevelModifier) enum CodingKeys: String, CodingKey {")
+            string.append("\(prefix)enum CodingKeys: String, CodingKey {")
             string.append("\n")
 
             for property in properties {
@@ -220,7 +234,7 @@ struct CodingKeysGenerationMacro: MemberMacro {
     }
     
     // MARK: Types
-    private struct PropertyData {
+    private nonisolated struct PropertyData {
         let name: String
         let key: String
     }

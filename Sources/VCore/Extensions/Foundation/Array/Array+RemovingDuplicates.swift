@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Array where Element: Equatable {
+nonisolated extension Array where Element: Equatable {
     /// Returns a sequence with only the unique elements of this sequence, in the
     /// order of the first occurrence of each unique element.
     ///
@@ -35,7 +35,7 @@ extension Array where Element: Equatable {
     }
 }
 
-extension Array where Element: Hashable {
+nonisolated extension Array where Element: Hashable {
     /// Returns a sequence with only the unique elements of this sequence, in the
     /// order of the first occurrence of each unique element.
     ///

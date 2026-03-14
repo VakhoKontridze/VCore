@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct AreEqualWithinToleranceTests {
+nonisolated struct AreEqualWithinToleranceTests {
     @Test
     func test() {
         #expect(areEqual(3.14, 3.1415, tolerance: pow(10, 0))) // 1

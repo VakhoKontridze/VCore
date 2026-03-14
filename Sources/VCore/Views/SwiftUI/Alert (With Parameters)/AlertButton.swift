@@ -11,14 +11,14 @@ import SwiftUI
 public struct AlertButton: AlertButtonProtocol {
     // MARK: Properties
     private var isEnabled: Bool = true
-    private let action: (@MainActor () -> Void)?
+    private let action: (() -> Void)?
     private let title: String
     private let role: ButtonRole?
     
     // MARK: Initializers
     /// Initializes `AlertButton`.
     public init(
-        action: (@MainActor () -> Void)?,
+        action: (() -> Void)?,
         title: String,
         role: ButtonRole? = nil
     ) {

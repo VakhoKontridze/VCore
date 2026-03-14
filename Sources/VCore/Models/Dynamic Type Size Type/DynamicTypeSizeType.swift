@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that represents `DynamicTypeSize`.
-public struct DynamicTypeSizeType: Equatable, Sendable {
+public nonisolated struct DynamicTypeSizeType: Equatable, Sendable {
     // MARK: Properties
     let storage: Storage
 
@@ -86,7 +86,7 @@ public struct DynamicTypeSizeType: Equatable, Sendable {
     }
 
     // MARK: Types
-    enum Storage: Equatable {
+    nonisolated enum Storage: Equatable {
         // MARK: Cases
         case fixed(size: DynamicTypeSize)
         case partialRangeUpTo(range: PartialRangeUpTo<DynamicTypeSize>)

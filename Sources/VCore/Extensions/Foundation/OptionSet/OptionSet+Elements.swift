@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension OptionSet where RawValue: FixedWidthInteger {
+nonisolated extension OptionSet where RawValue: FixedWidthInteger {
     /// Returns all elements in `OptionSet`.
     ///
     ///     struct RGBColor: OptionSet {

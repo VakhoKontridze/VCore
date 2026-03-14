@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ImageInitWithDataTests {
+nonisolated struct ImageInitWithDataTests {
     @Test
     func test() throws {
 #if canImport(UIKit)

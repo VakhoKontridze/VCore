@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension String {
+nonisolated extension String {
     package func _hexColorRGBValues() -> (red: CGFloat, green: CGFloat, blue: CGFloat)? {
         var string: String = trimmingCharacters(in: .whitespacesAndNewlines)
         if string.hasPrefix("#") { _ = string.removeFirst() }

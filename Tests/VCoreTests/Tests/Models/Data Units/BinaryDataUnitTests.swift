@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct BinaryDataUnitTests {
+nonisolated struct BinaryDataUnitTests {
     @Test
     func testConversion() {
         #expect(

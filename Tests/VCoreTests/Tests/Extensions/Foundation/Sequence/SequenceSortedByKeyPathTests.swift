@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct SequenceSortedByKeyPathTests {
+nonisolated struct SequenceSortedByKeyPathTests {
     // MARK: Properties
     private let array: [City] = [
         City(name: "London"),
@@ -38,7 +38,7 @@ struct SequenceSortedByKeyPathTests {
     }
     
     // MARK: Types
-    private struct City: Equatable {
+    private nonisolated struct City: Equatable {
         let name: String
     }
 }

@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CollectionRandomElementsTests {
+nonisolated struct CollectionRandomElementsTests {
     @Test
     func testValid() throws {
         let numbers: [Int] = [1, 3, 5, 7, 9]

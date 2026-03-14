@@ -13,7 +13,6 @@ import UIKit
 import AppKit
 #endif
 
-@MainActor
 final class GestureBaseButtonModel {
     // MARK: Properties
     private let outOfBoundsMaxOffsetToRegisterGesture: CGFloat = 10
@@ -116,14 +115,14 @@ final class GestureBaseButtonModel {
 #endif
 }
 
-extension CGPoint {
+nonisolated extension CGPoint {
     fileprivate func equals(_ other: CGPoint, tolerance: CGFloat) -> Bool {
         areEqual(x, other.x, tolerance: tolerance) &&
         areEqual(y, other.y, tolerance: tolerance)
     }
 }
 
-extension CGPoint {
+nonisolated extension CGPoint {
     fileprivate func isOn(_ size: CGSize, offset: CGFloat) -> Bool {
         let xIsOnTarget: Bool = {
             let isPositive: Bool = x >= 0

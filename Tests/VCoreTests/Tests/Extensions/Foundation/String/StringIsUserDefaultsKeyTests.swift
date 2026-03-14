@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct StringIsUserDefaultsKeyTests { // Can't be properly tested
+nonisolated struct StringIsUserDefaultsKeyTests { // Can't be properly tested
     @Test
     func test() {
         let store: UserDefaults = .mock

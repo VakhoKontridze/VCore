@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that represents line limit type.
-public struct TextLineLimitType: Equatable, Sendable {
+public nonisolated struct TextLineLimitType: Equatable, Sendable {
     // MARK: Properties
     let storage: Storage
     
@@ -82,7 +82,7 @@ public struct TextLineLimitType: Equatable, Sendable {
     }
 
     // MARK: Types
-    enum Storage: Equatable {
+    nonisolated enum Storage: Equatable {
         // MARK: Cases
         case none
         case fixed(lineLimit: Int?)

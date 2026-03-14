@@ -49,7 +49,7 @@ import Foundation
 ///
 ///     ...
 ///
-public struct MultipartFormDataBuilder: Sendable {
+public nonisolated struct MultipartFormDataBuilder: Sendable {
     // MARK: Properties
     /// Boundary.
     ///
@@ -111,7 +111,7 @@ public struct MultipartFormDataBuilder: Sendable {
     }
 }
 
-extension Data {
+nonisolated extension Data {
     mutating func appendString(_ string: String) throws {
         guard let data: Data = string.data(using: .utf8) else {
             throw CastingError(from: "String", to: "Data")

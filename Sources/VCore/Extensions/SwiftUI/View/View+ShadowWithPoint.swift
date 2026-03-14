@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Adds a shadow to this view.
     ///
     ///     var body: some View {

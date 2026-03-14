@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct StringProtocolNonEmptyTests {
+nonisolated struct StringProtocolNonEmptyTests {
     @Test
     func testIsEmptyOrWhiteSpace() {
         #expect("".isEmptyOrWhiteSpace)

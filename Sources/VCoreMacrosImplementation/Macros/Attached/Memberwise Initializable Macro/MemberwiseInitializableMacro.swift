@@ -13,7 +13,7 @@ import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 import SwiftDiagnostics
 
-struct MemberwiseInitializableMacro: MemberMacro {
+nonisolated struct MemberwiseInitializableMacro: MemberMacro {
     // MARK: Member Macro
     static func expansion(
         of node: AttributeSyntax,
@@ -633,7 +633,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
     
     // MARK: Types
-    private struct ParameterData {
+    private nonisolated struct ParameterData {
         let attributes: String?
 
         let externalName: String?
@@ -647,7 +647,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
     }
 }
 
-extension StringProtocol {
+nonisolated extension StringProtocol {
     // Not moved to shared package
     fileprivate var nonEmpty: Self? {
         guard !isEmpty else { return nil }

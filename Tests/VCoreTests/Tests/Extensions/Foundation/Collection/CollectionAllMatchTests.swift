@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CollectionAllMatchTests {
+nonisolated struct CollectionAllMatchTests {
     @Test
     func testArray() {
         let array: [Int] = [1, 2, 3]

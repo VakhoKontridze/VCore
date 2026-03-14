@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-final class KeyPathEqualityAndComparisonTests {
+nonisolated final class KeyPathEqualityAndComparisonTests {
     // MARK: Tests
     @Test
     func testIsEqual() {
@@ -124,7 +124,7 @@ final class KeyPathEqualityAndComparisonTests {
     }
     
     // MARK: Types
-    private struct Object {
+    private nonisolated struct Object {
         var a: Int = 0
         var b: Int = 0
         var c: Int = 0

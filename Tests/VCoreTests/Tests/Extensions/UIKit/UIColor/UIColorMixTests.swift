@@ -12,7 +12,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct UIColorMixTests {
+nonisolated struct UIColorMixTests {
     @Test
     func test() {
         let color1: UIColor = .init(red: 1/3, green: 1/3, blue: 1/3, alpha: 1)

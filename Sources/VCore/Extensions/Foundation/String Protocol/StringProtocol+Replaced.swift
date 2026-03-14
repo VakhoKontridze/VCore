@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension StringProtocol {
+nonisolated extension StringProtocol {
     /// Returns `String` with an element replaced at index.
     ///
     ///     let string: String = "Lorem ipsum"

@@ -19,14 +19,14 @@ public struct UIAlertParameters {
     public var message: String?
     
     /// Buttons.
-    public var buttons: @MainActor () -> [any UIAlertButtonProtocol]
+    public var buttons: () -> [any UIAlertButtonProtocol]
     
     // MARK: Initializers
     /// Initializes `UIAlertParameters`.
     public init(
         title: String?,
         message: String?,
-        @UIAlertButtonBuilder actions buttons: @escaping @MainActor () -> [any UIAlertButtonProtocol]
+        @UIAlertButtonBuilder actions buttons: @escaping () -> [any UIAlertButtonProtocol]
     ) {
         self.title = title
         self.message = message
@@ -37,7 +37,7 @@ public struct UIAlertParameters {
     public init(
         title: String?,
         message: String?,
-        completion: (@MainActor () -> Void)?
+        completion: (() -> Void)? = nil
     ) {
         self.init(
             title: title,
@@ -55,7 +55,7 @@ public struct UIAlertParameters {
     /// Initializes `UIAlertParameters` with error and action.
     public init(
         error: any Error,
-        completion: (@MainActor () -> Void)?
+        completion: (() -> Void)? = nil
     ) {
         self.init(
             title: VCoreLocalizationManager.shared.localizationProvider.alertErrorTitle,

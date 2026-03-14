@@ -12,7 +12,7 @@ import SwiftSyntax
 import SwiftSyntaxMacros
 import VCoreShared
 
-struct ColorMacro_InitWithHexUInt: ExpressionMacro {
+nonisolated struct ColorMacro_InitWithHexUInt: ExpressionMacro {
     static func expansion(
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext

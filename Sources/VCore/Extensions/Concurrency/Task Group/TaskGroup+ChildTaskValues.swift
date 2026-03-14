@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension TaskGroup {
+nonisolated extension TaskGroup {
     /// Collects and returns child task values.
     ///
     ///     let items: [Item] = await withTaskGroup { group in
@@ -33,7 +33,7 @@ extension TaskGroup {
     }
 }
 
-extension ThrowingTaskGroup {
+nonisolated extension ThrowingTaskGroup {
     /// Collects and returns child task values.
     ///
     ///     let items: [Item] = try await withThrowingTaskGroup { group in

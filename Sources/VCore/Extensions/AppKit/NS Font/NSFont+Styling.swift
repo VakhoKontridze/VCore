@@ -9,7 +9,7 @@
 
 import AppKit
 
-extension NSFont {
+nonisolated extension NSFont {
     /// Returns `NSFont` with italic styling.
     ///
     ///     let systemFont: NSFont = .systemFont(ofSize: 13)

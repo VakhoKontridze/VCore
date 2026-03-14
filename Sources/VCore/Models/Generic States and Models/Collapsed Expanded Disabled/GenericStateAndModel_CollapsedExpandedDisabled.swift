@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public enum GenericState_CollapsedExpandedDisabled: Int, Sendable, CaseIterable {
+public nonisolated enum GenericState_CollapsedExpandedDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Collapsed.
     case collapsed
@@ -59,7 +59,7 @@ public enum GenericState_CollapsedExpandedDisabled: Int, Sendable, CaseIterable 
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_CollapsedExpandedDisabled` with values."
 )
-public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
+public nonisolated struct GenericStateModel_CollapsedExpandedDisabled<Value> {
     // MARK: Properties
     /// Collapsed value.
     public var collapsed: Value
@@ -121,13 +121,13 @@ public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
     }
 }
 
-extension GenericStateModel_CollapsedExpandedDisabled: Equatable where Value: Equatable {}
+nonisolated extension GenericStateModel_CollapsedExpandedDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_CollapsedExpandedDisabled: Hashable where Value: Hashable {}
+nonisolated extension GenericStateModel_CollapsedExpandedDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_CollapsedExpandedDisabled: Sendable where Value: Sendable {}
+nonisolated extension GenericStateModel_CollapsedExpandedDisabled: Sendable where Value: Sendable {}
 
-extension GenericStateModel_CollapsedExpandedDisabled {
+nonisolated extension GenericStateModel_CollapsedExpandedDisabled {
     /// Maps state to model.
     public func value(for state: GenericState_CollapsedExpandedDisabled) -> Value {
         switch state {

@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-extension Color {
+nonisolated extension Color {
     init(
         _ red: CGFloat,
         _ green: CGFloat,

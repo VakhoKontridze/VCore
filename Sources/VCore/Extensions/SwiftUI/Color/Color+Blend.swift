@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color { // TODO: iOS 18.0 - Remove
+nonisolated extension Color { // TODO: iOS 18.0 - Remove
     /// Blends two `Color`s together.
     ///
     ///     let purple: Color = .red.mix(with: .blue, by: 0.5)

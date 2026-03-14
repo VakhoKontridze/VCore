@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Collection {
+nonisolated extension Collection {
     /// Returns non-empty `Collection`, or `nil`.
     ///
     ///     let array1: [Int]? = [].nonEmpty // nil

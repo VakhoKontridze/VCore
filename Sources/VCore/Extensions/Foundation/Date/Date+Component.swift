@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Date {
+nonisolated extension Date {
     /// Returns the value for one component, using the calendar time zone.
     ///
     ///     let year: Int = Date().component(.year) // 2022

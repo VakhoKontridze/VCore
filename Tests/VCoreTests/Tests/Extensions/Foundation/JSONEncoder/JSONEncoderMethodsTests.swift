@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct JSONEncoderMethodsTests {
+nonisolated struct JSONEncoderMethodsTests {
     // MARK: Tests
     @Test
     func testAnyToData() throws {
@@ -45,7 +45,7 @@ struct JSONEncoderMethodsTests {
     }
     
     // MARK: Types
-    private struct Object: Codable {
+    private nonisolated struct Object: Codable {
         let key: String?
     }
 }

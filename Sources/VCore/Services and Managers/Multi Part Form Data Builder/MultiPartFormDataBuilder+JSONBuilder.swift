@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension MultipartFormDataBuilder {
-    struct JSONBuilder {
+nonisolated extension MultipartFormDataBuilder {
+    nonisolated struct JSONBuilder {
         // MARK: Properties
         private let boundary: String
         

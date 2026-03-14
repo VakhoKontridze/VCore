@@ -11,7 +11,7 @@ import Foundation
 
 /// Enumeration that represents state.
 @available(tvOS, unavailable)
-public enum UIKitBaseButtonState: Int, Sendable, CaseIterable {
+public nonisolated enum UIKitBaseButtonState: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -48,7 +48,7 @@ public enum UIKitBaseButtonState: Int, Sendable, CaseIterable {
 
 /// Enumeration that represents state.
 @available(tvOS, unavailable)
-public enum UIKitBaseButtonInternalState: Int, Sendable, CaseIterable {
+public nonisolated enum UIKitBaseButtonInternalState: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -92,7 +92,7 @@ public enum UIKitBaseButtonInternalState: Int, Sendable, CaseIterable {
 }
 
 @available(tvOS, unavailable)
-extension GenericStateModel_EnabledPressedDisabled {
+nonisolated extension GenericStateModel_EnabledPressedDisabled {
     /// Maps state to model.
     public func value(for state: UIKitBaseButtonInternalState) -> Value {
         switch state {

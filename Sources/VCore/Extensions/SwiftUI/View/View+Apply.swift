@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Applies a transformation to a `View`.
     ///
     /// This method should be used with caution, since any changes to the condition will cause view state to be reset.

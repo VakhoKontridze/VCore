@@ -8,7 +8,7 @@
 import SwiftUI
 import OSLog
 
-extension Image {
+nonisolated extension Image {
     /// Initializes and returns the `Image` with the specified `Data`.
     ///
     ///     var body: some View {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Optional {
+nonisolated extension Optional {
     /// Returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`.
     ///
     ///     let a: String? = "Lorem ipsum"
@@ -35,7 +35,7 @@ extension Optional {
     }
 }
 
-extension Optional where Wrapped: Comparable {
+nonisolated extension Optional where Wrapped: Comparable {
     /// Returns a `Bool` indicating whether current value is less than that of the second argument with given the `OptionalComparisonNilOrder`.
     ///
     ///     let a: Int? = 10
@@ -102,7 +102,7 @@ extension Optional where Wrapped: Comparable {
 }
 
 /// Constants that indicate sort order within optionals.
-public enum OptionalComparisonNilOrder: Int, Sendable, CaseIterable {
+public nonisolated enum OptionalComparisonNilOrder: Int, Sendable, CaseIterable {
     /// Indicates that `nil` is less than wrapped value.
     case nilIsLess
     

@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ArrayReversedOnConditionTests {
+nonisolated struct ArrayReversedOnConditionTests {
     @Test
     func testReversedFalse() {
         #expect(

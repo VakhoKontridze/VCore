@@ -10,7 +10,7 @@
 import QuartzCore
 
 @available(watchOS, unavailable)
-extension CACornerMask {
+nonisolated extension CACornerMask {
     /// Top corners.
     ///
     /// Includes `layerMinXMinYCorner` and  `layerMaxXMinYCorner`.

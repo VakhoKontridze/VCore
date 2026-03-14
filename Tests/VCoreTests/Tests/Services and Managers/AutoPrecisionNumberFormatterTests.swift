@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct AutoPrecisionNumberFormatterTests {
+nonisolated struct AutoPrecisionNumberFormatterTests {
     @Test
     func testValidFormatting() {
         let formatter: AutoPrecisionNumberFormatter = .init(

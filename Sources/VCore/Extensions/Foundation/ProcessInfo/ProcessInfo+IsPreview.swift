@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension ProcessInfo {
+nonisolated extension ProcessInfo {
     /// Indicates if process is running for previews.
     ///
     ///     let isPreview: Bool = ProcessInfo.processInfo.isPreview

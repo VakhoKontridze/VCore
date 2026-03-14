@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension StringProtocol {
+nonisolated extension StringProtocol {
     /// Indicates whether a `String` has no `Character`s or whitespaces.
     ///
     ///     let value1: Bool = "".isEmptyOrWhiteSpace // true
@@ -30,7 +30,7 @@ extension StringProtocol {
     }
 }
 
-extension StringProtocol {
+nonisolated extension StringProtocol {
     /// Returns non-empty `String`, or `nil`.
     ///
     ///     let value1: String? = "".nonEmpty // nil

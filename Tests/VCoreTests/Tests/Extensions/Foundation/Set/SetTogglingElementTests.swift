@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct SetTogglingElementTests {
+nonisolated struct SetTogglingElementTests {
     @Test
     func testToggling() {
         let set1: Set<Int> = [1, 3, 5]

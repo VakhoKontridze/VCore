@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Wraps `View` with a type eraser.
     ///
     ///     Color.accentColor.eraseToAnyView()

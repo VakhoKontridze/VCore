@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIColor {
+nonisolated extension UIColor {
     /// Lightens `UIColor` by a fraction.
     ///
     ///     let lightBlue: UIColor = .systemBlue.lighten(by: 0.1)

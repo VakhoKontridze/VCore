@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public enum GenericState_OffOnIndeterminate: Int, Sendable, CaseIterable {
+public nonisolated enum GenericState_OffOnIndeterminate: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -44,7 +44,7 @@ public enum GenericState_OffOnIndeterminate: Int, Sendable, CaseIterable {
     }
 }
 
-extension Binding where Value == GenericState_OffOnIndeterminate {
+nonisolated extension Binding where Value == GenericState_OffOnIndeterminate {
     /// Initializes `GenericState_OOI` with `Bool`.
     public init(isOn: Binding<Bool>) {
         self.init(
@@ -58,7 +58,7 @@ extension Binding where Value == GenericState_OffOnIndeterminate {
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_OffOnIndeterminate` with values."
 )
-public struct GenericStateModel_OffOnIndeterminate<Value> {
+public nonisolated struct GenericStateModel_OffOnIndeterminate<Value> {
     // MARK: Properties
     /// Off value.
     public var off: Value
@@ -148,13 +148,13 @@ public struct GenericStateModel_OffOnIndeterminate<Value> {
     }
 }
 
-extension GenericStateModel_OffOnIndeterminate: Equatable where Value: Equatable {}
+nonisolated extension GenericStateModel_OffOnIndeterminate: Equatable where Value: Equatable {}
 
-extension GenericStateModel_OffOnIndeterminate: Hashable where Value: Hashable {}
+nonisolated extension GenericStateModel_OffOnIndeterminate: Hashable where Value: Hashable {}
 
-extension GenericStateModel_OffOnIndeterminate: Sendable where Value: Sendable {}
+nonisolated extension GenericStateModel_OffOnIndeterminate: Sendable where Value: Sendable {}
 
-extension GenericStateModel_OffOnIndeterminate {
+nonisolated extension GenericStateModel_OffOnIndeterminate {
     /// Maps state to model.
     public func value(for state: GenericState_OffOnIndeterminate) -> Value {
         switch state {

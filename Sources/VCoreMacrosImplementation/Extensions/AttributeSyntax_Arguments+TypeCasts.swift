@@ -10,7 +10,7 @@
 import Foundation
 import SwiftSyntax
 
-extension AttributeSyntax.Arguments {
+nonisolated extension AttributeSyntax.Arguments {
     func toArgumentListGetAssociatedValue() -> LabeledExprListSyntax? {
         if case .argumentList(let labeledExprListSyntax) = self {
             labeledExprListSyntax

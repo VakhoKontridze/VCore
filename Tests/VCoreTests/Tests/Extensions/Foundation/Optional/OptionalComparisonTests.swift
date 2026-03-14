@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct OptionalComparisonTests {
+nonisolated struct OptionalComparisonTests {
     // MARK: Properties
     // Data is stored to avoid casting
 

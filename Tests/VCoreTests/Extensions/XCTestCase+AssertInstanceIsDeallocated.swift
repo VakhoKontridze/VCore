@@ -8,11 +8,10 @@
 import Foundation
 import XCTest
 
-extension XCTestCase {
-    @MainActor
+nonisolated extension XCTestCase {
     func assertInstanceIsDeallocated(
-        _ instance: AnyObject,
-        _ message: @escaping @autoclosure () -> String = "",
+        _ instance: some AnyObject & Sendable,
+        _ message: @Sendable @escaping @autoclosure () -> String = "",
         file: StaticString = #filePath,
         line: UInt = #line
     ) {

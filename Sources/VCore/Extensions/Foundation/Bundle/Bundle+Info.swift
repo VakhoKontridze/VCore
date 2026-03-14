@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Bundle {
+nonisolated extension Bundle {
     /// Name.
     ///
     ///     let name: String? = Bundle.main.name

@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct SessionManagerTests {
+nonisolated struct SessionManagerTests {
     @Test
     func testValidID() async {
         let sessionsManger: SessionManager = .init()

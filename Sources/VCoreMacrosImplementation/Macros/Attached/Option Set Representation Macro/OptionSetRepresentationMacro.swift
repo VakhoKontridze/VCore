@@ -13,7 +13,7 @@ import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
 import SwiftDiagnostics
 
-struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
+nonisolated struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
     // MARK: Member Macro
     static func expansion(
         of attribute: AttributeSyntax,
@@ -53,14 +53,16 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         optionEnumCases: [EnumCaseElementSyntax]
     ) -> [DeclSyntax] {
         var result: [DeclSyntax] = []
+        
+        let prefix: String = "\(expansionData.accessLevelModifier) "
 
-        result.append("\(raw: expansionData.accessLevelModifier) typealias RawValue = \(expansionData.rawType)")
+        result.append("\(raw: prefix)typealias RawValue = \(expansionData.rawType)")
 
-        result.append("\(raw: expansionData.accessLevelModifier) let rawValue: RawValue")
+        result.append("\(raw: prefix)let rawValue: RawValue")
 
         result.append(
             """
-            \(raw: expansionData.accessLevelModifier) init() {
+            \(raw: prefix)init() {
                 self.rawValue = 0
             }
             """
@@ -68,7 +70,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
         result.append(
             """
-            \(raw: expansionData.accessLevelModifier) init(rawValue: RawValue) {
+            \(raw: prefix)init(rawValue: RawValue) {
                 self.rawValue = rawValue
             }
             """
@@ -77,7 +79,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         for optionEnumCase in optionEnumCases {
             result.append(
                 """
-                \(raw: expansionData.accessLevelModifier) static let \(optionEnumCase.name): Self = .init(rawValue: 1 << \(raw: expansionData.optionsEnumDeclaration.name).\(optionEnumCase.name).rawValue)
+                \(raw: prefix)static let \(optionEnumCase.name): Self = .init(rawValue: 1 << \(raw: expansionData.optionsEnumDeclaration.name).\(optionEnumCase.name).rawValue)
                 """
             )
         }
@@ -85,7 +87,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         do {
             var string: String = ""
 
-            string.append("\(expansionData.accessLevelModifier) static let all: Self = [")
+            string.append("\(prefix)static let all: Self = [")
             string.append("\n")
 
             for (i, optionEnumCase) in optionEnumCases.enumerated() {
@@ -153,9 +155,11 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             return []
 
         } else {
+            let prefix: String = "\(expansionData.isNonIsolated ? " nonisolated " : "")"
+            
             var result: [DeclSyntax] = []
 
-            result.append("extension \(raw: type): OptionSet {}") // Works, even if type is nested
+            result.append("\(raw: prefix)extension \(raw: type): OptionSet {}") // Works, even if type is nested
 
             return try result
                 .map { member in
@@ -183,6 +187,10 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
             declaration: declaration,
             context: context,
             diagnose: diagnose
+        )
+        
+        let isNonIsolated: Bool = isNonIsolated(
+            declaration: declaration
         )
 
         // Limits declaration to `struct`s
@@ -229,6 +237,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         // Macro expansion result
         return ExpansionData(
             accessLevelModifier: accessLevelModifier,
+            isNonIsolated: isNonIsolated,
             structDeclaration: structDeclaration,
             optionsEnumDeclaration: optionsEnumDeclaration,
             rawType: rawType
@@ -275,9 +284,16 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         return value
     }
     
+    private static func isNonIsolated(
+        declaration: some DeclGroupSyntax
+    ) -> Bool {
+        declaration.modifiers.contains { $0.name.tokenKind == .keyword(.nonisolated) }
+    }
+    
     // MARK: Types
-    private struct ExpansionData {
+    private nonisolated struct ExpansionData {
         let accessLevelModifier: AccessLevelModifierKeyword
+        let isNonIsolated: Bool
         let structDeclaration: StructDeclSyntax
         let optionsEnumDeclaration: EnumDeclSyntax
         let rawType: GenericArgumentSyntax.Argument

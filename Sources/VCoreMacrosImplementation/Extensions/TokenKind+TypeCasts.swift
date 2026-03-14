@@ -10,7 +10,7 @@
 import Foundation
 import SwiftSyntax
 
-extension TokenKind {
+nonisolated extension TokenKind {
     func toKeywordAssociatedValue() -> Keyword? {
         if case .keyword(let keyword) = self {
             keyword

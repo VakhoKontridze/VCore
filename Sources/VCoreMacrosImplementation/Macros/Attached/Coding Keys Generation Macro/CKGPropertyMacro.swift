@@ -11,7 +11,7 @@ import Foundation
 import SwiftSyntax
 import SwiftSyntaxMacros
 
-struct CKGPropertyMacro: PeerMacro {
+nonisolated struct CKGPropertyMacro: PeerMacro {
     static func expansion(
         of node: AttributeSyntax,
         providingPeersOf declaration: some DeclSyntaxProtocol,

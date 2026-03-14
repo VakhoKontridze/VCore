@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ColorLightenAndDarkenTests {
+nonisolated struct ColorLightenAndDarkenTests {
     @Test
     func testLighten() {
         let color: Color = .init(red: 0.5, green: 0.5, blue: 0.5, opacity: 1)

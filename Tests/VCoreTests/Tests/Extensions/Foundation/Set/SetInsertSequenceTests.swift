@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct SetInsertSequenceTests {
+nonisolated struct SetInsertSequenceTests {
     @Test
     func test() {
         var set: Set<Int> = [1, 2]

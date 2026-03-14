@@ -7,10 +7,10 @@
 
 import Dispatch
 
-extension DispatchSemaphore {
+nonisolated extension DispatchSemaphore {
     /// Executes a block of code with a lock, similar to `NSLock`.
     ///
-    ///     final class Service: @unchecked Sendable {
+    ///     nonisolated final class Service: @unchecked Sendable {
     ///         private let dispatchSemaphore: DispatchSemaphore = .init(value: 1)
     ///
     ///         private var _value: Int

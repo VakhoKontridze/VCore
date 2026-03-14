@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-extension CGPoint {
+nonisolated extension CGPoint {
     /// Returns `CGPoint` moved left with a given constant.
     ///
     ///     let size: CGPoint = .init(x: 3, y: 4)
@@ -34,7 +34,7 @@ extension CGPoint {
     }
 }
 
-extension CGPoint {
+nonisolated extension CGPoint {
     /// Returns `CGPoint` moved right with a given constant.
     ///
     ///     let size: CGPoint = .init(x: 3, y: 4)
@@ -62,7 +62,7 @@ extension CGPoint {
 }
 
 
-extension CGPoint {
+nonisolated extension CGPoint {
     /// Returns `CGPoint` moved up with a given constant.
     ///
     ///     let size: CGPoint = .init(x: 3, y: 4)
@@ -89,7 +89,7 @@ extension CGPoint {
     }
 }
 
-extension CGPoint {
+nonisolated extension CGPoint {
     /// Returns `CGPoint` moved down with a given constant.
     ///
     ///     let size: CGPoint = .init(x: 3, y: 4)

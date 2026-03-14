@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct StringProtocolDiacriticInsensitiveStringTests {
+nonisolated struct StringProtocolDiacriticInsensitiveStringTests {
     @Test
     func test() {
         #expect("À".diacriticInsensitiveString() == "A")

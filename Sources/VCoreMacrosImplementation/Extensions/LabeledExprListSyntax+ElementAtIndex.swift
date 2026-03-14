@@ -10,7 +10,7 @@
 import Foundation
 import SwiftSyntax
 
-extension LabeledExprListSyntax {
+nonisolated extension LabeledExprListSyntax {
     func element(at index: Int) -> Element? {
         let index: SyntaxChildrenIndex = self.index(startIndex, offsetBy: index)
 

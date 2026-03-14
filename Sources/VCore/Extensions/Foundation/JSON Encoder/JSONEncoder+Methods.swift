@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension JSONEncoder {
+nonisolated extension JSONEncoder {
     /// Encodes `Any` to `Data`.
     ///
     ///     let any: Any = ...

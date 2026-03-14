@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ClosedRangeBoundRangeTests {
+nonisolated struct ClosedRangeBoundRangeTests {
     @Test
     func test() {
         #expect((3...10).boundRange == 7)

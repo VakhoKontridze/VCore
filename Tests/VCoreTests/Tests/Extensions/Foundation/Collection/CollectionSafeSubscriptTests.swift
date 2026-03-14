@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CollectionSafeSubscriptTests {
+nonisolated struct CollectionSafeSubscriptTests {
     @Test
     func test() {
         let numbers: [Int] = [1, 3, 5]

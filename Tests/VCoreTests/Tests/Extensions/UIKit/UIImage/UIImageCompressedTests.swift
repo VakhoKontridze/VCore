@@ -12,7 +12,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct UIImageCompressedTests {
+nonisolated struct UIImageCompressedTests {
     @Test
     func test() throws {
         let image: UIImage = try #require(

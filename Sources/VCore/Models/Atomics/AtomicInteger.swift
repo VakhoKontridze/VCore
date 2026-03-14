@@ -24,7 +24,7 @@ public typealias AtomicInteger = AtomicNumber<Int>
 ///         await GlobalAtomicInteger.shared.getAndIncrement()
 ///     }
 ///
-public final class GlobalAtomicInteger { // No `@globalActor` needed
+public nonisolated final class GlobalAtomicInteger { // No `@globalActor` needed
     // MARK: Properties
     /// Shared instance of `AtomicInteger`.
     public static let shared: AtomicInteger = .init()

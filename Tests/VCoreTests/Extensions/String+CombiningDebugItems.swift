@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension String {
+nonisolated extension String {
     static func combiningDebugItems(
         _ items: Any...
     ) -> String {

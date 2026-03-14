@@ -10,7 +10,7 @@
 import Foundation
 
 /// Enumeration that represents state.
-public enum InfiniteScrollingPaginationState: Int, Sendable, CaseIterable {
+public nonisolated enum InfiniteScrollingPaginationState: Int, Sendable, CaseIterable {
     /// Indicates that `UIActivityIndicator` is visible and additional pagination cannot occur.
     case loading
     

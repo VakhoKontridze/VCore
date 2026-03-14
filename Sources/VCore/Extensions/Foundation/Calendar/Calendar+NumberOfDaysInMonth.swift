@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Calendar {
+nonisolated extension Calendar {
     /// Returns number of days in a month for the given date.
     ///
     ///     let date: Date = .init()

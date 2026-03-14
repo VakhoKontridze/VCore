@@ -29,7 +29,10 @@ let package: Package = .init(
 
     targets: [
         .target(
-            name: "VCoreShared"
+            name: "VCoreShared",
+            swiftSettings: [
+                .defaultIsolation(MainActor.self)
+            ]
         ),
 
         .macro(
@@ -38,6 +41,9 @@ let package: Package = .init(
                 .product(name: "SwiftSyntaxMacros", package: "swift-syntax"),
                 .product(name: "SwiftCompilerPlugin", package: "swift-syntax"),
                 "VCoreShared"
+            ],
+            swiftSettings: [
+                .defaultIsolation(MainActor.self)
             ]
         ),
 
@@ -53,6 +59,9 @@ let package: Package = .init(
             ],
             resources: [
                 .process("Resources")
+            ],
+            swiftSettings: [
+                .defaultIsolation(MainActor.self)
             ]
         ),
         .testTarget(
@@ -62,6 +71,9 @@ let package: Package = .init(
                 "VCore",
                 "VCoreShared",
                 "VCoreMacrosImplementation"
+            ],
+            swiftSettings: [
+                .defaultIsolation(MainActor.self)
             ]
         )
     ]

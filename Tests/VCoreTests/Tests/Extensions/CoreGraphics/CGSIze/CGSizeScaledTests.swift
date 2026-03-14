@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CGSizeScaledTests {
+nonisolated struct CGSizeScaledTests {
     // MARK: Tests - Constant
     @Test
     func testScaledUpWithConstant() {

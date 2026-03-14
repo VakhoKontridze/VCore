@@ -8,7 +8,7 @@
 import Foundation
 
 /// Modal Presenter link.
-public struct ModalPresenterLink: Sendable {
+public nonisolated struct ModalPresenterLink: Sendable {
     // MARK: Properties
     /// Root ID.
     public let rootID: String?

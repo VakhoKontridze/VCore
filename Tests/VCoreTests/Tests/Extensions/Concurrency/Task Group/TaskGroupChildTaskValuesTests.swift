@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct TaskGroupChildTaskValuesTests {
+nonisolated struct TaskGroupChildTaskValuesTests {
     // MARK: Tests
     @Test
     func testTaskGroup() async {
@@ -73,7 +73,7 @@ struct TaskGroupChildTaskValuesTests {
     }
     
     // MARK: Types
-    private struct Item {
+    private nonisolated struct Item {
         let value: String
     }
 }

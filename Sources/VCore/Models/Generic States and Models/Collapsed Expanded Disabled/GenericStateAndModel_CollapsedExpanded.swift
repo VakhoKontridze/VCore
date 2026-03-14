@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public enum GenericState_CollapsedExpanded: Int, Sendable, CaseIterable {
+public nonisolated enum GenericState_CollapsedExpanded: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Collapsed.
     case collapsed
@@ -40,7 +40,7 @@ public enum GenericState_CollapsedExpanded: Int, Sendable, CaseIterable {
     }
 }
 
-extension Binding where Value == GenericState_CollapsedExpanded {
+nonisolated extension Binding where Value == GenericState_CollapsedExpanded {
     /// Initializes `GenericState_CollapsedExpanded` with `Bool`.
     public init(isExpanded: Binding<Bool>) {
         self.init(
@@ -54,7 +54,7 @@ extension Binding where Value == GenericState_CollapsedExpanded {
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_CollapsedExpanded` with values."
 )
-public struct GenericStateModel_CollapsedExpanded<Value> {
+public nonisolated struct GenericStateModel_CollapsedExpanded<Value> {
     // MARK: Properties
     /// Collapsed value.
     public var collapsed: Value
@@ -120,13 +120,13 @@ public struct GenericStateModel_CollapsedExpanded<Value> {
     }
 }
 
-extension GenericStateModel_CollapsedExpanded: Equatable where Value: Equatable {}
+nonisolated extension GenericStateModel_CollapsedExpanded: Equatable where Value: Equatable {}
 
-extension GenericStateModel_CollapsedExpanded: Hashable where Value: Hashable {}
+nonisolated extension GenericStateModel_CollapsedExpanded: Hashable where Value: Hashable {}
 
-extension GenericStateModel_CollapsedExpanded: Sendable where Value: Sendable {}
+nonisolated extension GenericStateModel_CollapsedExpanded: Sendable where Value: Sendable {}
 
-extension GenericStateModel_CollapsedExpanded {
+nonisolated extension GenericStateModel_CollapsedExpanded {
     /// Maps state to model.
     public func value(for state: GenericState_CollapsedExpanded) -> Value {
         switch state {

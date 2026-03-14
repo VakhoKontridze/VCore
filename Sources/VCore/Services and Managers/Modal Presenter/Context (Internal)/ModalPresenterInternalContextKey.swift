@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct ModalPresenterInternalContextKey {
+nonisolated struct ModalPresenterInternalContextKey {
     // MARK: Properties
     let value: String
     

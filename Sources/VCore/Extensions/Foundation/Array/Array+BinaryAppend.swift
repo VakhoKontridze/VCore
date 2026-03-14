@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Array {
+nonisolated extension Array {
     /// Insert element in appropriate place using a binary append algorithm.
     ///
     ///     var numbers: [Int] = [1, 2, 4, 5, 6]

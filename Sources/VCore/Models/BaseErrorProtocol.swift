@@ -10,7 +10,7 @@ import Foundation
 /// Base error protocol.
 ///
 ///     @MemberwiseInitializable(accessLevelModifier: .private)
-///     struct ServiceError: BaseErrorProtocol, Equatable {
+///     nonisolated struct ServiceError: BaseErrorProtocol, Equatable {
 ///         static let domain: String = "com.app.service-error"
 ///         let code: Int
 ///         let description: String
@@ -32,7 +32,7 @@ import Foundation
 ///         }
 ///     }
 ///
-public protocol BaseErrorProtocol: Error, LocalizedError, CustomNSError, Equatable {
+nonisolated public protocol BaseErrorProtocol: Error, LocalizedError, CustomNSError, Equatable {
     /// Error domain.
     static var domain: String { get }
     
@@ -43,7 +43,7 @@ public protocol BaseErrorProtocol: Error, LocalizedError, CustomNSError, Equatab
     var description: String { get }
 }
 
-extension BaseErrorProtocol {
+nonisolated extension BaseErrorProtocol {
     // LocalizedError
     public var errorDescription: String? { description }
     public var failureReason: String? { nil }

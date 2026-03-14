@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Array {
+nonisolated extension Array {
     /// Returns `Array` with new element prepended at the beginning.
     ///
     ///     [2, 3].prepending(1) // [1, 2, 3]
@@ -27,7 +27,7 @@ extension Array {
     }
 }
 
-extension Array {
+nonisolated extension Array {
     /// Returns `Array` with new elements of a `Sequence` prepended at the beginning.
     ///
     ///     [3, 4].prepending(contentsOf: [1, 2]) // [1, 2, 3, 4]

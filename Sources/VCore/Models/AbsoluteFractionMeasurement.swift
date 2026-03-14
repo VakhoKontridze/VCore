@@ -8,7 +8,7 @@
 import CoreGraphics
 
 /// Length measurement represented in absolute or fractional values.
-public enum AbsoluteFractionMeasurement: Equatable, Hashable, Sendable {
+public nonisolated enum AbsoluteFractionMeasurement: Equatable, Hashable, Sendable {
     // MARK: Cases
     /// Absolute measurement.
     case absolute(CGFloat)

@@ -10,8 +10,7 @@ import Combine
 import XCTest
 @testable import VCore
 
-@MainActor
-final class PublisherAssignWeakTests: XCTestCase {
+nonisolated final class PublisherAssignWeakTests: XCTestCase {
     // MARK: Tests
     func test() async {
         let service: Service = .init()
@@ -19,11 +18,18 @@ final class PublisherAssignWeakTests: XCTestCase {
     }
     
     // MARK: Types
-    private final class Service {
+    private nonisolated final class Service: @unchecked Sendable {
         // MARK: Properties
-        var value: Int = 0
+        private let queue: DispatchQueue = .init(label: "Service")
+        
+        private var _value: Int = 0
+        var value: Int {
+            get { queue.sync { _value } }
+            set { queue.sync { _value = newValue } }
+        }
 
         private let publisher: PassthroughSubject<Int, Never> = .init()
+        
         private var cancellables: Set<AnyCancellable> = []
 
         // MARK: Initializers

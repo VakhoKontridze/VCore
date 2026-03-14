@@ -11,14 +11,14 @@ import SwiftUI
 public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {
     // MARK: Properties
     private var isEnabled: Bool = true
-    private let action: (@MainActor () -> Void)?
+    private let action: (() -> Void)?
     private let title: String
     private let role: ButtonRole?
     
     // MARK: Initializers
     /// Initializes `ConfirmationDialogButton`.
     public init(
-        action: (@MainActor () -> Void)?,
+        action: (() -> Void)?,
         title: String,
         role: ButtonRole? = nil
     ) {

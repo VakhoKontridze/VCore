@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct AttributedStringInitWithAttributeContainersTests {
+nonisolated struct AttributedStringInitWithAttributeContainersTests {
     // MARK: Tests - Valid
     @Test
     func testPlainString() {
@@ -234,7 +234,7 @@ struct AttributedStringInitWithAttributeContainersTests {
     }
 
     // MARK: Types
-    private struct Wrapper: Equatable {
+    private nonisolated struct Wrapper: Equatable {
         let tagName: Character?
         let substring: String
     }

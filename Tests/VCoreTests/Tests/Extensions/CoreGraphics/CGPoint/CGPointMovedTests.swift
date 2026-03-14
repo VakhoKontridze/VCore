@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CGPointMovedTests {
+nonisolated struct CGPointMovedTests {
     @Test
     func testMovedLeft() {
         #expect(

@@ -10,7 +10,7 @@
 import UIKit
 import OSLog
 
-extension UIColor {
+nonisolated extension UIColor {
     /// Returns RGBA values of `UIColor`.
     ///
     /// `red`, `green`, and `blue` values range from `0` to `1`.

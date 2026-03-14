@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct FloatingPointClampedToClosedRangeTests {
+nonisolated struct FloatingPointClampedToClosedRangeTests {
     // MARK: Tests - Closed Range
     @Test
     func testClampedToClosedRange() {

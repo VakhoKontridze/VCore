@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIImage {
+nonisolated extension UIImage {
     /// Returns average `UIColor`.
     ///
     ///     let color: UIColor? = UIImage(named: "Image")?.averageColor

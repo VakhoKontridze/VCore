@@ -32,9 +32,8 @@ import OSLog
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 @available(visionOS, unavailable)
-@MainActor
 @Observable
-public final class KeyboardObserver: Sendable {
+public final class KeyboardObserver {
     // MARK: Properties
     /// Keyboard responsiveness strategy.
     public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy
@@ -152,7 +151,7 @@ public final class KeyboardObserver: Sendable {
             keyboardShowTask?.cancel()
             keyboardHideTask?.cancel()
             
-            keyboardShowTask = Task { @MainActor in
+            keyboardShowTask = Task {
                 defer { keyboardShowTask = nil }
 
                 self.offset = offset
@@ -192,7 +191,7 @@ public final class KeyboardObserver: Sendable {
             keyboardShowTask?.cancel()
             keyboardHideTask?.cancel()
             
-            keyboardHideTask = Task { @MainActor in
+            keyboardHideTask = Task {
                 defer { keyboardHideTask = nil }
                 
                 self.offset = offset
@@ -235,7 +234,7 @@ public final class KeyboardObserver: Sendable {
     
     // MARK: Types
     /// Keyboard responsiveness strategy.
-    public enum KeyboardResponsivenessStrategy: Equatable, Sendable {
+    public nonisolated enum KeyboardResponsivenessStrategy: Equatable, Sendable {
         // MARK: Cases
         /// None.
         case `none`
@@ -261,7 +260,7 @@ public final class KeyboardObserver: Sendable {
 #if canImport(UIKit) && !os(watchOS)
 
 @available(tvOS, unavailable)
-extension SystemKeyboardInfo {
+nonisolated extension SystemKeyboardInfo {
     fileprivate init() {
         self.init(
             frame: nil,

@@ -12,7 +12,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CACornerMaskAdditionalOptionsTests {
+nonisolated struct CACornerMaskAdditionalOptionsTests {
     @Test
     func test() {
         #expect(CACornerMask.layerMinXCorners.union(.layerMaxXCorners) == .layerAllCorners)

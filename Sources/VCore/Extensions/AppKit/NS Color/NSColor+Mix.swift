@@ -9,7 +9,7 @@
 
 import AppKit
 
-extension NSColor {
+nonisolated extension NSColor {
     /// Mixes two `NSColor`s together.
     ///
     ///     let purple: NSColor = .red.mix(with: .blue, by: 0.5)

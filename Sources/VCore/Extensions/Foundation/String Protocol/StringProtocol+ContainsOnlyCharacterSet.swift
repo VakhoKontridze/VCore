@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension StringProtocol {
+nonisolated extension StringProtocol {
     /// Returns `Bool` indicating if `String` only contains given `CharacterSet`.
     ///
     ///     let phoneNumber: String = "0123456789"
@@ -22,7 +22,7 @@ extension StringProtocol {
     }
 }
 
-extension StringProtocol {
+nonisolated extension StringProtocol {
     /// Returns `Bool` indicating if `String` only contains given `CharacterSet`.
     ///
     ///     let phoneNumber: String = "+0123456789"

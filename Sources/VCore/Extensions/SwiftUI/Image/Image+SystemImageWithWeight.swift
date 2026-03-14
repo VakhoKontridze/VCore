@@ -9,7 +9,7 @@
 
 import SwiftUI
 
-extension Image {
+nonisolated extension Image {
     /// Creates a system symbol image with weight.
     ///
     ///     var body: some View {

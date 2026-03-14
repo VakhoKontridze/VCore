@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension BinaryInteger {
+nonisolated extension BinaryInteger {
     /// Clamps value to range.
     ///
     ///     let value1: Int = 0.clamped(to: 1..<11) // 1
@@ -47,7 +47,7 @@ extension BinaryInteger {
 }
 
 
-extension BinaryInteger {
+nonisolated extension BinaryInteger {
     /// Clamps value to range.
     ///
     ///     let value1: Int = 0.clamped(to: 1...10) // 1

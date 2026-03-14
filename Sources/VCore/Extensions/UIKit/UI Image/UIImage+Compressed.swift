@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIImage {
+nonisolated extension UIImage {
     /// Returns `UIImage` compressed with specified quality.
     ///
     ///     let image: UIImage = .init(named: "Image")!

@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-extension StringProtocol {
+nonisolated extension StringProtocol {
     /// Accesses the element at the specified position.
     ///
     ///     let string: String = "Lorem Ipsum"

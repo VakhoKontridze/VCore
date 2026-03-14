@@ -11,7 +11,7 @@ import SwiftUI
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 @available(visionOS, unavailable)
-public struct ResponderChainToolbarAppearance: Equatable, Sendable {
+public struct ResponderChainToolbarAppearance: Equatable {
     // MARK: Properties - Buttons
     var hasButtons: Bool { hasNavigationButtons || hasDoneButton }
 

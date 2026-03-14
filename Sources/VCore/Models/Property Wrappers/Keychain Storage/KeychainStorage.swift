@@ -13,11 +13,9 @@ import OSLog
 ///     @KeychainStorage("AccessToken") var accessToken: String?
 ///
 @propertyWrapper
-public struct KeychainStorage<Value>: DynamicProperty, Sendable
-    where Value: Sendable & Codable
-{
+public struct KeychainStorage<Value>: DynamicProperty where Value: Codable {
     // MARK: Properties
-    private let valueSetter: @Sendable (Value) -> Void
+    private let valueSetter: (Value) -> Void
     
     @State private var storage: Value
 

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension URLResponse {
+nonisolated extension URLResponse {
     /// Checks that response `HTTP` code is successful.
     ///
     /// Compares status code against `200...299`.

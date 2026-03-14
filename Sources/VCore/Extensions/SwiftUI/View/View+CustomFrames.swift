@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Positions `View` within an invisible frame with the specified dimension.
     ///
     ///     var body: some View {

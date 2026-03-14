@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct RangeReversedArrayOnConditionTests {
+nonisolated struct RangeReversedArrayOnConditionTests {
     @Test
     func test() {
         #expect((1..<4).reversedArray(false) == [1, 2, 3])

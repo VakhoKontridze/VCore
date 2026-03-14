@@ -9,7 +9,7 @@
 
 import AppKit
 
-extension NSImage {
+nonisolated extension NSImage {
     /// Returns a new thumbnail `NSImage` at the specified `CGSize`.
     ///
     ///     let thumbnail: NSImage? = NSImage(named: "Image")?

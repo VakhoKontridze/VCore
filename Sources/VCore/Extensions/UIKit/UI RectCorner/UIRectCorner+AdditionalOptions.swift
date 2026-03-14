@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIRectCorner {
+nonisolated extension UIRectCorner {
     /// Top corners of the rectangle.
     ///
     /// Includes `topLeft` and  `topRight`.

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Overlays clear `Rectangle` that blocks gestures if condition is met.
     ///
     ///     var body: some View {

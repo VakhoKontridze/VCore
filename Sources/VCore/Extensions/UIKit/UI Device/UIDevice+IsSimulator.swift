@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIDevice {
+nonisolated extension UIDevice {
     /// Indicates if device is simulator.
     ///
     ///     let isSimulator: Bool = UIDevice.isSimulator

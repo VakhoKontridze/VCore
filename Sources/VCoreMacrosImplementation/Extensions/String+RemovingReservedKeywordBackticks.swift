@@ -8,7 +8,7 @@
 import Foundation
 import VCoreShared
 
-extension String {
+nonisolated extension String {
     func removingReservedKeywordBackticks() -> String {
         _removing(CharacterSet(arrayLiteral: "`"))
     }

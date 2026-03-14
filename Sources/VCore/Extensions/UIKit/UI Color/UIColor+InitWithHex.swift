@@ -10,7 +10,7 @@
 import UIKit
 import VCoreShared
 
-extension UIColor {
+nonisolated extension UIColor {
     /// Initializes `UIColor` with a hex `String`.
     ///
     /// `hex` parameter must have `6` characters.
@@ -52,7 +52,7 @@ extension UIColor {
     }
 }
 
-extension UIColor {
+nonisolated extension UIColor {
     /// Initializes `UIColor` with a hex `UInt`.
     ///
     /// `hex` parameter must have `6` digits.

@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct LockedAtomicIntegerTests {
+nonisolated struct LockedAtomicIntegerTests {
     // MARK: Tests - Accessors
     @Test
     func testGet() {

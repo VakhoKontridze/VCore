@@ -12,7 +12,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct UIRectCornerAdditionalOptionsTests {
+nonisolated struct UIRectCornerAdditionalOptionsTests {
     @Test
     func test() {
         // `rawValue` of `allCorners` is `18446744073709551615`

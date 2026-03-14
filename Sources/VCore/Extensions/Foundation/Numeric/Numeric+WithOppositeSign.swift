@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Numeric {
+nonisolated extension Numeric {
     /// Returns `Numeric` value with opposite sign if condition is met.
     ///
     ///     let number: Int = 10 // -10

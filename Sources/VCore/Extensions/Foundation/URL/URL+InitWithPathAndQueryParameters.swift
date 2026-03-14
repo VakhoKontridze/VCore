@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension URL {
+nonisolated extension URL {
     /// Initializes `URL` with `String`, path parameters, and query parameters.
     ///
     ///     let url: URL = .init(
@@ -42,7 +42,7 @@ extension URL {
     }
 }
 
-extension URLComponents {
+nonisolated extension URLComponents {
     fileprivate mutating func addQueryItems(
         _ newQueryItems: [(key: String, value: String)]
     ) {

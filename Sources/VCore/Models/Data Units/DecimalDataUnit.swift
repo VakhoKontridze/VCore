@@ -12,7 +12,7 @@ import Foundation
 /// `rawValue` defines the `magnitude`.
 ///
 /// Only defines officially recognized units.
-public enum DecimalDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, Sendable, CaseIterable {
+public nonisolated enum DecimalDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, Sendable, CaseIterable {
     // MARK: Cases
     /// Byte (1000^0).
     case B = 0
@@ -48,7 +48,7 @@ public enum DecimalDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, S
     public var id: Int { rawValue }
 }
 
-extension Double {
+nonisolated extension Double {
     /// Converts bytes to decimal data unit.
     ///
     ///     let kilobytes: Double = 1000.decimalBytesConverted(to: .kB) // 1

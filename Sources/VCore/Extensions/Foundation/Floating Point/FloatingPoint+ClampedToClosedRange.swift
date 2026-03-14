@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension FloatingPoint {
+nonisolated extension FloatingPoint {
     /// Clamps value to range.
     ///
     ///     let value1: Double = 0.0.clamped(to: 1...10) // 1.0

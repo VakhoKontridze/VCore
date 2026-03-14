@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension RectangleCornerRadii {
+nonisolated extension RectangleCornerRadii {
     /// Initializes `RectangleCornerRadii` with value.
     public init(
         _ value: CGFloat
@@ -21,7 +21,7 @@ extension RectangleCornerRadii {
     }
 }
 
-extension RectangleCornerRadii {
+nonisolated extension RectangleCornerRadii {
     /// Initializes `RectangleCornerRadii` with leading and trailing values.
     public init(
         leadingCorners: CGFloat,
@@ -56,7 +56,7 @@ extension RectangleCornerRadii {
     }
 }
 
-extension RectangleCornerRadii {
+nonisolated extension RectangleCornerRadii {
     /// Initializes `RectangleCornerRadii` with top and bottom values.
     public init(
         topCorners: CGFloat,

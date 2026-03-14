@@ -26,13 +26,12 @@ import Foundation
 ///         }
 ///     }
 ///
-///     @MainActor
 ///     @Observable
 ///     final class ViewModel {
 ///         let count: AsyncStreamingObservationContainer<Int> = .init(0)
 ///
 ///         init() {
-///             Task { @MainActor in
+///             Task {
 ///                 for await value in count.asyncStream {
 ///                     print(value)
 ///                 }
@@ -40,9 +39,8 @@ import Foundation
 ///         }
 ///     }
 ///
-@MainActor
 @Observable
-public final class AsyncStreamingObservationContainer<Value>: Sendable where Value: Sendable {
+public final class AsyncStreamingObservationContainer<Value> where Value: Sendable {
     // MARK: Properties - Value
     @ObservationIgnored private var _value: Value
     
@@ -96,7 +94,7 @@ public final class AsyncStreamingObservationContainer<Value>: Sendable where Val
     }
 }
 
-private final class ContinuationHolder<Value>: Sendable {
+private nonisolated final class ContinuationHolder<Value>: Sendable {
     // MARK: Properties
     let continuation: AsyncStream<Value>.Continuation
 
@@ -123,7 +121,6 @@ import SwiftUI
     }
 }
 
-@MainActor
 @Observable
 private final class ViewModel {
     // MARK: Properties
@@ -131,7 +128,7 @@ private final class ViewModel {
 
     // MARK: Initializers
     init() {
-        Task { @MainActor in
+        Task {
             for await value in count.asyncStream {
                 print(value)
             }

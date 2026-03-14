@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Binds value to modal context by applying an empty `onChange` modifier to the value.
     ///
     /// Can be used to avoid using `Binding` modifiers when presenting modals.
@@ -33,7 +33,7 @@ extension View {
     ///
     /// One solution lies in using `View.sheet(item:content:)` to bind value to modal:
     ///
-    ///     private struct Sheet: Identifiable {
+    ///     private nonisolated struct Sheet: Identifiable {
     ///         let id: UUID = .init()
     ///         let isOn: Bool
     ///     }

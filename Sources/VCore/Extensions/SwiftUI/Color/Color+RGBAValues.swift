@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color {
+nonisolated extension Color {
     /// Returns RGBA values of `Color`.
     ///
     /// `red`, `green`, and `blue` values range from `0` to `1`.

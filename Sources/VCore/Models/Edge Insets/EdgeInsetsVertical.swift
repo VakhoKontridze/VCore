@@ -11,7 +11,7 @@ import SwiftUI
 @MemberwiseInitializable(
     comment: "/// Initializes `EdgeInsetsVertical` with values."
 )
-public struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
+public nonisolated struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
     // MARK: Properties - Base
     /// Top value.
     public var top: CGFloat
@@ -124,7 +124,7 @@ public struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
     }
 }
 
-extension View {
+nonisolated extension View {
     /// Adds a specific padding amount to each edge of `View` from `EdgeInsetsVertical`.
     ///
     ///     let insets: EdgeInsetsVertical = .init(

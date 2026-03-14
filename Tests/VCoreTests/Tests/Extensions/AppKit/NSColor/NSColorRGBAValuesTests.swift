@@ -12,7 +12,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct NSColorRGBAValuesTests {
+nonisolated struct NSColorRGBAValuesTests {
     @Test
     func testValues() {
         #expect(

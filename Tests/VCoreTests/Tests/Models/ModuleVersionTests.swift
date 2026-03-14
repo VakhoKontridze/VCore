@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ModuleVersionTests {
+nonisolated struct ModuleVersionTests {
     @Test
     func testInitWithString() {
         #expect(ModuleVersion(string: nil) == nil)

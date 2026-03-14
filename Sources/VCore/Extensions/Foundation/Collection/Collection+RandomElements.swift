@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Collection {
+nonisolated extension Collection {
     /// Returns random elements from the collection up to specified count.
     ///
     ///     let numbers: [Int] = [10, 20, 30, 40, 50, 60]

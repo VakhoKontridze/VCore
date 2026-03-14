@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CollectionNonEmptyTests {
+nonisolated struct CollectionNonEmptyTests {
     @Test
     func test() {
         #expect(Array<Int>().nonEmpty == nil)

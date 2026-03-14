@@ -8,7 +8,7 @@
 import SwiftUI
 import VCoreShared
 
-extension Color {
+nonisolated extension Color {
     /// Initializes `Color` with a hex `String`.
     ///
     /// `hex` parameter must have `6` characters.
@@ -32,7 +32,7 @@ extension Color {
     }
 }
 
-extension Color {
+nonisolated extension Color {
     /// Initializes `Color` with a hex `UInt`
     ///
     /// `hex` parameter must have `6` digits.

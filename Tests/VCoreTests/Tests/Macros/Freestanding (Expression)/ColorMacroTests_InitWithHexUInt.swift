@@ -16,7 +16,7 @@ import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
 @testable import VCoreMacrosImplementation
 
-final class ColorMacroTests_InitWithHexUInt: XCTestCase {
+nonisolated final class ColorMacroTests_InitWithHexUInt: XCTestCase {
     // MARK: Properties
     private let macros: [String: Macro.Type] = ["color": ColorMacro_InitWithHexUInt.self]
 

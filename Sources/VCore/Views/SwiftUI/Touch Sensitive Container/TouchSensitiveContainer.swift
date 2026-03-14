@@ -130,7 +130,7 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
     ) {
         if let delay = delay.nonZero {
             executeWithDelayTask?.cancel()
-            executeWithDelayTask = Task { @MainActor in
+            executeWithDelayTask = Task {
                 defer { executeWithDelayTask = nil }
                 
                 try? await Task.sleep(for: .seconds(delay))

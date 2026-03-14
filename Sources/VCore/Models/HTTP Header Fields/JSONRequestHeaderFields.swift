@@ -15,7 +15,7 @@ import Foundation
 ///     try request.addHTTPHeaderFields(object: JSONRequestHeaderFields())
 ///
 @CodingKeysGeneration
-public struct JSONRequestHeaderFields: Sendable, Encodable {
+public nonisolated struct JSONRequestHeaderFields: Sendable, Encodable {
     // MARK: Properties
     /// Accept.
     @CKGProperty("Accept") public let accept: String = "application/json"

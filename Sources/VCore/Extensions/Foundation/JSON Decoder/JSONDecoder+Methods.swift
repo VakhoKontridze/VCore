@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension JSONDecoder {
+nonisolated extension JSONDecoder {
     /// Decodes `JSON` from `Data`.
     ///
     ///     let data: Data = ...

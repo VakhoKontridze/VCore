@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Locale {
+nonisolated extension Locale {
     /// Returns the display name for the given locale component value.
     ///
     ///     Locale(identifier: "es").displayName(forKey: .identifier) // In English `Locale`, returns "Spanish"

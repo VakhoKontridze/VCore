@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Int {
+nonisolated extension Int {
     /// Runs block by specified times.
     ///
     ///     5.times { print("Hello, World!") }

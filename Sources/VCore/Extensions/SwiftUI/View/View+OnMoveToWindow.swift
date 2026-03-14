@@ -75,9 +75,7 @@ private final class _WindowReaderView: UIView {
     override func didMoveToWindow() {
         super.didMoveToWindow()
 
-        Task { @MainActor in
-            notify()
-        }
+        notify()
     }
 
     // MARK: Notification

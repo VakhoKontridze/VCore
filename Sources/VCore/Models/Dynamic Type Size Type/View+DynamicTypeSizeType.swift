@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Sets `DynamicTypeSize` based on `DynamicTypeSizeType`.
     ///
     ///     var body: some View {

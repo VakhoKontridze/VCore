@@ -78,7 +78,7 @@ public protocol ConfigurableUICollectionViewCell: UICollectionViewCell {
     func configure(parameter: any UICollectionViewCellParameter)
 }
 
-extension ConfigurableUICollectionViewCell {
+nonisolated extension ConfigurableUICollectionViewCell {
     public static var reuseID: String { .init(describing: self) }
 }
 

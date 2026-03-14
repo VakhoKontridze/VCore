@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-extension CGSize {
+nonisolated extension CGSize {
     /// Initializes `CGSize` with dimension.
     ///
     ///     let size: CGSize = .init(dimension: 100)

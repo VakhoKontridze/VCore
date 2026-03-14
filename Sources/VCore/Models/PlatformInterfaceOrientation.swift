@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Platform interface orientation.
-public enum PlatformInterfaceOrientation {
+public nonisolated enum PlatformInterfaceOrientation {
     // MARK: Cases
     /// Portrait.
     case portrait

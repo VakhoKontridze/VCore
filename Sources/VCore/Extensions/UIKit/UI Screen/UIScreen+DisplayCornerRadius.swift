@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIScreen {
+nonisolated extension UIScreen {
     /// The corner radius of the display.
     ///
     /// Can be used to round corner of half modal component.

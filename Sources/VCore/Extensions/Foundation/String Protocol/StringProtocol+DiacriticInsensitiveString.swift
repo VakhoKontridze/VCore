@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension StringProtocol {
+nonisolated extension StringProtocol {
     /// Returns a diacritic-insensitive `String`.
     ///
     ///     let string: String = "À".diacriticInsensitiveString() // "A"

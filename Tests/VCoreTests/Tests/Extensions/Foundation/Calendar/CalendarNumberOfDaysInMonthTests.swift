@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CalendarNumberOfDaysInMonthTests {
+nonisolated struct CalendarNumberOfDaysInMonthTests {
     @Test(
         arguments: [
             (

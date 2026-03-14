@@ -16,7 +16,7 @@ public struct UIAlertButton: UIAlertButtonProtocol {
     public var isEnabled: Bool
     
     /// Action.
-    public var action: (@MainActor () -> Void)?
+    public var action: (() -> Void)?
     
     /// Title.
     public var title: String
@@ -28,7 +28,7 @@ public struct UIAlertButton: UIAlertButtonProtocol {
     /// Initializes `UIAlertButton`.
     public init(
         isEnabled: Bool = true,
-        action: (@MainActor () -> Void)?,
+        action: (() -> Void)?,
         title: String,
         style: UIAlertAction.Style = .default
     ) {
@@ -44,7 +44,7 @@ public struct UIAlertButton: UIAlertButtonProtocol {
             title: title,
             style: style
         ) { _ in
-            Task { @MainActor in action?() }
+            action?()
         }
         alertAction.isEnabled = isEnabled
 

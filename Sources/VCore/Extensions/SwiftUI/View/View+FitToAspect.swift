@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Constrains `View`'s dimensions to the specified aspect ratio without stretching it.
     ///
     ///     Image("Image")

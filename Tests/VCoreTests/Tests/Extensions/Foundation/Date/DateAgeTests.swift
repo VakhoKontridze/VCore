@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct DateAgeTests {
+nonisolated struct DateAgeTests {
     @Test
     func testInvalidDate() throws {
         let birthDate: Date = try #require(

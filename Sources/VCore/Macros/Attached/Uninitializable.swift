@@ -12,7 +12,7 @@ import Foundation
 /// Can be used to simplify declarations of simple objects containing various constants.
 ///
 ///     @Uninitializable
-///     struct AppConstants {
+///     nonisolated struct AppConstants {
 ///         static let apiKey: String = "..."
 ///     }
 ///

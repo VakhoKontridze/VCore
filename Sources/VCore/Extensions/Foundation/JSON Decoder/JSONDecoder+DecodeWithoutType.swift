@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension JSONDecoder {
+nonisolated extension JSONDecoder {
     /// Decodes a top-level value of the given type from the given JSON representation.
     ///
     ///     let object: SomeObject = try JSONDecoder().decode(from: data)

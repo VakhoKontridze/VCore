@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Locale {
+nonisolated extension Locale {
     /// Returns `Bool` indicated if two `Locale`s are equivalent.
     ///
     /// During comparison, `region?.identifier` and `language.script?.identifier`
@@ -24,7 +24,7 @@ extension Locale {
     ///     lhs.isEquivalent(to: rhs) // true, if `Locale.current.region?.identifier` is "US"
     ///
     public func isEquivalent(to other: Locale) -> Bool {
-        if 
+        if
             language.languageCode?.identifier != other.language.languageCode?.identifier
         {
             return false

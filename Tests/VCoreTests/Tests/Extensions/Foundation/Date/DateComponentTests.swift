@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct DateComponentTests {
+nonisolated struct DateComponentTests {
     @Test
     func testComponent() throws {
         let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)

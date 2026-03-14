@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Sequence {
+nonisolated extension Sequence {
     /// Returns the elements of a `Sequence`, sorted using the given `KeyPath` as the comparison between elements.
     ///
     ///     struct City {
@@ -30,7 +30,7 @@ extension Sequence {
     }
 }
 
-extension Array {
+nonisolated extension Array {
     /// Sorts the elements of an `Array` using the given `KeyPath` as the comparison between elements.
     ///
     ///     var cities: [City] = [

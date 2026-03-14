@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Data {
+nonisolated extension Data {
     /// Returns non-zero sized `Data`, or `nil`.
     ///
     ///     let data1: Data? = .init().nonEmpty // nil

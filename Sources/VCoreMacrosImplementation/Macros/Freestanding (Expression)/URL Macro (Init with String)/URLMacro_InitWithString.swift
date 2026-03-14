@@ -11,7 +11,7 @@ import Foundation
 import SwiftSyntax
 import SwiftSyntaxMacros
 
-struct URLMacro_InitWithString: ExpressionMacro {
+nonisolated struct URLMacro_InitWithString: ExpressionMacro {
     static func expansion(
         of node: some FreestandingMacroExpansionSyntax,
         in context: some MacroExpansionContext

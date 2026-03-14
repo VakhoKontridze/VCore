@@ -17,15 +17,15 @@ import Foundation
 ///     @MemberwiseInitializable(
 ///         externalParameterNames: ["url": "_"]
 ///     )
-///     public struct FetchImageParameters: Sendable {
+///     public nonisolated struct FetchImageParameters: Sendable {
 ///         public let url: String
-///         public let completion: (String) async throws -> UIImage
+///         public let completion: @Sendable (String) async throws -> UIImage
 ///     }
 ///
 ///     // Generates
 ///     public init(
 ///         _ url: String,
-///         completion: @escaping (String) async throws -> UIImage
+///         completion: @Sendable (String) async throws -> UIImage
 ///     ) {
 ///         self.url = url
 ///         self.completion = completion
@@ -44,7 +44,7 @@ public macro MemberwiseInitializable(
 )
 
 /// Default parameter value in `MemberwiseInitializable`.
-public enum MemberwiseInitializableParameterDefaultValue {
+public nonisolated enum MemberwiseInitializableParameterDefaultValue {
     /// Value.
     case value(Any)
 

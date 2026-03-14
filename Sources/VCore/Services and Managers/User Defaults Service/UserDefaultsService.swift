@@ -11,7 +11,7 @@ import OSLog
 /// Service object that performs get, set, and delete `UserDefaults` operations.
 ///
 /// Object contains default instance `default`.
-open class UserDefaultsService: @unchecked Sendable {
+open nonisolated class UserDefaultsService: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Default instance of `UserDefaultsService` that uses `standard` `UserDefaults`.
     public static let `default`: UserDefaultsService = .init(
@@ -32,7 +32,7 @@ open class UserDefaultsService: @unchecked Sendable {
     }
 
     // MARK: Properties - JSON Encoder
-    private lazy var _jsonEncoder: JSONEncoder = .init()
+    private var _jsonEncoder: JSONEncoder = .init()
     
     /// `JSONEncoder`.
     ///
@@ -43,7 +43,7 @@ open class UserDefaultsService: @unchecked Sendable {
     }
 
     // MARK: Properties - JSON Decoder
-    private lazy var _jsonDecoder: JSONDecoder = .init()
+    private var _jsonDecoder: JSONDecoder = .init()
     
     /// `JSONDecoder`.
     ///

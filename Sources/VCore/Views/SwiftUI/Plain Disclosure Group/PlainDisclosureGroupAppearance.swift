@@ -10,7 +10,7 @@ import SwiftUI
 /// Model that describes appearance.
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-public struct PlainDisclosureGroupAppearance: Equatable, Sendable {
+public struct PlainDisclosureGroupAppearance: Equatable {
     // MARK: Properties - Global
     /// Content height in system disclosure group which includes the chevron button.
     ///

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Color {
+nonisolated extension Color {
     /// Lightens `Color` by a fraction.
     ///
     ///     let lightBlue: Color = .systemBlue.lighten(by: 0.1)

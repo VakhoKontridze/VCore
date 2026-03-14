@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension EdgeInsets {
+nonisolated extension EdgeInsets {
     // MARK: Properties - Derived
     /// Sum of `leading` and `trailing` values.
     public var horizontalSum: CGFloat { leading + trailing }

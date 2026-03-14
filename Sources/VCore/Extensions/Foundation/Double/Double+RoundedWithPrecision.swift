@@ -8,7 +8,7 @@
 import Foundation
 import OSLog
 
-extension Double {
+nonisolated extension Double {
     /// Rounds `Double` with precision.
     ///
     ///     let rounded1: Double = 3.1415.rounded(fractions: 2) // 3.14

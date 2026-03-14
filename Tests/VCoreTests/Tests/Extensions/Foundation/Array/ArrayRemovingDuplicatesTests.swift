@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ArrayRemovingDuplicatesTests {
+nonisolated struct ArrayRemovingDuplicatesTests {
     @Test
     func test() {
         #expect(

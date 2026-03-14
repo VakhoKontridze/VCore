@@ -8,7 +8,7 @@
 import SwiftUI
 import OSLog
 
-extension AttributedString {
+nonisolated extension AttributedString {
     /// Initializes `AttributedString` with child `AttributedString` components created from mapping tag names to `AttributeContainer`s.
     ///
     ///     var body: some View {
@@ -63,7 +63,7 @@ extension AttributedString {
     }
 }
 
-extension String {
+nonisolated extension String {
     /*fileprivate*/ func components(
         separatedByTagNames tagNames: [Character]
     ) -> [(tagName: Character?, substring: String)] {

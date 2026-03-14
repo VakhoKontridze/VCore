@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CharacterSetUnifiedTests {
+nonisolated struct CharacterSetUnifiedTests {
     @Test
     func test() {
         #expect(

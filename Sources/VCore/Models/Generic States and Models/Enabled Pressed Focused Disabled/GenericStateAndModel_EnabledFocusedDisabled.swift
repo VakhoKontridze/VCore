@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public enum GenericState_EnabledFocusedDisabled: Int, Sendable, CaseIterable {
+public nonisolated enum GenericState_EnabledFocusedDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -49,7 +49,7 @@ public enum GenericState_EnabledFocusedDisabled: Int, Sendable, CaseIterable {
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_EnabledFocusedDisabled` with values."
 )
-public struct GenericStateModel_EnabledFocusedDisabled<Value> {
+public nonisolated struct GenericStateModel_EnabledFocusedDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
     public var enabled: Value
@@ -121,13 +121,13 @@ public struct GenericStateModel_EnabledFocusedDisabled<Value> {
     }
 }
 
-extension GenericStateModel_EnabledFocusedDisabled: Equatable where Value: Equatable {}
+nonisolated extension GenericStateModel_EnabledFocusedDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_EnabledFocusedDisabled: Hashable where Value: Hashable {}
+nonisolated extension GenericStateModel_EnabledFocusedDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_EnabledFocusedDisabled: Sendable where Value: Sendable {}
+nonisolated extension GenericStateModel_EnabledFocusedDisabled: Sendable where Value: Sendable {}
 
-extension GenericStateModel_EnabledFocusedDisabled {
+nonisolated extension GenericStateModel_EnabledFocusedDisabled {
     /// Maps state to model.
     public func value(for state: GenericState_EnabledFocusedDisabled) -> Value {
         switch state {

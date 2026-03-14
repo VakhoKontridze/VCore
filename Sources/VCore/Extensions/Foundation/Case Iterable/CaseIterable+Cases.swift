@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension CaseIterable where Self: Hashable {
+nonisolated extension CaseIterable where Self: Hashable {
     /// Returns a `case` with specified distance from the current `case`.
     ///
     ///     enum CardinalDirection: CaseIterable {

@@ -12,7 +12,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct NSColorLightenAndDarkenTests {
+nonisolated struct NSColorLightenAndDarkenTests {
     @Test
     func testLighten() {
         #expect(

@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public enum GenericState_DeselectedSelectedDisabled: Int, Sendable, CaseIterable {
+public nonisolated enum GenericState_DeselectedSelectedDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Deselected.
     case deselected
@@ -59,7 +59,7 @@ public enum GenericState_DeselectedSelectedDisabled: Int, Sendable, CaseIterable
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_DeselectedSelectedDisabled` with values."
 )
-public struct GenericStateModel_DeselectedSelectedDisabled<Value> {
+public nonisolated struct GenericStateModel_DeselectedSelectedDisabled<Value> {
     // MARK: Properties
     /// Deselected value.
     public var deselected: Value
@@ -131,13 +131,13 @@ public struct GenericStateModel_DeselectedSelectedDisabled<Value> {
     }
 }
 
-extension GenericStateModel_DeselectedSelectedDisabled: Equatable where Value: Equatable {}
+nonisolated extension GenericStateModel_DeselectedSelectedDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_DeselectedSelectedDisabled: Hashable where Value: Hashable {}
+nonisolated extension GenericStateModel_DeselectedSelectedDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_DeselectedSelectedDisabled: Sendable where Value: Sendable {}
+nonisolated extension GenericStateModel_DeselectedSelectedDisabled: Sendable where Value: Sendable {}
 
-extension GenericStateModel_DeselectedSelectedDisabled {
+nonisolated extension GenericStateModel_DeselectedSelectedDisabled {
     /// Maps state to model.
     public func value(for state: GenericState_DeselectedSelectedDisabled) -> Value {
         switch state {

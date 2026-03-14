@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public enum GenericState_OffOnPressedDisabled: Int, Sendable, CaseIterable {
+public nonisolated enum GenericState_OffOnPressedDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -69,7 +69,7 @@ public enum GenericState_OffOnPressedDisabled: Int, Sendable, CaseIterable {
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_OffOnPressedDisabled` with values."
 )
-public struct GenericStateModel_OffOnPressedDisabled<Value> {
+public nonisolated struct GenericStateModel_OffOnPressedDisabled<Value> {
     // MARK: Properties
     /// Off value.
     public var off: Value
@@ -140,13 +140,13 @@ public struct GenericStateModel_OffOnPressedDisabled<Value> {
     }
 }
 
-extension GenericStateModel_OffOnPressedDisabled: Equatable where Value: Equatable {}
+nonisolated extension GenericStateModel_OffOnPressedDisabled: Equatable where Value: Equatable {}
 
-extension GenericStateModel_OffOnPressedDisabled: Hashable where Value: Hashable {}
+nonisolated extension GenericStateModel_OffOnPressedDisabled: Hashable where Value: Hashable {}
 
-extension GenericStateModel_OffOnPressedDisabled: Sendable where Value: Sendable {}
+nonisolated extension GenericStateModel_OffOnPressedDisabled: Sendable where Value: Sendable {}
 
-extension GenericStateModel_OffOnPressedDisabled {
+nonisolated extension GenericStateModel_OffOnPressedDisabled {
     /// Maps state to model.
     public func value(for state: GenericState_OffOnPressedDisabled) -> Value {
         switch state {

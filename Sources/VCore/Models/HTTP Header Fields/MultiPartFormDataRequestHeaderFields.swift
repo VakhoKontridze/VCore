@@ -19,7 +19,7 @@ import Foundation
 ///     )
 ///
 @CodingKeysGeneration
-public struct MultipartFormDataRequestHeaderFields: Sendable, Encodable {
+public nonisolated struct MultipartFormDataRequestHeaderFields: Sendable, Encodable {
     // MARK: Properties
     /// Accept.
     @CKGProperty("Accept") public let accept: String = "application/json"

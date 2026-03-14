@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct NumericNonZeroTests {
+nonisolated struct NumericNonZeroTests {
     @Test
     func test() {
         #expect(0.nonZero == nil)

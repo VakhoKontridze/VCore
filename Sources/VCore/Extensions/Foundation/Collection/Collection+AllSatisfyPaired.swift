@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Collection {
+nonisolated extension Collection {
     /// Returns `Bool` indicating whether every element of a sequence satisfies a given comparison predicate.
     ///
     /// This method is different from `allSatisfy(_:)`, since it passes two elements in a predicate.

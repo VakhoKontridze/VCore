@@ -15,7 +15,7 @@ import Testing
     .enabled(if: NetworkReachabilityService.shared.isConnectedToNetwork == true),
     .timeLimit(.minutes(1))
 )
-struct MultipartFormDataBuilderTests {
+nonisolated struct MultipartFormDataBuilderTests {
     // MARK: Properties
     private let imagePrefix: String = "data:image/jpeg;base64,"
 
@@ -100,7 +100,7 @@ struct MultipartFormDataBuilderTests {
     
     // MARK: Types
     @CodingKeysGeneration
-    private struct JSONPart: Encodable {
+    private nonisolated struct JSONPart: Encodable {
         @CKGProperty("key") let key: String
     }
 }

@@ -12,7 +12,6 @@ import Testing
 @testable import VCore
 
 @Suite
-@MainActor
 struct UIViewRoundCornersTests {
     @Test
     func test() {

@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ResultNoSuccessTests {
+nonisolated struct ResultNoSuccessTests {
     // MARK: Properties
     private let resultS: ResultNoSuccess<TestError> = .success
     private let resultF: ResultNoSuccess<TestError> = .failure(.a)
@@ -42,7 +42,7 @@ struct ResultNoSuccessTests {
     }
     
     // MARK: Types
-    private struct TestError: Error, Equatable {
+    private nonisolated struct TestError: Error, Equatable {
         // MARK: Properties
         private let code: Int
         

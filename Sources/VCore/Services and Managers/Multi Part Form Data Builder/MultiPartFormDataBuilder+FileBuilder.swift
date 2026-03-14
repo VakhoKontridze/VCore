@@ -7,8 +7,8 @@
 
 import Foundation
 
-extension MultipartFormDataBuilder {
-    struct FileBuilder {
+nonisolated extension MultipartFormDataBuilder {
+    nonisolated struct FileBuilder {
         // MARK: Properties
         private let boundary: String
         

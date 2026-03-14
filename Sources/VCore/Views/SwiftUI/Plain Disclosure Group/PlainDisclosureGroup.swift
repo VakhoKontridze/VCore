@@ -170,7 +170,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
     }
     
     // MARK: Types
-    private enum StateManagement {
+    private nonisolated enum StateManagement {
         case `internal`
         case external
     }

@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct BoolToggledTests {
+nonisolated struct BoolToggledTests {
     @Test
     func test() {
         #expect(false.toggled() == true)

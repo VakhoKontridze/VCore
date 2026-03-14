@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct URLResponseIsSuccessHTTPStatusCodeTests {
+nonisolated struct URLResponseIsSuccessHTTPStatusCodeTests {
     @Test
     func testSuccess() throws {
         let urlResponse: HTTPURLResponse = try #require(

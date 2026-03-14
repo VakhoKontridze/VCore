@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct EdgeInsetsAxisTests {
+nonisolated struct EdgeInsetsAxisTests {
     // MARK: Tests - Insets
     @Test
     func testInsetAll() {

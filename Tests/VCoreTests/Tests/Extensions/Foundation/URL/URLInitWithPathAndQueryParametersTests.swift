@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct URLInitWithPathAndQueryParametersTests {
+nonisolated struct URLInitWithPathAndQueryParametersTests {
     @Test
     func testFullDeclaration() throws {
         let string: String = "https://website.com"

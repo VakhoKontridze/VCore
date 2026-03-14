@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Sequence {
+nonisolated extension Sequence {
     /// Groups elements of a `Sequence` by a given predicate.
     ///
     /// Works similar to `Dictionary(grouping:by:)`, but without generating keys.

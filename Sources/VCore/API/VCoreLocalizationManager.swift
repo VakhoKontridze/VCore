@@ -11,11 +11,11 @@ import Foundation
 ///
 /// `localizationProvider` in `shared` instance can be set to override the localized values.
 ///
-///     struct VCoreLocalizationProviderImplementation: VCoreLocalizationProvider { ... }
+///     nonisolated struct VCoreLocalizationProviderImplementation: VCoreLocalizationProvider { ... }
 ///
 ///     VCoreLocalizationManager.shared.localizationProvider = VCoreLocalizationProviderImplementation()
 ///
-public final class VCoreLocalizationManager: @unchecked Sendable {
+public nonisolated final class VCoreLocalizationManager: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Shared instance of `VCoreLocalizationManager`.
     public static let shared: VCoreLocalizationManager = .init()
@@ -43,7 +43,7 @@ public final class VCoreLocalizationManager: @unchecked Sendable {
 ///
 /// Alternately, consider using `VCoreHumanReadableLocalizationProvider`
 /// that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable `String`s.
-public protocol VCoreLocalizationProvider {
+public nonisolated protocol VCoreLocalizationProvider {
     /// Localized value for error title in alerts.
     var alertErrorTitle: String { get }
     
@@ -55,7 +55,7 @@ public protocol VCoreLocalizationProvider {
 }
 
 /// Defaults VCore localization provider.
-public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider, Sendable {
+public nonisolated struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider, Sendable {
     // MARK: Initializers
     /// Initializes `DefaultVCoreLocalizationProvider`.
     public init() {}

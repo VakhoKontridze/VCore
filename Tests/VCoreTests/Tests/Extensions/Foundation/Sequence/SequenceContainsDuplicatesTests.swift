@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct SequenceContainsDuplicatesTests {
+nonisolated struct SequenceContainsDuplicatesTests {
     @Test
     func test() {
         #expect(![1, 3, 5].containsDuplicates)

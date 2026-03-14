@@ -75,9 +75,7 @@ private final class _InterfaceOrientationReaderViewController: UIViewController 
     override func didMove(toParent parent: UIViewController?) {
         super.didMove(toParent: parent)
 
-        Task { @MainActor in
-            notify()
-        }
+        notify()
     }
 
     // MARK: Content Container

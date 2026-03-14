@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Adds a shadow to the `View` with parameters.
     ///
     ///     let parameters: SwiftUIDropShadowParameters = .init(
@@ -35,7 +35,7 @@ extension View {
 @MemberwiseInitializable(
     comment: "/// Initializes `SwiftUIDropShadowParameters` with parameters."
 )
-public struct SwiftUIDropShadowParameters: Sendable {
+public nonisolated struct SwiftUIDropShadowParameters: Sendable {
     /// Shadow color.
     let color: Color
     

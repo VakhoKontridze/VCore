@@ -12,7 +12,7 @@ import Foundation
 /// If `accessLevelModifier` is `nil`, it will be inherited from the type.
 ///
 ///     @CodingKeysGeneration
-///     struct GetPostGatewayOutput: Decodable {
+///     nonisolated struct GetPostGatewayOutput: Decodable {
 ///         @CKGProperty("id") let id: Int
 ///         @CKGProperty("userId") let userID: Int
 ///         @CKGProperty("title") let title: String
@@ -22,7 +22,7 @@ import Foundation
 ///     }
 ///
 ///     // Generates
-///     internal enum CodingKeys: String, CodingKey {
+///     internal nonisolated enum CodingKeys: String, CodingKey {
 ///         case id = "id"
 ///         case userID = "userId"
 ///         case title = "title"

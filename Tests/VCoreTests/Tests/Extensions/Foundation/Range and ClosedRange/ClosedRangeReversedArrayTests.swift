@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ClosedRangeReversedArrayOnConditionTests {
+nonisolated struct ClosedRangeReversedArrayOnConditionTests {
     @Test
     func test() {
         #expect((1...3).reversedArray(false) == [1, 2, 3])

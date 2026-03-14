@@ -9,7 +9,7 @@ import SwiftUI
 
 @available(macOS, unavailable)
 @available(tvOS, unavailable)
-extension View {
+nonisolated extension View {
     /// Configures the view’s title for purposes of navigation, using a `String` in a inline display mode.
     ///
     ///     var body: some View {

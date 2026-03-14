@@ -13,7 +13,7 @@ import OSLog
 /// Object contains default instance `default`.
 ///
 /// For error codes, refer to [documentation](https://developer.apple.com/documentation/security/1542001-security_framework_result_codes).
-open class KeychainService: @unchecked Sendable {
+open nonisolated class KeychainService: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Default instance of `KeychainService` that uses `default` configuration.
     public static let `default`: KeychainService = .init(
@@ -34,7 +34,7 @@ open class KeychainService: @unchecked Sendable {
     }
 
     // MARK: Properties - JSON Encoder
-    private lazy var _jsonEncoder: JSONEncoder = .init()
+    private var _jsonEncoder: JSONEncoder = .init()
     
     /// `JSONEncoder`.
     ///
@@ -45,7 +45,7 @@ open class KeychainService: @unchecked Sendable {
     }
 
     // MARK: Properties - JSON Decoder
-    private lazy var _jsonDecoder: JSONDecoder = .init()
+    private var _jsonDecoder: JSONDecoder = .init()
     
     /// `JSONDecoder`.
     ///

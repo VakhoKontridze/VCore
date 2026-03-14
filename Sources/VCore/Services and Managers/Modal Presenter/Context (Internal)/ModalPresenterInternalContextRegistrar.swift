@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-@MainActor
 final class ModalPresenterInternalContextRegistrar {
     // MARK: Properties - Singleton
     static let shared: ModalPresenterInternalContextRegistrar = .init()

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension UInt {
+nonisolated extension UInt {
     package func _hexColorRGBValues() -> (red: CGFloat, green: CGFloat, blue: CGFloat) {
         let red: CGFloat = CGFloat((self & 0xFF0000) >> 16) / 255
         let green: CGFloat = CGFloat((self & 0x00FF00) >> 8) / 255

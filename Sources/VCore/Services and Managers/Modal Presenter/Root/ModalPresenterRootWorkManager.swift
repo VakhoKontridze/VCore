@@ -11,7 +11,6 @@ import Combine
 // When work is received in Modal Presenter root (such as present, update, or dismiss)
 // they have to be buffered before important data is read from the environment.
 // In addition, it provides serialization.
-@MainActor
 final class ModalPresenterRootWorkManager {
     // MARK: Properties
     private var queue: [Work] = []

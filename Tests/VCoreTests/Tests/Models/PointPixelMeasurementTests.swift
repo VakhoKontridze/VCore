@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct PointPixelMeasurementTests {
+nonisolated struct PointPixelMeasurementTests {
     @Test
     func testConvertPixelsToPoints() {
         #expect(PointPixelMeasurement.pixels(3).toPoints(scale: 3) == 1)

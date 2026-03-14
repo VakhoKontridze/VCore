@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-extension CGRect {
+nonisolated extension CGRect {
     /// Converts rect to constant usable for creating left constraint.
     ///
     ///     let constant: CGFloat = rect.leftConstraintConstant

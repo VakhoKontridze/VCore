@@ -9,11 +9,11 @@
 
 import Foundation
 
-extension ScrollableUIView {
+nonisolated extension ScrollableUIView {
     /// Scroll Direction.
     @OptionSetRepresentation<Int>
-    public struct ScrollDirection: Sendable {
-        private enum Options: Int {
+    public nonisolated struct ScrollDirection: Sendable {
+        private nonisolated enum Options: Int {
             case horizontal
             case vertical
         }

@@ -12,8 +12,8 @@ import Foundation
 /// If `accessLevelModifier` is `nil`, it will be inherited from the type.
 ///
 ///     @OptionSetRepresentation<Int>
-///     struct Gender {
-///         private enum Options: Int {
+///     nonisolated struct Gender {
+///         private nonisolated enum Options: Int {
 ///             case male
 ///             case female
 ///         }

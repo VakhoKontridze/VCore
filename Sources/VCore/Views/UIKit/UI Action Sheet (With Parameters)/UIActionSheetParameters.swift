@@ -19,14 +19,14 @@ public struct UIActionSheetParameters {
     public var message: String?
     
     /// Buttons.
-    public var buttons: @MainActor () -> [any UIActionSheetButtonProtocol]
+    public var buttons: () -> [any UIActionSheetButtonProtocol]
     
     // MARK: Initializers
     /// Initializes `UIActionSheetParameters`.
     public init(
         title: String?,
         message: String?,
-        @UIActionSheetButtonBuilder actions buttons: @escaping @MainActor () -> [any UIActionSheetButtonProtocol]
+        @UIActionSheetButtonBuilder actions buttons: @escaping () -> [any UIActionSheetButtonProtocol]
     ) {
         self.title = title
         self.message = message

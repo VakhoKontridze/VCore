@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension URLRequest {
+nonisolated extension URLRequest {
     /// Adds `Dictionary` of `String` to `String` to the header fields.
     ///
     ///     var request: URLRequest = ...

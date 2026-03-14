@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Range {
+nonisolated extension Range {
     /// Initializes `Range` with lower and upper bounds.
     ///
     ///     let range: Range<Int> = .init(lower: 1, upper: 10)

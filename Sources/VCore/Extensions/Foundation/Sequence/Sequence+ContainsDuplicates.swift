@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Sequence where Element: Hashable {
+nonisolated extension Sequence where Element: Hashable {
     /// Indicates if sequence contains duplicate elements.
     ///
     ///     let numbers: [Int] = [1, 1, 3, 5, 5]

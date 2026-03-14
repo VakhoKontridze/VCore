@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIImage {
+nonisolated extension UIImage {
     /// Scales `UIImage` to specified width.
     ///
     ///     let image: UIImage = .init(named: "Image")!
@@ -53,7 +53,7 @@ extension UIImage {
     }
 }
 
-extension UIImage {
+nonisolated extension UIImage {
     /// Returns `UIImage` scaled down to specified width, if new width is smaller.
     ///
     ///     let image: UIImage = .init(named: "Image")!

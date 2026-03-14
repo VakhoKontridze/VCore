@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Date {
+nonisolated extension Date {
     /// Returns age as integer from given date to current time.
     ///
     ///     let age: Int? = birthDate.age()

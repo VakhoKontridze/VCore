@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct NumericWithOppositeSignTests {
+nonisolated struct NumericWithOppositeSignTests {
     @Test
     func test() {
         #expect(10.withOppositeSign(false) == 10)

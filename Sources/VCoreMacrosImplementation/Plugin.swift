@@ -12,7 +12,7 @@ import SwiftCompilerPlugin
 import SwiftSyntaxMacros
 
 @main 
-struct Plugin: CompilerPlugin {
+nonisolated struct Plugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         // Attached
         CodingKeysGenerationMacro.self, CKGPropertyMacro.self,

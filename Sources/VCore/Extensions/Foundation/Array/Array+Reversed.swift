@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Array {
+nonisolated extension Array {
     /// Returns reversed `Array` if condition is met.
     ///
     ///     ["London", "Paris", "New York"]

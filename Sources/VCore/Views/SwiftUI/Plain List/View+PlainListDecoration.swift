@@ -9,7 +9,7 @@ import SwiftUI
 
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-extension View {
+nonisolated extension View {
     /// Removes `List` decoration for `PlainList`.
     public func removingListDecoration() -> some View {
         self

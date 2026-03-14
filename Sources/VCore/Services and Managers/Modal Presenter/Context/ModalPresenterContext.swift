@@ -10,7 +10,6 @@ import Observation
 import Combine
 
 /// Presentation mode object embedded in environment of modals presented via Modal Presenter.
-@MainActor
 @Observable
 public final class ModalPresenterContext {
     // MARK: Properties - Identification

@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIImage {
+nonisolated extension UIImage {
     /// Returns `UIImage` size in kilobytes.
     ///
     ///     let sizeInKilobytes: Double? = image.sizeInKilobytes
@@ -27,7 +27,7 @@ extension UIImage {
     }
 }
 
-extension UIImage {
+nonisolated extension UIImage {
     /// Returns `UIImage` size in kibibytes.
     ///
     ///     let sizeInKibibytes: Double? = image.sizeInKibibytes

@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIColor {
+nonisolated extension UIColor {
     /// Mixes two `UIColor`s together.
     ///
     ///     let purple: UIColor = .red.mix(with: .blue, by: 0.5)

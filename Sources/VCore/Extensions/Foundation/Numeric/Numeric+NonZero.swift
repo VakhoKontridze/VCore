@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Numeric {
+nonisolated extension Numeric {
     /// Returns non-zero sized `Numeric`, or `nil`.
     ///
     ///     let number1: Int? = 0.nonZero // nil

@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension View {
+nonisolated extension View {
     /// Adds padding equal to safe area insets to specific edges of the `View`.
     ///
     /// Can be used to reverse effects of `ignoresSafeArea(_:edges:)` in nested view.
@@ -22,7 +22,7 @@ extension View {
     ///         .ignoresSafeArea()
     ///     }
     ///
-    ///     extension EdgeInsets {
+    ///     nonisolated extension EdgeInsets {
     ///         fileprivate init(_ uiEdgeInsets: UIEdgeInsets) {
     ///             self.init(
     ///                 top: uiEdgeInsets.top,

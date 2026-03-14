@@ -9,7 +9,7 @@
 
 import AppKit
 
-extension NSImage {
+nonisolated extension NSImage {
     /// Initializes `NSImage` with `CGSize` and `NSColor`.
     ///
     ///     let image: NSImage = .init(

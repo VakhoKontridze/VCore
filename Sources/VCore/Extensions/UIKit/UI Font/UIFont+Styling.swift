@@ -9,7 +9,7 @@
 
 import UIKit
 
-extension UIFont {
+nonisolated extension UIFont {
     /// Returns `UIFont` with italic styling.
     ///
     ///     let systemFont: UIFont = .systemFont(ofSize: 13)

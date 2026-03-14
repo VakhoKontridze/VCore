@@ -77,7 +77,7 @@ public protocol ConfigurableUITableViewCell: UITableViewCell {
     func configure(parameter: any UITableViewCellParameter)
 }
 
-extension ConfigurableUITableViewCell {
+nonisolated extension ConfigurableUITableViewCell {
     public static var reuseID: String { .init(describing: self) }
 }
 

@@ -9,24 +9,9 @@ import Foundation
 import Combine
 
 @propertyWrapper
-final class PublishedPropertyWrapperBox<Value>: @unchecked Sendable {
-    // MARK: Properties - Value
-    private var _wrappedValue: PublishedPropertyWrapperStorage<Value>
-    
-    var wrappedValue: PublishedPropertyWrapperStorage<Value> {
-        @storageRestrictions(initializes: _wrappedValue)
-        init(initialValue) {
-            self._wrappedValue = initialValue
-        }
-        get { queue.sync { _wrappedValue } }
-        set { queue.sync(flags: .barrier) { _wrappedValue = newValue } }
-    }
-    
-    // MARK: Properties - Queue
-    private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.published-property-wrapper-box",
-        attributes: .concurrent
-    )
+final class PublishedPropertyWrapperBox<Value> {
+    // MARK: Properties
+    var wrappedValue: PublishedPropertyWrapperStorage<Value>
     
     // MARK: Initializers
     init(

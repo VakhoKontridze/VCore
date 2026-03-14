@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-extension Binding {
+nonisolated extension Binding {
     /// Returns `Binding` wrapper for an `Optional` `Binding` with a default value for getter.
     ///
     ///     @State private var text: String?

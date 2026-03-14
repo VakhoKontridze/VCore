@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct CollectionFirstAndLastIndexAndElementTests {
+nonisolated struct CollectionFirstAndLastIndexAndElementTests {
     @Test
     func testFirstIndexAndElement() {
         let numbers: [Int] = [1, 3, 5, 7]

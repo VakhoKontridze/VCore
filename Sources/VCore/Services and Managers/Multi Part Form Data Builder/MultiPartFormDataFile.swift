@@ -29,7 +29,7 @@ import Foundation
 ///         ]
 ///     ]
 ///
-public struct MultipartFormDataFile: Sendable {
+public nonisolated struct MultipartFormDataFile: Sendable {
     // MARK: Properties
     /// File name.
     ///

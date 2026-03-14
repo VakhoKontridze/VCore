@@ -7,7 +7,7 @@
 
 import CoreGraphics
 
-extension CGSize {
+nonisolated extension CGSize {
     /// Returns `CGSize` scaled up with a given constant.
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
@@ -35,7 +35,7 @@ extension CGSize {
     }
 }
 
-extension CGSize {
+nonisolated extension CGSize {
     /// Returns `CGSize` scaled down with a given constant.
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
@@ -63,7 +63,7 @@ extension CGSize {
     }
 }
 
-extension CGSize {
+nonisolated extension CGSize {
     /// Returns `CGSize` scaled up with a given multiplier.
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)
@@ -91,7 +91,7 @@ extension CGSize {
     }
 }
 
-extension CGSize {
+nonisolated extension CGSize {
     /// Returns `CGSize` scaled down with a given multiplier.
     ///
     ///     let size: CGSize = .init(width: 3, height: 4)

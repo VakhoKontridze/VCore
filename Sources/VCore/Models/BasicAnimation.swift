@@ -17,7 +17,7 @@ import SwiftUI
 ///         completion: { ... }
 ///     )
 ///
-public struct BasicAnimation: Sendable {
+public nonisolated struct BasicAnimation: Sendable {
     // MARK: Properties
     /// Animation curve.
     public var curve: AnimationCurve
@@ -53,7 +53,7 @@ public struct BasicAnimation: Sendable {
     
     // MARK: Types
     /// Animation curve.
-    public enum AnimationCurve: Int, Equatable, Hashable, Sendable, CaseIterable {
+    public nonisolated enum AnimationCurve: Int, Equatable, Hashable, Sendable, CaseIterable {
         /// Linear.
         case linear
         
@@ -73,7 +73,7 @@ public struct BasicAnimation: Sendable {
 import QuartzCore
 
 @available(watchOS, unavailable)
-extension BasicAnimation {
+nonisolated extension BasicAnimation {
     /// Converts `BasicAnimation` to `CAMediaTimingFunction`.
     public var toCAMediaTimingFunction: CAMediaTimingFunction {
         switch curve {
@@ -91,7 +91,7 @@ extension BasicAnimation {
 
 import UIKit
 
-extension BasicAnimation {
+nonisolated extension BasicAnimation {
     /// Converts `BasicAnimation` to `UIView.AnimationOptions`.
     public var toUIViewAnimationOptions: UIView.AnimationOptions {
         switch curve {

@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ResultNoFailureTests {
+nonisolated struct ResultNoFailureTests {
     // MARK: Properties
     private let resultS: ResultNoFailure<Int> = .success(10)
     private let resultSModified: ResultNoFailure<Int> = .success(11)

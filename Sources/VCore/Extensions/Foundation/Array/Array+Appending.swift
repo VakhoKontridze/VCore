@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Array {
+nonisolated extension Array {
     /// Returns `Array` with new element appended at the end.
     ///
     ///     [1, 2].appending(3) // [1, 2, 3]
@@ -17,7 +17,7 @@ extension Array {
     }
 }
 
-extension Array {
+nonisolated extension Array {
     /// Returns `Array` with new elements of a `Sequence` appended at the end.
     ///
     ///     [1, 2].appending(contentsOf: [3, 4]) // [1, 2, 3, 4]

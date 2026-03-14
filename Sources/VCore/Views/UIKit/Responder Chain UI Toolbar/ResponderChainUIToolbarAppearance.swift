@@ -10,7 +10,7 @@
 import UIKit
 
 /// Model that describes appearance.
-public struct ResponderChainUIToolbarAppearance: Equatable, Sendable {
+public struct ResponderChainUIToolbarAppearance: Equatable {
     // MARK: Properties - Toolbar
     /// Toolbar style.
     public var style: UIBarStyle = .default

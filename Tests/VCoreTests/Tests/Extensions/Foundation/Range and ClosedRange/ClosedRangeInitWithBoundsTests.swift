@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct ClosedRangeInitWithBoundsTests {
+nonisolated struct ClosedRangeInitWithBoundsTests {
     @Test
     func test() {
         #expect(

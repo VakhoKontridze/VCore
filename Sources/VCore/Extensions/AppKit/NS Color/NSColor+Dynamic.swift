@@ -10,7 +10,7 @@
 import AppKit
 import OSLog
 
-extension NSColor {
+nonisolated extension NSColor {
     /// Creates `NSColor` that generates it's color data dynamically.
     ///
     ///     let color: NSColor = .dynamic(NSColor.black, NSColor.white)

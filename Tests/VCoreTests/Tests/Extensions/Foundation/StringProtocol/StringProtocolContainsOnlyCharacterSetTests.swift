@@ -10,7 +10,7 @@ import Testing
 @testable import VCore
 
 @Suite
-struct StringContainsOnlyCharacterSetTests {
+nonisolated struct StringContainsOnlyCharacterSetTests {
     @Test
     func testContainsOnlyCharacterSet() {
         #expect("0123456789".contains(only: .decimalDigits))

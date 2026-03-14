@@ -8,7 +8,7 @@
 import Foundation
 import VCoreShared
 
-extension String {
+nonisolated extension String {
     /// Returns `String` with `CharacterSet`, that don't match the criteria, filtered out.
     ///
     ///     let phoneNumber: String = "+0123456789"
@@ -28,7 +28,7 @@ extension String {
     }
 }
 
-extension String {
+nonisolated extension String {
     /// Returns `String` with `CharacterSet`, that don't match the criteria, filtered out.
     ///
     ///     let phoneNumber: String = "+0123456789A"

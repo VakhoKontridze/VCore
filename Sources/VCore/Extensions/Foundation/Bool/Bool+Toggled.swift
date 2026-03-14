@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension Bool {
+nonisolated extension Bool {
     /// Returns `Bool` with a toggled value.
     ///
     ///     let value: Bool = true.toggled() // false

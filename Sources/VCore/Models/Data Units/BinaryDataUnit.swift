@@ -12,7 +12,7 @@ import Foundation
 /// `rawValue` defines the `magnitude`.
 ///
 /// Only defines officially recognized units.
-public enum BinaryDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, Sendable, CaseIterable {
+public nonisolated enum BinaryDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, Sendable, CaseIterable {
     // MARK: Cases
     /// Byte (1024^0 or 2^0).
     case B = 0
@@ -48,7 +48,7 @@ public enum BinaryDataUnit: Int, DataUnit, Equatable, Hashable, Identifiable, Se
     public var id: Int { rawValue }
 }
 
-extension Double {
+nonisolated extension Double {
     /// Converts bytes to binary data unit.
     ///
     ///     let kibibytes: Double = 1024.binaryBytesConverted(to: .KiB) // 1
