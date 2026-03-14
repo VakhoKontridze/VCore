@@ -9,7 +9,7 @@ import Foundation
 
 /// Error that occurs during casting.
 @MemberwiseInitializable(accessLevelModifier: .private)
-public nonisolated struct CastingError: BaseErrorProtocol, Sendable {
+nonisolated public struct CastingError: BaseErrorProtocol, Sendable {
     // MARK: Properties
     public static let domain: String = "com.vcore"
     public let code: Int

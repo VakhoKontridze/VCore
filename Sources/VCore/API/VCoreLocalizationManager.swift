@@ -15,7 +15,7 @@ import Foundation
 ///
 ///     VCoreLocalizationManager.shared.localizationProvider = VCoreLocalizationProviderImplementation()
 ///
-public nonisolated final class VCoreLocalizationManager: @unchecked Sendable {
+nonisolated public final class VCoreLocalizationManager: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Shared instance of `VCoreLocalizationManager`.
     public static let shared: VCoreLocalizationManager = .init()
@@ -43,7 +43,7 @@ public nonisolated final class VCoreLocalizationManager: @unchecked Sendable {
 ///
 /// Alternately, consider using `VCoreHumanReadableLocalizationProvider`
 /// that automatically localized errors from `DefaultLocalizationProvider`, and only exposes human-readable `String`s.
-public nonisolated protocol VCoreLocalizationProvider {
+nonisolated public protocol VCoreLocalizationProvider {
     /// Localized value for error title in alerts.
     var alertErrorTitle: String { get }
     
@@ -55,7 +55,7 @@ public nonisolated protocol VCoreLocalizationProvider {
 }
 
 /// Defaults VCore localization provider.
-public nonisolated struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider, Sendable {
+nonisolated public struct DefaultVCoreLocalizationProvider: VCoreLocalizationProvider, Sendable {
     // MARK: Initializers
     /// Initializes `DefaultVCoreLocalizationProvider`.
     public init() {}

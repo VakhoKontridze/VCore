@@ -13,7 +13,7 @@ import Foundation
 ///         TODO()
 ///     }
 ///
-public nonisolated func TODO(
+nonisolated public func TODO(
     _ message: String? = nil
 ) -> Never {
     var string: String = "TODO not implemented"

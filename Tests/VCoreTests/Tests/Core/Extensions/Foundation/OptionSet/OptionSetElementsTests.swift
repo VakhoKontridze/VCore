@@ -20,7 +20,7 @@ nonisolated struct OptionSetElementsTests {
     }
     
     // MARK: Types
-    private nonisolated struct Gender: OptionSet {
+    nonisolated private struct Gender: OptionSet {
         static let male: Self = .init(rawValue: 1 << 0)
         static let female: Self = .init(rawValue: 1 << 1)
 

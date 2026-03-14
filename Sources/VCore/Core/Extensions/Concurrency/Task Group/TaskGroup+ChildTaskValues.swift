@@ -20,7 +20,7 @@ nonisolated extension TaskGroup {
     ///         return await group.childTaskValues()
     ///     }
     ///
-    mutating public func childTaskValues(
+    public mutating func childTaskValues(
         isolation: isolated (any Actor)? = #isolation
     ) async -> [ChildTaskResult] {
         var result: [ChildTaskResult] = []
@@ -46,7 +46,7 @@ nonisolated extension ThrowingTaskGroup {
     ///         return try await group.childTaskValues()
     ///     }
     ///
-    mutating public func childTaskValues(
+    public mutating func childTaskValues(
         isolation: isolated (any Actor)? = #isolation
     ) async throws -> [ChildTaskResult] {
         var result: [ChildTaskResult] = []

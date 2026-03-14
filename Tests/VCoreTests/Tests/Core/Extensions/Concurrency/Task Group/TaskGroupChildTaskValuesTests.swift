@@ -73,7 +73,7 @@ nonisolated struct TaskGroupChildTaskValuesTests {
     }
     
     // MARK: Types
-    private nonisolated struct Item {
+    nonisolated private struct Item {
         let value: String
     }
 }

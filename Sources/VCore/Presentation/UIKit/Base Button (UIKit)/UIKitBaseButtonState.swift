@@ -11,7 +11,7 @@ import Foundation
 
 /// Enumeration that represents state.
 @available(tvOS, unavailable)
-public nonisolated enum UIKitBaseButtonState: Int, Sendable, CaseIterable {
+nonisolated public enum UIKitBaseButtonState: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -48,7 +48,7 @@ public nonisolated enum UIKitBaseButtonState: Int, Sendable, CaseIterable {
 
 /// Enumeration that represents state.
 @available(tvOS, unavailable)
-public nonisolated enum UIKitBaseButtonInternalState: Int, Sendable, CaseIterable {
+nonisolated public enum UIKitBaseButtonInternalState: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled

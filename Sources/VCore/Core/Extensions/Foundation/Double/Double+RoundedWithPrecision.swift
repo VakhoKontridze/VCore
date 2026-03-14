@@ -33,7 +33,7 @@ nonisolated extension Double {
     ///     var num2: Double = 3.1415
     ///     num2.round(fractions: 3) // 3.142
     ///
-    mutating public func round(fractions: Int) {
+    public mutating func round(fractions: Int) {
         self = rounded(fractions: fractions)
     }
 }

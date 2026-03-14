@@ -38,7 +38,7 @@ nonisolated extension BinaryInteger {
     ///     var value5: Int = 5; value5.clamp(to: 1..<11, step: 3) // 4
     ///     var value6: Int = 11; value6.clamp(to: 1..<11, step: 3) // 10
     ///
-    mutating public func clamp(
+    public mutating func clamp(
         to range: Range<Self>,
         step: Self? = nil
     ) {
@@ -88,7 +88,7 @@ nonisolated extension BinaryInteger {
     ///     var value5: Int = 5; value5.clamp(to: 1...10, step: 3) // 4
     ///     var value6: Int = 11; value6.clamp(to: 1...10, step: 3) // 10
     ///
-    mutating public func clamp(
+    public mutating func clamp(
         to range: ClosedRange<Self>,
         step: Self? = nil
     ) {
@@ -123,7 +123,7 @@ nonisolated extension BinaryInteger {
     ///     var value5: Int = 5; value5.clamp(min: 1, max: 10, step: 3) // 4
     ///     var value6: Int = 11; value6.clamp(min: 1, max: 10, step: 3) // 10
     ///
-    mutating public func clamp(
+    public mutating func clamp(
         min: Self,
         max: Self,
         step: Self? = nil

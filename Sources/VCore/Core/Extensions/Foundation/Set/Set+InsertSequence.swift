@@ -13,7 +13,7 @@ nonisolated extension Set {
     ///     var set: Set<Int> = [1, 2]
     ///     set.insert(contentsOf: [3, 4]) // [1, 2, 3, 4]
     ///
-    mutating public func insert(
+    public mutating func insert(
         contentsOf newElements: some Sequence<Element>
     ) {
         newElements.forEach { insert($0) }

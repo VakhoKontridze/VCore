@@ -17,7 +17,7 @@ nonisolated extension UIColor {
     ///
     ///     let color: UIColor? = .init(hex: "#007AFF")
     ///
-    convenience public init?(
+    public convenience init?(
         hex string: String,
         alpha: CGFloat = 1
     ) {
@@ -37,7 +37,7 @@ nonisolated extension UIColor {
     ///
     ///     let color: UIColor? = .init(displayP3Hex: "#007AFF")
     ///
-    convenience public init?(
+    public convenience init?(
         displayP3Hex string: String,
         alpha: CGFloat = 1
     ) {
@@ -59,7 +59,7 @@ nonisolated extension UIColor {
     ///
     ///     let color: UIColor = .init(hex: 0x007AFF)
     ///
-    convenience public init(
+    public convenience init(
         hex uInt: UInt,
         alpha: CGFloat = 1
     ) {
@@ -79,7 +79,7 @@ nonisolated extension UIColor {
     ///
     ///     let color: UIColor = .init(displayP3Hex: 0x007AFF)
     ///
-    convenience public init(
+    public convenience init(
         displayP3Hex uInt: UInt,
         alpha: CGFloat = 1
     ) {

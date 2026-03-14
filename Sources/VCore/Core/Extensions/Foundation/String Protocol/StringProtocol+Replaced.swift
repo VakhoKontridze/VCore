@@ -23,7 +23,7 @@ nonisolated extension StringProtocol {
     ///     var string: String = "Lorem ipsum"
     ///     string.replace(at: 0, with: "l") // "lorem ipsum"
     ///
-    mutating public func replace(at i: Int, with element: Element) {
+    public mutating func replace(at i: Int, with element: Element) {
         self = replaced(at: i, with: element)
     }
 }

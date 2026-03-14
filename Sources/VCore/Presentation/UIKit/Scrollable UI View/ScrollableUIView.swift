@@ -68,7 +68,7 @@ open class ScrollableUIView: UIView {
     }
     
     @available(*, unavailable)
-    required public init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError()
     }
     

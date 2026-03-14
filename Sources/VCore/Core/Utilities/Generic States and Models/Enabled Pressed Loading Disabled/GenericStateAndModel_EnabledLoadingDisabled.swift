@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public nonisolated enum GenericState_EnabledLoadingDisabled: Int, Sendable, CaseIterable {
+nonisolated public enum GenericState_EnabledLoadingDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -49,7 +49,7 @@ public nonisolated enum GenericState_EnabledLoadingDisabled: Int, Sendable, Case
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_EnabledLoadingDisabled` with values."
 )
-public nonisolated struct GenericStateModel_EnabledLoadingDisabled<Value> {
+nonisolated public struct GenericStateModel_EnabledLoadingDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
     public var enabled: Value

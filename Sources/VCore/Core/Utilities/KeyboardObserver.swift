@@ -39,7 +39,7 @@ public final class KeyboardObserver {
     public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy
     
     /// Offset.
-    private(set) public var offset: CGFloat = 0
+    public private(set) var offset: CGFloat = 0
 
     // `UIResponder.keyboardWillShowNotification` is usually called twice, as input accessory view is attached later.
     // During animations, `offset` is modified. But if event fires immediately second time, calculation will be invalid.
@@ -49,7 +49,7 @@ public final class KeyboardObserver {
     @ObservationIgnored private var offsetStable: CGFloat = 0
 
     /// Animation.
-    private(set) public var animation: Animation? = {
+    public private(set) var animation: Animation? = {
 #if canImport(UIKit) && !os(watchOS)
         SystemKeyboardInfo().toSwiftUIAnimation
 #else
@@ -234,7 +234,7 @@ public final class KeyboardObserver {
     
     // MARK: Types
     /// Keyboard responsiveness strategy.
-    public nonisolated enum KeyboardResponsivenessStrategy: Equatable, Sendable {
+    nonisolated public enum KeyboardResponsivenessStrategy: Equatable, Sendable {
         // MARK: Cases
         /// None.
         case `none`

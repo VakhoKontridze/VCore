@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that represents line limit type.
-public nonisolated struct TextLineLimitType: Equatable, Sendable {
+nonisolated public struct TextLineLimitType: Equatable, Sendable {
     // MARK: Properties
     let storage: Storage
     

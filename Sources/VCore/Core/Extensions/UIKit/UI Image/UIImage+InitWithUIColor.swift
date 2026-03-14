@@ -17,7 +17,7 @@ nonisolated extension UIImage {
     ///         color: UIColor.systemBlue
     ///     )!
     ///
-    convenience public init?(
+    public convenience init?(
         size: CGSize,
         color: UIColor
     ) {

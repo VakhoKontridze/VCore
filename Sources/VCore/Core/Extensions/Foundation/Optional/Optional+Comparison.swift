@@ -102,7 +102,7 @@ nonisolated extension Optional where Wrapped: Comparable {
 }
 
 /// Constants that indicate sort order within optionals.
-public nonisolated enum OptionalComparisonNilOrder: Int, Sendable, CaseIterable {
+nonisolated public enum OptionalComparisonNilOrder: Int, Sendable, CaseIterable {
     /// Indicates that `nil` is less than wrapped value.
     case nilIsLess
     

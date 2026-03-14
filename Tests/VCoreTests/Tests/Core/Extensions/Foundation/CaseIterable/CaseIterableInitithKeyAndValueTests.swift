@@ -21,7 +21,7 @@ nonisolated struct CaseIterableInitithKeyAndValueTests {
     }
     
     // MARK: Types
-    private nonisolated enum Gender: CaseIterable {
+    nonisolated private enum Gender: CaseIterable {
         // MARK: Cases
         case male
         case female

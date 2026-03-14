@@ -100,7 +100,7 @@ nonisolated struct MultipartFormDataBuilderTests {
     
     // MARK: Types
     @CodingKeysGeneration
-    private nonisolated struct JSONPart: Encodable {
+    nonisolated private struct JSONPart: Encodable {
         @CKGProperty("key") let key: String
     }
 }

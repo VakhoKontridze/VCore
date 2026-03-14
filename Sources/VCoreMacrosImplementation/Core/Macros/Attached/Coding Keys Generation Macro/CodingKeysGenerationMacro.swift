@@ -234,7 +234,7 @@ nonisolated struct CodingKeysGenerationMacro: MemberMacro {
     }
     
     // MARK: Types
-    private nonisolated struct PropertyData {
+    nonisolated private struct PropertyData {
         let name: String
         let key: String
     }

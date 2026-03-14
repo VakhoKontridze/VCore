@@ -17,7 +17,7 @@ import SwiftUI
 ///         completion: { ... }
 ///     )
 ///
-public nonisolated struct BasicAnimation: Sendable {
+nonisolated public struct BasicAnimation: Sendable {
     // MARK: Properties
     /// Animation curve.
     public var curve: AnimationCurve
@@ -53,7 +53,7 @@ public nonisolated struct BasicAnimation: Sendable {
     
     // MARK: Types
     /// Animation curve.
-    public nonisolated enum AnimationCurve: Int, Equatable, Hashable, Sendable, CaseIterable {
+    nonisolated public enum AnimationCurve: Int, Equatable, Hashable, Sendable, CaseIterable {
         /// Linear.
         case linear
         

@@ -21,13 +21,13 @@ nonisolated final class MockUserDefaults: UserDefaults {
     )
 
     // MARK: Methods
-    public override func object(forKey defaultName: String) -> Any? {
+    override public func object(forKey defaultName: String) -> Any? {
         queue.sync {
             storage[defaultName]
         }
     }
 
-    public override func set(_ value: Any?, forKey defaultName: String) {
+    override public func set(_ value: Any?, forKey defaultName: String) {
         _ = queue.sync(flags: .barrier) {
             if let value {
                 storage[defaultName] = value
@@ -38,7 +38,7 @@ nonisolated final class MockUserDefaults: UserDefaults {
         }
     }
 
-    public override func removeObject(forKey defaultName: String) {
+    override public func removeObject(forKey defaultName: String) {
         _ = queue.sync(flags: .barrier) {
             storage.removeValue(forKey: defaultName)
         }

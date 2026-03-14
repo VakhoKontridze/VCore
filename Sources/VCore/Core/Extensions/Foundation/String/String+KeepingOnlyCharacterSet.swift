@@ -26,7 +26,7 @@ nonisolated extension String {
     ///     var phoneNumber: String = "+0123456789"
     ///     phoneNumber.keep(only: .decimalDigits) // "0123456789"
     ///
-    mutating public func keep(only characterSet: CharacterSet) {
+    public mutating func keep(only characterSet: CharacterSet) {
         self = keeping(only: characterSet)
     }
 }
@@ -46,7 +46,7 @@ nonisolated extension String {
     ///     var phoneNumber: String = "+0123456789A"
     ///     phoneNumber.keep(only: [.decimalDigits, .symbols]) // "+0123456789"
     ///
-    mutating public func keep(only characterSets: [CharacterSet]) {
+    public mutating func keep(only characterSets: [CharacterSet]) {
         self = keeping(only: characterSets)
     }
 }

@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public nonisolated enum GenericState_OffOn: Int, Sendable, CaseIterable {
+nonisolated public enum GenericState_OffOn: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -32,7 +32,7 @@ public nonisolated enum GenericState_OffOn: Int, Sendable, CaseIterable {
     
     // MARK: Next State
     /// Goes to the next state.
-    mutating public func setNextState() {
+    public mutating func setNextState() {
         switch self {
         case .off: self = .on
         case .on: self = .off
@@ -54,7 +54,7 @@ nonisolated extension Binding where Value == GenericState_OffOn {
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_OffOn` with values."
 )
-public nonisolated struct GenericStateModel_OffOn<Value> {
+nonisolated public struct GenericStateModel_OffOn<Value> {
     // MARK: Properties
     /// Off value.
     public var off: Value

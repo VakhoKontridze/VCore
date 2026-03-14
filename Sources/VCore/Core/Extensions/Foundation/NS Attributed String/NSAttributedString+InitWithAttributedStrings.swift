@@ -29,7 +29,7 @@ nonisolated extension NSAttributedString {
     ///         )
     ///     ])
     ///
-    convenience public init(attributedStrings: [NSAttributedString]) {
+    public convenience init(attributedStrings: [NSAttributedString]) {
         self.init(attributedString: {
             let mutableAttributedString: NSMutableAttributedString = .init()
             attributedStrings.forEach { mutableAttributedString.append($0) }

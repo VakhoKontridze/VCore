@@ -18,7 +18,7 @@ nonisolated final class PublisherAssignWeakTests: XCTestCase {
     }
     
     // MARK: Types
-    private nonisolated final class Model: @unchecked Sendable {
+    nonisolated private final class Model: @unchecked Sendable {
         // MARK: Properties
         private var _value: Int = 0
         var value: Int {

@@ -8,7 +8,7 @@
 import Foundation
 
 /// Unit of digital information.
-public nonisolated protocol DataUnit {
+nonisolated public protocol DataUnit {
     /// Unit base.
     ///
     /// For instance, in decimal byte units, `1000`, in binary byte units, `1024`.

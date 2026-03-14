@@ -17,14 +17,14 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     private var itemLayoutAttributes: [IndexPath: UICollectionViewLayoutAttributes] = [:]
     
     // MARK: Lifecycle
-    public override func prepare() {
+    override public func prepare() {
         super.prepare()
         
         itemLayoutAttributes = [:]
     }
     
     // MARK: Item Attributes
-    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard let collectionView else { return nil }
         
         var updatedItemLayoutAttributes: [UICollectionViewLayoutAttributes] = []
@@ -52,7 +52,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     // MARK: Item Attribute
-    open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override open func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard
             let collectionView,
             let flowDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout

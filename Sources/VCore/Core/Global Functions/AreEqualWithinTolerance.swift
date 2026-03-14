@@ -11,7 +11,7 @@ import Foundation
 ///
 ///     areEqual(3.14, 3.1415, tolerance: pow(10, -2)) // true
 ///
-public nonisolated func areEqual<T>(
+nonisolated public func areEqual<T>(
     _ lhs: T,
     _ rhs: T,
     tolerance: T

@@ -42,7 +42,7 @@ nonisolated struct ResultNoSuccessTests {
     }
     
     // MARK: Types
-    private nonisolated struct TestError: Error, Equatable {
+    nonisolated private struct TestError: Error, Equatable {
         // MARK: Properties
         private let code: Int
         

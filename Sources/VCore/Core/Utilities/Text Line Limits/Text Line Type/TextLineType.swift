@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that represents text line.
-public nonisolated struct TextLineType: Equatable, Sendable {
+nonisolated public struct TextLineType: Equatable, Sendable {
     // MARK: Properties
     let storage: Storage
     

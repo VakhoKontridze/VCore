@@ -12,7 +12,7 @@ import UIKit
 /// Layout object that organizes items into a grid with a right alignment.
 open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Item Attributes
-    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard
             let layoutAttributes = super.layoutAttributesForElements(in: rect)?
                 .map({ $0.copy() })
@@ -33,7 +33,7 @@ open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     // MARK: Item Attributes
-    open override func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
+    override open func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard
             let collectionView,
             let layoutAttributes = super.layoutAttributesForItem(at: indexPath)?.copy() as? UICollectionViewLayoutAttributes

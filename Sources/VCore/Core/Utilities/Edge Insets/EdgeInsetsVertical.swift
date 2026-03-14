@@ -11,7 +11,7 @@ import SwiftUI
 @MemberwiseInitializable(
     comment: "/// Initializes `EdgeInsetsVertical` with values."
 )
-public nonisolated struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
+nonisolated public struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
     // MARK: Properties - Base
     /// Top value.
     public var top: CGFloat

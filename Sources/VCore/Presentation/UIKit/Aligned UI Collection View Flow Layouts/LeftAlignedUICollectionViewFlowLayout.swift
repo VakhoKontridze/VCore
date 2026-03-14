@@ -11,7 +11,7 @@ import UIKit
 
 /// Layout object that organizes items into a grid with a left alignment.
 open class LeftAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
-    open override func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
+    override open func layoutAttributesForElements(in rect: CGRect) -> [UICollectionViewLayoutAttributes]? {
         guard
             let layoutAttributes = super.layoutAttributesForElements(in: rect)?
                 .map({ $0.copy() })

@@ -23,7 +23,7 @@ nonisolated extension String {
     ///     var phoneNumber: String = "+0123456789"
     ///     phoneNumber.remove(.symbols) // "0123456789"
     ///
-    mutating public func remove(_ characterSet: CharacterSet) {
+    public mutating func remove(_ characterSet: CharacterSet) {
         self = removing(characterSet)
     }
 }
@@ -43,7 +43,7 @@ nonisolated extension String {
     ///     var phoneNumber: String = "+0123456789A"
     ///     phoneNumber.remove([.symbols, .letters]) // "0123456789"
     ///
-    mutating public func remove(_ characterSets: [CharacterSet]) {
+    public mutating func remove(_ characterSets: [CharacterSet]) {
         self = removing(characterSets)
     }
 }

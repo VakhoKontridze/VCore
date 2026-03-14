@@ -30,7 +30,7 @@ nonisolated extension Array where Element: Equatable {
     ///     var numbers: [Int] = [1, 1, 3, 5, 5]
     ///     numbers.removeDuplicates() // [1, 3, 5]
     ///
-    mutating public func removeDuplicates() {
+    public mutating func removeDuplicates() {
         self = removingDuplicates()
     }
 }
@@ -54,7 +54,7 @@ nonisolated extension Array where Element: Hashable {
     ///     var numbers: [Int] = [1, 1, 3, 5, 5]
     ///     numbers.removeDuplicates() // [1, 3, 5]
     ///
-    mutating public func removeDuplicates() {
+    public mutating func removeDuplicates() {
         self = removingDuplicates()
     }
 }

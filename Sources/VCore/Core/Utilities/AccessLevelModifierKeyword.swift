@@ -8,7 +8,7 @@
 import Foundation
 
 /// Access level modifier.
-public nonisolated enum AccessLevelModifierKeyword: String, Sendable, CaseIterable {
+nonisolated public enum AccessLevelModifierKeyword: String, Sendable, CaseIterable {
     /// Open.
     case `open` = "open"
 

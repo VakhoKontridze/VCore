@@ -24,7 +24,7 @@ open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIVi
     open var keyboardResponsivenessFirstResponderAdditionalOffset: CGFloat = 20
 
     // MARK: Keyboard Responsiveness
-    open override func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
+    override open func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
         super.keyboardWillShow(systemKeyboardInfo)
         
         guard let firstResponderSubview: UIView = view.childFirstResponderView else { return }
@@ -38,7 +38,7 @@ open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIVi
         )
     }
     
-    open override func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
+    override open func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
         super.keyboardWillHide(systemKeyboardInfo)
         
         guard let firstResponderSubview: UIView = view.childFirstResponderView else { return }

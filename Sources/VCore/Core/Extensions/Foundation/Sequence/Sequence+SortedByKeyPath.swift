@@ -42,7 +42,7 @@ nonisolated extension Array {
     ///     cities.sort(by: \.name)
     ///     // [City(name: "London"), City(name: "New York"), City(name: "Paris")]
     ///
-    mutating public func sort(
+    public mutating func sort(
         by keyPath: KeyPath<Element, some Comparable>
     ) {
         sort { $0[keyPath: keyPath] < $1[keyPath: keyPath] }

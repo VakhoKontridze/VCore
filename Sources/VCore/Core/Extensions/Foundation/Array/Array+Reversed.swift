@@ -28,7 +28,7 @@ nonisolated extension Array {
     ///     var array: [String] = ["London", "Paris", "New York"]
     ///     array.reverse(reversesOrder)
     ///
-    mutating public func reverse(
+    public mutating func reverse(
         _ condition: Bool
     ) {
         if condition {

@@ -26,7 +26,7 @@ nonisolated struct SequenceMinAndMaxByKeyPathTests {
     }
     
     // MARK: Types
-    private nonisolated struct Object: Equatable {
+    nonisolated private struct Object: Equatable {
         let value: Int
     }
 }

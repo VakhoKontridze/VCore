@@ -18,7 +18,7 @@ import OSLog
 ///     }
 ///
 @Observable
-public nonisolated final class NetworkReachabilityService: @unchecked Sendable {
+nonisolated public final class NetworkReachabilityService: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Shared instance of `NetworkReachabilityService`.
     public static let shared: NetworkReachabilityService = .init()
@@ -27,7 +27,7 @@ public nonisolated final class NetworkReachabilityService: @unchecked Sendable {
     private var _status: NWPath.Status?
     
     /// Network connection status.
-    private(set) public var status: NWPath.Status? {
+    public private(set) var status: NWPath.Status? {
         get { queue.sync { _status } }
         set { queue.sync(flags: .barrier) { _status = newValue } }
     }

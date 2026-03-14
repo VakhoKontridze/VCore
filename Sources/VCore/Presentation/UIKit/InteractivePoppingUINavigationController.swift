@@ -14,7 +14,7 @@ import UIKit
 @available(tvOS, unavailable)
 open class InteractivePoppingUINavigationController: UINavigationController, UIGestureRecognizerDelegate {
     // MARK: Lifecycle
-    open override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         
         interactivePopGestureRecognizer?.delegate = self

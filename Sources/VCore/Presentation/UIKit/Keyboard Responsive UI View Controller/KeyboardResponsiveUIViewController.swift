@@ -62,13 +62,13 @@ open class KeyboardResponsiveUIViewController: UIViewController {
     open var notifiesWhenViewControllerIsNotVisible: Bool = false
     
     /// Indicates if keyboard is currently shown.
-    private(set) open var keyboardIsShown: Bool = false
+    open private(set) var keyboardIsShown: Bool = false
     
     // MARK: Properties - Subscriptions
     private var cancellables: Set<AnyCancellable> = []
     
     // MARK: Lifecycle
-    open override func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         setUp()
     }

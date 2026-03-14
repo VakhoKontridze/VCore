@@ -30,7 +30,7 @@ nonisolated extension Double {
 ///     let formatter: AutoPrecisionNumberFormatter = .init(maxFractions: 2)
 ///     let rounded: String = formatter.string(from: 3.1415) // "3.14"
 ///
-public nonisolated struct AutoPrecisionNumberFormatter: Sendable {
+nonisolated public struct AutoPrecisionNumberFormatter: Sendable {
     // MARK: Properties
     /// Minimum number of fractions.
     public var minFractions: Int

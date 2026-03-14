@@ -55,7 +55,7 @@ open class ResponderChainUIToolbar: UIToolbar {
     /// Model that describes appearance.
     ///
     /// To change current appearance, use `configure(appearance:)` method.
-    private(set) public var appearance: ResponderChainUIToolbarAppearance
+    public private(set) var appearance: ResponderChainUIToolbarAppearance
 
     // MARK: Properties - Actions
     /// Action that runs when arrow up button is tapped.
@@ -117,7 +117,7 @@ open class ResponderChainUIToolbar: UIToolbar {
     }
 
     /// Initializes `ResponderChainUIToolbar` with actions.
-    convenience public init(
+    public convenience init(
         appearance: ResponderChainUIToolbarAppearance = .init(),
         size: CGSize,
         onUp: (() -> Void)?,
@@ -135,7 +135,7 @@ open class ResponderChainUIToolbar: UIToolbar {
     }
 
     @available(*, unavailable)
-    required public init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError()
     }
 

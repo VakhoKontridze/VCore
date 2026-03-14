@@ -291,7 +291,7 @@ nonisolated struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
     }
     
     // MARK: Types
-    private nonisolated struct ExpansionData {
+    nonisolated private struct ExpansionData {
         let accessLevelModifier: AccessLevelModifierKeyword
         let isNonIsolated: Bool
         let structDeclaration: StructDeclSyntax

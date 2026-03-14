@@ -14,7 +14,7 @@ import UIKit
 /// If width is greater than height, half of height will be taken as corner radius. If not, otherwise.
 open class CapsuleUIView: UIView {
     // MARK: Lifecycle
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         // `clipsToBounds` and `layer.maskedCorners` are not necessary.

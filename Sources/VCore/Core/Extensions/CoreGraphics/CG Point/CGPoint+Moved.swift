@@ -27,7 +27,7 @@ nonisolated extension CGPoint {
     ///     var size: CGPoint = .init(x: 3, y: 4)
     ///     size.moveLeft(withValue: 1) // 2x4
     ///
-    mutating public func moveLeft(
+    public mutating func moveLeft(
         withValue value: CGFloat
     ) {
         x -= value
@@ -54,7 +54,7 @@ nonisolated extension CGPoint {
     ///     var size: CGPoint = .init(x: 3, y: 4)
     ///     size.moveRight(withValue: 1) // 4x4
     ///
-    mutating public func moveRight(
+    public mutating func moveRight(
         withValue value: CGFloat
     ) {
         x += value
@@ -82,7 +82,7 @@ nonisolated extension CGPoint {
     ///     var size: CGPoint = .init(x: 3, y: 4)
     ///     size.moveUp(withValue: 1) // 3x3
     ///
-    mutating public func moveUp(
+    public mutating func moveUp(
         withValue value: CGFloat
     ) {
         y -= value
@@ -109,7 +109,7 @@ nonisolated extension CGPoint {
     ///     var size: CGPoint = .init(x: 3, y: 4)
     ///     size.moveDown(withValue: 1) // 3x5
     ///
-    mutating public func moveDown(
+    public mutating func moveDown(
         withValue value: CGFloat
     ) {
         y += value

@@ -9,7 +9,7 @@ import Foundation
 
 /// An error that occurs during the operations in `UserDefaultsService`.
 @MemberwiseInitializable(accessLevelModifier: .private)
-public nonisolated struct UserDefaultsServiceError: BaseErrorProtocol, Sendable {
+nonisolated public struct UserDefaultsServiceError: BaseErrorProtocol, Sendable {
     // MARK: Properties
     public static let domain: String = "com.vcore.userdefaultsservice"
     public let code: Int

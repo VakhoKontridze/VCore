@@ -48,7 +48,7 @@ nonisolated extension FloatingPoint {
     ///     var value5: Double = 5; value5.clamp(to: 1...10, step: 3) // 4.0
     ///     var value6: Double = 11; value6.clamp(to: 1...10, step: 3) // 10.0
     ///
-    mutating public func clamp(
+    public mutating func clamp(
         to range: ClosedRange<Self>,
         step: Self? = nil
     ) {
@@ -83,7 +83,7 @@ nonisolated extension FloatingPoint {
     ///     var value5: Double = 5; value5.clamp(min: 1, max: 10, step: 3) // 4.0
     ///     var value6: Double = 11; value6.clamp(min: 1, max: 10, step: 3) // 10.0
     ///
-    mutating public func clamp(
+    public mutating func clamp(
         min: Self,
         max: Self,
         step: Self? = nil

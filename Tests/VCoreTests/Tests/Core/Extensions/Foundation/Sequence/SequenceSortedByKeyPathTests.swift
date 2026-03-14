@@ -38,7 +38,7 @@ nonisolated struct SequenceSortedByKeyPathTests {
     }
     
     // MARK: Types
-    private nonisolated struct City: Equatable {
+    nonisolated private struct City: Equatable {
         let name: String
     }
 }

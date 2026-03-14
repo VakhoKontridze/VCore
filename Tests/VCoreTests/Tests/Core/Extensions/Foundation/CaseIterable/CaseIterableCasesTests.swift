@@ -35,7 +35,7 @@ nonisolated struct CaseIterableCasesTests {
     }
     
     // MARK: Types
-    private nonisolated enum CardinalDirection: CaseIterable {
+    nonisolated private enum CardinalDirection: CaseIterable {
         case north
         case east
         case south

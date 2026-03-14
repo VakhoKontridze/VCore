@@ -43,14 +43,14 @@ import UIKit
 open class ResponderChainUIToolbarManager {
     // MARK: Properties - Storage
     /// Managed `ResponderChainUIToolbarResponderParameters`s.
-    private(set) open var responderParameters: [ResponderChainUIToolbarResponderParameters] = []
+    open private(set) var responderParameters: [ResponderChainUIToolbarResponderParameters] = []
 
     // MARK: Initializers
     /// Initializes `ResponderChainUIToolbarManager`.
     public init() {}
 
     /// Initializes `ResponderChainUIToolbarManager` with responders.
-    convenience public init(
+    public convenience init(
         responders responderParameters: [ResponderChainUIToolbarResponderParameters]
     ) {
         self.init()

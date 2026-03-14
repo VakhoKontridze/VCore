@@ -156,7 +156,7 @@ open class UIKitBaseButton: UIView {
     open var buttonState: UIKitBaseButtonState { .init(internalState: internalButtonState) }
     
     /// Internal button state.
-    private(set) open var internalButtonState: UIKitBaseButtonInternalState = .default
+    open private(set) var internalButtonState: UIKitBaseButtonInternalState = .default
     
     /// State change action.
     open var onStateChange: (GestureBaseButtonGestureState) -> Void
@@ -172,7 +172,7 @@ open class UIKitBaseButton: UIView {
     }
     
     /// Initializes `UIKitBaseButton` with action.
-    convenience public init(
+    public convenience init(
         action: @escaping () -> Void
     ) {
         self.init(onStateChange: { gestureState in
@@ -181,7 +181,7 @@ open class UIKitBaseButton: UIView {
     }
     
     @available(*, unavailable)
-    required public init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError()
     }
     

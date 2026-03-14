@@ -27,7 +27,7 @@ nonisolated extension CGSize {
     ///     var size: CGSize = .init(width: 3, height: 4)
     ///     size.scaleUp(withConstant: 1) // 4x5
     ///
-    mutating public func scaleUp(
+    public mutating func scaleUp(
         withConstant value: CGFloat
     ) {
         width += value
@@ -55,7 +55,7 @@ nonisolated extension CGSize {
     ///     var size: CGSize = .init(width: 3, height: 4)
     ///     size.scaleDown(withConstant: 1) // 2x3
     ///
-    mutating public func scaleDown(
+    public mutating func scaleDown(
         withConstant value: CGFloat
     ) {
         width -= value
@@ -83,7 +83,7 @@ nonisolated extension CGSize {
     ///     var size: CGSize = .init(width: 3, height: 4)
     ///     size.scaleUp(withMultiplier: 2) // 6x8
     ///
-    mutating public func scaleUp(
+    public mutating func scaleUp(
         withMultiplier value: CGFloat
     ) {
         width *= value
@@ -111,7 +111,7 @@ nonisolated extension CGSize {
     ///     var size: CGSize = .init(width: 3, height: 4)
     ///     size.scaleDown(withMultiplier: 2) // 1.5x2
     ///
-    mutating public func scaleDown(
+    public mutating func scaleDown(
         withMultiplier value: CGFloat
     ) {
         width /= value

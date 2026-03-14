@@ -43,7 +43,7 @@ import Foundation
 ///     ... name=\"gallery[large_images][1]\"; filename=\"large-image-2.jpg\" ...
 ///
 /// For additional info, refer to `MultipartFormDataBuilder`.
-public nonisolated protocol AnyMultipartFormDataFile {}
+nonisolated public protocol AnyMultipartFormDataFile {}
 
 nonisolated extension MultipartFormDataFile: AnyMultipartFormDataFile {}
 

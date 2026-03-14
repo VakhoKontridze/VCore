@@ -28,7 +28,7 @@ nonisolated extension Set {
     ///     numbers.toggle(1) // [3, 5]
     ///     numbers.toggle(1) // [1, 3, 5]
     ///
-    mutating public func toggle(
+    public mutating func toggle(
         _ element: Element
     ) {
         if contains(element) {

@@ -19,7 +19,7 @@ import Foundation
 ///         )
 ///     }
 ///
-public nonisolated enum ResultNoSuccessNoFailure: Equatable, Sendable {
+nonisolated public enum ResultNoSuccessNoFailure: Equatable, Sendable {
     /// Success.
     case success
     

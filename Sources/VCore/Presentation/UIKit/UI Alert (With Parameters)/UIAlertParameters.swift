@@ -73,7 +73,7 @@ public struct UIAlertParameters {
 
 extension UIAlertController {
     /// Initializes `UIAlertController` with `UIAlertParameters`.
-    convenience public init(parameters: UIAlertParameters) {
+    public convenience init(parameters: UIAlertParameters) {
         self.init(
             title: parameters.title ?? "", // Fixes weird bold bug when `nil`
             message: parameters.message,

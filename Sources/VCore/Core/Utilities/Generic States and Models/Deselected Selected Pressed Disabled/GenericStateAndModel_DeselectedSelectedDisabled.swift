@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public nonisolated enum GenericState_DeselectedSelectedDisabled: Int, Sendable, CaseIterable {
+nonisolated public enum GenericState_DeselectedSelectedDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Deselected.
     case deselected
@@ -46,7 +46,7 @@ public nonisolated enum GenericState_DeselectedSelectedDisabled: Int, Sendable, 
     
     // MARK: Next State
     /// Goes to the next state.
-    mutating public func setNextState() {
+    public mutating func setNextState() {
         switch self {
         case .deselected: self = .selected
         case .selected: self = .deselected
@@ -59,7 +59,7 @@ public nonisolated enum GenericState_DeselectedSelectedDisabled: Int, Sendable, 
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_DeselectedSelectedDisabled` with values."
 )
-public nonisolated struct GenericStateModel_DeselectedSelectedDisabled<Value> {
+nonisolated public struct GenericStateModel_DeselectedSelectedDisabled<Value> {
     // MARK: Properties
     /// Deselected value.
     public var deselected: Value

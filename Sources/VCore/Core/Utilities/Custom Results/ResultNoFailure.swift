@@ -19,7 +19,7 @@ import Foundation
 ///         )
 ///     }
 ///
-public nonisolated enum ResultNoFailure<Success> {
+nonisolated public enum ResultNoFailure<Success> {
     // MARK: Cases
     /// Success, storing a `Success` value.
     case success(Success)

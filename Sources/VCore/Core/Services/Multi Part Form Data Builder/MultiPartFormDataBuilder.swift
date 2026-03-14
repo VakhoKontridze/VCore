@@ -49,7 +49,7 @@ import Foundation
 ///
 ///     ...
 ///
-public nonisolated struct MultipartFormDataBuilder: Sendable {
+nonisolated public struct MultipartFormDataBuilder: Sendable {
     // MARK: Properties
     /// Boundary.
     ///

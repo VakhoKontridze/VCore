@@ -36,7 +36,7 @@ public struct UIActionSheetParameters {
 
 extension UIAlertController {
     /// Initializes `UIAlertController` with `UIActionSheetParameters`.
-    convenience public init(parameters: UIActionSheetParameters) {
+    public convenience init(parameters: UIActionSheetParameters) {
         self.init(
             title: parameters.title,
             message: parameters.message,

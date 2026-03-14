@@ -126,12 +126,12 @@ open class InfiniteScrollingUITableView: UITableView {
     }
     
     @available(*, unavailable)
-    required public init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError()
     }
     
     // MARK: Lifecycle
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
         
         if isFirstLayoutSubviews {

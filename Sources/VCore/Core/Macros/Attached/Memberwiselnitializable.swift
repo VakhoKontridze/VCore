@@ -44,7 +44,7 @@ public macro MemberwiseInitializable(
 )
 
 /// Default parameter value in `MemberwiseInitializable`.
-public nonisolated enum MemberwiseInitializableParameterDefaultValue {
+nonisolated public enum MemberwiseInitializableParameterDefaultValue {
     /// Value.
     case value(Any)
 

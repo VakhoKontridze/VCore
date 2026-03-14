@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public nonisolated enum GenericState_DeselectedSelected: Int, Sendable, CaseIterable {
+nonisolated public enum GenericState_DeselectedSelected: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Deselected.
     case deselected
@@ -32,7 +32,7 @@ public nonisolated enum GenericState_DeselectedSelected: Int, Sendable, CaseIter
     
     // MARK: Next State
     /// Goes to the next state.
-    mutating public func setNextState() {
+    public mutating func setNextState() {
         switch self {
         case .deselected: self = .selected
         case .selected: self = .deselected
@@ -54,7 +54,7 @@ nonisolated extension Binding where Value == GenericState_DeselectedSelected {
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_DeselectedSelected` with values."
 )
-public nonisolated struct GenericStateModel_DeselectedSelected<Value> {
+nonisolated public struct GenericStateModel_DeselectedSelected<Value> {
     // MARK: Properties
     /// Deselected value.
     public var deselected: Value

@@ -19,7 +19,7 @@ import Foundation
 ///         )
 ///     }
 ///
-public nonisolated enum ResultNoSuccess<Failure> where Failure: Error {
+nonisolated public enum ResultNoSuccess<Failure> where Failure: Error {
     // MARK: Cases
     /// Success.
     case success

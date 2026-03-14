@@ -633,7 +633,7 @@ nonisolated struct MemberwiseInitializableMacro: MemberMacro {
     }
     
     // MARK: Types
-    private nonisolated struct ParameterData {
+    nonisolated private struct ParameterData {
         let attributes: String?
 
         let externalName: String?

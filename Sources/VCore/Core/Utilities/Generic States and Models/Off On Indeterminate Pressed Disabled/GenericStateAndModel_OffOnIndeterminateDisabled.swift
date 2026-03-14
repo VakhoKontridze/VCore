@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public nonisolated enum GenericState_OffOnIndeterminateDisabled: Int, Sendable, CaseIterable {
+nonisolated public enum GenericState_OffOnIndeterminateDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Off.
     case off
@@ -51,7 +51,7 @@ public nonisolated enum GenericState_OffOnIndeterminateDisabled: Int, Sendable, 
     
     // MARK: Next State
     /// Goes to the next state.
-    mutating public func setNextState() {
+    public mutating func setNextState() {
         switch self {
         case .off: self = .on
         case .on: self = .off
@@ -65,7 +65,7 @@ public nonisolated enum GenericState_OffOnIndeterminateDisabled: Int, Sendable, 
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_OffOnIndeterminateDisabled` with values."
 )
-public nonisolated struct GenericStateModel_OffOnIndeterminateDisabled<Value> {
+nonisolated public struct GenericStateModel_OffOnIndeterminateDisabled<Value> {
     // MARK: Properties
     /// Off value.
     public var off: Value

@@ -35,7 +35,7 @@ nonisolated extension View {
 @MemberwiseInitializable(
     comment: "/// Initializes `SwiftUIDropShadowParameters` with parameters."
 )
-public nonisolated struct SwiftUIDropShadowParameters: Sendable {
+nonisolated public struct SwiftUIDropShadowParameters: Sendable {
     /// Shadow color.
     let color: Color
     

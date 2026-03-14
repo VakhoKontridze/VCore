@@ -94,7 +94,7 @@ public final class AsyncStreamingObservationContainer<Value> where Value: Sendab
     }
 }
 
-private nonisolated final class ContinuationHolder<Value>: Sendable {
+nonisolated private final class ContinuationHolder<Value>: Sendable {
     // MARK: Properties
     let continuation: AsyncStream<Value>.Continuation
 

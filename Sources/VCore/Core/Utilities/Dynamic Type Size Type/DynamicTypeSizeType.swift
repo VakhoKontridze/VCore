@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that represents `DynamicTypeSize`.
-public nonisolated struct DynamicTypeSizeType: Equatable, Sendable {
+nonisolated public struct DynamicTypeSizeType: Equatable, Sendable {
     // MARK: Properties
     let storage: Storage
 

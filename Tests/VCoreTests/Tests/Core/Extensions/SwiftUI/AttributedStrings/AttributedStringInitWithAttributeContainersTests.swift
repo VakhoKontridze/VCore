@@ -234,7 +234,7 @@ nonisolated struct AttributedStringInitWithAttributeContainersTests {
     }
 
     // MARK: Types
-    private nonisolated struct Wrapper: Equatable {
+    nonisolated private struct Wrapper: Equatable {
         let tagName: Character?
         let substring: String
     }

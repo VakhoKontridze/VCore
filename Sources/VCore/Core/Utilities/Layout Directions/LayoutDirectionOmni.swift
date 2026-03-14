@@ -10,7 +10,7 @@ import SwiftUI
 /// Omni directional layout in which content can be laid out.
 ///
 /// Unlike `SwiftUI.LayoutDirection`, `LayoutDirectionOmni` also supports vertical layouts.
-public nonisolated enum LayoutDirectionOmni: Int, Sendable, CaseIterable {
+nonisolated public enum LayoutDirectionOmni: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Left-to-right direction.
     case leftToRight

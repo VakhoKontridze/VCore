@@ -14,13 +14,13 @@ import UIKit
 /// If width is greater than height, half of height will be taken as corner radius. If not, otherwise.
 open class CapsuleUIImageView: UIImageView {
     // MARK: Initializers
-    public override init(image: UIImage? = nil) {
+    override public init(image: UIImage? = nil) {
         super.init(image: image)
         setUp()
     }
 
     @available(*, unavailable)
-    required public init?(coder: NSCoder) {
+    public required init?(coder: NSCoder) {
         fatalError()
     }
 
@@ -31,7 +31,7 @@ open class CapsuleUIImageView: UIImageView {
     }
 
     // MARK: Lifecycle
-    open override func layoutSubviews() {
+    override open func layoutSubviews() {
         super.layoutSubviews()
 
         layer.cornerRadius = min(frame.size.width, frame.size.height) / 2

@@ -11,7 +11,7 @@ import OSLog
 /// Object that performs get, set, and delete `UserDefaults` operations.
 ///
 /// Object contains default instance `default`.
-open nonisolated class UserDefaultsService: @unchecked Sendable {
+nonisolated open class UserDefaultsService: @unchecked Sendable {
     // MARK: Properties - Singleton
     /// Default instance of `UserDefaultsService` that uses `standard` `UserDefaults`.
     public static let `default`: UserDefaultsService = .init(

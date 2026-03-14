@@ -11,7 +11,7 @@ import SwiftUI
 @MemberwiseInitializable(
     comment: "/// Initializes `EdgeInsetsAxis` with values."
 )
-public nonisolated struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
+nonisolated public struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
     // MARK: Properties
     /// Horizontal value.
     public var horizontal: CGFloat

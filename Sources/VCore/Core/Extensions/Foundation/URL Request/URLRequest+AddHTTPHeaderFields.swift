@@ -13,7 +13,7 @@ nonisolated extension URLRequest {
     ///     var request: URLRequest = ...
     ///     request.addHTTPHeaderFields(["key": "value"])
     ///
-    mutating public func addHTTPHeaderFields(
+    public mutating func addHTTPHeaderFields(
         _ httpHeaderFields: [String: String?]
     ) {
         for (key, value) in httpHeaderFields {
@@ -28,7 +28,7 @@ nonisolated extension URLRequest {
     ///     var request: URLRequest = ...
     ///     request.addHTTPHeaderFields(json: ["key": "value"])
     ///
-    mutating public func addHTTPHeaderFields(
+    public mutating func addHTTPHeaderFields(
         json httpHeaderFields: [String: Any]
     ) {
         for (key, value) in httpHeaderFields {
@@ -43,7 +43,7 @@ nonisolated extension URLRequest {
     ///     var request: URLRequest = ...
     ///     try request.addHTTPHeaderFields(object: JSONRequestHeaderFields())
     ///
-    mutating public func addHTTPHeaderFields(
+    public mutating func addHTTPHeaderFields(
         object: some Encodable
     ) throws {
         addHTTPHeaderFields(json: try JSONEncoder().encodeObjectToJSON(object))

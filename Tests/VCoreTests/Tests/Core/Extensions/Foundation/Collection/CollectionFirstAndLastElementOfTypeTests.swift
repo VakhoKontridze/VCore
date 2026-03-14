@@ -35,15 +35,15 @@ nonisolated struct CollectionFirstAndLastElementOfTypeTests {
     }
     
     // MARK: Types
-    private nonisolated protocol P {
+    nonisolated private protocol P {
         var value: Int { get }
     }
     
-    private nonisolated struct S1: P {
+    nonisolated private struct S1: P {
         let value: Int
     }
     
-    private nonisolated struct S2: P {
+    nonisolated private struct S2: P {
         let value: Int
     }
 }

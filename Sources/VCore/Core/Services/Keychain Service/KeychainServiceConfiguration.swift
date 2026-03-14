@@ -28,7 +28,7 @@ import Foundation
 ///
 ///     let data: Data? = keychainService.get(key: "key")
 ///
-public nonisolated struct KeychainServiceConfiguration {
+nonisolated public struct KeychainServiceConfiguration {
     // MARK: Properties
     /// Get query.
     public var getQuery: GetQuery
@@ -64,7 +64,7 @@ public nonisolated struct KeychainServiceConfiguration {
     /// Get query.
     ///
     /// Declared query shouldn't contain `kSecAttrAccount`, since it is passed in `build(key:)` method.
-    public nonisolated struct GetQuery/*: Sendable */ {
+    nonisolated public struct GetQuery/*: Sendable */ {
         // MARK: Properties
         /// Query.
         public var query: [String: Any]
@@ -100,7 +100,7 @@ public nonisolated struct KeychainServiceConfiguration {
     /// Set query.
     ///
     /// Declared query shouldn't contain `kSecAttrAccount` and `kSecValueData`, since they are passed in `build(key:data:)` method.
-    public nonisolated struct SetQuery/*: Sendable */ {
+    nonisolated public struct SetQuery/*: Sendable */ {
         // MARK: Properties
         /// Query.
         public var query: [String: Any]
@@ -135,7 +135,7 @@ public nonisolated struct KeychainServiceConfiguration {
     /// Delete query.
     ///
     /// Declared query shouldn't contain `kSecAttrAccount`, since it is passed in `build(key:)` method.
-    public nonisolated struct DeleteQuery/*: Sendable */ {
+    nonisolated public struct DeleteQuery/*: Sendable */ {
         // MARK: Properties
         /// Query.
         public var query: [String: Any]

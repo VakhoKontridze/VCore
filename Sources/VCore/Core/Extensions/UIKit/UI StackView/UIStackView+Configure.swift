@@ -47,7 +47,7 @@ extension UIStackView {
     ///         spacing: 10
     ///     )
     ///
-    convenience public init(
+    public convenience init(
         arrangedSubviews: [UIView] = [],
         axis: NSLayoutConstraint.Axis,
         distribution: UIStackView.Distribution = .fill,

@@ -17,7 +17,7 @@ nonisolated extension NSImage {
     ///         color: NSColor.systemBlue
     ///     )!
     ///
-    convenience public init?(
+    public convenience init?(
         size: CGSize,
         color: NSColor
     ) {

@@ -13,7 +13,7 @@ nonisolated extension NavigationPath {
     ///     var path: NavigationPath = .init()
     ///     path.append(contentsOf: ["Destination1", "Destination2"])
     ///
-    mutating public func append(
+    public mutating func append(
         contentsOf newElements: some Sequence<some Hashable>
     ) {
         newElements.forEach { append($0) }
@@ -26,7 +26,7 @@ nonisolated extension NavigationPath {
     ///     var path: NavigationPath = .init(...)
     ///     path.removeAll()
     ///
-    mutating public func removeAll() {
+    public mutating func removeAll() {
         removeLast(count)
     }
 }

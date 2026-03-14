@@ -44,7 +44,7 @@ public struct ModalPresenterRootAppearance: Equatable {
 
     // MARK: Types
     /// Frame.
-    public nonisolated enum Frame: Equatable, Sendable {
+    nonisolated public enum Frame: Equatable, Sendable {
         // MARK: Cases
         /// Fixed frame.
         case fixed(size: CGSize, alignment: Alignment, offset: CGSize)
@@ -58,7 +58,7 @@ public struct ModalPresenterRootAppearance: Equatable {
     }
 
     /// Dimming view tap action.
-    public nonisolated enum DimmingViewTapAction: Int, Equatable, Sendable, CaseIterable {
+    nonisolated public enum DimmingViewTapAction: Int, Equatable, Sendable, CaseIterable {
         // MARK: Cases
         /// None.
         case none

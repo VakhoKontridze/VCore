@@ -14,7 +14,7 @@ import UIKit
 /// Alternate API to `itemSize`.
 ///
 /// If `height` is `nil`, it will be calculated from `UICollectionView`.
-public nonisolated struct CarouselUICollectionViewFlowLayoutItemSize: Sendable {
+nonisolated public struct CarouselUICollectionViewFlowLayoutItemSize: Sendable {
     // MARK: Properties
     /// Horizontal inset from the bounds of `UICollectionView`.
     public var inset: CGFloat

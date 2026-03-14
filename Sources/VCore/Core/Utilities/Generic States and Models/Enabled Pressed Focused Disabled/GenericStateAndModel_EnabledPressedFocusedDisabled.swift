@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public nonisolated enum GenericState_EnabledPressedFocusedDisabled: Int, Sendable, CaseIterable {
+nonisolated public enum GenericState_EnabledPressedFocusedDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Enabled.
     case enabled
@@ -54,7 +54,7 @@ public nonisolated enum GenericState_EnabledPressedFocusedDisabled: Int, Sendabl
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_EnabledPressedFocusedDisabled` with values."
 )
-public nonisolated struct GenericStateModel_EnabledPressedFocusedDisabled<Value> {
+nonisolated public struct GenericStateModel_EnabledPressedFocusedDisabled<Value> {
     // MARK: Properties
     /// Enabled value.
     public var enabled: Value

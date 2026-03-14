@@ -18,13 +18,13 @@ public final class ModalPresenterContext {
     
     // MARK: Properties - Appearance
     /// Interface orientation.
-    internal(set) public var interfaceOrientation: PlatformInterfaceOrientation = .portrait
+    public internal(set) var interfaceOrientation: PlatformInterfaceOrientation = .portrait
     
     /// Container size.
-    internal(set) public var containerSize: CGSize = .zero
+    public internal(set) var containerSize: CGSize = .zero
     
     /// Safe area insets.
-    internal(set) public var safeAreaInsets: EdgeInsets = .init()
+    public internal(set) var safeAreaInsets: EdgeInsets = .init()
 
     // MARK: Properties - Present
     @ObservationIgnored let presentSubject: PassthroughSubject<Void, Never> = .init()

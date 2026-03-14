@@ -56,7 +56,7 @@ nonisolated struct JSONDecoderMethodsTests {
     }
     
     // MARK: Types
-    private nonisolated struct Object: Codable {
+    nonisolated private struct Object: Codable {
         let key: String?
     }
 }

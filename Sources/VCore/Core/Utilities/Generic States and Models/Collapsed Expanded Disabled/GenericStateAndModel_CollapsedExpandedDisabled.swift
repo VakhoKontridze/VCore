@@ -13,7 +13,7 @@ import AppKit
 #endif
 
 /// Enumeration that represents state.
-public nonisolated enum GenericState_CollapsedExpandedDisabled: Int, Sendable, CaseIterable {
+nonisolated public enum GenericState_CollapsedExpandedDisabled: Int, Sendable, CaseIterable {
     // MARK: Cases
     /// Collapsed.
     case collapsed
@@ -46,7 +46,7 @@ public nonisolated enum GenericState_CollapsedExpandedDisabled: Int, Sendable, C
     
     // MARK: Next State
     /// Goes to the next state.
-    mutating public func setNextState() {
+    public mutating func setNextState() {
         switch self {
         case .collapsed: self = .expanded
         case .expanded: self = .collapsed
@@ -59,7 +59,7 @@ public nonisolated enum GenericState_CollapsedExpandedDisabled: Int, Sendable, C
 @MemberwiseInitializable(
     comment: "/// Initializes `GenericStateModel_CollapsedExpandedDisabled` with values."
 )
-public nonisolated struct GenericStateModel_CollapsedExpandedDisabled<Value> {
+nonisolated public struct GenericStateModel_CollapsedExpandedDisabled<Value> {
     // MARK: Properties
     /// Collapsed value.
     public var collapsed: Value

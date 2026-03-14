@@ -15,7 +15,7 @@ nonisolated extension Array {
     ///     // [1, 2, 3, 4, 5, 6]
     ///
     @discardableResult
-    mutating public func binaryAppend(
+    public mutating func binaryAppend(
         _ element: Element,
         by areInIncreasingOrder: (Element, Element) throws -> Bool
     ) rethrows -> Int {
@@ -43,7 +43,7 @@ nonisolated extension Array {
     ///     let index: Int = items.binaryAppend(newItem, by: \.value)
     ///
     @discardableResult
-    mutating public func binaryAppend(
+    public mutating func binaryAppend(
         _ element: Element,
         by keyPath: KeyPath<Element, some Comparable>
     ) -> Int {

@@ -22,7 +22,7 @@ nonisolated extension Array {
     ///     numbers.prepend(1)
     ///     // [1, 2, 3]
     ///
-    mutating public func prepend(_ newElement: Element) {
+    public mutating func prepend(_ newElement: Element) {
         insert(newElement, at: 0)
     }
 }
@@ -48,7 +48,7 @@ nonisolated extension Array {
     ///     numbers.prepend(contentsOf: [1, 2])
     ///     // [1, 2, 3, 4]
     ///
-    mutating public func prepend<S>(
+    public mutating func prepend<S>(
         contentsOf newElements: S
     )
         where
