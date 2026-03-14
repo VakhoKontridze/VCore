@@ -22,7 +22,7 @@ nonisolated extension Collection {
     ///     let index2: Int? = array.firstIndex(ofType: S.self)
     ///
     public func firstIndex<T>(
-        ofType type: T.Type,
+        ofType _: T.Type,
         where predicate: ((T) throws -> Bool)? = nil
     ) rethrows -> Index? {
         try firstIndex { element in
@@ -47,7 +47,7 @@ nonisolated extension BidirectionalCollection {
     ///     let index2: Int? = array.lastIndex(ofType: S.self)
     ///
     public func lastIndex<T>(
-        ofType type: T.Type,
+        ofType _: T.Type,
         where predicate: ((T) throws -> Bool)? = nil
     ) rethrows -> Index? {
         try lastIndex { element in

@@ -22,7 +22,7 @@ nonisolated extension Collection {
     ///     let p2: S? = array.firstElement(ofType: S.self)
     ///
     public func firstElement<T>(
-        ofType type: T.Type,
+        ofType _: T.Type,
         where predicate: ((T) throws -> Bool)? = nil
     ) rethrows -> T? {
         try first { element in
@@ -47,7 +47,7 @@ nonisolated extension BidirectionalCollection {
     ///     let p2: S? = array.lastElement(ofType: S.self)
     ///
     public func lastElement<T>(
-        ofType type: T.Type,
+        ofType _: T.Type,
         where predicate: ((T) throws -> Bool)? = nil
     ) rethrows -> T? {
         try last { element in
