@@ -44,7 +44,7 @@ public struct UIActionSheetButton: UIActionSheetButtonProtocol {
             title: title,
             style: style
         ) { _ in
-            action?()
+            Task { @MainActor in action?() }
         }
         alertAction.isEnabled = isEnabled
 

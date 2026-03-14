@@ -74,7 +74,7 @@ public protocol ConfigurableUITableViewCell: UITableViewCell {
     static var reuseID: String { get }
     
     /// Configures `UITableViewCell` using a parameter.
-    func configure(parameter: some UITableViewCellParameter)
+    func configure(parameter: any UITableViewCellParameter)
 }
 
 extension ConfigurableUITableViewCell {

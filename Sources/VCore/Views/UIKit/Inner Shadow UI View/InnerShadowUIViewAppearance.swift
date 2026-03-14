@@ -15,10 +15,10 @@ public struct InnerShadowUIViewAppearance: Equatable, Sendable {
     /// Shadow color.
     public var shadowColor: UIColor = .black.withAlphaComponent(0.1)
 
-    /// Shadow color.
+    /// Shadow radius.
     public var shadowRadius: CGFloat = 5
 
-    /// Shadow color.
+    /// Shadow offset.
     public var shadowOffset: CGSize = .init(width: 5, height: 5)
     
     // MARK: Initializers

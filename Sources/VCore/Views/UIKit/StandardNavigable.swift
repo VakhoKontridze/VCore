@@ -120,7 +120,7 @@ extension StandardNavigable {
     ///
     /// If there are less `UIViewController`'s in the navigation stack, than`count`, methods returns.
     public func pop(count: Int) {
-        pop(count: count, animated: false)
+        pop(count: count, animated: true)
     }
     
     /// Pops all the `UIViewController`s on the stack except the root `UIViewController` and updates the display.
@@ -162,11 +162,11 @@ extension StandardNavigable where Self: UIViewController {
     }
     
     public func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
-        present(viewController, animated: animated, completion: completion)
+        (self as UIViewController).present(viewController, animated: animated, completion: completion)
     }
-    
+
     public func dismiss(animated: Bool, completion: (() -> Void)?) {
-        dismiss(animated: animated, completion: completion)
+        (self as UIViewController).dismiss(animated: animated, completion: completion)
     }
 }
 

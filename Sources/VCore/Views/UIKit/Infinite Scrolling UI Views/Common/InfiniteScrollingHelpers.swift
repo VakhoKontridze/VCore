@@ -20,11 +20,7 @@ extension UIScrollView {
         return didScrollToBottom
     }
     
-    var contentHeightExceedsTableViewHeight: Bool {
-        contentSize.height > frame.size.height
-    }
-    
-    var contentHeightExceedsCollectionViewHeight: Bool {
+    var contentHeightExceedsHeight: Bool {
         contentSize.height > frame.size.height
     }
 }

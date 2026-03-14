@@ -51,15 +51,17 @@ public protocol UIActivityIndicatorViewable {
     func stopActivityIndicatorAnimationAndEnableInteraction()
 }
 
-extension UIActivityIndicatorViewable where Self: UIView {
+extension UIActivityIndicatorViewable {
     public func startActivityIndicatorAnimation() {
         activityIndicator.startAnimating()
     }
-    
+
     public func stopActivityIndicatorAnimation() {
         activityIndicator.stopAnimating()
     }
-    
+}
+
+extension UIActivityIndicatorViewable where Self: UIView {
     public func startActivityIndicatorAnimationAndDisableInteraction() {
         startActivityIndicatorAnimation()
         isUserInteractionEnabled = false
@@ -72,14 +74,6 @@ extension UIActivityIndicatorViewable where Self: UIView {
 }
 
 extension UIActivityIndicatorViewable where Self: UIViewController {
-    public func startActivityIndicatorAnimation() {
-        activityIndicator.startAnimating()
-    }
-    
-    public func stopActivityIndicatorAnimation() {
-        activityIndicator.stopAnimating()
-    }
-    
     public func startActivityIndicatorAnimationAndDisableInteraction() {
         startActivityIndicatorAnimation()
         view.isUserInteractionEnabled = false

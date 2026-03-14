@@ -99,7 +99,7 @@ open class ResponderChainUIToolbar: UIToolbar {
     )
 
     // MARK: Initializers
-    /// Initializes `ResponderChainUIToolbar.
+    /// Initializes `ResponderChainUIToolbar`.
     public init(
         appearance: ResponderChainUIToolbarAppearance = .init(),
         size: CGSize
@@ -113,7 +113,6 @@ open class ResponderChainUIToolbar: UIToolbar {
             )
         )
 
-        setUp()
         configure(appearance: appearance)
     }
 
@@ -138,12 +137,6 @@ open class ResponderChainUIToolbar: UIToolbar {
     @available(*, unavailable)
     required public init?(coder: NSCoder) {
         fatalError()
-    }
-
-    // MARK: Setup
-    /// Sets up `ResponderChainUIToolbar`.
-    open func setUp() {
-        sizeToFit()
     }
 
     // MARK: Configuration
@@ -179,24 +172,26 @@ open class ResponderChainUIToolbar: UIToolbar {
 
             return items
         }()
+        
+        sizeToFit()
     }
 
     // MARK: Actions
     /// Selector that runs when arrow up button is tapped.
     @objc 
-    open func onUp_Selector(sender: UIBarButtonItem) -> Void {
+    open func onUp_Selector(sender: UIBarButtonItem) {
         onUp?()
     }
 
     /// Selector that runs when arrow down button is tapped.
     @objc 
-    open func onDown_Selector(sender: UIBarButtonItem) -> Void {
+    open func onDown_Selector(sender: UIBarButtonItem) {
         onDown?()
     }
 
     /// Selector that runs when done button is tapped.
     @objc 
-    open func onDone_Selector(sender: UIBarButtonItem) -> Void {
+    open func onDone_Selector(sender: UIBarButtonItem) {
         onDone?()
     }
 }

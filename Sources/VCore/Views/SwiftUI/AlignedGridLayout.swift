@@ -18,7 +18,7 @@ import OSLog
 ///
 ///     var body: some View {
 ///         AlignedGridLayout(horizontalAlignment: .center, spacing: 5) {
-///             ForEach(strings, id: \.self { string in
+///             ForEach(strings, id: \.self) { string in
 ///                 Text(string)
 ///                     .background(Color.accentColor.opacity(0.5))
 ///             }
@@ -240,7 +240,7 @@ public struct AlignedGridLayout: Layout {
                         case .center: return (maxHeight - rects[i][j].size.height)/2
                         case .bottom: return maxHeight - rects[i][j].size.height
                         default:
-                            Logger.alignedGridLayout.fault("Unhandled 'HorizontalAlignment' '\(String(describing: horizontalAlignment))' in 'AlignedGridLayout'")
+                            Logger.alignedGridLayout.fault("Unhandled 'VerticalAlignment' '\(String(describing: verticalAlignment))' in 'AlignedGridLayout'")
                             return (maxHeight - rects[i][j].size.height)/2
                         }
                     }()

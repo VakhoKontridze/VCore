@@ -44,7 +44,7 @@ public struct UIAlertButton: UIAlertButtonProtocol {
             title: title,
             style: style
         ) { _ in
-            action?()
+            Task { @MainActor in action?() }
         }
         alertAction.isEnabled = isEnabled
 

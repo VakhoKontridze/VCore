@@ -42,7 +42,6 @@ extension UIView {
     ///                 view.bounds.origin.y = systemKeyboardHeight
     ///                 view.superview?.layoutIfNeeded()
     ///             }
-    ///         }
     ///
     ///             UIView.animateKeyboardResponsiveness(
     ///                 systemKeyboardInfo: systemKeyboardInfo
@@ -168,7 +167,7 @@ extension UIView {
                 animations: {
                     containerView.bounds.origin.y = 0
                     
-                    firstResponderView.superview?.layoutIfNeeded()
+                    //firstResponderView.superview?.layoutIfNeeded() // Unnecessary
                     containerView.superview?.layoutIfNeeded()
                 },
                 completion: completion

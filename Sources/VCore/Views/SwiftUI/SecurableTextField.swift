@@ -62,6 +62,13 @@ public struct SecurableTextField: View {
             .focused($isSecureFieldFocused)
             .opacity(isSecure ? 1 : 0)
         }
+        .onChange(of: isSecure) {
+            if isSecure {
+                isSecureFieldFocused = isTextFieldFocused
+            } else {
+                isTextFieldFocused = isSecureFieldFocused
+            }
+        }
     }
 }
 

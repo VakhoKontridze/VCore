@@ -14,7 +14,11 @@ final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
     private let appearance: InfiniteScrollingUITableViewAppearance
     
     // MARK: Properties - Subviews
-    private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
     
     // MARK: Initializers
     init(
@@ -45,7 +49,6 @@ final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
     private func setUp() {
         addSubviews()
         setUpLayout()
-        activityIndicator.startAnimating()
     }
     
     private func addSubviews() {
@@ -53,7 +56,19 @@ final class InfiniteScrollingUITableViewActivityIndicatorView: UIView {
     }
     
     private func setUpLayout() {
-        activityIndicator.center = center
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor)
+        ])
+    }
+    
+    // MARK: Animation
+    func startAnimating() {
+        activityIndicator.startAnimating()
+    }
+
+    func stopAnimating() {
+        activityIndicator.stopAnimating()
     }
 }
 

@@ -19,7 +19,7 @@ open class InnerShadowUIView: UIView {
     
     // MARK: Properties - Subviews
     /// Shape layer.
-    open var shapeLayer: CAShapeLayer = {
+    open private(set) var shapeLayer: CAShapeLayer = {
         let shapeLayer: CAShapeLayer = .init()
         shapeLayer.shadowOpacity = 1
         shapeLayer.fillRule = .evenOdd
@@ -73,6 +73,8 @@ open class InnerShadowUIView: UIView {
         shapeLayer.shadowColor = appearance.shadowColor.cgColor
         shapeLayer.shadowRadius = appearance.shadowRadius
         shapeLayer.shadowOffset = appearance.shadowOffset
+        
+        setNeedsLayout()
     }
 }
 

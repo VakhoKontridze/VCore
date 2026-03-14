@@ -16,7 +16,7 @@ public struct UIAlertParameters {
     public var title: String?
     
     /// Message.
-    public var message: String
+    public var message: String?
     
     /// Buttons.
     public var buttons: @MainActor () -> [any UIAlertButtonProtocol]
@@ -25,7 +25,7 @@ public struct UIAlertParameters {
     /// Initializes `UIAlertParameters`.
     public init(
         title: String?,
-        message: String,
+        message: String?,
         @UIAlertButtonBuilder actions buttons: @escaping @MainActor () -> [any UIAlertButtonProtocol]
     ) {
         self.title = title
@@ -36,7 +36,7 @@ public struct UIAlertParameters {
     /// Initializes `UIAlertParameters` with action.
     public init(
         title: String?,
-        message: String,
+        message: String?,
         completion: (@MainActor () -> Void)?
     ) {
         self.init(

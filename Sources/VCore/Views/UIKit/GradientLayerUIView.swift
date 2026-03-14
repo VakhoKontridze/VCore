@@ -35,7 +35,7 @@ import UIKit
 open class GradientLayerUIView: UIView {
     // MARK: Properties - Subviews
     /// Gradient layer.
-    open var gradientLayer: CAGradientLayer = .init()
+    open private(set) var gradientLayer: CAGradientLayer = .init()
 
     // MARK: Initializers
     /// Initializes `GradientLayerUIView`.

@@ -13,12 +13,27 @@ import UIKit
 ///
 /// If width is greater than height, half of height will be taken as corner radius. If not, otherwise.
 open class CapsuleUIImageView: UIImageView {
+    // MARK: Initializers
+    public override init(image: UIImage? = nil) {
+        super.init(image: image)
+        setUp()
+    }
+
+    @available(*, unavailable)
+    required public init?(coder: NSCoder) {
+        fatalError()
+    }
+
+    // MARK: Setup
+    private func setUp() {
+        clipsToBounds = true
+        layer.maskedCorners = .layerAllCorners
+    }
+
     // MARK: Lifecycle
     open override func layoutSubviews() {
         super.layoutSubviews()
-        
-        clipsToBounds = true
-        layer.maskedCorners = .layerAllCorners
+
         layer.cornerRadius = min(frame.size.width, frame.size.height) / 2
     }
 }

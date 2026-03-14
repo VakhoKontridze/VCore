@@ -41,7 +41,7 @@ import UIKit
 ///     }
 ///
 @MainActor
-open class ResponderChainUIToolbarManager: Sendable {
+open class ResponderChainUIToolbarManager {
     // MARK: Properties - Storage
     /// Managed `ResponderChainUIToolbarResponderParameters`s.
     private(set) open var responderParameters: [ResponderChainUIToolbarResponderParameters] = []

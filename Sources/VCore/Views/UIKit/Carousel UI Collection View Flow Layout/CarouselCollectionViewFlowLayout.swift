@@ -115,12 +115,11 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     override open func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        true
+        newBounds.size != collectionView?.bounds.size
     }
     
     override open func targetContentOffset(
-        forProposedContentOffset proposedContentOffset:
-        CGPoint,
+        forProposedContentOffset proposedContentOffset: CGPoint,
         withScrollingVelocity velocity: CGPoint
     ) -> CGPoint {
         guard
@@ -164,10 +163,10 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     public func indexOfCenterItem(
         inDeceleratedEndedScrollView scrollView: UIScrollView
     ) -> Int {
-        let offset: CGFloat = scrollView.contentOffset.x
-        let itemWidth: CGFloat = itemSize.width
-        
-        return Int(floor((offset - itemWidth / 2) / itemWidth) + 1)
+        let stride: CGFloat = itemSize.width + minimumLineSpacing
+        let offset: CGFloat = scrollView.contentOffset.x - sectionInset.left + stride / 2
+
+        return max(0, Int(floor(offset / stride)))
     }
 
     // MARK: Validation

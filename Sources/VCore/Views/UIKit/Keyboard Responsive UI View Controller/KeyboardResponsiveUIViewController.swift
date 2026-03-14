@@ -41,7 +41,6 @@ import Combine
 ///                 view.bounds.origin.y = systemKeyboardHeight
 ///                 view.superview?.layoutIfNeeded()
 ///             }
-///         }
 ///
 ///             UIView.animateKeyboardResponsiveness(
 ///                 systemKeyboardInfo: systemKeyboardInfo
@@ -127,7 +126,9 @@ open class KeyboardResponsiveUIViewController: UIViewController {
     
     // MARK: Helpers
     private var viewIsVisible: Bool {
-        viewIfLoaded?.window != nil
+        isViewLoaded &&
+        view.window != nil &&
+        !isBeingDismissed
     }
 }
 

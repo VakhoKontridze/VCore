@@ -75,7 +75,7 @@ public protocol ConfigurableUICollectionViewCell: UICollectionViewCell {
     static var reuseID: String { get }
     
     /// Configures `UICollectionViewCell` using a parameter.
-    func configure(parameter: some UICollectionViewCellParameter)
+    func configure(parameter: any UICollectionViewCellParameter)
 }
 
 extension ConfigurableUICollectionViewCell {

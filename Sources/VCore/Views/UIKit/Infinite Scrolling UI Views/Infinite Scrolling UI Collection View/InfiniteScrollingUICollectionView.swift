@@ -111,7 +111,7 @@ import OSLog
 ///         func collectionViewDidScrollToBottom(
 ///             sender infiniteScrollingUICollectionView: InfiniteScrollingUICollectionView
 ///         ) {
-///             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+///             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
 ///                 guard let self else { return }
 ///
 ///                 data.append(contentsOf: Self.dataChunk)
@@ -126,8 +126,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     // MARK: Properties - Appearance
     private let appearance: InfiniteScrollingUICollectionViewAppearance
     
-    /// Offset that needs to be dragged vertically up for pagination to occur.
-    open var paginationOffset: CGFloat = 20
+    private var isFirstLayoutSubviews: Bool = true
     
     // MARK: Properties - State
     /// Controls pagination state.
@@ -139,13 +138,14 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     
     // MARK: Properties - Delegate
     /// Delegate.
-    open weak var infiniteScrollingDelegate: (any InfiniteScrollingUICollectionViewDelegate & UICollectionViewDataSource & UIScrollViewDelegate)?
-    
-    // MARK: Properties - Flags
-    private var isFirstLayoutSubviews: Bool = false
+    open weak var infiniteScrollingDelegate: (any InfiniteScrollingUICollectionViewDelegate)?
     
     // MARK: Properties - Subviews
-    private lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+    private lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        return activityIndicator
+    }()
     
     // MARK: Initializers
     /// Initializes `InfiniteScrollingUICollectionView`.
@@ -205,14 +205,14 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     // MARK: Detection
     /// Detects pagination on scroll.
     open func detectPaginationFromScrollViewDidScroll(_ scrollView: UIScrollView) {
-        guard scrollView.didScrollToBottom(offset: paginationOffset) else { return }
+        guard scrollView.didScrollToBottom(offset: appearance.paginationOffset) else { return }
         
         paginate()
     }
     
     /// Detects instance in which loaded cells do not fill up UICollectionViews's content. So, pagination is called.
     open func detectPaginationFromCollectionViewCellForItem() {
-        guard !contentHeightExceedsCollectionViewHeight else { return }
+        guard !contentHeightExceedsHeight else { return }
         
         paginate()
     }
@@ -231,17 +231,16 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
             withReuseIdentifier: String(describing: UICollectionReusableView.self),
             for: indexPath
         )
-        
-        footer.addSubview(activityIndicator)
-        
-        activityIndicator.frame = CGRect(
-            origin: .zero,
-            size: CGSize(
-                width: frame.size.width,
-                height: appearance.activityIndicatorContainerHeight
-            )
-        )
-        
+
+        if activityIndicator.superview !== footer {
+            footer.addSubview(activityIndicator)
+
+            NSLayoutConstraint.activate([
+                activityIndicator.centerXAnchor.constraint(equalTo: footer.centerXAnchor),
+                activityIndicator.centerYAnchor.constraint(equalTo: footer.centerYAnchor)
+            ])
+        }
+
         return footer
     }
     
@@ -368,7 +367,7 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
         
         // MARK: Infinite Scrolling Table View Delegate
         func collectionViewDidScrollToBottom(sender infiniteScrollingCollectionView: InfiniteScrollingUICollectionView) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 guard let self else { return }
 
                 data.append(contentsOf: page)

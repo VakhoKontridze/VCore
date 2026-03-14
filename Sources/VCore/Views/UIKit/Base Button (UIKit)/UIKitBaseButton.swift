@@ -81,7 +81,7 @@ import UIKit
 ///             addSubview(titleLabel)
 ///
 ///             NSLayoutConstraint.activate([
-///                 baseButton.leadingAnchor.constraint(equalTo: leftAnchor),
+///                 baseButton.leadingAnchor.constraint(equalTo: leadingAnchor),
 ///                 baseButton.trailingAnchor.constraint(equalTo: trailingAnchor),
 ///                 baseButton.topAnchor.constraint(equalTo: topAnchor),
 ///                 baseButton.bottomAnchor.constraint(equalTo: bottomAnchor),
@@ -168,6 +168,7 @@ open class UIKitBaseButton: UIView {
     ) {
         self.onStateChange = onStateChange
         super.init(frame: .zero)
+        setUp()
     }
     
     /// Initializes `UIKitBaseButton` with action.
@@ -182,12 +183,6 @@ open class UIKitBaseButton: UIView {
     @available(*, unavailable)
     required public init?(coder: NSCoder) {
         fatalError()
-    }
-    
-    // MARK: Lifecycle
-    open override func didMoveToSuperview() {
-        super.didMoveToSuperview()
-        setUp()
     }
     
     // MARK: Setup
@@ -289,7 +284,7 @@ private final class PlainButton: UIView {
         addSubview(titleLabel)
 
         NSLayoutConstraint.activate([
-            baseButton.leadingAnchor.constraint(equalTo: leftAnchor),
+            baseButton.leadingAnchor.constraint(equalTo: leadingAnchor),
             baseButton.trailingAnchor.constraint(equalTo: trailingAnchor),
             baseButton.topAnchor.constraint(equalTo: topAnchor),
             baseButton.bottomAnchor.constraint(equalTo: bottomAnchor),

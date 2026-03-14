@@ -44,7 +44,7 @@ public struct SheetContentWrappingContainerView<Content>: View where Content: Vi
         if let height {
             [.height(height)]
         } else {
-            []
+            [.large]
         }
     }
     

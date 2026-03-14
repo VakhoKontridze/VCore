@@ -79,7 +79,7 @@ import UIKit
 ///         }
 ///
 ///         func tableViewDidScrollToBottom(sender infiniteScrollingUITableView: InfiniteScrollingUITableView) {
-///             DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+///             DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
 ///                 guard let self else { return }
 ///
 ///                 data.append(contentsOf: Self.dataChunk)
@@ -94,6 +94,8 @@ open class InfiniteScrollingUITableView: UITableView {
     // MARK: Properties - Appearance
     private let appearance: InfiniteScrollingUITableViewAppearance
     
+    private var isFirstLayoutSubviews: Bool = true
+    
     // MARK: Properties - State
     /// Controls pagination state.
     /// When insufficient data is loaded in`UITableView`, or when pagination occurs, property is set to `loading` and delegate method is called.
@@ -104,10 +106,13 @@ open class InfiniteScrollingUITableView: UITableView {
     
     // MARK: Properties - Delegate
     /// Delegate.
-    open weak var infiniteScrollingDelegate: (any InfiniteScrollingUITableViewDelegate & UITableViewDataSource & UIScrollViewDelegate)?
+    open weak var infiniteScrollingDelegate: (any InfiniteScrollingUITableViewDelegate)?
     
-    // MARK: Properties - Flags
-    private var isFirstLayoutSubviews: Bool = false
+    // MARK: Properties - Subviews
+    private lazy var activityIndicatorView: InfiniteScrollingUITableViewActivityIndicatorView = .init(
+        appearance: appearance,
+        tableView: self
+    )
     
     // MARK: Initializers
     /// Initializes `InfiniteScrollingUITableView`.
@@ -148,7 +153,7 @@ open class InfiniteScrollingUITableView: UITableView {
     
     /// Detects instance in which loaded cells do not fill up UITableViews's content. So, pagination is called.
     open func detectPaginationFromTableViewCellForRow() {
-        guard !contentHeightExceedsTableViewHeight else { return }
+        guard !contentHeightExceedsHeight else { return }
         
         paginate()
     }
@@ -161,19 +166,17 @@ open class InfiniteScrollingUITableView: UITableView {
         infiniteScrollingDelegate?.tableViewDidScrollToBottom(sender: self)
     }
     
-    // MARK: Activity Indicator
     private func setActivityIndicatorState() {
         switch paginationState {
         case .loading:
             guard frame.size.width != 0 else { return }
             
-            tableFooterView = InfiniteScrollingUITableViewActivityIndicatorView(
-                appearance: appearance,
-                tableView: self
-            )
-            
+            tableFooterView = activityIndicatorView
+            activityIndicatorView.startAnimating()
+
         case .canPaginate, .cannotPaginate:
             tableFooterView = nil
+            activityIndicatorView.stopAnimating()
         }
     }
     
@@ -251,7 +254,7 @@ open class InfiniteScrollingUITableView: UITableView {
 
         // MARK: Infinite Scrolling Table View Delegate
         func tableViewDidScrollToBottom(sender infiniteScrollingUITableView: InfiniteScrollingUITableView) {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) { [weak self] in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) { [weak self] in
                 guard let self else { return }
 
                 data.append(contentsOf: page)
