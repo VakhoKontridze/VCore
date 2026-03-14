@@ -107,7 +107,6 @@ nonisolated struct UIImageScaledTests {
         )
         #expect(scaledImageW.size == CGSize(width: 50, height: 100))
         
-
         let image2: UIImage = try #require(
             UIImage(
                 size: CGSize(width: 200, height: 100),

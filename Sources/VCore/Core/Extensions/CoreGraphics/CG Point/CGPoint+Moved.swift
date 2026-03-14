@@ -61,7 +61,6 @@ nonisolated extension CGPoint {
     }
 }
 
-
 nonisolated extension CGPoint {
     /// Returns `CGPoint` moved up with a given constant.
     ///

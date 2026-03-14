@@ -53,7 +53,6 @@ nonisolated struct MemberwiseInitializableMacro: MemberMacro {
             return []
         }
         
-        
         let excludedParametersStrings: [String]
         do {
             excludedParametersStrings = try excludedParametersParameter(

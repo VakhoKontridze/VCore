@@ -46,7 +46,6 @@ nonisolated extension BinaryInteger {
     }
 }
 
-
 nonisolated extension BinaryInteger {
     /// Clamps value to range.
     ///
