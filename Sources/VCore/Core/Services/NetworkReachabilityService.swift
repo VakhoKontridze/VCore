@@ -1,0 +1,83 @@
+//
+//  NetworkReachabilityService.swift
+//  VCore
+//
+//  Created by Vakhtang Kontridze on 8/24/21.
+//
+
+import Foundation
+import Network
+import OSLog
+
+/// Object that manages network reachability status.
+///
+///     @Bindable private var networkReachabilityService: NetworkReachabilityService = .shared
+///
+///     var body: some View {
+///         Text(networkReachabilityService.isConnectedToNetwork != true ? "Not Connected" : "Connected")
+///     }
+///
+@Observable
+public nonisolated final class NetworkReachabilityService: @unchecked Sendable {
+    // MARK: Properties - Singleton
+    /// Shared instance of `NetworkReachabilityService`.
+    public static let shared: NetworkReachabilityService = .init()
+    
+    // MARK: Properties - Status
+    private var _status: NWPath.Status?
+    
+    /// Network connection status.
+    private(set) public var status: NWPath.Status? {
+        get { queue.sync { _status } }
+        set { queue.sync(flags: .barrier) { _status = newValue } }
+    }
+    
+    /// Indicates if device is connected to a network.
+    ///
+    /// On app launch, `nil` is returned.
+    public var isConnectedToNetwork: Bool? { status?.isConnected }
+    
+    // MARK: Properties - Status Monitor
+    @ObservationIgnored private let statusMonitor: NWPathMonitor = .init()
+    
+    // MARK: Properties - Queue
+    @ObservationIgnored private let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.network-reachability-service",
+        attributes: .concurrent
+    )
+    
+    @ObservationIgnored private let statusQueue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.network-reachability-service.status-queue"
+    )
+
+    // MARK: Initializers
+    private init() {
+        // `lazy` doesn't work on `nonsolated` properties, so this must be set here
+        statusMonitor.pathUpdateHandler = { newValue in
+            Task { @MainActor in
+                self.status = newValue.status
+            }
+        }
+        
+        statusMonitor.start(queue: statusQueue)
+    }
+    
+    // MARK: Configuration
+    /// Configures `NetworkReachabilityService`.
+    public func configure() {
+        _ = Self.shared
+    }
+}
+
+nonisolated extension NWPath.Status {
+    fileprivate var isConnected: Bool {
+        switch self {
+        case .satisfied: return true
+        case .unsatisfied: return false
+        case .requiresConnection: return false
+        @unknown default: 
+            Logger.networkReachabilityService.fault("Unhandled 'NWPath.Status' '\(String(describing: self))' in 'NWPath.Status.isConnected'")
+            return false
+        }
+    }
+}

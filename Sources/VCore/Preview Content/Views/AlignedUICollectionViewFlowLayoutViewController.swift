@@ -16,7 +16,7 @@ final class AlignedUICollectionViewFlowLayoutViewController:
     UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
     UICollectionViewDataSource
 {
-    // MARK: Properties - Data
+    // MARK: Properties - Model
     private var data: [UIColor] = [[UIColor]](repeating: [.red, .green, .blue], count: 10).flatMap { $0 }.shuffled()
     
     // MARK: Properties - Subviews

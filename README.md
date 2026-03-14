@@ -17,19 +17,21 @@ VCore is a Swift collection containing objects, functions, and extensions that I
 
 Package files are grouped as:
 
-- ***Views***. `View`s, `UIView`s, and `UIViewController`s. For instance, `SwiftUIBaseButton`.
-
-- ***Models***. Models. For instance, `GenericState`s and `GenericStateModel`s.
-
-- ***Services and Managers***. Services, managers, and controllers. For instance, `MultiPartFormDataBuilder`.
-
-- ***Extensions***. Extensions.
-
-- ***Global Functions***. Global functions. For instance, `FIXME(_:)` and `TODO(_:)`.
-
-- ***Macros***. Macros. For instance, `CodingKeysGeneration`.
-
 - ***API***. Objects used for interfacing from you app/package with `VCore`. For instance, `VCoreLocalizationManager`.
+
+- ***Core***
+
+    - ***Extensions***. Extensions.
+
+    - ***Global Functions***. Global functions. For instance, `FIXME(_:)` and `TODO(_:)`.
+
+    - ***Macros***. Macros. For instance, `CodingKeysGeneration`.
+
+    - ***Services***. Services, managers, and controllers. For instance, `MultiPartFormDataBuilder`.
+
+    - ***Utilities***. Utilities. For instance, `GenericState`s and `GenericStateModel`s.
+
+- ***Presentation***. `View`s, `UIView`s, and `UIViewController`s. For instance, `SwiftUIBaseButton`.
 
 Package incudes folder `Extra`, which contains:
 
@@ -43,7 +45,7 @@ Project includes folder `Documentation`, which contains:
 
 #### Modal Presenter
 
-Manager that allows for creating and presentation of custom modals.
+API that allows for creating and presentation of custom modals.
 
 For additional info, refer to "Modal Presenter" documentation.
 
@@ -107,7 +109,7 @@ KeychainService.default.deleteData(key: "key")
 @KeychainStorage("AccessToken") var accessToken: String?
 ```
 
-#### Various Services and Managers
+#### Various Utilities
 
 `DigitalTimeFormatter` with various configurations:
 
@@ -136,26 +138,6 @@ var body: some View {
     }
     .padding()
 }
-```
-
-#### Various Declarations
-
-`KeyPathInitializableEnumeration` that allows for initialization of an `enum` with a `KeyPath`:
-
-```swift
-enum Gender: KeyPathInitializableEnumeration {
-    case male
-    case female
-
-    var id: Int {
-        switch self {
-        case .male: 1
-        case .female: 2
-        }
-    }
-}
-
-let gender: Gender? = .init(key: \.id, value: 2)
 ```
 
 #### Various Extensions

@@ -15,7 +15,7 @@
 
 #### Description
 
-Modal Presenter is a manager that allows for creation and presentation of custom modals.
+Modal Presenter is an API that allows for creation and presentation of custom modals.
 
 Modal Presenter can be used to create custom modals that behave similar to native modals, such as `View.sheet(...)`, `View.fullScreenCover(...)`, `View.alert(...)`, etc.
 
@@ -151,13 +151,16 @@ Modal can be linked using `modalPresenterLink(...)` API [2]. It takes `link` as 
 
 ```swift
 struct Modal<Content>: View where Content: View {
+    // MARK: Properties - Presentation API
     @Environment(ModalPresenterContext.self) private var modalPresenterContext: ModalPresenterContext // [1]
 
     @Binding private var isPresented: Bool [2]
     @State private var isPresentedInternally: Bool = false [3]
 
+    // MARK: Properties - Content
     private let content: () -> Content
 
+    // MARK: Initializers
     init(
         isPresented: Binding<Bool>,
         @ViewBuilder content: @escaping () -> Content
@@ -166,6 +169,7 @@ struct Modal<Content>: View where Content: View {
         self.content = content
     }
 
+    // MARK: Body
     var body: some View {
         ZStack {
             Color(uiColor: UIColor.systemBackground)
@@ -189,10 +193,12 @@ struct Modal<Content>: View where Content: View {
         .onReceive(modalPresenterContext.dimmingViewTapActionPublisher, perform: onTapDimmingView) // [10]
     }
 
+    // MARK: Actions
     private func onTapDimmingView() {
         isPresented = false // [11]
     }
 
+    // MARK: Lifecycle Animations
     private func onPresent() {
         withAnimation(
             .easeInOut(duration: 0.3),
@@ -218,7 +224,7 @@ Modal frame and lifecycle are managed by the root, and several values are placed
 
 Interface orientation can be retrieved via the environment [1].
 
-Model size will be constrained to the root. Size can be retrieved from the environment [1].
+Modal size will be constrained to the root. Size can be retrieved from the environment [1].
 
 Root disables all container safe area insets for better frame handling, so safe area insets must be inserted manually, if needed. Values must be retrieved via the environment [1], as they cannot be read using a `GeometryReader`.
 

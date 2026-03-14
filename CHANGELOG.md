@@ -9,7 +9,7 @@ General
 - Previously deprecated symbols are removed
 - UI Models are renamed to Appearances
 
-Views
+Presentation
 
 - `ContentWrappingSheetContainerView` is added, that can be used to to wrap content within sheet
 - `CoordinatingNavigationStackOO` is removed, as it's obsoleted by `CoordinatingNavigationStack`
@@ -19,31 +19,7 @@ Views
 - `NSLayoutConstraint` helpers have been removed
 - `ViewResettingContainer` is removed
 
-Models
-
-- `AsyncStreamingObservationContainer` is added, that triggers an `AsyncStream` when a value changes
-- `SensoryFeedbackTrigger` is added, that allows for the trigger of sensory feedback without specifying underlying triggering types
-- `PlatformInterfaceOrientation` is added
-- `withBasicAnimation(_:body:completion:)` method is removed, as it's obsoleted by `withAnimation(_:completionCriteria:_:completion:)`
-- `ObservableContainerOO` is removed, as it's obsoleted by `ObservableContainer`
-- `DeviceOrientationObserverOO` is removed, as it's obsoleted by `DeviceOrientationObserver`
-- `VCoreError` is replaced with `BaseErrorProtocol`
-- `StringRepresentable` is removed
-- `EdgeInsets_LeadingTrailingTopBottom` is removed in favor of `EdgeInsets`, and members are transferred as an extension
-- `EdgeInsets_LeadingTrailing` is renamed to `EdgeInsetsHorizontal`
-- `EdgeInsets_HorizontalVertical` is renamed to `EdgeInsetsAxis`
-- `EdgeInsets_TopBottom` is renamed to `EdgeInsetsVertical`
-- `LayoutDirectionHorizontal` is removed in favor of `LayoutDirection`, and members are transferred as an extension
-
-Services and Managers
-
-- Fixed issue with `KeyboardObserver` failing to calculate offset when there are multiple `UIWindow`s
-- `KeyboardObserver` is now `Observable`
-- `KeyboardObserverUIModel` is removed, and properties are moved within the `KeyboardObserver`
-- `LocalizationManager` is now `Observable`
-- `NetworkReachabilityService` is now `Observable`
-
-Services and Managers - Presentation Host
+Presentation - Presentation Host
 
 - Presentation Host is renamed to Modal Presenter
 - Modal Presenter will now pass `PlatformInterfaceOrientation` via the environment
@@ -51,7 +27,7 @@ Services and Managers - Presentation Host
 - `View.presentationHostLayer(...)` is renamed to `View.modalPresenterRoot(...)`, and it takes `ModalPresenterRoot` as parameter
 - `View.presentationHost(...)` is renamed to `View.modalPresenterLink(...)`, and it takes `ModalPresenterLink` as parameter
 
-Extensions
+Core - Extensions
 
 - `View.getPlatformInterfaceOrientation(_:)` method is added that retrieves `PlatformInterfaceOrientation` from `View`
 - `View.applyModifier(_:)` is renamed to `View.apply(_:)`
@@ -73,9 +49,33 @@ Extensions
 - `Collection.containsAnyItem(fromCollection:)` method is removed
 - `KeyPathInitializableEnumeration` is replaced with an extension
 
-Global Functions
+Core - Global Functions
 
 - Global exclusive or `^^` is removed
+
+Core - Services
+
+- `LocalizationManager` is now `Observable`
+- `NetworkReachabilityService` is now `Observable`
+
+Core - Utilities
+
+- Fixed issue with `KeyboardObserver` failing to calculate offset when there are multiple `UIWindow`s
+- `KeyboardObserver` is now `Observable`
+- `KeyboardObserverUIModel` is removed, and properties are moved within the `KeyboardObserver`
+- `AsyncStreamingObservationContainer` is added, that triggers an `AsyncStream` when a value changes
+- `SensoryFeedbackTrigger` is added, that allows for the trigger of sensory feedback without specifying underlying triggering types
+- `PlatformInterfaceOrientation` is added
+- `withBasicAnimation(_:body:completion:)` method is removed, as it's obsoleted by `withAnimation(_:completionCriteria:_:completion:)`
+- `ObservableContainerOO` is removed, as it's obsoleted by `ObservableContainer`
+- `DeviceOrientationObserverOO` is removed, as it's obsoleted by `DeviceOrientationObserver`
+- `VCoreError` is replaced with `BaseErrorProtocol`
+- `StringRepresentable` is removed
+- `EdgeInsets_LeadingTrailingTopBottom` is removed in favor of `EdgeInsets`, and members are transferred as an extension
+- `EdgeInsets_LeadingTrailing` is renamed to `EdgeInsetsHorizontal`
+- `EdgeInsets_HorizontalVertical` is renamed to `EdgeInsetsAxis`
+- `EdgeInsets_TopBottom` is renamed to `EdgeInsetsVertical`
+- `LayoutDirectionHorizontal` is removed in favor of `LayoutDirection`, and members are transferred as an extension
 
 ### [7.5.2(111)](https://github.com/VakhoKontridze/VCore/releases/tag/7.5.2) — 2025 05 25
 

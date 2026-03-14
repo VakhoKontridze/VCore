@@ -31,7 +31,8 @@ let package: Package = .init(
         .target(
             name: "VCoreShared",
             swiftSettings: [
-                .defaultIsolation(MainActor.self)
+                .defaultIsolation(MainActor.self),
+                .enableExperimentalFeature("NonisolatedNonsendingByDefault")
             ]
         ),
 
@@ -43,7 +44,8 @@ let package: Package = .init(
                 "VCoreShared"
             ],
             swiftSettings: [
-                .defaultIsolation(MainActor.self)
+                .defaultIsolation(MainActor.self),
+                .enableExperimentalFeature("NonisolatedNonsendingByDefault")
             ]
         ),
 
@@ -58,7 +60,7 @@ let package: Package = .init(
                 "../../Extra"
             ],
             resources: [
-                .process("Resources")
+                .process("PrivacyInfo.xcprivacy")
             ],
             swiftSettings: [
                 .defaultIsolation(MainActor.self)
@@ -73,7 +75,8 @@ let package: Package = .init(
                 "VCoreMacrosImplementation"
             ],
             swiftSettings: [
-                .defaultIsolation(MainActor.self)
+                .defaultIsolation(MainActor.self),
+                .enableExperimentalFeature("NonisolatedNonsendingByDefault")
             ]
         )
     ]

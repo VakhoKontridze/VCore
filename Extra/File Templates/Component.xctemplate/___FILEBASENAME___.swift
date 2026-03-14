@@ -4,10 +4,10 @@ import SwiftUI
 
 struct ___VARIABLE_productName___: View {
     // MARK: Properties - Appearance
-    // ..
+    private let appearance: ___VARIABLE_productName___Appearance
 
     // MARK: Properties - Parameters
-    private let parameters: ___VARIABLE_productName___Parameters
+    // ...
 
     // MARK: Properties - Dependencies
     // ...
@@ -17,22 +17,22 @@ struct ___VARIABLE_productName___: View {
 
     // MARK: Initializers
     init(
-        parameters: ___VARIABLE_productName___Parameters
+        appearance: ___VARIABLE_productName___Appearance = .init()
     ) {
-        self.parameters = parameters
+        self.appearance = appearance
     }
     
     // MARK: Body
     var body: some View {
         EmptyView()
-            .background(Color(uiColor: UIColor.systemBackground))
+            .background(appearance.backgroundColor)
     }
 }
 
 #if DEBUG
 
 #Preview {
-    ___VARIABLE_productName___(parameters: .mock)
+    ___VARIABLE_productName___()
 }
 
 #endif

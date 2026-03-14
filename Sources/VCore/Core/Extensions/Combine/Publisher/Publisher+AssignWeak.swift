@@ -1,0 +1,43 @@
+//
+//  Publisher+AssignWeak.swift
+//  VCore
+//
+//  Created by Vakhtang Kontridze on 11.11.23.
+//
+
+import Foundation
+import Combine
+
+nonisolated extension Publisher where Failure == Never {
+    /// Assigns each element from `Publisher` to a property of an object with a weak retain cycle.
+    ///
+    ///     final class Model {
+    ///         var value: Int = 0
+    ///
+    ///         private let publisher: PassthroughSubject<Int, Never> = .init()
+    ///         private var cancellables: Set<AnyCancellable> = []
+    ///
+    ///         init() {
+    ///             addSubscriptions()
+    ///         }
+    ///
+    ///         private func addSubscriptions() {
+    ///             publisher
+    ///                 .assignWeak(to: \.value, on: self)
+    ///                 .store(in: &cancellables)
+    ///         }
+    ///     }
+    ///
+    public func assignWeak<Root>(
+        to keyPath: ReferenceWritableKeyPath<Root, Output>,
+        on object: Root
+    ) -> AnyCancellable 
+        where Root: AnyObject
+    {
+        sink { [weak object] value in
+            guard let object else { return }
+
+            object[keyPath: keyPath] = value
+        }
+    }
+}
