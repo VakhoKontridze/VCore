@@ -21,7 +21,7 @@ nonisolated extension Binding {
         default defaultValue: T
     ) -> Binding<T>
         where
-            Value == Optional<T>,
+            Value == T?,
             T: Sendable
     {
         .init(

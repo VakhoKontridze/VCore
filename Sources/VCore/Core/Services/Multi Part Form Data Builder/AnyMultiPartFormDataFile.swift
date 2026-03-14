@@ -49,6 +49,6 @@ nonisolated extension MultipartFormDataFile: AnyMultipartFormDataFile {}
 
 nonisolated extension Optional: AnyMultipartFormDataFile where Wrapped == AnyMultipartFormDataFile {}
 
-nonisolated extension Array: AnyMultipartFormDataFile where Element == Optional<AnyMultipartFormDataFile> {}
+nonisolated extension Array: AnyMultipartFormDataFile where Element == AnyMultipartFormDataFile? {}
 
-nonisolated extension Dictionary: AnyMultipartFormDataFile where Key == String, Value == Optional<AnyMultipartFormDataFile> {}
+nonisolated extension Dictionary: AnyMultipartFormDataFile where Key == String, Value == AnyMultipartFormDataFile? {}

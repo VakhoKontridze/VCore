@@ -18,7 +18,7 @@ nonisolated extension Collection {
     ///         }
     ///     }
     ///
-    public func enumeratedArray() -> Array<(offset: Int, element: Element)> {
+    public func enumeratedArray() -> [(offset: Int, element: Element)] {
         .init(enumerated())
     }
 }
