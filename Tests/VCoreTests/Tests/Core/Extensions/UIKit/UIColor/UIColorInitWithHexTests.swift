@@ -14,7 +14,7 @@ import Testing
 @Suite
 nonisolated final class UIColorInitWithHexTests {
     @Test
-    func testString() throws {
+    func testString() {
         #expect(
             UIColor(hex: "#007AFF") ==
             UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)
@@ -32,7 +32,7 @@ nonisolated final class UIColorInitWithHexTests {
     }
 
     @Test
-    func testUInt() throws {
+    func testUInt() {
         #expect(
             UIColor(hex: 0x007AFF) ==
             UIColor(red: 0/255, green: 122/255, blue: 255/255, alpha: 1)

@@ -12,7 +12,7 @@ import XCTest
 
 nonisolated final class PublisherAssignWeakTests: XCTestCase {
     // MARK: Tests
-    func test() async {
+    func test() {
         let model: Model = .init()
         assertInstanceIsDeallocated(model)
     }
