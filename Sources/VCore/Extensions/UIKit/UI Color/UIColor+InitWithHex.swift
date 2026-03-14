@@ -57,13 +57,13 @@ extension UIColor {
     ///
     /// `hex` parameter must have `6` digits.
     ///
-    ///     let color: UIColor? = .init(hex: 0x007AFF)
+    ///     let color: UIColor = .init(hex: 0x007AFF)
     ///
-    convenience public init?(
+    convenience public init(
         hex uInt: UInt,
         alpha: CGFloat = 1
     ) {
-        guard let values = uInt._hexColorRGBValues() else { return nil }
+        let values = uInt._hexColorRGBValues()
 
         self.init(
             red: values.red,
@@ -77,13 +77,13 @@ extension UIColor {
     ///
     /// `displayP3Hex` parameter must have `6` digits.
     ///
-    ///     let color: UIColor? = .init(displayP3Hex: 0x007AFF)
+    ///     let color: UIColor = .init(displayP3Hex: 0x007AFF)
     ///
-    convenience public init?(
+    convenience public init(
         displayP3Hex uInt: UInt,
         alpha: CGFloat = 1
     ) {
-        guard let values = uInt._hexColorRGBValues() else { return nil }
+        let values = uInt._hexColorRGBValues()
 
         self.init(
             displayP3Red: values.red,
@@ -104,9 +104,7 @@ import SwiftUI
             Color(uiColor: uiColor)
         }
         
-        if let uiColor: UIColor = .init(hex: 0x007AFF) {
-            Color(uiColor: uiColor)
-        }
+        Color(uiColor: UIColor(hex: 0x007AFF))
     }
 }
 

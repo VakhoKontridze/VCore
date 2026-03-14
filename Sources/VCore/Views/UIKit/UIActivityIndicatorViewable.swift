@@ -11,14 +11,23 @@ import UIKit
 
 /// Protocol for presenting a `UIActivityIndicatorView` and controlling user interaction.
 ///
-///     lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+///     lazy var activityIndicator: UIActivityIndicatorView = {
+///         let activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+///         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+///         return activityIndicator
+///     }()
 ///
 ///     override func viewDidLoad() {
 ///         super.viewDidLoad()
 ///
-///         ...
-///
 ///         view.addSubview(activityIndicator)
+///
+///         NSLayoutConstraint.activate([
+///             activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+///             activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+///         ])
+///
+///         startActivityIndicatorAnimation()
 ///     }
 ///
 ///     func fetch() {
@@ -95,7 +104,6 @@ extension UIView {
         
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .medium
-        activityIndicator.center = center
         scalingFactor.map { activityIndicator.transform = CGAffineTransform(scaleX: $0, y: $0) }
         color.map { activityIndicator.color = $0 }
         
@@ -118,13 +126,23 @@ extension UIViewController {
 #Preview {
     final class ViewController: UIViewController, UIActivityIndicatorViewable {
         // MARK: Properties - Subviews
-        private(set) lazy var activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+        lazy var activityIndicator: UIActivityIndicatorView = {
+            let activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+            activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+            return activityIndicator
+        }()
 
         // MARK: Lifecycle
         override func viewDidLoad() {
             super.viewDidLoad()
 
             view.addSubview(activityIndicator)
+            
+            NSLayoutConstraint.activate([
+                activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            ])
+            
             startActivityIndicatorAnimation()
         }
     }

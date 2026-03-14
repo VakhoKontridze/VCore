@@ -18,7 +18,7 @@ extension String {
                     return string
 
                 case let error as Error:
-                    return (error as NSError).localizedDescription
+                    return error.localizedDescription
 
                 default:
                     return String(describing: item)
@@ -26,11 +26,10 @@ extension String {
             }
             .compactMap { $0.nonEmptyOrWhiteSpace }
 
-        var result: String = messages.joined(separator: ". ")
-        if messages.count > 1 {
-            if result.last != "." { result.append(".") }
-            result = result.replacingOccurrences(of: ".. ", with: ". ")
-        }
+        var result: String = messages
+            .map { $0.last == "." ? String($0.dropLast()) : $0 }
+            .joined(separator: ". ")
+        if !result.isEmpty { result.append(".") }
 
         return result
     }

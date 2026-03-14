@@ -31,11 +31,7 @@ struct ColorMacro_InitWithHexUInt: ExpressionMacro {
         )
         
         // RGB values
-        guard
-            let rgbValues = hex._hexColorRGBValues()
-        else {
-            throw RawStringError("Invalid 'hex' parameter")
-        }
+        let rgbValues = hex._hexColorRGBValues()
 
         // Macro expansion result
         return

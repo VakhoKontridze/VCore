@@ -35,9 +35,7 @@ extension NSColor {
         var blue: CGFloat = 0
         var alpha: CGFloat = 0
         
-        if !color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-            Logger.misc.error("Failed to get RGBA values from 'NSColor' '\(self.debugDescription)'")
-        }
+        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
 
         return (
             red: red,

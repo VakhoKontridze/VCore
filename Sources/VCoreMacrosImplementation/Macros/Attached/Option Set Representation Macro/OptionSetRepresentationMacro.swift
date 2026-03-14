@@ -147,10 +147,7 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
                 .inheritanceClause?
                 .inheritedTypes,
             inheritedTypes.contains(where: { inheritedType in
-                inheritedType
-                    .trimmedDescription
-                    .replacingOccurrences(of: ",", with: "")
-                == "OptionSet"
+                inheritedType.trimmedDescription == "OptionSet"
             })
         {
             return []
@@ -219,10 +216,10 @@ struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
         // Raw type from `Option` `enum`
         guard
-            let geneticArgument: GenericArgumentClauseSyntax = attribute
+            let genericArgument: GenericArgumentClauseSyntax = attribute
                 .attributeName.as(IdentifierTypeSyntax.self)?
                 .genericArgumentClause,
-            let rawType: GenericArgumentSyntax.Argument = geneticArgument.arguments.first?.argument // Only one raw type
+            let rawType: GenericArgumentSyntax.Argument = genericArgument.arguments.first?.argument // Only one raw type
         else {
             let error: RawStringError = .init("Options 'enum' doesn't have a raw type")
             if diagnose { context.addDiagnostics(from: error, node: optionsEnumDeclaration) }

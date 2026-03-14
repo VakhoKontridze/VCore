@@ -43,7 +43,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
             return []
         }
         
-        let parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue]
+        let parameterDefaultValuesStrings: [String: MemberwiseInitializableParameterDefaultValue]
         do {
             parameterDefaultValuesStrings = try parameterDefaultValuesParameter(
                 attribute: node,
@@ -209,7 +209,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
     private static func parameterDefaultValuesParameter(
         attribute: AttributeSyntax,
         context: some MacroExpansionContext
-    ) throws -> [String: MemberwiselnitializableParameterDefaultValue] {
+    ) throws -> [String: MemberwiseInitializableParameterDefaultValue] {
         guard
             let parameter: LabeledExprSyntax = attribute
                 .arguments?
@@ -229,7 +229,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         }
 
         guard
-            let value: [String: MemberwiselnitializableParameterDefaultValue] = try dictionaryExpression
+            let value: [String: MemberwiseInitializableParameterDefaultValue] = try dictionaryExpression
                 .content.as(DictionaryElementListSyntax.self)?
                 .reduce(into: [:], { (result, element) in
                     guard
@@ -245,7 +245,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
                         throw error
                     }
 
-                    let value: MemberwiselnitializableParameterDefaultValue = try {
+                    let value: MemberwiseInitializableParameterDefaultValue = try {
                         if
                             let caseName: String = element
                                 .value.as(FunctionCallExprSyntax.self)?
@@ -369,7 +369,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
     // MARK: Data
     private static func parameters(
         externalParameterNamesStrings: [String: String],
-        parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue],
+        parameterDefaultValuesStrings: [String: MemberwiseInitializableParameterDefaultValue],
         excludedParametersStrings: [String],
         attribute: AttributeSyntax,
         declaration: some DeclGroupSyntax,
@@ -430,7 +430,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
         
         // Removes default values, if wildcard is used
         if
-            let wildCardValue: MemberwiselnitializableParameterDefaultValue = parameterDefaultValuesStrings["*"]
+            let wildCardValue: MemberwiseInitializableParameterDefaultValue = parameterDefaultValuesStrings["*"]
         {
             switch wildCardValue {
             case .value(let string):
@@ -451,7 +451,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
     private static func parameter(
         externalParameterNamesStrings: [String: String],
-        parameterDefaultValuesStrings: [String: MemberwiselnitializableParameterDefaultValue],
+        parameterDefaultValuesStrings: [String: MemberwiseInitializableParameterDefaultValue],
         member: MemberBlockItemSyntax,
         context: some MacroExpansionContext
     ) throws -> ParameterData? {
@@ -542,7 +542,7 @@ struct MemberwiseInitializableMacro: MemberMacro {
 
         // Parameter default value
         let parameterDefaultValue: String? = {
-            if let specifiedDefaultValue: MemberwiselnitializableParameterDefaultValue = parameterDefaultValuesStrings[propertyName] {
+            if let specifiedDefaultValue: MemberwiseInitializableParameterDefaultValue = parameterDefaultValuesStrings[propertyName] {
                 switch specifiedDefaultValue {
                 case .value(let string): return string
                 case .omit: return nil

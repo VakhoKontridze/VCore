@@ -314,6 +314,9 @@ final class OptionSetRepresentationMacroTests: XCTestCase {
                             .female
                         ]
                     }
+                    
+                    extension Gender: OptionSet {
+                    }
                     """,
                 macros: macros
             )

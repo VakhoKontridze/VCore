@@ -37,14 +37,14 @@ extension Color {
     ///
     /// `hex` parameter must have `6` digits.
     ///
-    ///     let color: Color? = .init(hex: 0x007AFF)
+    ///     let color: Color = .init(hex: 0x007AFF)
     ///
-    public init?(
+    public init(
         _ colorSpace: RGBColorSpace = .sRGB,
         hex uInt: UInt,
         opacity: CGFloat = 1
     ) {
-        guard let values = uInt._hexColorRGBValues() else { return nil }
+        let values = uInt._hexColorRGBValues()
 
         self.init(
             colorSpace,

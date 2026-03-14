@@ -16,11 +16,11 @@ extension String {
 
         let int: UInt64 = string.scanHexColorStringToUInt64()
 
-        let mask: Int = 0x00_00FF
+        let mask: UInt64 = 0x00_00FF
 
-        let red: CGFloat = CGFloat(Int(int >> 16) & mask) / 255
-        let green: CGFloat = CGFloat(Int(int >> 8) & mask) / 255
-        let blue: CGFloat = CGFloat(Int(int) & mask) / 255
+        let red: CGFloat = CGFloat((int >> 16) & mask) / 255
+        let green: CGFloat = CGFloat((int >> 8) & mask) / 255
+        let blue: CGFloat = CGFloat(int & mask) / 255
 
         return (red, green, blue)
     }

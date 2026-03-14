@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum MemberwiselnitializableParameterDefaultValue {
+enum MemberwiseInitializableParameterDefaultValue {
     case value(String)
     case omit
 }
