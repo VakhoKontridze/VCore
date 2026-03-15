@@ -180,7 +180,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
                 collectionView: collectionView,
                 flowDelegate: flowDelegate
             ),
-            sameRowItemAttributes.count > 0
+            !sameRowItemAttributes.isEmpty
         else {
             return minimumInteritemSpacing
         }
