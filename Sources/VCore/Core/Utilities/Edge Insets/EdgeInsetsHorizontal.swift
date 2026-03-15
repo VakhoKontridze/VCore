@@ -56,7 +56,7 @@ nonisolated public struct EdgeInsetsHorizontal: Equatable, Hashable, Sendable {
     /// Insets `EdgeInsetsHorizontal` by a given value.
     public func insetBy(
         inset: CGFloat
-    ) -> EdgeInsetsHorizontal {
+    ) -> Self {
         .init(
             leading: leading + inset,
             trailing: trailing + inset
@@ -67,7 +67,7 @@ nonisolated public struct EdgeInsetsHorizontal: Equatable, Hashable, Sendable {
     public func insetBy(
         leading leadingInset: CGFloat,
         trailing trailingInset: CGFloat
-    ) -> EdgeInsetsHorizontal {
+    ) -> Self {
         .init(
             leading: leading + leadingInset,
             trailing: trailing + trailingInset
@@ -77,7 +77,7 @@ nonisolated public struct EdgeInsetsHorizontal: Equatable, Hashable, Sendable {
     /// Insets `EdgeInsetsHorizontal` by a given leading value.
     public func insetBy(
         leading leadingInset: CGFloat
-    ) -> EdgeInsetsHorizontal {
+    ) -> Self {
         .init(
             leading: leading + leadingInset,
             trailing: trailing
@@ -87,7 +87,7 @@ nonisolated public struct EdgeInsetsHorizontal: Equatable, Hashable, Sendable {
     /// Insets `EdgeInsetsHorizontal` by a given trailing value.
     public func insetBy(
         trailing trailingInset: CGFloat
-    ) -> EdgeInsetsHorizontal {
+    ) -> Self {
         .init(
             leading: leading,
             trailing: trailing + trailingInset

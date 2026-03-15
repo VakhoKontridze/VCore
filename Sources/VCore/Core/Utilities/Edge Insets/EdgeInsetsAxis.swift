@@ -96,7 +96,7 @@ nonisolated public struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
     /// Insets `EdgeInsetsAxis` by a given value.
     public func insetBy(
         inset: CGFloat
-    ) -> EdgeInsetsAxis {
+    ) -> Self {
         .init(
             horizontal: horizontal + inset,
             vertical: vertical + inset
@@ -107,7 +107,7 @@ nonisolated public struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
     public func insetBy(
         horizontal horizontalInset: CGFloat,
         vertical verticalInset: CGFloat
-    ) -> EdgeInsetsAxis {
+    ) -> Self {
         .init(
             horizontal: horizontal + horizontalInset,
             vertical: vertical + verticalInset
@@ -117,7 +117,7 @@ nonisolated public struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
     /// Insets `EdgeInsetsAxis` by a given horizontal value.
     public func insetBy(
         horizontal horizontalInset: CGFloat
-    ) -> EdgeInsetsAxis {
+    ) -> Self {
         .init(
             horizontal: horizontal + horizontalInset,
             vertical: vertical
@@ -127,7 +127,7 @@ nonisolated public struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
     /// Insets `EdgeInsetsAxis` by a given vertical value.
     public func insetBy(
         vertical verticalInset: CGFloat
-    ) -> EdgeInsetsAxis {
+    ) -> Self {
         .init(
             horizontal: horizontal,
             vertical: vertical + verticalInset
@@ -150,7 +150,7 @@ nonisolated public struct EdgeInsetsAxis: Equatable, Hashable, Sendable {
     }
     
     /// Subtracts two `EdgeInsetsAxis` by subtracting up individual edge insets.
-    public static func - (lhs: Self, rhs: Self) -> EdgeInsetsAxis {
+    public static func - (lhs: Self, rhs: Self) -> Self {
         .init(
             horizontal: lhs.horizontal - rhs.horizontal,
             vertical: lhs.vertical - rhs.vertical

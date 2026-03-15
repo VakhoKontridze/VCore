@@ -56,7 +56,7 @@ nonisolated public struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
     /// Insets `EdgeInsetsVertical` by a given value.
     public func insetBy(
         inset: CGFloat
-    ) -> EdgeInsetsVertical {
+    ) -> Self {
         .init(
             top: top + inset,
             bottom: bottom + inset
@@ -67,7 +67,7 @@ nonisolated public struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
     public func insetBy(
         top topInset: CGFloat,
         bottom bottomInset: CGFloat
-    ) -> EdgeInsetsVertical {
+    ) -> Self {
         .init(
             top: top + topInset,
             bottom: bottom + bottomInset
@@ -77,7 +77,7 @@ nonisolated public struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
     /// Insets `EdgeInsetsVertical` by a given top value.
     public func insetBy(
         top topInset: CGFloat
-    ) -> EdgeInsetsVertical {
+    ) -> Self {
         .init(
             top: top + topInset,
             bottom: bottom
@@ -87,7 +87,7 @@ nonisolated public struct EdgeInsetsVertical: Equatable, Hashable, Sendable {
     /// Insets `EdgeInsetsVertical` by a given bottom value.
     public func insetBy(
         bottom bottomInset: CGFloat
-    ) -> EdgeInsetsVertical {
+    ) -> Self {
         .init(
             top: top,
             bottom: bottom + bottomInset
