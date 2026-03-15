@@ -159,7 +159,7 @@ open class ResponderChainUIToolbar: UIToolbar {
                 if appearance.hasNavigationButtons {
                     items.append(contentsOf: [
                         arrowUpButton,
-                        arrowDownButton,
+                        arrowDownButton
                     ])
                 }
 

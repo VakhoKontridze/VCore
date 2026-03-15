@@ -198,7 +198,7 @@ nonisolated struct AttributedStringInitWithAttributeContainersTests {
             tagNames: ["a"],
             result: [
                 (nil, "Lorem "),
-                (nil, "ipsum<a> dolor"),
+                (nil, "ipsum<a> dolor")
             ]
         )
     }
@@ -210,7 +210,7 @@ nonisolated struct AttributedStringInitWithAttributeContainersTests {
             tagNames: ["a"],
             result: [
                 (nil, "Lorem "),
-                (nil, "ipsum</> dolor"),
+                (nil, "ipsum</> dolor")
             ]
         )
     }
