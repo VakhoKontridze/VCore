@@ -32,8 +32,8 @@ let package: Package = .init(
             name: "VCoreShared",
             swiftSettings: [
                 .defaultIsolation(MainActor.self),
-                .enableExperimentalFeature("ApproachableConcurrency"),
-                .enableExperimentalFeature("NonisolatedNonsendingByDefault")
+                .enableUpcomingFeature("ApproachableConcurrency"),
+                .enableUpcomingFeature("NonIsolatedNonSendingByDefault")
             ]
         ),
 
@@ -46,8 +46,8 @@ let package: Package = .init(
             ],
             swiftSettings: [
                 .defaultIsolation(MainActor.self),
-                .enableExperimentalFeature("ApproachableConcurrency"),
-                .enableExperimentalFeature("NonisolatedNonsendingByDefault")
+                .enableUpcomingFeature("ApproachableConcurrency"),
+                .enableUpcomingFeature("NonIsolatedNonSendingByDefault")
             ]
         ),
 
@@ -78,8 +78,8 @@ let package: Package = .init(
             ],
             swiftSettings: [
                 .defaultIsolation(MainActor.self),
-                .enableExperimentalFeature("ApproachableConcurrency"),
-                .enableExperimentalFeature("NonisolatedNonsendingByDefault")
+                .enableUpcomingFeature("ApproachableConcurrency"),
+                .enableUpcomingFeature("NonIsolatedNonSendingByDefault")
             ]
         )
     ]
