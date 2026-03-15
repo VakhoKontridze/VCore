@@ -191,7 +191,7 @@ private struct Modal<Content>: View where Content: View {
     var body: some View {
         let backgroundColor: Color = {
 #if os(iOS)
-            Color(uiColor:UIColor .systemBackground)
+            Color(uiColor: UIColor .systemBackground)
 #elseif os(macOS)
             Color(nsColor: NSColor.windowBackgroundColor)
 #elseif os(tvOS)
