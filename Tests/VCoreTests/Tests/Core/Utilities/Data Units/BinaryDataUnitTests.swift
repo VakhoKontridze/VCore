@@ -15,11 +15,11 @@ nonisolated struct BinaryDataUnitTests {
     func testConversion() {
         #expect(
             BinaryDataUnit.convert(5, .GiB, to: .MiB) ==
-            5120
+            5_120
         )
         
         #expect(
-            BinaryDataUnit.convert(5120, .MiB, to: .GiB) ==
+            BinaryDataUnit.convert(5_120, .MiB, to: .GiB) ==
             5
         )
     }
@@ -29,14 +29,14 @@ nonisolated struct BinaryDataUnitTests {
         #expect(
             areEqual(
                 BinaryDataUnit.convert(5, .GiB, to: DecimalDataUnit.MB),
-                5368.70912,
+                5_368.70912,
                 tolerance: pow(10, -5)
             )
         )
         
         #expect(
             areEqual(
-                BinaryDataUnit.convert(5000, .MiB, to: DecimalDataUnit.GB),
+                BinaryDataUnit.convert(5_000, .MiB, to: DecimalDataUnit.GB),
                 5.24288,
                 tolerance: pow(10, -5)
             )

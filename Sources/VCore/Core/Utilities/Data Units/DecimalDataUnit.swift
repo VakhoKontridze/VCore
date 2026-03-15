@@ -42,7 +42,7 @@ nonisolated public enum DecimalDataUnit: Int, DataUnit, Equatable, Hashable, Ide
     case YB = 8
     
     // MARK: Data Unit
-    public static var base: Int { 1000 }
+    public static var base: Int { 1_000 }
     
     // MARK: Identifiable
     public var id: Int { rawValue }

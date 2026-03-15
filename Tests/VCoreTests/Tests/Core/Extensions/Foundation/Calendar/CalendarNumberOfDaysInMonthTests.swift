@@ -14,11 +14,11 @@ nonisolated struct CalendarNumberOfDaysInMonthTests {
     @Test(
         arguments: [
             (
-                year: 1970,
+                year: 1_970,
                 numberOfDaysInMonths: [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
             ),
             (
-                year: 1972,
+                year: 1_972,
                 numberOfDaysInMonths: [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
             )
         ]

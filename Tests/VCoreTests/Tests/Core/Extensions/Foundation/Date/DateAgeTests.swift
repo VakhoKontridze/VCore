@@ -23,7 +23,7 @@ nonisolated struct DateAgeTests {
     @Test
     func testValidDate() throws {
         let birthDate: Date = try #require(
-            Calendar.current.date(from: DateComponents(year: 1970, month: 1, day: 1))
+            Calendar.current.date(from: DateComponents(year: 1_970, month: 1, day: 1))
         )
 
         #expect(birthDate.age(inCalendar: .current) != nil)

@@ -19,12 +19,12 @@ nonisolated struct DigitalTimeFormatterTests {
         #expect(formatter.string(from: 1) == "0:01")
         #expect(formatter.string(from: 91) == "1:31")
         #expect(formatter.string(from: 536) == "8:56")
-        #expect(formatter.string(from: 2336) == "38:56")
-        #expect(formatter.string(from: 7248) == "2:00:48")
-        #expect(formatter.string(from: 51888) == "14:24:48")
-        #expect(formatter.string(from: 95048) == "1:02:24:08")
-        #expect(formatter.string(from: 905048) == "10:11:24:08")
-        #expect(formatter.string(from: 8553600) == "99:00:00:00")
+        #expect(formatter.string(from: 2_336) == "38:56")
+        #expect(formatter.string(from: 7_248) == "2:00:48")
+        #expect(formatter.string(from: 51_888) == "14:24:48")
+        #expect(formatter.string(from: 95_048) == "1:02:24:08")
+        #expect(formatter.string(from: 905_048) == "10:11:24:08")
+        #expect(formatter.string(from: 8_553_600) == "99:00:00:00")
     }
 
     @Test
@@ -32,7 +32,7 @@ nonisolated struct DigitalTimeFormatterTests {
         var formatter: DigitalTimeFormatter = .init()
         formatter.delimiter = " "
 
-        #expect(formatter.string(from: 8553600) == "99 00 00 00")
+        #expect(formatter.string(from: 8_553_600) == "99 00 00 00")
     }
 
     @Test
@@ -41,18 +41,18 @@ nonisolated struct DigitalTimeFormatterTests {
             var formatter: DigitalTimeFormatter = .init()
             formatter.hourComponentHasTwoDigits = false
             
-            #expect(formatter.string(from: 2335.6) == "38:56")
-            #expect(formatter.string(from: 7247.6) == "2:00:48")
-            #expect(formatter.string(from: 51887.6) == "14:24:48")
+            #expect(formatter.string(from: 2_335.6) == "38:56")
+            #expect(formatter.string(from: 7_247.6) == "2:00:48")
+            #expect(formatter.string(from: 51_887.6) == "14:24:48")
         }
         
         do {
             var formatter: DigitalTimeFormatter = .init()
             formatter.hourComponentHasTwoDigits = true
             
-            #expect(formatter.string(from: 2335.6) == "38:56")
-            #expect(formatter.string(from: 7247.6) == "02:00:48")
-            #expect(formatter.string(from: 51887.6) == "14:24:48")
+            #expect(formatter.string(from: 2_335.6) == "38:56")
+            #expect(formatter.string(from: 7_247.6) == "02:00:48")
+            #expect(formatter.string(from: 51_887.6) == "14:24:48")
         }
     }
     
@@ -64,7 +64,7 @@ nonisolated struct DigitalTimeFormatterTests {
             
             #expect(formatter.string(from: 1) == "0:01")
             #expect(formatter.string(from: 535.6) == "8:56")
-            #expect(formatter.string(from: 2335.6) == "38:56")
+            #expect(formatter.string(from: 2_335.6) == "38:56")
         }
         
         do {
@@ -73,7 +73,7 @@ nonisolated struct DigitalTimeFormatterTests {
             
             #expect(formatter.string(from: 1) == "00:01")
             #expect(formatter.string(from: 535.6) == "08:56")
-            #expect(formatter.string(from: 2335.6) == "38:56")
+            #expect(formatter.string(from: 2_335.6) == "38:56")
         }
     }
     
@@ -115,6 +115,6 @@ nonisolated struct DigitalTimeFormatterTests {
         #expect(formatter.string(from: 0) == "00")
         #expect(formatter.string(from: 1) == "01")
         #expect(formatter.string(from: 91) == "1:31")
-        #expect(formatter.string(from: 2335.6) == "38:56")
+        #expect(formatter.string(from: 2_335.6) == "38:56")
     }
 }

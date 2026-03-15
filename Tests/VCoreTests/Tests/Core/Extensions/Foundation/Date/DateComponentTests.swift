@@ -13,7 +13,7 @@ import Testing
 nonisolated struct DateComponentTests {
     @Test
     func testComponent() throws {
-        let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)
+        let dateComponents: DateComponents = .init(year: 1_970, month: 1, day: 1)
         
         let date: Date = try #require(
             Calendar.current.date(from: dateComponents)
@@ -26,7 +26,7 @@ nonisolated struct DateComponentTests {
     
     @Test
     func testComponents() throws {
-        let dateComponents: DateComponents = .init(year: 1970, month: 1, day: 1)
+        let dateComponents: DateComponents = .init(year: 1_970, month: 1, day: 1)
         
         let date: Date = try #require(
             Calendar.current.date(from: dateComponents)
