@@ -19,7 +19,7 @@ nonisolated extension UIImage {
         let radians: CGFloat = .init(angle.converted(to: .radians).value)
         
         let newRect: CGRect = {
-            let rotatedRect: CGRect = CGRect(origin: .zero, size: size)
+            let rotatedRect: CGRect = .init(origin: .zero, size: size)
                 .applying(CGAffineTransform(rotationAngle: radians))
             
             return CGRect(
