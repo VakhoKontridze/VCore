@@ -490,8 +490,8 @@ nonisolated struct MemberwiseInitializableMacro: MemberMacro {
 
         // Skips stored initialized properties
         if
-            isPropertyConstant &&
-            propertyBinding.initializer != nil
+            isPropertyConstant,
+            propertyBinding.initializer != nil 
         {
             return nil
         }

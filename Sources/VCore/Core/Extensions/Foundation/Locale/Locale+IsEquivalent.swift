@@ -31,15 +31,15 @@ nonisolated extension Locale {
         }
 
         if
-            (regionIdentifierOrCurrent != nil || other.regionIdentifierOrCurrent != nil) &&
+            regionIdentifierOrCurrent != nil || other.regionIdentifierOrCurrent != nil,
             regionIdentifierOrCurrent != other.regionIdentifierOrCurrent
         {
             return false
         }
         
         if
-            (languageScriptIdentifierOrCurrent != nil || other.languageScriptIdentifierOrCurrent != nil) &&
-            languageScriptIdentifierOrCurrent != other.languageScriptIdentifierOrCurrent
+            languageScriptIdentifierOrCurrent != nil || other.languageScriptIdentifierOrCurrent != nil,
+            languageScriptIdentifierOrCurrent != other.languageScriptIdentifierOrCurrent 
         {
             return false
         }
