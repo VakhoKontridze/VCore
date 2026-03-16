@@ -23,7 +23,7 @@ nonisolated struct TaskGroupChildTaskValuesTests {
         let items: [Item] = await withTaskGroup { group in
             for url in urls {
                 group.addTask {
-                    try? await Task.sleep(for: .seconds(0.01))
+                    try? await Task.sleep(for: .milliseconds(100))
                     
                     return Item(
                         value: url.absoluteString
@@ -53,7 +53,7 @@ nonisolated struct TaskGroupChildTaskValuesTests {
         let items: [Item] = try await withThrowingTaskGroup { group in
             for url in urls {
                 group.addTask {
-                    try? await Task.sleep(for: .seconds(0.01))
+                    try? await Task.sleep(for: .milliseconds(100))
                     
                     return Item(
                         value: url.absoluteString

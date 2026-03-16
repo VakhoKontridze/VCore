@@ -19,7 +19,7 @@ Presentation
 - `NSLayoutConstraint` helpers have been removed
 - `ViewResettingContainer` is removed
 
-Presentation - Presentation Host
+Presentation - Modal Presenter
 
 - Presentation Host is renamed to Modal Presenter
 - Modal Presenter will now pass `PlatformInterfaceOrientation` via the environment
@@ -76,6 +76,7 @@ Core - Utilities
 - `EdgeInsets_HorizontalVertical` is renamed to `EdgeInsetsAxis`
 - `EdgeInsets_TopBottom` is renamed to `EdgeInsetsVertical`
 - `LayoutDirectionHorizontal` is removed in favor of `LayoutDirection`, and members are transferred as an extension
+- `ManagedTask` and `KeyedManagedTask` are added, that help with `Task` management from domain objects
 
 ### [7.5.2(111)](https://github.com/VakhoKontridze/VCore/releases/tag/7.5.2) — 2025 05 25
 
