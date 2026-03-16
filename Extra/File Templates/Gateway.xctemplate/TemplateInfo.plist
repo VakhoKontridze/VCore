@@ -14,7 +14,7 @@
 			<key>Type</key>
 			<string>text</string>
 			<key>Name</key>
-			<string>Title (eg &quot;FetchPosts&quot;):</string>
+			<string>Name (eg &quot;FetchItems&quot;):</string>
 		</dict>
 	</array>
 	<key>SupportsSwiftPackage</key>

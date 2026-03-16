@@ -14,7 +14,7 @@
 			<key>Type</key>
 			<string>text</string>
 			<key>Name</key>
-			<string>Title (eg "Home"):</string>
+			<string>Name (eg &quot;Home&quot;):</string>
 		</dict>
 	</array>
 	<key>SupportsSwiftPackage</key>
