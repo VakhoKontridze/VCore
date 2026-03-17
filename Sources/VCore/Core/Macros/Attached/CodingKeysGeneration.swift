@@ -22,7 +22,7 @@ import Foundation
 ///     }
 ///
 ///     // Generates
-///     internal nonisolated enum CodingKeys: String, CodingKey {
+///     nonisolated internal enum CodingKeys: String, CodingKey {
 ///         case id = "id"
 ///         case userID = "userId"
 ///         case title = "title"

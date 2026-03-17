@@ -33,7 +33,7 @@ nonisolated extension View {
     ///
     /// One solution lies in using `View.sheet(item:content:)` to bind value to modal:
     ///
-    ///     private nonisolated struct Sheet: Identifiable {
+    ///     nonisolated private struct Sheet: Identifiable {
     ///         let id: UUID = .init()
     ///         let isOn: Bool
     ///     }

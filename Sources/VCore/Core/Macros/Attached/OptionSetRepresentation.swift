@@ -13,7 +13,7 @@ import Foundation
 ///
 ///     @OptionSetRepresentation<Int>
 ///     nonisolated struct Gender {
-///         private nonisolated enum Options: Int {
+///         nonisolated private enum Options: Int {
 ///             case male
 ///             case female
 ///         }

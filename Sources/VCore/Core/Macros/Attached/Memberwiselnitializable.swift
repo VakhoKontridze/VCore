@@ -17,7 +17,7 @@ import Foundation
 ///     @MemberwiseInitializable(
 ///         externalParameterNames: ["url": "_"]
 ///     )
-///     public nonisolated struct FetchImageParameters: Sendable {
+///     nonisolated public struct FetchImageParameters: Sendable {
 ///         public let url: String
 ///         public let completion: @Sendable (String) async throws -> UIImage
 ///     }
