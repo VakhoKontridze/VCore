@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that describes appearance.
-public struct ModalPresenterRootAppearance: Equatable {
+public struct ModalPresenterRootAppearance {
     // MARK: Properties - Global
     /// Frame.
     ///

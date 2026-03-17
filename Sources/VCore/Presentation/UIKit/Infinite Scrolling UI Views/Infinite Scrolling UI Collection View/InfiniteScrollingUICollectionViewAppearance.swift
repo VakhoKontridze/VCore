@@ -10,7 +10,7 @@
 import Foundation
 
 /// Model that describes appearance
-public struct InfiniteScrollingUICollectionViewAppearance: Equatable {
+public struct InfiniteScrollingUICollectionViewAppearance {
     // MARK: Properties
     /// Offset that needs to be dragged vertically up for pagination to occur.
     public var paginationOffset: CGFloat = 20

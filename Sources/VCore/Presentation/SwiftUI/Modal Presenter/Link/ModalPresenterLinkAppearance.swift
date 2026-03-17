@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that describes appearance.
-public struct ModalPresenterLinkAppearance: Equatable {
+public struct ModalPresenterLinkAppearance {
     // MARK: Properties - Frame
     /// Alignment of modal in the root.
     public var alignment: Alignment = .center

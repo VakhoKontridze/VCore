@@ -8,7 +8,7 @@
 import SwiftUI
 
 /// Model that describes appearance.
-public struct SwiftUIBaseButtonAppearance: Equatable {
+public struct SwiftUIBaseButtonAppearance {
     // MARK: Properties
     /// Indicates if button animates state change.
     ///
