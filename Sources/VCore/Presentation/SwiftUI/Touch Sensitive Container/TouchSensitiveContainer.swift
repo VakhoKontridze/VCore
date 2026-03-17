@@ -133,8 +133,11 @@ public struct TouchSensitiveContainer<Content>: View where Content: View {
             executeWithDelayTask = Task {
                 defer { executeWithDelayTask = nil }
                 
-                try? await Task.sleep(for: .seconds(delay))
-                guard !Task.isCancelled else { return }
+                do {
+                    try await Task.sleep(for: .seconds(delay))
+                } catch {
+                    return
+                }
                 
                 block()
             }

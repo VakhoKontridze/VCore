@@ -157,8 +157,11 @@ public final class KeyboardObserver {
                 self.offset = offset
                 self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
-                try? await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
-                guard !Task.isCancelled else { return }
+                do {
+                    try await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
+                } catch {
+                    return
+                }
                 
                 self.offsetStable = offset
             }
@@ -197,8 +200,11 @@ public final class KeyboardObserver {
                 self.offset = offset
                 self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
-                try? await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
-                guard !Task.isCancelled else { return }
+                do {
+                    try await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
+                } catch {
+                    return
+                }
                 
                 self.offsetStable = offset
             }
