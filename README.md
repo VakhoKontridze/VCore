@@ -261,7 +261,7 @@ Versions with different majors are not directly compatible. When a new major is 
     <td>7.0</td>
     <td>2024 09 20</td>
     <td>
-        6.1<br><i><sup>(7.5.2 – 7.x.x)</sup></i>
+        6.1<br><i><sup>(7.5.2 – 7.x.x)</sup></i><br>
         6.0<br><i><sup>(7.0.1 - 7.5.1)</sup></i><br>
     </td>
     <td>
