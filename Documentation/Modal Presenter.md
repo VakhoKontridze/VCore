@@ -266,7 +266,12 @@ var body: some View {
             isPresented1 = true
 
             Task {
-                try? await Task.sleep(for: .seconds(1))
+                do {
+                    try await Task.sleep(for: .seconds(1))
+                } catch {
+                    return
+                }
+                
                 isPresented2 = true
             }
         }
@@ -302,7 +307,12 @@ var body: some View {
             isPresented1 = true
                 
             Task {
-                try? await Task.sleep(for: .seconds(1))
+                do {
+                    try await Task.sleep(for: .seconds(1))
+                } catch {
+                    return
+                }
+                
                 isPresented2 = true
             }
         }
@@ -515,7 +525,12 @@ var body: some View {
         isPresented1 = true
             
         Task {
-            try? await Task.sleep(for: .seconds(1))
+            do {
+                try await Task.sleep(for: .seconds(1))
+            } catch {
+                return
+            }
+                
             isPresented2 = true
         }
     }

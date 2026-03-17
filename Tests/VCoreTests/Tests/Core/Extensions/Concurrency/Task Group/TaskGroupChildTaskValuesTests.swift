@@ -9,6 +9,8 @@ import Foundation
 import Testing
 @testable import VCore
 
+// `Task`s have `try?` to avoid `CancellationError` for testing purposes.
+
 @Suite
 nonisolated struct TaskGroupChildTaskValuesTests {
     // MARK: Tests
