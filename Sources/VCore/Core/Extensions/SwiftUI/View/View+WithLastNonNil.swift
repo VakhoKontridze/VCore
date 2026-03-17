@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 extension View {
     /// Caches and uses last non-`nil` item when composing content.
@@ -18,9 +19,7 @@ extension View {
     ///             item: Binding<Item?>,
     ///             @ViewBuilder content: @escaping (Item) -> Content
     ///         ) -> some View
-    ///             where
-    ///                 Item: Equatable,
-    ///                 Content: View
+    ///             where Content: View
     ///         {
     ///             let isPresented: Binding<Bool> = .init(
     ///                 get: { item.wrappedValue != nil },
@@ -48,9 +47,7 @@ extension View {
         _ item: Item?,
         @ViewBuilder content: @escaping (Self, Item?) -> Content
     ) -> some View
-        where
-            Item: Equatable,
-            Content: View
+        where Content: View
     {
         LastNonNilCachingView(
             item: item,
@@ -62,7 +59,6 @@ extension View {
 
 private struct LastNonNilCachingView<Item, Root, Content>: View
     where
-        Item: Equatable,
         Root: View,
         Content: View
 {
@@ -80,17 +76,16 @@ private struct LastNonNilCachingView<Item, Root, Content>: View
         root: Root,
         @ViewBuilder content: @escaping (Root, Item?) -> Content
     ) {
-        self.root = root
         self.item = item
+        self._lastNonNilItem = State(initialValue: item)
+        self.root = root
         self.content = content
     }
 
     // MARK: Body
     var body: some View {
-        let currentItem: Item? = item ?? lastNonNilItem
-
-        return content(root, currentItem)
-            .onChange(of: item, initial: true) { (_, newValue) in
+        content(root, item ?? lastNonNilItem)
+            .onReceive(Just(item)) { newValue in // Using `Combine` here avoids `Equatable` constraint
                 if let newValue {
                     lastNonNilItem = newValue
                 }
