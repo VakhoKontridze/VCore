@@ -115,7 +115,7 @@ KeychainService.default.deleteData(key: "key")
 
 ```swift
 let formatter: DigitalTimeFormatter = .init()
-formatter.string(from: 905048) // "10:11:24:08"
+formatter.string(from: 905_048) // "10:11:24:08"
 ```
 
 #### Various SwiftUI Views
@@ -130,7 +130,7 @@ private let strings: [String] = [
 ]
 
 var body: some View {
-    AlignedGridLayout(alignment: .center, spacing: 5) {
+    AlignedGridLayout(horizontalAlignment: .center, spacing: 5) {
         ForEach(strings, id: \.self) { string in
             Text(string)
                 .background(Color.accentColor.opacity(0.5))
@@ -142,7 +142,7 @@ var body: some View {
 
 #### Various Extensions
 
-Retrieving `CGSize` form `View`:
+Initializing `AttributedString` with child `AttributedString`s:
 
 ```swift
 var body: some View {
