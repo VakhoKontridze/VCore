@@ -73,7 +73,7 @@ nonisolated extension UIColor {
     ///     let isEqual: Bool = color1.isRGBAEqual(to: color2) // true
     ///
     public func isRGBAEqual(to otherColor: UIColor) -> Bool {
-        VCore.isEqual(rgbaValues, to: otherColor.rgbaValues, by: \.red, \.green, \.blue, \.alpha)
+        VCore::isEqual(rgbaValues, to: otherColor.rgbaValues, by: \.red, \.green, \.blue, \.alpha)
     }
 }
 
