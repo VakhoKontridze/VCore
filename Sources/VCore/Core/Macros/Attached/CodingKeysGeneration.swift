@@ -14,7 +14,7 @@ import Foundation
 ///     @CodingKeysGeneration
 ///     nonisolated struct GetPostGatewayOutput: Decodable {
 ///         @CKGProperty("id") let id: Int
-///         @CKGProperty("userId") let userID: Int
+///         @CKGProperty("user_id") let userID: Int
 ///         @CKGProperty("title") let title: String
 ///         @CKGProperty("body") let body: String
 ///
@@ -24,7 +24,7 @@ import Foundation
 ///     // Generates
 ///     nonisolated internal enum CodingKeys: String, CodingKey {
 ///         case id = "id"
-///         case userID = "userId"
+///         case userID = "user_id"
 ///         case title = "title"
 ///         case body = "body"
 ///     }
