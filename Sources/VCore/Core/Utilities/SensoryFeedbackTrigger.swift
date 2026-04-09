@@ -9,6 +9,7 @@ import SwiftUI
 
 /// Allows for the trigger of sensory feedback without specifying underlying triggering types.
 @Observable // Needed for trigger to work
+@available(visionOS 26.0, *)
 public final class SensoryFeedbackTrigger {
     // MARK: Properties
     var value: Int = 0
@@ -30,6 +31,7 @@ public final class SensoryFeedbackTrigger {
     }
 }
 
+@available(visionOS 26.0, *)
 extension View {
     /// Plays feedback when `SensoryFeedbackTrigger` is triggered.
     ///
