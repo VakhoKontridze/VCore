@@ -222,7 +222,7 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         // MARK: Properties - Subviews
         private lazy var collectionView: UICollectionView = {
             let layout: CarouselUICollectionViewFlowLayout = .init(
-                itemSize: .init(inset: inset, height: nil),
+                itemSize: CarouselUICollectionViewFlowLayoutItemSize(inset: inset, height: nil),
                 spacing: spacing
             )
             

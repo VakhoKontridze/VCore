@@ -13,7 +13,7 @@ nonisolated public final class ManagedTask<Success>: @unchecked Sendable
     where Success: Sendable
 {
     // MARK: Properties
-    private let lock: OSAllocatedUnfairLock<State> = .init(initialState: .init())
+    private let lock: OSAllocatedUnfairLock<State> = .init(initialState: State())
     
     // MARK: Initializers
     /// Initializes `ManagedTask`.

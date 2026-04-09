@@ -15,7 +15,7 @@ nonisolated public final class KeyedManagedTask<Key, Success>: @unchecked Sendab
         Success: Sendable
 {
     // MARK: Properties
-    private let lock: OSAllocatedUnfairLock<State> = .init(initialState: .init())
+    private let lock: OSAllocatedUnfairLock<State> = .init(initialState: State())
     
     // MARK: Initializers
     /// Initializes `KeyedManagedTask`.

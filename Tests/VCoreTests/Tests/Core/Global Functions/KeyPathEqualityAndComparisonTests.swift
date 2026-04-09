@@ -55,7 +55,7 @@ nonisolated final class KeyPathEqualityAndComparisonTests {
         #expect(
             isLessThanOrEqual(
                 Object(),
-                to: .init(c: 1),
+                to: Object(c: 1),
                 by: \.a, \.b, \.c
             )
         )
@@ -71,7 +71,7 @@ nonisolated final class KeyPathEqualityAndComparisonTests {
         #expect(
             !isLessThanOrEqual(
                 Object(),
-                to: .init(c: -1),
+                to: Object(c: -1),
                 by: \.a, \.b, \.c
             )
         )

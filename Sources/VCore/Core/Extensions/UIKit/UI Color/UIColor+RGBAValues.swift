@@ -20,7 +20,7 @@ nonisolated extension UIColor {
     ///     // (0.0, 0.4..., 1.0, 1.0)
     ///
     public var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-        let color: UIColor = resolvedColor(with: .init(userInterfaceStyle: .light))
+        let color: UIColor = resolvedColor(with: UITraitCollection(userInterfaceStyle: .light))
         
         var red: CGFloat = 0
         var green: CGFloat = 0

@@ -41,7 +41,7 @@ nonisolated extension UIImage {
         
         draw(
             in: CGRect(
-                origin: .init(
+                origin: CGPoint(
                     x: -size.width / 2,
                     y: -size.height / 2
                 ),
