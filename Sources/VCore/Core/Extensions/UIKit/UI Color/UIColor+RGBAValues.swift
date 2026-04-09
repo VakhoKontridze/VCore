@@ -20,7 +20,13 @@ nonisolated extension UIColor {
     ///     // (0.0, 0.4..., 1.0, 1.0)
     ///
     public var rgbaValues: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
-        let color: UIColor = resolvedColor(with: UITraitCollection(userInterfaceStyle: .light))
+        let color: UIColor = {
+#if !os(watchOS)
+            resolvedColor(with: UITraitCollection(userInterfaceStyle: .light))
+#else
+            self
+#endif
+        }()
         
         var red: CGFloat = 0
         var green: CGFloat = 0
