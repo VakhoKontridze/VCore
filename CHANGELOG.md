@@ -54,6 +54,10 @@ Core - Global Functions
 
 - Global exclusive or `^^` is removed
 
+Core - Macros
+
+- Key can now be omitted from `CKGCodingKey`, if it's same as the property name
+
 Core - Services
 
 - `LocalizationManager` is now `Observable`

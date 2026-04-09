@@ -13,10 +13,10 @@ import Foundation
 ///
 ///     @CodingKeysGeneration
 ///     nonisolated struct GetPostGatewayOutput: Decodable {
-///         @CKGProperty("id") let id: Int
+///         @CKGProperty let id: Int
 ///         @CKGProperty("user_id") let userID: Int
-///         @CKGProperty("title") let title: String
-///         @CKGProperty("body") let body: String
+///         @CKGProperty let title: String
+///         @CKGProperty let body: String
 ///
 ///         var attributes: [String: Any] = [:]
 ///     }
@@ -42,7 +42,7 @@ public macro CodingKeysGeneration(
 /// For additional info, refer to `CodingKeysGeneration`.
 @attached(peer)
 public macro CKGProperty(
-    _ key: String
+    _ key: String? = nil
 ) = #externalMacro(
     module: "VCoreMacrosImplementation",
     type: "CKGPropertyMacro"

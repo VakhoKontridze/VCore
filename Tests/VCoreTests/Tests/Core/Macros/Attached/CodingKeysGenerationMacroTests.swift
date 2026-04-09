@@ -24,19 +24,44 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration
             nonisolated struct Model: Encodable {
-                @CKGProperty("one") let one: Int
-                @CKGProperty("two") let two: String
+                @CKGProperty let one: Int
+                @CKGProperty let two: String
             }
             """,
             expandedSource: 
                 """
                 nonisolated struct Model: Encodable {
-                    @CKGProperty("one") let one: Int
-                    @CKGProperty("two") let two: String
+                    @CKGProperty let one: Int
+                    @CKGProperty let two: String
 
                     internal nonisolated enum CodingKeys: String, CodingKey {
-                        case one = "one"
-                        case two = "two"
+                        case one
+                        case two
+                    }
+                }
+                """,
+            macros: macros
+        )
+    }
+    
+    func testPropertyKeysDeclaration() {
+        assertMacroExpansion(
+            """
+            @CodingKeysGeneration
+            nonisolated struct Model: Encodable {
+                @CKGProperty("one_") let one: Int
+                @CKGProperty("two_") let two: String
+            }
+            """,
+            expandedSource:
+                """
+                nonisolated struct Model: Encodable {
+                    @CKGProperty("one_") let one: Int
+                    @CKGProperty("two_") let two: String
+
+                    internal nonisolated enum CodingKeys: String, CodingKey {
+                        case one = "one_"
+                        case two = "two_"
                     }
                 }
                 """,
@@ -49,19 +74,19 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration
             public nonisolated struct Model: Sendable, Encodable {
-                @CKGProperty("one") public let one: Int
-                @CKGProperty("two") public let two: String
+                @CKGProperty public let one: Int
+                @CKGProperty public let two: String
             }
             """,
             expandedSource: 
                 """
                 public nonisolated struct Model: Sendable, Encodable {
-                    @CKGProperty("one") public let one: Int
-                    @CKGProperty("two") public let two: String
+                    @CKGProperty public let one: Int
+                    @CKGProperty public let two: String
 
                     public nonisolated enum CodingKeys: String, CodingKey {
-                        case one = "one"
-                        case two = "two"
+                        case one
+                        case two
                     }
                 }
                 """,
@@ -72,19 +97,19 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration(accessLevelModifier: .private)
             nonisolated struct Model: Encodable {
-                @CKGProperty("one") let one: Int
-                @CKGProperty("two") let two: String
+                @CKGProperty let one: Int
+                @CKGProperty let two: String
             }
             """,
             expandedSource:
                 """
                 nonisolated struct Model: Encodable {
-                    @CKGProperty("one") let one: Int
-                    @CKGProperty("two") let two: String
+                    @CKGProperty let one: Int
+                    @CKGProperty let two: String
 
                     private nonisolated enum CodingKeys: String, CodingKey {
-                        case one = "one"
-                        case two = "two"
+                        case one
+                        case two
                     }
                 }
                 """,
@@ -97,7 +122,7 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration
             nonisolated struct Model: Encodable {
-                @CKGProperty("one") let one: Int
+                @CKGProperty let one: Int
                 var two: Int { one * 2 }
                 
                 var attributes: [String: Any] = [:]
@@ -108,7 +133,7 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
             expandedSource: 
                 """
                 nonisolated struct Model: Encodable {
-                    @CKGProperty("one") let one: Int
+                    @CKGProperty let one: Int
                     var two: Int { one * 2 }
                     
                     var attributes: [String: Any] = [:]
@@ -116,7 +141,7 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
                     func foo() {}
 
                     internal nonisolated enum CodingKeys: String, CodingKey {
-                        case one = "one"
+                        case one
                     }
                 }
                 """,
@@ -129,13 +154,13 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration
             nonisolated struct Model: Encodable {
-                @CKGProperty("one") func one() {}
+                @CKGProperty func one() {}
             }
             """,
             expandedSource:
                 """
                 nonisolated struct Model: Encodable {
-                    @CKGProperty("one") func one() {}
+                    @CKGProperty func one() {}
                 }
                 """,
             diagnostics: [
@@ -208,13 +233,13 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
             """
             @CodingKeysGeneration
             nonisolated struct Model: Encodable {
-                @CKGProperty("one") var one: Int { 0 }
+                @CKGProperty var one: Int { 0 }
             }
             """,
             expandedSource:
                 """
                 nonisolated struct Model: Encodable {
-                    @CKGProperty("one") var one: Int { 0 }
+                    @CKGProperty var one: Int { 0 }
                 }
                 """,
             diagnostics: [

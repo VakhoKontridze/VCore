@@ -189,10 +189,10 @@ Macro that adds `CodingKeys` to a declaration:
 ```swift
 @CodingKeysGeneration
 nonisolated struct GetPostGatewayOutput: Decodable {
-    @CKGProperty("id") let id: Int
+    @CKGProperty let id: Int
     @CKGProperty("user_id") let userID: Int
-    @CKGProperty("title") let title: String
-    @CKGProperty("body") let body: String
+    @CKGProperty let title: String
+    @CKGProperty let body: String
     
     var attributes: [String: Any] = [:]
 }
