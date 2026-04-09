@@ -1,6 +1,6 @@
 # Change Log
 
-### 8.0.0(112)
+### [8.0.0(112)](https://github.com/VakhoKontridze/VCore/releases/tag/8.0.0) — 2026 04 09
 
 General
 
