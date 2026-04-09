@@ -190,7 +190,7 @@ Macro that adds `CodingKeys` to a declaration:
 @CodingKeysGeneration
 nonisolated struct GetPostGatewayOutput: Decodable {
     @CKGProperty let id: Int
-    @CKGProperty("user_id") let userID: Int
+    @CKGProperty("userId") let userID: Int
     @CKGProperty let title: String
     @CKGProperty let body: String
     
@@ -200,7 +200,7 @@ nonisolated struct GetPostGatewayOutput: Decodable {
 // Generates
 internal nonsiolated enum CodingKeys: String, CodingKey {
     case id = "id"
-    case userID = "user_id"
+    case userID = "userId"
     case title = "title"
     case body = "body"
 }
