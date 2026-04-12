@@ -86,7 +86,6 @@ import UIKit
 ///                 baseButton.topAnchor.constraint(equalTo: topAnchor),
 ///                 baseButton.bottomAnchor.constraint(equalTo: bottomAnchor),
 ///
-///                 titleLabel.heightAnchor.constraint(equalToConstant: titleLabel.singleLineHeight),
 ///                 titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
 ///                 titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
 ///                 titleLabel.topAnchor.constraint(equalTo: topAnchor),
@@ -289,7 +288,6 @@ private final class PlainButton: UIView {
             baseButton.topAnchor.constraint(equalTo: topAnchor),
             baseButton.bottomAnchor.constraint(equalTo: bottomAnchor),
 
-            titleLabel.heightAnchor.constraint(equalToConstant: titleLabel.singleLineHeight),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             titleLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             titleLabel.topAnchor.constraint(equalTo: topAnchor),
