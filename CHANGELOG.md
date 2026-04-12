@@ -1,5 +1,11 @@
 # Change Log
 
+### 8.0.1(113)
+
+Core - Extensions
+
+- `UILabel.singleLineHeight` and `UILabel.multiLineHeight(width:text:)` are deprecated
+
 ### [8.0.0(112)](https://github.com/VakhoKontridze/VCore/releases/tag/8.0.0) — 2026 04 09
 
 General
