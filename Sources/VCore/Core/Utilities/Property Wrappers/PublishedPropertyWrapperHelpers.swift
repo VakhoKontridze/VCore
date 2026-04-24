@@ -19,6 +19,10 @@ final class PublishedPropertyWrapperBox<Value> {
     ) {
         self.wrappedValue = wrappedValue
     }
+    
+    // Fixes compiler crash in `Swift` `6.3`
+    @_optimize(none)
+    deinit {}
 }
 
 enum PublishedPropertyWrapperStorage<Value> {

@@ -2,6 +2,10 @@
 
 ### 8.0.1(113)
 
+General
+
+- Compiler crash caused by `Swift` `6.3` is fixed
+
 Core - Extensions
 
 - `UILabel.singleLineHeight` and `UILabel.multiLineHeight(width:text:)` are deprecated
