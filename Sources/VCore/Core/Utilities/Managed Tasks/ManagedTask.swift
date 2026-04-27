@@ -96,7 +96,7 @@ nonisolated public final class ManagedTask<Success>: @unchecked Sendable
     // MARK: Types
     private typealias TaskType = Task<Success, any Error>
     
-    private struct State {
+    nonisolated private struct State {
         var task: TaskType?
         var waiterCount: Int = 0
     }

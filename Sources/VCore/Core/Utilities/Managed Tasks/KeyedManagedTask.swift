@@ -122,12 +122,12 @@ nonisolated public final class KeyedManagedTask<Key, Success>: @unchecked Sendab
     // MARK: Types
     private typealias TaskType = Task<Success, any Error>
 
-    private struct Entry {
+    nonisolated private struct Entry {
         var task: Task<Success, any Error>?
         var waiterCount: Int = 0
     }
 
-    private struct State {
+    nonisolated private struct State {
         var entries: [Key: Entry] = [:]
     }
 }
