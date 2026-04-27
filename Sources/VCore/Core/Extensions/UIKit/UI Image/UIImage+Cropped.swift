@@ -25,14 +25,11 @@ nonisolated extension UIImage {
         let normalizedImage: UIImage = {
             guard imageOrientation != .up else { return self }
             
-            UIGraphicsBeginImageContextWithOptions(size, false, scale)
-            defer { UIGraphicsEndImageContext() }
+            let renderer: UIGraphicsImageRenderer = .init(size: size)
             
-            draw(in: CGRect(origin: .zero, size: size))
-            
-            let normalizedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext() ?? self
-            
-            return normalizedImage
+            return renderer.image { _ in
+                draw(in: CGRect(origin: .zero, size: size))
+            }
         }()
         
         guard

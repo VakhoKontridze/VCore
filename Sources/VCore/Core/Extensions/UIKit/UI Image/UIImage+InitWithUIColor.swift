@@ -21,13 +21,21 @@ nonisolated extension UIImage {
         size: CGSize,
         color: UIColor
     ) {
-        UIGraphicsBeginImageContextWithOptions(size, false, 1)
-        defer { UIGraphicsEndImageContext() }
+        let renderer: UIGraphicsImageRenderer = .init(
+            size: size
+        )
         
-        color.setFill()
-        UIRectFill(CGRect(origin: .zero, size: size))
+        let renderedImage: UIImage = renderer.image { _ in
+            color.setFill()
+            UIRectFill(CGRect(origin: .zero, size: size))
+        }
         
-        guard let cgImage: CGImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else { return nil }
+        guard
+            let cgImage: CGImage = renderedImage.cgImage
+        else {
+            return nil
+        }
+        
         self.init(cgImage: cgImage)
     }
 }

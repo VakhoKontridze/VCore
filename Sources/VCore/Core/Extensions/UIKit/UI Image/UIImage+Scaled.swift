@@ -45,11 +45,17 @@ nonisolated extension UIImage {
     private func scaled(
         toSize newSize: CGSize
     ) -> UIImage? {
-        UIGraphicsBeginImageContextWithOptions(newSize, false, 1)
-        defer { UIGraphicsEndImageContext() }
+        let format: UIGraphicsImageRendererFormat = .init()
+        format.scale = 1
         
-        draw(in: CGRect(origin: .zero, size: newSize))
-        return UIGraphicsGetImageFromCurrentImageContext()
+        let renderer: UIGraphicsImageRenderer = .init(
+            size: newSize,
+            format: format
+        )
+        
+        return renderer.image { _ in
+            draw(in: CGRect(origin: .zero, size: newSize))
+        }
     }
 }
 

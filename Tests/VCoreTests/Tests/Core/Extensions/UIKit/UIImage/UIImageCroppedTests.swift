@@ -68,9 +68,7 @@ struct UIImageCroppedTests {
                 color: UIColor.blue
             )
         )
-        let mergedImage: UIImage = try #require(
-            .mergeHorizontally(image1, with: image2)
-        )
+        let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)
         
         let croppedImage: UIImage = mergedImage.cropped(
             to: CGRect(

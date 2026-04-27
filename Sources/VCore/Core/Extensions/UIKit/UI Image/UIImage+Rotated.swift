@@ -31,25 +31,30 @@ nonisolated extension UIImage {
             )
         }()
         
-        UIGraphicsBeginImageContextWithOptions(newRect.size, false, scale)
-        defer { UIGraphicsEndImageContext() }
+        let format: UIGraphicsImageRendererFormat = .init()
+        format.scale = scale
         
-        guard let cgContext: CGContext = UIGraphicsGetCurrentContext() else { return nil }
-        
-        cgContext.translateBy(x: newRect.width/2, y: newRect.height/2)
-        cgContext.rotate(by: radians)
-        
-        draw(
-            in: CGRect(
-                origin: CGPoint(
-                    x: -size.width / 2,
-                    y: -size.height / 2
-                ),
-                size: size
-            )
+        let renderer: UIGraphicsImageRenderer = .init(
+            size: newRect.size,
+            format: format
         )
-
-        return UIGraphicsGetImageFromCurrentImageContext()
+        
+        return renderer.image { context in
+            let cgContext: CGContext = context.cgContext
+            
+            cgContext.translateBy(x: newRect.width / 2, y: newRect.height / 2)
+            cgContext.rotate(by: radians)
+            
+            draw(
+                in: CGRect(
+                    origin: CGPoint(
+                        x: -size.width / 2,
+                        y: -size.height / 2
+                    ),
+                    size: size
+                )
+            )
+        }
     }
     
     /// Rotates `UIImage` by radian.

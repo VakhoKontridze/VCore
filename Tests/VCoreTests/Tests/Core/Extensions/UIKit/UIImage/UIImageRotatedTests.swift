@@ -27,9 +27,7 @@ struct UIImageRotatedTests {
                 color: UIColor.blue
             )
         )
-        let mergedImage: UIImage = try #require(
-            .mergeHorizontally(image1, with: image2)
-        )
+        let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)
 
         let rotatedImage: UIImage = try #require(
             mergedImage.rotated(by: Measurement(value: 90, unit: .degrees))
