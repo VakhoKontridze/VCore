@@ -1,5 +1,11 @@
 # Change Log
 
+### 8.1.0(114)
+
+Core - Macros
+
+- `CaseNameGeneration` is added, that generates `CaseName` `enum` and helper methods to a declaration
+
 ### [8.0.1(113)](https://github.com/VakhoKontridze/VCore/releases/tag/8.0.1) — 2026 04 24
 
 General

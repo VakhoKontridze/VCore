@@ -15,6 +15,7 @@ import SwiftSyntaxMacros
 nonisolated struct Plugin: CompilerPlugin {
     let providingMacros: [Macro.Type] = [
         // Attached
+        CaseNameGenerationMacro.self,
         CodingKeysGenerationMacro.self, CKGPropertyMacro.self,
         MemberwiseInitializableMacro.self,
         OptionSetRepresentationMacro.self,
