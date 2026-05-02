@@ -11,7 +11,7 @@ import Foundation
 @MemberwiseInitializable(accessLevelModifier: .private)
 nonisolated public struct KeychainServiceError: BaseErrorProtocol, Sendable {
     // MARK: Properties
-    public static let domain: String = "com.vcore.keychainservice"
+    public static let domain: String = "com.vakhtang.kontridze.vcore.keychainservice"
     public let code: Int
     public let description: String
     

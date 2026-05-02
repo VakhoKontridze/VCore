@@ -11,7 +11,7 @@ import Foundation
 @MemberwiseInitializable(accessLevelModifier: .private)
 nonisolated public struct CastingError: BaseErrorProtocol, Sendable {
     // MARK: Properties
-    public static let domain: String = "com.vcore"
+    public static let domain: String = "com.vakhtang.kontridze.vcore"
     public let code: Int
     public let description: String
     
