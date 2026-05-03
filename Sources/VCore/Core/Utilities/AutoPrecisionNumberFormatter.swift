@@ -52,17 +52,17 @@ nonisolated public struct AutoPrecisionNumberFormatter: Sendable {
     /// Returns `String` from number with specified format.
     public func string(from number: Double) -> String? {
         guard minFractions >= 0 else {
-            Logger.misc.critical("'minFractions' must be greater then or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            Logger.misc.critical("'minFractions' must be greater than or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
             return nil
         }
 
         guard maxFractions >= 0 else {
-            Logger.misc.critical("'maxFractions' must be greater then or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            Logger.misc.critical("'maxFractions' must be greater than or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
             return nil
         }
 
         guard maxFractions >= minFractions else {
-            Logger.misc.critical("'maxFractions' must be greater then or equal to 'minFractions' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            Logger.misc.critical("'maxFractions' must be greater than or equal to 'minFractions' in 'AutoPrecisionNumberFormatter.string(from:)'")
             return nil
         }
 
