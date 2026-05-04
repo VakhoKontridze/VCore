@@ -23,7 +23,7 @@ nonisolated public final class ManagedTask<Success>: @unchecked Sendable
     /// Runs the operation, or joins an existing in-flight operation if one exists.
     /// If the caller is cancelled, it detaches without affecting other waiters.
     public func run(
-        operation: @Sendable @escaping () async throws -> Success
+        @_implicitSelfCapture operation: @Sendable @escaping () async throws -> Success
     ) async throws -> Success {
         let task: TaskType = lock.withLock { state in
             state.waiterCount += 1

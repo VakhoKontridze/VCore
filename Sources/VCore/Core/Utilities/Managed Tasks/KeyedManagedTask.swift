@@ -26,7 +26,7 @@ nonisolated public final class KeyedManagedTask<Key, Success>: @unchecked Sendab
     /// If the caller is cancelled, it detaches without affecting other waiters.
     public func run(
         key: Key,
-        operation: @Sendable @escaping () async throws -> Success
+        @_implicitSelfCapture operation: @Sendable @escaping () async throws -> Success
     ) async throws -> Success {
         let task: TaskType = lock.withLock { state in
             var entry: Entry = state.entries[key] ?? Entry()
