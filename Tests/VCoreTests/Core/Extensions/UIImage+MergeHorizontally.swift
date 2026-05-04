@@ -10,10 +10,10 @@
 import UIKit
 
 extension UIImage {
-    // Doesn't consider positioning. Only used for testing purposes,
-    // when `lhs.size` equals `rhs.size`.
+    // Doesn't consider positioning.
+    // Only used for testing purposes when `lhs.size` equals `rhs.size`.
     static func mergeHorizontally(_ lhs: UIImage, with rhs: UIImage) -> UIImage {
-        let newSize = CGSize(
+        let newSize: CGSize = .init(
             width: lhs.size.width + rhs.size.width,
             height: max(lhs.size.height, rhs.size.height)
         )
