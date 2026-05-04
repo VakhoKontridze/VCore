@@ -1,6 +1,6 @@
 # Change Log
 
-### 8.1.0(114)
+### [8.1.0(114)](https://github.com/VakhoKontridze/VCore/releases/tag/8.1.0) — 2026 05 04
 
 Core - Macros
 
