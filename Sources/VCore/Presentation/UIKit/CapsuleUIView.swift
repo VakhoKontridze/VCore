@@ -14,7 +14,7 @@ import UIKit
 /// If width is greater than height, half of height will be taken as corner radius. If not, otherwise.
 open class CapsuleUIView: UIView {
     // MARK: Initializers
-    public override init(frame: CGRect) {
+    override public init(frame: CGRect) {
         super.init(frame: frame)
         setUp()
     }
