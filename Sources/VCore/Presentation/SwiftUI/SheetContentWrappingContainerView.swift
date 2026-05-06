@@ -61,9 +61,12 @@ public struct SheetContentWrappingContainerView<Content>: View where Content: Vi
     
     // MARK: Body
     public var body: some View {
-        content()
-            .onGeometryChange(of: { $0.size.height }) { height = $0 }
-            .presentationDetents(presentationDetents)
+        ZStack {
+            content()
+        }
+        .fixedSize(horizontal: false, vertical: true)
+        .onGeometryChange(of: { $0.size.height }) { height = $0 }
+        .presentationDetents(presentationDetents)
     }
 }
 
