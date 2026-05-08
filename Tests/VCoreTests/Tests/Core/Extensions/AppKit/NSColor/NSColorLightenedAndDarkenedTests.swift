@@ -14,17 +14,17 @@ import Testing
 @Suite
 nonisolated struct NSColorLightenAndDarkenTests {
     @Test
-    func testLighten() {
+    func testLightened() {
         #expect(
-            NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1).lighten(by: 0.1) ==
+            NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1).lightened(by: 0.1) ==
             NSColor(red: 0.6, green: 0.6, blue: 0.6, alpha: 1)
         )
     }
 
     @Test
-    func testDarken() {
+    func testDarkened() {
         #expect(
-            NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1).darken(by: 0.1) ==
+            NSColor(red: 0.5, green: 0.5, blue: 0.5, alpha: 1).darkened(by: 0.1) ==
             NSColor(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
         )
     }

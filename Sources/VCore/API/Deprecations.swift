@@ -7,6 +7,66 @@
 
 import SwiftUI
 
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
+
+import AppKit
+
+nonisolated extension NSColor {
+    @available(*, deprecated, renamed: "lightened")
+    public func lighten(
+        by fraction: CGFloat
+    ) -> NSColor {
+        lightened(by: fraction)
+    }
+    
+    @available(*, deprecated, renamed: "darkened")
+    public func darken(
+        by fraction: CGFloat
+    ) -> NSColor {
+        darkened(by: fraction)
+    }
+}
+
+#endif
+
+nonisolated extension Color {
+    @available(*, deprecated, renamed: "lightened")
+    public func lighten(
+        by fraction: CGFloat
+    ) -> Color {
+        lightened(by: fraction)
+    }
+    
+    @available(*, deprecated, renamed: "darkened")
+    public func darken(
+        by fraction: CGFloat
+    ) -> Color {
+        darkened(by: fraction)
+    }
+}
+
+#if canImport(UIKit)
+
+import UIKit
+
+nonisolated extension UIColor {
+    @available(*, deprecated, renamed: "lightened")
+    public func lighten(
+        by fraction: CGFloat
+    ) -> UIColor {
+        lightened(by: fraction)
+    }
+    
+    @available(*, deprecated, renamed: "darkened")
+    public func darken(
+        by fraction: CGFloat
+    ) -> UIColor {
+        darkened(by: fraction)
+    }
+}
+
+#endif
+
 #if canImport(UIKit) && !os(watchOS)
 
 import UIKit

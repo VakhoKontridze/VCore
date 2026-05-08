@@ -12,10 +12,10 @@ import Testing
 @Suite
 nonisolated struct ColorLightenAndDarkenTests {
     @Test
-    func testLighten() {
+    func testLightened() {
         let color: Color = .init(red: 0.5, green: 0.5, blue: 0.5, opacity: 1)
 
-        let values = color.lighten(by: 0.1).rgbaValues
+        let values = color.lightened(by: 0.1).rgbaValues
 
         // Direct comparison gives floating-point issues, so equality with tolerance must be used
         #expect(values.red == 0.6)
@@ -25,10 +25,10 @@ nonisolated struct ColorLightenAndDarkenTests {
     }
 
     @Test
-    func testDarken() {
+    func testDarkened() {
         let color: Color = .init(red: 0.5, green: 0.5, blue: 0.5, opacity: 1)
 
-        let values = color.darken(by: 0.1).rgbaValues
+        let values = color.darkened(by: 0.1).rgbaValues
 
         // Direct comparison gives floating-point issues, so equality with tolerance must be used
         #expect(values.red == 0.4)

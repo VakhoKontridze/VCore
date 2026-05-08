@@ -1,27 +1,27 @@
 //
-//  UIColor+LightenAndDarken.swift
+//  NSColor+LightenedAndDarkened.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 15.12.24.
 //
 
-#if canImport(UIKit)
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import UIKit
+import AppKit
 
-nonisolated extension UIColor {
-    /// Lightens `UIColor` by a fraction.
+nonisolated extension NSColor {
+    /// Returns `NSColor` lightened by a fraction.
     ///
-    ///     let lightBlue: UIColor = .systemBlue.lighten(by: 0.1)
+    ///     let lightBlue: NSColor = .systemBlue.lightened(by: 0.1)
     ///
-    public func lighten(
+    public func lightened(
         by fraction: CGFloat
-    ) -> UIColor {
+    ) -> NSColor {
         let fraction: Double = fraction.clamped(to: 0...1)
         
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
-        return UIColor(
+        return NSColor(
             red: (values.red + fraction).clamped(to: 0...1),
             green: (values.green + fraction).clamped(to: 0...1),
             blue: (values.blue + fraction).clamped(to: 0...1),
@@ -29,18 +29,18 @@ nonisolated extension UIColor {
         )
     }
     
-    /// Darkens `UIColor` by a fraction.
+    /// Returns `NSColor` darkened by a fraction.
     ///
-    ///     let darkBlue: UIColor = .systemBlue.darken(by: 0.1)
+    ///     let darkBlue: NSColor = .systemBlue.darkened(by: 0.1)
     ///
-    public func darken(
+    public func darkened(
         by fraction: CGFloat
-    ) -> UIColor {
+    ) -> NSColor {
         let fraction: Double = fraction.clamped(to: 0...1)
         
         let values: (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) = rgbaValues
         
-        return UIColor(
+        return NSColor(
             red: (values.red - fraction).clamped(to: 0...1),
             green: (values.green - fraction).clamped(to: 0...1),
             blue: (values.blue - fraction).clamped(to: 0...1),
@@ -54,17 +54,9 @@ nonisolated extension UIColor {
 import SwiftUI
 
 #Preview {
-    let color: UIColor = {
-#if os(watchOS)
-        UIColor.blue
-#else
-        UIColor.systemBlue
-#endif
-    }()
-    
     VStack {
-        Color(color.lighten(by: 0.1))
-        Color(color.darken(by: 0.1))
+        Color(NSColor.systemBlue.lightened(by: 0.1))
+        Color(NSColor.systemBlue.darkened(by: 0.1))
     }
 }
 
