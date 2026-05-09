@@ -24,6 +24,9 @@ public struct ProgressViewParameters {
     /// Color.
     public var color: Color?
     
+    /// Appearance delay.
+    public var appearanceDelay: Duration?
+    
     /// Indicates if interaction is enabled.
     public var isInteractionEnabled: Bool
 
@@ -35,11 +38,13 @@ public struct ProgressViewParameters {
     public init(
         scalingFactor: CGFloat? = nil,
         color: Color? = nil,
+        appearanceDelay: Duration? = nil,
         isInteractionEnabled: Bool = true,
         attributes: [String: Any] = [:]
     ) {
         self.scalingFactor = scalingFactor
         self.color = color
+        self.appearanceDelay = appearanceDelay
         self.isInteractionEnabled = isInteractionEnabled
         self.attributes = attributes
     }
