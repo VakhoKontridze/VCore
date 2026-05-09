@@ -35,7 +35,10 @@ nonisolated public enum GenericState_OffOnIndeterminatePressed: Int, Sendable, C
     
     // MARK: Initializers
     /// Initializes `GenericState_OffOnPressedDisabled` with flags.
-    public init(state: GenericState_OffOnIndeterminate, isPressed: Bool) {
+    public init(
+        state: GenericState_OffOnIndeterminate,
+        isPressed: Bool
+    ) {
         switch (state, isPressed) {
         case (.off, false): self = .off
         case (.off, true): self = .pressedOff

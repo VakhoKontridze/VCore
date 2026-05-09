@@ -23,7 +23,9 @@ nonisolated public enum GenericState_DeselectedSelected: Int, Sendable, CaseIter
     
     // MARK: Initializers
     /// Initializes `GenericState_DeselectedSelected` with flags.
-    public init(isSelected: Bool) {
+    public init(
+        isSelected: Bool
+    ) {
         switch isSelected {
         case false: self = .deselected
         case true: self = .selected

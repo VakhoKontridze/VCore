@@ -24,15 +24,6 @@ nonisolated public enum GenericState_EnabledPressedLoading: Int, Sendable, CaseI
     /// Loading.
     case loading
     
-    /// Indicates if gesture is enabled.
-    public var isGestureEnabled: Bool {
-        switch self {
-        case .enabled: true
-        case .pressed: true
-        case .loading: false
-        }
-    }
-    
     // MARK: Initializers
     /// Initializes `GenericState_EnabledPressedLoading` with flags.
     public init(isPressed: Bool, isLoading: Bool) {

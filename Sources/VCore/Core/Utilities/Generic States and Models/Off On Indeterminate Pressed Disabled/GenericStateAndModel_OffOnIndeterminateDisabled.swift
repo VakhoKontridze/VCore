@@ -27,17 +27,6 @@ nonisolated public enum GenericState_OffOnIndeterminateDisabled: Int, Sendable, 
     /// Disabled.
     case disabled
     
-    // MARK: Properties
-    /// Indicates if gesture is enabled.
-    public var isGestureEnabled: Bool {
-        switch self {
-        case .off: true
-        case .on: true
-        case .indeterminate: true
-        case .disabled: false
-        }
-    }
-    
     // MARK: Initializers
     /// Initializes `GenericState_OffOnPressedDisabled` with flags.
     public init(isEnabled: Bool, state: GenericState_OffOnIndeterminate) {

@@ -24,19 +24,12 @@ nonisolated public enum GenericState_EnabledFocusedDisabled: Int, Sendable, Case
     /// Disabled.
     case disabled
     
-    // MARK: Properties
-    /// Indicates if gesture is enabled.
-    public var isGestureEnabled: Bool {
-        switch self {
-        case .enabled: true
-        case .focused: true
-        case .disabled: false
-        }
-    }
-    
     // MARK: Initializers
     /// Initializes `GenericState_EnabledFocusedDisabled` with flags.
-    public init(isEnabled: Bool, isFocused: Bool) {
+    public init(
+        isEnabled: Bool,
+        isFocused: Bool
+    ) {
         switch (isEnabled, isFocused) {
         case (false, _): self = .disabled
         case (true, false): self = .enabled

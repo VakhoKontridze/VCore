@@ -23,7 +23,9 @@ nonisolated public enum GenericState_OffOn: Int, Sendable, CaseIterable {
     
     // MARK: Initializers
     /// Initializes `GenericState_OffOn` with flags.
-    public init(isOn: Bool) {
+    public init(
+        isOn: Bool
+    ) {
         switch isOn {
         case false: self = .off
         case true: self = .on

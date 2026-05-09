@@ -30,21 +30,13 @@ nonisolated public enum GenericState_DeselectedSelectedPressedDisabled: Int, Sen
     /// Disabled
     case disabled
     
-    // MARK: Properties
-    /// Indicates if gesture is enabled.
-    public var isGestureEnabled: Bool {
-        switch self {
-        case .deselected: true
-        case .selected: true
-        case .pressedDeselected: true
-        case .pressedSelected: true
-        case .disabled: false
-        }
-    }
-    
     // MARK: Initializers
     /// Initializes `GenericState_DeselectedSelectedPressedDisabled` with flags.
-    public init(isEnabled: Bool, isSelected: Bool, isPressed: Bool) {
+    public init(
+        isEnabled: Bool,
+        isSelected: Bool,
+        isPressed: Bool
+    ) {
         switch (isEnabled, isSelected, isPressed) {
         case (false, _, _): self = .disabled
         case (true, false, false): self = .deselected

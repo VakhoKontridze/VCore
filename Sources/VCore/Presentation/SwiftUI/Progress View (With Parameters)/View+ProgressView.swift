@@ -68,6 +68,8 @@ private struct ProgressViewModifier: ViewModifier {
                 if newValue.isVisible {
                     if let delay: Duration = newValue.delay {
                         visibilityTask = Task {
+                            defer { visibilityTask = nil }
+                            
                             do {
                                 try await Task.sleep(for: delay)
                             } catch {

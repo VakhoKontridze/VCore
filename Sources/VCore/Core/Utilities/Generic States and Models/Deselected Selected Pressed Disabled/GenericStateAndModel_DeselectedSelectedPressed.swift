@@ -29,7 +29,10 @@ nonisolated public enum GenericState_DeselectedSelectedPressed: Int, Sendable, C
         
     // MARK: Initializers
     /// Initializes `GenericState_DeselectedSelectedPressed` with flags.
-    public init(isSelected: Bool, isPressed: Bool) {
+    public init(
+        isSelected: Bool,
+        isPressed: Bool
+    ) {
         switch (isSelected, isPressed) {
         case (false, false): self = .deselected
         case (false, true): self = .pressedDeselected

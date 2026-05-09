@@ -23,7 +23,9 @@ nonisolated public enum GenericState_CollapsedExpanded: Int, Sendable, CaseItera
     
     // MARK: Initializers
     /// Initializes `GenericState_CollapsedExpanded` with flags.
-    public init(isExpanded: Bool) {
+    public init(
+        isExpanded: Bool
+    ) {
         switch isExpanded {
         case false: self = .collapsed
         case true: self = .expanded

@@ -24,19 +24,12 @@ nonisolated public enum GenericState_CollapsedExpandedDisabled: Int, Sendable, C
     /// Disabled.
     case disabled
     
-    // MARK: Properties
-    /// Indicates if gesture is enabled.
-    public var isGestureEnabled: Bool {
-        switch self {
-        case .collapsed: true
-        case .expanded: true
-        case .disabled: false
-        }
-    }
-    
     // MARK: Initializers
     /// Initializes `GenericState_CollapsedExpandedDisabled` with flags.
-    public init(isEnabled: Bool, isExpanded: Bool) {
+    public init(
+        isEnabled: Bool,
+        isExpanded: Bool
+    ) {
         switch (isEnabled, isExpanded) {
         case (false, _): self = .disabled
         case (true, false): self = .collapsed

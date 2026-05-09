@@ -146,16 +146,22 @@ open class UIKitBaseButton: UIView {
             internalButtonState.isGestureEnabled
         }
         set {
-            internalButtonState = UIKitBaseButtonInternalState(isEnabled: newValue)
+            internalButtonState = UIKitBaseButtonInternalState(isEnabled: newValue, isPressed: false)
             gestureRecognizer.isEnabled = internalButtonState.isGestureEnabled
         }
     }
     
     /// Button state.
-    open var buttonState: UIKitBaseButtonState { .init(internalState: internalButtonState) }
+    open var buttonState: UIKitBaseButtonState {
+        switch internalButtonState {
+        case .enabled: .enabled
+        case .pressed: .enabled
+        case .disabled: .disabled
+        }
+    }
     
     /// Internal button state.
-    open private(set) var internalButtonState: UIKitBaseButtonInternalState = .default
+    open private(set) var internalButtonState: UIKitBaseButtonInternalState = .enabled
     
     /// State change action.
     open var onStateChange: (GestureBaseButtonGestureState) -> Void
@@ -199,6 +205,25 @@ open class UIKitBaseButton: UIView {
     open func configure(state: UIKitBaseButtonState) {
         internalButtonState = UIKitBaseButtonInternalState(isEnabled: state.isGestureEnabled, isPressed: internalButtonState == .pressed)
         gestureRecognizer.isEnabled = internalButtonState.isGestureEnabled
+    }
+}
+
+nonisolated extension UIKitBaseButtonState {
+    fileprivate var isGestureEnabled: Bool {
+        switch self {
+        case .enabled: true
+        case .disabled: false
+        }
+    }
+}
+
+nonisolated extension UIKitBaseButtonInternalState {
+    fileprivate var isGestureEnabled: Bool {
+        switch self {
+        case .enabled: true
+        case .pressed: true
+        case .disabled: false
+        }
     }
 }
 
