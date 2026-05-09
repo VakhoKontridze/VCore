@@ -95,6 +95,24 @@ nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
         )
     }
     
+    func testEmptyEnum() {
+        assertMacroExpansion(
+            """
+            @CaseNameGeneration
+            nonisolated enum Model {}
+            """,
+            expandedSource:
+                """
+                nonisolated enum Model {
+                
+                    internal nonisolated enum Name: CaseIterable {
+                    }
+                }
+                """,
+            macros: macros
+        )
+    }
+    
     func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """

@@ -128,7 +128,7 @@ nonisolated struct CaseNameGenerationMacro: MemberMacro {
         let prefixMethod: String = "\(accessLevelModifier) "
         let prefixType: String = "\(accessLevelModifier)\(isNonIsolated ? " nonisolated" : "") "
         
-        do {
+        if !cases.isEmpty {
             var string: String = ""
             
             string.append("\(prefixMethod)func toName() -> Name {")
@@ -151,7 +151,7 @@ nonisolated struct CaseNameGenerationMacro: MemberMacro {
             result.append("\(raw: string)")
         }
         
-        do {
+        if !cases.isEmpty {
             var string: String = ""
             
             string.append("\(prefixMethod)func `is`(_ name: Name) -> Bool {")
