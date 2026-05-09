@@ -85,6 +85,10 @@ private struct ProgressViewModifier: ViewModifier {
                     isVisible = false
                 }
             }
+            .onDisappear {
+                visibilityTask?.cancel()
+                visibilityTask = nil
+            }
     }
 }
 
