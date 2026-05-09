@@ -45,8 +45,10 @@ struct ___VARIABLE_productName___View: View {
         // Toolbar
         .inlineNavigationTitle("___VARIABLE_productName___")
         
-        // Progress & Alert
+        // Progress
         .progressView(parameters: progressViewParameters)
+        
+        // Alert
         .alert(parameters: $alertParameters)
         
         // Child Scenes
