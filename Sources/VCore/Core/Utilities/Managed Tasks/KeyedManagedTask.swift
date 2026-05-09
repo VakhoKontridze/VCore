@@ -9,7 +9,7 @@ import Foundation
 import os
 
 /// `Task` wrapper that deduplicates concurrent calls per key, ensuring only one operation per key runs at a time.
-nonisolated public final class KeyedManagedTask<Key, Success>: @unchecked Sendable
+nonisolated public final class KeyedManagedTask<Key, Success>: Sendable
     where
         Key: Hashable & Sendable,
         Success: Sendable

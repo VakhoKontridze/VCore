@@ -9,7 +9,7 @@ import Foundation
 import os
 
 /// `Task` wrapper that deduplicates concurrent calls, ensuring only one operation runs at a time.
-nonisolated public final class ManagedTask<Success>: @unchecked Sendable
+nonisolated public final class ManagedTask<Success>: Sendable
     where Success: Sendable
 {
     // MARK: Properties
