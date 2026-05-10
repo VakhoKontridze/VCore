@@ -21,7 +21,7 @@ nonisolated public final class KeyedManagedTask<Key, Success>: Sendable
     /// Initializes `KeyedManagedTask`.
     public init() {}
     
-    // MARK: Run
+    // MARK: API
     /// Runs the operation for the given key, or joins an existing in-flight operation for that key if one exists.
     /// If the caller is cancelled, it detaches without affecting other waiters.
     public func run(
@@ -81,7 +81,6 @@ nonisolated public final class KeyedManagedTask<Key, Success>: Sendable
         )
     }
     
-    // MARK: Cancel
     /// Cancels the in-flight operation for the given key.
     ///
     /// If `forAllWaiters` is `true`, operation will be cancelled regardless of how many callers are waiting.
