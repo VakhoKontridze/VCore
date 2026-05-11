@@ -19,8 +19,6 @@ nonisolated open class UserDefaultsService: @unchecked Sendable {
     )
     
     // MARK: Properties - UserDefaults
-    private var _userDefaults: UserDefaults
-    
     /// `UserDefaults` store.
     open var userDefaults: UserDefaults {
         @storageRestrictions(initializes: _userDefaults)
@@ -30,10 +28,9 @@ nonisolated open class UserDefaultsService: @unchecked Sendable {
         get { queue.sync { _userDefaults } }
         set { queue.sync(flags: .barrier) { _userDefaults = newValue } }
     }
+    private var _userDefaults: UserDefaults
 
     // MARK: Properties - JSON Encoder
-    private var _jsonEncoder: JSONEncoder = .init()
-    
     /// `JSONEncoder`.
     ///
     /// Used in `Codable` methods.
@@ -41,10 +38,9 @@ nonisolated open class UserDefaultsService: @unchecked Sendable {
         get { queue.sync { _jsonEncoder } }
         set { queue.sync(flags: .barrier) { _jsonEncoder = newValue } }
     }
+    private var _jsonEncoder: JSONEncoder = .init()
 
     // MARK: Properties - JSON Decoder
-    private var _jsonDecoder: JSONDecoder = .init()
-    
     /// `JSONDecoder`.
     ///
     /// Used in `Codable` methods.
@@ -52,6 +48,7 @@ nonisolated open class UserDefaultsService: @unchecked Sendable {
         get { queue.sync { _jsonDecoder } }
         set { queue.sync(flags: .barrier) { _jsonDecoder = newValue } }
     }
+    private var _jsonDecoder: JSONDecoder = .init()
     
     // MARK: Properties - Queue
     private let queue: DispatchQueue = .init(

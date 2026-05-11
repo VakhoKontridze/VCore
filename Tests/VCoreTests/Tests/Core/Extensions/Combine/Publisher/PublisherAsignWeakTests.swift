@@ -20,11 +20,11 @@ nonisolated final class PublisherAssignWeakTests: XCTestCase {
     // MARK: Types
     nonisolated private final class Model: @unchecked Sendable {
         // MARK: Properties
-        private var _value: Int = 0
         var value: Int {
             get { queue.sync { _value } }
             set { queue.sync(flags: .barrier) { _value = newValue } }
         }
+        private var _value: Int = 0
         
         private let publisher: PassthroughSubject<Int, Never> = .init()
         

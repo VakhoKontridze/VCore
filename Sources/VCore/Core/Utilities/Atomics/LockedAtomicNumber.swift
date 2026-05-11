@@ -19,8 +19,6 @@ nonisolated public final class LockedAtomicNumber<Number>: @unchecked Sendable
     where Number: SignedNumeric
 {
     // MARK: Properties - Value
-    private var _value: Number
-    
     private var value: Number {
         @storageRestrictions(initializes: _value)
         init(initialValue) {
@@ -29,6 +27,7 @@ nonisolated public final class LockedAtomicNumber<Number>: @unchecked Sendable
         get { queue.sync { _value } }
         set { queue.sync(flags: .barrier) { _value = newValue } }
     }
+    private var _value: Number
     
     // MARK: Properties - Queue
     private let queue: DispatchQueue = .init(

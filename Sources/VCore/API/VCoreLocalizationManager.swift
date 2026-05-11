@@ -21,13 +21,12 @@ nonisolated public final class VCoreLocalizationManager: @unchecked Sendable {
     public static let shared: VCoreLocalizationManager = .init()
     
     // MARK: Properties - Localization
-    private var _localizationProvider: any VCoreLocalizationProvider = DefaultVCoreLocalizationProvider()
-    
     /// Localization provider.
     public var localizationProvider: any VCoreLocalizationProvider {
         get { queue.sync { _localizationProvider } }
         set { queue.sync(flags: .barrier) { _localizationProvider = newValue } }
     }
+    private var _localizationProvider: any VCoreLocalizationProvider = DefaultVCoreLocalizationProvider()
     
     // MARK: Properties - Queue
     private let queue: DispatchQueue = .init(

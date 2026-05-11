@@ -24,13 +24,12 @@ nonisolated public final class NetworkReachabilityService: @unchecked Sendable {
     public static let shared: NetworkReachabilityService = .init()
     
     // MARK: Properties - Status
-    private var _status: NWPath.Status?
-    
     /// Network connection status.
     public private(set) var status: NWPath.Status? {
         get { queue.sync { _status } }
         set { queue.sync(flags: .barrier) { _status = newValue } }
     }
+    private var _status: NWPath.Status?
     
     /// Indicates if device is connected to a network.
     ///

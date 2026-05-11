@@ -21,8 +21,6 @@ nonisolated open class KeychainService: @unchecked Sendable {
     )
     
     // MARK: Properties - Configuration
-    private var _configuration: KeychainServiceConfiguration
-    
     /// Configuration.
     open var configuration: KeychainServiceConfiguration {
         @storageRestrictions(initializes: _configuration)
@@ -32,10 +30,9 @@ nonisolated open class KeychainService: @unchecked Sendable {
         get { queue.sync { _configuration } }
         set { queue.sync(flags: .barrier) { _configuration = newValue } }
     }
+    private var _configuration: KeychainServiceConfiguration
 
     // MARK: Properties - JSON Encoder
-    private var _jsonEncoder: JSONEncoder = .init()
-    
     /// `JSONEncoder`.
     ///
     /// Used in `Codable` methods.
@@ -43,10 +40,9 @@ nonisolated open class KeychainService: @unchecked Sendable {
         get { queue.sync { _jsonEncoder } }
         set { queue.sync(flags: .barrier) { _jsonEncoder = newValue } }
     }
+    private var _jsonEncoder: JSONEncoder = .init()
 
     // MARK: Properties - JSON Decoder
-    private var _jsonDecoder: JSONDecoder = .init()
-    
     /// `JSONDecoder`.
     ///
     /// Used in `Codable` methods.
@@ -54,6 +50,7 @@ nonisolated open class KeychainService: @unchecked Sendable {
         get { queue.sync { _jsonDecoder } }
         set { queue.sync(flags: .barrier) { _jsonDecoder = newValue } }
     }
+    private var _jsonDecoder: JSONDecoder = .init()
     
     // MARK: Properties - Queue
     private let queue: DispatchQueue = .init(
