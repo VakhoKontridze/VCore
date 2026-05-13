@@ -14,8 +14,8 @@ nonisolated extension Array where Element: Equatable {
     ///     let numbers: [Int] = [1, 1, 3, 5, 5]
     ///     let uniqueNumbers: [Int] = numbers.removingDuplicates() // [1, 3, 5]
     ///
-    public func removingDuplicates() -> [Element] {
-        var result: [Element] = []
+    public func removingDuplicates() -> Self {
+        var result: Self = []
         
         for element in self where !result.contains(element) {
             result.append(element)
@@ -42,7 +42,7 @@ nonisolated extension Array where Element: Hashable {
     ///     let numbers: [Int] = [1, 1, 3, 5, 5]
     ///     let uniqueNumbers: [Int] = numbers.removingDuplicates() // [1, 3, 5]
     ///
-    public func removingDuplicates() -> [Element] {
+    public func removingDuplicates() -> Self {
         var encountered: Set<Element> = []
         
         return filter { encountered.insert($0).inserted }

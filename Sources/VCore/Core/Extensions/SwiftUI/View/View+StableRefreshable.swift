@@ -8,7 +8,7 @@
 import SwiftUI
 
 extension View {
-    /// Marks this view as refreshable, but prevent `View` redraws cancelling `refreshable` by making it stable.
+    /// Marks this view as refreshable, but prevents `View` redraws cancelling `refreshable` by making it stable.
     ///
     ///     var body: some View {
     ///         ScrollView {
