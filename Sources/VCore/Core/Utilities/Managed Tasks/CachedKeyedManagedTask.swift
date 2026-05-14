@@ -1,5 +1,5 @@
 //
-//  KeyedManagedTaskCache.swift
+//  CachedKeyedManagedTask.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/5/26.
@@ -9,7 +9,7 @@ import Foundation
 import os
 
 /// `Task` wrapper that caches and deduplicates concurrent calls per key, ensuring only one operation per key runs at a time.
-nonisolated public final class KeyedManagedTaskCache<Key, Success>: Sendable
+nonisolated public final class CachedKeyedManagedTask<Key, Success>: Sendable
     where
         Key: Hashable & Sendable,
         Success: Sendable
@@ -20,7 +20,7 @@ nonisolated public final class KeyedManagedTaskCache<Key, Success>: Sendable
     private let lock: OSAllocatedUnfairLock<State> = .init(initialState: State())
 
     // MARK: Initializers
-    /// Initializes `KeyedManagedTaskCache`.
+    /// Initializes `CachedKeyedManagedTask`.
     public init() {}
 
     // MARK: API

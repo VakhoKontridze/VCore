@@ -1,5 +1,5 @@
 //
-//  ManagedTaskCache.swift
+//  CachedManagedTask.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 11/5/26.
@@ -9,7 +9,7 @@ import Foundation
 import os
 
 /// `Task` wrapper that caches and deduplicates concurrent calls, ensuring only one operation runs at a time.
-nonisolated public final class ManagedTaskCache<Success>: Sendable
+nonisolated public final class CachedManagedTask<Success>: Sendable
     where Success: Sendable
 {
     // MARK: Properties
@@ -18,7 +18,7 @@ nonisolated public final class ManagedTaskCache<Success>: Sendable
     private let lock: OSAllocatedUnfairLock<Success?> = .init(initialState: nil)
 
     // MARK: Initializers
-    /// Initializes `ManagedTaskCache`.
+    /// Initializes `CachedManagedTask`.
     public init() {}
 
     // MARK: API

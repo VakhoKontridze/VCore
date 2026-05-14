@@ -5,7 +5,7 @@
 Core - Utilities
 
 - `SendableTask` is added
-- `ManagedTaskCache` and `KeyedManagedTaskCache` are added, that help with caching existing managed tasks
+- `CachedManagedTask` and `CachedKeyedManagedTask` are added, that help with caching existing managed tasks
 
 Presentation
 
