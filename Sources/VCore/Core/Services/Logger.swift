@@ -22,7 +22,6 @@ nonisolated extension Logger {
     
     // MARK: Properties - Presentation - Views
     static let alignedGridLayout: Self = .init("AlignedGridLayout")
-    static let baseButtonGestureRecognizer: Self = .init("BaseButtonGestureRecognizer")
     static let carouselCollectionViewFlowLayout: Self = .init("CarouselCollectionViewFlowLayout")
     static let infiniteScrollingUICollectionView: Self = .init("InfiniteScrollingUICollectionView")
     static let keyboardResponsiveUIViewController: Self = .init("KeyboardResponsiveUIViewController")
