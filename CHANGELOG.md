@@ -11,6 +11,10 @@ Core - Utilities
 - `SendableTask` is added
 - `CachedManagedTask` and `CachedKeyedManagedTask` are added, that help with caching existing managed tasks
 
+Date & Domain Helpers
+
+- `ImageStore` and `ImageRepository` are added
+
 Presentation
 
 - `appearanceDelay` is added to `ProgressViewParameters`

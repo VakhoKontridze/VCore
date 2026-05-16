@@ -9,6 +9,9 @@ import Foundation
 import OSLog
 
 nonisolated extension Logger {
+    // MARK: Properties - Data & Domain Helpers
+    static let imageStoreAndRepository: Self = .init("ImageStoreAndRepository")
+    
     // MARK: Properties - Core - Utilities
     static let keyboardObserver: Self = .init("KeyboardObserver")
     static let keychainStorage: Self = .init("KeychainStorage")

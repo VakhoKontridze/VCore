@@ -22,7 +22,7 @@ import Foundation
 ///     let genders: Gender = [...]
 ///
 ///     if genders.contains(.male) {
-///         // ...
+///         ...
 ///     }
 ///
 @attached(member, names: arbitrary)
