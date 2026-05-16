@@ -16,13 +16,13 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
     public init() {}
     
     // MARK: Operations
-    public func fetchImage(
+    open func fetchImage(
         image: PlatformImage
     ) async throws -> PlatformImage {
         image
     }
     
-    public func fetchImage(
+    open func fetchImage(
         data: Data
     ) async throws -> PlatformImage {
         try await makeImage(
@@ -30,7 +30,7 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         )
     }
     
-    public func fetchAssetImage(
+    open func fetchAssetImage(
         name: String,
         bundle: Bundle?
     ) async throws -> PlatformImage {
@@ -43,7 +43,7 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         return image
     }
     
-    public func fetchLocalImage(
+    open func fetchLocalImage(
         url: URL
     ) async throws -> PlatformImage {
         guard
@@ -55,7 +55,7 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         return image
     }
     
-    public func fetchRemoteImage(
+    open func fetchRemoteImage(
         url: URL
     ) async throws -> PlatformImage {
         let data: Data = try await URLSession.shared.data(from: url).0
@@ -67,7 +67,7 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         return image
     }
     
-    public func fetchPhotoImage(
+    open func fetchPhotoImage(
         asset: PHAsset
     ) async throws -> PlatformImage {
         try await withCheckedThrowingContinuation { continuation in
@@ -108,7 +108,7 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         }
     }
     
-    public func fetchPhotoImage(
+    open func fetchPhotoImage(
         item: PhotosPickerItem
     ) async throws -> PlatformImage {
         guard
@@ -124,7 +124,7 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         return image
     }
     
-    public func fetchPhotoImage(
+    open func fetchPhotoImage(
         assetIdentifier: String
     ) async throws -> PlatformImage {
         let result: PHFetchResult<PHAsset> = PHAsset.fetchAssets(
