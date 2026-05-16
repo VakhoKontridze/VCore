@@ -19,12 +19,6 @@ nonisolated public final class MockImageRepository: ImageRepositoryProtocol {
     
     public let imageProgressMemoryCache: any ImageProgressMemoryCacheProtocol
     
-    // MARK: Properties - Images
-    private let image: PlatformImage? = .init(
-        size: CGSize(dimension: 1_000),
-        color: PlatformColor.systemBlue
-    )
-    
     // MARK: Initializers
     /// Initializes `MockImageRepository`.
     public init(
@@ -40,21 +34,17 @@ nonisolated public final class MockImageRepository: ImageRepositoryProtocol {
     }
     
     // MARK: Operations
+    @concurrent
     public func fetchOriginalImage(
         parameter: ImageRepository_Parameter,
         cachePolicy: ImageRepository_CachePolicy,
         cacheStorage: ImageRepository_CacheStorage,
         progressCacheStorage: ImageRepository_ProgressCacheStorage?
     ) async throws -> PlatformImage {
-        guard
-            let image
-        else {
-            throw ImageRepositoryError.failedToCreateImage
-        }
-        
-        return image
+        try await fetchImage(parameter: parameter)
     }
     
+    @concurrent
     public func fetchResizedImage(
         parameter: ImageRepository_Parameter,
         size: CGSize,
@@ -63,16 +53,39 @@ nonisolated public final class MockImageRepository: ImageRepositoryProtocol {
         progressCacheStorage: ImageRepository_ProgressCacheStorage?,
         imageVariantCachingPolicy: ImageRepository_ResizedImageVariantCachingPolicy
     ) async throws -> PlatformImage {
-        guard
-            let image: PlatformImage = .init(
-                size: size,
-                color: PlatformColor.systemBlue
-            )
-        else {
-            throw ImageRepositoryError.failedToCreateImage
-        }
+        try await fetchImage(parameter: parameter)
+    }
+    
+    // MARK: Helpers
+    @concurrent
+    private func fetchImage(
+        parameter: ImageRepository_Parameter,
+    ) async throws -> PlatformImage {
+        switch parameter.storage {
+        case .image(let image):
+            try await imageFetchWorker.fetchImage(image: image)
         
-        return image
+        case .data(let data):
+            try await imageFetchWorker.fetchImage(data: data)
+            
+        case .asset(let name, let bundle):
+            try await imageFetchWorker.fetchAssetImage(name: name, bundle: bundle)
+        
+        case .local(let url):
+            try await imageFetchWorker.fetchLocalImage(url: url)
+        
+        case .remote(let url):
+            try await imageFetchWorker.fetchRemoteImage(url: url)
+            
+        case .photo_Asset(let asset):
+            try await imageFetchWorker.fetchPhotoImage(asset: asset)
+            
+        case .photo_Item(let item):
+            try await imageFetchWorker.fetchPhotoImage(item: item)
+            
+        case .photo_AssetIdentifier(let assetIdentifier):
+            try await imageFetchWorker.fetchPhotoImage(assetIdentifier: assetIdentifier)
+        }
     }
 }
 

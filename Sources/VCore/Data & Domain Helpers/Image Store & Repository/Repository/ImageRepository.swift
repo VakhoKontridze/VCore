@@ -149,7 +149,8 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         )
     }
     
-    nonisolated private func _fetchImage(
+    @concurrent
+    private func _fetchImage(
         parameter: ImageRepository_Parameter,
         
         memoryCacheKey: Key<ImageMemoryCache_OriginalKey, ImageMemoryCache_ResizedKey>,
@@ -300,7 +301,8 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         }
     }
     
-    nonisolated private func __clearProgress(
+    @concurrent
+    private func __clearProgress(
         progressCacheStorage: ImageRepository_ProgressCacheStorage?,
         progressMemoryCacheKey: Key<ImageProgressMemoryCache_OriginalKey, ImageProgressMemoryCache_ResizedKey>,
         cancel: Bool
@@ -318,7 +320,8 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
     }
     
     // MARK: Helpers
-    nonisolated private func fetchImage(
+    @concurrent
+    private func fetchImage(
         parameter: ImageRepository_Parameter,
     ) async throws -> PlatformImage {
         switch parameter.storage {
@@ -348,7 +351,8 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         }
     }
     
-    nonisolated private func makeThumbnail(
+    @concurrent
+    private func makeThumbnail(
         image: PlatformImage,
         size: CGSize
     ) async throws -> PlatformImage {
