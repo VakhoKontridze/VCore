@@ -2,6 +2,10 @@
 
 ### 8.2.0(115)
 
+Core - Extensions
+
+- `withTimeout(...)` method is added, that performs asynchronous operation with a timeout
+
 Core - Utilities
 
 - `SendableTask` is added

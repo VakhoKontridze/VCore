@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// An error that occurs during the operations in `UserDefaultsService`.
+/// Error that occurs during the operations in `UserDefaultsService`.
 @MemberwiseInitializable(accessLevelModifier: .private)
 nonisolated public struct UserDefaultsServiceError: BaseErrorProtocol, Sendable {
     // MARK: Properties

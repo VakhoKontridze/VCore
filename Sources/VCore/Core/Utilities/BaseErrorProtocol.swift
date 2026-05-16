@@ -15,10 +15,12 @@ import Foundation
 ///         let code: Int
 ///         let description: String
 ///
-///         static let failedToGet: Self = .init(
-///             code: 1,
-///             description: "Data cannot be retrieved"
-///         )
+///         static var failedToGet: Self {
+///             .init(
+///                 code: 1,
+///                 description: "Data cannot be retrieved"
+///             )
+///         }
 ///
 ///         static func failedToSet(_ reason: String) -> Self {
 ///             .init(

@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// An error that occurs during the operations in `KeychainService`.
+/// Error that occurs during the operations in `KeychainService`.
 @MemberwiseInitializable(accessLevelModifier: .private)
 nonisolated public struct KeychainServiceError: BaseErrorProtocol, Sendable {
     // MARK: Properties
