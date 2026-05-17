@@ -70,15 +70,12 @@ public final class ImageStore {
         cacheStorage: ImageRepository_CacheStorage = .default,
         progressCacheStorage: ImageRepository_ProgressCacheStorage? = .default
     ) async throws -> PlatformImage {
-        let image: PlatformImage = try await imageRepository.fetchOriginalImage(
+        try await imageRepository.fetchOriginalImage(
             parameter: parameter,
             cachePolicy: cachePolicy,
             cacheStorage: cacheStorage,
             progressCacheStorage: progressCacheStorage
         )
-        try Task.checkCancellation()
-        
-        return image
     }
     
     /// Fetches resized image.
@@ -90,7 +87,7 @@ public final class ImageStore {
         progressCacheStorage: ImageRepository_ProgressCacheStorage? = .default,
         imageVariantCachingPolicy: ImageRepository_ResizedImageVariantCachingPolicy = .default
     ) async throws -> PlatformImage {
-        let image: PlatformImage = try await imageRepository.fetchResizedImage(
+        try await imageRepository.fetchResizedImage(
             parameter: parameter,
             size: size,
             cachePolicy: cachePolicy,
@@ -98,9 +95,6 @@ public final class ImageStore {
             progressCacheStorage: progressCacheStorage,
             imageVariantCachingPolicy: imageVariantCachingPolicy
         )
-        try Task.checkCancellation()
-        
-        return image
     }
     
     // MARK: Fetch - Image
