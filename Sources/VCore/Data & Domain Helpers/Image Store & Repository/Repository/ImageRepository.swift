@@ -33,7 +33,6 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
     }
     
     // MARK: Operations
-    @concurrent
     public func fetchOriginalImage(
         parameter: ImageRepository_Parameter,
         cachePolicy: ImageRepository_CachePolicy,
@@ -71,7 +70,6 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         )
     }
     
-    @concurrent
     public func fetchResizedImage(
         parameter: ImageRepository_Parameter,
         size: CGSize,
@@ -149,7 +147,6 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         )
     }
     
-    @concurrent
     private func _fetchImage(
         parameter: ImageRepository_Parameter,
         
@@ -312,7 +309,6 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
     }
     
     // MARK: Helpers
-    @concurrent
     private func fetchImage(
         parameter: ImageRepository_Parameter,
     ) async throws -> PlatformImage {
@@ -343,7 +339,6 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         }
     }
     
-    @concurrent
     private func makeThumbnail(
         image: PlatformImage,
         size: CGSize

@@ -34,7 +34,6 @@ nonisolated public final class MockImageRepository: ImageRepositoryProtocol {
     }
     
     // MARK: Operations
-    @concurrent
     public func fetchOriginalImage(
         parameter: ImageRepository_Parameter,
         cachePolicy: ImageRepository_CachePolicy,
@@ -44,7 +43,6 @@ nonisolated public final class MockImageRepository: ImageRepositoryProtocol {
         try await fetchImage(parameter: parameter)
     }
     
-    @concurrent
     public func fetchResizedImage(
         parameter: ImageRepository_Parameter,
         size: CGSize,
@@ -57,7 +55,6 @@ nonisolated public final class MockImageRepository: ImageRepositoryProtocol {
     }
     
     // MARK: Helpers
-    @concurrent
     private func fetchImage(
         parameter: ImageRepository_Parameter,
     ) async throws -> PlatformImage {

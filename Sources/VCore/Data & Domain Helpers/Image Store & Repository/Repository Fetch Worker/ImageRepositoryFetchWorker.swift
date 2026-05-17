@@ -142,7 +142,6 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
     }
     
     // MARK: Helpers
-    @concurrent
     private func makeImage(
         data: Data
     ) async throws -> PlatformImage {
