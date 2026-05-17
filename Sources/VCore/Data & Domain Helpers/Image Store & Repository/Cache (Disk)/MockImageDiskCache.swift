@@ -10,7 +10,7 @@
 import Foundation
 
 /// Mock image disk cache.
-public actor MockImageDiskCache: ImageDiskCacheProtocol {
+public final class MockImageDiskCache: ImageDiskCacheProtocol {
     // MARK: Properties - Images
     private let image: PlatformImage? = .init(
         size: CGSize(dimension: 1_000),

@@ -8,13 +8,19 @@
 import Foundation
 
 /// Image memory cache.
-public actor ImageMemoryCache: ImageMemoryCacheProtocol {
-    // MARK: Properties
+public final class ImageMemoryCache: ImageMemoryCacheProtocol, @unchecked Sendable {
+    // MARK: Properties - Cache and Keys
     private let originalCache: NSCache<ImageMemoryCache_OriginalKey, PlatformImage>
     private var originalCacheKeys: Set<ImageMemoryCache_OriginalKey> = []
     
     private let resizedCache: NSCache<ImageMemoryCache_ResizedKey, PlatformImage>
     private var resizedCacheKeys: Set<ImageMemoryCache_ResizedKey> = []
+    
+    // MARK: Properties - Queue
+    private let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.image-memory-cache",
+        attributes: .concurrent
+    )
     
     // MARK: Initializers
     /// Initializes `ImageMemoryCache`.
@@ -41,13 +47,17 @@ public actor ImageMemoryCache: ImageMemoryCacheProtocol {
     public func get(
         key: ImageMemoryCache_OriginalKey
     ) -> PlatformImage? {
-        originalCache.object(forKey: key)
+        queue.sync {
+            originalCache.object(forKey: key)
+        }
     }
     
     public func get(
         key: ImageMemoryCache_ResizedKey
     ) -> PlatformImage? {
-        resizedCache.object(forKey: key)
+        queue.sync {
+            resizedCache.object(forKey: key)
+        }
     }
     
     // MARK: Operation - Set
@@ -55,49 +65,57 @@ public actor ImageMemoryCache: ImageMemoryCacheProtocol {
         key: ImageMemoryCache_OriginalKey,
         image: PlatformImage
     ) {
-        originalCache.setObject(
-            image,
-            forKey: key,
-            cost: image.cacheCost
-        )
-        originalCacheKeys.insert(key)
+        queue.sync(flags: .barrier) {
+            originalCache.setObject(
+                image,
+                forKey: key,
+                cost: image.cacheCost
+            )
+            originalCacheKeys.insert(key)
+        }
     }
     
     public func set(
         key: ImageMemoryCache_ResizedKey,
         image: PlatformImage
     ) {
-        resizedCache.setObject(
-            image,
-            forKey: key,
-            cost: image.cacheCost
-        )
-        resizedCacheKeys.insert(key)
+        queue.sync(flags: .barrier) {
+            resizedCache.setObject(
+                image,
+                forKey: key,
+                cost: image.cacheCost
+            )
+            resizedCacheKeys.insert(key)
+        }
     }
 
     // MARK: Operation - Delete
     public func delete(
         key: ImageMemoryCache_OriginalKey
     ) {
-        originalCache.removeObject(forKey: key)
-        originalCacheKeys.remove(key)
+        queue.sync(flags: .barrier) {
+            originalCache.removeObject(forKey: key)
+            originalCacheKeys.remove(key)
+        }
     }
     
     public func delete(
         key: ImageMemoryCache_ResizedKey,
         deleteAllSizes: Bool,
     ) {
-        if deleteAllSizes {
-            let keys: [ImageMemoryCache_ResizedKey] = resizedCacheKeys.filter { $0.parameter == key.parameter }
-            
-            for key in keys {
+        queue.sync(flags: .barrier) {
+            if deleteAllSizes {
+                let keys: [ImageMemoryCache_ResizedKey] = resizedCacheKeys.filter { $0.parameter == key.parameter }
+                
+                for key in keys {
+                    resizedCache.removeObject(forKey: key)
+                    resizedCacheKeys.remove(key)
+                }
+                
+            } else {
                 resizedCache.removeObject(forKey: key)
                 resizedCacheKeys.remove(key)
             }
-            
-        } else {
-            resizedCache.removeObject(forKey: key)
-            resizedCacheKeys.remove(key)
         }
     }
     
@@ -105,12 +123,16 @@ public actor ImageMemoryCache: ImageMemoryCacheProtocol {
     public func deleteAll(
         type: ImageMemoryCache_CacheType
     ) {
-        if type.contains(.original) {
-            originalCache.removeAllObjects()
-        }
-        
-        if type.contains(.resized) {
-            resizedCache.removeAllObjects()
+        queue.sync(flags: .barrier) {
+            if type.contains(.original) {
+                originalCache.removeAllObjects()
+                originalCacheKeys.removeAll()
+            }
+            
+            if type.contains(.resized) {
+                resizedCache.removeAllObjects()
+                resizedCacheKeys.removeAll()
+            }
         }
     }
 }

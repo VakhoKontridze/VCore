@@ -8,7 +8,7 @@
 import Foundation
 
 /// Image disk cache protocol.
-nonisolated public protocol ImageDiskCacheProtocol: Actor {
+nonisolated public protocol ImageDiskCacheProtocol: AnyObject, Sendable {
     // MARK: Operation - Get
     /// Gets original image.
     func get(

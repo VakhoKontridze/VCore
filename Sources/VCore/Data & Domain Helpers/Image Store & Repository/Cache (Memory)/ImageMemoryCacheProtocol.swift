@@ -8,7 +8,7 @@
 import Foundation
 
 /// Image memory cache protocol.
-nonisolated public protocol ImageMemoryCacheProtocol: Actor {
+nonisolated public protocol ImageMemoryCacheProtocol: AnyObject, Sendable {
     // MARK: Operation - Get
     /// Gets original image.
     func get(

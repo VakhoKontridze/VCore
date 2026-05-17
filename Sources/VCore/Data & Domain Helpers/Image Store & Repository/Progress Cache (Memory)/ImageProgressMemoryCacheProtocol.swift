@@ -8,7 +8,7 @@
 import Foundation
 
 /// Image progress memory cache protocol.
-nonisolated public protocol ImageProgressMemoryCacheProtocol: Actor {
+nonisolated public protocol ImageProgressMemoryCacheProtocol: AnyObject, Sendable {
     // MARK: Operation - Get
     /// Gets original image.
     func get(

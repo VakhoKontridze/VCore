@@ -167,13 +167,12 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         // 1. Reads from cache
         if cachePolicy.readsFromCache {
             if cacheStorage.contains(.memory) {
-                let image: PlatformImage? = await {
+                let image: PlatformImage? = {
                     switch memoryCacheKey {
-                    case .original(let key): await imageMemoryCache.get(key: key)
-                    case .resized(let key): await imageMemoryCache.get(key: key)
+                    case .original(let key): imageMemoryCache.get(key: key)
+                    case .resized(let key): imageMemoryCache.get(key: key)
                     }
                 }()
-                try Task.checkCancellation()
 
                 if let image {
                     return image
@@ -181,21 +180,19 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
             }
             
             if cacheStorage.contains(.disk) {
-                let image: PlatformImage? = await {
+                let image: PlatformImage? = {
                     switch diskCacheKey {
-                    case .original(let key): await imageDiskCache.get(key: key)
-                    case .resized(let key): await imageDiskCache.get(key: key)
+                    case .original(let key): imageDiskCache.get(key: key)
+                    case .resized(let key): imageDiskCache.get(key: key)
                     }
                 }()
-                try Task.checkCancellation()
                 
                 if let image {
                     if cacheStorage.contains(.memory) {
                         switch memoryCacheKey {
-                        case .original(let key): await imageMemoryCache.set(key: key, image: image)
-                        case .resized(let key): await imageMemoryCache.set(key: key, image: image)
+                        case .original(let key): imageMemoryCache.set(key: key, image: image)
+                        case .resized(let key): imageMemoryCache.set(key: key, image: image)
                         }
-                        try Task.checkCancellation()
                     }
                     
                     return image
@@ -206,13 +203,12 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         // 2. Reads from progress cache
         switch progressCacheStorage {
         case .memory:
-            let task: Task<PlatformImage, any Error>? = await {
+            let task: Task<PlatformImage, any Error>? = {
                 switch progressMemoryCacheKey {
-                case .original(let key): await imageProgressMemoryCache.get(key: key)
-                case .resized(let key): await imageProgressMemoryCache.get(key: key)
+                case .original(let key): imageProgressMemoryCache.get(key: key)
+                case .resized(let key): imageProgressMemoryCache.get(key: key)
                 }
             }()
-            try Task.checkCancellation()
             
             if let task {
                 let image: PlatformImage = try await task.value
@@ -242,10 +238,9 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
             switch progressCacheStorage {
             case .memory:
                 switch progressMemoryCacheKey {
-                case .original(let key): await imageProgressMemoryCache.set(key: key, task: task)
-                case .resized(let key): await imageProgressMemoryCache.set(key: key, task: task)
+                case .original(let key): imageProgressMemoryCache.set(key: key, task: task)
+                case .resized(let key): imageProgressMemoryCache.set(key: key, task: task)
                 }
-                try Task.checkCancellation()
                 
             case nil:
                 break
@@ -259,10 +254,9 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
             if cachePolicy_WritesToCache {
                 if cacheStorage.contains(.memory) {
                     switch memoryCacheKey {
-                    case .original(let key): await imageMemoryCache.set(key: key, image: image)
-                    case .resized(let key): await imageMemoryCache.set(key: key, image: image)
+                    case .original(let key): imageMemoryCache.set(key: key, image: image)
+                    case .resized(let key): imageMemoryCache.set(key: key, image: image)
                     }
-                    try Task.checkCancellation()
                 }
                 
                 if cacheStorage.contains(.disk) {
@@ -271,10 +265,9 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
                     }
                     
                     switch diskCacheKey {
-                    case .original(let key): await imageDiskCache.set(key: key, image: image)
-                    case .resized(let key): await imageDiskCache.set(key: key, image: image)
+                    case .original(let key): imageDiskCache.set(key: key, image: image)
+                    case .resized(let key): imageDiskCache.set(key: key, image: image)
                     }
-                    try Task.checkCancellation()
                 }
             }
             
@@ -301,7 +294,6 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         }
     }
     
-    @concurrent
     private func __clearProgress(
         progressCacheStorage: ImageRepository_ProgressCacheStorage?,
         progressMemoryCacheKey: Key<ImageProgressMemoryCache_OriginalKey, ImageProgressMemoryCache_ResizedKey>,
@@ -310,8 +302,8 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         switch progressCacheStorage {
         case .memory:
             switch progressMemoryCacheKey {
-            case .original(let key): await imageProgressMemoryCache.delete(key: key, cancel: cancel)
-            case .resized(let key): await imageProgressMemoryCache.delete(key: key, cancel: cancel)
+            case .original(let key): imageProgressMemoryCache.delete(key: key, cancel: cancel)
+            case .resized(let key): imageProgressMemoryCache.delete(key: key, deleteAllSizes: true, cancel: cancel)
             }
             
         case nil:

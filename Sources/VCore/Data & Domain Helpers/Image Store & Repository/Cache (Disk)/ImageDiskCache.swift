@@ -10,10 +10,7 @@ import CryptoKit
 import OSLog
 
 /// Image disk cache.
-public actor ImageDiskCache: ImageDiskCacheProtocol {
-    // MARK: Properties - File Manager
-    private let fileManager: FileManager
-    
+public final class ImageDiskCache: ImageDiskCacheProtocol {
     // MARK: Properties - URLs
     private let rootURL: URL
     private let originalDirectory: URL
@@ -21,24 +18,27 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
     
     // MARK: Properties - Configuration
     private let configuration: ImageDiskCacheConfiguration
+    
+    // MARK: Properties - Queue
+    private let queue: DispatchQueue = .init(
+        label: "com.vakhtang-kontridze.vcore.image-disk-cache",
+        attributes: .concurrent
+    )
 
     // MARK: Initializers
     /// Initializes `ImageDiskCache`.
     public init(
-        fileManager: FileManager = .default,
         rootURL: URL? = nil,
         configuration: ImageDiskCacheConfiguration = .default
     ) {
-        self.fileManager = fileManager
-        
         let rootURL: URL = {
             if let rootURL {
                 return rootURL
             }
             
             let cacheURL: URL =
-                fileManager.urls(for: .cachesDirectory, in: .userDomainMask).first ??
-                fileManager.temporaryDirectory
+                FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first ??
+                FileManager.default.temporaryDirectory
             
             return cacheURL
                 .appending(
@@ -63,7 +63,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
         self.configuration = configuration
         
         do {
-            try fileManager.createDirectory(
+            try FileManager.default.createDirectory(
                 at: originalDirectory,
                 withIntermediateDirectories: true
             )
@@ -73,7 +73,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
         }
         
         do {
-            try fileManager.createDirectory(
+            try FileManager.default.createDirectory(
                 at: resizedDirectory,
                 withIntermediateDirectories: true
             )
@@ -179,7 +179,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
         )
         
         do {
-            try fileManager.removeItem(at: url)
+            try FileManager.default.removeItem(at: url)
             
         } catch let error as CocoaError where error.code == .fileNoSuchFile {
             // ...
@@ -202,7 +202,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
             
             let fileURLs: [URL]
             do {
-                fileURLs = try fileManager.contentsOfDirectory(
+                fileURLs = try FileManager.default.contentsOfDirectory(
                     at: resizedDirectory,
                     includingPropertiesForKeys: nil,
                     options: .skipsHiddenFiles
@@ -219,7 +219,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
                 
                 if name.hasPrefix("\(identifierHash)_") {
                     do {
-                        try fileManager.removeItem(at: url)
+                        try FileManager.default.removeItem(at: url)
                         
                     } catch let error as CocoaError where error.code == .fileNoSuchFile {
                         // ...
@@ -243,7 +243,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
             )
             
             do {
-                try fileManager.removeItem(at: url)
+                try FileManager.default.removeItem(at: url)
                 
             } catch let error as CocoaError where error.code == .fileNoSuchFile {
                 // ...
@@ -260,7 +260,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
     ) {
         if type.contains(.original) {
             do {
-                try fileManager.removeItem(at: originalDirectory)
+                try FileManager.default.removeItem(at: originalDirectory)
                 
             } catch let error as CocoaError where error.code == .fileNoSuchFile {
                 // ...
@@ -270,7 +270,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
             }
             
             do {
-                try fileManager.createDirectory(
+                try FileManager.default.createDirectory(
                     at: originalDirectory,
                     withIntermediateDirectories: true
                 )
@@ -282,7 +282,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
         
         if type.contains(.resized) {
             do {
-                try fileManager.removeItem(at: resizedDirectory)
+                try FileManager.default.removeItem(at: resizedDirectory)
                 
             } catch let error as CocoaError where error.code == .fileNoSuchFile {
                 // ...
@@ -292,7 +292,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
             }
             
             do {
-                try fileManager.createDirectory(
+                try FileManager.default.createDirectory(
                     at: resizedDirectory,
                     withIntermediateDirectories: true
                 )
@@ -330,7 +330,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
         
         let fileURLs: [URL]
         do {
-            fileURLs = try fileManager.contentsOfDirectory(
+            fileURLs = try FileManager.default.contentsOfDirectory(
                 at: directory,
                 includingPropertiesForKeys: Array(resourceKeys),
                 options: .skipsHiddenFiles
@@ -361,7 +361,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
         for entry in entries {
             if entry.date < cutoffDate {
                 do {
-                    try fileManager.removeItem(at: entry.url)
+                    try FileManager.default.removeItem(at: entry.url)
                     
                 } catch let error as CocoaError where error.code == .fileNoSuchFile {
                     // ...
@@ -384,7 +384,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
 
             for entry in sortedEntries {
                 do {
-                    try fileManager.removeItem(at: entry.url)
+                    try FileManager.default.removeItem(at: entry.url)
                     
                 } catch let error as CocoaError where error.code == .fileNoSuchFile {
                     // ...
@@ -443,14 +443,14 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
         url: URL
     ) -> PlatformImage? {
         guard
-            fileManager.fileExists(atPath: url.path())
+            FileManager.default.fileExists(atPath: url.path())
         else {
             return nil
         }
 
         // Bump modification date — used as LRU access time
         do {
-            try fileManager.setAttributes(
+            try FileManager.default.setAttributes(
                 [
                     .modificationDate: Date.now
                 ],

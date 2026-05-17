@@ -10,7 +10,7 @@
 import Foundation
 
 /// Mock image memory cache.
-public actor MockImageMemoryCache: ImageMemoryCacheProtocol {
+public final class MockImageMemoryCache: ImageMemoryCacheProtocol {
     // MARK: Properties - Images
     private let image: PlatformImage? = .init(
         size: CGSize(dimension: 1_000),

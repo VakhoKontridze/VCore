@@ -50,8 +50,6 @@ public final class ImageStore {
     public let imageRepository: any ImageRepositoryProtocol
     
     // MARK: Properties - Subscriptions
-    private var didEnterBackgroundTask: Task<Void, Never>?
-    
     private var cancellables: Set<AnyCancellable> = []
 
     // MARK: Initializers
@@ -162,20 +160,20 @@ public final class ImageStore {
     /// Deletes original image from cache.
     public func deleteOriginalImageFromCache(
         parameter: ImageRepository_Parameter
-    ) async {
-        await imageRepository.imageMemoryCache.delete(
+    ) {
+        imageRepository.imageMemoryCache.delete(
             key: ImageMemoryCache_OriginalKey(
                 parameter: parameter
             )
         )
         
-        await imageRepository.imageDiskCache.delete(
+        imageRepository.imageDiskCache.delete(
             key: ImageDiskCache_OriginalKey(
                 parameter: parameter
             )
         )
         
-        await imageRepository.imageProgressMemoryCache.delete(
+        imageRepository.imageProgressMemoryCache.delete(
             key: ImageProgressMemoryCache_OriginalKey(
                 parameter: parameter
             ),
@@ -188,8 +186,8 @@ public final class ImageStore {
         parameter: ImageRepository_Parameter,
         size: CGSize,
         deleteAllSizes: Bool = true
-    ) async {
-        await imageRepository.imageMemoryCache.delete(
+    ) {
+        imageRepository.imageMemoryCache.delete(
             key: ImageMemoryCache_ResizedKey(
                 parameter: parameter,
                 size: size
@@ -197,7 +195,7 @@ public final class ImageStore {
             deleteAllSizes: deleteAllSizes
         )
         
-        await imageRepository.imageDiskCache.delete(
+        imageRepository.imageDiskCache.delete(
             key: ImageDiskCache_ResizedKey(
                 parameter: parameter,
                 size: size
@@ -205,7 +203,7 @@ public final class ImageStore {
             deleteAllSizes: deleteAllSizes
         )
         
-        await imageRepository.imageProgressMemoryCache.delete(
+        imageRepository.imageProgressMemoryCache.delete(
             key: ImageProgressMemoryCache_ResizedKey(
                 parameter: parameter,
                 size: size
@@ -221,21 +219,21 @@ public final class ImageStore {
         imageMemoryCacheType: ImageMemoryCache_CacheType?,
         imageDiskCacheType: ImageDiskCache_CacheType?,
         imageProgressMemoryCacheType: ImageProgressMemoryCache_CacheType?
-    ) async {
+    ) {
         if let imageMemoryCacheType {
-            await imageRepository.imageMemoryCache.deleteAll(
+            imageRepository.imageMemoryCache.deleteAll(
                 type: imageMemoryCacheType
             )
         }
         
         if let imageDiskCacheType {
-            await imageRepository.imageDiskCache.deleteAll(
+            imageRepository.imageDiskCache.deleteAll(
                 type: imageDiskCacheType
             )
         }
         
         if let imageProgressMemoryCacheType {
-            await imageRepository.imageProgressMemoryCache.deleteAll(
+            imageRepository.imageProgressMemoryCache.deleteAll(
                 type: imageProgressMemoryCacheType,
                 cancel: true
             )
@@ -250,12 +248,7 @@ public final class ImageStore {
             .sink { [weak self] _ in
                 guard let self else { return }
                 
-                guard didEnterBackgroundTask == nil else { return }
-                didEnterBackgroundTask = Task {
-                    defer { didEnterBackgroundTask = nil }
-                    
-                    await imageRepository.imageDiskCache.evictIfNeeded()
-                }
+                imageRepository.imageDiskCache.evictIfNeeded()
             }
             .store(in: &cancellables)
     }
