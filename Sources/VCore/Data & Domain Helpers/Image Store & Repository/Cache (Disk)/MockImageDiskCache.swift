@@ -13,7 +13,7 @@ import Foundation
 public final class MockImageDiskCache: ImageDiskCacheProtocol {
     // MARK: Properties - Images
     private let image: PlatformImage? = .init(
-        size: CGSize(dimension: 1_000),
+        size: CGSize(dimension: 500),
         color: PlatformColor.systemBlue
     )
     
@@ -31,10 +31,11 @@ public final class MockImageDiskCache: ImageDiskCacheProtocol {
     public func get(
         key: ImageDiskCache_ResizedKey
     ) -> PlatformImage? {
-        PlatformImage(
-            size: CGSize(width: key.width, height: key.height),
-            color: PlatformColor.systemBlue
-        )
+//        PlatformImage(
+//            size: CGSize(width: key.width, height: key.height),
+//            color: PlatformColor.systemBlue
+//        )
+        image
     }
     
     public func set(

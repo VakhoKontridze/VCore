@@ -15,7 +15,7 @@ import PhotosUI
 nonisolated public final class MockImageRepositoryFetchWorker: ImageRepositoryFetchWorker, @unchecked Sendable {
     // MARK: Properties - Images
     private let image: PlatformImage? = .init(
-        size: CGSize(dimension: 1_000),
+        size: CGSize(dimension: 500),
         color: PlatformColor.systemBlue
     )
     
