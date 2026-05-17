@@ -69,7 +69,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at \(self.originalDirectory.path(percentEncoded: false)): \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
         }
         
         do {
@@ -79,7 +79,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at \(self.resizedDirectory.path(percentEncoded: false)): \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
         }
     }
 
@@ -185,32 +185,72 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
             // ...
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at \(url.path(percentEncoded: false)): \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to create directory at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
         }
     }
 
     public func delete(
-        key: ImageDiskCache_ResizedKey
+        key: ImageDiskCache_ResizedKey,
+        deleteAllSizes: Bool
     ) {
-        guard
-            let fileName: String = fileName(key: key)
-        else {
-            return
-        }
-        
-        let url: URL = fileURL(
-            directory: resizedDirectory,
-            name: fileName
-        )
-        
-        do {
-            try fileManager.removeItem(at: url)
+        if deleteAllSizes {
+            guard
+                let identifier: String = key.parameter.diskIdentifier
+            else {
+                return
+            }
             
-        } catch let error as CocoaError where error.code == .fileNoSuchFile {
-            // ...
+            let fileURLs: [URL]
+            do {
+                fileURLs = try fileManager.contentsOfDirectory(
+                    at: resizedDirectory,
+                    includingPropertiesForKeys: nil,
+                    options: .skipsHiddenFiles
+                )
+            } catch {
+                Logger.imageStoreAndRepository.error("Failed to read contents of directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
+                return
+            }
             
-        } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at \(url.path(percentEncoded: false)): \(error.localizedDescription)")
+            let identifierHash: String = sha256(identifier)
+            
+            for url in fileURLs {
+                let name: String = url.deletingPathExtension().lastPathComponent
+                
+                if name.hasPrefix("\(identifierHash)_") {
+                    do {
+                        try fileManager.removeItem(at: url)
+                        
+                    } catch let error as CocoaError where error.code == .fileNoSuchFile {
+                        // ...
+                        
+                    } catch {
+                        Logger.imageStoreAndRepository.error("Failed to remove file at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
+                    }
+                }
+            }
+            
+        } else {
+            guard
+                let fileName: String = fileName(key: key)
+            else {
+                return
+            }
+            
+            let url: URL = fileURL(
+                directory: resizedDirectory,
+                name: fileName
+            )
+            
+            do {
+                try fileManager.removeItem(at: url)
+                
+            } catch let error as CocoaError where error.code == .fileNoSuchFile {
+                // ...
+                
+            } catch {
+                Logger.imageStoreAndRepository.error("Failed to create directory at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
+            }
         }
     }
 
@@ -226,7 +266,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to create directory at \(self.originalDirectory.path(percentEncoded: false)): \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
             }
             
             do {
@@ -236,7 +276,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
                 )
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to create directory at \(self.originalDirectory.path(percentEncoded: false)): \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
             }
         }
         
@@ -248,7 +288,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to create directory at \(self.resizedDirectory.path(percentEncoded: false)): \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
             }
             
             do {
@@ -258,7 +298,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
                 )
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to create directory at \(self.resizedDirectory.path(percentEncoded: false)): \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
             }
         }
     }
@@ -297,7 +337,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to read contents directory at \(directory.path(percentEncoded: false)): \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to read contents directory at '\(directory.path(percentEncoded: false))': \(error.localizedDescription)")
             return
         }
 
@@ -327,7 +367,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
                     // ...
                     
                 } catch {
-                    Logger.imageStoreAndRepository.error("Failed to create directory at \(entry.url.path(percentEncoded: false)): \(error.localizedDescription)")
+                    Logger.imageStoreAndRepository.error("Failed to create directory at '\(entry.url.path(percentEncoded: false))': \(error.localizedDescription)")
                 }
             }
         }
@@ -350,7 +390,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
                     // ...
                     
                 } catch {
-                    Logger.imageStoreAndRepository.error("Failed to create directory at \(entry.url.path(percentEncoded: false)): \(error.localizedDescription)")
+                    Logger.imageStoreAndRepository.error("Failed to create directory at '\(entry.url.path(percentEncoded: false))': \(error.localizedDescription)")
                 }
                 
                 freed += entry.size
@@ -418,7 +458,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to set attributes to file at \(url.path(percentEncoded: false)): \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to set attributes to file at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
         }
 
         return PlatformImage(
@@ -444,7 +484,7 @@ public actor ImageDiskCache: ImageDiskCacheProtocol {
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create file at \(url.path(percentEncoded: false)): \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to create file at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
         }
     }
 

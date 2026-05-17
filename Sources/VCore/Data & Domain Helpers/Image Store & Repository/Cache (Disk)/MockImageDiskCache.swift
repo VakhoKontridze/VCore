@@ -52,7 +52,8 @@ public actor MockImageDiskCache: ImageDiskCacheProtocol {
     ) {}
     
     public func delete(
-        key: ImageDiskCache_ResizedKey
+        key: ImageDiskCache_ResizedKey,
+        deleteAllSizes: Bool
     ) {}
     
     public func deleteAll(

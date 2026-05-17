@@ -45,6 +45,7 @@ public actor MockImageProgressMemoryCache: ImageProgressMemoryCacheProtocol {
     
     public func delete(
         key: ImageProgressMemoryCache_ResizedKey,
+        deleteAllSizes: Bool,
         cancel: Bool
     ) {}
     

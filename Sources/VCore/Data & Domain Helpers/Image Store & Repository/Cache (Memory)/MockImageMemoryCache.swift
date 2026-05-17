@@ -52,7 +52,8 @@ public actor MockImageMemoryCache: ImageMemoryCacheProtocol {
     ) {}
     
     public func delete(
-        key: ImageMemoryCache_ResizedKey
+        key: ImageMemoryCache_ResizedKey,
+        deleteAllSizes: Bool
     ) {}
     
     public func deleteAll(

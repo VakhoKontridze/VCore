@@ -41,7 +41,8 @@ nonisolated public protocol ImageDiskCacheProtocol: Actor {
     
     /// Deletes resized image.
     func delete(
-        key: ImageDiskCache_ResizedKey
+        key: ImageDiskCache_ResizedKey,
+        deleteAllSizes: Bool
     )
     
     // MARK: Operation - Delete All

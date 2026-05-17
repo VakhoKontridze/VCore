@@ -43,6 +43,7 @@ nonisolated public protocol ImageProgressMemoryCacheProtocol: Actor {
     /// Deletes resized image.
     func delete(
         key: ImageProgressMemoryCache_ResizedKey,
+        deleteAllSizes: Bool,
         cancel: Bool
     )
     

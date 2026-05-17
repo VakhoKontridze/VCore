@@ -89,6 +89,7 @@ public actor ImageProgressMemoryCache: ImageProgressMemoryCacheProtocol {
     
     public func delete(
         key: ImageProgressMemoryCache_ResizedKey,
+        deleteAllSizes: Bool,
         cancel: Bool
     ) {
         if
@@ -98,8 +99,18 @@ public actor ImageProgressMemoryCache: ImageProgressMemoryCacheProtocol {
             task.cancel()
         }
         
-        resizedCache.removeObject(forKey: key)
-        resizedCacheKeys.remove(key)
+        if deleteAllSizes {
+            let keys: [ImageProgressMemoryCache_ResizedKey] = resizedCacheKeys.filter { $0.parameter == key.parameter }
+            
+            for key in keys {
+                resizedCache.removeObject(forKey: key)
+                resizedCacheKeys.remove(key)
+            }
+            
+        } else {
+            resizedCache.removeObject(forKey: key)
+            resizedCacheKeys.remove(key)
+        }
     }
     
     // MARK: Operation - Delete All
@@ -122,6 +133,7 @@ public actor ImageProgressMemoryCache: ImageProgressMemoryCacheProtocol {
             for key in keys {
                 delete(
                     key: key,
+                    deleteAllSizes: false,
                     cancel: cancel
                 )
             }

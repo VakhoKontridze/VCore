@@ -11,8 +11,10 @@ import Foundation
 public actor ImageMemoryCache: ImageMemoryCacheProtocol {
     // MARK: Properties
     private let originalCache: NSCache<ImageMemoryCache_OriginalKey, PlatformImage>
+    private var originalCacheKeys: Set<ImageMemoryCache_OriginalKey> = []
     
     private let resizedCache: NSCache<ImageMemoryCache_ResizedKey, PlatformImage>
+    private var resizedCacheKeys: Set<ImageMemoryCache_ResizedKey> = []
     
     // MARK: Initializers
     /// Initializes `ImageMemoryCache`.
@@ -58,6 +60,7 @@ public actor ImageMemoryCache: ImageMemoryCacheProtocol {
             forKey: key,
             cost: image.cacheCost
         )
+        originalCacheKeys.insert(key)
     }
     
     public func set(
@@ -69,6 +72,7 @@ public actor ImageMemoryCache: ImageMemoryCacheProtocol {
             forKey: key,
             cost: image.cacheCost
         )
+        resizedCacheKeys.insert(key)
     }
 
     // MARK: Operation - Delete
@@ -76,12 +80,25 @@ public actor ImageMemoryCache: ImageMemoryCacheProtocol {
         key: ImageMemoryCache_OriginalKey
     ) {
         originalCache.removeObject(forKey: key)
+        originalCacheKeys.remove(key)
     }
     
     public func delete(
-        key: ImageMemoryCache_ResizedKey
+        key: ImageMemoryCache_ResizedKey,
+        deleteAllSizes: Bool,
     ) {
-        resizedCache.removeObject(forKey: key)
+        if deleteAllSizes {
+            let keys: [ImageMemoryCache_ResizedKey] = resizedCacheKeys.filter { $0.parameter == key.parameter }
+            
+            for key in keys {
+                resizedCache.removeObject(forKey: key)
+                resizedCacheKeys.remove(key)
+            }
+            
+        } else {
+            resizedCache.removeObject(forKey: key)
+            resizedCacheKeys.remove(key)
+        }
     }
     
     // MARK: Operation - Delete All

@@ -17,7 +17,7 @@ import Combine
 ///                     imageRepository: self.imageRepository.resolve()
 ///                 )
 ///             }
-///             .singleton
+///             .cached
 ///         }
 ///
 ///         var imageRepository: Factory<any ImageRepositoryProtocol> {
@@ -186,20 +186,23 @@ public final class ImageStore {
     /// Deletes resized image from cache.
     public func deleteResizedImageFromCache(
         parameter: ImageRepository_Parameter,
-        size: CGSize
+        size: CGSize,
+        deleteAllSizes: Bool = true
     ) async {
         await imageRepository.imageMemoryCache.delete(
             key: ImageMemoryCache_ResizedKey(
                 parameter: parameter,
                 size: size
-            )
+            ),
+            deleteAllSizes: deleteAllSizes
         )
         
         await imageRepository.imageDiskCache.delete(
             key: ImageDiskCache_ResizedKey(
                 parameter: parameter,
                 size: size
-            )
+            ),
+            deleteAllSizes: deleteAllSizes
         )
         
         await imageRepository.imageProgressMemoryCache.delete(
@@ -207,6 +210,7 @@ public final class ImageStore {
                 parameter: parameter,
                 size: size
             ),
+            deleteAllSizes: deleteAllSizes,
             cancel: true
         )
     }
