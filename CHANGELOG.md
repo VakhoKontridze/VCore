@@ -10,6 +10,8 @@ Core - Utilities
 
 - `SendableTask` is added
 - `CachedManagedTask` and `CachedKeyedManagedTask` are added, that help with caching existing managed tasks
+- `modifyAndGet(_:)` method is added to `AtomicInteger`
+- `modifyAndGet(_:)` method is added to `LockedAtomicInteger`
 
 Date & Domain Helpers
 

@@ -76,6 +76,12 @@ public actor AtomicNumber<Number> where Number: SignedNumeric {
     }
 
     // MARK: Get and Post-Mutators
+    /// Modifies current value, and returns it.
+    public func modifyAndGet(_ modify: (Number) -> Number) -> Number {
+        value = modify(value)
+        return value
+    }
+    
     /// Returns current value, and sets it to a given value.
     public func getAndSet(_ newValue: Number) -> Number {
         let currentValue = value

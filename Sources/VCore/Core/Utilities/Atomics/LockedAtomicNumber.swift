@@ -69,6 +69,14 @@ nonisolated public final class LockedAtomicNumber<Number>: @unchecked Sendable
     }
 
     // MARK: Get and Pre-Mutators
+    /// Modifies current value, and returns it.
+    public func modifyAndGet(_ modify: (Number) -> Number) -> Number {
+        queue.sync(flags: .barrier) {
+            _value = modify(_value)
+            return _value
+        }
+    }
+    
     /// Sets current value to a given value, and returns it.
     public func setAndGet(_ newValue: Number) -> Number {
         queue.sync(flags: .barrier) {
