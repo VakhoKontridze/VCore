@@ -10,7 +10,7 @@
 import Foundation
 
 /// Mock image memory cache.
-public final class MockImageMemoryCache: ImageMemoryCacheProtocol {
+nonisolated public final class MockImageMemoryCache: ImageMemoryCacheProtocol {
     // MARK: Properties - Images
     private let image: PlatformImage? = .init(
         size: CGSize(dimension: 500),
@@ -31,10 +31,6 @@ public final class MockImageMemoryCache: ImageMemoryCacheProtocol {
     public func get(
         key: ImageMemoryCache_ResizedKey
     ) -> PlatformImage? {
-//        PlatformImage(
-//            size: CGSize(width: key.width, height: key.height),
-//            color: PlatformColor.systemBlue
-//        )
         image
     }
     

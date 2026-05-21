@@ -8,7 +8,7 @@
 import Foundation
 
 /// Image progress memory cache.
-public final class ImageProgressMemoryCache: ImageProgressMemoryCacheProtocol, @unchecked Sendable {
+nonisolated public final class ImageProgressMemoryCache: ImageProgressMemoryCacheProtocol, @unchecked Sendable {
     // MARK: Properties - Cache & Keys
     private let originalCache: NSCache<ImageProgressMemoryCache_OriginalKey, TaskHolder>
     private var originalCacheKeys: Set<ImageProgressMemoryCache_OriginalKey> = []

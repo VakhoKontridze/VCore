@@ -10,7 +10,7 @@
 import Foundation
 
 /// Mock image progress memory cache.
-public final class MockImageProgressMemoryCache: ImageProgressMemoryCacheProtocol {
+nonisolated public final class MockImageProgressMemoryCache: ImageProgressMemoryCacheProtocol {
     // MARK: Initializers
     /// Initializes `MockImageProgressMemoryCache`.
     public init() {}

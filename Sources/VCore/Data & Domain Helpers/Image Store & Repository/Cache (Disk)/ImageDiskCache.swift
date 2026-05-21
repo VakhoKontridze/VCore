@@ -10,7 +10,7 @@ import CryptoKit
 import OSLog
 
 /// Image disk cache.
-public final class ImageDiskCache: ImageDiskCacheProtocol {
+nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
     // MARK: Properties - URLs
     private let rootURL: URL
     private let originalDirectory: URL
@@ -18,12 +18,6 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
     
     // MARK: Properties - Configuration
     private let configuration: ImageDiskCacheConfiguration
-    
-    // MARK: Properties - Queue
-    private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.image-disk-cache",
-        attributes: .concurrent
-    )
 
     // MARK: Initializers
     /// Initializes `ImageDiskCache`.
@@ -88,14 +82,14 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
         key: ImageDiskCache_OriginalKey
     ) -> PlatformImage? {
         guard
-            let fileName: String = fileName(key: key)
+            let filename: String = filename(key: key)
         else {
             return nil
         }
         
         let url: URL = fileURL(
             directory: originalDirectory,
-            name: fileName
+            filename: filename
         )
         
         return read(url: url)
@@ -105,14 +99,14 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
         key: ImageDiskCache_ResizedKey
     ) -> PlatformImage? {
         guard
-            let fileName: String = fileName(key: key)
+            let filename: String = filename(key: key)
         else {
             return nil
         }
         
         let url: URL = fileURL(
             directory: resizedDirectory,
-            name: fileName
+            filename: filename
         )
         
         return read(url: url)
@@ -124,19 +118,19 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
         image: PlatformImage
     ) {
         guard
-            let fileName: String = fileName(key: key)
+            let filename: String = filename(key: key)
         else {
             return
         }
         
         let url: URL = fileURL(
             directory: originalDirectory,
-            name: fileName
+            filename: filename
         )
         
         write(
-            image: image,
             url: url,
+            image: image,
             quality: configuration.originalCompressionQuality
         )
     }
@@ -146,19 +140,19 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
         image: PlatformImage
     ) {
         guard
-            let fileName: String = fileName(key: key)
+            let filename: String = filename(key: key)
         else {
             return
         }
         
         let url: URL = fileURL(
             directory: resizedDirectory,
-            name: fileName
+            filename: filename
         )
         
         write(
-            image: image,
             url: url,
+            image: image,
             quality: configuration.resizedCompressionQuality
         )
     }
@@ -168,14 +162,14 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
         key: ImageDiskCache_OriginalKey
     ) {
         guard
-            let fileName: String = fileName(key: key)
+            let filename: String = filename(key: key)
         else {
             return
         }
         
         let url: URL = fileURL(
             directory: originalDirectory,
-            name: fileName
+            filename: filename
         )
         
         do {
@@ -232,14 +226,14 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
             
         } else {
             guard
-                let fileName: String = fileName(key: key)
+                let filename: String = filename(key: key)
             else {
                 return
             }
             
             let url: URL = fileURL(
                 directory: resizedDirectory,
-                name: fileName
+                filename: filename
             )
             
             do {
@@ -403,7 +397,7 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
     }
     
     // MARK: Helpers - File
-    private func fileName(
+    private func filename(
         key: ImageDiskCache_OriginalKey
     ) -> String? {
         guard
@@ -415,7 +409,7 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
         return sha256(identifier)
     }
 
-    private func fileName(
+    private func filename(
         key: ImageDiskCache_ResizedKey
     ) -> String? {
         guard
@@ -429,11 +423,11 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
 
     private func fileURL(
         directory: URL,
-        name: String
+        filename: String
     ) -> URL {
         directory
             .appending(
-                path: "\(name).jpg",
+                path: "\(filename).jpg",
                 directoryHint: .notDirectory
             )
     }
@@ -460,15 +454,17 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
         } catch {
             Logger.imageStoreAndRepository.error("Failed to set attributes to file at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
         }
-
-        return PlatformImage(
+        
+        let image: PlatformImage? = .init(
             contentsOfFile: url.path()
         )
+        
+        return image
     }
 
     private func write(
-        image: PlatformImage,
         url: URL,
+        image: PlatformImage,
         quality: CGFloat
     ) {
         guard
@@ -492,11 +488,8 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
     private func sha256(
         _ string: String
     ) -> String {
-        let digest: SHA256Digest = SHA256.hash(
-            data: Data(string.utf8)
-        )
-        
-        return digest
+        SHA256
+            .hash(data: Data(string.utf8))
             .map { String(format: "%02x", $0) }
             .joined()
     }

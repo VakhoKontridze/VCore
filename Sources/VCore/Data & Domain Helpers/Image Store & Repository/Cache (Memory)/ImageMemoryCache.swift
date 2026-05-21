@@ -8,7 +8,7 @@
 import Foundation
 
 /// Image memory cache.
-public final class ImageMemoryCache: ImageMemoryCacheProtocol, @unchecked Sendable {
+nonisolated public final class ImageMemoryCache: ImageMemoryCacheProtocol, @unchecked Sendable {
     // MARK: Properties - Cache and Keys
     private let originalCache: NSCache<ImageMemoryCache_OriginalKey, PlatformImage>
     private var originalCacheKeys: Set<ImageMemoryCache_OriginalKey> = []
