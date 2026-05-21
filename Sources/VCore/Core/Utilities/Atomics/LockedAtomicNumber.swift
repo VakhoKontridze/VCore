@@ -55,7 +55,9 @@ nonisolated public final class LockedAtomicNumber<Number>: @unchecked Sendable
 
     /// Adds a given value to current value
     public func add(_ valueToAdd: Number) {
-        value += valueToAdd
+        queue.sync(flags: .barrier) {
+            _value += valueToAdd
+        }
     }
 
     /// Adds `1` to current value.
