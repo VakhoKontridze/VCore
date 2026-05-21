@@ -424,7 +424,7 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
             return nil
         }
         
-        return sha256("\(identifier)_\(Int(key.width))x\(Int(key.height))")
+        return "\(sha256(identifier))_\(Int(key.width))x\(Int(key.height))"
     }
 
     private func fileURL(
