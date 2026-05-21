@@ -42,7 +42,7 @@ public final class ImageDiskCache: ImageDiskCacheProtocol {
             
             return cacheURL
                 .appending(
-                    path: "image_repository",
+                    path: "com.vakhtang-kontridze.vcore.image-disk-cache",
                     directoryHint: .isDirectory
                 )
         }()
