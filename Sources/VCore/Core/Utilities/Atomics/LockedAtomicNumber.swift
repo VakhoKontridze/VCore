@@ -48,16 +48,21 @@ nonisolated public final class LockedAtomicNumber<Number>: @unchecked Sendable
     }
 
     // MARK: Mutators
+    /// Modifies current value.
+    public func modify(_ modify: (Number) -> Number) {
+        queue.sync(flags: .barrier) {
+            _value = modify(_value)
+        }
+    }
+    
     /// Sets current value to a given value.
     public func set(_ newValue: Number) {
-        value = newValue
+        modify { _ in newValue }
     }
 
-    /// Adds a given value to current value
+    /// Adds a given value to current value.
     public func add(_ valueToAdd: Number) {
-        queue.sync(flags: .barrier) {
-            _value += valueToAdd
-        }
+        modify { $0 + valueToAdd }
     }
 
     /// Adds `1` to current value.
@@ -81,18 +86,12 @@ nonisolated public final class LockedAtomicNumber<Number>: @unchecked Sendable
     
     /// Sets current value to a given value, and returns it.
     public func setAndGet(_ newValue: Number) -> Number {
-        queue.sync(flags: .barrier) {
-            _value = newValue
-            return _value
-        }
+        modifyAndGet { _ in newValue }
     }
 
     /// Adds a given value to current value, and returns it.
     public func addAndGet(_ valueToAdd: Number) -> Number {
-        queue.sync(flags: .barrier) {
-            _value += valueToAdd
-            return _value
-        }
+        modifyAndGet { $0 + valueToAdd }
     }
 
     /// Adds `1` to current value, and returns it.
@@ -106,22 +105,23 @@ nonisolated public final class LockedAtomicNumber<Number>: @unchecked Sendable
     }
 
     // MARK: Get and Post-Mutators
-    /// Returns current value, and sets it to a given value.
-    public func getAndSet(_ newValue: Number) -> Number {
+    /// Returns current value, and modifies it.
+    public func getAndModify(_ modify: (Number) -> Number) -> Number {
         queue.sync(flags: .barrier) {
-            let currentValue = _value
-            _value = newValue
+            let currentValue: Number = _value
+            _value = modify(_value)
             return currentValue
         }
+    }
+    
+    /// Returns current value, and sets it to a given value.
+    public func getAndSet(_ newValue: Number) -> Number {
+        getAndModify { _ in newValue }
     }
 
     /// Returns current value, and adds a given value to it.
     public func getAndAdd(_ valueToAdd: Number) -> Number {
-        queue.sync(flags: .barrier) {
-            let currentValue = _value
-            _value += valueToAdd
-            return currentValue
-        }
+        getAndModify { $0 + valueToAdd }
     }
 
     /// Returns current value, and adds `1` to it.

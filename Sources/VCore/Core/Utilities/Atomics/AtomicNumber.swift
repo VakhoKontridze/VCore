@@ -7,7 +7,7 @@
 
 import Foundation
 
-/// Thread-safe, automatically incremented `Numeric`.
+/// Thread-safe, automatically incremented `Number`.
 ///
 ///     let idGenerator: AtomicNumber<Int> = .init()
 ///
@@ -18,7 +18,7 @@ import Foundation
 public actor AtomicNumber<Number> where Number: SignedNumeric {
     // MARK: Properties
     private var value: Number
-    
+
     // MARK: Initializers
     /// Initializes `AtomicNumber` with an initial value.
     public init(value: Number = .zero) { // `zero` used instead of `0` to avoid automatically inferring `Int`
@@ -32,14 +32,19 @@ public actor AtomicNumber<Number> where Number: SignedNumeric {
     }
 
     // MARK: Mutators
+    /// Modifies current value.
+    public func modify(_ modify: (Number) -> Number) {
+        value = modify(value)
+    }
+    
     /// Sets current value to a given value.
     public func set(_ newValue: Number) {
-        value = newValue
+        modify { _ in newValue }
     }
 
-    /// Adds a given value to current value
+    /// Adds a given value to current value.
     public func add(_ valueToAdd: Number) {
-        value += valueToAdd
+        modify { $0 + valueToAdd }
     }
 
     /// Adds `1` to current value.
@@ -53,16 +58,20 @@ public actor AtomicNumber<Number> where Number: SignedNumeric {
     }
 
     // MARK: Get and Pre-Mutators
+    /// Modifies current value, and returns it.
+    public func modifyAndGet(_ modify: (Number) -> Number) -> Number {
+        self.modify(modify)
+        return value
+    }
+
     /// Sets current value to a given value, and returns it.
     public func setAndGet(_ newValue: Number) -> Number {
-        value = newValue
-        return newValue
+        modifyAndGet { _ in newValue }
     }
 
     /// Adds a given value to current value, and returns it.
     public func addAndGet(_ valueToAdd: Number) -> Number {
-        value += valueToAdd
-        return value
+        modifyAndGet { $0 + valueToAdd }
     }
 
     /// Adds `1` to current value, and returns it.
@@ -76,24 +85,21 @@ public actor AtomicNumber<Number> where Number: SignedNumeric {
     }
 
     // MARK: Get and Post-Mutators
-    /// Modifies current value, and returns it.
-    public func modifyAndGet(_ modify: (Number) -> Number) -> Number {
-        value = modify(value)
-        return value
+    /// Returns current value, and modifies it.
+    public func getAndModify(_ modify: (Number) -> Number) -> Number {
+        let currentValue: Number = value
+        self.modify(modify)
+        return currentValue
     }
-    
+
     /// Returns current value, and sets it to a given value.
     public func getAndSet(_ newValue: Number) -> Number {
-        let currentValue = value
-        value = newValue
-        return currentValue
+        getAndModify { _ in newValue }
     }
 
     /// Returns current value, and adds a given value to it.
     public func getAndAdd(_ valueToAdd: Number) -> Number {
-        let currentValue = value
-        value += valueToAdd
-        return currentValue
+        getAndModify { $0 + valueToAdd }
     }
     
     /// Returns current value, and adds `1` to it.
