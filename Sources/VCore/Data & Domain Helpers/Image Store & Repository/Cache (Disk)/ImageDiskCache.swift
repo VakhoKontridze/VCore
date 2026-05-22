@@ -56,13 +56,16 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
     
     /// Initializes `ImageDiskCache`.
     public convenience init(
-        subfolderName: String,
+        folderNameSuffix: String,
         configuration: ImageDiskCacheConfiguration = .default
     ) {
+        let defaultRootURL: URL = Self.defaultRootURL
+        
         self.init(
-            rootURL: Self.defaultRootURL
+            rootURL: defaultRootURL
+                .deletingLastPathComponent()
                 .appending(
-                    path: subfolderName,
+                    path: "\(defaultRootURL.lastPathComponent).\(folderNameSuffix)",
                     directoryHint: .isDirectory
                 )
             ,
