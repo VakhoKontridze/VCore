@@ -55,26 +55,6 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
             )
         
         self.configuration = configuration
-        
-        do {
-            try FileManager.default.createDirectory(
-                at: originalDirectory,
-                withIntermediateDirectories: true
-            )
-            
-        } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
-        }
-        
-        do {
-            try FileManager.default.createDirectory(
-                at: resizedDirectory,
-                withIntermediateDirectories: true
-            )
-            
-        } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
-        }
     }
 
     // MARK: Operation - Get
@@ -262,16 +242,6 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
             } catch {
                 Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
             }
-            
-            do {
-                try FileManager.default.createDirectory(
-                    at: originalDirectory,
-                    withIntermediateDirectories: true
-                )
-                
-            } catch {
-                Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
-            }
         }
         
         if type.contains(.resized) {
@@ -280,16 +250,6 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                 
             } catch let error as CocoaError where error.code == .fileNoSuchFile {
                 // ...
-                
-            } catch {
-                Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
-            }
-            
-            do {
-                try FileManager.default.createDirectory(
-                    at: resizedDirectory,
-                    withIntermediateDirectories: true
-                )
                 
             } catch {
                 Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
@@ -467,6 +427,26 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
         image: PlatformImage,
         quality: CGFloat
     ) {
+        do {
+            try FileManager.default.createDirectory(
+                at: originalDirectory,
+                withIntermediateDirectories: true
+            )
+            
+        } catch {
+            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
+        }
+        
+        do {
+            try FileManager.default.createDirectory(
+                at: resizedDirectory,
+                withIntermediateDirectories: true
+            )
+            
+        } catch {
+            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
+        }
+        
         guard
             let data: Data = image.jpegData(compressionQuality: quality)
         else {
