@@ -16,30 +16,27 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
     private let originalDirectory: URL
     private let resizedDirectory: URL
     
+    private static var defaultRootURL: URL {
+        let cacheURL: URL =
+            FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first ??
+            FileManager.default.temporaryDirectory
+        
+        return cacheURL
+            .appending(
+                path: "com.vakhtang-kontridze.vcore.image-disk-cache",
+                directoryHint: .isDirectory
+            )
+    }
+    
     // MARK: Properties - Configuration
     private let configuration: ImageDiskCacheConfiguration
 
     // MARK: Initializers
     /// Initializes `ImageDiskCache`.
     public init(
-        rootURL: URL? = nil,
+        rootURL: URL,
         configuration: ImageDiskCacheConfiguration = .default
     ) {
-        let rootURL: URL = {
-            if let rootURL {
-                return rootURL
-            }
-            
-            let cacheURL: URL =
-                FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask).first ??
-                FileManager.default.temporaryDirectory
-            
-            return cacheURL
-                .appending(
-                    path: "com.vakhtang-kontridze.vcore.image-disk-cache",
-                    directoryHint: .isDirectory
-                )
-        }()
         self.rootURL = rootURL
         
         self.originalDirectory = rootURL
@@ -55,6 +52,32 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
             )
         
         self.configuration = configuration
+    }
+    
+    /// Initializes `ImageDiskCache`.
+    public convenience init(
+        subfolderName: String,
+        configuration: ImageDiskCacheConfiguration = .default
+    ) {
+        self.init(
+            rootURL: Self.defaultRootURL
+                .appending(
+                    path: subfolderName,
+                    directoryHint: .isDirectory
+                )
+            ,
+            configuration: configuration
+        )
+    }
+    
+    /// Initializes `ImageDiskCache`.
+    public convenience init(
+        configuration: ImageDiskCacheConfiguration = .default
+    ) {
+        self.init(
+            rootURL: Self.defaultRootURL,
+            configuration: configuration
+        )
     }
 
     // MARK: Operation - Get
