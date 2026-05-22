@@ -159,7 +159,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
             // ...
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to delete item at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
         }
     }
 
@@ -223,7 +223,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to create directory at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to delete item at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
             }
         }
     }
@@ -240,7 +240,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to delete item at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
             }
         }
         
@@ -252,7 +252,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to delete item at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
             }
         }
     }
@@ -321,7 +321,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                     // ...
                     
                 } catch {
-                    Logger.imageStoreAndRepository.error("Failed to create directory at '\(entry.url.path(percentEncoded: false))': \(error.localizedDescription)")
+                    Logger.imageStoreAndRepository.error("Failed to delete item at '\(entry.url.path(percentEncoded: false))': \(error.localizedDescription)")
                 }
             }
         }
@@ -344,7 +344,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                     // ...
                     
                 } catch {
-                    Logger.imageStoreAndRepository.error("Failed to create directory at '\(entry.url.path(percentEncoded: false))': \(error.localizedDescription)")
+                    Logger.imageStoreAndRepository.error("Failed to delete item at '\(entry.url.path(percentEncoded: false))': \(error.localizedDescription)")
                 }
                 
                 freed += entry.size
