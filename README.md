@@ -58,7 +58,7 @@ let json: [String: Any] = [
     "key": "value"
 ]
 
-let files: [String: (some AnyMultipartFormDataFile)?] = [
+let files: [String: (any AnyMultipartFormDataFile)?] = [
     "profile": MultipartFormDataFile(
         mimeType: "image/jpeg",
         data: profileImage?.jpegData(compressionQuality: 0.25)

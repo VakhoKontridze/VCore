@@ -11,7 +11,7 @@ import Foundation
 ///
 /// Can be placed in `Dictionary` or `Array`.
 ///
-///     let files: [String: (some AnyMultipartFormDataFile)?] = [
+///     let files: [String: (any AnyMultipartFormDataFile)?] = [
 ///         "main_image": MultipartFormDataFile(mimeType: "image/jpeg", data: mainImageData),
 ///
 ///         "gallery": [
@@ -33,7 +33,7 @@ nonisolated public struct MultipartFormDataFile: Sendable {
     // MARK: Properties
     /// File name.
     ///
-    /// If `nil`, `String` passed to `[String: (some AnyMultipartFormDataFile)?]` `Dictionary` will be used.
+    /// If `nil`, `String` passed to `[String: (any AnyMultipartFormDataFile)?]` `Dictionary` will be used.
     /// With an explicit `filename`, a mime type is not automatically appended.
     public var filename: String?
     

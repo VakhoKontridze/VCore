@@ -15,7 +15,7 @@ import Foundation
 /// Files passed to `MultiParFormDataBuilder` via dictionary will have joined names,
 /// while those passed via array will be enumerated using indexes.
 ///
-///     let files: [String: (some AnyMultipartFormDataFile)?] = [
+///     let files: [String: (any AnyMultipartFormDataFile)?] = [
 ///         "main_image": MultipartFormDataFile(mimeType: "image/jpeg", data: mainImageData),
 ///
 ///         "gallery": [

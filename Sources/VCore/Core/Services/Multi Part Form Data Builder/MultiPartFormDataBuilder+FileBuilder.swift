@@ -23,7 +23,7 @@ nonisolated extension MultipartFormDataBuilder {
         
         // MARK: Building
         func build(
-            files: [String: (some AnyMultipartFormDataFile)?]
+            files: [String: (any AnyMultipartFormDataFile)?]
         ) throws -> Data {
             var data: Data = .init()
             
@@ -45,7 +45,7 @@ nonisolated extension MultipartFormDataBuilder {
         
         private func appendElement(
             key: String,
-            element: (some AnyMultipartFormDataFile)?,
+            element: (any AnyMultipartFormDataFile)?,
             to data: inout Data
         ) throws {
             guard
@@ -69,7 +69,7 @@ nonisolated extension MultipartFormDataBuilder {
         
         private func appendJSON(
             key: String,
-            json: [String: (some AnyMultipartFormDataFile)?],
+            json: [String: (any AnyMultipartFormDataFile)?],
             to data: inout Data
         ) throws {
             for element in json {
@@ -90,7 +90,7 @@ nonisolated extension MultipartFormDataBuilder {
         
         private func appendArray(
             key: String,
-            array: [(some AnyMultipartFormDataFile)?],
+            array: [(any AnyMultipartFormDataFile)?],
             to data: inout Data
         ) throws {
             for (i, element) in array.enumerated() {

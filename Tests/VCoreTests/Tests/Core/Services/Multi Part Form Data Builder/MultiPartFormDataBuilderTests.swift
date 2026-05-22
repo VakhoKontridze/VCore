@@ -36,7 +36,7 @@ nonisolated struct MultipartFormDataBuilderTests {
         )
 
 #if canImport(UIKit)
-        let files: [String: (some AnyMultipartFormDataFile)?] = [
+        let files: [String: (any AnyMultipartFormDataFile)?] = [
             "profile": MultipartFormDataFile(
                 mimeType: "image/jpeg",
                 data: profileImage?.jpegData(compressionQuality: 0.25)

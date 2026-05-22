@@ -13,7 +13,7 @@ import Foundation
 ///         "key": "value"
 ///     ]
 ///
-///     let files: [String: (some AnyMultipartFormDataFile)?] = [
+///     let files: [String: (any AnyMultipartFormDataFile)?] = [
 ///         "profile": MultipartFormDataFile(
 ///             mimeType: "image/jpeg",
 ///             data: profileImage?.jpegData(compressionQuality: 0.25)
@@ -72,7 +72,7 @@ nonisolated public struct MultipartFormDataBuilder: Sendable {
     /// Builds and returns boundary `String` and `Data` that can be sent over network.
     public func build(
         json: [String: Any],
-        files: [String: (some AnyMultipartFormDataFile)?]
+        files: [String: (any AnyMultipartFormDataFile)?]
     ) throws -> (boundary: String, data: Data) {
         var data: Data = .init()
         data.append(try JSONBuilder(boundary: boundary).build(json: json))
@@ -85,7 +85,7 @@ nonisolated public struct MultipartFormDataBuilder: Sendable {
     /// Builds and returns boundary `String` and `Data` that can be sent over network.
     public func build(
         data: Data,
-        files: [String: (some AnyMultipartFormDataFile)?],
+        files: [String: (any AnyMultipartFormDataFile)?],
         optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
         let json: [String: Any] = try JSONDecoder.decodeJSONFromData(
@@ -99,7 +99,7 @@ nonisolated public struct MultipartFormDataBuilder: Sendable {
     /// Builds and returns boundary `String` and `Data` that can be sent over network.
     public func build(
         object: some Encodable,
-        files: [String: (some AnyMultipartFormDataFile)?],
+        files: [String: (any AnyMultipartFormDataFile)?],
         optionsDataToJSONObject: JSONSerialization.ReadingOptions = []
     ) throws -> (boundary: String, data: Data) {
         let json: [String: Any] = try JSONEncoder().encodeObjectToJSON(
