@@ -796,3 +796,208 @@ public typealias UIKitBaseButtonState = GenericState_EnabledDisabled
 public typealias UIKitBaseButtonInternalState = GenericState_EnabledPressedDisabled
 
 #endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+import Combine
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+@available(tvOS, unavailable)
+open class KeyboardResponsiveUIViewController: UIViewController {
+    open var notifiesWhenKeyboardIsAlreadyShownOrHidden: Bool = true
+    
+    open var notifiesWhenViewControllerIsNotVisible: Bool = false
+    
+    open private(set) var keyboardIsShown: Bool = false
+    
+    private var cancellables: Set<AnyCancellable> = []
+    
+    override open func viewDidLoad() {
+        super.viewDidLoad()
+        setUp()
+    }
+    
+    private func setUp() {
+        addKeyboardFrameChangNotificationObserver()
+    }
+    
+    private func addKeyboardFrameChangNotificationObserver() {
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink { [weak self] in self?.keyboardWillShow(notification: $0) }
+            .store(in: &cancellables)
+        
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink { [weak self] in self?.keyboardWillHide(notification: $0) }
+            .store(in: &cancellables)
+    }
+    
+    open func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {}
+
+    open func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {}
+
+    private func keyboardWillShow(notification: Notification) {
+        if !notifiesWhenKeyboardIsAlreadyShownOrHidden {
+            guard !keyboardIsShown else { return }
+        }
+        keyboardIsShown = true
+        
+        if !notifiesWhenViewControllerIsNotVisible {
+            guard viewIsVisible else { return }
+        }
+        
+        keyboardWillShow(SystemKeyboardInfo(notification: notification))
+    }
+    
+    private func keyboardWillHide(notification: Notification) {
+        if !notifiesWhenKeyboardIsAlreadyShownOrHidden {
+            guard keyboardIsShown else { return }
+        }
+        keyboardIsShown = false
+        
+        if !notifiesWhenViewControllerIsNotVisible {
+            guard viewIsVisible else { return }
+        }
+        
+        keyboardWillHide(SystemKeyboardInfo(notification: notification))
+    }
+    
+    private var viewIsVisible: Bool {
+        isViewLoaded &&
+        view.window != nil &&
+        !isBeingDismissed
+    }
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import SwiftUI
+import OSLog
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+@available(tvOS, unavailable)
+extension UIView {
+    public class func animateKeyboardResponsiveness(
+        systemKeyboardInfo: SystemKeyboardInfo,
+        animations: @escaping () -> Void,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        UIView.animate(
+            withDuration: systemKeyboardInfo.nonZeroAnimationDuration,
+            delay: 0,
+            options: systemKeyboardInfo.animationOptions,
+            animations: animations,
+            completion: completion
+        )
+    }
+}
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+@available(tvOS, unavailable)
+extension UIView {
+    public class func animateKeyboardResponsivenessByUnObscuringFirstResponderView(
+        keyboardWillShow: Bool,
+        firstResponderView: UIView,
+        containerView: UIView,
+        systemKeyboardInfo: SystemKeyboardInfo,
+        additionalOffset: CGFloat = 20,
+        completion: ((Bool) -> Void)? = nil
+    ) {
+        if keyboardWillShow {
+            guard let window: UIWindow = firstResponderView.window else {
+                Logger.keyboardResponsiveUIViewController.error("Failed to retrieve 'UIWindow' from 'UIView': \(firstResponderView)")
+                return
+            }
+            let windowHeight: CGFloat = window.frame.size.height
+
+            guard let firstResponderViewSuperView: UIView = firstResponderView.superview else {
+                Logger.keyboardResponsiveUIViewController.error("Failed to retrieve superview from 'UIView': \(firstResponderView)")
+                return
+            }
+            
+            let viewGlobalFrameMaxY: CGFloat = firstResponderViewSuperView.convert(firstResponderView.frame, to: nil).maxY
+
+            let containerViewY: CGFloat = containerView.bounds.origin.y
+
+            guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
+                Logger.keyboardResponsiveUIViewController.error("Failed to retrieve system keyboard height from 'Notification'")
+                return
+            }
+
+            let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalFrameMaxY - containerViewY
+            
+            let obscuredHeight: CGFloat = max(0, systemKeyboardHeight + additionalOffset - viewDistanceToBottom)
+
+            UIView.animateKeyboardResponsiveness(
+                systemKeyboardInfo: systemKeyboardInfo,
+                animations: {
+                    containerView.bounds.origin.y = obscuredHeight
+                    
+                    firstResponderView.superview?.layoutIfNeeded()
+                    containerView.superview?.layoutIfNeeded()
+                },
+                completion: completion
+            )
+            
+        } else {
+            UIView.animateKeyboardResponsiveness(
+                systemKeyboardInfo: systemKeyboardInfo,
+                animations: {
+                    containerView.bounds.origin.y = 0
+                    
+                    //firstResponderView.superview?.layoutIfNeeded() // Unnecessary
+                    containerView.superview?.layoutIfNeeded()
+                },
+                completion: completion
+            )
+        }
+    }
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+@available(tvOS, unavailable)
+open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIViewController {
+    open lazy var keyboardResponsivenessContainerView: UIView = view
+    
+    open var keyboardResponsivenessFirstResponderAdditionalOffset: CGFloat = 20
+
+    override open func keyboardWillShow(_ systemKeyboardInfo: SystemKeyboardInfo) {
+        super.keyboardWillShow(systemKeyboardInfo)
+        
+        guard let firstResponderSubview: UIView = view.childFirstResponderView else { return }
+        
+        UIView.animateKeyboardResponsivenessByUnObscuringFirstResponderView(
+            keyboardWillShow: true,
+            firstResponderView: firstResponderSubview,
+            containerView: keyboardResponsivenessContainerView,
+            systemKeyboardInfo: systemKeyboardInfo,
+            additionalOffset: keyboardResponsivenessFirstResponderAdditionalOffset
+        )
+    }
+    
+    override open func keyboardWillHide(_ systemKeyboardInfo: SystemKeyboardInfo) {
+        super.keyboardWillHide(systemKeyboardInfo)
+        
+        guard let firstResponderSubview: UIView = view.childFirstResponderView else { return }
+        
+        UIView.animateKeyboardResponsivenessByUnObscuringFirstResponderView(
+            keyboardWillShow: false,
+            firstResponderView: firstResponderSubview,
+            containerView: keyboardResponsivenessContainerView,
+            systemKeyboardInfo: systemKeyboardInfo,
+            additionalOffset: keyboardResponsivenessFirstResponderAdditionalOffset
+        )
+    }
+}
+
+#endif
