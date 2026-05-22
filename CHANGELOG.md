@@ -5,6 +5,7 @@
 Core - Extensions
 
 - `withTimeout(...)` method is added, that performs asynchronous operation with a timeout
+- `UIImage.scaledDown(toDimension:)' is renamed to `UIImage.scaledDown(toMinDimension:)` and `UIImage.scaledDown(toMaxDimension:)` method is added
 
 Core - Utilities
 

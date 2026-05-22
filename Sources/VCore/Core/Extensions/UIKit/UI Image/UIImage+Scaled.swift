@@ -84,15 +84,30 @@ nonisolated extension UIImage {
         return scaled(toHeight: newHeight)
     }
     
+    /// Returns `UIImage` scaled down, by scaling smaller side to specified dimension.
+    ///
+    ///     let image: UIImage = .init(named: "Image")!
+    ///     let scaledDownImage: UIImage? = image.scaledDown(toMinDimension: 500)
+    ///
+    public func scaledDown(
+        toMinDimension newDimension: CGFloat
+    ) -> UIImage? {
+        if size.width > size.height {
+            scaledDown(toHeight: newDimension)
+        } else {
+            scaledDown(toWidth: newDimension)
+        }
+    }
+    
     /// Returns `UIImage` scaled down, by scaling larger side to specified dimension.
     ///
     ///     let image: UIImage = .init(named: "Image")!
-    ///     let scaledDownImage: UIImage? = image.scaledDown(toDimension: 500)
+    ///     let scaledDownImage: UIImage? = image.scaledDown(toMaxDimension: 500)
     ///
     public func scaledDown(
-        toDimension newDimension: CGFloat
+        toMaxDimension newDimension: CGFloat
     ) -> UIImage? {
-        if size.width > size.height {
+        if size.height > size.width {
             scaledDown(toHeight: newDimension)
         } else {
             scaledDown(toWidth: newDimension)

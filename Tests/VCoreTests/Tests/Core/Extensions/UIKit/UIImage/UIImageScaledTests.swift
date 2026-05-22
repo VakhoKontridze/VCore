@@ -94,7 +94,7 @@ nonisolated struct UIImageScaledTests {
     }
     
     @Test
-    func testScaledDownToDimension() throws {
+    func testScaledDownToMinDimension() throws {
         let image1: UIImage = try #require(
             UIImage(
                 size: CGSize(width: 100, height: 200),
@@ -103,7 +103,7 @@ nonisolated struct UIImageScaledTests {
         )
         
         let scaledImageW: UIImage = try #require(
-            image1.scaledDown(toDimension: 50)
+            image1.scaledDown(toMinDimension: 50)
         )
         #expect(scaledImageW.size == CGSize(width: 50, height: 100))
         
@@ -115,9 +115,36 @@ nonisolated struct UIImageScaledTests {
         )
 
         let scaledImageH: UIImage = try #require(
-            image2.scaledDown(toDimension: 50)
+            image2.scaledDown(toMinDimension: 50)
         )
         #expect(scaledImageH.size == CGSize(width: 100, height: 50))
+    }
+    
+    @Test
+    func testScaledDownToMaxDimension() throws {
+        let image1: UIImage = try #require(
+            UIImage(
+                size: CGSize(width: 100, height: 200),
+                color: UIColor.red
+            )
+        )
+        
+        let scaledImageW: UIImage = try #require(
+            image1.scaledDown(toMaxDimension: 50)
+        )
+        #expect(scaledImageW.size == CGSize(width: 25, height: 50))
+        
+        let image2: UIImage = try #require(
+            UIImage(
+                size: CGSize(width: 200, height: 100),
+                color: UIColor.red
+            )
+        )
+
+        let scaledImageH: UIImage = try #require(
+            image2.scaledDown(toMaxDimension: 50)
+        )
+        #expect(scaledImageH.size == CGSize(width: 50, height: 25))
     }
 }
 

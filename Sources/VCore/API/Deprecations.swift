@@ -67,6 +67,19 @@ nonisolated extension UIColor {
 
 #endif
 
+#if canImport(UIKit)
+
+nonisolated extension UIImage {
+    @available(*, deprecated, message: "Use method with 'toMinDimension' parameter")
+    public func scaledDown(
+        toDimension newDimension: CGFloat
+    ) -> UIImage? {
+        scaledDown(toMinDimension: newDimension)
+    }
+}
+
+#endif
+
 #if canImport(UIKit) && !os(watchOS)
 
 import UIKit
