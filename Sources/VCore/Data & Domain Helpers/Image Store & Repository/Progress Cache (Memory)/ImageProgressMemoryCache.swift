@@ -46,16 +46,33 @@ nonisolated public final class ImageProgressMemoryCache: ImageProgressMemoryCach
         key: ImageProgressMemoryCache_OriginalKey
     ) -> Task<PlatformImage, any Error>? {
         queue.sync {
-            originalCache.object(forKey: key)?.task
+            _get(
+                key: key
+            )
         }
+    }
+    
+    private func _get(
+        key: ImageProgressMemoryCache_OriginalKey
+    ) -> Task<PlatformImage, any Error>? {
+        originalCache.object(forKey: key)?.task
     }
     
     public func get(
         key: ImageProgressMemoryCache_ResizedKey
     ) -> Task<PlatformImage, any Error>? {
         queue.sync {
-            resizedCache.object(forKey: key)?.task
+            _get(
+                key: key
+            )
         }
+    }
+
+    
+    private func _get(
+        key: ImageProgressMemoryCache_ResizedKey
+    ) -> Task<PlatformImage, any Error>? {
+        resizedCache.object(forKey: key)?.task
     }
     
     // MARK: Operation - Set
@@ -91,16 +108,26 @@ nonisolated public final class ImageProgressMemoryCache: ImageProgressMemoryCach
         cancel: Bool
     ) {
         queue.sync(flags: .barrier) {
-            if
-                cancel,
-                let task: Task<PlatformImage, any Error> = get(key: key)
-            {
-                task.cancel()
-            }
-            
-            originalCache.removeObject(forKey: key)
-            originalCacheKeys.remove(key)
+            _delete(
+                key: key,
+                cancel: cancel
+            )
         }
+    }
+    
+    private func _delete(
+        key: ImageProgressMemoryCache_OriginalKey,
+        cancel: Bool
+    ) {
+        if
+            cancel,
+            let task: Task<PlatformImage, any Error> = _get(key: key)
+        {
+            task.cancel()
+        }
+        
+        originalCache.removeObject(forKey: key)
+        originalCacheKeys.remove(key)
     }
     
     public func delete(
@@ -109,25 +136,37 @@ nonisolated public final class ImageProgressMemoryCache: ImageProgressMemoryCach
         cancel: Bool
     ) {
         queue.sync(flags: .barrier) {
-            if
-                cancel,
-                let task: Task<PlatformImage, any Error> = get(key: key)
-            {
-                task.cancel()
-            }
+            _delete(
+                key: key,
+                deleteAllSizes: deleteAllSizes,
+                cancel: cancel
+            )
+        }
+    }
+    
+    private func _delete(
+        key: ImageProgressMemoryCache_ResizedKey,
+        deleteAllSizes: Bool,
+        cancel: Bool
+    ) {
+        if
+            cancel,
+            let task: Task<PlatformImage, any Error> = _get(key: key)
+        {
+            task.cancel()
+        }
+        
+        if deleteAllSizes {
+            let keys: [ImageProgressMemoryCache_ResizedKey] = resizedCacheKeys.filter { $0.parameter == key.parameter }
             
-            if deleteAllSizes {
-                let keys: [ImageProgressMemoryCache_ResizedKey] = resizedCacheKeys.filter { $0.parameter == key.parameter }
-                
-                for key in keys {
-                    resizedCache.removeObject(forKey: key)
-                    resizedCacheKeys.remove(key)
-                }
-                
-            } else {
+            for key in keys {
                 resizedCache.removeObject(forKey: key)
                 resizedCacheKeys.remove(key)
             }
+            
+        } else {
+            resizedCache.removeObject(forKey: key)
+            resizedCacheKeys.remove(key)
         }
     }
     
@@ -140,7 +179,7 @@ nonisolated public final class ImageProgressMemoryCache: ImageProgressMemoryCach
             if type.contains(.original) {
                 let keys: Set<ImageProgressMemoryCache_OriginalKey> = originalCacheKeys
                 for key in keys {
-                    delete(
+                    _delete(
                         key: key,
                         cancel: cancel
                     )
@@ -150,7 +189,7 @@ nonisolated public final class ImageProgressMemoryCache: ImageProgressMemoryCach
             if type.contains(.resized) {
                 let keys: Set<ImageProgressMemoryCache_ResizedKey> = resizedCacheKeys
                 for key in keys {
-                    delete(
+                    _delete(
                         key: key,
                         deleteAllSizes: false,
                         cancel: cancel
