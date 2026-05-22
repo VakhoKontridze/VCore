@@ -137,7 +137,7 @@ final class AlignedUICollectionViewFlowLayoutViewController:
             return view
 
         default:
-            fatalError() // Unsafe (DEBUG)
+            return UICollectionViewCell()
         }
     }
 
@@ -150,7 +150,7 @@ final class AlignedUICollectionViewFlowLayoutViewController:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: AlignedUICollectionViewCell.dequeueID, for: indexPath)
                 as? AlignedUICollectionViewCell
         else {
-            fatalError() // Unsafe (DEBUG)
+            return UICollectionViewCell()
         }
 
         cell.configure(color: data[indexPath.row])

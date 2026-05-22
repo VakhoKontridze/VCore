@@ -19,5 +19,5 @@ nonisolated public func FIXME(
     var string: String = "FIXME not implemented"
     message.map { string += ": \($0)" }
 
-    fatalError(string) // Unsafe (intentional)
+    fatalError(string)
 }

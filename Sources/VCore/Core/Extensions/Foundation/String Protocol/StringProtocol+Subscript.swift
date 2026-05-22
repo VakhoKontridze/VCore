@@ -18,7 +18,7 @@ nonisolated extension StringProtocol {
         get {
             guard i >= 0, i < count else {
                 Logger.misc.critical("Index \(i) out of bounds")
-                fatalError() // Unsafe
+                fatalError()
             }
             
             return self[index(startIndex, offsetBy: i)]
@@ -26,7 +26,7 @@ nonisolated extension StringProtocol {
         set {
             guard i >= 0, i < count else {
                 Logger.misc.critical("Index \(i) out of bounds")
-                fatalError() // Unsafe
+                fatalError()
             }
             
             replace(at: i, with: newValue)

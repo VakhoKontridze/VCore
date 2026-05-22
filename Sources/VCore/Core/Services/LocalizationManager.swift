@@ -105,7 +105,7 @@ public final class LocalizationManager {
                 let identifier: String = Bundle.main.preferredLocalizations.first
             else {
                 Logger.localizationManager.critical("Default localization is not selected in 'Bundle.main'")
-                fatalError() // Unsafe
+                fatalError()
             }
 
             return Locale(identifier: identifier)

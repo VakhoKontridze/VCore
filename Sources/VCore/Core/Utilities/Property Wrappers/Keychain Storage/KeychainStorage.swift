@@ -74,11 +74,11 @@ public struct KeychainStorage<Value>: DynamicProperty where Value: Codable {
     {
         get {
             Logger.keychainStorage.critical("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
-            fatalError() // Unsafe
+            fatalError()
         }
         set {
             Logger.keychainStorage.critical("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
-            fatalError() // Unsafe
+            fatalError()
         }
     }
 }
