@@ -159,7 +159,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
             // ...
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to delete item at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to delete item at '\(url.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
         }
     }
 
@@ -182,7 +182,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                     options: .skipsHiddenFiles
                 )
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to read contents of directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to read contents of directory at '\(self.resizedDirectory.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
                 return
             }
             
@@ -199,7 +199,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                         // ...
                         
                     } catch {
-                        Logger.imageStoreAndRepository.error("Failed to remove file at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
+                        Logger.imageStoreAndRepository.error("Failed to remove file at '\(url.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
                     }
                 }
             }
@@ -223,7 +223,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to delete item at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to delete item at '\(url.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
             }
         }
     }
@@ -240,7 +240,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to delete item at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to delete item at '\(self.originalDirectory.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
             }
         }
         
@@ -252,7 +252,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to delete item at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
+                Logger.imageStoreAndRepository.error("Failed to delete item at '\(self.resizedDirectory.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
             }
         }
     }
@@ -291,7 +291,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to read contents directory at '\(directory.path(percentEncoded: false))': \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to read contents directory at '\(directory.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
             return
         }
 
@@ -321,7 +321,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                     // ...
                     
                 } catch {
-                    Logger.imageStoreAndRepository.error("Failed to delete item at '\(entry.url.path(percentEncoded: false))': \(error.localizedDescription)")
+                    Logger.imageStoreAndRepository.error("Failed to delete item at '\(entry.url.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
                 }
             }
         }
@@ -344,7 +344,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
                     // ...
                     
                 } catch {
-                    Logger.imageStoreAndRepository.error("Failed to delete item at '\(entry.url.path(percentEncoded: false))': \(error.localizedDescription)")
+                    Logger.imageStoreAndRepository.error("Failed to delete item at '\(entry.url.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
                 }
                 
                 freed += entry.size
@@ -412,7 +412,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to set attributes to file at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to set attributes to file at '\(url.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
         }
         
         let image: PlatformImage? = .init(
@@ -434,7 +434,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
         }
         
         do {
@@ -444,7 +444,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))': \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
         }
         
         guard
@@ -460,7 +460,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create file at '\(url.path(percentEncoded: false))': \(error.localizedDescription)")
+            Logger.imageStoreAndRepository.error("Failed to create file at '\(url.path(percentEncoded: false))' in 'ImageDiskCache': \(error.localizedDescription)")
         }
     }
 
