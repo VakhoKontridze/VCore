@@ -42,7 +42,7 @@ nonisolated public enum GenericState_CollapsedExpanded: Int, Sendable, CaseItera
     }
 }
 
-nonisolated extension Binding where Value == GenericState_CollapsedExpanded {
+nonisolated extension Binding<GenericState_CollapsedExpanded> {
     /// Initializes `GenericState_CollapsedExpanded` with `Bool`.
     public init(isExpanded: Binding<Bool>) {
         self.init(

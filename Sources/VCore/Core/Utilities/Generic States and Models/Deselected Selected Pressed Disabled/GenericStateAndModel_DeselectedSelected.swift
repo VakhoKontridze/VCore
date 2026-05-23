@@ -42,7 +42,7 @@ nonisolated public enum GenericState_DeselectedSelected: Int, Sendable, CaseIter
     }
 }
 
-nonisolated extension Binding where Value == GenericState_DeselectedSelected {
+nonisolated extension Binding<GenericState_DeselectedSelected> {
     /// Initializes `GenericState_DeselectedSelected` with `Bool`.
     public init(isSelected: Binding<Bool>) {
         self.init(

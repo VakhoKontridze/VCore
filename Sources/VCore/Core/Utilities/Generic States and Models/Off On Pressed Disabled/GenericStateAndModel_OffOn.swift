@@ -42,7 +42,7 @@ nonisolated public enum GenericState_OffOn: Int, Sendable, CaseIterable {
     }
 }
 
-nonisolated extension Binding where Value == GenericState_OffOn {
+nonisolated extension Binding<GenericState_OffOn> {
     /// Initializes `GenericState_OffOn` with `Bool`.
     public init(isOn: Binding<Bool>) {
         self.init(

@@ -13,7 +13,7 @@ public protocol AlertButtonConvertible {
     func toButtons() -> [any AlertButtonProtocol]
 }
 
-extension Array: AlertButtonConvertible where Element == any AlertButtonProtocol {
+extension [any AlertButtonProtocol]: AlertButtonConvertible {
     public func toButtons() -> [any AlertButtonProtocol] {
         self
     }

@@ -13,7 +13,7 @@ public protocol ConfirmationDialogButtonConvertible {
     func toButtons() -> [any ConfirmationDialogButtonProtocol]
 }
 
-extension Array: ConfirmationDialogButtonConvertible where Element == any ConfirmationDialogButtonProtocol {
+extension [any ConfirmationDialogButtonProtocol]: ConfirmationDialogButtonConvertible {
     public func toButtons() -> [any ConfirmationDialogButtonProtocol] {
         self
     }

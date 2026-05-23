@@ -7,7 +7,7 @@
 
 import Foundation
 
-nonisolated extension Array where Element == CharacterSet {
+nonisolated extension [CharacterSet] {
     /// Returns a union of the CharacterSet `Array`s.
     ///
     ///     let unifiedCharacterSet: CharacterSet = [.decimalDigits, .letters, .symbols].unified
