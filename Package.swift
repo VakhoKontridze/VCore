@@ -33,7 +33,8 @@ let package: Package = .init(
             swiftSettings: [
                 .defaultIsolation(MainActor.self),
                 .enableUpcomingFeature("ApproachableConcurrency"),
-                .enableUpcomingFeature("NonIsolatedNonSendingByDefault")
+                .enableUpcomingFeature("NonIsolatedNonSendingByDefault"),
+                .enableUpcomingFeature("MemberImportVisibility")
             ]
         ),
 
@@ -47,7 +48,8 @@ let package: Package = .init(
             swiftSettings: [
                 .defaultIsolation(MainActor.self),
                 .enableUpcomingFeature("ApproachableConcurrency"),
-                .enableUpcomingFeature("NonIsolatedNonSendingByDefault")
+                .enableUpcomingFeature("NonIsolatedNonSendingByDefault"),
+                .enableUpcomingFeature("MemberImportVisibility")
             ]
         ),
 
@@ -65,7 +67,10 @@ let package: Package = .init(
                 .process("PrivacyInfo.xcprivacy")
             ],
             swiftSettings: [
-                .defaultIsolation(MainActor.self)
+                .defaultIsolation(MainActor.self),
+                .enableUpcomingFeature("ApproachableConcurrency"),
+                .enableUpcomingFeature("NonIsolatedNonSendingByDefault"),
+                .enableUpcomingFeature("MemberImportVisibility")
             ]
         ),
         .testTarget(
@@ -79,7 +84,8 @@ let package: Package = .init(
             swiftSettings: [
                 .defaultIsolation(MainActor.self),
                 .enableUpcomingFeature("ApproachableConcurrency"),
-                .enableUpcomingFeature("NonIsolatedNonSendingByDefault")
+                .enableUpcomingFeature("NonIsolatedNonSendingByDefault"),
+                .enableUpcomingFeature("MemberImportVisibility")
             ]
         )
     ]
