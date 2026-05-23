@@ -72,7 +72,6 @@ nonisolated public final class ImageProgressMemoryCache: ImageProgressMemoryCach
         }
     }
 
-    
     private func _get(
         key: ImageProgressMemoryCache_ResizedKey
     ) -> Task<PlatformImage, any Error>? {

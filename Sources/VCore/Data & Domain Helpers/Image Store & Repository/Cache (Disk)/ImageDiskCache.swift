@@ -340,7 +340,7 @@ nonisolated public final class ImageDiskCache: ImageDiskCacheProtocol {
 
         // 1. Age-based eviction.
         // Runs always, regardless of size budget.
-        let cutoffDate: Date = Date.now.addingTimeInterval(-maxAge)
+        let cutoffDate: Date = .now.addingTimeInterval(-maxAge)
         
         for entry in entries {
             if entry.date < cutoffDate {

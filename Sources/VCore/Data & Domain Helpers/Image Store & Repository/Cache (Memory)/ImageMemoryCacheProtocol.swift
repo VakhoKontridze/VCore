@@ -117,7 +117,7 @@ nonisolated public final class ImageMemoryCache_ResizedKey: NSObject, Sendable {
     }
     
     /// Initializes `ImageMemoryCache_ResizedKey`.
-    convenience public init(
+    public convenience init(
         parameter: ImageRepository_Parameter,
         width: CGFloat,
         height: CGFloat

@@ -18,7 +18,7 @@ nonisolated public struct ImageProgressMemoryCacheConfiguration: Sendable {
     /// Default instance.
     public static var `default`: Self {
         .init(
-            countLimit: 1000
+            countLimit: 1_000
         )
     }
 }

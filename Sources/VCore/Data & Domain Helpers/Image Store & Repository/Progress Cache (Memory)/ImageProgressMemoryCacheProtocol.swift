@@ -120,7 +120,7 @@ nonisolated public final class ImageProgressMemoryCache_ResizedKey: NSObject, Se
     }
     
     /// Initializes `ImageProgressMemoryCache_ResizedKey`.
-    convenience public init(
+    public convenience init(
         parameter: ImageRepository_Parameter,
         width: CGFloat,
         height: CGFloat

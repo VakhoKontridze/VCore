@@ -134,7 +134,7 @@ public final class PaddedUIView: UIView {
             view.topAnchor.constraint(equalTo: topAnchor)
                 .storing(in: &constraintTop),
             view.bottomAnchor.constraint(equalTo: bottomAnchor)
-                .storing(in: &constraintBottom),
+                .storing(in: &constraintBottom)
         ])
     }
     

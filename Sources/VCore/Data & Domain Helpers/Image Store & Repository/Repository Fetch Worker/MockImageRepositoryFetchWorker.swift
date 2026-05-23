@@ -25,30 +25,30 @@ nonisolated public final class MockImageRepositoryFetchWorker: ImageRepositoryFe
     
     // MARK: Initializers
     /// Initializes `MockImageRepositoryFetchWorker`.
-    public override init() {}
+    override public init() {}
     
     // MARK: Operations
-    public override func fetchRemoteImage(
+    override public func fetchRemoteImage(
         url: URL
     ) async throws -> PlatformImage {
         try fetchImage()
     }
     
-    public override func fetchPhotoImage(
+    override public func fetchPhotoImage(
         asset: PHAsset
     ) async throws -> PlatformImage {
         try fetchImage()
     }
     
 #if !os(macOS)
-    public override func fetchPhotoImage(
+    override public func fetchPhotoImage(
         item: PhotosPickerItem
     ) async throws -> PlatformImage {
         try fetchImage()
     }
 #endif
     
-    public override func fetchPhotoImage(
+    override public func fetchPhotoImage(
         assetIdentifier: String
     ) async throws -> PlatformImage {
         try fetchImage()
