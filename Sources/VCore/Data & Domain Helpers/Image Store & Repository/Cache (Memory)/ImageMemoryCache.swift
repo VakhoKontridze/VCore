@@ -5,7 +5,11 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-import Foundation
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 /// Image memory cache.
 nonisolated public final class ImageMemoryCache: ImageMemoryCacheProtocol, @unchecked Sendable {

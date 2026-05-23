@@ -7,7 +7,11 @@
 
 #if DEBUG
 
-import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 import Photos
 import PhotosUI
 
@@ -36,11 +40,13 @@ nonisolated public final class MockImageRepositoryFetchWorker: ImageRepositoryFe
         try fetchImage()
     }
     
+#if !os(macOS)
     public override func fetchPhotoImage(
         item: PhotosPickerItem
     ) async throws -> PlatformImage {
         try fetchImage()
     }
+#endif
     
     public override func fetchPhotoImage(
         assetIdentifier: String

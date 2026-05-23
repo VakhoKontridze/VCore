@@ -6,6 +6,11 @@
 //
 
 import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 import Combine
 
 /// Image store.
@@ -236,14 +241,22 @@ public final class ImageStore {
     
     // MARK: Subscriptions
     private func addSubscriptions() {
+#if canImport(UIKit)
+
         NotificationCenter.default
             .publisher(for: UIApplication.didEnterBackgroundNotification)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in
-                guard let self else { return }
-                
-                imageRepository.imageDiskCache.evictIfNeeded()
-            }
+            .sink { [weak self] _ in self?.imageRepository.imageDiskCache.evictIfNeeded() }
             .store(in: &cancellables)
+        
+#elseif canImport(AppKit)
+
+        NotificationCenter.default
+            .publisher(for: NSApplication.didResignActiveNotification)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in self?.imageRepository.imageDiskCache.evictIfNeeded() }
+            .store(in: &cancellables)
+        
+#endif
     }
 }

@@ -5,7 +5,11 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 import Photos
 import PhotosUI
 
@@ -42,10 +46,12 @@ public protocol ImageRepositoryFetchWorkerProtocol: AnyObject, Sendable {
         asset: PHAsset
     ) async throws -> PlatformImage
     
+#if !os(macOS)
     /// Fetches image from `Photos` item.
     func fetchPhotoImage(
         item: PhotosPickerItem
     ) async throws -> PlatformImage
+#endif
     
     /// Fetches image from `Photos` asset identifier.
     func fetchPhotoImage(

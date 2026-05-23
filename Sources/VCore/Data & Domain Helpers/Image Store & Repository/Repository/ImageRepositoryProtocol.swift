@@ -5,7 +5,11 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 import Photos
 import PhotosUI
 import CryptoKit
@@ -142,6 +146,7 @@ nonisolated public struct ImageRepository_Parameter: Hashable, Sendable {
         )
     }
     
+#if !os(macOS)
     /// `Photos` item.
     public static func photo(
         item: PhotosPickerItem
@@ -152,6 +157,7 @@ nonisolated public struct ImageRepository_Parameter: Hashable, Sendable {
             )
         )
     }
+#endif
     
     /// `Photos` asset identifier.
     public static func photo(
@@ -210,9 +216,11 @@ nonisolated public struct ImageRepository_Parameter: Hashable, Sendable {
                 4
             )
             
+#if !os(macOS)
         case .photo_Item:
             // No way to know
             return 0
+#endif
         
         case .photo_AssetIdentifier:
             // No way to know
@@ -262,6 +270,7 @@ nonisolated public struct ImageRepository_Parameter: Hashable, Sendable {
         case .photo_Asset(let asset):
             return "photo_asset_\(asset.localIdentifier)"
             
+#if !os(macOS)
         case .photo_Item(let item):
             guard
                 let itemIdentifier: String = item.itemIdentifier
@@ -270,7 +279,8 @@ nonisolated public struct ImageRepository_Parameter: Hashable, Sendable {
             }
             
             return "photo_item_\(itemIdentifier)"
-
+#endif
+            
         case .photo_AssetIdentifier(let identifier):
             return "photo_assetid_\(identifier)"
         }
@@ -284,7 +294,9 @@ nonisolated public struct ImageRepository_Parameter: Hashable, Sendable {
         case local(url: URL)
         case remote(url: URL)
         case photo_Asset(asset: PHAsset)
+#if !os(macOS)
         case photo_Item(item: PhotosPickerItem)
+#endif
         case photo_AssetIdentifier(assetIdentifier: String)
     }
 }

@@ -5,7 +5,8 @@
 Core - Extensions
 
 - `withTimeout(...)` method is added, that performs asynchronous operation with a timeout
-- `UIImage.scaledDown(toDimension:)' is renamed to `UIImage.scaledDown(toMinDimension:)` and `UIImage.scaledDown(toMaxDimension:)` method is added
+- `UIImage.scaledDown(toDimension:)' method is renamed to `UIImage.scaledDown(toMinDimension:)` and `UIImage.scaledDown(toMaxDimension:)` method is added
+- `NSImage.jpegData(compressionQuality:)` method is added, that returns `Data` that contains the image in JPEG format
 
 Core - Utilities
 

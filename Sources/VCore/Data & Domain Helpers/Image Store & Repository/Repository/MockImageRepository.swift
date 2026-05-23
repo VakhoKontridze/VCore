@@ -7,7 +7,11 @@
 
 #if DEBUG
 
-import Foundation
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 /// Mock image repository.
 nonisolated public final class MockImageRepository: ImageRepositoryProtocol {
@@ -77,8 +81,10 @@ nonisolated public final class MockImageRepository: ImageRepositoryProtocol {
         case .photo_Asset(let asset):
             try await imageFetchWorker.fetchPhotoImage(asset: asset)
             
+#if !os(macOS)
         case .photo_Item(let item):
             try await imageFetchWorker.fetchPhotoImage(item: item)
+#endif
             
         case .photo_AssetIdentifier(let assetIdentifier):
             try await imageFetchWorker.fetchPhotoImage(assetIdentifier: assetIdentifier)

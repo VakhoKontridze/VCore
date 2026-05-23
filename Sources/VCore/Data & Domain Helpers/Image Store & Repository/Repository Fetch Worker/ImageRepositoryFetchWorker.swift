@@ -5,7 +5,11 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 import Photos
 import PhotosUI
 
@@ -34,11 +38,25 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         name: String,
         bundle: Bundle?
     ) async throws -> PlatformImage {
+#if canImport(UIKit)
+
         guard
             let image: PlatformImage = .init(named: name, in: bundle, with: nil)
         else {
             throw ImageRepositoryError.failedToCreateImage
         }
+        
+#elseif canImport(AppKit)
+
+        guard
+            let image: PlatformImage =
+                bundle?.image(forResource: name) ??
+                PlatformImage(named: name)
+        else {
+            throw ImageRepositoryError.failedToCreateImage
+        }
+        
+#endif
         
         return image
     }
@@ -108,6 +126,7 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         }
     }
     
+#if !os(macOS)
     open func fetchPhotoImage(
         item: PhotosPickerItem
     ) async throws -> PlatformImage {
@@ -123,6 +142,7 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         
         return image
     }
+#endif
     
     open func fetchPhotoImage(
         assetIdentifier: String

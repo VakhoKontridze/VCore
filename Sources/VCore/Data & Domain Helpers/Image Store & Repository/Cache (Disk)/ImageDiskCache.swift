@@ -5,7 +5,11 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 import CryptoKit
 import OSLog
 

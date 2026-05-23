@@ -5,7 +5,11 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-import Foundation
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 import OSLog
 
 /// Image repository.
@@ -335,8 +339,10 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         case .photo_Asset(let asset):
             try await imageFetchWorker.fetchPhotoImage(asset: asset)
             
+#if !os(macOS)
         case .photo_Item(let item):
             try await imageFetchWorker.fetchPhotoImage(item: item)
+#endif
             
         case .photo_AssetIdentifier(let assetIdentifier):
             try await imageFetchWorker.fetchPhotoImage(assetIdentifier: assetIdentifier)
@@ -347,11 +353,23 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         image: PlatformImage,
         size: CGSize
     ) async throws -> PlatformImage {
+#if canImport(UIKit)
+
         guard
             let thumbnail: PlatformImage = await image.byPreparingThumbnail(ofSize: size)
         else {
             throw ImageRepositoryError.failedToResizeImage
         }
+        try Task.checkCancellation()
+        
+#elseif canImport(AppKit)
+
+        guard
+            let thumbnail: PlatformImage = image.byPreparingThumbnail(ofSize: size)
+        else {
+            throw ImageRepositoryError.failedToResizeImage
+        }
+#endif
         
         return thumbnail
     }

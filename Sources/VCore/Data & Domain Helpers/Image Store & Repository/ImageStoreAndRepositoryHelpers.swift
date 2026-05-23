@@ -5,7 +5,11 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-import SwiftUI
+#if canImport(UIKit)
+import UIKit
+#elseif canImport(AppKit)
+import AppKit
+#endif
 
 nonisolated extension CGSize {
     func quantized() -> Self {
@@ -64,3 +68,27 @@ nonisolated extension PlatformImage {
         )
     }
 }
+
+#if canImport(AppKit)
+
+nonisolated extension NSImage {
+    fileprivate var scale: CGFloat {
+        guard
+            let representation: NSImageRep = representations.first
+        else {
+            return 1
+        }
+        
+        let pixelWidth: CGFloat = .init(representation.pixelsWide)
+        
+        let pointWidth: CGFloat = size.width
+        
+        guard pointWidth > 0 else {
+            return 1
+        }
+        
+        return pixelWidth / pointWidth
+    }
+}
+
+#endif

@@ -5,6 +5,8 @@
 //  Created by Vakhtang Kontridze on 20/5/26.
 //
 
+#if canImport(UIKit)
+
 import UIKit
 
 /// Container that pads underlying `UIView`.
@@ -181,3 +183,5 @@ public final class PaddedUIView: UIView {
         marginBottom = edgeInsets.bottom
     }
 }
+
+#endif
