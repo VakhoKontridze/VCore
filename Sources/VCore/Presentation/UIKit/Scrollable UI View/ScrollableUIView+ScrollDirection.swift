@@ -11,7 +11,7 @@ import Foundation
 
 nonisolated extension ScrollableUIView {
     /// Scroll Direction.
-    @OptionSetRepresentation<Int>
+    @OptionSetRepresentation
     nonisolated public struct ScrollDirection: Sendable {
         nonisolated private enum Options: Int {
             case horizontal

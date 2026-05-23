@@ -23,7 +23,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
     func testSimpleStruct() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<Int>
+            @OptionSetRepresentation
             nonisolated struct Gender {
                 private nonisolated enum Options: Int {
                     case male
@@ -71,7 +71,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
     func testNonStruct() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<Int>
+            @OptionSetRepresentation
             nonisolated enum Gender {
                 case male
                 case female
@@ -94,7 +94,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
     func testAccessLevelModifierParameter() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<Int>
+            @OptionSetRepresentation
             public nonisolated struct Gender: Sendable {
                 private nonisolated enum Options: Int {
                     case male
@@ -140,7 +140,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
 
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<Int>(accessLevelModifier: .fileprivate)
+            @OptionSetRepresentation(accessLevelModifier: .fileprivate)
             nonisolated struct Gender {
                 private nonisolated enum Options: Int {
                     case male
@@ -188,7 +188,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
     func testEmptyStruct() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<Int>
+            @OptionSetRepresentation
             nonisolated struct Gender {}
             """,
             expandedSource: 
@@ -207,7 +207,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
             """
             @OptionSetRepresentation
             nonisolated struct Gender {
-                private nonisolated enum Options: Int {
+                private nonisolated enum Options {
                     case male
                     case female
                 }
@@ -216,7 +216,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
             expandedSource:
                 """
                 nonisolated struct Gender {
-                    private nonisolated enum Options: Int {
+                    private nonisolated enum Options {
                         case male
                         case female
                     }
@@ -233,7 +233,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
         do {
             assertMacroExpansion(
                 """
-                @OptionSetRepresentation<Int>
+                @OptionSetRepresentation
                 nonisolated struct Gender: OptionSet {
                     private nonisolated enum Options: Int {
                         case male
@@ -278,7 +278,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
         do {
             assertMacroExpansion(
                 """
-                @OptionSetRepresentation<Int>
+                @OptionSetRepresentation
                 nonisolated struct Gender: OptionSet, Foo {
                     private nonisolated enum Options: Int {
                         case male
@@ -327,7 +327,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
     func testSameLineCases() {
         assertMacroExpansion(
             """
-            @OptionSetRepresentation<Int>
+            @OptionSetRepresentation
             nonisolated struct Gender {
                 private nonisolated enum Options: Int {
                     case male, female

@@ -8,6 +8,10 @@ Core - Extensions
 - `UIImage.scaledDown(toDimension:)' method is renamed to `UIImage.scaledDown(toMinDimension:)` and `UIImage.scaledDown(toMaxDimension:)` method is added
 - `NSImage.jpegData(compressionQuality:)` method is added, that returns `Data` that contains the image in JPEG format
 
+Core - Macros
+
+- `OptionSetRepresentation` no longer requires specifying `rawValue` as a generic type
+
 Core - Utilities
 
 - `SendableTask` is added

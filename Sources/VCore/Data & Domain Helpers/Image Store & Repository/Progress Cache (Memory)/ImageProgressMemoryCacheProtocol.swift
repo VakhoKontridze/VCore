@@ -60,7 +60,7 @@ nonisolated public protocol ImageProgressMemoryCacheProtocol: AnyObject, Sendabl
 }
 
 /// Image cache type.
-@OptionSetRepresentation<Int>
+@OptionSetRepresentation
 nonisolated public struct ImageProgressMemoryCache_CacheType: Sendable {
     private enum Options: Int {
         case original

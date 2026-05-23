@@ -57,7 +57,7 @@ nonisolated struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         
         let prefix: String = "\(expansionData.accessLevelModifier) "
 
-        result.append("\(raw: prefix)typealias RawValue = \(expansionData.rawType)")
+        result.append("\(raw: prefix)typealias RawValue = \(raw: expansionData.rawType)")
 
         result.append("\(raw: prefix)let rawValue: RawValue")
 
@@ -225,10 +225,12 @@ nonisolated struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
 
         // Raw type from `Option` `enum`
         guard
-            let genericArgument: GenericArgumentClauseSyntax = attribute
-                .attributeName.as(IdentifierTypeSyntax.self)?
-                .genericArgumentClause,
-            let rawType: GenericArgumentSyntax.Argument = genericArgument.arguments.first?.argument // Only one raw type
+            let rawType: String = optionsEnumDeclaration
+                .inheritanceClause?
+                .inheritedTypes
+                .first?
+                .type
+                .trimmedDescription
         else {
             let error: RawStringError = .init("Options 'enum' doesn't have a raw type")
             if diagnose { context.addDiagnostics(from: error, node: optionsEnumDeclaration) }
@@ -297,7 +299,7 @@ nonisolated struct OptionSetRepresentationMacro: MemberMacro, ExtensionMacro {
         let isNonIsolated: Bool
         let structDeclaration: StructDeclSyntax
         let optionsEnumDeclaration: EnumDeclSyntax
-        let rawType: GenericArgumentSyntax.Argument
+        let rawType: String
     }
 }
 

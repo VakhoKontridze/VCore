@@ -57,7 +57,7 @@ nonisolated public protocol ImageMemoryCacheProtocol: AnyObject, Sendable {
 }
 
 /// Image cache type.
-@OptionSetRepresentation<Int>
+@OptionSetRepresentation
 nonisolated public struct ImageMemoryCache_CacheType: Sendable {
     private enum Options: Int {
         case original

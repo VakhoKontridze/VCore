@@ -65,7 +65,7 @@ nonisolated public protocol ImageDiskCacheProtocol: AnyObject, Sendable {
 }
 
 /// Image cache type.
-@OptionSetRepresentation<Int>
+@OptionSetRepresentation
 nonisolated public struct ImageDiskCache_CacheType: Sendable {
     private enum Options: Int {
         case original

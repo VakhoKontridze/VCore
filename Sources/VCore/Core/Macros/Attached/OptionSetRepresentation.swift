@@ -11,7 +11,7 @@ import Foundation
 ///
 /// If `accessLevelModifier` is `nil`, it will be inherited from the type.
 ///
-///     @OptionSetRepresentation<Int>
+///     @OptionSetRepresentation
 ///     nonisolated struct Gender {
 ///         nonisolated private enum Options: Int {
 ///             case male
@@ -27,7 +27,7 @@ import Foundation
 ///
 @attached(member, names: arbitrary)
 @attached(extension, conformances: OptionSet)
-public macro OptionSetRepresentation<RawType>(
+public macro OptionSetRepresentation(
     accessLevelModifier: AccessLevelModifierKeyword? = nil
 ) = #externalMacro(
     module: "VCoreMacrosImplementation",

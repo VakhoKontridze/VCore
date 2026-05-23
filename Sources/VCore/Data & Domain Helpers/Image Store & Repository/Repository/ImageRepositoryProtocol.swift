@@ -336,7 +336,7 @@ nonisolated public enum ImageRepository_CachePolicy: Sendable {
 }
 
 /// Cache storage.
-@OptionSetRepresentation<Int>
+@OptionSetRepresentation
 nonisolated public struct ImageRepository_CacheStorage: Sendable {
     // MARK: Options
     nonisolated private enum Options: Int {
@@ -361,7 +361,7 @@ nonisolated public enum ImageRepository_ProgressCacheStorage: Sendable {
 }
 
 /// Resized image variant caching policy.
-@OptionSetRepresentation<Int>
+@OptionSetRepresentation
 nonisolated public struct ImageRepository_ResizedImageVariantCachingPolicy: Sendable {
     // MARK: Options
     nonisolated private enum Options: Int {
