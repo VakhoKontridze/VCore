@@ -9,7 +9,10 @@
 
 import Foundation
 import SwiftSyntax
+import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
+import SwiftParser
+import SwiftDiagnostics
 
 nonisolated struct UninitializableMacro: MemberMacro {
     static func expansion(

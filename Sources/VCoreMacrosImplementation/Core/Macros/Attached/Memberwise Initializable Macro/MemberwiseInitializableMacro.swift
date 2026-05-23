@@ -11,6 +11,7 @@ import Foundation
 import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
+import SwiftParser
 import SwiftDiagnostics
 
 nonisolated struct MemberwiseInitializableMacro: MemberMacro {

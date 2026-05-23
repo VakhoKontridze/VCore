@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Combine
 
 struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalContent: View {
     // MARK: Properties - Link

@@ -9,7 +9,10 @@
 
 import Foundation
 import SwiftSyntax
+import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
+import SwiftParser
+import SwiftDiagnostics
 
 nonisolated struct URLMacro_InitWithString: ExpressionMacro {
     static func expansion(

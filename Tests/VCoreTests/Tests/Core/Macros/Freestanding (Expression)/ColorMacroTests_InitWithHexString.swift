@@ -12,6 +12,7 @@ import XCTest
 import SwiftSyntax
 import SwiftSyntaxMacros
 import SwiftSyntaxMacrosTestSupport
+import SwiftSyntaxMacrosGenericTestSupport
 @testable import VCoreMacrosImplementation
 
 nonisolated final class ColorMacroTests_InitWithHexString: XCTestCase {

@@ -9,7 +9,10 @@
 
 import SwiftUI
 import SwiftSyntax
+import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
+import SwiftParser
+import SwiftDiagnostics
 import VCoreShared
 
 nonisolated struct ColorMacro_InitWithHexString: ExpressionMacro {
