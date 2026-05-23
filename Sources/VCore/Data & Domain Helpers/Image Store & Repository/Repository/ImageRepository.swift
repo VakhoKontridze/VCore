@@ -339,10 +339,8 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
         case .photo_Asset(let asset):
             try await imageFetchWorker.fetchPhotoImage(asset: asset)
             
-#if !os(macOS)
         case .photo_Item(let item):
             try await imageFetchWorker.fetchPhotoImage(item: item)
-#endif
             
         case .photo_AssetIdentifier(let assetIdentifier):
             try await imageFetchWorker.fetchPhotoImage(assetIdentifier: assetIdentifier)

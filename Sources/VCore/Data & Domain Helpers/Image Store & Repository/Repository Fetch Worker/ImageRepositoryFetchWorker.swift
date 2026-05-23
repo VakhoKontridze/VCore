@@ -5,6 +5,7 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
+import SwiftUI
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
@@ -126,7 +127,6 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         }
     }
     
-#if !os(macOS)
     open func fetchPhotoImage(
         item: PhotosPickerItem
     ) async throws -> PlatformImage {
@@ -142,7 +142,6 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
         
         return image
     }
-#endif
     
     open func fetchPhotoImage(
         assetIdentifier: String
