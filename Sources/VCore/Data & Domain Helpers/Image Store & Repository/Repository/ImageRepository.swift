@@ -263,9 +263,9 @@ nonisolated public final class ImageRepository: ImageRepositoryProtocol {
                 if cacheStorage.contains(.disk) {
                     if parameter.diskIdentifier == nil {
 #if canImport(UIKit)
-                        Logger.imageStoreAndRepository.warning("Misuse of 'ImageRepository`. Raw `UIImage` has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
+                        Logger.imageStoreAndRepository.warning("Misuse of 'ImageRepository'. Raw 'UIImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
 #elseif canImport(AppKit)
-                        Logger.imageStoreAndRepository.warning("Misuse of 'ImageRepository`. Raw `NSImage` has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
+                        Logger.imageStoreAndRepository.warning("Misuse of 'ImageRepository'. Raw 'NSImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
 #endif
                     }
                     

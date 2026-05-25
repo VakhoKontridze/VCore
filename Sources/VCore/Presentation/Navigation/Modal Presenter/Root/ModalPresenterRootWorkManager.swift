@@ -18,7 +18,7 @@ final class ModalPresenterRootWorkManager {
     private var isEnabled: Bool = false
     private var isRunning: Bool = false
     
-    let publisher: PassthroughSubject<Work, Never> = .init()
+    let subject: PassthroughSubject<Work, Never> = .init()
     
     // MARK: Initializers
     init() {}
@@ -41,7 +41,7 @@ final class ModalPresenterRootWorkManager {
         
         isRunning = true
         let work: Work = queue.removeFirst()
-        publisher.send(work)
+        subject.send(work)
         isRunning = false
         
         executeWork()

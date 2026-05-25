@@ -83,7 +83,7 @@ struct ModalPresenterRootViewModifier: ViewModifier {
             .onReceive(internalContext.updateSubject) { workManager.addWork(.update($0)) }
             .onReceive(internalContext.dismissSubject) { workManager.addWork(.dismiss($0)) }
             .onChange(of: didReadEnvironment) { workManager.setEnabledStatus(to: $1) }
-            .onReceive(workManager.publisher) { workType in
+            .onReceive(workManager.subject) { workType in
                 switch workType {
                 case .present(let data): onReceiveInternalPresentRequest(data)
                 case .update(let data): onReceiveInternalUpdateRequest(data)
