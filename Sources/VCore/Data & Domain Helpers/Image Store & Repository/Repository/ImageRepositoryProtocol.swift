@@ -235,7 +235,7 @@ nonisolated public struct ImageRepository_Parameter: Hashable, Sendable {
             return nil
 
         case .data(let data):
-            // Raw hex, as `ImageDiskCache` will SHA256 this along with everything else.
+            // Raw hex, as `ImageDiskCache` will SHA256 this along with everything else
             let hex: String = data.withUnsafeBytes { bytes -> String in
                 var hasher: SHA256 = .init()
                 hasher.update(bufferPointer: bytes)
