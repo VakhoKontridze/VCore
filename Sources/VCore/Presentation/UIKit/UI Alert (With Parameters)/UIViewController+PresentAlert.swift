@@ -1,5 +1,5 @@
 //
-//  UIAlertViewable.swift
+//  UIViewController+PresentAlert.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 04.10.21.
@@ -9,39 +9,24 @@
 
 import UIKit
 
-/// Protocol for presenting a `UIAlert`.
-///
-///     final class ViewController: UIViewController, UIAlertViewable {
-///         var viewModel: ViewModel!
-///     }
-///
-///     final class ViewModel {
-///         unowned let view: ViewController
-///
-///         init(view: ViewController) {
-///             self.view = view
-///         }
-///
-///         func present() {
-///             view.presentAlert(
-///                 parameters: UIAlertParameters(
-///                     title: "Lorem Ipsum",
-///                     message: "Lorem ipsum dolor sit amet",
-///                     actions: {
-///                         UIAlertButton(action: { print("Confirmed") }, title: "Confirm")
-///                         UIAlertButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
-///                     }
-///                 )
-///             )
-///         }
-///     }
-///
-public protocol UIAlertViewable {
-    /// Presents `UIAlert` with parameters
-    func presentAlert(parameters: UIAlertParameters)
-}
-
-extension UIAlertViewable where Self: UIViewController {
+extension UIViewController {
+    /// Protocol for presenting a `UIAlert`.
+    ///
+    ///     final class ViewController: UIViewController {
+    ///         func present() {
+    ///             presentAlert(
+    ///                 parameters: UIAlertParameters(
+    ///                     title: "Lorem Ipsum",
+    ///                     message: "Lorem ipsum dolor sit amet",
+    ///                     actions: {
+    ///                         UIAlertButton(action: { print("Confirmed") }, title: "Confirm")
+    ///                         UIAlertButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
+    ///                     }
+    ///                 )
+    ///             )
+    ///         }
+    ///     }
+    ///
     public func presentAlert(parameters: UIAlertParameters) {
         present(
             UIAlertController(parameters: parameters),
@@ -54,7 +39,7 @@ extension UIAlertViewable where Self: UIViewController {
 #if DEBUG
 
 #Preview {
-    final class ViewController: UIViewController, UIAlertViewable {
+    final class ViewController: UIViewController {
         // MARK: Lifecycle
         override func viewDidLoad() {
             super.viewDidLoad()

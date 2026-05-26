@@ -1001,3 +1001,300 @@ open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIVi
 }
 
 #endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+public protocol StandardNavigable {
+    func push(_ viewController: UIViewController, animated: Bool)
+    func pop(animated: Bool)
+    func pop(count: Int, animated: Bool)
+    func popToRoot(animated: Bool)
+    func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?)
+    func dismiss(animated: Bool, completion: (() -> Void)?)
+    func setRoot(to viewController: UIViewController)
+}
+
+extension StandardNavigable {
+    public func push(_ viewController: UIViewController) {
+        push(viewController, animated: true)
+    }
+    
+    public func pop() {
+        pop(animated: true)
+    }
+
+    public func pop(count: Int) {
+        pop(count: count, animated: true)
+    }
+    
+    public func popToRoot() {
+        popToRoot(animated: true)
+    }
+    
+    public func present(_ viewController: UIViewController) {
+        present(viewController, animated: true, completion: nil)
+    }
+    
+    public func dismiss() {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension StandardNavigable where Self: UIViewController {
+    public func push(_ viewController: UIViewController, animated: Bool) {
+        navigationController?.pushViewController(viewController, animated: animated)
+    }
+    
+    public func pop(animated: Bool) {
+        navigationController?.popViewController(animated: animated)
+    }
+    
+    public func pop(count: Int, animated: Bool) {
+        guard let navigationController else { return }
+        
+        let viewControllers: [UIViewController] = navigationController.viewControllers
+        guard viewControllers.count >= (count + 1) else { return }
+        
+        navigationController.popToViewController(viewControllers[(viewControllers.count-1) - count], animated: animated)
+    }
+    
+    public func popToRoot(animated: Bool) {
+        navigationController?.popToRootViewController(animated: animated)
+    }
+    
+    public func present(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        (self as UIViewController).present(viewController, animated: animated, completion: completion)
+    }
+
+    public func dismiss(animated: Bool, completion: (() -> Void)?) {
+        (self as UIViewController).dismiss(animated: animated, completion: completion)
+    }
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+public protocol UIActivityIndicatorViewable {
+    var activityIndicator: UIActivityIndicatorView { get }
+    
+    func startActivityIndicatorAnimation()
+    func stopActivityIndicatorAnimation()
+    func startActivityIndicatorAnimationAndDisableInteraction()
+    func stopActivityIndicatorAnimationAndEnableInteraction()
+}
+
+extension UIActivityIndicatorViewable {
+    public func startActivityIndicatorAnimation() {
+        activityIndicator.startAnimating()
+    }
+
+    public func stopActivityIndicatorAnimation() {
+        activityIndicator.stopAnimating()
+    }
+}
+
+extension UIActivityIndicatorViewable where Self: UIView {
+    public func startActivityIndicatorAnimationAndDisableInteraction() {
+        startActivityIndicatorAnimation()
+        isUserInteractionEnabled = false
+    }
+    
+    public func stopActivityIndicatorAnimationAndEnableInteraction() {
+        stopActivityIndicatorAnimation()
+        isUserInteractionEnabled = true
+    }
+}
+
+extension UIActivityIndicatorViewable where Self: UIViewController {
+    public func startActivityIndicatorAnimationAndDisableInteraction() {
+        startActivityIndicatorAnimation()
+        view.isUserInteractionEnabled = false
+    }
+    
+    public func stopActivityIndicatorAnimationAndEnableInteraction() {
+        stopActivityIndicatorAnimation()
+        view.isUserInteractionEnabled = true
+    }
+}
+
+extension UIView {
+    @available(*, deprecated, message: "Will be removed in '9.0.0'")
+    public func initActivityIndicator(
+        scalingFactor: CGFloat? = nil,
+        color: UIColor? = nil
+    ) -> UIActivityIndicatorView {
+        let activityIndicator: UIActivityIndicatorView = .init()
+        
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = .medium
+        scalingFactor.map { activityIndicator.transform = CGAffineTransform(scaleX: $0, y: $0) }
+        color.map { activityIndicator.color = $0 }
+        
+        return activityIndicator
+    }
+}
+
+extension UIViewController {
+    @available(*, deprecated, message: "Will be removed in '9.0.0'")
+    public func initActivityIndicator(
+        scalingFactor: CGFloat? = nil,
+        color: UIColor? = nil
+    ) -> UIActivityIndicatorView {
+        view.initActivityIndicator(scalingFactor: scalingFactor, color: color)
+    }
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+import OSLog
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+public protocol UITableViewCellParameter {
+    var reuseID: String { get }
+}
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+public protocol ConfigurableUITableViewCell: UITableViewCell {
+    static var reuseID: String { get }
+    
+    func configure(parameter: any UITableViewCellParameter)
+}
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+nonisolated extension ConfigurableUITableViewCell {
+    public static var reuseID: String { .init(describing: self) }
+}
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+public protocol UITableViewDelegable {
+    func tableViewDidSelectRow(section: Int, row: Int)
+}
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+public protocol UITableViewDataSourceable {
+    var tableViewNumberOfSections: Int { get }
+    
+    func tableViewNumberOfRows(section: Int) -> Int
+    func tableViewCellParameter(section: Int, row: Int) -> any UITableViewCellParameter
+}
+
+extension UITableView {
+    @available(*, deprecated, message: "Will be removed in '9.0.0'")
+    public func register(_ cells: any ConfigurableUITableViewCell.Type...) {
+        cells.forEach { register($0, forCellReuseIdentifier: $0.reuseID) }
+    }
+}
+
+extension UITableView {
+    @available(*, deprecated, message: "Will be removed in '9.0.0'")
+    public func dequeueAndConfigureReusableCell(
+        parameter: any UITableViewCellParameter
+    ) -> UITableViewCell {
+        guard
+            let cell = dequeueReusableCell(withIdentifier: parameter.reuseID) as? any ConfigurableUITableViewCell
+        else {
+            Logger.misc.critical("Unable to dequeue 'ConfigurableUITableViewCell' with identifier '\(parameter.reuseID)' in 'UITableView.dequeueAndConfigureReusableCell(parameter:)'")
+            return UITableViewCell()
+        }
+        
+        cell.configure(parameter: parameter)
+        
+        return cell
+    }
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+import OSLog
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+public protocol UICollectionViewCellParameter {
+    var reuseID: String { get }
+}
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+public protocol ConfigurableUICollectionViewCell: UICollectionViewCell {
+    static var reuseID: String { get }
+    
+    func configure(parameter: any UICollectionViewCellParameter)
+}
+
+nonisolated extension ConfigurableUICollectionViewCell {
+    public static var reuseID: String { .init(describing: self) }
+}
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+public protocol UICollectionViewDelegable {
+    func collectionViewDidSelectRow(section: Int, row: Int)
+}
+
+@available(*, deprecated, message: "Will be removed in '9.0.0'")
+public protocol UICollectionViewDataSourceable {
+    var collectionViewNumberOfSections: Int { get }
+    
+    func collectionViewNumberOfItems(section: Int) -> Int
+    func collectionViewCellParameter(section: Int, row: Int) -> any UICollectionViewCellParameter
+}
+
+extension UICollectionView {
+    @available(*, deprecated, message: "Will be removed in '9.0.0'")
+    public func register(_ cells: any ConfigurableUICollectionViewCell.Type...) {
+        cells.forEach { register($0, forCellWithReuseIdentifier: $0.reuseID) }
+    }
+}
+
+extension UICollectionView {
+    @available(*, deprecated, message: "Will be removed in '9.0.0'")
+    public func dequeueAndConfigureReusableCell(
+        indexPath: IndexPath,
+        parameter: any UICollectionViewCellParameter
+    ) -> UICollectionViewCell {
+        guard
+            let cell = dequeueReusableCell(withReuseIdentifier: parameter.reuseID, for: indexPath) as? any ConfigurableUICollectionViewCell
+        else {
+            Logger.misc.critical("Failed to dequeue 'ConfigurableUICollectionViewCell' with identifier '\(parameter.reuseID)' in 'UICollectionView.dequeueAndConfigureReusableCell(indexPath:parameter:)'")
+            return UICollectionViewCell()
+        }
+        
+        cell.configure(parameter: parameter)
+        
+        return cell
+    }
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+@available(*, deprecated, message: "'UIAlertViewable' is no longer needed. Use 'UIViewController' method directly.")
+public protocol UIAlertViewable {
+    func presentAlert(parameters: UIAlertParameters)
+}
+
+#endif
+
+#if canImport(UIKit) && !os(watchOS)
+
+import UIKit
+
+@available(*, deprecated, message: "'UIActionSheetViewable' is no longer needed. Use 'UIViewController' method directly.")
+public protocol UIActionSheetViewable {
+    func presentActionSheet(parameters: UIActionSheetParameters)
+}
+
+#endif

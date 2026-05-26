@@ -1,5 +1,5 @@
 //
-//  UIActionSheetViewable.swift
+//  UIViewController+PresentActionSheet.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 03.08.22.
@@ -9,39 +9,24 @@
 
 import UIKit
 
-/// Protocol for presenting a `UIActionSheet`.
-///
-///     final class ViewController: UIViewController, UIActionSheetViewable {
-///         var viewModel: ViewModel!
-///     }
-///
-///     final class ViewModel {
-///         unowned let view: ViewController
-///
-///         init(view: ViewController) {
-///             self.view = view
-///         }
-///
-///         func present() {
-///             view.presentActionSheet(
-///                 parameters: UIActionSheetParameters(
-///                     title: "Lorem Ipsum",
-///                     message: "Lorem ipsum dolor sit amet",
-///                     actions: {
-///                         UIActionSheetButton(action: { print("Confirmed") }, title: "Confirm")
-///                         UIActionSheetButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
-///                     }
-///                 )
-///             )
-///         }
-///     }
-///
-public protocol UIActionSheetViewable {
-    /// Presents `UIActionSheet` with parameters
-    func presentActionSheet(parameters: UIActionSheetParameters)
-}
-
-extension UIActionSheetViewable where Self: UIViewController {
+extension UIViewController {
+    /// Protocol for presenting a `UIActionSheet`.
+    ///
+    ///     final class ViewController: UIViewController {
+    ///         func present() {
+    ///             presentActionSheet(
+    ///                 parameters: UIActionSheetParameters(
+    ///                     title: "Lorem Ipsum",
+    ///                     message: "Lorem ipsum dolor sit amet",
+    ///                     actions: {
+    ///                         UIActionSheetButton(action: { print("Confirmed") }, title: "Confirm")
+    ///                         UIActionSheetButton(action: { print("Cancelled") }, title: "Cancel", style: .cancel)
+    ///                     }
+    ///                 )
+    ///             )
+    ///         }
+    ///     }
+    ///
     public func presentActionSheet(parameters: UIActionSheetParameters) {
         present(
             UIAlertController(parameters: parameters),
@@ -54,7 +39,7 @@ extension UIActionSheetViewable where Self: UIViewController {
 #if DEBUG
 
 #Preview {
-    final class ViewController: UIViewController, UIActionSheetViewable {
+    final class ViewController: UIViewController {
         // MARK: Lifecycle
         override func viewDidLoad() {
             super.viewDidLoad()
