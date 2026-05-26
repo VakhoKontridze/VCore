@@ -24,7 +24,7 @@ public struct ResponderChainUIToolbarResponderParameters {
     // MARK: Initializers
     /// Initializes `ResponderChainUIToolbarResponderParameters` with `ResponderChainUIToolbarResponder` and it's UI customization.
     public init(
-        responder: ResponderChainUIToolbarResponder,
+        responder: any ResponderChainUIToolbarResponder,
         toolBarAppearance: ResponderChainUIToolbarAppearance = .init(),
         toolBarSize: CGSize
     ) {

@@ -55,7 +55,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     override open func layoutAttributesForItem(at indexPath: IndexPath) -> UICollectionViewLayoutAttributes? {
         guard
             let collectionView,
-            let flowDelegate = collectionView.delegate as? UICollectionViewDelegateFlowLayout
+            let flowDelegate = collectionView.delegate as? any UICollectionViewDelegateFlowLayout
         else {
             return super.layoutAttributesForItem(at: indexPath)
         }
@@ -171,7 +171,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     private func calculateRowItemInterimSpacing(
         collectionView: UICollectionView,
-        flowDelegate: UICollectionViewDelegateFlowLayout,
+        flowDelegate: any UICollectionViewDelegateFlowLayout,
         indexPath: IndexPath,
         sameRowItemAttributes: [UICollectionViewLayoutAttributes]
     ) -> CGFloat {
@@ -207,9 +207,9 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     
     private func delegateSupportsInteritemSpacing(
         collectionView: UICollectionView,
-        flowDelegate: UICollectionViewDelegateFlowLayout
+        flowDelegate: any UICollectionViewDelegateFlowLayout
     ) -> Bool {
-        flowDelegate.responds(to: #selector(UICollectionViewDelegateFlowLayout.collectionView(_:layout:minimumInteritemSpacingForSectionAt:)))
+        flowDelegate.responds(to: #selector((any UICollectionViewDelegateFlowLayout).collectionView(_:layout:minimumInteritemSpacingForSectionAt:)))
     }
 }
 

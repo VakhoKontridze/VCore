@@ -47,8 +47,8 @@ nonisolated public protocol AnyMultipartFormDataFile {}
 
 nonisolated extension MultipartFormDataFile: AnyMultipartFormDataFile {}
 
-nonisolated extension Optional: AnyMultipartFormDataFile where Wrapped == AnyMultipartFormDataFile {}
+nonisolated extension Optional: AnyMultipartFormDataFile where Wrapped == any AnyMultipartFormDataFile {}
 
-nonisolated extension Array: AnyMultipartFormDataFile where Element == AnyMultipartFormDataFile? {}
+nonisolated extension Array: AnyMultipartFormDataFile where Element == (any AnyMultipartFormDataFile)? {}
 
-nonisolated extension Dictionary: AnyMultipartFormDataFile where Key == String, Value == AnyMultipartFormDataFile? {}
+nonisolated extension Dictionary: AnyMultipartFormDataFile where Key == String, Value == (any AnyMultipartFormDataFile)? {}

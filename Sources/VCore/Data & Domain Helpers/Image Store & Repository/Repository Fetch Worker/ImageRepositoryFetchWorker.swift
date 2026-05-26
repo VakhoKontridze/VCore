@@ -108,7 +108,7 @@ nonisolated open class ImageRepositoryFetchWorker: ImageRepositoryFetchWorkerPro
                 }
                 
                 if
-                    let error = info?[PHImageErrorKey] as? Error
+                    let error = info?[PHImageErrorKey] as? any Error
                 {
                     continuation.resume(throwing: error)
                     return

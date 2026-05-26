@@ -120,7 +120,7 @@ nonisolated struct CodingKeysGenerationMacro: MemberMacro {
         // `CKGProperty`
         guard
             let propertyMacro: AttributeSyntax = member
-                .decl.asProtocol(WithAttributesSyntax.self)?
+                .decl.asProtocol((any WithAttributesSyntax).self)?
                 .attributes
                 .first(where: { attribute in
                     attribute.as(AttributeSyntax.self)?

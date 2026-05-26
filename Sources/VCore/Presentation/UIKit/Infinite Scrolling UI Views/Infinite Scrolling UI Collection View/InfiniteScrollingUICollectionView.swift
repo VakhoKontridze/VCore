@@ -142,8 +142,9 @@ open class InfiniteScrollingUICollectionView: UICollectionView {
     
     // MARK: Properties - Subviews
     private lazy var activityIndicator: UIActivityIndicatorView = {
-        let activityIndicator: UIActivityIndicatorView = initActivityIndicator()
+        let activityIndicator: UIActivityIndicatorView = .init()
         activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.hidesWhenStopped = true
         return activityIndicator
     }()
     
