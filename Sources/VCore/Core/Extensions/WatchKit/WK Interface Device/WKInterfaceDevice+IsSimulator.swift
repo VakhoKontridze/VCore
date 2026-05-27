@@ -7,7 +7,7 @@
 
 #if canImport(WatchKit)
 
-import WatchKit
+public import WatchKit
 
 nonisolated extension WKInterfaceDevice {
     /// Indicates if device is simulator.

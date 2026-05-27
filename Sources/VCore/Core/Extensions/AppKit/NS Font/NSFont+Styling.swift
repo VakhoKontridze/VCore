@@ -7,7 +7,7 @@
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import AppKit
+public import AppKit
 
 nonisolated extension NSFont {
     /// Returns `NSFont` with italic styling.

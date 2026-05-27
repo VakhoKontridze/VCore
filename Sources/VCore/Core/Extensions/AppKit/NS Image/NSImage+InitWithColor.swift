@@ -7,7 +7,7 @@
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import AppKit
+public import AppKit
 
 nonisolated extension NSImage {
     /// Initializes `NSImage` with `CGSize` and `NSColor`.

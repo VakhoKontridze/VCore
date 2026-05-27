@@ -7,7 +7,7 @@
 
 #if canImport(AppKit)
 
-import AppKit
+public import AppKit
 
 extension NSImage {
     /// Returns `Data` that contains the image in JPEG format.

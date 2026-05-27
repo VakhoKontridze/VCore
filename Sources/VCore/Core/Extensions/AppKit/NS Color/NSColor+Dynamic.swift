@@ -7,7 +7,7 @@
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import AppKit
+public import AppKit
 import OSLog
 
 nonisolated extension NSColor {

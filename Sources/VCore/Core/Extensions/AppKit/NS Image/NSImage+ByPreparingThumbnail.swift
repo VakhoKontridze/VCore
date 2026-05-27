@@ -7,7 +7,7 @@
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import AppKit
+public import AppKit
 
 nonisolated extension NSImage {
     /// Returns a new thumbnail `NSImage` at the specified `CGSize`.

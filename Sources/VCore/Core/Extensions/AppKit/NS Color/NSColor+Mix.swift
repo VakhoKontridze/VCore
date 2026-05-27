@@ -7,7 +7,7 @@
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import AppKit
+public import AppKit
 
 nonisolated extension NSColor {
     /// Mixes two `NSColor`s together.
