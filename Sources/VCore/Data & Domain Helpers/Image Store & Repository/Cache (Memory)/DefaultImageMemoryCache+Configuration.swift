@@ -19,7 +19,7 @@ nonisolated extension DefaultImageMemoryCache {
         public var totalCostLimit: Int
         
         // MARK: Initializers
-        /// Default instance for "original" images.
+        /// Default value for "original" images.
         public static var defaultMemoryOriginal: Self {
             .init(
                 countLimit: 50,
@@ -27,7 +27,7 @@ nonisolated extension DefaultImageMemoryCache {
             )
         }
         
-        /// Default instance for "resized" images.
+        /// Default value for "resized" images.
         public static var defaultMemoryResized: Self {
             .init(
                 countLimit: 300,

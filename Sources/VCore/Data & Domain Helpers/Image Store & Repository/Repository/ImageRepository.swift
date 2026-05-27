@@ -324,7 +324,7 @@ nonisolated public enum ImageRepositoryCachePolicy: Sendable {
     }
     
     // MARK: Initializers
-    /// Default instance.
+    /// Default value.
     public static var `default`: Self { .useCache }
 }
 
@@ -338,7 +338,7 @@ nonisolated public struct ImageRepositoryCacheStorage: Sendable {
     }
     
     // MARK: Initializers
-    /// Default instance.
+    /// Default value.
     public static var `default`: Self { .memory }
 }
 
@@ -349,7 +349,7 @@ nonisolated public enum ImageRepositoryProgressCacheStorage: Sendable {
     case memory
     
     // MARK: Initializers
-    /// Default instance.
+    /// Default value.
     public static var `default`: Self { .memory }
 }
 
@@ -363,6 +363,6 @@ nonisolated public struct ImageRepositoryResizedImageVariantCachingPolicy: Senda
     }
     
     // MARK: Initializers
-    /// Default instance.
+    /// Default value.
     public static var `default`: Self { .all }
 }

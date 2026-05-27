@@ -12,6 +12,10 @@ Core - Macros
 
 - `OptionSetRepresentation` no longer requires specifying `rawValue` as a generic type
 
+Core - Services
+
+- `NetworkReachabilityService` is replaced with `DefaultNetworkReachabilityService` and `NetworkReachabilityService` `protocol`
+
 Core - Utilities
 
 - `SendableTask` is added

@@ -16,7 +16,7 @@ nonisolated extension DefaultImageProgressMemoryCache {
         public var countLimit: Int
         
         // MARK: Initializers
-        /// Default instance.
+        /// Default value.
         public static var `default`: Self {
             .init(
                 countLimit: 1_000

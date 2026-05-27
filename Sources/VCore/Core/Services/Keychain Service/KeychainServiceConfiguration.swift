@@ -51,7 +51,7 @@ nonisolated public struct KeychainServiceConfiguration {
         self.deleteQuery = deleteQuery
     }
     
-    /// Default instance of `KeychainServiceConfiguration`, that calls `default` instances of properties.
+    /// Default value.
     public static var `default`: Self {
         .init(
             getQuery: .default,
@@ -85,8 +85,12 @@ nonisolated public struct KeychainServiceConfiguration {
             self.query = query
         }
         
-        /// Default instance of `GetQuery`, that uses `defaultQuery`.
-        public static var `default`: Self { .init(query: defaultQuery) }
+        /// Default value.
+        public static var `default`: Self {
+            .init(
+                query: defaultQuery
+            )
+        }
         
         // MARK: Building
         /// Builds query with key.
@@ -119,8 +123,12 @@ nonisolated public struct KeychainServiceConfiguration {
             self.query = query
         }
         
-        /// Default instance of `SetQuery`, that uses `defaultQuery`.
-        public static var `default`: Self { .init(query: defaultQuery) }
+        /// Default value.
+        public static var `default`: Self {
+            .init(
+                query: defaultQuery
+            )
+        }
         
         // MARK: Building
         /// Builds query with key and data.
@@ -154,8 +162,12 @@ nonisolated public struct KeychainServiceConfiguration {
             self.query = query
         }
         
-        /// Default instance of `DeleteQuery`, that uses `defaultQuery`.
-        public static var `default`: Self { .init(query: defaultQuery) }
+        /// Default value.
+        public static var `default`: Self {
+            .init(
+                query: defaultQuery
+            )
+        }
         
         // MARK: Building
         /// Builds query with key.

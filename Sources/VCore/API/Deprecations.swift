@@ -7,6 +7,20 @@
 
 public import SwiftUI
 
+nonisolated extension KeychainService {
+    @available(*, deprecated, renamed: "shared")
+    public static var `default`: KeychainService {
+        shared
+    }
+}
+
+nonisolated extension UserDefaultsService {
+    @available(*, deprecated, renamed: "shared")
+    public static var `default`: UserDefaultsService {
+        shared
+    }
+}
+
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
 public import AppKit

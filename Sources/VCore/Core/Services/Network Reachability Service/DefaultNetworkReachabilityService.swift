@@ -1,5 +1,5 @@
 //
-//  NetworkReachabilityService.swift
+//  DefaultNetworkReachabilityService.swift
 //  VCore
 //
 //  Created by Vakhtang Kontridze on 8/24/21.
@@ -11,56 +11,47 @@ import OSLog
 
 /// Object that manages network reachability status.
 ///
-///     @Bindable private var networkReachabilityService: NetworkReachabilityService = .shared
+///     @Bindable private var networkReachabilityService: DefaultNetworkReachabilityService = .shared
 ///
 ///     var body: some View {
 ///         Text(networkReachabilityService.isConnectedToNetwork != true ? "Not Connected" : "Connected")
 ///     }
 ///
 @Observable
-nonisolated public final class NetworkReachabilityService: @unchecked Sendable {
+nonisolated open class DefaultNetworkReachabilityService: NetworkReachabilityService, @unchecked Sendable {
     // MARK: Properties - Singleton
-    /// Shared instance of `NetworkReachabilityService`.
-    public static let shared: NetworkReachabilityService = .init()
+    /// Shared instance of `DefaultNetworkReachabilityService`.
+    public static let shared: DefaultNetworkReachabilityService = .init()
     
     // MARK: Properties - Status
-    /// Network connection status.
-    public private(set) var status: NWPath.Status? {
+    open private(set) var status: NWPath.Status? {
         get { queue.sync { _status } }
         set { queue.sync(flags: .barrier) { _status = newValue } }
     }
     private var _status: NWPath.Status?
     
-    /// Indicates if device is connected to a network.
-    ///
-    /// On app launch, `nil` is returned.
-    public var isConnectedToNetwork: Bool? { status?.isConnected }
+    open var isConnectedToNetwork: Bool? { status?.isConnected }
     
     // MARK: Properties - Status Monitor
     @ObservationIgnored private let statusMonitor: NWPathMonitor = .init()
     
     // MARK: Properties - Queue
     @ObservationIgnored private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.network-reachability-service",
+        label: "com.vakhtang-kontridze.vcore.default-network-reachability-service",
         attributes: .concurrent
     )
     
     @ObservationIgnored private let statusQueue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.network-reachability-service.status-queue"
+        label: "com.vakhtang-kontridze.vcore.default-network-reachability-service.status-queue"
     )
 
     // MARK: Initializers
-    private init() {
+    /// Initializes `DefaultNetworkReachabilityService`.
+    public init() {
         // `lazy` doesn't work on `nonisolated` properties, so this must be set here
         statusMonitor.pathUpdateHandler = { [weak self] in self?.status = $0.status }
         
         statusMonitor.start(queue: statusQueue)
-    }
-    
-    // MARK: Configuration
-    /// Configures `NetworkReachabilityService`.
-    public func configure() {
-        _ = Self.shared
     }
 }
 

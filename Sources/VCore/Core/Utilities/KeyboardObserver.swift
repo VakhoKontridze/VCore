@@ -258,7 +258,7 @@ public final class KeyboardObserver {
         case offsetByObscuredViewHeight(additionalOffset: CGFloat)
 
         // MARK: Initializers
-        /// Default instance.
+        /// Default value.
         public static var `default`: Self { .offsetByObscuredViewHeight(additionalOffset: 20) }
     }
 }

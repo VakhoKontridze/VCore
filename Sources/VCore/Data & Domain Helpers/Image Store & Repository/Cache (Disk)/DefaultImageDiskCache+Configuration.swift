@@ -28,7 +28,7 @@ nonisolated extension DefaultImageDiskCache {
         public var maxAge: TimeInterval
 
         // MARK: Initializers
-        /// Default instance.
+        /// Default value.
         public static var `default`: Self {
             .init(
                 originalCompressionQuality: 0.9,

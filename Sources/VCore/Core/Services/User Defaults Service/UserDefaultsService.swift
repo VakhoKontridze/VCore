@@ -9,12 +9,10 @@ public import Foundation
 import OSLog
 
 /// Object that performs get, set, and delete `UserDefaults` operations.
-///
-/// Object contains default instance `default`.
 nonisolated open class UserDefaultsService: @unchecked Sendable {
     // MARK: Properties - Singleton
-    /// Default instance of `UserDefaultsService` that uses `standard` `UserDefaults`.
-    public static let `default`: UserDefaultsService = .init(
+    /// Shared instance of `UserDefaultsService`.
+    public static let shared: UserDefaultsService = .init(
         userDefaults: .standard
     )
     

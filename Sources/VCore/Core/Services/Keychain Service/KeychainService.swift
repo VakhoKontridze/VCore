@@ -10,13 +10,11 @@ import OSLog
 
 /// Object that performs get, set, and delete Keychain operations.
 ///
-/// Object contains default instance `default`.
-///
 /// For error codes, refer to [documentation](https://developer.apple.com/documentation/security/1542001-security_framework_result_codes).
 nonisolated open class KeychainService: @unchecked Sendable {
     // MARK: Properties - Singleton
-    /// Default instance of `KeychainService` that uses `default` configuration.
-    public static let `default`: KeychainService = .init(
+    /// Shared instance of `KeychainService` that uses `default` configuration.
+    public static let shared: KeychainService = .init(
         configuration: .default
     )
     
@@ -59,7 +57,7 @@ nonisolated open class KeychainService: @unchecked Sendable {
     )
 
     // MARK: Initializers
-    /// Initializes `KeychainService` with `KeychainServiceConfiguration`.
+    /// Initializes `KeychainService`.
     public init(
         configuration: KeychainServiceConfiguration
     ) {
