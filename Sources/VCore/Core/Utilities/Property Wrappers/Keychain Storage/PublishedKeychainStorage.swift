@@ -46,7 +46,7 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty where Value: Coda
     public init(
         wrappedValue defaultValue: Value,
         _ key: String,
-        keychainService: KeychainService = .default
+        keychainService: KeychainService = .shared
     ) {
         self.valueSetter = { try? keychainService.setCodable(key: key, value: $0) }
         
@@ -57,7 +57,7 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty where Value: Coda
     /// Initializes `PublishedKeychainStorage`.
     public init(
         _ key: String,
-        keychainService: KeychainService = .default
+        keychainService: KeychainService = .shared
     )
         where Value: ExpressibleByNilLiteral
     {
