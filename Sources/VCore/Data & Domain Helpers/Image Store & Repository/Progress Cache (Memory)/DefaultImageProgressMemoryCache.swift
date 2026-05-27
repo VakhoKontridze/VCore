@@ -12,7 +12,7 @@ import AppKit
 #endif
 
 /// Default image progress memory cache.
-nonisolated public final class DefaultImageProgressMemoryCache: ImageProgressMemoryCache, @unchecked Sendable {
+nonisolated open class DefaultImageProgressMemoryCache: ImageProgressMemoryCache, @unchecked Sendable {
     // MARK: Properties - Cache & Keys
     private let originalCache: NSCache<ImageProgressMemoryCacheOriginalKey, TaskHolder>
     private var originalCacheKeys: Set<ImageProgressMemoryCacheOriginalKey> = []
@@ -46,7 +46,7 @@ nonisolated public final class DefaultImageProgressMemoryCache: ImageProgressMem
     }
     
     // MARK: Operation - Get
-    public func get(
+    open func get(
         key: ImageProgressMemoryCacheOriginalKey
     ) -> Task<PlatformImage, any Error>? {
         queue.sync {
@@ -62,7 +62,7 @@ nonisolated public final class DefaultImageProgressMemoryCache: ImageProgressMem
         originalCache.object(forKey: key)?.task
     }
     
-    public func get(
+    open func get(
         key: ImageProgressMemoryCacheResizedKey
     ) -> Task<PlatformImage, any Error>? {
         queue.sync {
@@ -79,7 +79,7 @@ nonisolated public final class DefaultImageProgressMemoryCache: ImageProgressMem
     }
     
     // MARK: Operation - Set
-    public func set(
+    open func set(
         key: ImageProgressMemoryCacheOriginalKey,
         task: Task<PlatformImage, any Error>
     ) {
@@ -92,7 +92,7 @@ nonisolated public final class DefaultImageProgressMemoryCache: ImageProgressMem
         }
     }
     
-    public func set(
+    open func set(
         key: ImageProgressMemoryCacheResizedKey,
         task: Task<PlatformImage, any Error>
     ) {
@@ -106,7 +106,7 @@ nonisolated public final class DefaultImageProgressMemoryCache: ImageProgressMem
     }
 
     // MARK: Operation - Delete
-    public func delete(
+    open func delete(
         key: ImageProgressMemoryCacheOriginalKey,
         cancel: Bool
     ) {
@@ -133,7 +133,7 @@ nonisolated public final class DefaultImageProgressMemoryCache: ImageProgressMem
         originalCacheKeys.remove(key)
     }
     
-    public func delete(
+    open func delete(
         key: ImageProgressMemoryCacheResizedKey,
         deleteAllSizes: Bool,
         cancel: Bool
@@ -174,7 +174,7 @@ nonisolated public final class DefaultImageProgressMemoryCache: ImageProgressMem
     }
     
     // MARK: Operation - Delete All
-    public func deleteAll(
+    open func deleteAll(
         type: ImageProgressMemoryCacheCacheType,
         cancel: Bool
     ) {

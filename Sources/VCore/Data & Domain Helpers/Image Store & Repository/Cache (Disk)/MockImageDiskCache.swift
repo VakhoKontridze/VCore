@@ -14,7 +14,7 @@ import AppKit
 #endif
 
 /// Mock image disk cache.
-nonisolated public final class MockImageDiskCache: ImageDiskCache {
+nonisolated open class MockImageDiskCache: ImageDiskCache, @unchecked Sendable {
     // MARK: Properties - Images
     private let image: PlatformImage? = .init(
         size: CGSize(dimension: 500),
@@ -26,42 +26,42 @@ nonisolated public final class MockImageDiskCache: ImageDiskCache {
     public init() {}
     
     // MARK: Operations
-    public func get(
+    open func get(
         key: ImageDiskCacheOriginalKey
     ) -> PlatformImage? {
         image
     }
     
-    public func get(
+    open func get(
         key: ImageDiskCacheResizedKey
     ) -> PlatformImage? {
         image
     }
     
-    public func set(
+    open func set(
         key: ImageDiskCacheOriginalKey,
         image: PlatformImage
     ) {}
     
-    public func set(
+    open func set(
         key: ImageDiskCacheResizedKey,
         image: PlatformImage
     ) {}
     
-    public func delete(
+    open func delete(
         key: ImageDiskCacheOriginalKey
     ) {}
     
-    public func delete(
+    open func delete(
         key: ImageDiskCacheResizedKey,
         deleteAllSizes: Bool
     ) {}
     
-    public func deleteAll(
+    open func deleteAll(
         type: ImageDiskCacheCacheType
     ) {}
     
-    public func evictIfNeeded() {}
+    open func evictIfNeeded() {}
 }
 
 #endif

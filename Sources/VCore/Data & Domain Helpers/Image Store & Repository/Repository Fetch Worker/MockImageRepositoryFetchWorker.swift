@@ -17,7 +17,7 @@ import Photos
 import PhotosUI
 
 /// Mock worker that fetches images for `ImageRepository`.
-nonisolated public final class MockImageRepositoryFetchWorker: DefaultImageRepositoryFetchWorker, @unchecked Sendable {
+nonisolated open class MockImageRepositoryFetchWorker: DefaultImageRepositoryFetchWorker, @unchecked Sendable {
     // MARK: Properties - Images
     private let image: PlatformImage? = .init(
         size: CGSize(dimension: 500),
@@ -29,25 +29,25 @@ nonisolated public final class MockImageRepositoryFetchWorker: DefaultImageRepos
     override public init() {}
     
     // MARK: Operations
-    override public func fetchRemoteImage(
+    override open func fetchRemoteImage(
         url: URL
     ) async throws -> PlatformImage {
         try fetchImage()
     }
     
-    override public func fetchPhotoImage(
+    override open func fetchPhotoImage(
         asset: PHAsset
     ) async throws -> PlatformImage {
         try fetchImage()
     }
     
-    override public func fetchPhotoImage(
+    override open func fetchPhotoImage(
         item: PhotosPickerItem
     ) async throws -> PlatformImage {
         try fetchImage()
     }
     
-    override public func fetchPhotoImage(
+    override open func fetchPhotoImage(
         assetIdentifier: String
     ) async throws -> PlatformImage {
         try fetchImage()

@@ -13,7 +13,7 @@ import AppKit
 import OSLog
 
 /// Default mage repository.
-nonisolated public final class DefaultImageRepository: ImageRepository {
+nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Sendable {
     // MARK: Properties - Dependencies
     public let imageFetchWorker: any ImageRepositoryFetchWorker
     
@@ -37,7 +37,7 @@ nonisolated public final class DefaultImageRepository: ImageRepository {
     }
     
     // MARK: Operations
-    public func fetchOriginalImage(
+    open func fetchOriginalImage(
         parameter: ImageRepositoryParameter,
         cachePolicy: ImageRepositoryCachePolicy,
         cacheStorage: ImageRepositoryCacheStorage,
@@ -74,7 +74,7 @@ nonisolated public final class DefaultImageRepository: ImageRepository {
         )
     }
     
-    public func fetchResizedImage(
+    open func fetchResizedImage(
         parameter: ImageRepositoryParameter,
         size: CGSize,
         cachePolicy: ImageRepositoryCachePolicy,

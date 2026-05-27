@@ -12,7 +12,7 @@ import AppKit
 #endif
 
 /// Default image memory cache.
-nonisolated public final class DefaultImageMemoryCache: ImageMemoryCache, @unchecked Sendable {
+nonisolated open class DefaultImageMemoryCache: ImageMemoryCache, @unchecked Sendable {
     // MARK: Properties - Cache and Keys
     private let originalCache: NSCache<ImageMemoryCacheOriginalKey, PlatformImage>
     private var originalCacheKeys: Set<ImageMemoryCacheOriginalKey> = []
@@ -48,7 +48,7 @@ nonisolated public final class DefaultImageMemoryCache: ImageMemoryCache, @unche
     }
     
     // MARK: Operation - Get
-    public func get(
+    open func get(
         key: ImageMemoryCacheOriginalKey
     ) -> PlatformImage? {
         queue.sync {
@@ -56,7 +56,7 @@ nonisolated public final class DefaultImageMemoryCache: ImageMemoryCache, @unche
         }
     }
     
-    public func get(
+    open func get(
         key: ImageMemoryCacheResizedKey
     ) -> PlatformImage? {
         queue.sync {
@@ -65,7 +65,7 @@ nonisolated public final class DefaultImageMemoryCache: ImageMemoryCache, @unche
     }
     
     // MARK: Operation - Set
-    public func set(
+    open func set(
         key: ImageMemoryCacheOriginalKey,
         image: PlatformImage
     ) {
@@ -79,7 +79,7 @@ nonisolated public final class DefaultImageMemoryCache: ImageMemoryCache, @unche
         }
     }
     
-    public func set(
+    open func set(
         key: ImageMemoryCacheResizedKey,
         image: PlatformImage
     ) {
@@ -94,7 +94,7 @@ nonisolated public final class DefaultImageMemoryCache: ImageMemoryCache, @unche
     }
 
     // MARK: Operation - Delete
-    public func delete(
+    open func delete(
         key: ImageMemoryCacheOriginalKey
     ) {
         queue.sync(flags: .barrier) {
@@ -103,7 +103,7 @@ nonisolated public final class DefaultImageMemoryCache: ImageMemoryCache, @unche
         }
     }
     
-    public func delete(
+    open func delete(
         key: ImageMemoryCacheResizedKey,
         deleteAllSizes: Bool,
     ) {
@@ -124,7 +124,7 @@ nonisolated public final class DefaultImageMemoryCache: ImageMemoryCache, @unche
     }
     
     // MARK: Operation - Delete All
-    public func deleteAll(
+    open func deleteAll(
         type: ImageMemoryCacheCacheType
     ) {
         queue.sync(flags: .barrier) {

@@ -14,7 +14,7 @@ import CryptoKit
 import OSLog
 
 /// Default image disk cache.
-nonisolated public final class DefaultImageDiskCache: ImageDiskCache {
+nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendable {
     // MARK: Properties - URLs
     private let rootURL: URL
     private let originalDirectory: URL
@@ -88,7 +88,7 @@ nonisolated public final class DefaultImageDiskCache: ImageDiskCache {
     }
 
     // MARK: Operation - Get
-    public func get(
+    open func get(
         key: ImageDiskCacheOriginalKey
     ) -> PlatformImage? {
         guard
@@ -105,7 +105,7 @@ nonisolated public final class DefaultImageDiskCache: ImageDiskCache {
         return read(url: url)
     }
 
-    public func get(
+    open func get(
         key: ImageDiskCacheResizedKey
     ) -> PlatformImage? {
         guard
@@ -123,7 +123,7 @@ nonisolated public final class DefaultImageDiskCache: ImageDiskCache {
     }
 
     // MARK: Operation - Set
-    public func set(
+    open func set(
         key: ImageDiskCacheOriginalKey,
         image: PlatformImage
     ) {
@@ -145,7 +145,7 @@ nonisolated public final class DefaultImageDiskCache: ImageDiskCache {
         )
     }
 
-    public func set(
+    open func set(
         key: ImageDiskCacheResizedKey,
         image: PlatformImage
     ) {
@@ -168,7 +168,7 @@ nonisolated public final class DefaultImageDiskCache: ImageDiskCache {
     }
 
     // MARK: Operation - Delete
-    public func delete(
+    open func delete(
         key: ImageDiskCacheOriginalKey
     ) {
         guard
@@ -193,7 +193,7 @@ nonisolated public final class DefaultImageDiskCache: ImageDiskCache {
         }
     }
 
-    public func delete(
+    open func delete(
         key: ImageDiskCacheResizedKey,
         deleteAllSizes: Bool
     ) {
@@ -259,7 +259,7 @@ nonisolated public final class DefaultImageDiskCache: ImageDiskCache {
     }
 
     // MARK: Operation - Delete All
-    public func deleteAll(
+    open func deleteAll(
         type: ImageDiskCacheCacheType
     ) {
         if type.contains(.original) {
@@ -288,7 +288,7 @@ nonisolated public final class DefaultImageDiskCache: ImageDiskCache {
     }
 
     // MARK: Operation - Evict
-    public func evictIfNeeded() {
+    open func evictIfNeeded() {
         evict(
             directory: originalDirectory,
             maxBytes: configuration.originalMaxBytes,
