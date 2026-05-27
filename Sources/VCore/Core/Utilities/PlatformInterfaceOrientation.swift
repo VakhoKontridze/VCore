@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 22.07.25.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Platform interface orientation.
 nonisolated public enum PlatformInterfaceOrientation {

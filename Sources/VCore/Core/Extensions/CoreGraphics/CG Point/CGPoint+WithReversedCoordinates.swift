@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 02.04.23.
 //
 
-import CoreGraphics
+public import CoreGraphics
 
 nonisolated extension CGPoint {
     /// Returns `CGPoint` with reversed `x` and `y`.

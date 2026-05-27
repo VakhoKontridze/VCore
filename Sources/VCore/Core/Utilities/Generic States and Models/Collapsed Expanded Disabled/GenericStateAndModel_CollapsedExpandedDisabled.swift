@@ -5,11 +5,11 @@
 //  Created by Vakhtang Kontridze on 4/6/22.
 //
 
-import SwiftUI
+public import SwiftUI
 #if canImport(UIKit)
-import UIKit
+public import UIKit
 #elseif canImport(AppKit)
-import AppKit
+public import AppKit
 #endif
 
 /// Enumeration that represents state.

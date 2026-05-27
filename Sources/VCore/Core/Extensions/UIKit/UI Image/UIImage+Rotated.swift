@@ -7,7 +7,7 @@
 
 #if canImport(UIKit)
 
-import UIKit
+public import UIKit
 
 nonisolated extension UIImage {
     /// Returns `UIImage` rotated by angle.

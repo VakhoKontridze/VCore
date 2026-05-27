@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// Contains information about software keyboard, that can be used during animations.
 @available(tvOS, unavailable)

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 21.07.22.
 //
 
-import Foundation
+public import Foundation
 import OSLog
 
 /// Object that performs get, set, and delete Keychain operations.

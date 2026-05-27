@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 27.11.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 17.08.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Model that represents text line.
 nonisolated public struct TextLineType: Equatable, Sendable {

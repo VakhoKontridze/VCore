@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 9/10/21.
 //
 
-import Foundation
+public import Foundation
 
 /// Base error protocol.
 ///

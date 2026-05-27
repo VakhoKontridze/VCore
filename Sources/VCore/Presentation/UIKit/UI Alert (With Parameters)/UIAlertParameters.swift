@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// Parameters for presenting a `UIAlert`.
 public struct UIAlertParameters {

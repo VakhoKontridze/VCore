@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 05.09.23.
 //
 
-import CoreGraphics
+public import CoreGraphics
 
 nonisolated extension CGSize {
     /// Returns `CGSize` scaled up with a given constant.

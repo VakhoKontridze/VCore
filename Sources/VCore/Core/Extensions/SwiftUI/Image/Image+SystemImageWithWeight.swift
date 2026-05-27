@@ -7,7 +7,7 @@
 
 #if canImport(UIKit)
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension Image {
     /// Creates a system symbol image with weight.

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 9/21/21.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Parameters for presenting an `ProgressView`.
 ///

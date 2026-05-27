@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 07.01.24.
 //
 
-import Foundation
+public import Foundation
 
 /// Returns non-optional `URL` from `String`, checked during the compile time.
 ///

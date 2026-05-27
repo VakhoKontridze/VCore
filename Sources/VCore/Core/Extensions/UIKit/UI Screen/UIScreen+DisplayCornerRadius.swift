@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !(os(watchOS) || os(visionOS))
 
-import UIKit
+public import UIKit
 
 nonisolated extension UIScreen {
     /// The corner radius of the display.

@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// `UIView` that allows the scrolling and zooming of its contained views.
 ///

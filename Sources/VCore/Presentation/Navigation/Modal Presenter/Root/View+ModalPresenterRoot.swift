@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 10.07.24.
 //
 
-import SwiftUI
+public import SwiftUI
 
 extension View {
     /// Injects Modal Presenter root in view hierarchy for modal presentation.

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 13.07.22.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension StringProtocol {
     /// Returns a diacritic-insensitive `String`.

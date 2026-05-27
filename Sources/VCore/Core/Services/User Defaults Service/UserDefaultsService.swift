@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 08.09.24.
 //
 
-import Foundation
+public import Foundation
 import OSLog
 
 /// Object that performs get, set, and delete `UserDefaults` operations.

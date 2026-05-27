@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// `UINavigationController` that conforms to `UIGestureRecognizerDelegate` via `interactivePopGestureRecognizer`,
 /// and handles interactive popping.

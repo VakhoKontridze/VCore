@@ -7,14 +7,14 @@
 
 #if DEBUG
 
-import SwiftUI
+public import SwiftUI
 #if canImport(UIKit)
-import UIKit
+public import UIKit
 #elseif canImport(AppKit)
-import AppKit
+public import AppKit
 #endif
-import Photos
-import PhotosUI
+public import Photos
+public import PhotosUI
 
 /// Mock worker that fetches images for `ImageRepository`.
 nonisolated open class MockImageRepositoryFetchWorker: DefaultImageRepositoryFetchWorker, @unchecked Sendable {

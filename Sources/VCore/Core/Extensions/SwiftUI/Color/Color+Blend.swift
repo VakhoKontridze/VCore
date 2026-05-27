@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 04.07.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension Color { // TODO: iOS 18.0 - Remove
     /// Blends two `Color`s together.

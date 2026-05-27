@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 01.05.22.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension String {
     /// Returns `String` with `CharacterSet`, that don't match the criteria, filtered out.

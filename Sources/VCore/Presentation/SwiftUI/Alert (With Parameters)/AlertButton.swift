@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 21.07.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// `Alert` button.
 public struct AlertButton: AlertButtonProtocol {

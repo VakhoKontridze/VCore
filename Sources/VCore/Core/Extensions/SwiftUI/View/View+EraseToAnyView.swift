@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11.11.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Wraps `View` with a type eraser.

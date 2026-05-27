@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// `UIAlertController` button.
 public struct UIAlertButton: UIAlertButtonProtocol {

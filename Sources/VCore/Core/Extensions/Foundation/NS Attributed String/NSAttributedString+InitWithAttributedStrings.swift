@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 12.07.22.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension NSAttributedString {
     /// Initializes `NSAttributedString` with child `NSAttributedString` components.

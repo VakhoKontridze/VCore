@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 24.09.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Adds padding equal to safe area insets to specific edges of the `View`.

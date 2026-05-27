@@ -5,9 +5,8 @@
 //  Created by Vakhtang Kontridze on 4/14/22.
 //
 
-import SwiftUI
-import Observation
-import Combine
+public import SwiftUI
+public import Combine
 
 /// Presentation context embedded in environment of modals presented via Modal Presenter.
 @Observable

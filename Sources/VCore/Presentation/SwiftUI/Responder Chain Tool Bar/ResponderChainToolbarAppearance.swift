@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 24.05.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Model that describes appearance.
 @available(tvOS, unavailable)

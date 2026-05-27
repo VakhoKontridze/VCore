@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 03.02.23.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension Locale {
     /// Returns the display name for the given locale component value.

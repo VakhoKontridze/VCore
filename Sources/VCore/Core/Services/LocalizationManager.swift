@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 14/9/22.
 //
 
-import Foundation
+public import Foundation
 import OSLog
 
 /// Object that manages localization without interfacing with identifiers and `UserDefaults`.

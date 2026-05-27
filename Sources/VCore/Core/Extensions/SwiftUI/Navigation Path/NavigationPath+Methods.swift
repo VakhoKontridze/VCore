@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 19.06.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension NavigationPath {
     /// Adds the elements of a sequence or collection to the end of the path.

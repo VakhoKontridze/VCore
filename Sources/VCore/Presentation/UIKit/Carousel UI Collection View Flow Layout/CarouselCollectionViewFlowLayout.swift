@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 import OSLog
 
 /// Layout object that organizes items into a grid with a flowing carousel alignment.

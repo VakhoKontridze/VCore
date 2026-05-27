@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 29.03.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// `SwiftUI` `View` that can be used as a base for all interactive views and buttons.
 ///

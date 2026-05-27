@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 03.03.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Overlays clear `Rectangle` that blocks gestures if condition is met.

@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// `UIActionSheetController` button.
 public struct UIActionSheetButton: UIActionSheetButtonProtocol {

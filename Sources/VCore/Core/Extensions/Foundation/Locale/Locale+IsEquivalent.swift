@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 03.02.23.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension Locale {
     /// Returns `Bool` indicated if two `Locale`s are equivalent.

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11.07.24.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Model that describes appearance.
 public struct ModalPresenterLinkAppearance {

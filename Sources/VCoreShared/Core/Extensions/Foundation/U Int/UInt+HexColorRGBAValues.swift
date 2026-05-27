@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 19.08.24.
 //
 
-import Foundation
+package import Foundation
 
 nonisolated extension UInt {
     package func _hexColorRGBValues() -> (red: CGFloat, green: CGFloat, blue: CGFloat) {

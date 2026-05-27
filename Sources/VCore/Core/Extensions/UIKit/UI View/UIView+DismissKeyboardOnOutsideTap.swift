@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 extension UIView {
     /// Dismisses keyboard on outside tap, by resigning the first responder.

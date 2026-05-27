@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 extension UIStackView {
     /// Configures`UIStackView` with axis, distribution, alignment, and spacing.

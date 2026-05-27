@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 03.09.23.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension JSONEncoder {
     /// Encodes `Any` to `Data`.

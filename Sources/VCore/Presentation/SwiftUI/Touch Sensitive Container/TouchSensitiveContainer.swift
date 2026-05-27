@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 17.09.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// `View` that detects and reacts to touch down and touch up interactions.
 ///

@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// `UIAlertController` button protocol.
 public protocol UIAlertButtonProtocol: UIAlertButtonConvertible {

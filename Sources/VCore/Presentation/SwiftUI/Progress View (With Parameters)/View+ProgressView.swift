@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 02.10.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 extension View {
     /// Presents `ProgressView` when `parameters` is non-`nil`.

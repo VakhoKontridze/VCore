@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension DefaultImageDiskCache {
     /// Configuration.

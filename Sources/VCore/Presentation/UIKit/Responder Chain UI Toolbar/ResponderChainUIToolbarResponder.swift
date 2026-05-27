@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !(os(tvOS) || os(watchOS) || os(visionOS))
 
-import UIKit
+public import UIKit
 
 /// Object that supports input and can represent a responder in `ResponderChainUIToolbarManager`.
 ///

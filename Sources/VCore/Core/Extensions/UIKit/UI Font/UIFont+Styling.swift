@@ -7,7 +7,7 @@
 
 #if canImport(UIKit)
 
-import UIKit
+public import UIKit
 
 nonisolated extension UIFont {
     /// Returns `UIFont` with italic styling.

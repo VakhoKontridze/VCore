@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !(os(tvOS) || os(watchOS) || os(visionOS))
 
-import UIKit
+public import UIKit
 
 /// Model that describes appearance.
 public struct ResponderChainUIToolbarAppearance {

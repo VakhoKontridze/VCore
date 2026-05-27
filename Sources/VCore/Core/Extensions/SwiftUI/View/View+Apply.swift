@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 23.03.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Applies a transformation to a `View`.

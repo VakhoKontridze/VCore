@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 9/12/21.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension String {
     /// Checks if value of this key is stored in `UserDefaults`.

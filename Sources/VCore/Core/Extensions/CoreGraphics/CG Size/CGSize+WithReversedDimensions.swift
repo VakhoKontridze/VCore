@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 25.02.23.
 //
 
-import CoreGraphics
+public import CoreGraphics
 
 nonisolated extension CGSize {
     /// Returns `CGSize` with reversed `width` and `height` if condition is met.

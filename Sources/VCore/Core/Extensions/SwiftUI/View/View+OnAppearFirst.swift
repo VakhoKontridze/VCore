@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 19.06.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 extension View {
     /// Adds an action to perform before `View` appears with flag indicating if it's first.

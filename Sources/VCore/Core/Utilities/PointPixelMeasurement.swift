@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 06.08.23.
 //
 
-import CoreGraphics
+public import CoreGraphics
 
 /// Display measurement represented in points or pixels.
 nonisolated public enum PointPixelMeasurement: Equatable, Hashable, Sendable {

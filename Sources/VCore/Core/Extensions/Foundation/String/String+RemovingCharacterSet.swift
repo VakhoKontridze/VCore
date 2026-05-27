@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 01.05.22.
 //
 
-import Foundation
+public import Foundation
 import VCoreShared
 
 nonisolated extension String {

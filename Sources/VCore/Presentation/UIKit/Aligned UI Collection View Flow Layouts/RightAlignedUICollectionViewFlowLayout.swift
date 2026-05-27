@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// Layout object that organizes items into a grid with a right alignment.
 open class RightAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {

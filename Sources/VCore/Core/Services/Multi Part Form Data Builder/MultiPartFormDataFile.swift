@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/20/21.
 //
 
-import Foundation
+public import Foundation
 
 /// Building block of objects conforming to `AnyMultipartFormDataFile`.
 ///

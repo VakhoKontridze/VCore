@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 12.10.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Adds an action to be performed when size from nested child changed.

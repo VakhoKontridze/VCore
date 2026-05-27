@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/1/21.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Edge insets containing `horizontal` and `vertical` values.
 @MemberwiseInitializable(

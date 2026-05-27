@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 17.09.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 @available(tvOS, unavailable)
 extension View {

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 18.08.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Adds a shadow to this view.

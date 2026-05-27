@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 26.02.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Omni directional layout in which content can be laid out.
 ///

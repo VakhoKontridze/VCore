@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/20/21.
 //
 
-import Foundation
+public import Foundation
 
 /// Builder that generates boundary `String` and generated `Data` for network requests.
 ///

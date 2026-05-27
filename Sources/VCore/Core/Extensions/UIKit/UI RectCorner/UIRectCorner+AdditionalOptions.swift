@@ -7,7 +7,7 @@
 
 #if canImport(UIKit)
 
-import UIKit
+public import UIKit
 
 nonisolated extension UIRectCorner {
     /// Top corners of the rectangle.

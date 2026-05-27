@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 extension UIViewController {
     /// Adds `UITabBarItem` to `UIViewController` and returns it.

@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 extension UIDevice {
     /// Safe area insets in `UIApplication.shared.firstWindowInSingleSceneApp`.

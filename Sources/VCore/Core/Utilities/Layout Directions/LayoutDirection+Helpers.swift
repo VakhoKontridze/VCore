@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 27.02.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension LayoutDirection {
     // MARK: Properties

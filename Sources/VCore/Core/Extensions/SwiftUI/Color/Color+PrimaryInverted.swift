@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 24.01.24.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension Color {
     /// `Color` that can be used for inverted primary content.

@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 extension UIViewController {
     /// Indicates if `UIViewController` is `rootViewController` inside `UINavigationController`.

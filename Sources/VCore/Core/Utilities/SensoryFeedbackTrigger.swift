@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 03.08.25.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Allows for the trigger of sensory feedback without specifying underlying triggering types.
 @Observable // Needed for trigger to work

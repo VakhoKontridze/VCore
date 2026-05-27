@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 extension UIStackView {
     /// Removes all `UIView`s from arranged subviews, but keeps as subviews.

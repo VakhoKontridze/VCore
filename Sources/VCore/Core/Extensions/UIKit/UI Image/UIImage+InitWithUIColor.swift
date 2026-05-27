@@ -7,7 +7,7 @@
 
 #if canImport(UIKit)
 
-import UIKit
+public import UIKit
 
 nonisolated extension UIImage {
     /// Initializes `UIImage` with `CGSize` and `UIColor`.

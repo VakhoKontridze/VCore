@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import Foundation
+public import Foundation
 
 /// Model that describes appearance
 public struct InfiniteScrollingUICollectionViewAppearance {

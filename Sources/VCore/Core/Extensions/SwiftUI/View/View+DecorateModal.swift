@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import SwiftUI
+public import SwiftUI
 
 extension View {
     /// Retrieves modal's top-most superview and `UITransitionView` for customization.

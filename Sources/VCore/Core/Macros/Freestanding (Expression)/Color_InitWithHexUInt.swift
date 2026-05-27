@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 08.01.24.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Returns non-optional `Color` from `UInt`, checked during the compile time.
 ///

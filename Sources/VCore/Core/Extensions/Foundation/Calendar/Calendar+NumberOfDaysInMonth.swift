@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/5/21.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension Calendar {
     /// Returns number of days in a month for the given date.

@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// `UIView` that casts an inner shadow.
 open class InnerShadowUIView: UIView {

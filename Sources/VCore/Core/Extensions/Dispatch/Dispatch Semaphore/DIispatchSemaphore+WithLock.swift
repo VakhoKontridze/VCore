@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 18.09.24.
 //
 
-import Dispatch
+public import Dispatch
 
 nonisolated extension DispatchSemaphore {
     /// Executes a block of code with a lock, similar to `NSLock`.

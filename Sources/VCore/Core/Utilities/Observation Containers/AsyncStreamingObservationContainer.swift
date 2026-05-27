@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 15.07.25.
 //
 
-import Foundation
+public import Foundation
 
 /// `Observable` container that triggers a `AsyncStream` when a value changes.
 ///

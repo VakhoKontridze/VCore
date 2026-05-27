@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 13.09.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension Binding {
     /// Returns `Binding` wrapper for an `Optional` `Binding` with a default value for getter.

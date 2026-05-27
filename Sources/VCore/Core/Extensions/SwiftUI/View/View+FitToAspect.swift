@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 09.09.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Constrains `View`'s dimensions to the specified aspect ratio without stretching it.

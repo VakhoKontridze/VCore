@@ -7,7 +7,7 @@
 
 #if canImport(UIKit)
 
-import UIKit
+public import UIKit
 
 /// Container that pads underlying `UIView`.
 public final class PaddedUIView: UIView {

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 16.02.24.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension Color {
     /// Creates `Color` that generates it's color data dynamically for each platform.

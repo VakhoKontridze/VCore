@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 20.07.25.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Container view that can be used to to wrap content within sheet.
 ///

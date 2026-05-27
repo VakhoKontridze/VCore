@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 28.11.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 extension View {
     /// Rotates `View`'s rendered output around the specified point, while adjusting the frame.

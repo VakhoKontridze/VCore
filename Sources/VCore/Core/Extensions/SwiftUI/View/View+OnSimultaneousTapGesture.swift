@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 10.04.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Attaches a gesture to the `View` to process simultaneously with tap gesture defined by the `View`.

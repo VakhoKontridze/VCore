@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 27.02.23.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Vertical directional layout in which content can be laid out.
 ///

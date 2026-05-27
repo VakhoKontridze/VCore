@@ -8,9 +8,9 @@
 #if DEBUG
 
 #if canImport(UIKit)
-import UIKit
+public import UIKit
 #elseif canImport(AppKit)
-import AppKit
+public import AppKit
 #endif
 
 /// Mock image repository.

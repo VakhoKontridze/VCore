@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// `UIActionSheetController` button protocol.
 public protocol UIActionSheetButtonProtocol: UIActionSheetButtonConvertible {

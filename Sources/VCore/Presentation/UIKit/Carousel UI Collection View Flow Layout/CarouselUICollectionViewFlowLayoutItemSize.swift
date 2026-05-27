@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// Size of item in `CarouselUICollectionViewFlowLayout`.
 ///

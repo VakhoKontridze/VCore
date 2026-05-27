@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 /// Model that describes appearance.
 public struct InnerShadowUIViewAppearance {

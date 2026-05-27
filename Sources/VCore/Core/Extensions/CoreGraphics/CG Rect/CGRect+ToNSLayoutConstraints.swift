@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 01.05.22.
 //
 
-import CoreGraphics
+public import CoreGraphics
 
 nonisolated extension CGRect {
     /// Converts rect to constant usable for creating left constraint.

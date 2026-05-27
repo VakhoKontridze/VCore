@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 17/3/26.
 //
 
-import SwiftUI
+public import SwiftUI
 
 extension View {
     /// Marks this view as refreshable, but prevents `View` redraws cancelling `refreshable` by making it stable.

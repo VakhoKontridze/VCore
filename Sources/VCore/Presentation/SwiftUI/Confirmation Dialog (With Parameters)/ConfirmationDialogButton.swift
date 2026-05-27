@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 10.08.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// `ConfirmationDialog` button.
 public struct ConfirmationDialogButton: ConfirmationDialogButtonProtocol {

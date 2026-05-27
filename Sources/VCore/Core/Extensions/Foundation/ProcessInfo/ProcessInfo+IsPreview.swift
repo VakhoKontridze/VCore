@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 28.11.23.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension ProcessInfo {
     /// Indicates if process is running for previews.

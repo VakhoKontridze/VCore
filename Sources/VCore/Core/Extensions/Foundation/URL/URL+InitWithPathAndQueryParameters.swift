@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 03.09.23.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension URL {
     /// Initializes `URL` with `String`, path parameters, and query parameters.

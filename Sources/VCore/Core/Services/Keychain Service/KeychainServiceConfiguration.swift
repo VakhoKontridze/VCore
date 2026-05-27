@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11.11.22.
 //
 
-import Foundation
+public import Foundation
 
 /// Configuration for `KeychainService`.
 ///

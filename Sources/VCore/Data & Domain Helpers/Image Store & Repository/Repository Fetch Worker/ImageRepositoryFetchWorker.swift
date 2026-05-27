@@ -5,14 +5,14 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-import SwiftUI
+public import SwiftUI
 #if canImport(UIKit)
-import UIKit
+public import UIKit
 #elseif canImport(AppKit)
-import AppKit
+public import AppKit
 #endif
-import Photos
-import PhotosUI
+public import Photos
+public import PhotosUI
 
 /// Worker that fetches images for `ImageRepository`.
 public protocol ImageRepositoryFetchWorker: AnyObject, Sendable {

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 30.03.24.
 //
 
-import SwiftUI
+public import SwiftUI
 
 extension View {
     /// Inserts `OpenURLAction` in the `Environment`.

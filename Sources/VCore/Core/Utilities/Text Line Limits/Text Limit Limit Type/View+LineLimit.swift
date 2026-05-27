@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 09.01.24.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Sets line limit based on `TextLineLimitType`.

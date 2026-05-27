@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 09.07.24.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Model that represents `DynamicTypeSize`.
 nonisolated public struct DynamicTypeSizeType: Equatable, Sendable {

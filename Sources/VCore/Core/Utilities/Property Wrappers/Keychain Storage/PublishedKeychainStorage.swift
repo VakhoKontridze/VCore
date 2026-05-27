@@ -8,7 +8,7 @@
 // https://stackoverflow.com/q/63993196/11627169
 // https://github.com/OpenCombine/OpenCombine/blob/master/Sources/OpenCombine/Published.swift
 
-import SwiftUI
+public import SwiftUI
 import OSLog
 import Combine
 

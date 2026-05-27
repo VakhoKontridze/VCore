@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 16.07.24.
 //
 
-import CoreGraphics
+public import CoreGraphics
 
 /// Length measurement represented in absolute or fractional values.
 nonisolated public enum AbsoluteFractionMeasurement: Equatable, Hashable, Sendable {

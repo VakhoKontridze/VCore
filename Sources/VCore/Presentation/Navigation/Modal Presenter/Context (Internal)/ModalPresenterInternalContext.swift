@@ -6,7 +6,6 @@
 //
 
 import SwiftUI
-import Observation
 import Combine
 
 final class ModalPresenterInternalContext {

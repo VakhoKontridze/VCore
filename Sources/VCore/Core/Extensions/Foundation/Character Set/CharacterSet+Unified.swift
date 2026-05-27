@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 10.06.22.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension [CharacterSet] {
     /// Returns a union of the CharacterSet `Array`s.

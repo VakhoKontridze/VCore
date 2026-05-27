@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import SwiftUI
+public import SwiftUI
 
 extension View {
     /// Retrieves `UIWindow` from `View`.

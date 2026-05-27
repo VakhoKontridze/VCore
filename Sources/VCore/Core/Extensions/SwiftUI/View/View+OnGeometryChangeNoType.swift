@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 16.07.25.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Adds an action to be performed when a value, created from a `GeometryProxy`, changes.

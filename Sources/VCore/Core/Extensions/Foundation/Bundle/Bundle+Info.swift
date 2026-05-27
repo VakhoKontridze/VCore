@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/8/21.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension Bundle {
     /// Name.

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 22.06.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Plain expandable container component that draws a background, and hosts content.
 ///

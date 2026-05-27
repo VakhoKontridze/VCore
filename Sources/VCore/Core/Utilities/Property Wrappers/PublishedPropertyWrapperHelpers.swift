@@ -6,7 +6,7 @@
 //
 
 import Foundation
-import Combine
+public import Combine
 
 @propertyWrapper
 final class PublishedPropertyWrapperBox<Value> {

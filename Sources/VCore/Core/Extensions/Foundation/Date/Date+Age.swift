@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 01.05.22.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension Date {
     /// Returns age as integer from given date to current time.

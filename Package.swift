@@ -34,6 +34,7 @@ let package: Package = .init(
                 .defaultIsolation(MainActor.self),
                 .enableUpcomingFeature("ApproachableConcurrency"),
                 .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("InternalImportsByDefault"),
                 .enableUpcomingFeature("MemberImportVisibility")
             ]
         ),
@@ -49,6 +50,7 @@ let package: Package = .init(
                 .defaultIsolation(MainActor.self),
                 .enableUpcomingFeature("ApproachableConcurrency"),
                 .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("InternalImportsByDefault"),
                 .enableUpcomingFeature("MemberImportVisibility")
             ]
         ),
@@ -70,6 +72,7 @@ let package: Package = .init(
                 .defaultIsolation(MainActor.self),
                 .enableUpcomingFeature("ApproachableConcurrency"),
                 .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("InternalImportsByDefault"),
                 .enableUpcomingFeature("MemberImportVisibility")
             ]
         ),
@@ -85,6 +88,7 @@ let package: Package = .init(
                 .defaultIsolation(MainActor.self),
                 .enableUpcomingFeature("ApproachableConcurrency"),
                 .enableUpcomingFeature("ExistentialAny"),
+                .enableUpcomingFeature("InternalImportsByDefault"),
                 .enableUpcomingFeature("MemberImportVisibility")
             ]
         )

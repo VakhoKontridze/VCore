@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/3/26.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension JSONDecoder {
     /// Decodes a top-level value of the given type from the given JSON representation.

@@ -5,11 +5,11 @@
 //  Created by Vakhtang Kontridze on 10/9/21.
 //
 
-import SwiftUI
+public import SwiftUI
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import AppKit
+public import AppKit
 
 nonisolated extension NSColor {
     @available(*, deprecated, renamed: "lightened")
@@ -47,7 +47,7 @@ nonisolated extension Color {
 
 #if canImport(UIKit)
 
-import UIKit
+public import UIKit
 
 nonisolated extension UIColor {
     @available(*, deprecated, renamed: "lightened")
@@ -82,7 +82,7 @@ nonisolated extension UIImage {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 extension UILabel {
     @available(*, deprecated, message: "Will be removed in '9.0.0'")
@@ -155,9 +155,9 @@ extension UILabel {
 #endif
 
 #if canImport(UIKit)
-import UIKit
+public import UIKit
 #elseif canImport(AppKit)
-import AppKit
+public import AppKit
 #endif
 import OSLog
 
@@ -248,9 +248,9 @@ nonisolated public enum GestureBaseButtonGestureState: Int, Sendable, CaseIterab
 #if !os(watchOS)
 
 #if canImport(UIKit)
-import UIKit
+public import UIKit
 #elseif canImport(AppKit)
-import AppKit
+public import AppKit
 #endif
 
 final class GestureBaseButtonModel {
@@ -385,7 +385,7 @@ nonisolated extension CGPoint {
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import AppKit
+public import AppKit
 
 final class AppKitBaseButtonGestureRecognizer: NSGestureRecognizer, NSGestureRecognizerDelegate {
     override var state: NSGestureRecognizer.State {
@@ -477,7 +477,7 @@ extension NSView {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 @available(tvOS, unavailable)
 final class UIKitBaseButtonGestureRecognizer: UIGestureRecognizer, UIGestureRecognizerDelegate {
@@ -611,7 +611,7 @@ public struct SwiftUIGestureBaseButton<Label>: View where Label: View {
 
 #if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
-import SwiftUI
+public import SwiftUI
 
 struct SwiftUIGestureBaseButton_AppKit: NSViewRepresentable {
     private let isEnabled: Bool
@@ -652,7 +652,7 @@ struct SwiftUIGestureBaseButton_AppKit: NSViewRepresentable {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import SwiftUI
+public import SwiftUI
 
 @available(tvOS, unavailable)
 struct SwiftUIGestureBaseButton_UIKit: UIViewRepresentable {
@@ -694,7 +694,7 @@ struct SwiftUIGestureBaseButton_UIKit: UIViewRepresentable {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
 @available(tvOS, unavailable)
@@ -799,7 +799,7 @@ public typealias UIKitBaseButtonInternalState = GenericState_EnabledPressedDisab
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 import Combine
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
@@ -875,7 +875,7 @@ open class KeyboardResponsiveUIViewController: UIViewController {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import SwiftUI
+public import SwiftUI
 import OSLog
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
@@ -962,7 +962,7 @@ extension UIView {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
 @available(tvOS, unavailable)
@@ -1004,7 +1004,7 @@ open class FirstResponderViewUnObscuringUIViewController: KeyboardResponsiveUIVi
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
 public protocol StandardNavigable {
@@ -1078,7 +1078,7 @@ extension StandardNavigable where Self: UIViewController {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
 public protocol UIActivityIndicatorViewable {
@@ -1155,7 +1155,7 @@ extension UIViewController {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 import OSLog
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
@@ -1217,7 +1217,7 @@ extension UITableView {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 import OSLog
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
@@ -1279,7 +1279,7 @@ extension UICollectionView {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 @available(*, deprecated, message: "'UIAlertViewable' is no longer needed. Use 'UIViewController' method directly.")
 public protocol UIAlertViewable {
@@ -1290,7 +1290,7 @@ public protocol UIAlertViewable {
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 @available(*, deprecated, message: "'UIActionSheetViewable' is no longer needed. Use 'UIViewController' method directly.")
 public protocol UIActionSheetViewable {

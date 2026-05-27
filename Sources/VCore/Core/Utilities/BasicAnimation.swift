@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 03.07.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 /// Wrapper for `SwiftUI`'s native `Animation` that stores curve and duration.
 ///

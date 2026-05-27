@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 10/6/21.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Positions `View` within an invisible frame with the specified dimension.

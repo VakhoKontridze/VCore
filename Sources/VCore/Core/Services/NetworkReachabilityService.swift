@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 8/24/21.
 //
 
-import Foundation
-import Network
+public import Foundation
+public import Network
 import OSLog
 
 /// Object that manages network reachability status.

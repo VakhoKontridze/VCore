@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 20.05.22.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension View {
     /// Binds value to modal context by applying an empty `onChange` modifier to the value.

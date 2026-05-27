@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 06.02.24.
 //
 
-import SwiftUI
+public import SwiftUI
 import OSLog
 
 nonisolated extension AttributedString {

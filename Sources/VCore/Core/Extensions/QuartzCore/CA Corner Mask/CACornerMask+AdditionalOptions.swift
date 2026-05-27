@@ -7,7 +7,7 @@
 
 #if canImport(QuartzCore)
 
-import QuartzCore
+public import QuartzCore
 
 @available(watchOS, unavailable)
 nonisolated extension CACornerMask {

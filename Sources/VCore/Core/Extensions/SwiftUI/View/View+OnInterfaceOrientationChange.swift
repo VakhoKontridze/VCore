@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !(os(tvOS) || os(watchOS))
 
-import SwiftUI
+public import SwiftUI
 
 extension View {
     /// Adds an action to be performed when `UIInterfaceOrientation` changes.

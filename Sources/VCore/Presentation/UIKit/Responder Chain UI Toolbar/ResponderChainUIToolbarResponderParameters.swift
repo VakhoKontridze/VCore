@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !(os(tvOS) || os(watchOS) || os(visionOS))
 
-import Foundation
+public import Foundation
 
 /// Parameter object that wraps `ResponderChainUIToolbarResponder` and it's UI customization.
 public struct ResponderChainUIToolbarResponderParameters {

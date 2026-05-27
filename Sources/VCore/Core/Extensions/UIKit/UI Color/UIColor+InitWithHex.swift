@@ -7,7 +7,7 @@
 
 #if canImport(UIKit)
 
-import UIKit
+public import UIKit
 import VCoreShared
 
 nonisolated extension UIColor {

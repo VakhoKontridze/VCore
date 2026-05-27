@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 nonisolated extension UIImage {
     /// Returns average `UIColor`.

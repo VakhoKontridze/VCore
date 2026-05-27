@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 06.09.23.
 //
 
-import CoreGraphics
+public import CoreGraphics
 
 nonisolated extension CGSize {
     /// Returns minimum of `width` and `height`.

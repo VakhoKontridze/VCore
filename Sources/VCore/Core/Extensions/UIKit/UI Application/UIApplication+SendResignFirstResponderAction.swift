@@ -7,7 +7,7 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-import UIKit
+public import UIKit
 
 extension UIApplication {
     /// Sends `UIResponder.resignFirstResponder` selector to `UIApplication`.

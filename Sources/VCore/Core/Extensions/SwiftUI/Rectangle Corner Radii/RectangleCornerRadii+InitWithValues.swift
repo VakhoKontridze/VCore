@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 09.07.24.
 //
 
-import SwiftUI
+public import SwiftUI
 
 nonisolated extension RectangleCornerRadii {
     /// Initializes `RectangleCornerRadii` with value.

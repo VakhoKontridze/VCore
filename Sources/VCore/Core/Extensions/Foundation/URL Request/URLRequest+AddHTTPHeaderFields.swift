@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 03.09.23.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension URLRequest {
     /// Adds `Dictionary` of `String` to `String` to the header fields.

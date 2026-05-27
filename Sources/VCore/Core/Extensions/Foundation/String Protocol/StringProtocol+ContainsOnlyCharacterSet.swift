@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 17.06.22.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension StringProtocol {
     /// Returns `Bool` indicating if `String` only contains given `CharacterSet`.

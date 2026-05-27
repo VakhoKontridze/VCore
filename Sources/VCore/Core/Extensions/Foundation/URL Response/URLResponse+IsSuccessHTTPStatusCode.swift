@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 11/19/21.
 //
 
-import Foundation
+public import Foundation
 
 nonisolated extension URLResponse {
     /// Checks that response `HTTP` code is successful.

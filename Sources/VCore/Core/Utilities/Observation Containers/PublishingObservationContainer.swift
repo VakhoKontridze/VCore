@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 18.04.24.
 //
 
-import Foundation
-import Combine
+public import Foundation
+public import Combine
 
 /// `Observable` container that triggers a `Publisher` when a value changes.
 ///
