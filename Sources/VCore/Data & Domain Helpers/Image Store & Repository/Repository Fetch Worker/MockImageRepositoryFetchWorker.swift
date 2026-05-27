@@ -17,7 +17,7 @@ import Photos
 import PhotosUI
 
 /// Mock worker that fetches images for `ImageRepository`.
-nonisolated public final class MockImageRepositoryFetchWorker: ImageRepositoryFetchWorker, @unchecked Sendable {
+nonisolated public final class MockImageRepositoryFetchWorker: DefaultImageRepositoryFetchWorker, @unchecked Sendable {
     // MARK: Properties - Images
     private let image: PlatformImage? = .init(
         size: CGSize(dimension: 500),

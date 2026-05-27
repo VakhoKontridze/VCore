@@ -14,7 +14,7 @@ import AppKit
 #endif
 
 /// Mock image memory cache.
-nonisolated public final class MockImageMemoryCache: ImageMemoryCacheProtocol {
+nonisolated public final class MockImageMemoryCache: ImageMemoryCache {
     // MARK: Properties - Images
     private let image: PlatformImage? = .init(
         size: CGSize(dimension: 500),
@@ -27,38 +27,38 @@ nonisolated public final class MockImageMemoryCache: ImageMemoryCacheProtocol {
     
     // MARK: Operations
     public func get(
-        key: ImageMemoryCache_OriginalKey
+        key: ImageMemoryCacheOriginalKey
     ) -> PlatformImage? {
         image
     }
     
     public func get(
-        key: ImageMemoryCache_ResizedKey
+        key: ImageMemoryCacheResizedKey
     ) -> PlatformImage? {
         image
     }
     
     public func set(
-        key: ImageMemoryCache_OriginalKey,
+        key: ImageMemoryCacheOriginalKey,
         image: PlatformImage
     ) {}
     
     public func set(
-        key: ImageMemoryCache_ResizedKey,
+        key: ImageMemoryCacheResizedKey,
         image: PlatformImage
     ) {}
     
     public func delete(
-        key: ImageMemoryCache_OriginalKey
+        key: ImageMemoryCacheOriginalKey
     ) {}
     
     public func delete(
-        key: ImageMemoryCache_ResizedKey,
+        key: ImageMemoryCacheResizedKey,
         deleteAllSizes: Bool
     ) {}
     
     public func deleteAll(
-        type: ImageMemoryCache_CacheType
+        type: ImageMemoryCacheCacheType
     ) {}
 }
 

@@ -5,376 +5,364 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
+import SwiftUI
 #if canImport(UIKit)
 import UIKit
 #elseif canImport(AppKit)
 import AppKit
 #endif
-import OSLog
+import Photos
+import PhotosUI
+import CryptoKit
 
 /// Image repository.
-nonisolated public final class ImageRepository: ImageRepositoryProtocol {
-    // MARK: Properties - Dependencies
-    public let imageFetchWorker: any ImageRepositoryFetchWorkerProtocol
+///
+/// `parameter` specifies where image comes from.
+/// For instance, `local` or `remote`.
+///
+/// `size` determines wether image is treated as "original or "resized".
+///
+/// `cachePolicy` specifies if and how the cache is hit.
+/// For instance, `reloadIgnoringCache` or `returnCacheDataDontLoad`.
+///
+/// `cacheStorage` specifies where image is read from and written to.
+/// For instance, `memory`, `disk`, or various combinations.
+///
+/// `progressCacheStorage` specifies where progress is written to.
+/// For instance, `memory`.
+///
+/// `imageVariantCachingPolicy` specifies what gets cached.
+/// For instance, `original`,  `resized`, or various combinations.
+nonisolated public protocol ImageRepository: AnyObject, Sendable {
+    // MARK: Properties
+    /// Image fetch worker.
+    var imageFetchWorker: any ImageRepositoryFetchWorker { get }
     
-    public let imageMemoryCache: any ImageMemoryCacheProtocol
-    public let imageDiskCache: any ImageDiskCacheProtocol
+    /// Image memory cache.
+    var imageMemoryCache: any ImageMemoryCache { get }
     
-    public let imageProgressMemoryCache: any ImageProgressMemoryCacheProtocol
+    /// Image disk cache.
+    var imageDiskCache: any ImageDiskCache { get }
     
-    // MARK: Initializers
-    /// Initializes `ImageRepository`.
-    public init(
-        imageFetchWorker: any ImageRepositoryFetchWorkerProtocol,
-        imageMemoryCache: any ImageMemoryCacheProtocol,
-        imageDiskCache: any ImageDiskCacheProtocol,
-        imageProgressMemoryCache: any ImageProgressMemoryCacheProtocol
-    ) {
-        self.imageFetchWorker = imageFetchWorker
-        self.imageMemoryCache = imageMemoryCache
-        self.imageDiskCache = imageDiskCache
-        self.imageProgressMemoryCache = imageProgressMemoryCache
-    }
+    /// Image progress memory cache.
+    var imageProgressMemoryCache: any ImageProgressMemoryCache { get }
     
     // MARK: Operations
-    public func fetchOriginalImage(
-        parameter: ImageRepository_Parameter,
-        cachePolicy: ImageRepository_CachePolicy,
-        cacheStorage: ImageRepository_CacheStorage,
-        progressCacheStorage: ImageRepository_ProgressCacheStorage?
-    ) async throws -> PlatformImage {
-        try await _fetchImage(
-            parameter: parameter,
-            
-            memoryCacheKey: .original(
-                ImageMemoryCache_OriginalKey(
-                    parameter: parameter
-                )
-            ),
-            diskCacheKey: .original(
-                ImageDiskCache_OriginalKey(
-                    parameter: parameter
-                )
-            ),
-            progressMemoryCacheKey: .original(
-                ImageProgressMemoryCache_OriginalKey(
-                    parameter: parameter
-                )
-            ),
-            
-            cachePolicy: cachePolicy,
-            cacheStorage: cacheStorage,
-            progressCacheStorage: progressCacheStorage,
-            
-            fetchImage: { [weak self] parameter in
-                guard let self else { throw CancellationError() }
-             
-                return try await fetchImage(parameter: parameter)
-            }
-        )
-    }
+    /// Fetches original image.
+    func fetchOriginalImage(
+        parameter: ImageRepositoryParameter,
+        cachePolicy: ImageRepositoryCachePolicy,
+        cacheStorage: ImageRepositoryCacheStorage,
+        progressCacheStorage: ImageRepositoryProgressCacheStorage?
+    ) async throws -> PlatformImage
     
-    public func fetchResizedImage(
-        parameter: ImageRepository_Parameter,
+    /// Fetches resized image.
+    func fetchResizedImage(
+        parameter: ImageRepositoryParameter,
         size: CGSize,
-        cachePolicy: ImageRepository_CachePolicy,
-        cacheStorage: ImageRepository_CacheStorage,
-        progressCacheStorage: ImageRepository_ProgressCacheStorage?,
-        imageVariantCachingPolicy: ImageRepository_ResizedImageVariantCachingPolicy
-    ) async throws -> PlatformImage {
-        try await _fetchImage(
-            parameter: parameter,
-            
-            memoryCacheKey: .resized(
-                ImageMemoryCache_ResizedKey(
-                    parameter: parameter,
-                    size: size
-                )
-            ),
-            diskCacheKey: .resized(
-                ImageDiskCache_ResizedKey(
-                    parameter: parameter,
-                    size: size
-                )
-            ),
-            progressMemoryCacheKey: .resized(
-                ImageProgressMemoryCache_ResizedKey(
-                    parameter: parameter,
-                    size: size
-                )
-            ),
-            
-            cachePolicy: cachePolicy,
-            cachePolicy_WritesToCache: imageVariantCachingPolicy.contains(.resized),
-            cacheStorage: cacheStorage,
-            progressCacheStorage: progressCacheStorage,
-            
-            fetchImage: { [weak self] parameter in
-                guard let self else { throw CancellationError() }
-                
-                let originalImage: PlatformImage = try await _fetchImage(
-                    parameter: parameter,
-                    
-                    memoryCacheKey: .original(
-                        ImageMemoryCache_OriginalKey(
-                            parameter: parameter
-                        )
-                    ),
-                    diskCacheKey: .original(
-                        ImageDiskCache_OriginalKey(
-                            parameter: parameter
-                        )
-                    ),
-                    progressMemoryCacheKey: .original(
-                        ImageProgressMemoryCache_OriginalKey(
-                            parameter: parameter
-                        )
-                    ),
-                    
-                    cachePolicy: .useCache,
-                    cachePolicy_WritesToCache: imageVariantCachingPolicy.contains(.original),
-                    cacheStorage: cacheStorage,
-                    progressCacheStorage: progressCacheStorage,
-                    
-                    fetchImage: fetchImage
-                )
-                try Task.checkCancellation()
-                
-                let resizedImage: PlatformImage = try await makeThumbnail(
-                    image: originalImage,
-                    size: size
-                )
-                try Task.checkCancellation()
-                
-                return resizedImage
-            }
+        cachePolicy: ImageRepositoryCachePolicy,
+        cacheStorage: ImageRepositoryCacheStorage,
+        progressCacheStorage: ImageRepositoryProgressCacheStorage?,
+        imageVariantCachingPolicy: ImageRepositoryResizedImageVariantCachingPolicy
+    ) async throws -> PlatformImage
+}
+
+/// Paremeter.
+nonisolated public struct ImageRepositoryParameter: Hashable, Sendable {
+    // MARK: Properties
+    let storage: Storage
+    
+    // MARK: Initializers
+    private init(
+        _ storage: Storage
+    ) {
+        self.storage = storage
+    }
+    
+    /// Image
+    public static func image(
+        image: PlatformImage
+    ) -> Self {
+        .init(
+            .image(
+                image: image
+            )
         )
     }
     
-    private func _fetchImage(
-        parameter: ImageRepository_Parameter,
-        
-        memoryCacheKey: Key<ImageMemoryCache_OriginalKey, ImageMemoryCache_ResizedKey>,
-        diskCacheKey: Key<ImageDiskCache_OriginalKey, ImageDiskCache_ResizedKey>,
-        progressMemoryCacheKey: Key<ImageProgressMemoryCache_OriginalKey, ImageProgressMemoryCache_ResizedKey>,
-        
-        cachePolicy: ImageRepository_CachePolicy,
-        cachePolicy_WritesToCache: Bool = true,
-        cacheStorage: ImageRepository_CacheStorage,
-        progressCacheStorage: ImageRepository_ProgressCacheStorage?,
-        
-        fetchImage: @escaping @Sendable (ImageRepository_Parameter) async throws -> PlatformImage
-    ) async throws -> PlatformImage {
-        // 1. Reads from cache
-        if cachePolicy.readsFromCache {
-            if cacheStorage.contains(.memory) {
-                let image: PlatformImage? = {
-                    switch memoryCacheKey {
-                    case .original(let key): imageMemoryCache.get(key: key)
-                    case .resized(let key): imageMemoryCache.get(key: key)
-                    }
-                }()
-
-                if let image {
-                    return image
-                }
-            }
-            
-            if cacheStorage.contains(.disk) {
-                let image: PlatformImage? = {
-                    switch diskCacheKey {
-                    case .original(let key): imageDiskCache.get(key: key)
-                    case .resized(let key): imageDiskCache.get(key: key)
-                    }
-                }()
-                
-                if let image {
-                    if cacheStorage.contains(.memory) {
-                        switch memoryCacheKey {
-                        case .original(let key): imageMemoryCache.set(key: key, image: image)
-                        case .resized(let key): imageMemoryCache.set(key: key, image: image)
-                        }
-                    }
-                    
-                    return image
-                }
-            }
-        }
-        
-        // 2. Reads from progress cache
-        switch progressCacheStorage {
-        case .memory:
-            let task: Task<PlatformImage, any Error>? = {
-                switch progressMemoryCacheKey {
-                case .original(let key): imageProgressMemoryCache.get(key: key)
-                case .resized(let key): imageProgressMemoryCache.get(key: key)
-                }
-            }()
-            
-            if let task {
-                let image: PlatformImage = try await task.value
-                try Task.checkCancellation()
-                
-                return image
-            }
-            
-        case nil:
-            break
-        }
-        
-        // 3a. Fetches - initial checks
-        if !cachePolicy.fetches {
-            throw ImageRepositoryError.imageNotInCache
-        }
-        
-        // 3b - 4
-        // NOTE: This needs to be grouped as one, since `defer` doesn't work with `await`
-        do {
-            // 3b. Fetches - schedules and registers work
-            let task: Task<PlatformImage, any Error> = .init {
-                try await fetchImage(parameter)
-            }
-            
-            // 3c. Fetches - saves and clears progress
-            switch progressCacheStorage {
-            case .memory:
-                switch progressMemoryCacheKey {
-                case .original(let key): imageProgressMemoryCache.set(key: key, task: task)
-                case .resized(let key): imageProgressMemoryCache.set(key: key, task: task)
-                }
-                
-            case nil:
-                break
-            }
-            
-            // 3d. Fetches - gets image
-            let image: PlatformImage = try await task.value
-            try Task.checkCancellation()
-            
-            // 3e. Fetches - saves image
-            if cachePolicy_WritesToCache {
-                if cacheStorage.contains(.memory) {
-                    switch memoryCacheKey {
-                    case .original(let key): imageMemoryCache.set(key: key, image: image)
-                    case .resized(let key): imageMemoryCache.set(key: key, image: image)
-                    }
-                }
-                
-                if cacheStorage.contains(.disk) {
-                    if parameter.diskIdentifier == nil {
-#if canImport(UIKit)
-                        Logger.imageStoreAndRepository.warning("Misuse of 'ImageRepository'. Raw 'UIImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
-#elseif canImport(AppKit)
-                        Logger.imageStoreAndRepository.warning("Misuse of 'ImageRepository'. Raw 'NSImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
-#endif
-                    }
-                    
-                    switch diskCacheKey {
-                    case .original(let key): imageDiskCache.set(key: key, image: image)
-                    case .resized(let key): imageDiskCache.set(key: key, image: image)
-                    }
-                }
-            }
-            
-            // 3f. Fetches - clears progress
-            await __clearProgress(
-                progressCacheStorage: progressCacheStorage,
-                progressMemoryCacheKey: progressMemoryCacheKey,
-                cancel: false
+    /// Data.
+    public static func data(
+        data: Data
+    ) -> Self {
+        .init(
+            .data(
+                data: data
             )
-            try Task.checkCancellation()
-            
-            // 4. Result
-            return image
-            
-        } catch {
-            await __clearProgress(
-                progressCacheStorage: progressCacheStorage,
-                progressMemoryCacheKey: progressMemoryCacheKey,
-                cancel: error is CancellationError
-            )
-            //try Task.checkCancellation()
-            
-            throw error
-        }
+        )
     }
     
-    private func __clearProgress(
-        progressCacheStorage: ImageRepository_ProgressCacheStorage?,
-        progressMemoryCacheKey: Key<ImageProgressMemoryCache_OriginalKey, ImageProgressMemoryCache_ResizedKey>,
-        cancel: Bool
-    ) async {
-        switch progressCacheStorage {
-        case .memory:
-            switch progressMemoryCacheKey {
-            case .original(let key): imageProgressMemoryCache.delete(key: key, cancel: cancel)
-            case .resized(let key): imageProgressMemoryCache.delete(key: key, deleteAllSizes: true, cancel: cancel)
-            }
-            
-        case nil:
-            break
-        }
+    /// Asset from `Bundle`.
+    public static func asset(
+        name: String,
+        bundle: Bundle? = nil
+    ) -> Self {
+        .init(
+            .asset(
+                name: name,
+                bundle: bundle
+            )
+        )
     }
     
-    // MARK: Helpers
-    private func fetchImage(
-        parameter: ImageRepository_Parameter,
-    ) async throws -> PlatformImage {
-        switch parameter.storage {
+    /// Local image.
+    public static func local(
+        url: URL
+    ) -> Self {
+        .init(
+            .local(
+                url: url
+            )
+        )
+    }
+    
+    /// Remote image.
+    public static func remote(
+        url: URL
+    ) -> Self {
+        .init(
+            .remote(
+                url: url
+            )
+        )
+    }
+    
+    /// `Photos` asset.
+    public static func photo(
+        asset: PHAsset
+    ) -> Self {
+        .init(
+            .photo_Asset(
+                asset: asset
+            )
+        )
+    }
+    
+    /// `Photos` item.
+    public static func photo(
+        item: PhotosPickerItem
+    ) -> Self {
+        .init(
+            .photo_Item(
+                item: item
+            )
+        )
+    }
+    
+    /// `Photos` asset identifier.
+    public static func photo(
+        assetIdentifier: String
+    ) -> Self {
+        .init(
+            .photo_AssetIdentifier(
+                assetIdentifier: assetIdentifier
+            )
+        )
+    }
+    
+    // MARK: Properties
+    /// Cost of caching image.
+    public var cacheCost: Int {
+        switch storage {
         case .image(let image):
-            try await imageFetchWorker.fetchImage(image: image)
+            return image.cacheCost
         
         case .data(let data):
-            try await imageFetchWorker.fetchImage(data: data)
+            // Attempts a cheap header parse to get dimensions without full decode
+            if
+                let source: CGImageSource = CGImageSourceCreateWithData(data as CFData, nil),
+                let props: [CFString: Any] = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
+                let width: Int = props[kCGImagePropertyPixelWidth] as? Int,
+                let height: Int = props[kCGImagePropertyPixelHeight] as? Int
+            {
+                return
+                    width *
+                    height *
+                    4
+            }
             
-        case .asset(let name, let bundle):
-            try await imageFetchWorker.fetchAssetImage(name: name, bundle: bundle)
+            return data.count
+            
+        case .asset:
+            // Named assets are bundled resources.
+            // They don't have a meaningful byte cost until decoded.
+            // And `CGFloat` pixel dimensions aren't available without loading.
+            return 0
         
         case .local(let url):
-            try await imageFetchWorker.fetchLocalImage(url: url)
+            let resourceValues: URLResourceValues? = try? url.resourceValues(forKeys: [.fileSizeKey])
+            let fileSize: Int? = resourceValues?.fileSize
+            
+            return fileSize ?? 0
         
-        case .remote(let url):
-            try await imageFetchWorker.fetchRemoteImage(url: url)
-            
+        case .remote:
+            // No way to know
+            return 0
+        
         case .photo_Asset(let asset):
-            try await imageFetchWorker.fetchPhotoImage(asset: asset)
+            return Int(
+                CGFloat(asset.pixelWidth) *
+                CGFloat(asset.pixelHeight) *
+                4
+            )
             
-        case .photo_Item(let item):
-            try await imageFetchWorker.fetchPhotoImage(item: item)
-            
-        case .photo_AssetIdentifier(let assetIdentifier):
-            try await imageFetchWorker.fetchPhotoImage(assetIdentifier: assetIdentifier)
+        case .photo_Item:
+            // No way to know
+            return 0
+        
+        case .photo_AssetIdentifier:
+            // No way to know
+            return 0
         }
     }
     
-    private func makeThumbnail(
-        image: PlatformImage,
-        size: CGSize
-    ) async throws -> PlatformImage {
-#if canImport(UIKit)
+    /// A stable, launch-invariant string that uniquely identifies this parameter for use as a disk cache key component.
+    ///
+    /// Unlike `Hasher`, this value is consistent across app launches and is
+    /// safe to use in filenames (before `SHA256` hashing in `ImageDiskCache`).
+    public var diskIdentifier: String? {
+        switch storage {
+        case .image:
+            return nil
 
-        guard
-            let thumbnail: PlatformImage = await image.byPreparingThumbnail(ofSize: size)
-        else {
-            throw ImageRepositoryError.failedToResizeImage
-        }
-        try Task.checkCancellation()
-        
-#elseif canImport(AppKit)
+        case .data(let data):
+            // Raw hex, as `ImageDiskCache` will SHA256 this along with everything else
+            let hex: String = data.withUnsafeBytes { bytes -> String in
+                var hasher: SHA256 = .init()
+                hasher.update(bufferPointer: bytes)
+                
+                return hasher
+                    .finalize()
+                    .map { String(format: "%02x", $0) }
+                    .joined()
+            }
+            
+            return "data_\(hex)"
+            
+        case .asset(let name, let bundle):
+            let bundleID: String =
+                bundle?.bundleIdentifier ??
+                Bundle.main.bundleIdentifier ??
+                "main"
+            
+            return "asset_\(bundleID)_\(name)"
 
-        guard
-            let thumbnail: PlatformImage = image.byPreparingThumbnail(ofSize: size)
-        else {
-            throw ImageRepositoryError.failedToResizeImage
+        case .local(let url):
+            // Absolute path uniquely identifies a local file
+            return "local_\(url.path())"
+
+        case .remote(let url):
+            // Absolute URL string, with -- scheme, host, path, query -- all included
+            return "remote_\(url.absoluteString)"
+
+        case .photo_Asset(let asset):
+            return "photo_asset_\(asset.localIdentifier)"
+            
+        case .photo_Item(let item):
+            guard
+                let itemIdentifier: String = item.itemIdentifier
+            else {
+                return nil
+            }
+            
+            return "photo_item_\(itemIdentifier)"
+            
+        case .photo_AssetIdentifier(let identifier):
+            return "photo_assetid_\(identifier)"
         }
-#endif
-        
-        return thumbnail
     }
     
     // MARK: Types
-    nonisolated private enum Key<Original, Resized> {
-        case original(Original)
-        case resized(Resized)
+    nonisolated enum Storage: Hashable {
+        case image(image: PlatformImage)
+        case data(data: Data)
+        case asset(name: String, bundle: Bundle?)
+        case local(url: URL)
+        case remote(url: URL)
+        case photo_Asset(asset: PHAsset)
+        case photo_Item(item: PhotosPickerItem)
+        case photo_AssetIdentifier(assetIdentifier: String)
     }
+}
+
+/// Cache policy.
+nonisolated public enum ImageRepositoryCachePolicy: Sendable {
+    // MARK: Cases
+    /// Reads image from cache, or fetches it.
+    case useCache
+    
+    /// Always fetches image, bypassing the cache.
+    case reloadIgnoringCache
+    
+    /// Always reads image from cache.
+    case returnCacheDataDontLoad
+    
+    // MARK: Properties
+    var readsFromCache: Bool {
+        switch self {
+        case .useCache: true
+        case .reloadIgnoringCache: false
+        case .returnCacheDataDontLoad: true
+        }
+    }
+    
+    var fetches: Bool {
+        switch self {
+        case .useCache: true
+        case .reloadIgnoringCache: true
+        case .returnCacheDataDontLoad: false
+        }
+    }
+    
+    // MARK: Initializers
+    /// Default instance.
+    public static var `default`: Self { .useCache }
+}
+
+/// Cache storage.
+@OptionSetRepresentation
+nonisolated public struct ImageRepositoryCacheStorage: Sendable {
+    // MARK: Options
+    nonisolated private enum Options: Int {
+        case memory
+        case disk
+    }
+    
+    // MARK: Initializers
+    /// Default instance.
+    public static var `default`: Self { .memory }
+}
+
+/// Progress cache storage.
+nonisolated public enum ImageRepositoryProgressCacheStorage: Sendable {
+    // MARK: Cases
+    /// Memory.
+    case memory
+    
+    // MARK: Initializers
+    /// Default instance.
+    public static var `default`: Self { .memory }
+}
+
+/// Resized image variant caching policy.
+@OptionSetRepresentation
+nonisolated public struct ImageRepositoryResizedImageVariantCachingPolicy: Sendable {
+    // MARK: Options
+    nonisolated private enum Options: Int {
+        case original
+        case resized
+    }
+    
+    // MARK: Initializers
+    /// Default instance.
+    public static var `default`: Self { .all }
 }

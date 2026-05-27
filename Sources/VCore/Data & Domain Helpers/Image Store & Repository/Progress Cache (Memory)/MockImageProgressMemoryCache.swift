@@ -14,47 +14,47 @@ import AppKit
 #endif
 
 /// Mock image progress memory cache.
-nonisolated public final class MockImageProgressMemoryCache: ImageProgressMemoryCacheProtocol {
+nonisolated public final class MockImageProgressMemoryCache: ImageProgressMemoryCache {
     // MARK: Initializers
     /// Initializes `MockImageProgressMemoryCache`.
     public init() {}
     
     // MARK: Operations
     public func get(
-        key: ImageProgressMemoryCache_OriginalKey
+        key: ImageProgressMemoryCacheOriginalKey
     ) -> Task<PlatformImage, any Error>? {
         nil
     }
     
     public func get(
-        key: ImageProgressMemoryCache_ResizedKey
+        key: ImageProgressMemoryCacheResizedKey
     ) -> Task<PlatformImage, any Error>? {
         nil
     }
     
     public func set(
-        key: ImageProgressMemoryCache_OriginalKey,
+        key: ImageProgressMemoryCacheOriginalKey,
         task: Task<PlatformImage, any Error>
     ) {}
     
     public func set(
-        key: ImageProgressMemoryCache_ResizedKey,
+        key: ImageProgressMemoryCacheResizedKey,
         task: Task<PlatformImage, any Error>
     ) {}
     
     public func delete(
-        key: ImageProgressMemoryCache_OriginalKey,
+        key: ImageProgressMemoryCacheOriginalKey,
         cancel: Bool
     ) {}
     
     public func delete(
-        key: ImageProgressMemoryCache_ResizedKey,
+        key: ImageProgressMemoryCacheResizedKey,
         deleteAllSizes: Bool,
         cancel: Bool
     ) {}
     
     public func deleteAll(
-        type: ImageProgressMemoryCache_CacheType,
+        type: ImageProgressMemoryCacheCacheType,
         cancel: Bool
     ) {}
 }

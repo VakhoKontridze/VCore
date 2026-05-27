@@ -14,22 +14,22 @@ import AppKit
 #endif
 
 /// Mock image repository.
-nonisolated public final class MockImageRepository: ImageRepositoryProtocol {
+nonisolated public final class MockImageRepository: ImageRepository {
     // MARK: Properties - Dependencies
-    public let imageFetchWorker: any ImageRepositoryFetchWorkerProtocol
+    public let imageFetchWorker: any ImageRepositoryFetchWorker
     
-    public let imageMemoryCache: any ImageMemoryCacheProtocol
-    public let imageDiskCache: any ImageDiskCacheProtocol
+    public let imageMemoryCache: any ImageMemoryCache
+    public let imageDiskCache: any ImageDiskCache
     
-    public let imageProgressMemoryCache: any ImageProgressMemoryCacheProtocol
+    public let imageProgressMemoryCache: any ImageProgressMemoryCache
     
     // MARK: Initializers
     /// Initializes `MockImageRepository`.
     public init(
-        imageFetchWorker: any ImageRepositoryFetchWorkerProtocol,
-        imageMemoryCache: any ImageMemoryCacheProtocol,
-        imageDiskCache: any ImageDiskCacheProtocol,
-        imageProgressMemoryCache: any ImageProgressMemoryCacheProtocol
+        imageFetchWorker: any ImageRepositoryFetchWorker,
+        imageMemoryCache: any ImageMemoryCache,
+        imageDiskCache: any ImageDiskCache,
+        imageProgressMemoryCache: any ImageProgressMemoryCache
     ) {
         self.imageFetchWorker = imageFetchWorker
         self.imageMemoryCache = imageMemoryCache
@@ -39,28 +39,28 @@ nonisolated public final class MockImageRepository: ImageRepositoryProtocol {
     
     // MARK: Operations
     public func fetchOriginalImage(
-        parameter: ImageRepository_Parameter,
-        cachePolicy: ImageRepository_CachePolicy,
-        cacheStorage: ImageRepository_CacheStorage,
-        progressCacheStorage: ImageRepository_ProgressCacheStorage?
+        parameter: ImageRepositoryParameter,
+        cachePolicy: ImageRepositoryCachePolicy,
+        cacheStorage: ImageRepositoryCacheStorage,
+        progressCacheStorage: ImageRepositoryProgressCacheStorage?
     ) async throws -> PlatformImage {
         try await fetchImage(parameter: parameter)
     }
     
     public func fetchResizedImage(
-        parameter: ImageRepository_Parameter,
+        parameter: ImageRepositoryParameter,
         size: CGSize,
-        cachePolicy: ImageRepository_CachePolicy,
-        cacheStorage: ImageRepository_CacheStorage,
-        progressCacheStorage: ImageRepository_ProgressCacheStorage?,
-        imageVariantCachingPolicy: ImageRepository_ResizedImageVariantCachingPolicy
+        cachePolicy: ImageRepositoryCachePolicy,
+        cacheStorage: ImageRepositoryCacheStorage,
+        progressCacheStorage: ImageRepositoryProgressCacheStorage?,
+        imageVariantCachingPolicy: ImageRepositoryResizedImageVariantCachingPolicy
     ) async throws -> PlatformImage {
         try await fetchImage(parameter: parameter)
     }
     
     // MARK: Helpers
     private func fetchImage(
-        parameter: ImageRepository_Parameter,
+        parameter: ImageRepositoryParameter,
     ) async throws -> PlatformImage {
         switch parameter.storage {
         case .image(let image):

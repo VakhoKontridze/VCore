@@ -12,204 +12,141 @@ import AppKit
 #endif
 
 /// Image progress memory cache.
-nonisolated public final class ImageProgressMemoryCache: ImageProgressMemoryCacheProtocol, @unchecked Sendable {
-    // MARK: Properties - Cache & Keys
-    private let originalCache: NSCache<ImageProgressMemoryCache_OriginalKey, TaskHolder>
-    private var originalCacheKeys: Set<ImageProgressMemoryCache_OriginalKey> = []
-    
-    private let resizedCache: NSCache<ImageProgressMemoryCache_ResizedKey, TaskHolder>
-    private var resizedCacheKeys: Set<ImageProgressMemoryCache_ResizedKey> = []
-    
-    // MARK: Properties - Queue
-    private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.image-progress-memory-cache",
-        attributes: .concurrent
-    )
-    
-    // MARK: Initializers
-    /// Initializes `ImageProgressMemoryCache`.
-    public init(
-        originalCacheConfiguration: ImageProgressMemoryCacheConfiguration = .default,
-        resizedCacheConfiguration: ImageProgressMemoryCacheConfiguration = .default
-    ) {
-        self.originalCache = {
-            let cache: NSCache<ImageProgressMemoryCache_OriginalKey, TaskHolder> = .init()
-            cache.countLimit = originalCacheConfiguration.countLimit
-            return cache
-        }()
-        
-        self.resizedCache = {
-            let cache: NSCache<ImageProgressMemoryCache_ResizedKey, TaskHolder> = .init()
-            cache.countLimit = resizedCacheConfiguration.countLimit
-            return cache
-        }()
-    }
-    
+nonisolated public protocol ImageProgressMemoryCache: AnyObject, Sendable {
     // MARK: Operation - Get
-    public func get(
-        key: ImageProgressMemoryCache_OriginalKey
-    ) -> Task<PlatformImage, any Error>? {
-        queue.sync {
-            _get(
-                key: key
-            )
-        }
-    }
+    /// Gets original image.
+    func get(
+        key: ImageProgressMemoryCacheOriginalKey
+    ) -> Task<PlatformImage, any Error>?
     
-    private func _get(
-        key: ImageProgressMemoryCache_OriginalKey
-    ) -> Task<PlatformImage, any Error>? {
-        originalCache.object(forKey: key)?.task
-    }
-    
-    public func get(
-        key: ImageProgressMemoryCache_ResizedKey
-    ) -> Task<PlatformImage, any Error>? {
-        queue.sync {
-            _get(
-                key: key
-            )
-        }
-    }
-
-    private func _get(
-        key: ImageProgressMemoryCache_ResizedKey
-    ) -> Task<PlatformImage, any Error>? {
-        resizedCache.object(forKey: key)?.task
-    }
+    /// Gets resized image.
+    func get(
+        key: ImageProgressMemoryCacheResizedKey
+    ) -> Task<PlatformImage, any Error>?
     
     // MARK: Operation - Set
-    public func set(
-        key: ImageProgressMemoryCache_OriginalKey,
+    /// Sets original image.
+    func set(
+        key: ImageProgressMemoryCacheOriginalKey,
         task: Task<PlatformImage, any Error>
-    ) {
-        queue.sync(flags: .barrier) {
-            originalCache.setObject(
-                TaskHolder(task),
-                forKey: key
-            )
-            originalCacheKeys.insert(key)
-        }
-    }
+    )
     
-    public func set(
-        key: ImageProgressMemoryCache_ResizedKey,
+    /// Sets resized image.
+    func set(
+        key: ImageProgressMemoryCacheResizedKey,
         task: Task<PlatformImage, any Error>
-    ) {
-        queue.sync(flags: .barrier) {
-            resizedCache.setObject(
-                TaskHolder(task),
-                forKey: key
-            )
-            resizedCacheKeys.insert(key)
-        }
-    }
+    )
 
     // MARK: Operation - Delete
-    public func delete(
-        key: ImageProgressMemoryCache_OriginalKey,
+    /// Deletes original image.
+    func delete(
+        key: ImageProgressMemoryCacheOriginalKey,
         cancel: Bool
-    ) {
-        queue.sync(flags: .barrier) {
-            _delete(
-                key: key,
-                cancel: cancel
-            )
-        }
-    }
+    )
     
-    private func _delete(
-        key: ImageProgressMemoryCache_OriginalKey,
-        cancel: Bool
-    ) {
-        if
-            cancel,
-            let task: Task<PlatformImage, any Error> = _get(key: key)
-        {
-            task.cancel()
-        }
-        
-        originalCache.removeObject(forKey: key)
-        originalCacheKeys.remove(key)
-    }
-    
-    public func delete(
-        key: ImageProgressMemoryCache_ResizedKey,
+    /// Deletes resized image.
+    func delete(
+        key: ImageProgressMemoryCacheResizedKey,
         deleteAllSizes: Bool,
         cancel: Bool
-    ) {
-        queue.sync(flags: .barrier) {
-            _delete(
-                key: key,
-                deleteAllSizes: deleteAllSizes,
-                cancel: cancel
-            )
-        }
-    }
-    
-    private func _delete(
-        key: ImageProgressMemoryCache_ResizedKey,
-        deleteAllSizes: Bool,
-        cancel: Bool
-    ) {
-        if
-            cancel,
-            let task: Task<PlatformImage, any Error> = _get(key: key)
-        {
-            task.cancel()
-        }
-        
-        if deleteAllSizes {
-            let keys: [ImageProgressMemoryCache_ResizedKey] = resizedCacheKeys.filter { $0.parameter == key.parameter }
-            
-            for key in keys {
-                resizedCache.removeObject(forKey: key)
-                resizedCacheKeys.remove(key)
-            }
-            
-        } else {
-            resizedCache.removeObject(forKey: key)
-            resizedCacheKeys.remove(key)
-        }
-    }
+    )
     
     // MARK: Operation - Delete All
-    public func deleteAll(
-        type: ImageProgressMemoryCache_CacheType,
+    /// Deletes all images.
+    func deleteAll(
+        type: ImageProgressMemoryCacheCacheType,
         cancel: Bool
+    )
+}
+
+/// Image cache type.
+@OptionSetRepresentation
+nonisolated public struct ImageProgressMemoryCacheCacheType: Sendable {
+    private enum Options: Int {
+        case original
+        case resized
+    }
+}
+
+/// Original key.
+nonisolated public final class ImageProgressMemoryCacheOriginalKey: NSObject, Sendable {
+    // MARK: Properties
+    /// Image parameter.
+    public let parameter: ImageRepositoryParameter
+
+    // MARK: Initializers
+    /// Initializes `ImageProgressMemoryCacheOriginalKey`.
+    public init(
+        parameter: ImageRepositoryParameter
     ) {
-        queue.sync(flags: .barrier) {
-            if type.contains(.original) {
-                let keys: Set<ImageProgressMemoryCache_OriginalKey> = originalCacheKeys
-                for key in keys {
-                    _delete(
-                        key: key,
-                        cancel: cancel
-                    )
-                }
-            }
-            
-            if type.contains(.resized) {
-                let keys: Set<ImageProgressMemoryCache_ResizedKey> = resizedCacheKeys
-                for key in keys {
-                    _delete(
-                        key: key,
-                        deleteAllSizes: false,
-                        cancel: cancel
-                    )
-                }
-            }
-        }
+        self.parameter = parameter
+    }
+
+    // MARK: Equality
+    override public var hash: Int {
+        parameter.hashValue
+    }
+
+    override public func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? Self else { return false }
+        
+        return parameter == other.parameter
+    }
+}
+
+/// Resized key.
+nonisolated public final class ImageProgressMemoryCacheResizedKey: NSObject, Sendable {
+    // MARK: Properties
+    /// Image parameter.
+    public let parameter: ImageRepositoryParameter
+    
+    /// Image width.
+    public let width: CGFloat
+    
+    /// Image height.
+    public let height: CGFloat
+
+    // MARK: Initializers
+    /// Initializes `ImageProgressMemoryCacheResizedKey`.
+    public init(
+        parameter: ImageRepositoryParameter,
+        size: CGSize
+    ) {
+        let quantizedSize: CGSize = size.quantized()
+        
+        self.parameter = parameter
+        self.width = quantizedSize.width
+        self.height = quantizedSize.height
     }
     
-    // MARK: Types
-    nonisolated private final class TaskHolder {
-        // MARK: Properties
-        let task: Task<PlatformImage, any Error>
+    /// Initializes `ImageProgressMemoryCacheResizedKey`.
+    public convenience init(
+        parameter: ImageRepositoryParameter,
+        width: CGFloat,
+        height: CGFloat
+    ) {
+        self.init(
+            parameter: parameter,
+            size: CGSize(width: width, height: height)
+        )
+    }
 
-        // MARK: Initializers
-        init(_ task: Task<PlatformImage, any Error>) {
-            self.task = task
-        }
+    // MARK: Equality
+    override public var hash: Int {
+        var hasher: Hasher = .init()
+        hasher.combine(parameter)
+        hasher.combine(width)
+        hasher.combine(height)
+        
+        return hasher.finalize()
+    }
+
+    override public func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? Self else { return false }
+        
+        return
+            parameter == other.parameter &&
+            width == other.width &&
+            height == other.height
     }
 }

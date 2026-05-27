@@ -25,7 +25,7 @@ import Combine
 ///             .cached
 ///         }
 ///
-///         var imageRepository: Factory<any ImageRepositoryProtocol> {
+///         var imageRepository: Factory<any ImageRepository> {
 ///             self {
 ///     #if DEBUG
 ///                 if ProcessInfo.processInfo.isPreview {
@@ -38,11 +38,11 @@ import Combine
 ///                 }
 ///     #endif
 ///
-///                 return ImageRepository(
-///                     imageFetchWorker: ImageRepositoryFetchWorker(),
-///                     imageMemoryCache: ImageMemoryCache(),
-///                     imageDiskCache: ImageDiskCache(),
-///                     imageProgressMemoryCache: ImageProgressMemoryCache()
+///                 return DefaultImageRepository(
+///                     imageFetchWorker: DefaultImageRepositoryFetchWorker(),
+///                     imageMemoryCache: DefaultImageMemoryCache(),
+///                     imageDiskCache: DefaultImageDiskCache(),
+///                     imageProgressMemoryCache: DefaultImageProgressMemoryCache()
 ///                 )
 ///             }
 ///             .singleton
@@ -52,7 +52,7 @@ import Combine
 public final class ImageStore {
     // MARK: Properties - Dependencies
     /// Image repository.
-    public let imageRepository: any ImageRepositoryProtocol
+    public let imageRepository: any ImageRepository
     
     // MARK: Properties - Subscriptions
     private var cancellables: Set<AnyCancellable> = []
@@ -60,7 +60,7 @@ public final class ImageStore {
     // MARK: Initializers
     /// Initializes `ImageStore`.
     public init(
-        imageRepository: any ImageRepositoryProtocol
+        imageRepository: any ImageRepository
     ) {
         self.imageRepository = imageRepository
         
@@ -70,10 +70,10 @@ public final class ImageStore {
     // MARK: Fetch - Platform Image
     /// Fetches original image.
     public func fetchOriginalImage(
-        parameter: ImageRepository_Parameter,
-        cachePolicy: ImageRepository_CachePolicy = .default,
-        cacheStorage: ImageRepository_CacheStorage = .default,
-        progressCacheStorage: ImageRepository_ProgressCacheStorage? = .default
+        parameter: ImageRepositoryParameter,
+        cachePolicy: ImageRepositoryCachePolicy = .default,
+        cacheStorage: ImageRepositoryCacheStorage = .default,
+        progressCacheStorage: ImageRepositoryProgressCacheStorage? = .default
     ) async throws -> PlatformImage {
         try await imageRepository.fetchOriginalImage(
             parameter: parameter,
@@ -85,12 +85,12 @@ public final class ImageStore {
     
     /// Fetches resized image.
     public func fetchResizedImage(
-        parameter: ImageRepository_Parameter,
+        parameter: ImageRepositoryParameter,
         size: CGSize,
-        cachePolicy: ImageRepository_CachePolicy = .default,
-        cacheStorage: ImageRepository_CacheStorage = .default,
-        progressCacheStorage: ImageRepository_ProgressCacheStorage? = .default,
-        imageVariantCachingPolicy: ImageRepository_ResizedImageVariantCachingPolicy = .default
+        cachePolicy: ImageRepositoryCachePolicy = .default,
+        cacheStorage: ImageRepositoryCacheStorage = .default,
+        progressCacheStorage: ImageRepositoryProgressCacheStorage? = .default,
+        imageVariantCachingPolicy: ImageRepositoryResizedImageVariantCachingPolicy = .default
     ) async throws -> PlatformImage {
         try await imageRepository.fetchResizedImage(
             parameter: parameter,
@@ -105,10 +105,10 @@ public final class ImageStore {
     // MARK: Fetch - Image
     /// Fetches original image.
     public func fetchOriginalImage(
-        parameter: ImageRepository_Parameter,
-        cachePolicy: ImageRepository_CachePolicy = .default,
-        cacheStorage: ImageRepository_CacheStorage = .default,
-        progressCacheStorage: ImageRepository_ProgressCacheStorage? = .default
+        parameter: ImageRepositoryParameter,
+        cachePolicy: ImageRepositoryCachePolicy = .default,
+        cacheStorage: ImageRepositoryCacheStorage = .default,
+        progressCacheStorage: ImageRepositoryProgressCacheStorage? = .default
     ) async throws -> Image {
         let image: PlatformImage = try await imageRepository.fetchOriginalImage(
             parameter: parameter,
@@ -129,12 +129,12 @@ public final class ImageStore {
     
     /// Fetches resized image.
     public func fetchResizedImage(
-        parameter: ImageRepository_Parameter,
+        parameter: ImageRepositoryParameter,
         size: CGSize,
-        cachePolicy: ImageRepository_CachePolicy = .default,
-        cacheStorage: ImageRepository_CacheStorage = .default,
-        progressCacheStorage: ImageRepository_ProgressCacheStorage? = .default,
-        imageVariantCachingPolicy: ImageRepository_ResizedImageVariantCachingPolicy = .default
+        cachePolicy: ImageRepositoryCachePolicy = .default,
+        cacheStorage: ImageRepositoryCacheStorage = .default,
+        progressCacheStorage: ImageRepositoryProgressCacheStorage? = .default,
+        imageVariantCachingPolicy: ImageRepositoryResizedImageVariantCachingPolicy = .default
     ) async throws -> Image {
         let image: PlatformImage = try await imageRepository.fetchResizedImage(
             parameter: parameter,
@@ -158,22 +158,22 @@ public final class ImageStore {
     // MARK: Delete
     /// Deletes original image from cache.
     public func deleteOriginalImageFromCache(
-        parameter: ImageRepository_Parameter
+        parameter: ImageRepositoryParameter
     ) {
         imageRepository.imageMemoryCache.delete(
-            key: ImageMemoryCache_OriginalKey(
+            key: ImageMemoryCacheOriginalKey(
                 parameter: parameter
             )
         )
         
         imageRepository.imageDiskCache.delete(
-            key: ImageDiskCache_OriginalKey(
+            key: ImageDiskCacheOriginalKey(
                 parameter: parameter
             )
         )
         
         imageRepository.imageProgressMemoryCache.delete(
-            key: ImageProgressMemoryCache_OriginalKey(
+            key: ImageProgressMemoryCacheOriginalKey(
                 parameter: parameter
             ),
             cancel: true
@@ -182,12 +182,12 @@ public final class ImageStore {
     
     /// Deletes resized image from cache.
     public func deleteResizedImageFromCache(
-        parameter: ImageRepository_Parameter,
+        parameter: ImageRepositoryParameter,
         size: CGSize,
         deleteAllSizes: Bool = true
     ) {
         imageRepository.imageMemoryCache.delete(
-            key: ImageMemoryCache_ResizedKey(
+            key: ImageMemoryCacheResizedKey(
                 parameter: parameter,
                 size: size
             ),
@@ -195,7 +195,7 @@ public final class ImageStore {
         )
         
         imageRepository.imageDiskCache.delete(
-            key: ImageDiskCache_ResizedKey(
+            key: ImageDiskCacheResizedKey(
                 parameter: parameter,
                 size: size
             ),
@@ -203,7 +203,7 @@ public final class ImageStore {
         )
         
         imageRepository.imageProgressMemoryCache.delete(
-            key: ImageProgressMemoryCache_ResizedKey(
+            key: ImageProgressMemoryCacheResizedKey(
                 parameter: parameter,
                 size: size
             ),
@@ -215,9 +215,9 @@ public final class ImageStore {
     // MARK: Delete All
     /// Deletes all images from cache.
     public func deleteAllImagesFromCache(
-        imageMemoryCacheType: ImageMemoryCache_CacheType?,
-        imageDiskCacheType: ImageDiskCache_CacheType?,
-        imageProgressMemoryCacheType: ImageProgressMemoryCache_CacheType?
+        imageMemoryCacheType: ImageMemoryCacheCacheType?,
+        imageDiskCacheType: ImageDiskCacheCacheType?,
+        imageProgressMemoryCacheType: ImageProgressMemoryCacheCacheType?
     ) {
         if let imageMemoryCacheType {
             imageRepository.imageMemoryCache.deleteAll(

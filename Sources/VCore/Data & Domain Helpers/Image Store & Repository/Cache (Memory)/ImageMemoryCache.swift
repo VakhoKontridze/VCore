@@ -12,131 +12,138 @@ import AppKit
 #endif
 
 /// Image memory cache.
-nonisolated public final class ImageMemoryCache: ImageMemoryCacheProtocol, @unchecked Sendable {
-    // MARK: Properties - Cache and Keys
-    private let originalCache: NSCache<ImageMemoryCache_OriginalKey, PlatformImage>
-    private var originalCacheKeys: Set<ImageMemoryCache_OriginalKey> = []
-    
-    private let resizedCache: NSCache<ImageMemoryCache_ResizedKey, PlatformImage>
-    private var resizedCacheKeys: Set<ImageMemoryCache_ResizedKey> = []
-    
-    // MARK: Properties - Queue
-    private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.image-memory-cache",
-        attributes: .concurrent
-    )
-    
-    // MARK: Initializers
-    /// Initializes `ImageMemoryCache`.
-    public init(
-        cacheOriginalConfiguration: ImageMemoryCacheConfiguration = .defaultMemoryOriginal,
-        cacheResizedConfiguration: ImageMemoryCacheConfiguration = .defaultMemoryResized
-    ) {
-        self.originalCache = {
-            let cache: NSCache<ImageMemoryCache_OriginalKey, PlatformImage> = .init()
-            cache.countLimit = cacheOriginalConfiguration.countLimit
-            cache.totalCostLimit = cacheOriginalConfiguration.totalCostLimit
-            return cache
-        }()
-        
-        self.resizedCache = {
-            let cache: NSCache<ImageMemoryCache_ResizedKey, PlatformImage> = .init()
-            cache.countLimit = cacheResizedConfiguration.countLimit
-            cache.totalCostLimit = cacheResizedConfiguration.totalCostLimit
-            return cache
-        }()
-    }
-    
+nonisolated public protocol ImageMemoryCache: AnyObject, Sendable {
     // MARK: Operation - Get
-    public func get(
-        key: ImageMemoryCache_OriginalKey
-    ) -> PlatformImage? {
-        queue.sync {
-            originalCache.object(forKey: key)
-        }
-    }
+    /// Gets original image.
+    func get(
+        key: ImageMemoryCacheOriginalKey
+    ) -> PlatformImage?
     
-    public func get(
-        key: ImageMemoryCache_ResizedKey
-    ) -> PlatformImage? {
-        queue.sync {
-            resizedCache.object(forKey: key)
-        }
-    }
+    /// Gets resized image.
+    func get(
+        key: ImageMemoryCacheResizedKey
+    ) -> PlatformImage?
     
     // MARK: Operation - Set
-    public func set(
-        key: ImageMemoryCache_OriginalKey,
+    /// Sets original image.
+    func set(
+        key: ImageMemoryCacheOriginalKey,
         image: PlatformImage
-    ) {
-        queue.sync(flags: .barrier) {
-            originalCache.setObject(
-                image,
-                forKey: key,
-                cost: image.cacheCost
-            )
-            originalCacheKeys.insert(key)
-        }
-    }
+    )
     
-    public func set(
-        key: ImageMemoryCache_ResizedKey,
+    /// Sets resized image.
+    func set(
+        key: ImageMemoryCacheResizedKey,
         image: PlatformImage
-    ) {
-        queue.sync(flags: .barrier) {
-            resizedCache.setObject(
-                image,
-                forKey: key,
-                cost: image.cacheCost
-            )
-            resizedCacheKeys.insert(key)
-        }
-    }
+    )
 
     // MARK: Operation - Delete
-    public func delete(
-        key: ImageMemoryCache_OriginalKey
-    ) {
-        queue.sync(flags: .barrier) {
-            originalCache.removeObject(forKey: key)
-            originalCacheKeys.remove(key)
-        }
-    }
+    /// Deletes original image.
+    func delete(
+        key: ImageMemoryCacheOriginalKey
+    )
     
-    public func delete(
-        key: ImageMemoryCache_ResizedKey,
-        deleteAllSizes: Bool,
-    ) {
-        queue.sync(flags: .barrier) {
-            if deleteAllSizes {
-                let keys: [ImageMemoryCache_ResizedKey] = resizedCacheKeys.filter { $0.parameter == key.parameter }
-                
-                for key in keys {
-                    resizedCache.removeObject(forKey: key)
-                    resizedCacheKeys.remove(key)
-                }
-                
-            } else {
-                resizedCache.removeObject(forKey: key)
-                resizedCacheKeys.remove(key)
-            }
-        }
-    }
+    /// Deletes resized image.
+    func delete(
+        key: ImageMemoryCacheResizedKey,
+        deleteAllSizes: Bool
+    )
     
     // MARK: Operation - Delete All
-    public func deleteAll(
-        type: ImageMemoryCache_CacheType
+    /// Deletes all images.
+    func deleteAll(
+        type: ImageMemoryCacheCacheType
+    )
+}
+
+/// Image cache type.
+@OptionSetRepresentation
+nonisolated public struct ImageMemoryCacheCacheType: Sendable {
+    private enum Options: Int {
+        case original
+        case resized
+    }
+}
+
+/// Original key.
+nonisolated public final class ImageMemoryCacheOriginalKey: NSObject, Sendable {
+    // MARK: Properties
+    /// Image parameter.
+    public let parameter: ImageRepositoryParameter
+
+    // MARK: Initializers
+    /// Initializes `ImageMemoryCacheOriginalKey`.
+    public init(
+        parameter: ImageRepositoryParameter
     ) {
-        queue.sync(flags: .barrier) {
-            if type.contains(.original) {
-                originalCache.removeAllObjects()
-                originalCacheKeys.removeAll()
-            }
-            
-            if type.contains(.resized) {
-                resizedCache.removeAllObjects()
-                resizedCacheKeys.removeAll()
-            }
-        }
+        self.parameter = parameter
+    }
+
+    // MARK: Equality
+    override public var hash: Int {
+        parameter.hashValue
+    }
+
+    override public func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? Self else { return false }
+        
+        return parameter == other.parameter
+    }
+}
+
+/// Resized key.
+nonisolated public final class ImageMemoryCacheResizedKey: NSObject, Sendable {
+    // MARK: Properties
+    /// Image parameter.
+    public let parameter: ImageRepositoryParameter
+    
+    /// Image width.
+    public let width: CGFloat
+    
+    /// Image height.
+    public let height: CGFloat
+
+    // MARK: Initializers
+    /// Initializes `ImageMemoryCacheResizedKey`.
+    public init(
+        parameter: ImageRepositoryParameter,
+        size: CGSize
+    ) {
+        let quantizedSize: CGSize = size.quantized()
+        
+        self.parameter = parameter
+        self.width = quantizedSize.width
+        self.height = quantizedSize.height
+    }
+    
+    /// Initializes `ImageMemoryCacheResizedKey`.
+    public convenience init(
+        parameter: ImageRepositoryParameter,
+        width: CGFloat,
+        height: CGFloat
+    ) {
+        self.init(
+            parameter: parameter,
+            size: CGSize(width: width, height: height)
+        )
+    }
+
+    // MARK: Equality
+    override public var hash: Int {
+        var hasher: Hasher = .init()
+        hasher.combine(parameter)
+        hasher.combine(width)
+        hasher.combine(height)
+        
+        return hasher.finalize()
+    }
+
+    override public func isEqual(_ object: Any?) -> Bool {
+        guard let other = object as? Self else { return false }
+        
+        return
+            parameter == other.parameter &&
+            width == other.width &&
+            height == other.height
     }
 }
