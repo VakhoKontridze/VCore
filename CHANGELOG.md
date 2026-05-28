@@ -16,6 +16,7 @@ Core - Services
 
 - `KeychainService` is replaced with `DefaultNKeychainService` and `KeychainService` `protocol`
 - `NetworkReachabilityService` is replaced with `DefaultNetworkReachabilityService` and `NetworkReachabilityService` `protocol`
+- `UserDefaultsService` is replaced with `DefaultUserDefaultsService` and `UserDefaultsService` `protocol`
 
 Core - Utilities
 

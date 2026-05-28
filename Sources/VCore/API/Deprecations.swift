@@ -14,9 +14,9 @@ nonisolated extension DefaultKeychainService {
     }
 }
 
-nonisolated extension UserDefaultsService {
+nonisolated extension DefaultUserDefaultsService {
     @available(*, deprecated, renamed: "shared")
-    public static var `default`: UserDefaultsService {
+    public static var `default`: DefaultUserDefaultsService {
         shared
     }
 }

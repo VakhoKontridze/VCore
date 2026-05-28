@@ -7,7 +7,7 @@
 
 public import Foundation
 
-nonisolated public protocol KeychainService: Sendable {
+nonisolated public protocol KeychainService: AnyObject, Sendable {
     // MARK: Operations
     /// Returns `Data` associated with the key.
     func getData(

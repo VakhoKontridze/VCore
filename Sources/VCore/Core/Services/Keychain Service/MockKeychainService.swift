@@ -11,6 +11,10 @@ public import Foundation
 
 /// Object that performs get, set, and delete Keychain operations.
 nonisolated open class MockKeychainService: KeychainService, @unchecked Sendable {
+    // MARK: Initializers
+    /// Initializes `MockKeychainService`.
+    public init() {}
+    
     // MARK: Operations
     public func getData(
         key: String
