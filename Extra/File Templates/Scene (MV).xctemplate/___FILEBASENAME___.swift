@@ -3,7 +3,7 @@
 import SwiftUI
 import VCore
 
-struct ___VARIABLE_productName___View: View {
+struct ___VARIABLE_productName___: View {
     // MARK: Properties - Appearance
     // ...
     
@@ -88,7 +88,7 @@ struct ___VARIABLE_productName___View: View {
 
 #Preview {
     CoordinatingNavigationStack {
-        ___VARIABLE_productName___View(parameters: .mock)
+        ___VARIABLE_productName___(parameters: .mock)
     }
 }
 
