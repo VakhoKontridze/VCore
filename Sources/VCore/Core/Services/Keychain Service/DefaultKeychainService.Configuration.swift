@@ -1,0 +1,180 @@
+//
+//  KeychainServiceConfiguration.swift
+//  VCore
+//
+//  Created by Vakhtang Kontridze on 11.11.22.
+//
+
+public import Foundation
+
+nonisolated extension DefaultKeychainService {
+    /// Configuration.
+    ///
+    /// Can be used to customize queries:
+    ///
+    ///     let configuration: KeychainServiceConfiguration = .init(
+    ///         getQuery: GetQuery(query: [
+    ///             kSecClass as String: kSecClassGenericPassword,
+    ///             kSecAttrSynchronizable as String: kCFBooleanTrue as Any,
+    ///             kSecReturnData as String: kCFBooleanTrue as Any,
+    ///             kSecMatchLimit as String: kSecMatchLimitOne
+    ///         ]),
+    ///         setQuery: ...,
+    ///         deleteQuery: ...
+    ///     )
+    ///
+    ///     let keychainService: KeychainService = .init(configuration: configuration)
+    ///
+    ///     let data: Data? = keychainService.get(key: "key")
+    ///
+    nonisolated public struct Configuration {
+        // MARK: Properties
+        /// Get query.
+        public var getQuery: GetQuery
+        
+        /// Set query.
+        public var setQuery: SetQuery
+        
+        /// Delete query.
+        public var deleteQuery: DeleteQuery
+        
+        // MARK: Initializers
+        /// Initializes `Configuration`.
+        public init(
+            getQuery: GetQuery,
+            setQuery: SetQuery,
+            deleteQuery: DeleteQuery
+        ) {
+            self.getQuery = getQuery
+            self.setQuery = setQuery
+            self.deleteQuery = deleteQuery
+        }
+        
+        /// Default value.
+        public static var `default`: Self {
+            .init(
+                getQuery: .default,
+                setQuery: .default,
+                deleteQuery: .default
+            )
+        }
+
+        // MARK: Types
+        /// Get query.
+        ///
+        /// Declared query shouldn't contain `kSecAttrAccount`, since it is passed in `build(key:)` method.
+        nonisolated public struct GetQuery/*: Sendable */ {
+            // MARK: Properties
+            /// Query.
+            public var query: [String: Any]
+            
+            /// Default query.
+            public static var defaultQuery: [String: Any] {
+                [
+                    kSecClass as String: kSecClassGenericPassword,
+                    kSecAttrSynchronizable as String: kCFBooleanTrue as Any,
+                    kSecReturnData as String: kCFBooleanTrue as Any,
+                    kSecMatchLimit as String: kSecMatchLimitOne
+                ]
+            }
+            
+            // MARK: Initializers
+            /// Initializes `GetQuery` with query.
+            public init(query: [String: Any]) {
+                self.query = query
+            }
+            
+            /// Default value.
+            public static var `default`: Self {
+                .init(
+                    query: defaultQuery
+                )
+            }
+            
+            // MARK: Building
+            /// Builds query with key.
+            public func build(key: String) -> [String: Any] {
+                var query = query
+                query[kSecAttrAccount as String] = key
+                return query
+            }
+        }
+
+        /// Set query.
+        ///
+        /// Declared query shouldn't contain `kSecAttrAccount` and `kSecValueData`, since they are passed in `build(key:data:)` method.
+        nonisolated public struct SetQuery/*: Sendable */ {
+            // MARK: Properties
+            /// Query.
+            public var query: [String: Any]
+            
+            /// Default query.
+            public static var defaultQuery: [String: Any] {
+                [
+                    kSecClass as String: kSecClassGenericPassword as String,
+                    kSecAttrSynchronizable as String: kCFBooleanTrue as Any
+                ]
+            }
+            
+            // MARK: Initializers
+            /// Initializes `SetQuery` with query.
+            public init(query: [String: Any]) {
+                self.query = query
+            }
+            
+            /// Default value.
+            public static var `default`: Self {
+                .init(
+                    query: defaultQuery
+                )
+            }
+            
+            // MARK: Building
+            /// Builds query with key and data.
+            public func build(key: String, value: Data) -> [String: Any] {
+                var query = query
+                query[kSecAttrAccount as String] = key
+                query[kSecValueData as String] = value
+                return query
+            }
+        }
+
+        /// Delete query.
+        ///
+        /// Declared query shouldn't contain `kSecAttrAccount`, since it is passed in `build(key:)` method.
+        nonisolated public struct DeleteQuery/*: Sendable */ {
+            // MARK: Properties
+            /// Query.
+            public var query: [String: Any]
+            
+            /// Default query.
+            public static var defaultQuery: [String: Any] {
+                [
+                    kSecClass as String: kSecClassGenericPassword as String,
+                    kSecAttrSynchronizable as String: kCFBooleanTrue as Any
+                ]
+            }
+            
+            // MARK: Initializers
+            /// Initializes `DeleteQuery` with query.
+            public init(query: [String: Any]) {
+                self.query = query
+            }
+            
+            /// Default value.
+            public static var `default`: Self {
+                .init(
+                    query: defaultQuery
+                )
+            }
+            
+            // MARK: Building
+            /// Builds query with key.
+            public func build(key: String) -> [String: Any] {
+                var query = query
+                query[kSecAttrAccount as String] = key
+                return query
+            }
+        }
+    }
+}

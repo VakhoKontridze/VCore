@@ -7,9 +7,9 @@
 
 public import SwiftUI
 
-nonisolated extension KeychainService {
+nonisolated extension DefaultKeychainService {
     @available(*, deprecated, renamed: "shared")
-    public static var `default`: KeychainService {
+    public static var `default`: DefaultKeychainService {
         shared
     }
 }

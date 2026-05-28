@@ -14,6 +14,7 @@ Core - Macros
 
 Core - Services
 
+- `KeychainService` is replaced with `DefaultNKeychainService` and `KeychainService` `protocol`
 - `NetworkReachabilityService` is replaced with `DefaultNetworkReachabilityService` and `NetworkReachabilityService` `protocol`
 
 Core - Utilities
