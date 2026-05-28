@@ -52,7 +52,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
     
     // MARK: Properties - Queue
     private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.keychain-service",
+        label: "com.vakhtang-kontridze.vcore.default-keychain-service",
         attributes: .concurrent
     )
 
@@ -126,7 +126,10 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
     open func deleteData(
         key: String
     ) throws {
-        try deleteData(key: key, logsError: true)
+        try deleteData(
+            key: key,
+            logsError: true
+        )
     }
 
     private func deleteData(
@@ -174,19 +177,25 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
         let data: Data
         do {
             data = try jsonEncoder.encode(value)
+            
         } catch {
             Logger.keychainService.error("Failed to encode '\(Value.self)' to 'Data' in 'DefaultKeychainService.setCodable(key:value:)': \(error.localizedDescription)")
             throw KeychainServiceError.failedToSet
         }
 
-        try setData(key: key, value: data)
+        try setData(
+            key: key,
+            value: data
+        )
     }
 
     /// Deletes `Codable` associated with the key.
     open func deleteCodable(
         key: String
     ) throws {
-        try deleteData(key: key)
+        try deleteData(
+            key: key
+        )
     }
 
     // MARK: Subscript

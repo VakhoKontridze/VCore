@@ -39,14 +39,4 @@ nonisolated public struct KeychainServiceError: BaseErrorProtocol, Sendable {
             description: "Data cannot be deleted from 'Security' framework"
         )
     }
-    
-#if DEBUG
-    /// Indicates that get operation has failed.
-    public static var mockFailedToGet: Self {
-        .init(
-            code: 4,
-            description: "Data cannot be retrieved from 'Security' framework"
-        )
-    }
-#endif
 }

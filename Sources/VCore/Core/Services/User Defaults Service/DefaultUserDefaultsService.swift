@@ -50,7 +50,7 @@ nonisolated open class DefaultUserDefaultsService: UserDefaultsService, @uncheck
     
     // MARK: Properties - Queue
     private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.user-defaults-service",
+        label: "com.vakhtang-kontridze.vcore.default0user-defaults-service",
         attributes: .concurrent
     )
 
@@ -125,14 +125,19 @@ nonisolated open class DefaultUserDefaultsService: UserDefaultsService, @uncheck
     )
         where Value: RawRepresentable
     {
-        set(key: key, value: value.rawValue)
+        set(
+            key: key,
+            value: value.rawValue
+        )
     }
 
     /// Deletes `RawRepresentable` associated with the key.
     open func deleteRawRepresentable(
         key: String
     ) {
-        delete(key: key)
+        delete(
+            key: key
+        )
     }
 
     // MARK: Operations - Codable
@@ -170,13 +175,18 @@ nonisolated open class DefaultUserDefaultsService: UserDefaultsService, @uncheck
             throw UserDefaultsServiceError.failedToSet
         }
 
-        set(key: key, value: data)
+        set(
+            key: key,
+            value: data
+        )
     }
 
     /// Deletes `Codable` associated with the key.
     open func deleteCodable(
         key: String
     ) {
-        delete(key: key)
+        delete(
+            key: key
+        )
     }
 }
