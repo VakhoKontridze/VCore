@@ -48,6 +48,7 @@ nonisolated open class DefaultImageMemoryCache: ImageMemoryCache, @unchecked Sen
     }
     
     // MARK: Operation - Get
+    /// Gets original image.
     open func get(
         key: ImageMemoryCacheOriginalKey
     ) -> PlatformImage? {
@@ -56,6 +57,7 @@ nonisolated open class DefaultImageMemoryCache: ImageMemoryCache, @unchecked Sen
         }
     }
     
+    /// Gets resized image.
     open func get(
         key: ImageMemoryCacheResizedKey
     ) -> PlatformImage? {
@@ -65,6 +67,7 @@ nonisolated open class DefaultImageMemoryCache: ImageMemoryCache, @unchecked Sen
     }
     
     // MARK: Operation - Set
+    /// Sets original image.
     open func set(
         key: ImageMemoryCacheOriginalKey,
         image: PlatformImage
@@ -79,6 +82,7 @@ nonisolated open class DefaultImageMemoryCache: ImageMemoryCache, @unchecked Sen
         }
     }
     
+    /// Sets resized image.
     open func set(
         key: ImageMemoryCacheResizedKey,
         image: PlatformImage
@@ -94,6 +98,7 @@ nonisolated open class DefaultImageMemoryCache: ImageMemoryCache, @unchecked Sen
     }
 
     // MARK: Operation - Delete
+    /// Deletes original image.
     open func delete(
         key: ImageMemoryCacheOriginalKey
     ) {
@@ -103,6 +108,7 @@ nonisolated open class DefaultImageMemoryCache: ImageMemoryCache, @unchecked Sen
         }
     }
     
+    /// Deletes resized image.
     open func delete(
         key: ImageMemoryCacheResizedKey,
         deleteAllSizes: Bool,
@@ -124,6 +130,7 @@ nonisolated open class DefaultImageMemoryCache: ImageMemoryCache, @unchecked Sen
     }
     
     // MARK: Operation - Delete All
+    /// Deletes all images.
     open func deleteAll(
         type: ImageMemoryCacheCacheType
     ) {

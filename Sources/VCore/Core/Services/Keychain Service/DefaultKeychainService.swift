@@ -65,6 +65,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
     }
 
     // MARK: Operations
+    /// Returns `Data` associated with the key.
     open func getData(
         key: String
     ) throws -> Data {
@@ -88,6 +89,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
         return data
     }
 
+    /// Sets `Data` with the key.
     open func setData(
         key: String,
         value: Data
@@ -120,6 +122,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
         }
     }
 
+    /// Deletes `Data` associated with the key.
     open func deleteData(
         key: String
     ) throws {
@@ -141,6 +144,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
     }
 
     // MARK: Operations - Codable
+    /// Returns `Codable` associated with the key.
     open func getCodable<Value>(
         key: String
     ) throws -> Value
@@ -160,6 +164,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
         return value
     }
 
+    /// Sets `Codable` with the key.
     open func setCodable<Value>(
         key: String,
         value: Value
@@ -177,6 +182,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
         try setData(key: key, value: data)
     }
 
+    /// Deletes `Codable` associated with the key.
     open func deleteCodable(
         key: String
     ) throws {

@@ -25,42 +25,58 @@ nonisolated open class MockImageDiskCache: ImageDiskCache, @unchecked Sendable {
     /// Initializes `MockImageDiskCache`.
     public init() {}
     
-    // MARK: Operations
+    // MARK: Operation - Get
+    /// Gets original image.
     open func get(
         key: ImageDiskCacheOriginalKey
     ) -> PlatformImage? {
         image
     }
     
+    /// Gets resized image.
     open func get(
         key: ImageDiskCacheResizedKey
     ) -> PlatformImage? {
         image
     }
     
+    // MARK: Operation - Set
+    /// Sets original image.
     open func set(
         key: ImageDiskCacheOriginalKey,
         image: PlatformImage
     ) {}
     
+    /// Sets resized image.
     open func set(
         key: ImageDiskCacheResizedKey,
         image: PlatformImage
     ) {}
     
+    // MARK: Operation - Delete
+    /// Deletes original image.
     open func delete(
         key: ImageDiskCacheOriginalKey
     ) {}
     
+    /// Deletes resized image.
     open func delete(
         key: ImageDiskCacheResizedKey,
         deleteAllSizes: Bool
     ) {}
     
+    // MARK: Operation - Delete All
+    /// Deletes all images.
     open func deleteAll(
         type: ImageDiskCacheCacheType
     ) {}
     
+    // MARK: Operation - Evict
+    /// Removes image that exceed `maxAge` or, if total size exceeds `maxBytes`.
+    /// Evicts least-recently-used image until within budget.
+    ///
+    /// Drive this from `UIApplication.didEnterBackgroundNotification`,
+    /// so eviction runs while the user is not looking at images.
     open func evictIfNeeded() {}
 }
 

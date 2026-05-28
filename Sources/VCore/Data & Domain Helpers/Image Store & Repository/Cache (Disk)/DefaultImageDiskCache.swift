@@ -88,6 +88,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
     }
 
     // MARK: Operation - Get
+    /// Gets original image.
     open func get(
         key: ImageDiskCacheOriginalKey
     ) -> PlatformImage? {
@@ -105,6 +106,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
         return read(url: url)
     }
 
+    /// Gets resized image.
     open func get(
         key: ImageDiskCacheResizedKey
     ) -> PlatformImage? {
@@ -123,6 +125,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
     }
 
     // MARK: Operation - Set
+    /// Sets original image.
     open func set(
         key: ImageDiskCacheOriginalKey,
         image: PlatformImage
@@ -145,6 +148,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
         )
     }
 
+    /// Sets resized image.
     open func set(
         key: ImageDiskCacheResizedKey,
         image: PlatformImage
@@ -168,6 +172,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
     }
 
     // MARK: Operation - Delete
+    /// Deletes original image.
     open func delete(
         key: ImageDiskCacheOriginalKey
     ) {
@@ -193,6 +198,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
         }
     }
 
+    /// Deletes resized image.
     open func delete(
         key: ImageDiskCacheResizedKey,
         deleteAllSizes: Bool
@@ -259,6 +265,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
     }
 
     // MARK: Operation - Delete All
+    /// Deletes all images.
     open func deleteAll(
         type: ImageDiskCacheCacheType
     ) {
@@ -288,6 +295,11 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
     }
 
     // MARK: Operation - Evict
+    /// Removes image that exceed `maxAge` or, if total size exceeds `maxBytes`.
+    /// Evicts least-recently-used image until within budget.
+    ///
+    /// Drive this from `UIApplication.didEnterBackgroundNotification`,
+    /// so eviction runs while the user is not looking at images.
     open func evictIfNeeded() {
         evict(
             directory: originalDirectory,

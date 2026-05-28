@@ -15,11 +15,16 @@ import OSLog
 /// Default mage repository.
 nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Sendable {
     // MARK: Properties - Dependencies
+    /// Image fetch worker.
     public let imageFetchWorker: any ImageRepositoryFetchWorker
     
+    /// Image memory cache.
     public let imageMemoryCache: any ImageMemoryCache
+    
+    /// Image disk cache.
     public let imageDiskCache: any ImageDiskCache
     
+    /// Image progress memory cache.
     public let imageProgressMemoryCache: any ImageProgressMemoryCache
     
     // MARK: Initializers
@@ -37,6 +42,7 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
     }
     
     // MARK: Operations
+    /// Fetches original image.
     open func fetchOriginalImage(
         parameter: ImageRepositoryParameter,
         cachePolicy: ImageRepositoryCachePolicy,
@@ -74,6 +80,7 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
         )
     }
     
+    /// Fetches resized image.
     open func fetchResizedImage(
         parameter: ImageRepositoryParameter,
         size: CGSize,

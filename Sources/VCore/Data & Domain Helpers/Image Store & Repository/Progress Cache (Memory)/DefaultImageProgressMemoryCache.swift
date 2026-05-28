@@ -46,6 +46,7 @@ nonisolated open class DefaultImageProgressMemoryCache: ImageProgressMemoryCache
     }
     
     // MARK: Operation - Get
+    /// Gets original image.
     open func get(
         key: ImageProgressMemoryCacheOriginalKey
     ) -> Task<PlatformImage, any Error>? {
@@ -62,6 +63,7 @@ nonisolated open class DefaultImageProgressMemoryCache: ImageProgressMemoryCache
         originalCache.object(forKey: key)?.task
     }
     
+    /// Gets resized image.
     open func get(
         key: ImageProgressMemoryCacheResizedKey
     ) -> Task<PlatformImage, any Error>? {
@@ -79,6 +81,7 @@ nonisolated open class DefaultImageProgressMemoryCache: ImageProgressMemoryCache
     }
     
     // MARK: Operation - Set
+    /// Sets original image.
     open func set(
         key: ImageProgressMemoryCacheOriginalKey,
         task: Task<PlatformImage, any Error>
@@ -92,6 +95,7 @@ nonisolated open class DefaultImageProgressMemoryCache: ImageProgressMemoryCache
         }
     }
     
+    /// Sets resized image.
     open func set(
         key: ImageProgressMemoryCacheResizedKey,
         task: Task<PlatformImage, any Error>
@@ -106,6 +110,7 @@ nonisolated open class DefaultImageProgressMemoryCache: ImageProgressMemoryCache
     }
 
     // MARK: Operation - Delete
+    /// Deletes original image.
     open func delete(
         key: ImageProgressMemoryCacheOriginalKey,
         cancel: Bool
@@ -133,6 +138,7 @@ nonisolated open class DefaultImageProgressMemoryCache: ImageProgressMemoryCache
         originalCacheKeys.remove(key)
     }
     
+    /// Deletes resized image.
     open func delete(
         key: ImageProgressMemoryCacheResizedKey,
         deleteAllSizes: Bool,
@@ -174,6 +180,7 @@ nonisolated open class DefaultImageProgressMemoryCache: ImageProgressMemoryCache
     }
     
     // MARK: Operation - Delete All
+    /// Deletes all images.
     open func deleteAll(
         type: ImageProgressMemoryCacheCacheType,
         cancel: Bool

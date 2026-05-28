@@ -19,40 +19,50 @@ nonisolated open class MockImageProgressMemoryCache: ImageProgressMemoryCache, @
     /// Initializes `MockImageProgressMemoryCache`.
     public init() {}
     
-    // MARK: Operations
+    // MARK: Operation - Get
+    /// Gets original image.
     open func get(
         key: ImageProgressMemoryCacheOriginalKey
     ) -> Task<PlatformImage, any Error>? {
         nil
     }
     
+    /// Gets resized image.
     open func get(
         key: ImageProgressMemoryCacheResizedKey
     ) -> Task<PlatformImage, any Error>? {
         nil
     }
     
+    // MARK: Operation - Set
+    /// Sets original image.
     open func set(
         key: ImageProgressMemoryCacheOriginalKey,
         task: Task<PlatformImage, any Error>
     ) {}
     
+    /// Sets resized image.
     open func set(
         key: ImageProgressMemoryCacheResizedKey,
         task: Task<PlatformImage, any Error>
     ) {}
     
+    // MARK: Operation - Delete
+    /// Deletes original image.
     open func delete(
         key: ImageProgressMemoryCacheOriginalKey,
         cancel: Bool
     ) {}
     
+    /// Deletes resized image.
     open func delete(
         key: ImageProgressMemoryCacheResizedKey,
         deleteAllSizes: Bool,
         cancel: Bool
     ) {}
     
+    // MARK: Operation - Delete All
+    /// Deletes all images.
     open func deleteAll(
         type: ImageProgressMemoryCacheCacheType,
         cancel: Bool

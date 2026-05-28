@@ -28,8 +28,12 @@ nonisolated open class DefaultNetworkReachabilityService: NetworkReachabilitySer
         get { queue.sync { _status } }
         set { queue.sync(flags: .barrier) { _status = newValue } }
     }
+    /// Network connection status.
     private var _status: NWPath.Status?
     
+    /// Indicates if device is connected to a network.
+    ///
+    /// On app launch, `nil` is returned.
     open var isConnectedToNetwork: Bool? { status?.isConnected }
     
     // MARK: Properties - Status Monitor

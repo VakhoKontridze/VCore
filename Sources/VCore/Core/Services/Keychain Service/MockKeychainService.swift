@@ -16,23 +16,27 @@ nonisolated open class MockKeychainService: KeychainService, @unchecked Sendable
     public init() {}
     
     // MARK: Operations
-    public func getData(
+    /// Returns `Data` associated with the key.
+    open func getData(
         key: String
     ) throws -> Data {
         throw KeychainServiceError.mockFailedToGet
     }
     
-    public func setData(
+    /// Sets `Data` with the key.
+    open func setData(
         key: String,
         value: Data
     ) throws {}
     
-    public func deleteData(
+    /// Deletes `Data` associated with the key.
+    open func deleteData(
         key: String
     ) throws {}
     
     // MARK: Operations
-    public func getCodable<Value>(
+    /// Returns `Codable` associated with the key.
+    open func getCodable<Value>(
         key: String
     ) throws -> Value
         where Value: Decodable
@@ -40,19 +44,21 @@ nonisolated open class MockKeychainService: KeychainService, @unchecked Sendable
         throw KeychainServiceError.mockFailedToGet
     }
     
-    public func setCodable<Value>(
+    /// Sets `Codable` with the key.
+    open func setCodable<Value>(
         key: String,
         value: Value
     ) throws
         where Value: Encodable
     {}
     
-    public func deleteCodable(
+    /// Deletes `Codable` associated with the key.
+    open func deleteCodable(
         key: String
     ) throws {}
     
     // MARK: Subscript
-    public subscript(
+    open subscript(
         key: String
     ) -> Data? {
         get {

@@ -60,8 +60,12 @@ nonisolated public struct DefaultVCoreLocalizationProvider: VCoreLocalizationPro
     public init() {}
     
     // MARK: VCore Localization Provider
+    /// Localized value for error title in alerts.
     public var alertErrorTitle: String { "Something Went Wrong" }
+    
+    /// Localized value for `ok` button in alerts.
     public var alertOKButtonTitle: String { "OK" }
 
+    /// Localized value for `done` button in `ResponderChainUIToolbar` and `View.responderChainToolbar(...)`.
     public var responderChainToolbarDoneButtonTitle: String { "Done" }
 }
