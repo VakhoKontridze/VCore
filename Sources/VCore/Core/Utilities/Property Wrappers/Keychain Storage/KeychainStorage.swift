@@ -15,7 +15,7 @@ import OSLog
 @propertyWrapper
 public struct KeychainStorage<Value>: DynamicProperty where Value: Codable {
     // MARK: Properties
-    private let valueSetter: (Value) -> Void
+    private let set: (Value) -> Void
     
     @State private var storage: Value
 
@@ -24,7 +24,7 @@ public struct KeychainStorage<Value>: DynamicProperty where Value: Codable {
             storage
         }
         nonmutating set {
-            valueSetter(newValue)
+            set(newValue)
             storage = newValue
         }
     }
@@ -43,7 +43,7 @@ public struct KeychainStorage<Value>: DynamicProperty where Value: Codable {
         _ key: String,
         keychainService: KeychainService = .shared
     ) {
-        self.valueSetter = { try? keychainService.setCodable(key: key, value: $0) }
+        self.set = { try? keychainService.setCodable(key: key, value: $0) }
         
         let initialValue: Value = (try? keychainService.getCodable(key: key)) ?? defaultValue
         self._storage = State(wrappedValue: initialValue)

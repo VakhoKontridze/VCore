@@ -21,7 +21,7 @@ import Combine
 @propertyWrapper
 public struct PublishedKeychainStorage<Value>: DynamicProperty where Value: Codable {
     // MARK: Properties
-    private let valueSetter: (Value) -> Void
+    private let set: (Value) -> Void
 
     @PublishedPropertyWrapperBox private var storage: PublishedPropertyWrapperStorage<Value>
     
@@ -48,7 +48,7 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty where Value: Coda
         _ key: String,
         keychainService: KeychainService = .shared
     ) {
-        self.valueSetter = { try? keychainService.setCodable(key: key, value: $0) }
+        self.set = { try? keychainService.setCodable(key: key, value: $0) }
         
         let initialValue: Value = (try? keychainService.getCodable(key: key)) ?? defaultValue
         self._storage = PublishedPropertyWrapperBox(wrappedValue: .value(initialValue))
@@ -80,7 +80,7 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty where Value: Coda
             instance[keyPath: storageKeyPath].storage.value
         }
         set {
-            instance[keyPath: storageKeyPath].valueSetter(newValue)
+            instance[keyPath: storageKeyPath].set(newValue)
             
             instance[keyPath: storageKeyPath].storage.update(newValue)
             
