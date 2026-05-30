@@ -19,7 +19,9 @@ extension View {
     ///             item: Binding<Item?>,
     ///             @ViewBuilder content: @escaping (Item) -> Content
     ///         ) -> some View
-    ///             where Content: View
+    ///             where
+    ///                 Item: Identifiable,
+    ///                 Content: View
     ///         {
     ///             let isPresented: Binding<Bool> = .init(
     ///                 get: { item.wrappedValue != nil },
@@ -47,7 +49,9 @@ extension View {
         _ item: Item?,
         @ViewBuilder content: @escaping (Self, Item?) -> Content
     ) -> some View
-        where Content: View
+        where
+            Item: Identifiable,
+            Content: View
     {
         LastNonNilCachingView(
             item: item,
@@ -59,6 +63,7 @@ extension View {
 
 private struct LastNonNilCachingView<Item, Root, Content>: View
     where
+        Item: Identifiable,
         Root: View,
         Content: View
 {
@@ -85,9 +90,9 @@ private struct LastNonNilCachingView<Item, Root, Content>: View
     // MARK: Body
     var body: some View {
         content(root, item ?? lastNonNilItem)
-            .onReceive(Just(item)) { newValue in // Using `Combine` here avoids `Equatable` constraint
-                if let newValue {
-                    lastNonNilItem = newValue
+            .onChange(of: item?.id) {
+                if let item {
+                    lastNonNilItem = item
                 }
             }
     }
