@@ -4,7 +4,7 @@ import SwiftUI
 
 struct ___VARIABLE_productName___: View {
     // MARK: Properties - Appearance
-    // ..
+    // ...
 
     // MARK: Properties - Parameters
     // ...
