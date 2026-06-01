@@ -1312,3 +1312,52 @@ public protocol UIActionSheetViewable {
 }
 
 #endif
+
+@available(*, deprecated, message: "Use new formatting API")
+nonisolated extension Double {
+    public func rounded(
+        minFractions: Int = 0,
+        maxFractions: Int
+    ) -> String? {
+        AutoPrecisionNumberFormatter(minFractions: minFractions, maxFractions: maxFractions)
+            .string(from: self)
+    }
+}
+
+@available(*, deprecated, message: "Use new formatting API")
+nonisolated public struct AutoPrecisionNumberFormatter: Sendable {
+    public var minFractions: Int
+    public var maxFractions: Int
+    
+    public init(
+        minFractions: Int = 0,
+        maxFractions: Int
+    ) {
+        self.minFractions = minFractions
+        self.maxFractions = maxFractions
+    }
+    
+    public func string(from number: Double) -> String? {
+        guard minFractions >= 0 else {
+            Logger.misc.critical("'minFractions' must be greater than or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            return nil
+        }
+
+        guard maxFractions >= 0 else {
+            Logger.misc.critical("'maxFractions' must be greater than or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            return nil
+        }
+
+        guard maxFractions >= minFractions else {
+            Logger.misc.critical("'maxFractions' must be greater than or equal to 'minFractions' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            return nil
+        }
+
+        let numberFormatter: NumberFormatter = .init()
+        numberFormatter.numberStyle = .decimal
+        numberFormatter.minimumFractionDigits = minFractions
+        numberFormatter.maximumFractionDigits = maxFractions
+        
+        return numberFormatter.string(from: NSNumber(value: number))
+    }
+}
