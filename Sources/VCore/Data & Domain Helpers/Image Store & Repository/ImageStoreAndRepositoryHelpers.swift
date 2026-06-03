@@ -69,7 +69,7 @@ nonisolated extension PlatformImage {
     }
 }
 
-#if canImport(AppKit)
+#if canImport(AppKit) && !targetEnvironment(macCatalyst)
 
 nonisolated extension NSImage {
     fileprivate var scale: CGFloat {

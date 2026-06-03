@@ -85,14 +85,20 @@ nonisolated open class MockImageRepository: ImageRepository, @unchecked Sendable
         case .remote(let url):
             try await imageFetchWorker.fetchRemoteImage(url: url)
             
+#if !os(watchOS)
         case .photo_Asset(let asset):
             try await imageFetchWorker.fetchPhotoImage(asset: asset)
+#endif
             
+#if !os(tvOS) && !os(watchOS)
         case .photo_Item(let item):
             try await imageFetchWorker.fetchPhotoImage(item: item)
+#endif
             
+#if !os(watchOS)
         case .photo_AssetIdentifier(let assetIdentifier):
             try await imageFetchWorker.fetchPhotoImage(assetIdentifier: assetIdentifier)
+#endif
         }
     }
 }

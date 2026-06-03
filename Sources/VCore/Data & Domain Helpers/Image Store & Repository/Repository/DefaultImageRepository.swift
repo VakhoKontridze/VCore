@@ -343,14 +343,20 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
         case .remote(let url):
             try await imageFetchWorker.fetchRemoteImage(url: url)
             
+#if !os(watchOS)
         case .photo_Asset(let asset):
             try await imageFetchWorker.fetchPhotoImage(asset: asset)
+#endif
             
+#if !os(tvOS) && !os(watchOS)
         case .photo_Item(let item):
             try await imageFetchWorker.fetchPhotoImage(item: item)
+#endif
             
+#if !os(watchOS)
         case .photo_AssetIdentifier(let assetIdentifier):
             try await imageFetchWorker.fetchPhotoImage(assetIdentifier: assetIdentifier)
+#endif
         }
     }
     
@@ -359,7 +365,18 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
         size: CGSize
     ) async throws -> PlatformImage {
 #if canImport(UIKit)
-
+        
+#if os(watchOS)
+        
+        guard
+            let thumbnail: PlatformImage = await image.byPreparingThumbnailWatchOS(ofSize: size)
+        else {
+            throw ImageRepositoryError.failedToResizeImage
+        }
+        try Task.checkCancellation()
+        
+#else
+        
         guard
             let thumbnail: PlatformImage = await image.byPreparingThumbnail(ofSize: size)
         else {
@@ -367,8 +384,10 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
         }
         try Task.checkCancellation()
         
+#endif
+        
 #elseif canImport(AppKit)
-
+        
         guard
             let thumbnail: PlatformImage = image.byPreparingThumbnail(ofSize: size)
         else {

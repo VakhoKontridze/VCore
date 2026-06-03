@@ -5,14 +5,13 @@
 //  Created by Vakhtang Kontridze on 9/13/21.
 //
 
-#if !os(watchOS)
-
 #if canImport(UIKit)
 public import UIKit
 #elseif canImport(AppKit)
 public import AppKit
 #endif
 
+@available(watchOS, unavailable)
 nonisolated extension NSLayoutConstraint {
     /// Allows for the storing of a layout constraint, while using it in `NSLayoutConstraint.activate(_:)`.
     ///
@@ -28,5 +27,3 @@ nonisolated extension NSLayoutConstraint {
         return self
     }
 }
-
-#endif

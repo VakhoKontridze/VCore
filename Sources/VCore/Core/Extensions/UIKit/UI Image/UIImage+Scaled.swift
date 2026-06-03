@@ -45,6 +45,16 @@ nonisolated extension UIImage {
     private func scaled(
         toSize newSize: CGSize
     ) -> UIImage? {
+#if os(watchOS)
+        
+        UIGraphicsBeginImageContextWithOptions(newSize, false, 1)
+        defer { UIGraphicsEndImageContext() }
+        
+        draw(in: CGRect(origin: .zero, size: newSize))
+        return UIGraphicsGetImageFromCurrentImageContext()
+        
+#else
+        
         let format: UIGraphicsImageRendererFormat = .init()
         format.scale = 1
         
@@ -56,6 +66,8 @@ nonisolated extension UIImage {
         return renderer.image { _ in
             draw(in: CGRect(origin: .zero, size: newSize))
         }
+        
+#endif
     }
 }
 

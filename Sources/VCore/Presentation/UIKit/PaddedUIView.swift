@@ -10,6 +10,7 @@
 public import UIKit
 
 /// Container that pads underlying `UIView`.
+@available(watchOS, unavailable)
 public final class PaddedUIView: UIView {
     // MARK: Properties - Appearance
     private var constraintLeading: NSLayoutConstraint?

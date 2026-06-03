@@ -11,8 +11,15 @@ public import UIKit
 #elseif canImport(AppKit)
 public import AppKit
 #endif
+#if os(watchOS)
+import ImageIO
+#endif
+#if !os(watchOS)
 public import Photos
+#endif
+#if !os(tvOS) && !os(watchOS)
 public import PhotosUI
+#endif
 import CryptoKit
 
 /// Image repository.
@@ -136,6 +143,7 @@ nonisolated public struct ImageRepositoryParameter: Hashable, Sendable {
         )
     }
     
+#if !os(watchOS)
     /// `Photos` asset.
     public static func photo(
         asset: PHAsset
@@ -146,7 +154,9 @@ nonisolated public struct ImageRepositoryParameter: Hashable, Sendable {
             )
         )
     }
+#endif
     
+#if !os(tvOS) && !os(watchOS)
     /// `Photos` item.
     public static func photo(
         item: PhotosPickerItem
@@ -157,7 +167,9 @@ nonisolated public struct ImageRepositoryParameter: Hashable, Sendable {
             )
         )
     }
+#endif
     
+#if !os(watchOS)
     /// `Photos` asset identifier.
     public static func photo(
         assetIdentifier: String
@@ -168,6 +180,7 @@ nonisolated public struct ImageRepositoryParameter: Hashable, Sendable {
             )
         )
     }
+#endif
     
     // MARK: Properties
     /// Cost of caching image.
@@ -208,20 +221,26 @@ nonisolated public struct ImageRepositoryParameter: Hashable, Sendable {
             // No way to know
             return 0
         
+#if !os(watchOS)
         case .photo_Asset(let asset):
             return Int(
                 CGFloat(asset.pixelWidth) *
                 CGFloat(asset.pixelHeight) *
                 4
             )
+#endif
             
+#if !os(tvOS) && !os(watchOS)
         case .photo_Item:
             // No way to know
             return 0
-        
+#endif
+            
+#if !os(watchOS)
         case .photo_AssetIdentifier:
             // No way to know
             return 0
+#endif
         }
     }
     
@@ -264,9 +283,12 @@ nonisolated public struct ImageRepositoryParameter: Hashable, Sendable {
             // Absolute URL string, with -- scheme, host, path, query -- all included
             return "remote_\(url.absoluteString)"
 
+#if !os(watchOS)
         case .photo_Asset(let asset):
             return "photo_asset_\(asset.localIdentifier)"
+#endif
             
+#if !os(tvOS) && !os(watchOS)
         case .photo_Item(let item):
             guard
                 let itemIdentifier: String = item.itemIdentifier
@@ -275,9 +297,12 @@ nonisolated public struct ImageRepositoryParameter: Hashable, Sendable {
             }
             
             return "photo_item_\(itemIdentifier)"
+#endif
             
+#if !os(watchOS)
         case .photo_AssetIdentifier(let identifier):
             return "photo_assetid_\(identifier)"
+#endif
         }
     }
     
@@ -288,9 +313,15 @@ nonisolated public struct ImageRepositoryParameter: Hashable, Sendable {
         case asset(name: String, bundle: Bundle?)
         case local(url: URL)
         case remote(url: URL)
+#if !os(watchOS)
         case photo_Asset(asset: PHAsset)
+#endif
+#if !os(tvOS) && !os(watchOS)
         case photo_Item(item: PhotosPickerItem)
+#endif
+#if !os(watchOS)
         case photo_AssetIdentifier(assetIdentifier: String)
+#endif
     }
 }
 

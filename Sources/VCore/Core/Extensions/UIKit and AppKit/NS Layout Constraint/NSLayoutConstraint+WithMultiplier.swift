@@ -5,16 +5,15 @@
 //  Created by Vakhtang Kontridze on 11/5/21.
 //
 
-#if !os(watchOS)
-
 #if canImport(UIKit)
 public import UIKit
 #elseif canImport(AppKit)
 public import AppKit
 #endif
 
+@available(watchOS, unavailable)
 extension NSLayoutConstraint {
-    /// Modifies and returns muliplier with a given priority.
+    /// Modifies and returns multiplier with a given priority.
     ///
     /// Must be called after other `NSLayoutConstraint` modifiers.
     ///
@@ -35,5 +34,3 @@ extension NSLayoutConstraint {
         )
     }
 }
-
-#endif

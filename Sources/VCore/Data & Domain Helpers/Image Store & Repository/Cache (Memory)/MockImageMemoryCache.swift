@@ -18,7 +18,13 @@ nonisolated open class MockImageMemoryCache: ImageMemoryCache, @unchecked Sendab
     // MARK: Properties - Images
     private let image: PlatformImage? = .init(
         size: CGSize(dimension: 500),
-        color: PlatformColor.systemBlue
+        color: {
+#if os(watchOS)
+                UIColor.blue
+#else
+                PlatformColor.systemBlue
+#endif
+            }()
     )
     
     // MARK: Initializers

@@ -11,8 +11,12 @@ public import UIKit
 #elseif canImport(AppKit)
 public import AppKit
 #endif
+#if !os(watchOS)
 public import Photos
+#endif
+#if !os(tvOS)
 public import PhotosUI
+#endif
 
 /// Default worker that fetches images for `ImageRepository`.
 nonisolated open class DefaultImageRepositoryFetchWorker: ImageRepositoryFetchWorker, @unchecked Sendable {
@@ -86,6 +90,7 @@ nonisolated open class DefaultImageRepositoryFetchWorker: ImageRepositoryFetchWo
         return image
     }
     
+#if !os(watchOS)
     open func fetchPhotoImage(
         asset: PHAsset
     ) async throws -> PlatformImage {
@@ -126,7 +131,9 @@ nonisolated open class DefaultImageRepositoryFetchWorker: ImageRepositoryFetchWo
             }
         }
     }
+#endif
     
+#if !os(tvOS)
     open func fetchPhotoImage(
         item: PhotosPickerItem
     ) async throws -> PlatformImage {
@@ -142,7 +149,9 @@ nonisolated open class DefaultImageRepositoryFetchWorker: ImageRepositoryFetchWo
         
         return image
     }
+#endif
     
+#if !os(watchOS)
     open func fetchPhotoImage(
         assetIdentifier: String
     ) async throws -> PlatformImage {
@@ -159,6 +168,7 @@ nonisolated open class DefaultImageRepositoryFetchWorker: ImageRepositoryFetchWo
         
         return try await fetchPhotoImage(asset: asset)
     }
+#endif
     
     // MARK: Helpers
     private func makeImage(

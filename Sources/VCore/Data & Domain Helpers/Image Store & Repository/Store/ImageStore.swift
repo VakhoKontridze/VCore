@@ -242,12 +242,24 @@ public final class ImageStore {
     // MARK: Subscriptions
     private func addSubscriptions() {
 #if canImport(UIKit)
-
+        
+#if os(watchOS)
+        
+        NotificationCenter.default
+            .publisher(for: WKApplication.didEnterBackgroundNotification)
+            .receive(on: DispatchQueue.main)
+            .sink { [weak self] _ in self?.imageRepository.imageDiskCache.evictIfNeeded() }
+            .store(in: &cancellables)
+        
+#else
+        
         NotificationCenter.default
             .publisher(for: UIApplication.didEnterBackgroundNotification)
             .receive(on: DispatchQueue.main)
             .sink { [weak self] _ in self?.imageRepository.imageDiskCache.evictIfNeeded() }
             .store(in: &cancellables)
+        
+#endif
         
 #elseif canImport(AppKit)
 

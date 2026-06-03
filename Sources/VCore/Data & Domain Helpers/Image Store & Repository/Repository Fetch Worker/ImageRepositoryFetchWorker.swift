@@ -11,8 +11,12 @@ public import UIKit
 #elseif canImport(AppKit)
 public import AppKit
 #endif
+#if !os(watchOS)
 public import Photos
+#endif
+#if !os(tvOS)
 public import PhotosUI
+#endif
 
 /// Worker that fetches images for `ImageRepository`.
 public protocol ImageRepositoryFetchWorker: AnyObject, Sendable {
@@ -42,18 +46,24 @@ public protocol ImageRepositoryFetchWorker: AnyObject, Sendable {
         url: URL
     ) async throws -> PlatformImage
     
+#if !os(watchOS)
     /// Fetches image from `Photos` asset.
     func fetchPhotoImage(
         asset: PHAsset
     ) async throws -> PlatformImage
+#endif
     
+#if !os(tvOS)
     /// Fetches image from `Photos` item.
     func fetchPhotoImage(
         item: PhotosPickerItem
     ) async throws -> PlatformImage
+#endif
     
+#if !os(watchOS)
     /// Fetches image from `Photos` asset identifier.
     func fetchPhotoImage(
         assetIdentifier: String
     ) async throws -> PlatformImage
+#endif
 }

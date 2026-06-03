@@ -22,6 +22,23 @@ nonisolated extension UIImage {
     ///     )
     ///
     public func cropped(to newRect: CGRect) -> UIImage {
+#if os(watchOS)
+        
+        let normalizedImage: UIImage = {
+            guard imageOrientation != .up else { return self }
+            
+            UIGraphicsBeginImageContextWithOptions(size, false, scale)
+            defer { UIGraphicsEndImageContext() }
+            
+            draw(in: CGRect(origin: .zero, size: size))
+            
+            let normalizedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext() ?? self
+            
+            return normalizedImage
+        }()
+        
+#else
+        
         let normalizedImage: UIImage = {
             guard imageOrientation != .up else { return self }
             
@@ -31,6 +48,8 @@ nonisolated extension UIImage {
                 draw(in: CGRect(origin: .zero, size: size))
             }
         }()
+        
+#endif
         
         guard
             newRect.size.width <= normalizedImage.size.width,

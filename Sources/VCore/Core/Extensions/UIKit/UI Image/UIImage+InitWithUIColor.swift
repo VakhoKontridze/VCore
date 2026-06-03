@@ -21,6 +21,19 @@ nonisolated extension UIImage {
         size: CGSize,
         color: UIColor
     ) {
+#if os(watchOS)
+        
+        UIGraphicsBeginImageContextWithOptions(size, false, 1)
+        defer { UIGraphicsEndImageContext() }
+        
+        color.setFill()
+        UIRectFill(CGRect(origin: .zero, size: size))
+        
+        guard let cgImage: CGImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else { return nil }
+        self.init(cgImage: cgImage)
+        
+#else
+        
         let renderer: UIGraphicsImageRenderer = .init(
             size: size
         )
@@ -37,6 +50,8 @@ nonisolated extension UIImage {
         }
         
         self.init(cgImage: cgImage)
+        
+#endif
     }
 }
 

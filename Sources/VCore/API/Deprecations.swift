@@ -778,6 +778,7 @@ open class UIKitBaseButton: UIView {
     }
 }
 
+@available(tvOS, unavailable)
 nonisolated extension UIKitBaseButtonState {
     fileprivate var isGestureEnabled: Bool {
         switch self {
@@ -787,6 +788,7 @@ nonisolated extension UIKitBaseButtonState {
     }
 }
 
+@available(tvOS, unavailable)
 nonisolated extension UIKitBaseButtonInternalState {
     fileprivate var isGestureEnabled: Bool {
         switch self {

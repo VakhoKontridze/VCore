@@ -5,14 +5,13 @@
 //  Created by Vakhtang Kontridze on 9/13/21.
 //
 
-#if !os(watchOS)
-
 #if canImport(UIKit)
 public import UIKit
 #elseif canImport(AppKit)
 public import AppKit
 #endif
 
+@available(watchOS, unavailable)
 extension NSLayoutConstraint {
 #if canImport(UIKit)
     /// Modifies and returns constraint with a given priority.
@@ -56,5 +55,3 @@ extension NSLayoutConstraint {
         return self
     }
 }
-
-#endif
