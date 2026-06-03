@@ -45,6 +45,9 @@ struct ___VARIABLE_productName___: View {
         // Toolbar
         .inlineNavigationTitle("___VARIABLE_productName___")
         
+        // Dynamic type
+        .dynamicTypeSize(GlobalAppearance.dynamicTypeSize)
+        
         // Progress
         .progressView(parameters: progressViewParameters)
         
