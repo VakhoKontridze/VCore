@@ -1,6 +1,6 @@
 # Change Log
 
-### 8.2.0(115)
+### [8.2.0(115)](https://github.com/VakhoKontridze/VCore/releases/tag/8.2.0) — 2026 06 03
 
 Core - Extensions
 
