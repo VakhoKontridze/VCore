@@ -1,5 +1,11 @@
 # Change Log
 
+### 8.2.1(116)
+
+Core - Services
+
+- `default` in `ImageRepositoryCacheStorage` is changed from `memory` to `all`
+
 ### [8.2.0(115)](https://github.com/VakhoKontridze/VCore/releases/tag/8.2.0) — 2026 06 03
 
 Core - Extensions

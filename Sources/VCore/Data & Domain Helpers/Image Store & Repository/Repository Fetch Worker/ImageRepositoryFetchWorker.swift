@@ -19,7 +19,7 @@ public import PhotosUI
 #endif
 
 /// Worker that fetches images for `ImageRepository`.
-public protocol ImageRepositoryFetchWorker: AnyObject, Sendable {
+nonisolated public protocol ImageRepositoryFetchWorker: AnyObject, Sendable {
     /// Fetches image.
     func fetchImage(
         image: PlatformImage

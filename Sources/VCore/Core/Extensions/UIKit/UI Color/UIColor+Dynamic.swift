@@ -22,7 +22,7 @@ nonisolated extension UIColor {
         _ dark: UIColor
     ) -> UIColor {
 #if !os(watchOS)
-        UIColor  { traitCollection in
+        UIColor { traitCollection in
             switch traitCollection.userInterfaceStyle {
             case .unspecified: return light
             case .light: return light

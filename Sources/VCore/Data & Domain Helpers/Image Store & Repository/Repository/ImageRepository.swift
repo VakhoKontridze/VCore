@@ -370,7 +370,7 @@ nonisolated public struct ImageRepositoryCacheStorage: Sendable {
     
     // MARK: Initializers
     /// Default value.
-    public static var `default`: Self { .memory }
+    public static var `default`: Self { .all }
 }
 
 /// Progress cache storage.

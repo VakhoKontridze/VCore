@@ -59,7 +59,6 @@ struct ___VARIABLE_productName___: View {
         
         // Lifecycle
         .onAppear(perform: onAppear)
-        .onDisappear(perform: onDisappear)
     }
     
     private var backgroundView: some View {
@@ -73,10 +72,6 @@ struct ___VARIABLE_productName___: View {
 
     // MARK: Lifecycle
     private func onAppear(isFirst: Bool) {
-        // ...
-    }
-    
-    private func onDisappear() {
         // ...
     }
     
