@@ -33,10 +33,6 @@ Package files are grouped as:
 
 - ***Presentation***. `View`s, `UIView`s, and `UIViewController`s. For instance, `SwiftUIBaseButton`.
 
-Package incudes folder `Extra`, which contains:
-
-- ***File Templates***. File templates that can be used for accelerating workflow.
-
 Project includes folder `Documentation`, which contains:
 
 - Various documentation

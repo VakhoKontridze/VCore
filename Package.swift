@@ -62,8 +62,7 @@ let package: Package = .init(
                 "VCoreMacrosImplementation"
             ],
             exclude: [
-                "../../Documentation",
-                "../../Extra"
+                "../../Documentation"
             ],
             resources: [
                 .process("PrivacyInfo.xcprivacy")
