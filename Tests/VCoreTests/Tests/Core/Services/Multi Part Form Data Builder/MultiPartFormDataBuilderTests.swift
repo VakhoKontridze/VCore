@@ -71,7 +71,8 @@ nonisolated struct MultipartFormDataBuilderTests {
         )
         request.httpBody = httpData.nonEmpty
 
-        let data: Data = try await URLSession.shared.data(for: request).0
+        let (data, response): (Data, URLResponse) = try await URLSession.shared.data(for: request)
+        guard response.isSuccessHTTPStatusCode else { return }
 
         let result: [String: Any] = try JSONDecoder.decodeJSONFromData(data)
 
