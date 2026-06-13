@@ -38,6 +38,9 @@ public final class KeyboardObserver {
     /// Keyboard responsiveness strategy.
     public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy
     
+    /// Indicates if keyboard is visible.
+    public private(set) var isVisible: Bool = false
+    
     /// Offset.
     public private(set) var offset: CGFloat = 0
 
@@ -92,6 +95,8 @@ public final class KeyboardObserver {
     
     private func keyboardWillShow(notification: Notification) {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
+        
+        isVisible = true
         
         let offset: CGFloat? = {
             switch keyboardResponsivenessStrategy {
@@ -170,6 +175,8 @@ public final class KeyboardObserver {
 
     private func keyboardWillHide(notification: Notification) {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
+        
+        isVisible = false
 
         let offset: CGFloat? = {
             switch keyboardResponsivenessStrategy {

@@ -6,6 +6,10 @@ Core - Services
 
 - `default` in `ImageRepositoryCacheStorage` is changed from `memory` to `all`
 
+Core - Utilities
+
+- `isVisible` is added to `KeyboardObserver`
+
 Extra - File Templates
 
 - File templates are removed
