@@ -19,180 +19,180 @@ struct KeyedManagedTaskTests {
     // MARK: Tests
     @Test
     func testSimpleCall() async throws {
-        let model: Model = .init()
+        let store: Store = .init()
 
-        let task: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1) }
+        let task: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1) }
 
         try? await task.value
 
-        #expect(model.numbers[1] == 1)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == 1)
+        #expect(store.error == nil)
     }
 
     @Test
     func testSequentialCallsRunningIndependently() async throws {
-        let model: Model = .init()
+        let store: Store = .init()
 
-        let task1: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1) }
+        let task1: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1) }
 
         try? await task1.value
 
-        #expect(model.numbers[1] == 1)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == 1)
+        #expect(store.error == nil)
 
-        let task2: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 2) }
+        let task2: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 2) }
 
         try? await task2.value
 
-        #expect(model.numbers[1] == 2)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == 2)
+        #expect(store.error == nil)
     }
 
     @Test
     func testConcurrentCallsSameKey_Deduplicate() async throws {
-        let model: Model = .init()
+        let store: Store = .init()
 
-        let task1: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
-        let task2: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 2, delay: .milliseconds(200)) }
+        let task1: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
+        let task2: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 2, delay: .milliseconds(200)) }
 
         _ = try await (task1.value, task2.value)
 
-        #expect(model.numbers[1] == 1)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == 1)
+        #expect(store.error == nil)
     }
 
     @Test
     func testConcurrentCallsDifferentKeys_RunIndependently() async throws {
-        let model: Model = .init()
+        let store: Store = .init()
 
-        let task1: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
-        let task2: Task<Void, any Error> = .init { try await model.fetch(id: 2, tag: 2, delay: .milliseconds(200)) }
+        let task1: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
+        let task2: Task<Void, any Error> = .init { try await store.fetch(id: 2, tag: 2, delay: .milliseconds(200)) }
 
         _ = try await (task1.value, task2.value)
 
-        #expect(model.numbers[1] == 1)
-        #expect(model.numbers[2] == 2)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == 1)
+        #expect(store.numbers[2] == 2)
+        #expect(store.error == nil)
     }
 
     @Test
     func testCancel_PrimaryCancels_SecondaryReceivesResult() async throws {
-        let model: Model = .init()
+        let store: Store = .init()
 
-        let task1: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
-        let task2: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 2, delay: .milliseconds(200)) }
+        let task1: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
+        let task2: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 2, delay: .milliseconds(200)) }
 
         try? await Task.sleep(for: .milliseconds(50))
         task1.cancel()
         _ = try? await (task1.value, task2.value)
 
-        #expect(model.numbers[1] == 1)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == 1)
+        #expect(store.error == nil)
     }
 
     @Test
     func testCancel_SecondaryCancels_PrimaryReceivesResult() async throws {
-        let model: Model = .init()
+        let store: Store = .init()
 
-        let task1: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
-        let task2: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 2, delay: .milliseconds(200)) }
+        let task1: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
+        let task2: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 2, delay: .milliseconds(200)) }
 
         try? await Task.sleep(for: .milliseconds(50))
         task2.cancel()
         _ = try? await (task1.value, task2.value)
 
-        #expect(model.numbers[1] == 1)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == 1)
+        #expect(store.error == nil)
     }
 
     @Test
-    func testModelCancel_OneWaiter() async throws {
-        let model: Model = .init()
+    func testStoreCancel_OneWaiter() async throws {
+        let store: Store = .init()
 
-        let task: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
+        let task: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
 
         try? await Task.sleep(for: .milliseconds(50))
-        model.cancel(id: 1, force: true)
+        store.reset(id: 1)
         try? await task.value
 
-        #expect(model.numbers[1] == nil)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == nil)
+        #expect(store.error == nil)
     }
 
     @Test
-    func testModelCancel_MultipleWaiters_OnlyOne() async throws {
-        let model: Model = .init()
+    func testStoreCancel_MultipleWaiters_OnlyOne() async throws {
+        let store: Store = .init()
 
-        let task1: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
-        let task2: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 2, delay: .milliseconds(200)) }
+        let task1: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
+        let task2: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 2, delay: .milliseconds(200)) }
 
         try? await Task.sleep(for: .milliseconds(50))
-        model.cancel(id: 1, force: false)
+        store.reset(id: 1, forAllWaiters: false, resetState: false)
         _ = try? await (task1.value, task2.value)
 
-        #expect(model.numbers[1] == 1)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == 1)
+        #expect(store.error == nil)
     }
 
     @Test
-    func testModelCancel_MultipleWaiters_Multiple() async throws {
-        let model: Model = .init()
+    func testStoreCancel_MultipleWaiters_Multiple() async throws {
+        let store: Store = .init()
 
-        let task1: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
-        let task2: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 2, delay: .milliseconds(200)) }
+        let task1: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
+        let task2: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 2, delay: .milliseconds(200)) }
 
         try? await Task.sleep(for: .milliseconds(50))
-        model.cancel(id: 1, force: true)
+        store.reset(id: 1)
         _ = try? await (task1.value, task2.value)
 
-        #expect(model.numbers[1] == nil)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == nil)
+        #expect(store.error == nil)
     }
 
     // Not testable reliable without testing hooks, so the test is skipped
     //@Test
-    //func testModelCancelAll_OnlyOne() async throws {}
+    //func testStoreCancelAll_OnlyOne() async throws {}
 
     @Test
-    func testModelCancelAll_Multiple() async throws {
-        let model: Model = .init()
+    func testStoreCancelAll_Multiple() async throws {
+        let store: Store = .init()
 
-        let task1: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
-        let task2: Task<Void, any Error> = .init { try await model.fetch(id: 2, tag: 2, delay: .milliseconds(200)) }
+        let task1: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
+        let task2: Task<Void, any Error> = .init { try await store.fetch(id: 2, tag: 2, delay: .milliseconds(200)) }
 
         try? await Task.sleep(for: .milliseconds(50))
-        model.cancelAll(force: true)
+        store.resetAll()
         _ = try? await (task1.value, task2.value)
 
-        #expect(model.numbers[1] == nil)
-        #expect(model.numbers[2] == nil)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == nil)
+        #expect(store.numbers[2] == nil)
+        #expect(store.error == nil)
     }
 
     @Test
     func testFetchAfterForceCancel() async throws {
-        let model: Model = .init()
+        let store: Store = .init()
 
-        let task1: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
+        let task1: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 1, delay: .milliseconds(200)) }
 
         try? await Task.sleep(for: .milliseconds(50))
-        model.cancel(id: 1, force: true)
+        store.reset(id: 1)
         try? await task1.value
 
-        #expect(model.numbers[1] == nil)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == nil)
+        #expect(store.error == nil)
 
-        let task2: Task<Void, any Error> = .init { try await model.fetch(id: 1, tag: 2) }
+        let task2: Task<Void, any Error> = .init { try await store.fetch(id: 1, tag: 2) }
 
         try? await task2.value
 
-        #expect(model.numbers[1] == 2)
-        #expect(model.error == nil)
+        #expect(store.numbers[1] == 2)
+        #expect(store.error == nil)
     }
 
     // MARK: Types
     @Observable
-    private final class Model: Observable, Sendable { // `Observable` needs to be declared because of nesting issues
+    private final class Store: Observable, Sendable { // `Observable` needs to be declared because of nesting issues
         // MARK: Properties
         @ObservationIgnored private let repository: Repository = .init()
 
@@ -211,18 +211,30 @@ struct KeyedManagedTaskTests {
             numbers[id] = number
         }
 
-        func cancel(id: Int, force: Bool) {
-            repository.cancel(id: id, forAll: force)
+        func reset(
+            id: Int,
+            forAllWaiters: Bool = true,
+            resetState: Bool = true
+        ) {
+            repository.cancel(
+                id: id,
+                forAllWaiters: forAllWaiters
+            )
 
-            if force {
+            if resetState {
                 numbers[id] = nil
             }
         }
 
-        func cancelAll(force: Bool) {
-            repository.cancelAll(forAll: force)
+        func resetAll(
+            forAllWaiters: Bool = true,
+            resetState: Bool = true
+        ) {
+            repository.cancelAll(
+                forAllWaiters: forAllWaiters
+            )
 
-            if force {
+            if resetState {
                 numbers = [:]
             }
         }
@@ -247,12 +259,22 @@ struct KeyedManagedTaskTests {
             }
         }
 
-        func cancel(id: Int, forAll: Bool) {
-            task.cancel(key: id, forAllWaiters: forAll)
+        func cancel(
+            id: Int,
+            forAllWaiters: Bool = true
+        ) {
+            task.reset(
+                key: id,
+                cancelForAllWaiters: forAllWaiters
+            )
         }
 
-        func cancelAll(forAll: Bool) {
-            task.cancelAll(forAllWaiters: forAll)
+        func cancelAll(
+            forAllWaiters: Bool
+        ) {
+            task.resetAll(
+                cancelForAllWaiters: forAllWaiters
+            )
         }
     }
 }

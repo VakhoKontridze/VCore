@@ -1363,3 +1363,75 @@ nonisolated public struct AutoPrecisionNumberFormatter: Sendable {
         return numberFormatter.string(from: NSNumber(value: number))
     }
 }
+
+nonisolated extension ManagedTask {
+    @available(*, deprecated, renamed: "reset(cancelForAllWaiters:)")
+    public func cancel(
+        forAllWaiters: Bool
+    ) {
+        reset(
+            cancelForAllWaiters: forAllWaiters
+        )
+    }
+}
+
+nonisolated extension KeyedManagedTask {
+    @available(*, deprecated, renamed: "reset(key:cancelForAllWaiters:)")
+    public func cancel(
+        key: Key,
+        forAllWaiters: Bool
+    ) {
+        reset(
+            key: key,
+            cancelForAllWaiters: forAllWaiters
+        )
+    }
+    
+    @available(*, deprecated, renamed: "resetAll(cancelForAllWaiters:)")
+    public func cancelAll(
+        forAllWaiters: Bool
+    ) {
+        resetAll(
+            cancelForAllWaiters: forAllWaiters
+        )
+    }
+}
+
+nonisolated extension CachedManagedTask {
+    @available(*, deprecated, renamed: "reset(cancelForAllWaiters:clearCache:)")
+    public func cancel(
+        forAllWaiters: Bool,
+        clearCache: Bool
+    ) {
+        reset(
+            cancelForAllWaiters: forAllWaiters,
+            clearCache: clearCache
+        )
+    }
+}
+
+nonisolated extension CachedKeyedManagedTask {
+    @available(*, deprecated, renamed: "reset(key:cancelForAllWaiters:clearCache:)")
+    public func cancel(
+        key: Key,
+        forAllWaiters: Bool,
+        clearCache: Bool
+    ) {
+        reset(
+            key: key,
+            cancelForAllWaiters: forAllWaiters,
+            clearCache: clearCache
+        )
+    }
+    
+    @available(*, deprecated, renamed: "resetAll(cancelForAllWaiters:clearCache:)")
+    public func cancelALL(
+        forAllWaiters: Bool,
+        clearCache: Bool
+    ) {
+        resetAll(
+            cancelForAllWaiters: forAllWaiters,
+            clearCache: clearCache
+        )
+    }
+}

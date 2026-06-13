@@ -44,16 +44,16 @@ nonisolated public final class CachedManagedTask<Success>: Sendable
         return success
     }
 
-    /// Cancels the in-flight operation.
+    /// Resets operation.
     ///
     /// If `forAllWaiters` is `true`, operation will be cancelled regardless of how many callers are waiting.
     /// If `forAllWaiters` is `false`, operation will only be cancelled if no other callers are currently waiting.
-    public func cancel(
-        forAllWaiters: Bool,
+    public func reset(
+        cancelForAllWaiters: Bool,
         clearCache: Bool
     ) {
-        task.cancel(
-            forAllWaiters: forAllWaiters
+        task.reset(
+            cancelForAllWaiters: cancelForAllWaiters
         )
         
         if clearCache {

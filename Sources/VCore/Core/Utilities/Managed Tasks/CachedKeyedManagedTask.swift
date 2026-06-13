@@ -50,18 +50,18 @@ nonisolated public final class CachedKeyedManagedTask<Key, Success>: Sendable
         return success
     }
 
-    /// Cancels the in-flight operation for the given key.
+    /// Resets operation for the given key.
     ///
-    /// If `forAllWaiters` is `true`, operation will be cancelled regardless of how many callers are waiting.
-    /// If `forAllWaiters` is `false`, operation will only be cancelled if no other callers are currently waiting.
-    public func cancel(
+    /// If `cancelForAllWaiters` is `true`, operation will be cancelled regardless of how many callers are waiting.
+    /// If `cancelForAllWaiters` is `false`, operation will only be cancelled if no other callers are currently waiting.
+    public func reset(
         key: Key,
-        forAllWaiters: Bool,
+        cancelForAllWaiters: Bool,
         clearCache: Bool
     ) {
-        task.cancel(
+        task.reset(
             key: key,
-            forAllWaiters: forAllWaiters
+            cancelForAllWaiters: cancelForAllWaiters
         )
         
         if clearCache {
@@ -71,16 +71,16 @@ nonisolated public final class CachedKeyedManagedTask<Key, Success>: Sendable
         }
     }
     
-    /// Cancels all in-flight operations across all keys.
+    /// Resets all operations across all keys.
     ///
-    /// If `forAllWaiters` is `true`, all operations will be cancelled regardless of how many callers are waiting.
-    /// If `forAllWaiters` is `false`, only operations with no other callers currently waiting will be cancelled.
-    public func cancelAll(
-        forAllWaiters: Bool,
+    /// If `cancelForAllWaiters` is `true`, all operations will be cancelled regardless of how many callers are waiting.
+    /// If `cancelForAllWaiters` is `false`, only operations with no other callers currently waiting will be cancelled.
+    public func resetAll(
+        cancelForAllWaiters: Bool,
         clearCache: Bool
     ) {
-        task.cancelAll(
-            forAllWaiters: forAllWaiters
+        task.resetAll(
+            cancelForAllWaiters: cancelForAllWaiters
         )
         
         if clearCache {

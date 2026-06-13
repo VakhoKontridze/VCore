@@ -28,19 +28,29 @@ nonisolated public final class KeyedManagedTask<Key, Success>: Sendable
         key: Key,
         @_implicitSelfCapture operation: @Sendable @escaping () async throws -> Success
     ) async throws -> Success {
-        let task: TaskType = lock.withLock { state in
+        let (sessionID, task): (Int, TaskType) = lock.withLock { state in
             var entry: Entry = state.entries[key] ?? Entry()
-            entry.waiterCount += 1
 
             if let existingTask: TaskType = entry.task {
+                entry.waiterCount += 1
                 state.entries[key] = entry
-                return existingTask
+                
+                return (entry.sessionID, existingTask)
 
             } else {
+                state.sessionID += 1
+                let sessionID: Int = state.sessionID
+
+                entry.sessionID = sessionID
+                
+                entry.waiterCount = 1
+
                 let task: TaskType = .init {
                     defer {
                         lock.withLock { state in
-                            state.entries[key]?.task = nil
+                            if state.entries[key]?.sessionID == sessionID {
+                                state.entries[key] = nil
+                            }
                         }
                     }
 
@@ -49,7 +59,7 @@ nonisolated public final class KeyedManagedTask<Key, Success>: Sendable
                 entry.task = task
                 state.entries[key] = entry
 
-                return task
+                return (sessionID, task)
             }
         }
 
@@ -59,62 +69,82 @@ nonisolated public final class KeyedManagedTask<Key, Success>: Sendable
             operation: {
                 defer {
                     lock.withLock { state in
-                        let count: Int = state.entries[key]?.waiterCount ?? 0
-                        state.entries[key]?.waiterCount = max(0, count - 1)
+                        if state.entries[key]?.sessionID == sessionID {
+                            let count: Int = state.entries[key]?.waiterCount ?? 0
+                            state.entries[key]?.waiterCount = max(0, count - 1)
+                        }
                     }
                 }
 
                 return try await task.value
             },
             onCancel: {
-                let shouldCancel: Bool = lock.withLock { state in
+                let taskToCancel: TaskType? = lock.withLock { state in
+                    guard sessionID == state.entries[key]?.sessionID else { return nil }
+
                     let count: Int = state.entries[key]?.waiterCount ?? 0
                     state.entries[key]?.waiterCount = max(0, count - 1)
-                    
-                    return (state.entries[key]?.waiterCount ?? 0) == 0
+                    guard (state.entries[key]?.waiterCount ?? 0) == 0 else { return nil }
+
+                    let task: TaskType? = state.entries[key]?.task
+                    state.entries[key] = nil
+
+                    return task
                 }
 
-                if shouldCancel {
-                    task.cancel()
-                }
+                taskToCancel?.cancel()
             }
         )
     }
     
-    /// Cancels the in-flight operation for the given key.
+    /// Resets operation for the given key.
     ///
-    /// If `forAllWaiters` is `true`, operation will be cancelled regardless of how many callers are waiting.
-    /// If `forAllWaiters` is `false`, operation will only be cancelled if no other callers are currently waiting.
-    public func cancel(
+    /// If `cancelForAllWaiters` is `true`, operation will be cancelled regardless of how many callers are waiting.
+    /// If `cancelForAllWaiters` is `false`, operation will only be cancelled if no other callers are currently waiting.
+    public func reset(
         key: Key,
-        forAllWaiters: Bool
+        cancelForAllWaiters: Bool
     ) {
-        lock.withLock { state in
-            if !forAllWaiters {
-                guard (state.entries[key]?.waiterCount ?? 0) <= 1 else { return }
+        let taskToCancel: TaskType? = lock.withLock { state in
+            if !cancelForAllWaiters {
+                guard (state.entries[key]?.waiterCount ?? 0) <= 1 else { return nil }
             }
 
-            state.entries[key]?.task?.cancel()
+            let task: TaskType? = state.entries[key]?.task
             state.entries[key] = nil
+
+            return task
         }
+
+        taskToCancel?.cancel()
     }
 
-    /// Cancels all in-flight operations across all keys.
+    /// Resets all operations across all keys.
     ///
-    /// If `forAllWaiters` is `true`, all operations will be cancelled regardless of how many callers are waiting.
-    /// If `forAllWaiters` is `false`, only operations with no other callers currently waiting will be cancelled.
-    public func cancelAll(
-        forAllWaiters: Bool
+    /// If `cancelForAllWaiters` is `true`, all operations will be cancelled regardless of how many callers are waiting.
+    /// If `cancelForAllWaiters` is `false`, only operations with no other callers currently waiting will be cancelled.
+    public func resetAll(
+        cancelForAllWaiters: Bool
     ) {
-        lock.withLock { state in
+        let tasksToCancel: [TaskType] = lock.withLock { state in
+            var tasksToCancel: [TaskType] = []
+
             for key in Array(state.entries.keys) { // `Array` captures snapshot
-                if !forAllWaiters {
+                if !cancelForAllWaiters {
                     guard (state.entries[key]?.waiterCount ?? 0) <= 1 else { continue }
                 }
 
-                state.entries[key]?.task?.cancel()
+                if let task: TaskType = state.entries[key]?.task {
+                    tasksToCancel.append(task)
+                }
                 state.entries[key] = nil
             }
+
+            return tasksToCancel
+        }
+
+        for task in tasksToCancel {
+            task.cancel()
         }
     }
     
@@ -122,11 +152,13 @@ nonisolated public final class KeyedManagedTask<Key, Success>: Sendable
     private typealias TaskType = Task<Success, any Error>
 
     nonisolated private struct Entry {
+        var sessionID: Int = 0
         var task: Task<Success, any Error>?
         var waiterCount: Int = 0
     }
 
     nonisolated private struct State {
+        var sessionID: Int = 0
         var entries: [Key: Entry] = [:]
     }
 }
