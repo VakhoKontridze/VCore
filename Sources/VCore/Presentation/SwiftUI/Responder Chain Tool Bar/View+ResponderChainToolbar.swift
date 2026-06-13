@@ -40,7 +40,7 @@ extension View {
     ///         .textFieldStyle(.roundedBorder)
     ///     }
     ///
-    ///     private enum FocusedInput: CaseIterable {
+    ///     nonisolated private enum FocusedInput: CaseIterable {
     ///         case firstName
     ///         case lastName
     ///     }
@@ -121,11 +121,6 @@ extension View {
 
     /// Inserts toolbar that manages focus navigation in responder chain.
     ///
-    ///     enum FocusedInput: CaseIterable {
-    ///         case firstName
-    ///         case lastName
-    ///     }
-    ///
     ///     @State private var firstName: String = ""
     ///     @State private var lastName: String = ""
     ///
@@ -143,6 +138,11 @@ extension View {
     ///         }
     ///         .padding()
     ///         .textFieldStyle(.roundedBorder)
+    ///     }
+    ///
+    ///     nonisolated private enum FocusedInput: CaseIterable {
+    ///         case firstName
+    ///         case lastName
     ///     }
     ///
     public func responderChainToolbar<Value>(
