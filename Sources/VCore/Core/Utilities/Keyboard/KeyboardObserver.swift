@@ -12,18 +12,49 @@ import OSLog
 /// Object that observes changes in keyboard frame.
 ///
 ///     @State private var keyboardObserver: KeyboardObserver = .init()
+///
 ///     @State private var text: String = ""
 ///
 ///     var body: some View {
 ///         ZStack {
-///             TextField("", text: $text)
-///                 .textFieldStyle(.roundedBorder)
-///                 .padding()
-///                 .offset(y: -keyboardObserver.offset)
-///         }
-///         .frame(maxHeight: .infinity, alignment: .bottom)
+///             Color.white
 ///
-///         // Must be written last
+///             VStack(spacing: 0) {
+///                 Spacer()
+///
+///                 TextField("", text: $text)
+///                     .textFieldStyle(.roundedBorder)
+///                     .padding()
+///             }
+///             .offset(y: -keyboardObserver.offset)
+///         }
+///         .animation(keyboardObserver.animation, value: keyboardObserver.offset)
+///         .ignoresSafeArea(.keyboard)
+///     }
+///
+/// Complex example with multiple inputs. `GeometryReader` may be requires sometimes to work around the quirks of `SwiftUI`.
+///
+///     @State private var keyboardObserver: KeyboardObserver = .init()
+///
+///     @State private var text: String = ""
+///
+///     var body: some View {
+///         ZStack {
+///             Color.white
+///
+///             GeometryReader { _ in
+///                 VStack(spacing: 0) {
+///                     ForEach(0..<10, id: \.self) { _ in
+///                         TextField("", text: $text)
+///                             .textFieldStyle(.roundedBorder)
+///                             .padding()
+///                     }
+///
+///                     Spacer()
+///                 }
+///             }
+///             .offset(y: -keyboardObserver.offset)
+///         }
 ///         .animation(keyboardObserver.animation, value: keyboardObserver.offset)
 ///         .ignoresSafeArea(.keyboard)
 ///     }
@@ -40,6 +71,9 @@ public final class KeyboardObserver {
     
     /// Indicates if keyboard is visible.
     public private(set) var isVisible: Bool = false
+    
+    /// Keyboard info.
+    public private(set) var systemKeyboardInfo: SystemKeyboardInfo?
     
     /// Offset.
     public private(set) var offset: CGFloat = 0
@@ -61,8 +95,8 @@ public final class KeyboardObserver {
     }()
 
     // MARK: Properties - Subscriptions
-    private var keyboardShowTask: Task<Void, Never>?
-    private var keyboardHideTask: Task<Void, Never>?
+    @ObservationIgnored private var keyboardShowTask: Task<Void, Never>?
+    @ObservationIgnored private var keyboardHideTask: Task<Void, Never>?
     
     @ObservationIgnored private var cancellables: Set<AnyCancellable> = []
 
@@ -75,28 +109,14 @@ public final class KeyboardObserver {
         addSubscriptions()
     }
 
-    // MARK: Subscriptions
-    private func addSubscriptions() {
-#if canImport(UIKit) && !os(watchOS)
-        NotificationCenter.default
-            .publisher(for: UIResponder.keyboardWillShowNotification)
-            .sink { [weak self] in self?.keyboardWillShow(notification: $0) }
-            .store(in: &cancellables)
-
-        NotificationCenter.default
-            .publisher(for: UIResponder.keyboardWillHideNotification)
-            .sink { [weak self] in self?.keyboardWillHide(notification: $0) }
-            .store(in: &cancellables)
-#endif
-    }
-
     // MARK: Keyboard Management
 #if canImport(UIKit) && !os(watchOS)
     
     private func keyboardWillShow(notification: Notification) {
-        let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
-        
         isVisible = true
+        
+        let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
+        self.systemKeyboardInfo = systemKeyboardInfo
         
         let offset: CGFloat? = {
             switch keyboardResponsivenessStrategy {
@@ -174,9 +194,10 @@ public final class KeyboardObserver {
     }
 
     private func keyboardWillHide(notification: Notification) {
-        let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
-        
         isVisible = false
+        
+        let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
+        self.systemKeyboardInfo = systemKeyboardInfo
 
         let offset: CGFloat? = {
             switch keyboardResponsivenessStrategy {
@@ -218,10 +239,27 @@ public final class KeyboardObserver {
         }
     }
     
+    
+    // MARK: Subscriptions
+    private func addSubscriptions() {
+#if canImport(UIKit) && !os(watchOS)
+        
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillShowNotification)
+            .sink { [weak self] in self?.keyboardWillShow(notification: $0) }
+            .store(in: &cancellables)
+
+        NotificationCenter.default
+            .publisher(for: UIResponder.keyboardWillHideNotification)
+            .sink { [weak self] in self?.keyboardWillHide(notification: $0) }
+            .store(in: &cancellables)
+        
+#endif
+    }
+    
 #endif
     
     // MARK: Helpers
-    
 #if canImport(UIKit) && !os(watchOS)
     
     private func keyWindow(
