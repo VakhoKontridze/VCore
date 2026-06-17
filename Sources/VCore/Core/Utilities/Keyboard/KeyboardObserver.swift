@@ -32,7 +32,7 @@ import OSLog
 ///         .ignoresSafeArea(.keyboard)
 ///     }
 ///
-/// Complex example with multiple inputs. `GeometryReader` may be requires sometimes to work around the quirks of `SwiftUI`.
+/// Complex example with multiple inputs. `GeometryReader` may be required sometimes to work around the quirks of `SwiftUI`.
 ///
 ///     @State private var keyboardObserver: KeyboardObserver = .init()
 ///
@@ -68,6 +68,8 @@ public final class KeyboardObserver {
     // MARK: Properties
     /// Keyboard responsiveness strategy.
     public var keyboardResponsivenessStrategy: KeyboardResponsivenessStrategy
+    
+    @ObservationIgnored private var notification: Notification?
     
     /// Indicates if keyboard is visible.
     public private(set) var isVisible: Bool = false
@@ -108,13 +110,33 @@ public final class KeyboardObserver {
         
         addSubscriptions()
     }
-
-    // MARK: Keyboard Management
-#if canImport(UIKit) && !os(watchOS)
     
-    private func keyboardWillShow(notification: Notification) {
-        isVisible = true
+    // MARK: API
+    /// Recalculates offset.
+    public func reposition(
+        animated: Bool = true
+    ) {
+        guard let notification else { return }
         
+        if isVisible {
+            offsetVisibleKeyboard(
+                notification: notification,
+                animated: animated
+            )
+            
+        } else {
+            offsetHiddenKeyboard(
+                notification: notification,
+                animated: animated
+            )
+        }
+    }
+    
+    // MARK: Offset
+    private func offsetVisibleKeyboard(
+        notification: Notification,
+        animated: Bool = true
+    ) {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
         self.systemKeyboardInfo = systemKeyboardInfo
         
@@ -178,24 +200,33 @@ public final class KeyboardObserver {
             
             keyboardShowTask = Task {
                 defer { keyboardShowTask = nil }
-
-                self.offset = offset
-                self.animation = systemKeyboardInfo.toSwiftUIAnimation
                 
-                do {
-                    try await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
-                } catch {
-                    return
+                if animated {
+                    self.offset = offset
+                    self.animation = systemKeyboardInfo.toSwiftUIAnimation
+                    
+                    do {
+                        try await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
+                    } catch {
+                        return
+                    }
+                    
+                    self.offsetStable = offset
+                    
+                } else {
+                    self.offset = offset
+                    self.offsetStable = offset
+                    
+                    self.animation = nil
                 }
-                
-                self.offsetStable = offset
             }
         }
     }
-
-    private func keyboardWillHide(notification: Notification) {
-        isVisible = false
-        
+    
+    private func offsetHiddenKeyboard(
+        notification: Notification,
+        animated: Bool = true
+    ) {
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
         self.systemKeyboardInfo = systemKeyboardInfo
 
@@ -225,20 +256,55 @@ public final class KeyboardObserver {
             keyboardHideTask = Task {
                 defer { keyboardHideTask = nil }
                 
-                self.offset = offset
-                self.animation = systemKeyboardInfo.toSwiftUIAnimation
-                
-                do {
-                    try await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
-                } catch {
-                    return
+                if animated {
+                    self.offset = offset
+                    self.animation = systemKeyboardInfo.toSwiftUIAnimation
+                    
+                    do {
+                        try await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
+                    } catch {
+                        return
+                    }
+                    
+                    self.offsetStable = offset
+                    
+                } else {
+                    self.offset = offset
+                    self.offsetStable = offset
+                    
+                    self.animation = nil
                 }
-                
-                self.offsetStable = offset
             }
         }
     }
+
+    // MARK: Keyboard
+#if canImport(UIKit) && !os(watchOS)
     
+    private func keyboardWillShow(
+        notification: Notification
+    ) {
+        self.notification = notification
+        
+        isVisible = true
+        
+        offsetVisibleKeyboard(
+            notification: notification
+        )
+    }
+
+    private func keyboardWillHide(
+        notification: Notification,
+        animated: Bool = true
+    ) {
+        self.notification = notification
+        
+        isVisible = false
+        
+        offsetHiddenKeyboard(
+            notification: notification
+        )
+    }
     
     // MARK: Subscriptions
     private func addSubscriptions() {

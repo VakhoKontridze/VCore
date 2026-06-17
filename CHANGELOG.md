@@ -9,6 +9,7 @@ Core - Services
 Core - Utilities
 
 - `isVisible` is added to `KeyboardObserver`
+- `reposition` method is added to `KeyboardObserver`
 
 Extra - File Templates
 
