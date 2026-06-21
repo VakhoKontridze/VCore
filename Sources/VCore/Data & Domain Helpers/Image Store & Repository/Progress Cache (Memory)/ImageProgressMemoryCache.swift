@@ -90,7 +90,11 @@ nonisolated public final class ImageProgressMemoryCacheOriginalKey: NSObject, Se
     override public func isEqual(_ object: Any?) -> Bool {
         guard let other = object as? Self else { return false }
         
-        return parameter == other.parameter
+        return VCore::isEqual(
+            self,
+            to: other,
+            by: \.parameter
+        )
     }
 }
 
@@ -144,9 +148,10 @@ nonisolated public final class ImageProgressMemoryCacheResizedKey: NSObject, Sen
     override public func isEqual(_ object: Any?) -> Bool {
         guard let other = object as? Self else { return false }
         
-        return
-            parameter == other.parameter &&
-            width == other.width &&
-            height == other.height
+        return VCore::isEqual(
+            self,
+            to: other,
+            by: \.parameter, \.width, \.height
+        )
     }
 }

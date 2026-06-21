@@ -87,7 +87,11 @@ nonisolated public struct ModuleVersion: Equatable, Hashable, Comparable, Identi
 
     // MARK: Equatable
     public static func == (lhs: Self, rhs: Self) -> Bool {
-        isEqual(lhs, to: rhs, by: \.major, \.minor, \.patchUnwrapped)
+        isEqual(
+            lhs,
+            to: rhs,
+            by: \.major, \.minor, \.patchUnwrapped
+        )
     }
     
     // MARK: Identifiable
@@ -95,7 +99,11 @@ nonisolated public struct ModuleVersion: Equatable, Hashable, Comparable, Identi
     
     // MARK: Comparable
     public static func < (lhs: Self, rhs: Self) -> Bool {
-        isLess(lhs, than: rhs, by: \.major, \.minor, \.patchUnwrapped)
+        isLess(
+            lhs,
+            than: rhs,
+            by: \.major, \.minor, \.patchUnwrapped
+        )
     }
 
     // MARK: Custom String Convertible

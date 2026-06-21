@@ -87,7 +87,11 @@ nonisolated public final class ImageMemoryCacheOriginalKey: NSObject, Sendable {
     override public func isEqual(_ object: Any?) -> Bool {
         guard let other = object as? Self else { return false }
         
-        return parameter == other.parameter
+        return VCore::isEqual(
+            self,
+            to: other,
+            by: \.parameter
+        )
     }
 }
 
@@ -141,9 +145,10 @@ nonisolated public final class ImageMemoryCacheResizedKey: NSObject, Sendable {
     override public func isEqual(_ object: Any?) -> Bool {
         guard let other = object as? Self else { return false }
         
-        return
-            parameter == other.parameter &&
-            width == other.width &&
-            height == other.height
+        return VCore::isEqual(
+            self,
+            to: other,
+            by: \.parameter, \.width, \.height
+        )
     }
 }
