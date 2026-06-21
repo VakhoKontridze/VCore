@@ -219,7 +219,10 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
             }()
             
             if let task {
-                let image: PlatformImage = try await task.value
+                let image: PlatformImage = try await withTaskCancellationHandler(
+                    operation: { try await task.value },
+                    onCancel: { task.cancel() }
+                )
                 try Task.checkCancellation()
                 
                 return image
@@ -255,7 +258,10 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
             }
             
             // 3d. Fetches - gets image
-            let image: PlatformImage = try await task.value
+            let image: PlatformImage = try await withTaskCancellationHandler(
+                operation: { try await task.value },
+                onCancel: { task.cancel() }
+            )
             try Task.checkCancellation()
             
             // 3e. Fetches - saves image
