@@ -45,7 +45,7 @@ extension View {
     ) -> some View {
         self
             .background {
-                ModalDecoratorUIViewRepresentable(
+                ModalDecoratorViewRepresentable(
                     decorate: decorate
                 )
                 .allowsHitTesting(false) // Avoids blocking gestures
@@ -53,7 +53,7 @@ extension View {
     }
 }
 
-private struct ModalDecoratorUIViewRepresentable: UIViewRepresentable {
+private struct ModalDecoratorViewRepresentable: UIViewRepresentable {
     // MARK: Properties
     private let decorate: (UIView?, UIView?) -> Void
     
@@ -65,16 +65,16 @@ private struct ModalDecoratorUIViewRepresentable: UIViewRepresentable {
     }
     
     // MARK: Representable
-    func makeUIView(context: Context) -> ModalDecoratorUIView {
+    func makeUIView(context: Context) -> ModalDecoratorView {
         .init(
             decorate: decorate
         )
     }
     
-    func updateUIView(_ uiView: ModalDecoratorUIView, context: Context) {}
+    func updateUIView(_ uiView: ModalDecoratorView, context: Context) {}
 }
 
-private final class ModalDecoratorUIView: UIView {
+private final class ModalDecoratorView: UIView {
     // MARK: Properties
     private let decorate: (UIView?, UIView?) -> Void
     
