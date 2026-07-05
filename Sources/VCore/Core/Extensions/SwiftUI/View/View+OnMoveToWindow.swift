@@ -24,7 +24,7 @@ extension View {
     ) -> some View {
         self
             .background {
-                WindowReaderView(
+                WindowReaderUIViewRepresentable(
                     onMoveToWindow: action
                 )
                 .allowsHitTesting(false) // Avoids blocking gestures
@@ -32,7 +32,7 @@ extension View {
     }
 }
 
-private struct WindowReaderView: UIViewRepresentable {
+private struct WindowReaderUIViewRepresentable: UIViewRepresentable {
     // MARK: Properties
     private let onMoveToWindow: (UIWindow) -> Void
 
@@ -44,16 +44,16 @@ private struct WindowReaderView: UIViewRepresentable {
     }
 
     // MARK: View Representable
-    func makeUIView(context: Context) -> _WindowReaderView {
+    func makeUIView(context: Context) -> WindowReaderUIView {
         .init(
             onMoveToWindow: onMoveToWindow
         )
     }
 
-    func updateUIView(_ uiView: _WindowReaderView, context: Context) {}
+    func updateUIView(_ uiView: WindowReaderUIView, context: Context) {}
 }
 
-private final class _WindowReaderView: UIView {
+private final class WindowReaderUIView: UIView {
     // MARK: Properties
     private let onMoveToWindow: (UIWindow) -> Void
     private var lastWindowIdentifier: ObjectIdentifier?
