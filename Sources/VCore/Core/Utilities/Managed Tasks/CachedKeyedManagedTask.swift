@@ -24,6 +24,11 @@ nonisolated public final class CachedKeyedManagedTask<Key, Success>: Sendable
     public init() {}
 
     // MARK: API
+    /// Value.
+    public var value: [Key: Success]? {
+        lock.withLock { $0.entries }
+    }
+    
     /// Reads from cache, runs the operation for the given key, or joins an existing in-flight operation for that key if one exists.
     /// If the caller is cancelled, it detaches without affecting other waiters.
     public func run(
