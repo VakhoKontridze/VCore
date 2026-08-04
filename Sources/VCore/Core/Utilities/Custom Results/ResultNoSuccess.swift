@@ -27,6 +27,20 @@ nonisolated public enum ResultNoSuccess<Failure> where Failure: Error {
     /// Failure, storing a `Failure` value.
     case failure(Failure)
     
+    // MARK: Initializers
+    /// Initializes `ResultNoSuccess` from a closure.
+    public init(
+        catching body: () throws(Failure) -> Void
+    ) {
+        do {
+            try body()
+            self = .success
+            
+        } catch {
+            self = .failure(error)
+        }
+    }
+    
     // MARK: Methods
     /// Returns a new result, mapping any failure value using the given transformation.
     public func mapError<NewFailure>(

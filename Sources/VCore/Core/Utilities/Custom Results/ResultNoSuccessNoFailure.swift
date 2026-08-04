@@ -20,9 +20,24 @@ import Foundation
 ///     }
 ///
 nonisolated public enum ResultNoSuccessNoFailure: Equatable, Sendable {
+    // MARK: Cases
     /// Success.
     case success
     
     /// Failure.
     case failure
+    
+    // MARK: Initializers
+    /// Initializes `ResultNoSuccessNoFailure` from a closure.
+    public init(
+        catching body: () throws -> Void
+    ) {
+        do {
+            try body()
+            self = .success
+            
+        } catch {
+            self = .failure
+        }
+    }
 }

@@ -11,6 +11,7 @@ Core - Utilities
 - `isVisible` is added to `KeyboardObserver`
 - `reposition` method is added to `KeyboardObserver`
 - `value` property is added to `CachedManagedTask` and `CachedKeyedManagedTask`
+- Initializers are added to custom `Result` types
 
 Extra - File Templates
 
