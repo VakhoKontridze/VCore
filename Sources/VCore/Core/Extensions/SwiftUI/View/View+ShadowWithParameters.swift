@@ -37,11 +37,11 @@ nonisolated extension View {
 )
 public struct SwiftUIDropShadowParameters {
     /// Shadow color.
-    let color: Color
+    public var color: Color
     
     /// Shadow radius.
-    let radius: CGFloat
+    public var radius: CGFloat
     
     /// Shadow offset.
-    let offset: CGPoint
+    public var offset: CGPoint
 }
