@@ -28,11 +28,11 @@ public struct PublishedKeychainStorage<Value>: DynamicProperty where Value: Coda
     @available(*, unavailable, message: "'PublishedKeychainStorage' is only available on properties of 'class'es. Use 'KeychainStorage' instead.")
     public var wrappedValue: Value {
         get {
-            Logger.publishedKeychainStorage.critical("'PublishedKeychainStorage' is only available on properties of 'class'es. Use 'KeychainStorage' instead.")
+            Logger.default.critical("'PublishedKeychainStorage' is only available on properties of 'class'es. Use 'KeychainStorage' instead.")
             fatalError()
         }
         nonmutating set {
-            Logger.publishedKeychainStorage.critical("'PublishedKeychainStorage' is only available on properties of 'class'es. Use 'KeychainStorage' instead.")
+            Logger.default.critical("'PublishedKeychainStorage' is only available on properties of 'class'es. Use 'KeychainStorage' instead.")
             fatalError()
         }
     }

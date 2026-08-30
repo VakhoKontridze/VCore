@@ -25,7 +25,7 @@ nonisolated extension NSColor {
                 return calibratedColor
                 
             } else {
-                Logger.misc.error("Failed to calibrate 'NSColor' '\(self.debugDescription)' with 'NSColorSpace.deviceRGB'") // swiftlint:disable:this redundant_self
+                Logger.default.error("Failed to calibrate 'NSColor' '\(self.debugDescription)' with 'NSColorSpace.deviceRGB'") // swiftlint:disable:this redundant_self
                 return self
             }
         }()

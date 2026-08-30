@@ -17,7 +17,7 @@ nonisolated extension Double {
     ///
     public func rounded(fractions: Int) -> Double {
         guard fractions >= 0 else {
-            Logger.misc.critical("'fractions' must be greater than or equal to '0' in 'Double.rounded(fractions:)'")
+            Logger.default.critical("'fractions' must be greater than or equal to '0' in 'Double.rounded(fractions:)'")
             fatalError()
         }
         

@@ -82,7 +82,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
             let data: Data = valueObject as? Data
         else {
             let fromType: AnyObject?.Type = type(of: valueObject)
-            Logger.keychainService.error("Failed to cast '\(fromType)' to 'Data' in 'DefaultKeychainService.getData(key:)'")
+            Logger.default.error("Failed to cast '\(fromType)' to 'Data' in 'DefaultKeychainService.getData(key:)'")
             throw CastingError(from: "\(fromType)", to: "Data")
         }
 
@@ -109,7 +109,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
             let setStatus: OSStatus = SecItemAdd(setQuery as CFDictionary, nil)
 
             guard setStatus == noErr else {
-                Logger.keychainService.error("Failed to set 'Data' with key '\(key)' in 'DefaultKeychainService.setData(key:value:)': 'OSStatus' '\(setStatus)'")
+                Logger.default.error("Failed to set 'Data' with key '\(key)' in 'DefaultKeychainService.setData(key:value:)': 'OSStatus' '\(setStatus)'")
                 throw KeychainServiceError.failedToSet
             }
             
@@ -117,7 +117,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
 
         // Failed to update item
         } else {
-            Logger.keychainService.error("Failed to update 'Data' with key '\(key)' in 'DefaultKeychainService.setData(key:value:)': 'OSStatus' '\(updateStatus)'")
+            Logger.default.error("Failed to update 'Data' with key '\(key)' in 'DefaultKeychainService.setData(key:value:)': 'OSStatus' '\(updateStatus)'")
             throw KeychainServiceError.failedToSet
         }
     }
@@ -141,7 +141,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
         let status: OSStatus = SecItemDelete(query as CFDictionary)
 
         guard status == noErr else {
-            if logsError { Logger.keychainService.error("Failed to delete 'Data' with key '\(key)' in 'DefaultKeychainService.delete(key:)': 'OSStatus' '\(status)'") }
+            if logsError { Logger.default.error("Failed to delete 'Data' with key '\(key)' in 'DefaultKeychainService.delete(key:)': 'OSStatus' '\(status)'") }
             throw KeychainServiceError.failedToDelete
         }
     }
@@ -160,7 +160,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
             value = try jsonDecoder.decode(from: data)
 
         } catch {
-            Logger.keychainService.error("Failed to decode '\(Value.self)' from 'Data' in 'DefaultKeychainService.getCodable(key:)': \(error.localizedDescription)")
+            Logger.default.error("Failed to decode '\(Value.self)' from 'Data' in 'DefaultKeychainService.getCodable(key:)': \(error.localizedDescription)")
             throw KeychainServiceError.failedToGet
         }
 
@@ -179,7 +179,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
             data = try jsonEncoder.encode(value)
             
         } catch {
-            Logger.keychainService.error("Failed to encode '\(Value.self)' to 'Data' in 'DefaultKeychainService.setCodable(key:value:)': \(error.localizedDescription)")
+            Logger.default.error("Failed to encode '\(Value.self)' to 'Data' in 'DefaultKeychainService.setCodable(key:value:)': \(error.localizedDescription)")
             throw KeychainServiceError.failedToSet
         }
 

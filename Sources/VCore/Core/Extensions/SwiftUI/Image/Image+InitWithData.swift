@@ -22,7 +22,7 @@ nonisolated extension Image {
             self.init(uiImage: uiImage)
             
         } else {
-            Logger.misc.error("Failed to initialize 'UIImage' from 'Data' in 'Image.init(data:)'")
+            Logger.default.error("Failed to initialize 'UIImage' from 'Data' in 'Image.init(data:)'")
             self.init(uiImage: UIImage())
         }
 
@@ -32,7 +32,7 @@ nonisolated extension Image {
             self.init(nsImage: nsImage)
             
         } else {
-            Logger.misc.error("Failed to initialize 'NSImage' from 'Data' in 'Image.init(data:)'")
+            Logger.default.error("Failed to initialize 'NSImage' from 'Data' in 'Image.init(data:)'")
             self.init(nsImage: NSImage())
         }
 

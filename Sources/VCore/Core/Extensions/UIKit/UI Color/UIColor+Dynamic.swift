@@ -28,7 +28,7 @@ nonisolated extension UIColor {
             case .light: return light
             case .dark: return dark
             @unknown default:
-                Logger.misc.fault("Unhandled 'UIUserInterfaceStyle' '\(String(describing: traitCollection.userInterfaceStyle))' in 'UIColor.dynamic(_:_:)'")
+                Logger.default.fault("Unhandled 'UIUserInterfaceStyle' '\(String(describing: traitCollection.userInterfaceStyle))' in 'UIColor.dynamic(_:_:)'")
                 return light
             }
         }

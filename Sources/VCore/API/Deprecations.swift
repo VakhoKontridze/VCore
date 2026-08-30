@@ -204,7 +204,7 @@ nonisolated public enum GestureBaseButtonGestureState: Int, Sendable, CaseIterab
                 return .began
             
             case .changed:
-                //Logger.baseButtonGestureRecognizer.fault("'changed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
+                //Logger.default.fault("'changed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
                 return .possible
             
             case .ended:
@@ -214,11 +214,11 @@ nonisolated public enum GestureBaseButtonGestureState: Int, Sendable, CaseIterab
                 return .cancelled
             
             case .failed:
-                //Logger.baseButtonGestureRecognizer.fault("'failed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
+                //Logger.default.fault("'failed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
                 return .possible
             
             @unknown default:
-                //Logger.baseButtonGestureRecognizer.fault("Unhandled 'UIGestureRecognizer.State' '\(String(describing: state))' in 'GestureBaseButtonGestureState.init(state:)'")
+                //Logger.default.fault("Unhandled 'UIGestureRecognizer.State' '\(String(describing: state))' in 'GestureBaseButtonGestureState.init(state:)'")
                 return .possible
             }
         }()
@@ -236,7 +236,7 @@ nonisolated public enum GestureBaseButtonGestureState: Int, Sendable, CaseIterab
                 return .began
             
             case .changed:
-                //Logger.baseButtonGestureRecognizer.fault("'changed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
+                //Logger.default.fault("'changed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
                 return .possible
             
             case .ended:
@@ -246,11 +246,11 @@ nonisolated public enum GestureBaseButtonGestureState: Int, Sendable, CaseIterab
                 return .cancelled
             
             case .failed:
-                //Logger.baseButtonGestureRecognizer.fault("'failed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
+                //Logger.default.fault("'failed' 'UIGestureRecognizer.State should not occur in 'GestureBaseButtonGestureState.init(state:)'")
                 return .possible
             
             @unknown default:
-                //Logger.baseButtonGestureRecognizer.fault("Unhandled 'NSGestureRecognizer.State' '\(String(describing: state))' in 'GestureBaseButtonGestureState.init(state:)'")
+                //Logger.default.fault("Unhandled 'NSGestureRecognizer.State' '\(String(describing: state))' in 'GestureBaseButtonGestureState.init(state:)'")
                 return .possible
             }
         }()
@@ -925,13 +925,13 @@ extension UIView {
     ) {
         if keyboardWillShow {
             guard let window: UIWindow = firstResponderView.window else {
-                Logger.keyboardResponsiveUIViewController.error("Failed to retrieve 'UIWindow' from 'UIView': \(firstResponderView)")
+                Logger.default.error("Failed to retrieve 'UIWindow' from 'UIView': \(firstResponderView)")
                 return
             }
             let windowHeight: CGFloat = window.frame.size.height
 
             guard let firstResponderViewSuperView: UIView = firstResponderView.superview else {
-                Logger.keyboardResponsiveUIViewController.error("Failed to retrieve superview from 'UIView': \(firstResponderView)")
+                Logger.default.error("Failed to retrieve superview from 'UIView': \(firstResponderView)")
                 return
             }
             
@@ -940,7 +940,7 @@ extension UIView {
             let containerViewY: CGFloat = containerView.bounds.origin.y
 
             guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
-                Logger.keyboardResponsiveUIViewController.error("Failed to retrieve system keyboard height from 'Notification'")
+                Logger.default.error("Failed to retrieve system keyboard height from 'Notification'")
                 return
             }
 
@@ -1219,7 +1219,7 @@ extension UITableView {
         guard
             let cell = dequeueReusableCell(withIdentifier: parameter.reuseID) as? any ConfigurableUITableViewCell
         else {
-            Logger.misc.critical("Unable to dequeue 'ConfigurableUITableViewCell' with identifier '\(parameter.reuseID)' in 'UITableView.dequeueAndConfigureReusableCell(parameter:)'")
+            Logger.default.critical("Unable to dequeue 'ConfigurableUITableViewCell' with identifier '\(parameter.reuseID)' in 'UITableView.dequeueAndConfigureReusableCell(parameter:)'")
             return UITableViewCell()
         }
         
@@ -1281,7 +1281,7 @@ extension UICollectionView {
         guard
             let cell = dequeueReusableCell(withReuseIdentifier: parameter.reuseID, for: indexPath) as? any ConfigurableUICollectionViewCell
         else {
-            Logger.misc.critical("Failed to dequeue 'ConfigurableUICollectionViewCell' with identifier '\(parameter.reuseID)' in 'UICollectionView.dequeueAndConfigureReusableCell(indexPath:parameter:)'")
+            Logger.default.critical("Failed to dequeue 'ConfigurableUICollectionViewCell' with identifier '\(parameter.reuseID)' in 'UICollectionView.dequeueAndConfigureReusableCell(indexPath:parameter:)'")
             return UICollectionViewCell()
         }
         
@@ -1341,17 +1341,17 @@ nonisolated public struct AutoPrecisionNumberFormatter: Sendable {
     
     public func string(from number: Double) -> String? {
         guard minFractions >= 0 else {
-            Logger.misc.critical("'minFractions' must be greater than or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            Logger.default.critical("'minFractions' must be greater than or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
             return nil
         }
 
         guard maxFractions >= 0 else {
-            Logger.misc.critical("'maxFractions' must be greater than or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            Logger.default.critical("'maxFractions' must be greater than or equal to '0' in 'AutoPrecisionNumberFormatter.string(from:)'")
             return nil
         }
 
         guard maxFractions >= minFractions else {
-            Logger.misc.critical("'maxFractions' must be greater than or equal to 'minFractions' in 'AutoPrecisionNumberFormatter.string(from:)'")
+            Logger.default.critical("'maxFractions' must be greater than or equal to 'minFractions' in 'AutoPrecisionNumberFormatter.string(from:)'")
             return nil
         }
 

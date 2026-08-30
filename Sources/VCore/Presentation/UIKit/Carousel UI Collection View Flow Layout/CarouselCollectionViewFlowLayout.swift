@@ -85,7 +85,7 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     // MARK: Setup
     private func setUp() {
         guard let collectionView else {
-            Logger.carouselCollectionViewFlowLayout.critical("'CarouselUICollectionViewFlowLayout' isn't attached to a 'UICollectionView'")
+            Logger.default.critical("'CarouselUICollectionViewFlowLayout' isn't attached to a 'UICollectionView'")
             return
         }
         
@@ -174,13 +174,13 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         collectionView: UICollectionView
     ) -> Bool {
         guard scrollDirection == .horizontal else {
-            Logger.carouselCollectionViewFlowLayout.critical("'scrollDirection' must be set to 'horizontal' when using 'CarouselUICollectionViewFlowLayout'")
+            Logger.default.critical("'scrollDirection' must be set to 'horizontal' when using 'CarouselUICollectionViewFlowLayout'")
             return false
         }
 
 #if !os(tvOS)
         guard !collectionView.isPagingEnabled else {
-            Logger.carouselCollectionViewFlowLayout.critical("'isPagingEnabled' must be set to 'false' when using 'CarouselUICollectionViewFlowLayout'")
+            Logger.default.critical("'isPagingEnabled' must be set to 'false' when using 'CarouselUICollectionViewFlowLayout'")
             return false
         }
 #endif
@@ -189,7 +189,7 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             let flowDelegate = collectionView.delegate as? any UICollectionViewDelegateFlowLayout,
             delegateSupportsSizeForItem(collectionView: collectionView, flowDelegate: flowDelegate)
         {
-            Logger.carouselCollectionViewFlowLayout.critical("'collectionView(_:layout:sizeForItemAt:)' should not be implemented when using 'CarouselUICollectionViewFlowLayout'")
+            Logger.default.critical("'collectionView(_:layout:sizeForItemAt:)' should not be implemented when using 'CarouselUICollectionViewFlowLayout'")
             return false
         }
         

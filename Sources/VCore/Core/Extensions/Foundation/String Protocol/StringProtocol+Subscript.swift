@@ -17,7 +17,7 @@ nonisolated extension StringProtocol {
     public subscript(_ i: Int) -> Element {
         get {
             guard i >= 0, i < count else {
-                Logger.misc.critical("Index \(i) out of bounds in 'StringProtocol.subscript(:_)'")
+                Logger.default.critical("Index \(i) out of bounds in 'StringProtocol.subscript(:_)'")
                 fatalError()
             }
             
@@ -25,7 +25,7 @@ nonisolated extension StringProtocol {
         }
         set {
             guard i >= 0, i < count else {
-                Logger.misc.critical("Index \(i) out of bounds in 'StringProtocol.subscript(:_)'")
+                Logger.default.critical("Index \(i) out of bounds in 'StringProtocol.subscript(:_)'")
                 fatalError()
             }
             

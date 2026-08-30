@@ -150,7 +150,7 @@ public final class KeyboardObserver {
 
             case .offsetByKeyboardHeight(let additionalOffset):
                 guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
-                    Logger.keyboardObserver.error("Failed to retrieve system keyboard height from 'Notification' in 'KeyboardObserver': \(notification)")
+                    Logger.default.error("Failed to retrieve system keyboard height from 'Notification' in 'KeyboardObserver': \(notification)")
                     return nil
                 }
 
@@ -158,19 +158,19 @@ public final class KeyboardObserver {
 
             case .offsetByObscuredViewHeight(let additionalOffset):
                 guard let window: UIWindow = keyWindow(from: notification) else {
-                    Logger.keyboardObserver.error("Failed to retrieve 'UIScreen' from 'Notification' in 'KeyboardObserver': \(notification)")
+                    Logger.default.error("Failed to retrieve 'UIScreen' from 'Notification' in 'KeyboardObserver': \(notification)")
                     return nil
                 }
                 
                 let windowHeight: CGFloat = window.frame.size.height
 
                 guard let firstResponderView: UIView = window.childFirstResponderView else {
-                    Logger.keyboardObserver.error("Failed to retrieve child first responder 'UIView' from 'UIWindow' in 'KeyboardObserver': \(window)")
+                    Logger.default.error("Failed to retrieve child first responder 'UIView' from 'UIWindow' in 'KeyboardObserver': \(window)")
                     return nil
                 }
                 
                 guard let firstResponderViewSuperView: UIView = firstResponderView.superview else {
-                    Logger.keyboardObserver.error("Failed to retrieve superview from 'UIView' in 'KeyboardObserver': \(firstResponderView)")
+                    Logger.default.error("Failed to retrieve superview from 'UIView' in 'KeyboardObserver': \(firstResponderView)")
                     return nil
                 }
                 
@@ -179,7 +179,7 @@ public final class KeyboardObserver {
                 let currentOffset: CGFloat = offsetStable
 
                 guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
-                    Logger.keyboardObserver.error("Failed to retrieve system keyboard height from 'Notification' in 'KeyboardObserver': \(notification)")
+                    Logger.default.error("Failed to retrieve system keyboard height from 'Notification' in 'KeyboardObserver': \(notification)")
                     return nil
                 }
 

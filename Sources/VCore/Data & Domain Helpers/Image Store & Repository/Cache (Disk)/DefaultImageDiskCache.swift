@@ -194,7 +194,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
             // ...
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to delete item at '\(url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+            Logger.default.error("Failed to delete item at '\(url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
         }
     }
 
@@ -218,7 +218,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
                     options: .skipsHiddenFiles
                 )
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to read contents of directory at '\(self.resizedDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+                Logger.default.error("Failed to read contents of directory at '\(self.resizedDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
                 return
             }
             
@@ -235,7 +235,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
                         // ...
                         
                     } catch {
-                        Logger.imageStoreAndRepository.error("Failed to remove file at '\(url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+                        Logger.default.error("Failed to remove file at '\(url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
                     }
                 }
             }
@@ -259,7 +259,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to delete item at '\(url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+                Logger.default.error("Failed to delete item at '\(url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
             }
         }
     }
@@ -277,7 +277,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to delete item at '\(self.originalDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+                Logger.default.error("Failed to delete item at '\(self.originalDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
             }
         }
         
@@ -289,7 +289,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
                 // ...
                 
             } catch {
-                Logger.imageStoreAndRepository.error("Failed to delete item at '\(self.resizedDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+                Logger.default.error("Failed to delete item at '\(self.resizedDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
             }
         }
     }
@@ -333,7 +333,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to read contents directory at '\(directory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+            Logger.default.error("Failed to read contents directory at '\(directory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
             return
         }
 
@@ -363,7 +363,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
                     // ...
                     
                 } catch {
-                    Logger.imageStoreAndRepository.error("Failed to delete item at '\(entry.url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+                    Logger.default.error("Failed to delete item at '\(entry.url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
                 }
             }
         }
@@ -386,7 +386,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
                     // ...
                     
                 } catch {
-                    Logger.imageStoreAndRepository.error("Failed to delete item at '\(entry.url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+                    Logger.default.error("Failed to delete item at '\(entry.url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
                 }
                 
                 freed += entry.size
@@ -454,7 +454,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to set attributes to file at '\(url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+            Logger.default.error("Failed to set attributes to file at '\(url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
         }
         
         let image: PlatformImage? = .init(
@@ -476,7 +476,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+            Logger.default.error("Failed to create directory at '\(self.originalDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
         }
         
         do {
@@ -486,7 +486,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+            Logger.default.error("Failed to create directory at '\(self.resizedDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
         }
         
         guard
@@ -502,7 +502,7 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
             )
             
         } catch {
-            Logger.imageStoreAndRepository.error("Failed to create file at '\(url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
+            Logger.default.error("Failed to create file at '\(url.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(error.localizedDescription)")
         }
     }
 

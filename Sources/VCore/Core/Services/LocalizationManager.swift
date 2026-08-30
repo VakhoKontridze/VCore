@@ -104,7 +104,7 @@ public final class LocalizationManager {
             guard
                 let identifier: String = Bundle.main.preferredLocalizations.first
             else {
-                Logger.localizationManager.critical("Default localization is not selected in 'Bundle.main'")
+                Logger.default.critical("Default localization is not selected in 'Bundle.main'")
                 fatalError()
             }
 
@@ -167,7 +167,7 @@ public final class LocalizationManager {
     // MARK: Validation
     private static func validateLocaleIsAdded(_ locale: Locale) -> Bool {
         guard Self.locales.contains(locale) else {
-            Logger.localizationManager.warning("Localization '\(locale.identifier)' is not added to 'Bundle.main'")
+            Logger.default.warning("Localization '\(locale.identifier)' is not added to 'Bundle.main'")
             return false
         }
 

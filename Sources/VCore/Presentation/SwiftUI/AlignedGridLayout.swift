@@ -214,7 +214,7 @@ public struct AlignedGridLayout: Layout {
                         case .center: return remainingRowSpacings[i]/2
                         case .trailing: return remainingRowSpacings[i]
                         default:
-                            Logger.alignedGridLayout.fault("Unhandled 'HorizontalAlignment' '\(String(describing: horizontalAlignment))' in 'AlignedGridLayout'")
+                            Logger.default.fault("Unhandled 'HorizontalAlignment' '\(String(describing: horizontalAlignment))' in 'AlignedGridLayout'")
                             return remainingRowSpacings[i]/2
                         }
                     }()
@@ -240,7 +240,7 @@ public struct AlignedGridLayout: Layout {
                         case .center: return (maxHeight - rects[i][j].size.height)/2
                         case .bottom: return maxHeight - rects[i][j].size.height
                         default:
-                            Logger.alignedGridLayout.fault("Unhandled 'VerticalAlignment' '\(String(describing: verticalAlignment))' in 'AlignedGridLayout'")
+                            Logger.default.fault("Unhandled 'VerticalAlignment' '\(String(describing: verticalAlignment))' in 'AlignedGridLayout'")
                             return (maxHeight - rects[i][j].size.height)/2
                         }
                     }()

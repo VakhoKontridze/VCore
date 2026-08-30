@@ -77,7 +77,7 @@ nonisolated open class DefaultUserDefaultsService: UserDefaultsService, @uncheck
             let value: Value = valueAny as? Value
         else {
             let fromType: any Any.Type = type(of: valueAny)
-            Logger.userDefaultsService.error("Failed to cast '\(fromType)' to '\(Value.self)' in 'DefaultUserDefaultsService.get(key:)'")
+            Logger.default.error("Failed to cast '\(fromType)' to '\(Value.self)' in 'DefaultUserDefaultsService.get(key:)'")
             throw CastingError(from: "\(fromType)", to: "\(Value.self)")
         }
 
@@ -111,7 +111,7 @@ nonisolated open class DefaultUserDefaultsService: UserDefaultsService, @uncheck
         guard
             let value: Value = .init(rawValue: rawValue)
         else {
-            Logger.userDefaultsService.error("Failed to initialize '\(Value.self)' with 'rawValue' '\(String(describing: rawValue))' in 'DefaultUserDefaultsService.getRawRepresentable(key:)'")
+            Logger.default.error("Failed to initialize '\(Value.self)' with 'rawValue' '\(String(describing: rawValue))' in 'DefaultUserDefaultsService.getRawRepresentable(key:)'")
             throw UserDefaultsServiceError.failedToGet
         }
 
@@ -153,7 +153,7 @@ nonisolated open class DefaultUserDefaultsService: UserDefaultsService, @uncheck
         do {
            value = try jsonDecoder.decode(from: data)
         } catch {
-            Logger.userDefaultsService.error("Failed to decode '\(Value.self)' from 'Data' in 'DefaultUserDefaultsService.getCodable(key:)': \(error.localizedDescription)")
+            Logger.default.error("Failed to decode '\(Value.self)' from 'Data' in 'DefaultUserDefaultsService.getCodable(key:)': \(error.localizedDescription)")
             throw UserDefaultsServiceError.failedToGet
         }
 
@@ -171,7 +171,7 @@ nonisolated open class DefaultUserDefaultsService: UserDefaultsService, @uncheck
         do {
             data = try jsonEncoder.encode(value)
         } catch {
-            Logger.userDefaultsService.error("Failed to encode '\(Value.self)' to 'Data' in 'DefaultUserDefaultsService.setCodable(key:value:)': \(error.localizedDescription)")
+            Logger.default.error("Failed to encode '\(Value.self)' to 'Data' in 'DefaultUserDefaultsService.setCodable(key:value:)': \(error.localizedDescription)")
             throw UserDefaultsServiceError.failedToSet
         }
 

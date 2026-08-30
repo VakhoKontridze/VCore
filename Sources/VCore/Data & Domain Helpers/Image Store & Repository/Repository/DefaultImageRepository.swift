@@ -276,9 +276,9 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
                 if cacheStorage.contains(.disk) {
                     if parameter.diskIdentifier == nil {
 #if canImport(UIKit)
-                        Logger.imageStoreAndRepository.warning("Misuse of 'DefaultImageRepository'. Raw 'UIImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
+                        Logger.default.warning("Misuse of 'DefaultImageRepository'. Raw 'UIImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
 #elseif canImport(AppKit)
-                        Logger.imageStoreAndRepository.warning("Misuse of 'DefaultImageRepository'. Raw 'NSImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
+                        Logger.default.warning("Misuse of 'DefaultImageRepository'. Raw 'NSImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
 #endif
                     }
                     

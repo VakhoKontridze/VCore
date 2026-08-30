@@ -25,7 +25,7 @@ import Foundation
 ///                     return
 ///
 ///                 case .failure(let error):
-///                     Logger.notificationService.error("Failed to register for push notifications: '\(error)'")
+///                     Logger.default.error("Failed to register for push notifications: '\(error)'")
 ///                     throw error
 ///                 }
 ///

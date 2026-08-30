@@ -73,11 +73,11 @@ public struct KeychainStorage<Value>: DynamicProperty where Value: Codable {
         where EnclosingSelf: AnyObject
     {
         get {
-            Logger.keychainStorage.critical("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
+            Logger.default.critical("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
             fatalError()
         }
         set {
-            Logger.keychainStorage.critical("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
+            Logger.default.critical("'KeychainStorage' is only available on properties of 'struct's. Use 'PublishedKeychainStorage' instead.")
             fatalError()
         }
     }
