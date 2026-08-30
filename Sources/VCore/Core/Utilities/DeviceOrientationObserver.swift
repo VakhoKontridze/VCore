@@ -22,7 +22,7 @@ import Combine
 public final class DeviceOrientationObserver {
     // MARK: Properties
     /// The physical orientation of the device.
-    public var deviceOrientation: UIDeviceOrientation = DeviceOrientationObserver.getDeviceOrientation()
+    public var deviceOrientation: UIDeviceOrientation = UIDevice.current.orientation
 
     @ObservationIgnored private var cancellable: AnyCancellable?
 
@@ -36,12 +36,8 @@ public final class DeviceOrientationObserver {
     private func addSubscriptions() {
         cancellable = NotificationCenter.default
             .publisher(for: UIDevice.orientationDidChangeNotification)
-            .compactMap { _ in Self.getDeviceOrientation() }
+            .compactMap { _ in UIDevice.current.orientation }
             .assignWeak(to: \.deviceOrientation, on: self)
-    }
-
-    private static func getDeviceOrientation() -> UIDeviceOrientation {
-        UIDevice.current.orientation
     }
 }
 
