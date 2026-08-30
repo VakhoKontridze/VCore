@@ -34,7 +34,7 @@ nonisolated extension UIColor {
         var alpha: CGFloat = 0
         
         if !color.getRed(&red, green: &green, blue: &blue, alpha: &alpha) {
-            Logger.default.error("Failed to get RGBA values from 'UIColor' '\(self.debugDescription)'")
+            Logger.default.error("Failed to get RGBA values from 'UIColor' '\(self.debugDescription)' in 'UIColor.rgbaValues'")
         }
         
         return (
