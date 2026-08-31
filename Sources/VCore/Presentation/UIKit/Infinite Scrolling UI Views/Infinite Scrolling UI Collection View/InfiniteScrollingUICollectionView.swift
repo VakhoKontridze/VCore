@@ -7,8 +7,8 @@
 
 #if canImport(UIKit) && !os(watchOS)
 
-public import UIKit
 import OSLog
+public import UIKit
 
 /// `UICollectionView` that handles infinite scrolling.
 ///

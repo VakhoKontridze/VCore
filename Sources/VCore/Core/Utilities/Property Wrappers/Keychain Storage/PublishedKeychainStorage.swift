@@ -8,9 +8,9 @@
 // https://stackoverflow.com/q/63993196/11627169
 // https://github.com/OpenCombine/OpenCombine/blob/master/Sources/OpenCombine/Published.swift
 
-public import SwiftUI
-import OSLog
 import Combine
+import OSLog
+public import SwiftUI
 
 /// Property wrapper type that reflects a value from Keychain and invalidates a view on a change in value in that Keychain.
 ///

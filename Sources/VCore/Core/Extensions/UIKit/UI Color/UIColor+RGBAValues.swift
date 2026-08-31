@@ -7,8 +7,8 @@
 
 #if canImport(UIKit)
 
-public import UIKit
 import OSLog
+public import UIKit
 
 nonisolated extension UIColor {
     /// Returns RGBA values of `UIColor`.

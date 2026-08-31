@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 22.10.24.
 //
 
-import Foundation
 public import Combine
+import Foundation
 
 @propertyWrapper
 final class PublishedPropertyWrapperBox<Value> {

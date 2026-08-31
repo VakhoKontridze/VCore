@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 28.05.25.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct ModalPresenterRootViewModifier: ViewModifier {
     // MARK: Properties - Root

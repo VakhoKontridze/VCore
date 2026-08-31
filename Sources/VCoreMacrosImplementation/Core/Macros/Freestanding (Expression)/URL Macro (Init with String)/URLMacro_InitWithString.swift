@@ -8,11 +8,11 @@
 #if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
 
 import Foundation
+import SwiftDiagnostics
+import SwiftParser
 import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
-import SwiftParser
-import SwiftDiagnostics
 
 nonisolated struct URLMacro_InitWithString: ExpressionMacro {
     static func expansion(

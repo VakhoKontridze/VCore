@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 11.11.23.
 //
 
-import Foundation
 public import Combine
+import Foundation
 
 nonisolated extension Publisher where Failure == Never {
     /// Assigns each element from `Publisher` to a property of an object with a weak retain cycle.

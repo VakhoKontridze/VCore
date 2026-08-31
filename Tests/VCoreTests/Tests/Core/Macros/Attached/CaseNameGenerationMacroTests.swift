@@ -8,12 +8,12 @@
 #if canImport(VCoreMacrosImplementation)
 
 import Foundation
-import XCTest
 import SwiftSyntax
 import SwiftSyntaxMacros
-import SwiftSyntaxMacrosTestSupport
 import SwiftSyntaxMacrosGenericTestSupport
+import SwiftSyntaxMacrosTestSupport
 @testable import VCoreMacrosImplementation
+import XCTest
 
 nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
     // MARK: Properties

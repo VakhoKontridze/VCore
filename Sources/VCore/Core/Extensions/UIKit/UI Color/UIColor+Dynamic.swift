@@ -7,8 +7,8 @@
 
 #if canImport(UIKit)
 
-public import UIKit
 import OSLog
+public import UIKit
 
 @available(watchOS, unavailable) // Light/dark mode and `UIColor(dynamicProvider:)` API do not exist. OS selects light color from the assets catalogue.
 @available(visionOS, unavailable) // Light/dark mode do not exist. OS selects dark color from the assets catalogue.

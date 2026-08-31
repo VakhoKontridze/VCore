@@ -7,8 +7,8 @@
 
 #if canImport(UIKit) && !(os(tvOS) || os(watchOS) || os(visionOS))
 
-public import SwiftUI
 import Combine
+public import SwiftUI
 
 /// Observer that detects changes in device orientation.
 ///

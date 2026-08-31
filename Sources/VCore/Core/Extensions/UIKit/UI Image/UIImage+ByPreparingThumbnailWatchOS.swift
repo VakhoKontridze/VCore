@@ -7,8 +7,8 @@
 
 #if canImport(UIKit)
 
-import UIKit
 import ImageIO
+import UIKit
 
 extension UIImage {
     func byPreparingThumbnailWatchOS(

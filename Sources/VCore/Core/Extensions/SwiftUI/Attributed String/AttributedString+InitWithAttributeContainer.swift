@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 06.02.24.
 //
 
-public import SwiftUI
 import OSLog
+public import SwiftUI
 
 nonisolated extension AttributedString {
     /// Initializes `AttributedString` with child `AttributedString` components created from mapping tag names to `AttributeContainer`s.

@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 03.08.25.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct ModalPresenterRootModalView: View {
     // MARK: Properties - Appearance

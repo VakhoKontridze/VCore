@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 29.05.25.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 struct ModalPresenterLinkViewModifier<ModalContent>: ViewModifier where ModalContent: View {
     // MARK: Properties - Link

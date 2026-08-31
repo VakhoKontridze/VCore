@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 21.07.22.
 //
 
-public import SwiftUI
 import OSLog
+public import SwiftUI
 
 /// Property wrapper type that reflects a value from Keychain and invalidates a view on a change in value in that Keychain.
 ///

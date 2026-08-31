@@ -20,11 +20,11 @@ nonisolated open class MockImageMemoryCache: ImageMemoryCache, @unchecked Sendab
         size: CGSize(dimension: 500),
         color: {
 #if os(watchOS)
-                UIColor.blue
+            UIColor.blue
 #else
-                PlatformColor.systemBlue
+            PlatformColor.systemBlue
 #endif
-            }()
+        }()
     )
     
     // MARK: Initializers

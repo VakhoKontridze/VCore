@@ -7,8 +7,8 @@
 
 #if canImport(UIKit) && !os(watchOS) // `UIView` doesn't exist on watchOS
 
-import UIKit
 import Testing
+import UIKit
 @testable import VCore
 
 @Suite

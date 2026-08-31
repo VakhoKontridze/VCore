@@ -20,11 +20,11 @@ nonisolated open class MockImageDiskCache: ImageDiskCache, @unchecked Sendable {
         size: CGSize(dimension: 500),
         color: {
 #if os(watchOS)
-                UIColor.blue
+            UIColor.blue
 #else
-                PlatformColor.systemBlue
+            PlatformColor.systemBlue
 #endif
-            }()
+        }()
     )
     
     // MARK: Initializers

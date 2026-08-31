@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 10.07.24.
 //
 
-import SwiftUI
 import Combine
+import SwiftUI
 
 final class ModalPresenterInternalContext {
     // MARK: Properties

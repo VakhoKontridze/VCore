@@ -815,8 +815,8 @@ public typealias UIKitBaseButtonInternalState = GenericState_EnabledPressedDisab
 
 #if canImport(UIKit) && !os(watchOS)
 
-public import UIKit
 import Combine
+public import UIKit
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
 @available(tvOS, unavailable)
@@ -891,8 +891,8 @@ open class KeyboardResponsiveUIViewController: UIViewController {
 
 #if canImport(UIKit) && !os(watchOS)
 
-public import SwiftUI
 import OSLog
+public import SwiftUI
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
 @available(tvOS, unavailable)
@@ -1171,8 +1171,8 @@ extension UIViewController {
 
 #if canImport(UIKit) && !os(watchOS)
 
-public import UIKit
 import OSLog
+public import UIKit
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
 public protocol UITableViewCellParameter {
@@ -1233,8 +1233,8 @@ extension UITableView {
 
 #if canImport(UIKit) && !os(watchOS)
 
-public import UIKit
 import OSLog
+public import UIKit
 
 @available(*, deprecated, message: "Will be removed in '9.0.0'")
 public protocol UICollectionViewCellParameter {

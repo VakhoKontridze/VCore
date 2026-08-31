@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 10.03.23.
 //
 
-public import SwiftUI
 import OSLog
+public import SwiftUI
 
 nonisolated extension Image {
     /// Initializes and returns the `Image` with the specified `Data`.

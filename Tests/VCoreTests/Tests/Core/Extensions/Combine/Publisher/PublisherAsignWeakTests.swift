@@ -5,10 +5,10 @@
 //  Created by Vakhtang Kontridze on 21.02.24.
 //
 
-import Foundation
 import Combine
-import XCTest
+import Foundation
 @testable import VCore
+import XCTest
 
 nonisolated final class PublisherAssignWeakTests: XCTestCase {
     // MARK: Tests

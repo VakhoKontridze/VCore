@@ -7,12 +7,12 @@
 
 #if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
 
-import SwiftUI
+import SwiftDiagnostics
+import SwiftParser
 import SwiftSyntax
 import SwiftSyntaxBuilder
 import SwiftSyntaxMacros
-import SwiftParser
-import SwiftDiagnostics
+import SwiftUI
 import VCoreShared
 
 nonisolated struct ColorMacro_InitWithHexString: ExpressionMacro {

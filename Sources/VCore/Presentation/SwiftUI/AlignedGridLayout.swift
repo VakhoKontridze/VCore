@@ -5,8 +5,8 @@
 //  Created by Vakhtang Kontridze on 23.02.23.
 //
 
-public import SwiftUI
 import OSLog
+public import SwiftUI
 
 /// Vertical container that justifies collection of views with an alignment.
 ///

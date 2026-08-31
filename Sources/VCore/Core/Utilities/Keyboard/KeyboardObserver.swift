@@ -5,9 +5,9 @@
 //  Created by Vakhtang Kontridze on 25.07.24.
 //
 
-public import SwiftUI
 import Combine
 import OSLog
+public import SwiftUI
 
 /// Object that observes changes in keyboard frame.
 ///
