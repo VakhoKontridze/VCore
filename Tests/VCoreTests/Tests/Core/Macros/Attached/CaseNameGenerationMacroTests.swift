@@ -48,7 +48,7 @@ nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
                         toName() == name
                     }
 
-                    internal nonisolated enum Name: CaseIterable {
+                    internal nonisolated enum Name {
                         case a
                         case b
                     }
@@ -86,7 +86,7 @@ nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
                         toName() == name
                     }
 
-                    internal nonisolated enum Name: CaseIterable {
+                    internal nonisolated enum Name {
                         case a
                         case b
                     }
@@ -106,7 +106,7 @@ nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
                 """
                 nonisolated enum Model {
                 
-                    internal nonisolated enum Name: CaseIterable {
+                    internal nonisolated enum Name {
                     }
                 }
                 """,
@@ -142,7 +142,7 @@ nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
                         toName() == name
                     }
 
-                    public nonisolated enum Name: CaseIterable {
+                    public nonisolated enum Name {
                         case a
                         case b
                     }
@@ -152,6 +152,127 @@ nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
         )
     }
     
+    func testRawTypeParameter() {
+        assertMacroExpansion(
+            """
+            @CaseNameGeneration(
+                rawType: String.self
+            )
+            nonisolated enum Model {
+                case a
+                case b
+            }
+            """,
+            expandedSource:
+                """
+                nonisolated enum Model {
+                    case a
+                    case b
+                
+                    internal func toName() -> Name {
+                        switch self {
+                        case .a:
+                            .a
+                        case .b:
+                            .b
+                        }
+                    }
+                
+                    internal func `is`(_ name: Name) -> Bool {
+                        toName() == name
+                    }
+
+                    internal nonisolated enum Name: String {
+                        case a
+                        case b
+                    }
+                }
+                """,
+            macros: macros
+        )
+    }
+
+    func testConformancesParameter() {
+        assertMacroExpansion(
+            """
+            @CaseNameGeneration(
+                conformances: [CaseIterable.self]
+            )
+            nonisolated enum Model {
+                case a
+                case b
+            }
+            """,
+            expandedSource:
+                """
+                nonisolated enum Model {
+                    case a
+                    case b
+                
+                    internal func toName() -> Name {
+                        switch self {
+                        case .a:
+                            .a
+                        case .b:
+                            .b
+                        }
+                    }
+                
+                    internal func `is`(_ name: Name) -> Bool {
+                        toName() == name
+                    }
+
+                    internal nonisolated enum Name: CaseIterable {
+                        case a
+                        case b
+                    }
+                }
+                """,
+            macros: macros
+        )
+    }
+
+    func testRawTypeAndConformancesParameters() {
+        assertMacroExpansion(
+            """
+            @CaseNameGeneration(
+                rawType: String.self, 
+                conformances: [CaseIterable.self, Sendable.self]
+            )
+            nonisolated enum Model {
+                case a
+                case b
+            }
+            """,
+            expandedSource:
+                """
+                nonisolated enum Model {
+                    case a
+                    case b
+                
+                    internal func toName() -> Name {
+                        switch self {
+                        case .a:
+                            .a
+                        case .b:
+                            .b
+                        }
+                    }
+                
+                    internal func `is`(_ name: Name) -> Bool {
+                        toName() == name
+                    }
+
+                    internal nonisolated enum Name: String, CaseIterable, Sendable {
+                        case a
+                        case b
+                    }
+                }
+                """,
+            macros: macros
+        )
+    }
+
     func testOtherMembers() {
         assertMacroExpansion(
             """
@@ -184,7 +305,7 @@ nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
                         toName() == name
                     }
 
-                    internal nonisolated enum Name: CaseIterable {
+                    internal nonisolated enum Name {
                         case a
                         case b
                     }
@@ -224,7 +345,7 @@ nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
                         toName() == name
                     }
 
-                    internal nonisolated enum Name: CaseIterable {
+                    internal nonisolated enum Name {
                         case a
                         case b
                         case c
@@ -254,3 +375,4 @@ nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
 }
 
 #endif
+

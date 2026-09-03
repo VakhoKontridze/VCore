@@ -38,6 +38,28 @@ nonisolated struct CaseNameGenerationMacro: MemberMacro {
             declaration: declaration
         )
         
+        // Raw type parameter
+        let rawType: String?
+        do {
+            rawType = try rawTypeParameter(
+                attribute: node,
+                context: context
+            )
+        } catch {
+            return []
+        }
+        
+        // Conformances parameters
+        let conformances: [String]
+        do {
+            conformances = try conformancesParameter(
+                attribute: node,
+                context: context
+            )
+        } catch {
+            return []
+        }
+        
         // Limits declaration to `enum`s
         guard
             declaration.is(EnumDeclSyntax.self)
@@ -71,7 +93,9 @@ nonisolated struct CaseNameGenerationMacro: MemberMacro {
         return result(
             accessLevelModifier: accessLevelModifier,
             isNonIsolated: isNonIsolated,
-            cases: cases
+            cases: cases,
+            rawType: rawType,
+            conformances: conformances
         )
     }
     
@@ -114,6 +138,82 @@ nonisolated struct CaseNameGenerationMacro: MemberMacro {
         return value
     }
     
+    private static func rawTypeParameter(
+        attribute: AttributeSyntax,
+        context: some MacroExpansionContext
+    ) throws -> String? {
+        guard
+            let parameter: LabeledExprSyntax = attribute
+                .arguments?
+                .toArgumentListGetAssociatedValue()?
+                .first(where: { $0.label?.trimmedDescription == "rawType" })
+        else {
+            return nil // Default value
+        }
+        
+        guard
+            !parameter.expression.is(NilLiteralExprSyntax.self)
+        else {
+            return nil
+        }
+        
+        var value: String = parameter
+            .expression
+            .trimmedDescription
+        
+        if value.hasSuffix(".self") {
+            value.removeLast(5)
+        }
+        
+        guard !value.isEmpty else {
+            let error: RawStringError = .init("Invalid 'rawType' parameter")
+            context.addDiagnostics(from: error, node: parameter)
+            throw error
+        }
+        
+        return value
+    }
+    
+    private static func conformancesParameter(
+        attribute: AttributeSyntax,
+        context: some MacroExpansionContext
+    ) throws -> [String] {
+        guard
+            let parameter: LabeledExprSyntax = attribute
+                .arguments?
+                .toArgumentListGetAssociatedValue()?
+                .first(where: { $0.label?.trimmedDescription == "conformances" })
+        else {
+            return [] // Default value
+        }
+        
+        guard
+            let value: [String] = try parameter
+                .expression.as(ArrayExprSyntax.self)?
+                .elements
+                .map({ element in
+                    var text: String = element.expression.trimmedDescription
+                    if text.hasSuffix(".self") {
+                        text.removeLast(5)
+                    }
+                    
+                    guard !text.isEmpty else {
+                        let error: RawStringError = .init("Invalid value")
+                        context.addDiagnostics(from: error, node: element)
+                        throw error
+                    }
+                    
+                    return text
+                })
+        else {
+            let error: RawStringError = .init("Invalid 'conformances' parameter")
+            context.addDiagnostics(from: error, node: parameter)
+            throw error
+        }
+        
+        return value
+    }
+    
     private static func isNonIsolated(
         declaration: some DeclGroupSyntax
     ) -> Bool {
@@ -124,7 +224,9 @@ nonisolated struct CaseNameGenerationMacro: MemberMacro {
     private static func result(
         accessLevelModifier: AccessLevelModifierKeyword,
         isNonIsolated: Bool,
-        cases: [CaseData]
+        cases: [CaseData],
+        rawType: String?,
+        conformances: [String]
     ) -> [DeclSyntax] {
         var result: [DeclSyntax] = []
         
@@ -170,9 +272,24 @@ nonisolated struct CaseNameGenerationMacro: MemberMacro {
         }
         
         do {
+            let inheritedTypes: [String] = {
+                var result: [String] = []
+                
+                if let rawType { result.append(rawType) }
+                
+                result.append(contentsOf: conformances)
+                
+                return result
+            }()
+            
             var string: String = ""
             
-            string.append("\(prefixType)enum Name: CaseIterable {")
+            string.append("\(prefixType)enum Name")
+            if !inheritedTypes.isEmpty {
+                string.append(": ")
+                string.append(inheritedTypes.joined(separator: ", "))
+            }
+            string.append(" {")
             string.append("\n")
             
             for `case` in cases {

@@ -11,7 +11,9 @@ import Foundation
 ///
 /// If `accessLevelModifier` is `nil`, it will be inherited from the type.
 ///
-///     @CaseNameGeneration
+///     @CaseNameGeneration(
+///         conformances: [CaseIterable.self]
+///     )
 ///     nonisolated enum ImageCacheEntry {
 ///         case inProgress(Task<UIImage, any Error>)
 ///         case completed(UIImage)
@@ -36,7 +38,9 @@ import Foundation
 ///
 @attached(member, names: arbitrary)
 public macro CaseNameGeneration(
-    accessLevelModifier: AccessLevelModifierKeyword? = nil
+    accessLevelModifier: AccessLevelModifierKeyword? = nil,
+    rawType: Any.Type? = nil,
+    conformances: [Any.Type] = []
 ) = #externalMacro(
     module: "VCoreMacrosImplementation",
     type: "CaseNameGenerationMacro"

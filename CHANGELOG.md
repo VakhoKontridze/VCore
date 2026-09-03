@@ -2,6 +2,10 @@
 
 ### 8.3.0(116)
 
+Core - Macros
+
+- `rawType` and `conformances` parameters are added to `CaseNameGeneration` macro
+
 Core - Services
 
 - `default` in `ImageRepositoryCacheStorage` is changed from `memory` to `all`
