@@ -17,7 +17,7 @@ import XCTest
 
 nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
     // MARK: Properties
-    private let macros: [String: Macro.Type] = ["CaseNameGeneration": CaseNameGenerationMacro.self]
+    private let macros: [String: any Macro.Type] = ["CaseNameGeneration": CaseNameGenerationMacro.self]
     
     // MARK: Tests
     func testSimpleDeclaration() {

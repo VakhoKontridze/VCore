@@ -19,7 +19,7 @@ import XCTest
 
 nonisolated final class ColorMacroTests_InitWithHexUInt: XCTestCase {
     // MARK: Properties
-    private let macros: [String: Macro.Type] = ["color": ColorMacro_InitWithHexUInt.self]
+    private let macros: [String: any Macro.Type] = ["color": ColorMacro_InitWithHexUInt.self]
 
     // MARK: Tests
     func testValid() {

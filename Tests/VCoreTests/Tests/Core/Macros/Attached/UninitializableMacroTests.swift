@@ -17,7 +17,7 @@ import XCTest
 
 nonisolated final class UninitializableMacroTests: XCTestCase {
     // MARK: Properties
-    private let macros: [String: Macro.Type] = ["Uninitializable": UninitializableMacro.self]
+    private let macros: [String: any Macro.Type] = ["Uninitializable": UninitializableMacro.self]
 
     // MARK: Tests
     func test() {

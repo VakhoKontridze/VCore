@@ -17,7 +17,7 @@ import XCTest
 
 nonisolated final class ColorMacroTests_InitWithHexString: XCTestCase {
     // MARK: Properties
-    private let macros: [String: Macro.Type] = ["color": ColorMacro_InitWithHexString.self]
+    private let macros: [String: any Macro.Type] = ["color": ColorMacro_InitWithHexString.self]
 
     // MARK: Tests
     func testValid() {

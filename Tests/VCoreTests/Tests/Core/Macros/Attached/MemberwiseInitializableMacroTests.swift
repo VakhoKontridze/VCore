@@ -17,7 +17,7 @@ import XCTest
 
 nonisolated final class MemberwiseInitializableMacroTests: XCTestCase {
     // MARK: Properties
-    private let macros: [String: Macro.Type] = ["MemberwiseInitializable": MemberwiseInitializableMacro.self]
+    private let macros: [String: any Macro.Type] = ["MemberwiseInitializable": MemberwiseInitializableMacro.self]
 
     // MARK: Tests
     func testSimpleProperties() {

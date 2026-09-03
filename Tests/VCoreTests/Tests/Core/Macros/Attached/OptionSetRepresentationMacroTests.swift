@@ -17,7 +17,7 @@ import XCTest
 
 nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
     // MARK: Properties
-    private let macros: [String: Macro.Type] = ["OptionSetRepresentation": OptionSetRepresentationMacro.self]
+    private let macros: [String: any Macro.Type] = ["OptionSetRepresentation": OptionSetRepresentationMacro.self]
 
     // MARK: Tests
     func testSimpleStruct() {

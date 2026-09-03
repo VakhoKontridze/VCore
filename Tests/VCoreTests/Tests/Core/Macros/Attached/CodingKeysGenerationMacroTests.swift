@@ -17,7 +17,7 @@ import XCTest
 
 nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
     // MARK: Properties
-    private let macros: [String: Macro.Type] = ["CodingKeysGeneration": CodingKeysGenerationMacro.self]
+    private let macros: [String: any Macro.Type] = ["CodingKeysGeneration": CodingKeysGenerationMacro.self]
 
     // MARK: Tests
     func testSimpleDeclaration() {

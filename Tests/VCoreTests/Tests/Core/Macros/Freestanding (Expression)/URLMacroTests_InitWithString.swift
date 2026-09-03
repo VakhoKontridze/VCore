@@ -17,7 +17,7 @@ import XCTest
 
 nonisolated final class URLMacroTests_InitWithString: XCTestCase {
     // MARK: Properties
-    private let macros: [String: Macro.Type] = ["url": URLMacro_InitWithString.self]
+    private let macros: [String: any Macro.Type] = ["url": URLMacro_InitWithString.self]
 
     // MARK: Tests
     func testValid() {
