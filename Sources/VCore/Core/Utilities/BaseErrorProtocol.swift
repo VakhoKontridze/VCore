@@ -11,7 +11,7 @@ public import Foundation
 ///
 ///     @MemberwiseInitializable(accessLevelModifier: .private)
 ///     nonisolated struct ServiceError: BaseErrorProtocol, Equatable {
-///         static let domain: String = "com.domain.app.service-error"
+///         static let domain: String = "com.domain.app.service"
 ///         let code: Int
 ///         let description: String
 ///
