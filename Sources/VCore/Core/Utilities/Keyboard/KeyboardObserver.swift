@@ -74,8 +74,10 @@ public final class KeyboardObserver {
     /// Indicates if keyboard is visible.
     public private(set) var isVisible: Bool = false
     
+#if canImport(UIKit) && !os(watchOS)
     /// Keyboard info.
     public private(set) var systemKeyboardInfo: SystemKeyboardInfo?
+#endif
     
     /// Offset.
     public private(set) var offset: CGFloat = 0
@@ -137,6 +139,8 @@ public final class KeyboardObserver {
         notification: Notification,
         animated: Bool = true
     ) {
+#if canImport(UIKit) && !os(watchOS)
+        
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
         self.systemKeyboardInfo = systemKeyboardInfo
         
@@ -221,12 +225,16 @@ public final class KeyboardObserver {
                 }
             }
         }
+        
+#endif
     }
     
     private func offsetHiddenKeyboard(
         notification: Notification,
         animated: Bool = true
     ) {
+#if canImport(UIKit) && !os(watchOS)
+        
         let systemKeyboardInfo: SystemKeyboardInfo = .init(notification: notification)
         self.systemKeyboardInfo = systemKeyboardInfo
 
@@ -276,6 +284,8 @@ public final class KeyboardObserver {
                 }
             }
         }
+
+#endif
     }
 
     // MARK: Keyboard
@@ -306,6 +316,8 @@ public final class KeyboardObserver {
         )
     }
     
+#endif
+    
     // MARK: Subscriptions
     private func addSubscriptions() {
 #if canImport(UIKit) && !os(watchOS)
@@ -322,8 +334,6 @@ public final class KeyboardObserver {
         
 #endif
     }
-    
-#endif
     
     // MARK: Helpers
 #if canImport(UIKit) && !os(watchOS)
