@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 27/5/26.
 //
 
-#if DEBUG
-
 import Foundation
 public import Network
 
@@ -24,5 +22,3 @@ nonisolated open class MockNetworkReachabilityService: NetworkReachabilityServic
     /// Initializes `MockNetworkReachabilityService`.
     public init() {}
 }
-
-#endif

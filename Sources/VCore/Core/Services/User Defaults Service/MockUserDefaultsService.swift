@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 28/5/26.
 //
 
-#if DEBUG
-
 public import Foundation
 
 /// Object that performs get, set, and delete `UserDefaults` operations.
@@ -189,5 +187,3 @@ nonisolated open class MockUserDefaultsService: UserDefaultsService, @unchecked 
         )
     }
 }
-
-#endif

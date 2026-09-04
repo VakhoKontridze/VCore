@@ -140,7 +140,9 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
 
         assertMacroExpansion(
             """
-            @OptionSetRepresentation(accessLevelModifier: .fileprivate)
+            @OptionSetRepresentation(
+                accessLevelModifier: .fileprivate
+            )
             nonisolated struct Gender {
                 private nonisolated enum Options: Int {
                     case male

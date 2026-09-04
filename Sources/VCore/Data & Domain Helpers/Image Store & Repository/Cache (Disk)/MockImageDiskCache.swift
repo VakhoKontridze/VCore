@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-#if DEBUG
-
 #if canImport(UIKit)
 public import UIKit
 #elseif canImport(AppKit)
@@ -85,5 +83,3 @@ nonisolated open class MockImageDiskCache: ImageDiskCache, @unchecked Sendable {
     /// so eviction runs while the user is not looking at images.
     open func evictIfNeeded() {}
 }
-
-#endif

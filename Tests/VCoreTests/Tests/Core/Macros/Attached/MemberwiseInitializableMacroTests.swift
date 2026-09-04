@@ -351,7 +351,9 @@ nonisolated final class MemberwiseInitializableMacroTests: XCTestCase {
 
         assertMacroExpansion(
             """
-            @MemberwiseInitializable(accessLevelModifier: .fileprivate)
+            @MemberwiseInitializable(
+                accessLevelModifier: .fileprivate
+            )
             nonisolated struct Model {
                 let a: Int
             }

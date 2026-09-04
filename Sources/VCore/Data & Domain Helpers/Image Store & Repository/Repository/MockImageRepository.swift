@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-#if DEBUG
-
 #if canImport(UIKit)
 public import UIKit
 #elseif canImport(AppKit)
@@ -102,5 +100,3 @@ nonisolated open class MockImageRepository: ImageRepository, @unchecked Sendable
         }
     }
 }
-
-#endif

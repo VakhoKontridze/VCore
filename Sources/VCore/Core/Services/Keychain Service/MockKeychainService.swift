@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 28/5/26.
 //
 
-#if DEBUG
-
 public import Foundation
 
 /// Object that performs get, set, and delete Keychain operations.
@@ -155,5 +153,3 @@ nonisolated open class MockKeychainService: KeychainService, @unchecked Sendable
         }
     }
 }
-
-#endif

@@ -9,6 +9,9 @@ Core - Macros
 Core - Services
 
 - `default` in `ImageRepositoryCacheStorage` is changed from `memory` to `all`
+- `MockKeychainService` is no longer compiled behind `DEBUG` flag
+- `MockNetworkReachabilityService` is no longer compiled behind `DEBUG` flag
+- `MockUserDefaultsService` is no longer compiled behind `DEBUG` flag
 
 Core - Utilities
 
@@ -16,6 +19,10 @@ Core - Utilities
 - `reposition` method is added to `KeyboardObserver`
 - `value` property is added to `CachedManagedTask` and `CachedKeyedManagedTask`
 - Initializers are added to custom `Result` types
+
+Date & Domain Helpers
+
+- `MockImageRepository` is no longer compiled behind `DEBUG` flag
 
 Extra - File Templates
 
@@ -46,7 +53,7 @@ Core - Utilities
 - `modifyAndGet(_:)` method is added to `AtomicInteger`
 - `modifyAndGet(_:)` method is added to `LockedAtomicInteger`
 
-Date & Domain Helpers
+Data & Domain Helpers
 
 - `ImageStore` and `ImageRepository` are added
 

@@ -5,8 +5,6 @@
 //  Created by Vakhtang Kontridze on 16/5/26.
 //
 
-#if DEBUG
-
 public import SwiftUI
 #if canImport(UIKit)
 public import UIKit
@@ -80,5 +78,3 @@ nonisolated open class MockImageRepositoryFetchWorker: DefaultImageRepositoryFet
         return image
     }
 }
-
-#endif
