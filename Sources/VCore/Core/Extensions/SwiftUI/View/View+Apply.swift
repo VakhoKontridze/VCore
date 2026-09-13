@@ -72,7 +72,7 @@ nonisolated extension View {
     @ViewBuilder
     public func applyIf(
         _ condition: Bool,
-        _ ifTransform: (Self) -> some View,
+        transform ifTransform: (Self) -> some View,
         else elseTransform: (Self) -> some View
     ) -> some View {
         if condition {
@@ -123,7 +123,7 @@ nonisolated extension View {
     @ViewBuilder
     public func applyIfLet<Value>(
         _ value: Value?,
-        _ ifTransform: (Self, Value) -> some View,
+        transform ifTransform: (Self, Value) -> some View,
         else elseTransform: (Self) -> some View
     ) -> some View {
         if let value {

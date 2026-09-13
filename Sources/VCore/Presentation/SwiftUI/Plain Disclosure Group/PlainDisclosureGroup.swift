@@ -131,7 +131,7 @@ public struct PlainDisclosureGroup<Label, Content>: View
                 label: { Spacer().frame(height: nativeLabelHeight) }
             )
             .mask { nativeLabelViewMask }
-            .animation(.default, value: isExpanded.wrappedValue)
+            .animation(appearance.expandCollapseAnimation, value: isExpanded.wrappedValue)
             
             labelView
         }
