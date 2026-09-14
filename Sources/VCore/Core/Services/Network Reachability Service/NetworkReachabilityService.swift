@@ -5,6 +5,7 @@
 //  Created by Vakhtang Kontridze on 27/5/26.
 //
 
+public import Combine
 public import Foundation
 public import Network
 
@@ -12,8 +13,6 @@ nonisolated public protocol NetworkReachabilityService: AnyObject, Observable, S
     /// Network connection status.
     var status: NWPath.Status? { get }
     
-    /// Indicates if device is connected to a network.
-    ///
-    /// On app launch, `nil` is returned.
-    var isConnectedToNetwork: Bool? { get }
+    /// `Publisher` that emits when `status` changes.
+    var statusPublisher: AnyPublisher<NWPath.Status?, Never> { get } // TODO: iOS 27.0 - Remove, as it'll be obsoleted by `Observations`
 }

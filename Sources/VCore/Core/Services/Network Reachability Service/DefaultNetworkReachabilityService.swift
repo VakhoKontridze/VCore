@@ -6,6 +6,7 @@
 //
 
 public import Foundation
+public import Combine
 public import Network
 import OSLog
 
@@ -14,7 +15,7 @@ import OSLog
 ///     @Bindable private var networkReachabilityService: DefaultNetworkReachabilityService = .shared
 ///
 ///     var body: some View {
-///         Text(networkReachabilityService.isConnectedToNetwork != true ? "Not Connected" : "Connected")
+///         Text(networkReachabilityService.status?.isConnected != true ? "Not Connected" : "Connected")
 ///     }
 ///
 @Observable
@@ -31,10 +32,11 @@ nonisolated open class DefaultNetworkReachabilityService: NetworkReachabilitySer
     /// Network connection status.
     private var _status: NWPath.Status?
     
-    /// Indicates if device is connected to a network.
-    ///
-    /// On app launch, `nil` is returned.
-    open var isConnectedToNetwork: Bool? { status?.isConnected }
+    // MARK: Properties - Notification
+    @ObservationIgnored private let statusSubject: CurrentValueSubject<NWPath.Status?, Never> = .init(nil)
+
+    /// `Publisher` that emits when `status` changes.
+    @ObservationIgnored public var statusPublisher: AnyPublisher<NWPath.Status?, Never> { statusSubject.eraseToAnyPublisher() }
     
     // MARK: Properties - Status Monitor
     @ObservationIgnored private let statusMonitor: NWPathMonitor = .init()
@@ -53,21 +55,16 @@ nonisolated open class DefaultNetworkReachabilityService: NetworkReachabilitySer
     /// Initializes `DefaultNetworkReachabilityService`.
     public init() {
         // `lazy` doesn't work on `nonisolated` properties, so this must be set here
-        statusMonitor.pathUpdateHandler = { [weak self] in self?.status = $0.status }
+        statusMonitor.pathUpdateHandler = { [weak self] value in
+            guard let self else { return }
+
+            let newStatus: NWPath.Status = value.status
+            guard newStatus != status else { return }
+
+            status = newStatus
+            statusSubject.send(newStatus)
+        }
         
         statusMonitor.start(queue: statusQueue)
-    }
-}
-
-nonisolated extension NWPath.Status {
-    fileprivate var isConnected: Bool {
-        switch self {
-        case .satisfied: return true
-        case .unsatisfied: return false
-        case .requiresConnection: return false
-        @unknown default: 
-            Logger.default.fault("Unhandled 'NWPath.Status' '\(String(describing: self))' in 'NWPath.Status.isConnected'")
-            return false
-        }
     }
 }
