@@ -6,18 +6,22 @@
 //
 
 public import Combine
-import Foundation
+public import Foundation
 public import Network
 
 @Observable
 nonisolated open class MockNetworkReachabilityService: NetworkReachabilityService, @unchecked Sendable {
     // MARK: Properties - Status
     /// Network connection status.
-    ///
-    /// Mutating this value emits it through `statusPublisher`.
-    open var status: NWPath.Status? {
-        didSet { statusSubject.send(status) }
+    open private(set) var status: NWPath.Status? {
+        get { _status }
+        set {
+            _status = newValue
+            statusSubject.send(newValue)
+        }
     }
+
+    private var _status: NWPath.Status?
 
     // MARK: Properties - Notification
     @ObservationIgnored private let statusSubject: CurrentValueSubject<NWPath.Status?, Never>

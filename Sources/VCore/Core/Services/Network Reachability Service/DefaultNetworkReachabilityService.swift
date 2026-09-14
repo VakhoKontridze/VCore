@@ -25,11 +25,12 @@ nonisolated open class DefaultNetworkReachabilityService: NetworkReachabilitySer
     public static let shared: DefaultNetworkReachabilityService = .init()
     
     // MARK: Properties - Status
+    /// Network connection status.
     open private(set) var status: NWPath.Status? {
         get { queue.sync { _status } }
         set { queue.sync(flags: .barrier) { _status = newValue } }
     }
-    /// Network connection status.
+    
     private var _status: NWPath.Status?
     
     // MARK: Properties - Notification
