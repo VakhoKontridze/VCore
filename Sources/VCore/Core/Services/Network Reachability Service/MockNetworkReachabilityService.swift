@@ -23,7 +23,7 @@ nonisolated open class MockNetworkReachabilityService: NetworkReachabilityServic
 
     private var _status: NWPath.Status?
 
-    // MARK: Properties - Notification
+    // MARK: Properties - Publishers
     @ObservationIgnored private let statusSubject: CurrentValueSubject<NWPath.Status?, Never>
 
     /// `Publisher` that emits when `status` changes.

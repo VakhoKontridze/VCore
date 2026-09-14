@@ -62,7 +62,7 @@ public final class PublishingObservationContainer<Value> {
         }
     }
 
-    // MARK: Properties - Notification
+    // MARK: Properties - Publishers
     @ObservationIgnored private let subject: PassthroughSubject<Value, Never> = .init()
 
     /// `Publisher` that emits when `value` changes.
