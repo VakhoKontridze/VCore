@@ -12,7 +12,7 @@ import Testing
 // No need to cover `NSImage`
 
 @Suite(
-    .enabled(if: DefaultNetworkReachabilityService.shared.isConnectedToNetwork == true),
+    .enabled(if: DefaultNetworkReachabilityService.shared.status?.isConnected == true),
     .timeLimit(.minutes(1))
 )
 nonisolated struct MultipartFormDataBuilderTests {

@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 28/4/26.
 //
 
-#if canImport(VCoreMacrosImplementation)
+#if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
 
 import Foundation
 import SwiftSyntax
@@ -375,4 +375,3 @@ nonisolated final class CaseNameGenerationMacroTests: XCTestCase {
 }
 
 #endif
-

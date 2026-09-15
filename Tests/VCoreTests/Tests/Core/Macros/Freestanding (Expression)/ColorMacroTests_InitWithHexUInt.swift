@@ -7,7 +7,7 @@
 
 // Other test cases are covered under `UIColorInitWithHexTests`
 
-#if canImport(VCoreMacrosImplementation)
+#if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
 
 import Foundation
 import SwiftSyntax

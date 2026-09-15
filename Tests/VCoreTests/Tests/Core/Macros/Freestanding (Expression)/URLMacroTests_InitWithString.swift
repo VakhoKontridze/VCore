@@ -5,7 +5,7 @@
 //  Created by Vakhtang Kontridze on 07.01.24.
 //
 
-#if canImport(VCoreMacrosImplementation)
+#if !(os(iOS) || os(tvOS) || os(watchOS) || os(visionOS))
 
 import Foundation
 import SwiftSyntax
