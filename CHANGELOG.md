@@ -1,6 +1,11 @@
 # Change Log
 
-### 8.3.0(116)
+### [9.0.0(116)](https://github.com/VakhoKontridze/VCore/releases/tag/9.0.0) — 2026 09 15
+
+General
+
+- Minimum SDK version is increased to `iOS` `18.0`, `macOS` `15.0`, `tvOS` `18.0`, `watchOS` `11.0`, and `visionOS` `2.0`
+- Previously deprecated symbols are removed
 
 Core - Macros
 
