@@ -14,5 +14,5 @@ nonisolated public protocol NetworkReachabilityService: AnyObject, Observable, S
     var status: NWPath.Status? { get }
     
     /// `Publisher` that emits when `status` changes.
-    var statusPublisher: AnyPublisher<NWPath.Status?, Never> { get } // TODO: iOS 27.0 - Remove, as it'll be obsoleted by `ResultsObserver`
+    var statusPublisher: AnyPublisher<NWPath.Status?, Never> { get } // TODO: iOS 27.0 - Remove, as it's be obsoleted by `ResultsObserver`
 }
