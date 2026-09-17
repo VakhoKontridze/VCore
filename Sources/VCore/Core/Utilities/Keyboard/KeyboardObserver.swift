@@ -82,12 +82,14 @@ public final class KeyboardObserver {
     /// Offset.
     public private(set) var offset: CGFloat = 0
 
-    // `UIResponder.keyboardWillShowNotification` is usually called twice, as input accessory view is attached later.
-    // During animations, `offset` is modified. But if event fires immediately second time, calculation will be invalid.
-    // To combat this, a debouncing, delayed timer can be used to animate offset using `withAnimation(_:_:)`. But, it's not ideal UX-wise.
-    // Additionally, `withAnimation(_:_:)` doesn't work properly with `offset(x:y:)` modifier, which is needed for keyboard avoidance.
-    // Both of this problems can be fixed by using a cached, stable offset, and animation view using `animation(_:value:)` modifier.
-    @ObservationIgnored private var offsetStable: CGFloat = 0
+#if canImport(UIKit) && !os(watchOS)
+    // The first responder and it's resting frame, captured once per focus.
+    // `UIResponder.keyboardWillShowNotification` fires repeatedly while the container is mid-lift,
+    // usually as input accessory view is attached later, and on `iOS 27` mid-animation,
+    // So re-reading the live frame would feed the applied lift back into the calculation, oscillating the offset.
+    @ObservationIgnored private weak var baselineFirstResponderView: UIView?
+    @ObservationIgnored private var baselineViewGlobalFrameMaxY: CGFloat?
+#endif
 
     /// Animation.
     public private(set) var animation: Animation? = {
@@ -99,9 +101,6 @@ public final class KeyboardObserver {
     }()
 
     // MARK: Properties - Subscriptions
-    @ObservationIgnored private var keyboardShowTask: Task<Void, Never>?
-    @ObservationIgnored private var keyboardHideTask: Task<Void, Never>?
-    
     @ObservationIgnored private var cancellables: Set<AnyCancellable> = []
 
     // MARK: Initializers
@@ -178,16 +177,30 @@ public final class KeyboardObserver {
                     return nil
                 }
                 
-                let viewGlobalFrameMaxY: CGFloat = firstResponderViewSuperView.convert(firstResponderView.frame, to: nil).maxY
+                let baselineMaxY: CGFloat
+                if
+                    firstResponderView === baselineFirstResponderView,
+                    let storedBaselineMaxY: CGFloat = baselineViewGlobalFrameMaxY
+                {
+                    baselineMaxY = storedBaselineMaxY
 
-                let currentOffset: CGFloat = offsetStable
+                } else {
+                    let liveMaxY: CGFloat = firstResponderViewSuperView.convert(firstResponderView.frame, to: nil).maxY
+
+                    // A responder that focuses while the container is already lifted reports a lifted frame,
+                    // so the applied offset is added back to recover the resting position.
+                    baselineMaxY = liveMaxY + self.offset
+
+                    baselineFirstResponderView = firstResponderView
+                    baselineViewGlobalFrameMaxY = baselineMaxY
+                }
 
                 guard let systemKeyboardHeight: CGFloat = systemKeyboardInfo.frame?.size.height else {
                     Logger.default.error("Failed to retrieve system keyboard height from 'Notification' in 'KeyboardObserver': \(notification)")
                     return nil
                 }
 
-                let viewDistanceToBottom: CGFloat = windowHeight - viewGlobalFrameMaxY - currentOffset
+                let viewDistanceToBottom: CGFloat = windowHeight - baselineMaxY
                 
                 let obscuredHeight: CGFloat = max(0, systemKeyboardHeight + additionalOffset - viewDistanceToBottom)
 
@@ -199,31 +212,15 @@ public final class KeyboardObserver {
             let offset,
             offset != self.offset
         {
-            keyboardShowTask?.cancel()
-            keyboardHideTask?.cancel()
+            self.offset = offset
             
-            keyboardShowTask = Task {
-                defer { keyboardShowTask = nil }
-                
+            self.animation = {
                 if animated {
-                    self.offset = offset
-                    self.animation = systemKeyboardInfo.toSwiftUIAnimation
-                    
-                    do {
-                        try await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
-                    } catch {
-                        return
-                    }
-                    
-                    self.offsetStable = offset
-                    
+                    systemKeyboardInfo.toSwiftUIAnimation
                 } else {
-                    self.offset = offset
-                    self.offsetStable = offset
-                    
-                    self.animation = nil
+                    nil
                 }
-            }
+            }()
         }
         
 #endif
@@ -258,31 +255,15 @@ public final class KeyboardObserver {
             let offset,
             offset != self.offset
         {
-            keyboardShowTask?.cancel()
-            keyboardHideTask?.cancel()
+            self.offset = offset
             
-            keyboardHideTask = Task {
-                defer { keyboardHideTask = nil }
-                
+            self.animation = {
                 if animated {
-                    self.offset = offset
-                    self.animation = systemKeyboardInfo.toSwiftUIAnimation
-                    
-                    do {
-                        try await Task.sleep(for: .seconds(systemKeyboardInfo.nonZeroAnimationDuration))
-                    } catch {
-                        return
-                    }
-                    
-                    self.offsetStable = offset
-                    
+                    systemKeyboardInfo.toSwiftUIAnimation
                 } else {
-                    self.offset = offset
-                    self.offsetStable = offset
-                    
-                    self.animation = nil
+                    nil
                 }
-            }
+            }()
         }
 
 #endif
@@ -310,6 +291,9 @@ public final class KeyboardObserver {
         self.notification = notification
         
         isVisible = false
+        
+        baselineFirstResponderView = nil
+        baselineViewGlobalFrameMaxY = nil
         
         offsetHiddenKeyboard(
             notification: notification
