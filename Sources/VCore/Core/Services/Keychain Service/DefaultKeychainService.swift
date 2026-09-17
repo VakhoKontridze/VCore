@@ -160,7 +160,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
             value = try jsonDecoder.decode(from: data)
 
         } catch {
-            Logger.default.error("Failed to decode '\(Value.self)' from 'Data' in 'DefaultKeychainService.getCodable(key:)': \(error.localizedDescription)")
+            Logger.default.error("Failed to decode '\(Value.self)' from 'Data' in 'DefaultKeychainService.getCodable(key:)': \(String(reflecting: error))")
             throw KeychainServiceError.failedToGet
         }
 
@@ -179,7 +179,7 @@ nonisolated open class DefaultKeychainService: KeychainService, @unchecked Senda
             data = try jsonEncoder.encode(value)
             
         } catch {
-            Logger.default.error("Failed to encode '\(Value.self)' to 'Data' in 'DefaultKeychainService.setCodable(key:value:)': \(error.localizedDescription)")
+            Logger.default.error("Failed to encode '\(Value.self)' to 'Data' in 'DefaultKeychainService.setCodable(key:value:)': \(String(reflecting: error))")
             throw KeychainServiceError.failedToSet
         }
 

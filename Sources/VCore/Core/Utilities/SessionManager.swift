@@ -25,7 +25,7 @@ import Foundation
 ///             ...
 ///
 ///         } catch {
-///             print(error.localizedDescription)
+///             Logger.default.error("\(String(reflecting: error))")
 ///         }
 ///     }
 ///
@@ -73,7 +73,7 @@ public actor SessionManager {
 ///             ...
 ///
 ///         } catch {
-///             print(error.localizedDescription)
+///             Logger.default.error("\(String(reflecting: error))")
 ///         }
 ///     }
 ///

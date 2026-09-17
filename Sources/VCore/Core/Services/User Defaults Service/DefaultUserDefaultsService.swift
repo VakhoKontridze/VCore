@@ -153,7 +153,7 @@ nonisolated open class DefaultUserDefaultsService: UserDefaultsService, @uncheck
         do {
            value = try jsonDecoder.decode(from: data)
         } catch {
-            Logger.default.error("Failed to decode '\(Value.self)' from 'Data' in 'DefaultUserDefaultsService.getCodable(key:)': \(error.localizedDescription)")
+            Logger.default.error("Failed to decode '\(Value.self)' from 'Data' in 'DefaultUserDefaultsService.getCodable(key:)': \(String(reflecting: error))")
             throw UserDefaultsServiceError.failedToGet
         }
 
@@ -171,7 +171,7 @@ nonisolated open class DefaultUserDefaultsService: UserDefaultsService, @uncheck
         do {
             data = try jsonEncoder.encode(value)
         } catch {
-            Logger.default.error("Failed to encode '\(Value.self)' to 'Data' in 'DefaultUserDefaultsService.setCodable(key:value:)': \(error.localizedDescription)")
+            Logger.default.error("Failed to encode '\(Value.self)' to 'Data' in 'DefaultUserDefaultsService.setCodable(key:value:)': \(String(reflecting: error))")
             throw UserDefaultsServiceError.failedToSet
         }
 

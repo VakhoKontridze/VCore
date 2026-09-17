@@ -19,7 +19,7 @@ nonisolated extension String {
                     return string
 
                 case let error as any Error:
-                    return error.localizedDescription
+                    return String(reflecting: error)
 
                 default:
                     return String(describing: item)
