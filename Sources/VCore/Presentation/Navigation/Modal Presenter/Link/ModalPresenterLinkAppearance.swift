@@ -25,12 +25,12 @@ public struct ModalPresenterLinkAppearance {
     /// Initializes appearance with default values.
     public init() {}
     
-    /// Initializes appearance from the base instance and applies transformation.
+    /// Initializes appearance from the given base instance and applies the given configuration.
     public init(
         _ base: Self = .init(),
-        _ transform: (inout Self) -> Void
+        _ configure: (inout Self) -> Void
     ) {
         self = base
-        transform(&self)
+        configure(&self)
     }
 }
