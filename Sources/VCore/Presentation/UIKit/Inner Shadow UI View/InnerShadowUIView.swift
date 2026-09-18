@@ -82,11 +82,9 @@ open class InnerShadowUIView: UIView {
 
 #Preview {
     let view: InnerShadowUIView = .init(
-        appearance: {
-            var appearance: InnerShadowUIViewAppearance = .init()
-            appearance.shadowColor = UIColor.systemBlue
-            return appearance
-        }()
+        appearance:  InnerShadowUIViewAppearance {
+            $0.shadowColor = UIColor.systemBlue
+        }
     )
     view.translatesAutoresizingMaskIntoConstraints = false
     view.backgroundColor = UIColor.systemBlue.withAlphaComponent(0.67)

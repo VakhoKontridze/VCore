@@ -365,11 +365,9 @@ var body: some View {
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .modalPresenterRoot(
-        appearance: {
-            var appearance: ModalPresenterRootAppearance = .init()
-            appearance.dimmingViewColor = Color.clear
-            appearance.dimmingViewTapAction = .passTapsThrough
-            return appearance
+        appearance: ModalPresenterRootAppearance {
+            $0.dimmingViewColor = Color.clear
+            $0.dimmingViewTapAction = .passTapsThrough
         }()
     )
 }
@@ -385,11 +383,9 @@ Keyboard responsiveness can be customized via `ModalPresenterRootAppearance`.
 var body: some View {
     ...
         .modalPresenterRoot(
-            appearance: {
-                var appearance: ModalPresenterRootAppearance = .init()
-                appearance.keyboardResponsivenessStrategy = .offsetByObscuredViewHeight(additionalOffset: 20)
-                return appearance
-            }()
+            appearance: ModalPresenterRootAppearance {
+                $0.keyboardResponsivenessStrategy = .offsetByObscuredViewHeight(additionalOffset: 20)
+            }
         )
 }
 ```
@@ -471,12 +467,10 @@ extension View {
             )
             .modalPresenterRoot(
                 root: ModalPresenterRoot(rootID: "notifications"),
-                appearance: {
-                    var appearance: ModalPresenterRootAppearance = .init()
-                    appearance.dimmingViewTapAction = .passTapsThrough
-                    appearance.dimmingViewColor = Color.clear
-                    return appearance
-                }()
+                appearance: ModalPresenterRootAppearance {
+                    $0.dimmingViewTapAction = .passTapsThrough
+                    $0.dimmingViewColor = Color.clear
+                }
             )
     }
 }
