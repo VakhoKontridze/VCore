@@ -276,8 +276,9 @@ nonisolated public struct ImageRepositoryParameter: Hashable, Sendable {
             return "asset_\(bundleID)_\(name)"
 
         case .local(let url):
-            // Absolute path uniquely identifies a local file
-            return "local_\(url.path())"
+            // Absolute URL string, so that schemes carrying identity outside the path -- such as
+            // `ipod-library` -- stay distinct. `ImageDiskCache` SHA256s this, so length doesn't matter.
+            return "local_\(url.absoluteString)"
 
         case .remote(let url):
             // Absolute URL string, with -- scheme, host, path, query -- all included
