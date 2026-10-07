@@ -73,10 +73,6 @@ public final class PublishingObservationContainer<Value> {
     public init(_ value: Value) {
         self._value = value
     }
-
-    // Fixes compiler crash in `Swift` `6.3`
-    @_optimize(none)
-    deinit {}
 }
 
 #if DEBUG
