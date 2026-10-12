@@ -7,6 +7,7 @@
 - [Showcase](#showcase)
 - [Installation](#installation)
 - [Compatibility](#compatibility)
+- [Contributing](#contributing)
 - [Contact](#contact)
 
 ## Intro
@@ -377,6 +378,20 @@ Versions with different majors are not directly compatible. When a new major is 
 </table>
 
 For additional info, refer to the [CHANGELOG](https://github.com/VakhoKontridze/VCore/blob/main/CHANGELOG.md).
+
+## Contributing
+
+#### Branches
+
+`main` contains the latest release. `dev` contains work towards the next release, and may undergo major changes, especially ahead of a new major release in September.
+
+***Bug Fixes***. Open a PR against `main`. Small fixes may be released as a patch directly from `main`. Less urgent fixes, or ones that overlap with ongoing work, may be retargeted to `dev` and released with the next version.
+
+***Features and API Changes***. Open an issue first, then a PR against `dev`.
+
+#### Code Style
+
+Match the style of the surrounding code. Changes may be adjusted before merging.
 
 ## Contact
 
