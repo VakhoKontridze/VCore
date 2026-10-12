@@ -6,6 +6,10 @@ General
 
 - Appearances can now be initialized via a mutation closure
 
+Core - Extensions
+
+- `Image.init(systemName:weight:)` and `Image.init(systemNameAndDefault:weight:)` now support `macOS`
+
 ### [9.0.0(116)](https://github.com/VakhoKontridze/VCore/releases/tag/9.0.0) — 2026 09 15
 
 General
