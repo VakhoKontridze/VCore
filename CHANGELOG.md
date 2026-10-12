@@ -1,6 +1,6 @@
 # Change Log
 
-### 9.1.0(117)
+### [9.1.0(117)](https://github.com/VakhoKontridze/VCore/releases/tag/9.1.0) — 2026 10 12
 
 General
 
