@@ -208,125 +208,63 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
             }
         }
         
-        // 2. Reads from progress cache
-        switch progressCacheStorage {
-        case .memory:
-            let task: Task<PlatformImage, any Error>? = {
-                switch progressMemoryCacheKey {
-                case .original(let key): imageProgressMemoryCache.get(key: key)
-                case .resized(let key): imageProgressMemoryCache.get(key: key)
-                }
-            }()
-            
-            if let task {
-                let image: PlatformImage = try await withTaskCancellationHandler(
-                    operation: { try await task.value },
-                    onCancel: { task.cancel() }
-                )
-                try Task.checkCancellation()
-                
-                return image
-            }
-            
-        case nil:
-            break
-        }
-        
-        // 3a. Fetches - initial checks
+        // 2. Fetches - initial checks
         if !cachePolicy.fetches {
             throw ImageRepositoryError.imageNotInCache
         }
         
-        // 3b - 4
-        // NOTE: This needs to be grouped as one, since `defer` doesn't work with `await`
-        do {
-            // 3b. Fetches - schedules and registers work
-            let task: Task<PlatformImage, any Error> = .init {
-                try await fetchImage(parameter)
-            }
-            
-            // 3c. Fetches - saves and clears progress
+        // 3. Fetches - runs, or joins in-flight work with the same key.
+        // Progress clears itself, and is cancelled only when the last waiter is cancelled.
+        let image: PlatformImage = try await {
             switch progressCacheStorage {
             case .memory:
                 switch progressMemoryCacheKey {
-                case .original(let key): imageProgressMemoryCache.set(key: key, task: task)
-                case .resized(let key): imageProgressMemoryCache.set(key: key, task: task)
+                case .original(let key):
+                    try await imageProgressMemoryCache.run(
+                        key: key,
+                        operation: { try await fetchImage(parameter) }
+                    )
+                    
+                case .resized(let key):
+                    try await imageProgressMemoryCache.run(
+                        key: key,
+                        operation: { try await fetchImage(parameter) }
+                    )
                 }
                 
             case nil:
-                break
+                try await fetchImage(parameter)
+            }
+        }()
+        try Task.checkCancellation()
+        
+        // 4. Fetches - saves image
+        if cachePolicy_WritesToCache {
+            if cacheStorage.contains(.memory) {
+                switch memoryCacheKey {
+                case .original(let key): imageMemoryCache.set(key: key, image: image)
+                case .resized(let key): imageMemoryCache.set(key: key, image: image)
+                }
             }
             
-            // 3d. Fetches - gets image
-            let image: PlatformImage = try await withTaskCancellationHandler(
-                operation: { try await task.value },
-                onCancel: { task.cancel() }
-            )
-            try Task.checkCancellation()
-            
-            // 3e. Fetches - saves image
-            if cachePolicy_WritesToCache {
-                if cacheStorage.contains(.memory) {
-                    switch memoryCacheKey {
-                    case .original(let key): imageMemoryCache.set(key: key, image: image)
-                    case .resized(let key): imageMemoryCache.set(key: key, image: image)
-                    }
+            if cacheStorage.contains(.disk) {
+                if parameter.diskIdentifier == nil {
+#if canImport(UIKit)
+                    Logger.default.warning("Misuse of 'DefaultImageRepository'. Raw 'UIImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
+#elseif canImport(AppKit)
+                    Logger.default.warning("Misuse of 'DefaultImageRepository'. Raw 'NSImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
+#endif
                 }
                 
-                if cacheStorage.contains(.disk) {
-                    if parameter.diskIdentifier == nil {
-#if canImport(UIKit)
-                        Logger.default.warning("Misuse of 'DefaultImageRepository'. Raw 'UIImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
-#elseif canImport(AppKit)
-                        Logger.default.warning("Misuse of 'DefaultImageRepository'. Raw 'NSImage' has no stable disk identity. Writing to disk is a no-op, as the key won't survive relaunch.")
-#endif
-                    }
-                    
-                    switch diskCacheKey {
-                    case .original(let key): imageDiskCache.set(key: key, image: image)
-                    case .resized(let key): imageDiskCache.set(key: key, image: image)
-                    }
+                switch diskCacheKey {
+                case .original(let key): imageDiskCache.set(key: key, image: image)
+                case .resized(let key): imageDiskCache.set(key: key, image: image)
                 }
             }
-            
-            // 3f. Fetches - clears progress
-            await __clearProgress(
-                progressCacheStorage: progressCacheStorage,
-                progressMemoryCacheKey: progressMemoryCacheKey,
-                cancel: false
-            )
-            try Task.checkCancellation()
-            
-            // 4. Result
-            return image
-            
-        } catch {
-            await __clearProgress(
-                progressCacheStorage: progressCacheStorage,
-                progressMemoryCacheKey: progressMemoryCacheKey,
-                cancel: error is CancellationError
-            )
-            //try Task.checkCancellation()
-            
-            throw error
         }
-    }
-    
-    private func __clearProgress(
-        progressCacheStorage: ImageRepositoryProgressCacheStorage?,
-        progressMemoryCacheKey: Key<ImageProgressMemoryCacheOriginalKey, ImageProgressMemoryCacheResizedKey>,
-        cancel: Bool
-    ) async {
-        switch progressCacheStorage {
-        case .memory:
-            switch progressMemoryCacheKey {
-            case .original(let key): imageProgressMemoryCache.delete(key: key, cancel: cancel)
-            case .resized(let key): imageProgressMemoryCache.delete(key: key, deleteAllSizes: true, cancel: cancel)
-            }
-            
-        case nil:
-            break
-        }
+        
+        // 5. Result
+        return image
     }
     
     // MARK: Helpers
@@ -405,7 +343,11 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
     }
     
     // MARK: Types
-    nonisolated private enum Key<Original, Resized> {
+    nonisolated private enum Key<Original, Resized>: Sendable
+        where
+            Original: Sendable,
+            Resized: Sendable
+    {
         case original(Original)
         case resized(Resized)
     }

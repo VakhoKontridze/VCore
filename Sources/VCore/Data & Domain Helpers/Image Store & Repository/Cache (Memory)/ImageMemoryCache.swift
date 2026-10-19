@@ -54,6 +54,13 @@ nonisolated public protocol ImageMemoryCache: AnyObject, Sendable {
     func deleteAll(
         type: ImageMemoryCacheCacheType
     )
+
+    // MARK: Operation - Copy
+    /// Copies original image and all of its resized images from one parameter to another.
+    func copy(
+        sourceParameter: ImageRepositoryParameter,
+        destinationParameter: ImageRepositoryParameter
+    )
 }
 
 /// Image cache type.

@@ -74,7 +74,14 @@ nonisolated open class MockImageDiskCache: ImageDiskCache, @unchecked Sendable {
     open func deleteAll(
         type: ImageDiskCacheCacheType
     ) {}
-    
+
+    // MARK: Operation - Copy
+    /// Copies original image and all of its resized images from one parameter to another.
+    open func copy(
+        sourceParameter: ImageRepositoryParameter,
+        destinationParameter: ImageRepositoryParameter
+    ) {}
+
     // MARK: Operation - Evict
     /// Removes image that exceed `maxAge` or, if total size exceeds `maxBytes`.
     /// Evicts least-recently-used image until within budget.

@@ -22,6 +22,11 @@ nonisolated public final class KeyedManagedTask<Key, Success>: Sendable
     public init() {}
     
     // MARK: API
+    /// Keys with an in-flight operation.
+    public var keys: [Key] {
+        lock.withLock { Array($0.entries.keys) }
+    }
+
     /// Runs the operation for the given key, or joins an existing in-flight operation for that key if one exists.
     /// If the caller is cancelled, it detaches without affecting other waiters.
     public func run(

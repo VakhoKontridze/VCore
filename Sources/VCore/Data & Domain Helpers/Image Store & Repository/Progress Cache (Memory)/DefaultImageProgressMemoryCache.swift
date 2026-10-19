@@ -13,210 +13,84 @@ public import AppKit
 
 /// Default image progress memory cache.
 nonisolated open class DefaultImageProgressMemoryCache: ImageProgressMemoryCache, @unchecked Sendable {
-    // MARK: Properties - Cache & Keys
-    private let originalCache: NSCache<ImageProgressMemoryCacheOriginalKey, TaskHolder>
-    private var originalCacheKeys: Set<ImageProgressMemoryCacheOriginalKey> = []
-    
-    private let resizedCache: NSCache<ImageProgressMemoryCacheResizedKey, TaskHolder>
-    private var resizedCacheKeys: Set<ImageProgressMemoryCacheResizedKey> = []
-    
-    // MARK: Properties - Queue
-    private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.default-image-progress-memory-cache",
-        attributes: .concurrent
-    )
-    
+    // MARK: Properties - Tasks
+    private let originalTask: KeyedManagedTask<ImageProgressMemoryCacheOriginalKey, PlatformImage> = .init()
+    private let resizedTask: KeyedManagedTask<ImageProgressMemoryCacheResizedKey, PlatformImage> = .init()
+
     // MARK: Initializers
     /// Initializes `DefaultImageProgressMemoryCache`.
-    public init(
-        originalCacheConfiguration: Configuration = .default,
-        resizedCacheConfiguration: Configuration = .default
-    ) {
-        self.originalCache = {
-            let cache: NSCache<ImageProgressMemoryCacheOriginalKey, TaskHolder> = .init()
-            cache.countLimit = originalCacheConfiguration.countLimit
-            return cache
-        }()
-        
-        self.resizedCache = {
-            let cache: NSCache<ImageProgressMemoryCacheResizedKey, TaskHolder> = .init()
-            cache.countLimit = resizedCacheConfiguration.countLimit
-            return cache
-        }()
-    }
-    
-    // MARK: Operation - Get
-    /// Gets original image.
-    open func get(
-        key: ImageProgressMemoryCacheOriginalKey
-    ) -> Task<PlatformImage, any Error>? {
-        queue.sync {
-            _get(
-                key: key
-            )
-        }
-    }
-    
-    private func _get(
-        key: ImageProgressMemoryCacheOriginalKey
-    ) -> Task<PlatformImage, any Error>? {
-        originalCache.object(forKey: key)?.task
-    }
-    
-    /// Gets resized image.
-    open func get(
-        key: ImageProgressMemoryCacheResizedKey
-    ) -> Task<PlatformImage, any Error>? {
-        queue.sync {
-            _get(
-                key: key
-            )
-        }
+    public init() {}
+
+    // MARK: Operation - Run
+    /// Runs operation for original image, or joins an in-flight one with the same key.
+    open func run(
+        key: ImageProgressMemoryCacheOriginalKey,
+        operation: @Sendable @escaping () async throws -> PlatformImage
+    ) async throws -> PlatformImage {
+        try await originalTask.run(
+            key: key,
+            operation: operation
+        )
     }
 
-    private func _get(
-        key: ImageProgressMemoryCacheResizedKey
-    ) -> Task<PlatformImage, any Error>? {
-        resizedCache.object(forKey: key)?.task
-    }
-    
-    // MARK: Operation - Set
-    /// Sets original image.
-    open func set(
-        key: ImageProgressMemoryCacheOriginalKey,
-        task: Task<PlatformImage, any Error>
-    ) {
-        queue.sync(flags: .barrier) {
-            originalCache.setObject(
-                TaskHolder(task),
-                forKey: key
-            )
-            originalCacheKeys.insert(key)
-        }
-    }
-    
-    /// Sets resized image.
-    open func set(
+    /// Runs operation for resized image, or joins an in-flight one with the same key.
+    open func run(
         key: ImageProgressMemoryCacheResizedKey,
-        task: Task<PlatformImage, any Error>
-    ) {
-        queue.sync(flags: .barrier) {
-            resizedCache.setObject(
-                TaskHolder(task),
-                forKey: key
-            )
-            resizedCacheKeys.insert(key)
-        }
+        operation: @Sendable @escaping () async throws -> PlatformImage
+    ) async throws -> PlatformImage {
+        try await resizedTask.run(
+            key: key,
+            operation: operation
+        )
     }
 
-    // MARK: Operation - Delete
-    /// Deletes original image.
-    open func delete(
-        key: ImageProgressMemoryCacheOriginalKey,
-        cancel: Bool
+    // MARK: Operation - Cancel
+    /// Cancels in-flight original image for all waiters.
+    open func cancel(
+        key: ImageProgressMemoryCacheOriginalKey
     ) {
-        queue.sync(flags: .barrier) {
-            _delete(
-                key: key,
-                cancel: cancel
-            )
-        }
+        originalTask.reset(
+            key: key,
+            cancelForAllWaiters: true
+        )
     }
-    
-    private func _delete(
-        key: ImageProgressMemoryCacheOriginalKey,
-        cancel: Bool
-    ) {
-        if
-            cancel,
-            let task: Task<PlatformImage, any Error> = _get(key: key)
-        {
-            task.cancel()
-        }
-        
-        originalCache.removeObject(forKey: key)
-        originalCacheKeys.remove(key)
-    }
-    
-    /// Deletes resized image.
-    open func delete(
+
+    /// Cancels in-flight resized image for all waiters.
+    open func cancel(
         key: ImageProgressMemoryCacheResizedKey,
-        deleteAllSizes: Bool,
-        cancel: Bool
+        cancelAllSizes: Bool
     ) {
-        queue.sync(flags: .barrier) {
-            _delete(
-                key: key,
-                deleteAllSizes: deleteAllSizes,
-                cancel: cancel
-            )
-        }
-    }
-    
-    private func _delete(
-        key: ImageProgressMemoryCacheResizedKey,
-        deleteAllSizes: Bool,
-        cancel: Bool
-    ) {
-        if
-            cancel,
-            let task: Task<PlatformImage, any Error> = _get(key: key)
-        {
-            task.cancel()
-        }
-        
-        if deleteAllSizes {
-            let keys: [ImageProgressMemoryCacheResizedKey] = resizedCacheKeys.filter { $0.parameter == key.parameter }
-            
-            for key in keys {
-                resizedCache.removeObject(forKey: key)
-                resizedCacheKeys.remove(key)
+        if cancelAllSizes {
+            for key in resizedTask.keys.filter({ $0.parameter == key.parameter }) {
+                resizedTask.reset(
+                    key: key,
+                    cancelForAllWaiters: true
+                )
             }
-            
+
         } else {
-            resizedCache.removeObject(forKey: key)
-            resizedCacheKeys.remove(key)
+            resizedTask.reset(
+                key: key,
+                cancelForAllWaiters: true
+            )
         }
     }
-    
-    // MARK: Operation - Delete All
-    /// Deletes all images.
-    open func deleteAll(
-        type: ImageProgressMemoryCacheCacheType,
-        cancel: Bool
-    ) {
-        queue.sync(flags: .barrier) {
-            if type.contains(.original) {
-                let keys: Set<ImageProgressMemoryCacheOriginalKey> = originalCacheKeys
-                for key in keys {
-                    _delete(
-                        key: key,
-                        cancel: cancel
-                    )
-                }
-            }
-            
-            if type.contains(.resized) {
-                let keys: Set<ImageProgressMemoryCacheResizedKey> = resizedCacheKeys
-                for key in keys {
-                    _delete(
-                        key: key,
-                        deleteAllSizes: false,
-                        cancel: cancel
-                    )
-                }
-            }
-        }
-    }
-    
-    // MARK: Types
-    nonisolated private final class TaskHolder {
-        // MARK: Properties
-        let task: Task<PlatformImage, any Error>
 
-        // MARK: Initializers
-        init(_ task: Task<PlatformImage, any Error>) {
-            self.task = task
+    // MARK: Operation - Cancel All
+    /// Cancels all in-flight images for all waiters.
+    open func cancelAll(
+        type: ImageProgressMemoryCacheCacheType
+    ) {
+        if type.contains(.original) {
+            originalTask.resetAll(
+                cancelForAllWaiters: true
+            )
+        }
+
+        if type.contains(.resized) {
+            resizedTask.resetAll(
+                cancelForAllWaiters: true
+            )
         }
     }
 }

@@ -74,4 +74,11 @@ nonisolated open class MockImageMemoryCache: ImageMemoryCache, @unchecked Sendab
     open func deleteAll(
         type: ImageMemoryCacheCacheType
     ) {}
+
+    // MARK: Operation - Copy
+    /// Copies original image and all of its resized images from one parameter to another.
+    open func copy(
+        sourceParameter: ImageRepositoryParameter,
+        destinationParameter: ImageRepositoryParameter
+    ) {}
 }

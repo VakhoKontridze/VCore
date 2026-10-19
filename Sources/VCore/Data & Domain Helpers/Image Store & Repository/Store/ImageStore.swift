@@ -154,7 +154,105 @@ public final class ImageStore {
         
         return image2
     }
-    
+
+    // MARK: Memory Cache - Platform Image
+    /// Returns original image from memory cache, if present.
+    ///
+    /// Synchronous, so a view can show an already-loaded image in its first frame.
+    public func originalImageFromMemoryCache(
+        parameter: ImageRepositoryParameter
+    ) -> PlatformImage? {
+        imageRepository.imageMemoryCache.get(
+            key: ImageMemoryCacheOriginalKey(
+                parameter: parameter
+            )
+        )
+    }
+
+    /// Returns resized image from memory cache, if present.
+    ///
+    /// Synchronous, so a view can show an already-loaded image in its first frame.
+    public func resizedImageFromMemoryCache(
+        parameter: ImageRepositoryParameter,
+        size: CGSize
+    ) -> PlatformImage? {
+        imageRepository.imageMemoryCache.get(
+            key: ImageMemoryCacheResizedKey(
+                parameter: parameter,
+                size: size
+            )
+        )
+    }
+
+    // MARK: Memory Cache - Image
+    /// Returns original image from memory cache, if present.
+    ///
+    /// Synchronous, so a view can show an already-loaded image in its first frame.
+    public func originalImageFromMemoryCache(
+        parameter: ImageRepositoryParameter
+    ) -> Image? {
+        guard
+            let image: PlatformImage = originalImageFromMemoryCache(
+                parameter: parameter
+            )
+        else {
+            return nil
+        }
+
+#if canImport(UIKit)
+        let image2: Image = .init(uiImage: image)
+#elseif canImport(AppKit)
+        let image2: Image = .init(nsImage: image)
+#endif
+
+        return image2
+    }
+
+    /// Returns resized image from memory cache, if present.
+    ///
+    /// Synchronous, so a view can show an already-loaded image in its first frame.
+    public func resizedImageFromMemoryCache(
+        parameter: ImageRepositoryParameter,
+        size: CGSize
+    ) -> Image? {
+        guard
+            let image: PlatformImage = resizedImageFromMemoryCache(
+                parameter: parameter,
+                size: size
+            )
+        else {
+            return nil
+        }
+
+#if canImport(UIKit)
+        let image2: Image = .init(uiImage: image)
+#elseif canImport(AppKit)
+        let image2: Image = .init(nsImage: image)
+#endif
+
+        return image2
+    }
+
+    // MARK: Copy
+    /// Copies original image and all of its resized images in cache from one parameter to another.
+    ///
+    /// Lets an image already loaded for one parameter serve another one immediately,
+    /// such as a local attachment that becomes remote once uploaded.
+    public func copyImagesInCache(
+        sourceParameter: ImageRepositoryParameter,
+        destinationParameter: ImageRepositoryParameter
+    ) {
+        imageRepository.imageMemoryCache.copy(
+            sourceParameter: sourceParameter,
+            destinationParameter: destinationParameter
+        )
+
+        imageRepository.imageDiskCache.copy(
+            sourceParameter: sourceParameter,
+            destinationParameter: destinationParameter
+        )
+    }
+
     // MARK: Delete
     /// Deletes original image from cache.
     public func deleteOriginalImageFromCache(
@@ -172,11 +270,10 @@ public final class ImageStore {
             )
         )
         
-        imageRepository.imageProgressMemoryCache.delete(
+        imageRepository.imageProgressMemoryCache.cancel(
             key: ImageProgressMemoryCacheOriginalKey(
                 parameter: parameter
-            ),
-            cancel: true
+            )
         )
     }
     
@@ -202,13 +299,12 @@ public final class ImageStore {
             deleteAllSizes: deleteAllSizes
         )
         
-        imageRepository.imageProgressMemoryCache.delete(
+        imageRepository.imageProgressMemoryCache.cancel(
             key: ImageProgressMemoryCacheResizedKey(
                 parameter: parameter,
                 size: size
             ),
-            deleteAllSizes: deleteAllSizes,
-            cancel: true
+            cancelAllSizes: deleteAllSizes
         )
     }
     
@@ -232,9 +328,8 @@ public final class ImageStore {
         }
         
         if let imageProgressMemoryCacheType {
-            imageRepository.imageProgressMemoryCache.deleteAll(
-                type: imageProgressMemoryCacheType,
-                cancel: true
+            imageRepository.imageProgressMemoryCache.cancelAll(
+                type: imageProgressMemoryCacheType
             )
         }
     }

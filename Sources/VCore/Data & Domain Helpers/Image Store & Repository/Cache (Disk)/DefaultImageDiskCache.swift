@@ -294,6 +294,100 @@ nonisolated open class DefaultImageDiskCache: ImageDiskCache, @unchecked Sendabl
         }
     }
 
+    // MARK: Operation - Copy
+    /// Copies original image and all of its resized images from one parameter to another.
+    open func copy(
+        sourceParameter: ImageRepositoryParameter,
+        destinationParameter: ImageRepositoryParameter
+    ) {
+        guard
+            let sourceIdentifier: String = sourceParameter.diskIdentifier,
+            let destinationIdentifier: String = destinationParameter.diskIdentifier
+        else {
+            return
+        }
+
+        let sourceHash: String = sha256(sourceIdentifier)
+        let destinationHash: String = sha256(destinationIdentifier)
+
+        copyFile(
+            sourceURL: fileURL(
+                directory: originalDirectory,
+                filename: sourceHash
+            ),
+            destinationURL: fileURL(
+                directory: originalDirectory,
+                filename: destinationHash
+            )
+        )
+
+        let fileURLs: [URL]
+        do {
+            fileURLs = try FileManager.default.contentsOfDirectory(
+                at: resizedDirectory,
+                includingPropertiesForKeys: nil,
+                options: .skipsHiddenFiles
+            )
+
+        } catch let error as CocoaError where error.code == .fileReadNoSuchFile {
+            return
+
+        } catch {
+            Logger.default.error("Failed to read contents of directory at '\(self.resizedDirectory.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(String(reflecting: error))")
+            return
+        }
+
+        for url in fileURLs {
+            let name: String = url.deletingPathExtension().lastPathComponent
+
+            guard
+                name.hasPrefix("\(sourceHash)_")
+            else {
+                continue
+            }
+
+            // Keeps the "_WxH" suffix, so the copy lands under the same size
+            copyFile(
+                sourceURL: url,
+                destinationURL: fileURL(
+                    directory: resizedDirectory,
+                    filename: "\(destinationHash)\(name.dropFirst(sourceHash.count))"
+                )
+            )
+        }
+    }
+
+    private func copyFile(
+        sourceURL: URL,
+        destinationURL: URL
+    ) {
+        guard
+            FileManager.default.fileExists(atPath: sourceURL.path())
+        else {
+            return
+        }
+
+        do {
+            try FileManager.default.removeItem(at: destinationURL)
+
+        } catch let error as CocoaError where error.code == .fileNoSuchFile {
+            // ...
+
+        } catch {
+            Logger.default.error("Failed to delete item at '\(destinationURL.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(String(reflecting: error))")
+        }
+
+        do {
+            try FileManager.default.copyItem(
+                at: sourceURL,
+                to: destinationURL
+            )
+
+        } catch {
+            Logger.default.error("Failed to copy item at '\(sourceURL.path(percentEncoded: false))' to '\(destinationURL.path(percentEncoded: false))' in 'DefaultImageDiskCache': \(String(reflecting: error))")
+        }
+    }
+
     // MARK: Operation - Evict
     /// Removes image that exceed `maxAge` or, if total size exceeds `maxBytes`.
     /// Evicts least-recently-used image until within budget.

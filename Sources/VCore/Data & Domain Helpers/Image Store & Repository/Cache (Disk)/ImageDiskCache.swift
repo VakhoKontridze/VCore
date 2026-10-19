@@ -54,7 +54,14 @@ nonisolated public protocol ImageDiskCache: AnyObject, Sendable {
     func deleteAll(
         type: ImageDiskCacheCacheType
     )
-    
+
+    // MARK: Operation - Copy
+    /// Copies original image and all of its resized images from one parameter to another.
+    func copy(
+        sourceParameter: ImageRepositoryParameter,
+        destinationParameter: ImageRepositoryParameter
+    )
+
     // MARK: Operation - Evict
     /// Removes image that exceed `maxAge` or, if total size exceeds `maxBytes`.
     /// Evicts least-recently-used image until within budget.

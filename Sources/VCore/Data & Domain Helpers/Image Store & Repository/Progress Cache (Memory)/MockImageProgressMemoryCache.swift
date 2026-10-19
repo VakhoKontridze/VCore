@@ -16,53 +16,39 @@ nonisolated open class MockImageProgressMemoryCache: ImageProgressMemoryCache, @
     // MARK: Initializers
     /// Initializes `MockImageProgressMemoryCache`.
     public init() {}
-    
-    // MARK: Operation - Get
-    /// Gets original image.
-    open func get(
+
+    // MARK: Operation - Run
+    /// Runs operation for original image.
+    open func run(
+        key: ImageProgressMemoryCacheOriginalKey,
+        operation: @Sendable @escaping () async throws -> PlatformImage
+    ) async throws -> PlatformImage {
+        try await operation()
+    }
+
+    /// Runs operation for resized image.
+    open func run(
+        key: ImageProgressMemoryCacheResizedKey,
+        operation: @Sendable @escaping () async throws -> PlatformImage
+    ) async throws -> PlatformImage {
+        try await operation()
+    }
+
+    // MARK: Operation - Cancel
+    /// Cancels in-flight original image.
+    open func cancel(
         key: ImageProgressMemoryCacheOriginalKey
-    ) -> Task<PlatformImage, any Error>? {
-        nil
-    }
-    
-    /// Gets resized image.
-    open func get(
-        key: ImageProgressMemoryCacheResizedKey
-    ) -> Task<PlatformImage, any Error>? {
-        nil
-    }
-    
-    // MARK: Operation - Set
-    /// Sets original image.
-    open func set(
-        key: ImageProgressMemoryCacheOriginalKey,
-        task: Task<PlatformImage, any Error>
     ) {}
-    
-    /// Sets resized image.
-    open func set(
+
+    /// Cancels in-flight resized image.
+    open func cancel(
         key: ImageProgressMemoryCacheResizedKey,
-        task: Task<PlatformImage, any Error>
+        cancelAllSizes: Bool
     ) {}
-    
-    // MARK: Operation - Delete
-    /// Deletes original image.
-    open func delete(
-        key: ImageProgressMemoryCacheOriginalKey,
-        cancel: Bool
-    ) {}
-    
-    /// Deletes resized image.
-    open func delete(
-        key: ImageProgressMemoryCacheResizedKey,
-        deleteAllSizes: Bool,
-        cancel: Bool
-    ) {}
-    
-    // MARK: Operation - Delete All
-    /// Deletes all images.
-    open func deleteAll(
-        type: ImageProgressMemoryCacheCacheType,
-        cancel: Bool
+
+    // MARK: Operation - Cancel All
+    /// Cancels all in-flight images.
+    open func cancelAll(
+        type: ImageProgressMemoryCacheCacheType
     ) {}
 }

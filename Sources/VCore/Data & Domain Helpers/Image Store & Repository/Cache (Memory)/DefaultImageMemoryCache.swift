@@ -146,4 +146,55 @@ nonisolated open class DefaultImageMemoryCache: ImageMemoryCache, @unchecked Sen
             }
         }
     }
+
+    // MARK: Operation - Copy
+    /// Copies original image and all of its resized images from one parameter to another.
+    open func copy(
+        sourceParameter: ImageRepositoryParameter,
+        destinationParameter: ImageRepositoryParameter
+    ) {
+        queue.sync(flags: .barrier) {
+            if
+                let image: PlatformImage = originalCache.object(
+                    forKey: ImageMemoryCacheOriginalKey(
+                        parameter: sourceParameter
+                    )
+                )
+            {
+                let destinationKey: ImageMemoryCacheOriginalKey = .init(
+                    parameter: destinationParameter
+                )
+
+                originalCache.setObject(
+                    image,
+                    forKey: destinationKey,
+                    cost: image.cacheCost
+                )
+                originalCacheKeys.insert(destinationKey)
+            }
+
+            let sourceKeys: [ImageMemoryCacheResizedKey] = resizedCacheKeys.filter { $0.parameter == sourceParameter }
+
+            for sourceKey in sourceKeys {
+                guard
+                    let image: PlatformImage = resizedCache.object(forKey: sourceKey)
+                else {
+                    continue
+                }
+
+                let destinationKey: ImageMemoryCacheResizedKey = .init(
+                    parameter: destinationParameter,
+                    width: sourceKey.width,
+                    height: sourceKey.height
+                )
+
+                resizedCache.setObject(
+                    image,
+                    forKey: destinationKey,
+                    cost: image.cacheCost
+                )
+                resizedCacheKeys.insert(destinationKey)
+            }
+        }
+    }
 }
