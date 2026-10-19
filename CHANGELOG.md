@@ -1,5 +1,23 @@
 # Change Log
 
+### [10.0.0(118)](https://github.com/VakhoKontridze/VCore/releases/tag/10.0.0) — 2026 10 19
+
+Core - Utilities
+
+- `KeyedManagedTask.keys` property is added, that returns keys with an in-flight operation
+- `CachedKeyedManagedTask.value` property is renamed to `values`, and is no longer optional
+- `CachedKeyedManagedTask.value(key:)` method is added
+
+Data & Domain Helpers
+
+- `ImageProgressMemoryCache` is rebuilt on `KeyedManagedTask`, so cancelling one waiter no longer cancels an image fetch shared with others
+- `ImageProgressMemoryCache` API is changed to `run(key:operation:)`, `cancel(key:)`, `cancel(key:cancelAllSizes:)`, and `cancelAll(type:)`
+- `DefaultImageProgressMemoryCache.Configuration` is removed
+- `ImageRepositoryCachePolicy.returnCacheDataDontLoad` no longer joins an in-flight fetch
+- `copy(sourceParameter:destinationParameter:)` method is added to `ImageMemoryCache` and `ImageDiskCache`, that copies original image and all of its resized images to another parameter
+- `ImageStore.originalImageFromMemoryCache(parameter:)` and `ImageStore.resizedImageFromMemoryCache(parameter:size:)` methods are added, that read cached images synchronously
+- `ImageStore.copyImagesInCache(sourceParameter:destinationParameter:)` method is added
+
 ### [9.1.0(117)](https://github.com/VakhoKontridze/VCore/releases/tag/9.1.0) — 2026 10 12
 
 General
