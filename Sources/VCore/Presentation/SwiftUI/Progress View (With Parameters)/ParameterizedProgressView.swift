@@ -44,6 +44,7 @@ public struct ParameterizedProgressView: View {
             .scaleEffect(parameters.scalingFactor ?? 1)
             .tint(parameters.color)
             .opacity(isVisible ? 1 : 0)
+            .accessibilityHidden(!isVisible)
 
             .task(id: parameters.appearanceDelay) {
                 if let delay: Duration = parameters.appearanceDelay {
