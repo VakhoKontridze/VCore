@@ -6,7 +6,7 @@ Presentation
 
 - `ParameterizedProgressView` is added, that presents `ProgressView` configured with `ProgressViewParameters`
 
-### [9.1.1(118)](https://github.com/VakhoKontridze/VCore/releases/tag/10.0.0) — 2026 10 19
+### [9.1.1(118)](https://github.com/VakhoKontridze/VCore/releases/tag/9.1.1) — 2026 10 19
 
 Core - Utilities
 
