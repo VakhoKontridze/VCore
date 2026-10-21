@@ -158,6 +158,7 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
         )
     }
     
+    @concurrent
     private func _fetchImage(
         parameter: ImageRepositoryParameter,
         
@@ -196,14 +197,18 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
                 }()
                 
                 if let image {
+                    // Disk images decode lazily, so bitmap is prepared here, rather than on the first draw
+                    let preparedImage: PlatformImage = await prepareForDisplay(image: image)
+                    try Task.checkCancellation()
+
                     if cacheStorage.contains(.memory) {
                         switch memoryCacheKey {
-                        case .original(let key): imageMemoryCache.set(key: key, image: image)
-                        case .resized(let key): imageMemoryCache.set(key: key, image: image)
+                        case .original(let key): imageMemoryCache.set(key: key, image: preparedImage)
+                        case .resized(let key): imageMemoryCache.set(key: key, image: preparedImage)
                         }
                     }
                     
-                    return image
+                    return preparedImage
                 }
             }
         }
@@ -256,9 +261,13 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
 #endif
                 }
                 
-                switch diskCacheKey {
-                case .original(let key): imageDiskCache.set(key: key, image: image)
-                case .resized(let key): imageDiskCache.set(key: key, image: image)
+                // Encoding and writing run in the background, so the image is returned without waiting for them.
+                // Task is detached, so a cancelled caller doesn't abandon a fetch that has already completed.
+                Task.detached(priority: .utility) { [imageDiskCache] in
+                    switch diskCacheKey {
+                    case .original(let key): imageDiskCache.set(key: key, image: image)
+                    case .resized(let key): imageDiskCache.set(key: key, image: image)
+                    }
                 }
             }
         }
@@ -268,42 +277,107 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
     }
     
     // MARK: Helpers
+    @concurrent
     private func fetchImage(
-        parameter: ImageRepositoryParameter,
+        parameter: ImageRepositoryParameter
     ) async throws -> PlatformImage {
-        switch parameter.storage {
-        case .image(let image):
-            try await imageFetchWorker.fetchImage(image: image)
-        
-        case .data(let data):
-            try await imageFetchWorker.fetchImage(data: data)
-            
-        case .asset(let name, let bundle):
-            try await imageFetchWorker.fetchAssetImage(name: name, bundle: bundle)
-        
-        case .local(let url):
-            try await imageFetchWorker.fetchLocalImage(url: url)
-        
-        case .remote(let url):
-            try await imageFetchWorker.fetchRemoteImage(url: url)
-            
+        let image: PlatformImage = try await {
+            switch parameter.storage {
+            case .image(let image):
+                try await imageFetchWorker.fetchImage(image: image)
+                
+            case .data(let data):
+                try await imageFetchWorker.fetchImage(data: data)
+                
+            case .asset(let name, let bundle):
+                try await imageFetchWorker.fetchAssetImage(name: name, bundle: bundle)
+                
+            case .local(let url):
+                try await imageFetchWorker.fetchLocalImage(url: url)
+                
+            case .remote(let url):
+                try await imageFetchWorker.fetchRemoteImage(url: url)
+                
 #if !os(watchOS)
-        case .photo_Asset(let asset):
-            try await imageFetchWorker.fetchPhotoImage(asset: asset)
+            case .photo_Asset(let asset):
+                try await imageFetchWorker.fetchPhotoImage(asset: asset)
 #endif
-            
+                
 #if !os(tvOS) && !os(watchOS)
-        case .photo_Item(let item):
-            try await imageFetchWorker.fetchPhotoImage(item: item)
+            case .photo_Item(let item):
+                try await imageFetchWorker.fetchPhotoImage(item: item)
 #endif
-            
+                
 #if !os(watchOS)
-        case .photo_AssetIdentifier(let assetIdentifier):
-            try await imageFetchWorker.fetchPhotoImage(assetIdentifier: assetIdentifier)
+            case .photo_AssetIdentifier(let assetIdentifier):
+                try await imageFetchWorker.fetchPhotoImage(assetIdentifier: assetIdentifier)
+#endif
+            }
+        }()
+        try Task.checkCancellation()
+        
+        guard
+            preparesForDisplay(parameter: parameter)
+        else {
+            return image
+        }
+        
+        let preparedImage: PlatformImage = await prepareForDisplay(image: image)
+        try Task.checkCancellation()
+        
+        return preparedImage
+    }
+
+    // Images passed as-is, or managed by the platform, such as assets, are left untouched.
+    // Rasterizing them would discard vector data and symbol configurations.
+    private func preparesForDisplay(
+        parameter: ImageRepositoryParameter
+    ) -> Bool {
+        switch parameter.storage {
+        case .image: false
+        case .data: true
+        case .asset: false
+        case .local: true
+        case .remote: true
+#if !os(watchOS)
+        case .photo_Asset: true
+#endif
+#if !os(tvOS) && !os(watchOS)
+        case .photo_Item: true
+#endif
+#if !os(watchOS)
+        case .photo_AssetIdentifier: true
 #endif
         }
     }
     
+    // Decodes bitmap ahead of the first draw. Falls back to the image itself, if it can't be prepared.
+    @concurrent
+    private func prepareForDisplay(
+        image: PlatformImage
+    ) async -> PlatformImage {
+#if canImport(UIKit)
+
+#if os(watchOS)
+
+        let preparedImage: PlatformImage? = image.byPreparingForDisplayWatchOS()
+
+#else
+
+        let preparedImage: PlatformImage? = await image.byPreparingForDisplay()
+
+#endif
+
+#elseif canImport(AppKit)
+
+        let preparedImage: PlatformImage? = image.byPreparingForDisplay()
+
+#endif
+
+        return preparedImage ?? image
+    }
+
+    @concurrent
     private func makeThumbnail(
         image: PlatformImage,
         size: CGSize
@@ -313,11 +387,10 @@ nonisolated open class DefaultImageRepository: ImageRepository, @unchecked Senda
 #if os(watchOS)
         
         guard
-            let thumbnail: PlatformImage = await image.byPreparingThumbnailWatchOS(ofSize: size)
+            let thumbnail: PlatformImage = image.byPreparingThumbnailWatchOS(ofSize: size)
         else {
             throw ImageRepositoryError.failedToResizeImage
         }
-        try Task.checkCancellation()
         
 #else
         

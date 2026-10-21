@@ -10,7 +10,7 @@
 import ImageIO
 import UIKit
 
-extension UIImage {
+nonisolated extension UIImage {
     func byPreparingThumbnailWatchOS(
         ofSize size: CGSize
     ) -> UIImage? {

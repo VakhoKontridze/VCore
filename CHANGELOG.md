@@ -2,6 +2,17 @@
 
 ### 9.2.0(119)
 
+Core - Extensions
+
+- `NSImage.byPreparingForDisplay()` method is added, that decodes image ahead of its first draw
+
+Data & Domain Helpers
+
+- `ImageRepository` work, including disk caching, decoding, and resizing, now runs off the main actor
+- `DefaultImageRepository` now decodes images before caching them in memory, so a cached image is ready to draw
+- `DefaultImageRepository` now writes to `ImageDiskCache` in a detached background task, after returning the image
+- `ImageStore` now evicts `ImageDiskCache` in the background, and inside a background task on `iOS`
+
 Presentation
 
 - `ParameterizedProgressView` is added, that presents `ProgressView` configured with `ProgressViewParameters`

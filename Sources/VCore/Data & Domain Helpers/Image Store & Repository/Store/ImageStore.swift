@@ -53,6 +53,11 @@ public final class ImageStore {
     // MARK: Properties - Dependencies
     /// Image repository.
     public let imageRepository: any ImageRepository
+
+    // MARK: Properties - Eviction
+#if canImport(UIKit) && !os(watchOS)
+    private var evictionBackgroundTaskID: UIBackgroundTaskIdentifier = .invalid
+#endif
     
     // MARK: Properties - Subscriptions
     private var cancellables: Set<AnyCancellable> = []
@@ -334,6 +339,41 @@ public final class ImageStore {
         }
     }
     
+    // MARK: Eviction
+    // Eviction enumerates and deletes files, so it runs in the background instead of on the main actor
+    private func evictDiskCache() {
+#if canImport(UIKit) && !os(watchOS)
+
+        guard evictionBackgroundTaskID == .invalid else { return } // Eviction is already in progress
+
+        // Keeps the app alive until eviction finishes, as it starts right as the app is about to be suspended
+        evictionBackgroundTaskID = UIApplication.shared.beginBackgroundTask(
+            expirationHandler: { [weak self] in self?.endEvictionBackgroundTask() }
+        )
+
+        Task.detached(priority: .utility) { [self] in
+            imageRepository.imageDiskCache.evictIfNeeded()
+            await endEvictionBackgroundTask()
+        }
+
+#else
+
+        Task.detached(priority: .utility) { [self] in
+            imageRepository.imageDiskCache.evictIfNeeded()
+        }
+
+#endif
+    }
+
+#if canImport(UIKit) && !os(watchOS)
+    private func endEvictionBackgroundTask() {
+        guard evictionBackgroundTaskID != .invalid else { return }
+
+        UIApplication.shared.endBackgroundTask(evictionBackgroundTaskID)
+        evictionBackgroundTaskID = .invalid
+    }
+#endif
+    
     // MARK: Subscriptions
     private func addSubscriptions() {
 #if canImport(UIKit)
@@ -343,7 +383,7 @@ public final class ImageStore {
         NotificationCenter.default
             .publisher(for: WKApplication.didEnterBackgroundNotification)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in self?.imageRepository.imageDiskCache.evictIfNeeded() }
+            .sink { [weak self] _ in self?.evictDiskCache() }
             .store(in: &cancellables)
         
 #else
@@ -351,17 +391,17 @@ public final class ImageStore {
         NotificationCenter.default
             .publisher(for: UIApplication.didEnterBackgroundNotification)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in self?.imageRepository.imageDiskCache.evictIfNeeded() }
+            .sink { [weak self] _ in self?.evictDiskCache() }
             .store(in: &cancellables)
         
 #endif
         
 #elseif canImport(AppKit)
-
+        
         NotificationCenter.default
             .publisher(for: NSApplication.didResignActiveNotification)
             .receive(on: DispatchQueue.main)
-            .sink { [weak self] _ in self?.imageRepository.imageDiskCache.evictIfNeeded() }
+            .sink { [weak self] _ in self?.evictDiskCache() }
             .store(in: &cancellables)
         
 #endif
