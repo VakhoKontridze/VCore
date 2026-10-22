@@ -42,7 +42,7 @@ nonisolated public enum BinaryDataUnit: Int, DataUnit, Equatable, Hashable, Iden
     case YiB = 8
     
     // MARK: Data Unit
-    public static var base: Int { 1_024 }
+    public static let base: Int = 1_024
     
     // MARK: Identifiable
     public var id: Int { rawValue }

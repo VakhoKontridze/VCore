@@ -29,10 +29,7 @@ nonisolated public struct ModuleVersion: Equatable, Hashable, Comparable, Identi
     /// Contains `patch` or `0`.
     public var patchUnwrapped: Int { patch ?? 0 }
     
-    private static var allowedCharacters: CharacterSet {
-        .decimalDigits
-        .union(CharacterSet(charactersIn: "."))
-    }
+    private static let allowedCharacters: CharacterSet = .decimalDigits.union(CharacterSet(charactersIn: "."))
     
     // MARK: Initializers
     /// Initializes `ModuleVersion` with versions.

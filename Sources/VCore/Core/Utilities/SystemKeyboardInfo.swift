@@ -77,10 +77,10 @@ nonisolated public struct SystemKeyboardInfo: Sendable {
     /// If keyboard is already shown, but first responder changes, animation duration returned by the `Notification` will be `0`.
     /// In that case, this value can be used to perform additional animation.
     /// Alternately, consider checking out `nonZeroAnimationDuration`.
-    public static var defaultAnimationDuration: TimeInterval { 0.25 }
+    public static let defaultAnimationDuration: TimeInterval = 0.25
     
     /// Default animation options.
-    public static var defaultAnimationOptions: UIView.AnimationOptions { .init(rawValue: 7 << 16) }
+    public static let defaultAnimationOptions: UIView.AnimationOptions = .init(rawValue: 7 << 16)
 
     // MARK: Other Values
     /// Non-zero animation duration.

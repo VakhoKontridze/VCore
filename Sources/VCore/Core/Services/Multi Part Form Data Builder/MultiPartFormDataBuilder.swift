@@ -56,7 +56,7 @@ nonisolated public struct MultipartFormDataBuilder: Sendable {
     /// By default, an `UUID` will be used.
     public var boundary: String
     
-    static var lineBreak: String { "\r\n" }
+    static let lineBreak: String = "\r\n"
     
     // MARK: Initializers
     /// Initializes `MultipartFormDataBuilder` with boundary.
