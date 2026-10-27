@@ -7,6 +7,12 @@ Core - Extensions
 - `NSImage.byPreparingForDisplay()` method is added, that decodes image ahead of its first draw
 - `Comparable.clamped(to:)`, `Comparable.clamp(to:)`, `Comparable.clamped(min:max:)`, and `Comparable.clamp(min:max:)` methods are added
 
+Core - Utilities
+
+- `SurfaceStyle` is added, that describes a solid `Color` or Liquid Glass surface
+- `GenericStateSurfaceStyle` is added, that describes a solid `Color` or Liquid Glass surface with state-bound colors
+- `View.surfaceStyle(_:in:)` and `View.surfaceStyle(_:state:in:)` methods are added, that draw a `SurfaceStyle` or a `GenericStateSurfaceStyle` behind a `View`
+
 Data & Domain Helpers
 
 - `ImageRepository` work, including disk caching, decoding, and resizing, now runs off the main actor
