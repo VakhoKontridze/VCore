@@ -32,6 +32,14 @@ nonisolated public struct SurfaceStyle: Equatable, Hashable, Sendable {
     // MARK: Properties
     let storage: Storage
 
+    /// Color of a solid `Color` surface, or tint color of a Liquid Glass surface.
+    public var color: Color? {
+        switch storage {
+        case .color(let color): color
+        case .glass(let configuration): configuration.tintColor
+        }
+    }
+
     // MARK: Initializers
     init(
         _ storage: Storage

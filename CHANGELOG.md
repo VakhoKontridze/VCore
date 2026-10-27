@@ -11,7 +11,8 @@ Core - Utilities
 
 - `SurfaceStyle` is added, that describes a solid `Color` or Liquid Glass surface
 - `GenericStateSurfaceStyle` is added, that describes a solid `Color` or Liquid Glass surface with state-bound colors
-- `View.surfaceStyle(_:in:)` and `View.surfaceStyle(_:state:in:)` methods are added, that draw a `SurfaceStyle` or a `GenericStateSurfaceStyle` behind a `View`
+- `SurfaceStyle.color` and `GenericStateSurfaceStyle.colors` properties are added, that return colors of a solid `Color` surface, or tint colors of a Liquid Glass surface
+- `View.surfaceStyle(_:in:)` and `View.surfaceStyle(_:state:in:)` methods are added, that draw a `SurfaceStyle` or a `GenericStateSurfaceStyle` behind a `View`, with state overloads for `EnabledPressedDisabled`, `EnabledFocusedDisabled`, `EnabledPressedLoadingDisabled`, and `OffOnPressedDisabled`
 
 Data & Domain Helpers
 
