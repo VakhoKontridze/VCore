@@ -6,6 +6,7 @@ Core - Extensions
 
 - `NSImage.byPreparingForDisplay()` method is added, that decodes image ahead of its first draw
 - `Comparable.clamped(to:)`, `Comparable.clamp(to:)`, `Comparable.clamped(min:max:)`, and `Comparable.clamp(min:max:)` methods are added
+- `View.onScrollGeometryChange(of:action:)` methods are added, that omit the type parameter of `View.onScrollGeometryChange(for:of:action:)`
 
 Core - Utilities
 
