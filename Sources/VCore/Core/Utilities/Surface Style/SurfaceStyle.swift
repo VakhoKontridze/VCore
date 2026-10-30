@@ -32,6 +32,16 @@ nonisolated public struct SurfaceStyle: Equatable, Hashable, Sendable {
     // MARK: Properties
     let storage: Storage
 
+    /// Indicates if surface is Liquid Glass.
+    ///
+    /// A Liquid Glass surface renders the content behind it, so a modifier that composites offscreen, such as `compositingGroup()`, should be skipped for it.
+    public var isGlass: Bool {
+        switch storage {
+        case .color: false
+        case .glass: true
+        }
+    }
+
     /// Color of a solid `Color` surface, or tint color of a Liquid Glass surface.
     public var color: Color? {
         switch storage {
