@@ -163,7 +163,7 @@ private final class AlignedUICollectionViewCell: UICollectionViewCell {
     // MARK: Properties
     private var widthConstraint: NSLayoutConstraint?
 
-    static let dequeueID: String = .init(describing: self)
+    static let dequeueID: String = .init(describing: AlignedUICollectionViewCell.self)
 
     // MARK: Initializers
     override init(frame: CGRect) {
