@@ -30,7 +30,12 @@ struct UIImageRotatedTests {
         let mergedImage: UIImage = .mergeHorizontally(image1, with: image2)
 
         let rotatedImage: UIImage = try #require(
-            mergedImage.rotated(by: Measurement(value: 90, unit: .degrees))
+            mergedImage.rotated(
+                by: Measurement(
+                    value: 90,
+                    unit: .degrees
+                )
+            )
         )
 
         let croppedImage: UIImage = rotatedImage.cropped(

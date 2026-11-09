@@ -38,7 +38,12 @@ nonisolated extension UIColor {
 import SwiftUI
 
 #Preview {
-    Color(UIColor.red.mix(with: .blue, by: 0.5))
+    Color(
+        UIColor.red.mix(
+            with: .blue,
+            by: 0.5
+        )
+    )
 }
 
 #endif

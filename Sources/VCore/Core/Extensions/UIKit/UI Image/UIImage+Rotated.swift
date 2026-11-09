@@ -89,7 +89,12 @@ nonisolated extension UIImage {
     ///     let rotatedImage: UIImage? = image.rotated(byRadians: .pi / 2)
     ///
     public func rotated(byRadians radians: CGFloat) -> UIImage? {
-        rotated(by: Measurement(value: radians, unit: .radians))
+        rotated(
+            by: Measurement(
+                value: radians,
+                unit: .radians
+            )
+        )
     }
     
     /// Rotates `UIImage` by degrees.
@@ -98,7 +103,12 @@ nonisolated extension UIImage {
     ///     let rotatedImage: UIImage? = image.rotated(byDegrees: 90)
     ///
     public func rotated(byDegrees degrees: CGFloat) -> UIImage? {
-        rotated(by: Measurement(value: degrees, unit: .degrees))
+        rotated(
+            by: Measurement(
+                value: degrees,
+                unit: .degrees
+            )
+        )
     }
 }
 

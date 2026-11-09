@@ -51,7 +51,13 @@ open class InnerShadowUIView: UIView {
             
             let path: CGMutablePath = .init()
             
-            path.addRect(bounds.insetBy(dx: inset, dy: inset))
+            path.addRect(
+                bounds.insetBy(
+                    dx: inset,
+                    dy: inset
+                )
+            )
+
             path.addRect(bounds)
             
             return path

@@ -27,7 +27,13 @@ nonisolated extension UIImage {
         defer { UIGraphicsEndImageContext() }
         
         color.setFill()
-        UIRectFill(CGRect(origin: .zero, size: size))
+
+        UIRectFill(
+            CGRect(
+                origin: .zero,
+                size: size
+            )
+        )
         
         guard let cgImage: CGImage = UIGraphicsGetImageFromCurrentImageContext()?.cgImage else { return nil }
         self.init(cgImage: cgImage)
@@ -40,7 +46,13 @@ nonisolated extension UIImage {
         
         let renderedImage: UIImage = renderer.image { _ in
             color.setFill()
-            UIRectFill(CGRect(origin: .zero, size: size))
+
+            UIRectFill(
+                CGRect(
+                    origin: .zero,
+                    size: size
+                )
+            )
         }
         
         guard

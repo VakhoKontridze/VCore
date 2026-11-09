@@ -30,7 +30,12 @@ nonisolated extension UIImage {
             UIGraphicsBeginImageContextWithOptions(size, false, scale)
             defer { UIGraphicsEndImageContext() }
             
-            draw(in: CGRect(origin: .zero, size: size))
+            draw(
+                in: CGRect(
+                    origin: .zero,
+                    size: size
+                )
+            )
             
             let normalizedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext() ?? self
             
@@ -45,7 +50,12 @@ nonisolated extension UIImage {
             let renderer: UIGraphicsImageRenderer = .init(size: size)
             
             return renderer.image { _ in
-                draw(in: CGRect(origin: .zero, size: size))
+                draw(
+                    in: CGRect(
+                        origin: .zero,
+                        size: size
+                    )
+                )
             }
         }()
         
@@ -86,7 +96,12 @@ nonisolated extension UIImage {
     ///     )
     ///
     public func cropped(to newSize: CGSize) -> UIImage {
-        cropped(to: CGRect(origin: .zero, size: newSize))
+        cropped(
+            to: CGRect(
+                origin: .zero,
+                size: newSize
+            )
+        )
     }
 }
 

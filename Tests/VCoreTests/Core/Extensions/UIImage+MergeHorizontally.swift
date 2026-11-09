@@ -21,8 +21,22 @@ extension UIImage {
         let renderer: UIGraphicsImageRenderer = .init(size: newSize)
         
         return renderer.image { _ in
-            lhs.draw(in: CGRect(origin: .zero, size: lhs.size))
-            rhs.draw(in: CGRect(origin: CGPoint(x: lhs.size.width, y: 0), size: rhs.size))
+            lhs.draw(
+                in: CGRect(
+                    origin: .zero,
+                    size: lhs.size
+                )
+            )
+
+            rhs.draw(
+                in: CGRect(
+                    origin: CGPoint(
+                        x: lhs.size.width,
+                        y: 0
+                    ),
+                    size: rhs.size
+                )
+            )
         }
     }
 }
