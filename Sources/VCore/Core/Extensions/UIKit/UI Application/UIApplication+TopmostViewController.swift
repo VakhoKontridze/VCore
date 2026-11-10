@@ -11,6 +11,9 @@ public import UIKit
 
 extension UIApplication {
     /// Returns topmost `UIViewController` in a `UIWindow`.
+    ///
+    /// `UIViewController` that is being dismissed is skipped, as a `UIViewController` presented from it is never shown.
+    /// This happens when a modal is presented while the previous one is still being dismissed.
     public func topmostViewController(
         inWindow window: UIWindow
     ) -> UIViewController? {
@@ -20,7 +23,10 @@ extension UIApplication {
             return nil
         }
         
-        while let presentedViewController = topmostViewController.presentedViewController {
+        while
+            let presentedViewController: UIViewController = topmostViewController.presentedViewController,
+            !presentedViewController.isBeingDismissed
+        {
             topmostViewController = presentedViewController
         }
         
