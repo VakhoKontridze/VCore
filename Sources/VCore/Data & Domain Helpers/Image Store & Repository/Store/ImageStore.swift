@@ -28,7 +28,7 @@ import Combine
 ///         var imageRepository: Factory<any ImageRepository> {
 ///             self {
 ///     #if DEBUG
-///                 if ProcessInfo.processInfo.isPreview {
+///                 if ProcessInfo.processInfo.usesMockDependencies {
 ///                     return MockImageRepository(
 ///                         imageFetchWorker: MockImageRepositoryFetchWorker(),
 ///                         imageMemoryCache: MockImageMemoryCache(),
