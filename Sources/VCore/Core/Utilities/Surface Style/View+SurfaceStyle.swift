@@ -12,6 +12,10 @@ nonisolated extension View {
     ///
     /// Content is not clipped to shape.
     ///
+    /// The `View`'s structure differs between a solid `Color` and Liquid Glass, so changing between them at runtime rebuilds the content.
+    /// A `View` that switches styles should apply this to a `background` sibling, such as `Color.clear`, unless its glass is interactive,
+    /// which only reacts to touches on the hit-tested content. `Glass.identity` can't stand in for a missing glass, as it still tints.
+    ///
     ///     var body: some View {
     ///         Text("Lorem ipsum")
     ///             .padding()
