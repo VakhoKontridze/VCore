@@ -190,6 +190,7 @@ public struct AlignedGridLayout: Layout {
                 if isOutOfBoundsHorizontally {
                     rects.append([rect])
                     gridRowIndex += 1
+
                 } else {
                     rects[gridRowIndex].append(rect)
                 }

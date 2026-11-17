@@ -547,10 +547,13 @@ nonisolated struct MemberwiseInitializableMacro: MemberMacro {
                 case .value(let string): return string
                 case .omit: return nil
                 }
+
             } else if isPropertyConstant {
                 return nil
+
             } else if isPropertyOptional {
                 return "nil"
+
             } else {
                 return nil
             }

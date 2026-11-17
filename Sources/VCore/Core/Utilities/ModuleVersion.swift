@@ -62,9 +62,11 @@ nonisolated public struct ModuleVersion: Equatable, Hashable, Comparable, Identi
                 } else {
                     self.init(major, minor, nil)
                 }
+
             } else {
                 self.init(major, 0, nil)
             }
+
         } else {
             return nil
         }

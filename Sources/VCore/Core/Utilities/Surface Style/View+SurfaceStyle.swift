@@ -40,6 +40,7 @@ nonisolated extension View {
             if #available(anyAppleOS 26.0, *) {
                 self
                     .glassEffect(configuration.glass, in: shape)
+
             } else {
                 self // Unreachable, as `glass(_:)` requires `anyAppleOS 26.0`
             }

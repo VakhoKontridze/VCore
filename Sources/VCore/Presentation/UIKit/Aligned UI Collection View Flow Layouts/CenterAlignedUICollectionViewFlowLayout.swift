@@ -189,7 +189,8 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
             collectionView,
             layout: self,
             minimumInteritemSpacingForSectionAt: indexPath.section
-        ) ?? 0
+        ) ??
+        0
     }
     
     private func calculateXOffset(

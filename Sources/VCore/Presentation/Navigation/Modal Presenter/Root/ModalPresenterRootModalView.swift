@@ -28,6 +28,7 @@ struct ModalPresenterRootModalView: View {
             } else {
                 0
             }
+
         } else {
             keyboardObserver.offset
         }
