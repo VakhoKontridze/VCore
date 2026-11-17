@@ -64,7 +64,7 @@ public struct PublishedPropertyWrapperPublisher<Value>: Publisher {
     
     // MARK: Initializers
     init(_ output: Output) {
-        subject = CurrentValueSubject(output)
+        self.subject = CurrentValueSubject(output)
     }
     
     // MARK: Publisher
