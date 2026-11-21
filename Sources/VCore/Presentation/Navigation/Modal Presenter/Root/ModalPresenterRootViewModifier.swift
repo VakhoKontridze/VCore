@@ -17,6 +17,11 @@ struct ModalPresenterRootViewModifier: ViewModifier {
     
     @State private var interfaceOrientation: PlatformInterfaceOrientation = .initFromDeviceOrientation()
     @State private var safeAreaInsets: EdgeInsets = .init()
+    @State private var keyboardInclusiveSafeAreaInsetBottom: CGFloat = 0
+
+    private var keyboardInset: CGFloat {
+        max(0, keyboardInclusiveSafeAreaInsetBottom - safeAreaInsets.bottom)
+    }
     
     // MARK: Properties - Context
     @State private var internalContext: ModalPresenterInternalContext
@@ -70,9 +75,16 @@ struct ModalPresenterRootViewModifier: ViewModifier {
             // Reading environment
             .onPlatformInterfaceOrientationChange { interfaceOrientation = $0 }
             .background {
+                // Read inside `ignoresSafeArea(.keyboard)`, so that keyboard isn't counted as a safe area
+                Color.clear
+                    .onGeometryChange(of: { $0.safeAreaInsets }, action: onSafeAreaInsetsChange)
+                    .ignoresSafeArea(.keyboard)
+            }
+            .background {
+                // Read outside `ignoresSafeArea(.keyboard)`, which counts keyboard as a safe area
                 Color.clear
                     .ignoresSafeArea(.keyboard)
-                    .onGeometryChange(of: { $0.safeAreaInsets }, action: onSafeAreaInsetsChange)
+                    .onGeometryChange(of: { $0.safeAreaInsets.bottom }) { keyboardInclusiveSafeAreaInsetBottom = $0 }
             }
 
             // UI
@@ -109,6 +121,7 @@ struct ModalPresenterRootViewModifier: ViewModifier {
                         onlyFocusedModalIsKeyboardResponsive: appearance.onlyFocusedModalIsKeyboardResponsive,
                         interfaceOrientation: interfaceOrientation,
                         safeAreaInsets: safeAreaInsets,
+                        keyboardInset: keyboardInset,
                         keyboardObserver: keyboardObserver,
                         modal: modal
                     )
@@ -117,6 +130,7 @@ struct ModalPresenterRootViewModifier: ViewModifier {
                         onlyFocusedModalIsKeyboardResponsive: appearance.onlyFocusedModalIsKeyboardResponsive,
                         interfaceOrientation: interfaceOrientation,
                         safeAreaInsets: safeAreaInsets,
+                        keyboardInset: keyboardInset,
                         modal: modal
                     )
 #endif

@@ -28,6 +28,12 @@ Presentation
 
 - `ParameterizedProgressView` is added, that presents `ProgressView` configured with `ProgressViewParameters`
 
+Presentation - Modal Presenter
+
+- `ModalPresenterContext.safeAreaInsets` no longer includes keyboard while it's shown, which moved a modal pinned to the bottom edge by keyboard height, and a focused modal twice, with `ModalPresenterRootAppearance.keyboardResponsivenessStrategy`
+- `ModalPresenterContext.keyboardInset` property is added, that returns height that keyboard covers above the bottom safe area inset, so that a modal that doesn't hold focus can stay above keyboard
+- `ModalPresenterContext.keyboardAnimation` property is added, that returns animation of the latest keyboard change, with which `keyboardInset` can be animated
+
 ### [9.1.1(118)](https://github.com/VakhoKontridze/VCore/releases/tag/9.1.1) — 2026 10 19
 
 Core - Utilities

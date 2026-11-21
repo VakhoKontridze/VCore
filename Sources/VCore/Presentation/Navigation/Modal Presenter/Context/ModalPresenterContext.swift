@@ -23,7 +23,19 @@ public final class ModalPresenterContext {
     public internal(set) var containerSize: CGSize = .zero
     
     /// Safe area insets.
+    ///
+    /// Insets don't include the keyboard, which a modal follows through `keyboardInset`,
+    /// or through `ModalPresenterRootAppearance.keyboardResponsivenessStrategy` while it holds focus.
     public internal(set) var safeAreaInsets: EdgeInsets = .init()
+
+    /// Height that keyboard covers above the bottom safe area inset, or `0` when keyboard is hidden.
+    ///
+    /// Root moves only the modal that holds focus.
+    /// A modal pinned to the bottom edge that doesn't hold focus, such as a toast, can add this value to stay above keyboard.
+    public internal(set) var keyboardInset: CGFloat = 0
+
+    /// Animation of the latest keyboard change, with which `keyboardInset` can be animated.
+    public internal(set) var keyboardAnimation: Animation?
 
     // MARK: Properties - Present
     @ObservationIgnored let presentSubject: PassthroughSubject<Void, Never> = .init()
