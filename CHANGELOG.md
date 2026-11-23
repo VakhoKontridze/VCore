@@ -1,6 +1,6 @@
 # Change Log
 
-### 9.2.0(119)
+### [9.2.0(119)](https://github.com/VakhoKontridze/VCore/releases/tag/9.2.0) — 2026 10 23
 
 Core - Extensions
 
