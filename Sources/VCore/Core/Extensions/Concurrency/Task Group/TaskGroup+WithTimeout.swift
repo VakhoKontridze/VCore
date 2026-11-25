@@ -74,7 +74,7 @@ public func withTimeout<ResultType>(
 
 /// Error that occurs during the operation in `withTimeout(...)`.
 @MemberwiseInitializable(accessLevelModifier: .private)
-nonisolated public struct WithTimeoutError: BaseErrorProtocol, Equatable {
+nonisolated public struct WithTimeoutError: BaseErrorProtocol {
     // MARK: Properties
     public static let domain: String =  "com.vakhtang-kontridze.vcore.with-timeout"
     public let code: Int
@@ -95,10 +95,5 @@ nonisolated public struct WithTimeoutError: BaseErrorProtocol, Equatable {
             code: 2,
             description: "Failed to get a result from the asynchronous operation in the given time frame"
         )
-    }
-    
-    // MARK: Equatable
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.code == rhs.code
     }
 }

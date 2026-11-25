@@ -9,7 +9,7 @@ import Foundation
 
 /// Error that occurs during the operations in `ImageRepository`.
 @MemberwiseInitializable(accessLevelModifier: .private)
-nonisolated public struct ImageRepositoryError: BaseErrorProtocol, Equatable {
+nonisolated public struct ImageRepositoryError: BaseErrorProtocol {
     // MARK: Properties
     public static let domain: String = "com.vakhtang-kontridze.vcore.image-repository"
     public let code: Int
@@ -38,10 +38,5 @@ nonisolated public struct ImageRepositoryError: BaseErrorProtocol, Equatable {
             code: 3,
             description: "Failed to resize image"
         )
-    }
-    
-    // MARK: Equatable
-    public static func == (lhs: Self, rhs: Self) -> Bool {
-        lhs.code == rhs.code
     }
 }

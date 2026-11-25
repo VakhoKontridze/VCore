@@ -9,7 +9,7 @@ import Foundation
 
 /// Error that occurs during the operations in `KeychainService`.
 @MemberwiseInitializable(accessLevelModifier: .private)
-nonisolated public struct KeychainServiceError: BaseErrorProtocol, Sendable {
+nonisolated public struct KeychainServiceError: BaseErrorProtocol {
     // MARK: Properties
     public static let domain: String = "com.vakhtang.kontridze.vcore.keychainservice"
     public let code: Int

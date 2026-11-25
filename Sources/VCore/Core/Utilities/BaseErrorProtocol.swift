@@ -10,7 +10,7 @@ public import Foundation
 /// Base error protocol.
 ///
 ///     @MemberwiseInitializable(accessLevelModifier: .private)
-///     nonisolated struct ServiceError: BaseErrorProtocol, Equatable {
+///     nonisolated struct ServiceError: BaseErrorProtocol {
 ///         static let domain: String = "com.domain.app.service"
 ///         let code: Int
 ///         let description: String
@@ -27,10 +27,6 @@ public import Foundation
 ///                 code: 2,
 ///                 description: "Data cannot be set, because '\(reason)'"
 ///             )
-///         }
-///
-///         static func == (lhs: Self, rhs: Self) -> Bool {
-///             lhs.code == rhs.code
 ///         }
 ///     }
 ///
