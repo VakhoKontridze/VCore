@@ -42,17 +42,14 @@ nonisolated struct ResultNoSuccessTests {
     }
     
     // MARK: Types
-    nonisolated private struct TestError: Error, Equatable {
+    nonisolated private struct TestError: BaseErrorProtocol {
         // MARK: Properties
-        private let code: Int
+        static let domain: String = "com.vakhtang-kontridze.vcore.tests.result-no-success"
+        let code: Int
+        let description: String
         
         // MARK: Initializers
-        static var a: Self { .init(code: 1) }
-        static var b: Self { .init(code: 2) }
-
-        // MARK: Equatable
-        static func == (lhs: Self, rhs: Self) -> Bool {
-            lhs.code == rhs.code
-        }
+        static var a: Self { .init(code: 1, description: "A") }
+        static var b: Self { .init(code: 2, description: "B") }
     }
 }
