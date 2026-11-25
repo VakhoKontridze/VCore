@@ -11,7 +11,7 @@ import Foundation
 @MemberwiseInitializable(accessLevelModifier: .private)
 nonisolated public struct CastingError: BaseErrorProtocol {
     // MARK: Properties
-    public static let domain: String = "com.vakhtang.kontridze.vcore"
+    public static let domain: String = "com.vakhtang-kontridze.vcore.casting"
     public let code: Int
     public let description: String
     

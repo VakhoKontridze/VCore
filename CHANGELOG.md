@@ -2,9 +2,15 @@
 
 ### 9.3.0(120)
 
+Core - Services
+
+- `KeychainServiceError.domain` is changed to `com.vakhtang-kontridze.vcore.keychain-service`
+- `UserDefaultsServiceError.domain` is changed to `com.vakhtang-kontridze.vcore.user-defaults-service`
+
 Core - Utilities
 
 - `CachedManagedTask.seed(value:)` and `CachedKeyedManagedTask.seed(key:value:)` methods are added, that cache a value obtained outside `run`, such as one returned by a write
+- `CastingError.domain` is changed to `com.vakhtang-kontridze.vcore.casting`
 
 ### [9.2.0(119)](https://github.com/VakhoKontridze/VCore/releases/tag/9.2.0) — 2026 10 23
 

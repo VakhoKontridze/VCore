@@ -76,7 +76,7 @@ public func withTimeout<ResultType>(
 @MemberwiseInitializable(accessLevelModifier: .private)
 nonisolated public struct WithTimeoutError: BaseErrorProtocol {
     // MARK: Properties
-    public static let domain: String =  "com.vakhtang-kontridze.vcore.with-timeout"
+    public static let domain: String = "com.vakhtang-kontridze.vcore.with-timeout"
     public let code: Int
     public let description: String
 

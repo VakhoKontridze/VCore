@@ -50,7 +50,7 @@ nonisolated open class DefaultUserDefaultsService: UserDefaultsService, @uncheck
     
     // MARK: Properties - Queue
     private let queue: DispatchQueue = .init(
-        label: "com.vakhtang-kontridze.vcore.default0user-defaults-service",
+        label: "com.vakhtang-kontridze.vcore.default-user-defaults-service",
         attributes: .concurrent
     )
 
