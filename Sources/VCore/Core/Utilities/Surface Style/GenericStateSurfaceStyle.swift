@@ -125,6 +125,10 @@ nonisolated public struct GenericStateSurfaceStyle<Colors> {
     }
 
     /// Configuration of a Liquid Glass surface, with state-bound tint colors.
+    @MemberwiseInitializable(
+        accessLevelModifier: .internal,
+        parameterDefaultValues: ["*": .omit]
+    )
     nonisolated public struct GlassConfiguration {
         // MARK: Properties
         var variant: SurfaceStyle.GlassConfiguration.Variant
