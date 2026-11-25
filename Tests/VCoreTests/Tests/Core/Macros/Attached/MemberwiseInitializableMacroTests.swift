@@ -189,7 +189,7 @@ nonisolated final class MemberwiseInitializableMacroTests: XCTestCase {
                 dynamic let b: Int
             }
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 nonisolated class Model {
                     @objc let a: Int

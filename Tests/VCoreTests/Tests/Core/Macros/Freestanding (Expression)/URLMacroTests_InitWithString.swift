@@ -39,7 +39,7 @@ nonisolated final class URLMacroTests_InitWithString: XCTestCase {
             let urlString: String = "https://website.com"
             let url: URL = #url(urlString)
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 let urlString: String = "https://website.com"
                 let url: URL = #url(urlString)
@@ -54,7 +54,7 @@ nonisolated final class URLMacroTests_InitWithString: XCTestCase {
             """
             let url: URL = #url("https://website .com")
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 let url: URL = #url("https://website .com")
                 """,

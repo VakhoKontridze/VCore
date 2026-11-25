@@ -29,7 +29,7 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
                 @CKGProperty let two: String
             }
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 nonisolated struct Model: Encodable {
                     @CKGProperty let one: Int
@@ -79,7 +79,7 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
                 @CKGProperty public let two: String
             }
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 public nonisolated struct Model: Sendable, Encodable {
                     @CKGProperty public let one: Int
@@ -131,7 +131,7 @@ nonisolated final class CodingKeysGenerationMacroTests: XCTestCase {
                 func foo() {}
             }
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 nonisolated struct Model: Encodable {
                     @CKGProperty let one: Int

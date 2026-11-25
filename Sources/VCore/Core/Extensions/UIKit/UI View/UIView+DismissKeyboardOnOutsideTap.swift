@@ -24,7 +24,7 @@ extension UIView {
         addGestureRecognizer(gesture)
     }
     
-    @objc 
+    @objc
     private func endEditingOnOutsideTap() {
         endEditing(true)
     }

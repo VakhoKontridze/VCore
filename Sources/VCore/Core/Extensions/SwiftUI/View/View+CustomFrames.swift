@@ -21,7 +21,7 @@ nonisolated extension View {
     ) -> some View {
         self
             .frame(
-                width: dimension, 
+                width: dimension,
                 height: dimension,
                 alignment: alignment
             )

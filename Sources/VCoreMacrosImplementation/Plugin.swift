@@ -11,7 +11,7 @@ import Foundation
 import SwiftCompilerPlugin
 import SwiftSyntaxMacros
 
-@main 
+@main
 nonisolated struct Plugin: CompilerPlugin {
     let providingMacros: [any Macro.Type] = [
         // Attached

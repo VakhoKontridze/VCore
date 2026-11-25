@@ -31,7 +31,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
                 }
             }
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 nonisolated struct Gender {
                     private nonisolated enum Options: Int {
@@ -77,7 +77,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
                 case female
             }
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 nonisolated enum Gender {
                     case male
@@ -102,7 +102,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
                 }
             }
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 public nonisolated struct Gender: Sendable {
                     private nonisolated enum Options: Int {
@@ -193,7 +193,7 @@ nonisolated final class OptionSetRepresentationMacroTests: XCTestCase {
             @OptionSetRepresentation
             nonisolated struct Gender {}
             """,
-            expandedSource: 
+            expandedSource:
                 """
                 nonisolated struct Gender {}
                 """,

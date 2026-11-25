@@ -31,7 +31,7 @@ nonisolated extension Publisher where Failure == Never {
     public func assignWeak<Root>(
         to keyPath: ReferenceWritableKeyPath<Root, Output>,
         on object: Root
-    ) -> AnyCancellable 
+    ) -> AnyCancellable
         where Root: AnyObject
     {
         sink { [weak object] value in

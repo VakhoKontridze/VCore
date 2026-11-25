@@ -39,7 +39,7 @@ nonisolated extension Locale {
         
         if
             languageScriptIdentifierOrCurrent != nil || other.languageScriptIdentifierOrCurrent != nil,
-            languageScriptIdentifierOrCurrent != other.languageScriptIdentifierOrCurrent 
+            languageScriptIdentifierOrCurrent != other.languageScriptIdentifierOrCurrent
         {
             return false
         }

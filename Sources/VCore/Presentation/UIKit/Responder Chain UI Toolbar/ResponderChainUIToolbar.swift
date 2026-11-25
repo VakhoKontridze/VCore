@@ -178,19 +178,19 @@ open class ResponderChainUIToolbar: UIToolbar {
 
     // MARK: Actions
     /// Selector that runs when arrow up button is tapped.
-    @objc 
+    @objc
     open func onUp_Selector(sender: UIBarButtonItem) {
         onUp?()
     }
 
     /// Selector that runs when arrow down button is tapped.
-    @objc 
+    @objc
     open func onDown_Selector(sender: UIBarButtonItem) {
         onDown?()
     }
 
     /// Selector that runs when done button is tapped.
-    @objc 
+    @objc
     open func onDone_Selector(sender: UIBarButtonItem) {
         onDone?()
     }
