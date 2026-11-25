@@ -131,17 +131,6 @@ nonisolated public struct GenericStateSurfaceStyle<Colors> {
         var tintColors: Colors?
         var isInteractive: Bool
 
-        // MARK: Initializers
-        init(
-            variant: SurfaceStyle.GlassConfiguration.Variant,
-            tintColors: Colors?,
-            isInteractive: Bool
-        ) {
-            self.variant = variant
-            self.tintColors = tintColors
-            self.isInteractive = isInteractive
-        }
-
         /// Regular glass.
         public static var regular: Self {
             .init(

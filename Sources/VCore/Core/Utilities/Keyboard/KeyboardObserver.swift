@@ -189,7 +189,7 @@ public final class KeyboardObserver {
 
                     // A responder that focuses while the container is already lifted reports a lifted frame,
                     // so the applied offset is added back to recover the resting position.
-                    baselineMaxY = liveMaxY + self.offset
+                    baselineMaxY = liveMaxY + offset
 
                     baselineFirstResponderView = firstResponderView
                     baselineViewGlobalFrameMaxY = baselineMaxY

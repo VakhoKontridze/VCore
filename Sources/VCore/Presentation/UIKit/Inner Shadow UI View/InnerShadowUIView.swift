@@ -88,7 +88,7 @@ open class InnerShadowUIView: UIView {
 
 #Preview {
     let view: InnerShadowUIView = .init(
-        appearance:  InnerShadowUIViewAppearance {
+        appearance: InnerShadowUIViewAppearance {
             $0.shadowColor = UIColor.systemBlue
         }
     )

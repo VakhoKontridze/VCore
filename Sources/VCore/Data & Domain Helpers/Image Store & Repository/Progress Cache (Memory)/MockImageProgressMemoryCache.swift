@@ -21,7 +21,7 @@ nonisolated open class MockImageProgressMemoryCache: ImageProgressMemoryCache, @
     /// Runs operation for original image.
     open func run(
         key: ImageProgressMemoryCacheOriginalKey,
-        operation: @Sendable @escaping () async throws -> PlatformImage
+        operation: @Sendable () async throws -> PlatformImage
     ) async throws -> PlatformImage {
         try await operation()
     }
@@ -29,7 +29,7 @@ nonisolated open class MockImageProgressMemoryCache: ImageProgressMemoryCache, @
     /// Runs operation for resized image.
     open func run(
         key: ImageProgressMemoryCacheResizedKey,
-        operation: @Sendable @escaping () async throws -> PlatformImage
+        operation: @Sendable () async throws -> PlatformImage
     ) async throws -> PlatformImage {
         try await operation()
     }
