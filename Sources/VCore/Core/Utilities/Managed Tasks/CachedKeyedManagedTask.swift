@@ -62,6 +62,20 @@ nonisolated public final class CachedKeyedManagedTask<Key, Success>: Sendable
         return success
     }
 
+    /// Caches a value for the given key obtained outside `run(key:operation:)`, such as one returned by a write.
+    ///
+    /// Writes only if empty, as `run(key:operation:)` does. To overwrite a cached value, call `reset(key:cancelForAllWaiters:clearCache:)` first.
+    public func seed(
+        key: Key,
+        value: Success
+    ) {
+        lock.withLock { state in
+            if state.entries[key] == nil {
+                state.entries[key] = value
+            }
+        }
+    }
+
     /// Resets operation for the given key.
     ///
     /// If `cancelForAllWaiters` is `true`, operation will be cancelled regardless of how many callers are waiting.

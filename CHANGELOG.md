@@ -1,5 +1,11 @@
 # Change Log
 
+### 9.3.0(120)
+
+Core - Utilities
+
+- `CachedManagedTask.seed(value:)` and `CachedKeyedManagedTask.seed(key:value:)` methods are added, that cache a value obtained outside `run`, such as one returned by a write
+
 ### [9.2.0(119)](https://github.com/VakhoKontridze/VCore/releases/tag/9.2.0) — 2026 10 23
 
 Core - Extensions
