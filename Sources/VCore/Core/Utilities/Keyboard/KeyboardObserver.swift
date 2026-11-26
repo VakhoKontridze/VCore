@@ -285,8 +285,7 @@ public final class KeyboardObserver {
     }
 
     private func keyboardWillHide(
-        notification: Notification,
-        animated: Bool = true
+        notification: Notification
     ) {
         self.notification = notification
         

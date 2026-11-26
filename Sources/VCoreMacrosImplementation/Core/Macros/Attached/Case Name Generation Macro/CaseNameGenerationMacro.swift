@@ -72,21 +72,13 @@ nonisolated struct CaseNameGenerationMacro: MemberMacro {
         // Cases
         var cases: [CaseData] = []
         for member in declaration.memberBlock.members {
-            do {
-                guard
-                    let cases_: [CaseData] = try self.cases(
-                        member: member,
-                        context: context
-                    )
-                else {
-                    continue
-                }
-                    
-                cases.append(contentsOf: cases_)
-                
-            } catch {
-                return []
+            guard
+                let cases_: [CaseData] = self.cases(member: member)
+            else {
+                continue
             }
+            
+            cases.append(contentsOf: cases_)
         }
         
         // Result
@@ -308,9 +300,8 @@ nonisolated struct CaseNameGenerationMacro: MemberMacro {
     
     // MARK: Cases
     private static func cases(
-        member: MemberBlockItemSyntax,
-        context: some MacroExpansionContext
-    ) throws -> [CaseData]? {
+        member: MemberBlockItemSyntax
+    ) -> [CaseData]? {
         // Limits declaration to `case`s
         guard
             let enumCaseDeclaration: EnumCaseDeclSyntax = member.decl.as(EnumCaseDeclSyntax.self)

@@ -187,7 +187,7 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 
         if
             let flowDelegate = collectionView.delegate as? any UICollectionViewDelegateFlowLayout,
-            delegateSupportsSizeForItem(collectionView: collectionView, flowDelegate: flowDelegate)
+            delegateSupportsSizeForItem(flowDelegate: flowDelegate)
         {
             Logger.default.critical("'collectionView(_:layout:sizeForItemAt:)' should not be implemented when using 'CarouselUICollectionViewFlowLayout'")
             return false
@@ -198,7 +198,6 @@ open class CarouselUICollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     // MARK: Helpers
     private func delegateSupportsSizeForItem(
-        collectionView: UICollectionView,
         flowDelegate: any UICollectionViewDelegateFlowLayout
     ) -> Bool {
         flowDelegate.responds(to: #selector((any UICollectionViewDelegateFlowLayout).collectionView(_:layout:sizeForItemAt:)))

@@ -176,10 +176,7 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
         sameRowItemAttributes: [UICollectionViewLayoutAttributes]
     ) -> CGFloat {
         guard
-            delegateSupportsInteritemSpacing(
-                collectionView: collectionView,
-                flowDelegate: flowDelegate
-            ),
+            delegateSupportsInteritemSpacing(flowDelegate: flowDelegate),
             !sameRowItemAttributes.isEmpty
         else {
             return minimumInteritemSpacing
@@ -207,7 +204,6 @@ open class CenterAlignedUICollectionViewFlowLayout: UICollectionViewFlowLayout {
     }
     
     private func delegateSupportsInteritemSpacing(
-        collectionView: UICollectionView,
         flowDelegate: any UICollectionViewDelegateFlowLayout
     ) -> Bool {
         flowDelegate.responds(to: #selector((any UICollectionViewDelegateFlowLayout).collectionView(_:layout:minimumInteritemSpacingForSectionAt:)))

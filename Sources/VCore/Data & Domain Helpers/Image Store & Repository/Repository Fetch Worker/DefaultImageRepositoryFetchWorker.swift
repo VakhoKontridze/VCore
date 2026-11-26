@@ -34,7 +34,7 @@ nonisolated open class DefaultImageRepositoryFetchWorker: ImageRepositoryFetchWo
     open func fetchImage(
         data: Data
     ) async throws -> PlatformImage {
-        try await makeImage(
+        try makeImage(
             data: data
         )
     }
@@ -84,8 +84,7 @@ nonisolated open class DefaultImageRepositoryFetchWorker: ImageRepositoryFetchWo
         let data: Data = try await URLSession.shared.data(from: url).0
         try Task.checkCancellation()
 
-        let image: PlatformImage = try await makeImage(data: data)
-        try Task.checkCancellation()
+        let image: PlatformImage = try makeImage(data: data)
 
         return image
     }
@@ -144,8 +143,7 @@ nonisolated open class DefaultImageRepositoryFetchWorker: ImageRepositoryFetchWo
         }
         try Task.checkCancellation()
         
-        let image: PlatformImage = try await makeImage(data: data)
-        try Task.checkCancellation()
+        let image: PlatformImage = try makeImage(data: data)
         
         return image
     }
@@ -173,7 +171,7 @@ nonisolated open class DefaultImageRepositoryFetchWorker: ImageRepositoryFetchWo
     // MARK: Helpers
     private func makeImage(
         data: Data
-    ) async throws -> PlatformImage {
+    ) throws -> PlatformImage {
         guard
             let image: PlatformImage = .init(data: data)
         else {

@@ -64,7 +64,7 @@ nonisolated extension Image {
         // `AppKit` has no weight-only configuration, so the system font size stands in.
         // The stroke scales with the symbol, so the weight carries over when the image is resized.
         guard
-            let nsImage: NSImage = NSImage(
+            let nsImage: NSImage = .init(
                 systemSymbolName: systemName,
                 accessibilityDescription: nil
             )?

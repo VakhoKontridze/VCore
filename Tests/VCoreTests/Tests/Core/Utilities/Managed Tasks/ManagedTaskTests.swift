@@ -18,7 +18,7 @@ import Testing
 struct ManagedTaskTests {
     // MARK: Tests
     @Test
-    func testSimpleCall() async throws {
+    func testSimpleCall() async {
         let store: Store = .init()
         
         let task: Task<Void, any Error> = .init { try await store.fetch(tag: 1) }
@@ -30,7 +30,7 @@ struct ManagedTaskTests {
     }
 
     @Test
-    func testSequentialCallsRunningIndependently() async throws {
+    func testSequentialCallsRunningIndependently() async {
         let store: Store = .init()
         
         let task1: Task<Void, any Error> = .init { try await store.fetch(tag: 1) }
@@ -62,7 +62,7 @@ struct ManagedTaskTests {
     }
     
     @Test
-    func testCancel_PrimaryCancels_SecondaryReceivesResult() async throws {
+    func testCancel_PrimaryCancels_SecondaryReceivesResult() async {
         let store: Store = .init()
         
         let task1: Task<Void, any Error> = .init { try await store.fetch(tag: 1, delay: .milliseconds(200)) }
@@ -77,7 +77,7 @@ struct ManagedTaskTests {
     }
     
     @Test
-    func testCancel_SecondaryCancels_PrimaryReceivesResult() async throws {
+    func testCancel_SecondaryCancels_PrimaryReceivesResult() async {
         let store: Store = .init()
         
         let task1: Task<Void, any Error> = .init { try await store.fetch(tag: 1, delay: .milliseconds(200)) }
@@ -92,7 +92,7 @@ struct ManagedTaskTests {
     }
 
     @Test
-    func testStoreCancel_OneWaiter() async throws {
+    func testStoreCancel_OneWaiter() async {
         let store: Store = .init()
 
         let task: Task<Void, any Error> = .init { try await store.fetch(tag: 1, delay: .milliseconds(200)) }
@@ -106,7 +106,7 @@ struct ManagedTaskTests {
     }
 
     @Test
-    func testStoreCancel_MultipleWaiters_OnlyOne() async throws {
+    func testStoreCancel_MultipleWaiters_OnlyOne() async {
         let store: Store = .init()
 
         let task1: Task<Void, any Error> = .init { try await store.fetch(tag: 1, delay: .milliseconds(200)) }
@@ -121,7 +121,7 @@ struct ManagedTaskTests {
     }
     
     @Test
-    func testStoreCancel_MultipleWaiters_Multiple() async throws {
+    func testStoreCancel_MultipleWaiters_Multiple() async {
         let store: Store = .init()
 
         let task1: Task<Void, any Error> = .init { try await store.fetch(tag: 1, delay: .milliseconds(200)) }
@@ -136,7 +136,7 @@ struct ManagedTaskTests {
     }
     
     @Test
-    func testFetchAfterForceCancel() async throws {
+    func testFetchAfterForceCancel() async {
         let store: Store = .init()
 
         let task1: Task<Void, any Error> = .init { try await store.fetch(tag: 1, delay: .milliseconds(200)) }
